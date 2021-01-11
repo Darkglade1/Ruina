@@ -24,7 +24,7 @@ public class Briah extends CustomDungeon {
     public static final String NAME = TEXT[0];
 
     public Briah() {
-        super(NAME, ID, "images/ui/event/panel.png", false, 2, 12, 10);
+        super(NAME, ID, "images/ui/event/panel.png", true, 2, 12, 10);
 //        this.setMainMusic("audio/music/Gensokyo/KidFestival.ogg");
 //        this.addTempMusic("FateOfSixtyYears", "audio/music/Gensokyo/FateOfSixtyYears.ogg");
     }
@@ -148,38 +148,6 @@ public class Briah extends CustomDungeon {
         }
 
         return retVal;
-    }
-
-    protected void initializeBoss() {
-        bossList.clear();
-        if (Settings.isDailyRun) {
-            bossList.add("Automaton");
-            bossList.add("Collector");
-            bossList.add("Champ");
-            Collections.shuffle(bossList, new java.util.Random(monsterRng.randomLong()));
-        } else if (!UnlockTracker.isBossSeen("CHAMP")) {
-            bossList.add("Champ");
-        } else if (!UnlockTracker.isBossSeen("AUTOMATON")) {
-            bossList.add("Automaton");
-        } else if (!UnlockTracker.isBossSeen("COLLECTOR")) {
-            bossList.add("Collector");
-        } else {
-            bossList.add("Automaton");
-            bossList.add("Collector");
-            bossList.add("Champ");
-            Collections.shuffle(bossList, new java.util.Random(monsterRng.randomLong()));
-        }
-
-        if (bossList.size() == 1) {
-            bossList.add(bossList.get(0));
-        } else if (bossList.isEmpty()) {
-            logger.warn("Boss list was empty. How?");
-            bossList.add("Automaton");
-            bossList.add("Collector");
-            bossList.add("Champ");
-            Collections.shuffle(bossList, new java.util.Random(monsterRng.randomLong()));
-        }
-
     }
 
     @Override

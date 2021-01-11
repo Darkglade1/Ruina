@@ -20,7 +20,7 @@ public class Bleed extends AbstractEasyPower {
     private boolean justApplied = true;
 
     public Bleed(AbstractCreature owner, int amount) {
-        super(NAME, PowerType.BUFF, false, owner, amount);
+        super(NAME, PowerType.DEBUFF, false, owner, amount);
     }
 
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {

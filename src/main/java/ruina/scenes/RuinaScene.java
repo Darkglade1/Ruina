@@ -30,9 +30,8 @@ public class RuinaScene extends AbstractScene {
 
     public RuinaScene() {
         super("ruinaResources/images/scene/atlas.atlas");
-        //topBar = ImageMaster.loadImage("GensokyoResources/images/scene/topbar.png");
 
-        this.bg = this.atlas.findRegion("mod/TanukiForest");
+        this.bg = this.atlas.findRegion("mod/NightForest");
         //this.fg = this.atlas.findRegion("mod/fg");
         //this.ceil = this.atlas.findRegion("mod/ceiling");
         //this.fgGlow = this.atlas.findRegion("mod/fgGlow");
