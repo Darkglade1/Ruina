@@ -2,11 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>TheTodo</groupId>
-    <artifactId>TheTodo</artifactId>
+    <groupId>Ruina</groupId>
+    <artifactId>Ruina</artifactId>
     <version>0.0.1</version>
-    <name>The Todo</name>
-    <description>TODO: Change this description</description>
+    <name>Ruina</name>
+    <description>An alternate Act mod based on Library of Ruina.</description>
     <!-- -->
 
     <properties>
@@ -14,8 +14,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <SlayTheSpire.version>12-22-2020</SlayTheSpire.version>
         <ModTheSpire.version>3.18.2</ModTheSpire.version>
-        <ModID>todomod</ModID>
-        <JarName>TheTodo</JarName>
+        <ModID>ruina</ModID>
+        <JarName>Ruina</JarName>
 
         <!--CHANGE THIS TO YOUR STEAM INSTALLATION-->
         <Steam.path>C:/Program Files (x86)/Steam/steamapps/</Steam.path>
