@@ -1,14 +1,27 @@
 {
   "${ModID}:LittleRed": {
     "MOVES": [
-      "Strike Without Hesitation",
       "Beast Hunt",
+      "Catch Breath",
       "Hollow Point Shell",
       "Bullet Shower"
     ],
-    "NAME": "Little Red",
+    "NAME": "Little Red Riding Hooded Mercenary",
     "DIALOG": [
-      "Let me hear your insolent whelp, fiend!"
+      "Let me hear your insolent whelp, fiend!",
+      "YOU DARE STEAL MY PREY?",
+      "My duty is fulfilled at last."
+    ]
+  },
+  "${ModID}:NightmareWolf": {
+    "MOVES": [
+      "Cruel Claws",
+      "Ferocious Fangs",
+      "Bloodstained Hunt",
+      "Howl"
+    ],
+    "NAME": "Wolf in Her Nightmares",
+    "DIALOG": [
     ]
   }
 }

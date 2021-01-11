@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +18,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     protected boolean firstMove = true;
     private static final float ASCENSION_DAMAGE_BUFF_PERCENT = 1.15f;
     private static final float ASCENSION_TANK_BUFF_PERCENT = 1.10f;
+    protected boolean damageInfoSet = false;
 
     public AbstractRuinaMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -52,6 +52,36 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
     protected void addMove(byte moveCode, Intent intent, int baseDamage, int multiplier, boolean isMultiDamage) {
         this.moves.put(moveCode, new EnemyMoveInfo(moveCode, intent, baseDamage, multiplier, isMultiDamage));
+    }
+
+    @Override
+    public void takeTurn() {
+        DamageInfo info = null;
+        int multiplier = 0;
+        if(moves.containsKey(this.nextMove)) {
+            EnemyMoveInfo emi = moves.get(this.nextMove);
+            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
+            multiplier = emi.multiplier;
+        } else {
+            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
+        }
+        if(damageInfoSet) {
+            info = this.damage.get(0);
+            this.damage.remove(0);
+            damageInfoSet = false;
+            if(info.base > -1) {
+                this.addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        this.isDone = true;
+                        useFastAttackAnimation();
+                    }
+                });
+            }
+        } else {
+            info.applyPowers(this, AbstractDungeon.player);
+        }
+        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
     public void setMoveShortcut(byte next, String text) {

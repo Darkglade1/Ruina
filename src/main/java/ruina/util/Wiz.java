@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,6 +21,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.powers.LosePowerPower;
 import ruina.powers.NextTurnPowerPower;
 
+import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -181,5 +183,9 @@ public class Wiz {
 
     public static void dmg(AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect) {
         atb(new DamageAction(target, info, effect));
+    }
+
+    public static void block(AbstractCreature target, int amount) {
+        atb(new GainBlockAction(target, amount));
     }
 }

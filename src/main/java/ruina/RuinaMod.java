@@ -2,25 +2,36 @@ package ruina;
 
 import basemod.AutoAdd;
 import basemod.BaseMod;
+import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import ruina.cards.AbstractTodoCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SillyVariable;
+import ruina.dungeons.Briah;
+import ruina.dungeons.EncounterIDs;
 import ruina.monsters.act2.LittleRed;
+import ruina.monsters.act2.NightmareWolf;
 import ruina.relics.AbstractEasyRelic;
+import ruina.util.TexLoader;
 
 import java.nio.charset.StandardCharsets;
 
@@ -57,6 +68,16 @@ public class RuinaMod implements
     private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
     private static final String CHARSELECT_BUTTON = getModID() + "Resources/images/charSelect/charButton.png";
     private static final String CHARSELECT_PORTRAIT = getModID() + "Resources/images/charSelect/charBG.png";
+
+    //This is for the in-game mod settings panel.
+    private static final String MODNAME = "Ruina";
+    private static final String AUTHOR = "Darkglade";
+    private static final String DESCRIPTION = "An alternate Act 1, 2, and 3 mod inspired by Library of Ruina.";
+
+    // =============== INPUT TEXTURE LOCATION =================
+
+    //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
+    public static final String BADGE_IMAGE = "ruinaResources/images/Badge.png";
 
     public RuinaMod() {
         BaseMod.subscribe(this);
@@ -138,7 +159,21 @@ public class RuinaMod implements
 
     @Override
     public void receivePostInitialize() {
-        BaseMod.addMonster(LittleRed.ID, (BaseMod.GetMonster)LittleRed::new);
+        // Load the Mod Badge
+        Texture badgeTexture = TexLoader.getTexture(BADGE_IMAGE);
+
+        // Create the Mod Menu
+        ModPanel settingsPanel = new ModPanel();
+
+        BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
+
+        (new Briah()).addAct(TheCity.ID);
+
+        BaseMod.addMonster(EncounterIDs.RED_AND_WOLF, "Red and Wolf", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new LittleRed(-480.0F, 0.0F),
+                        new NightmareWolf(),
+                }));
     }
 
 
@@ -153,6 +188,8 @@ public class RuinaMod implements
         BaseMod.loadCustomStringsFile(PowerStrings.class, getModID() + "Resources/localization/eng/Powerstrings.json");
 
         BaseMod.loadCustomStringsFile(MonsterStrings.class, getModID() + "Resources/localization/eng/Monsterstrings.json");
+
+        BaseMod.loadCustomStringsFile(UIStrings.class, getModID() + "Resources/localization/eng/UIstrings.json");
     }
 
     @Override

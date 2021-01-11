@@ -2,5 +2,17 @@
   "${ModID}:StrikeWithoutHesitation": {
     "NAME": "Strike Without Hesitation",
     "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage this turn, gains #b", " #yStrength."]
+  },
+  "${ModID}:FuryWithNoOutlet": {
+    "NAME": "Fury With No Outlet",
+    "DESCRIPTIONS": ["#yLittle #yRed is your #gally. If she lands the #rkilling #rblow on the #yWolf, you win. If the #yWolf #rdies by any other means, #yLittle #yRed heals to full HP, enters an #renraged state, and becomes your #renemy."]
+  },
+  "${ModID}:BloodstainedClaws": {
+    "NAME": "Bloodstained Claws",
+    "DESCRIPTIONS": ["If #yLittle #yRed #rdies, heals #b", " HP and begins to target #ryou with both intents."]
+  },
+  "${ModID}:Bleed": {
+    "NAME": "Bleed",
+    "DESCRIPTIONS": ["Whenever this creature #yattacks this turn, it takes #b", " damage."]
   }
 }
