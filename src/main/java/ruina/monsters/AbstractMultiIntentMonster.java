@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -154,7 +155,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             }
         }
         for (AbstractPower p : this.powers) {
-            if (p.region48 != null) {
+            if (p.region48 != null && !(p instanceof InvisiblePower)) {
                 this.tips.add(new PowerTip(p.name, p.description, p.region48));
                 continue;
             }

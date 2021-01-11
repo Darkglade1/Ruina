@@ -25,6 +25,7 @@ import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
+import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.WaitEffect;
 
@@ -93,6 +94,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
             }
         });
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
     @Override
@@ -130,7 +132,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
             case BLOODSTAINED_HUNT: {
                 //runAnim("Smack");
                 for (int i = 0; i < multiplier; i++) {
-                    dmg(adp(), info, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+                    dmg(target, info, AbstractGameAction.AttackEffect.SLASH_HEAVY);
                 }
                 break;
             }

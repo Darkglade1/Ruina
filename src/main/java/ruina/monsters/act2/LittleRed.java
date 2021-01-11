@@ -131,7 +131,7 @@ public class LittleRed extends AbstractAllyMonster
 
                     @Override
                     public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target) {
-                        if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL && target == AbstractDungeon.player) {
+                        if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL) {
                             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner, owner, new StrengthPower(owner, amount), amount));
                         }
                     }
