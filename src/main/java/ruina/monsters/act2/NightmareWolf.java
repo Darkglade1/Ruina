@@ -56,6 +56,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     private final int BLEED = calcAscensionSpecial(2);
     public LittleRed red;
     private boolean targetRed = false;
+    private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
 
     public static final String POWER_ID = RuinaMod.makeID("BloodstainedClaws");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -76,7 +77,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
         }
         this.setHp(calcAscensionTankiness(this.maxHealth));
 
-        addMove(CRUEL_CLAWS, Intent.ATTACK_DEFEND, calcAscensionDamage(12));
+        addMove(CRUEL_CLAWS, Intent.ATTACK_DEFEND, calcAscensionDamage(9));
         addMove(FEROCIOUS_FANGS, Intent.ATTACK_DEBUFF, calcAscensionDamage(8), 2, true);
         addMove(BLOODSTAINED_HUNT, Intent.ATTACK, calcAscensionDamage(7), 3, true);
         addMove(HOWL, Intent.BUFF);
@@ -96,7 +97,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
             }
         });
-        applyToTarget(this, this, new InvisibleBarricadePower(this));
+        applyToTarget(this, this, power);
     }
 
     @Override
@@ -116,9 +117,10 @@ public class NightmareWolf extends AbstractMultiIntentMonster
         switch (move.nextMove) {
             case CRUEL_CLAWS: {
                 //runAnim("Spark");
-                atb(new VFXAction(new ClawEffect(target.hb.cX, target.hb.cY, Color.CYAN, Color.WHITE), 0.1F));
                 block(this, BLOCK);
+                atb(new VFXAction(new ClawEffect(target.hb.cX, target.hb.cY, Color.CYAN, Color.WHITE), 0.1F));
                 dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                power.justGainedBlock = true; //hack to make the block fall off at a different time LOL
                 break;
             }
             case FEROCIOUS_FANGS: {
@@ -203,7 +205,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
             if (i < additionalMoves.size()) {
                 additionalMove = additionalMoves.get(i);
             }
-            if (additionalMove != null) {
+            if (additionalMove != null && additionalMove.baseDamage > 0) {
                 if (additionalMove.nextMove == -1 || red.isDead) {
                     applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp());
                 } else {

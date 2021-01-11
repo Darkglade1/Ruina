@@ -5,9 +5,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
@@ -23,10 +26,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
@@ -103,7 +108,7 @@ public class LittleRed extends AbstractAllyMonster
             return;
         }
         super.takeTurn();
-        if (this.firstMove) {
+        if (this.firstMove && !enraged) {
             AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[0]));
             firstMove = false;
         }
@@ -190,6 +195,7 @@ public class LittleRed extends AbstractAllyMonster
         animation.setFlip(false, false);
         AbstractDungeon.actionManager.addToBottom(new ShoutAction(this, DIALOG[1], 2.0F, 3.0F));
         applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+        atb(new HealAction(this, this, maxHealth));
     }
 
     @Override
@@ -258,12 +264,19 @@ public class LittleRed extends AbstractAllyMonster
         } else {
             onBossVictoryLogic();
         }
-
     }
 
     public void onKillWolf() {
-        atb(new SuicideAction(this));
-        onBossVictoryLogic();
+        AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[2]));
+        AbstractDungeon.actionManager.addToBottom(new VFXAction(new WaitEffect(), 1.0F));
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                wolf.red.isDead = true;
+                onBossVictoryLogic();
+                this.isDone = true;
+            }
+        });
     }
 
 }

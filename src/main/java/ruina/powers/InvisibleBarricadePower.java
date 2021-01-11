@@ -10,6 +10,7 @@ import static ruina.util.Wiz.atb;
 //because apparently the block of ALL enemies fall off at the end of the player's turn zzzzzzz
 public class InvisibleBarricadePower extends AbstractEasyPower implements InvisiblePower {
     public static final String POWER_ID = BarricadePower.POWER_ID;
+    public boolean justGainedBlock = false;
 
     public InvisibleBarricadePower(AbstractCreature owner) {
         super("", PowerType.BUFF, false, owner, -1);
@@ -18,7 +19,11 @@ public class InvisibleBarricadePower extends AbstractEasyPower implements Invisi
 
     @Override
     public void duringTurn() {
-        atb(new RemoveAllBlockAction(owner, owner));
+        if (justGainedBlock) {
+            justGainedBlock = false;
+        } else {
+            atb(new RemoveAllBlockAction(owner, owner));
+        }
     }
 
     @Override
