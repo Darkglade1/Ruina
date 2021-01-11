@@ -46,14 +46,14 @@ public class LittleRed extends AbstractRuinaMonster
     }
 
     public LittleRed(final float x, final float y) {
-        super(NAME, ID, 150, -5.0F, 0, 230.0f, 285.0f, null, x, y);
+        super(NAME, ID, 150, -5.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("LittleRed/Spriter/LittleRed.scml"));
         this.type = EnemyType.BOSS;
 
         this.setHp(calcAscensionTankiness(this.maxHealth));
 
         addMove(BEAST_HUNT, Intent.ATTACK, calcAscensionDamage(8));
-        addMove(CATCH_BREATH, Intent.BUFF, calcAscensionTankiness(10), 3);
+        addMove(CATCH_BREATH, Intent.BUFF, calcAscensionTankiness(10), 2);
         addMove(HOLLOW_POINT_SHELL, Intent.ATTACK, calcAscensionDamage(7), 2, true);
         addMove(BULLET_SHOWER, Intent.ATTACK, calcAscensionDamage(8), 3, true);
     }
