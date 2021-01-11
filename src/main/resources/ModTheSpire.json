@@ -10,7 +10,8 @@
   "mts_version": "${ModTheSpire.version}",
   "dependencies": [
     "basemod",
-    "stslib"
+    "stslib",
+    "actlikeit"
   ]
 }
 

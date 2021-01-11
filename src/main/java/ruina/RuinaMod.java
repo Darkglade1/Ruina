@@ -12,11 +12,14 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import ruina.cards.AbstractTodoCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SillyVariable;
+import ruina.monsters.act2.LittleRed;
 import ruina.relics.AbstractEasyRelic;
 
 import java.nio.charset.StandardCharsets;
@@ -28,7 +31,8 @@ public class RuinaMod implements
         EditRelicsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
-        EditCharactersSubscriber {
+        EditCharactersSubscriber,
+        PostInitializeSubscriber {
 
     private static final String modID = "ruina";
     public static String getModID() {
@@ -92,6 +96,10 @@ public class RuinaMod implements
         return modID + "Resources/images/effects/" + resourcePath;
     }
 
+    public static String makeMonsterPath(String resourcePath) {
+        return modID + "Resources/images/monsters/" + resourcePath;
+    }
+
     public static void initialize() {
         RuinaMod ruinaMod = new RuinaMod();
     }
@@ -128,6 +136,11 @@ public class RuinaMod implements
                 .cards();
     }
 
+    @Override
+    public void receivePostInitialize() {
+        BaseMod.addMonster(LittleRed.ID, (BaseMod.GetMonster)LittleRed::new);
+    }
+
 
     @Override
     public void receiveEditStrings() {
@@ -136,6 +149,10 @@ public class RuinaMod implements
         BaseMod.loadCustomStringsFile(RelicStrings.class, getModID() + "Resources/localization/eng/Relicstrings.json");
 
         BaseMod.loadCustomStringsFile(CharacterStrings.class, getModID() + "Resources/localization/eng/Charstrings.json");
+
+        BaseMod.loadCustomStringsFile(PowerStrings.class, getModID() + "Resources/localization/eng/Powerstrings.json");
+
+        BaseMod.loadCustomStringsFile(MonsterStrings.class, getModID() + "Resources/localization/eng/Monsterstrings.json");
     }
 
     @Override

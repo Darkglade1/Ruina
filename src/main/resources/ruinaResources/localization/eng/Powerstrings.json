@@ -1,0 +1,6 @@
+{
+  "${ModID}:StrikeWithoutHesitation": {
+    "NAME": "Strike Without Hesitation",
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage this turn, gains #b", " #yStrength."]
+  }
+}

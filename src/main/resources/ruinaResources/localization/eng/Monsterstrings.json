@@ -1,0 +1,14 @@
+{
+  "${ModID}:LittleRed": {
+    "MOVES": [
+      "Strike Without Hesitation",
+      "Beast Hunt",
+      "Hollow Point Shell",
+      "Bullet Shower"
+    ],
+    "NAME": "Little Red",
+    "DIALOG": [
+      "Let me hear your insolent whelp, fiend!"
+    ]
+  }
+}
