@@ -4,9 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class AdditionalIntent {
-
+    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString("AbstractMonster").TEXT;
     public AbstractMonster.Intent intent;
 
     public int damage;
@@ -34,6 +36,7 @@ public class AdditionalIntent {
     private float intentAngle;
     private Texture intentImg;
     private Texture intentBg;
+    public PowerTip intentTip;
 
     private ArrayList<AbstractGameEffect> intentVfx;
 
@@ -61,10 +64,12 @@ public class AdditionalIntent {
         intentVfx = new ArrayList<>();
 
         intentColor.a = 0.0f;
+        intentTip = createAdditionalIntentTip(this);
     }
 
     public void updateDamage(int newDamage) {
         damage = newDamage;
+        intentTip = createAdditionalIntentTip(this);
         this.intentImg = this.getIntentImg();
     }
 
@@ -235,6 +240,139 @@ public class AdditionalIntent {
             return ImageMaster.INTENT_ATK_5;
         } else {
             return tmp < 30 ? ImageMaster.INTENT_ATK_6 : ImageMaster.INTENT_ATK_7;
+        }
+    }
+
+    public PowerTip createAdditionalIntentTip(AdditionalIntent additionalIntent) {
+        PowerTip additionalIntentTip = new PowerTip();
+        switch(additionalIntent.intent) {
+            case ATTACK:
+                additionalIntentTip.header = TEXT[0];
+                if (additionalIntent.multihit) {
+                    additionalIntentTip.body = TEXT[1] + additionalIntent.damage + TEXT[2] + additionalIntent.numHits + TEXT[3];
+                } else {
+                    additionalIntentTip.body = TEXT[4] + additionalIntent.damage + TEXT[5];
+                }
+
+                additionalIntentTip.img = this.getAttackIntentTip(additionalIntent);
+                break;
+            case ATTACK_BUFF:
+                additionalIntentTip.header = TEXT[6];
+                if (additionalIntent.multihit) {
+                    additionalIntentTip.body = TEXT[7] + additionalIntent.damage + TEXT[2] + additionalIntent.numHits + TEXT[8];
+                } else {
+                    additionalIntentTip.body = TEXT[9] + additionalIntent.damage + TEXT[5];
+                }
+
+                additionalIntentTip.img = ImageMaster.INTENT_ATTACK_BUFF;
+                break;
+            case ATTACK_DEBUFF:
+                additionalIntentTip.header = TEXT[10];
+                if (additionalIntent.multihit) {
+                    additionalIntentTip.body = TEXT[11] + additionalIntent.damage + TEXT[2] + additionalIntent.numHits + TEXT[3];
+                } else {
+                    additionalIntentTip.body = TEXT[11] + additionalIntent.damage + TEXT[5];
+                }
+                additionalIntentTip.img = ImageMaster.INTENT_ATTACK_DEBUFF;
+                break;
+            case ATTACK_DEFEND:
+                additionalIntentTip.header = TEXT[0];
+                if (additionalIntent.multihit) {
+                    additionalIntentTip.body = TEXT[12] + additionalIntent.damage + TEXT[2] + additionalIntent.numHits + TEXT[3];
+                } else {
+                    additionalIntentTip.body = TEXT[12] + additionalIntent.damage + TEXT[5];
+                }
+
+                additionalIntentTip.img = ImageMaster.INTENT_ATTACK_DEFEND;
+                break;
+            case BUFF:
+                additionalIntentTip.header = TEXT[10];
+                additionalIntentTip.body = TEXT[19];
+                additionalIntentTip.img = ImageMaster.INTENT_BUFF;
+                break;
+            case DEBUFF:
+                additionalIntentTip.header = TEXT[10];
+                additionalIntentTip.body = TEXT[20];
+                additionalIntentTip.img = ImageMaster.INTENT_DEBUFF;
+                break;
+            case STRONG_DEBUFF:
+                additionalIntentTip.header = TEXT[10];
+                additionalIntentTip.body = TEXT[21];
+                additionalIntentTip.img = ImageMaster.INTENT_DEBUFF2;
+                break;
+            case DEFEND:
+                additionalIntentTip.header = TEXT[13];
+                additionalIntentTip.body = TEXT[22];
+                additionalIntentTip.img = ImageMaster.INTENT_DEFEND;
+                break;
+            case DEFEND_DEBUFF:
+                additionalIntentTip.header = TEXT[13];
+                additionalIntentTip.body = TEXT[23];
+                additionalIntentTip.img = ImageMaster.INTENT_DEFEND;
+                break;
+            case DEFEND_BUFF:
+                additionalIntentTip.header = TEXT[13];
+                additionalIntentTip.body = TEXT[24];
+                additionalIntentTip.img = ImageMaster.INTENT_DEFEND_BUFF;
+                break;
+            case ESCAPE:
+                additionalIntentTip.header = TEXT[14];
+                additionalIntentTip.body = TEXT[25];
+                additionalIntentTip.img = ImageMaster.INTENT_ESCAPE;
+                break;
+            case MAGIC:
+                additionalIntentTip.header = TEXT[15];
+                additionalIntentTip.body = TEXT[26];
+                additionalIntentTip.img = ImageMaster.INTENT_MAGIC;
+                break;
+            case SLEEP:
+                additionalIntentTip.header = TEXT[16];
+                additionalIntentTip.body = TEXT[27];
+                additionalIntentTip.img = ImageMaster.INTENT_SLEEP;
+                break;
+            case STUN:
+                additionalIntentTip.header = TEXT[17];
+                additionalIntentTip.body = TEXT[28];
+                additionalIntentTip.img = ImageMaster.INTENT_STUN;
+                break;
+            case UNKNOWN:
+                additionalIntentTip.header = TEXT[18];
+                additionalIntentTip.body = TEXT[29];
+                additionalIntentTip.img = ImageMaster.INTENT_UNKNOWN;
+                break;
+            case NONE:
+                additionalIntentTip.header = "";
+                additionalIntentTip.body = "";
+                additionalIntentTip.img = ImageMaster.INTENT_UNKNOWN;
+                break;
+            default:
+                additionalIntentTip.header = "NOT SET";
+                additionalIntentTip.body = "NOT SET";
+                additionalIntentTip.img = ImageMaster.INTENT_UNKNOWN;
+        }
+        return additionalIntentTip;
+    }
+
+    private Texture getAttackIntentTip(AdditionalIntent additionalIntent) {
+        int tmp;
+        if (additionalIntent.multihit) {
+            tmp = additionalIntent.damage * additionalIntent.numHits;
+        } else {
+            tmp = additionalIntent.damage;
+        }
+
+        if (tmp < 5) {
+            return ImageMaster.INTENT_ATK_TIP_1;
+        } else if (tmp < 10) {
+            return ImageMaster.INTENT_ATK_TIP_2;
+        } else if (tmp < 15) {
+            return ImageMaster.INTENT_ATK_TIP_3;
+        } else if (tmp < 20) {
+            return ImageMaster.INTENT_ATK_TIP_4;
+        } else if (tmp < 25) {
+            return ImageMaster.INTENT_ATK_TIP_5;
+        } else {
+            return tmp < 30 ? ImageMaster.INTENT_ATK_TIP_6 : ImageMaster.INTENT_ATK_TIP_7;
         }
     }
 }

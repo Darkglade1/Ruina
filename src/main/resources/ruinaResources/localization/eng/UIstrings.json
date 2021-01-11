@@ -6,5 +6,19 @@
       "Books.",
       "Go get some books."
     ]
+  },
+  "${ModID}:AllyStrings": {
+    "TEXT": [
+      "This enemy intends to NL #yAttack your #gally for #b",
+      " damage.",
+      "This enemy intends to NL #yAttack your #gally for #b",
+      " damage #b",
+      " times.",
+      "Your #gally intends to #yAttack the #renemy for #b",
+      " damage.",
+      "Your #gally intends to #yAttack the #renemy for #b",
+      " damage #b",
+      " times."
+    ]
   }
 }

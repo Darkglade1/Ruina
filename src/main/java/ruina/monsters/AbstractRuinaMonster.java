@@ -54,36 +54,6 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         this.moves.put(moveCode, new EnemyMoveInfo(moveCode, intent, baseDamage, multiplier, isMultiDamage));
     }
 
-    @Override
-    public void takeTurn() {
-        DamageInfo info = null;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
-        if(damageInfoSet) {
-            info = this.damage.get(0);
-            this.damage.remove(0);
-            damageInfoSet = false;
-            if(info.base > -1) {
-                this.addToBot(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        this.isDone = true;
-                        useFastAttackAnimation();
-                    }
-                });
-            }
-        } else {
-            info.applyPowers(this, AbstractDungeon.player);
-        }
-        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
-    }
-
     public void setMoveShortcut(byte next, String text) {
         EnemyMoveInfo info = this.moves.get(next);
         this.setMove(text, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
