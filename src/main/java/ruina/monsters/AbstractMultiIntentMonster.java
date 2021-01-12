@@ -47,7 +47,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
     }
 
-    public void takeCustomTurn(EnemyMoveInfo move) {
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
 
     }
 

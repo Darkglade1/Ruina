@@ -93,15 +93,9 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move) {
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
-        AbstractCreature target;
-        if (!targetRed || red.isDead) {
-            target = adp();
-        } else {
-            target = red;
-        }
 
         if(info.base > -1) {
             info.applyPowers(this, target);
@@ -159,16 +153,18 @@ public class NightmareWolf extends AbstractMultiIntentMonster
 
     @Override
     public void takeTurn() {
-        targetRed = false;
-        takeCustomTurn(this.moves.get(nextMove));
+        takeCustomTurn(this.moves.get(nextMove), adp());
         for (EnemyMoveInfo additionalMove : additionalMoves) {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    targetRed = true;
                     atb(new VFXAction(new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
                     atb(new IntentFlashAction(red.wolf));
-                    takeCustomTurn(additionalMove);
+                    if (red.isDead) {
+                        takeCustomTurn(additionalMove, adp());
+                    } else {
+                        takeCustomTurn(additionalMove, red);
+                    }
                     this.isDone = true;
                 }
             });
@@ -223,6 +219,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
 
     public void onRedDeath() {
         playSound("Fog", 3.0f);
+        AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg
         atb(new HealAction(this, this, HEAL));
     }
 

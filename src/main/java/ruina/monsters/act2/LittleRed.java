@@ -50,7 +50,7 @@ public class LittleRed extends AbstractAllyMonster
 
     private final int DEFENSE = calcAscensionTankiness(10);
     private final int STRENGTH = 2;
-    private boolean enraged = false;
+    public boolean enraged = false;
 
     public NightmareWolf wolf;
 
@@ -201,6 +201,7 @@ public class LittleRed extends AbstractAllyMonster
         isAlly = false;
         animation.setFlip(false, false);
         playSound("Rage", 2.0f);
+        AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg
         atb(new ShoutAction(this, DIALOG[1], 2.0F, 3.0F));
         atb(new VFXAction(this, new InflameEffect(this), 1.0F));
         applyToTarget(this, this, new StrengthPower(this, STRENGTH));
