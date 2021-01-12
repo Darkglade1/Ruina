@@ -42,8 +42,6 @@ public class LittleRed extends AbstractAllyMonster
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(RuinaMod.makeID("AllyStrings"));
-    private static final String[] TEXT = uiStrings.TEXT;
 
     private static final byte BEAST_HUNT = 0;
     private static final byte CATCH_BREATH = 1;
@@ -240,25 +238,7 @@ public class LittleRed extends AbstractAllyMonster
         } else {
             target = adp();
         }
-        DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        if (target == wolf) {
-            if(info.base > -1) {
-                info.applyPowers(this, target);
-                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-                PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
-                Texture attackImg;
-                if (moves.get(this.nextMove).multiplier > 0) {
-                    intentTip.body = TEXT[7] + info.output + TEXT[8] + moves.get(this.nextMove).multiplier + TEXT[9];
-                    attackImg = getAttackIntent(info.output * moves.get(this.nextMove).multiplier);
-                } else {
-                    intentTip.body = TEXT[5] + info.output + TEXT[6];
-                    attackImg = getAttackIntent(info.output);
-                }
-                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
-            }
-        } else {
-            super.applyPowers();
-        }
+        applyPowers(target);
     }
 
     @Override

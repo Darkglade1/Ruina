@@ -37,8 +37,6 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AllyStrings"));
-    private static final String[] TEXT = uiStrings.TEXT;
 
     private static final byte CRUEL_CLAWS = 0;
     private static final byte FEROCIOUS_FANGS = 1;
@@ -217,18 +215,8 @@ public class NightmareWolf extends AbstractMultiIntentMonster
             if (i < additionalMoves.size()) {
                 additionalMove = additionalMoves.get(i);
             }
-            if (additionalMove != null && additionalMove.baseDamage > 0) {
-                if (additionalMove.nextMove == -1 || red.isDead) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp());
-                } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, red);
-                    PowerTip intentTip = additionalIntent.intentTip;
-                    if (additionalIntent.numHits > 0) {
-                        intentTip.body = TEXT[2] + additionalIntent.damage + TEXT[3] + additionalIntent.numHits + TEXT[4];
-                    } else {
-                        intentTip.body = TEXT[0] + additionalIntent.damage + TEXT[1];
-                    }
-                }
+            if (additionalMove != null) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, red);
             }
         }
     }

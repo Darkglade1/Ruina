@@ -7,10 +7,13 @@ import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -21,11 +24,16 @@ import ruina.util.AdditionalIntent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static ruina.RuinaMod.makeID;
+import static ruina.util.Wiz.adp;
+
 public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     protected ArrayList<EnemyMoveInfo> additionalMoves = new ArrayList<>();
     protected ArrayList<ArrayList<Byte>> additionalMovesHistory = new ArrayList<>();
     protected ArrayList<AdditionalIntent> additionalIntents = new ArrayList<>();
     protected int numAdditionalMoves = 0;
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("MultiIntentStrings"));
+    private static final String[] TEXT = uiStrings.TEXT;
 
     public AbstractMultiIntentMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -50,6 +58,9 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     }
 
     protected void applyPowersToAdditionalIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target) {
+        if (additionalMove.nextMove == -1 || target.isDead) {
+            target = adp();
+        }
         if (additionalMove.baseDamage > -1) {
             int dmg = additionalMove.baseDamage;
             float tmp = (float)dmg;
@@ -83,6 +94,14 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                 dmg = 0;
             }
             additionalIntent.updateDamage(dmg);
+            if (target != adp()) {
+                PowerTip intentTip = additionalIntent.intentTip;
+                if (additionalIntent.numHits > 0) {
+                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + additionalIntent.damage + TEXT[3] + additionalIntent.numHits + TEXT[4];
+                } else {
+                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + additionalIntent.damage + TEXT[2];
+                }
+            }
         }
     }
 

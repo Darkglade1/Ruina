@@ -5,7 +5,7 @@
   },
   "${ModID}:FuryWithNoOutlet": {
     "NAME": "Fury With No Outlet",
-    "DESCRIPTIONS": ["#yLittle #yRed is your #gally. If she lands the #rkilling #rblow on the #yWolf, you win. If the #yWolf #rdies by any other means, #yLittle #yRed heals to full HP, enters an #renraged state, and becomes your #renemy."]
+    "DESCRIPTIONS": ["#yLittle #yRed begins as your #gally. If she lands the #rkilling #rblow on the #yWolf, you win. If the #yWolf #rdies by any other means, #yLittle #yRed heals to full HP, enters an #renraged state, and becomes your #renemy."]
   },
   "${ModID}:BloodstainedClaws": {
     "NAME": "Bloodstained Claws",

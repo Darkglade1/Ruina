@@ -1,9 +1,21 @@
 package ruina.monsters;
 
+import basemod.ReflectionHacks;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import ruina.RuinaMod;
+
+import static ruina.util.Wiz.adp;
 
 public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
-
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(RuinaMod.makeID("AllyStrings"));
+    private static final String[] TEXT = uiStrings.TEXT;
     public boolean isAlly = true;
 
     public AbstractAllyMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
@@ -49,5 +61,27 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     public void createIntent() {
         super.createIntent();
         applyPowers();
+    }
+
+    public void applyPowers(AbstractCreature target) {
+        DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
+        if (target != adp()) {
+            if(info.base > -1) {
+                info.applyPowers(this, target);
+                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+                PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                Texture attackImg;
+                if (moves.get(this.nextMove).multiplier > 0) {
+                    intentTip.body = TEXT[0] + info.output + TEXT[2] + moves.get(this.nextMove).multiplier + TEXT[3];
+                    attackImg = getAttackIntent(info.output * moves.get(this.nextMove).multiplier);
+                } else {
+                    intentTip.body = TEXT[0] + info.output + TEXT[1];
+                    attackImg = getAttackIntent(info.output);
+                }
+                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
+            }
+        } else {
+            super.applyPowers();
+        }
     }
 }
