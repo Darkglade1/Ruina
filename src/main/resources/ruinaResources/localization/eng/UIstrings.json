@@ -18,7 +18,8 @@
   },
   "${ModID}:AllyStrings": {
     "TEXT": [
-      "Your #gally intends to #yAttack the #renemy for #b",
+      "Your #gally intends to #yAttack ",
+      " for #b",
       " damage.",
       " damage #b",
       " times."

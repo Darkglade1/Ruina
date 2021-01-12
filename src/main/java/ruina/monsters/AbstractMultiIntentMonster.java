@@ -156,13 +156,15 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     @Override
     public void renderIntent(SpriteBatch sb) {
         super.renderIntent(sb);
+        int count = 1;
         for (AdditionalIntent additionalIntent : additionalIntents) {
             if (additionalIntent != null && !this.hasPower(StunMonsterPower.POWER_ID)) {
                 additionalIntent.update();
                 if (!this.isDying && !this.isEscaping && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.player.isDead && !AbstractDungeon.player.hasRelic(RunicDome.ID) && this.intent != AbstractMonster.Intent.NONE && !Settings.hideCombatElements) {
-                    additionalIntent.render(sb);
+                    additionalIntent.render(sb, count);
                 }
             }
+            count++;
         }
     }
 

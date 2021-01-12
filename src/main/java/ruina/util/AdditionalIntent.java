@@ -96,18 +96,18 @@ public class AdditionalIntent {
         }
     }
 
-    public void render(SpriteBatch sb) {
+    public void render(SpriteBatch sb, int position) {
         this.renderIntentVfxBehind(sb);
-        this.renderIntent(sb);
+        this.renderIntent(sb, position);
         this.renderIntentVfxAfter(sb);
         this.renderDamageRange(sb);
     }
 
-    public void renderIntent(SpriteBatch sb) {
+    public void renderIntent(SpriteBatch sb, int position) {
         sb.setColor(intentColor);
         if (this.intentBg != null) {
             sb.setColor(new Color(1.0F, 1.0F, 1.0F, intentColor.a / 2.0F));
-            sb.draw(this.intentBg, source.intentHb.cX - 64.0F + (86.0F * scaleWidth), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 128, 128, false, false);
+            sb.draw(this.intentBg, source.intentHb.cX - 64.0F + (86.0F * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 128, 128, false, false);
         }
 
         if (this.intentImg != null && this.intent != AbstractMonster.Intent.UNKNOWN && this.intent != AbstractMonster.Intent.STUN) {

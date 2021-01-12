@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -72,10 +73,10 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
                 PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
                 Texture attackImg;
                 if (moves.get(this.nextMove).multiplier > 0) {
-                    intentTip.body = TEXT[0] + info.output + TEXT[2] + moves.get(this.nextMove).multiplier + TEXT[3];
+                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + moves.get(this.nextMove).multiplier + TEXT[4];
                     attackImg = getAttackIntent(info.output * moves.get(this.nextMove).multiplier);
                 } else {
-                    intentTip.body = TEXT[0] + info.output + TEXT[1];
+                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
                     attackImg = getAttackIntent(info.output);
                 }
                 ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
