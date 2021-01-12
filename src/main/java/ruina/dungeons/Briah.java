@@ -3,18 +3,15 @@ package ruina.dungeons;
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import ruina.RuinaMod;
 import ruina.scenes.RuinaScene;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Briah extends CustomDungeon {
 
@@ -25,8 +22,8 @@ public class Briah extends CustomDungeon {
 
     public Briah() {
         super(NAME, ID, "images/ui/event/panel.png", true, 2, 12, 10);
-//        this.setMainMusic("audio/music/Gensokyo/KidFestival.ogg");
-//        this.addTempMusic("FateOfSixtyYears", "audio/music/Gensokyo/FateOfSixtyYears.ogg");
+        this.setMainMusic(RuinaMod.makeMusicPath("2ndWarning.wav"));
+        this.addTempMusic("2ndWarning", RuinaMod.makeMusicPath("2ndWarning.wav"));
     }
 
     public Briah(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {

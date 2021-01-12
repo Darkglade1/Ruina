@@ -4,6 +4,7 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModPanel;
 import basemod.helpers.RelicType;
+import basemod.interfaces.AddAudioSubscriber;
 import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditCharactersSubscriber;
 import basemod.interfaces.EditKeywordsSubscriber;
@@ -47,7 +48,8 @@ public class RuinaMod implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         EditCharactersSubscriber,
-        PostInitializeSubscriber {
+        PostInitializeSubscriber,
+        AddAudioSubscriber {
 
     private static final String modID = "ruina";
     public static String getModID() {
@@ -117,8 +119,12 @@ public class RuinaMod implements
         return modID + "Resources/images/character/" + resourcePath;
     }
 
-    public static String makeEffectPath(String resourcePath) {
-        return modID + "Resources/images/effects/" + resourcePath;
+    public static String makeSFXPath(String resourcePath) {
+        return modID + "Resources/audio/sfx/" + resourcePath;
+    }
+
+    public static String makeMusicPath(String resourcePath) {
+        return modID + "Resources/audio/music/" + resourcePath;
     }
 
     public static String makeMonsterPath(String resourcePath) {
@@ -133,6 +139,13 @@ public class RuinaMod implements
     public void receiveEditCharacters() {
         BaseMod.addCharacter(new TheTodo(TheTodo.characterStrings.NAMES[1], TheTodo.Enums.THE_TODO),
                 CHARSELECT_BUTTON, CHARSELECT_PORTRAIT, TheTodo.Enums.THE_TODO);
+    }
+
+    @Override
+    public void receiveAddAudio() {
+        BaseMod.addAudio(makeID("Bite"), makeSFXPath("Wolf_Bite.wav"));
+        BaseMod.addAudio(makeID("Claw"), makeSFXPath("Wolf_Scratch.wav"));
+        BaseMod.addAudio(makeID("Howl"), makeSFXPath("Wolf_Howl.wav"));
     }
 
     @Override

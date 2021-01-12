@@ -32,17 +32,18 @@ import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
+import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
 public class NightmareWolf extends AbstractMultiIntentMonster
 {
-    public static final String ID = RuinaMod.makeID(NightmareWolf.class.getSimpleName());
+    public static final String ID = makeID(NightmareWolf.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(RuinaMod.makeID("AllyStrings"));
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AllyStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
 
     private static final byte CRUEL_CLAWS = 0;
@@ -58,7 +59,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     private boolean targetRed = false;
     private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
 
-    public static final String POWER_ID = RuinaMod.makeID("BloodstainedClaws");
+    public static final String POWER_ID = makeID("BloodstainedClaws");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -85,7 +86,6 @@ public class NightmareWolf extends AbstractMultiIntentMonster
 
     @Override
     public void usePreBattleAction() {
-        //CustomDungeon.playTempMusicInstantly("MasterSpark");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof LittleRed) {
                 red = (LittleRed)mo;
@@ -116,34 +116,89 @@ public class NightmareWolf extends AbstractMultiIntentMonster
         }
         switch (move.nextMove) {
             case CRUEL_CLAWS: {
-                //runAnim("Spark");
                 block(this, BLOCK);
-                atb(new VFXAction(new ClawEffect(target.hb.cX, target.hb.cY, Color.CYAN, Color.WHITE), 0.1F));
+                clawAnimation();
                 dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                resetIdle();
                 power.justGainedBlock = true; //hack to make the block fall off at a different time LOL
                 break;
             }
             case FEROCIOUS_FANGS: {
-                //runAnim("Spark");
                 for (int i = 0; i < multiplier; i++) {
-                    dmg(target, info, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+                    biteAnimation();
+                    dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                    resetIdle();
                 }
                 applyToTarget(target, this, new Bleed(target, BLEED));
                 break;
             }
             case BLOODSTAINED_HUNT: {
-                //runAnim("Smack");
                 for (int i = 0; i < multiplier; i++) {
-                    dmg(target, info, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+                    if (i % 2 == 0) {
+                        biteAnimation();
+                    } else {
+                        clawAnimation();
+                    }
+                    dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                    resetIdle();
                 }
                 break;
             }
             case HOWL: {
-                //runAnim("Special");
+                howlAnimation();
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                resetIdle(1.0f);
                 break;
             }
         }
+    }
+
+    private void clawAnimation() {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                runAnim("Claw");
+                CardCrawlGame.sound.playV(makeID("Claw"), 1.0F);
+                this.isDone = true;
+            }
+        });
+    }
+
+    private void biteAnimation() {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                runAnim("Bite");
+                CardCrawlGame.sound.playV(makeID("Bite"), 1.0F);
+                this.isDone = true;
+            }
+        });
+    }
+
+    private void howlAnimation() {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                runAnim("Howl");
+                CardCrawlGame.sound.playV(makeID("Howl"), 1.0F);
+                this.isDone = true;
+            }
+        });
+    }
+
+    private void resetIdle() {
+        resetIdle(0.5f);
+    }
+
+    private void resetIdle(float duration) {
+        atb(new VFXAction(new WaitEffect(), duration));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                runAnim("Idle");
+                this.isDone = true;
+            }
+        });
     }
 
     @Override
@@ -151,13 +206,13 @@ public class NightmareWolf extends AbstractMultiIntentMonster
         targetRed = false;
         takeCustomTurn(this.moves.get(nextMove));
         for (EnemyMoveInfo additionalMove : additionalMoves) {
-            AbstractDungeon.actionManager.addToBottom(new VFXAction(new WaitEffect(), 1.0F));
-            addToBot(new AbstractGameAction() {
+            //atb(new VFXAction(new WaitEffect(), 0.5F));
+            atb(new AbstractGameAction() {
                 @Override
                 public void update() {
                     targetRed = true;
-                    addToBot(new VFXAction(new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-                    addToBot(new IntentFlashAction(red.wolf));
+                    atb(new VFXAction(new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
+                    atb(new IntentFlashAction(red.wolf));
                     takeCustomTurn(additionalMove);
                     this.isDone = true;
                 }

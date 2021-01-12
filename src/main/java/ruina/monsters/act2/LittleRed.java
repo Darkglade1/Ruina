@@ -1,5 +1,6 @@
 package ruina.monsters.act2;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -87,7 +88,7 @@ public class LittleRed extends AbstractAllyMonster
 
     @Override
     public void usePreBattleAction() {
-        //CustomDungeon.playTempMusicInstantly("MasterSpark");
+        CustomDungeon.playTempMusicInstantly("2ndWarning");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof NightmareWolf) {
                 wolf = (NightmareWolf)mo;
