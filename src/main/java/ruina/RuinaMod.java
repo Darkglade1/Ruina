@@ -135,6 +135,10 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("Bite"), makeSFXPath("Wolf_Bite.wav"));
         BaseMod.addAudio(makeID("Claw"), makeSFXPath("Wolf_Hori.wav"));
         BaseMod.addAudio(makeID("Howl"), makeSFXPath("Wolf_Howl.wav"));
+        BaseMod.addAudio(makeID("Fog"), makeSFXPath("Wolf_FogChange.wav"));
+        BaseMod.addAudio(makeID("Slash"), makeSFXPath("RedHood_Atk1.wav"));
+        BaseMod.addAudio(makeID("Gun"), makeSFXPath("RedHood_Gun.wav"));
+        BaseMod.addAudio(makeID("Rage"), makeSFXPath("RedHood_Rage.wav"));
     }
 
     @Override

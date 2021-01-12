@@ -2,15 +2,21 @@ package ruina.monsters;
 
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
+import ruina.vfx.WaitEffect;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static ruina.RuinaMod.makeID;
+import static ruina.util.Wiz.atb;
 
 public abstract class AbstractRuinaMonster extends CustomMonster {
 
@@ -135,6 +141,29 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     //Runs a specific animation
     public void runAnim(String animation) {
         ((BetterSpriterAnimation)this.animation).myPlayer.setAnimation(animation);
+    }
+
+    public void playSound(String sound, float volume) {
+        CardCrawlGame.sound.playV(makeID(sound), volume);
+    }
+
+    public void playSound(String sound) {
+        playSound(sound, 1.0f);
+    }
+
+    protected void resetIdle() {
+        resetIdle(0.5f);
+    }
+
+    protected void resetIdle(float duration) {
+        atb(new VFXAction(new WaitEffect(), duration));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                runAnim("Idle");
+                this.isDone = true;
+            }
+        });
     }
 
 }

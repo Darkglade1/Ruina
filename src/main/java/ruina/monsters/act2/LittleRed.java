@@ -28,6 +28,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
+import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -35,6 +36,7 @@ import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.vfx.WaitEffect;
 
+import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
@@ -136,12 +138,12 @@ public class LittleRed extends AbstractAllyMonster
         }
         switch (this.nextMove) {
             case BEAST_HUNT: {
-                //runAnim("Spark");
-                dmg(target, info, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+                slashAnimation(target);
+                dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                resetIdle();
                 break;
             }
             case CATCH_BREATH: {
-                //runAnim("Spark");
                 atb(new AddTemporaryHPAction(this, this, DEFENSE));
                 applyToTarget(this, this, new AbstractLambdaPower(STRIKE_POWER_NAME, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
 
@@ -171,16 +173,28 @@ public class LittleRed extends AbstractAllyMonster
                 break;
             }
             case HOLLOW_POINT_SHELL: {
-                //runAnim("Smack");
                 for (int i = 0; i < multiplier; i++) {
-                    dmg(target, info, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+                    if (i % 2 == 0) {
+                        shoot1Animation(target);
+                    } else {
+                        shoot2Animation(target);
+                    }
+                    dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                    resetIdle();
                 }
                 break;
             }
             case BULLET_SHOWER: {
-                //runAnim("Special");
                 for (int i = 0; i < multiplier; i++) {
-                    dmg(target, info, AbstractGameAction.AttackEffect.FIRE);
+                    if (i == 0) {
+                        shoot1Animation(target);
+                    } else if (i == 1){
+                        shoot2Animation(target);
+                    } else {
+                        shoot3Animation(target);
+                    }
+                    dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                    resetIdle();
                 }
                 break;
             }
@@ -193,7 +207,9 @@ public class LittleRed extends AbstractAllyMonster
         enraged = true;
         isAlly = false;
         animation.setFlip(false, false);
+        playSound("Rage", 2.0f);
         atb(new ShoutAction(this, DIALOG[1], 2.0F, 3.0F));
+        atb(new VFXAction(this, new InflameEffect(this), 1.0F));
         applyToTarget(this, this, new StrengthPower(this, STRENGTH));
         atb(new HealAction(this, this, maxHealth));
     }
@@ -275,6 +291,58 @@ public class LittleRed extends AbstractAllyMonster
             public void update() {
                 wolf.red.isDead = true;
                 onBossVictoryLogic();
+                this.isDone = true;
+            }
+        });
+    }
+
+    private void slashAnimation(AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (!enemy.isDeadOrEscaped()) {
+                    runAnim("Slash");
+                    playSound("Slash");
+                }
+                this.isDone = true;
+            }
+        });
+    }
+
+    private void shoot1Animation(AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (!enemy.isDeadOrEscaped()) {
+                    runAnim("Shoot1");
+                    playSound("Gun");
+                }
+                this.isDone = true;
+            }
+        });
+    }
+
+    private void shoot2Animation(AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (!enemy.isDeadOrEscaped()) {
+                    runAnim("Shoot2");
+                    playSound("Gun");
+                }
+                this.isDone = true;
+            }
+        });
+    }
+
+    private void shoot3Animation(AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (!enemy.isDeadOrEscaped()) {
+                    runAnim("Shoot3");
+                    playSound("Gun");
+                }
                 this.isDone = true;
             }
         });

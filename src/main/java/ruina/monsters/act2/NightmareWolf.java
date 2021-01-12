@@ -112,7 +112,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
         switch (move.nextMove) {
             case CRUEL_CLAWS: {
                 block(this, BLOCK);
-                clawAnimation();
+                clawAnimation(target);
                 dmg(target, info, AbstractGameAction.AttackEffect.NONE);
                 resetIdle();
                 power.justGainedBlock = true; //hack to make the block fall off at a different time LOL
@@ -120,7 +120,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
             }
             case FEROCIOUS_FANGS: {
                 for (int i = 0; i < multiplier; i++) {
-                    biteAnimation();
+                    biteAnimation(target);
                     dmg(target, info, AbstractGameAction.AttackEffect.NONE);
                     resetIdle();
                 }
@@ -130,9 +130,9 @@ public class NightmareWolf extends AbstractMultiIntentMonster
             case BLOODSTAINED_HUNT: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        biteAnimation();
+                        biteAnimation(target);
                     } else {
-                        clawAnimation();
+                        clawAnimation(target);
                     }
                     dmg(target, info, AbstractGameAction.AttackEffect.NONE);
                     resetIdle();
@@ -148,23 +148,27 @@ public class NightmareWolf extends AbstractMultiIntentMonster
         }
     }
 
-    private void clawAnimation() {
+    private void clawAnimation(AbstractCreature enemy) {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                runAnim("Claw");
-                CardCrawlGame.sound.playV(makeID("Claw"), 1.0F);
+                if (!enemy.isDeadOrEscaped()) {
+                    runAnim("Claw");
+                    playSound("Claw");
+                }
                 this.isDone = true;
             }
         });
     }
 
-    private void biteAnimation() {
+    private void biteAnimation(AbstractCreature enemy) {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                runAnim("Bite");
-                CardCrawlGame.sound.playV(makeID("Bite"), 1.0F);
+                if (!enemy.isDeadOrEscaped()) {
+                    runAnim("Bite");
+                    playSound("Bite");
+                }
                 this.isDone = true;
             }
         });
@@ -175,22 +179,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
             @Override
             public void update() {
                 runAnim("Howl");
-                CardCrawlGame.sound.playV(makeID("Howl"), 1.0F);
-                this.isDone = true;
-            }
-        });
-    }
-
-    private void resetIdle() {
-        resetIdle(0.5f);
-    }
-
-    private void resetIdle(float duration) {
-        atb(new VFXAction(new WaitEffect(), duration));
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                runAnim("Idle");
+                playSound("Howl");
                 this.isDone = true;
             }
         });
@@ -201,7 +190,6 @@ public class NightmareWolf extends AbstractMultiIntentMonster
         targetRed = false;
         takeCustomTurn(this.moves.get(nextMove));
         for (EnemyMoveInfo additionalMove : additionalMoves) {
-            //atb(new VFXAction(new WaitEffect(), 0.5F));
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
@@ -278,6 +266,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     }
 
     public void onRedDeath() {
+        playSound("Fog", 3.0f);
         atb(new HealAction(this, this, HEAL));
     }
 
