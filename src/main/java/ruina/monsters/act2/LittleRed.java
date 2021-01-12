@@ -88,7 +88,7 @@ public class LittleRed extends AbstractAllyMonster
 
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("2ndWarning");
+        CustomDungeon.playTempMusicInstantly("Warning2");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof NightmareWolf) {
                 wolf = (NightmareWolf)mo;
