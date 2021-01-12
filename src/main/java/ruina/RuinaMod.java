@@ -144,7 +144,7 @@ public class RuinaMod implements
     @Override
     public void receiveAddAudio() {
         BaseMod.addAudio(makeID("Bite"), makeSFXPath("Wolf_Bite.wav"));
-        BaseMod.addAudio(makeID("Claw"), makeSFXPath("Wolf_Scratch.wav"));
+        BaseMod.addAudio(makeID("Claw"), makeSFXPath("Wolf_Hori.wav"));
         BaseMod.addAudio(makeID("Howl"), makeSFXPath("Wolf_Howl.wav"));
     }
 

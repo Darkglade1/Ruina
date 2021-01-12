@@ -38,7 +38,6 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AllyStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
 
@@ -65,7 +64,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     }
 
     public NightmareWolf(final float x, final float y) {
-        super(NAME, ID, 400, -5.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 400, -5.0F, 0, 330.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("NightmareWolf/Spriter/NightmareWolf.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
