@@ -238,11 +238,11 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (lastMove(BLOODSTAINED_HUNT, moveHistory)) {
-            setAdditionalMoveShortcut(HOWL, MOVES[HOWL], moveHistory);
+            setAdditionalMoveShortcut(HOWL, moveHistory);
         } else if (lastMove(HOWL, moveHistory)) {
-            setAdditionalMoveShortcut(FEROCIOUS_FANGS, MOVES[FEROCIOUS_FANGS], moveHistory);
+            setAdditionalMoveShortcut(FEROCIOUS_FANGS, moveHistory);
         } else {
-            setAdditionalMoveShortcut(BLOODSTAINED_HUNT, MOVES[BLOODSTAINED_HUNT], moveHistory);
+            setAdditionalMoveShortcut(BLOODSTAINED_HUNT, moveHistory);
         }
     }
 

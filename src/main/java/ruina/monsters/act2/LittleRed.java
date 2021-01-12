@@ -27,6 +27,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -110,7 +111,7 @@ public class LittleRed extends AbstractAllyMonster
         }
         super.takeTurn();
         if (this.firstMove && !enraged) {
-            AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[0]));
+            atb(new TalkAction(this, DIALOG[0]));
             firstMove = false;
         }
         DamageInfo info;
@@ -148,9 +149,7 @@ public class LittleRed extends AbstractAllyMonster
 
                     @Override
                     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                        System.out.println(damageAmount);
                         if (info.owner == owner && damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL) {
-                            System.out.println("am I here???");
                             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner, owner, new StrengthPower(owner, amount), amount));
                         }
                     }
@@ -194,7 +193,7 @@ public class LittleRed extends AbstractAllyMonster
         enraged = true;
         isAlly = false;
         animation.setFlip(false, false);
-        AbstractDungeon.actionManager.addToBottom(new ShoutAction(this, DIALOG[1], 2.0F, 3.0F));
+        atb(new ShoutAction(this, DIALOG[1], 2.0F, 3.0F));
         applyToTarget(this, this, new StrengthPower(this, STRENGTH));
         atb(new HealAction(this, this, maxHealth));
     }
@@ -261,6 +260,7 @@ public class LittleRed extends AbstractAllyMonster
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
         if (!wolf.isDeadOrEscaped()) {
+            AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 2.0f, DIALOG[3], false));
             wolf.onRedDeath();
         } else {
             onBossVictoryLogic();
@@ -268,8 +268,8 @@ public class LittleRed extends AbstractAllyMonster
     }
 
     public void onKillWolf() {
-        AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[2]));
-        AbstractDungeon.actionManager.addToBottom(new VFXAction(new WaitEffect(), 1.0F));
+        atb(new TalkAction(this, DIALOG[2]));
+        atb(new VFXAction(new WaitEffect(), 1.0F));
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {

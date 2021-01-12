@@ -18,7 +18,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     protected boolean firstMove = true;
     private static final float ASCENSION_DAMAGE_BUFF_PERCENT = 1.15f;
     private static final float ASCENSION_TANK_BUFF_PERCENT = 1.10f;
-    protected boolean damageInfoSet = false;
+    private static final float ASCENSION_SPECIAL_BUFF_PERCENT = 1.5f;
 
     public AbstractRuinaMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -108,17 +108,17 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         switch (this.type) {
             case BOSS:
                 if(AbstractDungeon.ascensionLevel >= 19) {
-                    base *= ASCENSION_TANK_BUFF_PERCENT;
+                    base *= ASCENSION_SPECIAL_BUFF_PERCENT;
                 }
                 break;
             case ELITE:
                 if(AbstractDungeon.ascensionLevel >= 18) {
-                    base *= ASCENSION_TANK_BUFF_PERCENT;
+                    base *= ASCENSION_SPECIAL_BUFF_PERCENT;
                 }
                 break;
             case NORMAL:
                 if(AbstractDungeon.ascensionLevel >= 17) {
-                    base *= ASCENSION_TANK_BUFF_PERCENT;
+                    base *= ASCENSION_SPECIAL_BUFF_PERCENT;
                 }
                 break;
         }
@@ -137,15 +137,4 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         ((BetterSpriterAnimation)this.animation).myPlayer.setAnimation(animation);
     }
 
-    //Resets character back to idle animation
-    public void resetAnimation() {
-        ((BetterSpriterAnimation)this.animation).myPlayer.setAnimation("Idle");
-    }
-
-    //Prevents any further animation once the death animation is finished
-    public void stopAnimation() {
-        int time = ((BetterSpriterAnimation)this.animation).myPlayer.getAnimation().length;
-        ((BetterSpriterAnimation)this.animation).myPlayer.setTime(time);
-        ((BetterSpriterAnimation)this.animation).myPlayer.speed = 0;
-    }
 }

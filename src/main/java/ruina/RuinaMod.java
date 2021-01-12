@@ -47,7 +47,6 @@ public class RuinaMod implements
         EditRelicsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
-        EditCharactersSubscriber,
         PostInitializeSubscriber,
         AddAudioSubscriber {
 
@@ -59,26 +58,26 @@ public class RuinaMod implements
         return getModID() + ":" + idText;
     }
 
-    public static Color todoColor = new Color(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1);
-    public static final String SHOULDER1 = getModID() + "Resources/images/char/mainChar/shoulder.png";
-    public static final String SHOULDER2 = getModID() + "Resources/images/char/mainChar/shoulder2.png";
-    public static final String CORPSE = getModID() + "Resources/images/char/mainChar/corpse.png";
-    private static final String ATTACK_S_ART = getModID() + "Resources/images/512/attack.png";
-    private static final String SKILL_S_ART = getModID() + "Resources/images/512/skill.png";
-    private static final String POWER_S_ART = getModID() + "Resources/images/512/power.png";
-    private static final String CARD_ENERGY_S = getModID() + "Resources/images/512/energy.png";
-    private static final String TEXT_ENERGY = getModID() + "Resources/images/512/text_energy.png";
-    private static final String ATTACK_L_ART = getModID() + "Resources/images/1024/attack.png";
-    private static final String SKILL_L_ART = getModID() + "Resources/images/1024/skill.png";
-    private static final String POWER_L_ART = getModID() + "Resources/images/1024/power.png";
-    private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
-    private static final String CHARSELECT_BUTTON = getModID() + "Resources/images/charSelect/charButton.png";
-    private static final String CHARSELECT_PORTRAIT = getModID() + "Resources/images/charSelect/charBG.png";
+//    public static Color todoColor = new Color(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1);
+//    public static final String SHOULDER1 = getModID() + "Resources/images/char/mainChar/shoulder.png";
+//    public static final String SHOULDER2 = getModID() + "Resources/images/char/mainChar/shoulder2.png";
+//    public static final String CORPSE = getModID() + "Resources/images/char/mainChar/corpse.png";
+//    private static final String ATTACK_S_ART = getModID() + "Resources/images/512/attack.png";
+//    private static final String SKILL_S_ART = getModID() + "Resources/images/512/skill.png";
+//    private static final String POWER_S_ART = getModID() + "Resources/images/512/power.png";
+//    private static final String CARD_ENERGY_S = getModID() + "Resources/images/512/energy.png";
+//    private static final String TEXT_ENERGY = getModID() + "Resources/images/512/text_energy.png";
+//    private static final String ATTACK_L_ART = getModID() + "Resources/images/1024/attack.png";
+//    private static final String SKILL_L_ART = getModID() + "Resources/images/1024/skill.png";
+//    private static final String POWER_L_ART = getModID() + "Resources/images/1024/power.png";
+//    private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
+//    private static final String CHARSELECT_BUTTON = getModID() + "Resources/images/charSelect/charButton.png";
+//    private static final String CHARSELECT_PORTRAIT = getModID() + "Resources/images/charSelect/charBG.png";
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "Ruina";
     private static final String AUTHOR = "Darkglade";
-    private static final String DESCRIPTION = "An alternate Act 1, 2, and 3 mod inspired by Library of Ruina.";
+    private static final String DESCRIPTION = "An alternate Act mod inspired by Library of Ruina.";
 
     // =============== INPUT TEXTURE LOCATION =================
 
@@ -88,11 +87,11 @@ public class RuinaMod implements
     public RuinaMod() {
         BaseMod.subscribe(this);
 
-        BaseMod.addColor(TheTodo.Enums.TODO_COLOR, todoColor, todoColor, todoColor,
-                todoColor, todoColor, todoColor, todoColor,
-                ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
-                ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
-                CARD_ENERGY_L, TEXT_ENERGY);
+//        BaseMod.addColor(TheTodo.Enums.TODO_COLOR, todoColor, todoColor, todoColor,
+//                todoColor, todoColor, todoColor, todoColor,
+//                ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
+//                ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
+//                CARD_ENERGY_L, TEXT_ENERGY);
     }
 
     public static String makePath(String resourcePath) {
@@ -115,10 +114,6 @@ public class RuinaMod implements
         return modID + "Resources/images/cards/" + resourcePath;
     }
 
-    public static String makeCharacterPath(String resourcePath) {
-        return modID + "Resources/images/character/" + resourcePath;
-    }
-
     public static String makeSFXPath(String resourcePath) {
         return modID + "Resources/audio/sfx/" + resourcePath;
     }
@@ -133,12 +128,6 @@ public class RuinaMod implements
 
     public static void initialize() {
         RuinaMod ruinaMod = new RuinaMod();
-    }
-
-    @Override
-    public void receiveEditCharacters() {
-        BaseMod.addCharacter(new TheTodo(TheTodo.characterStrings.NAMES[1], TheTodo.Enums.THE_TODO),
-                CHARSELECT_BUTTON, CHARSELECT_PORTRAIT, TheTodo.Enums.THE_TODO);
     }
 
     @Override
@@ -200,8 +189,6 @@ public class RuinaMod implements
         BaseMod.loadCustomStringsFile(CardStrings.class, getModID() + "Resources/localization/eng/Cardstrings.json");
 
         BaseMod.loadCustomStringsFile(RelicStrings.class, getModID() + "Resources/localization/eng/Relicstrings.json");
-
-        BaseMod.loadCustomStringsFile(CharacterStrings.class, getModID() + "Resources/localization/eng/Charstrings.json");
 
         BaseMod.loadCustomStringsFile(PowerStrings.class, getModID() + "Resources/localization/eng/Powerstrings.json");
 

@@ -2,7 +2,6 @@ package ruina.cards;
 
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import ruina.TheTodo;
 
 import java.util.ArrayList;
 
@@ -17,7 +16,7 @@ public abstract class AbstractMultiPreviewCard extends AbstractTodoCard {
     }
 
     public AbstractMultiPreviewCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
-        super(cardID, cost, type, rarity, target, TheTodo.Enums.TODO_COLOR);
+        super(cardID, cost, type, rarity, target, CardColor.COLORLESS);
     }
 
     protected float getRotationTimeNeeded() {

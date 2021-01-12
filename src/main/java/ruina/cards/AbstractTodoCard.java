@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import ruina.TheTodo;
 
 import static ruina.RuinaMod.getModID;
 import static ruina.util.TexLoader.getCardTextureString;
@@ -31,7 +30,7 @@ public abstract class AbstractTodoCard extends CustomCard {
     public boolean isSecondDamageModified;
 
     public AbstractTodoCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
-        this(cardID, cost, type, rarity, target, TheTodo.Enums.TODO_COLOR);
+        this(cardID, cost, type, rarity, target, CardColor.COLORLESS);
     }
 
     public AbstractTodoCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {

@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.RunicDome;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
@@ -96,15 +97,12 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
 
     }
 
-    public void setAdditionalMoveShortcut(byte next, String text, ArrayList<Byte> moveHistory) {
+    public void setAdditionalMoveShortcut(byte next, ArrayList<Byte> moveHistory) {
         EnemyMoveInfo info = this.moves.get(next);
         AdditionalIntent additionalIntent = new AdditionalIntent(this, info);
         additionalIntents.add(additionalIntent);
         additionalMoves.add(info);
         moveHistory.add(next);
-    }
-    public void setAdditionalMoveShortcut(byte next, ArrayList<Byte> moveHistory) {
-        this.setAdditionalMoveShortcut(next, null, moveHistory);
     }
 
     protected boolean lastMove(byte move, ArrayList<Byte> moveHistory) {
@@ -139,7 +137,9 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         for (AdditionalIntent additionalIntent : additionalIntents) {
             if (additionalIntent != null && !this.hasPower(StunMonsterPower.POWER_ID)) {
                 additionalIntent.update();
-                additionalIntent.render(sb);
+                if (!this.isDying && !this.isEscaping && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.player.isDead && !AbstractDungeon.player.hasRelic(RunicDome.ID) && this.intent != AbstractMonster.Intent.NONE && !Settings.hideCombatElements) {
+                    additionalIntent.render(sb);
+                }
             }
         }
     }
