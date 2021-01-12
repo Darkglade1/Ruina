@@ -44,4 +44,10 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
             });
         }
     }
+
+    @Override
+    public void createIntent() {
+        super.createIntent();
+        applyPowers();
+    }
 }

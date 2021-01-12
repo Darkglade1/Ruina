@@ -24,7 +24,6 @@ import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
-import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
@@ -130,9 +129,9 @@ public class NightmareWolf extends AbstractMultiIntentMonster
             case BLOODSTAINED_HUNT: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        biteAnimation(target);
-                    } else {
                         clawAnimation(target);
+                    } else {
+                        biteAnimation(target);
                     }
                     dmg(target, info, AbstractGameAction.AttackEffect.NONE);
                     resetIdle();
@@ -149,40 +148,15 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     }
 
     private void clawAnimation(AbstractCreature enemy) {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (!enemy.isDeadOrEscaped()) {
-                    runAnim("Claw");
-                    playSound("Claw");
-                }
-                this.isDone = true;
-            }
-        });
+        animationAction("Claw", "Claw", enemy);
     }
 
     private void biteAnimation(AbstractCreature enemy) {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (!enemy.isDeadOrEscaped()) {
-                    runAnim("Bite");
-                    playSound("Bite");
-                }
-                this.isDone = true;
-            }
-        });
+        animationAction("Bite", "Bite", enemy);
     }
 
     private void howlAnimation() {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                runAnim("Howl");
-                playSound("Howl");
-                this.isDone = true;
-            }
-        });
+        animationAction("Howl", "Howl");
     }
 
     @Override
@@ -257,12 +231,6 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                 }
             }
         }
-    }
-
-    @Override
-    public void createIntent() {
-        super.createIntent();
-        applyPowers();
     }
 
     public void onRedDeath() {

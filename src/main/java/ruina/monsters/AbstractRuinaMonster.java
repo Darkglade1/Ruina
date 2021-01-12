@@ -3,8 +3,7 @@ package ruina.monsters;
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -141,6 +140,26 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     //Runs a specific animation
     public void runAnim(String animation) {
         ((BetterSpriterAnimation)this.animation).myPlayer.setAnimation(animation);
+    }
+
+    protected void animationAction(String animation, String sound, AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (enemy == null) {
+                    runAnim(animation);
+                    playSound(sound);
+                } else if (!enemy.isDeadOrEscaped()) {
+                    runAnim(animation);
+                    playSound(sound);
+                }
+                this.isDone = true;
+            }
+        });
+    }
+
+    protected void animationAction(String animation, String sound) {
+        animationAction(animation, sound, null);
     }
 
     public void playSound(String sound, float volume) {

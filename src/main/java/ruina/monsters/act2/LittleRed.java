@@ -2,11 +2,9 @@ package ruina.monsters.act2;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -14,7 +12,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -29,14 +26,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.vfx.WaitEffect;
 
-import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
@@ -267,12 +262,6 @@ public class LittleRed extends AbstractAllyMonster
     }
 
     @Override
-    public void createIntent() {
-        super.createIntent();
-        applyPowers();
-    }
-
-    @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
         if (!wolf.isDeadOrEscaped()) {
@@ -297,55 +286,19 @@ public class LittleRed extends AbstractAllyMonster
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (!enemy.isDeadOrEscaped()) {
-                    runAnim("Slash");
-                    playSound("Slash");
-                }
-                this.isDone = true;
-            }
-        });
+        animationAction("Slash", "Slash", enemy);
     }
 
     private void shoot1Animation(AbstractCreature enemy) {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (!enemy.isDeadOrEscaped()) {
-                    runAnim("Shoot1");
-                    playSound("Gun");
-                }
-                this.isDone = true;
-            }
-        });
+        animationAction("Shoot1", "Gun", enemy);
     }
 
     private void shoot2Animation(AbstractCreature enemy) {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (!enemy.isDeadOrEscaped()) {
-                    runAnim("Shoot2");
-                    playSound("Gun");
-                }
-                this.isDone = true;
-            }
-        });
+        animationAction("Shoot2", "Gun", enemy);
     }
 
     private void shoot3Animation(AbstractCreature enemy) {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (!enemy.isDeadOrEscaped()) {
-                    runAnim("Shoot3");
-                    playSound("Gun");
-                }
-                this.isDone = true;
-            }
-        });
+        animationAction("Shoot3", "Gun", enemy);
     }
 
 }
