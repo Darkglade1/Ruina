@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.vfx.ShieldParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.BuffParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.StunStarEffect;
 import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
+import ruina.RuinaMod;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -25,6 +26,7 @@ import java.util.Iterator;
 public class AdditionalIntent {
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString("AbstractMonster").TEXT;
     public AbstractMonster.Intent intent;
+    private static Texture targetTexture = null;
 
     public int damage;
     public boolean multihit;
@@ -73,7 +75,7 @@ public class AdditionalIntent {
         this.intentImg = this.getIntentImg();
     }
 
-    public void update() {
+    public void update(int position) {
         this.bobEffect.update();
         if (intentColor.a != 1.0F) {
             intentColor.a += Gdx.graphics.getDeltaTime();
@@ -82,7 +84,7 @@ public class AdditionalIntent {
             }
         }
 
-        this.updateIntentVFX();
+        this.updateIntentVFX(position);
 
         Iterator<AbstractGameEffect> i = this.intentVfx.iterator();
 
@@ -96,11 +98,19 @@ public class AdditionalIntent {
         }
     }
 
+    public void setTargetTexture(String path) {
+        targetTexture = TexLoader.getTexture(path);
+    }
+
+    public void clearTargetTexture() {
+        targetTexture = null;
+    }
+
     public void render(SpriteBatch sb, int position) {
         this.renderIntentVfxBehind(sb);
         this.renderIntent(sb, position);
         this.renderIntentVfxAfter(sb);
-        this.renderDamageRange(sb);
+        this.renderDamageRange(sb, position);
     }
 
     public void renderIntent(SpriteBatch sb, int position) {
@@ -118,16 +128,19 @@ public class AdditionalIntent {
             }
 
             sb.setColor(this.intentColor);// 1079
-            sb.draw(this.intentImg, source.intentHb.cX - 64.0F + (86.0F * scaleWidth), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 128, 128, false, false);
+            sb.draw(this.intentImg, source.intentHb.cX - 64.0F + (86.0F * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 128, 128, false, false);
+        }
+        if (targetTexture != null && damage >= 0) {
+            sb.draw(targetTexture, source.intentHb.cX - 64.0F + (126.0F * scaleWidth * position), source.intentHb.cY - 24.0F + this.bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 48, 48, false, false);
         }
     }
 
-    private void renderDamageRange(SpriteBatch sb) {
+    private void renderDamageRange(SpriteBatch sb, int position) {
         if (this.intent.name().contains("ATTACK")) {
             if (this.multihit) {
-                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, this.damage + "x" + this.numHits, source.intentHb.cX + 50.0F * Settings.scale, source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, this.damage + "x" + this.numHits, source.intentHb.cX + (50.0F * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
             } else {
-                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.damage), source.intentHb.cX + 50.0F * Settings.scale, source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.damage), source.intentHb.cX + (50.0F * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
             }
         }
     }
@@ -148,7 +161,7 @@ public class AdditionalIntent {
         }
     }
 
-    private void updateIntentVFX() {
+    private void updateIntentVFX(int position) {
         if (intentColor.a > 0.0F) {
             if (this.intent != AbstractMonster.Intent.ATTACK_DEBUFF && this.intent != AbstractMonster.Intent.DEBUFF && this.intent != AbstractMonster.Intent.STRONG_DEBUFF && this.intent != AbstractMonster.Intent.DEFEND_DEBUFF) {
                 if (this.intent != AbstractMonster.Intent.ATTACK_BUFF && this.intent != AbstractMonster.Intent.BUFF && this.intent != AbstractMonster.Intent.DEFEND_BUFF) {
@@ -156,33 +169,33 @@ public class AdditionalIntent {
                         this.intentParticleTimer -= Gdx.graphics.getDeltaTime();
                         if (this.intentParticleTimer < 0.0F) {
                             this.intentParticleTimer = 0.5F;
-                            this.intentVfx.add(new ShieldParticleEffect(source.intentHb.cX + 72.0F * scaleWidth, source.intentHb.cY));
+                            this.intentVfx.add(new ShieldParticleEffect(source.intentHb.cX + (72.0F * scaleWidth * position), source.intentHb.cY));
                         }
                     } else if (this.intent == AbstractMonster.Intent.UNKNOWN) {
                         this.intentParticleTimer -= Gdx.graphics.getDeltaTime();
                         if (this.intentParticleTimer < 0.0F) {
                             this.intentParticleTimer = 0.5F;
-                            this.intentVfx.add(new UnknownParticleEffect(source.intentHb.cX + 72.0F * scaleWidth, source.intentHb.cY));
+                            this.intentVfx.add(new UnknownParticleEffect(source.intentHb.cX + (72.0F * scaleWidth * position), source.intentHb.cY));
                         }
                     } else if (this.intent == AbstractMonster.Intent.STUN) {
                         this.intentParticleTimer -= Gdx.graphics.getDeltaTime();
                         if (this.intentParticleTimer < 0.0F) {
                             this.intentParticleTimer = 0.67F;
-                            this.intentVfx.add(new StunStarEffect(source.intentHb.cX + 72.0F * scaleWidth, source.intentHb.cY));
+                            this.intentVfx.add(new StunStarEffect(source.intentHb.cX + (72.0F * scaleWidth * position), source.intentHb.cY));
                         }
                     }
                 } else {
                     this.intentParticleTimer -= Gdx.graphics.getDeltaTime();
                     if (this.intentParticleTimer < 0.0F) {
                         this.intentParticleTimer = 0.1F;
-                        this.intentVfx.add(new BuffParticleEffect(source.intentHb.cX + 72.0F * scaleWidth, source.intentHb.cY));
+                        this.intentVfx.add(new BuffParticleEffect(source.intentHb.cX + (72.0F * scaleWidth * position), source.intentHb.cY));
                     }
                 }
             } else {
                 this.intentParticleTimer -= Gdx.graphics.getDeltaTime();
                 if (this.intentParticleTimer < 0.0F) {
                     this.intentParticleTimer = 1.0F;
-                    this.intentVfx.add(new DebuffParticleEffect(source.intentHb.cX + 72.0F * scaleWidth, source.intentHb.cY));
+                    this.intentVfx.add(new DebuffParticleEffect(source.intentHb.cX + (72.0F * scaleWidth * position), source.intentHb.cY));
                 }
             }
         }

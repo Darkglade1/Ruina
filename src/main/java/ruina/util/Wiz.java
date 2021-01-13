@@ -185,6 +185,10 @@ public class Wiz {
         atb(new DamageAction(target, info, effect));
     }
 
+    public static void dmg(AbstractCreature target, DamageInfo info) {
+        dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+    }
+
     public static void block(AbstractCreature target, int amount) {
         atb(new GainBlockAction(target, amount));
     }

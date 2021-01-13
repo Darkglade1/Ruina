@@ -132,7 +132,7 @@ public class LittleRed extends AbstractAllyMonster
         switch (this.nextMove) {
             case BEAST_HUNT: {
                 slashAnimation(target);
-                dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                dmg(target, info);
                 resetIdle();
                 break;
             }
@@ -172,7 +172,7 @@ public class LittleRed extends AbstractAllyMonster
                     } else {
                         shoot2Animation(target);
                     }
-                    dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                    dmg(target, info);
                     resetIdle();
                 }
                 break;
@@ -186,7 +186,7 @@ public class LittleRed extends AbstractAllyMonster
                     } else {
                         shoot3Animation(target);
                     }
-                    dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                    dmg(target, info);
                     resetIdle();
                 }
                 break;

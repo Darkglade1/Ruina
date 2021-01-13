@@ -27,8 +27,7 @@ import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class NightmareWolf extends AbstractMultiIntentMonster
@@ -104,7 +103,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
             case CRUEL_CLAWS: {
                 block(this, BLOCK);
                 clawAnimation(target);
-                dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                dmg(target, info);
                 resetIdle();
                 power.justGainedBlock = true; //hack to make the block fall off at a different time LOL
                 break;
@@ -112,7 +111,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
             case FEROCIOUS_FANGS: {
                 for (int i = 0; i < multiplier; i++) {
                     biteAnimation(target);
-                    dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                    dmg(target, info);
                     resetIdle();
                 }
                 applyToTarget(target, this, new Bleed(target, BLEED));
@@ -125,7 +124,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                     } else {
                         biteAnimation(target);
                     }
-                    dmg(target, info, AbstractGameAction.AttackEffect.NONE);
+                    dmg(target, info);
                     resetIdle();
                 }
                 break;
@@ -212,7 +211,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, red);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, red, makeUIPath("RedIcon.png"));
             }
         }
     }

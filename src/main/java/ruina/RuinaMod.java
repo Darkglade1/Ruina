@@ -126,6 +126,10 @@ public class RuinaMod implements
         return modID + "Resources/images/monsters/" + resourcePath;
     }
 
+    public static String makeUIPath(String resourcePath) {
+        return modID + "Resources/images/ui/" + resourcePath;
+    }
+
     public static void initialize() {
         RuinaMod ruinaMod = new RuinaMod();
     }

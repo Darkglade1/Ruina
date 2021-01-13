@@ -57,7 +57,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         applyPowers();
     }
 
-    protected void applyPowersToAdditionalIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target) {
+    protected void applyPowersToAdditionalIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, String targetTexturePath) {
         if (additionalMove.nextMove == -1 || target.isDead) {
             target = adp();
         }
@@ -101,6 +101,11 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                 } else {
                     intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + additionalIntent.damage + TEXT[2];
                 }
+                if (targetTexturePath != null) {
+                    additionalIntent.setTargetTexture(targetTexturePath);
+                }
+            } else {
+                additionalIntent.clearTargetTexture();
             }
         }
     }
@@ -156,15 +161,15 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     @Override
     public void renderIntent(SpriteBatch sb) {
         super.renderIntent(sb);
-        int count = 1;
+        int position = 1;
         for (AdditionalIntent additionalIntent : additionalIntents) {
             if (additionalIntent != null && !this.hasPower(StunMonsterPower.POWER_ID)) {
-                additionalIntent.update();
+                additionalIntent.update(position);
                 if (!this.isDying && !this.isEscaping && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.player.isDead && !AbstractDungeon.player.hasRelic(RunicDome.ID) && this.intent != AbstractMonster.Intent.NONE && !Settings.hideCombatElements) {
-                    additionalIntent.render(sb, count);
+                    additionalIntent.render(sb, position);
                 }
             }
-            count++;
+            position++;
         }
     }
 
