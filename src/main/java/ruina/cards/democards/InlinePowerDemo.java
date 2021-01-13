@@ -27,7 +27,7 @@ public class InlinePowerDemo extends AbstractTodoCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        applyToSelf(new AbstractLambdaPower("Strike+, Block+", AbstractPower.PowerType.BUFF, false, p, magicNumber) {
+        applyToSelf(new AbstractLambdaPower("Strike+, Block+", "", AbstractPower.PowerType.BUFF, false, p, magicNumber) {
             @Override
             public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
                 if (card.hasTag(CardTags.STRIKE)) {

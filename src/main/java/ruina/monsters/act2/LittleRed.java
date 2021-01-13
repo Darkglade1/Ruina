@@ -90,7 +90,7 @@ public class LittleRed extends AbstractAllyMonster
                 wolf = (NightmareWolf)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(FURY_POWER_NAME, AbstractPower.PowerType.BUFF, false, this, -1) {
+        applyToTarget(this, this, new AbstractLambdaPower(FURY_POWER_NAME, FURY_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() {
                 description = FURY_POWER_DESCRIPTIONS[0];
@@ -138,7 +138,7 @@ public class LittleRed extends AbstractAllyMonster
             }
             case CATCH_BREATH: {
                 atb(new AddTemporaryHPAction(this, this, DEFENSE));
-                applyToTarget(this, this, new AbstractLambdaPower(STRIKE_POWER_NAME, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
+                applyToTarget(this, this, new AbstractLambdaPower(STRIKE_POWER_NAME, STRIKE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
 
                     boolean justApplied = true;
 

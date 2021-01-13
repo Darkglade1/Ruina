@@ -81,7 +81,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                 red = (LittleRed)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, AbstractPower.PowerType.BUFF, false, this, HEAL) {
+        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, HEAL) {
             @Override
             public void updateDescription() {
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
@@ -228,7 +228,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
             if (info.owner == red) {
                 red.onKillWolf();
             } else {
-                if (!red.isDead) {
+                if (!red.isDead && !red.isDying) {
                     addToBot(new AbstractGameAction() {
                         @Override
                         public void update() {

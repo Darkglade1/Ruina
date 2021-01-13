@@ -22,5 +22,13 @@
   "${ModID}:Bodies": {
     "NAME": "Mountain of Corpses",
     "DESCRIPTIONS": ["At end of round, if there are no #yMelted #yCorpses alive, summon a #yMelted #yCorpses."]
+  },
+  "${ModID}:Rot": {
+    "NAME": "Rot",
+    "DESCRIPTIONS": ["Whenever you attack this creature, you take #b", " damage."]
+  },
+  "${ModID}:Corpse": {
+    "NAME": "Corpse",
+    "DESCRIPTIONS": ["When this creature dies, if the #renemy killed it, the #renemy heals #b", " HP. If you killed it instead, you gain #b", " #yBlock."]
   }
 }

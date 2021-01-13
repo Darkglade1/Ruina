@@ -1,16 +1,15 @@
 package ruina.monsters.act2;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.InstantKillAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.unique.VampireDamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
@@ -22,13 +21,8 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.monsters.city.Byrd;
-import com.megacrit.cardcrawl.monsters.city.Snecko;
-import com.megacrit.cardcrawl.monsters.exordium.JawWorm;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
@@ -36,7 +30,6 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.Bleed;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.WaitEffect;
 
@@ -118,7 +111,7 @@ public class Mountain extends AbstractMultiIntentMonster
         CustomDungeon.playTempMusicInstantly("Warning3");
         AbstractDungeon.getCurrRoom().cannotLose = true;
         Summon();
-        stagePower = new AbstractLambdaPower(ABSORPTION_POWER_NAME, AbstractPower.PowerType.BUFF, false, this, currentStage) {
+        stagePower = new AbstractLambdaPower(ABSORPTION_POWER_NAME, ABSORPTION_POWER_ID, AbstractPower.PowerType.BUFF, false, this, currentStage) {
             @Override
             public void updateDescription() {
                 if (amount == STAGE1) {
@@ -139,10 +132,23 @@ public class Mountain extends AbstractMultiIntentMonster
             }
         };
         applyToTarget(this, this, stagePower);
-        applyToTarget(this, this, new AbstractLambdaPower(BODIES_POWER_NAME, AbstractPower.PowerType.BUFF, false, this, -1) {
+        applyToTarget(this, this, new AbstractLambdaPower(BODIES_POWER_NAME, BODIES_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() {
                 description = BODIES_POWER_DESCRIPTIONS[0];
+            }
+            @Override
+            public void atEndOfRound() {
+                boolean foundCorpse = false;
+                for (AbstractMonster mo : monsterList()) {
+                    if (mo instanceof MeltedCorpses) {
+                        foundCorpse = true;
+                        break;
+                    }
+                }
+                if (!foundCorpse) {
+                    Summon();
+                }
             }
         });
     }
@@ -232,20 +238,22 @@ public class Mountain extends AbstractMultiIntentMonster
     public void takeTurn() {
         AbstractMonster mo = this;
         takeCustomTurn(this.moves.get(nextMove), adp());
-        for (EnemyMoveInfo additionalMove : additionalMoves) {
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    atb(new VFXAction(new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-                    atb(new IntentFlashAction(mo));
-                    if (corpse.isDeadOrEscaped()) {
-                        takeCustomTurn(additionalMove, adp());
-                    } else {
-                        takeCustomTurn(additionalMove, corpse);
+        if (!this.halfDead) {
+            for (EnemyMoveInfo additionalMove : additionalMoves) {
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        atb(new VFXAction(new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
+                        atb(new IntentFlashAction(mo));
+                        if (corpse.isDeadOrEscaped() || currentStage == STAGE3) {
+                            takeCustomTurn(additionalMove, adp());
+                        } else {
+                            takeCustomTurn(additionalMove, corpse);
+                        }
+                        this.isDone = true;
                     }
-                    this.isDone = true;
-                }
-            });
+                });
+            }
         }
         addToBot(new AbstractGameAction() {
             @Override
@@ -360,6 +368,8 @@ public class Mountain extends AbstractMultiIntentMonster
             for (AbstractPower power : powersToRemove) {
                 this.powers.remove(power);
             }
+            additionalIntents.clear();
+            additionalMoves.clear();
         }
     }
 
@@ -367,6 +377,11 @@ public class Mountain extends AbstractMultiIntentMonster
     public void die() {
         if (!AbstractDungeon.getCurrRoom().cannotLose) {
             super.die();
+            for (AbstractMonster mo : monsterList()) {
+                if (mo instanceof MeltedCorpses) {
+                    atb(new SuicideAction(mo));
+                }
+            }
         }
         if (this.maxHealth <= 0) {
             setMaxHP();
@@ -375,6 +390,7 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     private void Summon() {
+        playSound("Spawn", 0.7f);
         float xPosition = -480.0F;
         corpse = new MeltedCorpses(xPosition, 0.0f);
         AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(corpse, true));
@@ -389,8 +405,7 @@ public class Mountain extends AbstractMultiIntentMonster
                 numAdditionalMoves++;
             }
             animationAction("Idle" + currentStage, "Grow", 0.7f);
-            setMaxHP();
-            AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+            updateValues();
         }
     }
 
@@ -404,9 +419,16 @@ public class Mountain extends AbstractMultiIntentMonster
                 numAdditionalMoves--;
             }
             animationAction("Idle" + currentStage, "Shrink", 0.7f);
-            setMaxHP();
-            AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+            updateValues();
         }
+    }
+
+    private void updateValues() {
+        setMaxHP();
+        rollMove();
+        createIntent();
+        stagePower.amount = currentStage;
+        stagePower.updateDescription();
     }
 
     private void setMaxHP() {
@@ -419,7 +441,7 @@ public class Mountain extends AbstractMultiIntentMonster
         if (currentStage == STAGE3) {
             this.maxHealth = STAGE3_HP;
         }
-        updateHealthBar();
+        healthBarUpdatedEvent();
     }
 
 }

@@ -59,7 +59,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     }
 
     protected void applyPowersToAdditionalIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, String targetTexturePath) {
-        if (additionalMove.nextMove == -1 || target.isDead) {
+        if (additionalMove.nextMove == -1 || target.isDead || target.isDying) {
             target = adp();
         }
         if (additionalMove.baseDamage > -1) {

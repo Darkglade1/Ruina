@@ -13,8 +13,7 @@ public class InvisibleBarricadePower extends AbstractEasyPower implements Invisi
     public boolean justGainedBlock = false;
 
     public InvisibleBarricadePower(AbstractCreature owner) {
-        super("", PowerType.BUFF, false, owner, -1);
-        this.ID = POWER_ID;
+        super("", POWER_ID, PowerType.BUFF, false, owner, -1);
     }
 
     @Override

@@ -12,7 +12,7 @@ public class LosePowerPower extends AbstractEasyPower {
     //private static Texture chain = TexLoader.getTexture("todomodResources/images/ui/chain.png");
 
     public LosePowerPower(AbstractCreature owner, AbstractPower powerToLose, int amount) {
-        super("Lose " + powerToLose.name, PowerType.DEBUFF, false, owner, amount);
+        super("Lose " + powerToLose.name, "", PowerType.DEBUFF, false, owner, amount);
         this.img = powerToLose.img;
         this.region48 = powerToLose.region48;
         this.region128 = powerToLose.region128;
