@@ -253,7 +253,7 @@ public class Mountain extends AbstractMultiIntentMonster
         } else {
             takeCustomTurn(this.moves.get(nextMove), adp());
         }
-        if (!this.halfDead) {
+        if (!(this.nextMove == REVIVE)) {
             for (EnemyMoveInfo additionalMove : additionalMoves) {
                 atb(new AbstractGameAction() {
                     @Override
@@ -348,6 +348,8 @@ public class Mountain extends AbstractMultiIntentMonster
                 } else {
                     intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
                 }
+                Texture attackImg = getAttackIntent(info.output);
+                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
             }
         }
         for (int i = 0; i < additionalIntents.size(); i++) {
@@ -436,6 +438,8 @@ public class Mountain extends AbstractMultiIntentMonster
             }
             animationAction("Idle" + currentStage, "Grow", 0.7f);
             updateValues();
+            rollMove();
+            createIntent();
         }
     }
 
@@ -455,8 +459,6 @@ public class Mountain extends AbstractMultiIntentMonster
 
     private void updateValues() {
         setMaxHP();
-        rollMove();
-        createIntent();
         stagePower.amount = currentStage;
         stagePower.updateDescription();
     }
@@ -480,7 +482,7 @@ public class Mountain extends AbstractMultiIntentMonster
         if (currentStage == STAGE1 && targetTexture != null) {
             BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
             float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
-            sb.draw(targetTexture, this.intentHb.cX - 64.0F + (40.0F * Settings.scale), this.intentHb.cY - 24.0F + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
+            sb.draw(targetTexture, this.intentHb.cX - 48.0F + (40.0F * Settings.scale), this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
         }
     }
 

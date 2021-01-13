@@ -131,7 +131,7 @@ public class AdditionalIntent {
             sb.draw(this.intentImg, source.intentHb.cX - 64.0F + (86.0F * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 128, 128, false, false);
         }
         if (targetTexture != null && damage >= 0) {
-            sb.draw(targetTexture, source.intentHb.cX - 64.0F + (126.0F * scaleWidth * position), source.intentHb.cY - 24.0F + this.bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 48, 48, false, false);
+            sb.draw(targetTexture, source.intentHb.cX - 48.0F + (126.0F * scaleWidth * position), source.intentHb.cY - 48.0F + (40.0f * scaleHeight) + this.bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 48, 48, false, false);
         }
     }
 
