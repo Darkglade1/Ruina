@@ -89,7 +89,7 @@ public class Mountain extends AbstractMultiIntentMonster
     public static final String[] BODIES_POWER_DESCRIPTIONS = BODIESPowerStrings.DESCRIPTIONS;
 
     public Mountain() {
-        this(0.0f, 0.0f);
+        this(-100.0f, 0.0f);
     }
 
     public Mountain(final float x, final float y) {
@@ -133,7 +133,7 @@ public class Mountain extends AbstractMultiIntentMonster
             public void atEndOfRound() {
                 if (owner.currentHealth == owner.maxHealth) {
                     if (owner instanceof Mountain) {
-
+                        ((Mountain) owner).Grow();
                     }
                 }
             }
@@ -157,28 +157,39 @@ public class Mountain extends AbstractMultiIntentMonster
         }
         switch (move.nextMove) {
             case DEVOUR: {
+                attackAnimation(target);
                 atb(new VampireDamageAction(target, info, AbstractGameAction.AttackEffect.NONE));
+                resetIdle();
                 break;
             }
             case BITE: {
+                attackAnimation(target);
                 dmg(target, info);
+                resetIdle();
                 applyToTarget(target, this, new WeakPower(target, ATTACK_DEBUFF_AMT, true));
                 break;
             }
             case HORRID_SCREECH: {
+                screechAnimation();
                 intoDiscard(new Dazed(), DAZES);
+                resetIdle(1.0f);
                 break;
             }
             case RAM: {
+                ramAnimation(target);
                 dmg(target, info);
+                resetIdle();
                 break;
             }
             case VOMIT: {
+                vomitAnimation();
                 applyToTarget(target, this, new FrailPower(target, NORMAL_DEBUFF_AMT, true));
                 intoDiscard(new Slimed(), SLIMES);
+                resetIdle(1.0f);
                 break;
             }
             case REVIVE: {
+                Shrink();
                 atb(new HealAction(this, this, (int)(this.maxHealth * REVIVE_PERCENT)));
                 this.halfDead = false;
                 for (AbstractRelic r : AbstractDungeon.player.relics) {
@@ -189,17 +200,33 @@ public class Mountain extends AbstractMultiIntentMonster
         }
     }
 
-//    private void clawAnimation(AbstractCreature enemy) {
-//        animationAction("Claw", "Claw", enemy);
-//    }
-//
-//    private void biteAnimation(AbstractCreature enemy) {
-//        animationAction("Bite", "Bite", enemy);
-//    }
-//
-//    private void howlAnimation() {
-//        animationAction("Howl", "Howl");
-//    }
+    private void attackAnimation(AbstractCreature enemy) {
+        animationAction("Attack" + currentStage, "Bite", enemy);
+    }
+
+    private void screechAnimation() {
+        animationAction("Screech", "Screech", 0.7f);
+    }
+
+    private void ramAnimation(AbstractCreature enemy) {
+        animationAction("Ram", "Ram", enemy);
+    }
+
+    private void vomitAnimation() {
+        animationAction("Vomit", "Vomit", 0.7f);
+    }
+
+    @Override
+    protected void resetIdle(float duration) {
+        atb(new VFXAction(new WaitEffect(), duration));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                runAnim("Idle" + currentStage);
+                this.isDone = true;
+            }
+        });
+    }
 
     @Override
     public void takeTurn() {
@@ -355,19 +382,31 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     private void Grow() {
+        AbstractDungeon.getCurrRoom().cannotLose = true;
         if (currentStage < STAGE3) {
             currentStage++;
             if (numAdditionalMoves < maxAdditionalMoves) {
                 numAdditionalMoves++;
             }
-            resetIdle();
+            animationAction("Idle" + currentStage, "Grow", 0.7f);
             setMaxHP();
             AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
         }
     }
 
     private void Shrink() {
-
+        if (currentStage > STAGE1) {
+            currentStage--;
+            if (currentStage == STAGE1) {
+                AbstractDungeon.getCurrRoom().cannotLose = false;
+            }
+            if (numAdditionalMoves > 0) {
+                numAdditionalMoves--;
+            }
+            animationAction("Idle" + currentStage, "Shrink", 0.7f);
+            setMaxHP();
+            AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+        }
     }
 
     private void setMaxHP() {
@@ -381,21 +420,6 @@ public class Mountain extends AbstractMultiIntentMonster
             this.maxHealth = STAGE3_HP;
         }
         updateHealthBar();
-    }
-
-    protected void resetIdle() {
-        resetIdle(0.5f);
-    }
-
-    protected void resetIdle(float duration) {
-        atb(new VFXAction(new WaitEffect(), duration));
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                runAnim("Idle" + currentStage);
-                this.isDone = true;
-            }
-        });
     }
 
 }

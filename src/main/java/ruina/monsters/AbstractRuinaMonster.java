@@ -158,8 +158,28 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         });
     }
 
+    protected void animationAction(String animation, String sound, float volume, AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (enemy == null) {
+                    runAnim(animation);
+                    playSound(sound, volume);
+                } else if (!enemy.isDeadOrEscaped()) {
+                    runAnim(animation);
+                    playSound(sound, volume);
+                }
+                this.isDone = true;
+            }
+        });
+    }
+
     protected void animationAction(String animation, String sound) {
         animationAction(animation, sound, null);
+    }
+
+    protected void animationAction(String animation, String sound, float volume) {
+        animationAction(animation, sound, volume, null);
     }
 
     public void playSound(String sound, float volume) {
