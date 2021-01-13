@@ -1,6 +1,11 @@
 package ruina.monsters.act2;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.ReflectionHacks;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -16,7 +21,10 @@ import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -25,12 +33,14 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.util.AdditionalIntent;
+import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
@@ -70,6 +80,7 @@ public class Mountain extends AbstractMultiIntentMonster
     private static final float STARTING_PERCENT = 0.75f;
     private AbstractLambdaPower stagePower;
     private AbstractMonster corpse;
+    private Texture targetTexture = TexLoader.getTexture(makeUIPath("CorpseIcon.png"));
 
     public static final String ABSORPTION_POWER_ID = makeID("Absorption");
     public static final PowerStrings absorptionPowerStrings = CardCrawlGame.languagePack.getPowerStrings(ABSORPTION_POWER_ID);
@@ -237,7 +248,11 @@ public class Mountain extends AbstractMultiIntentMonster
     @Override
     public void takeTurn() {
         AbstractMonster mo = this;
-        takeCustomTurn(this.moves.get(nextMove), adp());
+        if (currentStage == STAGE1) {
+            takeCustomTurn(this.moves.get(nextMove), corpse);
+        } else {
+            takeCustomTurn(this.moves.get(nextMove), adp());
+        }
         if (!this.halfDead) {
             for (EnemyMoveInfo additionalMove : additionalMoves) {
                 atb(new AbstractGameAction() {
@@ -320,6 +335,21 @@ public class Mountain extends AbstractMultiIntentMonster
     @Override
     public void applyPowers() {
         super.applyPowers();
+        if (currentStage == STAGE1) {
+            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
+            AbstractCreature target = corpse;
+            if (info.base > -1) {
+                info.applyPowers(this, target);
+                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+                PowerTip intentTip = (PowerTip) ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                int multiplier = moves.get(this.nextMove).multiplier;
+                if (multiplier > 0) {
+                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + multiplier + TEXT[4];
+                } else {
+                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
+                }
+            }
+        }
         for (int i = 0; i < additionalIntents.size(); i++) {
             AdditionalIntent additionalIntent = additionalIntents.get(i);
             EnemyMoveInfo additionalMove = null;
@@ -330,7 +360,7 @@ public class Mountain extends AbstractMultiIntentMonster
                 if (currentStage == STAGE3) {
                     applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
                 } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, corpse, makeUIPath("RedIcon.png"));
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, corpse, makeUIPath("CorpseIcon.png"));
                 }
             }
         }
@@ -442,6 +472,16 @@ public class Mountain extends AbstractMultiIntentMonster
             this.maxHealth = STAGE3_HP;
         }
         healthBarUpdatedEvent();
+    }
+
+    @Override
+    public void renderIntent(SpriteBatch sb) {
+        super.renderIntent(sb);
+        if (currentStage == STAGE1 && targetTexture != null) {
+            BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
+            float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
+            sb.draw(targetTexture, this.intentHb.cX - 64.0F + (40.0F * Settings.scale), this.intentHb.cY - 24.0F + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
+        }
     }
 
 }
