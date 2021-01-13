@@ -2,12 +2,11 @@ package ruina.monsters.act2;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.InstantKillAction;
@@ -55,6 +54,7 @@ public class Mountain extends AbstractMultiIntentMonster
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
+    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte DEVOUR = 0;
     private static final byte BITE = 1;
@@ -166,6 +166,15 @@ public class Mountain extends AbstractMultiIntentMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
+        System.out.println("Halfdead: " + halfDead);
+        System.out.println("Move: " + move.nextMove);
+        if (this.halfDead && move.nextMove != REVIVE) {
+            return;
+        }
+        if (this.firstMove) {
+            atb(new TalkAction(this, DIALOG[0]));
+            firstMove = false;
+        }
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
 
@@ -253,22 +262,22 @@ public class Mountain extends AbstractMultiIntentMonster
         } else {
             takeCustomTurn(this.moves.get(nextMove), adp());
         }
-        if (!(this.nextMove == REVIVE)) {
-            for (EnemyMoveInfo additionalMove : additionalMoves) {
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
+        for (EnemyMoveInfo additionalMove : additionalMoves) {
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    if (!mo.halfDead) {
                         atb(new VFXAction(new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
                         atb(new IntentFlashAction(mo));
-                        if (corpse.isDeadOrEscaped() || currentStage == STAGE3) {
-                            takeCustomTurn(additionalMove, adp());
-                        } else {
-                            takeCustomTurn(additionalMove, corpse);
-                        }
-                        this.isDone = true;
                     }
-                });
-            }
+                    if (corpse.isDeadOrEscaped() || currentStage == STAGE3) {
+                        takeCustomTurn(additionalMove, adp());
+                    } else {
+                        takeCustomTurn(additionalMove, corpse);
+                    }
+                    this.isDone = true;
+                }
+            });
         }
         addToBot(new AbstractGameAction() {
             @Override
@@ -282,7 +291,9 @@ public class Mountain extends AbstractMultiIntentMonster
 
     @Override
     protected void getMove(final int num) {
-        if (this.currentStage == STAGE1) {
+        if (this.halfDead) {
+            setMoveShortcut(REVIVE);
+        } else if (this.currentStage == STAGE1) {
             setMoveShortcut(DEVOUR, MOVES[DEVOUR]);
         } else if (this.currentStage == STAGE2) {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -312,6 +323,9 @@ public class Mountain extends AbstractMultiIntentMonster
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
+        if (this.halfDead) {
+            return;
+        }
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (whichMove == 0) {
             if (this.currentStage == STAGE2) {
@@ -373,7 +387,7 @@ public class Mountain extends AbstractMultiIntentMonster
         super.damage(info);
         if (this.currentHealth <= 0 && !this.halfDead) {
             this.halfDead = true;
-
+            System.out.println("DIED FROM DAMAGE");
             Iterator var2 = this.powers.iterator();
             while (var2.hasNext()) {
                 AbstractPower p = (AbstractPower) var2.next();
@@ -415,6 +429,7 @@ public class Mountain extends AbstractMultiIntentMonster
                 }
             }
         }
+        System.out.println("I DIED");
         if (this.maxHealth <= 0) {
             setMaxHP();
             AbstractDungeon.actionManager.addToBottom(new InstantKillAction(this));
