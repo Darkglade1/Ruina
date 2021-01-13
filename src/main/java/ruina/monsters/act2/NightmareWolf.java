@@ -47,7 +47,6 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     private final int HEAL = calcAscensionSpecial(100);
     private final int BLEED = calcAscensionSpecial(2);
     public LittleRed red;
-    private boolean targetRed = false;
     private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
 
     public static final String POWER_ID = makeID("BloodstainedClaws");

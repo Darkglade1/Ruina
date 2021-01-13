@@ -32,6 +32,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     protected ArrayList<ArrayList<Byte>> additionalMovesHistory = new ArrayList<>();
     protected ArrayList<AdditionalIntent> additionalIntents = new ArrayList<>();
     protected int numAdditionalMoves = 0;
+    protected int maxAdditionalMoves = 0;
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("MultiIntentStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
 

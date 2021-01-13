@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.monsters.act2.LittleRed;
+import ruina.monsters.act2.Mountain;
 
 public class RuinaScene extends AbstractScene {
 
@@ -68,6 +69,8 @@ public class RuinaScene extends AbstractScene {
                         this.bg = this.atlas.findRegion("mod/NightForest");
                     }
                     break;
+                } else if (mo instanceof Mountain) {
+                    this.bg = this.atlas.findRegion("mod/Bodies");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }

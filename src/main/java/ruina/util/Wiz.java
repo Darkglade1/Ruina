@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -137,6 +138,10 @@ public class Wiz {
 
     public static void shuffleIn(AbstractCard c) {
         shuffleIn(c, 1);
+    }
+
+    public static void intoDiscard(AbstractCard c, int i) {
+        atb(new MakeTempCardInDiscardAction(c, i));
     }
 
     public static void topDeck(AbstractCard c, int i) {

@@ -14,5 +14,13 @@
   "${ModID}:Bleed": {
     "NAME": "Bleed",
     "DESCRIPTIONS": ["Whenever this creature #yattacks this turn, it takes #b", " damage."]
+  },
+  "${ModID}:Absorption": {
+    "NAME": "Absorption",
+    "DESCRIPTIONS": ["Shrinks back to #yStage #y", " when it dies.", "At end of round, grows to #yStage #y", " if it has full HP."]
+  },
+  "${ModID}:Bodies": {
+    "NAME": "Mountain of Corpses",
+    "DESCRIPTIONS": ["At end of round, if there are no #yMelted #yCorpses alive, summon a #yMelted #yCorpses."]
   }
 }

@@ -24,5 +24,25 @@
     "NAME": "Wolf in Her Nightmares",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Mountain": {
+    "MOVES": [
+      "Devour",
+      "Bite",
+      "Horrid Screech",
+      "Ram",
+      "Vomit"
+    ],
+    "NAME": "Mountain of Smiling Bodies",
+    "DIALOG": [
+      "Hungry . . . must feed . . ."
+    ]
+  },
+  "${ModID}:MeltedCorpses": {
+    "MOVES": [
+    ],
+    "NAME": "Melted Corpses",
+    "DIALOG": [
+    ]
   }
 }

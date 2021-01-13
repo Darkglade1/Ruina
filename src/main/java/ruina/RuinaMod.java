@@ -34,6 +34,7 @@ import ruina.cards.cardvars.SillyVariable;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
 import ruina.monsters.act2.LittleRed;
+import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.NightmareWolf;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
@@ -188,6 +189,8 @@ public class RuinaMod implements
                         new LittleRed(-480.0F, 0.0F),
                         new NightmareWolf(),
                 }));
+        BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
+
         BaseMod.addBoss(Briah.ID, EncounterIDs.RED_AND_WOLF, makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
     }
 
