@@ -35,7 +35,10 @@ public class Scarecrow extends AbstractRuinaMonster
     private static final byte HARVEST = 1;
     private static final byte STRUGGLE = 2;
 
-    private final int WISDOM_AMT = calcAscensionSpecial(3);
+    private static final int STRUGGLE_THRESHOLD = 2;
+    private int struggleCounter;
+
+    private final int WISDOM_AMT = calcAscensionSpecial(2);
 
     public static final String SEARCH_POWER_ID = makeID("Search");
     public static final PowerStrings SEARCHPowerStrings = CardCrawlGame.languagePack.getPowerStrings(SEARCH_POWER_ID);
@@ -43,10 +46,10 @@ public class Scarecrow extends AbstractRuinaMonster
     public static final String[] SEARCH_POWER_DESCRIPTIONS = SEARCHPowerStrings.DESCRIPTIONS;
 
     public Scarecrow() {
-        this(0.0f, 0.0f);
+        this(0.0f, 0.0f, STRUGGLE_THRESHOLD);
     }
 
-    public Scarecrow(final float x, final float y) {
+    public Scarecrow(final float x, final float y, int struggleCounter) {
         super(NAME, ID, 40, -5.0F, 0, 230.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Scarecrow/Spriter/Scarecrow.scml"));
         this.type = EnemyType.NORMAL;
@@ -54,6 +57,7 @@ public class Scarecrow extends AbstractRuinaMonster
         addMove(RAKE, Intent.ATTACK, calcAscensionDamage(12));
         addMove(HARVEST, Intent.ATTACK, calcAscensionDamage(3), 3, true);
         addMove(STRUGGLE, Intent.DEBUFF);
+        this.struggleCounter = struggleCounter;
     }
 
     @Override
@@ -98,9 +102,11 @@ public class Scarecrow extends AbstractRuinaMonster
             }
             case STRUGGLE: {
                 intoDiscardMo(new Wisdom(), WISDOM_AMT, this);
+                struggleCounter = STRUGGLE_THRESHOLD + 1;
                 break;
             }
         }
+        struggleCounter--;
         //In case it gets stunned by Wisdom
         AbstractMonster mo = this;
         addToBot(new AbstractGameAction() {
@@ -118,18 +124,19 @@ public class Scarecrow extends AbstractRuinaMonster
         if (this.hasPower(StunMonsterPower.POWER_ID)) {
             return;
         }
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(RAKE)) {
-            possibilities.add(RAKE);
+        if (struggleCounter <= 0) {
+            setMoveShortcut(STRUGGLE, MOVES[STRUGGLE]);
+        } else {
+            ArrayList<Byte> possibilities = new ArrayList<>();
+            if (!this.lastMove(RAKE)) {
+                possibilities.add(RAKE);
+            }
+            if (!this.lastMove(HARVEST)) {
+                possibilities.add(HARVEST);
+            }
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            setMoveShortcut(move, MOVES[move]);
         }
-        if (!this.lastMove(HARVEST)) {
-            possibilities.add(HARVEST);
-        }
-        if (!this.lastMove(STRUGGLE) && !this.lastMoveBefore(STRUGGLE)) {
-            possibilities.add(STRUGGLE);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
     }
 
     public void die(boolean triggerRelics) {

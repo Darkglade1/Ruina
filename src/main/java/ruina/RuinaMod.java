@@ -201,14 +201,14 @@ public class RuinaMod implements
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
         BaseMod.addMonster(EncounterIDs.SCARECROWS_2, "2_Scarecrows", () -> new MonsterGroup(
                 new AbstractMonster[] {
-                        new Scarecrow(-450.0F, 0.0F),
-                        new Scarecrow(-150.0F, 0.0F),
+                        new Scarecrow(-450.0F, 0.0F, 1),
+                        new Scarecrow(-150.0F, 0.0F, 0),
                 }));
         BaseMod.addMonster(EncounterIDs.SCARECROWS_3, "3_Scarecrowss", () -> new MonsterGroup(
                 new AbstractMonster[] {
-                        new Scarecrow(-450.0F, 0.0F),
-                        new Scarecrow(-200.0F, 0.0F),
-                        new Scarecrow(50.0F, 0.0F)
+                        new Scarecrow(-450.0F, 0.0F, 2),
+                        new Scarecrow(-200.0F, 0.0F, 1),
+                        new Scarecrow(50.0F, 0.0F, 0)
                 }));
 
         BaseMod.addBoss(Briah.ID, EncounterIDs.RED_AND_WOLF, makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
