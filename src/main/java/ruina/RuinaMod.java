@@ -165,9 +165,6 @@ public class RuinaMod implements
                     } else {
                         BaseMod.addRelicToCustomPool(relic, relic.color);
                     }
-                    if (!info.seen) {
-                        UnlockTracker.markRelicAsSeen(relic.relicId);
-                    }
                 });
     }
 
@@ -177,7 +174,7 @@ public class RuinaMod implements
         BaseMod.addDynamicVariable(new SecondDamage());
         new AutoAdd(modID)
                 .packageFilter(AbstractRuinaCard.class)
-                .setDefaultSeen(true)
+                .setDefaultSeen(false)
                 .cards();
     }
 
