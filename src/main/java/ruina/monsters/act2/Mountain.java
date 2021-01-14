@@ -36,10 +36,12 @@ import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
+import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
+import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
@@ -166,14 +168,15 @@ public class Mountain extends AbstractMultiIntentMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        System.out.println("Halfdead: " + halfDead);
-        System.out.println("Move: " + move.nextMove);
         if (this.halfDead && move.nextMove != REVIVE) {
             return;
         }
         if (this.firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
             firstMove = false;
+        }
+        if (target.isDeadOrEscaped()) {
+            target = adp();
         }
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
@@ -184,7 +187,7 @@ public class Mountain extends AbstractMultiIntentMonster
         switch (move.nextMove) {
             case DEVOUR: {
                 attackAnimation(target);
-                atb(new VampireDamageAction(target, info, AbstractGameAction.AttackEffect.NONE));
+                atb(new VampireDamageActionButItCanFizzle(target, info, AbstractGameAction.AttackEffect.NONE));
                 resetIdle();
                 break;
             }
@@ -197,7 +200,7 @@ public class Mountain extends AbstractMultiIntentMonster
             }
             case HORRID_SCREECH: {
                 screechAnimation();
-                intoDiscard(new Dazed(), DAZES);
+                intoDiscardMo(new Dazed(), DAZES, this);
                 resetIdle(1.0f);
                 break;
             }
@@ -210,7 +213,7 @@ public class Mountain extends AbstractMultiIntentMonster
             case VOMIT: {
                 vomitAnimation();
                 applyToTarget(target, this, new FrailPower(target, NORMAL_DEBUFF_AMT, true));
-                intoDiscard(new Slimed(), SLIMES);
+                intoDiscardMo(new Slimed(), SLIMES, this);
                 resetIdle(1.0f);
                 break;
             }
@@ -227,24 +230,24 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack" + currentStage, "Bite", enemy);
+        animationAction("Attack" + currentStage, "Bite", enemy, this);
     }
 
     private void screechAnimation() {
-        animationAction("Screech", "Screech", 0.7f);
+        animationAction("Screech", "Screech", 0.7f, this);
     }
 
     private void ramAnimation(AbstractCreature enemy) {
-        animationAction("Ram", "Ram", enemy);
+        animationAction("Ram", "Ram", enemy, this);
     }
 
     private void vomitAnimation() {
-        animationAction("Vomit", "Vomit", 0.7f);
+        animationAction("Vomit", "Vomit", 0.7f, this);
     }
 
     @Override
     protected void resetIdle(float duration) {
-        atb(new VFXAction(new WaitEffect(), duration));
+        atb(new VFXActionButItCanFizzle(this, new WaitEffect(), duration));
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -263,30 +266,17 @@ public class Mountain extends AbstractMultiIntentMonster
             takeCustomTurn(this.moves.get(nextMove), adp());
         }
         for (EnemyMoveInfo additionalMove : additionalMoves) {
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    if (!mo.halfDead) {
-                        atb(new VFXAction(new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-                        atb(new IntentFlashAction(mo));
-                    }
-                    if (corpse.isDeadOrEscaped() || currentStage == STAGE3) {
-                        takeCustomTurn(additionalMove, adp());
-                    } else {
-                        takeCustomTurn(additionalMove, corpse);
-                    }
-                    this.isDone = true;
-                }
-            });
-        }
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                AbstractDungeon.actionManager.addToBottom(new RollMoveAction(mo));
-                this.isDone = true;
+            if (!mo.halfDead) {
+                atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
+                atb(new IntentFlashAction(mo));
             }
-        });
-
+            if (corpse.isDeadOrEscaped() || currentStage == STAGE3) {
+                takeCustomTurn(additionalMove, adp());
+            } else {
+                takeCustomTurn(additionalMove, corpse);
+            }
+        }
+       atb(new RollMoveAction(this));
     }
 
     @Override
@@ -349,7 +339,7 @@ public class Mountain extends AbstractMultiIntentMonster
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if (currentStage == STAGE1) {
+        if (currentStage == STAGE1 && !corpse.isDeadOrEscaped()) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             AbstractCreature target = corpse;
             if (info.base > -1) {
@@ -387,7 +377,6 @@ public class Mountain extends AbstractMultiIntentMonster
         super.damage(info);
         if (this.currentHealth <= 0 && !this.halfDead) {
             this.halfDead = true;
-            System.out.println("DIED FROM DAMAGE");
             Iterator var2 = this.powers.iterator();
             while (var2.hasNext()) {
                 AbstractPower p = (AbstractPower) var2.next();
@@ -429,7 +418,6 @@ public class Mountain extends AbstractMultiIntentMonster
                 }
             }
         }
-        System.out.println("I DIED");
         if (this.maxHealth <= 0) {
             setMaxHP();
             AbstractDungeon.actionManager.addToBottom(new InstantKillAction(this));
@@ -440,8 +428,8 @@ public class Mountain extends AbstractMultiIntentMonster
         playSound("Spawn", 0.7f);
         float xPosition = -480.0F;
         corpse = new MeltedCorpses(xPosition, 0.0f);
-        AbstractDungeon.actionManager.addToBottom(new SpawnMonsterAction(corpse, true));
-        AbstractDungeon.actionManager.addToBottom(new UsePreBattleActionAction(corpse));
+        atb(new SpawnMonsterAction(corpse, true));
+        atb(new UsePreBattleActionAction(corpse));
     }
 
     private void Grow() {
@@ -451,7 +439,7 @@ public class Mountain extends AbstractMultiIntentMonster
             if (numAdditionalMoves < maxAdditionalMoves) {
                 numAdditionalMoves++;
             }
-            animationAction("Idle" + currentStage, "Grow", 0.7f);
+            animationAction("Idle" + currentStage, "Grow", 0.7f, this);
             updateValues();
             rollMove();
             createIntent();
@@ -467,7 +455,7 @@ public class Mountain extends AbstractMultiIntentMonster
             if (numAdditionalMoves > 0) {
                 numAdditionalMoves--;
             }
-            animationAction("Idle" + currentStage, "Shrink", 0.7f);
+            animationAction("Idle" + currentStage, "Shrink", 0.7f, this);
             updateValues();
         }
     }
@@ -494,7 +482,7 @@ public class Mountain extends AbstractMultiIntentMonster
     @Override
     public void renderIntent(SpriteBatch sb) {
         super.renderIntent(sb);
-        if (currentStage == STAGE1 && targetTexture != null) {
+        if (currentStage == STAGE1 && targetTexture != null && !corpse.isDeadOrEscaped()) {
             BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
             float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
             sb.draw(targetTexture, this.intentHb.cX - 48.0F + (40.0F * Settings.scale), this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);

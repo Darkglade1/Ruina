@@ -1,8 +1,6 @@
 package ruina.monsters.act2;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
@@ -16,10 +14,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -267,19 +263,19 @@ public class LittleRed extends AbstractAllyMonster
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "Slash", enemy);
+        animationAction("Slash", "Slash", enemy, this);
     }
 
     private void shoot1Animation(AbstractCreature enemy) {
-        animationAction("Shoot1", "Gun", enemy);
+        animationAction("Shoot1", "Gun", enemy, this);
     }
 
     private void shoot2Animation(AbstractCreature enemy) {
-        animationAction("Shoot2", "Gun", enemy);
+        animationAction("Shoot2", "Gun", enemy, this);
     }
 
     private void shoot3Animation(AbstractCreature enemy) {
-        animationAction("Shoot3", "Gun", enemy);
+        animationAction("Shoot3", "Gun", enemy, this);
     }
 
 }

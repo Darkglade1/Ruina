@@ -19,6 +19,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import ruina.actions.ApplyPowerActionButItCanFizzle;
+import ruina.actions.MakeTempCardInDiscardActionButItCanFizzle;
+import ruina.actions.MakeTempCardInDrawPileActionButItCanFizzle;
 import ruina.powers.LosePowerPower;
 import ruina.powers.NextTurnPowerPower;
 
@@ -144,6 +147,14 @@ public class Wiz {
         atb(new MakeTempCardInDiscardAction(c, i));
     }
 
+    public static void intoDrawMo(AbstractCard c, int i, AbstractMonster source) {
+        atb(new MakeTempCardInDrawPileActionButItCanFizzle(c, i, true, true, source));
+    }
+
+    public static void intoDiscardMo(AbstractCard c, int i, AbstractMonster source) {
+        atb(new MakeTempCardInDiscardActionButItCanFizzle(c, i, source));
+    }
+
     public static void topDeck(AbstractCard c, int i) {
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(c, i, false, true));
     }
@@ -153,7 +164,7 @@ public class Wiz {
     }
 
     public static void applyToTarget(AbstractCreature target, AbstractCreature source, AbstractPower po) {
-        atb(new ApplyPowerAction(target, source, po, po.amount));
+        atb(new ApplyPowerActionButItCanFizzle(target, source, po, po.amount));
     }
 
     public static void applyToEnemy(AbstractMonster m, AbstractPower po) {

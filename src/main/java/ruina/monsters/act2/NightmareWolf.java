@@ -2,17 +2,14 @@ package ruina.monsters.act2;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -24,6 +21,7 @@ import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
+import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -138,43 +136,30 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     }
 
     private void clawAnimation(AbstractCreature enemy) {
-        animationAction("Claw", "Claw", enemy);
+        animationAction("Claw", "Claw", enemy, this);
     }
 
     private void biteAnimation(AbstractCreature enemy) {
-        animationAction("Bite", "Bite", enemy);
+        animationAction("Bite", "Bite", enemy, this);
     }
 
     private void howlAnimation() {
-        animationAction("Howl", "Howl");
+        animationAction("Howl", "Howl", this);
     }
 
     @Override
     public void takeTurn() {
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (EnemyMoveInfo additionalMove : additionalMoves) {
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    atb(new VFXAction(new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-                    atb(new IntentFlashAction(red.wolf));
-                    if (red.isDead) {
-                        takeCustomTurn(additionalMove, adp());
-                    } else {
-                        takeCustomTurn(additionalMove, red);
-                    }
-                    this.isDone = true;
-                }
-            });
-        }
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                AbstractDungeon.actionManager.addToBottom(new RollMoveAction(red.wolf));
-                this.isDone = true;
+            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
+            atb(new IntentFlashAction(this));
+            if (red.isDead || red.isDying) {
+                takeCustomTurn(additionalMove, adp());
+            } else {
+                takeCustomTurn(additionalMove, red);
             }
-        });
-
+        }
+        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
     @Override

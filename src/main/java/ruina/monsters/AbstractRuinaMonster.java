@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
+import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import java.util.HashMap;
@@ -142,10 +143,14 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         ((BetterSpriterAnimation)this.animation).myPlayer.setAnimation(animation);
     }
 
-    protected void animationAction(String animation, String sound, AbstractCreature enemy) {
+    protected void animationAction(String animation, String sound, AbstractCreature enemy, AbstractCreature owner) {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
+                if (owner.isDeadOrEscaped()) {
+                    isDone = true;
+                    return;
+                }
                 if (enemy == null) {
                     runAnim(animation);
                     playSound(sound);
@@ -158,10 +163,14 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         });
     }
 
-    protected void animationAction(String animation, String sound, float volume, AbstractCreature enemy) {
+    protected void animationAction(String animation, String sound, float volume, AbstractCreature enemy, AbstractCreature owner) {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
+                if (owner.isDeadOrEscaped()) {
+                    isDone = true;
+                    return;
+                }
                 if (enemy == null) {
                     runAnim(animation);
                     playSound(sound, volume);
@@ -174,12 +183,12 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         });
     }
 
-    protected void animationAction(String animation, String sound) {
-        animationAction(animation, sound, null);
+    protected void animationAction(String animation, String sound, AbstractCreature owner) {
+        animationAction(animation, sound, null, owner);
     }
 
-    protected void animationAction(String animation, String sound, float volume) {
-        animationAction(animation, sound, volume, null);
+    protected void animationAction(String animation, String sound, float volume, AbstractCreature owner) {
+        animationAction(animation, sound, volume, null, owner);
     }
 
     public void playSound(String sound, float volume) {
@@ -195,7 +204,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
     protected void resetIdle(float duration) {
-        atb(new VFXAction(new WaitEffect(), duration));
+        atb(new VFXActionButItCanFizzle(this, new WaitEffect(), duration));
         atb(new AbstractGameAction() {
             @Override
             public void update() {
