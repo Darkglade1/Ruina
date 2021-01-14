@@ -15,7 +15,7 @@ import static ruina.RuinaMod.getModID;
 import static ruina.util.TexLoader.getCardTextureString;
 import static ruina.util.Wiz.atb;
 
-public abstract class AbstractTodoCard extends CustomCard {
+public abstract class AbstractRuinaCard extends CustomCard {
 
     protected final CardStrings cardStrings;
 
@@ -29,11 +29,11 @@ public abstract class AbstractTodoCard extends CustomCard {
     public boolean upgradedSecondDamage;
     public boolean isSecondDamageModified;
 
-    public AbstractTodoCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
+    public AbstractRuinaCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
         this(cardID, cost, type, rarity, target, CardColor.COLORLESS);
     }
 
-    public AbstractTodoCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
+    public AbstractRuinaCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
         super(cardID, "", getCardTextureString(cardID.replace(getModID() + ":", ""), type),
                 cost, "", type, color, rarity, target);
         cardStrings = CardCrawlGame.languagePack.getCardStrings(this.cardID);

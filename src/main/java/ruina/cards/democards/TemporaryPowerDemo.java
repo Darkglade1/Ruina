@@ -3,12 +3,12 @@ package ruina.cards.democards;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.NirvanaPower;
-import ruina.cards.AbstractTodoCard;
+import ruina.cards.AbstractRuinaCard;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.applyToSelfTemp;
 
-public class TemporaryPowerDemo extends AbstractTodoCard {
+public class TemporaryPowerDemo extends AbstractRuinaCard {
 
     public final static String ID = makeID("TemporaryPowerDemo");
     // intellij stuff power, self, uncommon

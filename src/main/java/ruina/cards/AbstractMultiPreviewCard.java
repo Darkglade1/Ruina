@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 import java.util.ArrayList;
 
-public abstract class AbstractMultiPreviewCard extends AbstractTodoCard {
+public abstract class AbstractMultiPreviewCard extends AbstractRuinaCard {
 
     private float rotationTimer = getRotationTimeNeeded();
     private int previewIndex;

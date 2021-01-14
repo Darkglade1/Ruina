@@ -2,7 +2,7 @@ Go to New -> Edit file templates... and add the template. You can also customize
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import ruina.cards.AbstractTodoCard;
+import ruina.cards.AbstractRuinaCard;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;

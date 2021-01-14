@@ -9,13 +9,13 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.beyond.Spiker;
 import ruina.cardmods.LambdaMod;
-import ruina.cards.AbstractTodoCard;
+import ruina.cards.AbstractRuinaCard;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.makeInHand;
 import static ruina.util.Wiz.returnTrulyRandomPrediCardInCombat;
 
-public class InlineCardModDemo extends AbstractTodoCard {
+public class InlineCardModDemo extends AbstractRuinaCard {
 
     public final static String ID = makeID("InlineCardModDemo");
     // intellij stuff skill, self, uncommon

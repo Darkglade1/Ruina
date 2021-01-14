@@ -3,12 +3,12 @@ package ruina.cards.democards;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ThornsPower;
-import ruina.cards.AbstractTodoCard;
+import ruina.cards.AbstractRuinaCard;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;
 
-public class NextTurnPowerDemo extends AbstractTodoCard {
+public class NextTurnPowerDemo extends AbstractRuinaCard {
 
     public final static String ID = makeID("NextTurnPowerDemo");
     // intellij stuff skill, self, uncommon

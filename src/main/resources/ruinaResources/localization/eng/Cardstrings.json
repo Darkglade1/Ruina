@@ -1,4 +1,8 @@
 {
+  "${ModID}:Wisdom": {
+    "NAME": "Wisdom",
+    "DESCRIPTION": "Draw !M! card. NL If a *Scarecrow exhausts this card, *Stun it next turn."
+  },
   "${ModID}:Strike": {
     "NAME": "Strike",
     "DESCRIPTION": "Deal !D! damage."

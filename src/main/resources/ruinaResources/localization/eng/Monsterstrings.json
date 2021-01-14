@@ -44,5 +44,15 @@
     "NAME": "Melted Corpses",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Scarecrow": {
+    "MOVES": [
+      "Rake",
+      "Harvest",
+      "Struggle for Wisdom"
+    ],
+    "NAME": "Scarecrow",
+    "DIALOG": [
+    ]
   }
 }

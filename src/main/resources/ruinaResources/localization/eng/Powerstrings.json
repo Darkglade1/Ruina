@@ -30,5 +30,13 @@
   "${ModID}:Corpse": {
     "NAME": "Corpse",
     "DESCRIPTIONS": ["When this creature dies, if the #renemy killed it, the #renemy heals #b", " HP."]
+  },
+  "${ModID}:Search": {
+    "NAME": "Searching for Wisdom",
+    "DESCRIPTIONS": ["Whenever you receive unblocked attack damage from this creature, #yexhaust the top card of your draw pile."]
+  },
+  "${ModID}:Wisdom": {
+    "NAME": "Wisdom",
+    "DESCRIPTIONS": ["Your draw pile is viewed in order for this combat."]
   }
 }

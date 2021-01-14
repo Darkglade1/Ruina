@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="158" height="279" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Attack1.png" width="350" height="212" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Attack2.png" width="237" height="214" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Scarecrow">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-68" y="282" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Attack1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Attack1">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-228" y="212" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Attack2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Attack2">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-107" y="212" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

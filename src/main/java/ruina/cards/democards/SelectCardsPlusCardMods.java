@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.cardmods.EtherealMod;
 import ruina.cardmods.ExhaustMod;
-import ruina.cards.AbstractTodoCard;
+import ruina.cards.AbstractRuinaCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;
 
 @AutoAdd.Ignore
-public class SelectCardsPlusCardMods extends AbstractTodoCard {
+public class SelectCardsPlusCardMods extends AbstractRuinaCard {
 
     public final static String ID = makeID("SelectCardsPlusCardMods");
     // intellij stuff skill, self, uncommon

@@ -6,14 +6,14 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import ruina.cards.AbstractTodoCard;
+import ruina.cards.AbstractRuinaCard;
 import ruina.powers.AbstractLambdaPower;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.applyToSelf;
 import static ruina.util.Wiz.atb;
 
-public class InlinePowerDemo extends AbstractTodoCard {
+public class InlinePowerDemo extends AbstractRuinaCard {
 
     public final static String ID = makeID("InlinePowerDemo");
     // intellij stuff power, self, uncommon

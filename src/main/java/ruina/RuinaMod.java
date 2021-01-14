@@ -6,21 +6,17 @@ import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import basemod.interfaces.AddAudioSubscriber;
 import basemod.interfaces.EditCardsSubscriber;
-import basemod.interfaces.EditCharactersSubscriber;
 import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
@@ -28,7 +24,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import ruina.cards.AbstractTodoCard;
+import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SillyVariable;
 import ruina.dungeons.Briah;
@@ -36,6 +32,7 @@ import ruina.dungeons.EncounterIDs;
 import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.NightmareWolf;
+import ruina.monsters.act2.Scarecrow;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
 
@@ -152,6 +149,10 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("Grow"), makeSFXPath("Danggo_LvUp.wav"));
         BaseMod.addAudio(makeID("Shrink"), makeSFXPath("Danggo_LvDown.wav"));
         BaseMod.addAudio(makeID("Spawn"), makeSFXPath("Danggo_Birth.wav"));
+
+        BaseMod.addAudio(makeID("Rake"), makeSFXPath("Scarecrow_Atk2.wav"));
+        BaseMod.addAudio(makeID("Harvest"), makeSFXPath("Scarecrow_Drink.wav"));
+        BaseMod.addAudio(makeID("ScarecrowDeath"), makeSFXPath("Scarecrow_Dead.wav"));
     }
 
     @Override
@@ -175,7 +176,7 @@ public class RuinaMod implements
         BaseMod.addDynamicVariable(new SillyVariable());
         BaseMod.addDynamicVariable(new SecondDamage());
         new AutoAdd(modID)
-                .packageFilter(AbstractTodoCard.class)
+                .packageFilter(AbstractRuinaCard.class)
                 .setDefaultSeen(true)
                 .cards();
     }
@@ -198,6 +199,17 @@ public class RuinaMod implements
                         new NightmareWolf(),
                 }));
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
+        BaseMod.addMonster(EncounterIDs.SCARECROWS_2, "2_Scarecrows", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Scarecrow(-450.0F, 0.0F),
+                        new Scarecrow(-150.0F, 0.0F),
+                }));
+        BaseMod.addMonster(EncounterIDs.SCARECROWS_3, "3_Scarecrowss", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Scarecrow(-450.0F, 0.0F),
+                        new Scarecrow(-200.0F, 0.0F),
+                        new Scarecrow(50.0F, 0.0F)
+                }));
 
         BaseMod.addBoss(Briah.ID, EncounterIDs.RED_AND_WOLF, makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
     }
