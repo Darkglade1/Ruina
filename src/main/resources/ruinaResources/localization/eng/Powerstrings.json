@@ -29,6 +29,6 @@
   },
   "${ModID}:Corpse": {
     "NAME": "Corpse",
-    "DESCRIPTIONS": ["When this creature dies, if the #renemy killed it, the #renemy heals #b", " HP. If you killed it instead, you gain #b", " #yBlock."]
+    "DESCRIPTIONS": ["When this creature dies, if the #renemy killed it, the #renemy heals #b", " HP."]
   }
 }

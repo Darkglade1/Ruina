@@ -26,8 +26,7 @@ public class MeltedCorpses extends AbstractRuinaMonster
 
     private static final byte NONE = 0;
     private final int HEAL = calcAscensionSpecial(50);
-    private final int BLOCK = 15;
-    private final int ROT = calcAscensionSpecial(3);
+    private final int ROT = calcAscensionSpecial(2);
 
     public static final String ROT_POWER_ID = makeID("Rot");
     public static final PowerStrings ROTPowerStrings = CardCrawlGame.languagePack.getPowerStrings(ROT_POWER_ID);
@@ -56,7 +55,7 @@ public class MeltedCorpses extends AbstractRuinaMonster
         applyToTarget(this, this, new AbstractLambdaPower(CORPSE_POWER_NAME, CORPSE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() {
-                description = CORPSE_POWER_DESCRIPTIONS[0] + HEAL + CORPSE_POWER_DESCRIPTIONS[1] + BLOCK + CORPSE_POWER_DESCRIPTIONS[2];
+                description = CORPSE_POWER_DESCRIPTIONS[0] + HEAL + CORPSE_POWER_DESCRIPTIONS[1];
             }
         });
         applyToTarget(this, this, new AbstractLambdaPower(ROT_POWER_NAME, ROT_POWER_ID, AbstractPower.PowerType.BUFF, false, this, ROT) {
@@ -90,8 +89,6 @@ public class MeltedCorpses extends AbstractRuinaMonster
         if (this.isDead || this.isDying || this.currentHealth <= 0) {
             if (info.owner instanceof Mountain) {
                 atb(new HealAction(info.owner, info.owner, HEAL));
-            } else {
-                block(adp(), BLOCK);
             }
         }
         AbstractDungeon.onModifyPower();

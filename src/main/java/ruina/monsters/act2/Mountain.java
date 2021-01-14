@@ -65,7 +65,7 @@ public class Mountain extends AbstractMultiIntentMonster
     private static final byte VOMIT = 4;
     private static final byte REVIVE = 5;
 
-    private final int NORMAL_DEBUFF_AMT = calcAscensionSpecial(2);
+    private final int NORMAL_DEBUFF_AMT = calcAscensionSpecial(1);
     private final int ATTACK_DEBUFF_AMT = calcAscensionSpecial(1);
     private final int DAZES = calcAscensionSpecial(3);
     private final int SLIMES = calcAscensionSpecial(1);
@@ -114,7 +114,7 @@ public class Mountain extends AbstractMultiIntentMonster
         addMove(DEVOUR, Intent.ATTACK_BUFF, calcAscensionDamage(14));
         addMove(BITE, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
         addMove(HORRID_SCREECH, Intent.DEBUFF);
-        addMove(RAM, Intent.ATTACK, calcAscensionDamage(17));
+        addMove(RAM, Intent.ATTACK, calcAscensionDamage(16));
         addMove(VOMIT, Intent.STRONG_DEBUFF);
         addMove(REVIVE, Intent.NONE);
     }
