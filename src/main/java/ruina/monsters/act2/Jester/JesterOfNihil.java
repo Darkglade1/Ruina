@@ -4,22 +4,29 @@ import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.stances.CalmStance;
+import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.CustomIntent.IntentEnums;
+import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
@@ -34,7 +41,8 @@ import ruina.vfx.VFXActionButItCanFizzle;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.makeID;
+import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
 public class JesterOfNihil extends AbstractMultiIntentMonster
@@ -44,25 +52,31 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
 
-    private static final byte CRUEL_CLAWS = 0;
-    private static final byte FEROCIOUS_FANGS = 1;
-    private static final byte BLOODSTAINED_HUNT = 2;
-    private static final byte HOWL = 3;
+    private static final byte WILL_OF_NIHIL = 0;
+    private static final byte CONSUMING_DESIRE = 1;
+    private static final byte LOVE_AND_HATE = 2;
+    private static final byte SWORD_OF_TEARS = 3;
+    private static final byte RAMPAGE = 4;
 
     private final int HATE_BLOCK = calcAscensionTankiness(20);
     private final int STRENGTH = calcAscensionSpecial(2);
-    private final int HEAL = calcAscensionSpecial(100);
     private final int BLEED = calcAscensionSpecial(2);
+    private final int DEBUFF = calcAscensionSpecial(1);
 
+    private static final int MASS_ATTACK_COOLDOWN = 3;
+    private static final int RAMPAGE_COOLDOWN = 2;
     private static final float GIRL_1_X_POSITION = -500.0f;
     private static final float GIRL_2_X_POSITION = -400.0f;
-    private static final float STATUE_1_X_POSITION = -200.0f;
-    private static final float STATUE_2_X_POSITION = -300.0f;
+    private static final float STATUE_1_X_POSITION = -300.0f;
+    private static final float STATUE_2_X_POSITION = -500.0f;
     private boolean girl1Spawned = false;
     private boolean girl2Spawned = false;
     private AbstractMagicalGirl girl1;
     private AbstractMagicalGirl girl2;
     private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
+    private int numIntentThatCanRampage = 2; //0 is the second intent, 1 is the third intent, 2 is the first intent
+    private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
+    private int ramageCooldown = RAMPAGE_COOLDOWN;
 
     private float particleTimer;
     private float particleTimer2;
@@ -101,19 +115,20 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         girl1 = returnGirl(first, GIRL_1_X_POSITION);
         girl2 = returnGirl(second, GIRL_2_X_POSITION);
 
-        addMove(CRUEL_CLAWS, Intent.ATTACK_DEFEND, calcAscensionDamage(9));
-        addMove(FEROCIOUS_FANGS, Intent.ATTACK_DEBUFF, calcAscensionDamage(8), 2, true);
-        addMove(BLOODSTAINED_HUNT, Intent.ATTACK, calcAscensionDamage(7), 3, true);
-        addMove(HOWL, Intent.BUFF);
+        addMove(WILL_OF_NIHIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(30));
+        addMove(CONSUMING_DESIRE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6), 2, true);
+        addMove(LOVE_AND_HATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
+        addMove(SWORD_OF_TEARS, Intent.ATTACK, calcAscensionDamage(10), 2, true);
+        addMove(RAMPAGE, Intent.BUFF);
     }
 
     public AbstractMagicalGirl returnGirl(int num, float xPosition) {
         AbstractMagicalGirl girl = null;
         if (num == 0) {
-            girl = new QueenOfLove(xPosition, 0.0f);
+            girl = new QueenOfLove(xPosition, 0.0f, this);
         }
         if (num == 1) {
-            girl = new ServantOfCourage(xPosition, 0.0f);
+            girl = new ServantOfCourage(xPosition, 0.0f, this);
         }
         return girl;
     }
@@ -158,38 +173,45 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
             info.applyPowers(this, target);
         }
         switch (move.nextMove) {
-            case CRUEL_CLAWS: {
-                block(this, BLOCK);
-                clawAnimation(target);
-                dmg(target, info);
-                resetIdle();
-                power.justGainedBlock = true; //hack to make the block fall off at a different time LOL
+            case WILL_OF_NIHIL: {
+                AbstractDungeon.actionManager.addToBottom(new VFXAction(new CollectorCurseEffect(adp().hb.cX, adp().hb.cY), 2.0F));
+                for (int i = 0; i < monsterList().size(); i++) {
+                    AbstractMonster mo = monsterList().get(i);
+                    //makes the special effects appear all at once for multiple monsters instead of one-by-one
+                    AbstractDungeon.actionManager.addToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
+                    if (mo != this) {
+                        AbstractDungeon.actionManager.addToBottom(new VFXAction(new CollectorCurseEffect(mo.hb.cX, mo.hb.cY)));
+                    }
+                }
+                int[] damageArray = new int[monsterList().size()];
+                info.applyPowers(this, adp());
+                damageArray[damageArray.length - 1] = info.output;
+                for (int i = 0; i < monsterList().size() - 1; i++) {
+                    AbstractMonster mo = monsterList().get(i);
+                    info.applyPowers(this, mo);
+                    damageArray[i] = info.output;
+                }
+                atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                massAttackCooldown = MASS_ATTACK_COOLDOWN + 1;
                 break;
             }
-            case FEROCIOUS_FANGS: {
+            case CONSUMING_DESIRE: {
                 for (int i = 0; i < multiplier; i++) {
-                    biteAnimation(target);
                     dmg(target, info);
-                    resetIdle();
                 }
                 applyToTarget(target, this, new Bleed(target, BLEED));
                 break;
             }
-            case BLOODSTAINED_HUNT: {
-                for (int i = 0; i < multiplier; i++) {
-                    if (i % 2 == 0) {
-                        clawAnimation(target);
-                    } else {
-                        biteAnimation(target);
-                    }
-                    dmg(target, info);
-                    resetIdle();
-                }
+            case LOVE_AND_HATE: {
+                dmg(target, info);
+                applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
                 break;
             }
-            case HOWL: {
+            case RAMPAGE: {
                 //howlAnimation();
-                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                applyToTargetNextTurn(this, new StrengthPower(this, STRENGTH));
+                ramageCooldown = RAMPAGE_COOLDOWN + 1;
+                numIntentThatCanRampage = (numIntentThatCanRampage + 1) % 3;
                 //resetIdle(1.0f);
                 break;
             }
@@ -211,39 +233,71 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     @Override
     public void takeTurn() {
         takeCustomTurn(this.moves.get(nextMove), adp());
-        for (EnemyMoveInfo additionalMove : additionalMoves) {
+        for (int i = 0; i < additionalMoves.size(); i++) {
+            EnemyMoveInfo additionalMove = additionalMoves.get(i);
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
             atb(new IntentFlashAction(this));
-            if (red.isDead || red.isDying) {
+            if (i == 0) {
+                if (!girl1Spawned || girl1.isDead || girl1.isDying)
                 takeCustomTurn(additionalMove, adp());
             } else {
-                takeCustomTurn(additionalMove, red);
+                takeCustomTurn(additionalMove, girl1);
+            }
+            if (i == 1) {
+                if (!girl2Spawned || girl2.isDead || girl2.isDying)
+                    takeCustomTurn(additionalMove, adp());
+            } else {
+                takeCustomTurn(additionalMove, girl2);
             }
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+        massAttackCooldown--;
+        ramageCooldown--;
     }
 
     @Override
     protected void getMove(final int num) {
-        if (this.lastMove(CRUEL_CLAWS)) {
-            setMoveShortcut(BLOODSTAINED_HUNT, MOVES[BLOODSTAINED_HUNT]);
-        } else if (this.lastMove(FEROCIOUS_FANGS)) {
-            setMoveShortcut(CRUEL_CLAWS, MOVES[CRUEL_CLAWS]);
+        if ((girl1Spawned || girl2Spawned) && massAttackCooldown <= 0) {
+            setMoveShortcut(WILL_OF_NIHIL);
         } else {
-            setMoveShortcut(FEROCIOUS_FANGS, MOVES[FEROCIOUS_FANGS]);
+            ArrayList<Byte> possibilities = new ArrayList<>();
+            if (!this.lastMove(CONSUMING_DESIRE)) {
+                possibilities.add(CONSUMING_DESIRE);
+            }
+            if (!this.lastMove(LOVE_AND_HATE)) {
+                possibilities.add(LOVE_AND_HATE);
+            }
+            if (!this.lastMove(SWORD_OF_TEARS)) {
+                possibilities.add(SWORD_OF_TEARS);
+            }
+            if (numIntentThatCanRampage == 2 && ramageCooldown <= 0) {
+                possibilities.add(RAMPAGE);
+                possibilities.add(RAMPAGE); //make it twice as likely to be picked
+            }
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            setMoveShortcut(move, MOVES[move]);
         }
     }
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        if (lastMove(BLOODSTAINED_HUNT, moveHistory)) {
-            setAdditionalMoveShortcut(HOWL, moveHistory);
-        } else if (lastMove(HOWL, moveHistory)) {
-            setAdditionalMoveShortcut(FEROCIOUS_FANGS, moveHistory);
-        } else {
-            setAdditionalMoveShortcut(BLOODSTAINED_HUNT, moveHistory);
+        ArrayList<Byte> possibilities = new ArrayList<>();
+        if (!this.lastMove(CONSUMING_DESIRE, moveHistory)) {
+            possibilities.add(CONSUMING_DESIRE);
         }
+        if (!this.lastMove(LOVE_AND_HATE, moveHistory)) {
+            possibilities.add(LOVE_AND_HATE);
+        }
+        if (!this.lastMove(SWORD_OF_TEARS, moveHistory)) {
+            possibilities.add(SWORD_OF_TEARS);
+        }
+        if (numIntentThatCanRampage == whichMove && ramageCooldown <= 0) {
+            possibilities.add(RAMPAGE);
+            possibilities.add(RAMPAGE); //make it twice as likely to be picked
+        }
+        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override

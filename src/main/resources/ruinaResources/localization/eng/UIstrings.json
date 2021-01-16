@@ -24,5 +24,11 @@
       " damage #b",
       " times."
     ]
+  },
+  "${ModID}:MassAttackIntent": {
+    "TEXT": [
+      "Mass Attack",
+      "This enemy intends to deal #b", " damage to ALL other characters", ".", " times."
+    ]
   }
 }

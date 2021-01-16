@@ -29,6 +29,7 @@ import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SillyVariable;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
+import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.NightmareWolf;
@@ -204,6 +205,8 @@ public class RuinaMod implements
                         new LittleRed(-480.0F, 0.0F),
                         new NightmareWolf(),
                 }));
+        BaseMod.addMonster(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new);
+
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
         BaseMod.addMonster(EncounterIDs.SCARECROWS_2, "2_Scarecrows", () -> new MonsterGroup(
                 new AbstractMonster[] {

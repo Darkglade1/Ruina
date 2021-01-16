@@ -40,10 +40,10 @@ public class QueenOfLove extends AbstractMagicalGirl
     public static final String[] JUSTICE_POWER_DESCRIPTIONS = JUSTICEPowerStrings.DESCRIPTIONS;
 
     public QueenOfLove() {
-        this(0.0f, 0.0f);
+        this(0.0f, 0.0f, null);
     }
 
-    public QueenOfLove(final float x, final float y) {
+    public QueenOfLove(final float x, final float y, JesterOfNihil jester) {
         super(NAME, ID, 120, -5.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("QueenOfLove/Spriter/QueenOfLove.scml"));
         this.animation.setFlip(true, false);
@@ -54,6 +54,7 @@ public class QueenOfLove extends AbstractMagicalGirl
         addMove(LOVE_AND_JUSTICE, Intent.ATTACK, 4, 3, true);
         addMove(ARCANA_BEATS, Intent.BUFF);
 
+        this.jester = jester;
         this.allyIcon = makeUIPath("LoveIcon.png");
     }
 
@@ -127,12 +128,6 @@ public class QueenOfLove extends AbstractMagicalGirl
         } else {
             setMoveShortcut(ARCANA_BEATS, MOVES[ARCANA_BEATS]);
         }
-    }
-
-    @Override
-    public void applyPowers() {
-        AbstractCreature target = jester;
-        applyPowers(target);
     }
 
     private void attackAnimation(AbstractCreature enemy) {

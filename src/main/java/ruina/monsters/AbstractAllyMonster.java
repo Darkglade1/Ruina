@@ -66,24 +66,26 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     }
 
     public void applyPowers(AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        if (target != adp()) {
-            if(info.base > -1) {
-                info.applyPowers(this, target);
-                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-                PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
-                Texture attackImg;
-                if (moves.get(this.nextMove).multiplier > 0) {
-                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + moves.get(this.nextMove).multiplier + TEXT[4];
-                    attackImg = getAttackIntent(info.output * moves.get(this.nextMove).multiplier);
-                } else {
-                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
-                    attackImg = getAttackIntent(info.output);
+        if (this.nextMove >= 0) {
+            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
+            if (target != adp()) {
+                if(info.base > -1) {
+                    info.applyPowers(this, target);
+                    ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+                    PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                    Texture attackImg;
+                    if (moves.get(this.nextMove).multiplier > 0) {
+                        intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + moves.get(this.nextMove).multiplier + TEXT[4];
+                        attackImg = getAttackIntent(info.output * moves.get(this.nextMove).multiplier);
+                    } else {
+                        intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
+                        attackImg = getAttackIntent(info.output);
+                    }
+                    ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
                 }
-                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
+            } else {
+                super.applyPowers();
             }
-        } else {
-            super.applyPowers();
         }
     }
 }

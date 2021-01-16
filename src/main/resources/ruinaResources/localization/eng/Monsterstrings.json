@@ -68,9 +68,11 @@
   },
   "${ModID}:JesterOfNihil": {
     "MOVES": [
-      "Strike of the Axe",
-      "Lumber",
-      "Warm Pulse"
+      "Will of Nihil",
+      "Consuming Desire",
+      "In the Name of Love and Hate",
+      "Sword Sharpened by Tears",
+      "Rampage"
     ],
     "NAME": "Jester of Nihil",
     "DIALOG": [

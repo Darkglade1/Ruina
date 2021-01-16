@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -31,10 +30,10 @@ public class ServantOfCourage extends AbstractMagicalGirl
     private static final int DEBUFF_AMT = 3;
 
     public ServantOfCourage() {
-        this(0.0f, 0.0f);
+        this(0.0f, 0.0f, null);
     }
 
-    public ServantOfCourage(final float x, final float y) {
+    public ServantOfCourage(final float x, final float y, JesterOfNihil jester) {
         super(NAME, ID, 120, -5.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ServantOfCourage/Spriter/ServantOfCourage.scml"));
         this.animation.setFlip(true, false);
@@ -45,6 +44,7 @@ public class ServantOfCourage extends AbstractMagicalGirl
         addMove(HELP, Intent.ATTACK, 7, 2, true);
         addMove(PROTECT_FRIEND, Intent.STRONG_DEBUFF);
 
+        this.jester = jester;
         this.allyIcon = makeUIPath("CourageIcon.png");
     }
 
@@ -64,8 +64,7 @@ public class ServantOfCourage extends AbstractMagicalGirl
         } else {
             info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
         }
-        
-        AbstractMonster mo = this;
+
         AbstractCreature target = jester;
         if(info.base > -1) {
             info.applyPowers(this, target);
@@ -101,12 +100,6 @@ public class ServantOfCourage extends AbstractMagicalGirl
         } else {
             setMoveShortcut(PROTECT_FRIEND, MOVES[PROTECT_FRIEND]);
         }
-    }
-
-    @Override
-    public void applyPowers() {
-        AbstractCreature target = jester;
-        applyPowers(target);
     }
 
     private void attack1Animation(AbstractCreature enemy) {

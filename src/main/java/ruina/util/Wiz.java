@@ -197,6 +197,10 @@ public class Wiz {
         atb(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NextTurnPowerPower(AbstractDungeon.player, po)));
     }
 
+    public static void applyToTargetNextTurn(AbstractCreature target, AbstractPower po) {
+        atb(new ApplyPowerAction(target, target, new NextTurnPowerPower(target, po)));
+    }
+
     public static void dmg(AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect) {
         atb(new DamageAction(target, info, effect));
     }

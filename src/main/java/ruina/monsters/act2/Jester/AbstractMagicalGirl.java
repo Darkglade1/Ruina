@@ -1,14 +1,10 @@
 package ruina.monsters.act2.Jester;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.util.Wiz;
-
-import static ruina.util.Wiz.applyToTarget;
 
 public abstract class AbstractMagicalGirl extends AbstractAllyMonster {
     protected JesterOfNihil jester;
@@ -26,13 +22,11 @@ public abstract class AbstractMagicalGirl extends AbstractAllyMonster {
     }
 
     @Override
-    public void usePreBattleAction() {
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof JesterOfNihil) {
-                jester = (JesterOfNihil)mo;
-            }
+    public void applyPowers() {
+        AbstractCreature target = jester;
+        if (target != null) {
+            applyPowers(target);
         }
-        super.usePreBattleAction();
     }
 
     @Override

@@ -4,14 +4,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.monsters.act2.MeltedCorpses;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 
 public class Statue extends AbstractRuinaMonster
 {
-    public static final String ID = makeID(MeltedCorpses.class.getSimpleName());
+    public static final String ID = makeID(Statue.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
@@ -21,10 +20,10 @@ public class Statue extends AbstractRuinaMonster
     private static final byte NONE = 0;
 
     public Statue(final float x, final float y, JesterOfNihil jester, AbstractMagicalGirl girl) {
-        super(NAME, ID, 20, -5.0F, 0, 230.0f, 225.0f, null, x, y);
+        super(NAME, ID, 10, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Statue/Spriter/Statue.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(20);
+        setHp(10);
         addMove(NONE, Intent.NONE);
         this.jester = jester;
         this.magicalGirl = girl;
