@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0">
-        <file id="0" name="Hate.png" width="495" height="419" pivot_x="0" pivot_y="1"/>
-        <file id="1" name="Wrath.png" width="513" height="383" pivot_x="0" pivot_y="1"/>
-        <file id="2" name="Despair.png" width="469" height="449" pivot_x="0" pivot_y="1"/>
-        <file id="3" name="Greed.png" width="254" height="358" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="Hate.png" width="248" height="210" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Wrath.png" width="257" height="192" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Despair.png" width="235" height="225" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Greed.png" width="143" height="202" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="Statue">
         <animation id="0" name="Hate" length="1000" interval="100">
@@ -15,7 +15,7 @@
             </mainline>
             <timeline id="0" name="Hate">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-235" y="423"/>
+                    <object folder="0" file="0" x="-111" y="213" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -27,7 +27,7 @@
             </mainline>
             <timeline id="0" name="Wrath">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-278" y="370"/>
+                    <object folder="0" file="1" x="-141" y="191" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -39,7 +39,7 @@
             </mainline>
             <timeline id="0" name="Despair">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-223.073171" y="452.902439"/>
+                    <object folder="0" file="2" x="-110.073171" y="226.902439" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -51,7 +51,7 @@
             </mainline>
             <timeline id="0" name="Greed">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-125.609756" y="319.512195"/>
+                    <object folder="0" file="3" x="-68.609756" y="181.512195" angle="0"/>
                 </key>
             </timeline>
         </animation>

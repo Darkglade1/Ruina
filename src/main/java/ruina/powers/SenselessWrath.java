@@ -1,5 +1,7 @@
 package ruina.powers;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnReceivePowerPower;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,6 +10,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
+import ruina.util.TexLoader;
+
+import static ruina.RuinaMod.makePowerPath;
 
 public class SenselessWrath extends AbstractPower implements OnReceivePowerPower {
 
@@ -19,8 +24,8 @@ public class SenselessWrath extends AbstractPower implements OnReceivePowerPower
     private boolean justStrengthDown = false;
     private boolean negateGainStrengthUp = false;
 
-//    private static final Texture tex84 = TextureLoader.getTexture(makePowerPath("Purity84.png"));
-//    private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("Purity32.png"));
+    private static final Texture tex84 = TexLoader.getTexture(makePowerPath("SenselessWrath84.png"));
+    private static final Texture tex32 = TexLoader.getTexture(makePowerPath("SenselessWrath32.png"));
 
     public SenselessWrath(AbstractCreature owner) {
         name = NAME;
@@ -31,10 +36,9 @@ public class SenselessWrath extends AbstractPower implements OnReceivePowerPower
 
         type = PowerType.BUFF;
         isTurnBased = false;
-        this.loadRegion("focus");
 
-//        this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
-//        this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
+        this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
+        this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
 
         updateDescription();
     }

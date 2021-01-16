@@ -21,6 +21,12 @@ public abstract class AbstractMagicalGirl extends AbstractAllyMonster {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
     }
 
+    public void usePreBattleAction() {
+        rollMove();
+        createIntent();
+        super.usePreBattleAction();
+    }
+
     @Override
     public void applyPowers() {
         AbstractCreature target = jester;

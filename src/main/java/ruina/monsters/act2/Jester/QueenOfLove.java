@@ -99,8 +99,8 @@ public class QueenOfLove extends AbstractMagicalGirl
                     addToBot(new AbstractGameAction() {
                         @Override
                         public void update() {
-                            if (target.currentBlock == 0) {
-                                info.applyPowers(mo, target);
+                            if (jester.currentBlock == 0) {
+                                info.applyPowers(mo, jester);
                                 info.output *= 2;
                             }
                             this.isDone = true;
