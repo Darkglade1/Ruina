@@ -17,6 +17,7 @@ import ruina.RuinaMod;
 import ruina.powers.AbstractLambdaPower;
 
 import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.makeUIPath;
 import static ruina.util.Wiz.applyToTarget;
 import static ruina.util.Wiz.dmg;
 
@@ -48,10 +49,12 @@ public class QueenOfLove extends AbstractMagicalGirl
         this.animation.setFlip(true, false);
         this.type = EnemyType.BOSS;
 
-        this.setHp(120);
+        this.setHp(160);
 
         addMove(LOVE_AND_JUSTICE, Intent.ATTACK, 4, 3, true);
         addMove(ARCANA_BEATS, Intent.BUFF);
+
+        this.allyIcon = makeUIPath("LoveIcon.png");
     }
 
     @Override

@@ -29,6 +29,7 @@ import ruina.powers.AbstractLambdaPower;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.makeUIPath;
 import static ruina.util.Wiz.*;
 
 public class LittleRed extends AbstractAllyMonster
@@ -76,11 +77,13 @@ public class LittleRed extends AbstractAllyMonster
         addMove(CATCH_BREATH, Intent.BUFF);
         addMove(HOLLOW_POINT_SHELL, Intent.ATTACK, calcAscensionDamage(7), 2, true);
         addMove(BULLET_SHOWER, Intent.ATTACK, calcAscensionDamage(8), 3, true);
+
+        this.allyIcon = makeUIPath("RedIcon.png");
     }
 
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("Warning2");
+        CustomDungeon.playTempMusicInstantly("Roland1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof NightmareWolf) {
                 wolf = (NightmareWolf)mo;

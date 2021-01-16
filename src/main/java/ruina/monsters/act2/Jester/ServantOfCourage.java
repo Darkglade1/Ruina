@@ -13,6 +13,7 @@ import ruina.RuinaMod;
 import ruina.powers.Erosion;
 
 import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.makeUIPath;
 import static ruina.util.Wiz.applyToTarget;
 import static ruina.util.Wiz.dmg;
 
@@ -39,10 +40,12 @@ public class ServantOfCourage extends AbstractMagicalGirl
         this.animation.setFlip(true, false);
         this.type = EnemyType.BOSS;
 
-        this.setHp(120);
+        this.setHp(160);
 
         addMove(HELP, Intent.ATTACK, 7, 2, true);
         addMove(PROTECT_FRIEND, Intent.STRONG_DEBUFF);
+
+        this.allyIcon = makeUIPath("CourageIcon.png");
     }
 
     @Override

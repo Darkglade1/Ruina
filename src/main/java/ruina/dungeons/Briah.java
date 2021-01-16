@@ -25,6 +25,9 @@ public class Briah extends CustomDungeon {
         this.setMainMusic(RuinaMod.makeMusicPath("Warning1.ogg"));
         this.addTempMusic("Warning2", RuinaMod.makeMusicPath("Warning2.ogg"));
         this.addTempMusic("Warning3", RuinaMod.makeMusicPath("Warning3.ogg"));
+        this.addTempMusic("Roland1", RuinaMod.makeMusicPath("Roland1.ogg"));
+        this.addTempMusic("Roland2", RuinaMod.makeMusicPath("Roland2.ogg"));
+        this.addTempMusic("Roland3", RuinaMod.makeMusicPath("Roland3.ogg"));
     }
 
     public Briah(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {

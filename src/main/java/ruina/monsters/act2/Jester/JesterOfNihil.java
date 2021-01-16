@@ -1,6 +1,11 @@
 package ruina.monsters.act2.Jester;
 
+import actlikeit.dungeons.CustomDungeon;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -12,6 +17,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.stances.CalmStance;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
@@ -19,7 +25,10 @@ import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.SenselessWrath;
 import ruina.util.AdditionalIntent;
+import ruina.vfx.FlexibleCalmParticleEffect;
+import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
@@ -40,10 +49,11 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     private static final byte BLOODSTAINED_HUNT = 2;
     private static final byte HOWL = 3;
 
-    private final int BLOCK = calcAscensionTankiness(20);
+    private final int HATE_BLOCK = calcAscensionTankiness(20);
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int HEAL = calcAscensionSpecial(100);
     private final int BLEED = calcAscensionSpecial(2);
+
     private static final float GIRL_1_X_POSITION = -500.0f;
     private static final float GIRL_2_X_POSITION = -400.0f;
     private static final float STATUE_1_X_POSITION = -200.0f;
@@ -54,10 +64,13 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     private AbstractMagicalGirl girl2;
     private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
 
-    public static final String POWER_ID = makeID("BloodstainedClaws");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    private float particleTimer;
+    private float particleTimer2;
+
+    public static final String HATE_POWER_ID = makeID("PointlessHate");
+    public static final PowerStrings hatePowerStrings = CardCrawlGame.languagePack.getPowerStrings(HATE_POWER_ID);
+    public static final String HATE_POWER_NAME = hatePowerStrings.NAME;
+    public static final String[] HATE_POWER_DESCRIPTIONS = hatePowerStrings.DESCRIPTIONS;
 
     public JesterOfNihil() {
         this(0.0f, 0.0f);
@@ -67,7 +80,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         super(NAME, ID, 600, -5.0F, 0, 330.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jester/Spriter/Jester.scml"));
         this.type = EnemyType.BOSS;
-        numAdditionalMoves = 1;
+        numAdditionalMoves = 2;
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
@@ -107,23 +120,37 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
 
     @Override
     public void usePreBattleAction() {
+        CustomDungeon.playTempMusicInstantly("Roland3");
         Statue statue1 = new Statue(STATUE_1_X_POSITION, 0.0f, this, girl1);
         Statue statue2 = new Statue(STATUE_2_X_POSITION, 0.0f, this, girl2);
         atb(new SpawnMonsterAction(statue1, true));
         atb(new UsePreBattleActionAction(statue1));
         atb(new SpawnMonsterAction(statue2, true));
         atb(new UsePreBattleActionAction(statue2));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, HEAL) {
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
+        if (girl1 instanceof QueenOfLove || girl2 instanceof QueenOfLove) {
+            applyToTarget(this, this, new AbstractLambdaPower(HATE_POWER_NAME, HATE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, HATE_BLOCK) {
+                @Override
+                public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
+                    this.flash();
+                    block(owner, amount);
+                }
+
+                @Override
+                public void updateDescription() {
+                    description = HATE_POWER_DESCRIPTIONS[0] + amount + HATE_POWER_DESCRIPTIONS[1];
+                }
+            });
+        }
+        if (girl1 instanceof ServantOfCourage || girl2 instanceof ServantOfCourage) {
+            applyToTarget(this, this, new SenselessWrath(this));
+        }
         applyToTarget(this, this, power);
     }
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
+        this.loseBlock(); //manually remove block due to the invisible barricade power xd
+
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
 
@@ -161,25 +188,25 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 break;
             }
             case HOWL: {
-                howlAnimation();
+                //howlAnimation();
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-                resetIdle(1.0f);
+                //resetIdle(1.0f);
                 break;
             }
         }
     }
 
-    private void clawAnimation(AbstractCreature enemy) {
-        animationAction("Claw", "Claw", enemy, this);
-    }
-
-    private void biteAnimation(AbstractCreature enemy) {
-        animationAction("Bite", "Bite", enemy, this);
-    }
-
-    private void howlAnimation() {
-        animationAction("Howl", "Howl", this);
-    }
+//    private void clawAnimation(AbstractCreature enemy) {
+//        animationAction("Claw", "Claw", enemy, this);
+//    }
+//
+//    private void biteAnimation(AbstractCreature enemy) {
+//        animationAction("Bite", "Bite", enemy, this);
+//    }
+//
+//    private void howlAnimation() {
+//        animationAction("Howl", "Howl", this);
+//    }
 
     @Override
     public void takeTurn() {
@@ -229,7 +256,11 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, red, makeUIPath("RedIcon.png"));
+                if (i == 0) {
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl1, girl1.allyIcon);
+                } else {
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl2, girl2.allyIcon);
+                }
             }
         }
     }
@@ -243,6 +274,26 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         }
         atb(new SpawnMonsterAction(girl, false));
         atb(new UsePreBattleActionAction(girl));
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if (this.hasPower(SenselessWrath.POWER_ID)) {
+            if (this.getPower(SenselessWrath.POWER_ID).amount == SenselessWrath.THRESHOLD) {
+                this.particleTimer -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer < 0.0F) {
+                    this.particleTimer = 0.04F;
+                    AbstractDungeon.effectsQueue.add(new FlexibleCalmParticleEffect(this));
+                }
+
+                this.particleTimer2 -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer2 < 0.0F) {
+                    this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
+                    AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(CalmStance.STANCE_ID, this));
+                }
+            }
+        }
     }
 
 }

@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.rooms.CampfireUI;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
+import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.Scarecrow;
@@ -77,6 +78,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Field");
                 } else if (mo instanceof Woodsman) {
                     this.bg = this.atlas.findRegion("mod/HeartForest");
+                } else if (mo instanceof JesterOfNihil) {
+                    this.bg = this.atlas.findRegion("mod/Nihil");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }

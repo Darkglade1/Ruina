@@ -17,6 +17,7 @@ import static ruina.util.Wiz.adp;
 public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(RuinaMod.makeID("AllyStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
+    public String allyIcon;
     public boolean isAlly = true;
 
     public AbstractAllyMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
