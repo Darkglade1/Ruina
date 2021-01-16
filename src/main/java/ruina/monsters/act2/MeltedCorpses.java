@@ -42,10 +42,10 @@ public class MeltedCorpses extends AbstractRuinaMonster
     }
 
     public MeltedCorpses(final float x, final float y) {
-        super(NAME, ID, 40, -5.0F, 0, 230.0f, 225.0f, null, x, y);
+        super(NAME, ID, 30, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Corpse/Spriter/Corpse.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(40));
+        setHp(calcAscensionTankiness(30));
         addMove(NONE, Intent.NONE);
     }
 

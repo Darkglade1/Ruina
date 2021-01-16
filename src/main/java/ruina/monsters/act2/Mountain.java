@@ -77,9 +77,9 @@ public class Mountain extends AbstractMultiIntentMonster
     private static final int STAGE3 = 3;
     private static final int STAGE2 = 2;
     private static final int STAGE1 = 1;
-    private int currentStage = STAGE2;
-    private static final float REVIVE_PERCENT = 0.5f;
-    private static final float STARTING_PERCENT = 0.75f;
+    private int currentStage = STAGE3;
+    private static final float REVIVE_PERCENT = 0.50f;
+    private static final float STARTING_PERCENT = 0.50f;
     private AbstractLambdaPower stagePower;
     private AbstractMonster corpse;
     private Texture targetTexture = TexLoader.getTexture(makeUIPath("CorpseIcon.png"));
@@ -102,16 +102,17 @@ public class Mountain extends AbstractMultiIntentMonster
         super(NAME, ID, 100, -5.0F, 0, 330.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Mountain/Spriter/Mountain.scml"));
         this.type = EnemyType.ELITE;
-        numAdditionalMoves = 1;
+        numAdditionalMoves = 2;
         maxAdditionalMoves = 2;
         for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(STAGE2_HP));
-        this.currentHealth = (int)(STAGE2_HP * STARTING_PERCENT);
+        this.setHp(calcAscensionTankiness(STAGE3_HP));
+        this.currentHealth = (int)(STAGE3_HP * STARTING_PERCENT);
         updateHealthBar();
+        runAnim("Idle3");
 
-        addMove(DEVOUR, Intent.ATTACK_BUFF, calcAscensionDamage(14));
+        addMove(DEVOUR, Intent.ATTACK_BUFF, calcAscensionDamage(15));
         addMove(BITE, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
         addMove(HORRID_SCREECH, Intent.DEBUFF);
         addMove(RAM, Intent.ATTACK, calcAscensionDamage(16));
