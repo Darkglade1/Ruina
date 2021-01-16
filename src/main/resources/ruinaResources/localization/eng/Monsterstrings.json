@@ -65,5 +65,45 @@
     "DIALOG": [
       "Give me . . . your heart . . ."
     ]
+  },
+  "${ModID}:JesterOfNihil": {
+    "MOVES": [
+      "Strike of the Axe",
+      "Lumber",
+      "Warm Pulse"
+    ],
+    "NAME": "Jester of Nihil",
+    "DIALOG": [
+      "All shall return to nothing . . ."
+    ]
+  },
+  "${ModID}:Statue": {
+    "MOVES": [
+      "Petrified Hate",
+      "Lapidified Wrath",
+      "Ossified Despair",
+      "Fossilized Greed"
+    ],
+    "NAME": "Statue",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:QueenOfLove": {
+    "MOVES": [
+      "In the Name of Love and Justice!",
+      "Arcana Beats"
+    ],
+    "NAME": "Queen of Love",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:ServantOfCourage": {
+    "MOVES": [
+      "If I Can Be Of Help!",
+      "I'll Protect My Friend!"
+    ],
+    "NAME": "Servant of Courage",
+    "DIALOG": [
+    ]
   }
 }

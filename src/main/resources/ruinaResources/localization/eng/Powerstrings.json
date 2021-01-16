@@ -42,5 +42,21 @@
   "${ModID}:Heart": {
     "NAME": "Warm Heart",
     "DESCRIPTIONS": ["At the start of your turn, you gain", " . At end of round, this creature gains #b", " #yStrength for every unspent [E] ."]
+  },
+  "${ModID}:Justice": {
+    "NAME": "In the Name of Justice!",
+    "DESCRIPTIONS": ["This creature deals double damage to enemies without #yBlock."]
+  },
+  "${ModID}:PointlessHate": {
+    "NAME": "Pointless Hate",
+    "DESCRIPTIONS": ["Gains #b", " #yBlock at the end of its turn."]
+  },
+  "${ModID}:Erosion": {
+    "NAME": "Erosion",
+    "DESCRIPTIONS": ["Receives #b", " more damage from #yAttacks. Reduced by #b", " at end of round."]
+  },
+  "${ModID}:SenselessWrath": {
+    "NAME": "Senseless Wrath",
+    "DESCRIPTIONS": ["Every other #ydebuff applied to this creature is #ynegated."]
   }
 }

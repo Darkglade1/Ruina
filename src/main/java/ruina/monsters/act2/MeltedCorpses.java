@@ -45,7 +45,11 @@ public class MeltedCorpses extends AbstractRuinaMonster
         super(NAME, ID, 30, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Corpse/Spriter/Corpse.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(30));
+        if (AbstractDungeon.ascensionLevel >= 8) {
+            setHp(30);
+        } else {
+            setHp(40);
+        }
         addMove(NONE, Intent.NONE);
     }
 
