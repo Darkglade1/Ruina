@@ -2,6 +2,7 @@ package ruina.monsters.act2.Jester;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.util.Wiz;
@@ -21,9 +22,11 @@ public abstract class AbstractMagicalGirl extends AbstractAllyMonster {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
     }
 
+    @Override
     public void usePreBattleAction() {
         rollMove();
         createIntent();
+        AbstractDungeon.onModifyPower();
         super.usePreBattleAction();
     }
 

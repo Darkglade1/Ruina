@@ -26,7 +26,7 @@ import java.util.Iterator;
 public class AdditionalIntent {
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString("AbstractMonster").TEXT;
     public AbstractMonster.Intent intent;
-    private static Texture targetTexture = null;
+    private Texture targetTexture = null;
 
     public int damage;
     public boolean multihit;

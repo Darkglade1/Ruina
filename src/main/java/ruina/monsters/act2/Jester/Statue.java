@@ -20,7 +20,7 @@ public class Statue extends AbstractRuinaMonster
     private static final byte NONE = 0;
 
     public Statue(final float x, final float y, JesterOfNihil jester, AbstractMagicalGirl girl) {
-        super(NAME, ID, 10, -5.0F, 0, 230.0f, 225.0f, null, x, y);
+        super(NAME, ID, 10, -5.0F, 0, 200.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Statue/Spriter/Statue.scml"));
         this.type = EnemyType.NORMAL;
         setHp(10);

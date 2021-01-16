@@ -65,10 +65,10 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
 
     private static final int MASS_ATTACK_COOLDOWN = 3;
     private static final int RAMPAGE_COOLDOWN = 2;
-    private static final float GIRL_1_X_POSITION = -500.0f;
-    private static final float GIRL_2_X_POSITION = -400.0f;
-    private static final float STATUE_1_X_POSITION = -300.0f;
-    private static final float STATUE_2_X_POSITION = -500.0f;
+    private static final float GIRL_1_X_POSITION = -700.0f;
+    private static final float GIRL_2_X_POSITION = -500.0f;
+    private static final float STATUE_1_X_POSITION = -250.0f;
+    private static final float STATUE_2_X_POSITION = -450.0f;
     private boolean girl1Spawned = false;
     private boolean girl2Spawned = false;
     private AbstractMagicalGirl girl1;
@@ -91,7 +91,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     }
 
     public JesterOfNihil(final float x, final float y) {
-        super(NAME, ID, 600, -5.0F, 0, 330.0f, 285.0f, null, x, y);
+        super(NAME, ID, 600, -5.0F, 0, 280.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jester/Spriter/Jester.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 2;
@@ -174,20 +174,22 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         }
         switch (move.nextMove) {
             case WILL_OF_NIHIL: {
-                AbstractDungeon.actionManager.addToBottom(new VFXAction(new CollectorCurseEffect(adp().hb.cX, adp().hb.cY), 2.0F));
+                atb(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
+                atb(new VFXAction(new CollectorCurseEffect(adp().hb.cX, adp().hb.cY)));
                 for (int i = 0; i < monsterList().size(); i++) {
                     AbstractMonster mo = monsterList().get(i);
-                    //makes the special effects appear all at once for multiple monsters instead of one-by-one
-                    AbstractDungeon.actionManager.addToBottom(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
-                    if (mo != this) {
-                        AbstractDungeon.actionManager.addToBottom(new VFXAction(new CollectorCurseEffect(mo.hb.cX, mo.hb.cY)));
+                    if (i == monsterList().size() - 2) {
+                        //makes the special effects appear all at once for multiple monsters instead of one-by-one
+                        atb(new VFXAction(new CollectorCurseEffect(mo.hb.cX, mo.hb.cY), 2.0F));
+                    } else if (mo != this) {
+                        atb(new VFXAction(new CollectorCurseEffect(mo.hb.cX, mo.hb.cY)));
                     }
                 }
-                int[] damageArray = new int[monsterList().size()];
+                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
                 info.applyPowers(this, adp());
                 damageArray[damageArray.length - 1] = info.output;
-                for (int i = 0; i < monsterList().size() - 1; i++) {
-                    AbstractMonster mo = monsterList().get(i);
+                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size() - 1; i++) {
+                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
                     info.applyPowers(this, mo);
                     damageArray[i] = info.output;
                 }
@@ -205,6 +207,12 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
             case LOVE_AND_HATE: {
                 dmg(target, info);
                 applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                break;
+            }
+            case SWORD_OF_TEARS: {
+                for (int i = 0; i < multiplier; i++) {
+                    dmg(target, info);
+                }
                 break;
             }
             case RAMPAGE: {
@@ -238,16 +246,18 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
             atb(new IntentFlashAction(this));
             if (i == 0) {
-                if (!girl1Spawned || girl1.isDead || girl1.isDying)
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, girl1);
+                if (!girl1Spawned || girl1.isDead || girl1.isDying) {
+                    takeCustomTurn(additionalMove, adp());
+                } else {
+                    takeCustomTurn(additionalMove, girl1);
+                }
             }
             if (i == 1) {
-                if (!girl2Spawned || girl2.isDead || girl2.isDying)
+                if (!girl2Spawned || girl2.isDead || girl2.isDying) {
                     takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, girl2);
+                } else {
+                    takeCustomTurn(additionalMove, girl2);
+                }
             }
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
@@ -311,9 +321,17 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
             }
             if (additionalMove != null) {
                 if (i == 0) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl1, girl1.allyIcon);
+                    if (girl1Spawned) {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl1, girl1.allyIcon);
+                    } else {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                    }
                 } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl2, girl2.allyIcon);
+                    if (girl2Spawned) {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl2, girl2.allyIcon);
+                    } else {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                    }
                 }
             }
         }

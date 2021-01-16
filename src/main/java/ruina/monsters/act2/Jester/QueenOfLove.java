@@ -44,7 +44,7 @@ public class QueenOfLove extends AbstractMagicalGirl
     }
 
     public QueenOfLove(final float x, final float y, JesterOfNihil jester) {
-        super(NAME, ID, 120, -5.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 120, -5.0F, 0, 170.0f, 215.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("QueenOfLove/Spriter/QueenOfLove.scml"));
         this.animation.setFlip(true, false);
         this.type = EnemyType.BOSS;
@@ -107,7 +107,7 @@ public class QueenOfLove extends AbstractMagicalGirl
                         }
                     });
                     dmg(target, info);
-                    resetIdle(0.1f);
+                    resetIdle();
                 }
                 break;
             }

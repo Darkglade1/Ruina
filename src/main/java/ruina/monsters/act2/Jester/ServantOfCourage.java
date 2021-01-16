@@ -34,7 +34,7 @@ public class ServantOfCourage extends AbstractMagicalGirl
     }
 
     public ServantOfCourage(final float x, final float y, JesterOfNihil jester) {
-        super(NAME, ID, 120, -5.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 120, -5.0F, 0, 170.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ServantOfCourage/Spriter/ServantOfCourage.scml"));
         this.animation.setFlip(true, false);
         this.type = EnemyType.BOSS;
@@ -79,7 +79,7 @@ public class ServantOfCourage extends AbstractMagicalGirl
                         attack2Animation(target);
                     }
                     dmg(target, info);
-                    resetIdle(0.1f);
+                    resetIdle();
                 }
                 break;
             }

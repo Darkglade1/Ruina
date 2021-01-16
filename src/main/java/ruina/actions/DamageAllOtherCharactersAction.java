@@ -65,10 +65,10 @@ public class DamageAllOtherCharactersAction extends AbstractGameAction {
 
             Wiz.adp().damage(new DamageInfo(this.source, this.damage[damage.length - 1], this.damageType));
 
-            int temp = AbstractDungeon.getCurrRoom().monsters.monsters.size();
+            int temp = AbstractDungeon.getMonsters().monsters.size();
 
             for(i = 0; i < temp; ++i) {
-                AbstractMonster mo = AbstractDungeon.getCurrRoom().monsters.monsters.get(i);
+                AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
                 if (!mo.isDeadOrEscaped() && mo != source) {
                     mo.damage(new DamageInfo(this.source, this.damage[i], this.damageType));
                 }

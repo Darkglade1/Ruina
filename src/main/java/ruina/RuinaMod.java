@@ -1,5 +1,6 @@
 package ruina;
 
+import actlikeit.RazIntent.CustomIntent;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModPanel;
@@ -24,6 +25,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import ruina.CustomIntent.MassAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SillyVariable;
@@ -199,6 +201,8 @@ public class RuinaMod implements
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
         (new Briah()).addAct(Exordium.ID);
+
+        CustomIntent.add(new MassAttackIntent());
 
         BaseMod.addMonster(EncounterIDs.RED_AND_WOLF, "Red and Wolf", () -> new MonsterGroup(
                 new AbstractMonster[] {
