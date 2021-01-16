@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.Scarecrow;
+import ruina.monsters.act2.Woodsman;
 
 public class RuinaScene extends AbstractScene {
 
@@ -74,6 +75,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Bodies");
                 } else if (mo instanceof Scarecrow) {
                     this.bg = this.atlas.findRegion("mod/Field");
+                } else if (mo instanceof Woodsman) {
+                    this.bg = this.atlas.findRegion("mod/HeartForest");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }

@@ -21,7 +21,7 @@
   },
   "${ModID}:Bodies": {
     "NAME": "Mountain of Corpses",
-    "DESCRIPTIONS": ["At end of round, if there are no #yMelted #yCorpses alive, summon a #yMelted #yCorpses."]
+    "DESCRIPTIONS": ["At end of round, if there are no #yMelted #yCorpses alive, summon a #yMelted #yCorpse. NL If a #yMelted #yCorpse dies while this creature is targeting it, this creature will target you instead."]
   },
   "${ModID}:Rot": {
     "NAME": "Rot",
@@ -38,5 +38,9 @@
   "${ModID}:Wisdom": {
     "NAME": "Wisdom",
     "DESCRIPTIONS": ["Your draw pile is viewed in order for this combat."]
+  },
+  "${ModID}:Heart": {
+    "NAME": "Warm Heart",
+    "DESCRIPTIONS": ["At the start of your turn, you gain", " . At end of round, this creature gains #b", " #yStrength for every unspent [E] ."]
   }
 }

@@ -41,7 +41,7 @@
   "${ModID}:MeltedCorpses": {
     "MOVES": [
     ],
-    "NAME": "Melted Corpses",
+    "NAME": "Melted Corpse",
     "DIALOG": [
     ]
   },
@@ -53,6 +53,17 @@
     ],
     "NAME": "Scarecrow",
     "DIALOG": [
+    ]
+  },
+  "${ModID}:Woodsman": {
+    "MOVES": [
+      "Strike of the Axe",
+      "Lumber",
+      "Warm Pulse"
+    ],
+    "NAME": "Warm-Hearted Woodsman",
+    "DIALOG": [
+      "Give me . . . your heart . . ."
     ]
   }
 }

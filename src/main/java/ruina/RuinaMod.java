@@ -33,6 +33,7 @@ import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.NightmareWolf;
 import ruina.monsters.act2.Scarecrow;
+import ruina.monsters.act2.Woodsman;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
 
@@ -153,6 +154,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("Rake"), makeSFXPath("Scarecrow_Atk2.wav"));
         BaseMod.addAudio(makeID("Harvest"), makeSFXPath("Scarecrow_Drink.wav"));
         BaseMod.addAudio(makeID("ScarecrowDeath"), makeSFXPath("Scarecrow_Dead.wav"));
+
+        BaseMod.addAudio(makeID("WoodStrike"), makeSFXPath("WoodMachine_AtkStrong.wav"));
+        BaseMod.addAudio(makeID("WoodFinish"), makeSFXPath("WoodMachine_Kill.wav"));
     }
 
     @Override
@@ -207,6 +211,7 @@ public class RuinaMod implements
                         new Scarecrow(-200.0F, 0.0F, 1),
                         new Scarecrow(50.0F, 0.0F, 0)
                 }));
+        BaseMod.addMonster(Woodsman.ID, (BaseMod.GetMonster) Woodsman::new);
 
         BaseMod.addBoss(Briah.ID, EncounterIDs.RED_AND_WOLF, makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
     }
