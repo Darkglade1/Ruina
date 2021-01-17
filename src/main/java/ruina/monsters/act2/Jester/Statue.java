@@ -16,14 +16,14 @@ public class Statue extends AbstractRuinaMonster
     public static final String[] MOVES = monsterStrings.MOVES;
 
     protected AbstractMagicalGirl magicalGirl;
-    protected  JesterOfNihil jester;
+    protected JesterOfNihil jester;
     private static final byte NONE = 0;
 
     public Statue(final float x, final float y, JesterOfNihil jester, AbstractMagicalGirl girl) {
-        super(NAME, ID, 10, -5.0F, 0, 200.0f, 225.0f, null, x, y);
+        super(NAME, ID, 5, -5.0F, 0, 150.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Statue/Spriter/Statue.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(10);
+        setHp(5);
         addMove(NONE, Intent.NONE);
         this.jester = jester;
         this.magicalGirl = girl;

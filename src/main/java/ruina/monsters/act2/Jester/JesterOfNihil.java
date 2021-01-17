@@ -64,7 +64,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     private final int DEBUFF = calcAscensionSpecial(1);
 
     private static final int MASS_ATTACK_COOLDOWN = 3;
-    private static final int RAMPAGE_COOLDOWN = 2;
+    private static final int RAMPAGE_COOLDOWN = 1;
     private static final float GIRL_1_X_POSITION = -700.0f;
     private static final float GIRL_2_X_POSITION = -500.0f;
     private static final float STATUE_1_X_POSITION = -250.0f;
