@@ -1,6 +1,7 @@
 package ruina.monsters.act2.Jester;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -18,8 +19,7 @@ import ruina.powers.AbstractLambdaPower;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
-import static ruina.util.Wiz.applyToTarget;
-import static ruina.util.Wiz.dmg;
+import static ruina.util.Wiz.*;
 
 public class QueenOfLove extends AbstractMagicalGirl
 {
@@ -136,6 +136,18 @@ public class QueenOfLove extends AbstractMagicalGirl
 
     private void buffAnimation(AbstractCreature enemy) {
         animationAction("Pose", "MagicKiss", enemy, this);
+    }
+
+    public String getSummonDialog() {
+        return DIALOG[0];
+    }
+
+    public String getVictoryDialog() {
+        return DIALOG[1];
+    }
+
+    public String getDeathDialog() {
+        return DIALOG[2];
     }
 
 }

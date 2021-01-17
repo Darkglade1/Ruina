@@ -138,9 +138,9 @@ public class AdditionalIntent {
     private void renderDamageRange(SpriteBatch sb, int position) {
         if (this.intent.name().contains("ATTACK")) {
             if (this.multihit) {
-                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, this.damage + "x" + this.numHits, source.intentHb.cX - (30.0F * Settings.scale) + (80.0F * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, this.damage + "x" + this.numHits, source.intentHb.cX - (30.0F * Settings.scale) + (86.0F * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
             } else {
-                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.damage), source.intentHb.cX - (30.0F * Settings.scale) + (80.0F * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.damage), source.intentHb.cX - (30.0F * Settings.scale) + (86.0F * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
             }
         }
     }

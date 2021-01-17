@@ -19,6 +19,7 @@ public class Erosion extends AbstractEasyPower {
 
     public Erosion(AbstractCreature owner, int amount) {
         super(NAME, POWER_ID, PowerType.DEBUFF, false, owner, amount);
+        this.priority = 0; //make it apply before vulnerable
     }
 
     @Override

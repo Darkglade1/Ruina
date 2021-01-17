@@ -62,5 +62,9 @@
   "${ModID}:SenselessWrath": {
     "NAME": "Senseless Wrath",
     "DESCRIPTIONS": ["Every other #ydebuff applied to this creature is #ynegated."]
+  },
+  "${ModID}:MagicalGirl": {
+    "NAME": "A Real Magical Girl!",
+    "DESCRIPTIONS": ["On death, summon the ", " to fight by your side."]
   }
 }

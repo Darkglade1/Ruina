@@ -1,11 +1,15 @@
 package ruina.monsters.act2.Jester;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.util.Wiz;
+
+import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.att;
 
 public abstract class AbstractMagicalGirl extends AbstractAllyMonster {
     protected JesterOfNihil jester;
@@ -51,5 +55,23 @@ public abstract class AbstractMagicalGirl extends AbstractAllyMonster {
                 });
             }
         }
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        att(new TalkAction(this, getDeathDialog()));
+    }
+
+    public String getSummonDialog() {
+        return "";
+    }
+
+    public String getVictoryDialog() {
+        return "";
+    }
+
+    public String getDeathDialog() {
+        return "";
     }
 }

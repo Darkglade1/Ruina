@@ -114,4 +114,16 @@ public class ServantOfCourage extends AbstractMagicalGirl
         animationAction("Attack3", "GreedGetPower", enemy, this);
     }
 
+    public String getSummonDialog() {
+        return DIALOG[0];
+    }
+
+    public String getVictoryDialog() {
+        return DIALOG[1];
+    }
+
+    public String getDeathDialog() {
+        return DIALOG[2];
+    }
+
 }

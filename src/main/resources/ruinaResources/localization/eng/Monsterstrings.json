@@ -97,15 +97,21 @@
     ],
     "NAME": "Queen of Love",
     "DIALOG": [
+      "Your villainous deeds will not go unpunished!",
+      "Love and Justice prevails once more!",
+      "My strength fades . . ."
     ]
   },
   "${ModID}:ServantOfCourage": {
     "MOVES": [
-      "If I Can Be Of Help!",
-      "I'll Protect My Friend!"
+      "Rumble",
+      "Acidic Sludge"
     ],
     "NAME": "Servant of Courage",
     "DIALOG": [
+      "I'll fight for the sake of the land.",
+      "I hope you find peace.",
+      "The others will carry on."
     ]
   }
 }

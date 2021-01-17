@@ -6,9 +6,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -37,6 +39,7 @@ import ruina.util.AdditionalIntent;
 import ruina.vfx.FlexibleCalmParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
+import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,12 +54,14 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
+    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte WILL_OF_NIHIL = 0;
     private static final byte CONSUMING_DESIRE = 1;
     private static final byte LOVE_AND_HATE = 2;
     private static final byte SWORD_OF_TEARS = 3;
     private static final byte RAMPAGE = 4;
+    private static final byte SETUP = 5;
 
     private final int HATE_BLOCK = calcAscensionTankiness(20);
     private final int STRENGTH = calcAscensionSpecial(2);
@@ -120,6 +125,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         addMove(LOVE_AND_HATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
         addMove(SWORD_OF_TEARS, Intent.ATTACK, calcAscensionDamage(10), 2, true);
         addMove(RAMPAGE, Intent.BUFF);
+        addMove(SETUP, Intent.UNKNOWN);
     }
 
     public AbstractMagicalGirl returnGirl(int num, float xPosition) {
@@ -142,29 +148,17 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         atb(new UsePreBattleActionAction(statue1));
         atb(new SpawnMonsterAction(statue2, true));
         atb(new UsePreBattleActionAction(statue2));
-        if (girl1 instanceof QueenOfLove || girl2 instanceof QueenOfLove) {
-            applyToTarget(this, this, new AbstractLambdaPower(HATE_POWER_NAME, HATE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, HATE_BLOCK) {
-                @Override
-                public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
-                    this.flash();
-                    block(owner, amount);
-                }
-
-                @Override
-                public void updateDescription() {
-                    description = HATE_POWER_DESCRIPTIONS[0] + amount + HATE_POWER_DESCRIPTIONS[1];
-                }
-            });
-        }
-        if (girl1 instanceof ServantOfCourage || girl2 instanceof ServantOfCourage) {
-            applyToTarget(this, this, new SenselessWrath(this));
-        }
         applyToTarget(this, this, power);
     }
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
         this.loseBlock(); //manually remove block due to the invisible barricade power xd
+
+        if (this.firstMove) {
+            atb(new TalkAction(this, DIALOG[0]));
+            firstMove = false;
+        }
 
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
@@ -223,6 +217,26 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 //resetIdle(1.0f);
                 break;
             }
+            case SETUP: {
+                if (girl1 instanceof QueenOfLove || girl2 instanceof QueenOfLove) {
+                    applyToTarget(this, this, new AbstractLambdaPower(HATE_POWER_NAME, HATE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, HATE_BLOCK) {
+                        @Override
+                        public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
+                            this.flash();
+                            block(owner, amount);
+                        }
+
+                        @Override
+                        public void updateDescription() {
+                            description = HATE_POWER_DESCRIPTIONS[0] + amount + HATE_POWER_DESCRIPTIONS[1];
+                        }
+                    });
+                }
+                if (girl1 instanceof ServantOfCourage || girl2 instanceof ServantOfCourage) {
+                    applyToTarget(this, this, new SenselessWrath(this));
+                }
+                break;
+            }
         }
     }
 
@@ -267,8 +281,12 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
 
     @Override
     protected void getMove(final int num) {
-        if ((girl1Spawned || girl2Spawned) && massAttackCooldown <= 0) {
+        if (firstMove) {
+            setMoveShortcut(SETUP);
+        } else if (girl1Spawned && girl2Spawned &&(!girl1.isDead || !girl2.isDead) && massAttackCooldown <= 0) {
             setMoveShortcut(WILL_OF_NIHIL);
+        } else if (numIntentThatCanRampage == 2 && ramageCooldown <= 0) {
+            setMoveShortcut(RAMPAGE, MOVES[RAMPAGE]);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(CONSUMING_DESIRE)) {
@@ -280,10 +298,6 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
             if (!this.lastMove(SWORD_OF_TEARS)) {
                 possibilities.add(SWORD_OF_TEARS);
             }
-            if (numIntentThatCanRampage == 2 && ramageCooldown <= 0) {
-                possibilities.add(RAMPAGE);
-                possibilities.add(RAMPAGE); //make it twice as likely to be picked
-            }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move]);
         }
@@ -291,23 +305,25 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
-        ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(CONSUMING_DESIRE, moveHistory)) {
-            possibilities.add(CONSUMING_DESIRE);
+        if (!firstMove) {
+            if (numIntentThatCanRampage == whichMove && ramageCooldown <= 0) {
+                setAdditionalMoveShortcut(RAMPAGE, moveHistory);
+            } else {
+                ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
+                ArrayList<Byte> possibilities = new ArrayList<>();
+                if (!this.lastMove(CONSUMING_DESIRE, moveHistory)) {
+                    possibilities.add(CONSUMING_DESIRE);
+                }
+                if (!this.lastMove(LOVE_AND_HATE, moveHistory)) {
+                    possibilities.add(LOVE_AND_HATE);
+                }
+                if (!this.lastMove(SWORD_OF_TEARS, moveHistory)) {
+                    possibilities.add(SWORD_OF_TEARS);
+                }
+                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                setAdditionalMoveShortcut(move, moveHistory);
+            }
         }
-        if (!this.lastMove(LOVE_AND_HATE, moveHistory)) {
-            possibilities.add(LOVE_AND_HATE);
-        }
-        if (!this.lastMove(SWORD_OF_TEARS, moveHistory)) {
-            possibilities.add(SWORD_OF_TEARS);
-        }
-        if (numIntentThatCanRampage == whichMove && ramageCooldown <= 0) {
-            possibilities.add(RAMPAGE);
-            possibilities.add(RAMPAGE); //make it twice as likely to be picked
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override
@@ -346,6 +362,38 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         }
         atb(new SpawnMonsterAction(girl, false));
         atb(new UsePreBattleActionAction(girl));
+        atb(new TalkAction(girl, girl.getSummonDialog()));
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+            if (mo instanceof Statue && !mo.isDeadOrEscaped()) {
+                atb(new SuicideAction(mo));
+            }
+        }
+        boolean girlTalking = false;
+        if (girl1Spawned && !girl1.isDead && !girl1.isDying) {
+            atb(new TalkAction(girl1, girl1.getVictoryDialog()));
+            girlTalking = true;
+        }
+        if (girl2Spawned && !girl2.isDead && !girl2.isDying) {
+            atb(new TalkAction(girl2, girl2.getVictoryDialog()));
+            girlTalking = true;
+        }
+        if (girlTalking) {
+            atb(new VFXAction(new WaitEffect(), 1.0F));
+        }
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                girl1.isDead = true;
+                girl2.isDead = true;
+                onBossVictoryLogic();
+                this.isDone = true;
+            }
+        });
     }
 
     @Override

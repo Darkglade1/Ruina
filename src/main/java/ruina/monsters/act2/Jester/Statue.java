@@ -1,12 +1,18 @@
 package ruina.monsters.act2.Jester;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.AbstractLambdaPower;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.util.Wiz.applyToTarget;
 
 public class Statue extends AbstractRuinaMonster
 {
@@ -18,6 +24,11 @@ public class Statue extends AbstractRuinaMonster
     protected AbstractMagicalGirl magicalGirl;
     protected JesterOfNihil jester;
     private static final byte NONE = 0;
+
+    public static final String MAGICALGIRL_POWER_ID = RuinaMod.makeID("MagicalGirl");
+    public static final PowerStrings MAGICALGIRLPowerStrings = CardCrawlGame.languagePack.getPowerStrings(MAGICALGIRL_POWER_ID);
+    public static final String MAGICALGIRL_POWER_NAME = MAGICALGIRLPowerStrings.NAME;
+    public static final String[] MAGICALGIRL_POWER_DESCRIPTIONS = MAGICALGIRLPowerStrings.DESCRIPTIONS;
 
     public Statue(final float x, final float y, JesterOfNihil jester, AbstractMagicalGirl girl) {
         super(NAME, ID, 5, -5.0F, 0, 150.0f, 225.0f, null, x, y);
@@ -35,6 +46,15 @@ public class Statue extends AbstractRuinaMonster
             name = MOVES[1];
             runAnim("Wrath");
         }
+    }
+    
+    public void usePreBattleAction() {
+        applyToTarget(this, this, new AbstractLambdaPower(MAGICALGIRL_POWER_NAME, MAGICALGIRL_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            @Override
+            public void updateDescription() {
+                description = MAGICALGIRL_POWER_DESCRIPTIONS[0] + FontHelper.colorString(magicalGirl.name, "y") + MAGICALGIRL_POWER_DESCRIPTIONS[1];
+            }
+        });
     }
 
     @Override
