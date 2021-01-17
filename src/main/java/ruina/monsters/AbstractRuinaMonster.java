@@ -22,7 +22,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
 
     protected Map<Byte, EnemyMoveInfo> moves;
     protected boolean firstMove = true;
-    private static final float ASCENSION_DAMAGE_BUFF_PERCENT = 1.15f;
+    private static final float ASCENSION_DAMAGE_BUFF_PERCENT = 1.10f;
     private static final float ASCENSION_TANK_BUFF_PERCENT = 1.10f;
     private static final float ASCENSION_SPECIAL_BUFF_PERCENT = 1.5f;
 

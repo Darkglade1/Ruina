@@ -82,10 +82,30 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
                         attackImg = getAttackIntent(info.output);
                     }
                     ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
+                } else {
+                    PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                    if (this.intent == Intent.DEBUFF || this.intent == Intent.STRONG_DEBUFF) {
+                        intentTip.body = TEXT[5] + FontHelper.colorString(target.name, "y") + TEXT[6];
+                    }
+                    if (this.intent == Intent.BUFF || this.intent == Intent.DEFEND_BUFF) {
+                        intentTip.body = TEXT[7];
+                    }
+                    if (this.intent == Intent.DEFEND || this.intent == Intent.DEFEND_DEBUFF) {
+                        intentTip.body = TEXT[8];
+                    }
                 }
             } else {
                 super.applyPowers();
             }
         }
+    }
+
+    @Override
+    public void damage(DamageInfo info) {
+        //failsafe to stop player from damaging allies
+        if (isAlly && info.owner == adp()) {
+            return;
+        }
+        super.damage(info);
     }
 }

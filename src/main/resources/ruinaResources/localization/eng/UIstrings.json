@@ -22,7 +22,11 @@
       " for #b",
       " damage.",
       " damage #b",
-      " times."
+      " times.",
+      "Your #gally intends to inflict a #yNegative #yeffect on ",
+      ".",
+      "Your #gally intends to use a #yBuff.",
+      "Your #gally intends to #yDefend."
     ]
   },
   "${ModID}:MassAttackIntent": {
