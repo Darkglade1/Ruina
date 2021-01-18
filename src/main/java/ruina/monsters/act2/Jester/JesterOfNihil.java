@@ -193,28 +193,38 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
             }
             case CONSUMING_DESIRE: {
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        bluntAnimation(target);
+                    } else {
+                        slamAnimation(target);
+                    }
                     dmg(target, info);
+                    resetIdle();
                 }
                 applyToTarget(target, this, new Bleed(target, BLEED));
                 break;
             }
             case LOVE_AND_HATE: {
+                hateAnimation(target);
                 dmg(target, info);
                 applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                resetIdle();
                 break;
             }
             case SWORD_OF_TEARS: {
                 for (int i = 0; i < multiplier; i++) {
+                    pierceAnimation(target);
                     dmg(target, info);
+                    resetIdle();
                 }
                 break;
             }
             case RAMPAGE: {
-                //howlAnimation();
+                slamAnimation(target);
                 applyToTargetNextTurn(this, new StrengthPower(this, STRENGTH));
                 ramageCooldown = RAMPAGE_COOLDOWN + 1;
                 numIntentThatCanRampage = (numIntentThatCanRampage + 1) % 3;
-                //resetIdle(1.0f);
+                resetIdle(1.0f);
                 break;
             }
             case SETUP: {
@@ -240,17 +250,21 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         }
     }
 
-//    private void clawAnimation(AbstractCreature enemy) {
-//        animationAction("Claw", "Claw", enemy, this);
-//    }
-//
-//    private void biteAnimation(AbstractCreature enemy) {
-//        animationAction("Bite", "Bite", enemy, this);
-//    }
-//
-//    private void howlAnimation() {
-//        animationAction("Howl", "Howl", this);
-//    }
+    private void hateAnimation(AbstractCreature enemy) {
+        animationAction("Hate", "MagicGun", enemy, this);
+    }
+
+    private void pierceAnimation(AbstractCreature enemy) {
+        animationAction("Pierce", "KnightAttack", enemy, this);
+    }
+
+    private void slamAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "GreedSlam", this);
+    }
+
+    private void bluntAnimation(AbstractCreature enemy) {
+        animationAction("Blunt", "GreedBlunt", this);
+    }
 
     @Override
     public void takeTurn() {

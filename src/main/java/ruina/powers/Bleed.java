@@ -1,5 +1,6 @@
 package ruina.powers;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -12,7 +13,7 @@ import ruina.RuinaMod;
 import static ruina.util.Wiz.atb;
 import static ruina.util.Wiz.att;
 
-public class Bleed extends AbstractEasyPower {
+public class Bleed extends AbstractEasyPower implements NonStackablePower {
     public static final String POWER_ID = RuinaMod.makeID("Bleed");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
@@ -28,12 +29,6 @@ public class Bleed extends AbstractEasyPower {
             this.flash();
             att(new DamageAction(info.owner, new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON, true));
         }
-    }
-
-    @Override
-    public void stackPower(int stackAmount) {
-       super.stackPower(stackAmount);
-       justApplied = true;
     }
 
     @Override
