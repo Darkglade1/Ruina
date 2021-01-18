@@ -16,7 +16,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.events.city.Addict;
+import com.megacrit.cardcrawl.events.city.BackToBasics;
+import com.megacrit.cardcrawl.events.city.Beggar;
+import com.megacrit.cardcrawl.events.city.DrugDealer;
+import com.megacrit.cardcrawl.events.city.ForgottenAltar;
+import com.megacrit.cardcrawl.events.city.Nest;
+import com.megacrit.cardcrawl.events.city.TheLibrary;
+import com.megacrit.cardcrawl.events.city.TheMausoleum;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -24,7 +32,6 @@ import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import ruina.CustomIntent.MassAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
@@ -35,6 +42,8 @@ import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.NightmareWolf;
+import ruina.monsters.act2.Nosferatu;
+import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.Woodsman;
 import ruina.relics.AbstractEasyRelic;
@@ -170,6 +179,12 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("GreedSlam"), makeSFXPath("Greed_StrongAtk.wav"));
 
         BaseMod.addAudio(makeID("KnightAttack"), makeSFXPath("KnightOfDespair_Atk_Strong.wav"));
+
+        BaseMod.addAudio(makeID("BatAttack"), makeSFXPath("Nosferatu_Atk_Bat.wav"));
+        BaseMod.addAudio(makeID("NosChange"), makeSFXPath("Nosferatu_Change.wav"));
+        BaseMod.addAudio(makeID("NosBloodEat"), makeSFXPath("Nosferatu_Changed_BloodEat.wav"));
+        BaseMod.addAudio(makeID("NosGrab"), makeSFXPath("Nosferatu_Changed_Grab.wav"));
+        BaseMod.addAudio(makeID("NosSpecial"), makeSFXPath("Nosferatu_Changed_StrongAtk_Start.wav"));
     }
 
     @Override
@@ -205,7 +220,7 @@ public class RuinaMod implements
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
-        (new Briah()).addAct(Exordium.ID);
+        (new Briah()).addAct(TheCity.ID);
 
         CustomIntent.add(new MassAttackIntent());
 
@@ -229,9 +244,32 @@ public class RuinaMod implements
                         new Scarecrow(50.0F, 0.0F, 0)
                 }));
         BaseMod.addMonster(Woodsman.ID, (BaseMod.GetMonster) Woodsman::new);
+        BaseMod.addMonster(EncounterIDs.BATS_3, "3_Bats", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new SanguineBat(-450.0F, 0.0F),
+                        new SanguineBat(-200.0F, 0.0F),
+                        new SanguineBat(50.0F, 0.0F)
+                }));
+        BaseMod.addMonster(Nosferatu.ID, (BaseMod.GetMonster) Nosferatu::new);
+        BaseMod.addMonster(EncounterIDs.NOS_AND_BAT, "Nos_and_Bat", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new SanguineBat(-450.0F, 0.0F),
+                        new Nosferatu(-150.0F, 0.0F),
+                }));
 
         BaseMod.addBoss(Briah.ID, EncounterIDs.RED_AND_WOLF, makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
         BaseMod.addBoss(Briah.ID, JesterOfNihil.ID, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
+
+
+        BaseMod.addEvent(Addict.ID, Addict.class, Briah.ID);
+        BaseMod.addEvent(BackToBasics.ID, BackToBasics.class, Briah.ID);
+        BaseMod.addEvent(Beggar.ID, Beggar.class, Briah.ID);
+        BaseMod.addEvent(DrugDealer.ID, DrugDealer.class, Briah.ID);
+        BaseMod.addEvent(Nest.ID, Nest.class, Briah.ID);
+        BaseMod.addEvent(TheLibrary.ID, TheLibrary.class, Briah.ID);
+        BaseMod.addEvent(TheMausoleum.ID, TheMausoleum.class, Briah.ID);
+        BaseMod.addEvent(ForgottenAltar.ID, ForgottenAltar.class, Briah.ID);
+
     }
 
 

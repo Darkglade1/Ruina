@@ -66,5 +66,9 @@
   "${ModID}:MagicalGirl": {
     "NAME": "A Real Magical Girl!",
     "DESCRIPTIONS": ["On death, summon the ", " to fight by your side."]
+  },
+  "${ModID}:Paralysis": {
+    "NAME": "Paralysis",
+    "DESCRIPTIONS": ["This turn, your next #yAttack deals #b", "% less damage."]
   }
 }

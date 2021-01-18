@@ -16,6 +16,8 @@ import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
+import ruina.monsters.act2.Nosferatu;
+import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.Woodsman;
 
@@ -80,6 +82,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/HeartForest");
                 } else if (mo instanceof JesterOfNihil) {
                     this.bg = this.atlas.findRegion("mod/Nihil");
+                } else if (mo instanceof SanguineBat || mo instanceof Nosferatu) {
+                    this.bg = this.atlas.findRegion("mod/Castle");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }

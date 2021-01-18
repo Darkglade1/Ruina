@@ -1,5 +1,6 @@
 package ruina.monsters.act2;
 
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -30,6 +31,7 @@ public class Woodsman extends AbstractRuinaMonster
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
+    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte STRIKE = 0;
     private static final byte LUMBER = 1;
@@ -94,6 +96,12 @@ public class Woodsman extends AbstractRuinaMonster
         if(info.base > -1) {
             info.applyPowers(this, adp());
         }
+
+        if (this.firstMove) {
+            atb(new TalkAction(this, DIALOG[0]));
+            firstMove = false;
+        }
+
         switch (this.nextMove) {
             case STRIKE: {
                 for (int i = 0; i < multiplier; i++) {

@@ -113,5 +113,25 @@
       "I hope you find peace.",
       "The others will carry on."
     ]
+  },
+  "${ModID}:SanguineBat": {
+    "MOVES": [
+      "Bloodsucking",
+      "Digging Teeth",
+      "Avid Thirst"
+    ],
+    "NAME": "Sanguine Bat",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Nosferatu": {
+    "MOVES": [
+      "Unbearable Drought",
+      "Merciless Gesture",
+      "Looming Presence"
+    ],
+    "NAME": "Nosferatu",
+    "DIALOG": [
+    ]
   }
 }

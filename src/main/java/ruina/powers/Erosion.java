@@ -28,6 +28,12 @@ public class Erosion extends AbstractEasyPower {
     }
 
     @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        justApplied = true;
+    }
+
+    @Override
     public void atEndOfRound() {
         if (justApplied) {
             justApplied = false;
