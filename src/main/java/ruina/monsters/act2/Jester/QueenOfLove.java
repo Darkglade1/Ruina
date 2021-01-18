@@ -123,10 +123,14 @@ public class QueenOfLove extends AbstractMagicalGirl
 
     @Override
     protected void getMove(final int num) {
-        if (this.lastMove(ARCANA_BEATS)) {
+        if (this.currentHealth <= this.maxHealth * 0.30f) {
             setMoveShortcut(LOVE_AND_JUSTICE, MOVES[LOVE_AND_JUSTICE]);
         } else {
-            setMoveShortcut(ARCANA_BEATS, MOVES[ARCANA_BEATS]);
+            if (this.lastMove(ARCANA_BEATS)) {
+                setMoveShortcut(LOVE_AND_JUSTICE, MOVES[LOVE_AND_JUSTICE]);
+            } else {
+                setMoveShortcut(ARCANA_BEATS, MOVES[ARCANA_BEATS]);
+            }
         }
     }
 

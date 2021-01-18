@@ -188,6 +188,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                     damageArray[i] = info.output;
                 }
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                resetIdle();
                 massAttackCooldown = MASS_ATTACK_COOLDOWN + 1;
                 break;
             }

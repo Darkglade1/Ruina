@@ -95,10 +95,14 @@ public class ServantOfCourage extends AbstractMagicalGirl
 
     @Override
     protected void getMove(final int num) {
-        if (this.lastMove(PROTECT_FRIEND)) {
+        if (this.currentHealth <= this.maxHealth * 0.30f) {
             setMoveShortcut(HELP, MOVES[HELP]);
         } else {
-            setMoveShortcut(PROTECT_FRIEND, MOVES[PROTECT_FRIEND]);
+            if (this.lastMove(PROTECT_FRIEND)) {
+                setMoveShortcut(HELP, MOVES[HELP]);
+            } else {
+                setMoveShortcut(PROTECT_FRIEND, MOVES[PROTECT_FRIEND]);
+            }
         }
     }
 

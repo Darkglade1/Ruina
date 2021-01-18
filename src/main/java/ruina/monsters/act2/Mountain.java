@@ -65,7 +65,7 @@ public class Mountain extends AbstractMultiIntentMonster
 
     private final int NORMAL_DEBUFF_AMT = calcAscensionSpecial(1);
     private final int ATTACK_DEBUFF_AMT = calcAscensionSpecial(1);
-    private final int DAZES = calcAscensionSpecial(3);
+    private final int DAZES = calcAscensionSpecial(2);
     private final int SLIMES = calcAscensionSpecial(1);
 
     private final int STAGE1_HP = calcAscensionTankiness(50);
@@ -110,10 +110,10 @@ public class Mountain extends AbstractMultiIntentMonster
         updateHealthBar();
         runAnim("Idle3");
 
-        addMove(DEVOUR, Intent.ATTACK_BUFF, calcAscensionDamage(15));
-        addMove(BITE, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
+        addMove(DEVOUR, Intent.ATTACK_BUFF, calcAscensionDamage(14));
+        addMove(BITE, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));
         addMove(HORRID_SCREECH, Intent.DEBUFF);
-        addMove(RAM, Intent.ATTACK, calcAscensionDamage(16));
+        addMove(RAM, Intent.ATTACK, calcAscensionDamage(15));
         addMove(VOMIT, Intent.STRONG_DEBUFF);
         addMove(REVIVE, Intent.NONE);
     }
