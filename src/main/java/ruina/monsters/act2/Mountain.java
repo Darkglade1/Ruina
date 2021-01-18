@@ -113,7 +113,7 @@ public class Mountain extends AbstractMultiIntentMonster
         addMove(DEVOUR, Intent.ATTACK_BUFF, calcAscensionDamage(14));
         addMove(BITE, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));
         addMove(HORRID_SCREECH, Intent.DEBUFF);
-        addMove(RAM, Intent.ATTACK, calcAscensionDamage(15));
+        addMove(RAM, Intent.ATTACK, calcAscensionDamage(16));
         addMove(VOMIT, Intent.STRONG_DEBUFF);
         addMove(REVIVE, Intent.NONE);
     }

@@ -96,7 +96,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     }
 
     public JesterOfNihil(final float x, final float y) {
-        super(NAME, ID, 600, -5.0F, 0, 280.0f, 255.0f, null, x, y);
+        super(NAME, ID, 550, -5.0F, 0, 280.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jester/Spriter/Jester.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 2;

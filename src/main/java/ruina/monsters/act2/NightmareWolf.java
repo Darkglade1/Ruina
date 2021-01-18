@@ -57,7 +57,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     }
 
     public NightmareWolf(final float x, final float y) {
-        super(NAME, ID, 400, -5.0F, 0, 330.0f, 285.0f, null, x, y);
+        super(NAME, ID, 450, -5.0F, 0, 330.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("NightmareWolf/Spriter/NightmareWolf.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;

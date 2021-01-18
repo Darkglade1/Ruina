@@ -231,6 +231,7 @@ public class RuinaMod implements
         BaseMod.addMonster(Woodsman.ID, (BaseMod.GetMonster) Woodsman::new);
 
         BaseMod.addBoss(Briah.ID, EncounterIDs.RED_AND_WOLF, makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
+        BaseMod.addBoss(Briah.ID, JesterOfNihil.ID, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
     }
 
 
