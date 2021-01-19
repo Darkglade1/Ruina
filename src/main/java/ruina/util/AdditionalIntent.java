@@ -47,6 +47,7 @@ public class AdditionalIntent {
 
     float scaleWidth = 1.0F * Settings.scale;
     float scaleHeight = Settings.scale;
+    private static final float X_OFFSET = 106.0f;
 
     public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move) {
         this.source = source;
@@ -119,7 +120,7 @@ public class AdditionalIntent {
         sb.setColor(intentColor);
         if (this.intentBg != null) {
             sb.setColor(new Color(1.0F, 1.0F, 1.0F, intentColor.a / 2.0F));
-            sb.draw(this.intentBg, source.intentHb.cX - 64.0F + (86.0F * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 128, 128, false, false);
+            sb.draw(this.intentBg, source.intentHb.cX - 64.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 128, 128, false, false);
         }
 
         if (this.intentImg != null && this.intent != AbstractMonster.Intent.UNKNOWN && this.intent != AbstractMonster.Intent.STUN) {
@@ -130,19 +131,19 @@ public class AdditionalIntent {
             }
 
             sb.setColor(this.intentColor);// 1079
-            sb.draw(this.intentImg, source.intentHb.cX - 64.0F + (86.0F * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 128, 128, false, false);
+            sb.draw(this.intentImg, source.intentHb.cX - 64.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 128, 128, false, false);
         }
         if (targetTexture != null && damage >= 0) {
-            sb.draw(targetTexture, source.intentHb.cX - 48.0F + (86.0F * scaleWidth * position), source.intentHb.cY - 48.0F + (40.0f * scaleHeight) + this.bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 48, 48, false, false);
+            sb.draw(targetTexture, source.intentHb.cX - 48.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 48.0F + (40.0f * scaleHeight) + this.bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 48, 48, false, false);
         }
     }
 
     private void renderDamageRange(SpriteBatch sb, int position) {
         if (this.intent.name().contains("ATTACK")) {
             if (this.multihit) {
-                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, this.damage + "x" + this.numHits, source.intentHb.cX - (30.0F * Settings.scale) + (86.0F * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, this.damage + "x" + this.numHits, source.intentHb.cX - (30.0F * Settings.scale) + (X_OFFSET * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
             } else {
-                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.damage), source.intentHb.cX - (30.0F * Settings.scale) + (86.0F * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.damage), source.intentHb.cX - (30.0F * Settings.scale) + (X_OFFSET * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
             }
         }
     }

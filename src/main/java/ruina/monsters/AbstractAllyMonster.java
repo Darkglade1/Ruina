@@ -1,6 +1,7 @@
 package ruina.monsters;
 
 import basemod.ReflectionHacks;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -70,6 +71,8 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             if (target != adp()) {
                 if(info.base > -1) {
+                    Color color = new Color(0.0F, 1.0F, 0.0F, 0.5F);
+                    ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
                     info.applyPowers(this, target);
                     ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
                     PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
@@ -83,6 +86,8 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
                     }
                     ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
                 } else {
+                    Color color = new Color(1.0F, 1.0F, 1.0F, 0.5F);
+                    ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
                     PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
                     if (this.intent == Intent.DEBUFF || this.intent == Intent.STRONG_DEBUFF) {
                         intentTip.body = TEXT[5] + FontHelper.colorString(target.name, "y") + TEXT[6];
@@ -95,6 +100,8 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
                     }
                 }
             } else {
+                Color color = new Color(1.0F, 1.0F, 1.0F, 0.5F);
+                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
                 super.applyPowers();
             }
         }

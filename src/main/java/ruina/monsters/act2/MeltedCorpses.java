@@ -24,7 +24,7 @@ public class MeltedCorpses extends AbstractRuinaMonster
     public static final String NAME = monsterStrings.NAME;
 
     private static final byte NONE = 0;
-    private final int HEAL = calcAscensionSpecial(50);
+    private final int HEAL = calcAscensionSpecial(30);
     private final int ROT = calcAscensionSpecial(2);
 
     public static final String ROT_POWER_ID = makeID("Rot");
