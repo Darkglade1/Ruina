@@ -30,7 +30,7 @@ import static ruina.util.Wiz.adp;
 public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     protected ArrayList<EnemyMoveInfo> additionalMoves = new ArrayList<>();
     protected ArrayList<ArrayList<Byte>> additionalMovesHistory = new ArrayList<>();
-    protected ArrayList<AdditionalIntent> additionalIntents = new ArrayList<>();
+    public ArrayList<AdditionalIntent> additionalIntents = new ArrayList<>();
     protected int numAdditionalMoves = 0;
     protected int maxAdditionalMoves = 0;
     protected static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("MultiIntentStrings"));
@@ -204,6 +204,46 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                         TipHelper.calculateAdditionalOffset(this.tips, this.hb.cY), this.tips);
             }
         }
+    }
+
+    //returns the highest damaging intent for compatibility with spot weakness/go for the eyes, etc.
+    @Override
+    public int getIntentBaseDmg() {
+        int original = super.getIntentBaseDmg();
+        if (original >= 0) {
+            return original;
+        }
+        int maxDamage = original;
+        for (AdditionalIntent additionalIntent : this.additionalIntents) {
+            if (additionalIntent.baseDamage > maxDamage) {
+                maxDamage = additionalIntent.baseDamage;
+            }
+        }
+        return maxDamage;
+    }
+
+    public int getRealIntentBaseDmg() {
+        return super.getIntentBaseDmg();
+    }
+
+    //returns the highest damaging intent for compatibility with spot weakness/go for the eyes, etc.
+    @Override
+    public int getIntentDmg() {
+        int original = super.getIntentDmg();
+        if (original >= 0) {
+            return original;
+        }
+        int maxDamage = original;
+        for (AdditionalIntent additionalIntent : this.additionalIntents) {
+            if (additionalIntent.damage > maxDamage) {
+                maxDamage = additionalIntent.damage;
+            }
+        }
+        return maxDamage;
+    }
+
+    public int getRealIntentDmg() {
+        return super.getIntentDmg();
     }
 
 }
