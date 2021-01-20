@@ -109,8 +109,8 @@
     ],
     "NAME": "Servant of Courage",
     "DIALOG": [
-      "I'll fight for the sake of the land.",
-      "I hope you find peace.",
+      "For the justice and peace of the land.",
+      "The law is upheld.",
       "The others will carry on."
     ]
   },
@@ -131,6 +131,27 @@
       "Looming Presence"
     ],
     "NAME": "Nosferatu",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:RoadHome": {
+    "MOVES": [
+      "Let's Go Together!",
+      "Play Tag!",
+      "Homing Instinct"
+    ],
+    "NAME": "Road Home",
+    "DIALOG": [
+      "Let's go home, together!",
+      "Aww, you killed my friend!"
+    ]
+  },
+  "${ModID}:ScaredyCat": {
+    "MOVES": [
+      "RAWR",
+      "Growl"
+    ],
+    "NAME": "Scaredy Cat",
     "DIALOG": [
     ]
   }

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.Nosferatu;
+import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.Woodsman;
 import ruina.scenes.RuinaScene;
 
@@ -111,9 +112,9 @@ public class Briah extends CustomDungeon {
 
     protected void generateElites(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo("Gremlin Leader", 1.0F));
+        //monsters.add(new MonsterInfo("Gremlin Leader", 1.0F));
         monsters.add(new MonsterInfo(Mountain.ID, 1.0F));
-        //monsters.add(new MonsterInfo("Book of Stabbing", 1.0F));
+        monsters.add(new MonsterInfo(RoadHome.ID, 1.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateMonsterList(monsters, count, true);
     }

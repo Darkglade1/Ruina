@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="CatIdle.png" width="345" height="269" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="CatAttack1.png" width="507" height="275" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="CatAttack2.png" width="371" height="338" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="CatPoison.png" width="317" height="334" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="CatScared.png" width="269" height="155" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Cat">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="CatIdle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-123" y="270"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Attack1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="CatAttack1">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-243" y="277"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Attack2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="CatAttack2">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-177" y="338"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Poison" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="CatPoison">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-161" y="334"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Scared" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="CatScared">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-128" y="151"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

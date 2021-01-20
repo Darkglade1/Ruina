@@ -43,6 +43,7 @@ import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.NightmareWolf;
 import ruina.monsters.act2.Nosferatu;
+import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.Woodsman;
@@ -185,6 +186,12 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("NosBloodEat"), makeSFXPath("Nosferatu_Changed_BloodEat.wav"));
         BaseMod.addAudio(makeID("NosGrab"), makeSFXPath("Nosferatu_Changed_Grab.wav"));
         BaseMod.addAudio(makeID("NosSpecial"), makeSFXPath("Nosferatu_Changed_StrongAtk_Start.wav"));
+
+        BaseMod.addAudio(makeID("HouseBoom"), makeSFXPath("House_HouseBoom.wav"));
+        BaseMod.addAudio(makeID("LionPoison"), makeSFXPath("House_Lion_Poison.wav"));
+        BaseMod.addAudio(makeID("MakeRoad"), makeSFXPath("House_MakeRoad.wav"));
+        BaseMod.addAudio(makeID("HouseAttack"), makeSFXPath("House_NormalAtk.wav"));
+        BaseMod.addAudio(makeID("LionChange"), makeSFXPath("House_Lion_Change.wav"));
     }
 
     @Override
@@ -232,6 +239,8 @@ public class RuinaMod implements
         BaseMod.addMonster(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new);
 
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
+        BaseMod.addMonster(RoadHome.ID, (BaseMod.GetMonster) RoadHome::new);
+
         BaseMod.addMonster(EncounterIDs.SCARECROWS_2, "2_Scarecrows", () -> new MonsterGroup(
                 new AbstractMonster[] {
                         new Scarecrow(-450.0F, 0.0F, 1),

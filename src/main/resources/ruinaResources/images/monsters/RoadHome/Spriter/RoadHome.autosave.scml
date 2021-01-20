@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="RoadIdle.png" width="131" height="275" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="RoadSpecial.png" width="169" height="277" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="RoadAttack.png" width="196" height="291" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="RoadHome">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="RoadIdle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-69" y="278"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Special" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="RoadSpecial">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-89" y="279"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Attack" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="RoadAttack">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-96" y="292"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
