@@ -1,16 +1,22 @@
 package ruina.monsters.act2;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Paralysis;
@@ -26,6 +32,8 @@ public class RoadHome extends AbstractRuinaMonster
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
+    public static final String HOUSE = RuinaMod.makeMonsterPath("RoadHome/House.png");
+    private static final Texture HOUSE_TEXTURE = new Texture(HOUSE);
 
     private static final byte LETS_GO = 0;
     private static final byte PLAY_TAG = 1;
@@ -95,6 +103,7 @@ public class RoadHome extends AbstractRuinaMonster
             }
             case HOMING_INSTINCT: {
                 attackAnimation(adp());
+                HouseEffect();
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new Paralysis(adp(), PARALYSIS));
                 resetIdle();
@@ -139,6 +148,15 @@ public class RoadHome extends AbstractRuinaMonster
 
     private void specialAnimation() {
         animationAction("Special", "MakeRoad", this);
+    }
+
+    private void HouseEffect() {
+        float duration = 1.0f;
+        AbstractGameEffect houseEffect = new VfxBuilder(HOUSE_TEXTURE, adp().hb.cX, 0f, duration)
+                .moveY(Settings.HEIGHT, adp().hb.y + adp().hb.height / 6, VfxBuilder.Interpolations.EXP5IN)
+                .playSoundAt(duration, makeID("HouseBoom"))
+                .build();
+        atb(new VFXAction(houseEffect, duration));
     }
 
 }
