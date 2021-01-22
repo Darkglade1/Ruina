@@ -70,5 +70,13 @@
   "${ModID}:Paralysis": {
     "NAME": "Paralysis",
     "DESCRIPTIONS": ["This turn, your next #yAttack deals #b", "% less damage."]
+  },
+  "${ModID}:Despair": {
+    "NAME": "Despair",
+    "DESCRIPTIONS": ["Whenever a minion dies, loses #b", " HP."]
+  },
+  "${ModID}:Worthless": {
+    "NAME": "Worthless",
+    "DESCRIPTIONS": ["If this creature attacks and fails to deal unblocked attack damage, it #rdies."]
   }
 }

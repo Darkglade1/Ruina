@@ -154,5 +154,21 @@
     "NAME": "Scaredy Cat",
     "DIALOG": [
     ]
+  },
+  "${ModID}:KnightOfDespair": {
+    "MOVES": [
+    ],
+    "NAME": "Knight of Despair",
+    "DIALOG": [
+      "I failed to protect them . . ."
+    ]
+  },
+  "${ModID}:Sword": {
+    "MOVES": [
+      "Tear Heart"
+    ],
+    "NAME": "Forgotten Sword",
+    "DIALOG": [
+    ]
   }
 }

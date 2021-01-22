@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.monsters.act2.Jester.JesterOfNihil;
+import ruina.monsters.act2.KnightOfDespair;
 import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.Nosferatu;
@@ -88,6 +89,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Castle");
                 } else if (mo instanceof RoadHome || mo instanceof ScaredyCat) {
                     this.bg = this.atlas.findRegion("mod/Road");
+                } else if (mo instanceof KnightOfDespair) {
+                    this.bg = this.atlas.findRegion("mod/Despair");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }

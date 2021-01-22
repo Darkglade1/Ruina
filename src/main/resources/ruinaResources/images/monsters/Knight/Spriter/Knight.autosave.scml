@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="215" height="227" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Idle1.png" width="220" height="210" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Idle2.png" width="220" height="224" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Idle3.png" width="234" height="224" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Knight">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-80" y="228"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Idle1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle1">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-92" y="211"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Idle2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle2">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-92" y="225"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Idle3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle3">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-107" y="225"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

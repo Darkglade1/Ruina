@@ -51,7 +51,7 @@ public class Nosferatu extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        CardCrawlGame.sound.playV(makeID("NosChange"), 1.0f);
+        playSound("NosChange");
     }
 
     @Override
