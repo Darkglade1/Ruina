@@ -1,7 +1,5 @@
 package ruina.monsters.act2;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -15,7 +13,8 @@ import ruina.powers.AbstractLambdaPower;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
-import static ruina.util.Wiz.*;
+import static ruina.util.Wiz.applyToTarget;
+import static ruina.util.Wiz.atb;
 
 public class MeltedCorpses extends AbstractRuinaMonster
 {
@@ -50,7 +49,6 @@ public class MeltedCorpses extends AbstractRuinaMonster
         } else {
             setHp(40);
         }
-        addMove(NONE, Intent.NONE);
     }
 
     @Override

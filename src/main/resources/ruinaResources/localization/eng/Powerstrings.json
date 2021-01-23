@@ -78,5 +78,13 @@
   "${ModID}:Worthless": {
     "NAME": "Worthless",
     "DESCRIPTIONS": ["If this creature attacks and fails to deal unblocked attack damage, it #rdies."]
+  },
+  "${ModID}:Road": {
+    "NAME": "Road of the King",
+    "DESCRIPTIONS": ["Uses a #rpowerful attack in #b", " turns.", " turn.", "Using a #rpowerful attack this turn!"]
+  },
+  "${ModID}:Bliss": {
+    "NAME": "Moment of Bliss",
+    "DESCRIPTIONS": ["On death, add a ", " to your hand with #yEthereal and #yExhaust."]
   }
 }

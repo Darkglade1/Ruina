@@ -170,5 +170,23 @@
     "NAME": "Forgotten Sword",
     "DIALOG": [
     ]
+  },
+  "${ModID}:KingOfGreed": {
+    "MOVES": [
+      "Road of the King",
+      "Fixation",
+      "Edacity"
+    ],
+    "NAME": "King of Greed",
+    "DIALOG": [
+      "More . .. I must have MORE!"
+    ]
+  },
+  "${ModID}:BrilliantBliss": {
+    "MOVES": [
+    ],
+    "NAME": "Brilliant Bliss",
+    "DIALOG": [
+    ]
   }
 }

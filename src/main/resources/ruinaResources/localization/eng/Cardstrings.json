@@ -3,6 +3,10 @@
     "NAME": "Wisdom",
     "DESCRIPTION": "Draw !M! card. NL If a *Scarecrow exhausts this card, *Stun it next turn."
   },
+  "${ModID}:FragmentOfBliss": {
+    "NAME": "Fragment of Bliss",
+    "DESCRIPTION": "Gain !M! Block. NL This card is not affected by Block modifiers."
+  },
   "${ModID}:Strike": {
     "NAME": "Strike",
     "DESCRIPTION": "Deal !D! damage."

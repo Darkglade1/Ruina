@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="164" height="244" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Slash.png" width="455" height="455" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Stab.png" width="341" height="196" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Special.png" width="908" height="241" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="SpecialIdle.png" width="176" height="224" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Greed">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-51" y="222"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Slash" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Slash">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-358" y="458"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Stab" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Stab">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-220" y="191.111111"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Special" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-815.555556" y="235.555556"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="SpecialIdle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="SpecialIdle">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-63.333333" y="225.555556"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
