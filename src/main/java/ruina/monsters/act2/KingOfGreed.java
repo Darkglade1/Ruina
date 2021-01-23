@@ -1,7 +1,6 @@
 package ruina.monsters.act2;
 
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
@@ -14,7 +13,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
@@ -52,7 +50,7 @@ public class KingOfGreed extends AbstractRuinaMonster
     }
 
     public KingOfGreed(final float x, final float y) {
-        super(NAME, ID, 110, -25.0F, 0, 200.0f, 245.0f, null, x, y);
+        super(NAME, ID, 110, 10.0F, 0, 200.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Greed/Spriter/Greed.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(115), calcAscensionTankiness(122));

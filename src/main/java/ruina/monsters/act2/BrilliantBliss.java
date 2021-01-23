@@ -1,6 +1,7 @@
 package ruina.monsters.act2;
 
 import basemod.helpers.CardPowerTip;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -46,7 +47,6 @@ public class BrilliantBliss extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        tips.add(new CardPowerTip(fragment.makeStatEquivalentCopy()));
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() {
@@ -62,6 +62,12 @@ public class BrilliantBliss extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
+    }
+
+    @Override
+    public void renderTip(SpriteBatch sb) {
+        super.renderTip(sb);
+        tips.add(new CardPowerTip(fragment.makeStatEquivalentCopy()));
     }
 
     @Override
