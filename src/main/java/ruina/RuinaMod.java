@@ -38,6 +38,7 @@ import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SillyVariable;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
+import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.KingOfGreed;
 import ruina.monsters.act2.KnightOfDespair;
@@ -154,6 +155,7 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("Claw"), makeSFXPath("Wolf_Hori.wav"));
         BaseMod.addAudio(makeID("Howl"), makeSFXPath("Wolf_Howl.wav"));
         BaseMod.addAudio(makeID("Fog"), makeSFXPath("Wolf_FogChange.wav"));
+        BaseMod.addAudio(makeID("WolfPhase"), makeSFXPath("Wolf_Phase2.wav"));
 
         BaseMod.addAudio(makeID("Slash"), makeSFXPath("RedHood_Atk1.wav"));
         BaseMod.addAudio(makeID("Gun"), makeSFXPath("RedHood_Gun.wav"));
@@ -277,6 +279,7 @@ public class RuinaMod implements
                 }));
         BaseMod.addMonster(KnightOfDespair.ID, (BaseMod.GetMonster) KnightOfDespair::new);
         BaseMod.addMonster(KingOfGreed.ID, (BaseMod.GetMonster) KingOfGreed::new);
+        BaseMod.addMonster(BadWolf.ID, (BaseMod.GetMonster) BadWolf::new);
 
         BaseMod.addBoss(Briah.ID, EncounterIDs.RED_AND_WOLF, makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
         BaseMod.addBoss(Briah.ID, JesterOfNihil.ID, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));

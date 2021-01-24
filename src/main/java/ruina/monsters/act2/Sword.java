@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.MetallicizePower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
@@ -25,7 +26,7 @@ public class Sword extends AbstractRuinaMonster
     public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte TEAR_HEART = 0;
-
+    private final int BLOCK = calcAscensionTankiness(5);
     private KnightOfDespair knight;
 
     public static final String POWER_ID = makeID("Worthless");
@@ -60,6 +61,7 @@ public class Sword extends AbstractRuinaMonster
                 description = POWER_DESCRIPTIONS[0];
             }
         });
+        applyToTarget(this, this, new MetallicizePower(this, BLOCK));
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
 
 import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.atb;
 
 public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(RuinaMod.makeID("AllyStrings"));
@@ -37,7 +38,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     public void usePreBattleAction() {
         super.usePreBattleAction();
         if (isAlly) {
-            this.addToBot(new AbstractGameAction() {
+            atb(new AbstractGameAction() {
                 @Override
                 public void update() {
                     halfDead = true;
@@ -50,7 +51,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     @Override
     public void takeTurn() {
         if (isAlly) {
-            this.addToBot(new AbstractGameAction() {
+            atb(new AbstractGameAction() {
                 @Override
                 public void update() {
                     halfDead = false;

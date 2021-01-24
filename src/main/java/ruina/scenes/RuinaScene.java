@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.rooms.CampfireUI;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
+import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.KingOfGreed;
 import ruina.monsters.act2.KnightOfDespair;
@@ -94,6 +95,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Despair");
                 } else if (mo instanceof KingOfGreed) {
                     this.bg = this.atlas.findRegion("mod/GoldPalace");
+                } else if (mo instanceof BadWolf) {
+                    this.bg = this.atlas.findRegion("mod/BloodMoon");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }

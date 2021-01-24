@@ -156,7 +156,7 @@ public class Wiz {
     }
 
     public static void topDeck(AbstractCard c, int i) {
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction(c, i, false, true));
+        atb(new MakeTempCardInDrawPileAction(c, i, false, true));
     }
 
     public static void topDeck(AbstractCard c) {

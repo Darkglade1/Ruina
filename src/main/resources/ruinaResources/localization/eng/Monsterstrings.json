@@ -188,5 +188,15 @@
     "NAME": "Brilliant Bliss",
     "DIALOG": [
     ]
+  },
+  "${ModID}:BadWolf": {
+    "MOVES": [
+      "Claw",
+      "Bite",
+      "Hunt"
+    ],
+    "NAME": "Big and Will Be Bad Wolf",
+    "DIALOG": [
+    ]
   }
 }

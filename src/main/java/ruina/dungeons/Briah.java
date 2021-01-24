@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
+import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.KingOfGreed;
 import ruina.monsters.act2.KnightOfDespair;
 import ruina.monsters.act2.Mountain;
@@ -90,7 +91,7 @@ public class Briah extends CustomDungeon {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         //monsters.add(new MonsterInfo("Spheric Guardian", 2.0F));
         monsters.add(new MonsterInfo(Nosferatu.ID, 2.0F));
-        //monsters.add(new MonsterInfo("Shell Parasite", 2.0F));
+        monsters.add(new MonsterInfo(BadWolf.ID, 2.0F));
         monsters.add(new MonsterInfo(EncounterIDs.BATS_3, 2.0F));
         monsters.add(new MonsterInfo(EncounterIDs.SCARECROWS_2, 2.0F));
         MonsterInfo.normalizeWeights(monsters);

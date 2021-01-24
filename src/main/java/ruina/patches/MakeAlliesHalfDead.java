@@ -12,6 +12,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import javassist.CtBehavior;
 import ruina.monsters.AbstractAllyMonster;
+import ruina.monsters.act2.BadWolf;
+
+import static ruina.util.Wiz.atb;
 
 @SpirePatch(
         clz = GameActionManager.class,
@@ -28,7 +31,7 @@ public class MakeAlliesHalfDead {
                     if (mo instanceof AbstractAllyMonster) {
                         AbstractAllyMonster ally = (AbstractAllyMonster)mo;
                         if (ally.isAlly) {
-                            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                            atb(new AbstractGameAction() {
                                 @Override
                                 public void update() {
                                     mo.halfDead = true;
@@ -36,6 +39,15 @@ public class MakeAlliesHalfDead {
                                 }
                             });
                         }
+                    }
+                    if (mo.hasPower(BadWolf.SKULK_POWER_ID)) {
+                        atb(new AbstractGameAction() {
+                            @Override
+                            public void update() {
+                                mo.halfDead = true;
+                                this.isDone = true;
+                            }
+                        });
                     }
                 }
             }

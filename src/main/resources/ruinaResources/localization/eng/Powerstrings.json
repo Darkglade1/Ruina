@@ -86,5 +86,13 @@
   "${ModID}:Bliss": {
     "NAME": "Moment of Bliss",
     "DESCRIPTIONS": ["On death, add a ", " to your hand with #yEthereal and #yExhaust."]
+  },
+  "${ModID}:Hunter": {
+    "NAME": "Hunter in the Dark",
+    "DESCRIPTIONS": ["The first time this creature drops below #b", "% HP, it becomes #yUntargetable and #yImmune for #b", " turns."]
+  },
+  "${ModID}:Skulk": {
+    "NAME": "Skulk",
+    "DESCRIPTIONS": ["#yUntargetable and #yImmune for #b", " turns.", " turn."]
   }
 }
