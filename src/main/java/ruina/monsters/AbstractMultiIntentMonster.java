@@ -1,10 +1,8 @@
 package ruina.monsters;
 
-import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,7 +10,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -176,32 +173,11 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
 
     @Override
     public void renderTip(SpriteBatch sb) {
-        this.tips.clear();
-        if (!AbstractDungeon.player.hasRelic(RunicDome.ID)) {
-            PowerTip intentTip = (PowerTip) ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
-            this.tips.add(intentTip);
-            for (AdditionalIntent additionalIntent : additionalIntents) {
-                this.tips.add(additionalIntent.intentTip);
-            }
-        }
-        for (AbstractPower p : this.powers) {
-            if (p.region48 != null && !(p instanceof InvisiblePower)) {
-                this.tips.add(new PowerTip(p.name, p.description, p.region48));
-                continue;
-            }
-            if (!(p instanceof InvisiblePower)) {
-                this.tips.add(new PowerTip(p.name, p.description, p.img));
-            }
-        }
-        if (!this.tips.isEmpty()) {
-            if (this.hb.cX + this.hb.width / 2.0F < TIP_X_THRESHOLD) {
-                TipHelper.queuePowerTips(this.hb.cX + this.hb.width / 2.0F + TIP_OFFSET_R_X, this.hb.cY +
-
-                        TipHelper.calculateAdditionalOffset(this.tips, this.hb.cY), this.tips);
-            } else {
-                TipHelper.queuePowerTips(this.hb.cX - this.hb.width / 2.0F + TIP_OFFSET_L_X, this.hb.cY +
-
-                        TipHelper.calculateAdditionalOffset(this.tips, this.hb.cY), this.tips);
+        super.renderTip(sb);
+        if (!adp().hasRelic(RunicDome.ID) && !this.hasPower(StunMonsterPower.POWER_ID)) {
+            for (int i = 0; i < additionalIntents.size(); i++) {
+                AdditionalIntent additionalIntent = additionalIntents.get(i);
+                this.tips.add(i + 1, additionalIntent.intentTip);
             }
         }
     }

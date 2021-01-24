@@ -289,7 +289,13 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 }
             }
         }
-        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+        atb(new RollMoveAction(this));
+        if (girl1Spawned) {
+            atb(new RollMoveAction(girl1));
+        }
+        if (girl2Spawned) {
+            atb(new RollMoveAction(girl2));
+        }
         massAttackCooldown--;
         ramageCooldown--;
     }

@@ -90,7 +90,6 @@ public class ServantOfCourage extends AbstractMagicalGirl
                 break;
             }
         }
-        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
     @Override

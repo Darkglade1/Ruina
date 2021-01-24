@@ -118,7 +118,6 @@ public class QueenOfLove extends AbstractMagicalGirl
                 break;
             }
         }
-        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
     @Override
