@@ -145,7 +145,7 @@ public class BadWolf extends AbstractRuinaMonster
         if (phase == 2) {
             playSound("Fog");
         }
-        resetIdle();
+        runAnim("Idle" + phase);
     }
 
     private void biteAnimation(AbstractCreature enemy) {
@@ -191,7 +191,7 @@ public class BadWolf extends AbstractRuinaMonster
 
                 @Override
                 public void onRemove() {
-                    att(new AbstractGameAction() {
+                    atb(new AbstractGameAction() {
                         @Override
                         public void update() {
                             halfDead = false;

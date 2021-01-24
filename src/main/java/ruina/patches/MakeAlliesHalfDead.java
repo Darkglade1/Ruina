@@ -15,6 +15,7 @@ import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.act2.BadWolf;
 
 import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.att;
 
 @SpirePatch(
         clz = GameActionManager.class,
@@ -40,15 +41,22 @@ public class MakeAlliesHalfDead {
                             });
                         }
                     }
-                    if (mo.hasPower(BadWolf.SKULK_POWER_ID)) {
-                        atb(new AbstractGameAction() {
-                            @Override
-                            public void update() {
-                                mo.halfDead = true;
-                                this.isDone = true;
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            if (mo.hasPower(BadWolf.SKULK_POWER_ID)) {
+                                att(new AbstractGameAction() {
+                                    @Override
+                                    public void update() {
+                                        mo.halfDead = true;
+                                        this.isDone = true;
+                                    }
+                                });
                             }
-                        });
-                    }
+                            this.isDone = true;
+                        }
+                    });
+
                 }
             }
         }
