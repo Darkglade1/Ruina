@@ -3,6 +3,7 @@ package ruina.monsters;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -115,5 +116,12 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
             return;
         }
         super.damage(info);
+    }
+
+    @Override
+    public void renderReticle(SpriteBatch sb) {
+        if (!isAlly) {
+            super.renderReticle(sb);
+        }
     }
 }

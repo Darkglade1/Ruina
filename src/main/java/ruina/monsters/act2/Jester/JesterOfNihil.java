@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.stances.CalmStance;
+import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
@@ -432,7 +433,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 this.particleTimer2 -= Gdx.graphics.getDeltaTime();
                 if (this.particleTimer2 < 0.0F) {
                     this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
-                    AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(CalmStance.STANCE_ID, this));
+                    AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(WrathStance.STANCE_ID, this));
                 }
             }
         }

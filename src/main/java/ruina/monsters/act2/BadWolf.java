@@ -1,5 +1,6 @@
 package ruina.monsters.act2;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -220,6 +221,13 @@ public class BadWolf extends AbstractRuinaMonster
                     }
                 }
             });
+        }
+    }
+
+    @Override
+    public void renderReticle(SpriteBatch sb) {
+        if (!this.hasPower(SKULK_POWER_ID)) {
+            super.renderReticle(sb);
         }
     }
 
