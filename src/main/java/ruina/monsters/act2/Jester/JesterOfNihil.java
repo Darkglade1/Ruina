@@ -38,6 +38,7 @@ import ruina.powers.SenselessWrath;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.FlexibleCalmParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
+import ruina.vfx.FlexibleWrathParticleEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
@@ -425,7 +426,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 this.particleTimer -= Gdx.graphics.getDeltaTime();
                 if (this.particleTimer < 0.0F) {
                     this.particleTimer = 0.04F;
-                    AbstractDungeon.effectsQueue.add(new FlexibleCalmParticleEffect(this));
+                    AbstractDungeon.effectsQueue.add(new FlexibleWrathParticleEffect(this));
                 }
 
                 this.particleTimer2 -= Gdx.graphics.getDeltaTime();

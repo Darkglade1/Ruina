@@ -94,5 +94,9 @@
   "${ModID}:Skulk": {
     "NAME": "Skulk",
     "DESCRIPTIONS": ["#yUntargetable and #yImmune for #b", " turns.", " turn."]
+  },
+  "${ModID}:Courage": {
+    "NAME": "Courage",
+    "DESCRIPTIONS": ["Whenever the ", " is attacked, this creature gains #b", " #yStrength this turn."]
   }
 }
