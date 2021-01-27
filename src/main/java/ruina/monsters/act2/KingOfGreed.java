@@ -38,6 +38,8 @@ public class KingOfGreed extends AbstractRuinaMonster
     private static final int FRAIL = 2;
     private static final int VULNERABLE = 1;
 
+    private boolean canPlaySound = true;
+
     public static final String POWER_ID = makeID("Road");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
@@ -114,6 +116,7 @@ public class KingOfGreed extends AbstractRuinaMonster
             }
         }
         atb(new RollMoveAction(this));
+        canPlaySound = true;
     }
 
     @Override
@@ -123,8 +126,11 @@ public class KingOfGreed extends AbstractRuinaMonster
             setMoveShortcut(FIXATION, MOVES[FIXATION]);
             turn = FIXATION;
         } else if (this.lastMove(FIXATION)) {
-            playSound("GreedStrAtkReady");
-            runAnim("SpecialIdle");
+            if (canPlaySound) { //avoid spamming the sound in case someone calls rollMove a bunch
+                playSound("GreedStrAtkReady");
+                runAnim("SpecialIdle");
+                canPlaySound = false;
+            }
             setMoveShortcut(ROAD_OF_KING, MOVES[ROAD_OF_KING]);
             turn = ROAD_OF_KING;
         } else {

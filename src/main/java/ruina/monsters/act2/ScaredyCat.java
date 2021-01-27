@@ -37,13 +37,13 @@ public class ScaredyCat extends AbstractRuinaMonster
     }
 
     public ScaredyCat(final float x, final float y, RoadHome road) {
-        super(NAME, ID, 80, -5.0F, 0, 270.0f, 255.0f, null, x, y);
+        super(NAME, ID, 120, -5.0F, 0, 270.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScaredyCat/Spriter/ScaredyCat.scml"));
         this.type = EnemyType.ELITE;
         this.road = road;
         setHp(calcAscensionTankiness(maxHealth));
-        addMove(RAWR, Intent.ATTACK, calcAscensionDamage(9), 2, true);
-        addMove(GROWL, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
+        addMove(RAWR, Intent.ATTACK, calcAscensionDamage(8), 2, true);
+        addMove(GROWL, Intent.ATTACK_DEBUFF, calcAscensionDamage(13));
         addMove(FLEE, Intent.ESCAPE);
     }
 

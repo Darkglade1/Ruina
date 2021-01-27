@@ -8,7 +8,7 @@ import static ruina.RuinaMod.makeID;
 
 public class FragmentOfBliss extends AbstractRuinaCard {
     public final static String ID = makeID(FragmentOfBliss.class.getSimpleName());
-    private static final int BLOCK = 40;
+    private static final int BLOCK = 30;
 
     public FragmentOfBliss() {
         super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF);

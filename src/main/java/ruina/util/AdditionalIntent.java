@@ -172,33 +172,33 @@ public class AdditionalIntent {
                         this.intentParticleTimer -= Gdx.graphics.getDeltaTime();
                         if (this.intentParticleTimer < 0.0F) {
                             this.intentParticleTimer = 0.5F;
-                            this.intentVfx.add(new ShieldParticleEffect(source.intentHb.cX + (72.0F * scaleWidth * position), source.intentHb.cY));
+                            this.intentVfx.add(new ShieldParticleEffect(source.intentHb.cX + (X_OFFSET * scaleWidth * position), source.intentHb.cY));
                         }
                     } else if (this.intent == AbstractMonster.Intent.UNKNOWN) {
                         this.intentParticleTimer -= Gdx.graphics.getDeltaTime();
                         if (this.intentParticleTimer < 0.0F) {
                             this.intentParticleTimer = 0.5F;
-                            this.intentVfx.add(new UnknownParticleEffect(source.intentHb.cX + (72.0F * scaleWidth * position), source.intentHb.cY));
+                            this.intentVfx.add(new UnknownParticleEffect(source.intentHb.cX + (X_OFFSET * scaleWidth * position), source.intentHb.cY));
                         }
                     } else if (this.intent == AbstractMonster.Intent.STUN) {
                         this.intentParticleTimer -= Gdx.graphics.getDeltaTime();
                         if (this.intentParticleTimer < 0.0F) {
                             this.intentParticleTimer = 0.67F;
-                            this.intentVfx.add(new StunStarEffect(source.intentHb.cX + (72.0F * scaleWidth * position), source.intentHb.cY));
+                            this.intentVfx.add(new StunStarEffect(source.intentHb.cX + (X_OFFSET * scaleWidth * position), source.intentHb.cY));
                         }
                     }
                 } else {
                     this.intentParticleTimer -= Gdx.graphics.getDeltaTime();
                     if (this.intentParticleTimer < 0.0F) {
                         this.intentParticleTimer = 0.1F;
-                        this.intentVfx.add(new BuffParticleEffect(source.intentHb.cX + (72.0F * scaleWidth * position), source.intentHb.cY));
+                        this.intentVfx.add(new BuffParticleEffect(source.intentHb.cX + (X_OFFSET * scaleWidth * position), source.intentHb.cY));
                     }
                 }
             } else {
                 this.intentParticleTimer -= Gdx.graphics.getDeltaTime();
                 if (this.intentParticleTimer < 0.0F) {
                     this.intentParticleTimer = 1.0F;
-                    this.intentVfx.add(new DebuffParticleEffect(source.intentHb.cX + (72.0F * scaleWidth * position), source.intentHb.cY));
+                    this.intentVfx.add(new DebuffParticleEffect(source.intentHb.cX + (X_OFFSET * scaleWidth * position), source.intentHb.cY));
                 }
             }
         }

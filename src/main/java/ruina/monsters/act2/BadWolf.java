@@ -170,6 +170,9 @@ public class BadWolf extends AbstractRuinaMonster
 
     @Override
     public void damage(DamageInfo info) {
+        if (this.hasPower(SKULK_POWER_ID)) {
+            return;
+        }
         super.damage(info);
         if (this.currentHealth < (int)(this.maxHealth * HP_THRESHOLD) && !triggered) {
             triggered = true;

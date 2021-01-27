@@ -41,7 +41,7 @@ public class RoadHome extends AbstractRuinaMonster
 
     private ScaredyCat cat;
 
-    private final int BLOCK = calcAscensionTankiness(8);
+    private final int BLOCK = calcAscensionTankiness(12);
     private final int STRENGTH = calcAscensionSpecial(3);
     private final int PARALYSIS = calcAscensionSpecial(2);
 
@@ -50,7 +50,7 @@ public class RoadHome extends AbstractRuinaMonster
     }
 
     public RoadHome(final float x, final float y) {
-        super(NAME, ID, 120, -5.0F, 0, 200.0f, 235.0f, null, x, y);
+        super(NAME, ID, 100, -5.0F, 0, 200.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("RoadHome/Spriter/RoadHome.scml"));
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(maxHealth));
