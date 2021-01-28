@@ -2,7 +2,7 @@ package ruina.monsters.act2;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Burn;
+import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -32,7 +32,7 @@ public class QueenOfHate extends AbstractRuinaMonster
     private final int WEAK_AMT = calcAscensionSpecial(2);
     private final int FRAIL_AMT = calcAscensionSpecial(2);
     private final int POWER_THRESHOLD = 3;
-    private final int BURN = calcAscensionSpecial(1);
+    private final int STATUS = calcAscensionSpecial(1);
     private final int VULNERABLE = calcAscensionSpecial(3);
 
     public boolean hysteriaTriggered = false;
@@ -47,8 +47,8 @@ public class QueenOfHate extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("QueenOfHate/Spriter/QueenOfHate.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(101), calcAscensionTankiness(108));
-        addMove(ARCANA_BEATS, Intent.ATTACK, calcAscensionDamage(19));
-        addMove(NAME_OF_HATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
+        addMove(ARCANA_BEATS, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
+        addMove(NAME_OF_HATE, Intent.ATTACK, calcAscensionDamage(19));
         addMove(LIGHT_OF_HATRED, Intent.DEBUFF);
     }
 
@@ -74,13 +74,13 @@ public class QueenOfHate extends AbstractRuinaMonster
             case ARCANA_BEATS: {
                 biteAnimation(adp());
                 dmg(adp(), info);
+                intoDiscardMo(new Wound(), STATUS, this);
                 resetIdle();
                 break;
             }
             case NAME_OF_HATE: {
                 shootAnimation(adp());
                 dmg(adp(), info);
-                intoDiscardMo(new Burn(), BURN, this);
                 resetIdle();
                 break;
             }
@@ -115,7 +115,7 @@ public class QueenOfHate extends AbstractRuinaMonster
     }
 
     private void shootAnimation(AbstractCreature enemy) {
-        animationAction("Shoot", "MagicGun", enemy, this);
+        animationAction("Shoot", "MagicSnakeGun", enemy, this);
     }
 
 }
