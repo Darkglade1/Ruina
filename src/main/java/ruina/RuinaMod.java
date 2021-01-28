@@ -242,16 +242,10 @@ public class RuinaMod implements
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
-        (new Briah()).addAct(TheCity.ID);
+        Briah briah = new Briah();
+        briah.addAct(TheCity.ID);
 
         CustomIntent.add(new MassAttackIntent());
-
-        BaseMod.addMonster(EncounterIDs.RED_AND_WOLF, "Red and Wolf", () -> new MonsterGroup(
-                new AbstractMonster[] {
-                        new LittleRed(-480.0F, 0.0F),
-                        new NightmareWolf(),
-                }));
-        BaseMod.addMonster(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new);
 
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
         BaseMod.addMonster(RoadHome.ID, (BaseMod.GetMonster) RoadHome::new);
@@ -285,8 +279,12 @@ public class RuinaMod implements
         BaseMod.addMonster(BadWolf.ID, (BaseMod.GetMonster) BadWolf::new);
         BaseMod.addMonster(QueenOfHate.ID, (BaseMod.GetMonster) QueenOfHate::new);
 
-        BaseMod.addBoss(Briah.ID, EncounterIDs.RED_AND_WOLF, makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
-        BaseMod.addBoss(Briah.ID, JesterOfNihil.ID, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
+        briah.addBoss(EncounterIDs.RED_AND_WOLF, () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new LittleRed(-480.0F, 0.0F),
+                        new NightmareWolf(),
+                }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
+        briah.addBoss(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
 
 
         BaseMod.addEvent(Addict.ID, Addict.class, Briah.ID);
