@@ -198,5 +198,15 @@
     "NAME": "Big and Will Be Bad Wolf",
     "DIALOG": [
     ]
+  },
+  "${ModID}:QueenOfHate": {
+    "MOVES": [
+      "Arcana Beats",
+      "In the Name of Hate",
+      "Light of Hatred"
+    ],
+    "NAME": "Queen of Hatred",
+    "DIALOG": [
+    ]
   }
 }

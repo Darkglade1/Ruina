@@ -46,6 +46,7 @@ import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.NightmareWolf;
 import ruina.monsters.act2.Nosferatu;
+import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
@@ -178,6 +179,7 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("MagicAttack"), makeSFXPath("MagicalGirl_Atk.wav"));
         BaseMod.addAudio(makeID("MagicKiss"), makeSFXPath("MagicalGirl_kiss.wav"));
         BaseMod.addAudio(makeID("MagicGun"), makeSFXPath("MagicalGirl_Gun.wav"));
+        BaseMod.addAudio(makeID("MagicSnakeAtk"), makeSFXPath("MagicalGirl_SnakeAtk.wav"));
 
         BaseMod.addAudio(makeID("GreedGetPower"), makeSFXPath("Greed_GetPower.wav"));
         BaseMod.addAudio(makeID("GreedBlunt"), makeSFXPath("Greed_Stab.wav"));
@@ -280,6 +282,7 @@ public class RuinaMod implements
         BaseMod.addMonster(KnightOfDespair.ID, (BaseMod.GetMonster) KnightOfDespair::new);
         BaseMod.addMonster(KingOfGreed.ID, (BaseMod.GetMonster) KingOfGreed::new);
         BaseMod.addMonster(BadWolf.ID, (BaseMod.GetMonster) BadWolf::new);
+        BaseMod.addMonster(QueenOfHate.ID, (BaseMod.GetMonster) QueenOfHate::new);
 
         BaseMod.addBoss(Briah.ID, EncounterIDs.RED_AND_WOLF, makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
         BaseMod.addBoss(Briah.ID, JesterOfNihil.ID, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));

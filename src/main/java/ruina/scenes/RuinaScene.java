@@ -20,6 +20,7 @@ import ruina.monsters.act2.KnightOfDespair;
 import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.Nosferatu;
+import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
@@ -97,6 +98,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/GoldPalace");
                 } else if (mo instanceof BadWolf) {
                     this.bg = this.atlas.findRegion("mod/BloodMoon");
+                } else if (mo instanceof QueenOfHate) {
+                    this.bg = this.atlas.findRegion("mod/Hate");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }

@@ -14,11 +14,14 @@ import ruina.monsters.act2.KingOfGreed;
 import ruina.monsters.act2.KnightOfDespair;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.Nosferatu;
+import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.Woodsman;
 import ruina.scenes.RuinaScene;
 
 import java.util.ArrayList;
+
+import static ruina.monsters.act2.Nosferatu.*;
 
 public class Briah extends CustomDungeon {
 
@@ -87,6 +90,7 @@ public class Briah extends CustomDungeon {
         generateElites(elitepreset);
     }
 
+    @Override
     protected void generateWeakEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         //monsters.add(new MonsterInfo("Spheric Guardian", 2.0F));
@@ -98,10 +102,11 @@ public class Briah extends CustomDungeon {
         this.populateMonsterList(monsters, count, false);
     }
 
+    @Override
     protected void generateStrongEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo(EncounterIDs.NOS_AND_BAT, 2.0F));
-        //monsters.add(new MonsterInfo("Sentry and Sphere", 2.0F));
+        monsters.add(new MonsterInfo(QueenOfHate.ID, 5.0F));
         monsters.add(new MonsterInfo(KnightOfDespair.ID, 6.0F));
         monsters.add(new MonsterInfo(Woodsman.ID, 4.0F));
         monsters.add(new MonsterInfo(KingOfGreed.ID, 6.0F));
@@ -113,6 +118,7 @@ public class Briah extends CustomDungeon {
         this.populateMonsterList(monsters, count, false);
     }
 
+    @Override
     protected void generateElites(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         //monsters.add(new MonsterInfo("Gremlin Leader", 1.0F));
@@ -122,39 +128,16 @@ public class Briah extends CustomDungeon {
         this.populateMonsterList(monsters, count, true);
     }
 
+    @Override
     protected ArrayList<String> generateExclusions() {
         ArrayList<String> retVal = new ArrayList<>();
-        String var2 = (String)monsterList.get(monsterList.size() - 1);
-        byte var3 = -1;
-        switch(var2.hashCode()) {
-            case -1001149827:
-                if (var2.equals("3 Byrds")) {
-                    var3 = 1;
-                }
-                break;
-            case 1989842815:
-                if (var2.equals("Spheric Guardian")) {
-                    var3 = 0;
-                }
-                break;
-            case 2017619858:
-                if (var2.equals("Chosen")) {
-                    var3 = 2;
-                }
+        String previous = monsterList.get(monsterList.size() - 1);
+        if (previous.equals(Nosferatu.ID) || previous.equals(EncounterIDs.BATS_3)) {
+            retVal.add(EncounterIDs.NOS_AND_BAT);
         }
-
-        switch(var3) {
-            case 0:
-                retVal.add("Sentry and Sphere");
-                break;
-            case 1:
-                retVal.add("Chosen and Byrds");
-                break;
-            case 2:
-                retVal.add("Chosen and Byrds");
-                retVal.add("Cultist and Chosen");
+        if (previous.equals(EncounterIDs.SCARECROWS_2)) {
+            retVal.add(EncounterIDs.SCARECROWS_3);
         }
-
         return retVal;
     }
 

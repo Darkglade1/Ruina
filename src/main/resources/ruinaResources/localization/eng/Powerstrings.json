@@ -98,5 +98,9 @@
   "${ModID}:Courage": {
     "NAME": "Courage",
     "DESCRIPTIONS": ["Whenever the ", " is attacked, this creature gains #b", " #yStrength this turn."]
+  },
+  "${ModID}:Hysteria": {
+    "NAME": "Hysteria",
+    "DESCRIPTIONS": ["Whenever you play #b", " #yAttacks in a single turn, you gain #b", " #yWeak. NL Whenever you play #b", " #ySkills in a single turn, you gain #b", " #yFrail."]
   }
 }
