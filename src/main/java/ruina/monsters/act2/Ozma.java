@@ -41,7 +41,7 @@ public class Ozma extends AbstractRuinaMonster
 
     private final int STRENGTH = calcAscensionSpecial(3);
     private final int PARALYSIS = calcAscensionSpecial(1);
-    private final int BLOCK = calcAscensionTankiness(13);
+    private final int BLOCK = calcAscensionTankiness(11);
     private final int DRAW_DEBUFF = 1;
 
     private final int DRAW_DEBUFF_COOLDOWN = 3;
@@ -108,12 +108,13 @@ public class Ozma extends AbstractRuinaMonster
                 attackAnimation(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new Paralysis(adp(), PARALYSIS));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case SQUASH: {
                 attackAnimation(adp());
-                resetIdle();
+                dmg(adp(), info);
+                resetIdle(1.0f);
                 break;
             }
         }

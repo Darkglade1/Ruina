@@ -43,7 +43,7 @@ public class Jack extends AbstractRuinaMonster
     }
 
     public Jack(final float x, final float y, boolean startSingle) {
-        super(NAME, ID, 200, -5.0F, 0, 150.0f, 275.0f, null, x, y);
+        super(NAME, ID, 200, -5.0F, 0, 135.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jack/Spriter/Jack.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(maxHealth));
@@ -65,6 +65,7 @@ public class Jack extends AbstractRuinaMonster
             @Override
             public int onAttacked(DamageInfo info, int damageAmount) {
                 if (damageAmount > 0 && stolenCards.size() > 0) {
+                    flash();
                     atb(new MakeTempCardInHandAction(stolenCards.remove(0)));
                 }
                 return damageAmount;

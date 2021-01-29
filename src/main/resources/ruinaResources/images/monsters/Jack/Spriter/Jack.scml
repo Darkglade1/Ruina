@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0">
-        <file id="0" name="Idle.png" width="298" height="306" pivot_x="0" pivot_y="1"/>
-        <file id="1" name="Slash.png" width="424" height="372" pivot_x="0" pivot_y="1"/>
-        <file id="2" name="Pierce.png" width="623" height="262" pivot_x="0" pivot_y="1"/>
-        <file id="3" name="Blunt.png" width="560" height="367" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="Idle.png" width="149" height="153" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Slash.png" width="212" height="186" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Pierce.png" width="312" height="131" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Blunt.png" width="280" height="184" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="Jack">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -15,7 +15,7 @@
             </mainline>
             <timeline id="0" name="Idle">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-127" y="280"/>
+                    <object folder="0" file="0" x="-68" y="142" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -27,7 +27,7 @@
             </mainline>
             <timeline id="0" name="Slash">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-274" y="321"/>
+                    <object folder="0" file="1" x="-131" y="166" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -39,7 +39,7 @@
             </mainline>
             <timeline id="0" name="Pierce">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-469" y="263"/>
+                    <object folder="0" file="2" x="-237" y="133" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -51,7 +51,7 @@
             </mainline>
             <timeline id="0" name="Blunt">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-349" y="340"/>
+                    <object folder="0" file="3" x="-156" y="171" angle="0"/>
                 </key>
             </timeline>
         </animation>

@@ -22,10 +22,8 @@ public class JackStealAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (AbstractDungeon.player.drawPile.isEmpty()) {
-            this.isDone = true;
-        } else {
-            if (this.duration == this.startingDuration) {
+        if (this.duration == this.startingDuration) {
+            if (!adp().drawPile.isEmpty()) {
                 this.card = adp().drawPile.getTopCard();
                 adp().drawPile.removeCard(this.card);
                 adp().limbo.addToBottom(this.card);
@@ -40,12 +38,10 @@ public class JackStealAction extends AbstractGameAction {
                 this.card.untip();
                 this.card.stopGlowing();
             }
-
-            this.tickDuration();
-            if (this.isDone && this.card != null) {
-                this.addToTop(new ShowCardAction(this.card));
-            }
-
+        }
+        this.tickDuration();
+        if (this.isDone && this.card != null) {
+            addToTop(new ShowCardAction(this.card));
         }
     }
 }
