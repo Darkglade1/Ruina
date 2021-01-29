@@ -208,5 +208,24 @@
     "NAME": "Queen of Hatred",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Ozma": {
+    "MOVES": [
+      "Fading Memories",
+      "Powder of Life",
+      "Hinder",
+      "Squash"
+    ],
+    "NAME": "Ozma",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Jack": {
+    "MOVES": [
+
+    ],
+    "NAME": "Jack",
+    "DIALOG": [
+    ]
   }
 }

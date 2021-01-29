@@ -46,6 +46,7 @@ import ruina.monsters.act2.LittleRed;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.NightmareWolf;
 import ruina.monsters.act2.Nosferatu;
+import ruina.monsters.act2.Ozma;
 import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.SanguineBat;
@@ -207,6 +208,10 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("MakeRoad"), makeSFXPath("House_MakeRoad.wav"));
         BaseMod.addAudio(makeID("HouseAttack"), makeSFXPath("House_NormalAtk.wav"));
         BaseMod.addAudio(makeID("LionChange"), makeSFXPath("House_Lion_Change.wav"));
+
+        BaseMod.addAudio(makeID("OzmaGuard"), makeSFXPath("Ozma_Guard.wav"));
+        BaseMod.addAudio(makeID("OzmaFin"), makeSFXPath("Ozma_StrongAtk_Fin.wav"));
+        BaseMod.addAudio(makeID("OzmaStart"), makeSFXPath("Ozma_StrongAtk_Start.wav"));
     }
 
     @Override
@@ -285,7 +290,7 @@ public class RuinaMod implements
                         new NightmareWolf(),
                 }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
         briah.addBoss(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
-
+        BaseMod.addMonster(Ozma.ID, (BaseMod.GetMonster) Ozma::new);
 
         BaseMod.addEvent(Addict.ID, Addict.class, Briah.ID);
         BaseMod.addEvent(BackToBasics.ID, BackToBasics.class, Briah.ID);

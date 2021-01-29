@@ -102,5 +102,13 @@
   "${ModID}:Hysteria": {
     "NAME": "Hysteria",
     "DESCRIPTIONS": ["Whenever you play #b", " #yAttacks in a single turn, you gain #b", " #yWeak. NL Whenever you play #b", " #ySkills in a single turn, you gain #b", " #yFrail."]
+  },
+  "${ModID}:Oblivion": {
+    "NAME": "Oblivion",
+    "DESCRIPTIONS": ["Draw #b", " less card ", " less cards ", " each turn."]
+  },
+  "${ModID}:Steal": {
+    "NAME": "Steal or Be Stolen",
+    "DESCRIPTIONS": ["Whenever this creature attacks, it #ysteals the top card of your draw pile. NL Whenever this creature loses HP, put the oldest card #ystolen by this creature into your hand."]
   }
 }
