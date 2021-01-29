@@ -1,11 +1,13 @@
 package ruina.monsters.act2;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -111,6 +113,21 @@ public class Jack extends AbstractRuinaMonster
             }
         }
         atb(new RollMoveAction(this));
+    }
+
+    @Override
+    public void renderTip(SpriteBatch sb) {
+        super.renderTip(sb);
+        float drawScale = 0.20F;
+        float offsetX1 = 100.0F * Settings.scale;
+        float offsetY = 100.0F * Settings.scale;
+        for (int i = 0; i < stolenCards.size(); i++) {
+            AbstractCard card = stolenCards.get(i);
+            card.drawScale = drawScale;
+            card.current_x = this.hb.x + offsetX1;
+            card.current_y = this.hb.y + offsetY * (i + 2);
+            card.render(sb);
+        }
     }
 
     @Override
