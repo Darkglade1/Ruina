@@ -5,23 +5,38 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import ruina.RuinaMod;
+import ruina.actions.TransferBlockToAllyAction;
+import ruina.powers.InvisibleAllyBarricadePower;
+import ruina.util.AllyMove;
 
-import static ruina.util.Wiz.adp;
-import static ruina.util.Wiz.atb;
+import java.util.ArrayList;
+
+import static ruina.RuinaMod.makeID;
+import static ruina.RuinaMod.makeUIPath;
+import static ruina.util.Wiz.*;
 
 public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(RuinaMod.makeID("AllyStrings"));
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AllyStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
     public String allyIcon;
     public boolean isAlly = true;
+    public ArrayList<AllyMove> allyMoves = new ArrayList<>();
+    private static final int BLOCK_TRANSFER = 5;
 
     public AbstractAllyMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -38,7 +53,14 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     @Override
     public void usePreBattleAction() {
         super.usePreBattleAction();
+        AllyMove blockMove = new AllyMove(TEXT[11], this, new Texture(makeUIPath("defend.png")), TEXT[9] + BLOCK_TRANSFER + TEXT[10], () -> {
+            atb(new TransferBlockToAllyAction(BLOCK_TRANSFER, this));
+        });
+        blockMove.setX(this.hb.x - 30.0F * Settings.scale);
+        blockMove.setY(this.hb.cY + 80.0f * Settings.scale);
+        allyMoves.add(blockMove);
         if (isAlly) {
+            applyToTarget(this, this, new InvisibleAllyBarricadePower(this));
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
@@ -122,6 +144,25 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     public void renderReticle(SpriteBatch sb) {
         if (!isAlly) {
             super.renderReticle(sb);
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if (isAlly) {
+            for (AllyMove allyMove : allyMoves) {
+                allyMove.render(sb);
+            }
+        }
+    }
+
+    public void update() {
+        super.update();
+        if (isAlly) {
+            for (AllyMove allyMove : allyMoves) {
+                allyMove.update();
+            }
         }
     }
 }

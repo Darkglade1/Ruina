@@ -26,7 +26,10 @@
       "Your #gally intends to inflict a #yNegative #yeffect on ",
       ".",
       "Your #gally intends to use a #yBuff.",
-      "Your #gally intends to #yDefend."
+      "Your #gally intends to #yDefend.",
+      "Transfer up to #b",
+      " #yBlock from you to this #yAlly.",
+      "Coordination"
     ]
   },
   "${ModID}:MassAttackIntent": {
