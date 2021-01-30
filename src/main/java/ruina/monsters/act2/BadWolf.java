@@ -123,28 +123,24 @@ public class BadWolf extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (hasPower(SKULK_POWER_ID)) {
-            setMoveShortcut(HUNT, MOVES[HUNT]);
-        } else {
-            ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(CLAW)) {
-                possibilities.add(CLAW);
-            }
-            if (!this.lastMove(BITE)) {
-                possibilities.add(BITE);
-            }
-            if (!this.lastMove(HUNT)) {
-                possibilities.add(HUNT);
-            }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+        ArrayList<Byte> possibilities = new ArrayList<>();
+        if (!this.lastMove(CLAW)) {
+            possibilities.add(CLAW);
         }
+        if (!this.lastMove(BITE)) {
+            possibilities.add(BITE);
+        }
+        if (!this.lastMove(HUNT)) {
+            possibilities.add(HUNT);
+        }
+        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        setMoveShortcut(move, MOVES[move]);
     }
 
     public void changePhase(int phase) {
         this.phase = phase;
         if (phase == 2) {
-            playSound("Fog");
+            playSound("Fog", 3.0f);
         }
         runAnim("Idle" + phase);
     }

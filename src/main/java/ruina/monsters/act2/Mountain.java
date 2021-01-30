@@ -233,7 +233,7 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     private void screechAnimation() {
-        animationAction("Screech", "Screech", 0.7f, this);
+        animationAction("Screech", "Screech", 0.5f, this);
     }
 
     private void ramAnimation(AbstractCreature enemy) {
@@ -241,7 +241,7 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     private void vomitAnimation() {
-        animationAction("Vomit", "Vomit", 0.7f, this);
+        animationAction("Vomit", "Vomit", 0.5f, this);
     }
 
     @Override
@@ -264,17 +264,31 @@ public class Mountain extends AbstractMultiIntentMonster
         } else {
             takeCustomTurn(this.moves.get(nextMove), adp());
         }
-        for (EnemyMoveInfo additionalMove : additionalMoves) {
+        for (int i = 0; i < additionalMoves.size(); i++) {
+            EnemyMoveInfo additionalMove = additionalMoves.get(i);
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
             if (!mo.halfDead) {
                 atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
                 atb(new IntentFlashAction(mo));
             }
-            if (corpse.isDeadOrEscaped() || currentStage == STAGE3) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
+            if (additionalIntent.targetTexture != null) {
                 takeCustomTurn(additionalMove, corpse);
+            } else {
+                takeCustomTurn(additionalMove, adp());
             }
         }
+//        for (EnemyMoveInfo additionalMove : additionalMoves) {
+//            if (!mo.halfDead) {
+//                atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
+//                atb(new IntentFlashAction(mo));
+//            }
+//
+//            if (corpse.isDeadOrEscaped() || currentStage == STAGE3) {
+//                takeCustomTurn(additionalMove, adp());
+//            } else {
+//                takeCustomTurn(additionalMove, corpse);
+//            }
+//        }
        atb(new RollMoveAction(this));
     }
 
@@ -321,17 +335,25 @@ public class Mountain extends AbstractMultiIntentMonster
                 setAdditionalMoveShortcut(DEVOUR, moveHistory);
             } else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
-                if (!this.lastTwoMoves(RAM)) {
+                if (!this.lastTwoMoves(RAM, moveHistory)) {
                     possibilities.add(RAM);
                 }
-                if (!this.lastTwoMoves(BITE)) {
+                if (!this.lastTwoMoves(BITE, moveHistory)) {
                     possibilities.add(BITE);
                 }
                 byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
                 setAdditionalMoveShortcut(move, moveHistory);
             }
         } else {
-            setAdditionalMoveShortcut(VOMIT, moveHistory);
+            if (this.lastMove(VOMIT, moveHistory)) {
+                ArrayList<Byte> possibilities = new ArrayList<>();
+                possibilities.add(RAM);
+                possibilities.add(BITE);
+                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                setAdditionalMoveShortcut(move, moveHistory);
+            } else {
+                setAdditionalMoveShortcut(VOMIT, moveHistory);
+            }
         }
     }
 
@@ -363,7 +385,11 @@ public class Mountain extends AbstractMultiIntentMonster
             }
             if (additionalMove != null) {
                 if (currentStage == STAGE3) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                    if (i == 1 && additionalIntent.baseDamage >= 0) {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, corpse, makeUIPath("CorpseIcon.png"));
+                    } else {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                    }
                 } else {
                     applyPowersToAdditionalIntent(additionalMove, additionalIntent, corpse, makeUIPath("CorpseIcon.png"));
                 }
