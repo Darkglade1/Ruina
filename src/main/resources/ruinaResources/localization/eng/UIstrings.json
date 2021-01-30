@@ -27,9 +27,10 @@
       ".",
       "Your #gally intends to use a #yBuff.",
       "Your #gally intends to #yDefend.",
-      "Transfer up to #b",
+      "#yClick to activate any number of times: #ytransfer up to #b",
       " #yBlock from you to this #yAlly.",
-      "Coordination"
+      "Coordination",
+      "I have no #yBlock to transfer!"
     ]
   },
   "${ModID}:MassAttackIntent": {

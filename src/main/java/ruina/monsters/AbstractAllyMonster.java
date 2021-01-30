@@ -5,21 +5,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
-import ruina.RuinaMod;
 import ruina.actions.TransferBlockToAllyAction;
 import ruina.powers.InvisibleAllyBarricadePower;
 import ruina.util.AllyMove;
@@ -150,7 +143,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        if (isAlly) {
+        if (isAlly && !isDead && !isDying) {
             for (AllyMove allyMove : allyMoves) {
                 allyMove.render(sb);
             }
@@ -159,7 +152,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
 
     public void update() {
         super.update();
-        if (isAlly) {
+        if (isAlly && !isDead && !isDying) {
             for (AllyMove allyMove : allyMoves) {
                 allyMove.update();
             }

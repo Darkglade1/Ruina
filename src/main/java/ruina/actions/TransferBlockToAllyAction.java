@@ -1,12 +1,20 @@
 package ruina.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import ruina.monsters.AbstractAllyMonster;
 
+import static ruina.RuinaMod.makeID;
+import static ruina.util.Wiz.atb;
+
 public class TransferBlockToAllyAction extends AbstractGameAction {
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AllyStrings"));
+    private static final String[] TEXT = uiStrings.TEXT;
     int maxBlock;
     private final AbstractAllyMonster ally;
 
@@ -34,6 +42,8 @@ public class TransferBlockToAllyAction extends AbstractGameAction {
                     }
                 });
                 addToTop(new GainBlockAction(ally, blockToTransfer));
+            } else {
+                atb(new TalkAction(true, TEXT[12], 1.2F, 1.2F));
             }
         }
         this.isDone = true;
