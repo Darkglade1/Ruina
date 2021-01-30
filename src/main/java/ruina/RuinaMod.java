@@ -290,7 +290,7 @@ public class RuinaMod implements
                         new NightmareWolf(),
                 }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
         briah.addBoss(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
-        BaseMod.addMonster(Ozma.ID, (BaseMod.GetMonster) Ozma::new);
+        briah.addBoss(Ozma.ID, (BaseMod.GetMonster) Ozma::new, makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
 
         BaseMod.addEvent(Addict.ID, Addict.class, Briah.ID);
         BaseMod.addEvent(BackToBasics.ID, BackToBasics.class, Briah.ID);

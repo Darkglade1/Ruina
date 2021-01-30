@@ -9,12 +9,14 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Oblivion;
 import ruina.powers.Paralysis;
 
@@ -38,6 +40,7 @@ public class Ozma extends AbstractRuinaMonster
     private static final byte POWDER_OF_LIFE = 1;
     private static final byte HINDER = 2;
     private static final byte SQUASH = 3;
+    private static final byte AWAKEN = 4;
 
     private final int STRENGTH = calcAscensionSpecial(3);
     private final int PARALYSIS = calcAscensionSpecial(2);
@@ -48,12 +51,17 @@ public class Ozma extends AbstractRuinaMonster
     private final int MAX_DRAW_DEBUFF = calcAscensionSpecial(2);
     private int cooldown = 0;
 
+    public static final String POWER_ID = makeID("Agony");
+    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    public static final String POWER_NAME = powerStrings.NAME;
+    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
     public Ozma() {
         this(0.0f, 0.0f);
     }
 
     public Ozma(final float x, final float y) {
-        super(NAME, ID, 300, -5.0F, 0, 250.0f, 275.0f, null, x, y);
+        super(NAME, ID, 500, -5.0F, 0, 250.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Ozma/Spriter/Ozma.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
@@ -61,13 +69,23 @@ public class Ozma extends AbstractRuinaMonster
         addMove(POWDER_OF_LIFE, Intent.DEFEND_BUFF);
         addMove(HINDER, Intent.ATTACK_DEBUFF, calcAscensionDamage(13));
         addMove(SQUASH, Intent.ATTACK, calcAscensionDamage(19));
+        addMove(AWAKEN, Intent.UNKNOWN);
     }
 
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland2");
-        AbstractMonster jack1 = new Jack(MINION_1_X_POSITION, 0.0f, true);
-        AbstractMonster jack2 = new Jack(MINION_2_X_POSITION, 0.0f, false);
+        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            @Override
+            public void updateDescription() {
+                description = POWER_DESCRIPTIONS[0];
+            }
+        });
+    }
+
+    private void Summon() {
+        AbstractMonster jack1 = new Jack(MINION_1_X_POSITION, 0.0f, true, this);
+        AbstractMonster jack2 = new Jack(MINION_2_X_POSITION, 0.0f, false, this);
         atb(new SpawnMonsterAction(jack1, true));
         atb(new UsePreBattleActionAction(jack1));
         atb(new SpawnMonsterAction(jack2, true));
@@ -117,6 +135,12 @@ public class Ozma extends AbstractRuinaMonster
                 resetIdle(1.0f);
                 break;
             }
+            case AWAKEN: {
+                buffAnimation();
+                Summon();
+                resetIdle(1.0f);
+                break;
+            }
         }
         atb(new RollMoveAction(this));
         cooldown--;
@@ -129,7 +153,9 @@ public class Ozma extends AbstractRuinaMonster
         if (oblivion != null) {
             drawDebuffAmt = oblivion.amount;
         }
-        if (cooldown <= 0 && drawDebuffAmt < MAX_DRAW_DEBUFF) {
+        if (firstMove) {
+            setMoveShortcut(AWAKEN, MOVES[AWAKEN]);
+        } else if (cooldown <= 0 && drawDebuffAmt < MAX_DRAW_DEBUFF) {
             setMoveShortcut(FADING_MEMORIES, MOVES[FADING_MEMORIES]);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();

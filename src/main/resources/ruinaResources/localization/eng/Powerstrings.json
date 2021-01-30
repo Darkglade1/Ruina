@@ -110,5 +110,9 @@
   "${ModID}:Steal": {
     "NAME": "Steal or Be Stolen",
     "DESCRIPTIONS": ["Whenever this creature attacks, it #ysteals the top card of your draw pile. NL Whenever this creature loses HP, put the oldest card #ystolen by this creature into your hand."]
+  },
+  "${ModID}:Agony": {
+    "NAME": "Agony of the Deprived",
+    "DESCRIPTIONS": ["Whenever a minion loses HP, this creature also loses that much HP."]
   }
 }

@@ -1,6 +1,7 @@
 package ruina.monsters.act2;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -34,6 +35,7 @@ public class Jack extends AbstractRuinaMonster
 
     public ArrayList<AbstractCard> stolenCards = new ArrayList<>();
     private boolean startSingle;
+    private Ozma ozma;
 
     public static final String POWER_ID = makeID("Steal");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -41,17 +43,18 @@ public class Jack extends AbstractRuinaMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Jack() {
-        this(0.0f, 0.0f, true);
+        this(0.0f, 0.0f, true, null);
     }
 
-    public Jack(final float x, final float y, boolean startSingle) {
+    public Jack(final float x, final float y, boolean startSingle, Ozma ozma) {
         super(NAME, ID, 200, -5.0F, 0, 135.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jack/Spriter/Jack.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(200);
         addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(3));
         addMove(MULTI_ATTACK, Intent.ATTACK, calcAscensionDamage(2), 2, true);
         this.startSingle = startSingle;
+        this.ozma = ozma;
     }
 
     @Override
@@ -69,6 +72,9 @@ public class Jack extends AbstractRuinaMonster
                 if (damageAmount > 0 && stolenCards.size() > 0) {
                     flash();
                     atb(new MakeTempCardInHandAction(stolenCards.remove(0)));
+                }
+                if (ozma != null && damageAmount > 0) {
+                    atb(new LoseHPAction(ozma, ozma, damageAmount));
                 }
                 return damageAmount;
             }
