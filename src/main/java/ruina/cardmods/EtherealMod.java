@@ -1,30 +1,43 @@
 package ruina.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-
-import static ruina.RuinaMod.makeID;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import ruina.RuinaMod;
 
 public class EtherealMod extends AbstractCardModifier {
-    public static String ID = makeID("EtherealMod");
 
-    public String modifyDescription(String rawDescription, AbstractCard card) {
-        return "Ethereal. NL " + rawDescription;
-    }
+    public static final String ID = RuinaMod.makeID("EtherealMod");
+    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
-    public boolean shouldApply(AbstractCard card) {
-        return !card.isEthereal;
-    }
+    private boolean alreadyEthereal = false;
 
-    public void onInitialApplication(AbstractCard card) {
-        card.isEthereal = true;
-    }
-
+    @Override
     public AbstractCardModifier makeCopy() {
         return new EtherealMod();
     }
 
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        if (!card.isEthereal) {
+            card.isEthereal = true;
+            alreadyEthereal = false;
+        } else {
+            alreadyEthereal = true;
+        }
+    }
+
+    @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (!alreadyEthereal && !(CommonKeywordIconsField.useIcons.get(card))) {
+            return TEXT[0] + rawDescription;
+        }
+        return rawDescription;
     }
 }

@@ -1,9 +1,9 @@
 {
-  "${ModID}:TodoItem": {
-    "NAME": "Todo Item",
-    "FLAVOR": "TODO: make this a sweet relic.",
+  "${ModID}:FalsePresent": {
+    "NAME": "False Present",
+    "FLAVOR": "Poor Ozma. She didn't know that lying adults don't approach others without reason.",
     "DESCRIPTIONS": [
-      "Has no effect."
+      "The first #b", " cards you draw each combat cost 0 until played. Draw #b", " less card at the start of combat."
     ]
   }
 }

@@ -43,5 +43,10 @@
     "TEXT": [
       " NL Exhaust."
     ]
+  },
+  "${ModID}:EtherealMod": {
+    "TEXT": [
+      "Ethereal. NL "
+    ]
   }
 }

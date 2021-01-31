@@ -7,6 +7,10 @@
     "NAME": "Fragment of Bliss",
     "DESCRIPTION": "Gain !M! Block. NL This card is not affected by Block modifiers."
   },
+  "${ModID}:FalseThrone": {
+    "NAME": "False Throne",
+    "DESCRIPTION": "Next turn, put ALL non-Status non-Curse cards from your exhaust pile into your hand and give them Ethereal."
+  },
   "${ModID}:Strike": {
     "NAME": "Strike",
     "DESCRIPTION": "Deal !D! damage."

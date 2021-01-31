@@ -24,6 +24,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import ruina.RuinaMod;
 import ruina.cardmods.DamageUpMod;
 import ruina.cardmods.ExhaustMod;
+import ruina.cards.FalseThrone;
+import ruina.relics.FalsePresent;
 
 import static ruina.RuinaMod.makeEventPath;
 import static ruina.util.Wiz.adp;
@@ -84,15 +86,15 @@ public class WizardOfOz extends AbstractImageEvent {
     private static final int LEAVE_SCENE = 7;
 
     private AbstractCard curse = new Clumsy();
-    private static final int HP_LOSS = 5;
+    private static final int HP_LOSS = 6;
     private static final int MAX_HP_GAIN = 2;
     private static final int GOLD_LOSS = 50;
     private static final int NUM_POTIONS = 1;
     private static final int DAMAGE_BOOST = 1;
     private AbstractCardModifier cardModifier = new ExhaustMod();
     private AbstractCardModifier cardModifier2 = new DamageUpMod(DAMAGE_BOOST);
-    private AbstractCard cardReward = new Bludgeon();
-    private AbstractRelic relicReward = new IceCream();
+    private AbstractCard cardReward = new FalseThrone();
+    private AbstractRelic relicReward = new FalsePresent();
 
     private int num_refusals = 0;
     private int num_accepts = 0;

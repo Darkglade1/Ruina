@@ -8,7 +8,7 @@ import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.atb;
 
 public class Wisdom extends AbstractRuinaCard {
-    public final static String ID = makeID("Wisdom");
+    public final static String ID = makeID(Wisdom.class.getSimpleName());
     private static final int DRAW = 1;
 
     public Wisdom() {
