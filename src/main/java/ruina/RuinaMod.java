@@ -12,10 +12,13 @@ import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.events.city.Addict;
 import com.megacrit.cardcrawl.events.city.BackToBasics;
@@ -25,6 +28,8 @@ import com.megacrit.cardcrawl.events.city.ForgottenAltar;
 import com.megacrit.cardcrawl.events.city.Nest;
 import com.megacrit.cardcrawl.events.city.TheLibrary;
 import com.megacrit.cardcrawl.events.city.TheMausoleum;
+import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
@@ -77,21 +82,23 @@ public class RuinaMod implements
         return getModID() + ":" + idText;
     }
 
-//    public static Color todoColor = new Color(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1);
-//    public static final String SHOULDER1 = getModID() + "Resources/images/char/mainChar/shoulder.png";
-//    public static final String SHOULDER2 = getModID() + "Resources/images/char/mainChar/shoulder2.png";
-//    public static final String CORPSE = getModID() + "Resources/images/char/mainChar/corpse.png";
-//    private static final String ATTACK_S_ART = getModID() + "Resources/images/512/attack.png";
-//    private static final String SKILL_S_ART = getModID() + "Resources/images/512/skill.png";
-//    private static final String POWER_S_ART = getModID() + "Resources/images/512/power.png";
-//    private static final String CARD_ENERGY_S = getModID() + "Resources/images/512/energy.png";
-//    private static final String TEXT_ENERGY = getModID() + "Resources/images/512/text_energy.png";
-//    private static final String ATTACK_L_ART = getModID() + "Resources/images/1024/attack.png";
-//    private static final String SKILL_L_ART = getModID() + "Resources/images/1024/skill.png";
-//    private static final String POWER_L_ART = getModID() + "Resources/images/1024/power.png";
-//    private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
-//    private static final String CHARSELECT_BUTTON = getModID() + "Resources/images/charSelect/charButton.png";
-//    private static final String CHARSELECT_PORTRAIT = getModID() + "Resources/images/charSelect/charBG.png";
+    public static class Enums {
+        @SpireEnum(name = "EGO") // These two HAVE to have the same absolutely identical name.
+        public static AbstractCard.CardColor EGO;
+        @SpireEnum(name = "EGO") @SuppressWarnings("unused")
+        public static CardLibrary.LibraryType LIBRARY_COLOR;
+    }
+
+    public static Color EGO_COLOR = CardHelper.getColor(76, 7, 23);
+    private static final String ATTACK_S_ART = getModID() + "Resources/images/512/attack.png";
+    private static final String SKILL_S_ART = getModID() + "Resources/images/512/skill.png";
+    private static final String POWER_S_ART = getModID() + "Resources/images/512/power.png";
+    private static final String CARD_ENERGY_S = getModID() + "Resources/images/512/energy.png";
+    private static final String TEXT_ENERGY = getModID() + "Resources/images/512/text_energy.png";
+    private static final String ATTACK_L_ART = getModID() + "Resources/images/1024/attack.png";
+    private static final String SKILL_L_ART = getModID() + "Resources/images/1024/skill.png";
+    private static final String POWER_L_ART = getModID() + "Resources/images/1024/power.png";
+    private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "Ruina";
@@ -106,11 +113,11 @@ public class RuinaMod implements
     public RuinaMod() {
         BaseMod.subscribe(this);
 
-//        BaseMod.addColor(TheTodo.Enums.TODO_COLOR, todoColor, todoColor, todoColor,
-//                todoColor, todoColor, todoColor, todoColor,
-//                ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
-//                ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
-//                CARD_ENERGY_L, TEXT_ENERGY);
+        BaseMod.addColor(Enums.EGO, EGO_COLOR, EGO_COLOR, EGO_COLOR,
+                EGO_COLOR, EGO_COLOR, EGO_COLOR, EGO_COLOR,
+                ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
+                ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
+                CARD_ENERGY_L, TEXT_ENERGY);
     }
 
     public static String makePath(String resourcePath) {

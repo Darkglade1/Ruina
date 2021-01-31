@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;
 
-public class FalseThrone extends AbstractRuinaCard {
+public class FalseThrone extends AbstractEgoCard {
     public final static String ID = makeID(FalseThrone.class.getSimpleName());
 
     public FalseThrone() {
