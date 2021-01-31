@@ -3,14 +3,14 @@ package ruina.cardmods;
 import basemod.abstracts.AbstractCardModifier;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import ruina.RuinaMod;
+import ruina.util.HelperClass;
 
 public class ExhaustMod extends AbstractCardModifier {
 
     public static final String ID = RuinaMod.makeID("ExhaustMod");
-    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-
     private boolean alreadyExhaust = false;
 
     @Override
@@ -36,7 +36,7 @@ public class ExhaustMod extends AbstractCardModifier {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         if (!alreadyExhaust && !(CommonKeywordIconsField.useIcons.get(card))) {
-            return rawDescription + TEXT[0];
+            return rawDescription + " NL " + HelperClass.capitalize(GameDictionary.EXHAUST.NAMES[0]) + LocalizedStrings.PERIOD;
         }
         return rawDescription;
     }

@@ -3,14 +3,14 @@ package ruina.cardmods;
 import basemod.abstracts.AbstractCardModifier;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import ruina.RuinaMod;
+import ruina.util.HelperClass;
 
 public class EtherealMod extends AbstractCardModifier {
 
     public static final String ID = RuinaMod.makeID("EtherealMod");
-    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-
     private boolean alreadyEthereal = false;
 
     @Override
@@ -36,7 +36,7 @@ public class EtherealMod extends AbstractCardModifier {
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         if (!alreadyEthereal && !(CommonKeywordIconsField.useIcons.get(card))) {
-            return TEXT[0] + rawDescription;
+            return HelperClass.capitalize(GameDictionary.ETHEREAL.NAMES[0]) + LocalizedStrings.PERIOD + " NL " + rawDescription;
         }
         return rawDescription;
     }
