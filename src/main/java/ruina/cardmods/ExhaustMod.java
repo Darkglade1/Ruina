@@ -1,30 +1,43 @@
 package ruina.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-
-import static ruina.RuinaMod.makeID;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import ruina.RuinaMod;
 
 public class ExhaustMod extends AbstractCardModifier {
-    public static String ID = makeID("ExhaustMod");
 
-    public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription + " NL Exhaust.";
-    }
+    public static final String ID = RuinaMod.makeID("ExhaustMod");
+    public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
-    public boolean shouldApply(AbstractCard card) {
-        return !card.exhaust;
-    }
+    private boolean alreadyExhaust = false;
 
-    public void onInitialApplication(AbstractCard card) {
-        card.exhaust = true;
-    }
-
+    @Override
     public AbstractCardModifier makeCopy() {
         return new ExhaustMod();
     }
 
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        if (!card.exhaust) {
+            card.exhaust = true;
+            alreadyExhaust = false;
+        } else {
+            alreadyExhaust = true;
+        }
+    }
+
+    @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public String modifyDescription(String rawDescription, AbstractCard card) {
+        if (!alreadyExhaust && !(CommonKeywordIconsField.useIcons.get(card))) {
+            return rawDescription + TEXT[0];
+        }
+        return rawDescription;
     }
 }

@@ -38,5 +38,10 @@
       "Mass Attack",
       "This enemy intends to deal #b", " damage to ALL other characters", ".", " times."
     ]
+  },
+  "${ModID}:ExhaustMod": {
+    "TEXT": [
+      " NL Exhaust."
+    ]
   }
 }

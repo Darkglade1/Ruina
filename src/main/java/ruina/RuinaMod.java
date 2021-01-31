@@ -147,6 +147,10 @@ public class RuinaMod implements
         return modID + "Resources/images/ui/" + resourcePath;
     }
 
+    public static String makeEventPath(String resourcePath) {
+        return modID + "Resources/images/events/" + resourcePath;
+    }
+
     public static void initialize() {
         RuinaMod ruinaMod = new RuinaMod();
     }

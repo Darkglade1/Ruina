@@ -1,0 +1,42 @@
+{
+  "${ModID}:WizardOfOz": {
+    "NAME": "Wizard of Oz",
+    "DESCRIPTIONS": [
+      "As you navigate the twists and turns of the labyrinthic  library, you come across a #ycurious book with a #ycurious cover. NL NL It flies open before you, beckoning you to peer within its pages.",
+      "The wizard spoke to the scarecrow seeking #ywisdom. NL NL \"I will give you a brand-new brain, full of pins and needles! All I ask is that you swear #yloyalty to me.\"",
+      "The wizard spoke to the woodsman seeking a #yheart. NL NL \"I will give you a silk heart stuffed with saw-dust. All I ask is that you swear #yloyalty to me.\"",
+      "The wizard spoke to the lion seeking #ycourage. NL NL \"I will give you a drought filled with boundless courage. All I ask is that you swear #yloyalty to me.\"",
+      "The wizard spoke to the girl seeking to return #yhome. NL NL \"I will give you a pair of silver shoes that will take you wherever you desire. All I ask is that you swear loyalty to me.\"",
+      "The wizard smiled in #ydelight. NL NL \"Wonderful! You will all make very fine servants; come closer and receive your presents.\"",
+      "The wizard #pfrowned. NL NL \"What an insolent lot we have here. To think you would all defy the #ymighty wizard of Oz!\"",
+      "The wizard #ysighed. NL NL \"It appears your group lacks the resolve to commit one way or another. What a #pshame.\"",
+      "The story ends, leaving you with an #pempty ache in your #yheart.",
+      "You don't feel like diving into a #ystory right now."
+    ],
+    "OPTIONS": [
+      "[Read] Begin the story",
+      "[Leave] ",
+      "[Accept] ",
+      "[Refuse] ",
+      "Remove a card.",
+      " Become Cursed - ",
+      "Lose ",
+      " HP.",
+      "Gain ",
+      " Max HP.",
+      " gold.",
+      "Obtain a Potion.",
+      "Give a card in your deck +",
+      " damage",
+      " and exhaust.",
+      "[Accept the present] ",
+      "Obtain a Special Relic.",
+      "[Overthrow the wizard] ",
+      "Obtain ",
+      "[Stop reading] ",
+      ".",
+      "[Locked] Requires: Accept all presents",
+      "[Locked] Requires: Refuse all presents",
+    ]
+  }
+}

@@ -1,12 +1,9 @@
 package ruina.monsters.act2.Jester;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,7 +16,8 @@ import ruina.powers.AbstractLambdaPower;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
-import static ruina.util.Wiz.*;
+import static ruina.util.Wiz.applyToTarget;
+import static ruina.util.Wiz.dmg;
 
 public class QueenOfLove extends AbstractMagicalGirl
 {
