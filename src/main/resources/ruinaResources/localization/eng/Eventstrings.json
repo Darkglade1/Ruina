@@ -6,7 +6,7 @@
       "The wizard spoke to the scarecrow seeking #ywisdom. NL NL \"I will give you a brand-new brain, full of pins and needles! All I ask is that you swear #yloyalty to me.\"",
       "The wizard spoke to the woodsman seeking a #yheart. NL NL \"I will give you a silk heart stuffed with saw-dust. All I ask is that you swear #yloyalty to me.\"",
       "The wizard spoke to the lion seeking #ycourage. NL NL \"I will give you a drought filled with boundless courage. All I ask is that you swear #yloyalty to me.\"",
-      "The wizard spoke to the girl seeking to return #yhome. NL NL \"I will give you a pair of silver shoes that will take you wherever you desire. All I ask is that you swear loyalty to me.\"",
+      "The wizard spoke to the girl seeking to return #yhome. NL NL \"I will give you a pair of silver shoes that will take you wherever you desire. All I ask is that you swear #yloyalty to me.\"",
       "The wizard smiled in #ydelight. NL NL \"Wonderful! You will all make very fine servants; come closer and receive your presents.\"",
       "The wizard #pfrowned. NL NL \"What an insolent lot we have here. To think you would all defy the #ymighty wizard of Oz!\"",
       "The wizard #ysighed. NL NL \"It appears your group lacks the resolve to commit one way or another. What a #pshame.\"",
@@ -19,7 +19,7 @@
       "[Accept] ",
       "[Refuse] ",
       "Remove a card.",
-      " Become Cursed - ",
+      "Become Cursed - ",
       "Lose ",
       " HP.",
       "Gain ",
@@ -35,8 +35,9 @@
       "Obtain ",
       "[Stop reading] ",
       ".",
-      "[Locked] Requires: Accept all presents",
-      "[Locked] Requires: Refuse all presents",
+      "[Locked] Requires: More accepts than refusals.",
+      "[Locked] Requires: More refusals than accepts.",
+      "Choose a card."
     ]
   }
 }

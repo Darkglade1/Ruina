@@ -1,27 +1,29 @@
 package ruina.events.act2;
 
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.Clumsy;
+import com.megacrit.cardcrawl.cards.red.Bludgeon;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Circlet;
+import com.megacrit.cardcrawl.relics.IceCream;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import ruina.RuinaMod;
+import ruina.cardmods.DamageUpMod;
 import ruina.cardmods.ExhaustMod;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Random;
 
 import static ruina.RuinaMod.makeEventPath;
 import static ruina.util.Wiz.adp;
@@ -70,14 +72,7 @@ public class WizardOfOz extends AbstractImageEvent {
     private static final String PERIOD = OPTIONS[20];
     private static final String LOCKED_ACCEPT = OPTIONS[21];
     private static final String LOCKED_REFUSE = OPTIONS[22];
-
-    private AbstractCard curse = new Clumsy();
-    private static final int HP_LOSS = 5;
-    private static final int MAX_HP_GAIN = 2;
-    private static final int GOLD_LOSS = 50;
-    private static final int NUM_POTIONS = 1;
-    private static final int DAMAGE_BOOST = 1;
-    private AbstractCardModifier cardModifier = new ExhaustMod();
+    private static final String CHOOSE_CARD = OPTIONS[23];
 
     private static final int OPENING_SCREEN = 0;
     private static final int SCARECROW_SCENE = 1;
@@ -88,14 +83,27 @@ public class WizardOfOz extends AbstractImageEvent {
     private static final int END_SCENE = 6;
     private static final int LEAVE_SCENE = 7;
 
+    private AbstractCard curse = new Clumsy();
+    private static final int HP_LOSS = 5;
+    private static final int MAX_HP_GAIN = 2;
+    private static final int GOLD_LOSS = 50;
+    private static final int NUM_POTIONS = 1;
+    private static final int DAMAGE_BOOST = 1;
+    private AbstractCardModifier cardModifier = new ExhaustMod();
+    private AbstractCardModifier cardModifier2 = new DamageUpMod(DAMAGE_BOOST);
+    private AbstractCard cardReward = new Bludgeon();
+    private AbstractRelic relicReward = new IceCream();
+
     private int num_refusals = 0;
-    private int num_accpts = 0;
+    private int num_accepts = 0;
+    private int goldLoss = GOLD_LOSS;
     private boolean removeCard = false;
     private boolean damageUpCard = false;
     private int screenNum = 0;
 
     public WizardOfOz() {
-        super(NAME, DESCRIPTIONS[0], IMG);
+        super(NAME, BEGINNING, IMG);
+        noCardsInRewards = true;
         this.imageEventText.setDialogOption(READ);
         this.imageEventText.setDialogOption(LEAVE_OPTION);
     }
@@ -108,8 +116,8 @@ public class WizardOfOz extends AbstractImageEvent {
                     case 0:
                         this.imageEventText.updateBodyText(SCARECROW);
                         this.imageEventText.clearAllDialogs();
-                        this.imageEventText.setDialogOption(FontHelper.colorString(REMOVE_CARD, "g") + FontHelper.colorString(CURSED + curse.name + PERIOD, "r"));
-                        this.imageEventText.setDialogOption(REFUSE);
+                        this.imageEventText.setDialogOption(ACCEPT + FontHelper.colorString(REMOVE_CARD, "g") + " " + FontHelper.colorString(CURSED + curse.name + PERIOD, "r"), relicReward);
+                        this.imageEventText.setDialogOption(REFUSE, cardReward);
                         screenNum = SCARECROW_SCENE;
                         break;
                     case 1:
@@ -121,56 +129,125 @@ public class WizardOfOz extends AbstractImageEvent {
                 }
                 break;
             case SCARECROW_SCENE:
+                this.imageEventText.updateBodyText(WOODSMAN);
+                this.imageEventText.clearAllDialogs();
+                this.imageEventText.setDialogOption(ACCEPT + FontHelper.colorString(LOSE + HP_LOSS + HP, "r") + " " + FontHelper.colorString(GAIN + MAX_HP_GAIN + MAX_HP, "g"), relicReward);
+                this.imageEventText.setDialogOption(REFUSE, cardReward);
+                screenNum = WOODSMAN_SCENE;
                 switch (buttonPressed) {
                     case 0:
                         AbstractDungeon.gridSelectScreen.open(CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()), 1, REMOVE_CARD, false);
                         AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(curse, (float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2)));
                         removeCard = true;
-                        num_accpts++;
+                        num_accepts++;
+                        break;
                     case 1:
                         num_refusals++;
-                    this.imageEventText.updateBodyText(WOODSMAN);
-                    this.imageEventText.clearAllDialogs();
-                    this.imageEventText.setDialogOption(FontHelper.colorString(LOSE + HP_LOSS + HP, "r") + FontHelper.colorString(GAIN + MAX_HP_GAIN + MAX_HP, "g"));
-                    this.imageEventText.setDialogOption(REFUSE);
-                    screenNum = WOODSMAN_SCENE;
+                        break;
                 }
                 break;
             case WOODSMAN_SCENE:
+                this.imageEventText.updateBodyText(LION);
+                this.imageEventText.clearAllDialogs();
+                if (adp().gold < goldLoss) {
+                    goldLoss = adp().gold;
+                }
+                this.imageEventText.setDialogOption(ACCEPT + FontHelper.colorString(LOSE + goldLoss + GOLD, "r") + " " + FontHelper.colorString(OBTAIN_POTION, "g"), relicReward);
+                this.imageEventText.setDialogOption(REFUSE, cardReward);
+                screenNum = CAT_SCENE;
                 switch (buttonPressed) {
                     case 0:
                         CardCrawlGame.sound.play("BLUNT_FAST");  // Play a hit sound
                         adp().damage(new DamageInfo(null, HP_LOSS));
                         adp().increaseMaxHp(MAX_HP_GAIN, true);
-                        num_accpts++;
+                        num_accepts++;
+                        break;
                     case 1:
                         num_refusals++;
-                    this.imageEventText.updateBodyText(LION);
-                    this.imageEventText.clearAllDialogs();
-                    this.imageEventText.setDialogOption(FontHelper.colorString(LOSE + GOLD_LOSS + GOLD, "r") + FontHelper.colorString(OBTAIN_POTION, "g"));
-                    this.imageEventText.setDialogOption(REFUSE);
-                    screenNum = CAT_SCENE;
+                        break;
                 }
                 break;
             case CAT_SCENE:
+                this.imageEventText.updateBodyText(GIRL);
+                this.imageEventText.clearAllDialogs();
+                this.imageEventText.setDialogOption(ACCEPT + FontHelper.colorString(GIVE_CARD + DAMAGE_BOOST + DAMAGE + EXHAUST, "g"), relicReward);
+                this.imageEventText.setDialogOption(REFUSE, cardReward);
+                screenNum = GIRL_SCENE;
                 switch (buttonPressed) {
                     case 0:
-                        CardCrawlGame.sound.play("BLUNT_FAST");  // Play a hit sound
-                        adp().damage(new DamageInfo(null, HP_LOSS));
-                        adp().increaseMaxHp(MAX_HP_GAIN, true);
-                        num_accpts++;
+                        adp().loseGold(goldLoss);
+                        AbstractDungeon.getCurrRoom().rewards.clear();
+                        for (int i = 0; i < NUM_POTIONS; i++) {
+                            AbstractDungeon.getCurrRoom().rewards.add(new RewardItem(PotionHelper.getRandomPotion()));
+                        }
+                        AbstractDungeon.combatRewardScreen.open();
+                        num_accepts++;
+                        break;
                     case 1:
                         num_refusals++;
-                    this.imageEventText.updateBodyText(GIRL);
-                    this.imageEventText.clearAllDialogs();
-                    this.imageEventText.setDialogOption(FontHelper.colorString(DAMAGE + DAMAGE_BOOST + EXHAUST, "g"));
-                    this.imageEventText.setDialogOption(REFUSE);
-                    screenNum = GIRL_SCENE;
+                        break;
+                }
+                break;
+            case GIRL_SCENE:
+                AbstractDungeon.combatRewardScreen.clear(); //clears potion if they don't take it
+                switch (buttonPressed) {
+                    case 0:
+                        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck, 1, CHOOSE_CARD, false);
+                        damageUpCard = true;
+                        num_accepts++;
+                        setUpFinalScene();
+                        break;
+                    case 1:
+                        num_refusals++;
+                        setUpFinalScene();
+                        break;
+                }
+                break;
+            case FINAL_SCENE:
+                this.imageEventText.updateBodyText(STORY_END);
+                this.imageEventText.clearAllDialogs();
+                this.imageEventText.setDialogOption(LEAVE_OPTION);
+                screenNum = END_SCENE;
+                AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
+                switch (buttonPressed) {
+                    case 0:
+                        if (!adp().hasRelic(relicReward.relicId)) {
+                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, relicReward);
+                        } else {
+                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new Circlet());
+                        }
+                        break;
+                    case 1:
+                        AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(cardReward, (float)Settings.WIDTH * 0.3F, (float)Settings.HEIGHT / 2.0F));
+                        break;
+                    case 2:
+                        break;
                 }
                 break;
             default:
                 this.openMap();
         }
+    }
+
+    private void setUpFinalScene() {
+        if (num_accepts > num_refusals) {
+            this.imageEventText.updateBodyText(ALL_ACCEPT);
+            this.imageEventText.clearAllDialogs();
+            this.imageEventText.setDialogOption(ACCEPT_PRESENT + FontHelper.colorString(OBTAIN_RELIC, "g"), relicReward);
+            this.imageEventText.setDialogOption(LOCKED_REFUSE, true);
+        } else if (num_refusals > num_accepts) {
+            this.imageEventText.updateBodyText(ALL_REFUSE);
+            this.imageEventText.clearAllDialogs();
+            this.imageEventText.setDialogOption(LOCKED_ACCEPT, true);
+            this.imageEventText.setDialogOption(OVERTHROW + FontHelper.colorString(OBTAIN + cardReward.name + PERIOD, "g"), cardReward);
+        } else {
+            this.imageEventText.updateBodyText(MIX_RESPONSE);
+            this.imageEventText.clearAllDialogs();
+            this.imageEventText.setDialogOption(LOCKED_ACCEPT, true);
+            this.imageEventText.setDialogOption(LOCKED_REFUSE, true);
+        }
+        this.imageEventText.setDialogOption(STOP_READING);
+        screenNum = FINAL_SCENE;
     }
 
     @Override
@@ -184,10 +261,20 @@ public class WizardOfOz extends AbstractImageEvent {
                     AbstractDungeon.player.masterDeck.removeCard(c);
                     AbstractDungeon.gridSelectScreen.selectedCards.remove(c);
                 }
+                removeCard = false;
             }
-            removeCard = false;
         }
-
+        if (damageUpCard) {
+            if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+                for (int i = 0; i < AbstractDungeon.gridSelectScreen.selectedCards.size(); i++) {
+                    AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(i);
+                    CardModifierManager.addModifier(c, cardModifier);
+                    CardModifierManager.addModifier(c, cardModifier2);
+                    AbstractDungeon.gridSelectScreen.selectedCards.remove(c);
+                }
+                damageUpCard = false;
+            }
+        }
     }
 
 }

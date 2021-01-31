@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.events.city.Nest;
 import com.megacrit.cardcrawl.events.city.TheLibrary;
 import com.megacrit.cardcrawl.events.city.TheMausoleum;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
@@ -38,6 +39,7 @@ import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SillyVariable;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
+import ruina.events.act2.WizardOfOz;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.KingOfGreed;
@@ -296,6 +298,7 @@ public class RuinaMod implements
         briah.addBoss(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
         briah.addBoss(Ozma.ID, (BaseMod.GetMonster) Ozma::new, makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
 
+        BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
         BaseMod.addEvent(Addict.ID, Addict.class, Briah.ID);
         BaseMod.addEvent(BackToBasics.ID, BackToBasics.class, Briah.ID);
         BaseMod.addEvent(Beggar.ID, Beggar.class, Briah.ID);
@@ -317,6 +320,8 @@ public class RuinaMod implements
         BaseMod.loadCustomStringsFile(PowerStrings.class, getModID() + "Resources/localization/eng/Powerstrings.json");
 
         BaseMod.loadCustomStringsFile(MonsterStrings.class, getModID() + "Resources/localization/eng/Monsterstrings.json");
+
+        BaseMod.loadCustomStringsFile(EventStrings.class, getModID() + "Resources/localization/eng/Eventstrings.json");
 
         BaseMod.loadCustomStringsFile(UIStrings.class, getModID() + "Resources/localization/eng/UIstrings.json");
     }
