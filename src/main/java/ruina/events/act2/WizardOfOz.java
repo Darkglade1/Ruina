@@ -106,7 +106,7 @@ public class WizardOfOz extends AbstractImageEvent {
     public WizardOfOz() {
         super(NAME, BEGINNING, IMG);
         noCardsInRewards = true;
-        this.imageEventText.setDialogOption(READ);
+        this.imageEventText.setDialogOption(READ, cardReward, relicReward);
         this.imageEventText.setDialogOption(LEAVE_OPTION);
     }
 
