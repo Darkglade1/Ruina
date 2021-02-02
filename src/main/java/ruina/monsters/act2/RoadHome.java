@@ -136,7 +136,9 @@ public class RoadHome extends AbstractRuinaMonster
         super.damage(info);
         if (info.output > 0 && info.type == DamageInfo.DamageType.NORMAL) {
             AbstractPower power = cat.getPower(ScaredyCat.POWER_ID);
-            power.onSpecificTrigger();
+            if (power != null) {
+                power.onSpecificTrigger();
+            }
         }
     }
 

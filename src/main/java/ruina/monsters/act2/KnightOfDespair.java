@@ -33,7 +33,7 @@ public class KnightOfDespair extends AbstractRuinaMonster
 
     private static final int DESPAIR_LOSS = 40;
     private static final int MAX_STABS = 3;
-    private final int STRENGTH = calcAscensionSpecial(4);
+    private final int STRENGTH = calcAscensionSpecial(5);
     private int stabCount = 0;
 
     private Sword sword;
@@ -83,10 +83,10 @@ public class KnightOfDespair extends AbstractRuinaMonster
 
         switch (this.nextMove) {
             case DESPAIR: {
-                specialAnimation();
                 if (sword == null || sword.isDeadOrEscaped()) {
                     Summon();
                 } else {
+                    specialAnimation();
                     applyToTarget(sword, this, new StrengthPower(sword, STRENGTH));
                 }
                 break;

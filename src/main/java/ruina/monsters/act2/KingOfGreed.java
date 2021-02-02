@@ -56,7 +56,7 @@ public class KingOfGreed extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Greed/Spriter/Greed.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(115), calcAscensionTankiness(122));
-        addMove(ROAD_OF_KING, Intent.ATTACK, calcAscensionDamage(24));
+        addMove(ROAD_OF_KING, Intent.ATTACK, calcAscensionDamage(26));
         addMove(FIXATION, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
         addMove(EDACITY, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
     }

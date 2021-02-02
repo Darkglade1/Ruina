@@ -44,8 +44,8 @@ public class Nosferatu extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Nosferatu/Spriter/Nosferatu.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(90), calcAscensionTankiness(95));
-        addMove(UNBEARABLE_DROUGHT, Intent.ATTACK_BUFF, calcAscensionDamage(14));
-        addMove(MERCILESS_GESTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
+        addMove(UNBEARABLE_DROUGHT, Intent.ATTACK_BUFF, calcAscensionDamage(15));
+        addMove(MERCILESS_GESTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));
         addMove(LOOMING_PRESENCE, Intent.DEBUFF);
     }
 

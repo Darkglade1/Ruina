@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractRuinaMonster;
@@ -37,8 +38,9 @@ public class BadWolf extends AbstractRuinaMonster
     private static final byte HUNT = 2;
 
     public static final float HP_THRESHOLD = 0.5f;
-    public static final int SKULK_TURNS = 2;
+    private final int SKULK_TURNS = calcAscensionSpecial(1);
     private final int BLEED = calcAscensionSpecial(2);
+    private final int STRENGTH = calcAscensionSpecial(4);
     private int phase = 1;
     boolean triggered = false;
 
@@ -71,8 +73,19 @@ public class BadWolf extends AbstractRuinaMonster
         playSound("WolfPhase");
         applyToTarget(this, this, new AbstractLambdaPower(HUNTER_POWER_NAME, HUNTER_POWER_ID, AbstractPower.PowerType.BUFF, false, this, SKULK_TURNS) {
             @Override
+            public void atEndOfRound() {
+                if (owner instanceof BadWolf) {
+                    ((BadWolf) owner).checkSkulkTrigger();
+                }
+            }
+
+            @Override
             public void updateDescription() {
-                description = HUNTER_POWER_DESCRIPTIONS[0] + (int)(HP_THRESHOLD * 100) + HUNTER_POWER_DESCRIPTIONS[1] + amount + HUNTER_POWER_DESCRIPTIONS[2];
+                if (amount == 1) {
+                    description = HUNTER_POWER_DESCRIPTIONS[0] + (int)(HP_THRESHOLD * 100) + HUNTER_POWER_DESCRIPTIONS[1] + STRENGTH + HUNTER_POWER_DESCRIPTIONS[2] + amount + HUNTER_POWER_DESCRIPTIONS[4];
+                } else {
+                    description = HUNTER_POWER_DESCRIPTIONS[0] + (int)(HP_THRESHOLD * 100) + HUNTER_POWER_DESCRIPTIONS[1] + STRENGTH + HUNTER_POWER_DESCRIPTIONS[2] + amount + HUNTER_POWER_DESCRIPTIONS[3];
+                }
             }
         });
     }
@@ -123,18 +136,22 @@ public class BadWolf extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(CLAW)) {
-            possibilities.add(CLAW);
+        if (triggered) {
+            setMoveShortcut(HUNT, MOVES[HUNT]);
+        } else {
+            ArrayList<Byte> possibilities = new ArrayList<>();
+            if (!this.lastMove(CLAW)) {
+                possibilities.add(CLAW);
+            }
+            if (!this.lastMove(BITE)) {
+                possibilities.add(BITE);
+            }
+            if (!this.lastMove(HUNT)) {
+                possibilities.add(HUNT);
+            }
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            setMoveShortcut(move, MOVES[move]);
         }
-        if (!this.lastMove(BITE)) {
-            possibilities.add(BITE);
-        }
-        if (!this.lastMove(HUNT)) {
-            possibilities.add(HUNT);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
     }
 
     public void changePhase(int phase) {
@@ -171,8 +188,12 @@ public class BadWolf extends AbstractRuinaMonster
             return;
         }
         super.damage(info);
+    }
+
+    public void checkSkulkTrigger() {
         if (this.currentHealth < (int)(this.maxHealth * HP_THRESHOLD) && !triggered) {
             triggered = true;
+            applyToTarget(this, this, new StrengthPower(this, STRENGTH));
             applyToTarget(this, this, new AbstractLambdaPower(SKULK_POWER_NAME, SKULK_POWER_ID, AbstractPower.PowerType.BUFF, false, this, SKULK_TURNS) {
 
                 @Override
@@ -186,6 +207,8 @@ public class BadWolf extends AbstractRuinaMonster
                     });
                     if (owner instanceof BadWolf) {
                         ((BadWolf) owner).changePhase(2);
+                        ((BadWolf) owner).rollMove();
+                        ((BadWolf) owner).createIntent();
                     }
                 }
 

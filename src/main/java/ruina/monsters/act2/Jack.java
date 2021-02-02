@@ -51,8 +51,8 @@ public class Jack extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jack/Spriter/Jack.scml"));
         this.type = EnemyType.NORMAL;
         setHp(200);
-        addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(3));
-        addMove(MULTI_ATTACK, Intent.ATTACK, calcAscensionDamage(2), 2, true);
+        addMove(ATTACK, Intent.ATTACK, calcAscensionSpecial(3));
+        addMove(MULTI_ATTACK, Intent.ATTACK, calcAscensionSpecial(2), 2, true);
         this.startSingle = startSingle;
         this.ozma = ozma;
     }

@@ -65,7 +65,7 @@ public class Mountain extends AbstractMultiIntentMonster
 
     private final int NORMAL_DEBUFF_AMT = calcAscensionSpecial(1);
     private final int ATTACK_DEBUFF_AMT = calcAscensionSpecial(1);
-    private final int DAZES = calcAscensionSpecial(2);
+    private final int DAZES = calcAscensionSpecial(3);
     private final int SLIMES = calcAscensionSpecial(1);
 
     private final int STAGE1_HP = calcAscensionTankiness(50);
@@ -105,7 +105,7 @@ public class Mountain extends AbstractMultiIntentMonster
         for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(STAGE3_HP));
+        this.setHp(STAGE3_HP);
         this.currentHealth = (int)(STAGE3_HP * STARTING_PERCENT);
         updateHealthBar();
         runAnim("Idle3");
@@ -277,18 +277,6 @@ public class Mountain extends AbstractMultiIntentMonster
                 takeCustomTurn(additionalMove, adp());
             }
         }
-//        for (EnemyMoveInfo additionalMove : additionalMoves) {
-//            if (!mo.halfDead) {
-//                atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-//                atb(new IntentFlashAction(mo));
-//            }
-//
-//            if (corpse.isDeadOrEscaped() || currentStage == STAGE3) {
-//                takeCustomTurn(additionalMove, adp());
-//            } else {
-//                takeCustomTurn(additionalMove, corpse);
-//            }
-//        }
        atb(new RollMoveAction(this));
     }
 
@@ -345,15 +333,24 @@ public class Mountain extends AbstractMultiIntentMonster
                 setAdditionalMoveShortcut(move, moveHistory);
             }
         } else {
-            if (this.lastMove(VOMIT, moveHistory)) {
-                ArrayList<Byte> possibilities = new ArrayList<>();
-                possibilities.add(RAM);
-                possibilities.add(BITE);
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                setAdditionalMoveShortcut(move, moveHistory);
-            } else {
+            if (this.lastMove(DEVOUR, moveHistory) || this.lastMove(RAM, moveHistory)) {
                 setAdditionalMoveShortcut(VOMIT, moveHistory);
+            } else {
+                if (AbstractDungeon.ascensionLevel >= 18) {
+                    setAdditionalMoveShortcut(DEVOUR, moveHistory);
+                } else {
+                    setAdditionalMoveShortcut(RAM, moveHistory);
+                }
             }
+//            if (this.lastMove(VOMIT, moveHistory)) {
+//                ArrayList<Byte> possibilities = new ArrayList<>();
+//                possibilities.add(RAM);
+//                possibilities.add(BITE);
+//                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+//                setAdditionalMoveShortcut(move, moveHistory);
+//            } else {
+//                setAdditionalMoveShortcut(VOMIT, moveHistory);
+//            }
         }
     }
 

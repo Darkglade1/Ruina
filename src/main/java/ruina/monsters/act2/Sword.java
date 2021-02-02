@@ -26,7 +26,7 @@ public class Sword extends AbstractRuinaMonster
     public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte TEAR_HEART = 0;
-    private final int BLOCK = calcAscensionTankiness(5);
+    private final int BLOCK = calcAscensionSpecial(8);
     private KnightOfDespair knight;
 
     public static final String POWER_ID = makeID("Worthless");
