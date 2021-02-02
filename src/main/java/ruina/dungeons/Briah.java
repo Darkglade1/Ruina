@@ -28,7 +28,6 @@ public class Briah extends AbstractRuinaDungeon {
 
     public Briah() {
         super(NAME, ID, "images/ui/event/panel.png", true, 2, 12, 10);
-        CardCrawlGame.music.changeBGM(ID);
         this.addTempMusic("Warning1", RuinaMod.makeMusicPath("Warning1.ogg"));
         this.addTempMusic("Warning2", RuinaMod.makeMusicPath("Warning2.ogg"));
         this.addTempMusic("Warning3", RuinaMod.makeMusicPath("Warning3.ogg"));
