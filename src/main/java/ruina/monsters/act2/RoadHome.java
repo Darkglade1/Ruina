@@ -62,7 +62,7 @@ public class RoadHome extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        //CustomDungeon.playTempMusicInstantly("Warning1");
+        CustomDungeon.playTempMusicInstantly("Warning1");
         float xPosition = -300.0F;
         cat = new ScaredyCat(xPosition, 0.0f, this);
         atb(new SpawnMonsterAction(cat, true));

@@ -342,15 +342,6 @@ public class Mountain extends AbstractMultiIntentMonster
                     setAdditionalMoveShortcut(RAM, moveHistory);
                 }
             }
-//            if (this.lastMove(VOMIT, moveHistory)) {
-//                ArrayList<Byte> possibilities = new ArrayList<>();
-//                possibilities.add(RAM);
-//                possibilities.add(BITE);
-//                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-//                setAdditionalMoveShortcut(move, moveHistory);
-//            } else {
-//                setAdditionalMoveShortcut(VOMIT, moveHistory);
-//            }
         }
     }
 

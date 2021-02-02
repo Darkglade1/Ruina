@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
-import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.KingOfGreed;
@@ -17,13 +16,10 @@ import ruina.monsters.act2.Nosferatu;
 import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.Woodsman;
-import ruina.scenes.RuinaScene;
 
 import java.util.ArrayList;
 
-import static ruina.monsters.act2.Nosferatu.*;
-
-public class Briah extends CustomDungeon {
+public class Briah extends AbstractRuinaDungeon {
 
     public static String ID = RuinaMod.makeID("Briah");
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
@@ -32,7 +28,8 @@ public class Briah extends CustomDungeon {
 
     public Briah() {
         super(NAME, ID, "images/ui/event/panel.png", true, 2, 12, 10);
-        this.setMainMusic(RuinaMod.makeMusicPath("Warning1.ogg"));
+        CardCrawlGame.music.changeBGM(ID);
+        this.addTempMusic("Warning1", RuinaMod.makeMusicPath("Warning1.ogg"));
         this.addTempMusic("Warning2", RuinaMod.makeMusicPath("Warning2.ogg"));
         this.addTempMusic("Warning3", RuinaMod.makeMusicPath("Warning3.ogg"));
         this.addTempMusic("Roland1", RuinaMod.makeMusicPath("Roland1.ogg"));
@@ -46,11 +43,6 @@ public class Briah extends CustomDungeon {
 
     public Briah(CustomDungeon cd, AbstractPlayer p, SaveFile saveFile) {
         super(cd, p, saveFile);
-    }
-
-    @Override
-    public AbstractScene DungeonScene() {
-        return new RuinaScene();
     }
 
     protected void initializeLevelSpecificChances() {
@@ -139,14 +131,5 @@ public class Briah extends CustomDungeon {
             retVal.add(EncounterIDs.SCARECROWS_3);
         }
         return retVal;
-    }
-
-    @Override
-    protected void initializeShrineList() {
-    }
-
-    @Override
-    protected void initializeEventList() {
-        // Events are added via BaseMod in GensokyoMod.receivePostInitialize()
     }
 }

@@ -1,3 +1,81 @@
+ChesedCamp.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/ChesedCamp
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+TiphCamp.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/TiphCamp
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+GeburaCamp.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/GeburaCamp
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Chesed.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Chesed
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Tiph.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Tiph
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Gebura.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Gebura
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
 Crystal.png
 size: 2048,2048
 format: RGBA8888
@@ -167,19 +245,7 @@ mod/Field
   offset: 0, 0
   index: -1
 
-scene2.jpg
-size: 2048,2048
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-campfire
-  rotate: false
-  xy: 2, 2
-  size: 1920, 1136
-  orig: 1920, 1136
-  offset: 0, 0
-  index: -1
-  
+
 scene3.jpg
 size: 2048,2048
 format: RGBA8888
@@ -191,24 +257,4 @@ event
   size: 1920, 1136
   orig: 1920, 1136
   offset: 0, 0
-  index: -1
-  
-fire.png
-size: 1737, 488
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-mod/campfireKindling
-  rotate: false
-  xy: 2, 2
-  size: 1029, 487
-  orig: 1737, 488
-  offset: 869, 0
-  index: -1
-mod/campfireGlow
-  rotate: false
-  xy: 1034, 2
-  size: 701, 242
-  orig: 244, 0
-  offset: 0,0
   index: -1

@@ -297,13 +297,25 @@ public class RuinaMod implements
         BaseMod.addMonster(BadWolf.ID, (BaseMod.GetMonster) BadWolf::new);
         BaseMod.addMonster(QueenOfHate.ID, (BaseMod.GetMonster) QueenOfHate::new);
 
-        briah.addBoss(EncounterIDs.RED_AND_WOLF, () -> new MonsterGroup(
+//        briah.addBoss(EncounterIDs.RED_AND_WOLF, () -> new MonsterGroup(
+//                new AbstractMonster[] {
+//                        new LittleRed(-480.0F, 0.0F),
+//                        new NightmareWolf(),
+//                }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
+//        briah.addBoss(Ozma.ID, (BaseMod.GetMonster) Ozma::new, makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
+//        briah.addBoss(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
+
+        BaseMod.addMonster(EncounterIDs.RED_AND_WOLF, "Red and Wolf", () -> new MonsterGroup(
                 new AbstractMonster[] {
                         new LittleRed(-480.0F, 0.0F),
                         new NightmareWolf(),
-                }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
-        briah.addBoss(Ozma.ID, (BaseMod.GetMonster) Ozma::new, makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
-        briah.addBoss(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
+                }));
+        BaseMod.addMonster(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new);
+        BaseMod.addMonster(Ozma.ID, (BaseMod.GetMonster) Ozma::new);
+        BaseMod.addBoss(Briah.ID, EncounterIDs.RED_AND_WOLF, makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
+        BaseMod.addBoss(Briah.ID, JesterOfNihil.ID, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
+        BaseMod.addBoss(Briah.ID, Ozma.ID, makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
+
 
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
         BaseMod.addEvent(Addict.ID, Addict.class, Briah.ID);
