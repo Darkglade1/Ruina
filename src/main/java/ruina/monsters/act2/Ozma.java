@@ -118,7 +118,7 @@ public class Ozma extends AbstractRuinaMonster
                 buffAnimation();
                 for (AbstractMonster mo : monsterList()) {
                     if (mo instanceof Jack) {
-                        applyToTarget(mo, this, new StrengthPower(this, JACK_STRENGTH));
+                        applyToTarget(mo, this, new StrengthPower(mo, JACK_STRENGTH));
                     }
                     block(mo, BLOCK);
                 }
