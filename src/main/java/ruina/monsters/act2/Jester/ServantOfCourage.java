@@ -1,5 +1,6 @@
 package ruina.monsters.act2.Jester;
 
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -11,8 +12,7 @@ import ruina.powers.Erosion;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
-import static ruina.util.Wiz.applyToTarget;
-import static ruina.util.Wiz.dmg;
+import static ruina.util.Wiz.*;
 
 public class ServantOfCourage extends AbstractMagicalGirl
 {
@@ -88,6 +88,7 @@ public class ServantOfCourage extends AbstractMagicalGirl
                 break;
             }
         }
+        atb(new RollMoveAction(this));
     }
 
     @Override

@@ -181,10 +181,10 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                         atb(new VFXAction(new CollectorCurseEffect(mo.hb.cX, mo.hb.cY)));
                     }
                 }
-                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
+                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
                 info.applyPowers(this, adp());
                 damageArray[damageArray.length - 1] = info.output;
-                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size() - 1; i++) {
+                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
                     AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
                     info.applyPowers(this, mo);
                     damageArray[i] = info.output;
@@ -292,12 +292,6 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
             }
         }
         atb(new RollMoveAction(this));
-        if (girl1Spawned) {
-            atb(new RollMoveAction(girl1));
-        }
-        if (girl2Spawned) {
-            atb(new RollMoveAction(girl2));
-        }
         massAttackCooldown--;
         ramageCooldown--;
     }

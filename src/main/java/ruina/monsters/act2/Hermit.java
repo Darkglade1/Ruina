@@ -12,7 +12,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
@@ -40,9 +42,9 @@ public class Hermit extends AbstractMultiIntentMonster
     private static final byte CRACKLE = 2;
     private static final byte HELLO = 3;
 
-    private final int BLOCK = calcAscensionTankiness(8);
+    private final int BLOCK = calcAscensionTankiness(11);
     private final int STRENGTH = calcAscensionSpecial(2);
-    private final int BLEED = calcAscensionSpecial(2);
+    private final int DEBUFF = calcAscensionSpecial(1);
     public ServantOfWrath wrath;
     public HermitStaff staff;
 
@@ -51,17 +53,17 @@ public class Hermit extends AbstractMultiIntentMonster
     }
 
     public Hermit(final float x, final float y) {
-        super(NAME, ID, 160, -5.0F, 0, 160.0f, 225.0f, null, x, y);
+        super(NAME, ID, 160, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Hermit/Spriter/Hermit.scml"));
         this.type = EnemyType.ELITE;
         numAdditionalMoves = 1;
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(160), calcAscensionTankiness(168));
+        this.setHp(calcAscensionTankiness(180), calcAscensionTankiness(190));
 
         addMove(HOLD_STILL, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
-        addMove(MAKE_WAY, Intent.ATTACK, calcAscensionDamage(10));
+        addMove(MAKE_WAY, Intent.ATTACK, calcAscensionDamage(11));
         addMove(CRACKLE, Intent.DEFEND_BUFF);
         addMove(HELLO, Intent.UNKNOWN);
     }
@@ -90,7 +92,11 @@ public class Hermit extends AbstractMultiIntentMonster
                 attack1Animation(target);
                 dmg(target, info);
                 resetIdle();
-                applyToTarget(target, this, new Bleed(target, BLEED));
+                if (target == adp()) {
+                    applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
+                } else {
+                    applyToTarget(target, this, new VulnerablePower(target, DEBUFF, true));
+                }
                 break;
             }
             case MAKE_WAY: {
@@ -101,20 +107,28 @@ public class Hermit extends AbstractMultiIntentMonster
             }
             case CRACKLE: {
                 specialAnimation();
-                for (AbstractMonster mo : monsterList()) {
-                    if (mo instanceof Hermit || mo instanceof HermitStaff) {
-                        block(mo, BLOCK);
-                        applyToTargetNextTurn(mo, new StrengthPower(this, STRENGTH));
-                    }
-                }
+                buff();
                 resetIdle(1.0f);
                 break;
             }
             case HELLO: {
                 specialAnimation();
-                Summon();
+                if (staff == null) {
+                    Summon();
+                } else {
+                    buff(); //in case someone forces this enemy to use this intent twice in a row :)
+                }
                 resetIdle(1.0f);
                 break;
+            }
+        }
+    }
+
+    private void buff() {
+        for (AbstractMonster mo : monsterList()) {
+            if (mo instanceof Hermit || mo instanceof HermitStaff) {
+                block(mo, BLOCK);
+                applyToTargetNextTurn(mo, new StrengthPower(this, STRENGTH));
             }
         }
     }
@@ -173,7 +187,7 @@ public class Hermit extends AbstractMultiIntentMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastTwoMoves(HOLD_STILL, moveHistory)) {
+        if (!this.lastMove(HOLD_STILL, moveHistory)) {
             possibilities.add(HOLD_STILL);
         }
         if (!this.lastTwoMoves(MAKE_WAY, moveHistory)) {

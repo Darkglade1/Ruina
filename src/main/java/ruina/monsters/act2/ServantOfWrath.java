@@ -66,8 +66,8 @@ public class ServantOfWrath extends AbstractAllyMonster
 
         this.setHp(maxHealth);
 
-        addMove(EMBODIMENTS_OF_EVIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(8), 3, true);
-        addMove(RAGE, Intent.ATTACK_DEBUFF, 9, 2, true);
+        addMove(EMBODIMENTS_OF_EVIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(7), 3, true);
+        addMove(RAGE, Intent.ATTACK_DEBUFF, 8, 2, true);
 
         this.allyIcon = makeUIPath("WrathIcon.png");
     }
@@ -145,10 +145,10 @@ public class ServantOfWrath extends AbstractAllyMonster
         }
         switch (this.nextMove) {
             case EMBODIMENTS_OF_EVIL: {
-                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
+                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
                 info.applyPowers(this, adp());
                 damageArray[damageArray.length - 1] = info.output;
-                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size() - 1; i++) {
+                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
                     AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
                     info.applyPowers(this, mo);
                     damageArray[i] = info.output;

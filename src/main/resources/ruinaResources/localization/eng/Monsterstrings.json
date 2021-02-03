@@ -231,7 +231,7 @@
   },
   "${ModID}:ServantOfWrath": {
     "MOVES": [
-      "Embodiments of Evil",
+      "EMBODIMENTS OF EVIL!",
       "Rage"
     ],
     "NAME": "Servant of Wrath",
@@ -255,7 +255,7 @@
   "${ModID}:HermitStaff": {
     "MOVES": [
     ],
-    "NAME": "Staff",
+    "NAME": "Hermit's Staff",
     "DIALOG": [
     ]
   }
