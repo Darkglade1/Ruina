@@ -19,7 +19,7 @@ public class FalseThrone extends AbstractEgoCard {
     public final static String ID = makeID(FalseThrone.class.getSimpleName());
 
     public FalseThrone() {
-        super(ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE);
+        super(ID, 2, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE);
         purgeOnUse = true;
     }
 
