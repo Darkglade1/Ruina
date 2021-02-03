@@ -114,5 +114,9 @@
   "${ModID}:Agony": {
     "NAME": "Agony of the Deprived",
     "DESCRIPTIONS": ["Whenever a minion loses HP, this creature also loses that much HP."]
+  },
+  "${ModID}:BlindFury": {
+    "NAME": "Blind Fury",
+    "DESCRIPTIONS": ["After this creature loses #b", " more HP, it will use a #rpowerful attack next turn that targets ALL other characters (including you)."]
   }
 }

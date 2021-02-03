@@ -15,6 +15,7 @@ import ruina.monsters.act2.Mountain;
 import ruina.monsters.act2.Nosferatu;
 import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.RoadHome;
+import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
 
 import java.util.ArrayList;
@@ -112,7 +113,7 @@ public class Briah extends AbstractRuinaDungeon {
     @Override
     protected void generateElites(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        //monsters.add(new MonsterInfo("Gremlin Leader", 1.0F));
+        monsters.add(new MonsterInfo(ServantOfWrath.ID, 1.0F));
         monsters.add(new MonsterInfo(Mountain.ID, 1.0F));
         monsters.add(new MonsterInfo(RoadHome.ID, 1.0F));
         MonsterInfo.normalizeWeights(monsters);

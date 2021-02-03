@@ -46,6 +46,7 @@ import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
 import ruina.events.act2.WizardOfOz;
 import ruina.monsters.act2.BadWolf;
+import ruina.monsters.act2.Hermit;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.KingOfGreed;
 import ruina.monsters.act2.KnightOfDespair;
@@ -58,6 +59,7 @@ import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
+import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
@@ -225,6 +227,18 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("OzmaGuard"), makeSFXPath("Ozma_Guard.wav"));
         BaseMod.addAudio(makeID("OzmaFin"), makeSFXPath("Ozma_StrongAtk_Fin.wav"));
         BaseMod.addAudio(makeID("OzmaStart"), makeSFXPath("Ozma_StrongAtk_Start.wav"));
+
+        BaseMod.addAudio(makeID("WrathMeet"), makeSFXPath("Angry_Meet.wav"));
+        BaseMod.addAudio(makeID("HermitAtk"), makeSFXPath("Angry_R_Atk.wav"));
+        BaseMod.addAudio(makeID("HermitStrongAtk"), makeSFXPath("Angry_R_StrongAtk.wav"));
+        BaseMod.addAudio(makeID("HermitWand"), makeSFXPath("Angry_R_WandHit.wav"));
+        BaseMod.addAudio(makeID("WrathStrong1"), makeSFXPath("Angry_StrongAtk1.wav"));
+        BaseMod.addAudio(makeID("WrathStrong2"), makeSFXPath("Angry_StrongAtk2.wav"));
+        BaseMod.addAudio(makeID("WrathStrong3"), makeSFXPath("Angry_StrongFinish.wav"));
+        BaseMod.addAudio(makeID("WrathAtk1"), makeSFXPath("Angry_Vert1.wav"));
+        BaseMod.addAudio(makeID("WrathAtk2"), makeSFXPath("Angry_Vert2.wav"));
+
+        BaseMod.addAudio(makeID("BluntBlow"), makeSFXPath("Blow_Stab.wav"));
     }
 
     @Override
@@ -267,6 +281,11 @@ public class RuinaMod implements
 
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
         BaseMod.addMonster(RoadHome.ID, (BaseMod.GetMonster) RoadHome::new);
+        BaseMod.addMonster(ServantOfWrath.ID, "Servant_of_Wrath", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new ServantOfWrath(-500.0F, 0.0F),
+                        new Hermit(100.0F, 0.0F),
+                }));
 
         BaseMod.addMonster(EncounterIDs.SCARECROWS_2, "2_Scarecrows", () -> new MonsterGroup(
                 new AbstractMonster[] {

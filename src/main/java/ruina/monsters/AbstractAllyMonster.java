@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import ruina.CustomIntent.IntentEnums;
 import ruina.actions.TransferBlockToAllyAction;
 import ruina.powers.InvisibleAllyBarricadePower;
 import ruina.util.AllyMove;
@@ -88,20 +89,31 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             if (target != adp()) {
                 if(info.base > -1) {
-                    Color color = new Color(0.0F, 1.0F, 0.0F, 0.5F);
-                    ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
-                    info.applyPowers(this, target);
-                    ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-                    PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
-                    Texture attackImg;
-                    if (moves.get(this.nextMove).multiplier > 0) {
-                        intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + moves.get(this.nextMove).multiplier + TEXT[4];
-                        attackImg = getAttackIntent(info.output * moves.get(this.nextMove).multiplier);
+                    if (this.intent == IntentEnums.MASS_ATTACK) {
+                        info.applyPowers(this, target);
+                        ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+                        PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                        if (moves.get(this.nextMove).multiplier > 0) {
+                            intentTip.body = TEXT[13] + info.output + TEXT[14] + moves.get(this.nextMove).multiplier + TEXT[16];
+                        } else {
+                            intentTip.body = TEXT[13] + info.output + TEXT[14] + TEXT[15];
+                        }
                     } else {
-                        intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
-                        attackImg = getAttackIntent(info.output);
+                        Color color = new Color(0.0F, 1.0F, 0.0F, 0.5F);
+                        ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
+                        info.applyPowers(this, target);
+                        ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+                        PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                        Texture attackImg;
+                        if (moves.get(this.nextMove).multiplier > 0) {
+                            intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + moves.get(this.nextMove).multiplier + TEXT[4];
+                            attackImg = getAttackIntent(info.output * moves.get(this.nextMove).multiplier);
+                        } else {
+                            intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
+                            attackImg = getAttackIntent(info.output);
+                        }
+                        ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
                     }
-                    ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
                 } else {
                     Color color = new Color(1.0F, 1.0F, 1.0F, 0.5F);
                     ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="307" height="229" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="NormalAttack1.png" width="372" height="358" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="NormalAttack2.png" width="427" height="347" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="BigAttack1.png" width="437" height="364" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="BigAttack2.png" width="493" height="347" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="BigAttack3.png" width="614" height="431" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Wrath">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-164" y="225"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Normal1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="NormalAttack1">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-303" y="321"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Normal2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="NormalAttack2">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-339" y="308"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Big1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="BigAttack2">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-391" y="303"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Big2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="BigAttack1">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-341" y="326"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Big3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="BigAttack3">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-506" y="387"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

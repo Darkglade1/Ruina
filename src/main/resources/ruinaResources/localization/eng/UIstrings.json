@@ -30,7 +30,11 @@
       "#yClick to activate any number of times: #ytransfer up to #b",
       " #yBlock from you to this #yAlly.",
       "Coordination",
-      "I have no #yBlock to transfer!"
+      "I have no #yBlock to transfer!",
+      "Your #gally intends to deal #b",
+      " damage to ALL other characters (including you)",
+      ".",
+      " times."
     ]
   },
   "${ModID}:MassAttackIntent": {

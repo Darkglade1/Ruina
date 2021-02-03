@@ -228,5 +228,35 @@
     "NAME": "Jack",
     "DIALOG": [
     ]
+  },
+  "${ModID}:ServantOfWrath": {
+    "MOVES": [
+      "Embodiments of Evil",
+      "Rage"
+    ],
+    "NAME": "Servant of Wrath",
+    "DIALOG": [
+      "EMBODIMENTS OF EVIL!",
+      "Law and order . . . has prevailed."
+    ]
+  },
+  "${ModID}:Hermit": {
+    "MOVES": [
+      "Hold Still",
+      "Kindly Make Way",
+      "Hello, Companion",
+      "Crackle"
+    ],
+    "NAME": "Hermit of the Azure Forest",
+    "DIALOG": [
+      "Hello, companion."
+    ]
+  },
+  "${ModID}:HermitStaff": {
+    "MOVES": [
+    ],
+    "NAME": "Staff",
+    "DIALOG": [
+    ]
   }
 }

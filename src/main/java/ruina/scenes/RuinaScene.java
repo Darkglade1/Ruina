@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
 import ruina.dungeons.AbstractRuinaDungeon;
 import ruina.monsters.act2.BadWolf;
+import ruina.monsters.act2.Hermit;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.KingOfGreed;
 import ruina.monsters.act2.KnightOfDespair;
@@ -25,6 +26,7 @@ import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.ScaredyCat;
+import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
 
 public class RuinaScene extends AbstractScene {
@@ -84,6 +86,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Hate");
                 } else if (mo instanceof Ozma) {
                     this.bg = this.atlas.findRegion("mod/Crystal");
+                } else if (mo instanceof ServantOfWrath || mo instanceof Hermit) {
+                    this.bg = this.atlas.findRegion("mod/Wrath");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }
