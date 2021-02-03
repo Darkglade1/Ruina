@@ -38,7 +38,7 @@ public class NextTurnPowerPower extends AbstractEasyPower {
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer) {
+    public void atEndOfRound() {
         flash();
         addToBot(new ApplyPowerAction(owner, owner, powerToGain, powerToGain.amount));
         addToBot(new RemoveSpecificPowerAction(owner, owner, this.ID));

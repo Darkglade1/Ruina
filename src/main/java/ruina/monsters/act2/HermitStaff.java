@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
@@ -39,7 +40,7 @@ public class HermitStaff extends AbstractRuinaMonster
     }
 
     public HermitStaff(final float x, final float y, Hermit hermit) {
-        super(NAME, ID, 40, -5.0F, 0, 150.0f, 175.0f, null, x, y);
+        super(NAME, ID, 40, -5.0F, 0, 150.0f, 195.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Staff/Spriter/Staff.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(40));
@@ -78,6 +79,7 @@ public class HermitStaff extends AbstractRuinaMonster
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
         hermit.staff = null;
+        AbstractDungeon.onModifyPower();
     }
 
     @Override

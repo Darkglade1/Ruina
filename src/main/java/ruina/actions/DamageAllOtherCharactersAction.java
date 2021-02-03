@@ -61,7 +61,7 @@ public class DamageAllOtherCharactersAction extends AbstractGameAction {
         }
 
         this.tickDuration();
-        if (this.isDone) {
+        if (this.isDone && !source.isDeadOrEscaped()) {
 
             Wiz.adp().damage(new DamageInfo(this.source, this.damage[damage.length - 1], this.damageType));
 

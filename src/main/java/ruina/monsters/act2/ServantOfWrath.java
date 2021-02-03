@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
@@ -60,7 +59,7 @@ public class ServantOfWrath extends AbstractAllyMonster
     }
 
     public ServantOfWrath(final float x, final float y) {
-        super(NAME, ID, 200, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 300, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ServantOfWrath/Spriter/Wrath.scml"));
         this.animation.setFlip(true, false);
         this.type = EnemyType.ELITE;
@@ -102,8 +101,10 @@ public class ServantOfWrath extends AbstractAllyMonster
                         ((ServantOfWrath) owner).enraged = true;
                         ((ServantOfWrath) owner).rollMove();
                         ((ServantOfWrath) owner).createIntent();
+                        playSound("WrathMeet");
                     }
                     this.amount = FURY_THRESHOLD;
+                    updateDescription();
                 }
             }
 
@@ -133,14 +134,10 @@ public class ServantOfWrath extends AbstractAllyMonster
         }
 
         AbstractCreature target;
-        if (enraged) {
-            target = AbstractDungeon.player;
+        if (hermit.staff == null || this.intent == IntentEnums.MASS_ATTACK) {
+            target = hermit;
         } else {
-            if (hermit.staff == null) {
-                target = hermit;
-            } else {
-                target = hermit.staff;
-            }
+            target = hermit.staff;
         }
 
         if(info.base > -1) {
@@ -209,19 +206,16 @@ public class ServantOfWrath extends AbstractAllyMonster
             return;
         }
         AbstractCreature target;
-        if (!enraged) {
-            if (hermit.staff == null) {
-                target = hermit;
-            } else {
-                target = hermit.staff;
-            }
+        if (hermit.staff == null || this.intent == IntentEnums.MASS_ATTACK) {
+            target = hermit;
         } else {
-            target = adp();
+            target = hermit.staff;
         }
         applyPowers(target);
     }
 
     public void onHermitDeath() {
+        this.halfDead = true; //stop aoe from doing damage
         atb(new TalkAction(this, DIALOG[1]));
         atb(new VFXAction(new WaitEffect(), 1.0F));
         addToBot(new AbstractGameAction() {

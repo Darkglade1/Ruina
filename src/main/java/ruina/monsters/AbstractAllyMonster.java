@@ -90,11 +90,11 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
             if (target != adp()) {
                 if(info.base > -1) {
                     if (this.intent == IntentEnums.MASS_ATTACK) {
-                        info.applyPowers(this, target);
+                        info.applyPowers(this, adp());
                         ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
                         PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
                         if (moves.get(this.nextMove).multiplier > 0) {
-                            intentTip.body = TEXT[13] + info.output + TEXT[14] + moves.get(this.nextMove).multiplier + TEXT[16];
+                            intentTip.body = TEXT[13] + info.output + TEXT[14] + " " + FontHelper.colorString(String.valueOf(moves.get(this.nextMove).multiplier), "b") + TEXT[16];
                         } else {
                             intentTip.body = TEXT[13] + info.output + TEXT[14] + TEXT[15];
                         }
