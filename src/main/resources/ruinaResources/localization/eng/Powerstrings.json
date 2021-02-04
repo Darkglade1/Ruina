@@ -105,7 +105,7 @@
   },
   "${ModID}:Oblivion": {
     "NAME": "Oblivion",
-    "DESCRIPTIONS": ["Draw #b", " less card ", " less cards ", " each turn."]
+    "DESCRIPTIONS": ["Draw #b", " less card", " less cards", " each turn."]
   },
   "${ModID}:Steal": {
     "NAME": "Steal or Be Stolen",
