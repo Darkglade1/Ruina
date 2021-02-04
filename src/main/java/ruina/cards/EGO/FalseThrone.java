@@ -1,4 +1,4 @@
-package ruina.cards;
+package ruina.cards.EGO;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;

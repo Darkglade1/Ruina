@@ -1,4 +1,4 @@
-package ruina.cards;
+package ruina.cards.EGO;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import ruina.RuinaMod;
+import ruina.cards.AbstractRuinaCard;
 import ruina.util.TexLoader;
 
 import java.lang.reflect.Method;

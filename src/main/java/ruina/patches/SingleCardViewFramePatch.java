@@ -11,7 +11,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import javassist.CtBehavior;
-import ruina.cards.AbstractEgoCard;
+import ruina.cards.EGO.AbstractEgoCard;
 
 @SpirePatch(
         clz = SingleCardViewPopup.class,

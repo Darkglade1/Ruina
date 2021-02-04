@@ -92,14 +92,14 @@ public class RuinaMod implements
     }
 
     public static Color EGO_COLOR = CardHelper.getColor(76, 7, 23);
-    private static final String ATTACK_S_ART = getModID() + "Resources/images/512/attack.png";
-    private static final String SKILL_S_ART = getModID() + "Resources/images/512/skill.png";
-    private static final String POWER_S_ART = getModID() + "Resources/images/512/power.png";
+    private static final String ATTACK_S_ART = getModID() + "Resources/images/512/card.png";
+    private static final String SKILL_S_ART = getModID() + "Resources/images/512/card.png";
+    private static final String POWER_S_ART = getModID() + "Resources/images/512/card.png";
     private static final String CARD_ENERGY_S = getModID() + "Resources/images/512/energy.png";
     private static final String TEXT_ENERGY = getModID() + "Resources/images/512/text_energy.png";
-    private static final String ATTACK_L_ART = getModID() + "Resources/images/1024/attack.png";
-    private static final String SKILL_L_ART = getModID() + "Resources/images/1024/skill.png";
-    private static final String POWER_L_ART = getModID() + "Resources/images/1024/power.png";
+    private static final String ATTACK_L_ART = getModID() + "Resources/images/1024/card.png";
+    private static final String SKILL_L_ART = getModID() + "Resources/images/1024/card.png";
+    private static final String POWER_L_ART = getModID() + "Resources/images/1024/card.png";
     private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
 
     //This is for the in-game mod settings panel.
