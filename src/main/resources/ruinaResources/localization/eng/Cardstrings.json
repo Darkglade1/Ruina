@@ -26,5 +26,17 @@
   "${ModID}:FadedMemories": {
     "NAME": "Faded Memories",
     "DESCRIPTION": "Draw a card for every enemy in combat."
+  },
+  "${ModID}:LoveAndHate": {
+    "NAME": "In the Name of Love and Hate",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  },
+  "${ModID}:GoldRush": {
+    "NAME": "Gold Rush",
+    "DESCRIPTION": "Gain !M! Strength. NL If the last card played this combat was an Attack, double your Strength."
+  },
+  "${ModID}:BlindRage": {
+    "NAME": "Blind Rage",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Take !M! damage. NL If your HP is at or below 50%, this card costs 0."
   }
 }

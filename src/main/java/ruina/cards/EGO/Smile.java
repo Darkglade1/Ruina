@@ -29,8 +29,6 @@ public class Smile extends AbstractEgoCard {
         allDmg(AbstractGameAction.AttackEffect.POISON);
         for (AbstractMonster mo : monsterList()) {
             applyToTarget(mo, p, new WeakPower(mo, magicNumber, false));
-        }
-        for (AbstractMonster mo : monsterList()) {
             applyToTarget(mo, p, new VulnerablePower(mo, magicNumber, false));
         }
     }
