@@ -21,7 +21,7 @@ import java.util.ArrayList;
         clz = ShopScreen.class,
         method = "purchaseCard"
 )
-// A patch to make prevent crash when buying ego cards with Courier
+// A patch to prevent crash when buying ego cards with Courier
 public class FixCourierCrash {
     @SpireInsertPatch(locator = Locator.class)
     public static SpireReturn<Void> FixCourier(ShopScreen instance, AbstractCard hoveredCard) {

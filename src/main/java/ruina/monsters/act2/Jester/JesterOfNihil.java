@@ -191,7 +191,13 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 }
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle();
-                massAttackCooldown = MASS_ATTACK_COOLDOWN + 1;
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        massAttackCooldown = MASS_ATTACK_COOLDOWN + 1;
+                        this.isDone = true;
+                    }
+                });
                 break;
             }
             case CONSUMING_DESIRE: {
@@ -225,8 +231,14 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
             case RAMPAGE: {
                 slamAnimation(target);
                 applyToTargetNextTurn(this, new StrengthPower(this, STRENGTH));
-                ramageCooldown = RAMPAGE_COOLDOWN + 1;
-                numIntentThatCanRampage = (numIntentThatCanRampage + 1) % 3;
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        ramageCooldown = RAMPAGE_COOLDOWN + 1;
+                        numIntentThatCanRampage = (numIntentThatCanRampage + 1) % 3;
+                        this.isDone = true;
+                    }
+                });
                 resetIdle(1.0f);
                 break;
             }
@@ -291,9 +303,15 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 }
             }
         }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                massAttackCooldown--;
+                ramageCooldown--;
+                this.isDone = true;
+            }
+        });
         atb(new RollMoveAction(this));
-        massAttackCooldown--;
-        ramageCooldown--;
     }
 
     @Override

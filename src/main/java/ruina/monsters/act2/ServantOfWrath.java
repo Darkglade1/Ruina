@@ -187,7 +187,7 @@ public class ServantOfWrath extends AbstractAllyMonster
                 break;
             }
         }
-        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+        atb(new RollMoveAction(this));
     }
 
     @Override

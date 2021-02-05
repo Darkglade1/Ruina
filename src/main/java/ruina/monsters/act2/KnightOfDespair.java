@@ -1,5 +1,6 @@
 package ruina.monsters.act2;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -101,10 +102,17 @@ public class KnightOfDespair extends AbstractRuinaMonster
     }
 
     public void Summon() {
-        float xPosition = -360.0F;
-        sword = new Sword(xPosition, 0.0f, this);
-        atb(new SpawnMonsterAction(sword, true));
-        atb(new UsePreBattleActionAction(sword));
+        KnightOfDespair knight = this;
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                float xPosition = -360.0F;
+                sword = new Sword(xPosition, 0.0f, knight);
+                att(new UsePreBattleActionAction(sword));
+                att(new SpawnMonsterAction(sword, true));
+                this.isDone = true;
+            }
+        });
     }
 
     public void onSwordDeath() {

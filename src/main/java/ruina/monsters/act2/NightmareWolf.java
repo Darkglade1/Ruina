@@ -159,7 +159,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                 takeCustomTurn(additionalMove, red);
             }
         }
-        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+        atb(new RollMoveAction(this));
     }
 
     @Override

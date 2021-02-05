@@ -1,5 +1,6 @@
 package ruina.monsters.act2;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -224,10 +225,17 @@ public class Hermit extends AbstractMultiIntentMonster
     }
 
     private void Summon() {
-        float xPosition = -200.0F;
-        staff = new HermitStaff(xPosition, 0.0f, this);
-        atb(new SpawnMonsterAction(staff, true));
-        atb(new UsePreBattleActionAction(staff));
+        Hermit hermit = this;
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                float xPosition = -200.0F;
+                staff = new HermitStaff(xPosition, 0.0f, hermit);
+                att(new UsePreBattleActionAction(staff));
+                att(new SpawnMonsterAction(staff, true));
+                this.isDone = true;
+            }
+        });
     }
 
 }

@@ -1,6 +1,7 @@
 package ruina.monsters.act2;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
@@ -111,7 +112,13 @@ public class Ozma extends AbstractRuinaMonster
                 debuffAnimation();
                 applyToTarget(adp(), this, new Oblivion(adp(), DRAW_DEBUFF));
                 resetIdle(1.0f);
-                cooldown = DRAW_DEBUFF_COOLDOWN + 1;
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        cooldown = DRAW_DEBUFF_COOLDOWN + 1;
+                        this.isDone = true;
+                    }
+                });
                 break;
             }
             case POWDER_OF_LIFE: {
@@ -146,8 +153,14 @@ public class Ozma extends AbstractRuinaMonster
                 break;
             }
         }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                cooldown--;
+                this.isDone = true;
+            }
+        });
         atb(new RollMoveAction(this));
-        cooldown--;
     }
 
     @Override

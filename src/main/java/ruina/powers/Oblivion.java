@@ -19,7 +19,9 @@ public class Oblivion extends AbstractEasyPower {
 
     @Override
     public void onInitialApplication() {
-        adp().gameHandSize -= amount;
+        if (owner == adp()) {
+            adp().gameHandSize -= amount;
+        }
     }
 
     @Override
@@ -30,7 +32,9 @@ public class Oblivion extends AbstractEasyPower {
 
     @Override
     public void onRemove() {
-        adp().gameHandSize += amount;
+        if (owner == adp()) {
+            adp().gameHandSize += amount;
+        }
     }
 
     @Override

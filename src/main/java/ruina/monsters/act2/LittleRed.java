@@ -193,7 +193,7 @@ public class LittleRed extends AbstractAllyMonster
                 break;
             }
         }
-        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+        atb(new RollMoveAction(this));
     }
 
     public void enrage() {
