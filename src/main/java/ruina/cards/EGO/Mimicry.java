@@ -16,7 +16,7 @@ public class Mimicry extends AbstractEgoCard {
     public static final int UP_DAMAGE = 4;
 
     public Mimicry() {
-        super(ID, 3, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY);
+        super(ID, 3, CardType.ATTACK, CardTarget.ENEMY);
         baseDamage = DAMAGE;
         exhaust = true;
     }

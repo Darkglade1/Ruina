@@ -15,7 +15,7 @@ public class Nihil extends AbstractEgoCard {
     public static final int UP_LOSS = 1;
 
     public Nihil() {
-        super(ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
+        super(ID, 1, CardType.SKILL, CardTarget.ALL_ENEMY);
         magicNumber = baseMagicNumber = STR_LOSS;
         exhaust = true;
     }

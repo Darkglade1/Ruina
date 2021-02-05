@@ -12,7 +12,7 @@ public class FadedMemories extends AbstractEgoCard {
     public final static String ID = makeID(FadedMemories.class.getSimpleName());
 
     public FadedMemories() {
-        super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE);
+        super(ID, 0, CardType.SKILL, CardTarget.NONE);
     }
 
     @Override

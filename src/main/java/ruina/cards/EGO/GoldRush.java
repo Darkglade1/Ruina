@@ -19,7 +19,7 @@ public class GoldRush extends AbstractEgoCard {
     public static final int UP_STR = 2;
 
     public GoldRush() {
-        super(ID, 3, CardType.POWER, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, 3, CardType.POWER, CardTarget.SELF);
         magicNumber = baseMagicNumber = STR;
     }
 

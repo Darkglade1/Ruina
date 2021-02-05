@@ -18,7 +18,7 @@ public class Smile extends AbstractEgoCard {
     public static final int UP_DEBUFF = 1;
 
     public Smile() {
-        super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
+        super(ID, 2, CardType.ATTACK, CardTarget.ALL_ENEMY);
         baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = DEBUFF;
         exhaust = true;

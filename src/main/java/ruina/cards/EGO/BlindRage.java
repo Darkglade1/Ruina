@@ -22,7 +22,7 @@ public class BlindRage extends AbstractEgoCard {
     private boolean fromHPThreshold = false;
 
     public BlindRage() {
-        super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
+        super(ID, 2, CardType.ATTACK, CardTarget.ALL_ENEMY);
         baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = SELF_DAMAGE;
     }

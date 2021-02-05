@@ -18,7 +18,7 @@ public class LoveAndHate extends AbstractEgoCard {
     public static final int COST = 4;
 
     public LoveAndHate() {
-        super(ID, COST, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ALL_ENEMY);
+        super(ID, COST, CardType.ATTACK, CardTarget.ALL_ENEMY);
         baseDamage = DAMAGE;
     }
 
