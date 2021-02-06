@@ -45,6 +45,7 @@ import ruina.cards.cardvars.SillyVariable;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
 import ruina.events.act2.ChurchOfGears;
+import ruina.events.act2.RCorp;
 import ruina.events.act2.WizardOfOz;
 import ruina.events.act2.ZweiAssociation;
 import ruina.monsters.act2.BadWolf;
@@ -329,6 +330,7 @@ public class RuinaMod implements
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
         BaseMod.addEvent(ChurchOfGears.ID, ChurchOfGears.class, Briah.ID);
         BaseMod.addEvent(ZweiAssociation.ID, ZweiAssociation.class, Briah.ID);
+        BaseMod.addEvent(RCorp.ID, RCorp.class, Briah.ID);
     }
 
 

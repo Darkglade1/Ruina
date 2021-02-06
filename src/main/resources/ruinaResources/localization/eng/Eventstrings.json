@@ -76,8 +76,28 @@
       "Obtain a Rare card.",
       "Obtain an EGO card.",
       "[Compromise]",
-      "[Leave]",
+      "[Wake Up]",
       "[Locked] Requires: Gold"
+    ]
+  },
+  "${ModID}:RCorp": {
+    "NAME": "R Corp",
+    "DESCRIPTIONS": [
+      "Gunfire @ripped@ across the field. The commander watched on in silence as his subordinate's clones killed each other for #ydominance. NL NL \"Hey, how much do you want to bet that the little rabbit over there is going to win?\" NL NL \"That one seems a little too cowardly to grasp victory. The one on a #rkilling #rspree seems much more likely to be the victor.\" NL NL There were only a few clones left. And with a flash of steel, it was over. The #ywinner was -",
+      "\"It appears my deduction was correct. So I suppose that means the next round of drinks is on you, Maxim.\" NL NL \"Damnit! I thought that one looked wily enough to survive, but I guess not.\"",
+      "\"Hah! I guess running isn't always such a bad option for a rabbit, is it?\" NL NL \"I didn't think such a passive variant of Myne could win; I suppose it’s my loss then.\"",
+      " NL NL As the others bickered, the commander simply looked on impassively. For he knew that it was likely that they would all be replaced someday."
+    ],
+    "OPTIONS": [
+      "[The Killer] ",
+      "[The Coward] ",
+      "Upgrade any number of cards.",
+      "Lose ",
+      " HP for every card upgraded.",
+      "Remove a card.",
+      "Choose any number of Cards to Upgrade",
+      "Choose a Card to Remove",
+      "[Wake Up]"
     ]
   }
 }

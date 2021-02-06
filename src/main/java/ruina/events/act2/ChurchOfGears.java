@@ -28,8 +28,8 @@ public class ChurchOfGears extends AbstractImageEvent {
 
     private int screenNum = 0;
 
-    private static final float DUPE_HP_COST = 0.25f;
-    private static final float HIGH_ASC_DUPE_HP_COST = 0.35f;
+    private static final float DUPE_HP_COST = 0.30f;
+    private static final float HIGH_ASC_DUPE_HP_COST = 0.40f;
     private int dupeHpCost;
 
     private static final float TRANSFORM_HP_COST = 0.10f;
@@ -118,7 +118,6 @@ public class ChurchOfGears extends AbstractImageEvent {
                 adp().bottledCardUpgradeCheck(AbstractDungeon.gridSelectScreen.selectedCards.get(0));
                 AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
                 AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect((float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
-                AbstractDungeon.gridSelectScreen.selectedCards.clear();
                 AbstractCard dupe = c.makeStatEquivalentCopy();
                 dupe.inBottleFlame = false;
                 dupe.inBottleLightning = false;
