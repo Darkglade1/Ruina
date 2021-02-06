@@ -99,5 +99,24 @@
       "Choose a Card to Remove",
       "[Wake Up]"
     ]
+  },
+  "${ModID}:SocialSciences": {
+    "NAME": "Floor of Social Sciences",
+    "DESCRIPTIONS": [
+      "You see a #bblue-haired man pouring a drink. Despite his apparently #ynormal look, you can't help but wonder if this is a trick of one of the #rmonsters. NL NL \"Ah, a guest! You don't look like one of the librarians here, but that's no reason to be a rude host! Come, allow me to pour you a drink.\" NL NL His calm demeanor and #gpleasant attitude win you over. You sit yourself down at the table.",
+      "The drink was soothing, like relaxing after a long day of work. NL NL You wish this moment could last #yforever."
+    ],
+    "OPTIONS": [
+      "[Drink] ",
+      "[Augment the drink first] ",
+      "Heal ",
+      " HP.",
+      "Lose ",
+      ".",
+      "Gain ",
+      " Max HP.",
+      "[Leave]",
+      "[Locked] Requires: Potion"
+    ]
   }
 }
