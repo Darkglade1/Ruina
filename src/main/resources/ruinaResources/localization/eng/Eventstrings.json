@@ -39,5 +39,23 @@
       "[Locked] Requires: More refusals than accepts.",
       "Choose a card."
     ]
+  },
+  "${ModID}:ChurchOfGears": {
+    "NAME": "Church of Gears",
+    "DESCRIPTIONS": [
+      "@WHIRRRRRRRRRRRRRRRR@ NL NL You hear bones #rcracking, blood #rsplattering, and joints #rbreaking. And through it all, an intense whirring noise fills the air. NL NL The hooded figure next to the noisy machine turns to face you. \"Join us, stranger. Join us and be free of your #pheavy thoughts and worldly burdens!\"",
+      "You sit down in the machine, and it feels as if a #pvise had clamped itself over your head. NL NL The @whirring@ noise grows #ylouder and #ylouder, the dull pain flares #rhigher and #rhigher until suddenly, it all #rstops. NL NL Your head had never felt lighter.",
+      "You have no intention of subjecting yourself to such a #psinister-looking machine."
+    ],
+    "OPTIONS": [
+      "[Accept] ",
+      "Lose ",
+      " HP.",
+      "Upgrade a card, then Duplicate it.",
+      "Transform a card, then Upgrade it.",
+      "Choose a Card to Upgrade then Duplicate",
+      "Choose a Card to Transform then Upgrade",
+      "[Leave]"
+    ]
   }
 }

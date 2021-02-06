@@ -44,6 +44,7 @@ import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SillyVariable;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
+import ruina.events.act2.ChurchOfGears;
 import ruina.events.act2.WizardOfOz;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Hermit;
@@ -325,7 +326,7 @@ public class RuinaMod implements
         briah.addBoss(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
 
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
-        BaseMod.addEvent(Addict.ID, Addict.class, Briah.ID);
+        BaseMod.addEvent(ChurchOfGears.ID, ChurchOfGears.class, Briah.ID);
         BaseMod.addEvent(BackToBasics.ID, BackToBasics.class, Briah.ID);
         BaseMod.addEvent(Beggar.ID, Beggar.class, Briah.ID);
         BaseMod.addEvent(DrugDealer.ID, DrugDealer.class, Briah.ID);

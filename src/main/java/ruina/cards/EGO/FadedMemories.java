@@ -10,15 +10,17 @@ import static ruina.util.Wiz.monsterList;
 
 public class FadedMemories extends AbstractEgoCard {
     public final static String ID = makeID(FadedMemories.class.getSimpleName());
+    public static final int DRAW = 1;
 
     public FadedMemories() {
         super(ID, 0, CardType.SKILL, CardTarget.NONE);
+        magicNumber = baseMagicNumber = DRAW;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         for (AbstractMonster mo : monsterList()) {
-            atb(new DrawCardAction(p, 1));
+            atb(new DrawCardAction(p, magicNumber));
         }
     }
 

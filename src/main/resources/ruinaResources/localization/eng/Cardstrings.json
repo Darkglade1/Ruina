@@ -25,7 +25,7 @@
   },
   "${ModID}:FadedMemories": {
     "NAME": "Faded Memories",
-    "DESCRIPTION": "Draw a card for every enemy in combat."
+    "DESCRIPTION": "Draw !M! card for every enemy in combat."
   },
   "${ModID}:LoveAndHate": {
     "NAME": "In the Name of Love and Hate",
