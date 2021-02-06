@@ -57,5 +57,27 @@
       "Choose a Card to Transform then Upgrade",
       "[Leave]"
     ]
+  },
+  "${ModID}:ZweiAssociation": {
+    "NAME": "Zwei Association",
+    "DESCRIPTIONS": [
+      "\"Our #rcasualty rates have @skyrocketed@ over the past few months. This rate of attrition is unsustainable; at this rate, our #yAssociation will cease to be #yrelevant!\" NL NL The woman pounds her fist on the table. \"Something needs to be done. Either we make efforts to #yimprove our training and equipment, or we make efforts to scout out these #pmonstrosities before facing them.\"",
+      "\"Very good. I'll make plans for a new training regimen immediately.\"",
+      "\"Very well then. I will lead the first expedition myself.\"",
+      "The woman scowls. \"Such half-heartedness does not suit you, Director.\" NL NL She sighs. \"But I will respect your #yjudgment this time.\"",
+      " NL NL The meeting adjourns, and you find yourself finally free of a #ymemory that was not yours."
+    ],
+    "OPTIONS": [
+      "[Training] ",
+      "[Scouting] ",
+      "Lose ",
+      " gold.",
+      " max HP.",
+      "Obtain a Rare card.",
+      "Obtain an EGO card.",
+      "[Compromise]",
+      "[Leave]",
+      "[Locked] Requires: Gold"
+    ]
   }
 }

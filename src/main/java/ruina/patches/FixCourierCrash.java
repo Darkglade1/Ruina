@@ -9,13 +9,10 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import javassist.CtBehavior;
 import ruina.cards.EGO.AbstractEgoCard;
-
-import java.util.ArrayList;
 
 @SpirePatch(
         clz = ShopScreen.class,
@@ -26,8 +23,7 @@ public class FixCourierCrash {
     @SpireInsertPatch(locator = Locator.class)
     public static SpireReturn<Void> FixCourier(ShopScreen instance, AbstractCard hoveredCard) {
         if (hoveredCard instanceof AbstractEgoCard) {
-            ArrayList<String> egoCard = AbstractEgoCard.getRandomEgoCards(1);
-            AbstractCard card = CardLibrary.getCard(egoCard.get(0)).makeCopy();
+            AbstractCard card = AbstractEgoCard.getRandomEgoCards(1).get(0);
             for (AbstractRelic r : AbstractDungeon.player.relics) {
                 r.onPreviewObtainCard(card);
             }

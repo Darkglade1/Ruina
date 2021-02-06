@@ -7,7 +7,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.shop.Merchant;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -28,12 +27,11 @@ public class ShopEgoPatch {
     @SpireInsertPatch(locator = Locator.class, localvars = {"cards2"})
     public static void SellEgo(Merchant __instance, float x, float y, int newShopScreen, ArrayList<AbstractCard> cards2) {
         if (CardCrawlGame.dungeon instanceof AbstractRuinaDungeon) {
-            ArrayList<String> egoCards = AbstractEgoCard.getRandomEgoCards(2);
+            ArrayList<AbstractCard> egoCards = AbstractEgoCard.getRandomEgoCards(2);
             cards2.clear();
-            for (String egoID : egoCards) {
-                AbstractCard egoCard = CardLibrary.getCard(egoID).makeCopy();
+            for (AbstractCard egoCard : egoCards) {
                 cards2.add(egoCard);
-                UnlockTracker.unlockCard(egoID);
+                UnlockTracker.unlockCard(egoCard.cardID);
             }
         }
     }

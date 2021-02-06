@@ -9,6 +9,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
 import ruina.util.TexLoader;
@@ -74,7 +75,7 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         return new TextureAtlas.AtlasRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
     }
 
-    public static ArrayList<String> getRandomEgoCards(int amount) {
+    public static ArrayList<AbstractCard> getRandomEgoCards(int amount) {
         ArrayList<String> list = new ArrayList<>();
         list.add(BlindRage.ID);
         list.add(FadedMemories.ID);
@@ -86,6 +87,12 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(Nihil.ID);
         list.add(Smile.ID);
         Collections.shuffle(list, AbstractDungeon.cardRandomRng.random);
-        return new ArrayList<>(list.subList(0, amount));
+        ArrayList<String> finalList = new ArrayList<>(list.subList(0, amount));
+        ArrayList<AbstractCard> egoCards = new ArrayList<>();
+        for (String egoID : finalList) {
+            AbstractCard egoCard = CardLibrary.getCard(egoID).makeCopy();
+            egoCards.add(egoCard);
+        }
+        return egoCards;
     }
 }

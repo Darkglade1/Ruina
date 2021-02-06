@@ -46,6 +46,7 @@ import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
 import ruina.events.act2.ChurchOfGears;
 import ruina.events.act2.WizardOfOz;
+import ruina.events.act2.ZweiAssociation;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Hermit;
 import ruina.monsters.act2.Jester.JesterOfNihil;
@@ -327,14 +328,7 @@ public class RuinaMod implements
 
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
         BaseMod.addEvent(ChurchOfGears.ID, ChurchOfGears.class, Briah.ID);
-        BaseMod.addEvent(BackToBasics.ID, BackToBasics.class, Briah.ID);
-        BaseMod.addEvent(Beggar.ID, Beggar.class, Briah.ID);
-        BaseMod.addEvent(DrugDealer.ID, DrugDealer.class, Briah.ID);
-        BaseMod.addEvent(Nest.ID, Nest.class, Briah.ID);
-        BaseMod.addEvent(TheLibrary.ID, TheLibrary.class, Briah.ID);
-        BaseMod.addEvent(TheMausoleum.ID, TheMausoleum.class, Briah.ID);
-        BaseMod.addEvent(ForgottenAltar.ID, ForgottenAltar.class, Briah.ID);
-
+        BaseMod.addEvent(ZweiAssociation.ID, ZweiAssociation.class, Briah.ID);
     }
 
 
