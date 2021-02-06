@@ -20,6 +20,7 @@ public class LoveAndHate extends AbstractEgoCard {
     public LoveAndHate() {
         super(ID, COST, CardType.ATTACK, CardTarget.ALL_ENEMY);
         baseDamage = DAMAGE;
+        isMultiDamage = true;
     }
 
     @Override

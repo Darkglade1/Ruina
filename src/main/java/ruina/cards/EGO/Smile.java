@@ -22,6 +22,7 @@ public class Smile extends AbstractEgoCard {
         baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = DEBUFF;
         exhaust = true;
+        isMultiDamage = true;
     }
 
     @Override

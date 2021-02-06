@@ -12,8 +12,8 @@ import static ruina.util.Wiz.atb;
 public class Mimicry extends AbstractEgoCard {
     public final static String ID = makeID(Mimicry.class.getSimpleName());
 
-    public static final int DAMAGE = 16;
-    public static final int UP_DAMAGE = 4;
+    public static final int DAMAGE = 13;
+    public static final int UP_DAMAGE = 3;
 
     public Mimicry() {
         super(ID, 3, CardType.ATTACK, CardTarget.ENEMY);

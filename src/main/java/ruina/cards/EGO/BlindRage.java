@@ -25,6 +25,7 @@ public class BlindRage extends AbstractEgoCard {
         super(ID, 2, CardType.ATTACK, CardTarget.ALL_ENEMY);
         baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = SELF_DAMAGE;
+        isMultiDamage = true;
     }
 
     @Override
