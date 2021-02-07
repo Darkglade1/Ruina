@@ -49,7 +49,7 @@
   },
   "${ModID}:Justice": {
     "NAME": "In the Name of Justice!",
-    "DESCRIPTIONS": ["This creature deals double damage to enemies without #yBlock."]
+    "DESCRIPTIONS": ["This creature deals triple damage to enemies without #yBlock."]
   },
   "${ModID}:PointlessHate": {
     "NAME": "Pointless Hate",

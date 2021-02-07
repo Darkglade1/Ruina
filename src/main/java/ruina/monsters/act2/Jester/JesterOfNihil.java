@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
@@ -155,8 +156,6 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        this.loseBlock(); //manually remove block due to the invisible barricade power xd
-
         if (this.firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
             firstMove = false;
@@ -283,6 +282,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
 
     @Override
     public void takeTurn() {
+        atb(new RemoveAllBlockAction(this, this));
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);

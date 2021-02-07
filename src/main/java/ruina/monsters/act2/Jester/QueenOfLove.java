@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -45,11 +46,15 @@ public class QueenOfLove extends AbstractMagicalGirl
         super(NAME, ID, 120, -5.0F, 0, 170.0f, 215.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("QueenOfLove/Spriter/QueenOfLove.scml"));
         this.animation.setFlip(true, false);
-        this.type = EnemyType.BOSS;
+        this.type = EnemyType.NORMAL;
 
-        this.setHp(160);
+        if (AbstractDungeon.ascensionLevel >= 9) {
+            this.setHp(120);
+        } else {
+            this.setHp(140);
+        }
 
-        addMove(LOVE_AND_JUSTICE, Intent.ATTACK, 4, 3, true);
+        addMove(LOVE_AND_JUSTICE, Intent.ATTACK, 3, 3, true);
         addMove(ARCANA_BEATS, Intent.BUFF);
 
         this.jester = jester;
@@ -99,7 +104,7 @@ public class QueenOfLove extends AbstractMagicalGirl
                         public void update() {
                             if (jester.currentBlock == 0) {
                                 info.applyPowers(mo, jester);
-                                info.output *= 2;
+                                info.output *= 3;
                             }
                             this.isDone = true;
                         }

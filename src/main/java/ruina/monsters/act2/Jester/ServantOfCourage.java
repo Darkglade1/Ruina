@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
@@ -35,9 +36,13 @@ public class ServantOfCourage extends AbstractMagicalGirl
         super(NAME, ID, 120, -5.0F, 0, 170.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ServantOfCourage/Spriter/ServantOfCourage.scml"));
         this.animation.setFlip(true, false);
-        this.type = EnemyType.BOSS;
+        this.type = EnemyType.NORMAL;
 
-        this.setHp(160);
+        if (AbstractDungeon.ascensionLevel >= 9) {
+            this.setHp(120);
+        } else {
+            this.setHp(140);
+        }
 
         addMove(HELP, Intent.ATTACK, 7, 2, true);
         addMove(PROTECT_FRIEND, Intent.STRONG_DEBUFF);

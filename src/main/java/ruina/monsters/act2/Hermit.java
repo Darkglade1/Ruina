@@ -3,6 +3,7 @@ package ruina.monsters.act2;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
@@ -20,7 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.powers.Bleed;
+import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -78,6 +79,7 @@ public class Hermit extends AbstractMultiIntentMonster
         }
         atb(new TalkAction(this, DIALOG[0]));
         Summon();
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
     @Override
@@ -151,6 +153,7 @@ public class Hermit extends AbstractMultiIntentMonster
         if (this.firstMove) {
             firstMove = false;
         }
+        atb(new RemoveAllBlockAction(this, this));
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (EnemyMoveInfo additionalMove : additionalMoves) {
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
@@ -161,7 +164,7 @@ public class Hermit extends AbstractMultiIntentMonster
                 takeCustomTurn(additionalMove, wrath);
             }
         }
-        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+        atb(new RollMoveAction(this));
     }
 
     @Override

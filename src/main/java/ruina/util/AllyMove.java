@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import ruina.monsters.AbstractAllyMonster;
 
+import static ruina.util.Wiz.adp;
+
 
 public class AllyMove extends ClickableUIElement {
 
@@ -69,7 +71,7 @@ public class AllyMove extends ClickableUIElement {
 
     @Override
     protected void onClick() {
-        if(!AbstractDungeon.actionManager.turnHasEnded){
+        if(!AbstractDungeon.actionManager.turnHasEnded && !adp().inSingleTargetMode && !adp().isDraggingCard){
             this.doMove();
         }
     }

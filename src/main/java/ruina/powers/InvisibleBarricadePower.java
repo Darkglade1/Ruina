@@ -16,14 +16,14 @@ public class InvisibleBarricadePower extends AbstractEasyPower implements Invisi
         super("", POWER_ID, PowerType.BUFF, false, owner, -1);
     }
 
-    @Override
-    public void duringTurn() {
-        if (justGainedBlock) {
-            justGainedBlock = false;
-        } else {
-            atb(new RemoveAllBlockAction(owner, owner));
-        }
-    }
+//    @Override
+//    public void duringTurn() {
+//        if (justGainedBlock) {
+//            justGainedBlock = false;
+//        } else {
+//            atb(new RemoveAllBlockAction(owner, owner));
+//        }
+//    }
 
     @Override
     public void updateDescription() {

@@ -41,7 +41,10 @@ public class ServantOfWrath extends AbstractAllyMonster
     private static final byte EMBODIMENTS_OF_EVIL = 0;
     private static final byte RAGE = 1;
 
-    private final int FURY_THRESHOLD = 20;
+    private static final int FURY_THRESHOLD = 20;
+    private static final int HIGH_ASC_FURY_THRESHOLD = 15;
+    private int furyThreshold;
+
     private final int EROSION = 2;
     public boolean enraged = false;
 
@@ -66,6 +69,12 @@ public class ServantOfWrath extends AbstractAllyMonster
 
         this.setHp(maxHealth);
 
+        if (AbstractDungeon.ascensionLevel >= 18) {
+            furyThreshold = HIGH_ASC_FURY_THRESHOLD;
+        } else {
+            furyThreshold = FURY_THRESHOLD;
+        }
+
         addMove(EMBODIMENTS_OF_EVIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(7), 3, true);
         addMove(RAGE, Intent.ATTACK_DEBUFF, 8, 2, true);
 
@@ -81,7 +90,7 @@ public class ServantOfWrath extends AbstractAllyMonster
                 hermit = (Hermit)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(FURY_POWER_NAME, FURY_POWER_ID, AbstractPower.PowerType.BUFF, false, this, FURY_THRESHOLD) {
+        applyToTarget(this, this, new AbstractLambdaPower(FURY_POWER_NAME, FURY_POWER_ID, AbstractPower.PowerType.BUFF, false, this, furyThreshold) {
             @Override
             public int onAttacked(DamageInfo info, int damageAmount) {
                 if (damageAmount > 0) {
@@ -103,7 +112,7 @@ public class ServantOfWrath extends AbstractAllyMonster
                         ((ServantOfWrath) owner).createIntent();
                         playSound("WrathMeet");
                     }
-                    this.amount = FURY_THRESHOLD;
+                    this.amount = furyThreshold;
                     updateDescription();
                 }
             }

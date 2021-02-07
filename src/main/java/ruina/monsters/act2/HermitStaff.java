@@ -4,6 +4,7 @@ import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -18,6 +19,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.InvisibleBarricadePower;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -49,7 +51,13 @@ public class HermitStaff extends AbstractRuinaMonster
     }
 
     @Override
+    public void usePreBattleAction() {
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
+    }
+
+    @Override
     public void takeTurn() {
+        atb(new RemoveAllBlockAction(this, this));
         DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = this.moves.get(nextMove).multiplier;
 
