@@ -122,5 +122,9 @@
   "${ModID}:SwordCounter": {
     "NAME": "Tears",
     "DESCRIPTIONS": [" has been played on this enemy #b", " times.", " time."]
+  },
+  "${ModID}:HomingInstinct": {
+    "NAME": "Homing Instinct",
+    "DESCRIPTIONS": ["At the start of your turn, gain ", "."]
   }
 }

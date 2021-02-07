@@ -88,6 +88,8 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(SwordSharpened.ID);
         list.add(Lumber.ID);
         list.add(Harvest.ID);
+        list.add(HomingInstinct.ID);
+
         Collections.shuffle(list, AbstractDungeon.cardRandomRng.random);
         ArrayList<String> finalList = new ArrayList<>(list.subList(0, amount));
         ArrayList<AbstractCard> egoCards = new ArrayList<>();

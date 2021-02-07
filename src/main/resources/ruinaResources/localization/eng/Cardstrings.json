@@ -52,5 +52,9 @@
     "NAME": "Harvest",
     "DESCRIPTION": "Deal !D! damage. NL This card deals less damage as your HP percent drops (deals max damage at full HP).",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL This card deals less damage as your HP percent drops (deals max damage at full HP). NL Gain !B! Block."
+  },
+  "${ModID}:HomingInstinct": {
+    "NAME": "Homing Instinct",
+    "DESCRIPTION": "Exhaust !M! card. NL At the start of your turn, gain [E] equal to the cost of the exhausted card."
   }
 }
