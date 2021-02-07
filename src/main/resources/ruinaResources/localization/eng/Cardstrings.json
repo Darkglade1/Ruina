@@ -47,5 +47,10 @@
   "${ModID}:Lumber": {
     "NAME": "Lumber",
     "DESCRIPTION": "Deal !D! damage. NL Exhaust !M! cards. For each Attack exhausted, add its damage to this card's damage."
+  },
+  "${ModID}:Harvest": {
+    "NAME": "Harvest",
+    "DESCRIPTION": "Deal !D! damage. NL This card deals less damage as your HP percent drops (deals max damage at full HP).",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL This card deals less damage as your HP percent drops (deals max damage at full HP). NL Gain !B! Block."
   }
 }

@@ -29,14 +29,11 @@ public class Lumber extends AbstractEgoCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         AbstractCard thisCard = this;
-        Consumer<ArrayList<AbstractCard>> consumer = new Consumer<ArrayList<AbstractCard>>() {
-            @Override
-            public void accept(ArrayList<AbstractCard> abstractCards) {
-                for (AbstractCard card : abstractCards) {
-                    if (card.type == CardType.ATTACK) {
-                        if (card.baseDamage > 0) {
-                            atb(new ModifyDamageAction(thisCard.uuid, card.baseDamage));
-                        }
+        Consumer<ArrayList<AbstractCard>> consumer = abstractCards -> {
+            for (AbstractCard card : abstractCards) {
+                if (card.type == CardType.ATTACK) {
+                    if (card.baseDamage > 0) {
+                        atb(new ModifyDamageAction(thisCard.uuid, card.baseDamage));
                     }
                 }
             }
