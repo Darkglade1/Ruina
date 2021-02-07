@@ -118,5 +118,9 @@
   "${ModID}:BlindFury": {
     "NAME": "Blind Fury",
     "DESCRIPTIONS": ["After this creature loses #b", " more HP, it will use a #rpowerful attack next turn that targets ALL other characters (including you)."]
+  },
+  "${ModID}:SwordCounter": {
+    "NAME": "Tears",
+    "DESCRIPTIONS": [" has been played on this enemy #b", " times.", " time."]
   }
 }

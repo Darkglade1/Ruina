@@ -20,14 +20,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.TheCity;
-import com.megacrit.cardcrawl.events.city.Addict;
-import com.megacrit.cardcrawl.events.city.BackToBasics;
-import com.megacrit.cardcrawl.events.city.Beggar;
-import com.megacrit.cardcrawl.events.city.DrugDealer;
-import com.megacrit.cardcrawl.events.city.ForgottenAltar;
-import com.megacrit.cardcrawl.events.city.Nest;
-import com.megacrit.cardcrawl.events.city.TheLibrary;
-import com.megacrit.cardcrawl.events.city.TheMausoleum;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -41,7 +33,7 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import ruina.CustomIntent.MassAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
-import ruina.cards.cardvars.SillyVariable;
+import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
 import ruina.events.act2.ChurchOfGears;
@@ -260,7 +252,7 @@ public class RuinaMod implements
 
     @Override
     public void receiveEditCards() {
-        BaseMod.addDynamicVariable(new SillyVariable());
+        BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
         new AutoAdd(modID)
                 .packageFilter(AbstractRuinaCard.class)

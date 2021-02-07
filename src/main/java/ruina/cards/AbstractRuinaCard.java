@@ -20,10 +20,10 @@ public abstract class AbstractRuinaCard extends CustomCard {
 
     protected final CardStrings cardStrings;
 
-    public int silly;
-    public int baseSilly;
-    public boolean upgradedSilly;
-    public boolean isSillyModified;
+    public int secondMagicNumber;
+    public int baseSecondMagicNumber;
+    public boolean upgradedSecondMagic;
+    public boolean isSecondMagicModified;
 
     public int secondDamage;
     public int baseSecondDamage;
@@ -85,17 +85,17 @@ public abstract class AbstractRuinaCard extends CustomCard {
 
     public void resetAttributes() {
         super.resetAttributes();
-        silly = baseSilly;
-        isSillyModified = false;
+        secondMagicNumber = baseSecondMagicNumber;
+        isSecondMagicModified = false;
         secondDamage = baseSecondDamage;
         isSecondDamageModified = false;
     }
 
     public void displayUpgrades() {
         super.displayUpgrades();
-        if (upgradedSilly) {
-            silly = baseSilly;
-            isSillyModified = true;
+        if (upgradedSecondMagic) {
+            secondMagicNumber = baseSecondMagicNumber;
+            isSecondMagicModified = true;
         }
         if (upgradedSecondDamage) {
             secondDamage = baseSecondDamage;
@@ -103,10 +103,10 @@ public abstract class AbstractRuinaCard extends CustomCard {
         }
     }
 
-    protected void upgradeSilly(int amount) {
-        baseSilly += amount;
-        silly = baseSilly;
-        upgradedSilly = true;
+    protected void upgradeSecondMagic(int amount) {
+        baseSecondMagicNumber += amount;
+        secondMagicNumber = baseSecondMagicNumber;
+        upgradedSecondMagic = true;
     }
 
     protected void upgradeSecondDamage(int amount) {

@@ -9,7 +9,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
 import ruina.util.TexLoader;
@@ -86,6 +85,7 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(Mimicry.ID);
         list.add(Nihil.ID);
         list.add(Smile.ID);
+        list.add(SwordSharpened.ID);
         Collections.shuffle(list, AbstractDungeon.cardRandomRng.random);
         ArrayList<String> finalList = new ArrayList<>(list.subList(0, amount));
         ArrayList<AbstractCard> egoCards = new ArrayList<>();

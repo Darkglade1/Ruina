@@ -38,5 +38,10 @@
   "${ModID}:BlindRage": {
     "NAME": "Blind Rage",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Take !M! damage. NL If your HP is at or below 50%, this card costs 0."
+  },
+  "${ModID}:SwordSharpened": {
+    "NAME": "Sword Sharpened With Tears",
+    "DESCRIPTION": "Apply !M! Weak. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and exhaust this card.",
+    "UPGRADE_DESCRIPTION": "Apply !M! Weak. NL Shuffle this card into your draw pile. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and exhaust this card."
   }
 }

@@ -6,17 +6,17 @@ import ruina.cards.AbstractRuinaCard;
 
 import static ruina.RuinaMod.makeID;
 
-public class SillyVariable extends DynamicVariable {
+public class SecondMagicNumber extends DynamicVariable {
 
     @Override
     public String key() {
-        return makeID("si");
+        return makeID("SecondMagic");
     }
 
     @Override
     public boolean isModified(AbstractCard card) {
         if (card instanceof AbstractRuinaCard) {
-            return ((AbstractRuinaCard) card).isSillyModified;
+            return ((AbstractRuinaCard) card).isSecondMagicModified;
         }
         return false;
     }
@@ -24,21 +24,21 @@ public class SillyVariable extends DynamicVariable {
     @Override
     public int value(AbstractCard card) {
         if (card instanceof AbstractRuinaCard) {
-            return ((AbstractRuinaCard) card).silly;
+            return ((AbstractRuinaCard) card).secondMagicNumber;
         }
         return -1;
     }
 
     public void setIsModified(AbstractCard card, boolean v) {
         if (card instanceof AbstractRuinaCard) {
-            ((AbstractRuinaCard) card).isSillyModified = v;
+            ((AbstractRuinaCard) card).isSecondMagicModified = v;
         }
     }
 
     @Override
     public int baseValue(AbstractCard card) {
         if (card instanceof AbstractRuinaCard) {
-            return ((AbstractRuinaCard) card).baseSilly;
+            return ((AbstractRuinaCard) card).baseSecondMagicNumber;
         }
         return -1;
     }
@@ -46,7 +46,7 @@ public class SillyVariable extends DynamicVariable {
     @Override
     public boolean upgraded(AbstractCard card) {
         if (card instanceof AbstractRuinaCard) {
-            return ((AbstractRuinaCard) card).upgradedSilly;
+            return ((AbstractRuinaCard) card).upgradedSecondMagic;
         }
         return false;
     }
