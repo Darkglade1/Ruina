@@ -104,7 +104,6 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                 clawAnimation(target);
                 dmg(target, info);
                 resetIdle();
-                power.justGainedBlock = true; //hack to make the block fall off at a different time LOL
                 break;
             }
             case FEROCIOUS_FANGS: {

@@ -47,7 +47,7 @@ public class SwordSharpened extends AbstractEgoCard {
             applyToTarget(m, p, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, m, 1) {
                 @Override
                 public void onUseCard(AbstractCard card, UseCardAction action) {
-                    if (card instanceof SwordSharpened && amount >= PLAY_THRESHOLD - 1) {
+                    if (card instanceof SwordSharpened && action.target == owner && amount >= PLAY_THRESHOLD - 1) {
                         this.flash();
                         action.exhaustCard = true;
                     }

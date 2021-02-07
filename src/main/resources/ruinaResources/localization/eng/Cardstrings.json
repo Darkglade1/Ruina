@@ -43,5 +43,9 @@
     "NAME": "Sword Sharpened With Tears",
     "DESCRIPTION": "Apply !M! Weak. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and exhaust this card.",
     "UPGRADE_DESCRIPTION": "Apply !M! Weak. NL Shuffle this card into your draw pile. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and exhaust this card."
+  },
+  "${ModID}:Lumber": {
+    "NAME": "Lumber",
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust !M! cards. For each Attack exhausted, add its damage to this card's damage."
   }
 }
