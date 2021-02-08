@@ -42,7 +42,9 @@ public class AbstractRuinaDungeon extends CustomDungeon {
                 floor = Floor.CHESED;
             }
             setMusic();
-            AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
+            if (AbstractDungeon.currMapNode != null) {
+                AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
+            }
         }
     }
 

@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -23,8 +22,6 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Home;
 import ruina.powers.Paralysis;
-
-import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -46,7 +43,6 @@ public class RoadHome extends AbstractRuinaMonster
     private static final byte HOMING_INSTINCT_INITIAL = 3;
 
     private ScaredyCat cat;
-    private ArrayList<AbstractCreature> homeList = new ArrayList<>();
 
     private final int BLOCK = calcAscensionTankiness(12);
     private final int STRENGTH = calcAscensionSpecial(3);
@@ -74,9 +70,6 @@ public class RoadHome extends AbstractRuinaMonster
         cat = new ScaredyCat(xPosition, 0.0f, this);
         atb(new SpawnMonsterAction(cat, true));
         atb(new UsePreBattleActionAction(cat));
-        homeList.add(adp());
-        homeList.add(cat);
-        homeList.add(this);
     }
 
     @Override

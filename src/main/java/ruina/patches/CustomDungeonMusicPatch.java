@@ -10,6 +10,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.audio.MainMusic;
+import com.megacrit.cardcrawl.dungeons.Exordium;
 import javassist.CtBehavior;
 import ruina.dungeons.AbstractRuinaDungeon;
 
@@ -22,7 +23,7 @@ public class CustomDungeonMusicPatch {
         if (instance instanceof AbstractRuinaDungeon) {
             ((AbstractRuinaDungeon) instance).setFloor();
             Music music = MainMusic.newMusic(instance.mainmusic);
-            MainMusic main = new MainMusic(instance.id);
+            MainMusic main = new MainMusic(Exordium.id);
             ReflectionHacks.setPrivate(main, MainMusic.class, "music", music);
             tracks.add(main);
             music.setLooping(true);

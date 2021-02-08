@@ -19,6 +19,7 @@ public class Mimicry extends AbstractEgoCard {
         super(ID, 3, CardType.ATTACK, CardTarget.ENEMY);
         baseDamage = DAMAGE;
         exhaust = true;
+        tags.add(CardTags.HEALING);
     }
 
     @Override
