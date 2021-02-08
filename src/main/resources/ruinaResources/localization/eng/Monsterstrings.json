@@ -149,7 +149,8 @@
   "${ModID}:ScaredyCat": {
     "MOVES": [
       "RAWR",
-      "Growl"
+      "Growl",
+      "Courage"
     ],
     "NAME": "Scaredy Cat",
     "DIALOG": [

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -20,7 +21,10 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.Home;
 import ruina.powers.Paralysis;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -39,8 +43,10 @@ public class RoadHome extends AbstractRuinaMonster
     private static final byte LETS_GO = 0;
     private static final byte PLAY_TAG = 1;
     private static final byte HOMING_INSTINCT = 2;
+    private static final byte HOMING_INSTINCT_INITIAL = 3;
 
     private ScaredyCat cat;
+    private ArrayList<AbstractCreature> homeList = new ArrayList<>();
 
     private final int BLOCK = calcAscensionTankiness(12);
     private final int STRENGTH = calcAscensionSpecial(3);
@@ -58,6 +64,7 @@ public class RoadHome extends AbstractRuinaMonster
         addMove(LETS_GO, Intent.BUFF);
         addMove(PLAY_TAG, Intent.DEFEND);
         addMove(HOMING_INSTINCT, Intent.ATTACK_DEBUFF, calcAscensionDamage(25));
+        addMove(HOMING_INSTINCT_INITIAL, Intent.ATTACK_BUFF, calcAscensionDamage(21));
     }
 
     @Override
@@ -67,6 +74,9 @@ public class RoadHome extends AbstractRuinaMonster
         cat = new ScaredyCat(xPosition, 0.0f, this);
         atb(new SpawnMonsterAction(cat, true));
         atb(new UsePreBattleActionAction(cat));
+        homeList.add(adp());
+        homeList.add(cat);
+        homeList.add(this);
     }
 
     @Override
@@ -110,23 +120,35 @@ public class RoadHome extends AbstractRuinaMonster
                 resetIdle();
                 break;
             }
+            case HOMING_INSTINCT_INITIAL: {
+                attackAnimation(adp());
+                HouseEffect();
+                dmg(adp(), info);
+                applyToTarget(adp(), this, new Home(adp()));
+                resetIdle();
+                break;
+            }
         }
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (cat != null && cat.isDeadOrEscaped()) {
-            if (lastMove(HOMING_INSTINCT)) {
-                setMoveShortcut(PLAY_TAG, MOVES[PLAY_TAG]);
-            } else {
-                setMoveShortcut(HOMING_INSTINCT, MOVES[HOMING_INSTINCT]);
-            }
+        if (firstMove) {
+            setMoveShortcut(HOMING_INSTINCT_INITIAL, MOVES[HOMING_INSTINCT]);
         } else {
-            if (lastMove(LETS_GO)) {
-                setMoveShortcut(PLAY_TAG, MOVES[PLAY_TAG]);
+            if (cat != null && cat.isDeadOrEscaped()) {
+                if (lastMove(HOMING_INSTINCT)) {
+                    setMoveShortcut(PLAY_TAG, MOVES[PLAY_TAG]);
+                } else {
+                    setMoveShortcut(HOMING_INSTINCT, MOVES[HOMING_INSTINCT]);
+                }
             } else {
-                setMoveShortcut(LETS_GO, MOVES[LETS_GO]);
+                if (lastMove(LETS_GO)) {
+                    setMoveShortcut(PLAY_TAG, MOVES[PLAY_TAG]);
+                } else {
+                    setMoveShortcut(LETS_GO, MOVES[LETS_GO]);
+                }
             }
         }
     }

@@ -115,7 +115,7 @@ public class Briah extends AbstractRuinaDungeon {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo(ServantOfWrath.ID, 1.0F));
         monsters.add(new MonsterInfo(Mountain.ID, 1.0F));
-        monsters.add(new MonsterInfo(RoadHome.ID, 0.5F));
+        monsters.add(new MonsterInfo(RoadHome.ID, 1.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateMonsterList(monsters, count, true);
     }

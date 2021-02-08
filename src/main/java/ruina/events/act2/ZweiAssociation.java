@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.EventStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -83,6 +84,9 @@ public class ZweiAssociation extends AbstractImageEvent {
 
                         for (AbstractCard c : group.group) {
                             UnlockTracker.markCardAsSeen(c.cardID);
+                            for (AbstractRelic relic : adp().relics) {
+                                relic.onPreviewObtainCard(c);
+                            }
                         }
                         reward.cards = group.group;
                         AbstractDungeon.getCurrRoom().rewards.clear();
@@ -96,11 +100,16 @@ public class ZweiAssociation extends AbstractImageEvent {
                         this.imageEventText.updateDialogOption(0, OPTIONS[8]);
                         this.imageEventText.clearRemainingOptions();
                         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.MED, false);
-                        // Shake the screen
-                        CardCrawlGame.sound.play("BLUNT_FAST");  // Play a hit sound
+                        CardCrawlGame.sound.play("BLUNT_FAST");
                         AbstractDungeon.player.decreaseMaxHealth(this.maxHpLoss);
                         reward = new RewardItem();
                         reward.cards = AbstractEgoCard.getRandomEgoCards(reward.cards.size());
+                        for (AbstractCard c : reward.cards) {
+                            UnlockTracker.markCardAsSeen(c.cardID);
+                            for (AbstractRelic relic : adp().relics) {
+                                relic.onPreviewObtainCard(c);
+                            }
+                        }
                         AbstractDungeon.getCurrRoom().rewards.clear();
                         AbstractDungeon.getCurrRoom().addCardReward(reward);
                         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;

@@ -31,12 +31,13 @@ public class ScaredyCat extends AbstractRuinaMonster
 
     private static final byte RAWR = 0;
     private static final byte GROWL = 1;
-    private static final byte FLEE = 2;
+    private static final byte COURAGE = 2;
+    private static final byte FLEE = 3;
 
     private RoadHome road;
 
     private final int BLEED = calcAscensionSpecial(2);
-    private final int STRENGTH = calcAscensionSpecial(1);
+    private final int STRENGTH = 1;
 
     public static final String POWER_ID = makeID("Courage");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -53,26 +54,15 @@ public class ScaredyCat extends AbstractRuinaMonster
         this.type = EnemyType.ELITE;
         this.road = road;
         setHp(calcAscensionTankiness(maxHealth));
-        addMove(RAWR, Intent.ATTACK, calcAscensionDamage(8), 2, true);
-        addMove(GROWL, Intent.ATTACK_DEBUFF, calcAscensionDamage(13));
+        addMove(RAWR, Intent.ATTACK, calcAscensionDamage(10), 2, true);
+        addMove(GROWL, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
+        addMove(COURAGE, Intent.BUFF);
         addMove(FLEE, Intent.ESCAPE);
     }
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
-            @Override
-            public void onSpecificTrigger() {
-                flash();
-                applyToTarget(owner, owner, new StrengthPower(owner, STRENGTH));
-                applyToTarget(owner, owner, new LoseStrengthPower(owner, STRENGTH));
-            }
 
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + FontHelper.colorString(road.name, "y") + POWER_DESCRIPTIONS[1] + amount + POWER_DESCRIPTIONS[2];
-            }
-        });
     }
 
     @Override
@@ -108,9 +98,26 @@ public class ScaredyCat extends AbstractRuinaMonster
                 resetIdle();
                 break;
             }
+            case COURAGE: {
+                applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
+                    @Override
+                    public void onSpecificTrigger() {
+                        flash();
+                        applyToTarget(owner, owner, new StrengthPower(owner, STRENGTH));
+                        applyToTarget(owner, owner, new LoseStrengthPower(owner, STRENGTH));
+                    }
+
+                    @Override
+                    public void updateDescription() {
+                        description = POWER_DESCRIPTIONS[0] + FontHelper.colorString(road.name, "y") + POWER_DESCRIPTIONS[1] + amount + POWER_DESCRIPTIONS[2];
+                    }
+                });
+                break;
+            }
             case FLEE: {
                 animation.setFlip(true, false);
                 atb(new EscapeAction(this));
+                break;
             }
         }
         atb(new RollMoveAction(this));
@@ -121,10 +128,14 @@ public class ScaredyCat extends AbstractRuinaMonster
         if (road.isDeadOrEscaped()) {
             setMoveShortcut(FLEE);
         } else {
-            if (this.lastMove(RAWR)) {
-                setMoveShortcut(GROWL, MOVES[GROWL]);
+            if (this.firstMove) {
+                setMoveShortcut(COURAGE, MOVES[COURAGE]);
             } else {
-                setMoveShortcut(RAWR, MOVES[RAWR]);
+                if (this.lastMove(RAWR)) {
+                    setMoveShortcut(GROWL, MOVES[GROWL]);
+                } else {
+                    setMoveShortcut(RAWR, MOVES[RAWR]);
+                }
             }
         }
     }
