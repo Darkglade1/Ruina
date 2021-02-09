@@ -47,10 +47,10 @@ public class Jack extends AbstractRuinaMonster
     }
 
     public Jack(final float x, final float y, boolean startSingle, Ozma ozma) {
-        super(NAME, ID, 200, -5.0F, 0, 135.0f, 160.0f, null, x, y);
+        super(NAME, ID, 150, -5.0F, 0, 135.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jack/Spriter/Jack.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(200);
+        setHp(this.maxHealth);
         addMove(ATTACK, Intent.ATTACK, calcAscensionSpecial(3));
         addMove(MULTI_ATTACK, Intent.ATTACK, calcAscensionSpecial(2), 2, true);
         this.startSingle = startSingle;

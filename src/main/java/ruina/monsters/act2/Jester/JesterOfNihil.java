@@ -67,8 +67,8 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     private static final byte SETUP = 5;
 
     private final int HATE_BLOCK = calcAscensionTankiness(20);
+    private final int ATTACK_BLOCK = calcAscensionTankiness(6);
     private final int STRENGTH = calcAscensionSpecial(2);
-    private final int BLEED = calcAscensionSpecial(2);
     private final int DEBUFF = calcAscensionSpecial(1);
 
     private static final int MASS_ATTACK_COOLDOWN = 3;
@@ -124,7 +124,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         girl2 = returnGirl(second, GIRL_2_X_POSITION);
 
         addMove(WILL_OF_NIHIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(30));
-        addMove(CONSUMING_DESIRE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6), 2, true);
+        addMove(CONSUMING_DESIRE, Intent.ATTACK_DEFEND, calcAscensionDamage(6), 2, true);
         addMove(LOVE_AND_HATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
         addMove(SWORD_OF_TEARS, Intent.ATTACK, calcAscensionDamage(10), 2, true);
         addMove(RAMPAGE, Intent.BUFF);
@@ -209,7 +209,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                     dmg(target, info);
                     resetIdle();
                 }
-                applyToTarget(target, this, new Bleed(target, BLEED));
+                block(this, ATTACK_BLOCK);
                 break;
             }
             case LOVE_AND_HATE: {

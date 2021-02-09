@@ -44,12 +44,12 @@ public class Ozma extends AbstractRuinaMonster
     private static final byte AWAKEN = 4;
 
     private final int JACK_STRENGTH = 1;
-    private final int STRENGTH = calcAscensionSpecial(3);
+    private final int STRENGTH = calcAscensionSpecial(4);
     private final int PARALYSIS = calcAscensionSpecial(2);
     private final int BLOCK = calcAscensionTankiness(11);
     private final int DRAW_DEBUFF = 1;
 
-    private final int DRAW_DEBUFF_COOLDOWN = 3;
+    private final int DRAW_DEBUFF_COOLDOWN = 2;
     private final int MAX_DRAW_DEBUFF = calcAscensionSpecial(2);
     private int cooldown = 0;
 
@@ -124,9 +124,6 @@ public class Ozma extends AbstractRuinaMonster
             case POWDER_OF_LIFE: {
                 buffAnimation();
                 for (AbstractMonster mo : monsterList()) {
-                    if (mo instanceof Jack) {
-                        applyToTarget(mo, this, new StrengthPower(mo, JACK_STRENGTH));
-                    }
                     block(mo, BLOCK);
                 }
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
