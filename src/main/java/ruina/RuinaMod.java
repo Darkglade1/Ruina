@@ -39,6 +39,7 @@ import ruina.dungeons.EncounterIDs;
 import ruina.events.act2.ChurchOfGears;
 import ruina.events.act2.RCorp;
 import ruina.events.act2.SocialSciences;
+import ruina.events.act2.ThePianist;
 import ruina.events.act2.WizardOfOz;
 import ruina.events.act2.ZweiAssociation;
 import ruina.monsters.act2.BadWolf;
@@ -325,6 +326,7 @@ public class RuinaMod implements
         BaseMod.addEvent(ZweiAssociation.ID, ZweiAssociation.class, Briah.ID);
         BaseMod.addEvent(RCorp.ID, RCorp.class, Briah.ID);
         BaseMod.addEvent(SocialSciences.ID, SocialSciences.class, Briah.ID);
+        BaseMod.addEvent(ThePianist.ID, ThePianist.class, Briah.ID);
     }
 
 

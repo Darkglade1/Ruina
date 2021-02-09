@@ -118,5 +118,24 @@
       "[Leave]",
       "[Locked] Requires: Potion"
     ]
+  },
+  "${ModID}:ThePianist": {
+    "NAME": "The Pianist",
+    "DESCRIPTIONS": [
+      "The city #r@shudders,@ vibrating like a plucked string. The grand #yperformance stretches ever outward, curling around the minds of its victims like a slowly tightening noose. NL NL You try to fight it. You try to beat back those notes ringing in your skull, those beats pounding away at your mind. And in the end, you -",
+      "With great force of will, you push away the Distortion's #pcorrupting influence. But where was your family? Your friends? You needed to get them away from here, away from that maddening performer and its #punholy melody. NL NL You see your best friend up ahead. He's smiling at you. NL NL His smile is the last thing you ever see.",
+      "Your mind #rfractures and #rcracks. This music was so . . . #gwonderful. So #gbeautiful. You can't help but want to get closer, to press your very body against the instrument that could make such #ydivine melodies. NL NL You can't help but want to ~evaporate~ into the air like so many of those notes you #glove."
+    ],
+    "OPTIONS": [
+      "[Retain your sanity] ",
+      "[Succumb] ",
+      "Obtain a random Rare Relic.",
+      "Become Cursed - ",
+      ".",
+      "Give a card in your deck Innate and",
+      "Autoplay.",
+      "[Wake Up]",
+      "Choose a card to give Innate and Autoplay."
+    ]
   }
 }
