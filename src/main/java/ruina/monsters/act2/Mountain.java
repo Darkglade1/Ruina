@@ -72,10 +72,10 @@ public class Mountain extends AbstractMultiIntentMonster
     private final int STAGE2_HP = calcAscensionTankiness(100);
     private final int STAGE3_HP = calcAscensionTankiness(125);
 
-    private static final int STAGE3 = 3;
-    private static final int STAGE2 = 2;
-    private static final int STAGE1 = 1;
-    private int currentStage = STAGE3;
+    public static final int STAGE3 = 3;
+    public static final int STAGE2 = 2;
+    public static final int STAGE1 = 1;
+    public int currentStage = STAGE3;
     private static final float REVIVE_PERCENT = 0.50f;
     private static final float STARTING_PERCENT = 0.50f;
     private AbstractLambdaPower stagePower;
