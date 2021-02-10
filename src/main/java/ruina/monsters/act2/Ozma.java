@@ -43,7 +43,6 @@ public class Ozma extends AbstractRuinaMonster
     private static final byte SQUASH = 3;
     private static final byte AWAKEN = 4;
 
-    private final int JACK_STRENGTH = 1;
     private final int STRENGTH = calcAscensionSpecial(4);
     private final int PARALYSIS = calcAscensionSpecial(2);
     private final int BLOCK = calcAscensionTankiness(11);

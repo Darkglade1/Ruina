@@ -498,7 +498,7 @@ public class Mountain extends AbstractMultiIntentMonster
         if (currentStage == STAGE1 && targetTexture != null && !corpse.isDeadOrEscaped()) {
             BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
             float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
-            sb.draw(targetTexture, this.intentHb.cX - 48.0F + (40.0F * Settings.scale), this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
+            sb.draw(targetTexture, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
         }
     }
 
