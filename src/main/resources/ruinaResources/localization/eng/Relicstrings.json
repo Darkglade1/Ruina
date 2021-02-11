@@ -5,5 +5,22 @@
     "DESCRIPTIONS": [
       "Upon pickup, lose #b", " Max HP. The first #b", " cards you draw each combat cost 0 until played."
     ]
+  },
+  "${ModID}:Prescript": {
+    "NAME": "Prescript",
+    "FLAVOR": "A set of bizarre instructions. Who in their right mind would come up with these?",
+    "DESCRIPTIONS": [
+      "#yIngredients: NL 1. Encounter #b", " normal", " #relite", " enemy. ", " enemies. ", " #pevent. ", " #pevents. ", "/",
+      " NL 2. Obtain #b", " Common", " #bUncommon", " #yRare", " card. ", " cards. ",
+      " NL Once completed, transforms into a special relic."
+    ]
+  },
+  "${ModID}:PrescriptsGrace": {
+    "NAME": "Prescript's Grace",
+    "FLAVOR": "It all made sense now. All those pointless endeavours converged onto a single, definite meaning.",
+    "DESCRIPTIONS": [
+      "At the start of combat, randomly chooses between #yAttack, #ySkill, and #yPower. The first card played of the chosen type is played twice. ",
+      "Prescript's Grace chosen type: ", "Attack.", "Skill.", "Power."
+    ]
   }
 }
