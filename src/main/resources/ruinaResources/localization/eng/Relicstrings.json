@@ -3,7 +3,7 @@
     "NAME": "False Present",
     "FLAVOR": "Poor Ozma. She didn't know that lying adults don't approach others without reason.",
     "DESCRIPTIONS": [
-      "The first #b", " cards you draw each combat cost 0 until played. Draw #b", " less card at the start of combat."
+      "Upon pickup, lose #b", " Max HP. The first #b", " cards you draw each combat cost 0 until played."
     ]
   }
 }

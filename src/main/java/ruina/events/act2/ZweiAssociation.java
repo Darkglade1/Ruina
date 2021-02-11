@@ -101,7 +101,7 @@ public class ZweiAssociation extends AbstractImageEvent {
                         this.imageEventText.clearRemainingOptions();
                         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.MED, false);
                         CardCrawlGame.sound.play("BLUNT_FAST");
-                        AbstractDungeon.player.decreaseMaxHealth(this.maxHpLoss);
+                        adp().decreaseMaxHealth(this.maxHpLoss);
                         reward = new RewardItem();
                         reward.cards = AbstractEgoCard.getRandomEgoCards(reward.cards.size());
                         for (AbstractCard c : reward.cards) {

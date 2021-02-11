@@ -175,9 +175,11 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     public void renderTip(SpriteBatch sb) {
         super.renderTip(sb);
         if (!adp().hasRelic(RunicDome.ID) && !this.hasPower(StunMonsterPower.POWER_ID)) {
-            for (int i = 0; i < additionalIntents.size(); i++) {
-                AdditionalIntent additionalIntent = additionalIntents.get(i);
-                this.tips.add(i + 1, additionalIntent.intentTip);
+            if (tips.size() > 0) {
+                for (int i = 0; i < additionalIntents.size(); i++) {
+                    AdditionalIntent additionalIntent = additionalIntents.get(i);
+                    this.tips.add(i + 1, additionalIntent.intentTip);
+                }
             }
         }
     }
