@@ -38,7 +38,7 @@ public class PrescriptsGrace extends AbstractEasyRelic {
             chosenTypeDescription = DESCRIPTIONS[1] + DESCRIPTIONS[4];
         }
         fixDescription();
-        atb(new TalkAction(true, chosenTypeDescription, 1.2F, 1.2F));
+        atb(new TalkAction(true, chosenTypeDescription, 2.0F, 2.0F));
     }
 
     @Override

@@ -3,6 +3,7 @@ package ruina.relics;
 import basemod.abstracts.CustomSavable;
 import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -16,6 +17,7 @@ import ruina.RuinaMod;
 
 import java.lang.reflect.Type;
 
+import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 
 public class Prescript extends AbstractEasyRelic implements CustomSavable<Integer> {
@@ -109,6 +111,7 @@ public class Prescript extends AbstractEasyRelic implements CustomSavable<Intege
 
     private void checkForCompletion() {
         if (encounterProgress == encounterType.threshold && cardTypeProgress == cardType.threshold) {
+            CardCrawlGame.sound.playV(makeID("IndexUnlock"), 1.0f);
             AbstractRelic relic = RelicLibrary.getRelic(PrescriptsGrace.ID).makeCopy();
             AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2), relic);
         }

@@ -23,7 +23,7 @@ public class AllyMove extends ClickableUIElement {
     private AbstractAllyMonster owner;
 
     public AllyMove(String ID, AbstractAllyMonster owner, Texture moveImage, String moveDescription, Runnable moveActions) {
-        super(moveImage, 0, 0, 96.0f, 96.0f);
+        super(moveImage, 0, 0, 64.0f, 64.0f);
         this.moveImage = moveImage;
         this.moveActions = moveActions;
         this.ID = ID;
