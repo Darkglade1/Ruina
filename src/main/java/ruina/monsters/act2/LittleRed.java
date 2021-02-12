@@ -71,7 +71,6 @@ public class LittleRed extends AbstractAllyMonster
         super(NAME, ID, 150, -5.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("LittleRed/Spriter/LittleRed.scml"));
         this.animation.setFlip(true, false);
-        this.type = EnemyType.BOSS;
 
         this.setHp(calcAscensionTankiness(this.maxHealth));
 

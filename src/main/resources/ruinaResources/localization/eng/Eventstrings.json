@@ -83,10 +83,10 @@
   "${ModID}:RCorp": {
     "NAME": "R Corp",
     "DESCRIPTIONS": [
-      "Gunfire @ripped@ across the field. The commander watched on in silence as his subordinate's clones killed each other for #ydominance. NL NL \"Hey, how much do you want to bet that the little rabbit over there is going to win?\" NL NL \"That one seems a little too cowardly to grasp victory. The one on a #rkilling #rspree seems much more likely to be the victor.\" NL NL There were only a few clones left. And with a flash of steel, it was over. The #ywinner was -",
+      "Gunfire @ripped@ across the field. The commander watched on in silence as her subordinate's clones killed each other for #ydominance. NL NL \"Hey, how much do you want to bet that the little rabbit over there is going to win?\" NL NL \"That one seems a little too cowardly to grasp victory. The one on a #rkilling #rspree seems much more likely to be the victor.\" NL NL There were only a few clones left. And with a flash of steel, it was over. The #ywinner was -",
       "\"It appears my deduction was correct. So I suppose that means the next round of drinks is on you, Maxim.\" NL NL \"Damnit! I thought that one looked wily enough to survive, but I guess not.\"",
       "\"Hah! I guess running isn't always such a bad option for a rabbit, is it?\" NL NL \"I didn't think such a passive variant of Myo could win; I suppose it’s my loss then.\"",
-      " NL NL As the others bickered, the commander simply looked on impassively. For he knew that it was likely that they would all be replaced someday."
+      " NL NL As the others bickered, the commander simply looked on impassively. For she knew that it was likely that they would all be replaced someday."
     ],
     "OPTIONS": [
       "[The Killer] ",
@@ -141,7 +141,7 @@
   "${ModID}:Messenger": {
     "NAME": "Messenger of the Index",
     "DESCRIPTIONS": [
-      "Another day, another Prescript delivered to some poor, #phapless soul. NL NL Sneak #rneedles into your friend’s birthday cake. #rCut off your right leg and eat it raw. Wave to the first pedestrian you meet on the street. NL NL All of them seemed like such pointless, meaningless Prescripts. But it was his duty to deliver them nonetheless. The Messenger glanced at the final Prescript he was to deliver for the day. NL NL \"Take the heart of your lover.\"",
+      "Another day, another Prescript delivered to some poor, #phapless soul. NL NL Sneak #rneedles into your friend’s birthday cake. #rCut off your right leg and eat it raw. Wave to the first pedestrian you meet on the street. NL NL All of them seemed like such pointless, meaningless Prescripts. But it was his duty to deliver them nonetheless. The Messenger glanced at the final Prescript he was to deliver for the day. NL NL \"Take the heart of your loved one.\"",
       "What a #pcruel, #pwretched order. It would be so easy for him to replace it with his own fabricated, gentler Prescript. It would be so easy for him to betray the organization he had belonged to for so long. NL NL But today was not that day. NL NL With a #pheavy heart, he delivered the final Prescript.",
       "What a #pcruel, #pwretched order. Enough was enough. He was done with following these #pabsurd, #pvile orders. He was done with forcing others to follow these #pheinous, #punspeakable commands. NL NL He would grant the people of this City what small #ymercy he could muster. NL NL Crumpling the final Prescript up, he took out pen and paper and began writing."
     ],

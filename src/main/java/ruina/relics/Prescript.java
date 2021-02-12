@@ -63,26 +63,14 @@ public class Prescript extends AbstractEasyRelic implements CustomSavable<Intege
 
     @Override
     public void justEnteredRoom(AbstractRoom room) {
-        if (room instanceof MonsterRoom) {
-            if (this.encounterType == EncounterType.NORMAL && encounterProgress < EncounterType.NORMAL.threshold) {
-                this.flash();
-                encounterProgress++;
-            }
-        }
-        if (room instanceof MonsterRoomElite) {
-            if (this.encounterType == EncounterType.ELITE && encounterProgress < EncounterType.ELITE.threshold) {
-                this.flash();
-                encounterProgress++;
-            }
-        }
         if (room instanceof EventRoom) {
             if (this.encounterType == EncounterType.EVENT && encounterProgress < EncounterType.EVENT.threshold) {
                 this.flash();
                 encounterProgress++;
+                fixDescription();
+                checkForCompletion();
             }
         }
-        fixDescription();
-        checkForCompletion();
     }
 
     @Override
@@ -107,6 +95,26 @@ public class Prescript extends AbstractEasyRelic implements CustomSavable<Intege
         }
         fixDescription();
         checkForCompletion();
+    }
+
+    @Override
+    public void onVictory() {
+        if (AbstractDungeon.getCurrRoom() instanceof MonsterRoom) {
+            if (this.encounterType == EncounterType.NORMAL && encounterProgress < EncounterType.NORMAL.threshold) {
+                this.flash();
+                encounterProgress++;
+                fixDescription();
+                checkForCompletion();
+            }
+        }
+        if (AbstractDungeon.getCurrRoom() instanceof MonsterRoomElite) {
+            if (this.encounterType == EncounterType.ELITE && encounterProgress < EncounterType.ELITE.threshold) {
+                this.flash();
+                encounterProgress++;
+                fixDescription();
+                checkForCompletion();
+            }
+        }
     }
 
     private void checkForCompletion() {
