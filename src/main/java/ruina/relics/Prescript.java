@@ -1,6 +1,7 @@
 package ruina.relics;
 
 import basemod.abstracts.CustomSavable;
+import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,6 +13,8 @@ import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import ruina.RuinaMod;
+
+import java.lang.reflect.Type;
 
 import static ruina.util.Wiz.adp;
 
@@ -176,6 +179,12 @@ public class Prescript extends AbstractEasyRelic implements CustomSavable<Intege
     }
 
     @Override
+    public Type savedType()
+    {
+        return new TypeToken<Integer>(){}.getType();
+    }
+
+    @Override
     public void onLoad(Integer value)
     {
         if (value == null) {
@@ -208,6 +217,7 @@ public class Prescript extends AbstractEasyRelic implements CustomSavable<Intege
             cardTypeProgress = 0;
             System.out.println("Ruina Prescript save corrupted, resorting to default value");
         }
+        fixDescription();
     }
 
     @Override

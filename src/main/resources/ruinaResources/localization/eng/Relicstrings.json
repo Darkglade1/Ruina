@@ -10,7 +10,7 @@
     "NAME": "Prescript",
     "FLAVOR": "A set of bizarre instructions. Who in their right mind would come up with these?",
     "DESCRIPTIONS": [
-      "#yIngredients: NL 1. Encounter #b", " normal", " #relite", " enemy. ", " enemies. ", " #pevent. ", " #pevents. ", "/",
+      "#yPrescripts: NL 1. Encounter #b", " normal", " #relite", " enemy. ", " enemies. ", " #pevent. ", " #pevents. ", "/",
       " NL 2. Obtain #b", " Common", " #bUncommon", " #yRare", " card. ", " cards. ",
       " NL Once completed, transforms into a special relic."
     ]
