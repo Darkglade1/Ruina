@@ -174,5 +174,23 @@
       "[Wake Up]",
       "Choose a card to give Retain and Exhaust."
     ]
+  },
+  "${ModID}:NothingThere": {
+    "NAME": "Nothing There",
+    "DESCRIPTIONS": [
+      "You hear joints #rtwisting and #rbreaking up ahead, like someone was trying to contort their body into an #punnatural position. NL NL Peeking around the corner, you see a #pgrotesque figure toying with the bodies of several fallen figures. More bodies littered the ground nearby, victims of this horrid #pmonstrosity. NL NL As tragic as this scene was, you wouldn't pass up the chance to take some of the spoils of this battle for yourself.",
+      "You quickly dart forward, snatching the first valuable-looking #ytrinket you see. But despite your best attempts at stealth, the creature still turns and snarls at you. NL NL A blinding #pheadache assaults you. Indistinct words pound against your brain, trying to turn your head into mush. NL NL Hello. Goodbye. hElLo. GoOdByE. @HELLo!@ @GOOdBYe!@ NL NL Despite the pounding headache, your feet manage to carry you away from that twisted creature. But no matter how far you run, you can't get those #pwords out of your head.",
+      "You're not going to risk getting any closer to that creature. The #ywealth in the pockets of the fallen around you are good enough for you."
+    ],
+    "OPTIONS": [
+      "[Loot the far corpses] ",
+      "[Loot the near corpses] ",
+      "Obtain a special Relic.",
+      "Become Cursed - ",
+      ".",
+      "Gain ",
+      " gold.",
+      "[Leave]"
+    ]
   }
 }

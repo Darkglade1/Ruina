@@ -22,5 +22,12 @@
       "At the start of combat, randomly chooses between #yAttack, #ySkill, and #yPower. The first card played of the chosen type is played twice. ",
       "Prescript's Grace chosen type: ", "Attack.", "Skill.", "Power."
     ]
+  },
+  "${ModID}:Goodbye": {
+    "NAME": "Goodbye",
+    "FLAVOR": "It tries to mimic humans. Looking into a mirror, mumbling to itself, trying to fix its skeletal structure . . . it's as if it was trying to become human.",
+    "DESCRIPTIONS": [
+      "The first #yAttack you play each combat deals double damage."
+    ]
   }
 }
