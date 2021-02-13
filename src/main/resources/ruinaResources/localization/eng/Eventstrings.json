@@ -155,5 +155,24 @@
       "Choose a Card to Remove",
       "[Wake Up]"
     ]
+  },
+  "${ModID}:ChildrenOfTheCity": {
+    "NAME": "Children of the City",
+    "DESCRIPTIONS": [
+      "The machine @thrummed@ in rhythm with the heartbeat of the #yCity. Every footstep caused the machine to @shudder,@ every off-hand comment caused it to ~rotate,~ every wayward deed displaced its pen a little. NL NL The Weaver thought it was #gbeautiful. The City was creating #yPrescripts for its people to follow, like a parent giving instructions to their children. NL NL But she was not a part of that. As a #yWeaver, it was her duty to prepare Prescripts, not to receive them. Yet she desperately wished to be part of the City's #ylight.",
+      "It wouldn't hurt if she took one for herself, right? She was a child of the #yCity too. It was her right! NL NL Swiping the next #yPrescript the machine printed out, she looked at what instruction the #yCity had for her. NL NL \"Do not go home until you finish reading the value of e.\"",
+      "No. She had to resist the #ptemptation. There was a reason she was chosen to be a #yWeaver. For the sake of the #yCity, she had to continue faithfully fulfilling her duty."
+    ],
+    "OPTIONS": [
+      "[Swipe a Prescript] ",
+      "[Resist the urge] ",
+      "Obtain a Relic.",
+      "Become Cursed - ",
+      ".",
+      "Give a card in your deck Retain and",
+      "Exhaust.",
+      "[Wake Up]",
+      "Choose a card to give Retain and Exhaust."
+    ]
   }
 }

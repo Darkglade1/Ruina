@@ -36,6 +36,7 @@ import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
+import ruina.events.act2.ChildrenOfTheCity;
 import ruina.events.act2.ChurchOfGears;
 import ruina.events.act2.Messenger;
 import ruina.events.act2.RCorp;
@@ -330,6 +331,7 @@ public class RuinaMod implements
         BaseMod.addEvent(SocialSciences.ID, SocialSciences.class, Briah.ID);
         BaseMod.addEvent(ThePianist.ID, ThePianist.class, Briah.ID);
         BaseMod.addEvent(Messenger.ID, Messenger.class, Briah.ID);
+        BaseMod.addEvent(ChildrenOfTheCity.ID, ChildrenOfTheCity.class, Briah.ID);
     }
 
 
