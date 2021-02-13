@@ -13,7 +13,7 @@ import static ruina.util.Wiz.atb;
 public class LoveAndHate extends AbstractEgoCard {
     public final static String ID = makeID(LoveAndHate.class.getSimpleName());
 
-    public static final int DAMAGE = 36;
+    public static final int DAMAGE = 42;
     public static final int UP_DAMAGE = 12;
     public static final int COST = 4;
 

@@ -56,5 +56,13 @@
   "${ModID}:HomingInstinct": {
     "NAME": "Homing Instinct",
     "DESCRIPTION": "Exhaust !M! card. NL At the start of your turn, gain [E] equal to the cost of the exhausted card."
+  },
+  "${ModID}:CobaltScar": {
+    "NAME": "Cobalt Scar",
+    "DESCRIPTION": "Whenever you play !ruina:SecondMagic! Attacks, deal !M! damage to ALL enemies."
+  },
+  "${ModID}:Thirst": {
+    "NAME": "Thirst",
+    "DESCRIPTION": "Apply !M! ruina:Bleed. NL This turn, whenever you attack an enemy with ruina:Bleed, gain !ruina:SecondMagic! Strength."
   }
 }
