@@ -1,15 +1,13 @@
 package ruina.relics;
 
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import ruina.powers.GoodbyePower;
 
 import static ruina.RuinaMod.makeID;
+import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.applyToTarget;
 
 public class Goodbye extends AbstractEasyRelic {
     public static final String ID = makeID(Goodbye.class.getSimpleName());
-
-    private static final int DAMAGE_MULTIPLIER = 2;
-    private boolean used = false;
 
     public Goodbye() {
         super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);
@@ -17,24 +15,8 @@ public class Goodbye extends AbstractEasyRelic {
 
     @Override
     public void atPreBattle() {
-        used = false;
-    }
-
-    @Override
-    public float atDamageModify(float damage, AbstractCard c) {
-        if (!used && c.type == AbstractCard.CardType.ATTACK) {
-            return damage * DAMAGE_MULTIPLIER;
-        } else {
-            return damage;
-        }
-    }
-
-    @Override
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (card.type == AbstractCard.CardType.ATTACK && !used) {
-            this.flash();
-            used = true;
-        }
+        flash();
+        applyToTarget(adp(), adp(), new GoodbyePower(adp()));
     }
 
     @Override

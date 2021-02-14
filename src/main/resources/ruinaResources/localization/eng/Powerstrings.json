@@ -134,5 +134,9 @@
   "${ModID}:Thirst": {
     "NAME": "Thirst",
     "DESCRIPTIONS": ["This turn, whenever you attack an enemy with #yBleed, gain #b" , " #yStrength."]
+  },
+  "${ModID}:GoodbyePower": {
+    "NAME": "Goodbye",
+    "DESCRIPTIONS": ["The next #yAttack you play deals double damage."]
   }
 }
