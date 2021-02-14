@@ -15,6 +15,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
@@ -27,9 +28,12 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
+import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ruina.CustomIntent.MassAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
@@ -64,7 +68,9 @@ import ruina.monsters.act2.Woodsman;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
@@ -112,6 +118,9 @@ public class RuinaMod implements
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "ruinaResources/images/Badge.png";
 
+    public static SpireConfig ruinaConfig;
+    private static Logger logger = LogManager.getLogger(RuinaMod.class.getName());
+
     public RuinaMod() {
         BaseMod.subscribe(this);
 
@@ -120,6 +129,17 @@ public class RuinaMod implements
                 ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
                 ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
                 CARD_ENERGY_L, TEXT_ENERGY);
+
+        Properties ruinaDefaults = new Properties();
+        ruinaDefaults.setProperty("Ally Tutorial Seen", "FALSE");
+        try {
+            ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
+        } catch (IOException e) {
+            logger.error("RuinaMod SpireConfig initialization failed:");
+            e.printStackTrace();
+        }
+        logger.info("RUINA CONFIG OPTIONS LOADED:");
+        logger.info("Ally tutorial seen: " + ruinaConfig.getString("Ally Tutorial Seen") + ".");
     }
 
     public static String makePath(String resourcePath) {
@@ -350,6 +370,8 @@ public class RuinaMod implements
         BaseMod.loadCustomStringsFile(EventStrings.class, getModID() + "Resources/localization/eng/Eventstrings.json");
 
         BaseMod.loadCustomStringsFile(UIStrings.class, getModID() + "Resources/localization/eng/UIstrings.json");
+
+        BaseMod.loadCustomStringsFile(TutorialStrings.class, getModID() + "Resources/localization/eng/Tutorialstrings.json");
     }
 
     @Override

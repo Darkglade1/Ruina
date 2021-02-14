@@ -13,7 +13,7 @@ import static ruina.util.Wiz.monsterList;
 public class Smile extends AbstractEgoCard {
     public final static String ID = makeID(Smile.class.getSimpleName());
 
-    public static final int DAMAGE = 14;
+    public static final int DAMAGE = 16;
     public static final int DEBUFF = 2;
     public static final int UP_DEBUFF = 1;
 
