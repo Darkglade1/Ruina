@@ -139,9 +139,10 @@ public class Scarecrow extends AbstractRuinaMonster
         }
     }
 
+    @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        playSound("ScarecrowDeath");
+        playSound("ScarecrowDeath", 0.5f);
     }
 
     private void rakeAnimation(AbstractCreature enemy) {
