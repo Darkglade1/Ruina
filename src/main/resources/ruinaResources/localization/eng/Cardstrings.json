@@ -64,5 +64,9 @@
   "${ModID}:Thirst": {
     "NAME": "Thirst",
     "DESCRIPTION": "Apply !M! ruina:Bleed. NL This turn, whenever you attack an enemy with ruina:Bleed, gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:CrimsonScar": {
+    "NAME": "Crimson Scar",
+    "DESCRIPTION": "Gain !B! Block. NL Scry !M!. NL For each card discarded, gain !ruina:SecondMagic! Vigor."
   }
 }
