@@ -35,7 +35,7 @@ public class Thirst extends AbstractEgoCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        applyToTarget(m, p, new Bleed(m, magicNumber, false));
+        applyToTarget(m, p, new Bleed(m, magicNumber));
         applyToTarget(p, p, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, p, secondMagicNumber) {
             @Override
             public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {

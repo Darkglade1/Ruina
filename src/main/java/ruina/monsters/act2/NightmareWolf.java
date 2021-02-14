@@ -112,7 +112,11 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                     dmg(target, info);
                     resetIdle();
                 }
-                applyToTarget(target, this, new Bleed(target, BLEED));
+                if (target == adp()) {
+                    applyToTarget(target, this, new Bleed(target, BLEED));
+                } else {
+                    applyToTarget(target, this, new Bleed(target, BLEED, true));
+                }
                 break;
             }
             case BLOODSTAINED_HUNT: {

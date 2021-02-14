@@ -25,7 +25,7 @@ public class Bleed extends AbstractEasyPower {
     }
 
     public Bleed(AbstractCreature owner, int amount) {
-        this(owner, amount, true);
+        this(owner, amount, false);
     }
 
     @Override
