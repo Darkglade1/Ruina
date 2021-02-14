@@ -42,6 +42,7 @@ import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
 import ruina.events.act2.ChildrenOfTheCity;
 import ruina.events.act2.ChurchOfGears;
+import ruina.events.act2.Language;
 import ruina.events.act2.Messenger;
 import ruina.events.act2.NothingThere;
 import ruina.events.act2.RCorp;
@@ -354,6 +355,7 @@ public class RuinaMod implements
         BaseMod.addEvent(Messenger.ID, Messenger.class, Briah.ID);
         BaseMod.addEvent(ChildrenOfTheCity.ID, ChildrenOfTheCity.class, Briah.ID);
         BaseMod.addEvent(NothingThere.ID, NothingThere.class, Briah.ID);
+        BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
     }
 
 

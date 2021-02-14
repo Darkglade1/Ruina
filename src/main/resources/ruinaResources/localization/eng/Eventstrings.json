@@ -192,5 +192,22 @@
       " gold.",
       "[Leave]"
     ]
+  },
+  "${ModID}:Language": {
+    "NAME": "Floor of Language",
+    "DESCRIPTIONS": [
+      "\"Are you really a lowly Grade 9 Fixer?\" NL NL The man in front of her coughed, waving away the #psmoke from her cigar. \"It's the truth, I swear! Why are you so skeptical?\" NL NL \"Gut feeling. But if you really are bottom of the barrel, that means you'd be grateful to be trained by me, a former #yColor of the City, right?\" NL NL \". . . I just remembered I have an appointment with Netzach - \" NL NL \"No, you don't.\" She grabs him before he can run off.",
+      "He eyes her greatsword, the #peyeballs embedded in the grotesque blade staring back at him in turn. \"Are you really going to use that monster of a thing on me?\" NL NL She hefts her weapon, relishing in the #gfamiliar feeling. \"Don't worry, it's not like you're going to die. Not permanently, anyway.\" NL NL \"That doesn't make me feel any better!\"",
+      "A familiar #rburning feeling fills her body, and once it abated, she was once again clad in the #pterrifying visage that earned her Color. NL NL \"Hey, wait, I thought you were going to show me how to do that!\" NL NL \"I just did, didn't I? Now, hurry up and manifest yours before I split you in half.\" NL NL That day, she learned that Roland had a very colorful vocabulary. She would have to add some of the lesser-known words to the language books later."
+    ],
+    "OPTIONS": [
+      "[Cross swords] ",
+      "[Train EGO] ",
+      "Give a card in your deck +",
+      " damage.",
+      "Obtain a random EGO card.",
+      "[Wake Up]",
+      "Choose a card"
+    ]
   }
 }
