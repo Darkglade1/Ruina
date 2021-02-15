@@ -1,6 +1,5 @@
 package ruina.powers;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -13,17 +12,23 @@ import ruina.RuinaMod;
 import static ruina.util.Wiz.atb;
 import static ruina.util.Wiz.att;
 
-public class Bleed extends AbstractEasyPower implements NonStackablePower {
+public class Bleed extends AbstractEasyPower {
     public static final String POWER_ID = RuinaMod.makeID("Bleed");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    private boolean justApplied = true;
+    private boolean justApplied;
 
-    public Bleed(AbstractCreature owner, int amount) {
+    public Bleed(AbstractCreature owner, int amount, boolean isSourceMonster) {
         super(NAME, POWER_ID, PowerType.DEBUFF, false, owner, amount);
+        justApplied = isSourceMonster;
     }
 
+    public Bleed(AbstractCreature owner, int amount) {
+        this(owner, amount, false);
+    }
+
+    @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (info.type == DamageInfo.DamageType.NORMAL && info.owner == this.owner) {
             this.flash();
@@ -32,7 +37,7 @@ public class Bleed extends AbstractEasyPower implements NonStackablePower {
     }
 
     @Override
-    public void atEndOfRound() {
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         if (justApplied) {
             justApplied = false;
         } else {

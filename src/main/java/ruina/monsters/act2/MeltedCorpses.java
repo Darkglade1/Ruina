@@ -24,12 +24,6 @@ public class MeltedCorpses extends AbstractRuinaMonster
 
     private static final byte NONE = 0;
     private final int HEAL = calcAscensionSpecial(30);
-    private final int ROT = calcAscensionSpecial(2);
-
-    public static final String ROT_POWER_ID = makeID("Rot");
-    public static final PowerStrings ROTPowerStrings = CardCrawlGame.languagePack.getPowerStrings(ROT_POWER_ID);
-    public static final String ROT_POWER_NAME = ROTPowerStrings.NAME;
-    public static final String[] ROT_POWER_DESCRIPTIONS = ROTPowerStrings.DESCRIPTIONS;
 
     public static final String CORPSE_POWER_ID = makeID("Corpse");
     public static final PowerStrings CORPSEPowerStrings = CardCrawlGame.languagePack.getPowerStrings(CORPSE_POWER_ID);
@@ -59,20 +53,6 @@ public class MeltedCorpses extends AbstractRuinaMonster
                 description = CORPSE_POWER_DESCRIPTIONS[0] + HEAL + CORPSE_POWER_DESCRIPTIONS[1];
             }
         });
-//        applyToTarget(this, this, new AbstractLambdaPower(ROT_POWER_NAME, ROT_POWER_ID, AbstractPower.PowerType.BUFF, false, this, ROT) {
-//            @Override
-//            public int onAttacked(DamageInfo info, int damageAmount) {
-//                if (info.type == DamageInfo.DamageType.NORMAL && info.owner == adp()) {
-//                    this.flash();
-//                    att(new DamageAction(info.owner, new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON, true));
-//                }
-//                return damageAmount;
-//            }
-//            @Override
-//            public void updateDescription() {
-//                description = ROT_POWER_DESCRIPTIONS[0] + amount + ROT_POWER_DESCRIPTIONS[1];
-//            }
-//        });
     }
 
     @Override

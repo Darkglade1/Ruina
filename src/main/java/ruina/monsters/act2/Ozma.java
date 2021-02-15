@@ -45,7 +45,7 @@ public class Ozma extends AbstractRuinaMonster
 
     private final int STRENGTH = calcAscensionSpecial(4);
     private final int PARALYSIS = calcAscensionSpecial(2);
-    private final int BLOCK = calcAscensionTankiness(11);
+    private final int BLOCK = calcAscensionTankiness(12);
     private final int DRAW_DEBUFF = 1;
 
     private final int DRAW_DEBUFF_COOLDOWN = 2;
@@ -68,8 +68,8 @@ public class Ozma extends AbstractRuinaMonster
         setHp(calcAscensionTankiness(maxHealth));
         addMove(FADING_MEMORIES, Intent.STRONG_DEBUFF);
         addMove(POWDER_OF_LIFE, Intent.DEFEND_BUFF);
-        addMove(HINDER, Intent.ATTACK_DEBUFF, calcAscensionDamage(13));
-        addMove(SQUASH, Intent.ATTACK, calcAscensionDamage(19));
+        addMove(HINDER, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
+        addMove(SQUASH, Intent.ATTACK, calcAscensionDamage(21));
         addMove(AWAKEN, Intent.UNKNOWN);
     }
 

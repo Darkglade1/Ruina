@@ -38,7 +38,7 @@ public class Lumber extends AbstractEgoCard {
                 }
             }
         };
-        atb(new CallbackExhaustAction(magicNumber, false, false, false, consumer));
+        atb(new CallbackExhaustAction(magicNumber, false, true, true, consumer));
     }
 
     @Override

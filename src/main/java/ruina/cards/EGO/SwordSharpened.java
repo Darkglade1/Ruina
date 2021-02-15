@@ -43,7 +43,7 @@ public class SwordSharpened extends AbstractEgoCard {
             applyToTarget(m, p, new StunMonsterPower(m, 1));
             atb(new RemoveSpecificPowerAction(m, p, POWER_ID));
         } else {
-            applyToTarget(m, m, new WeakPower(m, magicNumber, false));
+            applyToTarget(m, p, new WeakPower(m, magicNumber, false));
             applyToTarget(m, p, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, m, 1) {
                 @Override
                 public void onUseCard(AbstractCard card, UseCardAction action) {

@@ -1,10 +1,9 @@
 [
   {
-    "PROPER_NAME": "TODO",
+    "PROPER_NAME": "Bleed",
     "NAMES": [
-      "todo",
-      "todos"
+      "bleed"
     ],
-    "DESCRIPTION": "TODO: Make your own epic keywords"
+    "DESCRIPTION": "Whenever this creature attacks this turn, it takes damage equal to the amount of #yBleed it has."
   }
 ]

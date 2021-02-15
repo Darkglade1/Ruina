@@ -69,8 +69,8 @@ public class NightmareWolf extends AbstractMultiIntentMonster
         this.setHp(calcAscensionTankiness(this.maxHealth));
 
         addMove(CRUEL_CLAWS, Intent.ATTACK_DEFEND, calcAscensionDamage(9));
-        addMove(FEROCIOUS_FANGS, Intent.ATTACK_DEBUFF, calcAscensionDamage(8), 2, true);
-        addMove(BLOODSTAINED_HUNT, Intent.ATTACK, calcAscensionDamage(7), 3, true);
+        addMove(FEROCIOUS_FANGS, Intent.ATTACK_DEBUFF, calcAscensionDamage(7), 2, true);
+        addMove(BLOODSTAINED_HUNT, Intent.ATTACK, calcAscensionDamage(6), 3, true);
         addMove(HOWL, Intent.BUFF);
     }
 
@@ -112,7 +112,11 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                     dmg(target, info);
                     resetIdle();
                 }
-                applyToTarget(target, this, new Bleed(target, BLEED));
+                if (target == adp()) {
+                    applyToTarget(target, this, new Bleed(target, BLEED));
+                } else {
+                    applyToTarget(target, this, new Bleed(target, BLEED, true));
+                }
                 break;
             }
             case BLOODSTAINED_HUNT: {

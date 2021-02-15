@@ -41,7 +41,7 @@ public class TransferBlockToAllyAction extends AbstractGameAction {
                         this.isDone = true;
                     }
                 });
-                addToTop(new GainBlockAction(ally, blockToTransfer));
+                addToTop(new AllyGainBlockAction(ally, blockToTransfer, true));
             } else {
                 atb(new TalkAction(true, TEXT[12], 1.2F, 1.2F));
             }

@@ -46,7 +46,7 @@
   },
   "${ModID}:Lumber": {
     "NAME": "Lumber",
-    "DESCRIPTION": "Deal !D! damage. NL Exhaust !M! cards. For each Attack exhausted, add its base damage to this card's damage."
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust up to !M! cards. For each Attack exhausted, add its base damage to this card's damage."
   },
   "${ModID}:Harvest": {
     "NAME": "Harvest",
@@ -56,5 +56,17 @@
   "${ModID}:HomingInstinct": {
     "NAME": "Homing Instinct",
     "DESCRIPTION": "Exhaust !M! card. NL At the start of your turn, gain [E] equal to the cost of the exhausted card."
+  },
+  "${ModID}:CobaltScar": {
+    "NAME": "Cobalt Scar",
+    "DESCRIPTION": "Whenever you play !ruina:SecondMagic! Attacks, deal !M! damage to ALL enemies."
+  },
+  "${ModID}:Thirst": {
+    "NAME": "Thirst",
+    "DESCRIPTION": "Apply !M! ruina:Bleed. NL This turn, whenever you attack an enemy with ruina:Bleed, gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:CrimsonScar": {
+    "NAME": "Crimson Scar",
+    "DESCRIPTION": "Gain !B! Block. NL Scry !M!. NL For each card discarded, gain !ruina:SecondMagic! Vigor."
   }
 }

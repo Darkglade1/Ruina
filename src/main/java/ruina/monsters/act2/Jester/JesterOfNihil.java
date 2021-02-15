@@ -73,10 +73,10 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
 
     private static final int MASS_ATTACK_COOLDOWN = 3;
     private static final int RAMPAGE_COOLDOWN = 1;
-    private static final float GIRL_1_X_POSITION = -700.0f;
-    private static final float GIRL_2_X_POSITION = -500.0f;
-    private static final float STATUE_1_X_POSITION = -250.0f;
-    private static final float STATUE_2_X_POSITION = -450.0f;
+    private static final float GIRL_1_X_POSITION = -600.0f;
+    private static final float GIRL_2_X_POSITION = -400.0f;
+    private static final float STATUE_1_X_POSITION = -150.0f;
+    private static final float STATUE_2_X_POSITION = -350.0f;
     private boolean girl1Spawned = false;
     private boolean girl2Spawned = false;
     private AbstractMagicalGirl girl1;
@@ -95,7 +95,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     public static final String[] HATE_POWER_DESCRIPTIONS = hatePowerStrings.DESCRIPTIONS;
 
     public JesterOfNihil() {
-        this(0.0f, 0.0f);
+        this(100.0f, 0.0f);
     }
 
     public JesterOfNihil(final float x, final float y) {

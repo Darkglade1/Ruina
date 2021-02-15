@@ -1,0 +1,10 @@
+{
+  "${ModID}:AllyTutorial": {
+    "TEXT": [
+      "Some creatures in battle are #yAllies that will assist you. You can transfer your #yBlock to your #yAllies by clicking the button next to their intent."
+    ],
+    "LABEL": [
+      "Allies"
+    ]
+  }
+}

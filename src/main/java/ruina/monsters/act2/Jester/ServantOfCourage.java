@@ -36,7 +36,6 @@ public class ServantOfCourage extends AbstractMagicalGirl
         super(NAME, ID, 120, -5.0F, 0, 170.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ServantOfCourage/Spriter/ServantOfCourage.scml"));
         this.animation.setFlip(true, false);
-        this.type = EnemyType.NORMAL;
 
         if (AbstractDungeon.ascensionLevel >= 9) {
             this.setHp(120);

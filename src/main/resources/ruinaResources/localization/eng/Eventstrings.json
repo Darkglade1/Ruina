@@ -83,10 +83,10 @@
   "${ModID}:RCorp": {
     "NAME": "R Corp",
     "DESCRIPTIONS": [
-      "Gunfire @ripped@ across the field. The commander watched on in silence as his subordinate's clones killed each other for #ydominance. NL NL \"Hey, how much do you want to bet that the little rabbit over there is going to win?\" NL NL \"That one seems a little too cowardly to grasp victory. The one on a #rkilling #rspree seems much more likely to be the victor.\" NL NL There were only a few clones left. And with a flash of steel, it was over. The #ywinner was -",
+      "Gunfire @ripped@ across the field. The commander watched on in silence as her subordinate's clones killed each other for #ydominance. NL NL \"Hey, how much do you want to bet that the little rabbit over there is going to win?\" NL NL \"That one seems a little too cowardly to grasp victory. The one on a #rkilling #rspree seems much more likely to be the victor.\" NL NL There were only a few clones left. And with a flash of steel, it was over. The #ywinner was -",
       "\"It appears my deduction was correct. So I suppose that means the next round of drinks is on you, Maxim.\" NL NL \"Damnit! I thought that one looked wily enough to survive, but I guess not.\"",
       "\"Hah! I guess running isn't always such a bad option for a rabbit, is it?\" NL NL \"I didn't think such a passive variant of Myo could win; I suppose it’s my loss then.\"",
-      " NL NL As the others bickered, the commander simply looked on impassively. For he knew that it was likely that they would all be replaced someday."
+      " NL NL As the others bickered, the commander simply looked on impassively. For she knew that it was likely that they would all be replaced someday."
     ],
     "OPTIONS": [
       "[The Killer] ",
@@ -141,7 +141,7 @@
   "${ModID}:Messenger": {
     "NAME": "Messenger of the Index",
     "DESCRIPTIONS": [
-      "Another day, another Prescript delivered to some poor, #phapless soul. NL NL Sneak #rneedles into your friend’s birthday cake. #rCut off your right leg and eat it raw. Wave to the first pedestrian you meet on the street. NL NL All of them seemed like such pointless, meaningless Prescripts. But it was his duty to deliver them nonetheless. The Messenger glanced at the final Prescript he was to deliver for the day. NL NL \"Take the heart of your lover.\"",
+      "Another day, another Prescript delivered to some poor, #phapless soul. NL NL Sneak #rneedles into your friend’s birthday cake. #rCut off your right leg and eat it raw. Wave to the first pedestrian you meet on the street. NL NL All of them seemed like such pointless, meaningless Prescripts. But it was his duty to deliver them nonetheless. The Messenger glanced at the final Prescript he was to deliver for the day. NL NL \"Take the heart of the one you love.\"",
       "What a #pcruel, #pwretched order. It would be so easy for him to replace it with his own fabricated, gentler Prescript. It would be so easy for him to betray the organization he had belonged to for so long. NL NL But today was not that day. NL NL With a #pheavy heart, he delivered the final Prescript.",
       "What a #pcruel, #pwretched order. Enough was enough. He was done with following these #pabsurd, #pvile orders. He was done with forcing others to follow these #pheinous, #punspeakable commands. NL NL He would grant the people of this City what small #ymercy he could muster. NL NL Crumpling the final Prescript up, he took out pen and paper and began writing."
     ],
@@ -154,6 +154,60 @@
       "Remove a card.",
       "Choose a Card to Remove",
       "[Wake Up]"
+    ]
+  },
+  "${ModID}:ChildrenOfTheCity": {
+    "NAME": "Children of the City",
+    "DESCRIPTIONS": [
+      "The machine @thrummed@ in rhythm with the heartbeat of the #yCity. Every footstep caused the machine to @shudder,@ every off-hand comment caused it to ~rotate,~ every wayward deed displaced its pen a little. NL NL The Weaver thought it was #gbeautiful. The City was creating #yPrescripts for its people to follow, like a parent giving instructions to their children. NL NL But she was not a part of that. As a #yWeaver, it was her duty to prepare Prescripts, not to receive them. Yet she desperately wished to be part of the City's #ylight.",
+      "It wouldn't hurt if she took one for herself, right? She was a child of the #yCity too. It was her right! NL NL Swiping the next #yPrescript the machine printed out, she looked at what instruction the #yCity had for her. NL NL \"Do not go home until you finish reading the value of e.\"",
+      "No. She had to resist the #ptemptation. There was a reason she was chosen to be a #yWeaver. For the sake of the #yCity, she had to continue faithfully fulfilling her duty."
+    ],
+    "OPTIONS": [
+      "[Swipe a Prescript] ",
+      "[Resist the urge] ",
+      "Obtain a Relic.",
+      "Become Cursed - ",
+      ".",
+      "Give a card in your deck Retain and",
+      "Exhaust.",
+      "[Wake Up]",
+      "Choose a card to give Retain and Exhaust."
+    ]
+  },
+  "${ModID}:NothingThere": {
+    "NAME": "Nothing There",
+    "DESCRIPTIONS": [
+      "You hear joints #rtwisting and #rbreaking up ahead, like someone was trying to contort their body into an #punnatural position. NL NL Peeking around the corner, you see a #pgrotesque figure toying with the bodies of several fallen figures. More bodies littered the ground nearby, victims of this horrid #pmonstrosity. NL NL As tragic as this scene was, you wouldn't pass up the chance to take some of the spoils of this battle for yourself.",
+      "You quickly dart forward, snatching the first valuable-looking #ytrinket you see. But despite your best attempts at stealth, the creature still turns and snarls at you. NL NL A blinding #pheadache assaults you. Indistinct words pound against your brain, trying to turn your head into mush. NL NL Hello. Goodbye. hElLo. GoOdByE. @HELLo!@ @GOOdBYe!@ NL NL Despite the pounding headache, your feet manage to carry you away from that twisted creature. But no matter how far you run, you can't get those #pwords out of your head.",
+      "You're not going to risk getting any closer to that creature. The #ywealth in the pockets of the fallen around you are good enough for you."
+    ],
+    "OPTIONS": [
+      "[Loot the far corpses] ",
+      "[Loot the near corpses] ",
+      "Obtain a special Relic.",
+      "Become Cursed - ",
+      ".",
+      "Gain ",
+      " gold.",
+      "[Leave]"
+    ]
+  },
+  "${ModID}:Language": {
+    "NAME": "Floor of Language",
+    "DESCRIPTIONS": [
+      "\"Are you really a lowly Grade 9 Fixer?\" NL NL The man in front of her coughed, waving away the #psmoke from her cigar. \"It's the truth, I swear! Why are you so skeptical?\" NL NL \"Gut feeling. But if you really are bottom of the barrel, that means you'd be grateful to be trained by me, a former #yColor of the City, right?\" NL NL \". . . I just remembered I have an appointment with Netzach - \" NL NL \"No, you don't.\" She grabs him before he can run off.",
+      "He eyes her greatsword, the #peyeballs embedded in the grotesque blade staring back at him in turn. \"Are you really going to use that monster of a thing on me?\" NL NL She hefts her weapon, relishing in the #gfamiliar feeling. \"Don't worry, it's not like you're going to die. Not permanently, anyway.\" NL NL \"That doesn't make me feel any better!\"",
+      "A familiar #rburning feeling fills her body, and once it abated, she was once again clad in the #pterrifying visage that earned her Color. NL NL \"Hey, wait, I thought you were going to show me how to do that!\" NL NL \"I just did, didn't I? Now, hurry up and manifest yours before I split you in half.\" NL NL That day, she learned that Roland had a very colorful vocabulary. She would have to add some of the lesser-known words to the language books later."
+    ],
+    "OPTIONS": [
+      "[Cross swords] ",
+      "[Train EGO] ",
+      "Give a card in your deck +",
+      " damage.",
+      "Obtain a random EGO card.",
+      "[Wake Up]",
+      "Choose a card"
     ]
   }
 }
