@@ -259,5 +259,60 @@
     "NAME": "Hermit's Staff",
     "DIALOG": [
     ]
+  },
+  "${ModID}:ParadiseLost": {
+    "MOVES": [
+      "",
+      "",
+      "Wings Of Grace",
+      "Summon Apostles",
+      "Baptism",
+      "Rise And Serve",
+      "Salvation",
+      "Prayer",
+      "Do Not Deny Me",
+      "Be Not Afraid",
+      "Behold My Power",
+      "Revelation"
+    ],
+    "NAME": "Seraphim of a Long Lost Paradise",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:ScytheApostle": {
+    "MOVES": [
+      "I will Follow Thee",
+      "Thy Will be Done",
+      "I Shall Preserve Thee",
+      "Teach Us"
+    ],
+    "NAME": "Scythe-Wielding Apostle",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:SpearApostle": {
+    "MOVES": [
+      "For He is Holy",
+      "The Will of the Lord be Done",
+      "I shall Devote unto Thee",
+      "Let Thy Light Lead Me"
+    ],
+    "NAME": "Spear-Wielding Apostle",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:GuardianApostle": {
+    "MOVES": [
+      "Rise And Serve",
+      "Wilt thou that We Command Fire?",
+      "Thou art the King",
+      "Give Us Rest",
+      "Thy Words Come unto Me",
+      "Lord, Shew Us",
+      ""
+    ],
+    "NAME": "Guardian Apostle",
+    "DIALOG": [
+    ]
   }
 }

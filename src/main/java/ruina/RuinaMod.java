@@ -66,6 +66,9 @@ import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act3.seraphim.ParadiseLost;
+import ruina.monsters.act3.seraphim.ScytheApostle;
+import ruina.monsters.act3.seraphim.SpearApostle;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
 
@@ -356,6 +359,16 @@ public class RuinaMod implements
         BaseMod.addEvent(ChildrenOfTheCity.ID, ChildrenOfTheCity.class, Briah.ID);
         BaseMod.addEvent(NothingThere.ID, NothingThere.class, Briah.ID);
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
+
+
+        // ACT 3
+        BaseMod.addMonster(ParadiseLost.ID, (BaseMod.GetMonster) ParadiseLost::new);
+        briah.addBoss(ParadiseLost.ID, (BaseMod.GetMonster) ParadiseLost::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
+
+
+
+        
+
     }
 
 
