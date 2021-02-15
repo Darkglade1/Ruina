@@ -62,7 +62,7 @@ public class Jack extends AbstractRuinaMonster
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (owner instanceof Jack) {
+                if (owner instanceof Jack && target == adp()) {
                     atb(new JackStealAction((Jack) owner));
                 }
             }
