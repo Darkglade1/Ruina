@@ -127,7 +127,6 @@
     "NAME": "Fickle Home",
     "DESCRIPTIONS": ["Deals and receives #b", "% #yless damage from attacks.", "% #ymore damage from attacks."," Whenever you play #b", " cards, #yInvert the effects of this power."]
   },
-
   "${ModID}:Apostles": {
     "NAME": "Apostles",
     "DESCRIPTIONS": ["This enemy is #rinvulnerable until all #yApostles have been killed. NL Prevent #yWings #yOf #yGrace from decreasing."]

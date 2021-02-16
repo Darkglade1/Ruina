@@ -1,5 +1,6 @@
 package ruina.monsters.act3.seraphim;
 
+import basemod.animations.AbstractAnimation;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -9,6 +10,7 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -105,13 +107,13 @@ public class ParadiseLost extends AbstractMultiIntentMonster
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private float particleTimer;
-    private float particleTimer2;
+    private AbstractAnimation whiteNight;
 
     public ParadiseLost() { this(250.0f, 0.0f); }
     public ParadiseLost(final float x, final float y) {
         super(NAME, ID, 999, -5.0F, 0, 280.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Seraphim/Spriter/Seraphim.scml"));
+        this.whiteNight = new BetterSpriterAnimation(makeMonsterPath("Seraphim/WhiteNight/WhiteNight.scml"));
         this.setHp(maxHealth);
         this.type = EnemyType.BOSS;
         // Phase 3: Enrage and gain 1 more.
@@ -351,21 +353,7 @@ public class ParadiseLost extends AbstractMultiIntentMonster
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        if (this.hasPower(SenselessWrath.POWER_ID)) {
-            if (this.getPower(SenselessWrath.POWER_ID).amount == SenselessWrath.THRESHOLD) {
-                this.particleTimer -= Gdx.graphics.getDeltaTime();
-                if (this.particleTimer < 0.0F) {
-                    this.particleTimer = 0.04F;
-                    AbstractDungeon.effectsQueue.add(new FlexibleWrathParticleEffect(this));
-                }
-
-                this.particleTimer2 -= Gdx.graphics.getDeltaTime();
-                if (this.particleTimer2 < 0.0F) {
-                    this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
-                    AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(WrathStance.STANCE_ID, this));
-                }
-            }
-        }
+        whiteNight.renderSprite(sb, (float)Settings.WIDTH / 2, (float)Settings.HEIGHT / 2);
     }
 
     public void Summon() {

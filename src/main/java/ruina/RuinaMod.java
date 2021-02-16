@@ -304,6 +304,7 @@ public class RuinaMod implements
 
         CustomIntent.add(new MassAttackIntent());
 
+        //Act 2
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
         BaseMod.addMonster(RoadHome.ID, (BaseMod.GetMonster) RoadHome::new);
         BaseMod.addMonster(ServantOfWrath.ID, "Servant_of_Wrath", () -> new MonsterGroup(
@@ -361,14 +362,9 @@ public class RuinaMod implements
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
 
 
-        // ACT 3
+        // Act 3
         BaseMod.addMonster(ParadiseLost.ID, (BaseMod.GetMonster) ParadiseLost::new);
-        briah.addBoss(ParadiseLost.ID, (BaseMod.GetMonster) ParadiseLost::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
-
-
-
-        
-
+        //briah.addBoss(ParadiseLost.ID, (BaseMod.GetMonster) ParadiseLost::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
     }
 
 
