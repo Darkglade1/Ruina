@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.BetterSpriterAnimation;
+import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.WingsOfGrace;
 
@@ -35,7 +36,7 @@ public class ScytheApostle extends AbstractRuinaMonster {
     private Prophet prophet;
 
     public ScytheApostle(final float x, final float y, Prophet parent, int startingState) {
-        super(NAME, ID, 75, -5.0F, 0, 130.0f, 125.0f, null, x, y);
+        super(NAME, ID, 75, -5.0F, 0, 130.0f, 165.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScytheApostle/Spriter/ScytheApostle.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(maxHealth));
@@ -66,7 +67,9 @@ public class ScytheApostle extends AbstractRuinaMonster {
                 break;
             case PRESERVE_THEE:
                 for (AbstractMonster m : monsterList()) {
-                    atb(new GainBlockAction(m, preserveTheeBlock));
+                    if (!(m instanceof AbstractAllyMonster)) {
+                        atb(new GainBlockAction(m, preserveTheeBlock));
+                    }
                 }
                 break;
             case FOLLOW_THEE:

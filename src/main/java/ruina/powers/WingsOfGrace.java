@@ -1,10 +1,6 @@
 package ruina.powers;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,7 +8,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
 
 import static ruina.util.Wiz.atb;
-import static ruina.util.Wiz.att;
 
 public class WingsOfGrace extends AbstractEasyPower{
     public static final String POWER_ID = RuinaMod.makeID(WingsOfGrace.class.getSimpleName());
@@ -30,12 +25,10 @@ public class WingsOfGrace extends AbstractEasyPower{
     public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) { return calculateDamageTakenAmount(damage, type); }
 
     private float calculateDamageTakenAmount(float damage, DamageInfo.DamageType type) {
-        if(owner.hasPower(Apostles.POWER_ID)){ return 0; }
         return damage / 2.0F;
     }
 
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if(owner.hasPower(Apostles.POWER_ID)){ return 0; }
         boolean willLive = (calculateDamageTakenAmount(damageAmount, info.type) < this.owner.currentHealth);
         if (info.owner != null && damageAmount > 0 && willLive) {
             flash();

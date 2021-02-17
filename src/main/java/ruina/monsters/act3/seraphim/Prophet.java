@@ -124,7 +124,9 @@ public class Prophet extends AbstractAllyMonster
                     for (AbstractMonster mo : monsterList()) {
                         if (mo instanceof ScytheApostle || mo instanceof SpearApostle) {
                             mo.currentHealth = 0;
+                            mo.loseBlock();
                             mo.isDead = true;
+                            mo.isDying = true;
                             mo.healthBarUpdatedEvent();
                         }
                     }
@@ -134,7 +136,9 @@ public class Prophet extends AbstractAllyMonster
                         @Override
                         public void update() {
                             owner.currentHealth = 0;
+                            owner.loseBlock();
                             owner.isDead = true;
+                            owner.isDying = true;
                             owner.healthBarUpdatedEvent();
                             this.isDone = true;
                         }
@@ -220,7 +224,6 @@ public class Prophet extends AbstractAllyMonster
         AbstractPower apostlePower = this.getPower(APOSTLES_POWER_ID);
         if (apostlePower != null) {
             apostlePower.amount = apostleKillCounter;
-            apostlePower.flash();
         }
         if (apostleKillCounter == 1 || apostleKillCounter == 5 || apostleKillCounter == 9) {
             numBuff1++;

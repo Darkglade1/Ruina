@@ -55,8 +55,9 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
     private int shewUs = calcAscensionDamage(1);
     private Seraphim seraphim;
     private boolean deadForThisTurn = false;
+
     public GuardianApostle(final float x, final float y, Seraphim parent) {
-        super(NAME, ID, 75, -5.0F, 0, 280.0f, 255.0f, null, x, y);
+        super(NAME, ID, 75, -5.0F, 0, 280.0f, 215.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("GuardianApostle/Spriter/GuardianApostle.scml"));
         this.setHp(calcAscensionTankiness(maxHealth));
         this.type = EnemyType.ELITE;
@@ -129,7 +130,6 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
 
     @Override
     public void takeTurn() {
-        atb(new RemoveAllBlockAction(this, this));
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
@@ -142,15 +142,27 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
 
     @Override
     protected void getMove(final int num) {
-        if(deadForThisTurn){ setMoveShortcut(EMPTY, MOVES[EMPTY]); }
-        else if (firstMove) { setMoveShortcut(RISE_AND_SERVE, MOVES[RISE_AND_SERVE]);
+        if (deadForThisTurn) {
+            setMoveShortcut(EMPTY, MOVES[EMPTY]);
+        } else if (firstMove) {
+            setMoveShortcut(RISE_AND_SERVE, MOVES[RISE_AND_SERVE]);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(COMMAND_FIRE)) { possibilities.add(COMMAND_FIRE); }
-            if (!this.lastMove(THE_KING)) { possibilities.add(THE_KING); }
-            if (!this.lastMove(GIVE_US_REST)) { possibilities.add(GIVE_US_REST); }
-            if (!this.lastMove(THY_WORDS_COME_UNTO_ME)) { possibilities.add(THY_WORDS_COME_UNTO_ME); }
-            if (!this.lastMove(LORD_SHEW_US)) { possibilities.add(LORD_SHEW_US); }
+            if (!this.lastMove(COMMAND_FIRE)) {
+                possibilities.add(COMMAND_FIRE);
+            }
+            if (!this.lastMove(THE_KING)) {
+                possibilities.add(THE_KING);
+            }
+            if (!this.lastMove(GIVE_US_REST)) {
+                possibilities.add(GIVE_US_REST);
+            }
+            if (!this.lastMove(THY_WORDS_COME_UNTO_ME)) {
+                possibilities.add(THY_WORDS_COME_UNTO_ME);
+            }
+            if (!this.lastMove(LORD_SHEW_US)) {
+                possibilities.add(LORD_SHEW_US);
+            }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move]);
         }
@@ -158,14 +170,25 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
-        if (deadForThisTurn) { setMoveShortcut(EMPTY, MOVES[EMPTY]); }
-        else {
+        if (deadForThisTurn) {
+            setMoveShortcut(EMPTY, MOVES[EMPTY]);
+        } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(COMMAND_FIRE)) { possibilities.add(COMMAND_FIRE); }
-            if (!this.lastMove(THE_KING)) { possibilities.add(THE_KING); }
-            if (!this.lastMove(GIVE_US_REST)) { possibilities.add(GIVE_US_REST); }
-            if (!this.lastMove(THY_WORDS_COME_UNTO_ME)) { possibilities.add(THY_WORDS_COME_UNTO_ME); }
-            if (!this.lastMove(LORD_SHEW_US)) { possibilities.add(LORD_SHEW_US); }
+            if (!this.lastMove(COMMAND_FIRE)) {
+                possibilities.add(COMMAND_FIRE);
+            }
+            if (!this.lastMove(THE_KING)) {
+                possibilities.add(THE_KING);
+            }
+            if (!this.lastMove(GIVE_US_REST)) {
+                possibilities.add(GIVE_US_REST);
+            }
+            if (!this.lastMove(THY_WORDS_COME_UNTO_ME)) {
+                possibilities.add(THY_WORDS_COME_UNTO_ME);
+            }
+            if (!this.lastMove(LORD_SHEW_US)) {
+                possibilities.add(LORD_SHEW_US);
+            }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             setAdditionalMoveShortcut(move, moveHistory);
         }
@@ -187,17 +210,25 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
     }
 
     @Override
-    public void usePreBattleAction() { atb(new ApplyPowerAction(this, this, new Unkillable(this))); }
+    public void usePreBattleAction() {
+        atb(new ApplyPowerAction(this, this, new Unkillable(this)));
+    }
 
     public void damage(DamageInfo info) {
         super.damage(info);
         if (this.currentHealth == 1) {
-            for (AbstractPower p : this.powers) { p.onDeath(); }
-            for (AbstractRelic r : AbstractDungeon.player.relics) { r.onMonsterDeath(this); }
+            for (AbstractPower p : this.powers) {
+                p.onDeath();
+            }
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                r.onMonsterDeath(this);
+            }
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    for (AbstractPower p : powers) { p.onDeath(); }
+                    for (AbstractPower p : powers) {
+                        p.onDeath();
+                    }
                     deadForThisTurn = true;
                     this.isDone = true;
                 }

@@ -30,8 +30,7 @@ import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 import static ruina.util.Wiz.atb;
 
-public class Seraphim extends AbstractMultiIntentMonster
-{
+public class Seraphim extends AbstractMultiIntentMonster {
     public static final String ID = makeID(Seraphim.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
@@ -76,9 +75,8 @@ public class Seraphim extends AbstractMultiIntentMonster
     private static final byte REVELATION = 11;
 
 
-    private int phase = 1;
+    private int phase = 2;
     // Phase 1
-    public int ApostleKillCounter = 0;
     private int wingsOfGrace = calcAscensionSpecial(1);
     private int strBuff = calcAscensionSpecial(1);
     private int baptismHeal = calcAscensionSpecial(15);
@@ -94,25 +92,23 @@ public class Seraphim extends AbstractMultiIntentMonster
     // Prevent non needed intent changes
     private boolean lockedIntent = false;
 
-    private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
-    public static final String POWER_ID = makeID("Apostles");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     private AbstractAnimation whiteNight;
 
-    public Seraphim() { this(250.0f, 0.0f); }
+    public Seraphim() {
+        this(150.0f, 0.0f);
+    }
+
     public Seraphim(final float x, final float y) {
-        super(NAME, ID, 999, -5.0F, 0, 280.0f, 255.0f, null, x, y);
+        super(NAME, ID, 666, -5.0F, 0, 280.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Seraphim/Spriter/Seraphim.scml"));
         this.whiteNight = new BetterSpriterAnimation(makeMonsterPath("Seraphim/WhiteNight/WhiteNight.scml"));
         runAnim("Idle");
-        this.setHp(maxHealth);
         this.type = EnemyType.BOSS;
         // Phase 3: Enrage and gain 1 more.
         numAdditionalMoves = 2;
-        for (int i = 0; i < numAdditionalMoves; i++) { additionalMovesHistory.add(new ArrayList<>()); }
+        for (int i = 0; i < numAdditionalMoves; i++) {
+            additionalMovesHistory.add(new ArrayList<>());
+        }
 
         firstMove = true;
         addMove(EMPTY, Intent.NONE);
@@ -130,10 +126,9 @@ public class Seraphim extends AbstractMultiIntentMonster
     }
 
 
-
     @Override
     public void usePreBattleAction() {
-        Summon();
+        //Summon();
         AbstractDungeon.getCurrRoom().cannotLose = true;
         //atb(new ApplyPowerAction(this, this, new Apostles(this, ApostleKillCounter)));
         atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, calcAscensionSpecial(2))));
@@ -143,7 +138,9 @@ public class Seraphim extends AbstractMultiIntentMonster
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
-        if(info.base > -1) { info.applyPowers(this, target); }
+        if (info.base > -1) {
+            info.applyPowers(this, target);
+        }
         switch (move.nextMove) {
             case EMPTY:
                 break;
@@ -152,7 +149,9 @@ public class Seraphim extends AbstractMultiIntentMonster
                     @Override
                     public void update() {
                         phase += 1;
-                        if(phase > 3){ phase = 3; }
+                        if (phase > 3) {
+                            phase = 3;
+                        }
                         this.isDone = true;
                     }
                 });
@@ -168,8 +167,10 @@ public class Seraphim extends AbstractMultiIntentMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        for(AbstractMonster m: monsterList()) {
-                            if (!(m instanceof Seraphim)) { att(new ApplyPowerAction(m, m, new StrengthPower(m, strBuff))); }
+                        for (AbstractMonster m : monsterList()) {
+                            if (!(m instanceof Seraphim)) {
+                                att(new ApplyPowerAction(m, m, new StrengthPower(m, strBuff)));
+                            }
                         }
                         this.isDone = true;
                     }
@@ -177,7 +178,7 @@ public class Seraphim extends AbstractMultiIntentMonster
                 break;
             case BEHOLD_MY_POWER:
             case RISE_AND_SERVE:
-                if(move.nextMove == RISE_AND_SERVE){
+                if (move.nextMove == RISE_AND_SERVE) {
                     Summon();
                     atb(new AbstractGameAction() {
                         @Override
@@ -187,14 +188,16 @@ public class Seraphim extends AbstractMultiIntentMonster
                         }
                     });
                 }
-                for (int i = 0; i < multiplier; i++) { dmg(adp(), info); }
+                for (int i = 0; i < multiplier; i++) {
+                    dmg(adp(), info);
+                }
                 break;
             case SALVATION:
                 atb(new HealAction(this, this, salvationBossHeal));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        for(AbstractMonster m: monsterList()) {
+                        for (AbstractMonster m : monsterList()) {
                             if (!(m instanceof Seraphim && m.currentHealth == 1)) {
                                 att(new HealAction(m, m, salvationHeal));
                                 m.halfDead = false;
@@ -208,7 +211,7 @@ public class Seraphim extends AbstractMultiIntentMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        for(AbstractMonster m: monsterList()) {
+                        for (AbstractMonster m : monsterList()) {
                             if (!(m instanceof Seraphim) && m.currentHealth == 1) {
                                 att(new HealAction(m, m, prayerHeal));
                                 att(new GainBlockAction(m, prayerBlock));
@@ -224,8 +227,8 @@ public class Seraphim extends AbstractMultiIntentMonster
                 dmg(adp(), info);
                 break;
             case FEAR_NOT:
-                for(AbstractMonster m: monsterList()){
-                    if(!m.equals(this)) {
+                for (AbstractMonster m : monsterList()) {
+                    if (!m.equals(this)) {
                         att(new HealAction(m, m, baptismHeal));
                         atb(new ApplyPowerAction(m, m, new StrengthPower(m, strBuff)));
                     }
@@ -241,7 +244,6 @@ public class Seraphim extends AbstractMultiIntentMonster
 
     @Override
     public void takeTurn() {
-        atb(new RemoveAllBlockAction(this, this));
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
@@ -261,44 +263,55 @@ public class Seraphim extends AbstractMultiIntentMonster
 
     @Override
     protected void getMove(final int num) {
-        switch (phase){
+        switch (phase) {
             case 1:
                 setMoveShortcut(WINGS_OF_GRACE, MOVES[WINGS_OF_GRACE]);
                 break;
             case 2:
             case 3:
-                if(firstMove && !lockedIntent){ setMoveShortcut(RISE_AND_SERVE, MOVES[RISE_AND_SERVE]); }
-                else{ if(!lockedIntent){ setMoveShortcut(num <= 45 ? BEHOLD_MY_POWER : DO_NOT_DENY, num <= 45 ? MOVES[BEHOLD_MY_POWER] : MOVES[DO_NOT_DENY]); } }
+                if (firstMove && !lockedIntent) {
+                    setMoveShortcut(RISE_AND_SERVE, MOVES[RISE_AND_SERVE]);
+                } else {
+                    if (!lockedIntent) {
+                        setMoveShortcut(num <= 45 ? BEHOLD_MY_POWER : DO_NOT_DENY, num <= 45 ? MOVES[BEHOLD_MY_POWER] : MOVES[DO_NOT_DENY]);
+                    }
+                }
                 break;
         }
     }
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
-        switch (phase){
+        switch (phase) {
             case 1:
                 int count = 0;
-                for(AbstractMonster m: monsterList()){ if(!m.equals(this)){ count += 1; } }
-                /*
-                if(count == 0 && ApostleKillCounter != 0 && whichMove == 0){
-                    setAdditionalMoveShortcut(SUMMON_APOSTLES, moveHistory);
+                for (AbstractMonster m : monsterList()) {
+                    if (!m.equals(this)) {
+                        count += 1;
+                    }
                 }
-
-                 */
-                if(count == 0 && ApostleKillCounter == 0 && whichMove == 0){ setAdditionalMoveShortcut(PHASE_TRANSITION, moveHistory); }
-                else if(whichMove == 0) { setAdditionalMoveShortcut(BAPTISM, moveHistory); }
+                if (count == 0 && whichMove == 0) {
+                    setAdditionalMoveShortcut(PHASE_TRANSITION, moveHistory);
+                } else if (whichMove == 0) {
+                    setAdditionalMoveShortcut(BAPTISM, moveHistory);
+                }
                 break;
             case 2:
             case 3:
-                if(phase == 3 && whichMove == 1){ setAdditionalMoveShortcut(REVELATION, moveHistory); }
-                else if (whichMove == 1) {
-                    if (currentHealth <= maxHealth / 2F && phase != 3) { setAdditionalMoveShortcut(PHASE_TRANSITION, moveHistory); }
+                if (phase == 3 && whichMove == 1) {
+                    setAdditionalMoveShortcut(REVELATION, moveHistory);
+                } else if (whichMove == 1) {
+                    if (currentHealth <= maxHealth / 2F && phase != 3) {
+                        setAdditionalMoveShortcut(PHASE_TRANSITION, moveHistory);
+                    }
                 }
                 int apostlesToRevive = 0;
-                for(AbstractMonster m: monsterList()){
-                    if(!m.equals(this) && m.currentHealth == 1){ apostlesToRevive += 1; }
+                for (AbstractMonster m : monsterList()) {
+                    if (!m.equals(this) && m.currentHealth == 1) {
+                        apostlesToRevive += 1;
+                    }
                 }
-                if(whichMove == 0) {
+                if (whichMove == 0) {
                     switch (apostlesToRevive) {
                         case 1:
                             setAdditionalMoveShortcut(PRAYER, moveHistory);
@@ -307,7 +320,9 @@ public class Seraphim extends AbstractMultiIntentMonster
                             setAdditionalMoveShortcut(SALVATION, moveHistory);
                             break;
                         default:
-                            if(!lockedIntent){ setAdditionalMoveShortcut(num <= 45 ? FEAR_NOT : BEHOLD_MY_POWER, moveHistory); }
+                            if (!lockedIntent) {
+                                setAdditionalMoveShortcut(num <= 45 ? FEAR_NOT : BEHOLD_MY_POWER, moveHistory);
+                            }
                             break;
                     }
                 }
@@ -322,8 +337,12 @@ public class Seraphim extends AbstractMultiIntentMonster
         for (int i = 0; i < additionalIntents.size(); i++) {
             AdditionalIntent additionalIntent = additionalIntents.get(i);
             EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) { additionalMove = additionalMoves.get(i); }
-            if (additionalMove != null) { applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null); }
+            if (i < additionalMoves.size()) {
+                additionalMove = additionalMoves.get(i);
+            }
+            if (additionalMove != null) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+            }
         }
     }
 
@@ -333,7 +352,9 @@ public class Seraphim extends AbstractMultiIntentMonster
         AbstractDungeon.getCurrRoom().cannotLose = false;
         super.die(triggerRelics);
         for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-            if (mo instanceof GuardianApostle && !mo.isDeadOrEscaped()) { atb(new SuicideAction(mo)); }
+            if (mo instanceof GuardianApostle && !mo.isDeadOrEscaped()) {
+                atb(new SuicideAction(mo));
+            }
         }
         addToBot(new AbstractGameAction() {
             @Override
@@ -347,13 +368,13 @@ public class Seraphim extends AbstractMultiIntentMonster
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        whiteNight.renderSprite(sb, (float)Settings.WIDTH / 2, (float)Settings.HEIGHT / 2);
+        whiteNight.renderSprite(sb, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2 + (75.0f * Settings.scale));
     }
 
     public void Summon() {
         float xPos_Farthest_L = -750.0F;
-        float xPos_Middle_L = -500F;
-        float xPos_Short_L = -250F;
+        float xPos_Middle_L = -450F;
+        float xPos_Short_L = -150F;
         float xPos_Shortest_L = 0F;
         AbstractMonster apostle1 = new GuardianApostle(xPos_Middle_L, 0.0f, this);
         atb(new SpawnMonsterAction(apostle1, true));

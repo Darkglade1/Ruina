@@ -38,7 +38,7 @@ public class SpearApostle extends AbstractRuinaMonster {
     private Prophet prophet;
 
     public SpearApostle(final float x, final float y, Prophet parent, int startingState) {
-        super(NAME, ID, 50, -5.0F, 0, 130.0f, 125.0f, null, x, y);
+        super(NAME, ID, 50, -5.0F, 0, 130.0f, 165.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SpearApostle/Spriter/SpearApostle.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(maxHealth));
