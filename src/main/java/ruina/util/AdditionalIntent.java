@@ -1,5 +1,6 @@
 package ruina.util;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -117,9 +118,10 @@ public class AdditionalIntent {
     }
 
     public void renderIntent(SpriteBatch sb, int position) {
-        sb.setColor(intentColor);
+        Color color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        sb.setColor(color);
         if (this.intentBg != null) {
-            sb.setColor(new Color(1.0F, 1.0F, 1.0F, intentColor.a / 2.0F));
+            sb.setColor(new Color(1.0F, 1.0F, 1.0F, source.intentAlpha / 2.0F));
             sb.draw(this.intentBg, source.intentHb.cX - 64.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 128, 128, false, false);
         }
 
@@ -130,20 +132,22 @@ public class AdditionalIntent {
                 this.intentAngle += Gdx.graphics.getDeltaTime() * 150.0F;
             }
 
-            sb.setColor(this.intentColor);// 1079
+            sb.setColor(color);
             sb.draw(this.intentImg, source.intentHb.cX - 64.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 128, 128, false, false);
         }
         if (targetTexture != null && damage >= 0) {
+            sb.setColor(color);
             sb.draw(targetTexture, source.intentHb.cX - 48.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 48.0F + (40.0f * scaleHeight) + this.bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 48, 48, false, false);
         }
     }
 
     private void renderDamageRange(SpriteBatch sb, int position) {
+        Color color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
         if (this.intent.name().contains("ATTACK")) {
             if (this.multihit) {
-                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, this.damage + "x" + this.numHits, source.intentHb.cX - (30.0F * Settings.scale) + (X_OFFSET * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, this.damage + "x" + this.numHits, source.intentHb.cX - (30.0F * Settings.scale) + (X_OFFSET * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, color);
             } else {
-                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.damage), source.intentHb.cX - (30.0F * Settings.scale) + (X_OFFSET * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.damage), source.intentHb.cX - (30.0F * Settings.scale) + (X_OFFSET * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, color);
             }
         }
     }
