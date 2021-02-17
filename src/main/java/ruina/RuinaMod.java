@@ -264,7 +264,10 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("BluntBlow"), makeSFXPath("Blow_Stab.wav"));
         BaseMod.addAudio(makeID("IndexUnlock"), makeSFXPath("IndexUnlock.wav"));
 
-        BaseMod.addAudio(makeID("Bless"), makeSFXPath("WhiteNight_Bless.wav"));
+        BaseMod.addAudio(makeID("ProphetBless"), makeSFXPath("WhiteNight_Bless.wav"));
+        BaseMod.addAudio(makeID("ApostleScytheUp"), makeSFXPath("WhiteNight_Apostle_Vert1.wav"));
+        BaseMod.addAudio(makeID("ApostleScytheDown"), makeSFXPath("WhiteNight_Apostle_Vert2.wav"));
+        BaseMod.addAudio(makeID("ApostleSpear"), makeSFXPath("WhiteNight_Apostle_Spear.wav"));
     }
 
     @Override

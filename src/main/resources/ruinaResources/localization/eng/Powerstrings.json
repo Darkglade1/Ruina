@@ -141,7 +141,7 @@
   },
   "${ModID}:WingsOfGrace": {
     "NAME": "Wings Of Grace",
-    "DESCRIPTIONS": ["Reduces ALL damage by 50%. NL When attacked, reduce this amount by #b1."]
+    "DESCRIPTIONS": ["Reduces ALL damage by 50%. NL After receiving damage, reduce this amount by #b1."]
   },
   "${ModID}:Unkillable": {
     "NAME": "By Grace Through Faith",

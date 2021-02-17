@@ -1,10 +1,10 @@
 package ruina.monsters.act3.seraphim;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -46,7 +46,6 @@ public class ScytheApostle extends AbstractRuinaMonster {
         addMove(TEACH_US, Intent.BUFF);
         this.startingState = startingState;
         prophet = parent;
-        firstMove = true;
     }
 
     @Override
@@ -58,32 +57,37 @@ public class ScytheApostle extends AbstractRuinaMonster {
         }
         switch (nextMove) {
             case TEACH_US:
+                specialAnimation();
                 atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, teachUsWings)));
+                resetIdle();
                 break;
             case THY_WILL_BE_DONE:
                 for (int i = 0; i < multiplier; i++) {
+                    if (i == 0) {
+                        slashUpAnimation(adp());
+                    } else {
+                        slashDownAnimation(adp());
+                    }
                     dmg(adp(), info);
+                    resetIdle();
                 }
                 break;
             case PRESERVE_THEE:
+                specialAnimation();
                 for (AbstractMonster m : monsterList()) {
                     if (!(m instanceof AbstractAllyMonster)) {
                         atb(new GainBlockAction(m, preserveTheeBlock));
                     }
                 }
+                resetIdle();
                 break;
             case FOLLOW_THEE:
+                slashDownAnimation(adp());
                 dmg(adp(), info);
                 atb(new GainBlockAction(this, followTheeBlock));
+                resetIdle();
                 break;
         }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                firstMove = false;
-                isDone = true;
-            }
-        });
         atb(new RollMoveAction(this));
     }
 
@@ -121,6 +125,18 @@ public class ScytheApostle extends AbstractRuinaMonster {
                 }
                 break;
         }
+    }
+
+    private void slashUpAnimation(AbstractCreature enemy) {
+        animationAction("SlashUp", "ApostleScytheUp", enemy, this);
+    }
+
+    private void slashDownAnimation(AbstractCreature enemy) {
+        animationAction("SlashDown", "ApostleScytheDown", enemy, this);
+    }
+
+    private void specialAnimation() {
+        animationAction("Block", null, this);
     }
 
 

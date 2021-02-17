@@ -308,7 +308,7 @@ public class Prophet extends AbstractAllyMonster
     }
 
     private void healAnimation() {
-        animationAction("Heal" + wingCounter, "Bless", this);
+        animationAction("Heal" + wingCounter, "ProphetBless", this);
     }
 
 }
