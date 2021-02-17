@@ -66,9 +66,8 @@ import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
-import ruina.monsters.act3.seraphim.ParadiseLost;
-import ruina.monsters.act3.seraphim.ScytheApostle;
-import ruina.monsters.act3.seraphim.SpearApostle;
+import ruina.monsters.act3.seraphim.Prophet;
+import ruina.monsters.act3.seraphim.Seraphim;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
 
@@ -264,6 +263,8 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("BluntBlow"), makeSFXPath("Blow_Stab.wav"));
         BaseMod.addAudio(makeID("IndexUnlock"), makeSFXPath("IndexUnlock.wav"));
+
+        BaseMod.addAudio(makeID("Bless"), makeSFXPath("WhiteNight_Bless.wav"));
     }
 
     @Override
@@ -363,7 +364,7 @@ public class RuinaMod implements
 
 
         // Act 3
-        BaseMod.addMonster(ParadiseLost.ID, (BaseMod.GetMonster) ParadiseLost::new);
+        BaseMod.addMonster(Prophet.ID, (BaseMod.GetMonster) Prophet::new);
         //briah.addBoss(ParadiseLost.ID, (BaseMod.GetMonster) ParadiseLost::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
     }
 

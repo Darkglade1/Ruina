@@ -1,9 +1,7 @@
 package ruina.monsters.act3.seraphim;
 
 import basemod.animations.AbstractAnimation;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -16,18 +14,13 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.act2.Jester.Statue;
 import ruina.powers.*;
 import ruina.util.AdditionalIntent;
-import ruina.vfx.FlexibleStanceAuraEffect;
-import ruina.vfx.FlexibleWrathParticleEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
@@ -37,9 +30,9 @@ import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 import static ruina.util.Wiz.atb;
 
-public class ParadiseLost extends AbstractMultiIntentMonster
+public class Seraphim extends AbstractMultiIntentMonster
 {
-    public static final String ID = makeID(ParadiseLost.class.getSimpleName());
+    public static final String ID = makeID(Seraphim.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
@@ -85,7 +78,7 @@ public class ParadiseLost extends AbstractMultiIntentMonster
 
     private int phase = 1;
     // Phase 1
-    public int ApostleKillCounter = 4;
+    public int ApostleKillCounter = 0;
     private int wingsOfGrace = calcAscensionSpecial(1);
     private int strBuff = calcAscensionSpecial(1);
     private int baptismHeal = calcAscensionSpecial(15);
@@ -109,11 +102,12 @@ public class ParadiseLost extends AbstractMultiIntentMonster
 
     private AbstractAnimation whiteNight;
 
-    public ParadiseLost() { this(250.0f, 0.0f); }
-    public ParadiseLost(final float x, final float y) {
+    public Seraphim() { this(250.0f, 0.0f); }
+    public Seraphim(final float x, final float y) {
         super(NAME, ID, 999, -5.0F, 0, 280.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Seraphim/Spriter/Seraphim.scml"));
         this.whiteNight = new BetterSpriterAnimation(makeMonsterPath("Seraphim/WhiteNight/WhiteNight.scml"));
+        runAnim("Idle");
         this.setHp(maxHealth);
         this.type = EnemyType.BOSS;
         // Phase 3: Enrage and gain 1 more.
@@ -141,7 +135,7 @@ public class ParadiseLost extends AbstractMultiIntentMonster
     public void usePreBattleAction() {
         Summon();
         AbstractDungeon.getCurrRoom().cannotLose = true;
-        atb(new ApplyPowerAction(this, this, new Apostles(this, ApostleKillCounter)));
+        //atb(new ApplyPowerAction(this, this, new Apostles(this, ApostleKillCounter)));
         atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, calcAscensionSpecial(2))));
     }
 
@@ -175,7 +169,7 @@ public class ParadiseLost extends AbstractMultiIntentMonster
                     @Override
                     public void update() {
                         for(AbstractMonster m: monsterList()) {
-                            if (!(m instanceof ParadiseLost)) { att(new ApplyPowerAction(m, m, new StrengthPower(m, strBuff))); }
+                            if (!(m instanceof Seraphim)) { att(new ApplyPowerAction(m, m, new StrengthPower(m, strBuff))); }
                         }
                         this.isDone = true;
                     }
@@ -201,7 +195,7 @@ public class ParadiseLost extends AbstractMultiIntentMonster
                     @Override
                     public void update() {
                         for(AbstractMonster m: monsterList()) {
-                            if (!(m instanceof ParadiseLost && m.currentHealth == 1)) {
+                            if (!(m instanceof Seraphim && m.currentHealth == 1)) {
                                 att(new HealAction(m, m, salvationHeal));
                                 m.halfDead = false;
                             }
@@ -215,7 +209,7 @@ public class ParadiseLost extends AbstractMultiIntentMonster
                     @Override
                     public void update() {
                         for(AbstractMonster m: monsterList()) {
-                            if (!(m instanceof ParadiseLost) && m.currentHealth == 1) {
+                            if (!(m instanceof Seraphim) && m.currentHealth == 1) {
                                 att(new HealAction(m, m, prayerHeal));
                                 att(new GainBlockAction(m, prayerBlock));
                                 m.halfDead = false;
@@ -361,73 +355,16 @@ public class ParadiseLost extends AbstractMultiIntentMonster
         float xPos_Middle_L = -500F;
         float xPos_Short_L = -250F;
         float xPos_Shortest_L = 0F;
-
-        float yPosition = 0F;
-        AbstractMonster apostle1;
-        AbstractMonster apostle2;
-        AbstractMonster apostle3;
-        AbstractMonster apostle4;
-        switch (ApostleKillCounter) {
-            /*
-            case 12:
-                AbstractMonster apostle1 = new ScytheApostle(xPos_Farthest_L, yPosition, this, 0);
-                atb(new SpawnMonsterAction(apostle1, true));
-                AbstractMonster apostle3 = new ScytheApostle(xPos_Middle_L, yPosition, this, 2);
-                atb(new SpawnMonsterAction(apostle3, true));
-                AbstractMonster apostle4 = new ScytheApostle(xPos_Short_L, yPosition, this, 3);
-                atb(new SpawnMonsterAction(apostle4, true));
-                AbstractMonster apostle2 = new ScytheApostle(xPos_Shortest_L, yPosition, this, 1);
-                atb(new SpawnMonsterAction(apostle2, true));
-                break;
-            case 8:
-                apostle1 = new SpearApostle(xPos_Farthest_L, 0.0f, this, 3);
-                atb(new SpawnMonsterAction(apostle1, true));
-                apostle2 = new SpearApostle(xPos_Middle_L, 0.0f, this, 1);
-                atb(new SpawnMonsterAction(apostle2, true));
-                apostle3 = new SpearApostle(xPos_Short_L, 0.0f, this, 1);
-                atb(new SpawnMonsterAction(apostle3, true));
-                apostle4 = new SpearApostle(xPos_Shortest_L, 0.0f, this, 3);
-                atb(new SpawnMonsterAction(apostle4, true));
-                break;
-
-             */
-            case 4:
-                apostle1 = new ScytheApostle(xPos_Farthest_L, 0.0f, this, 1);
-                atb(new SpawnMonsterAction(apostle1, true));
-                atb(new UsePreBattleActionAction(apostle1));
-                apostle2 = new SpearApostle(xPos_Middle_L, 0.0f, this, 3);
-                atb(new SpawnMonsterAction(apostle2, true));
-                atb(new UsePreBattleActionAction(apostle2));
-                apostle3 = new ScytheApostle(xPos_Short_L, 0.0f, this, 3);
-                atb(new SpawnMonsterAction(apostle3, true));
-                atb(new UsePreBattleActionAction(apostle3));
-                apostle4 = new SpearApostle(xPos_Shortest_L, 0.0f, this, 1);
-                atb(new SpawnMonsterAction(apostle4, true));
-                atb(new UsePreBattleActionAction(apostle4));
-                break;
-
-            default:
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        AbstractMonster apostle1 = new GuardianApostle(xPos_Middle_L, 0.0f, ParadiseLost.this);
-                        att(new SpawnMonsterAction(apostle1, true));
-                        att(new UsePreBattleActionAction(apostle1));
-                        this.isDone = true;
-                    }
-                });
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        float xPos_Short_L = -200F;
-                        AbstractMonster apostle1 = new GuardianApostle(xPos_Short_L, 0.0f, ParadiseLost.this);
-                        att(new SpawnMonsterAction(apostle1, true));
-                        att(new UsePreBattleActionAction(apostle1));
-                        this.isDone = true;
-                    }
-                });
-                break;
-        }
+        AbstractMonster apostle1 = new GuardianApostle(xPos_Middle_L, 0.0f, this);
+        atb(new SpawnMonsterAction(apostle1, true));
+        atb(new UsePreBattleActionAction(apostle1));
+        apostle1.rollMove();
+        apostle1.createIntent();
+        AbstractMonster apostle2 = new GuardianApostle(xPos_Short_L, 0.0f, this);
+        atb(new SpawnMonsterAction(apostle2, true));
+        atb(new UsePreBattleActionAction(apostle2));
+        apostle2.rollMove();
+        apostle2.createIntent();
     }
 
 }

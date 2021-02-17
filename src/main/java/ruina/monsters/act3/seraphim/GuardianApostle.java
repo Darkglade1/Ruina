@@ -1,8 +1,5 @@
 package ruina.monsters.act3.seraphim;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -11,26 +8,17 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.RitualPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
-import com.sun.org.apache.bcel.internal.generic.LOR;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.act2.Jester.Statue;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.SenselessWrath;
 import ruina.powers.Unkillable;
 import ruina.util.AdditionalIntent;
-import ruina.vfx.FlexibleStanceAuraEffect;
-import ruina.vfx.FlexibleWrathParticleEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
@@ -65,9 +53,9 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
     private int thyWordsDamage = calcAscensionDamage(5);
     private int thyWordsBlock = calcAscensionTankiness(10);
     private int shewUs = calcAscensionDamage(1);
-    private ParadiseLost paradiseLost;
+    private Seraphim seraphim;
     private boolean deadForThisTurn = false;
-    public GuardianApostle(final float x, final float y, ParadiseLost parent) {
+    public GuardianApostle(final float x, final float y, Seraphim parent) {
         super(NAME, ID, 75, -5.0F, 0, 280.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("GuardianApostle/Spriter/GuardianApostle.scml"));
         this.setHp(calcAscensionTankiness(maxHealth));
@@ -84,7 +72,7 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
         addMove(THY_WORDS_COME_UNTO_ME, Intent.ATTACK_DEFEND, thyWordsDamage);
         addMove(LORD_SHEW_US, Intent.ATTACK, shewUs, 2, true);
         addMove(EMPTY, Intent.NONE);
-        paradiseLost = parent;
+        seraphim = parent;
     }
 
     @Override
@@ -227,8 +215,8 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    paradiseLost.rollMove();
-                    paradiseLost.createIntent();
+                    seraphim.rollMove();
+                    seraphim.createIntent();
                     this.isDone = true;
                 }
             });

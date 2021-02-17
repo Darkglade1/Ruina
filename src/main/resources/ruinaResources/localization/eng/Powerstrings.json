@@ -129,7 +129,15 @@
   },
   "${ModID}:Apostles": {
     "NAME": "Apostles",
-    "DESCRIPTIONS": ["This enemy is #rinvulnerable until all #yApostles have been killed. NL Prevent #yWings #yOf #yGrace from decreasing."]
+    "DESCRIPTIONS": ["When you're healed by this creature, you gain buffs depending on the number of #yApostles #rkilled. NL 1st, 5th, 9th kill: Gain #b", " #yStrength. NL 2nd, 6th, 10th kill: Gain #b", " #yDexterity. NL 3rd, 7th, 11th kill: Draw #b", " extra card each turn. NL 4th, 8th, 12th kill: Gain [E] at the start of your turn. NL NL Whenever an #yApostle dies, a new one spawns at end of round."]
+  },
+  "${ModID}:Advent": {
+    "NAME": "Advent",
+    "DESCRIPTIONS": ["Progresses to the next phase in #b", " turns.", " turn."]
+  },
+  "${ModID}:Blessing": {
+    "NAME": "Blessing",
+    "DESCRIPTIONS": ["At the start of your turn, gain "]
   },
   "${ModID}:WingsOfGrace": {
     "NAME": "Wings Of Grace",

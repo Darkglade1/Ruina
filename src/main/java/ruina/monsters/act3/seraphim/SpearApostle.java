@@ -1,29 +1,26 @@
 package ruina.monsters.act3.seraphim;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.Apostles;
-import ruina.powers.Bleed;
-import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.WingsOfGrace;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
-public class SpearApostle extends AbstractRuinaMonster
-{
+public class SpearApostle extends AbstractRuinaMonster {
     public static final String ID = makeID(SpearApostle.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
-    private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
 
     private static final byte FOR_HE_IS_HOLY = 0;
     private static final byte THE_WILL_OF_THE_LORD_BE_DONE = 1;
@@ -38,8 +35,9 @@ public class SpearApostle extends AbstractRuinaMonster
     private int thyLightLeadMeDamage = calcAscensionDamage(4);
 
     private int startingState;
-    private ParadiseLost paradiseLost;
-    public SpearApostle(final float x, final float y, ParadiseLost parent, int startingState) {
+    private Prophet prophet;
+
+    public SpearApostle(final float x, final float y, Prophet parent, int startingState) {
         super(NAME, ID, 50, -5.0F, 0, 130.0f, 125.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SpearApostle/Spriter/SpearApostle.scml"));
         this.type = EnemyType.NORMAL;
@@ -49,24 +47,27 @@ public class SpearApostle extends AbstractRuinaMonster
         addMove(DEVOTE_UNTO_THEE, Intent.ATTACK_DEFEND, devoteUntoTheeDamage);
         addMove(THY_LIGHT_LEAD_ME, Intent.ATTACK, thyLightLeadMeDamage, 2, true);
         this.startingState = startingState;
-        paradiseLost = parent;
+        prophet = parent;
         firstMove = true;
     }
 
     @Override
-    public void takeTurn()
-    {
+    public void takeTurn() {
         DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = this.moves.get(nextMove).multiplier;
-        if(info.base > -1) { info.applyPowers(this, adp()); }
-        switch (nextMove){
+        if (info.base > -1) {
+            info.applyPowers(this, adp());
+        }
+        switch (nextMove) {
             case FOR_HE_IS_HOLY:
                 dmg(adp(), info);
                 atb(new ApplyPowerAction(adp(), this, new WeakPower(adp(), forHeIsHolyWeak, true)));
                 break;
             case THE_WILL_OF_THE_LORD_BE_DONE:
             case THY_LIGHT_LEAD_ME:
-                for (int i = 0; i < multiplier; i++) { dmg(adp(), info); }
+                for (int i = 0; i < multiplier; i++) {
+                    dmg(adp(), info);
+                }
                 break;
             case DEVOTE_UNTO_THEE:
                 dmg(adp(), info);
@@ -85,23 +86,36 @@ public class SpearApostle extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        switch (startingState){
+        switch (startingState) {
             case 0:
-                if(lastMove(THY_LIGHT_LEAD_ME)){ setMoveShortcut( num <= 45 ? DEVOTE_UNTO_THEE : THE_WILL_OF_THE_LORD_BE_DONE, num <= 45 ? MOVES[DEVOTE_UNTO_THEE] : MOVES[THE_WILL_OF_THE_LORD_BE_DONE]); }
-                else { setMoveShortcut(THY_LIGHT_LEAD_ME, MOVES[THY_LIGHT_LEAD_ME]); }
+                if (lastMove(THY_LIGHT_LEAD_ME)) {
+                    setMoveShortcut(num <= 45 ? DEVOTE_UNTO_THEE : THE_WILL_OF_THE_LORD_BE_DONE, num <= 45 ? MOVES[DEVOTE_UNTO_THEE] : MOVES[THE_WILL_OF_THE_LORD_BE_DONE]);
+                } else {
+                    setMoveShortcut(THY_LIGHT_LEAD_ME, MOVES[THY_LIGHT_LEAD_ME]);
+                }
                 break;
             case 1:
-                if(lastMove(FOR_HE_IS_HOLY)){ setMoveShortcut( num <= 30 ? DEVOTE_UNTO_THEE : THY_LIGHT_LEAD_ME, num <= 30 ? MOVES[DEVOTE_UNTO_THEE] : MOVES[THY_LIGHT_LEAD_ME]); }
-                else { setMoveShortcut(FOR_HE_IS_HOLY, MOVES[FOR_HE_IS_HOLY]); }
+                if (lastMove(FOR_HE_IS_HOLY)) {
+                    setMoveShortcut(num <= 30 ? DEVOTE_UNTO_THEE : THY_LIGHT_LEAD_ME, num <= 30 ? MOVES[DEVOTE_UNTO_THEE] : MOVES[THY_LIGHT_LEAD_ME]);
+                } else {
+                    setMoveShortcut(FOR_HE_IS_HOLY, MOVES[FOR_HE_IS_HOLY]);
+                }
                 break;
             case 2:
-                if(lastMove(THE_WILL_OF_THE_LORD_BE_DONE)){ setMoveShortcut(num <= 45 ? DEVOTE_UNTO_THEE : THY_LIGHT_LEAD_ME, num <= 45 ? MOVES[DEVOTE_UNTO_THEE] : MOVES[THY_LIGHT_LEAD_ME]); }
-                else { setMoveShortcut(THE_WILL_OF_THE_LORD_BE_DONE, MOVES[THE_WILL_OF_THE_LORD_BE_DONE]); }
+                if (lastMove(THE_WILL_OF_THE_LORD_BE_DONE)) {
+                    setMoveShortcut(num <= 45 ? DEVOTE_UNTO_THEE : THY_LIGHT_LEAD_ME, num <= 45 ? MOVES[DEVOTE_UNTO_THEE] : MOVES[THY_LIGHT_LEAD_ME]);
+                } else {
+                    setMoveShortcut(THE_WILL_OF_THE_LORD_BE_DONE, MOVES[THE_WILL_OF_THE_LORD_BE_DONE]);
+                }
                 break;
             case 3:
-                if (lastMove(FOR_HE_IS_HOLY)) { setMoveShortcut(THE_WILL_OF_THE_LORD_BE_DONE, MOVES[THE_WILL_OF_THE_LORD_BE_DONE]);
-                } else if (lastMove(DEVOTE_UNTO_THEE)) { setMoveShortcut(FOR_HE_IS_HOLY, MOVES[FOR_HE_IS_HOLY]);
-                } else { setMoveShortcut(DEVOTE_UNTO_THEE, MOVES[DEVOTE_UNTO_THEE]); }
+                if (lastMove(FOR_HE_IS_HOLY)) {
+                    setMoveShortcut(THE_WILL_OF_THE_LORD_BE_DONE, MOVES[THE_WILL_OF_THE_LORD_BE_DONE]);
+                } else if (lastMove(DEVOTE_UNTO_THEE)) {
+                    setMoveShortcut(FOR_HE_IS_HOLY, MOVES[FOR_HE_IS_HOLY]);
+                } else {
+                    setMoveShortcut(DEVOTE_UNTO_THEE, MOVES[DEVOTE_UNTO_THEE]);
+                }
                 break;
         }
     }
@@ -110,22 +124,17 @@ public class SpearApostle extends AbstractRuinaMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        paradiseLost.ApostleKillCounter -= 1;
-        AbstractPower p = paradiseLost.getPower(Apostles.POWER_ID);
-        if(p != null){
-            if(p.amount - 1 == 0){ atb(new RemoveSpecificPowerAction(paradiseLost, paradiseLost, p)); }
-            else { atb(new ReducePowerAction(paradiseLost, paradiseLost, p, 1)); }
-        }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                paradiseLost.rollMove();
-                paradiseLost.createIntent();
-                this.isDone = true;
+        prophet.incrementApostleKills();
+        for (int i = 0; i < prophet.minions.length; i++) {
+            if (prophet.minions[i] == this) {
+                prophet.minions[i] = null;
+                break;
             }
-        });
+        }
     }
 
     @Override
-    public void usePreBattleAction() {  }
+    public void usePreBattleAction() {
+        atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, calcAscensionSpecial(1))));
+    }
 }
