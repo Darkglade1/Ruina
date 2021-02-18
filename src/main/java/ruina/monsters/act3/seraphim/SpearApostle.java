@@ -1,10 +1,9 @@
 package ruina.monsters.act3.seraphim;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -27,25 +26,21 @@ public class SpearApostle extends AbstractRuinaMonster {
     private static final byte DEVOTE_UNTO_THEE = 2;
     private static final byte THY_LIGHT_LEAD_ME = 3;
 
-    private int forHeIsHolyDamage = calcAscensionDamage(7);
-    private int forHeIsHolyWeak = calcAscensionSpecial(1);
-    private int willOfTheLordDamage = calcAscensionDamage(5);
-    private int devoteUntoTheeDamage = calcAscensionDamage(7);
-    private int devoteUntoTheeBlock = calcAscensionTankiness(7);
-    private int thyLightLeadMeDamage = calcAscensionDamage(4);
+    private final int forHeIsHolyWeak = calcAscensionSpecial(1);
+    private final int devoteUntoTheeBlock = calcAscensionTankiness(6);
 
-    private int startingState;
-    private Prophet prophet;
+    private final int startingState;
+    private final Prophet prophet;
 
     public SpearApostle(final float x, final float y, Prophet parent, int startingState) {
-        super(NAME, ID, 50, -5.0F, 0, 130.0f, 165.0f, null, x, y);
+        super(NAME, ID, 50, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SpearApostle/Spriter/SpearApostle.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(maxHealth));
-        addMove(FOR_HE_IS_HOLY, Intent.ATTACK_DEBUFF, forHeIsHolyDamage);
-        addMove(THE_WILL_OF_THE_LORD_BE_DONE, Intent.ATTACK, willOfTheLordDamage, 3, true);
-        addMove(DEVOTE_UNTO_THEE, Intent.ATTACK_DEFEND, devoteUntoTheeDamage);
-        addMove(THY_LIGHT_LEAD_ME, Intent.ATTACK, thyLightLeadMeDamage, 2, true);
+        setHp(calcAscensionTankiness(44), calcAscensionTankiness(48));
+        addMove(FOR_HE_IS_HOLY, Intent.ATTACK_DEBUFF, 8);
+        addMove(THE_WILL_OF_THE_LORD_BE_DONE, Intent.ATTACK, 5, 3, true);
+        addMove(DEVOTE_UNTO_THEE, Intent.ATTACK_DEFEND, 10);
+        addMove(THY_LIGHT_LEAD_ME, Intent.ATTACK, 6, 2, true);
         this.startingState = startingState;
         prophet = parent;
         firstMove = true;
@@ -60,27 +55,26 @@ public class SpearApostle extends AbstractRuinaMonster {
         }
         switch (nextMove) {
             case FOR_HE_IS_HOLY:
+                spearAnimation(adp());
                 dmg(adp(), info);
-                atb(new ApplyPowerAction(adp(), this, new WeakPower(adp(), forHeIsHolyWeak, true)));
+                applyToTarget(adp(), this, new WeakPower(adp(), forHeIsHolyWeak, true));
+                resetIdle();
                 break;
             case THE_WILL_OF_THE_LORD_BE_DONE:
             case THY_LIGHT_LEAD_ME:
                 for (int i = 0; i < multiplier; i++) {
+                    spearAnimation(adp());
                     dmg(adp(), info);
+                    resetIdle();
                 }
                 break;
             case DEVOTE_UNTO_THEE:
+                spearAnimation(adp());
                 dmg(adp(), info);
-                atb(new GainBlockAction(this, devoteUntoTheeBlock));
+                block(this, devoteUntoTheeBlock);
+                resetIdle();
                 break;
         }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                firstMove = false;
-                isDone = true;
-            }
-        });
         atb(new RollMoveAction(this));
     }
 
@@ -118,6 +112,14 @@ public class SpearApostle extends AbstractRuinaMonster {
                 }
                 break;
         }
+    }
+
+    private void spearAnimation(AbstractCreature enemy) {
+        animationAction("Pierce", "ApostleSpear", enemy, this);
+    }
+
+    private void specialAnimation() {
+        animationAction("Block", null, this);
     }
 
 

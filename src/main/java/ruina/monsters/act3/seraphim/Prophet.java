@@ -283,15 +283,11 @@ public class Prophet extends AbstractAllyMonster
             if (minions[i] == null) {
                 AbstractMonster apostle;
                 if (i == 0) {
-                    apostle = new ScytheApostle(xPos_Farthest_L, 0.0f, this, AbstractDungeon.monsterRng.randomBoolean() ? 1 : 3);
+                    apostle = new ScytheApostle(xPos_Farthest_L, 0.0f, this, 1);
                 } else if (i == 1) {
                     apostle = new SpearApostle(xPos_Middle_L, 0.0f, this, AbstractDungeon.monsterRng.randomBoolean() ? 1 : 3);
                 } else {
-                    if (AbstractDungeon.monsterRng.randomBoolean()) {
-                        apostle = new ScytheApostle(xPos_Short_L, 0.0f, this, AbstractDungeon.monsterRng.randomBoolean() ? 1 : 3);
-                    } else {
-                        apostle = new SpearApostle(xPos_Short_L, 0.0f, this, AbstractDungeon.monsterRng.randomBoolean() ? 1 : 3);
-                    }
+                    apostle = new ScytheApostle(xPos_Short_L, 0.0f, this, 3);
                 }
                 atb(new SpawnMonsterAction(apostle, true));
                 atb(new UsePreBattleActionAction(apostle));

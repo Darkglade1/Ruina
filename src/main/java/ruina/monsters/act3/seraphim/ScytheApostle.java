@@ -27,21 +27,19 @@ public class ScytheApostle extends AbstractRuinaMonster {
     private static final byte THY_WILL_BE_DONE = 1;
     private static final byte PRESERVE_THEE = 2;
     private static final byte TEACH_US = 3;
-    private int followTheeDamage = calcAscensionDamage(8);
-    private int followTheeBlock = calcAscensionTankiness(8);
-    private int thyWillBeDoneDamage = calcAscensionDamage(4);
-    private int teachUsWings = calcAscensionSpecial(1);
-    private int preserveTheeBlock = calcAscensionTankiness(7);
-    private int startingState;
-    private Prophet prophet;
+    private final int followTheeBlock = calcAscensionTankiness(8);
+    private final int teachUsWings = calcAscensionSpecial(1);
+    private final int preserveTheeBlock = calcAscensionTankiness(7);
+    private final int startingState;
+    private final Prophet prophet;
 
     public ScytheApostle(final float x, final float y, Prophet parent, int startingState) {
-        super(NAME, ID, 75, -5.0F, 0, 130.0f, 165.0f, null, x, y);
+        super(NAME, ID, 75, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScytheApostle/Spriter/ScytheApostle.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(maxHealth));
-        addMove(FOLLOW_THEE, Intent.ATTACK_DEFEND, followTheeDamage);
-        addMove(THY_WILL_BE_DONE, Intent.ATTACK, thyWillBeDoneDamage, 2, true);
+        setHp(calcAscensionTankiness(50), calcAscensionTankiness(56));
+        addMove(FOLLOW_THEE, Intent.ATTACK_DEFEND, 9);
+        addMove(THY_WILL_BE_DONE, Intent.ATTACK, 6, 2, true);
         addMove(PRESERVE_THEE, Intent.DEFEND);
         addMove(TEACH_US, Intent.BUFF);
         this.startingState = startingState;
@@ -58,7 +56,7 @@ public class ScytheApostle extends AbstractRuinaMonster {
         switch (nextMove) {
             case TEACH_US:
                 specialAnimation();
-                atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, teachUsWings)));
+                applyToTarget(this, this, new WingsOfGrace(this, teachUsWings));
                 resetIdle();
                 break;
             case THY_WILL_BE_DONE:
@@ -76,7 +74,7 @@ public class ScytheApostle extends AbstractRuinaMonster {
                 specialAnimation();
                 for (AbstractMonster m : monsterList()) {
                     if (!(m instanceof AbstractAllyMonster)) {
-                        atb(new GainBlockAction(m, preserveTheeBlock));
+                        block(m, preserveTheeBlock);
                     }
                 }
                 resetIdle();
@@ -84,7 +82,7 @@ public class ScytheApostle extends AbstractRuinaMonster {
             case FOLLOW_THEE:
                 slashDownAnimation(adp());
                 dmg(adp(), info);
-                atb(new GainBlockAction(this, followTheeBlock));
+                block(this, followTheeBlock);
                 resetIdle();
                 break;
         }
@@ -142,7 +140,7 @@ public class ScytheApostle extends AbstractRuinaMonster {
 
     @Override
     public void usePreBattleAction() {
-        atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, teachUsWings)));
+        atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, 1)));
     }
 
     @Override
