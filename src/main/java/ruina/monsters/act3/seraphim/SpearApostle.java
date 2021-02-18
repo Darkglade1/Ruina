@@ -37,10 +37,10 @@ public class SpearApostle extends AbstractRuinaMonster {
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SpearApostle/Spriter/SpearApostle.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(44), calcAscensionTankiness(48));
-        addMove(FOR_HE_IS_HOLY, Intent.ATTACK_DEBUFF, 8);
-        addMove(THE_WILL_OF_THE_LORD_BE_DONE, Intent.ATTACK, 5, 3, true);
-        addMove(DEVOTE_UNTO_THEE, Intent.ATTACK_DEFEND, 10);
-        addMove(THY_LIGHT_LEAD_ME, Intent.ATTACK, 6, 2, true);
+        addMove(FOR_HE_IS_HOLY, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
+        addMove(THE_WILL_OF_THE_LORD_BE_DONE, Intent.ATTACK, calcAscensionDamage(5), 3, true);
+        addMove(DEVOTE_UNTO_THEE, Intent.ATTACK_DEFEND, calcAscensionDamage(10));
+        addMove(THY_LIGHT_LEAD_ME, Intent.ATTACK, calcAscensionDamage(6), 2, true);
         this.startingState = startingState;
         prophet = parent;
         firstMove = true;

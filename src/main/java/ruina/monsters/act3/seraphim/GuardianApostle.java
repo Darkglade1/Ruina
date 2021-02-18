@@ -34,7 +34,6 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
-    private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
 
     private static final byte RISE_AND_SERVE = 0;
     private static final byte COMMAND_FIRE = 1;
@@ -44,15 +43,11 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
     private static final byte LORD_SHEW_US = 5;
     private static final byte EMPTY = 6;
 
-    private int riseAndServe = calcAscensionTankiness(30);
+    private final int riseAndServe = calcAscensionTankiness(30);
     private int heavenlyAura = 1;
-    private int commandFire = calcAscensionDamage(7);
-    private int theKing = calcAscensionDamage(2);
-    private int giveUsRestGuardian = calcAscensionTankiness(15);
-    private int giveUsRestBoss = calcAscensionTankiness(30);
-    private int thyWordsDamage = calcAscensionDamage(5);
-    private int thyWordsBlock = calcAscensionTankiness(10);
-    private int shewUs = calcAscensionDamage(1);
+    private final int giveUsRestGuardian = calcAscensionTankiness(15);
+    private final int giveUsRestBoss = calcAscensionTankiness(30);
+    private final int thyWordsBlock = calcAscensionTankiness(10);
     private Seraphim seraphim;
     private boolean deadForThisTurn = false;
 
@@ -67,11 +62,11 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
         }
         firstMove = true;
         addMove(RISE_AND_SERVE, Intent.DEFEND_BUFF);
-        addMove(COMMAND_FIRE, Intent.ATTACK, commandFire);
-        addMove(THE_KING, Intent.ATTACK, theKing, 3, true);
+        addMove(COMMAND_FIRE, Intent.ATTACK, calcAscensionDamage(9));
+        addMove(THE_KING, Intent.ATTACK, calcAscensionDamage(3), 3, true);
         addMove(GIVE_US_REST, Intent.DEFEND);
-        addMove(THY_WORDS_COME_UNTO_ME, Intent.ATTACK_DEFEND, thyWordsDamage);
-        addMove(LORD_SHEW_US, Intent.ATTACK, shewUs, 2, true);
+        addMove(THY_WORDS_COME_UNTO_ME, Intent.ATTACK_DEFEND, calcAscensionDamage(6));
+        addMove(LORD_SHEW_US, Intent.ATTACK, calcAscensionDamage(2), 2, true);
         addMove(EMPTY, Intent.NONE);
         seraphim = parent;
     }
@@ -85,8 +80,9 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
         }
         switch (move.nextMove) {
             case RISE_AND_SERVE:
-                atb(new GainBlockAction(this, riseAndServe));
-                atb(new ApplyPowerAction(this, this, new RitualPower(this, heavenlyAura, false)));
+                specialAnimation();
+                block(this, riseAndServe);
+                applyToTarget(this, this, new RitualPower(this, heavenlyAura, false));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -94,28 +90,41 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
                         this.isDone = true;
                     }
                 });
+                resetIdle();
                 break;
             case COMMAND_FIRE:
+                slashUpAnimation(adp());
                 dmg(target, info);
+                resetIdle();
                 break;
             case THE_KING:
             case LORD_SHEW_US:
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        slashUpAnimation(adp());
+                    } else {
+                        slashDownAnimation(adp());
+                    }
                     dmg(target, info);
+                    resetIdle();
                 }
                 break;
             case GIVE_US_REST:
+                specialAnimation();
                 for (AbstractMonster m : monsterList()) {
                     if (m instanceof GuardianApostle) {
-                        atb(new GainBlockAction(m, giveUsRestGuardian));
+                        block(m, giveUsRestGuardian);
                     } else {
-                        atb(new GainBlockAction(m, giveUsRestBoss));
+                        block(m, giveUsRestBoss);
                     }
                 }
+                resetIdle();
                 break;
             case THY_WORDS_COME_UNTO_ME:
+                slashDownAnimation(adp());
                 dmg(target, info);
-                atb(new GainBlockAction(this, thyWordsBlock));
+                block(this, thyWordsBlock);
+                resetIdle();
                 break;
         }
         atb(new AbstractGameAction() {
@@ -211,9 +220,10 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
 
     @Override
     public void usePreBattleAction() {
-        atb(new ApplyPowerAction(this, this, new Unkillable(this)));
+        applyToTarget(this, this, new Unkillable(this));
     }
 
+    @Override
     public void damage(DamageInfo info) {
         super.damage(info);
         if (this.currentHealth == 1) {
@@ -252,6 +262,18 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
                 }
             });
         }
+    }
+
+    private void slashUpAnimation(AbstractCreature enemy) {
+        animationAction("SlashUp", "ApostleScytheUp", enemy, this);
+    }
+
+    private void slashDownAnimation(AbstractCreature enemy) {
+        animationAction("SlashDown", "ApostleScytheDown", enemy, this);
+    }
+
+    private void specialAnimation() {
+        animationAction("Block", null, this);
     }
 
 

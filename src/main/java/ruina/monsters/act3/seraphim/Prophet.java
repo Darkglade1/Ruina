@@ -85,7 +85,7 @@ public class Prophet extends AbstractAllyMonster
     }
 
     public Prophet(final float x, final float y) {
-        super(NAME, ID, 100, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 100, -5.0F, 0, 200.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Seraphim/Spriter/Seraphim.scml"));
         this.animation.setFlip(true, false);
         runAnim("Idle1");

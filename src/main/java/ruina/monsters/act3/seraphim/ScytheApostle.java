@@ -38,8 +38,8 @@ public class ScytheApostle extends AbstractRuinaMonster {
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScytheApostle/Spriter/ScytheApostle.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(50), calcAscensionTankiness(56));
-        addMove(FOLLOW_THEE, Intent.ATTACK_DEFEND, 9);
-        addMove(THY_WILL_BE_DONE, Intent.ATTACK, 6, 2, true);
+        addMove(FOLLOW_THEE, Intent.ATTACK_DEFEND, calcAscensionDamage(9));
+        addMove(THY_WILL_BE_DONE, Intent.ATTACK, calcAscensionDamage(6), 2, true);
         addMove(PRESERVE_THEE, Intent.DEFEND);
         addMove(TEACH_US, Intent.BUFF);
         this.startingState = startingState;
