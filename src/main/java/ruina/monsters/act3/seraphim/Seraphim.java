@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.*;
@@ -253,12 +254,21 @@ public class Seraphim extends AbstractMultiIntentMonster {
 
     @Override
     public void takeTurn() {
+        super.takeTurn();
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new IntentFlashAction(this));
+            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
             takeCustomTurn(additionalMove, adp());
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    additionalIntent.usePrimaryIntentsColor = true;
+                    this.isDone = true;
+                }
+            });
         }
         atb(new AbstractGameAction() {
             @Override

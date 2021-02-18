@@ -3,6 +3,7 @@ package ruina.monsters;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -23,6 +24,7 @@ import java.util.Iterator;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.atb;
 
 public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     protected ArrayList<EnemyMoveInfo> additionalMoves = new ArrayList<>();
@@ -224,4 +226,11 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         return super.getIntentDmg();
     }
 
+    @Override
+    public void takeTurn() {
+        for (AdditionalIntent additionalIntent : this.additionalIntents) {
+            //that way they don't fade out after the monster takes its primary intent
+            additionalIntent.usePrimaryIntentsColor = false;
+        }
+    }
 }

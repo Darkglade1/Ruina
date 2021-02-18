@@ -38,9 +38,10 @@ public class AdditionalIntent {
     private BobEffect bobEffect;
     private float intentParticleTimer;
     private float intentAngle;
-    private Texture intentImg;
+    public Texture intentImg;
     private Texture intentBg;
     public PowerTip intentTip;
+    public boolean usePrimaryIntentsColor = true;
 
     private ArrayList<AbstractGameEffect> intentVfx;
 
@@ -118,10 +119,15 @@ public class AdditionalIntent {
     }
 
     public void renderIntent(SpriteBatch sb, int position) {
-        Color color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        Color color;
+        if (usePrimaryIntentsColor) {
+            color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else {
+            color = intentColor;
+        }
         sb.setColor(color);
         if (this.intentBg != null) {
-            sb.setColor(new Color(1.0F, 1.0F, 1.0F, source.intentAlpha / 2.0F));
+            //sb.setColor(new Color(1.0F, 1.0F, 1.0F, source.intentAlpha / 2.0F));
             sb.draw(this.intentBg, source.intentHb.cX - 64.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 128, 128, false, false);
         }
 
@@ -142,7 +148,12 @@ public class AdditionalIntent {
     }
 
     private void renderDamageRange(SpriteBatch sb, int position) {
-        Color color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        Color color;
+        if (usePrimaryIntentsColor) {
+            color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else {
+            color = intentColor;
+        }
         if (this.intent.name().contains("ATTACK")) {
             if (this.multihit) {
                 FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, this.damage + "x" + this.numHits, source.intentHb.cX - (30.0F * Settings.scale) + (X_OFFSET * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, color);
@@ -169,7 +180,13 @@ public class AdditionalIntent {
     }
 
     private void updateIntentVFX(int position) {
-        if (intentColor.a > 0.0F) {
+        Color color;
+        if (usePrimaryIntentsColor) {
+            color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else {
+            color = intentColor;
+        }
+        if (color.a > 0.0F) {
             if (this.intent != AbstractMonster.Intent.ATTACK_DEBUFF && this.intent != AbstractMonster.Intent.DEBUFF && this.intent != AbstractMonster.Intent.STRONG_DEBUFF && this.intent != AbstractMonster.Intent.DEFEND_DEBUFF) {
                 if (this.intent != AbstractMonster.Intent.ATTACK_BUFF && this.intent != AbstractMonster.Intent.BUFF && this.intent != AbstractMonster.Intent.DEFEND_BUFF) {
                     if (this.intent == AbstractMonster.Intent.ATTACK_DEFEND) {
