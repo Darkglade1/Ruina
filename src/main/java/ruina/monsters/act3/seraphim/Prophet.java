@@ -167,6 +167,9 @@ public class Prophet extends AbstractAllyMonster
             return;
         }
         super.takeTurn();
+        if (firstMove) {
+            firstMove = false;
+        }
         switch (this.nextMove) {
             case BAPTISM: {
                 healAnimation();
@@ -291,8 +294,10 @@ public class Prophet extends AbstractAllyMonster
                 }
                 atb(new SpawnMonsterAction(apostle, true));
                 atb(new UsePreBattleActionAction(apostle));
-                apostle.rollMove();
-                apostle.createIntent();
+                if (!firstMove) {
+                    apostle.rollMove();
+                    apostle.createIntent();
+                }
                 minions[i] = apostle;
             }
         }

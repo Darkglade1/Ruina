@@ -1,7 +1,10 @@
 package ruina.monsters.act3.seraphim;
 
 import basemod.animations.AbstractAnimation;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -36,6 +39,10 @@ public class Seraphim extends AbstractMultiIntentMonster {
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
+
+    private static final Texture CIRCLE = new Texture(makeMonsterPath("Seraphim/Circle.png"));
+    private TextureRegion WHITENIGHT_CIRCLE_REGION;
+    private TextureRegion SELF_CIRCLE_REGION;
 
     private static final byte EMPTY = 0;
     private static final byte PHASE_TRANSITION = 1;
@@ -102,6 +109,8 @@ public class Seraphim extends AbstractMultiIntentMonster {
         super(NAME, ID, 666, -5.0F, 0, 280.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Seraphim/Spriter/Seraphim.scml"));
         this.whiteNight = new BetterSpriterAnimation(makeMonsterPath("Seraphim/WhiteNight/WhiteNight.scml"));
+        WHITENIGHT_CIRCLE_REGION = new TextureRegion(CIRCLE);
+        SELF_CIRCLE_REGION = new TextureRegion(CIRCLE);
         runAnim("Idle");
         this.type = EnemyType.BOSS;
         // Phase 3: Enrage and gain 1 more.
@@ -367,8 +376,17 @@ public class Seraphim extends AbstractMultiIntentMonster {
 
     @Override
     public void render(SpriteBatch sb) {
+        if (!isDead) {
+            sb.setColor(Color.WHITE);
+            sb.draw(SELF_CIRCLE_REGION, this.hb.cX - (float)this.SELF_CIRCLE_REGION.getRegionWidth() / 2, this.hb.cY - (float)this.SELF_CIRCLE_REGION.getRegionHeight() / 2, 0.0F, 0.0F, this.SELF_CIRCLE_REGION.getRegionWidth(), this.SELF_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
+        }
         super.render(sb);
-        whiteNight.renderSprite(sb, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2 + (75.0f * Settings.scale));
+        float whiteNightY = (float) Settings.HEIGHT / 2 + (75.0f * Settings.scale);
+        if (!isDead) {
+            sb.setColor(Color.WHITE);
+            sb.draw(WHITENIGHT_CIRCLE_REGION, (float)Settings.WIDTH / 2 - (float)this.WHITENIGHT_CIRCLE_REGION.getRegionWidth() / 2 - 15.0f * Settings.scale, (float) Settings.HEIGHT / 2, 0.0F, 0.0F, this.WHITENIGHT_CIRCLE_REGION.getRegionWidth(), this.WHITENIGHT_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
+            whiteNight.renderSprite(sb, (float) Settings.WIDTH / 2, whiteNightY);
+        }
     }
 
     public void Summon() {
