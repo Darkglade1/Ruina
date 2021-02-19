@@ -1,4 +1,4 @@
-package ruina.cards.EGO;
+package ruina.cards.EGO.act2;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import ruina.cards.EGO.AbstractEgoCard;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;

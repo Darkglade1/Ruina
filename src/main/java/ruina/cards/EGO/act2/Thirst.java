@@ -1,4 +1,4 @@
-package ruina.cards.EGO;
+package ruina.cards.EGO.act2;
 
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import ruina.cards.EGO.AbstractEgoCard;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 

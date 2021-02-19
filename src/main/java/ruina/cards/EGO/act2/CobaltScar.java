@@ -1,8 +1,9 @@
-package ruina.cards.EGO;
+package ruina.cards.EGO.act2;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import ruina.cards.EGO.AbstractEgoCard;
 import ruina.powers.CobaltScarPower;
 
 import static ruina.RuinaMod.makeID;

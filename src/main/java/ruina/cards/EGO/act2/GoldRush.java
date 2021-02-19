@@ -1,4 +1,4 @@
-package ruina.cards.EGO;
+package ruina.cards.EGO.act2;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import ruina.cards.EGO.AbstractEgoCard;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;

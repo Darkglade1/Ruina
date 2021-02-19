@@ -1,4 +1,4 @@
-package ruina.cards.EGO;
+package ruina.cards.EGO.act2;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.actions.CallbackExhaustAction;
+import ruina.cards.EGO.AbstractEgoCard;
 import ruina.powers.AbstractLambdaPower;
 
 import java.util.ArrayList;

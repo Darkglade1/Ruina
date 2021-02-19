@@ -68,5 +68,22 @@
   "${ModID}:CrimsonScar": {
     "NAME": "Crimson Scar",
     "DESCRIPTION": "Gain !B! Block. NL Scry !M!. NL For each card discarded, gain !ruina:SecondMagic! Vigor."
+  },
+  "${ModID}:ParadiseLost": {
+    "NAME": "Paradise Lost",
+    "DESCRIPTION": "At the start of your turn, Exhaust !M! card. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, Exhaust !M! cards. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP."
+  },
+  "${ModID}:DeadSilence": {
+    "NAME": "Dead Silence",
+    "DESCRIPTION": "Deal !D! damage. NL Take an extra turn after this one. NL If this card killed an enemy, gain [E] [E] next turn."
+  },
+  "${ModID}:Heaven": {
+    "NAME": "Heaven",
+    "DESCRIPTION": "Gain !B! Block X times. NL Whenever you are attacked this turn, deal damage back equal to your remaining Block."
+  },
+  "${ModID}:Penitence": {
+    "NAME": "Penitence",
+    "DESCRIPTION": "Heal !M! HP. NL Remove all of your debuffs."
   }
 }

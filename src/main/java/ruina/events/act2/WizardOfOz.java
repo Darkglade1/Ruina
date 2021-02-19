@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import ruina.RuinaMod;
 import ruina.cardmods.DamageUpMod;
 import ruina.cardmods.ExhaustMod;
-import ruina.cards.EGO.FalseThrone;
+import ruina.cards.EGO.act2.FalseThrone;
 import ruina.relics.FalsePresent;
 
 import static ruina.RuinaMod.makeEventPath;

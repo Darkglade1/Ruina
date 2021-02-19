@@ -1,4 +1,4 @@
-package ruina.cards.EGO;
+package ruina.cards.EGO.act2;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import ruina.cards.EGO.AbstractEgoCard;
 import ruina.powers.AbstractLambdaPower;
 
 import static com.megacrit.cardcrawl.core.CardCrawlGame.languagePack;
