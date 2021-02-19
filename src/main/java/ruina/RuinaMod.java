@@ -20,6 +20,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
@@ -38,6 +39,7 @@ import ruina.CustomIntent.MassAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
+import ruina.dungeons.Atziluth;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
 import ruina.events.act2.ChildrenOfTheCity;
@@ -310,6 +312,9 @@ public class RuinaMod implements
         Briah briah = new Briah();
         briah.addAct(TheCity.ID);
 
+        Atziluth atziluth = new Atziluth();
+        atziluth.addAct(TheBeyond.ID);
+
         CustomIntent.add(new MassAttackIntent());
 
         //Act 2
@@ -371,8 +376,7 @@ public class RuinaMod implements
 
 
         // Act 3
-        BaseMod.addMonster(Prophet.ID, (BaseMod.GetMonster) Prophet::new);
-        //briah.addBoss(ParadiseLost.ID, (BaseMod.GetMonster) ParadiseLost::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
+        atziluth.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
     }
 
 

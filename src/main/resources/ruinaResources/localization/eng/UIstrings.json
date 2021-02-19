@@ -7,6 +7,14 @@
       "Accept the invitation."
     ]
   },
+  "${ModID}:Atziluth": {
+    "TEXT": [
+      "Atziluth",
+      "Act 3",
+      "In your hand is an elaborate invitation, promising #ywealth and #yknowledge beyond your wildest dreams.",
+      "Accept the invitation."
+    ]
+  },
   "${ModID}:MultiIntentStrings": {
     "TEXT": [
       "This enemy intends to NL #yAttack ",

@@ -1,5 +1,6 @@
 package ruina.monsters.act3.seraphim;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.animations.AbstractAnimation;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Color;
@@ -133,21 +134,22 @@ public class Seraphim extends AbstractMultiIntentMonster {
         addMove(SUMMON_APOSTLES, Intent.UNKNOWN);
         addMove(BAPTISM, Intent.BUFF);
         addMove(WINGS_OF_GRACE, Intent.BUFF);
-        addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(40));
+        addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(44));
         addMove(SALVATION, Intent.UNKNOWN);
         addMove(PRAYER, Intent.DEFEND_BUFF);
-        addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(17));
+        addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(19));
         addMove(FEAR_NOT, Intent.BUFF);
-        addMove(BEHOLD_MY_POWER, Intent.ATTACK, calcAscensionDamage(4), 3, true);
+        addMove(BEHOLD_MY_POWER, Intent.ATTACK, calcAscensionDamage(5), 3, true);
         addMove(REVELATION, Intent.BUFF);
     }
 
 
     @Override
     public void usePreBattleAction() {
+        CustomDungeon.playTempMusicInstantly("WhiteNightBGM");
         playSound("WhiteNightAppear");
         AbstractDungeon.getCurrRoom().cannotLose = true;
-        applyToTarget(this, this, new WingsOfGrace(this, calcAscensionSpecial(2)));
+        applyToTarget(this, this, new WingsOfGrace(this, calcAscensionSpecial(5)));
     }
 
     @Override

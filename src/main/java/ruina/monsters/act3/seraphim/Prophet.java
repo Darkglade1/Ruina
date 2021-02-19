@@ -95,7 +95,7 @@ public class Prophet extends AbstractAllyMonster
 
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("Warning3");
+        CustomDungeon.playTempMusicInstantly("Angela3");
         applyToTarget(this, this, new AbstractLambdaPower(APOSTLE_POWER_NAME, APOSTLES_POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
             @Override
             public void atEndOfRound() {

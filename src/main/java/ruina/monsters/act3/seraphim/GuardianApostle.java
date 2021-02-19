@@ -23,6 +23,7 @@ import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Unkillable;
+import ruina.powers.WingsOfGrace;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -55,10 +56,9 @@ public class GuardianApostle extends AbstractRuinaMonster {
     private final int giveUsRestBoss = calcAscensionTankiness(30);
     private final int thyWordsBlock = calcAscensionTankiness(12);
     private final Seraphim seraphim;
-    private boolean deadForThisTurn = false;
 
     public GuardianApostle(final float x, final float y, Seraphim parent) {
-        super(NAME, ID, 75, -5.0F, 0, 280.0f, 215.0f, null, x, y);
+        super(NAME, ID, 100, -5.0F, 0, 280.0f, 215.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("GuardianApostle/Spriter/GuardianApostle.scml"));
         this.setHp(calcAscensionTankiness(maxHealth));
         this.type = EnemyType.NORMAL;
@@ -162,6 +162,7 @@ public class GuardianApostle extends AbstractRuinaMonster {
     @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, new Unkillable(this));
+        applyToTarget(this, this, new WingsOfGrace(this, calcAscensionSpecial(2)));
     }
 
     @Override
