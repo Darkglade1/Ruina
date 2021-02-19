@@ -29,6 +29,7 @@ import ruina.cards.EGO.act2.Thirst;
 import ruina.cards.EGO.act3.DeadSilence;
 import ruina.cards.EGO.act3.Heaven;
 import ruina.cards.EGO.act3.ParadiseLost;
+import ruina.cards.EGO.act3.SoundOfAStar;
 import ruina.util.TexLoader;
 
 import java.lang.reflect.Method;
@@ -138,8 +139,11 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
 
     public static void addAct3EgoCards(ArrayList<String> list) {
         list.add(ParadiseLost.ID);
-        list.add(DeadSilence.ID);
+        if (adp().energy.energyMaster >= DeadSilence.COST) {
+            list.add(DeadSilence.ID);
+        }
         list.add(Heaven.ID);
         list.add(Penitence.ID);
+        list.add(SoundOfAStar.ID);
     }
 }
