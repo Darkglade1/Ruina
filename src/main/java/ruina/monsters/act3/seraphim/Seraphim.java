@@ -265,7 +265,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
             case FEAR_NOT:
                 specialAnimation();
                 for (AbstractMonster m : monsterList()) {
-                    if (!m.equals(this) && !m.isDeadOrEscaped()) {
+                    if (!m.isDeadOrEscaped()) {
                         atb(new HealAction(m, m, baptismHeal));
                         atb(new ApplyPowerAction(m, m, new StrengthPower(m, strBuff)));
                     }
