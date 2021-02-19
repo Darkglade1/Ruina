@@ -43,7 +43,7 @@ public class Prophet extends AbstractAllyMonster
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final Texture EGG = new Texture(makeMonsterPath("Seraphim/WhiteNightEgg.png"));
-    private TextureRegion EGG_REGION;
+    private final TextureRegion EGG_REGION;
 
     private static final byte BAPTISM = 0;
 

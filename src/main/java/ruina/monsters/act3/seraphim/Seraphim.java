@@ -6,15 +6,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.IntentFlashAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -23,7 +26,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.powers.*;
+import ruina.powers.WingsOfGrace;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -32,7 +35,6 @@ import java.util.ArrayList;
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.atb;
 
 public class Seraphim extends AbstractMultiIntentMonster {
     public static final String ID = makeID(Seraphim.class.getSimpleName());
@@ -42,8 +44,8 @@ public class Seraphim extends AbstractMultiIntentMonster {
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final Texture CIRCLE = new Texture(makeMonsterPath("Seraphim/Circle.png"));
-    private TextureRegion WHITENIGHT_CIRCLE_REGION;
-    private TextureRegion SELF_CIRCLE_REGION;
+    private final TextureRegion WHITENIGHT_CIRCLE_REGION;
+    private final TextureRegion SELF_CIRCLE_REGION;
 
     private static final byte EMPTY = 0;
     private static final byte PHASE_TRANSITION = 1;
@@ -85,22 +87,19 @@ public class Seraphim extends AbstractMultiIntentMonster {
 
     private int phase = 2;
     // Phase 1
-    private int wingsOfGrace = calcAscensionSpecial(1);
-    private int strBuff = calcAscensionSpecial(1);
-    private int baptismHeal = calcAscensionSpecial(15);
+    private final int wingsOfGrace = calcAscensionSpecial(1);
+    private final int strBuff = calcAscensionSpecial(1);
+    private final int baptismHeal = calcAscensionSpecial(15);
     // Phase 2
-    private int riseAndServe = calcAscensionDamage(3);
-    private int doNotDeny = calcAscensionDamage(10);
-    private int salvationHeal = calcAscensionSpecial(75);
-    private int salvationBossHeal = calcAscensionTankiness(15);
-    private int prayerHeal = calcAscensionSpecial(50);
-    private int prayerBlock = calcAscensionTankiness(7);
-    private int beholdMyPower = calcAscensionDamage(2);
-    private int revelationStr = calcAscensionSpecial(2);
+    private final int salvationHeal = calcAscensionSpecial(75);
+    private final int salvationBossHeal = calcAscensionTankiness(15);
+    private final int prayerHeal = calcAscensionSpecial(50);
+    private final int prayerBlock = calcAscensionTankiness(7);
+    private final int revelationStr = calcAscensionSpecial(2);
     // Prevent non needed intent changes
     private boolean lockedIntent = false;
 
-    private AbstractAnimation whiteNight;
+    private final AbstractAnimation whiteNight;
 
     public Seraphim() {
         this(150.0f, 0.0f);
@@ -126,22 +125,20 @@ public class Seraphim extends AbstractMultiIntentMonster {
         addMove(SUMMON_APOSTLES, Intent.UNKNOWN);
         addMove(BAPTISM, Intent.BUFF);
         addMove(WINGS_OF_GRACE, Intent.BUFF);
-        addMove(RISE_AND_SERVE, Intent.ATTACK, riseAndServe, 2, true);
+        addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(20), 2, true);
         addMove(SALVATION, Intent.UNKNOWN);
         addMove(PRAYER, Intent.DEFEND_BUFF);
-        addMove(DO_NOT_DENY, Intent.ATTACK, doNotDeny);
+        addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(12));
         addMove(FEAR_NOT, Intent.BUFF);
-        addMove(BEHOLD_MY_POWER, Intent.ATTACK, beholdMyPower, 4, true);
+        addMove(BEHOLD_MY_POWER, Intent.ATTACK, calcAscensionDamage(3), 3, true);
         addMove(REVELATION, Intent.BUFF);
     }
 
 
     @Override
     public void usePreBattleAction() {
-        //Summon();
-        AbstractDungeon.getCurrRoom().cannotLose = true;
-        //atb(new ApplyPowerAction(this, this, new Apostles(this, ApostleKillCounter)));
-        atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, calcAscensionSpecial(2))));
+        playSound("WhiteNightAppear");
+        applyToTarget(this, this, new WingsOfGrace(this, calcAscensionSpecial(2)));
     }
 
     @Override
@@ -168,12 +165,15 @@ public class Seraphim extends AbstractMultiIntentMonster {
                 // Apply Powers for Phases Here.
                 break;
             case WINGS_OF_GRACE:
+                specialAnimation();
                 atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, wingsOfGrace)));
+                resetIdle();
                 break;
             case SUMMON_APOSTLES:
                 Summon();
                 break;
             case BAPTISM:
+                specialAnimation();
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -185,9 +185,14 @@ public class Seraphim extends AbstractMultiIntentMonster {
                         this.isDone = true;
                     }
                 });
+                resetIdle();
                 break;
             case BEHOLD_MY_POWER:
             case RISE_AND_SERVE:
+                attackAnimation(adp());
+                for (int i = 0; i < multiplier; i++) {
+                    dmg(adp(), info);
+                }
                 if (move.nextMove == RISE_AND_SERVE) {
                     Summon();
                     atb(new AbstractGameAction() {
@@ -198,11 +203,10 @@ public class Seraphim extends AbstractMultiIntentMonster {
                         }
                     });
                 }
-                for (int i = 0; i < multiplier; i++) {
-                    dmg(adp(), info);
-                }
+                resetIdle();
                 break;
             case SALVATION:
+                specialAnimation();
                 atb(new HealAction(this, this, salvationBossHeal));
                 atb(new AbstractGameAction() {
                     @Override
@@ -216,8 +220,10 @@ public class Seraphim extends AbstractMultiIntentMonster {
                         this.isDone = true;
                     }
                 });
+                resetIdle();
                 break;
             case PRAYER:
+                specialAnimation();
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -232,21 +238,28 @@ public class Seraphim extends AbstractMultiIntentMonster {
                         this.isDone = true;
                     }
                 });
+                resetIdle();
                 break;
             case DO_NOT_DENY:
+                attackAnimation(adp());
                 dmg(adp(), info);
+                resetIdle();
                 break;
             case FEAR_NOT:
+                specialAnimation();
                 for (AbstractMonster m : monsterList()) {
                     if (!m.equals(this)) {
                         att(new HealAction(m, m, baptismHeal));
                         atb(new ApplyPowerAction(m, m, new StrengthPower(m, strBuff)));
                     }
                 }
+                resetIdle();
                 break;
             case REVELATION:
+                specialAnimation();
                 atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, wingsOfGrace)));
                 atb(new ApplyPowerAction(this, this, new StrengthPower(this, revelationStr)));
+                resetIdle();
                 break;
         }
     }
@@ -414,6 +427,14 @@ public class Seraphim extends AbstractMultiIntentMonster {
         atb(new UsePreBattleActionAction(apostle2));
         apostle2.rollMove();
         apostle2.createIntent();
+    }
+
+    private void attackAnimation(AbstractCreature enemy) {
+        animationAction("Special3", "WhiteNightCall", enemy, this);
+    }
+
+    private void specialAnimation() {
+        animationAction("Special1", "ProphetBless", this);
     }
 
 }
