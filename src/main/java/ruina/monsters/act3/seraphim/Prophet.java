@@ -53,7 +53,7 @@ public class Prophet extends AbstractAllyMonster
     private static final int DRAW = 1;
     private static final int ENERGY = 1;
 
-    private static final int TURN_THRESHOLD = 4;
+    private static final int TURN_THRESHOLD = 1;
     private int turnCounter = TURN_THRESHOLD;
     private int wingCounter = 1;
     

@@ -1,11 +1,13 @@
 package ruina.monsters.act3.seraphim;
 
 import basemod.animations.AbstractAnimation;
+import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
@@ -21,8 +23,10 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
@@ -46,6 +50,11 @@ public class Seraphim extends AbstractMultiIntentMonster {
     private static final Texture CIRCLE = new Texture(makeMonsterPath("Seraphim/Circle.png"));
     private final TextureRegion WHITENIGHT_CIRCLE_REGION;
     private final TextureRegion SELF_CIRCLE_REGION;
+
+    private static final float whiteNightY = (float) Settings.HEIGHT / 2 + (75.0f * Settings.scale);
+
+    public static final String GLOWING_CIRCLE = RuinaMod.makeMonsterPath("Seraphim/GlowingCircle.png");
+    private static final Texture GLOWING_CIRCLE_TEXTURE = new Texture(GLOWING_CIRCLE);
 
     private static final byte EMPTY = 0;
     private static final byte PHASE_TRANSITION = 1;
@@ -125,7 +134,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
         addMove(SUMMON_APOSTLES, Intent.UNKNOWN);
         addMove(BAPTISM, Intent.BUFF);
         addMove(WINGS_OF_GRACE, Intent.BUFF);
-        addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(20), 2, true);
+        addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(40));
         addMove(SALVATION, Intent.UNKNOWN);
         addMove(PRAYER, Intent.DEFEND_BUFF);
         addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(12));
@@ -188,21 +197,24 @@ public class Seraphim extends AbstractMultiIntentMonster {
                 resetIdle();
                 break;
             case BEHOLD_MY_POWER:
-            case RISE_AND_SERVE:
                 attackAnimation(adp());
                 for (int i = 0; i < multiplier; i++) {
                     dmg(adp(), info);
                 }
-                if (move.nextMove == RISE_AND_SERVE) {
-                    Summon();
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            firstMove = false;
-                            this.isDone = true;
-                        }
-                    });
-                }
+                resetIdle();
+                break;
+            case RISE_AND_SERVE:
+                shockwaveAnimation(adp());
+                shockwaveEffect();
+                dmg(adp(), info);
+                Summon();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        firstMove = false;
+                        this.isDone = true;
+                    }
+                });
                 resetIdle();
                 break;
             case SALVATION:
@@ -241,7 +253,8 @@ public class Seraphim extends AbstractMultiIntentMonster {
                 resetIdle();
                 break;
             case DO_NOT_DENY:
-                attackAnimation(adp());
+                shockwaveAnimation(adp());
+                shockwaveEffect();
                 dmg(adp(), info);
                 resetIdle();
                 break;
@@ -404,7 +417,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
             sb.draw(SELF_CIRCLE_REGION, this.hb.cX - (float)this.SELF_CIRCLE_REGION.getRegionWidth() / 2, this.hb.cY - (float)this.SELF_CIRCLE_REGION.getRegionHeight() / 2, 0.0F, 0.0F, this.SELF_CIRCLE_REGION.getRegionWidth(), this.SELF_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
         }
         super.render(sb);
-        float whiteNightY = (float) Settings.HEIGHT / 2 + (75.0f * Settings.scale);
+
         if (!isDead) {
             sb.setColor(Color.WHITE);
             sb.draw(WHITENIGHT_CIRCLE_REGION, (float)Settings.WIDTH / 2 - (float)this.WHITENIGHT_CIRCLE_REGION.getRegionWidth() / 2 - 15.0f * Settings.scale, (float) Settings.HEIGHT / 2, 0.0F, 0.0F, this.WHITENIGHT_CIRCLE_REGION.getRegionWidth(), this.WHITENIGHT_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
@@ -429,12 +442,33 @@ public class Seraphim extends AbstractMultiIntentMonster {
         apostle2.createIntent();
     }
 
+    private void shockwaveAnimation(AbstractCreature enemy) {
+        animationAction("Special3", null, enemy, this);
+    }
+
     private void attackAnimation(AbstractCreature enemy) {
         animationAction("Special3", "WhiteNightCall", enemy, this);
     }
 
     private void specialAnimation() {
         animationAction("Special1", "ProphetBless", this);
+    }
+
+    private void shockwaveEffect() {
+        float y = whiteNightY + 100.0f * Settings.scale;
+        float chargeDuration = 1.2f;
+        AbstractGameEffect shockwaveCharge = new VfxBuilder(GLOWING_CIRCLE_TEXTURE, (float)Settings.WIDTH / 2, y, chargeDuration)
+                .scale(4.0f, 0.0f, VfxBuilder.Interpolations.LINEAR)
+                .playSoundAt(0.0f, makeID("WhiteNightCharge"))
+                .rotate(-600f)
+                .build();
+        float burstDuration = 0.7f;
+        AbstractGameEffect shockwaveBurst = new VfxBuilder(GLOWING_CIRCLE_TEXTURE, (float)Settings.WIDTH / 2, y, burstDuration)
+                .scale(0.0f, 8.0f, VfxBuilder.Interpolations.SWING)
+                .playSoundAt(0.0f, makeID("WhiteNightFire"))
+                .build();
+        atb(new VFXAction(shockwaveCharge, chargeDuration));
+        atb(new VFXAction(shockwaveBurst, burstDuration - 0.3f));
     }
 
 }
