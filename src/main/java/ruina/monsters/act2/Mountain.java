@@ -399,16 +399,10 @@ public class Mountain extends AbstractMultiIntentMonster
         super.damage(info);
         if (this.currentHealth <= 0 && !this.halfDead) {
             this.halfDead = true;
-            Iterator var2 = this.powers.iterator();
-            while (var2.hasNext()) {
-                AbstractPower p = (AbstractPower) var2.next();
+            for (AbstractPower p : this.powers) {
                 p.onDeath();
             }
-
-            var2 = AbstractDungeon.player.relics.iterator();
-
-            while (var2.hasNext()) {
-                AbstractRelic r = (AbstractRelic) var2.next();
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
                 r.onMonsterDeath(this);
             }
             if (this.nextMove != REVIVE) {

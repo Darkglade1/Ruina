@@ -141,11 +141,11 @@
   },
   "${ModID}:WingsOfGrace": {
     "NAME": "Wings Of Grace",
-    "DESCRIPTIONS": ["Reduces ALL damage by 50%. NL After receiving damage, reduce this amount by #b1."]
+    "DESCRIPTIONS": ["Reduces ALL damage by #b", "%. NL After receiving damage, reduce this amount by #b", "."]
   },
   "${ModID}:Unkillable": {
     "NAME": "By Grace Through Faith",
-    "DESCRIPTIONS": ["This enemy cannot die. NL Whenever this enemy would die, set its HP to #r1. NL This enemy cannot move while its HP is #r1, and is healed next turn."]
+    "DESCRIPTIONS": ["Whenever this creature dies, it is #yrevived next turn by the enemy."]
   },
   "${ModID}:CobaltScarPower": {
     "NAME": "Cobalt Scar",

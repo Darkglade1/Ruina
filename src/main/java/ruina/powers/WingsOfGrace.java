@@ -15,9 +15,12 @@ public class WingsOfGrace extends AbstractEasyPower{
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
+    private static final float DAMAGE_REDUCTION = 0.5f;
+    private static final int REDUCTION = 1;
+
     public WingsOfGrace(AbstractCreature owner, int amount) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
-
+        this.priority = 50;
     }
 
     public void playApplyPowerSfx() { CardCrawlGame.sound.play("POWER_FLIGHT", 0.05F); }
@@ -25,18 +28,14 @@ public class WingsOfGrace extends AbstractEasyPower{
     public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) { return calculateDamageTakenAmount(damage, type); }
 
     private float calculateDamageTakenAmount(float damage, DamageInfo.DamageType type) {
-        return damage / 2.0F;
+        return damage * (1 - DAMAGE_REDUCTION);
     }
 
     public int onAttacked(DamageInfo info, int damageAmount) {
-        boolean willLive = (calculateDamageTakenAmount(damageAmount, info.type) < this.owner.currentHealth);
-        if (info.owner != null && damageAmount > 0 && willLive) {
-            flash();
-            atb(new ReducePowerAction(this.owner, this.owner, this, 1));
-        }
+        atb(new ReducePowerAction(this.owner, this.owner, this, REDUCTION));
         return damageAmount;
     }
 
     @Override
-    public void updateDescription() { this.description = DESCRIPTIONS[0]; }
+    public void updateDescription() { this.description = DESCRIPTIONS[0] + (int)(DAMAGE_REDUCTION * 100) + DESCRIPTIONS[1] + REDUCTION + DESCRIPTIONS[2]; }
 }

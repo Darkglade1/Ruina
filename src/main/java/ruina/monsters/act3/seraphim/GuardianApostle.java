@@ -11,25 +11,30 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.RitualPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractMultiIntentMonster;
+import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Unkillable;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 import static ruina.util.Wiz.atb;
 
-public class GuardianApostle extends AbstractMultiIntentMonster {
+public class GuardianApostle extends AbstractRuinaMonster {
     public static final String ID = makeID(GuardianApostle.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
@@ -45,41 +50,36 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
     private static final byte EMPTY = 6;
 
     private final int riseAndServe = calcAscensionTankiness(30);
-    private int heavenlyAura = 1;
+    private final int heavenlyAura = calcAscensionSpecial(1);
     private final int giveUsRestGuardian = calcAscensionTankiness(15);
     private final int giveUsRestBoss = calcAscensionTankiness(30);
-    private final int thyWordsBlock = calcAscensionTankiness(10);
-    private Seraphim seraphim;
+    private final int thyWordsBlock = calcAscensionTankiness(12);
+    private final Seraphim seraphim;
     private boolean deadForThisTurn = false;
 
     public GuardianApostle(final float x, final float y, Seraphim parent) {
         super(NAME, ID, 75, -5.0F, 0, 280.0f, 215.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("GuardianApostle/Spriter/GuardianApostle.scml"));
         this.setHp(calcAscensionTankiness(maxHealth));
-        this.type = EnemyType.ELITE;
-        numAdditionalMoves = 1;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
-        firstMove = true;
+        this.type = EnemyType.NORMAL;
         addMove(RISE_AND_SERVE, Intent.DEFEND_BUFF);
-        addMove(COMMAND_FIRE, Intent.ATTACK, calcAscensionDamage(9));
+        addMove(COMMAND_FIRE, Intent.ATTACK, calcAscensionDamage(15));
         addMove(THE_KING, Intent.ATTACK, calcAscensionDamage(3), 3, true);
         addMove(GIVE_US_REST, Intent.DEFEND);
-        addMove(THY_WORDS_COME_UNTO_ME, Intent.ATTACK_DEFEND, calcAscensionDamage(6));
-        addMove(LORD_SHEW_US, Intent.ATTACK, calcAscensionDamage(2), 2, true);
+        addMove(THY_WORDS_COME_UNTO_ME, Intent.ATTACK_DEFEND, calcAscensionDamage(8));
+        addMove(LORD_SHEW_US, Intent.ATTACK, calcAscensionDamage(6), 2, true);
         addMove(EMPTY, Intent.NONE);
         seraphim = parent;
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
+    public void takeTurn() {
+        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
+        int multiplier = this.moves.get(nextMove).multiplier;
         if (info.base > -1) {
-            info.applyPowers(this, target);
+            info.applyPowers(this, adp());
         }
-        switch (move.nextMove) {
+        switch (nextMove) {
             case RISE_AND_SERVE:
                 specialAnimation();
                 block(this, riseAndServe);
@@ -95,7 +95,7 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
                 break;
             case COMMAND_FIRE:
                 slashUpAnimation(adp());
-                dmg(target, info);
+                dmg(adp(), info);
                 resetIdle();
                 break;
             case THE_KING:
@@ -106,7 +106,7 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
                     } else {
                         slashDownAnimation(adp());
                     }
-                    dmg(target, info);
+                    dmg(adp(), info);
                     resetIdle();
                 }
                 break;
@@ -123,45 +123,17 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
                 break;
             case THY_WORDS_COME_UNTO_ME:
                 slashDownAnimation(adp());
-                dmg(target, info);
+                dmg(adp(), info);
                 block(this, thyWordsBlock);
                 resetIdle();
                 break;
-        }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                deadForThisTurn = false;
-                this.isDone = true;
-            }
-        });
-    }
-
-
-    @Override
-    public void takeTurn() {
-        super.takeTurn();
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            takeCustomTurn(additionalMove, adp());
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    additionalIntent.usePrimaryIntentsColor = true;
-                    this.isDone = true;
-                }
-            });
         }
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (deadForThisTurn) {
+        if (halfDead) {
             setMoveShortcut(EMPTY, MOVES[EMPTY]);
         } else if (firstMove) {
             setMoveShortcut(RISE_AND_SERVE, MOVES[RISE_AND_SERVE]);
@@ -188,47 +160,6 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
     }
 
     @Override
-    public void getAdditionalMoves(int num, int whichMove) {
-        if (deadForThisTurn) {
-            setMoveShortcut(EMPTY, MOVES[EMPTY]);
-        } else {
-            ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(COMMAND_FIRE)) {
-                possibilities.add(COMMAND_FIRE);
-            }
-            if (!this.lastMove(THE_KING)) {
-                possibilities.add(THE_KING);
-            }
-            if (!this.lastMove(GIVE_US_REST)) {
-                possibilities.add(GIVE_US_REST);
-            }
-            if (!this.lastMove(THY_WORDS_COME_UNTO_ME)) {
-                possibilities.add(THY_WORDS_COME_UNTO_ME);
-            }
-            if (!this.lastMove(LORD_SHEW_US)) {
-                possibilities.add(LORD_SHEW_US);
-            }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setAdditionalMoveShortcut(move, moveHistory);
-        }
-    }
-
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-            }
-        }
-    }
-
-    @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, new Unkillable(this));
     }
@@ -236,41 +167,35 @@ public class GuardianApostle extends AbstractMultiIntentMonster {
     @Override
     public void damage(DamageInfo info) {
         super.damage(info);
-        if (this.currentHealth == 1) {
+        if (this.currentHealth <= 0 && !this.halfDead) {
+            this.halfDead = true;
             for (AbstractPower p : this.powers) {
                 p.onDeath();
             }
             for (AbstractRelic r : AbstractDungeon.player.relics) {
                 r.onMonsterDeath(this);
             }
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    for (AbstractPower p : powers) {
-                        p.onDeath();
-                    }
-                    deadForThisTurn = true;
-                    this.isDone = true;
+            if (this.nextMove != EMPTY) {
+                setMoveShortcut(EMPTY);
+                this.createIntent();
+                atb(new SetMoveAction(this, EMPTY, Intent.NONE));
+            }
+            ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
+            for (AbstractPower power : this.powers) {
+                if (!(power.ID.equals(Unkillable.POWER_ID)) && !(power.ID.equals(StrengthPower.POWER_ID)) && !(power.ID.equals(GainStrengthPower.POWER_ID)) && !(power.ID.equals(RitualPower.POWER_ID)) && !(power.ID.equals(MinionPower.POWER_ID))) {
+                    powersToRemove.add(power);
                 }
-            });
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    rollMove();
-                    createIntent();
-                    healthBarUpdatedEvent();
-                    this.isDone = true;
+            }
+            for (AbstractPower power : powersToRemove) {
+                this.powers.remove(power);
+            }
+        }
+    }
 
-                }
-            });
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    seraphim.rollMove();
-                    seraphim.createIntent();
-                    this.isDone = true;
-                }
-            });
+    @Override
+    public void die() {
+        if (!AbstractDungeon.getCurrRoom().cannotLose) {
+            super.die();
         }
     }
 
