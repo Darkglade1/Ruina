@@ -64,8 +64,10 @@ public class Heaven extends AbstractEgoCard {
             @Override
             public int onAttacked(DamageInfo info, int damageAmount) {
                 if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner) {
-                    this.flash();
-                    att(new DamageAction(info.owner, new DamageInfo(this.owner, owner.currentBlock, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
+                    if (owner.currentBlock > 0) {
+                        this.flash();
+                        att(new DamageAction(info.owner, new DamageInfo(this.owner, owner.currentBlock, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
+                    }
                 }
                 return damageAmount;
             }

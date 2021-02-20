@@ -257,7 +257,7 @@ public class Prophet extends AbstractAllyMonster
         super.render(sb);
         if (!isDead) {
             sb.setColor(Color.WHITE);
-            sb.draw(EGG_REGION, (float)Settings.WIDTH / 2 - (float)this.EGG_REGION.getRegionWidth() / 2, (float)Settings.HEIGHT / 2, 0.0F, 0.0F, this.EGG_REGION.getRegionWidth(), this.EGG_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
+            sb.draw(EGG_REGION, (float)Settings.WIDTH / 2 - (((float)this.EGG_REGION.getRegionWidth() / 2) * Settings.scale), (float)Settings.HEIGHT / 2, 0.0F, 0.0F, this.EGG_REGION.getRegionWidth(), this.EGG_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
         }
     }
 

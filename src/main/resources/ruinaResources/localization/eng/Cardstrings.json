@@ -88,7 +88,6 @@
   },
   "${ModID}:SoundOfAStar": {
     "NAME": "Sound of a Star",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL This card's damage is increased by the amount of Block you've gained this combat.",
-    "UPGRADE_DESCRIPTION" : "Refund !M!. NL Deal !D! damage to ALL enemies. NL This card's damage is increased by the amount of Block you've gained this combat."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL This card's damage is increased by the amount of Block you've gained this combat. NL Exhaustive !stslib:ex!."
   }
 }

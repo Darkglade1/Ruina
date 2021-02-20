@@ -418,12 +418,12 @@ public class Seraphim extends AbstractMultiIntentMonster {
     public void render(SpriteBatch sb) {
         if (!isDead) {
             sb.setColor(Color.WHITE);
-            sb.draw(SELF_CIRCLE_REGION, this.hb.cX - (float)this.SELF_CIRCLE_REGION.getRegionWidth() / 2, this.hb.cY - (float)this.SELF_CIRCLE_REGION.getRegionHeight() / 2, 0.0F, 0.0F, this.SELF_CIRCLE_REGION.getRegionWidth(), this.SELF_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
+            sb.draw(SELF_CIRCLE_REGION, this.hb.cX - (((float)this.SELF_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale), this.hb.cY - (((float)this.SELF_CIRCLE_REGION.getRegionHeight() / 2) * Settings.scale), 0.0F, 0.0F, this.SELF_CIRCLE_REGION.getRegionWidth(), this.SELF_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
         }
         super.render(sb);
         if (!isDead) {
             sb.setColor(Color.WHITE);
-            sb.draw(WHITENIGHT_CIRCLE_REGION, (float)Settings.WIDTH / 2 - (float)this.WHITENIGHT_CIRCLE_REGION.getRegionWidth() / 2 - 15.0f * Settings.scale, (float) Settings.HEIGHT / 2, 0.0F, 0.0F, this.WHITENIGHT_CIRCLE_REGION.getRegionWidth(), this.WHITENIGHT_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
+            sb.draw(WHITENIGHT_CIRCLE_REGION, (float)Settings.WIDTH / 2 - (((float)this.WHITENIGHT_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale) - 15.0f * Settings.scale, (float) Settings.HEIGHT / 2, 0.0F, 0.0F, this.WHITENIGHT_CIRCLE_REGION.getRegionWidth(), this.WHITENIGHT_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
             whiteNight.renderSprite(sb, (float) Settings.WIDTH / 2, whiteNightY);
         }
     }

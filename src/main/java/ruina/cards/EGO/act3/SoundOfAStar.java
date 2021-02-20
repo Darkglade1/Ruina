@@ -1,13 +1,12 @@
 package ruina.cards.EGO.act3;
 
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.RefundFields;
+import com.evacipated.cardcrawl.mod.stslib.variables.ExhaustiveVariable;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.cards.EGO.AbstractEgoCard;
 import ruina.patches.TotalBlockGainedSpireField;
 
-import static com.megacrit.cardcrawl.core.CardCrawlGame.languagePack;
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 
@@ -15,13 +14,13 @@ public class SoundOfAStar extends AbstractEgoCard {
     public final static String ID = makeID(SoundOfAStar.class.getSimpleName());
 
     public static final int DAMAGE = 10;
-    public static final int REFUND = 1;
+    public static final int EXHAUSTIVE = 2;
 
     public SoundOfAStar() {
         super(ID, 3, CardType.ATTACK, CardTarget.ALL_ENEMY);
         baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber = REFUND;
         isMultiDamage = true;
+        ExhaustiveVariable.setBaseValue(this, EXHAUSTIVE);
     }
 
     @Override
@@ -50,14 +49,11 @@ public class SoundOfAStar extends AbstractEgoCard {
     @Override
     public float getTitleFontSize()
     {
-        return 16;
+        return 18;
     }
 
     @Override
     public void upp() {
-        RefundFields.baseRefund.set(this, magicNumber);
-        RefundFields.refund.set(this, magicNumber);
-        rawDescription = languagePack.getCardStrings(cardID).UPGRADE_DESCRIPTION;
-        initializeDescription();
+        selfRetain = true;
     }
 }
