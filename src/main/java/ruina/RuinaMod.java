@@ -23,6 +23,11 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.events.beyond.Falling;
+import com.megacrit.cardcrawl.events.beyond.MindBloom;
+import com.megacrit.cardcrawl.events.beyond.MysteriousSphere;
+import com.megacrit.cardcrawl.events.beyond.SensoryStone;
+import com.megacrit.cardcrawl.events.beyond.WindingHalls;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -379,6 +384,12 @@ public class RuinaMod implements
         BaseMod.addEvent(ChildrenOfTheCity.ID, ChildrenOfTheCity.class, Briah.ID);
         BaseMod.addEvent(NothingThere.ID, NothingThere.class, Briah.ID);
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
+
+        BaseMod.addEvent(Falling.ID, Falling.class, Atziluth.ID);
+        BaseMod.addEvent(MindBloom.ID, MindBloom.class, Atziluth.ID);
+        BaseMod.addEvent(SensoryStone.ID, SensoryStone.class, Atziluth.ID);
+        BaseMod.addEvent(MysteriousSphere.ID, MysteriousSphere.class, Atziluth.ID);
+        BaseMod.addEvent(WindingHalls.ID, WindingHalls.class, Atziluth.ID);
 
 
         // Act 3
