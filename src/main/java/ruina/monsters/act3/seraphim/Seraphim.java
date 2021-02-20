@@ -121,6 +121,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
         WHITENIGHT_CIRCLE_REGION = new TextureRegion(CIRCLE);
         SELF_CIRCLE_REGION = new TextureRegion(CIRCLE);
         runAnim("Idle");
+        this.setHp(maxHealth);
         this.type = EnemyType.BOSS;
         // Phase 3: Enrage and gain 1 more.
         numAdditionalMoves = 2;
@@ -128,7 +129,6 @@ public class Seraphim extends AbstractMultiIntentMonster {
             additionalMovesHistory.add(new ArrayList<>());
         }
 
-        firstMove = true;
         addMove(EMPTY, Intent.NONE);
         addMove(PHASE_TRANSITION, Intent.UNKNOWN);
         addMove(SUMMON_APOSTLES, Intent.UNKNOWN);
@@ -137,9 +137,9 @@ public class Seraphim extends AbstractMultiIntentMonster {
         addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(44));
         addMove(SALVATION, Intent.UNKNOWN);
         addMove(PRAYER, Intent.DEFEND_BUFF);
-        addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(19));
+        addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(17));
         addMove(FEAR_NOT, Intent.BUFF);
-        addMove(BEHOLD_MY_POWER, Intent.ATTACK, calcAscensionDamage(5), 3, true);
+        addMove(BEHOLD_MY_POWER, Intent.ATTACK, calcAscensionDamage(4), 3, true);
         addMove(REVELATION, Intent.BUFF);
     }
 
@@ -149,7 +149,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
         CustomDungeon.playTempMusicInstantly("WhiteNightBGM");
         playSound("WhiteNightAppear");
         AbstractDungeon.getCurrRoom().cannotLose = true;
-        applyToTarget(this, this, new WingsOfGrace(this, calcAscensionSpecial(5)));
+        applyToTarget(this, this, new WingsOfGrace(this, calcAscensionSpecial(3)));
     }
 
     @Override
@@ -418,12 +418,12 @@ public class Seraphim extends AbstractMultiIntentMonster {
     public void render(SpriteBatch sb) {
         if (!isDead) {
             sb.setColor(Color.WHITE);
-            sb.draw(SELF_CIRCLE_REGION, this.hb.cX - (float)this.SELF_CIRCLE_REGION.getRegionWidth() / 2, this.hb.cY - (float)this.SELF_CIRCLE_REGION.getRegionHeight() / 2, 0.0F, 0.0F, this.SELF_CIRCLE_REGION.getRegionWidth(), this.SELF_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
+            sb.draw(SELF_CIRCLE_REGION, this.hb.cX - (((float)this.SELF_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale), this.hb.cY - (((float)this.SELF_CIRCLE_REGION.getRegionHeight() / 2) * Settings.scale), 0.0F, 0.0F, this.SELF_CIRCLE_REGION.getRegionWidth(), this.SELF_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
         }
         super.render(sb);
         if (!isDead) {
             sb.setColor(Color.WHITE);
-            sb.draw(WHITENIGHT_CIRCLE_REGION, (float)Settings.WIDTH / 2 - (float)this.WHITENIGHT_CIRCLE_REGION.getRegionWidth() / 2 - 15.0f * Settings.scale, (float) Settings.HEIGHT / 2, 0.0F, 0.0F, this.WHITENIGHT_CIRCLE_REGION.getRegionWidth(), this.WHITENIGHT_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
+            sb.draw(WHITENIGHT_CIRCLE_REGION, (float)Settings.WIDTH / 2 - (((float)this.WHITENIGHT_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale) - 15.0f * Settings.scale, (float) Settings.HEIGHT / 2, 0.0F, 0.0F, this.WHITENIGHT_CIRCLE_REGION.getRegionWidth(), this.WHITENIGHT_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
             whiteNight.renderSprite(sb, (float) Settings.WIDTH / 2, whiteNightY);
         }
     }

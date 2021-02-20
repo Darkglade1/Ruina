@@ -1,10 +1,11 @@
-package ruina.cards.EGO;
+package ruina.cards.EGO.act2;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import ruina.cards.EGO.AbstractEgoCard;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.applyToTarget;

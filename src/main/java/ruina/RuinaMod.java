@@ -10,6 +10,7 @@ import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
+import basemod.interfaces.PostBattleSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -22,6 +23,11 @@ import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.events.beyond.Falling;
+import com.megacrit.cardcrawl.events.beyond.MindBloom;
+import com.megacrit.cardcrawl.events.beyond.MysteriousSphere;
+import com.megacrit.cardcrawl.events.beyond.SensoryStone;
+import com.megacrit.cardcrawl.events.beyond.WindingHalls;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -33,6 +39,7 @@ import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ruina.CustomIntent.MassAttackIntent;
@@ -70,12 +77,15 @@ import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
+import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
+
+import static ruina.util.Wiz.adp;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
@@ -85,7 +95,8 @@ public class RuinaMod implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         PostInitializeSubscriber,
-        AddAudioSubscriber {
+        AddAudioSubscriber,
+        PostBattleSubscriber {
 
     private static final String modID = "ruina";
     public static String getModID() {
@@ -374,6 +385,12 @@ public class RuinaMod implements
         BaseMod.addEvent(NothingThere.ID, NothingThere.class, Briah.ID);
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
 
+        BaseMod.addEvent(Falling.ID, Falling.class, Atziluth.ID);
+        BaseMod.addEvent(MindBloom.ID, MindBloom.class, Atziluth.ID);
+        BaseMod.addEvent(SensoryStone.ID, SensoryStone.class, Atziluth.ID);
+        BaseMod.addEvent(MysteriousSphere.ID, MysteriousSphere.class, Atziluth.ID);
+        BaseMod.addEvent(WindingHalls.ID, WindingHalls.class, Atziluth.ID);
+
 
         // Act 3
         atziluth.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
@@ -408,5 +425,10 @@ public class RuinaMod implements
                 BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }
+    }
+
+    @Override
+    public void receivePostBattle(AbstractRoom abstractRoom) {
+        TotalBlockGainedSpireField.totalBlockGained.set(adp(), 0);
     }
 }

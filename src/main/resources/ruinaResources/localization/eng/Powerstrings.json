@@ -158,5 +158,13 @@
   "${ModID}:GoodbyePower": {
     "NAME": "Goodbye",
     "DESCRIPTIONS": ["The next #yAttack you play deals double damage."]
+  },
+  "${ModID}:ParadiseLostPower": {
+    "NAME": "Paradise Lost",
+    "DESCRIPTIONS": ["At the start of your turn, exhaust #b", " card.", " cards.", " Whenever #b", " cards are #yexhausted, ALL enemies lose #b", " HP."]
+  },
+  "${ModID}:Heaven": {
+    "NAME": "Heaven",
+    "DESCRIPTIONS": ["Whenever you are attacked this turn, deal damage back equal to your remaining #yBlock."]
   }
 }

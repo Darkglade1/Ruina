@@ -1,10 +1,11 @@
-package ruina.cards.EGO;
+package ruina.cards.EGO.act2;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import ruina.actions.CallbackScryAction;
+import ruina.cards.EGO.AbstractEgoCard;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
