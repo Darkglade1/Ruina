@@ -36,6 +36,7 @@ import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.LongEgg;
 import ruina.powers.Paralysis;
+import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeID;
@@ -49,7 +50,8 @@ public class Twilight extends AbstractRuinaMonster
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
 
-    private static final Texture SHOCKWAVE = new Texture(makeMonsterPath("Twilight/Shockwave.png"));
+    private static final Texture SHOCKWAVE = TexLoader.getTexture(makeMonsterPath("Twilight/Shockwave.png"));
+    private static final Texture APPEAR = TexLoader.getTexture(makeMonsterPath("Twilight/Appear.png"));
 
     private static final byte PEACE_FOR_ALL = 0;
     private static final byte SURVEILLANCE = 1;
@@ -126,7 +128,14 @@ public class Twilight extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("Roland3");
+        bossAppear();
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                CustomDungeon.playTempMusicInstantly("Roland3");
+                this.isDone = true;
+            }
+        });
         switchEgg(currentEgg);
         applyToTarget(this, this, new AbstractLambdaPower(FADING_TWILIGHT_POWER_NAME, FADING_TWILIGHT_POWER_ID, AbstractPower.PowerType.BUFF, false, this, EGG_CYCLE_TURN_NUM) {
             @Override
@@ -436,6 +445,24 @@ public class Twilight extends AbstractRuinaMonster
                 .playSoundAt(0.0f, makeID("BossBirdStrong"))
                 .build();
         atb(new VFXAction(shockwaveEffect, duration));
+    }
+
+    private void bossAppear() {
+        float duration = 3.0f;
+        AbstractGameEffect appear = new VfxBuilder(APPEAR, (float)Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, duration)
+                .fadeOut(0.5f)
+                .build();
+        CardCrawlGame.music.silenceTempBgmInstantly();
+        CardCrawlGame.music.silenceBGMInstantly();
+        AbstractDungeon.scene.fadeOutAmbiance();
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound("BossBirdBirth", 0.5f);
+                this.isDone = true;
+            }
+        });
+        atb(new VFXAction(appear, duration));
     }
 
     public static class BirdListener implements Player.PlayerListener {
