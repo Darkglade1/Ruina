@@ -79,7 +79,7 @@ public class Twilight extends AbstractRuinaMonster
     public static final String[] FADING_TWILIGHT_POWER_DESCRIPTIONS = FadingTwilightPowerStrings.DESCRIPTIONS;
 
     private final AbstractAnimation bird;
-    private BirdEgg currentEgg;
+    private BirdEgg currentEgg = BirdEgg.BIG_EGG;
     AbstractPower currentEggPower;
 
     private static final float HP_THRESHOLD_PERCENT = 0.25f;
@@ -114,7 +114,7 @@ public class Twilight extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland3");
-        switchEgg(BirdEgg.BIG_EGG);
+        switchEgg(currentEgg);
         applyToTarget(this, this, new AbstractLambdaPower(FADING_TWILIGHT_POWER_NAME, FADING_TWILIGHT_POWER_ID, AbstractPower.PowerType.BUFF, false, this, EGG_CYCLE_TURN_NUM) {
             @Override
             public void atEndOfRound() {
@@ -137,18 +137,9 @@ public class Twilight extends AbstractRuinaMonster
             @Override
             public void updateDescription() {
                 if (amount2 <= 0) {
-                    description = FADING_TWILIGHT_POWER_DESCRIPTIONS[0] + EGG_CYCLE_TURN_NUM + FADING_TWILIGHT_POWER_DESCRIPTIONS[1] + dmgThreshold + FADING_TWILIGHT_POWER_DESCRIPTIONS[2];
-                } else {
-                    description = FADING_TWILIGHT_POWER_DESCRIPTIONS[0] + EGG_CYCLE_TURN_NUM + FADING_TWILIGHT_POWER_DESCRIPTIONS[1] + amount2 + FADING_TWILIGHT_POWER_DESCRIPTIONS[2];
+                    amount2 = dmgThreshold;
                 }
-            }
-        });
-        atb(new RollMoveAction(this));
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                createIntent();
-                this.isDone = true;
+                description = FADING_TWILIGHT_POWER_DESCRIPTIONS[0] + EGG_CYCLE_TURN_NUM + FADING_TWILIGHT_POWER_DESCRIPTIONS[1] + amount2 + FADING_TWILIGHT_POWER_DESCRIPTIONS[2];
             }
         });
     }
@@ -258,7 +249,6 @@ public class Twilight extends AbstractRuinaMonster
         }
         currentEgg = egg;
         currentEggPower = eggPower;
-
     }
 
     @Override
@@ -340,7 +330,7 @@ public class Twilight extends AbstractRuinaMonster
                     setMoveShortcut(TALONS, MOVES[TALONS]);
                 }
             } else {
-                if (!this.lastMove(BRILLIANT_EYES)) {
+                if (!this.lastMove(BRILLIANT_EYES) && !this.lastMoveBefore(BRILLIANT_EYES)) {
                     setMoveShortcut(BRILLIANT_EYES, MOVES[BRILLIANT_EYES]);
                 } else {
                     setMoveShortcut(TALONS, MOVES[TALONS]);

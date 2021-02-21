@@ -92,6 +92,6 @@
   },
   "${ModID}:Dazzled": {
     "NAME": "Dazzled",
-    "DESCRIPTION": "When Retained, increase its cost by !M! this combat."
+    "DESCRIPTION": "When Retained, increase its cost by !M! this combat. If its cost is !ruina:SecondMagic! or more, it becomes Unplayable."
   }
 }
