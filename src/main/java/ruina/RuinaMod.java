@@ -286,6 +286,14 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("WhiteNightCall"), makeSFXPath("WhiteNight_Call.wav"));
         BaseMod.addAudio(makeID("WhiteNightCharge"), makeSFXPath("WhiteNight_Strong_Charge.wav"));
         BaseMod.addAudio(makeID("WhiteNightFire"), makeSFXPath("WhiteNight_Strong_Fire.wav"));
+
+        BaseMod.addAudio(makeID("BossBirdLamp"), makeSFXPath("Bossbird_Bigbird_FarAtk.wav"));
+        BaseMod.addAudio(makeID("BossBirdBirth"), makeSFXPath("Bossbird_Birth.wav"));
+        BaseMod.addAudio(makeID("BossBirdCrush"), makeSFXPath("Bossbird_Bossbird_Stab.wav"));
+        BaseMod.addAudio(makeID("BossBirdStrong"), makeSFXPath("Bossbird_Bossbird_StrongAtk.wav"));
+        BaseMod.addAudio(makeID("BossBirdSlam"), makeSFXPath("Bossbird_Bossbird_VertDown.wav"));
+        BaseMod.addAudio(makeID("BossBirdSpecial"), makeSFXPath("Bossbird_Longbird_On.wav"));
+        BaseMod.addAudio(makeID("BossBirdPunish"), makeSFXPath("Bossbird_Longbird_StrongAtk.wav"));
     }
 
     @Override

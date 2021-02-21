@@ -158,18 +158,6 @@ public class Twilight extends AbstractRuinaMonster
         return count;
     }
 
-//    private void clawAnimation(AbstractCreature enemy) {
-//        animationAction("Claw", "Claw", enemy, this);
-//    }
-//
-//    private void biteAnimation(AbstractCreature enemy) {
-//        animationAction("Bite", "Bite", enemy, this);
-//    }
-//
-//    private void howlAnimation() {
-//        animationAction("Howl", "Howl", this);
-//    }
-
     private void cycleEgg() {
         if (currentEgg == BirdEgg.BIG_EGG) {
             if (!smallEggBroken) {
@@ -260,8 +248,9 @@ public class Twilight extends AbstractRuinaMonster
         }
         switch (nextMove) {
             case PEACE_FOR_ALL: {
+                commandAnimation();
                 dmg(adp(), info);
-                //resetIdle();
+                resetIdle();
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -272,34 +261,43 @@ public class Twilight extends AbstractRuinaMonster
                 break;
             }
             case SURVEILLANCE: {
+                lampAnimation(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new FrailPower(adp(), FRAIL, true));
-                //resetIdle();
+                resetIdle();
                 break;
             }
             case TORN_MOUTH: {
+                punishAnimation(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new Paralysis(adp(), PARALYSIS));
-                //resetIdle();
+                resetIdle();
                 break;
             }
             case TILTED_SCALE: {
+                specialAnimation();
                 block(this, BLOCK);
                 applyToTarget(adp(), this, new VulnerablePower(adp(), VULNERABLE, true));
-                //resetIdle(1.0f);
+                resetIdle();
                 break;
             }
             case TALONS: {
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        crushAnimation(adp());
+                    } else {
+                        slamAnimation(adp());
+                    }
                     dmg(adp(), info);
-                    //resetIdle();
+                    resetIdle();
                 }
                 break;
             }
             case BRILLIANT_EYES: {
+                specialAnimation();
                 applyToTarget(adp(), this, new WeakPower(adp(), WEAK, true));
                 intoDrawMo(new VoidCard(), STATUS, this);
-                //resetIdle(1.0f);
+                resetIdle();
                 break;
             }
         }
@@ -382,6 +380,30 @@ public class Twilight extends AbstractRuinaMonster
             bird.renderSprite(sb, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2);
         }
         super.render(sb);
+    }
+
+    private void crushAnimation(AbstractCreature enemy) {
+        animationAction("Crush", "BossBirdCrush", enemy, this);
+    }
+
+    private void slamAnimation(AbstractCreature enemy) {
+        animationAction("Slam", "BossBirdSlam", enemy, this);
+    }
+
+    private void lampAnimation(AbstractCreature enemy) {
+        animationAction("Lamp", "BossBirdLamp", enemy, this);
+    }
+
+    private void punishAnimation(AbstractCreature enemy) {
+        animationAction("Punish", "BossBirdPunish", enemy, this);
+    }
+
+    private void specialAnimation() {
+        animationAction("Special", "BossBirdSpecial", this);
+    }
+
+    private void commandAnimation() {
+        animationAction("Command", "BossBirdStrong", this);
     }
 
 }
