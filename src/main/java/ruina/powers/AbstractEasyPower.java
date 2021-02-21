@@ -2,14 +2,14 @@ package ruina.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.RuinaMod;
 import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.getModID;
 
-public abstract class AbstractEasyPower extends AbstractPower {
+public abstract class AbstractEasyPower extends TwoAmountPower {
     public AbstractEasyPower(String NAME, String ID, PowerType powerType, boolean isTurnBased, AbstractCreature owner, int amount) {
         this.ID = ID;
         this.isTurnBased = isTurnBased;
@@ -18,6 +18,7 @@ public abstract class AbstractEasyPower extends AbstractPower {
 
         this.owner = owner;
         this.amount = amount;
+        this.amount2 = -1;
         this.type = powerType;
 
         Texture normalTexture = TexLoader.getTexture(RuinaMod.makePowerPath(ID.replace(getModID() + ":", "") + "32.png"));

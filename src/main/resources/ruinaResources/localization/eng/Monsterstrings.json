@@ -325,10 +325,12 @@
   },
   "${ModID}:Twilight": {
     "MOVES": [
-      "Cruel Claws",
-      "Ferocious Fangs",
-      "Bloodstained Hunt",
-      "Howl"
+      "Peace for All",
+      "Surveillance",
+      "Torn Mouth",
+      "Tilted Scale",
+      "Talons",
+      "Brilliant Eyes"
     ],
     "NAME": "Twilight",
     "DIALOG": [

@@ -166,5 +166,21 @@
   "${ModID}:Heaven": {
     "NAME": "Heaven",
     "DESCRIPTIONS": ["Whenever you are attacked this turn, deal damage back equal to your remaining #yBlock."]
+  },
+  "${ModID}:BigEgg": {
+    "NAME": "Big Egg",
+    "DESCRIPTIONS": ["Whenever you receive unblocked attack damage from this creature, shuffle #b", " #yDazzled into your draw pile."]
+  },
+  "${ModID}:SmallEgg": {
+    "NAME": "Small Egg",
+    "DESCRIPTIONS": ["The first #b", " cards you draw each turn cost #b", " more this turn."]
+  },
+  "${ModID}:LongEgg": {
+    "NAME": "Long Egg",
+    "DESCRIPTIONS": ["#yNegate ALL #pdebuffs applied to this creature."]
+  },
+  "${ModID}:FadingTwilight": {
+    "NAME": "Fading Twilight",
+    "DESCRIPTIONS": ["This creature cycles between 3 different #yEgg powers. Every #b", " turns, switches the active #yEgg power. NL After losing #b", " more HP, the currently active #yEgg power is #rdisabled and removed from the cycle."]
   }
 }
