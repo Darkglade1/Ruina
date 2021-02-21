@@ -28,6 +28,7 @@ import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.ScaredyCat;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
 
@@ -92,6 +93,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Wrath");
                 } else if (mo instanceof Prophet || mo instanceof Seraphim) {
                     this.bg = this.atlas.findRegion("mod/Paradise");
+                } else if (mo instanceof Twilight) {
+                    this.bg = this.atlas.findRegion("mod/Twilight");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }
