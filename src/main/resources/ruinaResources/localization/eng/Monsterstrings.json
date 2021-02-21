@@ -322,5 +322,16 @@
     "NAME": "Guardian Apostle",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Twilight": {
+    "MOVES": [
+      "Cruel Claws",
+      "Ferocious Fangs",
+      "Bloodstained Hunt",
+      "Howl"
+    ],
+    "NAME": "Twilight",
+    "DIALOG": [
+    ]
   }
 }
