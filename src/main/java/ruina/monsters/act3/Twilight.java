@@ -2,10 +2,16 @@ package ruina.monsters.act3;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.animations.AbstractAnimation;
+import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.brashmonkey.spriter.Animation;
+import com.brashmonkey.spriter.Player;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
@@ -23,12 +29,14 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Dazzled;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.LongEgg;
 import ruina.powers.Paralysis;
+import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -40,6 +48,8 @@ public class Twilight extends AbstractRuinaMonster
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
+
+    private static final Texture SHOCKWAVE = new Texture(makeMonsterPath("Twilight/Shockwave.png"));
 
     private static final byte PEACE_FOR_ALL = 0;
     private static final byte SURVEILLANCE = 1;
@@ -109,6 +119,9 @@ public class Twilight extends AbstractRuinaMonster
         addMove(TILTED_SCALE, Intent.DEFEND_DEBUFF);
         addMove(TALONS, Intent.ATTACK, calcAscensionDamage(13), 2, true);
         addMove(BRILLIANT_EYES, Intent.DEBUFF);
+
+        Player.PlayerListener listener = new BirdListener(this);
+        ((BetterSpriterAnimation)this.bird).myPlayer.addListener(listener);
     }
 
     @Override
@@ -249,7 +262,7 @@ public class Twilight extends AbstractRuinaMonster
         switch (nextMove) {
             case PEACE_FOR_ALL: {
                 commandAnimation();
-                dmg(adp(), info);
+                smashAnimation(adp(), info);
                 resetIdle();
                 atb(new AbstractGameAction() {
                     @Override
@@ -403,7 +416,61 @@ public class Twilight extends AbstractRuinaMonster
     }
 
     private void commandAnimation() {
-        animationAction("Command", "BossBirdStrong", this);
+        animationAction("Command", null, this);
+    }
+
+    private void smashAnimation(AbstractCreature target, DamageInfo info) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                ((BetterSpriterAnimation)bird).myPlayer.setAnimation("Smash");
+                this.isDone = true;
+            }
+        });
+        atb(new VFXAction(new WaitEffect(), 1.3f));
+        dmg(target, info);
+        float duration = 0.7f;
+        AbstractGameEffect shockwaveEffect = new VfxBuilder(SHOCKWAVE, adp().hb.cX, adp().hb.y, duration)
+                .fadeOut(0.5f)
+                .scale(0.8f, 2.2f, VfxBuilder.Interpolations.LINEAR)
+                .playSoundAt(0.0f, makeID("BossBirdStrong"))
+                .build();
+        atb(new VFXAction(shockwaveEffect, duration));
+    }
+
+    public static class BirdListener implements Player.PlayerListener {
+
+        private final Twilight character;
+
+        public BirdListener(Twilight character) {
+            this.character = character;
+        }
+
+        public void animationFinished(Animation animation){
+            if (!animation.name.equals("Idle")) {
+                ((BetterSpriterAnimation)character.bird).myPlayer.setAnimation("Idle");
+            }
+        }
+
+        //UNUSED
+        public void animationChanged(Animation var1, Animation var2){
+
+        }
+
+        //UNUSED
+        public void preProcess(Player var1){
+
+        }
+
+        //UNUSED
+        public void postProcess(Player var1){
+
+        }
+
+        //UNUSED
+        public void mainlineKeyChanged(com.brashmonkey.spriter.Mainline.Key var1, com.brashmonkey.spriter.Mainline.Key var2){
+
+        }
     }
 
 }
