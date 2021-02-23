@@ -1,5 +1,7 @@
 package ruina.util;
 
+import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -13,6 +15,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -211,5 +214,12 @@ public class Wiz {
 
     public static void block(AbstractCreature target, int amount) {
         atb(new GainBlockAction(target, amount));
+    }
+
+    private void flashImageVfx(Texture image, float duration) {
+        AbstractGameEffect appear = new VfxBuilder(image, (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, duration)
+                .fadeOut(0.5f)
+                .build();
+        atb(new VFXAction(appear, duration));
     }
 }

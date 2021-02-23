@@ -2,6 +2,7 @@ package ruina.monsters.act3;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.animations.AbstractAnimation;
+import basemod.helpers.CardPowerTip;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -93,6 +94,7 @@ public class Twilight extends AbstractRuinaMonster
     private final AbstractAnimation bird;
     private BirdEgg currentEgg = BirdEgg.BIG_EGG;
     AbstractPower currentEggPower;
+    private AbstractCard status = new Dazzled();
 
     private static final float HP_THRESHOLD_PERCENT = 0.25f;
     private final int dmgThreshold;
@@ -122,20 +124,18 @@ public class Twilight extends AbstractRuinaMonster
         addMove(TALONS, Intent.ATTACK, calcAscensionDamage(13), 2, true);
         addMove(BRILLIANT_EYES, Intent.DEBUFF);
 
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            status.upgrade();
+        }
+
         Player.PlayerListener listener = new BirdListener(this);
         ((BetterSpriterAnimation)this.bird).myPlayer.addListener(listener);
     }
 
     @Override
     public void usePreBattleAction() {
-        bossAppear();
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                CustomDungeon.playTempMusicInstantly("Roland3");
-                this.isDone = true;
-            }
-        });
+        CustomDungeon.playTempMusicInstantly("Roland3");
+        playSound("BossBirdBirth", 0.5f);
         switchEgg(currentEgg);
         applyToTarget(this, this, new AbstractLambdaPower(FADING_TWILIGHT_POWER_NAME, FADING_TWILIGHT_POWER_ID, AbstractPower.PowerType.BUFF, false, this, EGG_CYCLE_TURN_NUM) {
             @Override
@@ -211,11 +211,7 @@ public class Twilight extends AbstractRuinaMonster
                     @Override
                     public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target) {
                         if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL) {
-                            Dazzled dazzle = new Dazzled();
-                            if (AbstractDungeon.ascensionLevel >= 19) {
-                                dazzle.upgrade();
-                            }
-                            intoDrawMo(dazzle, amount, Twilight.this);
+                            intoDrawMo(status.makeStatEquivalentCopy(), amount, Twilight.this);
                         }
                     }
                     @Override
@@ -396,12 +392,27 @@ public class Twilight extends AbstractRuinaMonster
     }
 
     @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        onBossVictoryLogic();
+        this.onFinalBossVictoryLogic();
+    }
+
+    @Override
     public void render(SpriteBatch sb) {
         if (!isDead) {
             sb.setColor(Color.WHITE);
             bird.renderSprite(sb, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2);
         }
         super.render(sb);
+    }
+
+    @Override
+    public void renderTip(SpriteBatch sb) {
+        super.renderTip(sb);
+        if (currentEgg == BirdEgg.BIG_EGG) {
+            tips.add(new CardPowerTip(status.makeStatEquivalentCopy()));
+        }
     }
 
     private void crushAnimation(AbstractCreature enemy) {
@@ -447,23 +458,7 @@ public class Twilight extends AbstractRuinaMonster
         atb(new VFXAction(shockwaveEffect, duration));
     }
 
-    private void bossAppear() {
-        float duration = 3.0f;
-        AbstractGameEffect appear = new VfxBuilder(APPEAR, (float)Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, duration)
-                .fadeOut(0.5f)
-                .build();
-        CardCrawlGame.music.silenceTempBgmInstantly();
-        CardCrawlGame.music.silenceBGMInstantly();
-        AbstractDungeon.scene.fadeOutAmbiance();
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                playSound("BossBirdBirth", 0.5f);
-                this.isDone = true;
-            }
-        });
-        atb(new VFXAction(appear, duration));
-    }
+
 
     public static class BirdListener implements Player.PlayerListener {
 

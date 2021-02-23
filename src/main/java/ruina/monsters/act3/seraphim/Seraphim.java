@@ -405,13 +405,8 @@ public class Seraphim extends AbstractMultiIntentMonster {
                 atb(new SuicideAction(mo));
             }
         }
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                onBossVictoryLogic();
-                this.isDone = true;
-            }
-        });
+        onBossVictoryLogic();
+        this.onFinalBossVictoryLogic();
     }
 
     @Override
