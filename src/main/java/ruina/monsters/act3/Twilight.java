@@ -92,6 +92,9 @@ public class Twilight extends AbstractRuinaMonster
     public static final String[] FADING_TWILIGHT_POWER_DESCRIPTIONS = FadingTwilightPowerStrings.DESCRIPTIONS;
 
     private final AbstractAnimation bird;
+    private final AbstractAnimation bigEgg;
+    private final AbstractAnimation smallEgg;
+    private final AbstractAnimation longEgg;
     private BirdEgg currentEgg = BirdEgg.BIG_EGG;
     AbstractPower currentEggPower;
     private AbstractCard status = new Dazzled();
@@ -112,8 +115,15 @@ public class Twilight extends AbstractRuinaMonster
         super(NAME, ID, 500, -5.0F, 0, 330.0f, 305.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Twilight/Spriter/Twilight.scml"));
         this.bird = new BetterSpriterAnimation(makeMonsterPath("Twilight/Bird/Bird.scml"));
-        this.type = EnemyType.BOSS;
 
+        this.bigEgg = new BetterSpriterAnimation(makeMonsterPath("Twilight/Eggs/Eggs.scml"));
+        ((BetterSpriterAnimation)bigEgg).myPlayer.setAnimation("BigEgg");
+        this.smallEgg = new BetterSpriterAnimation(makeMonsterPath("Twilight/Eggs/Eggs.scml"));
+        ((BetterSpriterAnimation)smallEgg).myPlayer.setAnimation("SmallEgg");
+        this.longEgg = new BetterSpriterAnimation(makeMonsterPath("Twilight/Eggs/Eggs.scml"));
+        ((BetterSpriterAnimation)longEgg).myPlayer.setAnimation("LongEgg");
+
+        this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(this.maxHealth));
         dmgThreshold = (int)(this.maxHealth * HP_THRESHOLD_PERCENT);
 
@@ -364,12 +374,15 @@ public class Twilight extends AbstractRuinaMonster
             if (this.dmgTaken >= this.dmgThreshold) {
                 this.dmgTaken = 0;
                 if (currentEgg == BirdEgg.BIG_EGG) {
+                    ((BetterSpriterAnimation)bigEgg).myPlayer.setAnimation("BigEggBroken");
                     bigEggBroken = true;
                 }
                 if (currentEgg == BirdEgg.SMALL_EGG) {
+                    ((BetterSpriterAnimation)smallEgg).myPlayer.setAnimation("SmallEggBroken");
                     smallEggBroken = true;
                 }
                 if (currentEgg == BirdEgg.LONG_EGG) {
+                    ((BetterSpriterAnimation)longEgg).myPlayer.setAnimation("LongEggBroken");
                     longEggBroken = true;
                 }
                 if (bigEggBroken && smallEggBroken && longEggBroken) {
@@ -403,6 +416,9 @@ public class Twilight extends AbstractRuinaMonster
         if (!isDead) {
             sb.setColor(Color.WHITE);
             bird.renderSprite(sb, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2);
+            bigEgg.renderSprite(sb, (float) Settings.WIDTH / 2 - (100.0f * Settings.scale), hb.y);
+            smallEgg.renderSprite(sb, (float) Settings.WIDTH / 2, hb.y);
+            longEgg.renderSprite(sb, (float) Settings.WIDTH / 2 + (100.0f * Settings.scale), hb.y);
         }
         super.render(sb);
     }
