@@ -402,7 +402,7 @@ public class RuinaMod implements
 
 
         // Act 3
-        BaseMod.addMonster(Twilight.ID, (BaseMod.GetMonster) Twilight::new);
+        atziluth.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
         atziluth.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
     }
 

@@ -1,6 +1,5 @@
 package ruina.scenes;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -8,7 +7,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
-import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
 import ruina.dungeons.AbstractRuinaDungeon;
@@ -120,6 +118,14 @@ public class RuinaScene extends AbstractScene {
                 case CHESED:
                     this.bg = this.atlas.findRegion("mod/Chesed");
                     this.campfireBg = this.atlas.findRegion("mod/ChesedCamp");
+                    break;
+                case BINAH:
+                    this.bg = this.atlas.findRegion("mod/Binah");
+                    this.campfireBg = this.atlas.findRegion("mod/BinahCamp");
+                    break;
+                case HOKMA:
+                    this.bg = this.atlas.findRegion("mod/Hokma");
+                    this.campfireBg = this.atlas.findRegion("mod/HokmaCamp");
                     break;
                 default:
                     this.bg = this.atlas.findRegion("mod/Gebura");
