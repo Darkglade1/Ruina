@@ -55,7 +55,7 @@
   },
   "${ModID}:HomingInstinct": {
     "NAME": "Homing Instinct",
-    "DESCRIPTION": "Exhaust !M! card. NL At the start of your turn, gain [E] equal to the cost of the exhausted card."
+    "DESCRIPTION": "Exhaust up to !M! card. NL At the start of your turn, gain [E] equal to the cost of the exhausted card."
   },
   "${ModID}:CobaltScar": {
     "NAME": "Cobalt Scar",
