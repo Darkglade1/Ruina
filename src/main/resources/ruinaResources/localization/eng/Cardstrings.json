@@ -93,5 +93,13 @@
   "${ModID}:Dazzled": {
     "NAME": "Dazzled",
     "DESCRIPTION": "When Retained, increase its cost by !M! this combat. If its cost is !ruina:SecondMagic! or more, it becomes Unplayable."
+  },
+  "${ModID}:ForestKeeperLock": {
+    "NAME": "Forest Keeper's Lock",
+    "DESCRIPTION": "Gain Block equal to target enemy's intent. NL Force Punishing Bird to attack. NL Decrease Punishing Bird's chains by 1. NL ",
+    "UPGRADE_DESCRIPTION": "Gain Block equal to ALL incoming attack damage. NL Force Punishing Bird to attack. NL Decrease Punishing Bird's chains by 1. NL ",
+    "EXTENDED_DESCRIPTION": [
+      "Gain !M! Block."
+    ]
   }
 }

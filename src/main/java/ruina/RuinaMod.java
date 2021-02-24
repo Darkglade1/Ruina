@@ -76,6 +76,7 @@ import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Twilight;
+import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
 import ruina.patches.TotalBlockGainedSpireField;
@@ -404,6 +405,8 @@ public class RuinaMod implements
         // Act 3
         BaseMod.addMonster(Twilight.ID, (BaseMod.GetMonster) Twilight::new);
         atziluth.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
+        BaseMod.addMonster(PunishingBird.ID, (BaseMod.GetMonster) PunishingBird::new);
+
     }
 
 

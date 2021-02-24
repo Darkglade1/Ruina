@@ -182,5 +182,16 @@
   "${ModID}:FadingTwilight": {
     "NAME": "Fading Twilight",
     "DESCRIPTIONS": ["This creature cycles between 3 different #yEggs. Every #b", " turns, switches the active #yEgg. NL After losing #b", " more HP, the currently active #yEgg is #rdisabled and removed from the cycle. NL After an #yEgg is #rdisabled, will use a #ypowerful attack next turn."]
+  },
+  "${ModID}:PunishingBirdPunishmentPower": {
+    "NAME": "Punishment",
+    "DESCRIPTIONS": [
+      "When this creature is attacked, does a powerful attack next turn. NL When the card #yForest #yKeeper's #yLock is used when this creature is using that attack, break one chain. NL When three chains are broken, this enemy dies. NL NL If this power is removed, gain #b%1$s #yStrength.",
+      "This creature is using a powerful attack next turn. NL When the card #yForest #yKeeper's #yLock is used when this creature is using that attack, break one chain. NL When three chains are broken, this enemy dies. NL NL If this power is removed, gain #b%1$s #yStrength."
+    ]
+  },
+  "${ModID}:Lock": {
+    "NAME": "Forest Keeper's Lock",
+    "DESCRIPTIONS": ["When this creature dies, add #yForest #yKeeper's #yLock to your hand."]
   }
 }
