@@ -335,5 +335,24 @@
     "NAME": "Twilight",
     "DIALOG": [
     ]
+  },
+  "${ModID}:PunishingBird": {
+    "MOVES": [
+      "Peck",
+      "Punishment"
+    ],
+    "NAME": "Punishing Bird",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Keeper": {
+    "MOVES": [
+      "Cuckoo",
+      "Ring",
+      "Smash"
+    ],
+    "NAME": "Keeper Of The Forest",
+    "DIALOG": [
+    ]
   }
 }
