@@ -28,7 +28,6 @@ import ruina.powers.Enchanted;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
-import ruina.util.Wiz;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
@@ -79,8 +78,8 @@ public class BigBird extends AbstractMultiIntentMonster
         this.setHp(calcAscensionTankiness(maxHealth));
 
         addMove(SALVATION, Intent.ATTACK, calcAscensionDamage(15));
-        addMove(DAZZLE_ENEMY, Intent.DEBUFF);
-        addMove(DAZZLE_PLAYER, Intent.STRONG_DEBUFF);
+        addMove(DAZZLE_ENEMY, Intent.STRONG_DEBUFF);
+        addMove(DAZZLE_PLAYER, Intent.DEBUFF);
         addMove(ILLUMINATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
     }
 
@@ -122,7 +121,7 @@ public class BigBird extends AbstractMultiIntentMonster
                     if (target.hasPower(Enchanted.POWER_ID)) {
                         salvation1Animation(target);
                         atb(new VFXAction(new WaitEffect(), 0.5f));
-                        flashImageVfx(EXECUTE, 2.0f);
+                        flashImageVfx(EXECUTE, 1.5f);
                         salvation2Animation(target);
                         AbstractCreature realTarget = target;
                         atb(new AbstractGameAction() {
