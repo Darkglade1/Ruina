@@ -223,10 +223,12 @@ public class Wiz {
             @Override
             public void update() {
                 RenderHandPatch.plsDontRenderHand = true;
+                AbstractDungeon.overlayMenu.hideCombatPanels();
                 this.isDone = true;
             }
         });
         AbstractGameEffect appear = new VfxBuilder(image, (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, duration)
+                .fadeIn(0.25f)
                 .fadeOut(0.5f)
                 .build();
         atb(new VFXAction(appear, duration));
@@ -234,6 +236,7 @@ public class Wiz {
             @Override
             public void update() {
                 RenderHandPatch.plsDontRenderHand = false;
+                AbstractDungeon.overlayMenu.showCombatPanels();
                 this.isDone = true;
             }
         });

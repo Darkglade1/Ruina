@@ -302,6 +302,10 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("BigBirdEyes"), makeSFXPath("Bigbird_Eyes.wav"));
         BaseMod.addAudio(makeID("BigBirdCrunch"), makeSFXPath("Bigbird_HeadCut.wav"));
         BaseMod.addAudio(makeID("BigBirdOpen"), makeSFXPath("Bigbird_MouseOpen.wav"));
+
+        BaseMod.addAudio(makeID("SmallBirdPeck"), makeSFXPath("SmallBird_Atk.wav"));
+        BaseMod.addAudio(makeID("SmallBirdPunish"), makeSFXPath("SmallBird_StrongAtk.wav"));
+        BaseMod.addAudio(makeID("SmallBirdCage"), makeSFXPath("SmallBird_CageBreak.wav"));
     }
 
     @Override

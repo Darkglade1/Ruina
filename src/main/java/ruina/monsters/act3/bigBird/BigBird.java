@@ -120,7 +120,7 @@ public class BigBird extends AbstractMultiIntentMonster
                 } else {
                     if (target.hasPower(Enchanted.POWER_ID)) {
                         salvation1Animation(target);
-                        atb(new VFXAction(new WaitEffect(), 0.5f));
+                        atb(new VFXAction(new WaitEffect(), 0.25f));
                         flashImageVfx(EXECUTE, 1.5f);
                         salvation2Animation(target);
                         AbstractCreature realTarget = target;

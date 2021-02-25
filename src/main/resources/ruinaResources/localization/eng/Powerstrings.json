@@ -186,13 +186,13 @@
   "${ModID}:PunishingBirdPunishmentPower": {
     "NAME": "Punishment",
     "DESCRIPTIONS": [
-      "When this creature is attacked, does a powerful attack next turn. NL When the card #yForest #yKeeper's #yLock is used when this creature is using that attack, break one chain. NL When three chains are broken, this enemy dies. NL NL If this power is removed, gain #b%1$s #yStrength.",
-      "This creature is using a powerful attack next turn. NL When the card #yForest #yKeeper's #yLock is used when this creature is using that attack, break one chain. NL When three chains are broken, this enemy dies. NL NL If this power is removed, gain #b%1$s #yStrength."
+      "When this creature is attacked, it will use a #rpowerful attack next turn.",
+      "This creature will use a #rpowerful attack next turn."
     ]
   },
   "${ModID}:Lock": {
     "NAME": "Forest Keeper's Lock",
-    "DESCRIPTIONS": ["When this creature dies, add #yForest #yKeeper's #yLock to your hand."]
+    "DESCRIPTIONS": ["On death, add #yForest #yKeeper's #yLock to your hand."]
   },
   "${ModID}:Unruffled": {
     "NAME": "Unruffled",

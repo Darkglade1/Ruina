@@ -96,10 +96,6 @@
   },
   "${ModID}:ForestKeeperLock": {
     "NAME": "Forest Keeper's Lock",
-    "DESCRIPTION": "Gain Block equal to target enemy's intent. NL Force Punishing Bird to attack. NL Decrease Punishing Bird's chains by 1. NL ",
-    "UPGRADE_DESCRIPTION": "Gain Block equal to ALL incoming attack damage. NL Force Punishing Bird to attack. NL Decrease Punishing Bird's chains by 1. NL ",
-    "EXTENDED_DESCRIPTION": [
-      "Gain !M! Block."
-    ]
+    "DESCRIPTION": "Enemy loses !M! Strength this turn."
   }
 }
