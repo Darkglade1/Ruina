@@ -21,7 +21,9 @@
       " for #b",
       " damage.",
       " damage #b",
-      " times."
+      " times.",
+      "This enemy intends to inflict a #yNegative #yEffect on ",
+      "."
     ]
   },
   "${ModID}:AllyStrings": {

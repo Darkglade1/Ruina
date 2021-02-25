@@ -107,6 +107,18 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             } else {
                 additionalIntent.clearTargetTexture();
             }
+        } else {
+            if (additionalIntent.intent == Intent.DEBUFF || additionalIntent.intent == Intent.STRONG_DEBUFF) {
+                if (target != adp()) {
+                    PowerTip intentTip = additionalIntent.intentTip;
+                    intentTip.body = TEXT[5] + FontHelper.colorString(target.name, "y") + TEXT[6];
+                    if (targetTexturePath != null) {
+                        additionalIntent.setTargetTexture(targetTexturePath);
+                    }
+                } else {
+                    additionalIntent.clearTargetTexture();
+                }
+            }
         }
     }
 

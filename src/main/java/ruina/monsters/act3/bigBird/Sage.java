@@ -1,6 +1,5 @@
 package ruina.monsters.act3.bigBird;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -18,7 +17,6 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.Unruffled;
-import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeMonsterPath;
@@ -41,22 +39,20 @@ public class Sage extends AbstractAllyMonster
     private static final int DAMAGE_CAP = 1;
 
     public BigBird bigBird;
-    private int dialogNum;
+    private final int dialogNum;
 
     public static final String POWER_ID = RuinaMod.makeID("Unruffled");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("WrathIcon.png"));
-
     public Sage() {
         this(0.0f, 0.0f, 0);
     }
 
     public Sage(final float x, final float y, int dialogNum) {
-        super(NAME, ID, 300, -5.0F, 0, 230.0f, 250.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("ServantOfWrath/Spriter/Wrath.scml"));
+        super(NAME, ID, 300, -5.0F, 0, 200.0f, 220.0f, null, x, y);
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Keeper/Spriter/Keeper.scml"));
         this.animation.setFlip(true, false);
         this.dialogNum = dialogNum;
         this.setHp(maxHealth);
@@ -64,7 +60,7 @@ public class Sage extends AbstractAllyMonster
         addMove(RING, Intent.BUFF);
         addMove(SMACK, Intent.ATTACK, 6);
 
-        this.allyIcon = makeUIPath("WrathIcon.png");
+        this.allyIcon = makeUIPath("SageIcon.png");
         this.isTargetableByPlayer = true;
     }
 
@@ -103,11 +99,15 @@ public class Sage extends AbstractAllyMonster
         }
         switch (this.nextMove) {
             case RING: {
+                specialAnimation();
                 applyToTarget(this, this, new RitualPower(this, RITUAL, false));
+                resetIdle();
                 break;
             }
             case SMACK: {
+                attackAnimation(target);
                 dmg(target, info);
+                resetIdle();
                 break;
             }
         }
@@ -144,24 +144,12 @@ public class Sage extends AbstractAllyMonster
         });
     }
 
-    private void normal1Animation(AbstractCreature enemy) {
-        animationAction("Normal1", "WrathAtk1", enemy, this);
+    private void attackAnimation(AbstractCreature enemy) {
+        animationAction("Smack", "BluntBlow", enemy, this);
     }
 
-    private void normal2Animation(AbstractCreature enemy) {
-        animationAction("Normal2", "WrathAtk2", enemy, this);
-    }
-
-    private void big1Animation(AbstractCreature enemy) {
-        animationAction("Big1", "WrathStrong1", enemy, this);
-    }
-
-    private void big2Animation(AbstractCreature enemy) {
-        animationAction("Big2", "WrathStrong2", enemy, this);
-    }
-
-    private void big3Animation(AbstractCreature enemy) {
-        animationAction("Big3", "WrathStrong3", enemy, this);
+    private void specialAnimation() {
+        animationAction("Ring", "BossBirdSpecial", this);
     }
 
 }

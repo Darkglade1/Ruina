@@ -22,9 +22,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.actions.ApplyPowerActionButItCanFizzle;
 import ruina.actions.MakeTempCardInDiscardActionButItCanFizzle;
 import ruina.actions.MakeTempCardInDrawPileActionButItCanFizzle;
+import ruina.patches.RenderHandPatch;
 import ruina.powers.LosePowerPower;
 import ruina.powers.NextTurnPowerPower;
 
@@ -217,9 +219,23 @@ public class Wiz {
     }
 
     public static void flashImageVfx(Texture image, float duration) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = true;
+                this.isDone = true;
+            }
+        });
         AbstractGameEffect appear = new VfxBuilder(image, (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, duration)
                 .fadeOut(0.5f)
                 .build();
         atb(new VFXAction(appear, duration));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = false;
+                this.isDone = true;
+            }
+        });
     }
 }

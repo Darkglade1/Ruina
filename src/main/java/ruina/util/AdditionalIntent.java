@@ -141,9 +141,9 @@ public class AdditionalIntent {
             sb.setColor(color);
             sb.draw(this.intentImg, source.intentHb.cX - 64.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 128, 128, false, false);
         }
-        if (targetTexture != null && damage >= 0) {
+        if (targetTexture != null) {
             sb.setColor(color);
-            sb.draw(targetTexture, source.intentHb.cX - 48.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 48.0F + (40.0f * scaleHeight) + this.bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 48, 48, false, false);
+            sb.draw(targetTexture, source.intentHb.cX - 48.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 48.0F + (40.0f * scaleHeight) + this.bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0f, 0, 0, 48, 48, false, false);
         }
     }
 

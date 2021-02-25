@@ -62,8 +62,8 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
         blockMove.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
         blockMove.setY(this.intentHb.cY - (32.0f * Settings.scale));
         allyMoves.add(blockMove);
-        if (isAlly) {
-            applyToTarget(this, this, new InvisibleAllyBarricadePower(this));
+        applyToTarget(this, this, new InvisibleAllyBarricadePower(this));
+        if (isAlly && !isTargetableByPlayer) {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
