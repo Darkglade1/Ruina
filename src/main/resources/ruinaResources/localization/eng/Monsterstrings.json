@@ -354,5 +354,29 @@
     "NAME": "Keeper Of The Forest",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Sage": {
+    "MOVES": [
+      "Ring",
+      "Smash"
+    ],
+    "NAME": "Sage of the Forest",
+    "DIALOG": [
+      "The guardian has gone mad!",
+      "We must stop him!",
+      "I hope he has come to his senses.",
+      "That was a harrowing ordeal."
+    ]
+  },
+  "${ModID}:BigBird": {
+    "MOVES": [
+      "",
+      "Dazzle",
+      "Dazzle",
+      "Illuminate"
+    ],
+    "NAME": "Big Bird",
+    "DIALOG": [
+    ]
   }
 }

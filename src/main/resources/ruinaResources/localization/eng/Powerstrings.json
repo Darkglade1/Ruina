@@ -193,5 +193,17 @@
   "${ModID}:Lock": {
     "NAME": "Forest Keeper's Lock",
     "DESCRIPTIONS": ["When this creature dies, add #yForest #yKeeper's #yLock to your hand."]
+  },
+  "${ModID}:Unruffled": {
+    "NAME": "Unruffled",
+    "DESCRIPTIONS": ["This creature receives #b", " damage from your attacks. NL This creature cannot be #pdebuffed by you."]
+  },
+  "${ModID}:Salvation": {
+    "NAME": "Salvation",
+    "DESCRIPTIONS": ["This creature’s attacks #rinstantly #rkill #yEnchanted creatures."]
+  },
+  "${ModID}:Enchanted": {
+    "NAME": "Enchanted",
+    "DESCRIPTIONS": ["Can only deal #b", " damage. Wears off whenever #yyou attack this creature."]
   }
 }

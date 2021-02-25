@@ -28,7 +28,13 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AllyStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
     public String allyIcon;
+
+    //basically just for little Red who is an ally that can become an enemy
     public boolean isAlly = true;
+
+    //essentially lets me have allies that the player can still target with cards
+    public boolean isTargetableByPlayer = false;
+
     public ArrayList<AllyMove> allyMoves = new ArrayList<>();
     private static final int BLOCK_TRANSFER = 5;
 
@@ -70,7 +76,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
 
     @Override
     public void takeTurn() {
-        if (isAlly) {
+        if (isAlly && !isTargetableByPlayer) {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
@@ -142,7 +148,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     @Override
     public void damage(DamageInfo info) {
         //failsafe to stop player from damaging allies
-        if (isAlly && info.owner == adp()) {
+        if (isAlly && !isTargetableByPlayer && info.owner == adp()) {
             return;
         }
         super.damage(info);
@@ -150,7 +156,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
 
     @Override
     public void renderReticle(SpriteBatch sb) {
-        if (!isAlly) {
+        if (!isAlly || isTargetableByPlayer) {
             super.renderReticle(sb);
         }
     }

@@ -52,7 +52,6 @@ public class Twilight extends AbstractRuinaMonster
     public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final Texture SHOCKWAVE = TexLoader.getTexture(makeMonsterPath("Twilight/Shockwave.png"));
-    private static final Texture APPEAR = TexLoader.getTexture(makeMonsterPath("Twilight/Appear.png"));
 
     private static final byte PEACE_FOR_ALL = 0;
     private static final byte SURVEILLANCE = 1;

@@ -1,6 +1,5 @@
 package ruina.monsters.act3.punishingBird;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -12,16 +11,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.ForestKeeperLock;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.monsters.act2.BadWolf;
-import ruina.monsters.act3.seraphim.Prophet;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
-import ruina.powers.PunishingBirdPunishmentPower;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.atb;
 
 public class Keeper extends AbstractRuinaMonster {
     public static final String ID = makeID(Keeper.class.getSimpleName());

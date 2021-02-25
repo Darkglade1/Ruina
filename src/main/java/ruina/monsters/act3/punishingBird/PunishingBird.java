@@ -5,27 +5,17 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
-import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.monsters.act2.Jack;
-import ruina.monsters.act3.seraphim.Prophet;
-import ruina.monsters.act3.seraphim.ScytheApostle;
-import ruina.monsters.act3.seraphim.SpearApostle;
 import ruina.powers.PunishingBirdPunishmentPower;
-import ruina.powers.WingsOfGrace;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.atb;
 
 public class PunishingBird extends AbstractRuinaMonster {
     public static final String ID = makeID(PunishingBird.class.getSimpleName());

@@ -31,7 +31,7 @@ public class MakeAlliesHalfDead {
                 if (!mo.isDead) {
                     if (mo instanceof AbstractAllyMonster) {
                         AbstractAllyMonster ally = (AbstractAllyMonster)mo;
-                        if (ally.isAlly) {
+                        if (ally.isAlly && !ally.isTargetableByPlayer) {
                             atb(new AbstractGameAction() {
                                 @Override
                                 public void update() {

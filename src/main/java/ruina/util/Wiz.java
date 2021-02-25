@@ -216,7 +216,7 @@ public class Wiz {
         atb(new GainBlockAction(target, amount));
     }
 
-    private void flashImageVfx(Texture image, float duration) {
+    public static void flashImageVfx(Texture image, float duration) {
         AbstractGameEffect appear = new VfxBuilder(image, (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, duration)
                 .fadeOut(0.5f)
                 .build();
