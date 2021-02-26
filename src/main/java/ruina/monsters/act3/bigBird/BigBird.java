@@ -278,7 +278,7 @@ public class BigBird extends AbstractMultiIntentMonster
                 if (!this.lastMove(ILLUMINATE, moveHistory)) {
                     possibilities.add(ILLUMINATE);
                 }
-                if (!this.lastMove(DAZZLE_PLAYER, moveHistory) && !this.lastMoveBefore(DAZZLE_PLAYER, moveHistory)) {
+                if (!this.lastMove(DAZZLE_PLAYER, moveHistory)) {
                     possibilities.add(DAZZLE_PLAYER);
                 }
                 byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
