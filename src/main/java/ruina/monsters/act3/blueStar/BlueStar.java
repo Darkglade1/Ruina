@@ -51,7 +51,6 @@ public class BlueStar extends AbstractRuinaMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public AbstractMonster[] minions = new AbstractMonster[2];
-    private boolean canPlayMusic = true;
     private final AbstractAnimation star;
 
     public BlueStar() {
@@ -59,7 +58,7 @@ public class BlueStar extends AbstractRuinaMonster
     }
 
     public BlueStar(final float x, final float y) {
-        super(NAME, ID, 110, 10.0F, 0, 200.0f, 305.0f, null, x, y);
+        super(NAME, ID, 110, 0.0F, 0, 250.0f, 345.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlueStar/Spriter/BlueStar.scml"));
         this.star = new BetterSpriterAnimation(makeMonsterPath("BlueStar/Star/Star.scml"));
         this.type = EnemyType.ELITE;
@@ -77,11 +76,6 @@ public class BlueStar extends AbstractRuinaMonster
             public void updateDescription() {
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
             }
-
-            @Override
-            public void atEndOfRound() {
-                Summon();
-            }
         };
         applyToTarget(this, this, power);
         Summon();
@@ -91,10 +85,6 @@ public class BlueStar extends AbstractRuinaMonster
     public void takeTurn() {
         DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = this.moves.get(nextMove).multiplier;
-
-        if (this.firstMove) {
-            firstMove = false;
-        }
 
         if(info.base > -1) {
             info.applyPowers(this, adp());
@@ -115,7 +105,7 @@ public class BlueStar extends AbstractRuinaMonster
             }
             case SOUND_OF_STAR: {
                 playSound("BlueStarCharge");
-                atb(new VFXAction(new WaitEffect(), 0.2f));
+                atb(new VFXAction(new WaitEffect(), 0.5f));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -125,7 +115,7 @@ public class BlueStar extends AbstractRuinaMonster
                     }
                 });
                 dmg(adp(), info);
-                atb(new VFXAction(new WaitEffect(), 0.5f));
+                atb(new VFXAction(new WaitEffect(), 1.0f));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -136,14 +126,8 @@ public class BlueStar extends AbstractRuinaMonster
                 break;
             }
         }
+        Summon();
         atb(new RollMoveAction(this));
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                canPlayMusic = true;
-                this.isDone = true;
-            }
-        });
     }
 
     @Override
@@ -154,12 +138,6 @@ public class BlueStar extends AbstractRuinaMonster
             setMoveShortcut(SOUND_OF_STAR, MOVES[SOUND_OF_STAR]);
         } else {
             setMoveShortcut(RISING_STAR, MOVES[RISING_STAR]);
-        }
-        if (canPlayMusic) {
-            canPlayMusic = false;
-            if (nextMove == SOUND_OF_STAR) {
-
-            }
         }
     }
 
@@ -177,10 +155,6 @@ public class BlueStar extends AbstractRuinaMonster
                 }
                 atb(new SpawnMonsterAction(minion, true));
                 atb(new UsePreBattleActionAction(minion));
-                if (!firstMove) {
-                    minion.rollMove();
-                    minion.createIntent();
-                }
                 minions[i] = minion;
             }
         }
@@ -205,7 +179,7 @@ public class BlueStar extends AbstractRuinaMonster
     public void render(SpriteBatch sb) {
         if (!isDead) {
             sb.setColor(Color.WHITE);
-            star.renderSprite(sb, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2);
+            star.renderSprite(sb, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2 + (150.0F * Settings.scale));
         }
         super.render(sb);
     }

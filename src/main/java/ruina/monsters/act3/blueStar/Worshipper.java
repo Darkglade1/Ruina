@@ -1,5 +1,6 @@
 package ruina.monsters.act3.blueStar;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -61,7 +62,7 @@ public class Worshipper extends AbstractRuinaMonster
     }
 
     public Worshipper(final float x, final float y, BlueStar star) {
-        super(NAME, ID, 40, -5.0F, 0, 250.0f, 275.0f, null, x, y);
+        super(NAME, ID, 40, -5.0F, 0, 220.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Worshipper/Spriter/Worshipper.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(46), calcAscensionTankiness(52));

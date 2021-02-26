@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0">
-        <file id="0" name="Blue Star 1.png" width="665" height="669" pivot_x="0" pivot_y="1"/>
-        <file id="1" name="Blue Star 2.png" width="723" height="723" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="Blue Star 1.png" width="499" height="502" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Blue Star 2.png" width="542" height="542" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="Star">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -13,7 +13,7 @@
             </mainline>
             <timeline id="0" name="Blue Star 1">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-343.666667" y="600.666667"/>
+                    <object folder="0" file="0" x="-252.666667" y="478.666667" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -25,7 +25,7 @@
             </mainline>
             <timeline id="0" name="Blue Star 2">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-363" y="639"/>
+                    <object folder="0" file="1" x="-267" y="506" angle="0"/>
                 </key>
             </timeline>
         </animation>
