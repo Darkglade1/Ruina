@@ -115,7 +115,7 @@ public class BigBird extends AbstractMultiIntentMonster
         switch (move.nextMove) {
             case SALVATION: {
                 if (target == adp()) {
-                    specialAnimation(target);
+                    dazzleAnimation(target);
                     dmg(target, info);
                 } else {
                     if (target.hasPower(Enchanted.POWER_ID)) {
@@ -133,11 +133,11 @@ public class BigBird extends AbstractMultiIntentMonster
                         });
                         atb(new InstantKillAction(target));
                     } else {
-                        specialAnimation(target);
+                        dazzleAnimation(target);
                         dmg(target, info);
                     }
                 }
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case DAZZLE_ENEMY: {
@@ -151,16 +151,16 @@ public class BigBird extends AbstractMultiIntentMonster
                 break;
             }
             case DAZZLE_PLAYER: {
-                dazzleAnimation(target);
+                specialAnimation(target);
                 intoDiscardMo(new Dazzled(), STATUS, this);
                 resetIdle(1.0f);
                 break;
             }
             case ILLUMINATE: {
-                specialAnimation(target);
+                dazzleAnimation(target);
                 dmg(target, info);
                 applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
         }
