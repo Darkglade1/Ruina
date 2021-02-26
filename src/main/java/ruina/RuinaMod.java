@@ -78,6 +78,7 @@ import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.bigBird.Sage;
+import ruina.monsters.act3.blueStar.BlueStar;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
@@ -306,6 +307,12 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("SmallBirdPeck"), makeSFXPath("SmallBird_Atk.wav"));
         BaseMod.addAudio(makeID("SmallBirdPunish"), makeSFXPath("SmallBird_StrongAtk.wav"));
         BaseMod.addAudio(makeID("SmallBirdCage"), makeSFXPath("SmallBird_CageBreak.wav"));
+
+        BaseMod.addAudio(makeID("BlueStarAtk"), makeSFXPath("BlueStar_Atk.wav"));
+        BaseMod.addAudio(makeID("BlueStarCharge"), makeSFXPath("BlueStar_Cast.wav"));
+        BaseMod.addAudio(makeID("WorshipperSuicide"), makeSFXPath("BlueStar_In.wav"));
+        BaseMod.addAudio(makeID("WorshipperAttack"), makeSFXPath("BlueStar_SubAtk.wav"));
+        BaseMod.addAudio(makeID("WorshipperExplode"), makeSFXPath("BlueStar_Suicide.wav"));
     }
 
     @Override
@@ -416,13 +423,16 @@ public class RuinaMod implements
         // Act 3
         atziluth.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
         atziluth.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
-        BaseMod.addMonster(PunishingBird.ID, (BaseMod.GetMonster) PunishingBird::new);
+
         BaseMod.addMonster(BigBird.ID, "Big Bird", () -> new MonsterGroup(
                 new AbstractMonster[] {
                         new Sage(-600.0F, 0.0F, 0),
                         new Sage(-350.0F, 0.0F, 1),
                         new BigBird(150.0F, 0.0F)
                 }));
+        BaseMod.addMonster(BlueStar.ID, (BaseMod.GetMonster) BlueStar::new);
+
+        BaseMod.addMonster(PunishingBird.ID, (BaseMod.GetMonster) PunishingBird::new);
 
     }
 

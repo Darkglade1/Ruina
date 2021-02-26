@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -35,6 +36,8 @@ public class Keeper extends AbstractRuinaMonster {
     public static final PowerStrings str_lock = CardCrawlGame.languagePack.getPowerStrings(lock_pid);
     public static final String lock_pname = str_lock.NAME;
     public static final String[] lock_desc = str_lock.DESCRIPTIONS;
+
+    public static final AbstractCard card = new ForestKeeperLock();
 
     public Keeper(final float x, final float y) {
         super(NAME, ID, 40, -5.0F, 0, 200.0f, 220.0f, null, x, y);
@@ -120,13 +123,13 @@ public class Keeper extends AbstractRuinaMonster {
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        atb(new MakeTempCardInHandAction(new ForestKeeperLock(), 1));
+        atb(new MakeTempCardInHandAction(card.makeStatEquivalentCopy(), 1));
     }
 
     @Override
     public void renderTip(SpriteBatch sb) {
         super.renderTip(sb);
-        tips.add(new CardPowerTip(new ForestKeeperLock()));
+        tips.add(new CardPowerTip(card));
     }
 
     private void attackAnimation(AbstractCreature enemy) {

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Blue Star 1.png" width="665" height="669" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Blue Star 2.png" width="723" height="723" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Star">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue Star 1">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-343.666667" y="600.666667"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Attack" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue Star 2">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-363" y="639"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

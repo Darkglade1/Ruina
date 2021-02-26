@@ -205,5 +205,17 @@
   "${ModID}:Enchanted": {
     "NAME": "Enchanted",
     "DESCRIPTIONS": ["Can only deal #b", " damage. Wears off whenever #yyou attack this creature."]
+  },
+  "${ModID}:Worshippers": {
+    "NAME": "Worshippers",
+    "DESCRIPTIONS": ["Whenever a minion #rdies, loses #b" , " HP. Dead minions are replaced at end of round."]
+  },
+  "${ModID}:Martyr": {
+    "NAME": "Martyr",
+    "DESCRIPTIONS": ["On death, #rexplodes and deals #b", " damage to you."]
+  },
+  "${ModID}:MeetAgain": {
+    "NAME": "Meet Again as Stars",
+    "DESCRIPTIONS": ["If this creature's HP is at or below #b", " HP, it will #rsuicide on its turn without triggering #yMartyr."]
   }
 }

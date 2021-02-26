@@ -378,5 +378,26 @@
     "NAME": "Big Bird",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Worshipper": {
+    "MOVES": [
+      "For the Star",
+      "Everlasting Faith",
+      "Hear the Sound of the Star!",
+      "We'll Meet Soon as Stars!"
+    ],
+    "NAME": "Worshipper",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:BlueStar": {
+    "MOVES": [
+      "Rising Star",
+      "Starry Sky",
+      "Sound of a Star"
+    ],
+    "NAME": "Shrine to the Blue Star",
+    "DIALOG": [
+    ]
   }
 }
