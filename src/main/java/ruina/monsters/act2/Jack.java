@@ -73,9 +73,6 @@ public class Jack extends AbstractRuinaMonster
                     flash();
                     atb(new MakeTempCardInHandAction(stolenCards.remove(0)));
                 }
-                if (ozma != null && damageAmount > 0) {
-                    atb(new LoseHPAction(ozma, ozma, damageAmount));
-                }
                 return damageAmount;
             }
             @Override
@@ -149,6 +146,19 @@ public class Jack extends AbstractRuinaMonster
                 setMoveShortcut(MULTI_ATTACK);
             } else {
                 setMoveShortcut(ATTACK);
+            }
+        }
+    }
+
+    @Override
+    public void damage(DamageInfo info) {
+        int previousHealth = currentHealth;
+        super.damage(info);
+        int nextHealth = currentHealth;
+        int difference = previousHealth - nextHealth;
+        if (difference > 0) {
+            if (ozma != null) {
+                atb(new LoseHPAction(ozma, ozma, difference));
             }
         }
     }
