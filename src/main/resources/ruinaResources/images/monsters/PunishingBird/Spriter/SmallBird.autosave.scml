@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Branch.png" width="368" height="217" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Idle.png" width="66" height="80" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Peck.png" width="178" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Recoil.png" width="113" height="81" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Punish.png" width="348" height="439" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Bird">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Branch">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-13" y="223"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-23" y="294"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Peck" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Branch">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-13" y="223"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Peck">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-143" y="331"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Recoil" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Branch">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-13" y="223"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Recoil">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-67" y="308"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Punish" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Branch">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-13" y="223"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Punish">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-328" y="457"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

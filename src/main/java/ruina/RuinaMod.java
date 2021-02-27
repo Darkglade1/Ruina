@@ -22,6 +22,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.events.beyond.Falling;
 import com.megacrit.cardcrawl.events.beyond.MindBloom;
@@ -436,33 +437,55 @@ public class RuinaMod implements
 
     }
 
+    private static String makeLocPath(Settings.GameLanguage language, String filename)
+    {
+        String ret = "localization/";
+        switch (language) {
+//            case ZHS:
+//                ret += "zhs/";
+//                break;
+//            case JPN:
+//                ret += "jpn/";
+//                break;
+            case RUS:
+                ret += "rus/";
+                break;
+            default:
+                ret += "eng/";
+                break;
+        }
+        return getModID() + "Resources/" + (ret + filename + ".json");
+    }
 
-    @Override
-    public void receiveEditStrings() {
-        BaseMod.loadCustomStringsFile(CardStrings.class, getModID() + "Resources/localization/eng/Cardstrings.json");
-
-        BaseMod.loadCustomStringsFile(RelicStrings.class, getModID() + "Resources/localization/eng/Relicstrings.json");
-
-        BaseMod.loadCustomStringsFile(PowerStrings.class, getModID() + "Resources/localization/eng/Powerstrings.json");
-
-        BaseMod.loadCustomStringsFile(MonsterStrings.class, getModID() + "Resources/localization/eng/Monsterstrings.json");
-
-        BaseMod.loadCustomStringsFile(EventStrings.class, getModID() + "Resources/localization/eng/Eventstrings.json");
-
-        BaseMod.loadCustomStringsFile(UIStrings.class, getModID() + "Resources/localization/eng/UIstrings.json");
-
-        BaseMod.loadCustomStringsFile(TutorialStrings.class, getModID() + "Resources/localization/eng/Tutorialstrings.json");
+    private void loadLocFiles(Settings.GameLanguage language)
+    {
+        BaseMod.loadCustomStringsFile(CardStrings.class, makeLocPath(language, "Cardstrings"));
+        BaseMod.loadCustomStringsFile(EventStrings.class, makeLocPath(language, "Eventstrings"));
+        BaseMod.loadCustomStringsFile(MonsterStrings.class, makeLocPath(language, "Monsterstrings"));
+        BaseMod.loadCustomStringsFile(RelicStrings.class, makeLocPath(language, "Relicstrings"));
+        BaseMod.loadCustomStringsFile(PowerStrings.class, makeLocPath(language, "Powerstrings"));
+        BaseMod.loadCustomStringsFile(UIStrings.class, makeLocPath(language, "UIstrings"));
+        BaseMod.loadCustomStringsFile(TutorialStrings.class, makeLocPath(language, "Tutorialstrings"));
     }
 
     @Override
-    public void receiveEditKeywords() {
+    public void receiveEditStrings()
+    {
+        loadLocFiles(Settings.GameLanguage.ENG);
+        if (Settings.language != Settings.GameLanguage.ENG) {
+            loadLocFiles(Settings.language);
+        }
+    }
+
+    private void loadLocKeywords(Settings.GameLanguage language)
+    {
         Gson gson = new Gson();
-        String json = Gdx.files.internal(getModID() + "Resources/localization/eng/Keywordstrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
-        com.evacipated.cardcrawl.mod.stslib.Keyword[] keywords = gson.fromJson(json, com.evacipated.cardcrawl.mod.stslib.Keyword[].class);
+        String json = Gdx.files.internal(makeLocPath(language, "Keywordstrings")).readString(String.valueOf(StandardCharsets.UTF_8));
+        Keyword[] keywords = gson.fromJson(json, Keyword[].class);
 
         if (keywords != null) {
             for (Keyword keyword : keywords) {
-                BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+                BaseMod.addKeyword(getModID().toLowerCase(), keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }
     }
@@ -470,5 +493,12 @@ public class RuinaMod implements
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         TotalBlockGainedSpireField.totalBlockGained.set(adp(), 0);
+    }
+
+    public void receiveEditKeywords() {
+        loadLocKeywords(Settings.GameLanguage.ENG);
+        if (Settings.language != Settings.GameLanguage.ENG) {
+            loadLocKeywords(Settings.language);
+        }
     }
 }
