@@ -252,9 +252,6 @@ public class BigBird extends AbstractMultiIntentMonster
                 if (!this.lastMove(ILLUMINATE, moveHistory)) {
                     possibilities.add(ILLUMINATE);
                 }
-                if (!this.lastMove(DAZZLE_PLAYER, moveHistory)) {
-                    possibilities.add(DAZZLE_PLAYER);
-                }
                 byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
                 setAdditionalMoveShortcut(move, moveHistory);
             } else {
@@ -274,9 +271,6 @@ public class BigBird extends AbstractMultiIntentMonster
                 }
                 if (!this.lastMove(ILLUMINATE, moveHistory)) {
                     possibilities.add(ILLUMINATE);
-                }
-                if (!this.lastMove(DAZZLE_PLAYER, moveHistory)) {
-                    possibilities.add(DAZZLE_PLAYER);
                 }
                 byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
                 setAdditionalMoveShortcut(move, moveHistory);

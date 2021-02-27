@@ -76,6 +76,7 @@ import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.bigBird.Sage;
@@ -434,6 +435,7 @@ public class RuinaMod implements
         BaseMod.addMonster(BlueStar.ID, (BaseMod.GetMonster) BlueStar::new);
 
         BaseMod.addMonster(PunishingBird.ID, (BaseMod.GetMonster) PunishingBird::new);
+        BaseMod.addMonster(BurrowingHeaven.ID, (BaseMod.GetMonster) BurrowingHeaven::new);
 
     }
 

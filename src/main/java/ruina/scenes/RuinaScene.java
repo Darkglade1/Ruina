@@ -26,6 +26,7 @@ import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.ScaredyCat;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
@@ -101,6 +102,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/BlackForest");
                 } else if (mo instanceof BlueStar || mo instanceof Worshipper) {
                     this.bg = this.atlas.findRegion("mod/Star");
+                } else if (mo instanceof BurrowingHeaven) {
+                    this.bg = this.atlas.findRegion("mod/Heaven");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }

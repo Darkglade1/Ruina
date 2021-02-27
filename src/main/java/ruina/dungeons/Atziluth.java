@@ -17,6 +17,9 @@ import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act3.bigBird.BigBird;
+import ruina.monsters.act3.blueStar.BlueStar;
+import ruina.monsters.act3.punishingBird.PunishingBird;
 
 import java.util.ArrayList;
 
@@ -95,7 +98,7 @@ public class Atziluth extends AbstractRuinaDungeon {
         monsters.add(new MonsterInfo("Transient", 1.0F));
         monsters.add(new MonsterInfo("4 Shapes", 1.0F));
         monsters.add(new MonsterInfo("Maw", 1.0F));
-        monsters.add(new MonsterInfo("Sphere and 2 Shapes", 1.0F));
+        monsters.add(new MonsterInfo(PunishingBird.ID, 1.0F));
         monsters.add(new MonsterInfo("Jaw Worm Horde", 1.0F));
         monsters.add(new MonsterInfo("3 Darklings", 1.0F));
         monsters.add(new MonsterInfo("Writhing Mass", 1.0F));
@@ -106,9 +109,9 @@ public class Atziluth extends AbstractRuinaDungeon {
 
     protected void generateElites(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList();
-        monsters.add(new MonsterInfo("Giant Head", 2.0F));
+        monsters.add(new MonsterInfo(BigBird.ID, 2.0F));
         monsters.add(new MonsterInfo("Nemesis", 2.0F));
-        monsters.add(new MonsterInfo("Reptomancer", 2.0F));
+        monsters.add(new MonsterInfo(BlueStar.ID, 2.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateMonsterList(monsters, count, true);
     }

@@ -400,5 +400,15 @@
     "NAME": "Shrine to the Blue Star",
     "DIALOG": [
     ]
+  },
+  "${ModID}:BurrowingHeaven": {
+    "MOVES": [
+      "Your Own Heaven",
+      "Bloody Wings",
+      "Gaze of Others"
+    ],
+    "NAME": "Burrowing Heaven",
+    "DIALOG": [
+    ]
   }
 }

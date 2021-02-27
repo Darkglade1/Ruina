@@ -13,7 +13,9 @@
       ", нанеся #b",
       " урона.",
       " урона #b",
-      " раз(а)."
+      " раз(а).",
+      "This enemy intends to inflict a #yNegative #yEffect on ",
+      "."
     ]
   },
   "ruina:AllyStrings": {
