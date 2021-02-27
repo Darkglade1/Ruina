@@ -196,7 +196,7 @@
   },
   "${ModID}:Unruffled": {
     "NAME": "Unruffled",
-    "DESCRIPTIONS": ["This creature receives #b", " damage from your attacks. NL This creature cannot be #pdebuffed by you."]
+    "DESCRIPTIONS": ["Your attacks against this creature deal #b", " damage. NL You cannot apply #pdebuffs this creature."]
   },
   "${ModID}:Salvation": {
     "NAME": "Salvation",
@@ -204,11 +204,7 @@
   },
   "${ModID}:Enchanted": {
     "NAME": "Enchanted",
-    "DESCRIPTIONS": ["Can only deal #b", " damage. Wears off whenever #yyou attack this creature."]
-  },
-  "${ModID}:Worshippers": {
-    "NAME": "Worshippers",
-    "DESCRIPTIONS": ["Whenever a minion #rdies, loses #b" , " HP. Dead minions are replaced at end of round."]
+    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL This effect is #gremoved whenever #yyou attack this creature."]
   },
   "${ModID}:Martyr": {
     "NAME": "Martyr",

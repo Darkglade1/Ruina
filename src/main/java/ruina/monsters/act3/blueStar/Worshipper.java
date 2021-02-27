@@ -65,10 +65,10 @@ public class Worshipper extends AbstractRuinaMonster
         super(NAME, ID, 40, -5.0F, 0, 220.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Worshipper/Spriter/Worshipper.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(46), calcAscensionTankiness(52));
-        addMove(FOR_THE_STAR, Intent.ATTACK, calcAscensionDamage(13));
-        addMove(EVERLASTING_FAITH, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
-        addMove(HEAR_STAR, Intent.ATTACK, calcAscensionDamage(19));
+        setHp(calcAscensionTankiness(38), calcAscensionTankiness(44));
+        addMove(FOR_THE_STAR, Intent.ATTACK, calcAscensionDamage(11));
+        addMove(EVERLASTING_FAITH, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
+        addMove(HEAR_STAR, Intent.ATTACK, calcAscensionDamage(17));
         addMove(MEET_AGAIN, Intent.UNKNOWN);
         this.star = star;
         meetAgainThreshold = (int)(this.maxHealth * MEET_AGAIN_HP_THRESHOLD);
@@ -152,7 +152,6 @@ public class Worshipper extends AbstractRuinaMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        star.onMinionDeath();
         for (int i = 0; i < star.minions.length; i++) {
             if (star.minions[i] == this) {
                 star.minions[i] = null;

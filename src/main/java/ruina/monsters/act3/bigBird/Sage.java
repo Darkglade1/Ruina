@@ -34,7 +34,7 @@ public class Sage extends AbstractAllyMonster
     private static final byte RING = 0;
     private static final byte SMACK = 1;
 
-    private final int RITUAL = 2;
+    private final int RITUAL = 1;
 
     private static final int DAMAGE_CAP = 1;
 

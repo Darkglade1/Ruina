@@ -20,9 +20,11 @@ public class PunishingBirdPunishmentPower extends AbstractEasyPower {
 
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.type == DamageInfo.DamageType.NORMAL && info.owner != null && info.owner != this.owner) {
-            flash();
-            isPunishSet = true;
-            updateDescription();
+            if (!isPunishSet) {
+                flash();
+                isPunishSet = true;
+                updateDescription();
+            }
         }
         return damageAmount;
     }

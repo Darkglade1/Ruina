@@ -39,11 +39,10 @@ public class BlueStar extends AbstractRuinaMonster
     private static final byte RISING_STAR = 0;
     private static final byte STARRY_SKY = 1;
     private static final byte SOUND_OF_STAR = 2;
+    private static final byte WORSHIPPERS = 3;
 
     private final int BLOCK = calcAscensionTankiness(14);
     private final int STRENGTH = calcAscensionSpecial(3);
-
-    private static final int HP_LOSS = 100;
 
     public static final String POWER_ID = makeID("Worshippers");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -52,32 +51,27 @@ public class BlueStar extends AbstractRuinaMonster
 
     public AbstractMonster[] minions = new AbstractMonster[2];
     private final AbstractAnimation star;
+    private int moveCounter = 0;
 
     public BlueStar() {
         this(150.0f, 0.0f);
     }
 
     public BlueStar(final float x, final float y) {
-        super(NAME, ID, 110, 0.0F, 0, 250.0f, 345.0f, null, x, y);
+        super(NAME, ID, 200, 0.0F, 0, 250.0f, 345.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlueStar/Spriter/BlueStar.scml"));
         this.star = new BetterSpriterAnimation(makeMonsterPath("BlueStar/Star/Star.scml"));
         this.type = EnemyType.ELITE;
-        setHp(calcAscensionTankiness(500));
+        setHp(calcAscensionTankiness(maxHealth));
         addMove(RISING_STAR, Intent.DEFEND);
         addMove(STARRY_SKY, Intent.BUFF);
-        addMove(SOUND_OF_STAR, Intent.ATTACK, calcAscensionDamage(30));
+        addMove(SOUND_OF_STAR, Intent.ATTACK, calcAscensionDamage(25));
+        addMove(WORSHIPPERS, Intent.UNKNOWN);
     }
 
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning3");
-        AbstractPower power = new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, HP_LOSS) {
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        };
-        applyToTarget(this, this, power);
         Summon();
     }
 
@@ -90,17 +84,35 @@ public class BlueStar extends AbstractRuinaMonster
             info.applyPowers(this, adp());
         }
 
+        if (firstMove) {
+            firstMove = false;
+        }
+
         switch (this.nextMove) {
             case RISING_STAR: {
                 for (AbstractMonster mo : monsterList()) {
                     block(mo, BLOCK);
                 }
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        moveCounter = 1;
+                        this.isDone = true;
+                    }
+                });
                 break;
             }
             case STARRY_SKY: {
                 for (AbstractMonster mo : monsterList()) {
                     applyToTarget(mo, this, new StrengthPower(mo, STRENGTH));
                 }
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        moveCounter = 2;
+                        this.isDone = true;
+                    }
+                });
                 break;
             }
             case SOUND_OF_STAR: {
@@ -123,21 +135,35 @@ public class BlueStar extends AbstractRuinaMonster
                         this.isDone = true;
                     }
                 });
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        moveCounter = 0;
+                        this.isDone = true;
+                    }
+                });
+                break;
+            }
+            case WORSHIPPERS: {
+                Summon();
                 break;
             }
         }
-        Summon();
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (this.lastMove(RISING_STAR)) {
-            setMoveShortcut(STARRY_SKY, MOVES[STARRY_SKY]);
-        } else if (this.lastMove(STARRY_SKY)) {
-            setMoveShortcut(SOUND_OF_STAR, MOVES[SOUND_OF_STAR]);
+        if (!firstMove && minions[0] == null && minions[1] == null) {
+            setMoveShortcut(WORSHIPPERS, MOVES[WORSHIPPERS]);
         } else {
-            setMoveShortcut(RISING_STAR, MOVES[RISING_STAR]);
+            if (moveCounter == 0) {
+                setMoveShortcut(RISING_STAR, MOVES[RISING_STAR]);
+            } else if (moveCounter == 1) {
+                setMoveShortcut(STARRY_SKY, MOVES[STARRY_SKY]);
+            } else {
+                setMoveShortcut(SOUND_OF_STAR, MOVES[SOUND_OF_STAR]);
+            }
         }
     }
 
@@ -158,10 +184,6 @@ public class BlueStar extends AbstractRuinaMonster
                 minions[i] = minion;
             }
         }
-    }
-
-    public void onMinionDeath() {
-        atb(new LoseHPAction(this, this, HP_LOSS));
     }
 
     @Override

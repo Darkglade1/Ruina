@@ -45,7 +45,7 @@ public class Enchanted extends AbstractPower {
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if (info.owner == adp() && damageAmount > 0) {
+        if (info.owner == adp() && info.type == DamageInfo.DamageType.NORMAL) {
             atb(new RemoveSpecificPowerAction(owner, owner, this));
         }
         return damageAmount;

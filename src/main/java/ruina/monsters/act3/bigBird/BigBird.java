@@ -152,7 +152,7 @@ public class BigBird extends AbstractMultiIntentMonster
             }
             case DAZZLE_PLAYER: {
                 specialAnimation(target);
-                intoDiscardMo(new Dazzled(), STATUS, this);
+                intoDrawMo(new Dazzled(), STATUS, this);
                 resetIdle(1.0f);
                 break;
             }
@@ -232,9 +232,6 @@ public class BigBird extends AbstractMultiIntentMonster
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (!this.lastMove(SALVATION)) {
             possibilities.add(SALVATION);
-        }
-        if (!this.lastMove(ILLUMINATE)) {
-            possibilities.add(ILLUMINATE);
         }
         if (!this.lastMove(DAZZLE_PLAYER)) {
             possibilities.add(DAZZLE_PLAYER);
