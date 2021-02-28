@@ -22,6 +22,7 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Home;
 import ruina.powers.Paralysis;
+import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -35,7 +36,7 @@ public class RoadHome extends AbstractRuinaMonster
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
     public static final String HOUSE = RuinaMod.makeMonsterPath("RoadHome/House.png");
-    private static final Texture HOUSE_TEXTURE = new Texture(HOUSE);
+    private static final Texture HOUSE_TEXTURE = TexLoader.getTexture(HOUSE);
 
     private static final byte LETS_GO = 0;
     private static final byte PLAY_TAG = 1;

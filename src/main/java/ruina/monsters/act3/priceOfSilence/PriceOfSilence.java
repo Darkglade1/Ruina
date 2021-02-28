@@ -49,7 +49,7 @@ public class PriceOfSilence extends AbstractRuinaMonster
         super(NAME, ID, 140, 0.0F, 0, 280.0f, 390.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("PriceOfSilence/Spriter/PriceOfSilence.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(96), calcAscensionTankiness(104));
+        setHp(calcAscensionTankiness(82), calcAscensionTankiness(88));
         addMove(STOLEN_TIME, Intent.DEBUFF);
         addMove(SILENT_HOUR, Intent.ATTACK, calcAscensionDamage(17));
     }

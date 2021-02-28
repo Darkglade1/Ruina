@@ -1,5 +1,7 @@
 package ruina.monsters.act3.blueStar;
 
+import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -15,14 +17,17 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.DarkSmokePuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokingEmberEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.MeetAgain;
 import ruina.powers.Paralysis;
+import ruina.util.TexLoader;
 
 import java.util.ArrayList;
 
@@ -36,6 +41,9 @@ public class Worshipper extends AbstractRuinaMonster
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
+
+    public static final String YEET = RuinaMod.makeMonsterPath("Worshipper/Spriter/Suicide.png");
+    private static final Texture YEET_TEXTURE = TexLoader.getTexture(YEET);
 
     private static final byte FOR_THE_STAR = 0;
     private static final byte EVERLASTING_FAITH = 1;
@@ -56,6 +64,7 @@ public class Worshipper extends AbstractRuinaMonster
     private BlueStar star;
     public boolean triggerMartyr = true;
     private final int meetAgainThreshold;
+    private boolean yeeting = false;
 
     public Worshipper() {
         this(0.0f, 0.0f, null);
@@ -140,8 +149,16 @@ public class Worshipper extends AbstractRuinaMonster
                 break;
             }
             case MEET_AGAIN: {
-                specialAnimation();
+                //specialAnimation();
                 triggerMartyr = false;
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        yeeting = true;
+                        this.isDone = true;
+                    }
+                });
+                YeetEffect();
                 atb(new SuicideAction(this));
                 break;
             }
@@ -188,6 +205,13 @@ public class Worshipper extends AbstractRuinaMonster
         }
     }
 
+    @Override
+    public void render(SpriteBatch sb) {
+        if (!yeeting) {
+            super.render(sb);
+        }
+    }
+
     private void attackAnimation(AbstractCreature enemy) {
         animationAction("Attack", "WorshipperAttack", enemy, this);
     }
@@ -198,6 +222,17 @@ public class Worshipper extends AbstractRuinaMonster
 
     private void specialAnimation() {
         animationAction("Suicide", "WorshipperSuicide", this);
+    }
+
+    private void YeetEffect() {
+        float duration = 2.0f;
+        AbstractGameEffect effect = new VfxBuilder(YEET_TEXTURE, this.hb.cX, this.hb.cY, duration)
+                .arc(this.hb.cX, this.hb.cY, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2 + (375.0F * Settings.scale), (float) Settings.HEIGHT / 2 + (375.0F * Settings.scale))
+                .playSoundAt(1.5f, makeID("WorshipperSuicide"))
+                .scale(1.0f, 0.0f, VfxBuilder.Interpolations.SWING)
+                .rotate(-400f)
+                .build();
+        atb(new VFXAction(effect, duration));
     }
 
 }

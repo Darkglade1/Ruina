@@ -36,7 +36,7 @@ public class RemnantOfTime extends AbstractRuinaMonster
         super(NAME, ID, 140, 0.0F, 0, 280.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Remnant/Spriter/Remnant.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(88), calcAscensionTankiness(94));
+        setHp(calcAscensionTankiness(80), calcAscensionTankiness(86));
         addMove(BACKLASH_OF_TIME, Intent.ATTACK, calcAscensionDamage(7), 2, true);
         addMove(TORRENT_OF_HOURS, Intent.DEFEND_BUFF);
     }
