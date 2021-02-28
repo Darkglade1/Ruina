@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="349" height="310" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Attack1.png" width="574" height="264" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Attack2.png" width="643" height="337" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Block.png" width="349" height="369" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Remnant">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-70.652174" y="196.73913"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="AttackForward" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Attack1">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-413.043478" y="265.217391"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="AttackBack" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Attack2">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-300" y="307.608696"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Block" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Block">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-110.869565" y="241.304348"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

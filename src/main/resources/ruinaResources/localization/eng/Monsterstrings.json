@@ -410,5 +410,23 @@
     "NAME": "Burrowing Heaven",
     "DIALOG": [
     ]
+  },
+  "${ModID}:RemnantOfTime": {
+    "MOVES": [
+      "Backlash of Time",
+      "Torrent of Hours"
+    ],
+    "NAME": "Remnant of Time",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:PriceOfSilence": {
+    "MOVES": [
+      "Stolen Time",
+      "Silent Hour"
+    ],
+    "NAME": "Price of Silence",
+    "DIALOG": [
+    ]
   }
 }

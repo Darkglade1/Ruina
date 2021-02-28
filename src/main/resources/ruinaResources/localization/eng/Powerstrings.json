@@ -217,5 +217,9 @@
   "${ModID}:Unnerving": {
     "NAME": "Unnerving",
     "DESCRIPTIONS": ["Receives #b", "% less damage from #yAttacks. NL Whenever you gain #yBlock, this creature loses that much HP."]
+  },
+  "${ModID}:TickingTime": {
+    "NAME": "Ticking Time",
+    "DESCRIPTIONS": ["Whenever you play #b", " cards in a single turn, end your turn."]
   }
 }

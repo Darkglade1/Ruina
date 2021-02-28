@@ -31,6 +31,8 @@ import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
 import ruina.monsters.act3.blueStar.Worshipper;
+import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
+import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
@@ -104,6 +106,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Star");
                 } else if (mo instanceof BurrowingHeaven) {
                     this.bg = this.atlas.findRegion("mod/Heaven");
+                } else if (mo instanceof PriceOfSilence || mo instanceof RemnantOfTime) {
+                    this.bg = this.atlas.findRegion("mod/Silence");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }

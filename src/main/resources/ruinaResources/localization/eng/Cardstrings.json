@@ -97,5 +97,9 @@
   "${ModID}:ForestKeeperLock": {
     "NAME": "Forest Keeper's Lock",
     "DESCRIPTION": "Enemy loses !M! Strength this turn."
+  },
+  "${ModID}:StolenTime": {
+    "NAME": "Stolen Time",
+    "DESCRIPTION": "Draw !M! card."
   }
 }

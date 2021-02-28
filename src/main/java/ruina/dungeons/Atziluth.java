@@ -17,8 +17,10 @@ import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
+import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 
 import java.util.ArrayList;
@@ -94,13 +96,13 @@ public class Atziluth extends AbstractRuinaDungeon {
 
     protected void generateStrongEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList();
-        monsters.add(new MonsterInfo("Spire Growth", 1.0F));
+        monsters.add(new MonsterInfo(BurrowingHeaven.ID, 1.0F));
         monsters.add(new MonsterInfo("Transient", 1.0F));
         monsters.add(new MonsterInfo("4 Shapes", 1.0F));
         monsters.add(new MonsterInfo("Maw", 1.0F));
         monsters.add(new MonsterInfo(PunishingBird.ID, 1.0F));
         monsters.add(new MonsterInfo("Jaw Worm Horde", 1.0F));
-        monsters.add(new MonsterInfo("3 Darklings", 1.0F));
+        monsters.add(new MonsterInfo(PriceOfSilence.ID, 1.0F));
         monsters.add(new MonsterInfo("Writhing Mass", 1.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateFirstStrongEnemy(monsters, this.generateExclusions());

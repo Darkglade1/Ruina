@@ -81,6 +81,8 @@ import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.bigBird.Sage;
 import ruina.monsters.act3.blueStar.BlueStar;
+import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
+import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
@@ -315,6 +317,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("WorshipperSuicide"), makeSFXPath("BlueStar_In.wav"));
         BaseMod.addAudio(makeID("WorshipperAttack"), makeSFXPath("BlueStar_SubAtk.wav"));
         BaseMod.addAudio(makeID("WorshipperExplode"), makeSFXPath("BlueStar_Suicide.wav"));
+
+        BaseMod.addAudio(makeID("SilenceEffect"), makeSFXPath("Clock_NoCreate.wav"));
+        BaseMod.addAudio(makeID("SilenceStop"), makeSFXPath("Clock_StopCard.wav"));
     }
 
     @Override
@@ -436,6 +441,11 @@ public class RuinaMod implements
 
         BaseMod.addMonster(PunishingBird.ID, (BaseMod.GetMonster) PunishingBird::new);
         BaseMod.addMonster(BurrowingHeaven.ID, (BaseMod.GetMonster) BurrowingHeaven::new);
+        BaseMod.addMonster(PriceOfSilence.ID, "Price of Silence", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new RemnantOfTime(-450.0F, 0.0F),
+                        new PriceOfSilence(-50.0F, 0.0F),
+                }));
 
     }
 
