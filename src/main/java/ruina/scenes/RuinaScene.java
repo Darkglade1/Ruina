@@ -26,6 +26,7 @@ import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.ScaredyCat;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
@@ -108,6 +109,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Heaven");
                 } else if (mo instanceof PriceOfSilence || mo instanceof RemnantOfTime) {
                     this.bg = this.atlas.findRegion("mod/Silence");
+                } else if (mo instanceof Bloodbath) {
+                    this.bg = this.atlas.findRegion("mod/Bloodbath");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }

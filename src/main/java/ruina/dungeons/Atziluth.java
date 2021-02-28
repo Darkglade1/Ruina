@@ -17,6 +17,7 @@ import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
@@ -88,7 +89,7 @@ public class Atziluth extends AbstractRuinaDungeon {
     protected void generateWeakEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList();
         monsters.add(new MonsterInfo("3 Darklings", 2.0F));
-        monsters.add(new MonsterInfo("Orb Walker", 2.0F));
+        monsters.add(new MonsterInfo(Bloodbath.ID, 2.0F));
         monsters.add(new MonsterInfo("3 Shapes", 2.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateMonsterList(monsters, count, false);

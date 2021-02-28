@@ -76,6 +76,7 @@ import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
@@ -320,6 +321,9 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("SilenceEffect"), makeSFXPath("Clock_NoCreate.wav"));
         BaseMod.addAudio(makeID("SilenceStop"), makeSFXPath("Clock_StopCard.wav"));
+
+        BaseMod.addAudio(makeID("BloodAttack"), makeSFXPath("Bloodbath_Atk.wav"));
+        BaseMod.addAudio(makeID("BloodSpecial"), makeSFXPath("Bloodbath_EyeOn.wav"));
     }
 
     @Override
@@ -446,6 +450,7 @@ public class RuinaMod implements
                         new RemnantOfTime(-450.0F, 0.0F),
                         new PriceOfSilence(-50.0F, 0.0F),
                 }));
+        BaseMod.addMonster(Bloodbath.ID, (BaseMod.GetMonster) Bloodbath::new);
 
     }
 

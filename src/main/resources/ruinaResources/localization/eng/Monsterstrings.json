@@ -428,5 +428,14 @@
     "NAME": "Price of Silence",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Bloodbath": {
+    "MOVES": [
+      "Pale Hands",
+      "Depression"
+    ],
+    "NAME": "Bloodbath",
+    "DIALOG": [
+    ]
   }
 }
