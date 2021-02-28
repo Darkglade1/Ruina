@@ -66,17 +66,19 @@ public class PrisonOfIce extends AbstractRuinaMonster
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
         queen.canBlizzard = true;
-        playSound("SnowPrisonBreak");
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                for (AbstractCard card : adp().hand.group) {
-                    if (CardModifierManager.hasModifier(card, FrozenMod.ID)) {
-                        CardModifierManager.removeModifiersById(card, FrozenMod.ID, false);
+        if (!queen.isDeadOrEscaped()) {
+            playSound("SnowPrisonBreak");
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    for (AbstractCard card : adp().hand.group) {
+                        if (CardModifierManager.hasModifier(card, FrozenMod.ID)) {
+                            CardModifierManager.removeModifiersById(card, FrozenMod.ID, false);
+                        }
                     }
+                    this.isDone = true;
                 }
-                this.isDone = true;
-            }
-        });
+            });
+        }
     }
 }

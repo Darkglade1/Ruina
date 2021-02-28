@@ -67,7 +67,7 @@ public class SnowQueen extends AbstractRuinaMonster
     }
 
     public SnowQueen(final float x, final float y) {
-        super(NAME, ID, 210, 0.0F, 0, 280.0f, 305.0f, null, x, y);
+        super(NAME, ID, 210, 0.0F, 0, 280.0f, 325.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SnowQueen/Spriter/SnowQueen.scml"));
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(maxHealth));
@@ -88,7 +88,9 @@ public class SnowQueen extends AbstractRuinaMonster
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
-                            CardModifierManager.addModifier(card, mod.makeCopy());
+                            if (!CardModifierManager.hasModifier(card, FrozenMod.ID)) {
+                                CardModifierManager.addModifier(card, mod.makeCopy());
+                            }
                             this.isDone = true;
                         }
                     });

@@ -203,7 +203,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
                 for (int i = 0; i < multiplier; i++) {
                     dmg(adp(), info);
                 }
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             case RISE_AND_SERVE:
                 shockwaveAnimation(adp());
@@ -217,7 +217,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
                         this.isDone = true;
                     }
                 });
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             case SALVATION:
                 specialAnimation();
@@ -235,7 +235,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
                         this.isDone = true;
                     }
                 });
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             case PRAYER:
                 specialAnimation();
@@ -254,13 +254,13 @@ public class Seraphim extends AbstractMultiIntentMonster {
                         this.isDone = true;
                     }
                 });
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             case DO_NOT_DENY:
                 shockwaveAnimation(adp());
                 shockwaveEffect();
                 dmg(adp(), info);
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             case FEAR_NOT:
                 specialAnimation();
@@ -270,13 +270,13 @@ public class Seraphim extends AbstractMultiIntentMonster {
                         atb(new ApplyPowerAction(m, m, new StrengthPower(m, strBuff)));
                     }
                 }
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             case REVELATION:
                 specialAnimation();
                 atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, wingsOfGrace)));
                 atb(new ApplyPowerAction(this, this, new StrengthPower(this, revelationStr)));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
         }
     }
