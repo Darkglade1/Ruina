@@ -78,6 +78,7 @@ import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
+import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.bigBird.Sage;
@@ -324,6 +325,11 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("BloodAttack"), makeSFXPath("Bloodbath_Atk.wav"));
         BaseMod.addAudio(makeID("BloodSpecial"), makeSFXPath("Bloodbath_EyeOn.wav"));
+
+        BaseMod.addAudio(makeID("SnowAttack"), makeSFXPath("SnowQueen_Atk.wav"));
+        BaseMod.addAudio(makeID("SnowAttackFar"), makeSFXPath("SnowQueen_Atk_Far.wav"));
+        BaseMod.addAudio(makeID("SnowBlizzard"), makeSFXPath("SnowQueen_Freeze.wav"));
+        BaseMod.addAudio(makeID("SnowPrisonBreak"), makeSFXPath("SnowQueen_IceCrash.wav"));
     }
 
     @Override
@@ -442,6 +448,7 @@ public class RuinaMod implements
                         new BigBird(150.0F, 0.0F)
                 }));
         BaseMod.addMonster(BlueStar.ID, (BaseMod.GetMonster) BlueStar::new);
+        BaseMod.addMonster(SnowQueen.ID, (BaseMod.GetMonster) SnowQueen::new);
 
         BaseMod.addMonster(PunishingBird.ID, (BaseMod.GetMonster) PunishingBird::new);
         BaseMod.addMonster(BurrowingHeaven.ID, (BaseMod.GetMonster) BurrowingHeaven::new);

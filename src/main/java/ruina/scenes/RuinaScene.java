@@ -28,6 +28,7 @@ import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
+import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
@@ -111,6 +112,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Silence");
                 } else if (mo instanceof Bloodbath) {
                     this.bg = this.atlas.findRegion("mod/Bloodbath");
+                } else if (mo instanceof SnowQueen) {
+                    this.bg = this.atlas.findRegion("mod/Snow");
                 } else {
                     this.bg = this.atlas.findRegion("mod/NightForest");
                 }

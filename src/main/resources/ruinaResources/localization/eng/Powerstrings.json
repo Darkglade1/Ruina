@@ -221,5 +221,13 @@
   "${ModID}:TickingTime": {
     "NAME": "Ticking Time",
     "DESCRIPTIONS": ["Whenever you play #b", " cards in a single turn, end your turn."]
+  },
+  "${ModID}:PromiseOfWinter": {
+    "NAME": "Promise of Winter",
+    "DESCRIPTIONS": ["Every other card you play is #yFrozen. NL #yFrozen cards are #yUnplayable and #yRetain."]
+  },
+  "${ModID}:KaiAndGerda": {
+    "NAME": "Kai and Gerda",
+    "DESCRIPTIONS": ["On death, #yUnfreeze all #yFrozen cards in your #yhand."]
   }
 }

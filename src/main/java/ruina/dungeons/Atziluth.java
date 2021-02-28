@@ -19,6 +19,7 @@ import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
+import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
 import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
@@ -87,7 +88,7 @@ public class Atziluth extends AbstractRuinaDungeon {
     }
 
     protected void generateWeakEnemies(int count) {
-        ArrayList<MonsterInfo> monsters = new ArrayList();
+        ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo("3 Darklings", 2.0F));
         monsters.add(new MonsterInfo(Bloodbath.ID, 2.0F));
         monsters.add(new MonsterInfo("3 Shapes", 2.0F));
@@ -96,7 +97,7 @@ public class Atziluth extends AbstractRuinaDungeon {
     }
 
     protected void generateStrongEnemies(int count) {
-        ArrayList<MonsterInfo> monsters = new ArrayList();
+        ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo(BurrowingHeaven.ID, 1.0F));
         monsters.add(new MonsterInfo("Transient", 1.0F));
         monsters.add(new MonsterInfo("4 Shapes", 1.0F));
@@ -111,16 +112,16 @@ public class Atziluth extends AbstractRuinaDungeon {
     }
 
     protected void generateElites(int count) {
-        ArrayList<MonsterInfo> monsters = new ArrayList();
+        ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo(BigBird.ID, 2.0F));
-        monsters.add(new MonsterInfo("Nemesis", 2.0F));
+        monsters.add(new MonsterInfo(SnowQueen.ID, 2.0F));
         monsters.add(new MonsterInfo(BlueStar.ID, 2.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateMonsterList(monsters, count, true);
     }
 
     protected ArrayList<String> generateExclusions() {
-        ArrayList<String> retVal = new ArrayList();
+        ArrayList<String> retVal = new ArrayList<>();
         String var2 = (String)monsterList.get(monsterList.size() - 1);
         byte var3 = -1;
         switch(var2.hashCode()) {

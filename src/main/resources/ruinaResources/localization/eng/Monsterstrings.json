@@ -437,5 +437,23 @@
     "NAME": "Bloodbath",
     "DIALOG": [
     ]
+  },
+  "${ModID}:SnowQueen": {
+    "MOVES": [
+      "Blizzard",
+      "Frigid Gaze",
+      "Ice Splinters"
+    ],
+    "NAME": "Snow Queen",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:PrisonOfIce": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Prison of Ice",
+    "DIALOG": [
+    ]
   }
 }
