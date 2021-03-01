@@ -40,6 +40,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         setUpMisc();
     }
 
+
     private void setUpMisc() {
         moves = new HashMap<>();
         this.dialogX = (this.hb_x - 70.0F) * Settings.scale;
