@@ -13,10 +13,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.IntangiblePower;
-import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import com.megacrit.cardcrawl.relics.SlaversCollar;
@@ -40,6 +37,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import static com.megacrit.cardcrawl.cards.CardGroup.DRAW_PILE_X;
+import static com.megacrit.cardcrawl.cards.CardGroup.DRAW_PILE_Y;
 import static ruina.monsters.eventBoss.enums.cardENUMS.CHR_ATTACK;
 import static ruina.monsters.eventBoss.enums.cardENUMS.CHR_SETUP;
 
@@ -56,11 +55,11 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
     public EnemyEnergyManager energy;
     public EnergyOrbInterface energyOrb;
     public EnemyEnergyPanel energyPanel;
-    //public CardGroup masterDeck;
-    //public CardGroup drawPile;
+    public CardGroup masterDeck;
+    public CardGroup drawPile;
     public CardGroup hand;
-    //public CardGroup discardPile;
-    //public CardGroup exhaustPile;
+    public CardGroup discardPile;
+    public CardGroup exhaustPile;
     public CardGroup limbo;
     public AbstractCard cardInUse;
     public int damagedThisCombat;
@@ -84,12 +83,12 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         //this.chosenClass = playerClass;
         this.energyPanel = new EnemyEnergyPanel(this);
         this.hand = new EnemyCardGroup(CardGroup.CardGroupType.HAND, this);
-        /*
-        this.masterDeck = new EnemyCardGroup(CardGroupType.MASTER_DECK, this);
-        this.drawPile = new EnemyCardGroup(CardGroupType.DRAW_PILE, this);
-        this.discardPile = new EnemyCardGroup(CardGroupType.DISCARD_PILE, this);
-        this.exhaustPile = new EnemyCardGroup(CardGroupType.EXHAUST_PILE, this);
-        */
+
+        this.masterDeck = new EnemyCardGroup(CardGroup.CardGroupType.MASTER_DECK, this);
+        this.drawPile = new EnemyCardGroup(CardGroup.CardGroupType.DRAW_PILE, this);
+        this.discardPile = new EnemyCardGroup(CardGroup.CardGroupType.DISCARD_PILE, this);
+        this.exhaustPile = new EnemyCardGroup(CardGroup.CardGroupType.EXHAUST_PILE, this);
+
         this.limbo = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED, this);
         this.masterHandSize = 3;
         this.gameHandSize = 3;
@@ -140,27 +139,18 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
 
     public void generateAll() {
         this.generateDeck();
-        /*
         for (AbstractCard c : this.masterDeck.group) {
             ((AbstractRuinaBossCard) c).owner = this;
         }
-        if (AbstractDungeon.ascensionLevel < 19) {
-            masterDeck.shuffle();
-        }
-        ArrayList<AbstractCard> isInnateCard = new ArrayList<AbstractCard>();
+        masterDeck.shuffle();
+        ArrayList<AbstractCard> isInnateCard = new ArrayList<>();
         for (AbstractCard c : this.masterDeck.group) {
-            if (c.isInnate) {
-                isInnateCard.add(c);
-            }
+            if (c.isInnate) { isInnateCard.add(c); }
         }
         if (isInnateCard.size() > 0) {
             this.masterDeck.group.removeAll(isInnateCard);
-            for (AbstractCard c : isInnateCard) {
-                this.masterDeck.addToBottom(c);
-            }
+            for (AbstractCard c : isInnateCard) { this.masterDeck.addToBottom(c); }
         }
-        */
-
 
         if (AbstractDungeon.ascensionLevel >= 20 && CardCrawlGame.dungeon instanceof com.megacrit.cardcrawl.dungeons.TheBeyond) {
             //new CBR_LizardTail().instantObtain(this);
@@ -224,9 +214,8 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         attacksDrawnForAttackPhase = 0;
         setupsDrawnForSetupPhase = 0;
         this.startTurn();
-        // addToBot(new CharbossSortHandAction());
+        //addToBot(new CharbossSortHandAction());
         addToBot(new CharbossMakePlayAction());
-//        this.makePlay();
         this.onSetupTurn = !this.onSetupTurn;
     }
 
@@ -313,7 +302,8 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
 
     public void endTurnStartTurn() {
         if (!AbstractDungeon.getCurrRoom().isBattleOver) {
-            //addToBot(new EnemyDrawCardAction(this, this.gameHandSize, true));
+            addToBot(new EnemyDrawCardAction(this, this.gameHandSize, true));
+            /*
             addToBot(new AbstractGameAction() {
                 @Override
                 public void update() {
@@ -343,11 +333,13 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
                     AbstractRuinaCardMonster.boss.hand.refreshHandLayout();
                 }
             });
+
+             */
             addToBot(new WaitAction(0.2f));
             this.applyStartOfTurnPostDrawRelics();
             this.applyStartOfTurnPostDrawPowers();
             if (!AbstractDungeon.player.hasRelic(RunicDome.ID)) {
-                //addToBot(new CharbossSortHandAction());
+                addToBot(new CharbossSortHandAction());
                 addToBot(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -429,13 +421,15 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         preApplyIntentCalculations();
 
         this.hand.applyPowers();
+        this.drawPile.applyPowers();
+        this.discardPile.applyPowers();
         /*
         this.drawPile.genPreview();
         this.discardPile.genPreview();
         */
     }
 
-    /*
+
     public void sortHand() {
         ArrayList<AbstractRuinaBossCard> cardsByValue = new ArrayList<AbstractRuinaBossCard>();
         ArrayList<AbstractRuinaBossCard> affordableCards = new ArrayList<AbstractRuinaBossCard>();
@@ -504,21 +498,17 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
                 budget += c.energyGeneratedIfPlayed;
                 if (budget < 0) budget = 0;
             }
-                /*
-                if (c.type == AbstractCard.CardType.CURSE && boss.hasRelic("Blue Candle")) {
-                    c.createIntent();
-                } else if (c.type == AbstractCard.CardType.STATUS && boss.hasRelic("Medical Kit")) {
-                    c.createIntent();
-                } else {
-        }
-        this.hand.group = sortedCards;
-        this.hand.refreshHandLayout();
-        for (AbstractCard c : this.hand.group) {
-            AbstractRuinaBossCard cB = (AbstractRuinaBossCard) c;
-            cB.refreshIntentHbLocation();
+            if (c.type == AbstractCard.CardType.CURSE && boss.hasRelic("Blue Candle")) { c.createIntent();
+            } else if (c.type == AbstractCard.CardType.STATUS && boss.hasRelic("Medical Kit")) { c.createIntent(); }
+            this.hand.group = sortedCards;
+            this.hand.refreshHandLayout();
+            for (AbstractCard card : this.hand.group) {
+                AbstractRuinaBossCard cB = (AbstractRuinaBossCard) card;
+                cB.refreshIntentHbLocation();
+            }
         }
     }
-    */
+
 
     public int getIntentDmg() {
         int totalIntentDmg = -1;
@@ -569,17 +559,13 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         EnemyEnergyPanel.useEnergy(e);
     }
 
-    /*
+
     public void draw() {
-        if (this.hand.size() == 10) {
-            //this.createHandIsFullDialog();
-            return;
-        }
+        if (this.hand.size() == 10) { return; }
         CardCrawlGame.sound.playAV("CARD_DRAW_8", -0.12f, 0.25f);
         this.draw(1);
         this.onCardDrawOrDiscard();
     }
-    */
 
     private AbstractCard findReplacementCardInDraw(ArrayList<AbstractCard> drawPile, boolean attack, boolean setup) {
         for (AbstractCard c : drawPile) {
@@ -659,97 +645,9 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
     }
 
 
-    private AbstractCard chooseCardToDraw(ArrayList<AbstractCard> drawPile) {
-
-        AbstractRuinaBossCard c = (AbstractRuinaBossCard) drawPile.get(0);
-        AbstractCard replacementCard = null;
-
-        if (drawPile.size() > 1) {
-
-            //Force Draw is for mechanics like Headbutt, where a card should be drawn regardless of phase
-            if (c.forceDraw) {
-                //if (debugLog) //SlimeboundMod.logger.info("Force Drawing " + c.name);
-                return c;
-            }
-
-            if (this.onSetupTurn) {
-                if (setupsDrawnForSetupPhase < 1) {
-                    //if (debugLog) //SlimeboundMod.logger.info("Attempting to draw a Setup card");
-                    if (c.hasTag(CHR_SETUP)) {
-                        //if (debugLog) //SlimeboundMod.logger.info("Top card is good. Drawing Setup Card " + c.name);
-                        setupsDrawnForSetupPhase++;
-                        return c;
-                    } else {
-                        //if (debugLog)
-                        //SlimeboundMod.logger.info("Top card is not a Setup. Finding Setup->Either->Attack replacement.");
-                        replacementCard = performCardSearch(drawPile, DrawTypes.Setup, DrawTypes.EitherPhase, DrawTypes.Attack);
-                        if (replacementCard != null) {
-                            //if (debugLog) //SlimeboundMod.logger.info("Drawing replacement: " + replacementCard.name);
-                            return replacementCard;
-                        } else {
-                            //if (debugLog) //SlimeboundMod.logger.info("Null was returned by replacement search.");
-                        }
-                    }
-                } else {
-                    //if (debugLog)
-                    //SlimeboundMod.logger.info("Setup card already drawn. Finding Either->Setup->Attack replacement.");
-                    replacementCard = performCardSearch(drawPile, DrawTypes.EitherPhase, DrawTypes.Setup, DrawTypes.Attack);
-                    if (replacementCard != null) {
-                        //if (debugLog) //SlimeboundMod.logger.info("Drawing replacement: " + replacementCard.name);
-                        return replacementCard;
-                    } else {
-                        //if (debugLog) //SlimeboundMod.logger.info("Null was returned by replacement search.");
-                    }
-                }
-            }
-
-            if (!this.onSetupTurn) {
-                if (attacksDrawnForAttackPhase < 1) {
-                    //if (debugLog) //SlimeboundMod.logger.info("Attempting to draw a Attack card");
-                    if (c.hasTag(CHR_ATTACK)) {
-                        //if (debugLog) //SlimeboundMod.logger.info("Top card is good. Drawing Attack Card " + c.name);
-                        attacksDrawnForAttackPhase++;
-                        return c;
-                    } else {
-                        //if (debugLog)
-                        //SlimeboundMod.logger.info("Top card is not a Attack. Finding Attack->Either->Setup replacement.");
-                        replacementCard = performCardSearch(drawPile, DrawTypes.Attack, DrawTypes.EitherPhase, DrawTypes.Setup);
-                        if (replacementCard != null) {
-                            //if (debugLog) //SlimeboundMod.logger.info("Drawing replacement: " + replacementCard.name);
-                            return replacementCard;
-                        } else {
-                            //if (debugLog) //SlimeboundMod.logger.info("Null was returned by replacement search.");
-                        }
-                    }
-                } else {
-                    //if (debugLog)
-                    //SlimeboundMod.logger.info("2 Attack cards already drawn. Finding Either->Attack->Setup replacement.");
-                    replacementCard = performCardSearch(drawPile, DrawTypes.EitherPhase, DrawTypes.Attack, DrawTypes.Setup);
-                    if (replacementCard != null) {
-                        //if (debugLog) //SlimeboundMod.logger.info("Drawing replacement: " + replacementCard.name);
-                        return replacementCard;
-                    } else {
-                        //if (debugLog) //SlimeboundMod.logger.info("Null was returned by replacement search.");
-                    }
-                }
-            }
-
-
-            //if (debugLog)
-            //SlimeboundMod.logger.info("WARNING: All draw logic has failed.  Drawing top card as a default: " + c.name);
-            return c;
-        } else {
-            //SlimeboundMod.logger.info("Drawing the last card in the deck, no logic used: " + c.name);
-            return c;
-        }
-
-    }
-
-    /*
     public void draw(final int numCards) {
         for (int i = 0; i < numCards; ++i) {
             if (!this.drawPile.isEmpty()) {
-                //final AbstractCard c = chooseCardToDraw(this.drawPile.group);
                 final AbstractCard c = this.drawPile.getTopCard();
                 AbstractRuinaBossCard cB = (AbstractRuinaBossCard) c;
                 cB.bossDarken();
@@ -763,25 +661,16 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
                 c.triggerWhenDrawn();
                 this.hand.addToHand(c);
                 this.drawPile.removeCard(c);
-                for (final AbstractPower p : this.powers) {
-                    p.onCardDraw(c);
-                }
-                for (final AbstractRelic r : this.relics) {
-                    r.onCardDraw(c);
-                }
+                for (final AbstractPower p : this.powers) { p.onCardDraw(c); }
+                for (final AbstractRelic r : this.relics) { r.onCardDraw(c); }
             }
         }
     }
-    */
 
     public void onCardDrawOrDiscard() {
-        for (final AbstractPower p : this.powers) {
-            p.onDrawOrDiscard();
-        }
-        for (final AbstractRelic r : this.relics) {
-            r.onDrawOrDiscard();
-        }
-        if (this.hasPower("Corruption")) {
+        for (final AbstractPower p : this.powers) { p.onDrawOrDiscard(); }
+        for (final AbstractRelic r : this.relics) { r.onDrawOrDiscard(); }
+        if (this.hasPower(CorruptionPower.POWER_ID)) {
             for (final AbstractCard c : this.hand.group) {
                 if (c.type == AbstractCard.CardType.SKILL && c.costForTurn != 0) {
                     c.modifyCostForCombat(-9);
@@ -835,11 +724,10 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         }
         this.energyPanel.update();
         this.limbo.update();
-        /*
         this.exhaustPile.update();
         this.drawPile.update();
         this.discardPile.update();
-        */
+
         this.hand.update();
         this.hand.updateHoverLogic();
         for (final AbstractPower p : this.powers) {
@@ -1038,14 +926,8 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
             for (final AbstractCard c : this.hand.group) {
                 c.tookDamage();
             }
-            /*
-            for (final AbstractCard c : this.discardPile.group) {
-                c.tookDamage();
-            }
-            for (final AbstractCard c : this.drawPile.group) {
-                c.tookDamage();
-            }
-            */
+            for (final AbstractCard c : this.discardPile.group) { c.tookDamage(); }
+            for (final AbstractCard c : this.drawPile.group) { c.tookDamage(); }
         }
     }
 
@@ -1054,14 +936,8 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         for (final AbstractCard c : this.hand.group) {
             c.didDiscard();
         }
-        /*
-        for (final AbstractCard c : this.discardPile.group) {
-            c.didDiscard();
-        }
-        for (final AbstractCard c : this.drawPile.group) {
-            c.didDiscard();
-        }
-        */
+        for (final AbstractCard c : this.discardPile.group) { c.didDiscard(); }
+        for (final AbstractCard c : this.drawPile.group) { c.didDiscard(); }
     }
 
     @Override
@@ -1089,26 +965,19 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         this.cardInUse = null;
 
 
-        // this.drawPile.initializeDeck(this.masterDeck);
-
-        //this.drawPile.clear();
-        //CardGroup copy = new CardGroup(this.masterDeck, CardGroup.CardGroupType.DRAW_PILE);
-        //for (AbstractCard c : copy.group) {
-        //    this.drawPile.addToBottom(c);
-        //}
-
+        this.drawPile.initializeDeck(this.masterDeck);
+        this.drawPile.clear();
+        CardGroup copy = new CardGroup(this.masterDeck, CardGroup.CardGroupType.DRAW_PILE);
+        for (AbstractCard c : copy.group) { this.drawPile.addToBottom(c); }
         AbstractDungeon.overlayMenu.endTurnButton.enabled = false;
         this.hand.clear();
-        /*
         this.discardPile.clear();
         this.exhaustPile.clear();
-        */
         if (this.hasRelic("SlaversCollar")) { ((SlaversCollar) this.getRelic("SlaversCollar")).beforeEnergyPrep(); }
         this.energy.prep();
         this.powers.clear();
         this.healthBarUpdatedEvent();
         this.applyPreCombatLogic();
-
     }
 
     public ArrayList<String> getRelicNames() {
@@ -1169,26 +1038,23 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
     }
 
     public void applyStartOfTurnCards() {
-        /*
+
         for (final AbstractCard c : this.drawPile.group) {
             if (c != null) {
                 c.atTurnStart();
             }
         }
-        */
         for (final AbstractCard c : this.hand.group) {
             if (c != null) {
                 c.atTurnStart();
                 c.triggerWhenDrawn();
             }
         }
-        /*
         for (final AbstractCard c : this.discardPile.group) {
             if (c != null) {
                 c.atTurnStart();
             }
         }
-        */
     }
 
     public boolean relicsDoneAnimating() {
