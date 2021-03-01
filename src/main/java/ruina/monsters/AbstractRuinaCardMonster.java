@@ -25,22 +25,21 @@ import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
 import com.megacrit.cardcrawl.vfx.combat.DeckPoofEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
-import ruina.monsters.eventBoss.AbstractBossDeckArchetype;
-import ruina.monsters.eventBoss.AbstractRuinaBossCard;
-import ruina.monsters.eventBoss.AbstractRuinaBossRelic;
-import ruina.monsters.eventBoss.EnemyCardGroup;
-import ruina.monsters.eventBoss.actions.util.*;
-import ruina.monsters.eventBoss.manager.EnemyEnergyManager;
-import ruina.monsters.eventBoss.ui.EnemyEnergyPanel;
+import ruina.monsters.eventBoss.core.AbstractBossDeckArchetype;
+import ruina.monsters.eventBoss.core.AbstractRuinaBossCard;
+import ruina.monsters.eventBoss.core.AbstractRuinaBossRelic;
+import ruina.monsters.eventBoss.core.EnemyCardGroup;
+import ruina.monsters.eventBoss.core.actions.util.*;
+import ruina.monsters.eventBoss.core.manager.EnemyEnergyManager;
+import ruina.monsters.eventBoss.core.ui.EnemyEnergyPanel;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 import static com.megacrit.cardcrawl.cards.CardGroup.DRAW_PILE_X;
 import static com.megacrit.cardcrawl.cards.CardGroup.DRAW_PILE_Y;
-import static ruina.monsters.eventBoss.enums.cardENUMS.CHR_ATTACK;
-import static ruina.monsters.eventBoss.enums.cardENUMS.CHR_SETUP;
+import static ruina.monsters.eventBoss.core.enums.cardENUMS.CHR_ATTACK;
+import static ruina.monsters.eventBoss.core.enums.cardENUMS.CHR_SETUP;
 
 public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
 
