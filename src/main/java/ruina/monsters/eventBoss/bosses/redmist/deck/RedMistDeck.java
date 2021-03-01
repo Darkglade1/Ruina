@@ -1,4 +1,14 @@
 package ruina.monsters.eventBoss.bosses.redmist.deck;
 
-public class RedMistDeck extends Ab {
+import ruina.monsters.eventBoss.core.AbstractBossDeckArchetype;
+
+public class RedMistDeck extends AbstractBossDeckArchetype {
+
+    public RedMistDeck(String id) {
+        super(id);
+    }
+
+    public void initialize() {
+
+    }
 }

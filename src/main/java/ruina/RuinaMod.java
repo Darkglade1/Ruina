@@ -133,7 +133,7 @@ public class RuinaMod implements
     private static final String POWER_L_ART = getModID() + "Resources/images/1024/card.png";
     private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
 
-    //This is for the in-game mod settings panel.
+    //This is for the in-EnemyEnergyPanel mod settings panel.
     private static final String MODNAME = "Ruina";
     private static final String AUTHOR = "Darkglade";
     private static final String DESCRIPTION = "An alternate Act mod inspired by Library of Ruina.";

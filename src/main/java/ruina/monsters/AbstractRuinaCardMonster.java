@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.CardGroup.CardGroupType;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -81,14 +82,14 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         //enum later
         //this.chosenClass = playerClass;
         this.energyPanel = new EnemyEnergyPanel(this);
-        this.hand = new EnemyCardGroup(CardGroup.CardGroupType.HAND, this);
+        this.hand = new EnemyCardGroup(CardGroupType.HAND, this);
 
-        this.masterDeck = new EnemyCardGroup(CardGroup.CardGroupType.MASTER_DECK, this);
-        this.drawPile = new EnemyCardGroup(CardGroup.CardGroupType.DRAW_PILE, this);
-        this.discardPile = new EnemyCardGroup(CardGroup.CardGroupType.DISCARD_PILE, this);
-        this.exhaustPile = new EnemyCardGroup(CardGroup.CardGroupType.EXHAUST_PILE, this);
+        this.masterDeck = new EnemyCardGroup(CardGroupType.MASTER_DECK, this);
+        this.drawPile = new EnemyCardGroup(CardGroupType.DRAW_PILE, this);
+        this.discardPile = new EnemyCardGroup(CardGroupType.DISCARD_PILE, this);
+        this.exhaustPile = new EnemyCardGroup(CardGroupType.EXHAUST_PILE, this);
 
-        this.limbo = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED, this);
+        this.limbo = new EnemyCardGroup(CardGroupType.UNSPECIFIED, this);
         this.masterHandSize = 3;
         this.gameHandSize = 3;
         this.relics = new ArrayList<>();
@@ -102,14 +103,13 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         //enum later
         //this.chosenClass = playerClass;
         this.energyPanel = new EnemyEnergyPanel(this);
-        this.hand = new EnemyCardGroup(CardGroup.CardGroupType.HAND, this);
-        /*
+        this.hand = new EnemyCardGroup(CardGroupType.HAND, this);
+
         this.masterDeck = new EnemyCardGroup(CardGroupType.MASTER_DECK, this);
         this.drawPile = new EnemyCardGroup(CardGroupType.DRAW_PILE, this);
         this.discardPile = new EnemyCardGroup(CardGroupType.DISCARD_PILE, this);
         this.exhaustPile = new EnemyCardGroup(CardGroupType.EXHAUST_PILE, this);
-        */
-        this.limbo = new EnemyCardGroup(CardGroup.CardGroupType.UNSPECIFIED, this);
+        this.limbo = new EnemyCardGroup(CardGroupType.UNSPECIFIED, this);
         this.masterHandSize = 3;
         this.gameHandSize = 3;
         this.relics = new ArrayList<>();
@@ -173,7 +173,7 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
             }
         }
         */
-        maxHealth += chosenArchetype.maxHPModifier;
+        //maxHealth += chosenArchetype.maxHPModifier;
         if (AbstractDungeon.ascensionLevel >= 9) {
             maxHealth = Math.round(maxHealth * 1.2F);
         }
@@ -264,11 +264,13 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
             c.resetAttributes();
         }
         */
+        /*
         for (final AbstractCard c : this.hand.group) {
             c.resetAttributes();
         }
-        addToBot(new DelayedActionAction(new CharbossTurnstartDrawAction()));
 
+         */
+        addToBot(new DelayedActionAction(new CharbossTurnstartDrawAction()));
     }
 
 
@@ -966,7 +968,7 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
 
         this.drawPile.initializeDeck(this.masterDeck);
         this.drawPile.clear();
-        CardGroup copy = new CardGroup(this.masterDeck, CardGroup.CardGroupType.DRAW_PILE);
+        CardGroup copy = new CardGroup(this.masterDeck, CardGroupType.DRAW_PILE);
         for (AbstractCard c : copy.group) { this.drawPile.addToBottom(c); }
         AbstractDungeon.overlayMenu.endTurnButton.enabled = false;
         this.hand.clear();
