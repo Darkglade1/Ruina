@@ -33,6 +33,8 @@ import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
 import ruina.monsters.act3.blueStar.Worshipper;
+import ruina.monsters.act3.heart.HeartOfAspiration;
+import ruina.monsters.act3.heart.LungsOfCraving;
 import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
@@ -114,8 +116,10 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Bloodbath");
                 } else if (mo instanceof SnowQueen) {
                     this.bg = this.atlas.findRegion("mod/Snow");
+                } else if (mo instanceof HeartOfAspiration || mo instanceof LungsOfCraving) {
+                    this.bg = this.atlas.findRegion("mod/Heart");
                 } else {
-                    this.bg = this.atlas.findRegion("mod/NightForest");
+                    setBgs();
                 }
             }
         } else {

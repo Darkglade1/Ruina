@@ -83,6 +83,8 @@ import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.bigBird.Sage;
 import ruina.monsters.act3.blueStar.BlueStar;
+import ruina.monsters.act3.heart.HeartOfAspiration;
+import ruina.monsters.act3.heart.LungsOfCraving;
 import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
@@ -458,6 +460,12 @@ public class RuinaMod implements
                         new PriceOfSilence(-50.0F, 0.0F),
                 }));
         BaseMod.addMonster(Bloodbath.ID, (BaseMod.GetMonster) Bloodbath::new);
+        BaseMod.addMonster(HeartOfAspiration.ID, "Heart of Aspiration", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new LungsOfCraving(-450.0F, 0.0F),
+                        new LungsOfCraving(-150.0F, 0.0F),
+                        new HeartOfAspiration(150.0F, 0.0F)
+                }));
 
     }
 

@@ -455,5 +455,23 @@
     "NAME": "Prison of Ice",
     "DIALOG": [
     ]
+  },
+  "${ModID}:HeartOfAspiration": {
+    "MOVES": [
+      "Pulsation",
+      "Beats of Aspiration"
+    ],
+    "NAME": "Heart of Aspiration",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:LungsOfCraving": {
+    "MOVES": [
+      "Fervent Beats",
+      "Retracting Beats"
+    ],
+    "NAME": "Lungs of Craving",
+    "DIALOG": [
+    ]
   }
 }

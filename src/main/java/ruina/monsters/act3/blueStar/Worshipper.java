@@ -53,7 +53,7 @@ public class Worshipper extends AbstractRuinaMonster
     private static final float STRONG_ATK_HP_THRESHOLD = 0.5f;
     private static final float MEET_AGAIN_HP_THRESHOLD = 0.25f;
 
-    private final int MARTYR_DAMAGE = calcAscensionSpecial(20);
+    private final int MARTYR_DAMAGE = calcAscensionSpecial(15);
     private final int PARALYSIS = calcAscensionSpecial(1);
 
     public static final String POWER_ID = makeID("Martyr");

@@ -22,6 +22,7 @@ import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
+import ruina.monsters.act3.heart.HeartOfAspiration;
 import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 
@@ -89,7 +90,7 @@ public class Atziluth extends AbstractRuinaDungeon {
 
     protected void generateWeakEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo("3 Darklings", 2.0F));
+        monsters.add(new MonsterInfo(HeartOfAspiration.ID, 2.0F));
         monsters.add(new MonsterInfo(Bloodbath.ID, 2.0F));
         monsters.add(new MonsterInfo("3 Shapes", 2.0F));
         MonsterInfo.normalizeWeights(monsters);
@@ -103,7 +104,6 @@ public class Atziluth extends AbstractRuinaDungeon {
         monsters.add(new MonsterInfo("4 Shapes", 1.0F));
         monsters.add(new MonsterInfo("Maw", 1.0F));
         monsters.add(new MonsterInfo(PunishingBird.ID, 1.0F));
-        monsters.add(new MonsterInfo("Jaw Worm Horde", 1.0F));
         monsters.add(new MonsterInfo(PriceOfSilence.ID, 1.0F));
         monsters.add(new MonsterInfo("Writhing Mass", 1.0F));
         MonsterInfo.normalizeWeights(monsters);
