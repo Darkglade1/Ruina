@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -225,7 +226,7 @@ public class Twilight extends AbstractRuinaMonster
                     }
                     @Override
                     public void updateDescription() {
-                        description = BIG_EGG_POWER_DESCRIPTIONS[0] + amount + BIG_EGG_POWER_DESCRIPTIONS[1];
+                        description = BIG_EGG_POWER_DESCRIPTIONS[0] + amount + " " + FontHelper.colorString(status.name, "y") + BIG_EGG_POWER_DESCRIPTIONS[1];
                     }
                 };
                 applyToTarget(this, this, eggPower);

@@ -169,7 +169,7 @@
   },
   "${ModID}:BigEgg": {
     "NAME": "Big Egg",
-    "DESCRIPTIONS": ["Whenever you receive unblocked attack damage from this creature, shuffle #b", " #yDazzled into your draw pile."]
+    "DESCRIPTIONS": ["Whenever you receive unblocked attack damage from this creature, shuffle #b", " into your draw pile."]
   },
   "${ModID}:SmallEgg": {
     "NAME": "Small Egg",
