@@ -105,5 +105,13 @@
   "${ModID}:CHR_UpstandingSlash": {
     "NAME": "Upstanding Slash",
     "DESCRIPTION": "Deal !D! damage !M! times. NL If 8 or more damage was dealt, draw 1 card and reduce the cost of all other *Upstanding *Slashes by 1."
+  },
+  "${ModID}:CHR_LevelSlash": {
+    "NAME": "Level Slash",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If 8 or more damage was dealt, gain [E] [E] and reduce the cost of all other *Level *Slashes by 1."
+  },
+  "${ModID}:CHR_Spear": {
+    "NAME": "Spear",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If 8 or more damage was dealt, draw 1 card and reduce the cost of all other *Spears by 1."
   }
 }
