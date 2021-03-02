@@ -113,7 +113,7 @@ public class GuardianApostle extends AbstractRuinaMonster {
             case GIVE_US_REST:
                 specialAnimation();
                 for (AbstractMonster m : monsterList()) {
-                    if (m instanceof GuardianApostle) {
+                    if (m instanceof GuardianApostle && !m.halfDead) {
                         block(m, giveUsRestGuardian);
                     } else {
                         block(m, giveUsRestBoss);

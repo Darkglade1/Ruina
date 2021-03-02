@@ -111,7 +111,7 @@ public class Twilight extends AbstractRuinaMonster
     }
 
     public Twilight(final float x, final float y) {
-        super(NAME, ID, 500, -5.0F, 0, 330.0f, 305.0f, null, x, y);
+        super(NAME, ID, 550, -5.0F, 0, 330.0f, 305.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Twilight/Spriter/Twilight.scml"));
         this.bird = new BetterSpriterAnimation(makeMonsterPath("Twilight/Bird/Bird.scml"));
 
@@ -126,7 +126,7 @@ public class Twilight extends AbstractRuinaMonster
         this.setHp(calcAscensionTankiness(this.maxHealth));
         dmgThreshold = (int)(this.maxHealth * HP_THRESHOLD_PERCENT);
 
-        addMove(PEACE_FOR_ALL, Intent.ATTACK, calcAscensionDamage(36));
+        addMove(PEACE_FOR_ALL, Intent.ATTACK, calcAscensionDamage(38));
         addMove(SURVEILLANCE, Intent.ATTACK_DEBUFF, calcAscensionDamage(16));
         addMove(TORN_MOUTH, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
         addMove(TILTED_SCALE, Intent.DEFEND_DEBUFF);

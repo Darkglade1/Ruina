@@ -22,6 +22,7 @@ public class FrozenMod extends AbstractCardModifier {
     private static final TextureRegion FROZEN_TEXTURE_REGION = new TextureRegion(FROZEN_TEXTURE);
 
     private boolean alreadyRetain = false;
+    private boolean alreadyShuffleBack = false;
 
     @Override
     public AbstractCardModifier makeCopy() {
@@ -32,9 +33,13 @@ public class FrozenMod extends AbstractCardModifier {
     public void onInitialApplication(AbstractCard card) {
         if (!card.selfRetain) {
             card.selfRetain = true;
-            alreadyRetain = false;
         } else {
             alreadyRetain = true;
+        }
+        if (!card.shuffleBackIntoDrawPile) {
+            card.shuffleBackIntoDrawPile = true;
+        } else {
+            alreadyShuffleBack = true;
         }
     }
 
@@ -42,6 +47,9 @@ public class FrozenMod extends AbstractCardModifier {
     public void onRemove(AbstractCard card) {
         if (!alreadyRetain) {
             card.selfRetain = false;
+        }
+        if (!alreadyShuffleBack) {
+            card.shuffleBackIntoDrawPile = false;
         }
     }
 
