@@ -340,11 +340,9 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
             this.applyStartOfTurnPostDrawRelics();
             this.applyStartOfTurnPostDrawPowers();
             if (!AbstractDungeon.player.hasRelic(RunicDome.ID)) {
-                addToBot(new CharbossSortHandAction());
                 addToBot(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        isDone = true;
                         int budget = energyPanel.getCurrentEnergy();
                         for (AbstractCard c : AbstractRuinaCardMonster.boss.hand.group) {
                             if (c.costForTurn <= budget && c.costForTurn != -2 && c instanceof AbstractRuinaBossCard) {
@@ -354,12 +352,12 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
                                 budget += ((AbstractRuinaBossCard) c).energyGeneratedIfPlayed;
                                 if (budget < 0) budget = 0;
                             }
-                            else { ((AbstractRuinaBossCard) c).bossDarken(); }
                         }
                         for (AbstractCard c : AbstractRuinaCardMonster.boss.hand.group) {
                             AbstractRuinaBossCard cB = (AbstractRuinaBossCard) c;
                             cB.refreshIntentHbLocation();
                         }
+                        isDone = true;
                     }
                 });
             }
