@@ -21,7 +21,7 @@ import static ruina.RuinaMod.makeID;
 public class CHR_Spear extends AbstractRuinaBossCard {
     public final static String ID = makeID(CHR_Spear.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String IMG_PATH = makeCardPath(CHR_UpstandingSlash.class.getSimpleName() + ".png");
+    private static final String IMG_PATH = makeCardPath("Spear.png");
     private static int COST = 2;
     private int DAMAGE = 3;
     private int UPG_DAMAGE = 2;
@@ -31,7 +31,7 @@ public class CHR_Spear extends AbstractRuinaBossCard {
 
 
     public CHR_Spear() {
-        super(ID, cardStrings.NAME, IMG_PATH, COST, cardStrings.DESCRIPTION, CardType.ATTACK, RuinaMod.Enums.EGO, CardRarity.RARE, CardTarget.NONE, AbstractMonster.Intent.ATTACK, true);
+        super(ID, cardStrings.NAME, IMG_PATH, COST, cardStrings.DESCRIPTION, CardType.ATTACK, CardColor.RED, CardRarity.RARE, CardTarget.NONE, AbstractMonster.Intent.ATTACK, true);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = HITS;
     }
