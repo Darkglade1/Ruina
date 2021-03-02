@@ -32,7 +32,7 @@ public class CHR_LevelSlash extends AbstractRuinaBossCard {
 
 
     public CHR_LevelSlash() {
-        super(ID, cardStrings.NAME, IMG_PATH, COST, cardStrings.DESCRIPTION, CardType.ATTACK, RuinaMod.Enums.EGO, CardRarity.RARE, CardTarget.NONE, AbstractMonster.Intent.ATTACK);
+        super(ID, cardStrings.NAME, IMG_PATH, COST, cardStrings.DESCRIPTION, CardType.ATTACK, RuinaMod.Enums.EGO, CardRarity.RARE, CardTarget.NONE, AbstractMonster.Intent.ATTACK, true);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = HITS;
     }

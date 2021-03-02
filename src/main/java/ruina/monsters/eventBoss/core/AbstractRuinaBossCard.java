@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
@@ -105,7 +106,7 @@ public abstract class AbstractRuinaBossCard extends AbstractCard {
         super(id, name, img, cost, rawDescription, type, color, rarity, target);
         this.owner = AbstractRuinaCardMonster.boss;
         this.limit = 99;
-
+        CommonKeywordIconsField.useIcons.set(this, true);
     }
 
     public AbstractRuinaBossCard(String id, String name, String img, int cost, String rawDescription, CardType type,
@@ -114,7 +115,7 @@ public abstract class AbstractRuinaBossCard extends AbstractCard {
         this.owner = AbstractRuinaCardMonster.boss;
         this.limit = 99;
         this.intent = intent;
-
+        CommonKeywordIconsField.useIcons.set(this, true);
     }
 
     public AbstractRuinaBossCard(String id, String name, String img, int cost, String rawDescription, CardType type,
@@ -127,7 +128,7 @@ public abstract class AbstractRuinaBossCard extends AbstractCard {
             this.portrait = new TextureAtlas.AtlasRegion(new Texture("ruinaResources/images/cards/" + img + ".png"), 0, 0, 250, 190);
             this.portraitImg = new Texture("ruinaResources/images/cards/" + img + "_p.png");
         }
-
+        CommonKeywordIconsField.useIcons.set(this, true);
     }
 
     public AbstractRuinaBossCard(AbstractCard baseCard) {
@@ -135,9 +136,8 @@ public abstract class AbstractRuinaBossCard extends AbstractCard {
                 baseCard.color, baseCard.rarity, baseCard.target);
         this.owner = AbstractRuinaCardMonster.boss;
         this.limit = 99;
-        if (this.type == CardType.CURSE || this.type == CardType.STATUS) {
-            this.forceDraw = true;
-        }
+        if (this.type == CardType.CURSE || this.type == CardType.STATUS) { this.forceDraw = true; }
+        CommonKeywordIconsField.useIcons.set(this, true);
     }
 
     public static int statusValue() {

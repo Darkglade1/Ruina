@@ -29,7 +29,7 @@ public class CHR_GreaterSplitVertical extends AbstractRuinaBossCard {
     private int BLEED = 3;
 
     public CHR_GreaterSplitVertical() {
-        super(ID, cardStrings.NAME, IMG_PATH, COST, cardStrings.DESCRIPTION, CardType.ATTACK, RuinaMod.Enums.EGO, CardRarity.RARE, CardTarget.NONE, AbstractMonster.Intent.ATTACK);
+        super(ID, cardStrings.NAME, IMG_PATH, COST, cardStrings.DESCRIPTION, CardType.ATTACK, RuinaMod.Enums.EGO, CardRarity.RARE, CardTarget.NONE, AbstractMonster.Intent.ATTACK, true);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = BLEED;
     }
