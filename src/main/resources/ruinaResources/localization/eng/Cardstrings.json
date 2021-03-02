@@ -101,5 +101,9 @@
   "${ModID}:StolenTime": {
     "NAME": "Stolen Time",
     "DESCRIPTION": "Draw !M! card."
+  },
+  "${ModID}:CHR_UpstandingSlash": {
+    "NAME": "Upstanding Slash",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If 8 or more damage was dealt, draw 1 card and reduce the cost of all other *Upstanding *Slashes by 1."
   }
 }

@@ -1,5 +1,6 @@
 package ruina.monsters.eventBoss.core.power;
 
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -8,6 +9,7 @@ import ruina.monsters.AbstractRuinaCardMonster;
 import ruina.monsters.eventBoss.core.actions.util.EnemyDrawCardAction;
 
 import static ruina.RuinaMod.makeID;
+import static ruina.util.Wiz.atb;
 
 public class EnemyDrawPower extends AbstractPower {
     public static final String POWER_ID = makeID(EnemyDrawPower.class.getSimpleName());
@@ -38,12 +40,8 @@ public class EnemyDrawPower extends AbstractPower {
             } else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[3]; }
             this.type = PowerType.BUFF;
         } else {
-            if (this.amount == -1) {
-                this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
-            } else {
-                this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[4];
-            }
-
+            if (this.amount == -1) { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[2];
+            } else { this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[4]; }
             this.type = PowerType.DEBUFF;
         }
 
@@ -53,5 +51,6 @@ public class EnemyDrawPower extends AbstractPower {
     public void atStartOfTurnPostDraw() {
         this.flash();
         addToBot(new EnemyDrawCardAction((AbstractRuinaCardMonster) this.owner, this.amount));
+        atb(new ReducePowerAction(this.owner, this.owner, this, 1));
     }
 }
