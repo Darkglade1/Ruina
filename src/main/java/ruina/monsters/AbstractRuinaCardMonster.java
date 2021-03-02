@@ -267,7 +267,7 @@ public abstract class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         this.applyStartOfTurnRelics();
         this.applyStartOfTurnPreDrawCards();
         this.applyStartOfTurnCards();
-        //this.applyStartOfTurnPowers();
+        this.applyStartOfTurnPowers();
 
     }
 
@@ -320,7 +320,15 @@ public abstract class AbstractRuinaCardMonster extends AbstractRuinaMonster {
             this.applyStartOfTurnPostDrawRelics();
             this.applyStartOfTurnPostDrawPowers();
             if (!AbstractDungeon.player.hasRelic(RunicDome.ID)) {
+                addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        AbstractRuinaCardMonster.boss.sortHand();
+                        this.isDone = true;
+                    }
+                });
                 //addToBot(new CharbossSortHandAction());
+                /*
                 addToBot(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -344,10 +352,12 @@ public abstract class AbstractRuinaCardMonster extends AbstractRuinaMonster {
                         }
                     }
                 });
-            }
 
+                 */
+            }
             this.cardsPlayedThisTurn = 0;
             this.attacksPlayedThisTurn = 0;
+
         }
     }
 
@@ -418,8 +428,12 @@ public abstract class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         */
     }
 
-    /*
+
     public void sortHand() {
+        for(AbstractCard c: hand.group){
+            ((AbstractRuinaBossCard) c).bossLighten();
+            ((AbstractRuinaBossCard) c).destroyIntent();
+        }
         ArrayList<AbstractRuinaBossCard> cardsByValue = new ArrayList<AbstractRuinaBossCard>();
         ArrayList<AbstractRuinaBossCard> affordableCards = new ArrayList<AbstractRuinaBossCard>();
         ArrayList<AbstractRuinaBossCard> unaffordableCards = new ArrayList<AbstractRuinaBossCard>();
@@ -487,21 +501,19 @@ public abstract class AbstractRuinaCardMonster extends AbstractRuinaMonster {
                 budget += c.energyGeneratedIfPlayed;
                 if (budget < 0) budget = 0;
             }
-                /*
-                if (c.type == AbstractCard.CardType.CURSE && boss.hasRelic("Blue Candle")) {
-                    c.createIntent();
-                } else if (c.type == AbstractCard.CardType.STATUS && boss.hasRelic("Medical Kit")) {
-                    c.createIntent();
-                } else {
-        }
-        this.hand.group = sortedCards;
-        this.hand.refreshHandLayout();
-        for (AbstractCard c : this.hand.group) {
-            AbstractRuinaBossCard cB = (AbstractRuinaBossCard) c;
-            cB.refreshIntentHbLocation();
+            if (c.type == AbstractCard.CardType.CURSE && boss.hasRelic("Blue Candle")) {
+                c.createIntent();
+            } else if (c.type == AbstractCard.CardType.STATUS && boss.hasRelic("Medical Kit")) {
+                c.createIntent();
+            }
+            this.hand.group = sortedCards;
+            this.hand.refreshHandLayout();
+            for (AbstractCard card : this.hand.group) {
+                AbstractRuinaBossCard cB = (AbstractRuinaBossCard) card;
+                cB.refreshIntentHbLocation();
+            }
         }
     }
-    */
 
     public int getIntentDmg() {
         int totalIntentDmg = -1;

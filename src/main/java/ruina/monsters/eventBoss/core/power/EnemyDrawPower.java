@@ -49,7 +49,7 @@ public class EnemyDrawPower extends AbstractPower {
     }
 
     @Override
-    public void atStartOfTurnPostDraw() {
+    public void onEnergyRecharge() {
         this.flash();
         addToBot(new EnemyDrawCardAction((AbstractRuinaCardMonster) this.owner, this.amount));
         atb(new RemoveSpecificPowerAction(this.owner, this.owner, this));
