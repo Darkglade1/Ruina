@@ -1,5 +1,6 @@
 package ruina.monsters.eventBoss.bosses.redmist.deck;
 
+import ruina.monsters.eventBoss.bosses.redmist.cards.CHR_GreaterSplitVertical;
 import ruina.monsters.eventBoss.bosses.redmist.cards.CHR_LevelSlash;
 import ruina.monsters.eventBoss.bosses.redmist.cards.CHR_Spear;
 import ruina.monsters.eventBoss.bosses.redmist.cards.CHR_UpstandingSlash;
@@ -23,6 +24,7 @@ public class RedMistDeck extends AbstractBossDeckArchetype {
         addCardToList(new CHR_Spear());
         addCardToList(new CHR_Spear());
         addCardToList(new CHR_Spear());
-
+        addCardToList(new CHR_GreaterSplitVertical());
+        // onrush? maybe.
     }
 }
