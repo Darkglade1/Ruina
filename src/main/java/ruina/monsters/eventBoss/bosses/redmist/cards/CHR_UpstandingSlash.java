@@ -75,6 +75,7 @@ public class CHR_UpstandingSlash extends AbstractRuinaBossCard {
                         }
                     }
                 }
+                this.isDone = true;
             }
         });
     }

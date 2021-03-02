@@ -354,9 +354,7 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
                                 budget += ((AbstractRuinaBossCard) c).energyGeneratedIfPlayed;
                                 if (budget < 0) budget = 0;
                             }
-                            else if (c.costForTurn == -2 && c.type == AbstractCard.CardType.CURSE && c.color == AbstractCard.CardColor.CURSE) {
-                                ((AbstractRuinaBossCard) c).bossLighten();
-                            }
+                            else { ((AbstractRuinaBossCard) c).bossDarken(); }
                         }
                         for (AbstractCard c : AbstractRuinaCardMonster.boss.hand.group) {
                             AbstractRuinaBossCard cB = (AbstractRuinaBossCard) c;

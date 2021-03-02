@@ -76,6 +76,7 @@ public class CHR_Spear extends AbstractRuinaBossCard {
                         }
                     }
                 }
+                this.isDone = true;
             }
         });
     }

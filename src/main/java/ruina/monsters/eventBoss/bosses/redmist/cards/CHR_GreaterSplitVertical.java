@@ -45,12 +45,11 @@ public class CHR_GreaterSplitVertical extends AbstractRuinaBossCard {
             @Override
             public void update() {
                 int damageThreshold = 0;
-                for(int i = 0; i < magicNumber; i += 1){
-                    DamageInfo damageInfo = new DamageInfo(m, damage, damageTypeForTurn);
-                    p.damage(damageInfo);
-                    damageThreshold += p.lastDamageTaken;
-                }
-                if(damageThreshold > 0){ atb(new ApplyPowerAction(m, m, new Bleed(p, magicNumber, true))); }
+                DamageInfo damageInfo = new DamageInfo(m, damage, damageTypeForTurn);
+                p.damage(damageInfo);
+                damageThreshold += p.lastDamageTaken;
+                if(damageThreshold > 0){ atb(new ApplyPowerAction(p, p, new Bleed(p, magicNumber, true))); }
+                this.isDone = true;
             }
         });
     }

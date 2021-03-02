@@ -39,9 +39,9 @@ public class EnemyCardGroup extends CardGroup {
 
     public void moveToDiscardPile(final AbstractCard c) {
         this.resetCardBeforeMoving(c);
-        //c.darken(false);
+        c.darken(false);
         System.out.printf(c.name + " DARKEN-CANCELED");
-        //this.owner.discardPile.addToTop(c);
+        this.owner.discardPile.addToTop(c);
         this.owner.onCardDrawOrDiscard();
     }
 
@@ -55,7 +55,7 @@ public class EnemyCardGroup extends CardGroup {
         c.triggerOnExhaust();
         this.resetCardBeforeMoving(c);
         AbstractDungeon.effectList.add(new ExhaustCardEffect(c));
-        //this.owner.exhaustPile.addToTop(c);
+        this.owner.exhaustPile.addToTop(c);
         this.owner.onCardDrawOrDiscard();
     }
 

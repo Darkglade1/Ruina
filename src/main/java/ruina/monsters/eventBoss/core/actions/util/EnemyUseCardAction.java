@@ -102,7 +102,6 @@ public class EnemyUseCardAction extends AbstractGameAction {
                         AbstractRuinaCardMonster.boss.getRelic("Strange Spoon").flash();
                     }
                     if (this.reboundCard) {
-
                         //SlimeboundMod.logger.info("detected rebound card");
                         AbstractRuinaCardMonster.boss.hand.moveToDeck(this.targetCard, false);
                     } else if (this.targetCard.shuffleBackIntoDrawPile) {

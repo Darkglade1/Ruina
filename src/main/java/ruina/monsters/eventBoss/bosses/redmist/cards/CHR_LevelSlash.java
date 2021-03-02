@@ -77,6 +77,7 @@ public class CHR_LevelSlash extends AbstractRuinaBossCard {
                         }
                     }
                 }
+                this.isDone = true;
             }
         });
     }
