@@ -13,23 +13,25 @@ import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaCardMonster;
 import ruina.monsters.eventBoss.core.AbstractRuinaBossCard;
 import ruina.monsters.eventBoss.core.power.EnemyDrawPower;
+import ruina.monsters.eventBoss.core.power.EnemyEnergizedPower;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.makeCardPath;
+import static ruina.RuinaMod.makeID;
 
 @AutoAdd.Ignore
-public class CHR_UpstandingSlash extends AbstractRuinaBossCard {
+public class CHR_LevelSlash extends AbstractRuinaBossCard {
     public final static String ID = makeID(CHR_UpstandingSlash.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String IMG_PATH = makeCardPath(CHR_UpstandingSlash.class.getSimpleName() + ".png");
     private static int COST = 2;
-    private int DAMAGE = 7;
+    private int DAMAGE = 5;
     private int UPG_DAMAGE = 2;
     private int HITS = 2;
-    private int DRAW = 1;
+    private int ENERGY = 2;
     private int THRESHOLD = 8;
 
 
-    public CHR_UpstandingSlash() {
+    public CHR_LevelSlash() {
         super(ID, cardStrings.NAME, IMG_PATH, COST, cardStrings.DESCRIPTION, CardType.ATTACK, RuinaMod.Enums.EGO, CardRarity.RARE, CardTarget.NONE, AbstractMonster.Intent.ATTACK);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = HITS;
@@ -52,7 +54,7 @@ public class CHR_UpstandingSlash extends AbstractRuinaBossCard {
                     damageThreshold += p.lastDamageTaken;
                 }
                 if(damageThreshold >= THRESHOLD){
-                    atb(new ApplyPowerAction(m, m, new EnemyDrawPower(m, DRAW)));
+                    atb(new ApplyPowerAction(m, m, new EnemyEnergizedPower(m, ENERGY)));
                     for(AbstractCard c: AbstractRuinaCardMonster.boss.hand.group){
                         if(c.cost - 1 < 0){ c.cost = 0; }
                         else { c.cost -= 1; }

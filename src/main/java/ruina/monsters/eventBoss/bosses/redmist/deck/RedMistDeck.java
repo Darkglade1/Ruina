@@ -13,5 +13,8 @@ public class RedMistDeck extends AbstractBossDeckArchetype {
     public void initialize() {
         addRelic(new RedMistInfoRelic());
         addCardToList(new CHR_UpstandingSlash());
+        addCardToList(new CHR_UpstandingSlash());
+        addCardToList(new CHR_UpstandingSlash());
+
     }
 }
