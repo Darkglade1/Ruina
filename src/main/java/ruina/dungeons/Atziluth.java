@@ -8,15 +8,6 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
-import ruina.monsters.act2.BadWolf;
-import ruina.monsters.act2.KingOfGreed;
-import ruina.monsters.act2.KnightOfDespair;
-import ruina.monsters.act2.Mountain;
-import ruina.monsters.act2.Nosferatu;
-import ruina.monsters.act2.QueenOfHate;
-import ruina.monsters.act2.RoadHome;
-import ruina.monsters.act2.ServantOfWrath;
-import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
@@ -92,7 +83,7 @@ public class Atziluth extends AbstractRuinaDungeon {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo(HeartOfAspiration.ID, 2.0F));
         monsters.add(new MonsterInfo(Bloodbath.ID, 2.0F));
-        monsters.add(new MonsterInfo("3 Shapes", 2.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.BIRDS_3, 2.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateMonsterList(monsters, count, false);
     }
@@ -100,12 +91,12 @@ public class Atziluth extends AbstractRuinaDungeon {
     protected void generateStrongEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo(BurrowingHeaven.ID, 1.0F));
-        monsters.add(new MonsterInfo("Transient", 1.0F));
-        monsters.add(new MonsterInfo("4 Shapes", 1.0F));
-        monsters.add(new MonsterInfo("Maw", 1.0F));
+        //monsters.add(new MonsterInfo("Transient", 1.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.BIRDS_4, 1.0F));
+        //monsters.add(new MonsterInfo("Maw", 1.0F));
         monsters.add(new MonsterInfo(PunishingBird.ID, 1.0F));
         monsters.add(new MonsterInfo(PriceOfSilence.ID, 1.0F));
-        monsters.add(new MonsterInfo("Writhing Mass", 1.0F));
+        //monsters.add(new MonsterInfo("Writhing Mass", 1.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateFirstStrongEnemy(monsters, this.generateExclusions());
         this.populateMonsterList(monsters, count, false);
@@ -120,38 +111,13 @@ public class Atziluth extends AbstractRuinaDungeon {
         this.populateMonsterList(monsters, count, true);
     }
 
+    @Override
     protected ArrayList<String> generateExclusions() {
         ArrayList<String> retVal = new ArrayList<>();
-        String var2 = (String)monsterList.get(monsterList.size() - 1);
-        byte var3 = -1;
-        switch(var2.hashCode()) {
-            case -500373089:
-                if (var2.equals("3 Shapes")) {
-                    var3 = 2;
-                }
-                break;
-            case 1014856122:
-                if (var2.equals("3 Darklings")) {
-                    var3 = 0;
-                }
-                break;
-            case 1679632599:
-                if (var2.equals("Orb Walker")) {
-                    var3 = 1;
-                }
+        String previous = monsterList.get(monsterList.size() - 1);
+        if (previous.equals(EncounterIDs.BIRDS_3)) {
+            retVal.add(EncounterIDs.BIRDS_4);
         }
-
-        switch(var3) {
-            case 0:
-                retVal.add("3 Darklings");
-                break;
-            case 1:
-                retVal.add("Orb Walker");
-                break;
-            case 2:
-                retVal.add("4 Shapes");
-        }
-
         return retVal;
     }
 }

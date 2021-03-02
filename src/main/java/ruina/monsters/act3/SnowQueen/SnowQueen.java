@@ -56,7 +56,7 @@ public class SnowQueen extends AbstractRuinaMonster
     private final int DEBUFF = calcAscensionSpecial(3);
     private final int BLOCK = calcAscensionTankiness(16);
     private final int STRENGTH = calcAscensionSpecial(3);
-    private final int METALLICIZE = calcAscensionSpecial(5);
+    private final int METALLICIZE = calcAscensionTankiness(5);
 
     public static final String POWER_ID = makeID("PromiseOfWinter");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

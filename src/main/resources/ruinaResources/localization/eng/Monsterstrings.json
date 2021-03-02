@@ -474,5 +474,23 @@
     "NAME": "Lungs of Craving",
     "DIALOG": [
     ]
+  },
+  "${ModID}:RunawayBird": {
+    "MOVES": [
+      "Sweep",
+      "Shriek"
+    ],
+    "NAME": "Runaway Bird",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:EyeballChick": {
+    "MOVES": [
+      "Stare",
+      "Pierce"
+    ],
+    "NAME": "Eyeball Chick",
+    "DIALOG": [
+    ]
   }
 }
