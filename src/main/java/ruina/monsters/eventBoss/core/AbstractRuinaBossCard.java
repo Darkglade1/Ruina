@@ -73,7 +73,6 @@ public abstract class AbstractRuinaBossCard extends AbstractCard {
     public int manualCustomDamageModifier = 0;
     public float manualCustomDamageModifierMult = 1;
     public boolean manualCustomVulnModifier = false;
-    public static boolean fakeStormPower = false;
     //TODO - Does Vuln get actually calculated anywhere?  this variable does not appear to be referenced
 
 
