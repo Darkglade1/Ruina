@@ -6,10 +6,12 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbRed;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
+import ruina.cards.AbstractRuinaCard;
 import ruina.monsters.AbstractRuinaCardMonster;
 import ruina.monsters.act3.bigBird.Sage;
 import ruina.monsters.eventBoss.bosses.redmist.deck.RedMistDeck;
 import ruina.monsters.eventBoss.core.AbstractBossDeckArchetype;
+import ruina.monsters.eventBoss.core.AbstractRuinaBossCard;
 import ruina.monsters.eventBoss.core.manager.EnemyEnergyManager;
 
 import static ruina.RuinaMod.makeMonsterPath;
@@ -41,6 +43,7 @@ public class RedMist extends AbstractRuinaCardMonster {
         archetype.initialize();
         currentHealth = maxHealth;
         chosenArchetype = archetype;
+        for(AbstractRuinaBossCard c: archetype.getCards()){ masterDeck.addToBottom(c); }
     }
 
 

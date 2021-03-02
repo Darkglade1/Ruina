@@ -46,4 +46,5 @@ public abstract class AbstractBossDeckArchetype {
 
     protected abstract void initialize();
     protected void addCardToList(AbstractRuinaBossCard c) { this.classGlobalCards.add(c); }
+    public ArrayList<AbstractRuinaBossCard> getCards() { return classGlobalCards; }
 }
