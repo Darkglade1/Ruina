@@ -1,6 +1,7 @@
 package ruina.monsters.eventBoss.core.power;
 
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -51,6 +52,6 @@ public class EnemyDrawPower extends AbstractPower {
     public void atStartOfTurnPostDraw() {
         this.flash();
         addToBot(new EnemyDrawCardAction((AbstractRuinaCardMonster) this.owner, this.amount));
-        atb(new ReducePowerAction(this.owner, this.owner, this, 1));
+        atb(new RemoveSpecificPowerAction(this.owner, this.owner, this));
     }
 }
