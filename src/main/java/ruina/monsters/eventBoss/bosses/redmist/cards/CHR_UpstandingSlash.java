@@ -81,6 +81,6 @@ public class CHR_UpstandingSlash extends AbstractRuinaBossCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return null;
+        return new CHR_UpstandingSlash();
     }
 }

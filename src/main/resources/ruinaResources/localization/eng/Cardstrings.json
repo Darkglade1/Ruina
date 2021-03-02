@@ -113,5 +113,9 @@
   "${ModID}:CHR_Spear": {
     "NAME": "Spear",
     "DESCRIPTION": "Deal !D! damage !M! times. NL If 8 or more damage was dealt, draw 1 card and reduce the cost of all other *Spears by 1."
+  },
+  "${ModID}:CHR_GreaterSplitVertical": {
+    "NAME": "Spear",
+    "DESCRIPTION": "Deal !D! damage. NL If damage was dealt, apply !M! ruina:Bleed."
   }
 }

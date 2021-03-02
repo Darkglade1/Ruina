@@ -20,7 +20,7 @@ import static ruina.RuinaMod.makeID;
 
 @AutoAdd.Ignore
 public class CHR_LevelSlash extends AbstractRuinaBossCard {
-    public final static String ID = makeID(CHR_UpstandingSlash.class.getSimpleName());
+    public final static String ID = makeID(CHR_LevelSlash.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String IMG_PATH = makeCardPath(CHR_UpstandingSlash.class.getSimpleName() + ".png");
     private static int COST = 2;
@@ -83,6 +83,6 @@ public class CHR_LevelSlash extends AbstractRuinaBossCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return null;
+        return new CHR_LevelSlash();
     }
 }

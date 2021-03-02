@@ -110,8 +110,8 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         this.discardPile = new EnemyCardGroup(CardGroupType.DISCARD_PILE, this);
         this.exhaustPile = new EnemyCardGroup(CardGroupType.EXHAUST_PILE, this);
         this.limbo = new EnemyCardGroup(CardGroupType.UNSPECIFIED, this);
-        this.masterHandSize = 3;
-        this.gameHandSize = 3;
+        this.masterHandSize = 5;
+        this.gameHandSize = 5;
         this.relics = new ArrayList<>();
     }
 
@@ -119,7 +119,7 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
     public void init() {
         boss = this;
         this.setHp(this.maxHealth);
-        this.energy.energyMaster = 2;
+        this.energy.energyMaster = 4;
         this.generateAll();
         super.init();
         this.preBattlePrep();

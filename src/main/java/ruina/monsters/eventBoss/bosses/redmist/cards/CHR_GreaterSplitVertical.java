@@ -12,28 +12,26 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaCardMonster;
 import ruina.monsters.eventBoss.core.AbstractRuinaBossCard;
-import ruina.monsters.eventBoss.core.power.EnemyDrawPower;
+import ruina.monsters.eventBoss.core.power.EnemyEnergizedPower;
+import ruina.powers.Bleed;
 
 import static ruina.RuinaMod.makeCardPath;
 import static ruina.RuinaMod.makeID;
 
 @AutoAdd.Ignore
-public class CHR_Spear extends AbstractRuinaBossCard {
-    public final static String ID = makeID(CHR_Spear.class.getSimpleName());
+public class CHR_GreaterSplitVertical extends AbstractRuinaBossCard {
+    public final static String ID = makeID(CHR_GreaterSplitVertical.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     private static final String IMG_PATH = makeCardPath(CHR_UpstandingSlash.class.getSimpleName() + ".png");
-    private static int COST = 2;
-    private int DAMAGE = 3;
-    private int UPG_DAMAGE = 2;
-    private int HITS = 3;
-    private int DRAW = 1;
-    private int THRESHOLD = 8;
+    private static int COST = 4;
+    private int DAMAGE = 30;
+    private int UPG_DAMAGE = 5;
+    private int BLEED = 3;
 
-
-    public CHR_Spear() {
+    public CHR_GreaterSplitVertical() {
         super(ID, cardStrings.NAME, IMG_PATH, COST, cardStrings.DESCRIPTION, CardType.ATTACK, RuinaMod.Enums.EGO, CardRarity.RARE, CardTarget.NONE, AbstractMonster.Intent.ATTACK);
         damage = baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber = HITS;
+        magicNumber = baseMagicNumber = BLEED;
     }
 
     @Override
@@ -52,36 +50,11 @@ public class CHR_Spear extends AbstractRuinaBossCard {
                     p.damage(damageInfo);
                     damageThreshold += p.lastDamageTaken;
                 }
-                if(damageThreshold >= THRESHOLD){
-                    atb(new ApplyPowerAction(m, m, new EnemyDrawPower(m, DRAW)));
-                    for(AbstractCard c: AbstractRuinaCardMonster.boss.hand.group){
-                        if(c instanceof CHR_Spear) {
-                            if (c.cost - 1 < 0) { c.cost = 0;
-                            } else { c.cost -= 1; }
-                            c.isCostModified = true;
-                        }
-                    }
-                    for(AbstractCard c: AbstractRuinaCardMonster.boss.drawPile.group){
-                        if(c instanceof CHR_Spear) {
-                            if (c.cost - 1 < 0) { c.cost = 0;
-                            } else { c.cost -= 1; }
-                            c.isCostModified = true;
-                        }
-                    }
-                    for(AbstractCard c: AbstractRuinaCardMonster.boss.discardPile.group){
-                        if(c instanceof CHR_Spear) {
-                            if (c.cost - 1 < 0) { c.cost = 0;
-                            } else { c.cost -= 1; }
-                            c.isCostModified = true;
-                        }
-                    }
-                }
+                if(damageThreshold > 0){ atb(new ApplyPowerAction(m, m, new Bleed(p, magicNumber, true))); }
             }
         });
     }
 
     @Override
-    public AbstractCard makeCopy() {
-        return new CHR_Spear();
-    }
+    public AbstractCard makeCopy() { return new CHR_GreaterSplitVertical(); }
 }
