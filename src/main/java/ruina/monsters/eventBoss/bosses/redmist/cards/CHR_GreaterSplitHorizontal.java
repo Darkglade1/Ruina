@@ -20,7 +20,7 @@ import static ruina.RuinaMod.makeID;
 public class CHR_GreaterSplitHorizontal extends AbstractRuinaBossCard {
     public final static String ID = makeID(CHR_GreaterSplitHorizontal.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String IMG_PATH = makeCardPath("GreaterSplitHorizontal.png");
+    private static final String IMG_PATH = "GreaterSplitHorizontal";
     private static int COST = 4;
     private int DAMAGE = 40;
     private int UPG_DAMAGE = 5;

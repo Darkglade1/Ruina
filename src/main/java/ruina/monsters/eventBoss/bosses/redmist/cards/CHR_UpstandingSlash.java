@@ -20,7 +20,7 @@ import static ruina.RuinaMod.*;
 public class CHR_UpstandingSlash extends AbstractRuinaBossCard {
     public final static String ID = makeID(CHR_UpstandingSlash.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String IMG_PATH = makeCardPath("UpstandingSlash.png");
+    private static final String IMG_PATH = "UpstandingSlash";
     private static int COST = 2;
     private int DAMAGE = 7;
     private int UPG_DAMAGE = 2;

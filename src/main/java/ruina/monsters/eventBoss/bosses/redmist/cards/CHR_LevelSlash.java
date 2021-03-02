@@ -22,7 +22,7 @@ import static ruina.RuinaMod.makeID;
 public class CHR_LevelSlash extends AbstractRuinaBossCard {
     public final static String ID = makeID(CHR_LevelSlash.class.getSimpleName());
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String IMG_PATH = makeCardPath("LevelSlash.png");
+    private static final String IMG_PATH = "LevelSlash";
     private static int COST = 2;
     private int DAMAGE = 5;
     private int UPG_DAMAGE = 2;
