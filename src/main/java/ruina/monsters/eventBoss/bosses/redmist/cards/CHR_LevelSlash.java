@@ -56,19 +56,25 @@ public class CHR_LevelSlash extends AbstractRuinaBossCard {
                 if(damageThreshold >= THRESHOLD){
                     atb(new ApplyPowerAction(m, m, new EnemyEnergizedPower(m, ENERGY)));
                     for(AbstractCard c: AbstractRuinaCardMonster.boss.hand.group){
-                        if(c.cost - 1 < 0){ c.cost = 0; }
-                        else { c.cost -= 1; }
-                        c.isCostModified = true;
+                        if(c instanceof CHR_LevelSlash) {
+                            if (c.cost - 1 < 0) { c.cost = 0;
+                            } else { c.cost -= 1; }
+                            c.isCostModified = true;
+                        }
                     }
                     for(AbstractCard c: AbstractRuinaCardMonster.boss.drawPile.group){
-                        if(c.cost - 1 < 0){ c.cost = 0; }
-                        else { c.cost -= 1; }
-                        c.isCostModified = true;
+                        if(c instanceof CHR_LevelSlash) {
+                            if (c.cost - 1 < 0) { c.cost = 0;
+                            } else { c.cost -= 1; }
+                            c.isCostModified = true;
+                        }
                     }
                     for(AbstractCard c: AbstractRuinaCardMonster.boss.discardPile.group){
-                        if(c.cost - 1 < 0){ c.cost = 0; }
-                        else { c.cost -= 1; }
-                        c.isCostModified = true;
+                        if(c instanceof CHR_LevelSlash) {
+                            if (c.cost - 1 < 0) { c.cost = 0;
+                            } else { c.cost -= 1; }
+                            c.isCostModified = true;
+                        }
                     }
                 }
             }
