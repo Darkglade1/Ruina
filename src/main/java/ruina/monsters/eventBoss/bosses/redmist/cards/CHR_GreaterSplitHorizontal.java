@@ -7,14 +7,17 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import ruina.RuinaMod;
 import ruina.monsters.eventBoss.core.AbstractRuinaBossCard;
 import ruina.powers.Bleed;
 
 import static ruina.RuinaMod.makeCardPath;
 import static ruina.RuinaMod.makeID;
+import static ruina.util.Wiz.applyToTargetTop;
 
 @AutoAdd.Ignore
 public class CHR_GreaterSplitHorizontal extends AbstractRuinaBossCard {
@@ -40,15 +43,25 @@ public class CHR_GreaterSplitHorizontal extends AbstractRuinaBossCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        final int[] damageThreshold = {0};
+        DamageInfo info = new DamageInfo(m, damage, damageTypeForTurn);
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                int damageThreshold = 0;
-                DamageInfo damageInfo = new DamageInfo(m, damage, damageTypeForTurn);
-                p.damage(damageInfo);
-                damageThreshold += p.lastDamageTaken;
-                if(damageThreshold > 0){ atb(new ApplyPowerAction(p, p, new Bleed(p, magicNumber, true))); }
+                target = p;
+                if (this.target != null) {
+                    AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SLASH_HEAVY));
+                    this.target.damage(info);
+                    damageThreshold[0] += target.lastDamageTaken;
+                }
                 this.isDone = true;
+            }
+        });
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if(damageThreshold[0] > 0){ applyToTargetTop(p, m, new Bleed(p, BLEED)); }
+                isDone = true;
             }
         });
     }

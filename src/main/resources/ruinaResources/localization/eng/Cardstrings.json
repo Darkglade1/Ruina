@@ -108,7 +108,7 @@
   },
   "${ModID}:CHR_LevelSlash": {
     "NAME": "Level Slash",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL If 8 or more damage was dealt, gain [E] [E] and reduce the cost of all other *Level *Slashes by 1."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If 8 or more damage was dealt, gain 2 Energy and reduce the cost of all other *Level *Slashes by 1."
   },
   "${ModID}:CHR_Spear": {
     "NAME": "Spear",

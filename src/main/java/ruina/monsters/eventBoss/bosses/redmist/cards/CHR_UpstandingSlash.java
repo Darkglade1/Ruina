@@ -7,8 +7,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaCardMonster;
 import ruina.monsters.eventBoss.core.AbstractRuinaBossCard;
@@ -33,6 +35,8 @@ public class CHR_UpstandingSlash extends AbstractRuinaBossCard {
         super(ID, cardStrings.NAME, IMG_PATH, COST, cardStrings.DESCRIPTION, CardType.ATTACK, CardColor.RED, CardRarity.RARE, CardTarget.NONE, AbstractMonster.Intent.ATTACK, true);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = HITS;
+        isMultiDamage = true;
+        intentMultiAmt = magicNumber;
     }
 
     @Override
@@ -42,45 +46,40 @@ public class CHR_UpstandingSlash extends AbstractRuinaBossCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        /*
+        final int[] damageThreshold = {0};
+        for(int i = 0; i < magicNumber; i+= 1){
+            DamageInfo info = new DamageInfo(m, damage, damageTypeForTurn);
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    target = p;
+                    if (this.target != null) {
+                        AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SLASH_HEAVY));
+                        this.target.damage(info);
+                        damageThreshold[0] += target.lastDamageTaken;
+                    }
+                    this.isDone = true;
+                }
+            });
+        }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                int damageThreshold = 0;
-                for(int i = 0; i < magicNumber; i += 1){
-                    DamageInfo damageInfo = new DamageInfo(m, damage, damageTypeForTurn);
-                    p.damage(damageInfo);
-                    damageThreshold += p.lastDamageTaken;
-                }
-                if(damageThreshold >= THRESHOLD){
+                if(damageThreshold[0] >= THRESHOLD){
                     atb(new ApplyPowerAction(m, m, new EnemyDrawPower(m, DRAW)));
-                    for(AbstractCard c: AbstractRuinaCardMonster.boss.hand.group){
-                        if(c instanceof CHR_UpstandingSlash) {
-                            if (c.cost - 1 < 0) { c.cost = 0;
-                            } else { c.cost -= 1; }
-                            c.isCostModified = true;
-                        }
+                    for(AbstractCard c: AbstractRuinaCardMonster.boss.chosenArchetype.getHandPile().group){
+                        if(c instanceof CHR_UpstandingSlash) { c.modifyCostForCombat(-1); }
                     }
-                    for(AbstractCard c: AbstractRuinaCardMonster.boss.drawPile.group){
-                        if(c instanceof CHR_UpstandingSlash) {
-                            if (c.cost - 1 < 0) { c.cost = 0;
-                            } else { c.cost -= 1; }
-                            c.isCostModified = true;
-                        }
+                    for(AbstractCard c: AbstractRuinaCardMonster.boss.chosenArchetype.getDraw().group){
+                        if(c instanceof CHR_UpstandingSlash) { c.modifyCostForCombat(-1); }
                     }
-                    for(AbstractCard c: AbstractRuinaCardMonster.boss.discardPile.group){
-                        if(c instanceof CHR_UpstandingSlash) {
-                            if (c.cost - 1 < 0) { c.cost = 0;
-                            } else { c.cost -= 1; }
-                            c.isCostModified = true;
-                        }
+                    for(AbstractCard c: AbstractRuinaCardMonster.boss.chosenArchetype.getDiscard().group){
+                        if(c instanceof CHR_UpstandingSlash) { c.modifyCostForCombat(-1); }
                     }
                 }
-                this.isDone = true;
+                isDone = true;
             }
         });
-
-         */
     }
 
     @Override
