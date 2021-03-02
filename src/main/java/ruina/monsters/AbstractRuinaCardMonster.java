@@ -90,8 +90,8 @@ public class AbstractRuinaCardMonster extends AbstractRuinaMonster {
         this.exhaustPile = new EnemyCardGroup(CardGroupType.EXHAUST_PILE, this);
 
         this.limbo = new EnemyCardGroup(CardGroupType.UNSPECIFIED, this);
-        this.masterHandSize = 3;
-        this.gameHandSize = 3;
+        this.masterHandSize = 5;
+        this.gameHandSize = 5;
         this.relics = new ArrayList<>();
     }
 

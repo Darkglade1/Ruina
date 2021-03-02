@@ -428,5 +428,11 @@
     "NAME": "Price of Silence",
     "DIALOG": [
     ]
+  },
+  "${ModID}:RedMist": {
+    "MOVES": [""],
+    "NAME": "The Red Mist",
+    "DIALOG": [
+    ]
   }
 }

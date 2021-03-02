@@ -86,6 +86,7 @@ import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
+import ruina.monsters.eventBoss.bosses.redmist.monster.RedMist;
 import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
@@ -446,6 +447,8 @@ public class RuinaMod implements
                         new RemnantOfTime(-450.0F, 0.0F),
                         new PriceOfSilence(-50.0F, 0.0F),
                 }));
+
+        BaseMod.addMonster(RedMist.ID, RedMist::new);
 
     }
 
