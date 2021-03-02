@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.monsters.AbstractRuinaCardMonster;
+import ruina.monsters.eventBoss.core.AbstractRuinaBossCard;
 
 public class EnemyUseCardAction extends AbstractGameAction {
     private static final float DUR = 0.15f;
@@ -110,10 +111,13 @@ public class EnemyUseCardAction extends AbstractGameAction {
                         AbstractRuinaCardMonster.boss.hand.moveToHand(this.targetCard);
                         AbstractRuinaCardMonster.boss.onCardDrawOrDiscard();
                     } else {
-                        AbstractRuinaCardMonster.boss.hand.moveToDiscardPile(this.targetCard);
+                        AbstractRuinaCardMonster.boss.chosenArchetype.moveCardIntoDiscardPile(targetCard);
+                        AbstractRuinaCardMonster.boss.chosenArchetype.getHandPile().removeCard(targetCard);
+                        //AbstractRuinaCardMonster.boss.hand.moveToDiscardPile(this.targetCard);
                     }
                 } else {
-                    AbstractRuinaCardMonster.boss.hand.moveToExhaustPile(this.targetCard);
+                    AbstractRuinaCardMonster.boss.chosenArchetype.moveCardIntoExhaustPile(targetCard);
+                    AbstractRuinaCardMonster.boss.chosenArchetype.getHandPile().removeCard(targetCard);
                 }
                 this.targetCard.exhaustOnUseOnce = false;
                 this.targetCard.dontTriggerOnUseCard = false;

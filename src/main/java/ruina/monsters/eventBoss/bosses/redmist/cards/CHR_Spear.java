@@ -43,6 +43,7 @@ public class CHR_Spear extends AbstractRuinaBossCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        /*
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -79,6 +80,8 @@ public class CHR_Spear extends AbstractRuinaBossCard {
                 this.isDone = true;
             }
         });
+
+         */
     }
 
     @Override

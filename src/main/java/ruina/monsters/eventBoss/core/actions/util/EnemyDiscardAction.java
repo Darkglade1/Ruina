@@ -48,7 +48,9 @@ public class EnemyDiscardAction extends AbstractGameAction {
                 this.amount = this.p.hand.size();
                 for (int tmp = this.p.hand.size(), i = 0; i < tmp; ++i) {
                     final AbstractCard c = this.p.hand.getTopCard();
-                    this.p.hand.moveToDiscardPile(c);
+                    p.hand.removeCard(c);
+                    p.chosenArchetype.getDiscard().addToBottom(c);
+                    p.chosenArchetype.getHandPile().removeCard(c);
                     if (!this.endTurn) { c.triggerOnManualDiscard(); }
                 }
                 this.p.hand.applyPowers();
@@ -57,7 +59,9 @@ public class EnemyDiscardAction extends AbstractGameAction {
             }
             for (int j = 0; j < this.amount; ++j) {
                 final AbstractCard c2 = this.p.hand.getRandomCard(AbstractDungeon.cardRandomRng);
-                this.p.hand.moveToDiscardPile(c2);
+                p.hand.removeCard(c2);
+                p.chosenArchetype.getDiscard().addToBottom(c2);
+                p.chosenArchetype.getHandPile().removeCard(c2);
                 c2.triggerOnManualDiscard();
             }
         }

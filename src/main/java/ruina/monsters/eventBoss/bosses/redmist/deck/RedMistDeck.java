@@ -5,11 +5,11 @@ import ruina.monsters.eventBoss.bosses.redmist.cards.CHR_LevelSlash;
 import ruina.monsters.eventBoss.bosses.redmist.cards.CHR_Spear;
 import ruina.monsters.eventBoss.bosses.redmist.cards.CHR_UpstandingSlash;
 import ruina.monsters.eventBoss.bosses.redmist.relic.RedMistInfoRelic;
-import ruina.monsters.eventBoss.core.AbstractBossDeckArchetype;
+import ruina.monsters.eventBoss.core.AbstractBossDeckManager;
 
 import static ruina.RuinaMod.makeID;
 
-public class RedMistDeck extends AbstractBossDeckArchetype {
+public class RedMistDeck extends AbstractBossDeckManager {
     private static String ID = makeID(RedMistDeck.class.getSimpleName());
     public RedMistDeck() { super(ID); }
 

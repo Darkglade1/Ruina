@@ -46,15 +46,15 @@ public class EnemyEmptyShuffleDeckAction extends AbstractGameAction {
     public void update() {
         if (!this.shuffled) {
             this.shuffled = true;
-            this.boss.discardPile.shuffle(AbstractDungeon.shuffleRng);
+            this.boss.chosenArchetype.getDiscard().shuffle(AbstractDungeon.shuffleRng);
         }
         if (!this.vfxDone) {
-            final Iterator<AbstractCard> c = this.boss.discardPile.group.iterator();
+            final Iterator<AbstractCard> c = this.boss.chosenArchetype.getDiscard().group.iterator();
             if (c.hasNext()) {
                 ++this.count;
                 final AbstractCard e = c.next();
                 c.remove();
-                this.boss.drawPile.addToRandomSpot(e);
+                this.boss.chosenArchetype.getDraw().addToRandomSpot(e);
                 return;
             }
             this.vfxDone = true;

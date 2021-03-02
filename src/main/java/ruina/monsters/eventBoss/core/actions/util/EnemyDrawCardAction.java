@@ -74,8 +74,8 @@ public class EnemyDrawCardAction extends AbstractGameAction {
             this.endActionWithFollowUp();
             return;
         }
-        final int deckSize = this.boss.drawPile.size();
-        final int discardSize = this.boss.discardPile.size();
+        final int deckSize = this.boss.chosenArchetype.getDraw().size();
+        final int discardSize = this.boss.chosenArchetype.getDiscard().size();
         if (SoulGroup.isActive()) {
             return;
         }
@@ -113,9 +113,9 @@ public class EnemyDrawCardAction extends AbstractGameAction {
                 this.duration = Settings.ACTION_DUR_FASTER;
             }
             --this.amount;
-            if (!this.boss.drawPile.isEmpty()) {
-                EnemyDrawCardAction.drawnCards.add(this.boss.drawPile.getTopCard());
-                this.boss.draw();
+            if (!this.boss.chosenArchetype.getDraw().isEmpty()) {
+                EnemyDrawCardAction.drawnCards.add(this.boss.chosenArchetype.getDraw().getTopCard());
+                this.boss.chosenArchetype.draw();
                 this.boss.hand.refreshHandLayout();
             } else {
                 //EnemyDrawCardAction.logger.warn("Player attempted to draw from an empty drawpile mid-DrawAction?MASTER DECK: " + AbstractDungeon.player.masterDeck.getCardNames());

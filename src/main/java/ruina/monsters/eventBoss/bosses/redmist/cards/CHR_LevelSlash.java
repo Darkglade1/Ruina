@@ -44,6 +44,9 @@ public class CHR_LevelSlash extends AbstractRuinaBossCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        // redo this.
+
+        /*
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -80,6 +83,8 @@ public class CHR_LevelSlash extends AbstractRuinaBossCard {
                 this.isDone = true;
             }
         });
+
+         */
     }
 
     @Override

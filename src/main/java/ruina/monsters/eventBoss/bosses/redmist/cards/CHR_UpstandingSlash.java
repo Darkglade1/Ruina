@@ -42,6 +42,7 @@ public class CHR_UpstandingSlash extends AbstractRuinaBossCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        /*
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -78,6 +79,8 @@ public class CHR_UpstandingSlash extends AbstractRuinaBossCard {
                 this.isDone = true;
             }
         });
+
+         */
     }
 
     @Override
