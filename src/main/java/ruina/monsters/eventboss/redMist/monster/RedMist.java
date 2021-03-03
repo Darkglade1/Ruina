@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -277,20 +278,16 @@ public class RedMist extends AbstractDeckMonster
         }
         else{
             if(EGORECENTTRIGGER){ setMoveShortcut(GSH, MOVES[GSH], new CHRBOSS_GreaterSplitHorizontal()); }
-            else { setMoveShortcut(FOCUS_SPIRIT, MOVES[FOCUS_SPIRIT]); }
+            else {
+                ArrayList<Byte> possibilities = new ArrayList<>();
+                if (!this.lastMove(FOCUS_SPIRIT)) { possibilities.add(FOCUS_SPIRIT); }
+                if (!this.lastMove(UPSTANDING_SLASH)) { possibilities.add(UPSTANDING_SLASH); }
+                if (!this.lastMove(LEVEL_SLASH)) { possibilities.add(LEVEL_SLASH); }
+                if (!this.lastMove(SPEAR)) { possibilities.add(SPEAR); }
+                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
+            }
         }
-        /*
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(SALVATION)) {
-            possibilities.add(SALVATION);
-        }
-        if (!this.lastMove(DAZZLE_PLAYER)) {
-            possibilities.add(DAZZLE_PLAYER);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], new Mimicry());
-
-         */
     }
 
     @Override
@@ -356,5 +353,15 @@ public class RedMist extends AbstractDeckMonster
         // vfx here or something
         EGO = true;
         EGORECENTTRIGGER = true;
+    }
+
+    protected AbstractCard getMoveCardFromByte(Byte move) {
+        switch (move){
+            case FOCUS_SPIRIT: return new Madness();
+            case UPSTANDING_SLASH: return new CHRBOSS_UpstandingSlash();
+            case LEVEL_SLASH: return new CHRBOSS_LevelSlash();
+            case SPEAR: return new CHRBOSS_Spear();
+            default: return new Madness();
+        }
     }
 }
