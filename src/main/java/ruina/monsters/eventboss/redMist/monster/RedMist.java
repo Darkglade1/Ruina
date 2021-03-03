@@ -52,19 +52,6 @@ public class RedMist extends AbstractDeckMonster
     private static final byte GSV = 4;
     private static final byte GSH = 5;
 
-    private static final byte SALVATION = 0;
-    private static final byte DAZZLE_ENEMY = 1;
-    private static final byte DAZZLE_PLAYER = 2;
-    private static final byte ILLUMINATE = 3;
-
-    private final int STATUS = calcAscensionSpecial(3);
-    private final int DEBUFF = calcAscensionSpecial(1);
-
-    public static final String Salvation_POWER_ID = makeID("Salvation");
-    public static final PowerStrings SalvationPowerStrings = CardCrawlGame.languagePack.getPowerStrings(Salvation_POWER_ID);
-    public static final String Salvation_POWER_NAME = SalvationPowerStrings.NAME;
-    public static final String[] Salvation_POWER_DESCRIPTIONS = SalvationPowerStrings.DESCRIPTIONS;
-
     private final int focusSpiritBlock = 12;
     private final int focusSpiritStr = 1;
     private final int GSVBleed = 3;
@@ -263,6 +250,14 @@ public class RedMist extends AbstractDeckMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
+                AbstractPower P = RedMist.this.getPower(RedMistPower.POWER_ID);
+                if(P != null){ ((RedMistPower) P).EGOTrigger(); }
+                isDone = true;
+            }
+        });
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
                 calculateAllocatedMoves();
                 this.isDone = true;
             }
@@ -314,6 +309,7 @@ public class RedMist extends AbstractDeckMonster
             masterDeck.addToBottom(new CHRBOSS_LevelSlash());
             masterDeck.addToBottom(new CHRBOSS_Spear());
             masterDeck.addToBottom(new CHRBOSS_UpstandingSlash());
+            masterDeck.addToBottom(new CHRBOSS_FocusSpirit());
         }
     }
 
@@ -330,6 +326,9 @@ public class RedMist extends AbstractDeckMonster
             case "ruina:CHRBOSS_UpstandingSlash":
                 setAdditionalMoveShortcut(UPSTANDING_SLASH, moveHistory, c);
                 break;
+            case "ruina:CHRBOSS_FocusSpirit":
+                setAdditionalMoveShortcut(FOCUS_SPIRIT, moveHistory, c);
+                break;
             default:
                 break;
 
@@ -342,10 +341,16 @@ public class RedMist extends AbstractDeckMonster
             levelSlashExtraActions = 0;
         }
         else {
-            numAdditionalMoves = baseExtraActions;
-            if (EGO) { numAdditionalMoves += egoExtraActions; }
-            numAdditionalMoves += levelSlashExtraActions;
-            levelSlashExtraActions = 0;
+            if(EGORECENTTRIGGER){
+                numAdditionalMoves = 0;
+                levelSlashExtraActions = 0;
+            }
+            else {
+                numAdditionalMoves = baseExtraActions;
+                if (EGO) { numAdditionalMoves += egoExtraActions; }
+                numAdditionalMoves += levelSlashExtraActions;
+                levelSlashExtraActions = 0;
+            }
         }
     }
 
@@ -357,7 +362,7 @@ public class RedMist extends AbstractDeckMonster
 
     protected AbstractCard getMoveCardFromByte(Byte move) {
         switch (move){
-            case FOCUS_SPIRIT: return new Madness();
+            case FOCUS_SPIRIT: return new CHRBOSS_FocusSpirit();
             case UPSTANDING_SLASH: return new CHRBOSS_UpstandingSlash();
             case LEVEL_SLASH: return new CHRBOSS_LevelSlash();
             case SPEAR: return new CHRBOSS_Spear();

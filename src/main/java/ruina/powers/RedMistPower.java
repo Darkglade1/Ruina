@@ -9,6 +9,7 @@ import ruina.RuinaMod;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 
 import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.att;
 
 public class RedMistPower extends AbstractEasyPower {
 
@@ -29,10 +30,10 @@ public class RedMistPower extends AbstractEasyPower {
         }
         return damageAmount;
     }
-    public void atStartOfTurn() {
+    public void EGOTrigger() {
         if(owner.currentHealth == amount){
             if(owner instanceof RedMist){ ((RedMist) owner).activateEGO(); }
-            atb(new RemoveSpecificPowerAction(owner, owner, this));
+            att(new RemoveSpecificPowerAction(owner, owner, this));
         }
     }
     public void updateDescription() { this.description = owner.currentHealth == amount ? DESCRIPTIONS[1] : DESCRIPTIONS[0]; }

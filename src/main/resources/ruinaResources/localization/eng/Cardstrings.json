@@ -121,5 +121,9 @@
   "${ModID}:CHRBOSS_GreaterSplitVertical": {
     "NAME": "Greater Split: Vertical",
     "DESCRIPTION": "Deal !D! damage. NL If any damage was dealt, apply !M! ruina:Bleed."
+  },
+  "${ModID}:CHRBOSS_FocusSpirit": {
+    "NAME": "Focus Spirit",
+    "DESCRIPTION": "Gain !B! Block. NL Gain 1 Temporary Strength next turn."
   }
 }
