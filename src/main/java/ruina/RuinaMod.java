@@ -79,7 +79,7 @@ import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.EyeballChick;
-import ruina.monsters.act3.RedMist;
+import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.act3.RunawayBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.Twilight;
@@ -92,8 +92,6 @@ import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
-import ruina.monsters.act3.seraphim.Seraphim;
-import ruina.monsters.eventBoss.bosses.redmist.monster.RedMist;
 import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
@@ -488,8 +486,6 @@ public class RuinaMod implements
                 }));
 
         BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
-
-        BaseMod.addMonster(RedMist.ID, RedMist::new);
 
     }
 
