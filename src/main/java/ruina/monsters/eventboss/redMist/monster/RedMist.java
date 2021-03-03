@@ -129,19 +129,17 @@ public class RedMist extends AbstractDeckMonster
                         }
                     });
                 }
-                // TODO: fix this.
-                /*
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
                         if(threshold[0] >= upstanding_threshold){
                             AbstractPower P = RedMist.this.getPower(RedMistPower.POWER_ID);
-                            if(P != null){ amount += ((RedMist.this.maxHealth / 100) * 5); }
+                            if(P != null){ P.amount += ((RedMist.this.maxHealth / 100) * 5); }
                         }
                         isDone = true;
                     }
                 });
-                 */
+
                 break;
             }
             case LEVEL_SLASH: {
