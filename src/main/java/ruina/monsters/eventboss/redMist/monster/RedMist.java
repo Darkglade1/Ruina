@@ -1,6 +1,7 @@
 package ruina.monsters.eventboss.redMist.monster;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -18,6 +19,7 @@ import ruina.cards.Dazzled;
 import ruina.cards.EGO.act2.Mimicry;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractDeckMonster;
+import ruina.powers.Bleed;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -36,11 +38,11 @@ public class RedMist extends AbstractDeckMonster
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte FOCUS_SPIRIT = 0;
-    private static final byte UPSTANDING_SLASH = 0;
-    private static final byte LEVEL_SLASH = 0;
-    private static final byte SPEAR = 0;
-    private static final byte GSV = 0;
-    private static final byte GSH = 0;
+    private static final byte UPSTANDING_SLASH = 1;
+    private static final byte LEVEL_SLASH = 2;
+    private static final byte SPEAR = 3;
+    private static final byte GSV = 4;
+    private static final byte GSH = 5;
 
     private static final byte SALVATION = 0;
     private static final byte DAZZLE_ENEMY = 1;
@@ -55,10 +57,17 @@ public class RedMist extends AbstractDeckMonster
     public static final String Salvation_POWER_NAME = SalvationPowerStrings.NAME;
     public static final String[] Salvation_POWER_DESCRIPTIONS = SalvationPowerStrings.DESCRIPTIONS;
 
+    private final int focusSpiritBlock = 12;
+    private final int focusSpiritStr = 2;
+    private final int GSVBleed = 3;
+    private final int GSHBleed = 5;
+
+    private final int upstanding_threshold = 7;
+    private final int level_threshold = 7;
+
     public RedMist() {
         this(100.0f, 0.0f);
     }
-
     public RedMist(final float x, final float y) {
         super(NAME, ID, 400, -5.0F, 0, 300.0f, 355.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BigBird/Spriter/BigBird.scml"));
@@ -69,7 +78,13 @@ public class RedMist extends AbstractDeckMonster
         }
         this.setHp(calcAscensionTankiness(maxHealth));
 
-        addMove(SALVATION, Intent.ATTACK, calcAscensionDamage(15));
+        addMove(FOCUS_SPIRIT, Intent.DEFEND_BUFF);
+        addMove(UPSTANDING_SLASH, Intent.ATTACK_BUFF, calcAscensionDamage(7), 2, true);
+        addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, calcAscensionDamage(5), 2, true);
+        addMove(SPEAR, Intent.ATTACK, calcAscensionDamage(6), 3, true);
+        addMove(GSV, Intent.ATTACK_DEBUFF, calcAscensionDamage(35));
+        addMove(GSH, Intent.ATTACK_DEBUFF, calcAscensionDamage(40));
+
         addMove(DAZZLE_ENEMY, Intent.STRONG_DEBUFF);
         addMove(DAZZLE_PLAYER, Intent.DEBUFF);
         addMove(ILLUMINATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
@@ -84,32 +99,81 @@ public class RedMist extends AbstractDeckMonster
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        if(info.base > -1) { info.applyPowers(this, target); }
+        final int[] threshold = {0};
         switch (move.nextMove) {
-            case SALVATION: {
-                dazzleAnimation(target);
-                dmg(target, info);
-                resetIdle(1.0f);
+            case FOCUS_SPIRIT: {
+                block(this, focusSpiritBlock);
+                // add tempstr later.
                 break;
             }
-            case DAZZLE_ENEMY: {
-
+            case UPSTANDING_SLASH: {
+                for (int i = 0; i < multiplier; i++) {
+                    dmg(adp(), info);
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            threshold[0] += adp().lastDamageTaken;
+                            isDone = true;
+                        }
+                    });
+                }
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if(threshold[0] >= upstanding_threshold){
+                            // tempstr later.
+                        }
+                        isDone = true;
+                    }
+                });
                 break;
             }
-            case DAZZLE_PLAYER: {
-                specialAnimation(target);
-                intoDrawMo(new Dazzled(), STATUS, this);
-                resetIdle(1.0f);
+            case LEVEL_SLASH: {
+                for (int i = 0; i < multiplier; i++) {
+                    dmg(adp(), info);
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            threshold[0] += adp().lastDamageTaken;
+                            isDone = true;
+                        }
+                    });
+                }
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if(threshold[0] >= level_threshold){
+                            // actions later.
+                        }
+                        isDone = true;
+                    }
+                });
+            }
+            case SPEAR: {
+                for (int i = 0; i < multiplier; i++) { dmg(adp(), info); }
                 break;
             }
-            case ILLUMINATE: {
-                dazzleAnimation(target);
-                dmg(target, info);
-                applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
-                resetIdle(1.0f);
+            case GSV: {
+                dmg(adp(), info);
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), RedMist.this, new Bleed(adp(), GSVBleed)); }
+                        this.isDone = true;
+                    }
+                });
+                break;
+            }
+            case GSH: {
+                dmg(adp(), info);
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), RedMist.this, new Bleed(adp(), GSHBleed)); }
+                        this.isDone = true;
+                    }
+                });
                 break;
             }
         }
@@ -157,6 +221,8 @@ public class RedMist extends AbstractDeckMonster
 
     @Override
     protected void getMove(final int num) {
+
+        /*
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (!this.lastMove(SALVATION)) {
             possibilities.add(SALVATION);
@@ -166,18 +232,12 @@ public class RedMist extends AbstractDeckMonster
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
         setMoveShortcut(move, MOVES[move], new Mimicry());
+
+         */
     }
 
     @Override
-    public void getAdditionalMoves(int num, int whichMove) {
-        ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        if (whichMove == 0) {
-            setAdditionalMoveShortcut(SALVATION, moveHistory, new Mimicry());
-        }
-        if (whichMove == 1) {
-            setAdditionalMoveShortcut(SALVATION, moveHistory, new Mimicry());
-        }
-    }
+    public void getAdditionalMoves(int num, int whichMove) { createMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
 
     @Override
     public void applyPowers() {
@@ -208,6 +268,9 @@ public class RedMist extends AbstractDeckMonster
         switch (c.cardID){
             case "ruina:Mimicry":
                 setAdditionalMoveShortcut(SALVATION, moveHistory, new Mimicry());
+                break;
+
+            default:
                 break;
 
         }
