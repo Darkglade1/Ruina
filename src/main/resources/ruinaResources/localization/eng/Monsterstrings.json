@@ -428,5 +428,51 @@
     "NAME": "Price of Silence",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Bloodbath": {
+    "MOVES": [
+      "Pale Hands",
+      "Depression"
+    ],
+    "NAME": "Bloodbath",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:SnowQueen": {
+    "MOVES": [
+      "Blizzard",
+      "Frigid Gaze",
+      "Ice Splinters",
+      "Frozen Throne"
+    ],
+    "NAME": "Snow Queen",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:PrisonOfIce": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Prison of Ice",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:HeartOfAspiration": {
+    "MOVES": [
+      "Pulsation",
+      "Beats of Aspiration"
+    ],
+    "NAME": "Heart of Aspiration",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:LungsOfCraving": {
+    "MOVES": [
+      "Fervent Beats",
+      "Retracting Beats"
+    ],
+    "NAME": "Lungs of Craving",
+    "DIALOG": [
+    ]
   }
 }

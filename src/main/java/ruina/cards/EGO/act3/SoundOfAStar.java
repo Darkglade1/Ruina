@@ -15,9 +15,11 @@ public class SoundOfAStar extends AbstractEgoCard {
 
     public static final int DAMAGE = 10;
     public static final int EXHAUSTIVE = 2;
+    public static final int COST = 3;
+    public static final int UP_COST = 2;
 
     public SoundOfAStar() {
-        super(ID, 3, CardType.ATTACK, CardTarget.ALL_ENEMY);
+        super(ID, COST, CardType.ATTACK, CardTarget.ALL_ENEMY);
         baseDamage = DAMAGE;
         isMultiDamage = true;
         ExhaustiveVariable.setBaseValue(this, EXHAUSTIVE);
@@ -54,6 +56,6 @@ public class SoundOfAStar extends AbstractEgoCard {
 
     @Override
     public void upp() {
-        selfRetain = true;
+        upgradeBaseCost(UP_COST);
     }
 }

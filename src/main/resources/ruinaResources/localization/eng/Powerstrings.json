@@ -169,7 +169,7 @@
   },
   "${ModID}:BigEgg": {
     "NAME": "Big Egg",
-    "DESCRIPTIONS": ["Whenever you receive unblocked attack damage from this creature, shuffle #b", " #yDazzled into your draw pile."]
+    "DESCRIPTIONS": ["Whenever you receive unblocked attack damage from this creature, shuffle #b", " into your draw pile."]
   },
   "${ModID}:SmallEgg": {
     "NAME": "Small Egg",
@@ -221,5 +221,13 @@
   "${ModID}:TickingTime": {
     "NAME": "Ticking Time",
     "DESCRIPTIONS": ["Whenever you play #b", " cards in a single turn, end your turn."]
+  },
+  "${ModID}:PromiseOfWinter": {
+    "NAME": "Promise of Winter",
+    "DESCRIPTIONS": ["Every #b3rd card you play is #yFrozen and shuffled into your draw pile. NL #yFrozen cards are #yUnplayable and #yRetain."]
+  },
+  "${ModID}:KaiAndGerda": {
+    "NAME": "Kai and Gerda",
+    "DESCRIPTIONS": ["On death, #yUnfreeze all #yFrozen cards in your #yhand."]
   }
 }

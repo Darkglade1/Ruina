@@ -43,9 +43,7 @@ public class WingsOfGrace extends AbstractEasyPower {
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if (damageAmount > 0) {
-            atb(new ReducePowerAction(this.owner, this.owner, this, REDUCTION));
-        }
+        atb(new ReducePowerAction(this.owner, this.owner, this, REDUCTION));
         return damageAmount;
     }
 

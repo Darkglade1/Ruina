@@ -29,6 +29,13 @@ public class RetainMod extends AbstractCardModifier {
     }
 
     @Override
+    public void onRemove(AbstractCard card) {
+        if (!alreadyRetain) {
+            card.selfRetain = false;
+        }
+    }
+
+    @Override
     public String identifier(AbstractCard card) {
         return ID;
     }
