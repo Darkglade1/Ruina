@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -15,6 +14,7 @@ import java.util.ArrayList;
 
 public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
     protected AbstractCard enemyCard = null;
+    public static AbstractCard hoveredCard = null;
 
     public AbstractCardMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -42,6 +42,15 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
             enemyCard.hb.move(enemyCard.current_x, enemyCard.current_y);
             enemyCard.hb.resize(512 * enemyCard.drawScale, 512 * enemyCard.drawScale);
             if (enemyCard.hb.hovered) {
+                if (AbstractCardMonster.hoveredCard == null) {
+                    AbstractCardMonster.hoveredCard = enemyCard;
+                }
+            } else {
+                if (AbstractCardMonster.hoveredCard == enemyCard) {
+                    AbstractCardMonster.hoveredCard = null;
+                }
+            }
+            if (AbstractCardMonster.hoveredCard == enemyCard) {
                 enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale * 3.0F);
                 enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale * 3.0F);
             } else {
@@ -81,6 +90,7 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
         EnemyMoveInfo info = this.moves.get(next);
         this.setMove(text, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
         setEnemyCard(enemyCard, info.baseDamage);
+        AbstractCardMonster.hoveredCard = null;
     }
 
     public void setAdditionalMoveShortcut(byte next, ArrayList<Byte> moveHistory, AbstractCard enemyCard) {

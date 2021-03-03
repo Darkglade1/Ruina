@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.vfx.ShieldParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.BuffParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.StunStarEffect;
 import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
+import ruina.monsters.AbstractCardMonster;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -134,6 +135,15 @@ public class AdditionalIntent {
             enemyCard.hb.move(enemyCard.current_x, enemyCard.current_y);
             enemyCard.hb.resize(512 * enemyCard.drawScale, 512 * enemyCard.drawScale);
             if (enemyCard.hb.hovered) {
+                if (AbstractCardMonster.hoveredCard == null) {
+                    AbstractCardMonster.hoveredCard = enemyCard;
+                }
+            } else {
+                if (AbstractCardMonster.hoveredCard == enemyCard) {
+                    AbstractCardMonster.hoveredCard = null;
+                }
+            }
+            if (AbstractCardMonster.hoveredCard == enemyCard) {
                 enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale * 3.0F);
                 enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale * 3.0F);
             } else {
