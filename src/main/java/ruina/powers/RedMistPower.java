@@ -1,10 +1,14 @@
 package ruina.powers;
 
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
+import ruina.monsters.eventboss.redMist.monster.RedMist;
+
+import static ruina.util.Wiz.atb;
 
 public class RedMistPower extends AbstractEasyPower {
 
@@ -25,7 +29,14 @@ public class RedMistPower extends AbstractEasyPower {
         }
         return damageAmount;
     }
-
+    public void atEndOfTurn(boolean isPlayer) {
+        if(!isPlayer){
+            if(owner.currentHealth == amount){
+                if(owner instanceof RedMist){ ((RedMist) owner).activateEGO(); }
+                atb(new RemoveSpecificPowerAction(owner, owner, this));
+            }
+        }
+    }
     public void updateDescription() { this.description = owner.currentHealth == amount ? DESCRIPTIONS[1] : DESCRIPTIONS[0]; }
 
 }

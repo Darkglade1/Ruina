@@ -93,8 +93,8 @@ public class RedMist extends AbstractDeckMonster
         addMove(UPSTANDING_SLASH, Intent.ATTACK_BUFF, calcAscensionDamage(7), 2, true);
         addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, calcAscensionDamage(5), 2, true);
         addMove(SPEAR, Intent.ATTACK, calcAscensionDamage(6), 3, true);
-        addMove(GSV, Intent.ATTACK_DEBUFF, calcAscensionDamage(35));
-        addMove(GSH, Intent.ATTACK_DEBUFF, calcAscensionDamage(40));
+        addMove(GSV, Intent.ATTACK_DEBUFF, calcAscensionDamage(40));
+        addMove(GSH, Intent.ATTACK_DEBUFF, calcAscensionDamage(50));
 
         addMove(DAZZLE_ENEMY, Intent.STRONG_DEBUFF);
         addMove(DAZZLE_PLAYER, Intent.DEBUFF);
@@ -334,11 +334,15 @@ public class RedMist extends AbstractDeckMonster
         }
         else {
             numAdditionalMoves = baseExtraActions;
-            if (EGO) {
-                numAdditionalMoves += egoExtraActions;
-            }
+            if (EGO) { numAdditionalMoves += egoExtraActions; }
             numAdditionalMoves += levelSlashExtraActions;
             levelSlashExtraActions = 0;
         }
+    }
+
+    public void activateEGO(){
+        // vfx here or something
+        EGO = true;
+        EGORECENTTRIGGER = true;
     }
 }
