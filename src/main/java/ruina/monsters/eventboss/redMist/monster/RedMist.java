@@ -58,7 +58,7 @@ public class RedMist extends AbstractDeckMonster
     private final int GSHBleed = 5;
 
     private final int upstanding_threshold = 7;
-    private final int level_threshold = 7;
+    private final int level_threshold = 5;
 
     private boolean EGO = false;
     private boolean EGORECENTTRIGGER = false;
