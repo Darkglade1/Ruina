@@ -29,12 +29,10 @@ public class RedMistPower extends AbstractEasyPower {
         }
         return damageAmount;
     }
-    public void atEndOfTurn(boolean isPlayer) {
-        if(!isPlayer){
-            if(owner.currentHealth == amount){
-                if(owner instanceof RedMist){ ((RedMist) owner).activateEGO(); }
-                atb(new RemoveSpecificPowerAction(owner, owner, this));
-            }
+    public void atStartOfTurn() {
+        if(owner.currentHealth == amount){
+            if(owner instanceof RedMist){ ((RedMist) owner).activateEGO(); }
+            atb(new RemoveSpecificPowerAction(owner, owner, this));
         }
     }
     public void updateDescription() { this.description = owner.currentHealth == amount ? DESCRIPTIONS[1] : DESCRIPTIONS[0]; }
