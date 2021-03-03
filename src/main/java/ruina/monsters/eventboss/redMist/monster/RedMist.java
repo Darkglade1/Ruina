@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
@@ -64,7 +65,7 @@ public class RedMist extends AbstractDeckMonster
     public static final String[] Salvation_POWER_DESCRIPTIONS = SalvationPowerStrings.DESCRIPTIONS;
 
     private final int focusSpiritBlock = 12;
-    private final int focusSpiritStr = 2;
+    private final int focusSpiritStr = 1;
     private final int GSVBleed = 3;
     private final int GSHBleed = 5;
 
@@ -75,7 +76,7 @@ public class RedMist extends AbstractDeckMonster
     private boolean EGORECENTTRIGGER = false;
     private int baseExtraActions = 1;
     private int egoExtraActions = 1;
-    private int levelSlashExtraActions = 1;
+    private int levelSlashExtraActions = 0;
     private int turn = 0;
 
     public RedMist() {
@@ -95,11 +96,11 @@ public class RedMist extends AbstractDeckMonster
         this.setHp(calcAscensionTankiness(maxHealth));
 
         addMove(FOCUS_SPIRIT, Intent.DEFEND_BUFF);
-        addMove(UPSTANDING_SLASH, Intent.ATTACK_BUFF, calcAscensionDamage(7), 2, true);
-        addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, calcAscensionDamage(5), 2, true);
-        addMove(SPEAR, Intent.ATTACK, calcAscensionDamage(6), 3, true);
-        addMove(GSV, Intent.ATTACK_DEBUFF, calcAscensionDamage(40));
-        addMove(GSH, Intent.ATTACK_DEBUFF, calcAscensionDamage(50));
+        addMove(UPSTANDING_SLASH, Intent.ATTACK_BUFF, 7, 2, true);
+        addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, 5, 2, true);
+        addMove(SPEAR, Intent.ATTACK, 3, 3, true);
+        addMove(GSV, Intent.ATTACK_DEBUFF, calcAscensionDamage(30));
+        addMove(GSH, Intent.ATTACK_DEBUFF, calcAscensionDamage(40));
 
         initializeDeck();
     }
@@ -118,7 +119,8 @@ public class RedMist extends AbstractDeckMonster
         switch (move.nextMove) {
             case FOCUS_SPIRIT: {
                 block(this, focusSpiritBlock);
-                applyToSelf(new NextTurnPowerPower(this, new StrengthPower(this, focusSpiritStr)));
+                applyToTarget(this, this, new NextTurnPowerPower(this, new StrengthPower(this, focusSpiritStr)));
+                applyToTarget(this, this, new NextTurnPowerPower(this, new LoseStrengthPower(this, focusSpiritStr)));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -323,13 +325,13 @@ public class RedMist extends AbstractDeckMonster
         System.out.println(c.cardID);
         switch (c.cardID){
             case "ruina:CHRBOSS_LevelSlash":
-                setAdditionalMoveShortcut(LEVEL_SLASH, moveHistory, new CHRBOSS_LevelSlash());
+                setAdditionalMoveShortcut(LEVEL_SLASH, moveHistory, c);
                 break;
             case "ruina:CHRBOSS_Spear":
-                setAdditionalMoveShortcut(SPEAR, moveHistory, new CHRBOSS_Spear());
+                setAdditionalMoveShortcut(SPEAR, moveHistory, c);
                 break;
             case "ruina:CHRBOSS_UpstandingSlash":
-                setAdditionalMoveShortcut(UPSTANDING_SLASH, moveHistory, new CHRBOSS_UpstandingSlash());
+                setAdditionalMoveShortcut(UPSTANDING_SLASH, moveHistory, c);
                 break;
             default:
                 break;
