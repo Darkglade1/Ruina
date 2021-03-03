@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import com.sun.org.apache.bcel.internal.generic.FALOAD;
@@ -21,6 +23,8 @@ import ruina.cards.EGO.act2.Mimicry;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractDeckMonster;
 import ruina.powers.Bleed;
+import ruina.powers.NextTurnPowerPower;
+import ruina.powers.RedMistPower;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -115,7 +119,7 @@ public class RedMist extends AbstractDeckMonster
         switch (move.nextMove) {
             case FOCUS_SPIRIT: {
                 block(this, focusSpiritBlock);
-                // add tempstr later.
+                applyToSelf(new NextTurnPowerPower(this, new StrengthPower(this, focusSpiritStr)));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -140,7 +144,8 @@ public class RedMist extends AbstractDeckMonster
                     @Override
                     public void update() {
                         if(threshold[0] >= upstanding_threshold){
-                            // tempstr later.
+                            AbstractPower P = RedMist.this.getPower(RedMistPower.POWER_ID);
+                            if(P != null){ amount += ((RedMist.this.maxHealth / 100) * 5); }
                         }
                         isDone = true;
                     }
