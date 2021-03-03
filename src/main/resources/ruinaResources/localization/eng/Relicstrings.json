@@ -29,12 +29,5 @@
     "DESCRIPTIONS": [
       "The first #yAttack you play each combat deals double damage."
     ]
-  },
-  "${ModID}:RedMistInfoRelic": {
-    "NAME": "The Red Mist",
-    "FLAVOR": "The stronger and clearer my aim to protect someone became, the louder the noise in my head got. NL Anxious that my mind might be consumed by the voice if I let it weaken my will, I tried my best to pretend that I didn’t hear it.",
-    "DESCRIPTIONS": [
-      "HP cannot fall below 50%. NL Manifests #rE.G.O at 50% HP."
-    ]
   }
 }

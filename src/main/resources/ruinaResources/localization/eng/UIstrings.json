@@ -57,13 +57,5 @@
     "TEXT": [
       "Autoplay. NL "
     ]
-  },
-  "${ModID}:EnergyPanelTip": {
-    "TEXT": [
-      "Enemy's current energy count. Cards require energy to play."
-    ],
-    "EXTRA_TEXT": [
-      "Energy"
-    ]
   }
 }
