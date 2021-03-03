@@ -171,7 +171,9 @@ public class Wiz {
     public static void applyToTarget(AbstractCreature target, AbstractCreature source, AbstractPower po) {
         atb(new ApplyPowerActionButItCanFizzle(target, source, po, po.amount));
     }
-
+    public static void applyToTargetTop(AbstractCreature target, AbstractCreature source, AbstractPower po) {
+        att(new ApplyPowerActionButItCanFizzle(target, source, po, po.amount));
+    }
     public static void applyToEnemy(AbstractMonster m, AbstractPower po) {
         atb(new ApplyPowerAction(m, AbstractDungeon.player, po, po.amount));
     }

@@ -79,7 +79,7 @@ import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.EyeballChick;
-import ruina.monsters.act3.RedMist;
+import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.act3.RunawayBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.Twilight;
@@ -92,7 +92,6 @@ import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
-import ruina.monsters.act3.seraphim.Seraphim;
 import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
@@ -140,7 +139,7 @@ public class RuinaMod implements
     private static final String POWER_L_ART = getModID() + "Resources/images/1024/card.png";
     private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
 
-    //This is for the in-game mod settings panel.
+    //This is for the in-EnemyEnergyPanel mod settings panel.
     private static final String MODNAME = "Ruina";
     private static final String AUTHOR = "Darkglade";
     private static final String DESCRIPTION = "An alternate Act mod inspired by Library of Ruina.";

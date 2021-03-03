@@ -101,5 +101,29 @@
   "${ModID}:StolenTime": {
     "NAME": "Stolen Time",
     "DESCRIPTION": "Draw !M! card."
+  },
+  "${ModID}:CHRBOSS_UpstandingSlash": {
+    "NAME": "Upstanding Slash",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If !ruina:SecondMagic! damage was dealt, increase the HP amount E.G.O is activated by 5% of Red Mist's max health."
+  },
+  "${ModID}:CHRBOSS_LevelSlash": {
+    "NAME": "Level Slash",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If !ruina:SecondMagic! damage was dealt, gain an extra move action next turn."
+  },
+  "${ModID}:CHRBOSS_Spear": {
+    "NAME": "Spear",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:CHRBOSS_GreaterSplitHorizontal": {
+    "NAME": "Greater Split: Horizontal",
+    "DESCRIPTION": "Deal !D! damage. NL If any damage was dealt, apply !M! ruina:Bleed."
+  },
+  "${ModID}:CHRBOSS_GreaterSplitVertical": {
+    "NAME": "Greater Split: Vertical",
+    "DESCRIPTION": "Deal !D! damage. NL If any damage was dealt, apply !M! ruina:Bleed."
+  },
+  "${ModID}:CHRBOSS_FocusSpirit": {
+    "NAME": "Focus Spirit",
+    "DESCRIPTION": "Gain !B! Block. NL Gain 1 Temporary Strength next turn."
   }
 }

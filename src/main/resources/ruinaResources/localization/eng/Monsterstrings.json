@@ -495,14 +495,14 @@
   },
   "${ModID}:RedMist": {
     "MOVES": [
+      "Focus Spirit",
       "Upstanding Slash",
-      "Spear",
       "Level Slash",
-      "Onrush",
+      "Spear",
       "Greater Split: Vertical",
       "Greater Split: Horizontal"
     ],
-    "NAME": "Red Mist",
+    "NAME": "The Red Mist",
     "DIALOG": [
     ]
   }

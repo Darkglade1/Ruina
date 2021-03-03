@@ -229,5 +229,16 @@
   "${ModID}:KaiAndGerda": {
     "NAME": "Kai and Gerda",
     "DESCRIPTIONS": ["On death, #yUnfreeze all #yFrozen cards in your #yhand."]
+  },
+  "${ModID}:RedMistInfoPower": {
+    "NAME": "Greater Split",
+    "DESCRIPTIONS": ["Uses a #rpowerful attack in #b", " turns. NL Removes all additional actions on the attacking turn.", " turn. NL Removes all additional actions on the attacking turn.", "Using a #rpowerful attack this turn! NL Removes all additional actions on the attacking turn."]
+  },
+  "${ModID}:RedMistPower": {
+    "NAME": "Manifesting E.G.O",
+    "DESCRIPTIONS": [
+      "HP Cannot Fall Below the allocated amount. NL When HP is at the allocated amount at the end of the turn, manifest #rE.G.O, launch a powerful attack next turn at the cost of all additional actions. NL While in #rE.G.O, gain an extra move action.",
+      "Manifesting #rE.G.O at the end of this turn."
+    ]
   }
 }
