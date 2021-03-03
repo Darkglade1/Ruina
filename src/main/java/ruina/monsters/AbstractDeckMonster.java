@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public abstract class AbstractDeckMonster extends AbstractCardMonster {
 
-    private CardGroup masterDeck = new CardGroup(CardGroup.CardGroupType.HAND);
+    protected CardGroup masterDeck = new CardGroup(CardGroup.CardGroupType.HAND);
     private CardGroup draw = new CardGroup(CardGroup.CardGroupType.HAND);
     private CardGroup discard = new CardGroup(CardGroup.CardGroupType.HAND);
     private CardGroup purge = new CardGroup(CardGroup.CardGroupType.HAND);
@@ -27,11 +27,13 @@ public abstract class AbstractDeckMonster extends AbstractCardMonster {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
     }
 
-
     public void initializeDeck(){
         masterDeck.shuffle();
         draw.initializeDeck(masterDeck);
     }
+
+    protected abstract void createDeck();
+    protected abstract void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory);
 
     public AbstractCard topDeckCardForMoveAction(){
         if(draw.isEmpty() && discard.isEmpty()){

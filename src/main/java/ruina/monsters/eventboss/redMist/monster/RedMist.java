@@ -2,6 +2,7 @@ package ruina.monsters.eventboss.redMist.monster;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,6 +17,7 @@ import ruina.actions.BetterIntentFlashAction;
 import ruina.cards.Dazzled;
 import ruina.cards.EGO.act2.Mimicry;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.AbstractDeckMonster;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -25,13 +27,20 @@ import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
-public class RedMist extends AbstractCardMonster
+public class RedMist extends AbstractDeckMonster
 {
     public static final String ID = makeID(RedMist.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
+
+    private static final byte FOCUS_SPIRIT = 0;
+    private static final byte UPSTANDING_SLASH = 0;
+    private static final byte LEVEL_SLASH = 0;
+    private static final byte SPEAR = 0;
+    private static final byte GSV = 0;
+    private static final byte GSH = 0;
 
     private static final byte SALVATION = 0;
     private static final byte DAZZLE_ENEMY = 1;
@@ -182,6 +191,25 @@ public class RedMist extends AbstractCardMonster
             if (additionalMove != null) {
                 applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
             }
+        }
+    }
+
+    @Override
+    protected void createDeck() {
+        masterDeck.addToBottom(new Mimicry());
+        masterDeck.addToBottom(new Mimicry());
+        masterDeck.addToBottom(new Mimicry());
+        masterDeck.addToBottom(new Mimicry());
+        masterDeck.addToBottom(new Mimicry());
+    }
+
+    @Override
+    protected void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
+        switch (c.cardID){
+            case "ruina:Mimicry":
+                setAdditionalMoveShortcut(SALVATION, moveHistory, new Mimicry());
+                break;
+
         }
     }
 
