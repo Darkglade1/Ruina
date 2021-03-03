@@ -79,6 +79,7 @@ import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.EyeballChick;
+import ruina.monsters.act3.RedMist;
 import ruina.monsters.act3.RunawayBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.Twilight;
@@ -484,6 +485,8 @@ public class RuinaMod implements
                         new EyeballChick(50.0F, 0.0F),
                         new EyeballChick(300.0F, 0.0F)
                 }));
+
+        BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
 
     }
 

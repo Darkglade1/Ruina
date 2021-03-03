@@ -5,10 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -19,7 +21,6 @@ import com.megacrit.cardcrawl.vfx.ShieldParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.BuffParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.StunStarEffect;
 import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
-import ruina.RuinaMod;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -42,6 +43,7 @@ public class AdditionalIntent {
     private Texture intentBg;
     public PowerTip intentTip;
     public boolean usePrimaryIntentsColor = true;
+    private AbstractCard enemyCard = null;
 
     private ArrayList<AbstractGameEffect> intentVfx;
 
@@ -51,7 +53,7 @@ public class AdditionalIntent {
     float scaleHeight = Settings.scale;
     private static final float X_OFFSET = 106.0f;
 
-    public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move) {
+    public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move, AbstractCard enemyCard) {
         this.source = source;
         intentColor = Color.WHITE.cpy();
 
@@ -61,6 +63,13 @@ public class AdditionalIntent {
         baseDamage = move.baseDamage;
         multihit = move.isMultiDamage;
         numHits = move.multiplier;
+
+        this.enemyCard = enemyCard;
+        if (this.enemyCard != null) {
+            this.enemyCard.drawScale = 0.25f;
+            this.enemyCard.targetDrawScale = 0.25f;
+            this.enemyCard.baseDamage = move.baseDamage;
+        }
 
         intentParticleTimer = 0.5f;
         this.bobEffect = new BobEffect();
@@ -74,8 +83,20 @@ public class AdditionalIntent {
         intentTip = createAdditionalIntentTip(this);
     }
 
+    public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move) {
+        this(source, move, null);
+    }
+
     public void updateDamage(int newDamage) {
         damage = newDamage;
+        if (enemyCard != null) {
+            enemyCard.damage = newDamage;
+            if (enemyCard.baseDamage != newDamage) {
+                enemyCard.isDamageModified = true;
+            } else {
+                enemyCard.isDamageModified = false;
+            }
+        }
         intentTip = createAdditionalIntentTip(this);
         this.intentImg = this.getIntentImg();
     }
@@ -101,6 +122,23 @@ public class AdditionalIntent {
                 i.remove();
             }
         }
+        if (enemyCard != null) {
+            enemyCard.hb.update();
+            if (Settings.FAST_MODE) {
+                enemyCard.current_x = MathHelper.cardLerpSnap(enemyCard.current_x, enemyCard.target_x);
+                enemyCard.current_y = MathHelper.cardLerpSnap(enemyCard.current_y, enemyCard.target_y);
+            }
+
+            enemyCard.current_x = MathHelper.cardLerpSnap(enemyCard.current_x, enemyCard.target_x);
+            enemyCard.current_y = MathHelper.cardLerpSnap(enemyCard.current_y, enemyCard.target_y);
+            enemyCard.hb.move(enemyCard.current_x, enemyCard.current_y);
+            if (enemyCard.hb.hovered) {
+                enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale * 3.0F);
+                enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale * 3.0F);
+            } else {
+                enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale);
+            }
+        }
     }
 
     public void setTargetTexture(String path) {
@@ -116,6 +154,24 @@ public class AdditionalIntent {
         this.renderIntent(sb, position);
         this.renderIntentVfxAfter(sb);
         this.renderDamageRange(sb, position);
+        this.renderCard(sb, position);
+    }
+
+    public void renderCard(SpriteBatch sb, int position) {
+        Color color;
+        if (usePrimaryIntentsColor) {
+            color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else {
+            color = intentColor;
+        }
+        if (enemyCard != null && color.a > 0) {
+            sb.setColor(color);
+            enemyCard.current_x = source.intentHb.cX + (X_OFFSET * scaleWidth * position);
+            enemyCard.target_x = source.intentHb.cX + (X_OFFSET * scaleWidth * position);
+            enemyCard.current_y = source.intentHb.cY + (100.0f * scaleHeight);
+            enemyCard.target_y = source.intentHb.cY + (100.0f * scaleHeight);
+            enemyCard.render(sb);
+        }
     }
 
     public void renderIntent(SpriteBatch sb, int position) {

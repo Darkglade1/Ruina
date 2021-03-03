@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -136,12 +137,16 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
 
     }
 
-    public void setAdditionalMoveShortcut(byte next, ArrayList<Byte> moveHistory) {
+    public void setAdditionalMoveShortcut(byte next, ArrayList<Byte> moveHistory, AbstractCard enemyCard) {
         EnemyMoveInfo info = this.moves.get(next);
-        AdditionalIntent additionalIntent = new AdditionalIntent(this, info);
+        AdditionalIntent additionalIntent = new AdditionalIntent(this, info, enemyCard);
         additionalIntents.add(additionalIntent);
         additionalMoves.add(info);
         moveHistory.add(next);
+    }
+
+    public void setAdditionalMoveShortcut(byte next, ArrayList<Byte> moveHistory) {
+        setAdditionalMoveShortcut(next, moveHistory, null);
     }
 
     protected boolean lastMove(byte move, ArrayList<Byte> moveHistory) {

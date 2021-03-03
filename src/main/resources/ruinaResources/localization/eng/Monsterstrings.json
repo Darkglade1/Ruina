@@ -492,5 +492,18 @@
     "NAME": "Eyeball Chick",
     "DIALOG": [
     ]
+  },
+  "${ModID}:RedMist": {
+    "MOVES": [
+      "Upstanding Slash",
+      "Spear",
+      "Level Slash",
+      "Onrush",
+      "Greater Split: Vertical",
+      "Greater Split: Horizontal"
+    ],
+    "NAME": "Red Mist",
+    "DIALOG": [
+    ]
   }
 }
