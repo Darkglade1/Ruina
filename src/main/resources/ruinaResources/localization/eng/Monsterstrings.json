@@ -474,5 +474,36 @@
     "NAME": "Lungs of Craving",
     "DIALOG": [
     ]
+  },
+  "${ModID}:RunawayBird": {
+    "MOVES": [
+      "Sweep",
+      "Shriek"
+    ],
+    "NAME": "Runaway Bird",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:EyeballChick": {
+    "MOVES": [
+      "Stare",
+      "Pierce"
+    ],
+    "NAME": "Eyeball Chick",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:RedMist": {
+    "MOVES": [
+      "Upstanding Slash",
+      "Spear",
+      "Level Slash",
+      "Onrush",
+      "Greater Split: Vertical",
+      "Greater Split: Horizontal"
+    ],
+    "NAME": "Red Mist",
+    "DIALOG": [
+    ]
   }
 }

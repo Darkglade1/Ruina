@@ -78,6 +78,9 @@ import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
+import ruina.monsters.act3.EyeballChick;
+import ruina.monsters.act3.RedMist;
+import ruina.monsters.act3.RunawayBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
@@ -333,6 +336,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("SnowAttackFar"), makeSFXPath("SnowQueen_Atk_Far.wav"));
         BaseMod.addAudio(makeID("SnowBlizzard"), makeSFXPath("SnowQueen_Freeze.wav"));
         BaseMod.addAudio(makeID("SnowPrisonBreak"), makeSFXPath("SnowQueen_IceCrash.wav"));
+
+        BaseMod.addAudio(makeID("BirdSweep"), makeSFXPath("LongBird_SubAtk.wav"));
+        BaseMod.addAudio(makeID("BirdShout"), makeSFXPath("LongBird_SubShout.wav"));
     }
 
     @Override
@@ -467,6 +473,21 @@ public class RuinaMod implements
                         new LungsOfCraving(-150.0F, 0.0F),
                         new HeartOfAspiration(150.0F, 0.0F)
                 }));
+        BaseMod.addMonster(EncounterIDs.BIRDS_3, "3_Birds", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new RunawayBird(-450.0F, 0.0F),
+                        new RunawayBird(-200.0F, 0.0F),
+                        new EyeballChick(50.0F, 0.0F)
+                }));
+        BaseMod.addMonster(EncounterIDs.BIRDS_4, "4_Birds", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new RunawayBird(-450.0F, 0.0F),
+                        new RunawayBird(-200.0F, 0.0F),
+                        new EyeballChick(50.0F, 0.0F),
+                        new EyeballChick(300.0F, 0.0F)
+                }));
+
+        BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
 
         BaseMod.addMonster(RedMist.ID, RedMist::new);
 

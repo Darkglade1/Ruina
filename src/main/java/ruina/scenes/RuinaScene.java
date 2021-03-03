@@ -28,6 +28,8 @@ import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
+import ruina.monsters.act3.EyeballChick;
+import ruina.monsters.act3.RunawayBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.bigBird.BigBird;
@@ -104,7 +106,7 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Paradise");
                 } else if (mo instanceof Twilight) {
                     this.bg = this.atlas.findRegion("mod/Twilight");
-                } else if (mo instanceof BigBird || mo instanceof PunishingBird) {
+                } else if (mo instanceof BigBird || mo instanceof PunishingBird || mo instanceof EyeballChick || mo instanceof RunawayBird) {
                     this.bg = this.atlas.findRegion("mod/BlackForest");
                 } else if (mo instanceof BlueStar || mo instanceof Worshipper) {
                     this.bg = this.atlas.findRegion("mod/Star");
