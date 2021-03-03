@@ -132,6 +132,7 @@ public class AdditionalIntent {
             enemyCard.current_x = MathHelper.cardLerpSnap(enemyCard.current_x, enemyCard.target_x);
             enemyCard.current_y = MathHelper.cardLerpSnap(enemyCard.current_y, enemyCard.target_y);
             enemyCard.hb.move(enemyCard.current_x, enemyCard.current_y);
+            enemyCard.hb.resize(512 * enemyCard.drawScale, 512 * enemyCard.drawScale);
             if (enemyCard.hb.hovered) {
                 enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale * 3.0F);
                 enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale * 3.0F);

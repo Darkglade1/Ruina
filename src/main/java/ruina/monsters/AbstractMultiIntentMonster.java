@@ -137,16 +137,12 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
 
     }
 
-    public void setAdditionalMoveShortcut(byte next, ArrayList<Byte> moveHistory, AbstractCard enemyCard) {
+    public void setAdditionalMoveShortcut(byte next, ArrayList<Byte> moveHistory) {
         EnemyMoveInfo info = this.moves.get(next);
-        AdditionalIntent additionalIntent = new AdditionalIntent(this, info, enemyCard);
+        AdditionalIntent additionalIntent = new AdditionalIntent(this, info);
         additionalIntents.add(additionalIntent);
         additionalMoves.add(info);
         moveHistory.add(next);
-    }
-
-    public void setAdditionalMoveShortcut(byte next, ArrayList<Byte> moveHistory) {
-        setAdditionalMoveShortcut(next, moveHistory, null);
     }
 
     protected boolean lastMove(byte move, ArrayList<Byte> moveHistory) {

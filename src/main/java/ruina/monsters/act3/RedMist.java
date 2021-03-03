@@ -15,7 +15,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.cards.Dazzled;
 import ruina.cards.EGO.act2.Mimicry;
-import ruina.monsters.AbstractMultiIntentMonster;
+import ruina.monsters.AbstractCardMonster;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -25,7 +25,7 @@ import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
-public class RedMist extends AbstractMultiIntentMonster
+public class RedMist extends AbstractCardMonster
 {
     public static final String ID = makeID(RedMist.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
@@ -156,7 +156,7 @@ public class RedMist extends AbstractMultiIntentMonster
             possibilities.add(DAZZLE_PLAYER);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
+        setMoveShortcut(move, MOVES[move], new Mimicry());
     }
 
     @Override
