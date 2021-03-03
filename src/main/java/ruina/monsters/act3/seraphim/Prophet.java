@@ -91,6 +91,7 @@ public class Prophet extends AbstractAllyMonster
         runAnim("Idle1");
         addMove(BAPTISM, Intent.BUFF);
         EGG_REGION = new TextureRegion(EGG);
+        this.type = EnemyType.BOSS;
     }
 
     @Override
