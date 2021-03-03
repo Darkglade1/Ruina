@@ -22,6 +22,7 @@ import ruina.cards.Dazzled;
 import ruina.cards.EGO.act2.Mimicry;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractDeckMonster;
+import ruina.monsters.eventboss.redMist.cards.*;
 import ruina.powers.Bleed;
 import ruina.powers.NextTurnPowerPower;
 import ruina.powers.RedMistPower;
@@ -107,7 +108,8 @@ public class RedMist extends AbstractDeckMonster
 
     @Override
     public void usePreBattleAction() {
-
+        initializeDeck();
+        applyToTarget(this, this, new RedMistPower(this));
     }
 
     @Override
@@ -271,11 +273,11 @@ public class RedMist extends AbstractDeckMonster
     @Override
     protected void getMove(final int num) {
         if(turn != 0 && turn % 3 == 0){
-            if(EGO){ setMoveShortcut(GSH, MOVES[GSH]); }
-            else { setMoveShortcut(GSV, MOVES[GSV]); }
+            if(EGO){ setMoveShortcut(GSH, MOVES[GSH], new CHRBOSS_GreaterSplitHorizontal()); }
+            else { setMoveShortcut(GSV, MOVES[GSV], new CHRBOSS_GreaterSplitVertical()); }
         }
         else{
-            if(EGORECENTTRIGGER){ setMoveShortcut(GSH, MOVES[GSH]); }
+            if(EGORECENTTRIGGER){ setMoveShortcut(GSH, MOVES[GSH], new CHRBOSS_GreaterSplitHorizontal()); }
             else { setMoveShortcut(FOCUS_SPIRIT, MOVES[FOCUS_SPIRIT]); }
         }
         /*
@@ -312,20 +314,26 @@ public class RedMist extends AbstractDeckMonster
 
     @Override
     protected void createDeck() {
-        masterDeck.addToBottom(new Mimicry());
-        masterDeck.addToBottom(new Mimicry());
-        masterDeck.addToBottom(new Mimicry());
-        masterDeck.addToBottom(new Mimicry());
-        masterDeck.addToBottom(new Mimicry());
+        for(int i = 0; i < 3; i += 1){
+            masterDeck.addToBottom(new CHRBOSS_LevelSlash());
+            masterDeck.addToBottom(new CHRBOSS_Spear());
+            masterDeck.addToBottom(new CHRBOSS_UpstandingSlash());
+        }
     }
 
     @Override
     protected void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
+        System.out.println(c.cardID);
         switch (c.cardID){
-            case "ruina:Mimicry":
-                setAdditionalMoveShortcut(SALVATION, moveHistory, new Mimicry());
+            case "ruina:CHRBOSS_LevelSlash":
+                setAdditionalMoveShortcut(LEVEL_SLASH, moveHistory, new CHRBOSS_LevelSlash());
                 break;
-
+            case "ruina:CHRBOSS_Spear":
+                setAdditionalMoveShortcut(SPEAR, moveHistory, new CHRBOSS_Spear());
+                break;
+            case "ruina:CHRBOSS_UpstandingSlash":
+                setAdditionalMoveShortcut(UPSTANDING_SLASH, moveHistory, new CHRBOSS_UpstandingSlash());
+                break;
             default:
                 break;
 

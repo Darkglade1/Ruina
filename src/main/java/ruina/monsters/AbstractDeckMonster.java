@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public abstract class AbstractDeckMonster extends AbstractCardMonster {
 
     protected CardGroup masterDeck = new CardGroup(CardGroup.CardGroupType.HAND);
-    private CardGroup draw = new CardGroup(CardGroup.CardGroupType.HAND);
-    private CardGroup discard = new CardGroup(CardGroup.CardGroupType.HAND);
-    private CardGroup purge = new CardGroup(CardGroup.CardGroupType.HAND);
+    protected CardGroup draw = new CardGroup(CardGroup.CardGroupType.HAND);
+    protected CardGroup discard = new CardGroup(CardGroup.CardGroupType.HAND);
+    protected CardGroup purge = new CardGroup(CardGroup.CardGroupType.HAND);
 
     public AbstractDeckMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -28,6 +28,7 @@ public abstract class AbstractDeckMonster extends AbstractCardMonster {
     }
 
     public void initializeDeck(){
+        createDeck();
         masterDeck.shuffle();
         draw.initializeDeck(masterDeck);
     }
