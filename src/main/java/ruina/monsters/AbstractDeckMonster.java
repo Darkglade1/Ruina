@@ -30,7 +30,9 @@ public abstract class AbstractDeckMonster extends AbstractCardMonster {
     public void initializeDeck(){
         createDeck();
         masterDeck.shuffle();
-        draw.initializeDeck(masterDeck);
+        for(AbstractCard c: masterDeck.group){
+            draw.addToBottom(c);
+        }
     }
 
     protected abstract void createDeck();

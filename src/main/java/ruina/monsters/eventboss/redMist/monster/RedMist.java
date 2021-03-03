@@ -101,14 +101,11 @@ public class RedMist extends AbstractDeckMonster
         addMove(GSV, Intent.ATTACK_DEBUFF, calcAscensionDamage(40));
         addMove(GSH, Intent.ATTACK_DEBUFF, calcAscensionDamage(50));
 
-        addMove(DAZZLE_ENEMY, Intent.STRONG_DEBUFF);
-        addMove(DAZZLE_PLAYER, Intent.DEBUFF);
-        addMove(ILLUMINATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
+        initializeDeck();
     }
 
     @Override
     public void usePreBattleAction() {
-        initializeDeck();
         applyToTarget(this, this, new RedMistPower(this));
     }
 
