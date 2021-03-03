@@ -176,12 +176,12 @@ public class AdditionalIntent {
             color = intentColor;
         }
         if (enemyCard != null && color.a > 0) {
-            sb.setColor(color);
+            //sb.setColor(color);
             enemyCard.current_x = source.intentHb.cX + (X_OFFSET * scaleWidth * position);
             enemyCard.target_x = source.intentHb.cX + (X_OFFSET * scaleWidth * position);
             enemyCard.current_y = source.intentHb.cY + (100.0f * scaleHeight);
             enemyCard.target_y = source.intentHb.cY + (100.0f * scaleHeight);
-            enemyCard.render(sb);
+            //enemyCard.render(sb);
         }
     }
 

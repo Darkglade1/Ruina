@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
     protected AbstractCard enemyCard = null;
+    public ArrayList<AbstractCard> cardsToRender = new ArrayList<>();
     public static AbstractCard hoveredCard = null;
 
     public AbstractCardMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
@@ -61,13 +62,16 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
 
     public void renderCard(SpriteBatch sb) {
         Color color = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentColor");
-        if (enemyCard != null && color.a > 0) {
+        if (color.a > 0) {
             sb.setColor(color);
-            enemyCard.current_x = this.intentHb.cX;
-            enemyCard.target_x = this.intentHb.cX;
-            enemyCard.current_y = this.intentHb.cY + (100.0f * Settings.scale);
-            enemyCard.target_y = this.intentHb.cY + (100.0f * Settings.scale);
-            enemyCard.render(sb);
+            for (AbstractCard card : cardsToRender) {
+                if (card != hoveredCard) {
+                    card.render(sb);
+                }
+            }
+            if (hoveredCard != null) {
+                hoveredCard.render(sb);
+            }
         }
     }
 
@@ -78,19 +82,30 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
     }
 
     public void setEnemyCard(AbstractCard card, int baseDamage) {
-        this.enemyCard = card;
-        if (this.enemyCard != null) {
-            this.enemyCard.drawScale = 0.25f;
-            this.enemyCard.targetDrawScale = 0.25f;
-            this.enemyCard.baseDamage = baseDamage;
+        enemyCard = card;
+        if (enemyCard != null) {
+            enemyCard.drawScale = 0.25f;
+            enemyCard.targetDrawScale = 0.25f;
+            enemyCard.baseDamage = baseDamage;
+            enemyCard.current_x = this.intentHb.cX;
+            enemyCard.target_x = this.intentHb.cX;
+            enemyCard.current_y = this.intentHb.cY + (100.0f * Settings.scale);
+            enemyCard.target_y = this.intentHb.cY + (100.0f * Settings.scale);
         }
+    }
+
+    @Override
+    public void rollMove() {
+        cardsToRender.clear();
+        super.rollMove();
+        AbstractCardMonster.hoveredCard = null; //in case the player was hovering one of them while it was getting yeeted
     }
 
     public void setMoveShortcut(byte next, String text, AbstractCard enemyCard) {
         EnemyMoveInfo info = this.moves.get(next);
         this.setMove(text, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
         setEnemyCard(enemyCard, info.baseDamage);
-        AbstractCardMonster.hoveredCard = null;
+        cardsToRender.add(enemyCard);
     }
 
     public void setAdditionalMoveShortcut(byte next, ArrayList<Byte> moveHistory, AbstractCard enemyCard) {
@@ -99,6 +114,7 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
         additionalIntents.add(additionalIntent);
         additionalMoves.add(info);
         moveHistory.add(next);
+        cardsToRender.add(enemyCard);
     }
 
     @Override
