@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
+import com.sun.org.apache.bcel.internal.generic.FALOAD;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.cards.Dazzled;
@@ -65,17 +66,27 @@ public class RedMist extends AbstractDeckMonster
     private final int upstanding_threshold = 7;
     private final int level_threshold = 7;
 
+    private boolean EGO = false;
+    private boolean EGORECENTTRIGGER = false;
+    private int baseExtraActions = 1;
+    private int egoExtraActions = 1;
+    private int levelSlashExtraActions = 1;
+    private int turn = 0;
+
     public RedMist() {
         this(100.0f, 0.0f);
     }
     public RedMist(final float x, final float y) {
-        super(NAME, ID, 400, -5.0F, 0, 300.0f, 355.0f, null, x, y);
+        super(NAME, ID, 300, -5.0F, 0, 300.0f, 355.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BigBird/Spriter/BigBird.scml"));
-        this.type = EnemyType.ELITE;
-        numAdditionalMoves = 2;
+        this.type = EnemyType.NORMAL;
+        this.setHp(calcAscensionTankiness(300));
+        // Not a bug - I just don't want to crash the game with null movehistory.
+        numAdditionalMoves = 99;
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
+        numAdditionalMoves = baseExtraActions;
         this.setHp(calcAscensionTankiness(maxHealth));
 
         addMove(FOCUS_SPIRIT, Intent.DEFEND_BUFF);
@@ -105,6 +116,13 @@ public class RedMist extends AbstractDeckMonster
             case FOCUS_SPIRIT: {
                 block(this, focusSpiritBlock);
                 // add tempstr later.
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        turn += 1;
+                        this.isDone = true;
+                    }
+                });
                 break;
             }
             case UPSTANDING_SLASH: {
@@ -143,9 +161,7 @@ public class RedMist extends AbstractDeckMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if(threshold[0] >= level_threshold){
-                            // actions later.
-                        }
+                        if(threshold[0] >= level_threshold){ levelSlashExtraActions += 1; }
                         isDone = true;
                     }
                 });
@@ -163,14 +179,35 @@ public class RedMist extends AbstractDeckMonster
                         this.isDone = true;
                     }
                 });
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        turn += 1;
+                        this.isDone = true;
+                    }
+                });
                 break;
             }
             case GSH: {
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if(EGORECENTTRIGGER){ EGORECENTTRIGGER = false; }
+                        isDone = true;
+                    }
+                });
                 dmg(adp(), info);
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
                         if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), RedMist.this, new Bleed(adp(), GSHBleed)); }
+                        this.isDone = true;
+                    }
+                });
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        turn += 1;
                         this.isDone = true;
                     }
                 });
@@ -216,12 +253,26 @@ public class RedMist extends AbstractDeckMonster
                 }
             });
         }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                calculateAllocatedMoves();
+                this.isDone = true;
+            }
+        });
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-
+        if(turn != 0 && turn % 3 == 0){
+            if(EGO){ setMoveShortcut(GSH, MOVES[GSH]); }
+            else { setMoveShortcut(GSV, MOVES[GSV]); }
+        }
+        else{
+            if(EGORECENTTRIGGER){ setMoveShortcut(GSH, MOVES[GSH]); }
+            else { setMoveShortcut(FOCUS_SPIRIT, MOVES[FOCUS_SPIRIT]); }
+        }
         /*
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (!this.lastMove(SALVATION)) {
@@ -276,4 +327,18 @@ public class RedMist extends AbstractDeckMonster
         }
     }
 
+    public void calculateAllocatedMoves(){
+        if(turn != 0 && turn % 3 == 0){
+            numAdditionalMoves = 0;
+            levelSlashExtraActions = 0;
+        }
+        else {
+            numAdditionalMoves = baseExtraActions;
+            if (EGO) {
+                numAdditionalMoves += egoExtraActions;
+            }
+            numAdditionalMoves += levelSlashExtraActions;
+            levelSlashExtraActions = 0;
+        }
+    }
 }
