@@ -129,6 +129,8 @@ public class RedMist extends AbstractDeckMonster
                         }
                     });
                 }
+                // TODO: fix this.
+                /*
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -139,6 +141,7 @@ public class RedMist extends AbstractDeckMonster
                         isDone = true;
                     }
                 });
+                 */
                 break;
             }
             case LEVEL_SLASH: {
