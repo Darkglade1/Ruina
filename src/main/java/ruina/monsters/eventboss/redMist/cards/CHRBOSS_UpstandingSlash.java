@@ -12,15 +12,11 @@ import static ruina.RuinaMod.makeID;
 public class CHRBOSS_UpstandingSlash extends AbstractEgoCard {
     public final static String ID = makeID(CHRBOSS_UpstandingSlash.class.getSimpleName());
 
-    public static final int DAMAGE = 7;
-    public static final int HITS = 2;
-    public static final int THRESHOLD = 7;
-
     public CHRBOSS_UpstandingSlash(RedMist parent) {
         super(ID, 2, CardType.ATTACK, CardTarget.SELF);
-        damage = baseDamage = DAMAGE;
+        damage = baseDamage = parent.upstanding_damage;
         magicNumber = baseMagicNumber = parent.UPSTANDING_SLASH_DEBUFF;
-        secondMagicNumber = baseSecondMagicNumber = THRESHOLD;
+        secondMagicNumber = baseSecondMagicNumber = parent.upstanding_threshold;
     }
 
     @Override

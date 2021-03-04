@@ -68,8 +68,10 @@ public class RedMist extends AbstractDeckMonster
     public final int GSHBleed = calcAscensionSpecial(5);
     public final int UPSTANDING_SLASH_DEBUFF = calcAscensionSpecial(1);
 
-    private final int upstanding_threshold;
-    private final int level_threshold;
+    public final int upstanding_damage = calcAscensionDamage(6);
+    public final int upstanding_threshold = upstanding_damage;
+    public final int level_damage = calcAscensionDamage(5);
+    public final int level_threshold = level_damage;
 
     private static final int KALI_PHASE = 1;
     private static final int EGO_PHASE = 2;
@@ -77,8 +79,8 @@ public class RedMist extends AbstractDeckMonster
 
     private boolean EGO = false;
     private boolean EGORECENTTRIGGER = false;
-    private int baseExtraActions = 1;
-    private int egoExtraActions = 1;
+    private final int baseExtraActions = 1;
+    private final int egoExtraActions = 1;
     private int levelSlashExtraActions = 0;
     private int turn = 0;
 
@@ -98,13 +100,9 @@ public class RedMist extends AbstractDeckMonster
         numAdditionalMoves = baseExtraActions;
 
         addMove(FOCUS_SPIRIT, Intent.DEFEND_BUFF);
-        int upstandingDamage = calcAscensionDamage(7);
-        upstanding_threshold = upstandingDamage;
-        addMove(UPSTANDING_SLASH, Intent.ATTACK_BUFF, upstandingDamage, 2, true);
-        int levelDamage = calcAscensionDamage(5);
-        level_threshold = levelDamage;
-        addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, levelDamage, 2, true);
-        addMove(SPEAR, Intent.ATTACK, calcAscensionDamage(4), 3, true);
+        addMove(UPSTANDING_SLASH, Intent.ATTACK_BUFF, upstanding_damage, 2, true);
+        addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, level_damage, 2, true);
+        addMove(SPEAR, Intent.ATTACK, calcAscensionDamage(5), 3, true);
         addMove(GSV, Intent.ATTACK_DEBUFF, calcAscensionDamage(30));
         addMove(GSH, Intent.ATTACK_DEBUFF, calcAscensionDamage(40));
 
@@ -365,7 +363,7 @@ public class RedMist extends AbstractDeckMonster
     @Override
     protected void createDeck() {
         for(int i = 0; i < 3; i += 1){
-            masterDeck.addToBottom(new CHRBOSS_LevelSlash());
+            masterDeck.addToBottom(new CHRBOSS_LevelSlash(this));
             masterDeck.addToBottom(new CHRBOSS_Spear());
             masterDeck.addToBottom(new CHRBOSS_UpstandingSlash(this));
             masterDeck.addToBottom(new CHRBOSS_FocusSpirit(this));
@@ -421,7 +419,7 @@ public class RedMist extends AbstractDeckMonster
         switch (move){
             case FOCUS_SPIRIT: return new CHRBOSS_FocusSpirit(this);
             case UPSTANDING_SLASH: return new CHRBOSS_UpstandingSlash(this);
-            case LEVEL_SLASH: return new CHRBOSS_LevelSlash();
+            case LEVEL_SLASH: return new CHRBOSS_LevelSlash(this);
             case SPEAR: return new CHRBOSS_Spear();
             default: return new Madness();
         }
