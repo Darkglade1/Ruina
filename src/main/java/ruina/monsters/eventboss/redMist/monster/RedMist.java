@@ -400,7 +400,7 @@ public class RedMist extends AbstractDeckMonster
     }
 
     public void calculateAllocatedMoves(){
-        if(greaterSplitCooldownCounter != 0 && greaterSplitCooldownCounter % 3 == 0){
+        if(greaterSplitCooldownCounter <= 0){
             numAdditionalMoves = 0;
             levelSlashExtraActions = 0;
         }
@@ -428,7 +428,7 @@ public class RedMist extends AbstractDeckMonster
         CustomDungeon.playTempMusicInstantly("RedMistBGM");
         EGO = true;
         EGORECENTTRIGGER = true;
-        atb(new RemoveDebuffsAction(this));
+        //atb(new RemoveDebuffsAction(this));
     }
 
     protected AbstractCard getMoveCardFromByte(Byte move) {

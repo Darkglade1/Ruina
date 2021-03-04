@@ -124,6 +124,6 @@
   },
   "${ModID}:CHRBOSS_FocusSpirit": {
     "NAME": "Focus Spirit",
-    "DESCRIPTION": "Gain !B! Block. NL Gain 1 Temporary Strength next turn."
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Temporary Strength next turn."
   }
 }

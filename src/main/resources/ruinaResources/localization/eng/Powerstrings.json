@@ -237,7 +237,7 @@
   "${ModID}:RedMistPower": {
     "NAME": "Manifest E.G.O",
     "DESCRIPTIONS": [
-      "HP Cannot Fall Below #b%1$s. NL When HP is at #b%2$s at end of round, transitions to the next phase, uses a #rpowerful attack next turn, and permanently gains an extra #yintent.",
+      "HP cannot fall below #b%1$s. NL When HP is at #b%2$s at end of round, transitions to the next phase, uses a #rpowerful attack next turn, and permanently gains an extra #yintent.",
       "Manifesting #rE.G.O at end of round."
     ]
   }
