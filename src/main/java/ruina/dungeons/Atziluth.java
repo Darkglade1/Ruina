@@ -33,6 +33,7 @@ public class Atziluth extends AbstractRuinaDungeon {
         this.addTempMusic("Angela3", RuinaMod.makeMusicPath("Angela3.ogg"));
         this.addTempMusic("WhiteNightBGM", RuinaMod.makeMusicPath("WhiteNightBGM.ogg"));
         this.addTempMusic("RedMistBGM", RuinaMod.makeMusicPath("RedMistBgm.ogg"));
+        this.addTempMusic("Gebura2", RuinaMod.makeMusicPath("Gebura2.ogg"));
     }
 
     public Atziluth(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {

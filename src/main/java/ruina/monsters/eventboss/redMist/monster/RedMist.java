@@ -110,7 +110,9 @@ public class RedMist extends AbstractDeckMonster
     }
 
     @Override
-    public void usePreBattleAction() {
+    public void usePreBattleAction()
+    {
+        CustomDungeon.playTempMusicInstantly("Gebura2");
         applyToTarget(this, this, new RedMistPower(this));
     }
 
