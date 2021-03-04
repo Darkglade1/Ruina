@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -65,6 +66,7 @@ public class RedMist extends AbstractDeckMonster
     public final int focusSpiritStr = calcAscensionSpecial(1);
     public final int GSVBleed = calcAscensionSpecial(3);
     public final int GSHBleed = calcAscensionSpecial(5);
+    public final int UPSTANDING_SLASH_DEBUFF = calcAscensionSpecial(1);
 
     private final int upstanding_threshold;
     private final int level_threshold;
@@ -88,9 +90,9 @@ public class RedMist extends AbstractDeckMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("RedMist/Spriter/RedMist.scml"));
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));
-        // Not a bug - I just don't want to crash the game with null movehistory.
-        numAdditionalMoves = 99;
-        for (int i = 0; i < numAdditionalMoves; i++) {
+
+        maxAdditionalMoves = 3;
+        for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
         numAdditionalMoves = baseExtraActions;
@@ -102,7 +104,7 @@ public class RedMist extends AbstractDeckMonster
         int levelDamage = calcAscensionDamage(5);
         level_threshold = levelDamage;
         addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, levelDamage, 2, true);
-        addMove(SPEAR, Intent.ATTACK, 3, 3, true);
+        addMove(SPEAR, Intent.ATTACK, calcAscensionDamage(4), 3, true);
         addMove(GSV, Intent.ATTACK_DEBUFF, calcAscensionDamage(30));
         addMove(GSH, Intent.ATTACK_DEBUFF, calcAscensionDamage(40));
 
@@ -150,11 +152,7 @@ public class RedMist extends AbstractDeckMonster
                     @Override
                     public void update() {
                         if(threshold[0] >= upstanding_threshold){
-                            AbstractPower P = RedMist.this.getPower(RedMistPower.POWER_ID);
-                            if(P != null){
-                                P.amount += ((RedMist.this.maxHealth / 100) * 5);
-                                P.updateDescription();
-                            }
+                            applyToTargetTop(adp(), RedMist.this, new FrailPower(adp(), UPSTANDING_SLASH_DEBUFF, true));
                         }
                         isDone = true;
                     }
@@ -369,7 +367,7 @@ public class RedMist extends AbstractDeckMonster
         for(int i = 0; i < 3; i += 1){
             masterDeck.addToBottom(new CHRBOSS_LevelSlash());
             masterDeck.addToBottom(new CHRBOSS_Spear());
-            masterDeck.addToBottom(new CHRBOSS_UpstandingSlash());
+            masterDeck.addToBottom(new CHRBOSS_UpstandingSlash(this));
             masterDeck.addToBottom(new CHRBOSS_FocusSpirit(this));
         }
     }
@@ -402,6 +400,9 @@ public class RedMist extends AbstractDeckMonster
                 if (EGO) { numAdditionalMoves += egoExtraActions; }
                 numAdditionalMoves += levelSlashExtraActions;
                 levelSlashExtraActions = 0;
+                if (numAdditionalMoves > maxAdditionalMoves) {
+                    numAdditionalMoves = maxAdditionalMoves;
+                }
             }
         }
     }
@@ -419,7 +420,7 @@ public class RedMist extends AbstractDeckMonster
     protected AbstractCard getMoveCardFromByte(Byte move) {
         switch (move){
             case FOCUS_SPIRIT: return new CHRBOSS_FocusSpirit(this);
-            case UPSTANDING_SLASH: return new CHRBOSS_UpstandingSlash();
+            case UPSTANDING_SLASH: return new CHRBOSS_UpstandingSlash(this);
             case LEVEL_SLASH: return new CHRBOSS_LevelSlash();
             case SPEAR: return new CHRBOSS_Spear();
             default: return new Madness();

@@ -213,13 +213,13 @@
   "${ModID}:RedMistRecollection": {
     "NAME": "Kali's Recollection",
     "DESCRIPTIONS": [
-      "\"I woke up in the Laboratory again, a few days after receiving the sword from Carmen. When I first held the sword in my grip, nothing seemed out of the ordinary. It felt normal, despite the truly creepy appearance of the blade. It wasn't unbearable to look at, and all I could do was heed Carmen's advice and get used to it. After all, it was by sheer luck that the extraction even worked.\"",
-      "\"While the blade was formidable in combat, as I kept wielding it, a sound would ring in my head. The grinding of teeth. The crackling of bones. The mingling of contorted flesh. The patterns were irregular, as if to mimic human speech. Anxious lest my mind might be consumed by the voice which plagued me, I pretended as if I could not hear its shrills.\" NL NL My thoughts are interrupted from footsteps from outside, yet everyone is already here. I must do what I always do; protect those dear to me. Swallowing my fears, I brandish my blade.",
-      "\"I peer around the corner, yet no-one was there. Was it the sound inside my head, playing tricks on me? I don't know. I should consult the others, but it's hard when only I could hear the sound that eats away at my mind.\""
+      "I woke up in the Laboratory again, a few days after receiving the sword from Carmen. When I first held the sword in my grip, nothing seemed out of the ordinary. It felt normal, despite the truly #pcreepy appearance of the blade. It wasn't unbearable to look at, and all I could do was heed Carmen's advice and get used to it. NL After all, it was by #ysheer #yluck that the extraction even worked.",
+      "While the blade was #yformidable in combat, as I kept wielding it, a sound would #rring in my head. The #pgrinding of teeth. The #pcrackling of bones. The #pmingling of contorted flesh. NL The patterns were irregular, as if to mimic human speech. Anxious that my mind might be consumed by the voice which plagued me, I pretended as if I could not hear its #pcries. NL My thoughts are interrupted by footsteps from outside, yet everyone is already here. I must do what I always do; protect those dear to me. Swallowing my fears, I #rbrandish my blade.",
+      "I peer around the corner, yet no-one was there. Was it the sound inside my head, playing tricks on me? I don't know. I should consult the others, but it's hard when only I could hear the sound that #peats #paway at my mind."
     ],
     "OPTIONS": [
       "[Continue]",
-      "[Fight the #rRed Mist] Obtain a special E.G.O card.",
+      "[Encounter] #rFight #rthe #rRed #rMist. #gObtain #ga #gspecial #gcard.",
       "[Leave]"
     ]
   }

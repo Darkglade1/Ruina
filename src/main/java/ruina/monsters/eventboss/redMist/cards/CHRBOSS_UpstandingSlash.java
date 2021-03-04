@@ -4,6 +4,7 @@ import basemod.AutoAdd;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.cards.EGO.AbstractEgoCard;
+import ruina.monsters.eventboss.redMist.monster.RedMist;
 
 import static ruina.RuinaMod.makeID;
 
@@ -15,10 +16,10 @@ public class CHRBOSS_UpstandingSlash extends AbstractEgoCard {
     public static final int HITS = 2;
     public static final int THRESHOLD = 7;
 
-    public CHRBOSS_UpstandingSlash() {
+    public CHRBOSS_UpstandingSlash(RedMist parent) {
         super(ID, 2, CardType.ATTACK, CardTarget.SELF);
         damage = baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber = HITS;
+        magicNumber = baseMagicNumber = parent.UPSTANDING_SLASH_DEBUFF;
         secondMagicNumber = baseSecondMagicNumber = THRESHOLD;
     }
 

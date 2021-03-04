@@ -235,10 +235,10 @@
     "DESCRIPTIONS": ["Uses a #rpowerful attack in #b", " turns. NL Removes all additional actions on the attacking turn.", " turn. NL Removes all additional actions on the attacking turn.", "Using a #rpowerful attack this turn! NL Removes all additional actions on the attacking turn."]
   },
   "${ModID}:RedMistPower": {
-    "NAME": "Manifesting E.G.O",
+    "NAME": "Manifest E.G.O",
     "DESCRIPTIONS": [
-      "HP Cannot Fall Below #b%1$s. NL When HP is at #b%2$s at the end of the turn, manifest #rE.G.O, launch a powerful attack next turn at the cost of all additional actions. NL While in #rE.G.O, gain an extra move action.",
-      "Manifesting #rE.G.O at the end of this turn."
+      "HP Cannot Fall Below #b%1$s. NL When HP is at #b%2$s at end of round, transitions to the next phase, uses a #rpowerful attack next turn, and permanently gains an extra #yintent.",
+      "Manifesting #rE.G.O at end of round."
     ]
   }
 }
