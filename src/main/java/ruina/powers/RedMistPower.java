@@ -18,14 +18,14 @@ public class RedMistPower extends AbstractEasyPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public RedMistPower(AbstractCreature owner) {
-        super(NAME, POWER_ID, PowerType.BUFF, false, owner, -1);
-        amount = owner.maxHealth / 2;
+        super(NAME, POWER_ID, PowerType.BUFF, false, owner, owner.maxHealth / 2);
     }
 
     public int onAttacked(DamageInfo info, int damageAmount) {
         if(owner.currentHealth - damageAmount <= amount){
             owner.currentHealth = amount;
             owner.healthBarUpdatedEvent();
+            updateDescription();
             return 0;
         }
         return damageAmount;
@@ -36,6 +36,6 @@ public class RedMistPower extends AbstractEasyPower {
             att(new RemoveSpecificPowerAction(owner, owner, this));
         }
     }
-    public void updateDescription() { this.description = owner.currentHealth == amount ? DESCRIPTIONS[1] : DESCRIPTIONS[0]; }
+    public void updateDescription() { this.description = owner.currentHealth == amount ? DESCRIPTIONS[1] : String.format(DESCRIPTIONS[0], amount, amount) ; }
 
 }

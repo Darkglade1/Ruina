@@ -143,7 +143,10 @@ public class RedMist extends AbstractDeckMonster
                     public void update() {
                         if(threshold[0] >= upstanding_threshold){
                             AbstractPower P = RedMist.this.getPower(RedMistPower.POWER_ID);
-                            if(P != null){ P.amount += ((RedMist.this.maxHealth / 100) * 5); }
+                            if(P != null){
+                                P.amount += ((RedMist.this.maxHealth / 100) * 5);
+                                P.updateDescription();
+                            }
                         }
                         isDone = true;
                     }
