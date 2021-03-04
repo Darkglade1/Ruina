@@ -217,6 +217,7 @@ public class RedMist extends AbstractDeckMonster
                 break;
             }
             case GSH: {
+                horizontalSplitVfx();
                 horizontalAnimation(adp());
                 atb(new AbstractGameAction() {
                     @Override
@@ -425,7 +426,7 @@ public class RedMist extends AbstractDeckMonster
         }
     }
 
-    public void verticalSplitVfx() {
+    private void verticalSplitVfx() {
         ArrayList<Texture> frames = new ArrayList<>();
         float frameDuration = 0.1f;
         for (int i = 0; i <= 9; i++) {
@@ -503,6 +504,108 @@ public class RedMist extends AbstractDeckMonster
                 })
                 .build();
         atb(new VFXAction(verticalSplit, 0.9f));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = false;
+                AbstractDungeon.overlayMenu.showCombatPanels();
+                this.isDone = true;
+            }
+        });
+    }
+
+    private void horizontalSplitVfx() {
+        ArrayList<Texture> frames = new ArrayList<>();
+        float totalDuration = 1.2f;
+        float frameDuration = 0.1f;
+        for (int i = 1; i <= 12; i++) {
+            frames.add(TexLoader.getTexture(makeMonsterPath("RedMist/Horizontal/frame" + i + ".png")));
+        }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = true;
+                AbstractDungeon.overlayMenu.hideCombatPanels();
+                this.isDone = true;
+            }
+        });
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound("RedMistHoriEye");
+                playSound("RedMistHoriStart");
+                this.isDone = true;
+            }
+        });
+        AbstractGameEffect horizontalSplit = new VfxBuilder(frames.get(0), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, totalDuration)
+                .triggerVfxAt(0.1f, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(1), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.2f, 2, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(2), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.3f, 3, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(3), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.4f, 4, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(4), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.5f, 5, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(5), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.6f, 6, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(6), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.7f, 7, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(7), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.8f, 8, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(8), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.9f, 9, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(9), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(1.0f, 10, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(10), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(1.1f, 11, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(11), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .build();
+        atb(new VFXAction(horizontalSplit, totalDuration));
         atb(new AbstractGameAction() {
             @Override
             public void update() {
