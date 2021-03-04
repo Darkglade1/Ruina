@@ -1,7 +1,10 @@
 package ruina.monsters.eventboss.redMist.monster;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,12 +12,14 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -25,14 +30,17 @@ import ruina.monsters.eventboss.redMist.cards.CHRBOSS_GreaterSplitVertical;
 import ruina.monsters.eventboss.redMist.cards.CHRBOSS_LevelSlash;
 import ruina.monsters.eventboss.redMist.cards.CHRBOSS_Spear;
 import ruina.monsters.eventboss.redMist.cards.CHRBOSS_UpstandingSlash;
+import ruina.patches.RenderHandPatch;
 import ruina.powers.Bleed;
 import ruina.powers.NextTurnPowerPower;
 import ruina.powers.RedMistPower;
 import ruina.util.AdditionalIntent;
+import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
+import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -193,19 +201,15 @@ public class RedMist extends AbstractDeckMonster
                 break;
             }
             case GSV: {
+                verticalUpAnimation(adp());
+                atb(new VFXAction(new WaitEffect(), 0.25f));
+                verticalSplitVfx();
                 verticalDownAnimation(adp());
                 dmg(adp(), info);
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
                         if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), RedMist.this, new Bleed(adp(), GSVBleed)); }
-                        this.isDone = true;
-                    }
-                });
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        turn += 1;
                         this.isDone = true;
                     }
                 });
@@ -226,13 +230,6 @@ public class RedMist extends AbstractDeckMonster
                     @Override
                     public void update() {
                         if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), RedMist.this, new Bleed(adp(), GSHBleed)); }
-                        this.isDone = true;
-                    }
-                });
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        turn += 1;
                         this.isDone = true;
                     }
                 });
@@ -426,5 +423,93 @@ public class RedMist extends AbstractDeckMonster
             case SPEAR: return new CHRBOSS_Spear();
             default: return new Madness();
         }
+    }
+
+    public void verticalSplitVfx() {
+        ArrayList<Texture> frames = new ArrayList<>();
+        float frameDuration = 0.1f;
+        for (int i = 0; i <= 9; i++) {
+            frames.add(TexLoader.getTexture(makeMonsterPath("RedMist/Vertical/frame" + i + ".png")));
+        }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = true;
+                AbstractDungeon.overlayMenu.hideCombatPanels();
+                this.isDone = true;
+            }
+        });
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound("RedMistVertCut");
+                this.isDone = true;
+            }
+        });
+        AbstractGameEffect verticalSplit = new VfxBuilder(frames.get(0), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, 0.9f)
+                .triggerVfxAt(0.1f, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(1), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.2f, 2, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(2), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.3f, 3, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(3), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.4f, 4, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(4), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.5f, 5, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(5), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.6f, 6, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(6), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.7f, 7, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(7), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.8f, 8, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(8), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .triggerVfxAt(0.9f, 9, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        return new VfxBuilder(frames.get(9), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                    }
+                })
+                .build();
+        atb(new VFXAction(verticalSplit, 0.9f));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = false;
+                AbstractDungeon.overlayMenu.showCombatPanels();
+                this.isDone = true;
+            }
+        });
     }
 }

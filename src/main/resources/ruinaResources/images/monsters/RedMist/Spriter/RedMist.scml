@@ -30,7 +30,7 @@
             </mainline>
             <timeline id="0" name="Idle">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-224" y="226"/>
+                    <object folder="0" file="0" x="-224" y="226" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -42,7 +42,7 @@
             </mainline>
             <timeline id="0" name="Idle_000">
                 <key id="0" spin="0">
-                    <object folder="1" file="0" x="-171" y="202"/>
+                    <object folder="1" file="0" x="-171" y="202" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -54,7 +54,7 @@
             </mainline>
             <timeline id="0" name="Move">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="-98" y="191"/>
+                    <object folder="0" file="6" x="-98" y="191" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -66,7 +66,7 @@
             </mainline>
             <timeline id="0" name="Move_000">
                 <key id="0" spin="0">
-                    <object folder="1" file="1" x="-104" y="213"/>
+                    <object folder="1" file="1" x="-104" y="213" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -78,7 +78,7 @@
             </mainline>
             <timeline id="0" name="Block">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-76" y="238"/>
+                    <object folder="0" file="3" x="-76" y="238" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -90,7 +90,7 @@
             </mainline>
             <timeline id="0" name="Block_000">
                 <key id="0" spin="0">
-                    <object folder="1" file="2" x="-125" y="235"/>
+                    <object folder="1" file="2" x="-125" y="235" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -102,7 +102,7 @@
             </mainline>
             <timeline id="0" name="Upstanding">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-178" y="192"/>
+                    <object folder="0" file="1" x="-178" y="192" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -114,7 +114,7 @@
             </mainline>
             <timeline id="0" name="Upstanding_000">
                 <key id="0" spin="0">
-                    <object folder="1" file="3" x="-465" y="327"/>
+                    <object folder="1" file="3" x="-465" y="327" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -126,7 +126,7 @@
             </mainline>
             <timeline id="0" name="Spear">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-360" y="186"/>
+                    <object folder="0" file="4" x="-360" y="186" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -138,7 +138,7 @@
             </mainline>
             <timeline id="0" name="Spear_000">
                 <key id="0" spin="0">
-                    <object folder="1" file="4" x="-502" y="200"/>
+                    <object folder="1" file="4" x="-502" y="200" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -150,7 +150,7 @@
             </mainline>
             <timeline id="0" name="Level">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="-73" y="284"/>
+                    <object folder="0" file="5" x="-73" y="284" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -162,11 +162,11 @@
             </mainline>
             <timeline id="0" name="Level_000">
                 <key id="0" spin="0">
-                    <object folder="1" file="5" x="-186" y="275"/>
+                    <object folder="1" file="5" x="-186" y="275" angle="0"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="12" name="VerticalUp" length="1000" interval="100">
+        <animation id="12" name="VerticalUp1" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -174,7 +174,7 @@
             </mainline>
             <timeline id="0" name="VerticalUp">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="-78" y="406"/>
+                    <object folder="0" file="7" x="-78" y="406" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -186,7 +186,7 @@
             </mainline>
             <timeline id="0" name="VerticalUp_000">
                 <key id="0" spin="0">
-                    <object folder="1" file="6" x="-71" y="395"/>
+                    <object folder="1" file="6" x="-71" y="395" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -198,7 +198,7 @@
             </mainline>
             <timeline id="0" name="VerticalDown">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-259" y="233"/>
+                    <object folder="0" file="2" x="-259" y="233" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -210,7 +210,7 @@
             </mainline>
             <timeline id="0" name="VerticalDown_000">
                 <key id="0" spin="0">
-                    <object folder="1" file="7" x="-280" y="257"/>
+                    <object folder="1" file="7" x="-280" y="257" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -222,7 +222,7 @@
             </mainline>
             <timeline id="0" name="Horizontal">
                 <key id="0" spin="0">
-                    <object folder="1" file="8" x="-164" y="349"/>
+                    <object folder="1" file="8" x="-164" y="349" angle="0"/>
                 </key>
             </timeline>
         </animation>
