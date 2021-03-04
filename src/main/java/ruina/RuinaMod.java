@@ -337,6 +337,20 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("BirdSweep"), makeSFXPath("LongBird_SubAtk.wav"));
         BaseMod.addAudio(makeID("BirdShout"), makeSFXPath("LongBird_SubShout.wav"));
+
+        BaseMod.addAudio(makeID("RedMistChange"), makeSFXPath("Kali_Change.ogg"));
+        BaseMod.addAudio(makeID("RedMistHori2"), makeSFXPath("Kali_EGO_Hori.ogg"));
+        BaseMod.addAudio(makeID("RedMistStab2"), makeSFXPath("Kali_EGO_Stab.ogg"));
+        BaseMod.addAudio(makeID("RedMistVert2"), makeSFXPath("Kali_EGO_Vert.ogg"));
+        BaseMod.addAudio(makeID("RedMistHori1"), makeSFXPath("Kali_Normal_Hori.ogg"));
+        BaseMod.addAudio(makeID("RedMistStab1"), makeSFXPath("Kali_Normal_Stab.ogg"));
+        BaseMod.addAudio(makeID("RedMistVert1"), makeSFXPath("Kali_Normal_Vert.ogg"));
+        BaseMod.addAudio(makeID("RedMistVertFin"), makeSFXPath("Kali_Special_Vert_Fin.ogg"));
+        BaseMod.addAudio(makeID("RedMistVertHit"), makeSFXPath("Kali_Special_Vert_Hit.ogg"));
+        BaseMod.addAudio(makeID("RedMistVertCut"), makeSFXPath("Kali_Special_Cut.ogg"));
+        BaseMod.addAudio(makeID("RedMistHoriEye"), makeSFXPath("Kali_Special_Hori_Eyeon.ogg"));
+        BaseMod.addAudio(makeID("RedMistHoriFin"), makeSFXPath("Kali_Special_Hori_Fin.ogg"));
+        BaseMod.addAudio(makeID("RedMistHoriStart"), makeSFXPath("Kali_Special_Hori_Start.ogg"));
     }
 
     @Override
