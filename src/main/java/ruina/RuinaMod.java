@@ -60,6 +60,7 @@ import ruina.events.act2.SocialSciences;
 import ruina.events.act2.ThePianist;
 import ruina.events.act2.WizardOfOz;
 import ruina.events.act2.ZweiAssociation;
+import ruina.events.act3.RedMistRecollection;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Hermit;
 import ruina.monsters.act2.Jester.JesterOfNihil;
@@ -456,6 +457,7 @@ public class RuinaMod implements
         BaseMod.addEvent(SensoryStone.ID, SensoryStone.class, Atziluth.ID);
         BaseMod.addEvent(MysteriousSphere.ID, MysteriousSphere.class, Atziluth.ID);
         BaseMod.addEvent(WindingHalls.ID, WindingHalls.class, Atziluth.ID);
+        BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);
 
 
         // Act 3
