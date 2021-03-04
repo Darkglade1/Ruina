@@ -204,7 +204,7 @@
   },
   "${ModID}:Enchanted": {
     "NAME": "Enchanted",
-    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL This effect is #gremoved whenever #yyou attack this creature."]
+    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL #yEnchanted is #gremoved whenever #yyou attack this creature."]
   },
   "${ModID}:Martyr": {
     "NAME": "Martyr",
