@@ -108,7 +108,7 @@
   },
   "${ModID}:CHRBOSS_LevelSlash": {
     "NAME": "Level Slash",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL If !ruina:SecondMagic! damage was dealt, gain an extra move action next turn."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If !ruina:SecondMagic! damage was dealt, gains an extra intent for the next turn."
   },
   "${ModID}:CHRBOSS_Spear": {
     "NAME": "Spear",

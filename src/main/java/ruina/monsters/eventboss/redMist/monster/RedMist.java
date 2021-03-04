@@ -1,8 +1,9 @@
 package ruina.monsters.eventboss.redMist.monster;
 
+import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
@@ -10,26 +11,26 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
-import com.sun.org.apache.bcel.internal.generic.FALOAD;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
-import ruina.cards.Dazzled;
-import ruina.cards.EGO.act2.Mimicry;
-import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractDeckMonster;
-import ruina.monsters.eventboss.redMist.cards.*;
+import ruina.monsters.eventboss.redMist.cards.CHRBOSS_FocusSpirit;
+import ruina.monsters.eventboss.redMist.cards.CHRBOSS_GreaterSplitHorizontal;
+import ruina.monsters.eventboss.redMist.cards.CHRBOSS_GreaterSplitVertical;
+import ruina.monsters.eventboss.redMist.cards.CHRBOSS_LevelSlash;
+import ruina.monsters.eventboss.redMist.cards.CHRBOSS_Spear;
+import ruina.monsters.eventboss.redMist.cards.CHRBOSS_UpstandingSlash;
 import ruina.powers.Bleed;
 import ruina.powers.NextTurnPowerPower;
 import ruina.powers.RedMistPower;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
+import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
@@ -52,13 +53,17 @@ public class RedMist extends AbstractDeckMonster
     private static final byte GSV = 4;
     private static final byte GSH = 5;
 
-    private final int focusSpiritBlock = 12;
-    private final int focusSpiritStr = 1;
-    private final int GSVBleed = 3;
-    private final int GSHBleed = 5;
+    public final int focusSpiritBlock = calcAscensionTankiness(12);
+    public final int focusSpiritStr = calcAscensionSpecial(1);
+    public final int GSVBleed = calcAscensionSpecial(3);
+    public final int GSHBleed = calcAscensionSpecial(5);
 
-    private final int upstanding_threshold = 7;
-    private final int level_threshold = 7;
+    private final int upstanding_threshold;
+    private final int level_threshold;
+
+    private static final int KALI_PHASE = 1;
+    private static final int EGO_PHASE = 2;
+    private int phase = KALI_PHASE;
 
     private boolean EGO = false;
     private boolean EGORECENTTRIGGER = false;
@@ -71,21 +76,24 @@ public class RedMist extends AbstractDeckMonster
         this(100.0f, 0.0f);
     }
     public RedMist(final float x, final float y) {
-        super(NAME, ID, 300, -5.0F, 0, 300.0f, 355.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("BigBird/Spriter/BigBird.scml"));
-        this.type = EnemyType.NORMAL;
-        this.setHp(calcAscensionTankiness(300));
+        super(NAME, ID, 300, -5.0F, 0, 250.0f, 255.0f, null, x, y);
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("RedMist/Spriter/RedMist.scml"));
+        this.type = EnemyType.BOSS;
+        this.setHp(calcAscensionTankiness(maxHealth));
         // Not a bug - I just don't want to crash the game with null movehistory.
         numAdditionalMoves = 99;
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
         numAdditionalMoves = baseExtraActions;
-        this.setHp(calcAscensionTankiness(maxHealth));
 
         addMove(FOCUS_SPIRIT, Intent.DEFEND_BUFF);
-        addMove(UPSTANDING_SLASH, Intent.ATTACK_BUFF, 7, 2, true);
-        addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, 5, 2, true);
+        int upstandingDamage = calcAscensionDamage(7);
+        upstanding_threshold = upstandingDamage;
+        addMove(UPSTANDING_SLASH, Intent.ATTACK_BUFF, upstandingDamage, 2, true);
+        int levelDamage = calcAscensionDamage(5);
+        level_threshold = levelDamage;
+        addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, levelDamage, 2, true);
         addMove(SPEAR, Intent.ATTACK, 3, 3, true);
         addMove(GSV, Intent.ATTACK_DEBUFF, calcAscensionDamage(30));
         addMove(GSH, Intent.ATTACK_DEBUFF, calcAscensionDamage(40));
@@ -106,20 +114,20 @@ public class RedMist extends AbstractDeckMonster
         final int[] threshold = {0};
         switch (move.nextMove) {
             case FOCUS_SPIRIT: {
+                blockAnimation();
                 block(this, focusSpiritBlock);
                 applyToTarget(this, this, new NextTurnPowerPower(this, new StrengthPower(this, focusSpiritStr)));
                 applyToTarget(this, this, new NextTurnPowerPower(this, new LoseStrengthPower(this, focusSpiritStr)));
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        turn += 1;
-                        this.isDone = true;
-                    }
-                });
+                resetIdle();
                 break;
             }
             case UPSTANDING_SLASH: {
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        upstandingAnimation(adp());
+                    } else {
+                        levelAnimation(adp());
+                    }
                     dmg(adp(), info);
                     atb(new AbstractGameAction() {
                         @Override
@@ -128,6 +136,7 @@ public class RedMist extends AbstractDeckMonster
                             isDone = true;
                         }
                     });
+                    resetIdle();
                 }
                 atb(new AbstractGameAction() {
                     @Override
@@ -144,6 +153,11 @@ public class RedMist extends AbstractDeckMonster
             }
             case LEVEL_SLASH: {
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        levelAnimation(adp());
+                    } else {
+                        upstandingAnimation(adp());
+                    }
                     dmg(adp(), info);
                     atb(new AbstractGameAction() {
                         @Override
@@ -152,6 +166,7 @@ public class RedMist extends AbstractDeckMonster
                             isDone = true;
                         }
                     });
+                    resetIdle();
                 }
                 atb(new AbstractGameAction() {
                     @Override
@@ -160,12 +175,22 @@ public class RedMist extends AbstractDeckMonster
                         isDone = true;
                     }
                 });
+                break;
             }
             case SPEAR: {
-                for (int i = 0; i < multiplier; i++) { dmg(adp(), info); }
+                for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                       spearAnimation(adp());
+                    } else {
+                        upstandingAnimation(adp());
+                    }
+                    dmg(adp(), info);
+                    resetIdle();
+                }
                 break;
             }
             case GSV: {
+                verticalDownAnimation(adp());
                 dmg(adp(), info);
                 atb(new AbstractGameAction() {
                     @Override
@@ -181,9 +206,11 @@ public class RedMist extends AbstractDeckMonster
                         this.isDone = true;
                     }
                 });
+                resetIdle(1.0f);
                 break;
             }
             case GSH: {
+                horizontalAnimation(adp());
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -206,25 +233,50 @@ public class RedMist extends AbstractDeckMonster
                         this.isDone = true;
                     }
                 });
+                resetIdle(1.0f);
                 break;
             }
         }
     }
 
-    private void salvation1Animation(AbstractCreature enemy) {
-        animationAction("Salvation1", "BigBirdOpen", enemy, this);
+    private void upstandingAnimation(AbstractCreature enemy) {
+        animationAction("Upstanding" + phase, "RedMistVert" + phase, enemy, this);
     }
 
-    private void salvation2Animation(AbstractCreature enemy) {
-        animationAction("Salvation2", "BigBirdCrunch", enemy, this);
+    private void spearAnimation(AbstractCreature enemy) {
+        animationAction("Spear" + phase, "RedMistStab" + phase, enemy, this);
     }
 
-    private void dazzleAnimation(AbstractCreature enemy) {
-        animationAction("Lamp", "BigBirdLamp", enemy, this);
+    private void levelAnimation(AbstractCreature enemy) {
+        animationAction("Level" + phase, "RedMistHori" + phase, enemy, this);
     }
 
-    private void specialAnimation(AbstractCreature enemy) {
-        animationAction("Lamp", "BigBirdEyes", enemy, this);
+    private void verticalUpAnimation(AbstractCreature enemy) {
+        animationAction("VerticalUp" + phase, "RedMistVertHit", enemy, this);
+    }
+
+    private void verticalDownAnimation(AbstractCreature enemy) {
+        animationAction("VerticalDown" + phase, "RedMistVertFin", enemy, this);
+    }
+
+    private void horizontalAnimation(AbstractCreature enemy) {
+        animationAction("Horizontal", "RedMistHoriFin", enemy, this);
+    }
+
+    private void blockAnimation() {
+        animationAction("Block" + phase, null, this);
+    }
+
+    @Override
+    protected void resetIdle(float duration) {
+        atb(new VFXActionButItCanFizzle(this, new WaitEffect(), duration));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                runAnim("Idle" + phase);
+                this.isDone = true;
+            }
+        });
     }
 
     @Override
@@ -251,6 +303,13 @@ public class RedMist extends AbstractDeckMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
+                turn += 1;
+                this.isDone = true;
+            }
+        });
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
                 AbstractPower P = RedMist.this.getPower(RedMistPower.POWER_ID);
                 if(P != null){ ((RedMistPower) P).EGOTrigger(); }
                 isDone = true;
@@ -269,11 +328,11 @@ public class RedMist extends AbstractDeckMonster
     @Override
     protected void getMove(final int num) {
         if(turn != 0 && turn % 3 == 0){
-            if(EGO){ setMoveShortcut(GSH, MOVES[GSH], new CHRBOSS_GreaterSplitHorizontal()); }
-            else { setMoveShortcut(GSV, MOVES[GSV], new CHRBOSS_GreaterSplitVertical()); }
+            if(EGO){ setMoveShortcut(GSH, MOVES[GSH], new CHRBOSS_GreaterSplitHorizontal(this)); }
+            else { setMoveShortcut(GSV, MOVES[GSV], new CHRBOSS_GreaterSplitVertical(this)); }
         }
         else{
-            if(EGORECENTTRIGGER){ setMoveShortcut(GSH, MOVES[GSH], new CHRBOSS_GreaterSplitHorizontal()); }
+            if(EGORECENTTRIGGER){ setMoveShortcut(GSH, MOVES[GSH], new CHRBOSS_GreaterSplitHorizontal(this)); }
             else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
                 if (!this.lastMove(FOCUS_SPIRIT)) { possibilities.add(FOCUS_SPIRIT); }
@@ -310,29 +369,20 @@ public class RedMist extends AbstractDeckMonster
             masterDeck.addToBottom(new CHRBOSS_LevelSlash());
             masterDeck.addToBottom(new CHRBOSS_Spear());
             masterDeck.addToBottom(new CHRBOSS_UpstandingSlash());
-            masterDeck.addToBottom(new CHRBOSS_FocusSpirit());
+            masterDeck.addToBottom(new CHRBOSS_FocusSpirit(this));
         }
     }
 
     @Override
     protected void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
-        System.out.println(c.cardID);
-        switch (c.cardID){
-            case "ruina:CHRBOSS_LevelSlash":
-                setAdditionalMoveShortcut(LEVEL_SLASH, moveHistory, c);
-                break;
-            case "ruina:CHRBOSS_Spear":
-                setAdditionalMoveShortcut(SPEAR, moveHistory, c);
-                break;
-            case "ruina:CHRBOSS_UpstandingSlash":
-                setAdditionalMoveShortcut(UPSTANDING_SLASH, moveHistory, c);
-                break;
-            case "ruina:CHRBOSS_FocusSpirit":
-                setAdditionalMoveShortcut(FOCUS_SPIRIT, moveHistory, c);
-                break;
-            default:
-                break;
-
+        if (c.cardID.equals(CHRBOSS_LevelSlash.ID)) {
+            setAdditionalMoveShortcut(LEVEL_SLASH, moveHistory, c);
+        } else if (c.cardID.equals(CHRBOSS_Spear.ID)) {
+            setAdditionalMoveShortcut(SPEAR, moveHistory, c);
+        } else if (c.cardID.equals(CHRBOSS_UpstandingSlash.ID)) {
+            setAdditionalMoveShortcut(UPSTANDING_SLASH, moveHistory, c);
+        } else {
+            setAdditionalMoveShortcut(FOCUS_SPIRIT, moveHistory, c);
         }
     }
 
@@ -356,14 +406,18 @@ public class RedMist extends AbstractDeckMonster
     }
 
     public void activateEGO(){
-        // vfx here or something
+        playSound("RedMistChange");
+        phase = EGO_PHASE;
+        runAnim("Idle" + phase);
+        CustomDungeon.playTempMusicInstantly("RedMistBGM");
         EGO = true;
         EGORECENTTRIGGER = true;
+        atb(new RemoveDebuffsAction(this));
     }
 
     protected AbstractCard getMoveCardFromByte(Byte move) {
         switch (move){
-            case FOCUS_SPIRIT: return new CHRBOSS_FocusSpirit();
+            case FOCUS_SPIRIT: return new CHRBOSS_FocusSpirit(this);
             case UPSTANDING_SLASH: return new CHRBOSS_UpstandingSlash();
             case LEVEL_SLASH: return new CHRBOSS_LevelSlash();
             case SPEAR: return new CHRBOSS_Spear();

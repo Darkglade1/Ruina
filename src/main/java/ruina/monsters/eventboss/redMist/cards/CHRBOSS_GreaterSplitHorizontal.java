@@ -4,6 +4,7 @@ import basemod.AutoAdd;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.cards.EGO.AbstractEgoCard;
+import ruina.monsters.eventboss.redMist.monster.RedMist;
 
 import static ruina.RuinaMod.makeID;
 
@@ -12,12 +13,11 @@ public class CHRBOSS_GreaterSplitHorizontal extends AbstractEgoCard {
     public final static String ID = makeID(CHRBOSS_GreaterSplitHorizontal.class.getSimpleName());
 
     public static final int DAMAGE = 40;
-    public static final int BLEED = 5;
 
-    public CHRBOSS_GreaterSplitHorizontal() {
+    public CHRBOSS_GreaterSplitHorizontal(RedMist parent) {
         super(ID, 5, CardType.ATTACK, CardTarget.SELF);
         damage = baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber = BLEED;
+        magicNumber = baseMagicNumber = parent.GSHBleed;
     }
 
     @Override
