@@ -455,7 +455,6 @@ public class RuinaMod implements
         BaseMod.addEvent(Falling.ID, Falling.class, Atziluth.ID);
         BaseMod.addEvent(MindBloom.ID, MindBloom.class, Atziluth.ID);
         BaseMod.addEvent(SensoryStone.ID, SensoryStone.class, Atziluth.ID);
-        BaseMod.addEvent(MysteriousSphere.ID, MysteriousSphere.class, Atziluth.ID);
         BaseMod.addEvent(WindingHalls.ID, WindingHalls.class, Atziluth.ID);
         BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);
 

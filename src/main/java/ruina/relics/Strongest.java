@@ -12,7 +12,7 @@ public class Strongest extends AbstractEasyRelic {
     public static final String ID = makeID(Strongest.class.getSimpleName());
 
     private static final int DAMAGE_THRESHOLD = 20;
-    private static final int STRENGTH = 2;
+    private static final int STRENGTH = 1;
 
     public Strongest() {
         super(ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
