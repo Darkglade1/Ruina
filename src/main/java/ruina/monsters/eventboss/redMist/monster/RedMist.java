@@ -1,18 +1,15 @@
 package ruina.monsters.eventboss.redMist.monster;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -20,7 +17,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -31,7 +27,6 @@ import ruina.monsters.eventboss.redMist.cards.CHRBOSS_GreaterSplitVertical;
 import ruina.monsters.eventboss.redMist.cards.CHRBOSS_LevelSlash;
 import ruina.monsters.eventboss.redMist.cards.CHRBOSS_Spear;
 import ruina.monsters.eventboss.redMist.cards.CHRBOSS_UpstandingSlash;
-import ruina.patches.RenderHandPatch;
 import ruina.powers.Bleed;
 import ruina.powers.NextTurnPowerPower;
 import ruina.powers.RedMistPower;
@@ -41,7 +36,6 @@ import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
-import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;

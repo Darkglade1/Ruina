@@ -196,7 +196,7 @@
   },
   "${ModID}:Unruffled": {
     "NAME": "Unruffled",
-    "DESCRIPTIONS": ["Your attacks against this creature deal #b", " damage. NL You cannot apply #pdebuffs this creature."]
+    "DESCRIPTIONS": ["Your attacks against this creature deal #b", " damage. NL You cannot apply #pdebuffs to this creature."]
   },
   "${ModID}:Salvation": {
     "NAME": "Salvation",
