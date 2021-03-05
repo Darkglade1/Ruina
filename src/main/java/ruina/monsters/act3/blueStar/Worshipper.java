@@ -19,7 +19,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.DarkSmokePuffEffect;
-import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokingEmberEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -75,7 +74,7 @@ public class Worshipper extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Worshipper/Spriter/Worshipper.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(38), calcAscensionTankiness(44));
-        addMove(FOR_THE_STAR, Intent.ATTACK, calcAscensionDamage(11));
+        addMove(FOR_THE_STAR, Intent.ATTACK, calcAscensionDamage(12));
         addMove(EVERLASTING_FAITH, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
         addMove(HEAR_STAR, Intent.ATTACK, calcAscensionDamage(17));
         addMove(MEET_AGAIN, Intent.UNKNOWN);

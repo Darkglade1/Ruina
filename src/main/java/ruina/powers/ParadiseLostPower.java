@@ -33,7 +33,7 @@ public class ParadiseLostPower extends AbstractEasyPower {
 
     @Override
     public void atStartOfTurnPostDraw() {
-        atb(new ExhaustAction(exhaustNum, false));
+        atb(new ExhaustAction(exhaustNum, false, true, true));
     }
 
     @Override

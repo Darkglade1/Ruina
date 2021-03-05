@@ -161,7 +161,7 @@
   },
   "${ModID}:ParadiseLostPower": {
     "NAME": "Paradise Lost",
-    "DESCRIPTIONS": ["At the start of your turn, exhaust #b", " card.", " cards.", " Whenever #b", " cards are #yexhausted, ALL enemies lose #b", " HP."]
+    "DESCRIPTIONS": ["At the start of your turn, #yexhaust up to #b", " card.", " cards.", " Whenever #b", " cards are #yexhausted, ALL enemies lose #b", " HP."]
   },
   "${ModID}:Heaven": {
     "NAME": "Heaven",

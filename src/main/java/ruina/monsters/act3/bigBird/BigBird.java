@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
@@ -51,6 +52,7 @@ public class BigBird extends AbstractMultiIntentMonster
     private static final byte DAZZLE_ENEMY = 1;
     private static final byte DAZZLE_PLAYER = 2;
     private static final byte ILLUMINATE = 3;
+    private static final byte ILLUMINATE_2 = 4;
     
     private final int STATUS = calcAscensionSpecial(3);
     private final int DEBUFF = calcAscensionSpecial(1);
@@ -77,10 +79,11 @@ public class BigBird extends AbstractMultiIntentMonster
         }
         this.setHp(calcAscensionTankiness(maxHealth));
 
-        addMove(SALVATION, Intent.ATTACK, calcAscensionDamage(15));
+        addMove(SALVATION, Intent.ATTACK, calcAscensionDamage(16));
         addMove(DAZZLE_ENEMY, Intent.STRONG_DEBUFF);
         addMove(DAZZLE_PLAYER, Intent.DEBUFF);
-        addMove(ILLUMINATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
+        addMove(ILLUMINATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));
+        addMove(ILLUMINATE_2, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
     }
 
     @Override
@@ -160,6 +163,13 @@ public class BigBird extends AbstractMultiIntentMonster
                 dazzleAnimation(target);
                 dmg(target, info);
                 applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                resetIdle(1.0f);
+                break;
+            }
+            case ILLUMINATE_2: {
+                dazzleAnimation(target);
+                dmg(target, info);
+                applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
                 resetIdle(1.0f);
                 break;
             }
@@ -246,10 +256,10 @@ public class BigBird extends AbstractMultiIntentMonster
         if (whichMove == 0) {
             if (sage1 != null && (sage1.isDead || sage1.isDying)) {
                 ArrayList<Byte> possibilities = new ArrayList<>();
-                if (!this.lastMove(SALVATION, moveHistory)) {
+                if (!this.lastTwoMoves(SALVATION, moveHistory)) {
                     possibilities.add(SALVATION);
                 }
-                if (!this.lastMove(ILLUMINATE, moveHistory)) {
+                if (!this.lastTwoMoves(ILLUMINATE, moveHistory)) {
                     possibilities.add(ILLUMINATE);
                 }
                 byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
@@ -266,11 +276,11 @@ public class BigBird extends AbstractMultiIntentMonster
         if (whichMove == 1) {
             if (sage2 != null && (sage2.isDead || sage2.isDying)) {
                 ArrayList<Byte> possibilities = new ArrayList<>();
-                if (!this.lastMove(SALVATION, moveHistory)) {
+                if (!this.lastTwoMoves(SALVATION, moveHistory)) {
                     possibilities.add(SALVATION);
                 }
-                if (!this.lastMove(ILLUMINATE, moveHistory)) {
-                    possibilities.add(ILLUMINATE);
+                if (!this.lastTwoMoves(ILLUMINATE_2, moveHistory)) {
+                    possibilities.add(ILLUMINATE_2);
                 }
                 byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
                 setAdditionalMoveShortcut(move, moveHistory);

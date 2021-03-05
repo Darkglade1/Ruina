@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
@@ -16,12 +15,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeID;
@@ -41,8 +39,9 @@ public class BlueStar extends AbstractRuinaMonster
     private static final byte SOUND_OF_STAR = 2;
     private static final byte WORSHIPPERS = 3;
 
-    private final int BLOCK = calcAscensionTankiness(14);
-    private final int STRENGTH = calcAscensionSpecial(3);
+    private final int BLOCK = calcAscensionTankiness(13);
+    private final int STRENGTH = calcAscensionSpecial(4);
+    private final int VULNERABLE = calcAscensionSpecial(1);
 
     public static final String POWER_ID = makeID("Worshippers");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -63,7 +62,7 @@ public class BlueStar extends AbstractRuinaMonster
         this.star = new BetterSpriterAnimation(makeMonsterPath("BlueStar/Star/Star.scml"));
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(maxHealth));
-        addMove(RISING_STAR, Intent.DEFEND);
+        addMove(RISING_STAR, Intent.DEFEND_DEBUFF);
         addMove(STARRY_SKY, Intent.BUFF);
         addMove(SOUND_OF_STAR, Intent.ATTACK, calcAscensionDamage(25));
         addMove(WORSHIPPERS, Intent.UNKNOWN);
@@ -93,6 +92,7 @@ public class BlueStar extends AbstractRuinaMonster
                 for (AbstractMonster mo : monsterList()) {
                     block(mo, BLOCK);
                 }
+                applyToTarget(adp(), this, new VulnerablePower(adp(), VULNERABLE, true));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
