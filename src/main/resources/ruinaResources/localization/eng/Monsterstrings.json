@@ -309,6 +309,15 @@
     "DIALOG": [
     ]
   },
+  "${ModID}:StaffApostle": {
+    "MOVES": [
+      "Thy Words Come unto Me",
+      "Give Us Rest"
+    ],
+    "NAME": "Staff Apostle",
+    "DIALOG": [
+    ]
+  },
   "${ModID}:GuardianApostle": {
     "MOVES": [
       "Rise And Serve",
