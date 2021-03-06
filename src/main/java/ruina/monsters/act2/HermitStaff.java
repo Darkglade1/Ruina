@@ -46,7 +46,7 @@ public class HermitStaff extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Staff/Spriter/Staff.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(44), calcAscensionTankiness(48));
-        addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(7));
+        addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(8));
         this.hermit = hermit;
     }
 

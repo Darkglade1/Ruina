@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.Bleed;
 import ruina.powers.WingsOfGrace;
 
 import java.util.ArrayList;
@@ -29,6 +29,7 @@ public class SpearApostle extends AbstractRuinaMonster {
     private static final byte THE_WILL_OF_THE_LORD_BE_DONE = 1;
 
     private final int debuff = calcAscensionSpecial(1);
+    private final int BLEED = calcAscensionSpecial(2);
 
     private final Prophet prophet;
 
@@ -62,7 +63,7 @@ public class SpearApostle extends AbstractRuinaMonster {
                     dmg(adp(), info);
                     resetIdle();
                 }
-                applyToTarget(adp(), this, new FrailPower(adp(), debuff, true));
+                applyToTarget(adp(), this, new Bleed(adp(), BLEED));
                 break;
         }
         atb(new RollMoveAction(this));

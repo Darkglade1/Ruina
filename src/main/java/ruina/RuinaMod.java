@@ -60,6 +60,7 @@ import ruina.events.act2.SocialSciences;
 import ruina.events.act2.ThePianist;
 import ruina.events.act2.WizardOfOz;
 import ruina.events.act2.ZweiAssociation;
+import ruina.events.act3.HanaAssociation;
 import ruina.events.act3.RedMistRecollection;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Hermit;
@@ -454,12 +455,6 @@ public class RuinaMod implements
         BaseMod.addEvent(NothingThere.ID, NothingThere.class, Briah.ID);
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
 
-        BaseMod.addEvent(Falling.ID, Falling.class, Atziluth.ID);
-        BaseMod.addEvent(MindBloom.ID, MindBloom.class, Atziluth.ID);
-        BaseMod.addEvent(SensoryStone.ID, SensoryStone.class, Atziluth.ID);
-        BaseMod.addEvent(WindingHalls.ID, WindingHalls.class, Atziluth.ID);
-        BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);
-
 
         // Act 3
         atziluth.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
@@ -504,6 +499,11 @@ public class RuinaMod implements
 
         BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
 
+        BaseMod.addEvent(Falling.ID, Falling.class, Atziluth.ID);
+        BaseMod.addEvent(MindBloom.ID, MindBloom.class, Atziluth.ID);
+        BaseMod.addEvent(SensoryStone.ID, SensoryStone.class, Atziluth.ID);
+        BaseMod.addEvent(HanaAssociation.ID, HanaAssociation.class, Atziluth.ID);
+        BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)
