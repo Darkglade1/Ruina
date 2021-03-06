@@ -240,5 +240,24 @@
       "[Wake Up]",
       "Choose a Card to Remove."
     ]
+  },
+  "${ModID}:ForThoseWeCherish": {
+    "NAME": "For Those We Cherish",
+    "DESCRIPTIONS": [
+      "\"I have a problem.\" NL She gulped. That didn't sound good. NL \"My #yanniversary with #yXiao is coming up soon, and I still can't decide on what to do for it.\" NL Never mind. The Director was just being a #pworrywart as usual. NL \"Surely you have some ideas in mind?\" NL \"I thought about buying something #gcute for her. Or maybe I should improve her armaments for her. We are a combat-based Association, after all. What do you think?\"",
+      "\"I think you should get her something #gcute. It's the more #ysentimental gesture, and I think she would welcome a reprieve from the #rblood and #riron of our work.\" NL The Director nodded. \"You're absolutely right. There was a nice plushie I spotted in the Nest; it'll be the perfect gift for her!\" NL As the Director rushed out to make his purchase, she sighed in relief. Crisis averted.",
+      "\"I think you should improve her #yarmaments for her. It's the more practical gesture and far more likely to be #gbeneficial to her in our line of work.\" NL The Director nodded. \"You're absolutely right. I hear the #yStigma #yWorkshop is having a sale right now; their weaponry will be the perfect gift for her!\" NL As the Director rushed out to make his purchase, she sighed in relief. Crisis averted."
+    ],
+    "OPTIONS": [
+      "[Something cute] ",
+      "[Something practical] ",
+      "Lose ",
+      " gold.",
+      "Obtain a Special Relic.",
+      "Upgrade a card.",
+      "[Wake Up]",
+      "[Locked] Requires: Gold",
+      "Choose a Card to Upgrade"
+    ]
   }
 }

@@ -43,5 +43,12 @@
     "DESCRIPTIONS": [
       "At the start of your turn, randomly activate an effect that hasn't been activated this combat: NL Gain #b", " #yStrength. NL Gain #b", " #yDexterity. NL Gain [E] . NL Draw #b", " card."
     ]
+  },
+  "${ModID}:LowellsGift": {
+    "NAME": "Lowell's Gift",
+    "FLAVOR": "For you I'd steal the stars.",
+    "DESCRIPTIONS": [
+      "At the start of your #b3rd turn, gain #b", " #yStrength and #b", " #yDexterity."
+    ]
   }
 }

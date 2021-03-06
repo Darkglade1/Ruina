@@ -67,6 +67,7 @@ public class ServantOfWrath extends AbstractAllyMonster
         this.animation.setFlip(true, false);
 
         this.setHp(maxHealth);
+        this.type = EnemyType.ELITE;
 
         if (AbstractDungeon.ascensionLevel >= 18) {
             furyThreshold = HIGH_ASC_FURY_THRESHOLD;
