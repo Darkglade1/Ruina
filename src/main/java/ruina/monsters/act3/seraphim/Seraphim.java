@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
+import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
@@ -33,6 +34,7 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.WingsOfGrace;
 import ruina.util.AdditionalIntent;
+import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
@@ -134,7 +136,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
         addMove(SUMMON_APOSTLES, Intent.UNKNOWN);
         addMove(BAPTISM, Intent.BUFF);
         addMove(WINGS_OF_GRACE, Intent.BUFF);
-        addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(44));
+        addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(45));
         addMove(SALVATION, Intent.UNKNOWN);
         addMove(PRAYER, Intent.DEFEND_BUFF);
         addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(17));
@@ -209,6 +211,16 @@ public class Seraphim extends AbstractMultiIntentMonster {
                 shockwaveAnimation(adp());
                 shockwaveEffect();
                 dmg(adp(), info);
+                resetIdle(1.0f);
+                Texture apostles = TexLoader.getTexture(makeMonsterPath("Seraphim/Apostles.png"));
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        playSound("WhiteNightSummon");
+                        this.isDone = true;
+                    }
+                });
+                flashImageVfx(apostles, 2.0f);
                 Summon();
                 atb(new AbstractGameAction() {
                     @Override
@@ -217,7 +229,6 @@ public class Seraphim extends AbstractMultiIntentMonster {
                         this.isDone = true;
                     }
                 });
-                resetIdle(1.0f);
                 break;
             case SALVATION:
                 specialAnimation();

@@ -63,10 +63,10 @@ public class Hermit extends AbstractMultiIntentMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(180), calcAscensionTankiness(190));
+        this.setHp(calcAscensionTankiness(190), calcAscensionTankiness(200));
 
-        addMove(HOLD_STILL, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
-        addMove(MAKE_WAY, Intent.ATTACK, calcAscensionDamage(11));
+        addMove(HOLD_STILL, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
+        addMove(MAKE_WAY, Intent.ATTACK, calcAscensionDamage(12));
         addMove(CRACKLE, Intent.DEFEND_BUFF);
         addMove(HELLO, Intent.UNKNOWN);
     }

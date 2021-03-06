@@ -32,6 +32,7 @@ import ruina.powers.NextTurnPowerPower;
 
 import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -234,6 +235,37 @@ public class Wiz {
                 .fadeOut(0.5f)
                 .build();
         atb(new VFXAction(appear, duration));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = false;
+                AbstractDungeon.overlayMenu.showCombatPanels();
+                this.isDone = true;
+            }
+        });
+    }
+
+    public static void fullScreenAnimation(ArrayList<Texture> frames, float frameDuration, float animationLength) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = true;
+                AbstractDungeon.overlayMenu.hideCombatPanels();
+                this.isDone = true;
+            }
+        });
+        VfxBuilder effect = new VfxBuilder(frames.get(0), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, animationLength);
+        for (int i = 1; i < frames.size(); i++) {
+            int finalI = i;
+            effect.triggerVfxAt(0.1f * i, i, new BiFunction<Float, Float, AbstractGameEffect>() {
+                @Override
+                public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                    return new VfxBuilder(frames.get(finalI), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                }
+            });
+        }
+        AbstractGameEffect finalEffect = effect.build();
+        atb(new VFXAction(finalEffect, animationLength));
         atb(new AbstractGameAction() {
             @Override
             public void update() {

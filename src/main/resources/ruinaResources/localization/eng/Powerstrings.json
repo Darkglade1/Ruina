@@ -129,7 +129,7 @@
   },
   "${ModID}:Apostles": {
     "NAME": "Apostles",
-    "DESCRIPTIONS": ["When you're healed by this creature, you gain buffs depending on the number of #yApostles #rkilled. NL 1st, 5th, 9th kill: Gain #b", " #yStrength. NL 2nd, 6th, 10th kill: Gain #b", " #yDexterity. NL 3rd, 7th, 11th kill: Draw #b", " extra card each turn. NL 4th, 8th, 12th kill: Gain [E] at the start of your turn. NL NL Whenever an #yApostle dies, a new one spawns at end of round."]
+    "DESCRIPTIONS": ["Whenever you are healed by this creature, you gain buffs depending on the number of #yApostles #rkilled. NL 1st, 5th, 9th kill: Gain #b", " #yStrength. NL 2nd, 6th, 10th kill: Gain #b", " #yDexterity. NL 3rd, 7th, 11th kill: Draw #b", " extra card each turn. NL 4th, 8th, 12th kill: Gain [E] at the start of your turn. NL NL Whenever an #yApostle dies, a new one spawns at end of round."]
   },
   "${ModID}:Advent": {
     "NAME": "Advent",
@@ -161,7 +161,7 @@
   },
   "${ModID}:ParadiseLostPower": {
     "NAME": "Paradise Lost",
-    "DESCRIPTIONS": ["At the start of your turn, exhaust #b", " card.", " cards.", " Whenever #b", " cards are #yexhausted, ALL enemies lose #b", " HP."]
+    "DESCRIPTIONS": ["At the start of your turn, #yexhaust up to #b", " card.", " cards.", " Whenever #b", " cards are #yexhausted, ALL enemies lose #b", " HP."]
   },
   "${ModID}:Heaven": {
     "NAME": "Heaven",
@@ -196,7 +196,7 @@
   },
   "${ModID}:Unruffled": {
     "NAME": "Unruffled",
-    "DESCRIPTIONS": ["Your attacks against this creature deal #b", " damage. NL You cannot apply #pdebuffs this creature."]
+    "DESCRIPTIONS": ["Your attacks against this creature deal #b", " damage. NL You cannot apply #pdebuffs to this creature."]
   },
   "${ModID}:Salvation": {
     "NAME": "Salvation",
@@ -204,7 +204,7 @@
   },
   "${ModID}:Enchanted": {
     "NAME": "Enchanted",
-    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL This effect is #gremoved whenever #yyou attack this creature."]
+    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL #yEnchanted is #gremoved whenever #yyou attack this creature."]
   },
   "${ModID}:Martyr": {
     "NAME": "Martyr",
@@ -237,7 +237,7 @@
   "${ModID}:RedMistPower": {
     "NAME": "Manifest E.G.O",
     "DESCRIPTIONS": [
-      "HP Cannot Fall Below #b%1$s. NL When HP is at #b%2$s at end of round, transitions to the next phase, uses a #rpowerful attack next turn, and permanently gains an extra #yintent.",
+      "HP cannot fall below #b%1$s. NL When HP is at #b%2$s at end of round, transitions to the next phase, uses a #rpowerful attack next turn, and permanently gains an extra #yintent.",
       "Manifesting #rE.G.O at end of round."
     ]
   }

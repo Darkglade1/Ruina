@@ -71,8 +71,8 @@
   },
   "${ModID}:ParadiseLost": {
     "NAME": "Paradise Lost",
-    "DESCRIPTION": "At the start of your turn, Exhaust !M! card. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP.",
-    "UPGRADE_DESCRIPTION": "At the start of your turn, Exhaust !M! cards. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP."
+    "DESCRIPTION": "At the start of your turn, Exhaust up to !M! card. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, Exhaust up to !M! cards. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP."
   },
   "${ModID}:DeadSilence": {
     "NAME": "Dead Silence",
@@ -124,6 +124,6 @@
   },
   "${ModID}:CHRBOSS_FocusSpirit": {
     "NAME": "Focus Spirit",
-    "DESCRIPTION": "Gain !B! Block. NL Gain 1 Temporary Strength next turn."
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Temporary Strength next turn."
   }
 }

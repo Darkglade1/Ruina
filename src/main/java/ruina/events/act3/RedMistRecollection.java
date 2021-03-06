@@ -1,25 +1,16 @@
 package ruina.events.act3;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.curses.Writhe;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.events.city.Colosseum;
-import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.Circlet;
-import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import ruina.RuinaMod;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
-import ruina.relics.Goodbye;
+import ruina.relics.Strongest;
 
 import static ruina.RuinaMod.makeEventPath;
-import static ruina.util.Wiz.adp;
 
 public class RedMistRecollection extends AbstractImageEvent {
 
@@ -37,6 +28,7 @@ public class RedMistRecollection extends AbstractImageEvent {
     public RedMistRecollection() {
         super(NAME, DESCRIPTIONS[0], IMG);
         imageEventText.setDialogOption(OPTIONS[0]);
+        noCardsInRewards = true;
     }
 
     @Override
@@ -47,7 +39,7 @@ public class RedMistRecollection extends AbstractImageEvent {
                     case 0:
                         this.imageEventText.clearAllDialogs();
                         this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
-                        imageEventText.setDialogOption(OPTIONS[1]);
+                        imageEventText.setDialogOption(OPTIONS[1], new Strongest());
                         imageEventText.setDialogOption(OPTIONS[2]);
                         screen = CurScreen.INTRO2;
                         break;
@@ -58,8 +50,8 @@ public class RedMistRecollection extends AbstractImageEvent {
                     case 0:
                         AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new RedMist(0.0F, 0.0F));
                         AbstractDungeon.getCurrRoom().rewards.clear();
-                        //AbstractDungeon.getCurrRoom().addRelicToRewards(RelicLibrary.getRelic(PhilosophersStone.ID).makeCopy());
-                        AbstractDungeon.getCurrRoom().eliteTrigger = false;
+                        AbstractDungeon.getCurrRoom().addRelicToRewards(RelicLibrary.getRelic(Strongest.ID).makeCopy());
+                        AbstractDungeon.getCurrRoom().eliteTrigger = true;
                         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg
                         this.enterCombatFromImage();
                         break;
