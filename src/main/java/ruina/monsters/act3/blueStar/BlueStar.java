@@ -64,7 +64,7 @@ public class BlueStar extends AbstractRuinaMonster
         setHp(calcAscensionTankiness(maxHealth));
         addMove(RISING_STAR, Intent.DEFEND_DEBUFF);
         addMove(STARRY_SKY, Intent.BUFF);
-        addMove(SOUND_OF_STAR, Intent.ATTACK, calcAscensionDamage(25));
+        addMove(SOUND_OF_STAR, Intent.ATTACK, calcAscensionDamage(28));
         addMove(WORSHIPPERS, Intent.UNKNOWN);
     }
 
