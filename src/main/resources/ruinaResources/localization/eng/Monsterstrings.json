@@ -526,5 +526,13 @@
     "NAME": "Judgement Bird",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Pinocchio": {
+    "MOVES": [
+      "Learn"
+    ],
+    "NAME": "Pinocchio",
+    "DIALOG": [
+    ]
   }
 }

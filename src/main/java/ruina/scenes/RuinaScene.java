@@ -30,6 +30,7 @@ import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.EyeballChick;
 import ruina.monsters.act3.JudgementBird;
+import ruina.monsters.act3.Pinocchio;
 import ruina.monsters.act3.RunawayBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.Twilight;
@@ -121,6 +122,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Snow");
                 } else if (mo instanceof HeartOfAspiration || mo instanceof LungsOfCraving) {
                     this.bg = this.atlas.findRegion("mod/Heart");
+                } else if (mo instanceof Pinocchio) {
+                    this.bg = this.atlas.findRegion("mod/Lies");
                 } else {
                     setBgs();
                 }

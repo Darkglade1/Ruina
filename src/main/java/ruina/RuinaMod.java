@@ -84,6 +84,7 @@ import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.EyeballChick;
 import ruina.monsters.act3.JudgementBird;
+import ruina.monsters.act3.Pinocchio;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.act3.RunawayBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
@@ -505,6 +506,7 @@ public class RuinaMod implements
                         new EyeballChick(300.0F, 0.0F)
                 }));
         BaseMod.addMonster(JudgementBird.ID, (BaseMod.GetMonster) JudgementBird::new);
+        BaseMod.addMonster(Pinocchio.ID, (BaseMod.GetMonster) Pinocchio::new);
         BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
 
 
