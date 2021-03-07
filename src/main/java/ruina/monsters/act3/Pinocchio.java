@@ -4,10 +4,13 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.red.PommelStrike;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -32,6 +35,7 @@ public class Pinocchio extends AbstractDeckMonster
     private static final byte LEARN = 0;
 
     public final int MAX_COST = calcAscensionSpecial(2);
+    public final int ARTIFACT = calcAscensionSpecial(2);
 
     public Pinocchio() {
         this(0.0f, 0.0f);
@@ -55,6 +59,8 @@ public class Pinocchio extends AbstractDeckMonster
     @Override
     public void usePreBattleAction() {
         initializeDeck();
+        applyToTarget(this, this, new BarricadePower(this));
+        applyToTarget(this, this, new ArtifactPower(this, ARTIFACT));
     }
 
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, AbstractCard card) {
@@ -155,7 +161,7 @@ public class Pinocchio extends AbstractDeckMonster
     @Override
     protected void createDeck() {
         for (AbstractCard card : adp().masterDeck.group) {
-            if ((card.baseDamage > 0 || card.baseBlock > 0) && card.costForTurn < MAX_COST) {
+            if ((card.baseDamage > 0 || card.baseBlock > 0) && !(card.rarity == AbstractCard.CardRarity.BASIC) && card.costForTurn <= MAX_COST) {
                 masterDeck.addToBottom(card.makeStatEquivalentCopy());
                 Intent intent;
                 if (card.baseDamage > 0 && card.baseBlock > 0) {
@@ -168,6 +174,14 @@ public class Pinocchio extends AbstractDeckMonster
                 addMove((byte) card.cardID.hashCode(), intent, card.baseDamage);
             }
         }
+        if (masterDeck.group.size() < numAdditionalMoves + 1) {
+            for (int i = 0; i < 3; i++) {
+                AbstractCard fillerCard = new PommelStrike();
+                addMove((byte) fillerCard.cardID.hashCode(), Intent.ATTACK, fillerCard.baseDamage);
+                masterDeck.addToBottom(fillerCard);
+            }
+        }
+        System.out.println(masterDeck);
     }
 
     @Override
