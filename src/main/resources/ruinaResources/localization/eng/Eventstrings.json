@@ -259,5 +259,27 @@
       "[Locked] Requires: Gold",
       "Choose a Card to Upgrade"
     ]
+  },
+  "${ModID}:Philosophy": {
+    "NAME": "Floor of Philosophy",
+    "DESCRIPTIONS": [
+      "\"You're not supposed to be here.\" NL The stern-looking woman takes a sip of #ytea and sighs as she places it back down. \"If I were interested in doing my job properly, I'd #rchase you out. But luckily for you, I can't be bothered to do so at the moment. So why don't you join me for a cup of #ytea?\"",
+      "You sit down and take a sip of the #ytea. It tastes rather #pstrange to you. NL \"So, how is it? Enjoying the flavor?\" NL Looking at the woman's #yexpectant expression, you decide that #ydiscretion is truly the better part of #yvalor and praise the tea's quality.",
+      "\"Well, that's too bad I suppose.\" NL The floor rumbles and shakes, strange #ypillars rising out of the ground near her. NL \"I'll give you a ten second head-start. After that . . . well, you better pray that you can run faster than a #rspeeding #rpillar.\" NL You've never booked it faster than you have in this moment."
+    ],
+    "OPTIONS": [
+      "[Accept her offer] ",
+      "[Reject her offer] ",
+      "Lose ",
+      ".",
+      "Heal ",
+      " HP.",
+      "Give a card in your deck +",
+      " Block and ",
+      "Ethereal.",
+      "[Leave]",
+      "Choose a card to give bonus Block and Ethereal",
+      "[Locked] Requires: Valid Card"
+    ]
   }
 }
