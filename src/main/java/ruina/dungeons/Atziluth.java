@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
+import ruina.monsters.act3.JudgementBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
@@ -94,7 +95,7 @@ public class Atziluth extends AbstractRuinaDungeon {
         monsters.add(new MonsterInfo(BurrowingHeaven.ID, 1.0F));
         //monsters.add(new MonsterInfo("Transient", 1.0F));
         monsters.add(new MonsterInfo(EncounterIDs.BIRDS_4, 1.0F));
-        //monsters.add(new MonsterInfo("Maw", 1.0F));
+        monsters.add(new MonsterInfo(JudgementBird.ID, 1.0F));
         monsters.add(new MonsterInfo(PunishingBird.ID, 1.0F));
         monsters.add(new MonsterInfo(PriceOfSilence.ID, 1.0F));
         //monsters.add(new MonsterInfo("Writhing Mass", 1.0F));

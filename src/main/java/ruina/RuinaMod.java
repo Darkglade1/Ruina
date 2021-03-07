@@ -83,6 +83,7 @@ import ruina.monsters.act2.Woodsman;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.EyeballChick;
+import ruina.monsters.act3.JudgementBird;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.act3.RunawayBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
@@ -357,6 +358,11 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("RedMistHoriEye"), makeSFXPath("Kali_Special_Hori_Eyeon.ogg"));
         BaseMod.addAudio(makeID("RedMistHoriFin"), makeSFXPath("Kali_Special_Hori_Fin.ogg"));
         BaseMod.addAudio(makeID("RedMistHoriStart"), makeSFXPath("Kali_Special_Hori_Start.ogg"));
+
+        BaseMod.addAudio(makeID("JudgementAttack"), makeSFXPath("LongBird_Down.wav"));
+        BaseMod.addAudio(makeID("JudgementHang"), makeSFXPath("LongBird_Hang.wav"));
+        BaseMod.addAudio(makeID("JudgementGong"), makeSFXPath("LongBird_On.wav"));
+        BaseMod.addAudio(makeID("JudgementDing"), makeSFXPath("LongBird_Stun.wav"));
     }
 
     @Override
@@ -498,7 +504,7 @@ public class RuinaMod implements
                         new EyeballChick(50.0F, 0.0F),
                         new EyeballChick(300.0F, 0.0F)
                 }));
-
+        BaseMod.addMonster(JudgementBird.ID, (BaseMod.GetMonster) JudgementBird::new);
         BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
 
 
