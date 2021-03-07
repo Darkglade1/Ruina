@@ -230,15 +230,15 @@
     "NAME": "Kai and Gerda",
     "DESCRIPTIONS": ["On death, #yUnfreeze all #yFrozen cards in your #yhand."]
   },
-  "${ModID}:RedMistInfoPower": {
-    "NAME": "Greater Split",
-    "DESCRIPTIONS": ["Uses a #rpowerful attack in #b", " turns. NL Removes all additional actions on the attacking turn.", " turn. NL Removes all additional actions on the attacking turn.", "Using a #rpowerful attack this turn! NL Removes all additional actions on the attacking turn."]
-  },
   "${ModID}:RedMistPower": {
     "NAME": "Manifest E.G.O",
     "DESCRIPTIONS": [
       "HP cannot fall below #b%1$s. NL When HP is at #b%2$s at end of round, transitions to the next phase, uses a #rpowerful attack next turn, and permanently gains an extra #yintent.",
       "Manifesting #rE.G.O at end of round."
     ]
+  },
+  "${ModID}:Sin": {
+    "NAME": "Weight of Sin",
+    "DESCRIPTIONS": ["Whenever you play a card that costs #b", " or less, increase its cost by #b", " this combat."]
   }
 }

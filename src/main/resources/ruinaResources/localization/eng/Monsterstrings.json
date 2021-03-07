@@ -515,5 +515,24 @@
     "NAME": "The Red Mist",
     "DIALOG": [
     ]
+  },
+  "${ModID}:JudgementBird": {
+    "MOVES": [
+      "Stare",
+      "Judgement",
+      "Heavy Guilt",
+      "Ceaseless Duty"
+    ],
+    "NAME": "Judgement Bird",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Pinocchio": {
+    "MOVES": [
+      "Learn"
+    ],
+    "NAME": "Pinocchio",
+    "DIALOG": [
+    ]
   }
 }

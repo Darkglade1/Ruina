@@ -44,7 +44,7 @@ public class AdditionalIntent {
     private Texture intentBg;
     public PowerTip intentTip;
     public boolean usePrimaryIntentsColor = true;
-    private AbstractCard enemyCard = null;
+    public AbstractCard enemyCard = null;
 
     private ArrayList<AbstractGameEffect> intentVfx;
 
