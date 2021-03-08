@@ -35,7 +35,7 @@ import static ruina.util.Wiz.atb;
 
 public class yanHand extends AbstractDeckMonster
 {
-    public static final String ID = makeID(yanDistortion.class.getSimpleName());
+    public static final String ID = makeID(yanHand.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
