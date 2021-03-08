@@ -74,9 +74,9 @@ public class Worshipper extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Worshipper/Spriter/Worshipper.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(38), calcAscensionTankiness(44));
-        addMove(FOR_THE_STAR, Intent.ATTACK, calcAscensionDamage(12));
-        addMove(EVERLASTING_FAITH, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
-        addMove(HEAR_STAR, Intent.ATTACK, calcAscensionDamage(17));
+        addMove(FOR_THE_STAR, Intent.ATTACK, calcAscensionDamage(13));
+        addMove(EVERLASTING_FAITH, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
+        addMove(HEAR_STAR, Intent.ATTACK, calcAscensionDamage(18));
         addMove(MEET_AGAIN, Intent.UNKNOWN);
         this.star = star;
         meetAgainThreshold = (int)(this.maxHealth * MEET_AGAIN_HP_THRESHOLD);

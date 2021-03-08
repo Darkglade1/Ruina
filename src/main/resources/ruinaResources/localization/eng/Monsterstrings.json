@@ -528,7 +528,8 @@
   },
   "${ModID}:Pinocchio": {
     "MOVES": [
-      "Learn"
+      "Learn",
+      "Learning"
     ],
     "NAME": "Pinocchio",
     "DIALOG": [

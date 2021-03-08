@@ -47,7 +47,7 @@ public class JudgementBird extends AbstractRuinaMonster
     private int cooldownCounter = COOLDOWN;
 
     private final int DEBUFF = calcAscensionSpecial(1);
-    private final int STRENGTH = calcAscensionSpecial(4);
+    private final int STRENGTH = calcAscensionSpecial(3);
     private final int BLOCK = calcAscensionTankiness(8);
     private final int PARALYSIS = calcAscensionSpecial(2);
     private final int COST_THRESHOLD = calcAscensionSpecial(1);
@@ -110,7 +110,6 @@ public class JudgementBird extends AbstractRuinaMonster
         switch (this.nextMove) {
             case STARE: {
                 specialAnimation(adp());
-                applyToTarget(adp(), this, new WeakPower(adp(), DEBUFF, true));
                 applyToTarget(adp(), this, new VulnerablePower(adp(), DEBUFF, true));
                 applyToTarget(adp(), this, new FrailPower(adp(), DEBUFF, true));
                 resetIdle();

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.BarricadePower;
+import com.megacrit.cardcrawl.powers.GenericStrengthUpPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -36,13 +37,15 @@ public class Pinocchio extends AbstractDeckMonster
 
     public final int MAX_COST = calcAscensionSpecial(2);
     public final int ARTIFACT = calcAscensionSpecial(2);
+    public final int BLOCK = calcAscensionTankiness(20);
+    public final int STRENGTH = calcAscensionSpecial(2);
 
     public Pinocchio() {
         this(0.0f, 0.0f);
     }
 
     public Pinocchio(final float x, final float y) {
-        super(NAME, ID, 180, -5.0F, 0, 250.0f, 255.0f, null, x, y);
+        super(NAME, ID, 170, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Pinocchio/Spriter/Pinocchio.scml"));
         this.type = EnemyType.NORMAL;
         this.setHp(calcAscensionTankiness(maxHealth));
@@ -61,6 +64,7 @@ public class Pinocchio extends AbstractDeckMonster
         initializeDeck();
         applyToTarget(this, this, new BarricadePower(this));
         applyToTarget(this, this, new ArtifactPower(this, ARTIFACT));
+        applyToTarget(this, this, new GenericStrengthUpPower(this, MOVES[1], STRENGTH));
     }
 
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, AbstractCard card) {
@@ -72,6 +76,7 @@ public class Pinocchio extends AbstractDeckMonster
         switch (move.nextMove) {
             case LEARN: {
                 blockAnimation();
+                block(this, BLOCK);
                 resetIdle();
                 break;
             }
@@ -181,7 +186,6 @@ public class Pinocchio extends AbstractDeckMonster
                 masterDeck.addToBottom(fillerCard);
             }
         }
-        System.out.println(masterDeck);
     }
 
     @Override
