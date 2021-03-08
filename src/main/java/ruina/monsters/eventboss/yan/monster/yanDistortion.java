@@ -70,7 +70,7 @@ public class yanDistortion extends AbstractDeckMonster
     public boolean leftKilledFirst = false;
     public boolean rightKilledFirst = false;
 
-    public final int fistDMG = calcAscensionDamage(12);
+    public final int fistDMG = calcAscensionDamage(4);
     public final int fistPara = calcAscensionSpecial(2);
 
     public final int compressBlock = calcAscensionTankiness(15);
@@ -79,17 +79,17 @@ public class yanDistortion extends AbstractDeckMonster
     public final int flurryStr = calcAscensionSpecial(2);
     public final int flurryHits = 3;
 
-    public final int lockDmg = calcAscensionDamage(20);
+    public final int lockDmg = calcAscensionDamage(10);
     public final int drawReduction = 1;
 
-    public final int brandDmg = calcAscensionDamage(20);
-    public final int brandErosion = calcAscensionSpecial(2);
+    public final int brandDmg = calcAscensionDamage(10);
+    public final int brandErosion = calcAscensionSpecial(1);
 
-    public final int bladeDMG = calcAscensionDamage(30);
-    public final int bladeErosion = calcAscensionSpecial(5);
+    public final int bladeDMG = calcAscensionDamage(20);
+    public final int bladeErosion = calcAscensionSpecial(2);
 
-    public final int attackStr = calcAscensionSpecial(5);
-    public final int defendEnd = calcAscensionSpecial(5);
+    public final int attackStr = calcAscensionSpecial(2);
+    public final int defendEnd = calcAscensionSpecial(2);
 
     public static final String POWER_POWER_ID = makeID("OminousPower");
     public static final PowerStrings PowerPowerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_POWER_ID);

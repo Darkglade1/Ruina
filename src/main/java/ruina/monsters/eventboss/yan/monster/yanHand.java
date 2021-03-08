@@ -49,7 +49,7 @@ public class yanHand extends AbstractDeckMonster
     private static final byte LOCK = 4;
     private static final byte EMPTY = 5;
 
-    public final int fistDMG = calcAscensionDamage(12);
+    public final int fistDMG = calcAscensionDamage(4);
     public final int fistPara = calcAscensionSpecial(2);
 
     public final int compressBlock = calcAscensionTankiness(15);
@@ -58,11 +58,11 @@ public class yanHand extends AbstractDeckMonster
     public final int flurryStr = calcAscensionSpecial(2);
     public final int flurryHits = 3;
 
-    public final int lockDmg = calcAscensionDamage(20);
+    public final int lockDmg = calcAscensionDamage(10);
     public final int drawReduction = 1;
 
-    public final int brandDmg = calcAscensionDamage(20);
-    public final int brandErosion = calcAscensionSpecial(2);
+    public final int brandDmg = calcAscensionDamage(10);
+    public final int brandErosion = calcAscensionSpecial(1);
 
     public static final String OVERCLOCK_POWER_ID = makeID("Overclock");
     public static final PowerStrings OverclockPowerStrings = CardCrawlGame.languagePack.getPowerStrings(OVERCLOCK_POWER_ID);
@@ -90,7 +90,7 @@ public class yanHand extends AbstractDeckMonster
     private yanDistortion parent;
 
     public yanHand(final float x, final float y, BEHAVIOUR mode, yanDistortion parent) {
-        super(NAME, ID, 35, -5.0F, 0, 250.0f, 255.0f, null, x, y);
+        super(NAME, ID, 50, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScytheApostle/Spriter/ScytheApostle.scml"));
         currentMode = mode;
         this.type = EnemyType.ELITE;
