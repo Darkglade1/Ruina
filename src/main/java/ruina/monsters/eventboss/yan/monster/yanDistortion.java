@@ -154,7 +154,7 @@ public class yanDistortion extends AbstractDeckMonster
                 for(AbstractMonster m: monsterList()){
                     if(m instanceof yanHand){
                         if(((yanHand) m).currentMode == yanHand.BEHAVIOUR.LEFT && !m.halfDead){
-                            //applyToTarget(adp(), yanDistortion.this, new Paralysis(adp(), fistPara));
+                            applyToTarget(m, yanDistortion.this, new Protection(m, defendEnd));
                             buffedCorrectly = true;
                             break;
                         }
@@ -165,8 +165,8 @@ public class yanDistortion extends AbstractDeckMonster
                 buffedCorrectly = false;
                 for(AbstractMonster m: monsterList()){
                     if(m instanceof yanHand){
-                        if(((yanHand) m).currentMode == yanHand.BEHAVIOUR.LEFT && !m.halfDead){
-                            //applyToTarget(adp(), yanDistortion.this, new Paralysis(adp(), fistPara));
+                        if(((yanHand) m).currentMode == RIGHT && !m.halfDead){
+                            applyToTarget(m, yanDistortion.this, new Protection(m, defendEnd));
                             buffedCorrectly = true;
                             break;
                         }
@@ -177,7 +177,7 @@ public class yanDistortion extends AbstractDeckMonster
                     for(AbstractMonster m: monsterList()){
                         if(m instanceof yanHand){
                             if(((yanHand) m).currentMode == yanHand.BEHAVIOUR.LEFT && !m.halfDead){
-
+                                applyToTarget(m, yanDistortion.this, new Protection(m, defendEnd));
                                 break;
                             }
                         }
