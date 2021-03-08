@@ -133,7 +133,7 @@ public class yanDistortion extends AbstractDeckMonster
     public void usePreBattleAction()
     {
         AbstractDungeon.getCurrRoom().cannotLose = true;
-        AbstractPower ominouspower = new AbstractLambdaPower(POWER_POWER_NAME, POWER_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+        AbstractPower ominouspower = new AbstractLambdaPower(POWER_POWER_NAME, POWER_POWER_ID, AbstractPower.PowerType.BUFF, false, this, maxHealth / 2) {
             @Override
             public void updateDescription() { description = String.format(POWER_POWER_DESCRIPTIONS[0], amount); }
         };
