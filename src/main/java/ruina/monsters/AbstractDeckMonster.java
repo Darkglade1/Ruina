@@ -27,6 +27,11 @@ public abstract class AbstractDeckMonster extends AbstractCardMonster {
     }
 
     public void initializeDeck(){
+        masterDeck = new CardGroup(CardGroup.CardGroupType.HAND);
+        draw = new CardGroup(CardGroup.CardGroupType.HAND);
+        discard = new CardGroup(CardGroup.CardGroupType.HAND);
+        purge = new CardGroup(CardGroup.CardGroupType.HAND);
+        hand = new CardGroup(CardGroup.CardGroupType.HAND);
         createDeck();
         masterDeck.shuffle();
         for(AbstractCard c: masterDeck.group){

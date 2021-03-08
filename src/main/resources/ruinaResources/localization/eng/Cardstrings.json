@@ -125,5 +125,45 @@
   "${ModID}:CHRBOSS_FocusSpirit": {
     "NAME": "Focus Spirit",
     "DESCRIPTION": "Gain !B! Block. NL Gain !M! Temporary Strength next turn."
+  },
+  "${ModID}:CHRBOSS_GiantFist": {
+    "NAME": "Giant Fist",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
+  },
+  "${ModID}:CHRBOSS_Compress": {
+    "NAME": "Compress",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:CHRBOSS_FlurryOfFists": {
+    "NAME": "Flurry Of Fists",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength next turn."
+  },
+  "${ModID}:CHRBOSS_BalefulBrand": {
+    "NAME": "Baleful Brand",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion next turn."
+  },
+  "${ModID}:CHRBOSS_Lock": {
+    "NAME": "Lock",
+    "DESCRIPTION": "Deal !D! damage. NL Discard a card next turn."
+  },
+  "${ModID}:CHRBOSS_RepairAll": {
+    "NAME": "RepairAll",
+    "DESCRIPTION": "Gain !B! Block. NL All *Hands gain !M! HP."
+  },
+  "${ModID}:CHRBOSS_Repair": {
+    "NAME": "Repair",
+    "DESCRIPTION": "Gain !B! Block. NL The *Hand with the lowest HP gains !M! HP."
+  },
+  "${ModID}:CHRBOSS_yanAttack": {
+    "NAME": "Sword Of Volition",
+    "DESCRIPTION": "A *Hand gains !M! Strength next turn."
+  },
+  "${ModID}:CHRBOSS_yanProtect": {
+    "NAME": "Protect",
+    "DESCRIPTION": "A *Hand gains !M! *Protection"
+  },
+  "${ModID}:CHRBOSS_DistortedBlade": {
+    "NAME": "Distorted Blade",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion next turn."
   }
 }

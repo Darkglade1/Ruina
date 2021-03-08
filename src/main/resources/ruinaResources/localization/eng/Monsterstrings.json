@@ -224,7 +224,6 @@
   },
   "${ModID}:Jack": {
     "MOVES": [
-
     ],
     "NAME": "Jack",
     "DIALOG": [
@@ -532,6 +531,33 @@
       "Learn"
     ],
     "NAME": "Pinocchio",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:yanHand": {
+    "MOVES": [
+      "Giant Fist",
+      "Compress",
+      "Flurry Of Fists",
+      "Baleful Brand",
+      "Lock"
+    ],
+    "NAME": "Distorted Hand",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:yanDistortion": {
+    "MOVES": [
+      "Protect",
+      "Attack",
+      "Giant Fist",
+      "Compress",
+      "Flurry Of Fists",
+      "Baleful Brand",
+      "Lock",
+      "Distorted Blade"
+    ],
+    "NAME": "얀샋ㄷ요무",
     "DIALOG": [
     ]
   }

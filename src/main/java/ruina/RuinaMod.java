@@ -98,6 +98,7 @@ import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
+import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
@@ -408,7 +409,6 @@ public class RuinaMod implements
         CustomIntent.add(new MassAttackIntent());
 
         //Act 2
-        BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
         BaseMod.addMonster(RoadHome.ID, (BaseMod.GetMonster) RoadHome::new);
         BaseMod.addMonster(ServantOfWrath.ID, "Servant_of_Wrath", () -> new MonsterGroup(
                 new AbstractMonster[] {
@@ -507,7 +507,8 @@ public class RuinaMod implements
                 }));
         BaseMod.addMonster(JudgementBird.ID, (BaseMod.GetMonster) JudgementBird::new);
         BaseMod.addMonster(Pinocchio.ID, (BaseMod.GetMonster) Pinocchio::new);
-        BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
+
+        BaseMod.addMonster(yanDistortion.ID, (BaseMod.GetMonster) yanDistortion::new);
 
 
         BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);
