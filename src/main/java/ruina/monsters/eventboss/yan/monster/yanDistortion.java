@@ -133,7 +133,7 @@ public class yanDistortion extends AbstractDeckMonster
     public void usePreBattleAction()
     {
         AbstractDungeon.getCurrRoom().cannotLose = true;
-        AbstractPower ominouspower = new AbstractLambdaPower(POWER_POWER_NAME, POWER_POWER_ID, AbstractPower.PowerType.BUFF, false, this, maxHealth / 2) {
+        AbstractPower ominouspower = new AbstractLambdaPower(POWER_POWER_NAME, POWER_POWER_ID, AbstractPower.PowerType.BUFF, false, this, (maxHealth / 4) * 3) {
             @Override
             public void updateDescription() { description = String.format(POWER_POWER_DESCRIPTIONS[0], amount); }
         };
@@ -430,7 +430,7 @@ public class yanDistortion extends AbstractDeckMonster
         for(AbstractMonster m :monsterList()){
             if(m.halfDead){ deadC += 1; }
         }
-        return (deadC == 2 || currentHealth <= maxHealth / 2) && currentphase == PHASE.SPLIT;
+        return (deadC == 2 || (currentHealth == (maxHealth / 4) * 3)) && currentphase == PHASE.SPLIT;
     }
 
 }
