@@ -302,7 +302,7 @@ public class yanDistortion extends AbstractDeckMonster
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
-        if (turn != 0) { createMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
+        if (turn != 0) { createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
     }
 
     @Override
