@@ -94,7 +94,7 @@ public class yanDistortion extends AbstractDeckMonster
         MERGED
     }
     private PHASE currentphase = PHASE.SPLIT;
-    private int turn = 0;
+    private int turn = 5;
 
     public yanDistortion() {
         this(150.0f, 0.0f);
