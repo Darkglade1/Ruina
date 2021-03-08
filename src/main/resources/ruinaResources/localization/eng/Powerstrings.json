@@ -240,5 +240,17 @@
   "${ModID}:Sin": {
     "NAME": "Weight of Sin",
     "DESCRIPTIONS": ["Whenever you play a card that costs #b", " or less, increase its cost by #b", " this combat."]
+  },
+  "${ModID}:Overclock": {
+    "NAME": "Overclock",
+    "DESCRIPTIONS": ["If this creature will gain Strength next turn, gain an extra intent next turn."]
+  },
+  "${ModID}:FaultyHardware": {
+    "NAME": "Faulty Hardware",
+    "DESCRIPTIONS": ["Cannot die. When this creature would die, it cannot act for the rest of combat."]
+  },
+  "${ModID}:PowerSurge": {
+    "NAME": "Power Surge",
+    "DESCRIPTIONS": ["All Strength is removed from this creature at the end of each turn."]
   }
 }

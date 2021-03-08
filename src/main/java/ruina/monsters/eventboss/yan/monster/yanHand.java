@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -63,6 +64,21 @@ public class yanHand extends AbstractDeckMonster
     public final int brandDmg = calcAscensionDamage(20);
     public final int brandErosion = calcAscensionSpecial(2);
 
+    public static final String OVERCLOCK_POWER_ID = makeID("Overclock");
+    public static final PowerStrings OverclockPowerStrings = CardCrawlGame.languagePack.getPowerStrings(OVERCLOCK_POWER_ID);
+    public static final String OVERCLOCK_POWER_NAME = OverclockPowerStrings.NAME;
+    public static final String[] OVERCLOCK_POWER_DESCRIPTIONS = OverclockPowerStrings.DESCRIPTIONS;
+
+    public static final String POWERSURGE_POWER_ID = makeID("PowerSurge");
+    public static final PowerStrings PowerSurgePowerStrings = CardCrawlGame.languagePack.getPowerStrings(POWERSURGE_POWER_ID);
+    public static final String POWERSURGE_POWER_NAME = PowerSurgePowerStrings.NAME;
+    public static final String[] POWERSURGE_POWER_DESCRIPTIONS = PowerSurgePowerStrings.DESCRIPTIONS;
+
+    public static final String FAULTYHARDWARE_POWER_ID = makeID("FaultyHardware");
+    public static final PowerStrings FaultyHardwarePowerStrings = CardCrawlGame.languagePack.getPowerStrings(FAULTYHARDWARE_POWER_ID);
+    public static final String FAULTYHARDWARE_POWER_NAME = FaultyHardwarePowerStrings.NAME;
+    public static final String[] FAULTYHARDWARE_POWER_DESCRIPTIONS = FaultyHardwarePowerStrings.DESCRIPTIONS;
+
     public enum BEHAVIOUR{
         LEFT,
         RIGHT
@@ -98,7 +114,21 @@ public class yanHand extends AbstractDeckMonster
     @Override
     public void usePreBattleAction()
     {
-
+        AbstractPower overclock = new AbstractLambdaPower(OVERCLOCK_POWER_NAME, OVERCLOCK_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            @Override
+            public void updateDescription() { description = OVERCLOCK_POWER_DESCRIPTIONS[0]; }
+        };
+        applyToTarget(this, this, overclock);
+        AbstractPower powersurge = new AbstractLambdaPower(POWERSURGE_POWER_NAME, POWERSURGE_POWER_NAME, AbstractPower.PowerType.BUFF, false, this, -1) {
+            @Override
+            public void updateDescription() { description = POWERSURGE_POWER_DESCRIPTIONS[0]; }
+        };
+        applyToTarget(this, this, powersurge);
+        AbstractPower faultyhardware = new AbstractLambdaPower(FAULTYHARDWARE_POWER_NAME, FAULTYHARDWARE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            @Override
+            public void updateDescription() { description = FAULTYHARDWARE_POWER_DESCRIPTIONS[0]; }
+        };
+        applyToTarget(this, this, faultyhardware);
     }
 
     @Override
