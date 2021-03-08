@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Intersector;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
@@ -134,7 +135,7 @@ public class yanDistortion extends AbstractDeckMonster
         AbstractDungeon.getCurrRoom().cannotLose = true;
         AbstractPower ominouspower = new AbstractLambdaPower(POWER_POWER_NAME, POWER_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
-            public void updateDescription() { description = POWER_POWER_DESCRIPTIONS[0]; }
+            public void updateDescription() { description = String.format(POWER_POWER_DESCRIPTIONS[0], amount); }
         };
         applyToTarget(this, this, ominouspower);
         CustomDungeon.playTempMusicInstantly("ChildrenOfTheCity");
@@ -377,6 +378,15 @@ public class yanDistortion extends AbstractDeckMonster
     public void merge(){
         currentphase = PHASE.MERGED;
         att(new RemoveDebuffsAction(this));
+        att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                for(AbstractPower p: yanDistortion.this.powers){
+                    if(p.ID.equals(POWER_POWER_ID)){ att(new RemoveSpecificPowerAction(yanDistortion.this, yanDistortion.this, p)); }
+                }
+                isDone = true;
+            }
+        });
         att(new AbstractGameAction() {
             @Override
             public void update() {
