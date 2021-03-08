@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
@@ -89,6 +90,11 @@ public class yanDistortion extends AbstractDeckMonster
     public final int attackStr = calcAscensionSpecial(5);
     public final int defendEnd = calcAscensionSpecial(5);
 
+    public static final String POWER_POWER_ID = makeID("OminousPower");
+    public static final PowerStrings PowerPowerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_POWER_ID);
+    public static final String POWER_POWER_NAME = PowerPowerStrings.NAME;
+    public static final String[] POWER_POWER_DESCRIPTIONS = PowerPowerStrings.DESCRIPTIONS;
+
     private enum PHASE{
         SPLIT,
         MERGED
@@ -125,6 +131,11 @@ public class yanDistortion extends AbstractDeckMonster
     @Override
     public void usePreBattleAction()
     {
+        AbstractPower ominouspower = new AbstractLambdaPower(POWER_POWER_NAME, POWER_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            @Override
+            public void updateDescription() { description = POWER_POWER_DESCRIPTIONS[0]; }
+        };
+        applyToTarget(this, this, ominouspower);
         CustomDungeon.playTempMusicInstantly("ChildrenOfTheCity");
         Summon();
     }

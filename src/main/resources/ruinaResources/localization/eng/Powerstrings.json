@@ -252,5 +252,13 @@
   "${ModID}:PowerSurge": {
     "NAME": "Power Surge",
     "DESCRIPTIONS": ["All Strength is removed from this creature at the end of each turn."]
+  },
+  "${ModID}:PortPriority": {
+    "NAME": "Port Priority",
+    "DESCRIPTIONS": ["When this creature creates a new deck, extra cards are added based on which hand was killed first NL (Lock or Baleful Brand.)"]
+  },
+  "${ModID}:OminousPower": {
+    "NAME": "Ominous Power",
+    "DESCRIPTIONS": ["When both hands cannot act at the end of the turn, merge with the hands. Gain a new deck. Extra cards are added based on which hand was killed first. NL (Lock or Baleful Brand.)"]
   }
 }
