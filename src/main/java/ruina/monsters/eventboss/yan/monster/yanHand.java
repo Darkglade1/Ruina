@@ -268,6 +268,8 @@ public class yanHand extends AbstractDeckMonster
         super.damage(info);
         if (this.currentHealth <= 0 && !this.halfDead) {
             this.halfDead = true;
+            if(currentMode == BEHAVIOUR.LEFT && !parent.rightKilledFirst){ parent.leftKilledFirst = true; }
+            else if(currentMode == BEHAVIOUR.RIGHT && !parent.leftKilledFirst){ parent.rightKilledFirst = true; }
             for (AbstractPower p : this.powers) {
                 p.onDeath();
             }
@@ -291,10 +293,4 @@ public class yanHand extends AbstractDeckMonster
         }
     }
 
-    @Override
-    public void die(boolean triggerRelics){
-        super.die(triggerRelics);
-        if(currentMode == BEHAVIOUR.LEFT && !parent.rightKilledFirst){ parent.leftKilledFirst = true; }
-        else if(currentMode == BEHAVIOUR.RIGHT && !parent.leftKilledFirst){ parent.rightKilledFirst = true; }
-    }
 }
