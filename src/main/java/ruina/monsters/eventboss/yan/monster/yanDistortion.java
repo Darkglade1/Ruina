@@ -106,7 +106,7 @@ public class yanDistortion extends AbstractDeckMonster
         this(150.0f, 0.0f);
     }
     public yanDistortion(final float x, final float y) {
-        super(NAME, ID, 300, -5.0F, 0, 250.0f, 255.0f, null, x, y);
+        super(NAME, ID, 250, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScytheApostle/Spriter/ScytheApostle.scml"));
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));
@@ -420,7 +420,7 @@ public class yanDistortion extends AbstractDeckMonster
         for(AbstractMonster m :monsterList()){
             if(m.halfDead){ deadC += 1; }
         }
-        return deadC == 2 && currentphase == PHASE.SPLIT;
+        return (deadC == 2 || currentHealth <= maxHealth / 2) && currentphase == PHASE.SPLIT;
     }
 
 }
