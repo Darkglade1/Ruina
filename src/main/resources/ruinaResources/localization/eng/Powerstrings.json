@@ -240,5 +240,9 @@
   "${ModID}:Sin": {
     "NAME": "Weight of Sin",
     "DESCRIPTIONS": ["Whenever you play a card that costs #b", " or less, increase its cost by #b", " this combat."]
+  },
+  "${ModID}:Imposter": {
+    "NAME": "Imposter",
+    "DESCRIPTIONS": ["This creature's moves are copied from the base damage and #yBlock of #yyour #ycards. NL At the end of its turn, gains #b", " #yStrength."]
   }
 }
