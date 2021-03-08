@@ -161,6 +161,17 @@ public class yanDistortion extends AbstractDeckMonster
                     }
                 }
                 if(buffedCorrectly){ break; }
+                else {
+                    for(AbstractMonster m: monsterList()){
+                        if(m instanceof yanHand){
+                            if(((yanHand) m).currentMode == RIGHT && !m.halfDead){
+                                applyToTarget(m, m, new Protection(m, defendEnd));
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                }
             case PROTECTR:
                 buffedCorrectly = false;
                 for(AbstractMonster m: monsterList()){
@@ -182,36 +193,53 @@ public class yanDistortion extends AbstractDeckMonster
                             }
                         }
                     }
+                    break;
                 }
-                break;
             case ATTACKL:
                 buffedCorrectly = false;
                 for(AbstractMonster m: monsterList()){
                     if(m instanceof yanHand){
-                        if(((yanHand) m).currentMode == yanHand.BEHAVIOUR.LEFT && !m.halfDead){
+                        if(((yanHand) m).currentMode == LEFT && !m.halfDead){
+                            System.out.println("applying str to left hand [attackL]");
                             applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
                             buffedCorrectly = true;
                             break;
                         }
                     }
                 }
-                if(buffedCorrectly){ break; }
-            case ATTACKR:
-                buffedCorrectly = false;
-                for(AbstractMonster m: monsterList()){
-                    if(m instanceof yanHand){
-                        if(((yanHand) m).currentMode == yanHand.BEHAVIOUR.LEFT && !m.halfDead){
-                            applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
-                            buffedCorrectly = true;
-                            break;
-                        }
-                    }
-                }
+                System.out.println(buffedCorrectly);
                 if(buffedCorrectly){ break; }
                 else {
                     for(AbstractMonster m: monsterList()){
                         if(m instanceof yanHand){
-                            if(((yanHand) m).currentMode == yanHand.BEHAVIOUR.LEFT && !m.halfDead){
+                            if(((yanHand) m).currentMode == RIGHT && !m.halfDead){
+                                System.out.println("applying str to right hand [attackL]");
+                                applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                }
+            case ATTACKR:
+                buffedCorrectly = false;
+                for(AbstractMonster m: monsterList()){
+                    if(m instanceof yanHand){
+                        if(((yanHand) m).currentMode == RIGHT && !m.halfDead){
+                            System.out.println("applying str to right hand [attackR]");
+                            applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
+                            buffedCorrectly = true;
+                            break;
+                        }
+                    }
+                }
+                System.out.println(buffedCorrectly);
+                if(buffedCorrectly){ break; }
+                else {
+                    for(AbstractMonster m: monsterList()){
+                        if(m instanceof yanHand){
+                            if(((yanHand) m).currentMode == LEFT && !m.halfDead){
+                                System.out.println("applying str to left hand [attackR]");
                                 applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
                                 break;
                             }
