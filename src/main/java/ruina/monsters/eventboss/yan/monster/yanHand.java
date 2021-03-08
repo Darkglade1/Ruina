@@ -293,4 +293,10 @@ public class yanHand extends AbstractDeckMonster
         }
     }
 
+    @Override
+    public void die() {
+        if (!AbstractDungeon.getCurrRoom().cannotLose) {
+            super.die();
+        }
+    }
 }

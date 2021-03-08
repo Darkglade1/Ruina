@@ -418,7 +418,7 @@ public class yanDistortion extends AbstractDeckMonster
     public boolean fulfillsMergeConditions(){
         int deadC = 0;
         for(AbstractMonster m :monsterList()){
-            if(m.isDead){ deadC += 1; }
+            if(m.halfDead){ deadC += 1; }
         }
         return deadC == 2 && currentphase == PHASE.SPLIT;
     }
