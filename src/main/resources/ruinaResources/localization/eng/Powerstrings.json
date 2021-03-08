@@ -260,5 +260,9 @@
   "${ModID}:OminousPower": {
     "NAME": "Ominous Power",
     "DESCRIPTIONS": ["When both hands cannot act at the end of the turn, merge with the hands. Gain a new deck. Extra cards are added based on which hand was killed first. NL (Lock or Baleful Brand.)"]
+  },
+  "${ModID}:Protection": {
+    "NAME": "Protection",
+    "DESCRIPTIONS": ["Takes #b", " less damage from #yAttacks. Reduced by #b", " at end of round."]
   }
 }

@@ -110,8 +110,8 @@ public class yanDistortion extends AbstractDeckMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScytheApostle/Spriter/ScytheApostle.scml"));
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));
-        maxAdditionalMoves = 1;
-        for (int i = 0; i < maxAdditionalMoves; i++) { additionalMovesHistory.add(new ArrayList<>()); }
+        numAdditionalMoves = 1;
+        for (int i = 0; i < numAdditionalMoves; i++) { additionalMovesHistory.add(new ArrayList<>()); }
 
         addMove(PROTECTL, Intent.DEFEND_BUFF);
         addMove(PROTECTR, Intent.DEFEND_BUFF);
