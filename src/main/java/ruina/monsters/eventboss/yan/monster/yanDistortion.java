@@ -154,7 +154,7 @@ public class yanDistortion extends AbstractDeckMonster
                 for(AbstractMonster m: monsterList()){
                     if(m instanceof yanHand){
                         if(((yanHand) m).currentMode == yanHand.BEHAVIOUR.LEFT && !m.halfDead){
-                            applyToTarget(m, yanDistortion.this, new Protection(m, defendEnd));
+                            applyToTarget(m, m, new Protection(m, defendEnd));
                             buffedCorrectly = true;
                             break;
                         }
@@ -166,7 +166,7 @@ public class yanDistortion extends AbstractDeckMonster
                 for(AbstractMonster m: monsterList()){
                     if(m instanceof yanHand){
                         if(((yanHand) m).currentMode == RIGHT && !m.halfDead){
-                            applyToTarget(m, yanDistortion.this, new Protection(m, defendEnd));
+                            applyToTarget(m, m, new Protection(m, defendEnd));
                             buffedCorrectly = true;
                             break;
                         }
@@ -177,19 +177,19 @@ public class yanDistortion extends AbstractDeckMonster
                     for(AbstractMonster m: monsterList()){
                         if(m instanceof yanHand){
                             if(((yanHand) m).currentMode == yanHand.BEHAVIOUR.LEFT && !m.halfDead){
-                                applyToTarget(m, yanDistortion.this, new Protection(m, defendEnd));
+                                applyToTarget(m, m, new Protection(m, defendEnd));
                                 break;
                             }
                         }
                     }
-                    break;
                 }
+                break;
             case ATTACKL:
                 buffedCorrectly = false;
                 for(AbstractMonster m: monsterList()){
                     if(m instanceof yanHand){
                         if(((yanHand) m).currentMode == yanHand.BEHAVIOUR.LEFT && !m.halfDead){
-                            applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, flurryStr)));;
+                            applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
                             buffedCorrectly = true;
                             break;
                         }
@@ -201,7 +201,7 @@ public class yanDistortion extends AbstractDeckMonster
                 for(AbstractMonster m: monsterList()){
                     if(m instanceof yanHand){
                         if(((yanHand) m).currentMode == yanHand.BEHAVIOUR.LEFT && !m.halfDead){
-                            applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, flurryStr)));;
+                            applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
                             buffedCorrectly = true;
                             break;
                         }
@@ -212,7 +212,7 @@ public class yanDistortion extends AbstractDeckMonster
                     for(AbstractMonster m: monsterList()){
                         if(m instanceof yanHand){
                             if(((yanHand) m).currentMode == yanHand.BEHAVIOUR.LEFT && !m.halfDead){
-                                applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, flurryStr)));;
+                                applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
                                 break;
                             }
                         }
@@ -330,10 +330,10 @@ public class yanDistortion extends AbstractDeckMonster
             }
         }
         else {
+            masterDeck.addToBottom(new CHRBOSS_FlurryOfFists(this));
             for(int i = 0; i < 2; i += 1){
                 masterDeck.addToBottom(new CHRBOSS_GiantFist(this));
                 masterDeck.addToBottom(new CHRBOSS_Compress(this));
-                masterDeck.addToBottom(new CHRBOSS_FlurryOfFists(this));
             }
             if(leftKilledFirst){
                 for(int i = 0; i < 2 ; i += 1){ masterDeck.addToBottom(new CHRBOSS_BalefulBrand(this)); }
@@ -377,6 +377,13 @@ public class yanDistortion extends AbstractDeckMonster
 
     public void merge(){
         currentphase = PHASE.MERGED;
+        att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                AbstractDungeon.getCurrRoom().cannotLose = false;
+                isDone = true;
+            }
+        });
         att(new RemoveDebuffsAction(this));
         att(new AbstractGameAction() {
             @Override
@@ -398,13 +405,6 @@ public class yanDistortion extends AbstractDeckMonster
             @Override
             public void update() {
                 initializeDeck();
-                isDone = true;
-            }
-        });
-        att(new AbstractGameAction() {
-            @Override
-            public void update() {
-                AbstractDungeon.getCurrRoom().cannotLose = false;
                 isDone = true;
             }
         });
