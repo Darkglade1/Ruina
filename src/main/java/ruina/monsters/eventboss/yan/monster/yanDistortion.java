@@ -315,7 +315,7 @@ public class yanDistortion extends AbstractDeckMonster
                 for(AbstractMonster m: monsterList()){
                     if(m instanceof yanHand){
                         if(!m.halfDead) {
-                            ((yanHand) m).calculateAllocatedMoves();
+                            //((yanHand) m).calculateAllocatedMoves();
                             m.rollMove();
                             m.createIntent();
                         }

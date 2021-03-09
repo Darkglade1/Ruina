@@ -118,7 +118,7 @@ public class yanHand extends AbstractDeckMonster
             @Override
             public void updateDescription() { description = OVERCLOCK_POWER_DESCRIPTIONS[0]; }
         };
-        applyToTarget(this, this, overclock);
+        //applyToTarget(this, this, overclock);
         AbstractPower powersurge = new AbstractLambdaPower(POWERSURGE_POWER_NAME, POWERSURGE_POWER_NAME, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() { description = POWERSURGE_POWER_DESCRIPTIONS[0]; }
@@ -185,7 +185,7 @@ public class yanHand extends AbstractDeckMonster
             @Override
             public void update() {
                 for(AbstractPower p: yanHand.this.powers){
-                    if(p instanceof StrengthPower){
+                    if(p instanceof StrengthPower || p instanceof GainStrengthPower){
                         att(new RemoveSpecificPowerAction(yanHand.this, yanHand.this, p));
                         break;
                     }
