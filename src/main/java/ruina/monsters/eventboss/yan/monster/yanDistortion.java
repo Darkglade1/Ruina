@@ -89,7 +89,7 @@ public class yanDistortion extends AbstractDeckMonster
     public final int bladeErosion = calcAscensionSpecial(2);
 
     public final int attackStr = calcAscensionSpecial(2);
-    public final int defendEnd = calcAscensionSpecial(2);
+    public final int defendEnd = calcAscensionSpecial(1);
 
     public static final String POWER_POWER_ID = makeID("OminousPower");
     public static final PowerStrings PowerPowerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_POWER_ID);
