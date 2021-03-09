@@ -184,13 +184,6 @@ public class yanHand extends AbstractDeckMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                calculateAllocatedMoves();
-                this.isDone = true;
-            }
-        });
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
                 for(AbstractPower p: yanHand.this.powers){
                     if(p instanceof StrengthPower){
                         att(new RemoveSpecificPowerAction(yanHand.this, yanHand.this, p));
@@ -200,7 +193,6 @@ public class yanHand extends AbstractDeckMonster
                 this.isDone = true;
             }
         });
-        atb(new RollMoveAction(this));
     }
 
     @Override
