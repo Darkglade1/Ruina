@@ -227,10 +227,19 @@ public class ServantOfWrath extends AbstractAllyMonster
         this.halfDead = true; //stop aoe from doing damage
         atb(new TalkAction(this, DIALOG[1]));
         atb(new VFXAction(new WaitEffect(), 1.0F));
+        //double addToBot in case hermit dies to combust-esque effect LMAO
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                hermit.wrath.isDead = true;
+                addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        ServantOfWrath.this.isDead = true;
+                        ServantOfWrath.this.isDying = true;
+                        ServantOfWrath.this.healthBarUpdatedEvent();
+                        this.isDone = true;
+                    }
+                });
                 this.isDone = true;
             }
         });
