@@ -4,18 +4,21 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.red.PommelStrike;
+import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.BarricadePower;
-import com.megacrit.cardcrawl.powers.GenericStrengthUpPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractDeckMonster;
+import ruina.powers.AbstractLambdaPower;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -40,6 +43,11 @@ public class Pinocchio extends AbstractDeckMonster
     public final int BLOCK = calcAscensionTankiness(20);
     public final int STRENGTH = calcAscensionSpecial(2);
 
+    public static final String POWER_ID = makeID("Imposter");
+    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    public static final String POWER_NAME = powerStrings.NAME;
+    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
     public Pinocchio() {
         this(0.0f, 0.0f);
     }
@@ -57,6 +65,8 @@ public class Pinocchio extends AbstractDeckMonster
         numAdditionalMoves = maxAdditionalMoves;
 
         addMove(LEARN, Intent.UNKNOWN);
+        AbstractCard fillerCard = new Madness(); //in case deck somehow has no cards
+        addMove((byte) fillerCard.cardID.hashCode(), Intent.ATTACK, 12);
     }
 
     @Override
@@ -64,7 +74,6 @@ public class Pinocchio extends AbstractDeckMonster
         initializeDeck();
         applyToTarget(this, this, new BarricadePower(this));
         applyToTarget(this, this, new ArtifactPower(this, ARTIFACT));
-        applyToTarget(this, this, new GenericStrengthUpPower(this, MOVES[1], STRENGTH));
     }
 
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, AbstractCard card) {
@@ -76,6 +85,18 @@ public class Pinocchio extends AbstractDeckMonster
         switch (move.nextMove) {
             case LEARN: {
                 blockAnimation();
+                applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
+                    @Override
+                    public void atEndOfRound() {
+                        this.flash();
+                        applyToTarget(owner, owner, new StrengthPower(owner, amount));
+                    }
+
+                    @Override
+                    public void updateDescription() {
+                        description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
+                    }
+                });
                 block(this, BLOCK);
                 resetIdle();
                 break;
@@ -177,13 +198,6 @@ public class Pinocchio extends AbstractDeckMonster
                     intent = Intent.ATTACK;
                 }
                 addMove((byte) card.cardID.hashCode(), intent, card.baseDamage);
-            }
-        }
-        if (masterDeck.group.size() < numAdditionalMoves + 1) {
-            for (int i = 0; i < 3; i++) {
-                AbstractCard fillerCard = new PommelStrike();
-                addMove((byte) fillerCard.cardID.hashCode(), Intent.ATTACK, fillerCard.baseDamage);
-                masterDeck.addToBottom(fillerCard);
             }
         }
     }
