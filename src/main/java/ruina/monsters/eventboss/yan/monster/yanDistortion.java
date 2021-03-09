@@ -312,6 +312,17 @@ public class yanDistortion extends AbstractDeckMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
+                for(AbstractMonster m: monsterList()){
+                    if(m instanceof yanHand){
+                        ((yanHand) m).calculateAllocatedMoves();
+                    }
+                }
+                isDone = true;
+            }
+        });
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
                 if(fulfillsMergeConditions()){
                     merge();
                     turn = 0;
@@ -325,7 +336,7 @@ public class yanDistortion extends AbstractDeckMonster
 
     @Override
     protected void getMove(final int num) {
-        if(turn <= 0){ setMoveShortcut(DISTORTEDBLADE, MOVES[7], new CHRBOSS_DistortedBlade(this)); }
+        if(turn <= 0){ setMoveShortcut(DISTORTEDBLADE, MOVES[9], new CHRBOSS_DistortedBlade(this)); }
         else { createMoveFromCard(topDeckCardForMoveAction()); }
     }
 
@@ -381,12 +392,13 @@ public class yanDistortion extends AbstractDeckMonster
 
     protected void createMoveFromCard(AbstractCard c) {
         if (c.cardID.equals(CHRBOSS_yanProtect.ID)) { setMoveShortcut(PROTECTL, MOVES[0], c);
-        } else if (c.cardID.equals(CHRBOSS_yanAttack.ID)) { setMoveShortcut(ATTACKL, MOVES[1], c);
-        } else if (c.cardID.equals(CHRBOSS_Compress.ID)) { setMoveShortcut(COMPRESS, MOVES[2], c);
-        } else if (c.cardID.equals(CHRBOSS_FlurryOfFists.ID)) { setMoveShortcut(FLURRY, MOVES[3], c);
-        } else if (c.cardID.equals(CHRBOSS_BalefulBrand.ID)) { setMoveShortcut(BRAND, MOVES[4], c);
-        } else if (c.cardID.equals(CHRBOSS_Lock.ID)) { setMoveShortcut(LOCK, MOVES[5], c);
-        } else if (c.cardID.equals(CHRBOSS_DistortedBlade.ID)) { setMoveShortcut(DISTORTEDBLADE, MOVES[6], c);
+        } else if (c.cardID.equals(CHRBOSS_yanAttack.ID)) { setMoveShortcut(ATTACKL, MOVES[3], c);
+        } else if (c.cardID.equals(CHRBOSS_GiantFist.ID)) { setMoveShortcut(GIANT_FIST, MOVES[4], c);
+        } else if (c.cardID.equals(CHRBOSS_Compress.ID)) { setMoveShortcut(COMPRESS, MOVES[5], c);
+        } else if (c.cardID.equals(CHRBOSS_FlurryOfFists.ID)) { setMoveShortcut(FLURRY, MOVES[6], c);
+        } else if (c.cardID.equals(CHRBOSS_BalefulBrand.ID)) { setMoveShortcut(BRAND, MOVES[7], c);
+        } else if (c.cardID.equals(CHRBOSS_Lock.ID)) { setMoveShortcut(LOCK, MOVES[8], c);
+        } else if (c.cardID.equals(CHRBOSS_DistortedBlade.ID)) { setMoveShortcut(DISTORTEDBLADE, MOVES[9], c);
         } else { setMoveShortcut(COMPRESS, MOVES[1], c); }
     }
 
@@ -413,6 +425,15 @@ public class yanDistortion extends AbstractDeckMonster
             }
         });
         att(new RemoveDebuffsAction(this));
+        att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                for(AbstractMonster m: monsterList()){
+                    m.loseBlock();
+                }
+                isDone = true;
+            }
+        });
         att(new AbstractGameAction() {
             @Override
             public void update() {

@@ -550,6 +550,8 @@
   "${ModID}:yanDistortion": {
     "MOVES": [
       "Protect",
+      "Protect",
+      "Attack",
       "Attack",
       "Giant Fist",
       "Compress",
