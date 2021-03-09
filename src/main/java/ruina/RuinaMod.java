@@ -508,7 +508,7 @@ public class RuinaMod implements
         BaseMod.addMonster(JudgementBird.ID, (BaseMod.GetMonster) JudgementBird::new);
         BaseMod.addMonster(Pinocchio.ID, (BaseMod.GetMonster) Pinocchio::new);
 
-        BaseMod.addMonster(yanDistortion.ID, (BaseMod.GetMonster) yanDistortion::new);
+        //BaseMod.addMonster(yanDistortion.ID, (BaseMod.GetMonster) yanDistortion::new);
 
 
         BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);
