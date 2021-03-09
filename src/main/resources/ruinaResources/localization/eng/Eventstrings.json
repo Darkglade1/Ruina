@@ -281,5 +281,25 @@
       "Choose a card to give bonus Block and Ethereal",
       "[Locked] Requires: Valid Card"
     ]
+  },
+  "${ModID}:TheThumb": {
+    "NAME": "The Thumb",
+    "DESCRIPTIONS": [
+      "He glanced at the #pmiscreant who had just walked in: a common Fixer from the common Backstreets. NL \"You da #yboss here? I got a great offer -\" NL A set of steel knuckles @caves@ the man's face in, leaving him rolling on the floor, howling in #ragony. NL \"Tell your boss that if he wishes to negotiate with me, he should come himself or not at all.\" NL As the #prat is tossed out, his assistant steps forward. NL \"Sir. Our supplies are running low. Shall we purchase more, or would you like us to raid that rat's Office instead?\"",
+      "\"Make the purchase. I think the rat's boss knows what will happen if he crosses us again.\" NL His subordinate nods, rushing out to fulfill his order. Just as things should be.",
+      "\"Raid them. Show them what happens to anyone who crosses the #yThumb.\" NL His subordinates rush about, preparing themselves for war. For they were his peasants, and he their king."
+    ],
+    "OPTIONS": [
+      "[Purchase supplies] ",
+      "[Raid] ",
+      "Choose 1 of ",
+      " Uncommon cards to add to your deck.",
+      "Give a card in your deck ",
+      " cost and ",
+      "Exhaust.",
+      "[Wake Up]",
+      "Choose a card to give reduced cost and Exhaust",
+      "Choose a card to add to your deck."
+    ]
   }
 }

@@ -38,7 +38,7 @@ public class Pinocchio extends AbstractDeckMonster
 
     private static final byte LEARN = 0;
 
-    public final int MAX_COST = calcAscensionSpecial(2);
+    public final int MAX_DAMAGE = calcAscensionSpecial(28);
     public final int ARTIFACT = calcAscensionSpecial(2);
     public final int BLOCK = calcAscensionTankiness(20);
     public final int STRENGTH = calcAscensionSpecial(2);
@@ -187,7 +187,7 @@ public class Pinocchio extends AbstractDeckMonster
     @Override
     protected void createDeck() {
         for (AbstractCard card : adp().masterDeck.group) {
-            if ((card.baseDamage > 0 || card.baseBlock > 0) && !(card.rarity == AbstractCard.CardRarity.BASIC) && card.costForTurn <= MAX_COST) {
+            if ((card.baseDamage > 0 || card.baseBlock > 0) && !(card.rarity == AbstractCard.CardRarity.BASIC) && card.baseDamage <= MAX_DAMAGE) {
                 masterDeck.addToBottom(card.makeStatEquivalentCopy());
                 Intent intent;
                 if (card.baseDamage > 0 && card.baseBlock > 0) {

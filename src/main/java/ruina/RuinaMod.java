@@ -64,6 +64,7 @@ import ruina.events.act3.ForThoseWeCherish;
 import ruina.events.act3.HanaAssociation;
 import ruina.events.act3.Philosophy;
 import ruina.events.act3.RedMistRecollection;
+import ruina.events.act3.TheThumb;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Hermit;
 import ruina.monsters.act2.Jester.JesterOfNihil;
@@ -515,7 +516,7 @@ public class RuinaMod implements
         BaseMod.addEvent(HanaAssociation.ID, HanaAssociation.class, Atziluth.ID);
         BaseMod.addEvent(ForThoseWeCherish.ID, ForThoseWeCherish.class, Atziluth.ID);
         BaseMod.addEvent(Philosophy.ID, Philosophy.class, Atziluth.ID);
-        BaseMod.addEvent(MindBloom.ID, MindBloom.class, Atziluth.ID);
+        BaseMod.addEvent(TheThumb.ID, TheThumb.class, Atziluth.ID);
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)
