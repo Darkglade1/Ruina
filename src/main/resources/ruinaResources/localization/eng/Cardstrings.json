@@ -144,7 +144,7 @@
   },
   "${ModID}:CHRBOSS_Lock": {
     "NAME": "Lock",
-    "DESCRIPTION": "Deal !D! damage. NL Discard a card next turn."
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! less card next turn."
   },
   "${ModID}:CHRBOSS_yanAttack": {
     "NAME": "Sword Of Volition",
