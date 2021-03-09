@@ -479,7 +479,7 @@ public class yanDistortion extends AbstractDeckMonster
         for(AbstractMonster m :monsterList()){
             if(m.halfDead){ deadC += 1; }
         }
-        return (deadC == 2 || (currentHealth == (maxHealth / 4) * 3)) && currentphase == PHASE.SPLIT;
+        return (deadC == 2 || (currentHealth <= (maxHealth / 4) * 3)) && currentphase == PHASE.SPLIT;
     }
 
 }
