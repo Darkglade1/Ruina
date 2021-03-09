@@ -146,14 +146,6 @@
     "NAME": "Lock",
     "DESCRIPTION": "Deal !D! damage. NL Discard a card next turn."
   },
-  "${ModID}:CHRBOSS_RepairAll": {
-    "NAME": "RepairAll",
-    "DESCRIPTION": "Gain !B! Block. NL All *Hands gain !M! HP."
-  },
-  "${ModID}:CHRBOSS_Repair": {
-    "NAME": "Repair",
-    "DESCRIPTION": "Gain !B! Block. NL The *Hand with the lowest HP gains !M! HP."
-  },
   "${ModID}:CHRBOSS_yanAttack": {
     "NAME": "Sword Of Volition",
     "DESCRIPTION": "A *Hand gains !M! Strength next turn."
