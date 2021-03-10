@@ -31,21 +31,18 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         this.addTempMusic("Roland1", RuinaMod.makeMusicPath("Roland1.ogg"));
         this.addTempMusic("Roland2", RuinaMod.makeMusicPath("Roland2.ogg"));
         this.addTempMusic("Roland3", RuinaMod.makeMusicPath("Roland3.ogg"));
-        generateSpecialMap();
     }
 
     public UninvitedGuests(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {
         super(cd, p, emptyList);
-        generateSpecialMap();
     }
 
     public UninvitedGuests(CustomDungeon cd, AbstractPlayer p, SaveFile saveFile) {
         super(cd, p, saveFile);
-        generateSpecialMap();
-        firstRoomChosen = true;
     }
 
-    private void generateSpecialMap() {
+    @Override
+    protected  void makeMap() {
         long startTime = System.currentTimeMillis();
         map = new ArrayList<>();
         ArrayList<MapRoomNode> row1 = new ArrayList<>();
