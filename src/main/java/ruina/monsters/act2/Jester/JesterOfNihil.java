@@ -440,12 +440,8 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                girl1.isDead = true;
-                girl1.isDying = true;
-                girl1.healthBarUpdatedEvent();
-                girl2.isDead = true;
-                girl2.isDying = true;
-                girl2.healthBarUpdatedEvent();
+                girl1.disappear();
+                girl2.disappear();
                 onBossVictoryLogic();
                 this.isDone = true;
             }

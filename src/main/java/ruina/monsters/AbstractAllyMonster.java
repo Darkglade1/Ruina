@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.CustomIntent.IntentEnums;
 import ruina.actions.TransferBlockToAllyAction;
+import ruina.monsters.act2.ServantOfWrath;
 import ruina.powers.InvisibleAllyBarricadePower;
 import ruina.util.AllyMove;
 
@@ -178,5 +179,13 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
                 allyMove.update();
             }
         }
+    }
+
+    public void disappear() {
+        this.currentHealth = 0;
+        this.loseBlock();
+        this.isDead = true;
+        this.isDying = true;
+        this.healthBarUpdatedEvent();
     }
 }
