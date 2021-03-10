@@ -301,5 +301,24 @@
       "Choose a card to give reduced cost and Exhaust",
       "Choose a card to add to your deck."
     ]
+  },
+  "${ModID}:CryingChildren": {
+    "NAME": "The Crying Children",
+    "DESCRIPTIONS": [
+      "Everything #rburned. Your home, your family, your friends . . . they had all been caught in a mighty #rconflagration that had manifested in the blink of an eye. NL Someone was crying. But it was not you, the tragic #pvictim. No, it was the #pcriminal who wept, the #pperpetrator who sobbed with every stroke of #rfire that leapt forward from their fingers. NL What a twisted joke. An equally fiery #rrage burned within you, just waiting to be released. You -",
+      "The world shifts, #pblurry and #pdistorted. You do not know who you are. You do not know where you are. All you know is that a #pcrying #pchild is in front of you . . . NL And you desperately wish to #rkill it.",
+      "The #rrage abates, leaving you feeling drained and empty. A hollow #pemptiness fills you, sharp and silent just like that child's tears. NL There was nothing here for you anymore."
+    ],
+    "OPTIONS": [
+      "[Unleash it] ",
+      "[Suppress it] ",
+      "Lose ",
+      " HP.",
+      "Transform a card in your deck into a random EGO card.",
+      "Gain ",
+      " Max HP.",
+      "[Wake Up]",
+      "Choose a card to Transform."
+    ]
   }
 }
