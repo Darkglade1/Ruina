@@ -234,9 +234,7 @@ public class ServantOfWrath extends AbstractAllyMonster
                 addToBot(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        ServantOfWrath.this.isDead = true;
-                        ServantOfWrath.this.isDying = true;
-                        ServantOfWrath.this.healthBarUpdatedEvent();
+                        disappear();
                         this.isDone = true;
                     }
                 });

@@ -138,7 +138,7 @@ public class Sage extends AbstractAllyMonster
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                Sage.this.isDead = true;
+                disappear();
                 this.isDone = true;
             }
         });

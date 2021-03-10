@@ -75,6 +75,6 @@ public class FrozenMod extends AbstractCardModifier {
 
     @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
-        sb.draw(FROZEN_TEXTURE_REGION, card.hb.cX - (float)FROZEN_TEXTURE_REGION.getRegionWidth() / 2 * Settings.scale, card.hb.cY - (float)FROZEN_TEXTURE_REGION.getRegionHeight() / 2 * Settings.scale, (float)FROZEN_TEXTURE_REGION.getRegionWidth() / 2, (float)FROZEN_TEXTURE_REGION.getRegionHeight() / 2, FROZEN_TEXTURE_REGION.getRegionWidth(), FROZEN_TEXTURE_REGION.getRegionHeight(), Settings.scale * card.drawScale, Settings.scale * card.drawScale, 0.0f);
+        sb.draw(FROZEN_TEXTURE_REGION, card.hb.cX - (float)FROZEN_TEXTURE_REGION.getRegionWidth() / 2, card.hb.cY - (float)FROZEN_TEXTURE_REGION.getRegionHeight() / 2, (float)FROZEN_TEXTURE_REGION.getRegionWidth() / 2, (float)FROZEN_TEXTURE_REGION.getRegionHeight() / 2, FROZEN_TEXTURE_REGION.getRegionWidth(), FROZEN_TEXTURE_REGION.getRegionHeight(), Settings.scale * card.drawScale, Settings.scale * card.drawScale, 0.0f);
     }
 }
