@@ -262,7 +262,9 @@ public class LittleRed extends AbstractAllyMonster
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                wolf.red.isDead = true;
+                LittleRed.this.isDead = true;
+                LittleRed.this.isDying = true;
+                healthBarUpdatedEvent();
                 onBossVictoryLogic();
                 this.isDone = true;
             }

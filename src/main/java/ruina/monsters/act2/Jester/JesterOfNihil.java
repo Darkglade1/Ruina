@@ -441,7 +441,11 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
             @Override
             public void update() {
                 girl1.isDead = true;
+                girl1.isDying = true;
+                girl1.healthBarUpdatedEvent();
                 girl2.isDead = true;
+                girl2.isDying = true;
+                girl2.healthBarUpdatedEvent();
                 onBossVictoryLogic();
                 this.isDone = true;
             }
