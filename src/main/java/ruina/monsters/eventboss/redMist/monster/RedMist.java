@@ -85,7 +85,7 @@ public class RedMist extends AbstractDeckMonster
     }
     public RedMist(final float x, final float y) {
         super(NAME, ID, 300, -5.0F, 0, 250.0f, 255.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("yanDistortion/Spriter/yanDistortion.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("RedMist/Spriter/RedMist.scml"));
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));
 
