@@ -95,14 +95,10 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         row5.add(new MapRoomNode(1, 4));
         row5.add(new MapRoomNode(2, 4));
         row5.add(victoryNode);
-        row5.add(new MapRoomNode(4, 4));
-        row5.add(new MapRoomNode(5, 4));
-        row5.add(new MapRoomNode(6, 4));
         map.add(row1);
         map.add(row2);
         map.add(row3);
         map.add(row4);
-        map.add(row5);
         firstRoomChosen = false;
         fadeIn();
     }
