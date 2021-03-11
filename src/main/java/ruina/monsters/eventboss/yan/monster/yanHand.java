@@ -1,29 +1,37 @@
 package ruina.monsters.eventboss.yan.monster;
 
-import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DrawReductionPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.RitualPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractDeckMonster;
-import ruina.monsters.eventboss.redMist.cards.CHRBOSS_Spear;
-import ruina.monsters.eventboss.redMist.monster.RedMist;
-import ruina.monsters.eventboss.yan.cards.*;
-import ruina.powers.*;
+import ruina.monsters.eventboss.yan.cards.CHRBOSS_BalefulBrand;
+import ruina.monsters.eventboss.yan.cards.CHRBOSS_Compress;
+import ruina.monsters.eventboss.yan.cards.CHRBOSS_FlurryOfFists;
+import ruina.monsters.eventboss.yan.cards.CHRBOSS_GiantFist;
+import ruina.monsters.eventboss.yan.cards.CHRBOSS_Lock;
+import ruina.powers.AbstractLambdaPower;
+import ruina.powers.Erosion;
+import ruina.powers.NextTurnPowerPower;
+import ruina.powers.Paralysis;
+import ruina.powers.Unkillable;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -32,7 +40,6 @@ import java.util.ArrayList;
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.atb;
 
 public class yanHand extends AbstractDeckMonster
 {

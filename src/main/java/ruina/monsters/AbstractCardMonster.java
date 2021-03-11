@@ -62,7 +62,7 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
 
     public void renderCard(SpriteBatch sb) {
         Color color = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentColor");
-        if (color.a > 0) {
+        if (color.a > 0 && !this.isDeadOrEscaped()) {
             sb.setColor(color);
             for (AbstractCard card : cardsToRender) {
                 if (card != hoveredCard) {

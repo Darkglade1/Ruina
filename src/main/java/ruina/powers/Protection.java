@@ -18,7 +18,7 @@ public class Protection extends AbstractEasyPower {
     private static final int DECAY = 1;
 
     public Protection(AbstractCreature owner, int amount) {
-        super(NAME, POWER_ID, PowerType.DEBUFF, false, owner, amount);
+        super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
         this.priority = 0; //make it apply before vulnerable
     }
 

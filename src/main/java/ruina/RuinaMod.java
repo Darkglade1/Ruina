@@ -411,6 +411,7 @@ public class RuinaMod implements
         CustomIntent.add(new MassAttackIntent());
 
         //Act 2
+        BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
         BaseMod.addMonster(RoadHome.ID, (BaseMod.GetMonster) RoadHome::new);
         BaseMod.addMonster(ServantOfWrath.ID, "Servant_of_Wrath", () -> new MonsterGroup(
                 new AbstractMonster[] {
@@ -510,7 +511,8 @@ public class RuinaMod implements
         BaseMod.addMonster(JudgementBird.ID, (BaseMod.GetMonster) JudgementBird::new);
         BaseMod.addMonster(Pinocchio.ID, (BaseMod.GetMonster) Pinocchio::new);
 
-        //BaseMod.addMonster(yanDistortion.ID, (BaseMod.GetMonster) yanDistortion::new);
+        BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
+        BaseMod.addMonster(yanDistortion.ID, (BaseMod.GetMonster) yanDistortion::new);
 
 
         BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);

@@ -44,6 +44,7 @@ import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
+import ruina.monsters.eventboss.yan.monster.yanDistortion;
 
 public class RuinaScene extends AbstractScene {
 
@@ -124,6 +125,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Heart");
                 } else if (mo instanceof Pinocchio) {
                     this.bg = this.atlas.findRegion("mod/Lies");
+                } else if (mo instanceof yanDistortion) {
+                    this.bg = this.atlas.findRegion("mod/Yan");
                 } else {
                     setBgs();
                 }

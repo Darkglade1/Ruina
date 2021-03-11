@@ -440,7 +440,7 @@ public class RedMist extends AbstractDeckMonster
     private void verticalSplitVfx() {
         ArrayList<Texture> frames = new ArrayList<>();
         for (int i = 0; i <= 9; i++) {
-            frames.add(TexLoader.getTexture(makeMonsterPath("yanDistortion/Vertical/frame" + i + ".png")));
+            frames.add(TexLoader.getTexture(makeMonsterPath("RedMist/Vertical/frame" + i + ".png")));
         }
         atb(new AbstractGameAction() {
             @Override
@@ -455,7 +455,7 @@ public class RedMist extends AbstractDeckMonster
     private void horizontalSplitVfx() {
         ArrayList<Texture> frames = new ArrayList<>();
         for (int i = 1; i <= 12; i++) {
-            frames.add(TexLoader.getTexture(makeMonsterPath("yanDistortion/Horizontal/frame" + i + ".png")));
+            frames.add(TexLoader.getTexture(makeMonsterPath("RedMist/Horizontal/frame" + i + ".png")));
         }
         atb(new AbstractGameAction() {
             @Override
