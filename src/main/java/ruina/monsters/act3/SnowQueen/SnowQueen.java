@@ -87,9 +87,10 @@ public class SnowQueen extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning1");
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 1) {
+        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
             @Override
             public void onUseCard(AbstractCard card, UseCardAction action) {
+                this.amount++;
                 if (this.amount >= THRESHOLD) {
                     this.flash();
                     FrozenMod mod = new FrozenMod();
@@ -102,9 +103,7 @@ public class SnowQueen extends AbstractRuinaMonster
                             this.isDone = true;
                         }
                     });
-                    this.amount = 1;
-                } else {
-                    this.amount++;
+                    this.amount = 0;
                 }
             }
 

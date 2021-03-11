@@ -34,7 +34,7 @@
     "NAME": "Strongest",
     "FLAVOR": "The courage to protect others. That is what separates the mighty from the meek.",
     "DESCRIPTIONS": [
-      "Whenever you deal #b", " unblocked attack damage in a single turn, gain #b", " #yStrength."
+      "When you deal #b", " unblocked attack damage in a single turn, gain #b", " #yStrength. Can only trigger once per turn."
     ]
   },
   "${ModID}:FourTrigrams": {

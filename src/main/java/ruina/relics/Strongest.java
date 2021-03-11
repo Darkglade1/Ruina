@@ -12,7 +12,8 @@ public class Strongest extends AbstractEasyRelic {
     public static final String ID = makeID(Strongest.class.getSimpleName());
 
     private static final int DAMAGE_THRESHOLD = 20;
-    private static final int STRENGTH = 1;
+    private static final int STRENGTH = 2;
+    private boolean triggered = false;
 
     public Strongest() {
         super(ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
@@ -21,18 +22,19 @@ public class Strongest extends AbstractEasyRelic {
     @Override
     public void atTurnStart() {
         counter = 0;
+        triggered = false;
     }
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        if (info.type == DamageInfo.DamageType.NORMAL) {
+        if (info.type == DamageInfo.DamageType.NORMAL && !triggered) {
             counter += damageAmount;
-            int strengthToGain = (counter / DAMAGE_THRESHOLD) * STRENGTH;
-            counter = counter % DAMAGE_THRESHOLD;
-            if (strengthToGain > 0) {
+            if (counter >= DAMAGE_THRESHOLD) {
                 flash();
+                triggered = true;
+                counter = -1;
                 atb(new RelicAboveCreatureAction(adp(), this));
-                applyToTarget(adp(), adp(), new StrengthPower(adp(), strengthToGain));
+                applyToTarget(adp(), adp(), new StrengthPower(adp(), STRENGTH));
             }
         }
     }

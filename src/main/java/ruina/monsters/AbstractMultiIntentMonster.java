@@ -18,6 +18,8 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import ruina.monsters.act3.bigBird.BigBird;
+import ruina.powers.Enchanted;
 import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
@@ -93,6 +95,9 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             dmg = MathUtils.floor(tmp);
             if (dmg < 0) {
                 dmg = 0;
+            }
+            if (target.hasPower(Enchanted.POWER_ID) && this.hasPower(BigBird.Salvation_POWER_ID)) {
+                dmg = BigBird.INSTANT_KILL_NUM;
             }
             additionalIntent.updateDamage(dmg);
             if (target != adp()) {
@@ -231,6 +236,10 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             if (additionalIntent.damage > maxDamage) {
                 maxDamage = additionalIntent.damage;
             }
+        }
+        if (maxDamage == BigBird.INSTANT_KILL_NUM && this instanceof BigBird) {
+            //stop cards that deal damage based on intent from trivializing this fight
+            return 16;
         }
         return maxDamage;
     }

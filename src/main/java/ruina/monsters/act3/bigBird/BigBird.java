@@ -60,6 +60,8 @@ public class BigBird extends AbstractMultiIntentMonster
     public Sage sage1;
     public Sage sage2;
 
+    public static final int INSTANT_KILL_NUM = 999;
+
     public static final String Salvation_POWER_ID = makeID("Salvation");
     public static final PowerStrings SalvationPowerStrings = CardCrawlGame.languagePack.getPowerStrings(Salvation_POWER_ID);
     public static final String Salvation_POWER_NAME = SalvationPowerStrings.NAME;
@@ -130,7 +132,7 @@ public class BigBird extends AbstractMultiIntentMonster
                         atb(new AbstractGameAction() {
                             @Override
                             public void update() {
-                                AbstractDungeon.effectList.add(new StrikeEffect(realTarget, realTarget.hb.cX, realTarget.hb.cY, 9999));
+                                AbstractDungeon.effectList.add(new StrikeEffect(realTarget, realTarget.hb.cX, realTarget.hb.cY, INSTANT_KILL_NUM));
                                 this.isDone = true;
                             }
                         });
@@ -239,36 +241,36 @@ public class BigBird extends AbstractMultiIntentMonster
 
     @Override
     protected void getMove(final int num) {
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(SALVATION)) {
-            possibilities.add(SALVATION);
+        if (this.lastMove(SALVATION)) {
+            setMoveShortcut(DAZZLE_PLAYER, MOVES[DAZZLE_PLAYER]);
+        } else {
+            setMoveShortcut(SALVATION, MOVES[SALVATION]);
         }
-        if (!this.lastMove(DAZZLE_PLAYER)) {
-            possibilities.add(DAZZLE_PLAYER);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
     }
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (whichMove == 0) {
-            if (sage1 != null && (sage1.isDead || sage1.isDying)) {
-                ArrayList<Byte> possibilities = new ArrayList<>();
-                if (!this.lastTwoMoves(SALVATION, moveHistory)) {
-                    possibilities.add(SALVATION);
-                }
-                if (!this.lastTwoMoves(ILLUMINATE, moveHistory)) {
-                    possibilities.add(ILLUMINATE);
-                }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                setAdditionalMoveShortcut(move, moveHistory);
+            if (this.firstMove) {
+                setAdditionalMoveShortcut(DAZZLE_PLAYER, moveHistory);
             } else {
-                if (!this.lastMove(SALVATION, moveHistory)) {
-                    setAdditionalMoveShortcut(SALVATION, moveHistory);
+                if (sage1 != null && (sage1.isDead || sage1.isDying)) {
+                    ArrayList<Byte> possibilities = new ArrayList<>();
+                    if (!this.lastTwoMoves(SALVATION, moveHistory)) {
+                        possibilities.add(SALVATION);
+                    }
+                    if (!this.lastTwoMoves(ILLUMINATE, moveHistory)) {
+                        possibilities.add(ILLUMINATE);
+                    }
+                    byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                    setAdditionalMoveShortcut(move, moveHistory);
                 } else {
-                    setAdditionalMoveShortcut(DAZZLE_ENEMY, moveHistory);
+                    if (!this.lastMove(DAZZLE_ENEMY, moveHistory)) {
+                        setAdditionalMoveShortcut(DAZZLE_ENEMY, moveHistory);
+                    } else {
+                        setAdditionalMoveShortcut(SALVATION, moveHistory);
+                    }
                 }
             }
         }
@@ -305,7 +307,11 @@ public class BigBird extends AbstractMultiIntentMonster
             }
             if (additionalMove != null) {
                 if (i == 0) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage1, sage1.allyIcon);
+                    if (additionalMove.nextMove == DAZZLE_PLAYER) {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                    } else {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage1, sage1.allyIcon);
+                    }
                 } else {
                     applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage2, sage2.allyIcon);
                 }

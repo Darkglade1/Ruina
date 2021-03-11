@@ -90,9 +90,9 @@ public class yanHand extends AbstractDeckMonster
         this.setHp(calcAscensionTankiness(maxHealth));
         this.parent = parent;
 
-        addMove(GIANT_FIST, Intent.ATTACK, fistDMG);
+        addMove(GIANT_FIST, Intent.ATTACK_DEBUFF, fistDMG);
         addMove(COMPRESS, Intent.DEFEND);
-        addMove(FLURRY, Intent.ATTACK, flurryDamage, flurryHits, true);
+        addMove(FLURRY, Intent.ATTACK_BUFF, flurryDamage, flurryHits, true);
         addMove(BRAND, Intent.ATTACK_DEBUFF, brandDmg);
         addMove(LOCK, Intent.ATTACK_DEBUFF, lockDmg);
         addMove(EMPTY, Intent.NONE);

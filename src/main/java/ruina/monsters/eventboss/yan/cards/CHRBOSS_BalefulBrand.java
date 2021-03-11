@@ -15,7 +15,6 @@ public class CHRBOSS_BalefulBrand extends AbstractEgoCard {
 
     public CHRBOSS_BalefulBrand(yanDistortion parent) {
         super(ID, 0, CardType.ATTACK, CardTarget.SELF);
-        upgrade();
         damage = baseDamage = parent.brandDmg;
         magicNumber = baseMagicNumber = parent.brandErosion;
     }

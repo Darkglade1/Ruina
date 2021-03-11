@@ -27,7 +27,7 @@ public class RunawayBird extends AbstractRuinaMonster
     private static final byte SWEEP = 0;
     private static final byte SHRIEK = 1;
 
-    private final int STATUS = calcAscensionSpecial(1);
+    private final int STATUS = calcAscensionSpecial(2);
 
     public RunawayBird() {
         this(0.0f, 0.0f);
@@ -39,7 +39,7 @@ public class RunawayBird extends AbstractRuinaMonster
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(36), calcAscensionTankiness(42));
         addMove(SWEEP, Intent.ATTACK, calcAscensionDamage(10));
-        addMove(SHRIEK, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
+        addMove(SHRIEK, Intent.DEBUFF);
     }
 
     @Override
@@ -60,7 +60,6 @@ public class RunawayBird extends AbstractRuinaMonster
             }
             case SHRIEK: {
                 shriekAnimation(adp());
-                dmg(adp(), info);
                 intoDrawMo(new Dazed(), STATUS, this);
                 resetIdle();
                 break;

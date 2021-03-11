@@ -15,7 +15,6 @@ public class CHRBOSS_FlurryOfFists extends AbstractEgoCard {
 
     public CHRBOSS_FlurryOfFists(yanDistortion parent) {
         super(ID, 0, CardType.ATTACK, CardTarget.SELF);
-        upgrade();
         damage = baseDamage = parent.flurryDamage;
         magicNumber = baseMagicNumber = parent.flurryHits;
         secondMagicNumber = baseSecondMagicNumber = parent.flurryStr;

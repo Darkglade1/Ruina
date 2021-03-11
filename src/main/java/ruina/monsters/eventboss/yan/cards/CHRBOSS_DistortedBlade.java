@@ -15,7 +15,6 @@ public class CHRBOSS_DistortedBlade extends AbstractEgoCard {
 
     public CHRBOSS_DistortedBlade(yanDistortion parent) {
         super(ID, 7, CardType.ATTACK, CardTarget.SELF);
-        upgrade();
         damage = baseDamage = parent.bladeDMG;
         magicNumber = baseMagicNumber = parent.bladeErosion;
     }

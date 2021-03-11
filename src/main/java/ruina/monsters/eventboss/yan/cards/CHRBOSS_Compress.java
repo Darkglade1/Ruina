@@ -15,7 +15,6 @@ public class CHRBOSS_Compress extends AbstractEgoCard {
 
     public CHRBOSS_Compress(yanDistortion parent) {
         super(ID, 0, CardType.SKILL, CardTarget.SELF);
-        upgrade();
         block = baseBlock = parent.compressBlock;
     }
 

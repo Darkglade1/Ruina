@@ -15,7 +15,6 @@ public class CHRBOSS_yanProtect extends AbstractEgoCard {
 
     public CHRBOSS_yanProtect(yanDistortion parent) {
         super(ID, 0, CardType.SKILL, CardTarget.SELF);
-        upgrade();
         magicNumber = baseMagicNumber = parent.defendEnd;
     }
 

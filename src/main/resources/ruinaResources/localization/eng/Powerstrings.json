@@ -192,7 +192,7 @@
   },
   "${ModID}:Lock": {
     "NAME": "Forest Keeper's Lock",
-    "DESCRIPTIONS": ["On death, add #yForest #yKeeper's #yLock to your hand."]
+    "DESCRIPTIONS": ["On death, add #yForest #yKeeper's #yLock with #yRetain and #yExhaust to your hand."]
   },
   "${ModID}:Unruffled": {
     "NAME": "Unruffled",
@@ -200,7 +200,7 @@
   },
   "${ModID}:Salvation": {
     "NAME": "Salvation",
-    "DESCRIPTIONS": ["This creature’s attacks #rinstantly #rkill #yEnchanted creatures."]
+    "DESCRIPTIONS": ["This creature’s attacks #rinstantly #rkill #yEnchanted creatures. NL #yEnchanted is #gremoved whenever #yyou attack an #yEnchanted creature."]
   },
   "${ModID}:Enchanted": {
     "NAME": "Enchanted",

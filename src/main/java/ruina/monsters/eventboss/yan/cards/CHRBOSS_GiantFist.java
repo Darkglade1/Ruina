@@ -15,7 +15,6 @@ public class CHRBOSS_GiantFist extends AbstractEgoCard {
 
     public CHRBOSS_GiantFist(yanDistortion parent) {
         super(ID, 0, CardType.ATTACK, CardTarget.SELF);
-        upgrade();
         damage = baseDamage = parent.fistDMG;
         magicNumber = baseMagicNumber = parent.fistPara;
     }

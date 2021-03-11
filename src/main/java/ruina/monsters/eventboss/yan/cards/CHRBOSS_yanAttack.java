@@ -15,8 +15,13 @@ public class CHRBOSS_yanAttack extends AbstractEgoCard {
 
     public CHRBOSS_yanAttack(yanDistortion parent) {
         super(ID, 0, CardType.ATTACK, CardTarget.SELF);
-        upgrade();
         magicNumber = baseMagicNumber = parent.attackStr;
+    }
+
+    @Override
+    public float getTitleFontSize()
+    {
+        return 18;
     }
 
     @Override

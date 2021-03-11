@@ -40,6 +40,8 @@ public class PunishingBird extends AbstractRuinaMonster {
     private static final byte PECK = 0;
     private static final byte PUNISHMENT = 1;
 
+    private boolean playingDeathAnimation = false;
+
     public PunishingBird() {
         this(100.0f, 0.0f);
     }
@@ -121,19 +123,22 @@ public class PunishingBird extends AbstractRuinaMonster {
 
     @Override
     public void die(boolean triggerRelics) {
-        for (AbstractMonster mo : monsterList()) {
-            if (mo instanceof Keeper) {
-                atb(new SuicideAction(mo));
+        if (!playingDeathAnimation) {
+            playingDeathAnimation = true;
+            for (AbstractMonster mo : monsterList()) {
+                if (mo instanceof Keeper) {
+                    atb(new SuicideAction(mo));
+                }
             }
+            cageEffect();
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    PunishingBird.super.die(triggerRelics);
+                    this.isDone = true;
+                }
+            });
         }
-        cageEffect();
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                PunishingBird.super.die(triggerRelics);
-                this.isDone = true;
-            }
-        });
     }
 
     private void peckAnimation(AbstractCreature enemy) {

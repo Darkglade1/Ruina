@@ -15,7 +15,6 @@ public class CHRBOSS_Lock extends AbstractEgoCard {
 
     public CHRBOSS_Lock(yanDistortion parent) {
         super(ID, 0, CardType.ATTACK, CardTarget.SELF);
-        upgrade();
         damage = baseDamage = parent.lockDmg;
         magicNumber = baseMagicNumber = parent.drawReduction;
     }

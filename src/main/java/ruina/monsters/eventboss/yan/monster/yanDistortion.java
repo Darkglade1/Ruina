@@ -34,6 +34,7 @@ import ruina.monsters.eventboss.yan.cards.CHRBOSS_yanAttack;
 import ruina.monsters.eventboss.yan.cards.CHRBOSS_yanProtect;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
+import ruina.powers.NextTurnPowerPower;
 import ruina.powers.Paralysis;
 import ruina.powers.Protection;
 import ruina.util.AdditionalIntent;
@@ -90,7 +91,7 @@ public class yanDistortion extends AbstractDeckMonster
     public final int bladeErosion = calcAscensionSpecial(2);
 
     public final int attackStr = calcAscensionSpecial(2);
-    public final int defendEnd = calcAscensionSpecial(1);
+    public final int defendEnd = calcAscensionSpecial(2);
 
     public static final String POWER_POWER_ID = makeID("OminousPower");
     public static final PowerStrings PowerPowerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_POWER_ID);
@@ -109,21 +110,21 @@ public class yanDistortion extends AbstractDeckMonster
         this(150.0f, 0.0f);
     }
     public yanDistortion(final float x, final float y) {
-        super(NAME, ID, 250, -5.0F, 0, 250.0f, 325.0f, null, x, y);
+        super(NAME, ID, 250, -5.0F, 0, 250.0f, 355.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Yan/Spriter/Yan.scml"));
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));
         numAdditionalMoves = 1;
         for (int i = 0; i < numAdditionalMoves; i++) { additionalMovesHistory.add(new ArrayList<>()); }
 
-        addMove(PROTECTL, Intent.DEFEND_BUFF);
-        addMove(PROTECTR, Intent.DEFEND_BUFF);
-        addMove(ATTACKL, Intent.DEFEND_BUFF);
-        addMove(ATTACKR, Intent.DEFEND_BUFF);
+        addMove(PROTECTL, Intent.BUFF);
+        addMove(PROTECTR, Intent.BUFF);
+        addMove(ATTACKL, Intent.BUFF);
+        addMove(ATTACKR, Intent.BUFF);
 
-        addMove(GIANT_FIST, Intent.ATTACK, fistDMG);
+        addMove(GIANT_FIST, Intent.ATTACK_DEBUFF, fistDMG);
         addMove(COMPRESS, Intent.DEFEND);
-        addMove(FLURRY, Intent.ATTACK, flurryDamage, flurryHits, true);
+        addMove(FLURRY, Intent.ATTACK_BUFF, flurryDamage, flurryHits, true);
         addMove(BRAND, Intent.ATTACK_DEBUFF, brandDmg);
         addMove(LOCK, Intent.ATTACK_DEBUFF, lockDmg);
         addMove(DISTORTEDBLADE, Intent.ATTACK_DEBUFF, bladeDMG);
@@ -267,12 +268,12 @@ public class yanDistortion extends AbstractDeckMonster
                     dmg(adp(), info);
                     resetIdle();
                 }
-                applyToTarget(this, this, new StrengthPower(this, flurryStr));
+                applyToTarget(this, this, new NextTurnPowerPower(this, new StrengthPower(this, flurryStr)));
                 break;
             case BRAND:
                 specialAnimation("YanBrand");
                 dmg(adp(), info);
-                applyToTarget(adp(), yanDistortion.this, new Erosion(adp(), brandErosion));
+                applyToTarget(adp(), yanDistortion.this, new NextTurnPowerPower(adp(), new Erosion(adp(), brandErosion)));
                 resetIdle();
                 break;
             case LOCK:
@@ -450,15 +451,6 @@ public class yanDistortion extends AbstractDeckMonster
         att(new AbstractGameAction() {
             @Override
             public void update() {
-                for(AbstractMonster m: monsterList()){
-                    m.loseBlock();
-                }
-                isDone = true;
-            }
-        });
-        att(new AbstractGameAction() {
-            @Override
-            public void update() {
                 for(AbstractPower p: yanDistortion.this.powers){
                     if(p.ID.equals(POWER_POWER_ID)){ att(new RemoveSpecificPowerAction(yanDistortion.this, yanDistortion.this, p)); }
                 }
@@ -468,7 +460,12 @@ public class yanDistortion extends AbstractDeckMonster
         att(new AbstractGameAction() {
             @Override
             public void update() {
-                for(AbstractMonster m: monsterList()){ if(!m.equals(yanDistortion.this)){ att(new SuicideAction(m)); } }
+                for (AbstractMonster m : monsterList()) {
+                    if (!m.equals(yanDistortion.this)) {
+                        m.loseBlock();
+                        att(new SuicideAction(m));
+                    }
+                }
                 this.isDone = true;
             }
         });
