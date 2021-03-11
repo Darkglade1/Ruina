@@ -136,19 +136,19 @@
   },
   "${ModID}:CHRBOSS_FlurryOfFists": {
     "NAME": "Flurry Of Fists",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength next turn."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
   },
   "${ModID}:CHRBOSS_BalefulBrand": {
     "NAME": "Baleful Brand",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion next turn."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion."
   },
   "${ModID}:CHRBOSS_Lock": {
     "NAME": "Lock",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! less card next turn."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Draw *Reduction."
   },
   "${ModID}:CHRBOSS_yanAttack": {
     "NAME": "Sword Of Volition",
-    "DESCRIPTION": "A *Hand gains !M! Strength next turn."
+    "DESCRIPTION": "A *Hand gains !M! Strength."
   },
   "${ModID}:CHRBOSS_yanProtect": {
     "NAME": "Protect",
@@ -156,6 +156,6 @@
   },
   "${ModID}:CHRBOSS_DistortedBlade": {
     "NAME": "Distorted Blade",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion next turn."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion."
   }
 }

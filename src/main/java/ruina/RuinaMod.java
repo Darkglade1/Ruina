@@ -367,6 +367,13 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("JudgementHang"), makeSFXPath("LongBird_Hang.wav"));
         BaseMod.addAudio(makeID("JudgementGong"), makeSFXPath("LongBird_On.wav"));
         BaseMod.addAudio(makeID("JudgementDing"), makeSFXPath("LongBird_Stun.wav"));
+
+        BaseMod.addAudio(makeID("YanLock"), makeSFXPath("Yan_Typing_Atk.wav"));
+        BaseMod.addAudio(makeID("DistortedBladeFinish"), makeSFXPath("Yan_GreatSword_Finish.wav"));
+        BaseMod.addAudio(makeID("DistortedBladeStart"), makeSFXPath("Yan_GreatSword_Start.wav"));
+        BaseMod.addAudio(makeID("YanVert"), makeSFXPath("Yan_Lib_Vert.wav"));
+        BaseMod.addAudio(makeID("YanStab"), makeSFXPath("Yan_Stab.wav"));
+        BaseMod.addAudio(makeID("YanBrand"), makeSFXPath("Yan_Stigma_Atk.wav"));
     }
 
     @Override

@@ -1,7 +1,6 @@
 package ruina.monsters.eventboss.yan.monster;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -29,7 +28,6 @@ import ruina.monsters.eventboss.yan.cards.CHRBOSS_GiantFist;
 import ruina.monsters.eventboss.yan.cards.CHRBOSS_Lock;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
-import ruina.powers.NextTurnPowerPower;
 import ruina.powers.Paralysis;
 import ruina.powers.Unkillable;
 import ruina.util.AdditionalIntent;
@@ -71,16 +69,6 @@ public class yanHand extends AbstractDeckMonster
     public final int brandDmg = calcAscensionDamage(10);
     public final int brandErosion = calcAscensionSpecial(1);
 
-    public static final String OVERCLOCK_POWER_ID = makeID("Overclock");
-    public static final PowerStrings OverclockPowerStrings = CardCrawlGame.languagePack.getPowerStrings(OVERCLOCK_POWER_ID);
-    public static final String OVERCLOCK_POWER_NAME = OverclockPowerStrings.NAME;
-    public static final String[] OVERCLOCK_POWER_DESCRIPTIONS = OverclockPowerStrings.DESCRIPTIONS;
-
-    public static final String POWERSURGE_POWER_ID = makeID("PowerSurge");
-    public static final PowerStrings PowerSurgePowerStrings = CardCrawlGame.languagePack.getPowerStrings(POWERSURGE_POWER_ID);
-    public static final String POWERSURGE_POWER_NAME = PowerSurgePowerStrings.NAME;
-    public static final String[] POWERSURGE_POWER_DESCRIPTIONS = PowerSurgePowerStrings.DESCRIPTIONS;
-
     public static final String FAULTYHARDWARE_POWER_ID = makeID("FaultyHardware");
     public static final PowerStrings FaultyHardwarePowerStrings = CardCrawlGame.languagePack.getPowerStrings(FAULTYHARDWARE_POWER_ID);
     public static final String FAULTYHARDWARE_POWER_NAME = FaultyHardwarePowerStrings.NAME;
@@ -92,22 +80,15 @@ public class yanHand extends AbstractDeckMonster
     }
     public BEHAVIOUR currentMode;
 
-    private final int baseExtraActions = 0;
-    private final int extraActions = 1;
-    private yanDistortion parent;
+    private final yanDistortion parent;
 
     public yanHand(final float x, final float y, BEHAVIOUR mode, yanDistortion parent) {
-        super(NAME, ID, 40, -5.0F, 0, 250.0f, 255.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("ScytheApostle/Spriter/ScytheApostle.scml"));
+        super(NAME, ID, 40, -5.0F, 0, 250.0f, 225.0f, null, x, y);
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("YanHand/Spriter/YanHand.scml"));
         currentMode = mode;
         this.type = EnemyType.ELITE;
         this.setHp(calcAscensionTankiness(maxHealth));
         this.parent = parent;
-        maxAdditionalMoves = extraActions;
-        for (int i = 0; i < maxAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
-        numAdditionalMoves = baseExtraActions;
 
         addMove(GIANT_FIST, Intent.ATTACK, fistDMG);
         addMove(COMPRESS, Intent.DEFEND);
@@ -121,16 +102,6 @@ public class yanHand extends AbstractDeckMonster
     @Override
     public void usePreBattleAction()
     {
-        AbstractPower overclock = new AbstractLambdaPower(OVERCLOCK_POWER_NAME, OVERCLOCK_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() { description = OVERCLOCK_POWER_DESCRIPTIONS[0]; }
-        };
-        //applyToTarget(this, this, overclock);
-        AbstractPower powersurge = new AbstractLambdaPower(POWERSURGE_POWER_NAME, POWERSURGE_POWER_NAME, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() { description = POWERSURGE_POWER_DESCRIPTIONS[0]; }
-        };
-        applyToTarget(this, this, powersurge);
         AbstractPower faultyhardware = new AbstractLambdaPower(FAULTYHARDWARE_POWER_NAME, FAULTYHARDWARE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() { description = FAULTYHARDWARE_POWER_DESCRIPTIONS[0]; }
@@ -145,24 +116,40 @@ public class yanHand extends AbstractDeckMonster
         if(info.base > -1) { info.applyPowers(this, target); }
         switch (move.nextMove) {
             case GIANT_FIST:
+                punchAnimation(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), yanHand.this, new Paralysis(adp(), fistPara));
+                resetIdle();
                 break;
             case COMPRESS: {
+                blockAnimation();
                 block(this, compressBlock);
+                resetIdle();
                 break;
             }
             case FLURRY:
-                for (int i = 0; i < multiplier; i++) { dmg(adp(), info); }
-                applyToTarget(this, this, new NextTurnPowerPower(this, new StrengthPower(this, flurryStr)));
+                for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        slamAnimation(adp());
+                    } else {
+                        punchAnimation(adp());
+                    }
+                    dmg(adp(), info);
+                    resetIdle();
+                }
+                applyToTarget(this, this, new StrengthPower(this, flurryStr));
                 break;
             case BRAND:
+                brandAnimation(adp());
                 dmg(adp(), info);
-                applyToTarget(adp(), yanHand.this, new NextTurnPowerPower(adp(), new Erosion(adp(), brandErosion)));
+                applyToTarget(adp(), yanHand.this, new Erosion(adp(), brandErosion));
+                resetIdle();
                 break;
             case LOCK:
+                lockAnimation(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), yanHand.this, new DrawReductionPower(adp(), drawReduction));
+                resetIdle();
                 break;
         }
     }
@@ -188,18 +175,6 @@ public class yanHand extends AbstractDeckMonster
                 }
             });
         }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                for(AbstractPower p: yanHand.this.powers){
-                    if(p instanceof StrengthPower || p instanceof GainStrengthPower){
-                        att(new RemoveSpecificPowerAction(yanHand.this, yanHand.this, p));
-                        break;
-                    }
-                }
-                this.isDone = true;
-            }
-        });
     }
 
     @Override
@@ -257,11 +232,6 @@ public class yanHand extends AbstractDeckMonster
         } else { setAdditionalMoveShortcut(COMPRESS, moveHistory, c); }
     }
 
-    public void calculateAllocatedMoves(){
-        numAdditionalMoves = 0;
-        if(this.hasPower(NextTurnPowerPower.POWER_ID)){ numAdditionalMoves += 1; }
-    }
-
     @Override
     public void damage(DamageInfo info) {
         super.damage(info);
@@ -298,4 +268,26 @@ public class yanHand extends AbstractDeckMonster
             super.die();
         }
     }
+
+    private void punchAnimation(AbstractCreature enemy) {
+        animationAction("Punch", "YanStab", enemy, this);
+    }
+
+    private void slamAnimation(AbstractCreature enemy) {
+        animationAction("Slam", "YanVert", enemy, this);
+    }
+
+    private void brandAnimation(AbstractCreature enemy) {
+        animationAction("Brand", "YanBrand", enemy, this);
+    }
+
+    private void lockAnimation(AbstractCreature enemy) {
+        animationAction("Lock", "YanLock", enemy, this);
+    }
+
+    private void blockAnimation() {
+        animationAction("Block", null, this);
+    }
+
+
 }

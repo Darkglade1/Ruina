@@ -34,11 +34,11 @@ import ruina.monsters.eventboss.yan.cards.CHRBOSS_yanAttack;
 import ruina.monsters.eventboss.yan.cards.CHRBOSS_yanProtect;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
-import ruina.powers.NextTurnPowerPower;
 import ruina.powers.Paralysis;
 import ruina.powers.Protection;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
+import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
@@ -102,14 +102,15 @@ public class yanDistortion extends AbstractDeckMonster
         MERGED
     }
     private PHASE currentphase = PHASE.SPLIT;
+    private int phase = 1;
     private int turn = 5;
 
     public yanDistortion() {
         this(150.0f, 0.0f);
     }
     public yanDistortion(final float x, final float y) {
-        super(NAME, ID, 250, -5.0F, 0, 250.0f, 255.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("ScytheApostle/Spriter/ScytheApostle.scml"));
+        super(NAME, ID, 250, -5.0F, 0, 250.0f, 325.0f, null, x, y);
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Yan/Spriter/Yan.scml"));
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));
         numAdditionalMoves = 1;
@@ -202,7 +203,7 @@ public class yanDistortion extends AbstractDeckMonster
                     if(m instanceof yanHand){
                         if(((yanHand) m).currentMode == LEFT && !m.halfDead){
                             System.out.println("applying str to left hand [attackL]");
-                            applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
+                            applyToTarget(m, m, new StrengthPower(m, attackStr));
                             buffedCorrectly = true;
                             break;
                         }
@@ -215,7 +216,7 @@ public class yanDistortion extends AbstractDeckMonster
                         if(m instanceof yanHand){
                             if(((yanHand) m).currentMode == RIGHT && !m.halfDead){
                                 System.out.println("applying str to right hand [attackL]");
-                                applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
+                                applyToTarget(m, m, new StrengthPower(m, attackStr));
                                 break;
                             }
                         }
@@ -228,7 +229,7 @@ public class yanDistortion extends AbstractDeckMonster
                     if(m instanceof yanHand){
                         if(((yanHand) m).currentMode == RIGHT && !m.halfDead){
                             System.out.println("applying str to right hand [attackR]");
-                            applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
+                            applyToTarget(m, m, new StrengthPower(m, attackStr));
                             buffedCorrectly = true;
                             break;
                         }
@@ -241,7 +242,7 @@ public class yanDistortion extends AbstractDeckMonster
                         if(m instanceof yanHand){
                             if(((yanHand) m).currentMode == LEFT && !m.halfDead){
                                 System.out.println("applying str to left hand [attackR]");
-                                applyToTarget(m, m, new NextTurnPowerPower(m, new StrengthPower(m, attackStr)));;
+                                applyToTarget(m, m, new StrengthPower(m, attackStr));
                                 break;
                             }
                         }
@@ -249,28 +250,41 @@ public class yanDistortion extends AbstractDeckMonster
                     break;
                 }
             case GIANT_FIST:
+                specialAnimation("YanStab");
                 dmg(adp(), info);
                 applyToTarget(adp(), yanDistortion.this, new Paralysis(adp(), fistPara));
+                resetIdle();
                 break;
             case COMPRESS: {
+                specialAnimation(null);
                 block(this, compressBlock);
+                resetIdle();
                 break;
             }
             case FLURRY:
-                for (int i = 0; i < multiplier; i++) { dmg(adp(), info); }
-                applyToTarget(this, this, new NextTurnPowerPower(this, new StrengthPower(this, flurryStr)));
+                for (int i = 0; i < multiplier; i++) {
+                    specialAnimation("YanVert");
+                    dmg(adp(), info);
+                    resetIdle();
+                }
+                applyToTarget(this, this, new StrengthPower(this, flurryStr));
                 break;
             case BRAND:
+                specialAnimation("YanBrand");
                 dmg(adp(), info);
-                applyToTarget(adp(), yanDistortion.this, new NextTurnPowerPower(adp(), new Erosion(adp(), brandErosion)));
+                applyToTarget(adp(), yanDistortion.this, new Erosion(adp(), brandErosion));
+                resetIdle();
                 break;
             case LOCK:
+                specialAnimation("YanLock");
                 dmg(adp(), info);
                 applyToTarget(adp(), yanDistortion.this, new DrawReductionPower(adp(), drawReduction));
+                resetIdle();
                 break;
             case DISTORTEDBLADE:
+                specialAnimation("DistortedBladeStart");
                 dmg(adp(), info);
-                applyToTarget(adp(), yanDistortion.this, new NextTurnPowerPower(adp(), new Erosion(adp(), bladeErosion)));
+                applyToTarget(adp(), yanDistortion.this, new Erosion(adp(), bladeErosion));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -278,6 +292,7 @@ public class yanDistortion extends AbstractDeckMonster
                         isDone = true;
                     }
                 });
+                resetIdle();
                 break;
         }
     }
@@ -316,7 +331,6 @@ public class yanDistortion extends AbstractDeckMonster
                 for(AbstractMonster m: monsterList()){
                     if(m instanceof yanHand){
                         if(!m.halfDead) {
-                            //((yanHand) m).calculateAllocatedMoves();
                             m.rollMove();
                             m.createIntent();
                         }
@@ -422,9 +436,12 @@ public class yanDistortion extends AbstractDeckMonster
 
     public void merge(){
         currentphase = PHASE.MERGED;
+        phase = 2;
+
         att(new AbstractGameAction() {
             @Override
             public void update() {
+                runAnim("Idle" + phase);
                 AbstractDungeon.getCurrRoom().cannotLose = false;
                 isDone = true;
             }
@@ -485,6 +502,22 @@ public class yanDistortion extends AbstractDeckMonster
             if(m.halfDead){ deadC += 1; }
         }
         return (deadC == 2 || (currentHealth <= (maxHealth / 2))) && currentphase == PHASE.SPLIT;
+    }
+
+    private void specialAnimation(String sound) {
+        animationAction("Special", sound, this);
+    }
+
+    @Override
+    protected void resetIdle(float duration) {
+        atb(new VFXActionButItCanFizzle(this, new WaitEffect(), duration));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                runAnim("Idle" + phase);
+                this.isDone = true;
+            }
+        });
     }
 
 }

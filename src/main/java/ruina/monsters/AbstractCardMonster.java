@@ -31,7 +31,7 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
 
     public void update() {
         super.update();
-        if (enemyCard != null) {
+        if (enemyCard != null && !this.isDeadOrEscaped()) {
             enemyCard.hb.update();
             if (Settings.FAST_MODE) {
                 enemyCard.current_x = MathHelper.cardLerpSnap(enemyCard.current_x, enemyCard.target_x);
@@ -62,7 +62,7 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
 
     public void renderCard(SpriteBatch sb) {
         Color color = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentColor");
-        if (color.a > 0 && !this.isDeadOrEscaped()) {
+        if (color.a > 0) {
             sb.setColor(color);
             for (AbstractCard card : cardsToRender) {
                 if (card != hoveredCard) {
