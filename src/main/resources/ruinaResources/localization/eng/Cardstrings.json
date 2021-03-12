@@ -90,6 +90,14 @@
     "NAME": "Sound of a Star",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL This card's damage is increased by the amount of Block you've gained this combat. NL Exhaustive !stslib:ex!."
   },
+  "${ModID}:Twilight": {
+    "NAME": "Twilight",
+    "DESCRIPTION": "Deal !D! damage and apply Weak equal to the [E] paid for by ruina:Manifest to ALL enemies."
+  },
+  "${ModID}:Apocalypse": {
+    "NAME": "Apocalypse",
+    "DESCRIPTION": "Deal !D! damage. NL This card deals !M!% more damage if your HP is at or below !ruina:SecondMagic!%. This card deals !M!% more damage to enemies with !ruina:SecondMagic!% or less HP."
+  },
   "${ModID}:Dazzled": {
     "NAME": "Dazzled",
     "DESCRIPTION": "When Retained, increase its cost by !M! this combat. If its cost is !ruina:SecondMagic! or more, it becomes Unplayable."

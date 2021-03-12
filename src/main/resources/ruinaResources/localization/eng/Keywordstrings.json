@@ -5,5 +5,12 @@
       "bleed"
     ],
     "DESCRIPTION": "Whenever this creature attacks this turn, it takes damage equal to the amount of #yBleed it has."
+  },
+  {
+    "PROPER_NAME": "Manifest",
+    "NAMES": [
+      "manifest"
+    ],
+    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead #yExhaust #b1 card for every missing [E] ."
   }
 ]

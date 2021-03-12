@@ -58,6 +58,11 @@
       "Autoplay. NL "
     ]
   },
+  "${ModID}:ManifestMod": {
+    "TEXT": [
+      "ruina:Manifest. NL "
+    ]
+  },
   "${ModID}:UninvitedGuests": {
     "TEXT": [
       "Uninvited Guests",
