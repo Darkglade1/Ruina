@@ -1,7 +1,10 @@
 package ruina.monsters.eventboss.yan.monster;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
@@ -11,6 +14,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -19,8 +23,10 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawReductionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractDeckMonster;
@@ -38,6 +44,7 @@ import ruina.powers.NextTurnPowerPower;
 import ruina.powers.Paralysis;
 import ruina.powers.Protection;
 import ruina.util.AdditionalIntent;
+import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
@@ -72,7 +79,7 @@ public class yanDistortion extends AbstractDeckMonster
     public boolean leftKilledFirst = false;
     public boolean rightKilledFirst = false;
 
-    public final int fistDMG = calcAscensionDamage(4);
+    public final int fistDMG = calcAscensionDamage(7);
     public final int fistPara = calcAscensionSpecial(2);
 
     public final int compressBlock = calcAscensionTankiness(15);
@@ -150,7 +157,6 @@ public class yanDistortion extends AbstractDeckMonster
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
         if(info.base > -1) { info.applyPowers(this, target); }
-        final int[] threshold = {0};
         switch (move.nextMove) {
             case PROTECTL:
                 boolean buffedCorrectly = false;
@@ -203,20 +209,18 @@ public class yanDistortion extends AbstractDeckMonster
                 for(AbstractMonster m: monsterList()){
                     if(m instanceof yanHand){
                         if(((yanHand) m).currentMode == LEFT && !m.halfDead){
-                            System.out.println("applying str to left hand [attackL]");
                             applyToTarget(m, m, new StrengthPower(m, attackStr));
                             buffedCorrectly = true;
                             break;
                         }
                     }
                 }
-                System.out.println(buffedCorrectly);
+
                 if(buffedCorrectly){ break; }
                 else {
                     for(AbstractMonster m: monsterList()){
                         if(m instanceof yanHand){
                             if(((yanHand) m).currentMode == RIGHT && !m.halfDead){
-                                System.out.println("applying str to right hand [attackL]");
                                 applyToTarget(m, m, new StrengthPower(m, attackStr));
                                 break;
                             }
@@ -229,20 +233,17 @@ public class yanDistortion extends AbstractDeckMonster
                 for(AbstractMonster m: monsterList()){
                     if(m instanceof yanHand){
                         if(((yanHand) m).currentMode == RIGHT && !m.halfDead){
-                            System.out.println("applying str to right hand [attackR]");
                             applyToTarget(m, m, new StrengthPower(m, attackStr));
                             buffedCorrectly = true;
                             break;
                         }
                     }
                 }
-                System.out.println(buffedCorrectly);
                 if(buffedCorrectly){ break; }
                 else {
                     for(AbstractMonster m: monsterList()){
                         if(m instanceof yanHand){
                             if(((yanHand) m).currentMode == LEFT && !m.halfDead){
-                                System.out.println("applying str to left hand [attackR]");
                                 applyToTarget(m, m, new StrengthPower(m, attackStr));
                                 break;
                             }
@@ -284,6 +285,7 @@ public class yanDistortion extends AbstractDeckMonster
                 break;
             case DISTORTEDBLADE:
                 specialAnimation("DistortedBladeStart");
+                distortedBladeEffect();
                 dmg(adp(), info);
                 applyToTarget(adp(), yanDistortion.this, new Erosion(adp(), bladeErosion));
                 atb(new AbstractGameAction() {
@@ -484,13 +486,9 @@ public class yanDistortion extends AbstractDeckMonster
         AbstractMonster hand1 = new yanHand(xPos_Middle_L, 0.0f, RIGHT,this);
         atb(new SpawnMonsterAction(hand1, true));
         atb(new UsePreBattleActionAction(hand1));
-        hand1.rollMove();
-        hand1.createIntent();
         AbstractMonster hand2 = new yanHand(xPos_Short_L, 0.0f, LEFT, this);
         atb(new SpawnMonsterAction(hand2, true));
         atb(new UsePreBattleActionAction(hand2));
-        hand2.rollMove();
-        hand2.createIntent();
     }
 
     public boolean fulfillsMergeConditions(){
@@ -512,6 +510,24 @@ public class yanDistortion extends AbstractDeckMonster
             @Override
             public void update() {
                 runAnim("Idle" + phase);
+                this.isDone = true;
+            }
+        });
+    }
+
+    private void distortedBladeEffect() {
+        Texture texture = TexLoader.getTexture(RuinaMod.makeMonsterPath("Yan/DistortedBlade.png"));
+        float duration = 1.5f;
+        AbstractGameEffect effect = new VfxBuilder(texture, adp().hb.cX, 0f, duration)
+                .moveY(Settings.HEIGHT - (100.0f * Settings.scale), Settings.HEIGHT, VfxBuilder.Interpolations.SWING)
+                .andThen(0.5f)
+                .moveY(Settings.HEIGHT, adp().hb.y + adp().hb.height / 6, VfxBuilder.Interpolations.EXP5IN)
+                .build();
+        atb(new VFXAction(effect, duration));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound("DistortedBladeFinish");
                 this.isDone = true;
             }
         });

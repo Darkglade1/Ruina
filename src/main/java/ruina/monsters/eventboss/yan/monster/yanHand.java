@@ -54,7 +54,7 @@ public class yanHand extends AbstractDeckMonster
     private static final byte LOCK = 4;
     private static final byte EMPTY = 5;
 
-    public final int fistDMG = calcAscensionDamage(4);
+    public final int fistDMG = calcAscensionDamage(7);
     public final int fistPara = calcAscensionSpecial(2);
 
     public final int compressBlock = calcAscensionTankiness(15);
