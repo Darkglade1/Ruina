@@ -7,6 +7,7 @@ import ruina.cards.EGO.AbstractEgoCard;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.eventboss.yan.monster.yanHand;
 
+import static com.megacrit.cardcrawl.core.CardCrawlGame.languagePack;
 import static ruina.RuinaMod.makeID;
 
 @AutoAdd.Ignore
@@ -17,6 +18,8 @@ public class CHRBOSS_BalefulBrand extends AbstractEgoCard {
         super(ID, 0, CardType.ATTACK, CardTarget.SELF);
         damage = baseDamage = parent.brandDmg;
         magicNumber = baseMagicNumber = parent.brandErosion;
+        rawDescription = languagePack.getCardStrings(cardID).EXTENDED_DESCRIPTION[0];
+        initializeDescription();
     }
 
     public CHRBOSS_BalefulBrand(yanHand parent) {

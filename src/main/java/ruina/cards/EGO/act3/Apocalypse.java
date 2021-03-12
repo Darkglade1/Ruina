@@ -20,13 +20,11 @@ public class Apocalypse extends AbstractEgoCard {
     public Apocalypse() {
         super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
         baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber = BONUS_DAMAGE;
-        secondMagicNumber = baseSecondMagicNumber = HP_THRESHOLD;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.FIRE);
+        dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
     }
 
     @Override

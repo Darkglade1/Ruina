@@ -191,13 +191,13 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         animationAction(animation, sound, volume, null, owner);
     }
 
-    public void playSound(String sound, float volume) {
+    public static void playSound(String sound, float volume) {
         if (sound != null) {
             CardCrawlGame.sound.playV(makeID(sound), volume);
         }
     }
 
-    public void playSound(String sound) {
+    public static void playSound(String sound) {
         playSound(sound, 1.0f);
     }
 

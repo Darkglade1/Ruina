@@ -186,7 +186,7 @@ public class JudgementBird extends AbstractRuinaMonster
         animationAction("Special", "JudgementGong", enemy, this);
     }
 
-    private void judgementVfx() {
+    public static void judgementVfx() {
         ArrayList<Texture> frames = new ArrayList<>();
         for (int i = 1; i <= 14; i++) {
             frames.add(TexLoader.getTexture(makeMonsterPath("JudgementBird/Hang/Hang" + i + ".png")));

@@ -22,6 +22,10 @@ import ruina.cards.EGO.act2.LoveAndHate;
 import ruina.cards.EGO.act2.Lumber;
 import ruina.cards.EGO.act2.Mimicry;
 import ruina.cards.EGO.act2.Nihil;
+import ruina.cards.EGO.act3.Apocalypse;
+import ruina.cards.EGO.act3.Beak;
+import ruina.cards.EGO.act3.Justitia;
+import ruina.cards.EGO.act3.Lamp;
 import ruina.cards.EGO.act3.Penitence;
 import ruina.cards.EGO.act2.Smile;
 import ruina.cards.EGO.act2.SwordSharpened;
@@ -30,6 +34,7 @@ import ruina.cards.EGO.act3.DeadSilence;
 import ruina.cards.EGO.act3.Heaven;
 import ruina.cards.EGO.act3.ParadiseLost;
 import ruina.cards.EGO.act3.SoundOfAStar;
+import ruina.cards.EGO.act3.Twilight;
 import ruina.util.TexLoader;
 
 import java.lang.reflect.Method;
@@ -145,5 +150,10 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(Heaven.ID);
         list.add(Penitence.ID);
         list.add(SoundOfAStar.ID);
+        list.add(Apocalypse.ID);
+        list.add(Beak.ID);
+        list.add(Lamp.ID);
+        list.add(Justitia.ID);
+        list.add(Twilight.ID);
     }
 }

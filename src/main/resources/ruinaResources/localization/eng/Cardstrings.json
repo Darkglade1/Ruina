@@ -96,7 +96,7 @@
   },
   "${ModID}:Apocalypse": {
     "NAME": "Apocalypse",
-    "DESCRIPTION": "Deal !D! damage. NL This card deals !M!% more damage if your HP is at or below !ruina:SecondMagic!%. This card deals !M!% more damage to enemies with !ruina:SecondMagic!% or less HP."
+    "DESCRIPTION": "Deal !D! damage. NL Deals 50% more damage if your HP is at or below 50%. NL Deals 50% more damage to enemies with 50% or less HP."
   },
   "${ModID}:Beak": {
     "NAME": "Beak",
@@ -105,6 +105,11 @@
   "${ModID}:Lamp": {
     "NAME": "Lamp",
     "DESCRIPTION": "Enemy loses !M! Strength this turn. NL Whenever you are attacked this turn, deal !ruina:SecondMagic! damage back."
+  },
+  "${ModID}:Justitia": {
+    "NAME": "Justitia",
+    "DESCRIPTION": "If the enemy's HP is at or below 30%, kill it. NL Enemy loses !M! HP.",
+    "EXTENDED_DESCRIPTION": ["If the enemy's HP is at or below ", ", kill it. NL Enemy loses !M! HP."]
   },
   "${ModID}:Dazzled": {
     "NAME": "Dazzled",
@@ -152,11 +157,13 @@
   },
   "${ModID}:CHRBOSS_FlurryOfFists": {
     "NAME": "Flurry Of Fists",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength.",
+    "EXTENDED_DESCRIPTION": ["Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength next turn."]
   },
   "${ModID}:CHRBOSS_BalefulBrand": {
     "NAME": "Baleful Brand",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion.",
+    "EXTENDED_DESCRIPTION": ["Deal !D! damage. NL Apply !M! *Erosion next turn."]
   },
   "${ModID}:CHRBOSS_Lock": {
     "NAME": "Lock",

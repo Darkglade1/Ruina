@@ -7,6 +7,7 @@ import ruina.cards.EGO.AbstractEgoCard;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.eventboss.yan.monster.yanHand;
 
+import static com.megacrit.cardcrawl.core.CardCrawlGame.languagePack;
 import static ruina.RuinaMod.makeID;
 
 @AutoAdd.Ignore
@@ -18,6 +19,8 @@ public class CHRBOSS_FlurryOfFists extends AbstractEgoCard {
         damage = baseDamage = parent.flurryDamage;
         magicNumber = baseMagicNumber = parent.flurryHits;
         secondMagicNumber = baseSecondMagicNumber = parent.flurryStr;
+        rawDescription = languagePack.getCardStrings(cardID).EXTENDED_DESCRIPTION[0];
+        initializeDescription();
     }
 
     public CHRBOSS_FlurryOfFists(yanHand parent) {
