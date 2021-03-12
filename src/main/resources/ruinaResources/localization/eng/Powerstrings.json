@@ -256,5 +256,14 @@
   "${ModID}:Protection": {
     "NAME": "Protection",
     "DESCRIPTIONS": ["Takes #b", " less damage from #yAttacks. Reduced by #b", " at end of round."]
+  },
+  "${ModID}:Beak": {
+    "NAME": "Beak",
+    "DESCRIPTIONS": ["At the start of your turn, reduce the cost of the highest cost card in your hand to #b0 and give it #yExhaust.",
+                     "At the start of your turn, reduce the cost of the #b", " highest cost cards in your hand to #b0 and give them #yExhaust."]
+  },
+  "${ModID}:Lamp": {
+    "NAME": "Lamp",
+    "DESCRIPTIONS": ["Whenever you are attacked this turn, deal #b", " damage back."]
   }
 }
