@@ -29,12 +29,6 @@ public class RedMistPower extends AbstractEasyPower {
         }
         return damageAmount;
     }
-    public void EGOTrigger() {
-        if(owner.currentHealth <= amount){
-            if(owner instanceof RedMist){ ((RedMist) owner).activateEGO(); }
-            att(new RemoveSpecificPowerAction(owner, owner, this));
-        }
-    }
     public void updateDescription() { this.description = owner.currentHealth == amount ? DESCRIPTIONS[1] : String.format(DESCRIPTIONS[0], amount, amount) ; }
 
 }

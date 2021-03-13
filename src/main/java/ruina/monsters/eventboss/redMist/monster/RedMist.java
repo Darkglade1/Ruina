@@ -4,6 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -319,8 +320,11 @@ public class RedMist extends AbstractDeckMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
+                if(!EGO){ EGOTrigger(); }
+                /*
                 AbstractPower P = RedMist.this.getPower(RedMistPower.POWER_ID);
                 if(P != null){ ((RedMistPower) P).EGOTrigger(); }
+                 */
                 isDone = true;
             }
         });
@@ -466,5 +470,12 @@ public class RedMist extends AbstractDeckMonster
             }
         });
         fullScreenAnimation(frames, 0.1f, 1.2f);
+    }
+
+    private void EGOTrigger() {
+        if(currentHealth <= maxHealth / 2){
+            activateEGO();
+            att(new RemoveSpecificPowerAction(this, this, RedMistPower.POWER_ID));
+        }
     }
 }
