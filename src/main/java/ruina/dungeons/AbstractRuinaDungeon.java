@@ -30,11 +30,16 @@ public class AbstractRuinaDungeon extends CustomDungeon {
     }
 
     public enum Floor {
+        MAKUTH,
+        YESOD,
+        HOD,
+        NETZACH,
         TIPHERETH,
         GEBURA,
         CHESED,
         BINAH,
-        HOKMA
+        HOKMA,
+        ROLAND
     }
 
     public void setFloor() {
