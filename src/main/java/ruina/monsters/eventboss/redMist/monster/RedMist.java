@@ -82,7 +82,7 @@ public class RedMist extends AbstractDeckMonster
     private int greaterSplitCooldownCounter = GREATER_SPLIT_COOLDOWN;
 
     public RedMist() {
-        this(100.0f, 0.0f);
+        this(0.0f, 0.0f);
     }
     public RedMist(final float x, final float y) {
         super(NAME, ID, 300, -5.0F, 0, 250.0f, 255.0f, null, x, y);

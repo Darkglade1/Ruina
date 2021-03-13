@@ -30,6 +30,7 @@ import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractDeckMonster;
+import ruina.monsters.act2.BrilliantBliss;
 import ruina.monsters.eventboss.yan.cards.CHRBOSS_BalefulBrand;
 import ruina.monsters.eventboss.yan.cards.CHRBOSS_Compress;
 import ruina.monsters.eventboss.yan.cards.CHRBOSS_DistortedBlade;
@@ -531,6 +532,17 @@ public class yanDistortion extends AbstractDeckMonster
                 this.isDone = true;
             }
         });
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        AbstractDungeon.getCurrRoom().cannotLose = false;
+        for (AbstractMonster mo : monsterList()) {
+            if (mo instanceof yanHand) {
+                atb(new SuicideAction(mo));
+            }
+        }
     }
 
 }

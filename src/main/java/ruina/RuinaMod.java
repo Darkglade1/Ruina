@@ -61,6 +61,7 @@ import ruina.events.act2.ThePianist;
 import ruina.events.act2.WizardOfOz;
 import ruina.events.act2.ZweiAssociation;
 import ruina.events.act3.CryingChildren;
+import ruina.events.act3.DistortedYan;
 import ruina.events.act3.ForThoseWeCherish;
 import ruina.events.act3.HanaAssociation;
 import ruina.events.act3.Philosophy;
@@ -528,6 +529,7 @@ public class RuinaMod implements
         BaseMod.addEvent(Philosophy.ID, Philosophy.class, Atziluth.ID);
         BaseMod.addEvent(TheThumb.ID, TheThumb.class, Atziluth.ID);
         BaseMod.addEvent(CryingChildren.ID, CryingChildren.class, Atziluth.ID);
+        BaseMod.addEvent(DistortedYan.ID, DistortedYan.class, Atziluth.ID);
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)

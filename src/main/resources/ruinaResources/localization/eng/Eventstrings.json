@@ -320,5 +320,19 @@
       "[Wake Up]",
       "Choose a card to Transform."
     ]
+  },
+  "${ModID}:DistortedYan": {
+    "NAME": "Distorted Yan",
+    "DESCRIPTIONS": [
+      "It was #ppointless all along. NL He thought he had been making a difference. He thought he had been #yrebelling against the #yPrescripts, throwing a wrench in the machinations churning behind the scenes. NL But even his rebellion had been accounted for. Even his defiance had been planned for. NL In the end, he had been nothing more than another gear spinning within the wheels. NL Someone like him should just give up and do as he's told.",
+      "There was still another #ypath left to him. A #ypath that he should've taken long ago when he first received the #yPrescript to become a #yMessenger. NL He didn't care if this would be part of another plan of the Prescripts. He didn't care if even this action would not truly be of his own free will. NL He just didn't care anymore. NL Raising his sword, he pointed it at himself."
+    ],
+    "OPTIONS": [
+      "[Give up] ",
+      "[Give in] ",
+      "Fight a special enemy. ",
+      " Obtain an upgraded EGO card.",
+      "[Wake Up]"
+    ]
   }
 }
