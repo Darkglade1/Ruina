@@ -1,0 +1,213 @@
+{
+  "ruina:WizardOfOz": {
+    "NAME": "绿野仙踪",
+    "DESCRIPTIONS": [
+      "当你浏览迷路图书馆的曲折和转弯时, 你遇到了 #y神奇的书 #ycurious cover. NL NL It flies open before you, beckoning you to peer within its pages.",
+      "The wizard spoke to the scarecrow seeking #ywisdom. NL NL \"I will give you a brand-new brain, full of pins and needles! All I ask is that you swear #yloyalty to me.\"",
+      "The wizard spoke to the woodsman seeking a #yheart. NL NL \"I will give you a silk heart stuffed with saw-dust. All I ask is that you swear #yloyalty to me.\"",
+      "The wizard spoke to the lion seeking #ycourage. NL NL \"I will give you a drought filled with boundless courage. All I ask is that you swear #yloyalty to me.\"",
+      "The wizard spoke to the girl seeking to return #yhome. NL NL \"I will give you a pair of silver shoes that will take you wherever you desire. All I ask is that you swear #yloyalty to me.\"",
+      "The wizard smiled in #ydelight. NL NL \"Wonderful! You will all make very fine servants; come closer and receive your presents.\"",
+      "The wizard #pfrowned. NL NL \"What an insolent lot we have here. To think you would all defy the #ymighty wizard of Oz!\"",
+      "The wizard #ysighed. NL NL \"It appears your group lacks the resolve to commit one way or another. What a #pshame.\"",
+      "The story ends, leaving you with an #pempty ache in your #yheart.",
+      "You don't feel like diving into a #ystory right now."
+    ],
+    "OPTIONS": [
+      "[阅读] 开始这个故事",
+      "[离开] ",
+      "[接受] ",
+      "[拒绝] ",
+      "取出卡片.",
+      "被诅咒 - ",
+      "输 ",
+      " HP.",
+      "增益 ",
+      "最大生命值.",
+      "黄金.",
+      "获取药剂.",
+      "在牌堆里放张牌 +",
+      " 损害",
+      " 和排气.",
+      "[接受现在] ",
+      "获得特殊遗物.",
+      "[推翻巫师] ",
+      "获得 ",
+      "[Stop reading] ",
+      ".",
+      "[Locked] 要求：接受多于拒绝.",
+      "[Locked] 要求：拒绝多于接受.",
+      "选择一张卡片."
+    ]
+  },
+  "ruina:ChurchOfGears": {
+    "NAME": "齿轮教堂",
+    "DESCRIPTIONS": [
+      "@WHIRRRRRRRRRRRRRRRR@ NL NL You hear bones #rcracking, blood #rsplattering, and joints #rbreaking. And through it all, an intense whirring noise fills the air. NL NL The hooded figure next to the noisy machine turns to face you. \"Join us, stranger. Join us and be free of your #pheavy thoughts and worldly burdens!\"",
+      "You sit down in the machine, and it feels as if a #pvise had clamped itself over your head. NL NL The @whirring@ noise grows #ylouder and #ylouder, the dull pain flares #rhigher and #rhigher until suddenly, it all #rstops. NL NL Your head had never felt lighter.",
+      "You have no intention of subjecting yourself to such a #psinister-looking machine."
+    ],
+    "OPTIONS": [
+      "[接受] ",
+      "输 ",
+      " HP.",
+      "升级一张卡，然后复制它.",
+      "变换一张卡，然后升级它.",
+      "选择要升级的卡，然后复制",
+      "选择要变换的卡，然后升级",
+      "[Leave]"
+    ]
+  },
+  "ruina:ZweiAssociation": {
+    "NAME": "两个协会",
+    "DESCRIPTIONS": [
+      "\"Our #rcasualty rates have @skyrocketed@ over the past few months. This rate of attrition is unsustainable; at this rate, our #yAssociation will cease to be #yrelevant!\" NL NL The woman pounds her fist on the table. \"Something needs to be done. Either we make efforts to #yimprove our training and equipment, or we make efforts to scout out these #pmonstrosities before facing them.\"",
+      "\"Very good. I'll make plans for a new training regimen immediately.\"",
+      "\"Very well then. I will lead the first expedition myself.\"",
+      "The woman scowls. \"Such half-heartedness does not suit you, Director.\" NL NL She sighs. \"But I will respect your #yjudgment this time.\"",
+      " NL NL The meeting adjourns, and you find yourself finally free of a #ymemory that was not yours."
+    ],
+    "OPTIONS": [
+      "[培训] ",
+      "[侦察] ",
+      "Lose ",
+      " 金.",
+      " 最大生命值.",
+      "获得稀有卡.",
+      "获得ego卡.",
+      "[妥协]",
+      "[醒醒]",
+      "[Locked] 需要：黄金"
+    ]
+  },
+  "ruina:RCorp": {
+    "NAME": "R公司",
+    "DESCRIPTIONS": [
+      "Gunfire @ripped@ across the field. The commander watched on in silence as her subordinate's clones killed each other for #ydominance. NL NL \"Hey, how much do you want to bet that the little rabbit over there is going to win?\" NL NL \"That one seems a little too cowardly to grasp victory. The one on a #rkilling #rspree seems much more likely to be the victor.\" NL NL There were only a few clones left. And with a flash of steel, it was over. The #ywinner was -",
+      "\"It appears my deduction was correct. So I suppose that means the next round of drinks is on you, Maxim.\" NL NL \"Damnit! I thought that one looked wily enough to survive, but I guess not.\"",
+      "\"Hah! I guess running isn't always such a bad option for a rabbit, is it?\" NL NL \"I didn't think such a passive variant of Myo could win; I suppose it’s my loss then.\"",
+      " NL NL As the others bickered, the commander simply looked on impassively. For she knew that it was likely that they would all be replaced someday."
+    ],
+    "OPTIONS": [
+      "[凶手] ",
+      "[懦夫] ",
+      "升级任意数量的卡.",
+      "输 ",
+      " HP每升级一张卡.",
+      "取出卡片.",
+      "选择任意数量的卡进行升级",
+      "选择要删除的卡",
+      "[Wake Up]"
+    ]
+  },
+  "ruina:SocialSciences": {
+    "NAME": "社会科学院",
+    "DESCRIPTIONS": [
+      "You see a #bblue-haired man pouring a drink. Despite his apparently #ynormal look, you can't help but wonder if this is a trick of one of the #rmonsters. NL NL \"Ah, a guest! You don't look like one of the librarians here, but that's no reason to be a rude host! Come, allow me to pour you a drink.\" NL NL His calm demeanor and #gpleasant attitude win you over. You sit yourself down at the table.",
+      "The drink was soothing, like relaxing after a long day of work. NL NL You wish this moment could last #yforever."
+    ],
+    "OPTIONS": [
+      "[喝] ",
+      "[先加点酒] ",
+      "治愈 ",
+      " 生命值.",
+      "Lose ",
+      ".",
+      "增益 ",
+      " 最大生命值.",
+      "[Leave]",
+      "[锁定] 需要：药剂"
+    ]
+  },
+  "ruina:ThePianist": {
+    "NAME": "钢琴家",
+    "DESCRIPTIONS": [
+      "The city #r@shudders,@ vibrating like a plucked string. The grand #yperformance stretches ever outward, curling around the minds of its victims like a slowly tightening noose. NL NL You try to fight it. You try to beat back those notes ringing in your skull, those beats pounding away at your mind. And in the end, you -",
+      "With great force of will, you push away the Distortion's #pcorrupting influence. But where was your family? Your friends? You needed to get them away from here, away from that maddening performer and its #punholy melody. NL NL You see your best friend up ahead. He's smiling at you. NL NL His smile is the last thing you ever see.",
+      "Your mind #rfractures and #rcracks. This music was so . . . #gwonderful. So #gbeautiful. You can't help but want to get closer, to press your very body against the instrument that could make such #ydivine melodies. NL NL You can't help but want to ~evaporate~ into the air like so many of those notes you #glove."
+    ],
+    "OPTIONS": [
+      "[保持理智] ",
+      "[屈服] ",
+      "随机获得稀有遗物.",
+      "被诅咒 - ",
+      ".",
+      "在牌堆里放一张牌",
+      "自动播放.",
+      "[Wake Up]",
+      "Choose a card to give Innate and Autoplay."
+    ]
+  },
+  "ruina:Messenger": {
+    "NAME": "索引信使",
+    "DESCRIPTIONS": [
+      "Another day, another Prescript delivered to some poor, #phapless soul. NL NL Sneak #rneedles into your friend’s birthday cake. #rCut off your right leg and eat it raw. Wave to the first pedestrian you meet on the street. NL NL All of them seemed like such pointless, meaningless Prescripts. But it was his duty to deliver them nonetheless. The Messenger glanced at the final Prescript he was to deliver for the day. NL NL \"Take the heart of the one you love.\"",
+      "What a #pcruel, #pwretched order. It would be so easy for him to replace it with his own fabricated, gentler Prescript. It would be so easy for him to betray the organization he had belonged to for so long. NL NL But today was not that day. NL NL With a #pheavy heart, he delivered the final Prescript.",
+      "What a #pcruel, #pwretched order. Enough was enough. He was done with following these #pabsurd, #pvile orders. He was done with forcing others to follow these #pheinous, #punspeakable commands. NL NL He would grant the people of this City what small #ymercy he could muster. NL NL Crumpling the final Prescript up, he took out pen and paper and began writing."
+    ],
+    "OPTIONS": [
+      "[交付它] ",
+      "[丢弃它] ",
+      "满足几个条件.之后，获得一件特别的遗物.",
+      "Lose ",
+      " 最大生命值.",
+      "取下一张卡片.",
+      "选择要删除的卡",
+      "[Wake Up]"
+    ]
+  },
+  "ruina:ChildrenOfTheCity": {
+    "NAME": "城市的孩子们",
+    "DESCRIPTIONS": [
+      "The machine @thrummed@ in rhythm with the heartbeat of the #yCity. Every footstep caused the machine to @shudder,@ every off-hand comment caused it to ~rotate,~ every wayward deed displaced its pen a little. NL NL The Weaver thought it was #gbeautiful. The City was creating #yPrescripts for its people to follow, like a parent giving instructions to their children. NL NL But she was not a part of that. As a #yWeaver, it was her duty to prepare Prescripts, not to receive them. Yet she desperately wished to be part of the City's #ylight.",
+      "It wouldn't hurt if she took one for herself, right? She was a child of the #yCity too. It was her right! NL NL Swiping the next #yPrescript the machine printed out, she looked at what instruction the #yCity had for her. NL NL \"Do not go home until you finish reading the value of e.\"",
+      "No. She had to resist the #ptemptation. There was a reason she was chosen to be a #yWeaver. For the sake of the #yCity, she had to continue faithfully fulfilling her duty."
+    ],
+    "OPTIONS": [
+      "[刷一个处方] ",
+      "[抵制冲动] ",
+      "获得遗物.",
+      "被诅咒 - ",
+      ".",
+      "在甲板上保留一张牌并",
+      "Exhaust.",
+      "[Wake Up]",
+      "选择一张卡来保留和排气."
+    ]
+  },
+  "ruina:NothingThere": {
+    "NAME": "一无所有",
+    "DESCRIPTIONS": [
+      "You hear joints #rtwisting and #rbreaking up ahead, like someone was trying to contort their body into an #punnatural position. NL NL Peeking around the corner, you see a #pgrotesque figure toying with the bodies of several fallen figures. More bodies littered the ground nearby, victims of this horrid #pmonstrosity. NL NL As tragic as this scene was, you wouldn't pass up the chance to take some of the spoils of this battle for yourself.",
+      "You quickly dart forward, snatching the first valuable-looking #ytrinket you see. But despite your best attempts at stealth, the creature still turns and snarls at you. NL NL A blinding #pheadache assaults you. Indistinct words pound against your brain, trying to turn your head into mush. NL NL Hello. Goodbye. hElLo. GoOdByE. @HELLo!@ @GOOdBYe!@ NL NL Despite the pounding headache, your feet manage to carry you away from that twisted creature. But no matter how far you run, you can't get those #pwords out of your head.",
+      "You're not going to risk getting any closer to that creature. The #ywealth in the pockets of the fallen around you are good enough for you."
+    ],
+    "OPTIONS": [
+      "[抢劫远处的尸体] ",
+      "[抢劫附近的尸体] ",
+      "获得一件特别的遗物.",
+      "被诅咒 - ",
+      ".",
+      "Gain ",
+      " gold.",
+      "[Leave]"
+    ]
+  },
+  "ruina:Language": {
+    "NAME": "Floor of Language",
+    "DESCRIPTIONS": [
+      "\"Are you really a lowly Grade 9 Fixer?\" NL NL The man in front of her coughed, waving away the #psmoke from her cigar. \"It's the truth, I swear! Why are you so skeptical?\" NL NL \"Gut feeling. But if you really are bottom of the barrel, that means you'd be grateful to be trained by me, a former #yColor of the City, right?\" NL NL \". . . I just remembered I have an appointment with Netzach - \" NL NL \"No, you don't.\" She grabs him before he can run off.",
+      "He eyes her greatsword, the #peyeballs embedded in the grotesque blade staring back at him in turn. \"Are you really going to use that monster of a thing on me?\" NL NL She hefts her weapon, relishing in the #gfamiliar feeling. \"Don't worry, it's not like you're going to die. Not permanently, anyway.\" NL NL \"That doesn't make me feel any better!\"",
+      "A familiar #rburning feeling fills her body, and once it abated, she was once again clad in the #pterrifying visage that earned her Color. NL NL \"Hey, wait, I thought you were going to show me how to do that!\" NL NL \"I just did, didn't I? Now, hurry up and manifest yours before I split you in half.\" NL NL That day, she learned that Roland had a very colorful vocabulary. She would have to add some of the lesser-known words to the language books later."
+    ],
+    "OPTIONS": [
+      "[十字剑] ",
+      "[训练自我] ",
+      "给你的牌 +",
+      " 损害.",
+      "获得随机的ego卡.",
+      "[Wake Up]",
+      "选择一张卡"
+    ]
+  }
+}

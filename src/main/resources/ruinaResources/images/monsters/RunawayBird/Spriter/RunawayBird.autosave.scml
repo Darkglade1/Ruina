@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="485" height="253" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Sweep.png" width="532" height="479" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Shriek.png" width="550" height="448" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Bird">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-230" y="258"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Sweep" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Sweep">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-238" y="468"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Shriek" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Shriek">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-209" y="458"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

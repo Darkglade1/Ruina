@@ -1,0 +1,72 @@
+{
+  "ruina:Wisdom": {
+    "NAME": "被扯出的智慧",
+    "DESCRIPTION": "抽 !M! 张卡. NL 如果一个 *稻草人 消耗了这张卡, *在下个回合击晕它."
+  },
+  "ruina:FragmentOfBliss": {
+    "NAME": "彼方的碎片",
+    "DESCRIPTION": "获得 !M! 点格挡. NL 这张卡不受影响格挡的效果影响."
+  },
+  "ruina:FalseThrone": {
+    "NAME": "虚伪王座",
+    "DESCRIPTION": "下个回合，将所有非状态非诅咒卡从消耗堆加入手牌并使它们获得虚无"
+  },
+  "ruina:Smile": {
+    "NAME": "笑靥",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害 并给予 !M! 层虚弱和易伤"
+  },
+  "ruina:Mimicry": {
+    "NAME": "学习",
+    "DESCRIPTION": "造成 !D! 点伤害. 未被格挡的伤害将回复你的生命."
+  },
+  "ruina:Nihil": {
+    "NAME": "虚无缥缈",
+    "DESCRIPTION": "所有敌人失去 !M! 点力量. NL如果你手牌没有卡，效果加倍."
+  },
+  "ruina:FadedMemories": {
+    "NAME": "褪色的记忆",
+    "DESCRIPTION": "当前每有一名敌人，抽 !M! 张卡."
+  },
+  "ruina:LoveAndHate": {
+    "NAME": "以爱与恨的名义",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害"
+  },
+  "ruina:GoldRush": {
+    "NAME": "贪婪",
+    "DESCRIPTION": "获得 !M! 点力量. NL 如果本场战斗中打出的上一张牌是攻击牌，将你的力量翻倍."
+  },
+  "ruina:BlindRage": {
+    "NAME": "Blind Rage",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害. NL 受到 !M! 点伤害. NL 如果你的生命值等于或低于50%，这张卡耗能变为0."
+  },
+  "ruina:SwordSharpened": {
+    "NAME": "泪剑",
+    "DESCRIPTION": "给予 !M! 层虚弱. NL 如果你对同一个敌人使用这张卡 !ruina:SecondMagic! 次, 改为基于1层 *击晕并消耗这张卡",
+    "UPGRADE_DESCRIPTION": "给予 !M! 层虚弱. NL 将这张卡洗入你的抽牌堆.NL 如果你对同一个敌人使用这张卡 !ruina:SecondMagic! 次, 改为基于1层 *击晕并消耗这张卡."
+  },
+  "ruina:Lumber": {
+    "NAME": "Lumber",
+    "DESCRIPTION": "造成 !D! 点伤害. NL 消耗最多 !M! 张卡. 每消耗一张攻击牌， 将它的基础伤害加到这张卡的伤害上."
+  },
+  "ruina:Harvest": {
+    "NAME": "Harvest",
+    "DESCRIPTION": "造成 !D! 点伤害. NL 这张卡的伤害会随着你的生命值百分比减少而减少 (生命值满时造成最大伤害).",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害. NL 这张卡的伤害会随着你的生命值百分比减少而减少 (生命值满时造成最大伤害).NL 获得 !B! 点格挡."
+  },
+  "ruina:HomingInstinct": {
+    "NAME": "归巢本能",
+    "DESCRIPTION": "消耗最多 !M! 张卡. NL 在你的回合开始时，获得与它们耗能相等的 [E] ."
+  },
+  "ruina:CobaltScar": {
+    "NAME": "Cobalt Scar",
+    "DESCRIPTION": "每当你打出 !ruina:SecondMagic! 张攻击牌, 对所有敌人造成 !M! 点伤害."
+  },
+  "ruina:Thirst": {
+    "NAME": "Thirst",
+    "DESCRIPTION": "给予 !M! 层 ruina:流血 . NL 这个回合，每当你攻击有 ruina:流血 状态的敌人, 获得 !ruina:SecondMagic! 点力量."
+  },
+  "ruina:CrimsonScar": {
+    "NAME": "Crimson Scar",
+    "DESCRIPTION": "获得 !B! 点格挡. NL 预见 !M!. NL每丢弃一张卡，获得 !ruina:SecondMagic! 点活力."
+  }
+}
