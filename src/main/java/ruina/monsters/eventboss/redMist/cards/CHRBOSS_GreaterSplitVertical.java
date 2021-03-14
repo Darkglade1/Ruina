@@ -15,7 +15,7 @@ public class CHRBOSS_GreaterSplitVertical extends AbstractEgoCard {
     public static final int DAMAGE = 35;
 
     public CHRBOSS_GreaterSplitVertical(RedMist parent) {
-        super(ID, 4, CardType.ATTACK, CardTarget.SELF);
+        super(ID, 5, CardType.ATTACK, CardTarget.ENEMY);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = parent.GSVBleed;
     }
