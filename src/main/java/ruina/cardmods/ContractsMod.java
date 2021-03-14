@@ -1,6 +1,7 @@
 package ruina.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import basemod.interfaces.AlternateCardCostModifier;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -51,4 +52,7 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
         }
         return costToSpend;
     }
+
+    @Override
+    public boolean shouldApply(AbstractCard card) { return !CardModifierManager.hasModifier(card, ID); }
 }

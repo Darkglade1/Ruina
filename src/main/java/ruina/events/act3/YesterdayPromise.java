@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import ruina.RuinaMod;
+import ruina.cardmods.ContractsMod;
 import ruina.cardmods.ExhaustMod;
 import ruina.cardmods.RetainMod;
 import ruina.relics.YesterdayPromiseRelic;
@@ -30,7 +31,7 @@ public class YesterdayPromise extends AbstractImageEvent {
     private static final String NAME = eventStrings.NAME;
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    public static final String IMG = makeEventPath("Machine.png");
+    public static final String IMG = makeEventPath("Pluto.png");
 
     private int screenNum = 0;
     private AbstractRelic reward = new YesterdayPromiseRelic();
@@ -56,6 +57,7 @@ public class YesterdayPromise extends AbstractImageEvent {
                         CardCrawlGame.sound.play("BLUNT_FAST");
                         AbstractDungeon.player.damage(new DamageInfo(null, this.damage));
                         AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, reward);
+                        for(AbstractCard c: AbstractDungeon.player.masterDeck.group){ if(AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(YesterdayPromiseRelic.ID)){ CardModifierManager.addModifier(c, new ContractsMod()); } }
                         break;
                     case 1:
                         this.imageEventText.clearAllDialogs();

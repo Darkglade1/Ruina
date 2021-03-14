@@ -55,7 +55,7 @@
     "NAME": "Yesterday's Promise",
     "FLAVOR": "Let me lend you my eyeglass, so you can have a closer look at what you just signed.",
     "DESCRIPTIONS": [
-      "When you have insufficient [E] to play this card, you may instead pay #b1 HP for every missing [E] ."
+      "When you have insufficient [E] to play a card, you may instead pay #b1 HP for every missing [E] ."
     ]
   }
 }

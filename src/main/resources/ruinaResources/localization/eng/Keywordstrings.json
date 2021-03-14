@@ -16,9 +16,8 @@
   {
     "PROPER_NAME": "Contract",
     "NAMES": [
-      "Contract",
-      "Contract"
+      "contract"
     ],
-    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead pay #b1 HP for every missing [E] ."
+    "DESCRIPTION": "When you have insufficient [E] to play a card, you may instead pay #b1 HP for every missing [E] ."
   }
 ]
