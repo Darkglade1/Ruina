@@ -40,6 +40,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         setUpMisc();
     }
 
+
     private void setUpMisc() {
         moves = new HashMap<>();
         this.dialogX = (this.hb_x - 70.0F) * Settings.scale;
@@ -190,11 +191,13 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         animationAction(animation, sound, volume, null, owner);
     }
 
-    public void playSound(String sound, float volume) {
-        CardCrawlGame.sound.playV(makeID(sound), volume);
+    public static void playSound(String sound, float volume) {
+        if (sound != null) {
+            CardCrawlGame.sound.playV(makeID(sound), volume);
+        }
     }
 
-    public void playSound(String sound) {
+    public static void playSound(String sound) {
         playSound(sound, 1.0f);
     }
 

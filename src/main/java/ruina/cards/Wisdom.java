@@ -12,7 +12,7 @@ public class Wisdom extends AbstractRuinaCard {
     private static final int DRAW = 1;
 
     public Wisdom() {
-        super(ID, 1, CardType.STATUS, CardRarity.COMMON, CardTarget.NONE);
+        super(ID, 1, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE);
         magicNumber = baseMagicNumber = DRAW;
     }
 

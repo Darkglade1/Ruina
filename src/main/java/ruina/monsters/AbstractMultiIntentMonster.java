@@ -3,6 +3,8 @@ package ruina.monsters;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,6 +18,8 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import ruina.monsters.act3.bigBird.BigBird;
+import ruina.powers.Enchanted;
 import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
@@ -23,6 +27,7 @@ import java.util.Iterator;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.atb;
 
 public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     protected ArrayList<EnemyMoveInfo> additionalMoves = new ArrayList<>();
@@ -91,6 +96,9 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             if (dmg < 0) {
                 dmg = 0;
             }
+            if (target.hasPower(Enchanted.POWER_ID) && this.hasPower(BigBird.Salvation_POWER_ID)) {
+                dmg = BigBird.INSTANT_KILL_NUM;
+            }
             additionalIntent.updateDamage(dmg);
             if (target != adp()) {
                 PowerTip intentTip = additionalIntent.intentTip;
@@ -104,6 +112,18 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                 }
             } else {
                 additionalIntent.clearTargetTexture();
+            }
+        } else {
+            if (additionalIntent.intent == Intent.DEBUFF || additionalIntent.intent == Intent.STRONG_DEBUFF) {
+                if (target != adp()) {
+                    PowerTip intentTip = additionalIntent.intentTip;
+                    intentTip.body = TEXT[5] + FontHelper.colorString(target.name, "y") + TEXT[6];
+                    if (targetTexturePath != null) {
+                        additionalIntent.setTargetTexture(targetTexturePath);
+                    }
+                } else {
+                    additionalIntent.clearTargetTexture();
+                }
             }
         }
     }
@@ -217,6 +237,10 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                 maxDamage = additionalIntent.damage;
             }
         }
+        if (maxDamage == BigBird.INSTANT_KILL_NUM && this instanceof BigBird) {
+            //stop cards that deal damage based on intent from trivializing this fight
+            return 16;
+        }
         return maxDamage;
     }
 
@@ -224,4 +248,11 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         return super.getIntentDmg();
     }
 
+    @Override
+    public void takeTurn() {
+        for (AdditionalIntent additionalIntent : this.additionalIntents) {
+            //that way they don't fade out after the monster takes its primary intent
+            additionalIntent.usePrimaryIntentsColor = false;
+        }
+    }
 }

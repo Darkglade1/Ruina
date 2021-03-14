@@ -24,7 +24,7 @@ public class MakeAlliesUntargetableByPOTIONS {
     public static void MakeHoveredMonsterNull(PotionPopUp instance, @ByRef AbstractMonster[] hoveredMonster) {
         if (hoveredMonster[0] instanceof AbstractAllyMonster) {
             AbstractAllyMonster ally = (AbstractAllyMonster)hoveredMonster[0];
-            if (ally.isAlly) {
+            if (ally.isAlly && !ally.isTargetableByPlayer) {
                 hoveredMonster[0] = null;
             }
         }

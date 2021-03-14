@@ -1,6 +1,5 @@
 package ruina.scenes;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -8,7 +7,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
-import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
 import ruina.dungeons.AbstractRuinaDungeon;
@@ -28,6 +26,25 @@ import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.ScaredyCat;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act3.Bloodbath;
+import ruina.monsters.act3.BurrowingHeaven;
+import ruina.monsters.act3.EyeballChick;
+import ruina.monsters.act3.JudgementBird;
+import ruina.monsters.act3.Pinocchio;
+import ruina.monsters.act3.RunawayBird;
+import ruina.monsters.act3.SnowQueen.SnowQueen;
+import ruina.monsters.act3.Twilight;
+import ruina.monsters.act3.bigBird.BigBird;
+import ruina.monsters.act3.blueStar.BlueStar;
+import ruina.monsters.act3.blueStar.Worshipper;
+import ruina.monsters.act3.heart.HeartOfAspiration;
+import ruina.monsters.act3.heart.LungsOfCraving;
+import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
+import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
+import ruina.monsters.act3.punishingBird.PunishingBird;
+import ruina.monsters.act3.seraphim.Prophet;
+import ruina.monsters.act3.seraphim.Seraphim;
+import ruina.monsters.eventboss.yan.monster.yanDistortion;
 
 public class RuinaScene extends AbstractScene {
 
@@ -88,8 +105,30 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Crystal");
                 } else if (mo instanceof ServantOfWrath || mo instanceof Hermit) {
                     this.bg = this.atlas.findRegion("mod/Wrath");
+                } else if (mo instanceof Prophet || mo instanceof Seraphim) {
+                    this.bg = this.atlas.findRegion("mod/Paradise");
+                } else if (mo instanceof Twilight) {
+                    this.bg = this.atlas.findRegion("mod/Twilight");
+                } else if (mo instanceof BigBird || mo instanceof PunishingBird || mo instanceof JudgementBird || mo instanceof EyeballChick || mo instanceof RunawayBird) {
+                    this.bg = this.atlas.findRegion("mod/BlackForest");
+                } else if (mo instanceof BlueStar || mo instanceof Worshipper) {
+                    this.bg = this.atlas.findRegion("mod/Star");
+                } else if (mo instanceof BurrowingHeaven) {
+                    this.bg = this.atlas.findRegion("mod/Heaven");
+                } else if (mo instanceof PriceOfSilence || mo instanceof RemnantOfTime) {
+                    this.bg = this.atlas.findRegion("mod/Silence");
+                } else if (mo instanceof Bloodbath) {
+                    this.bg = this.atlas.findRegion("mod/Bloodbath");
+                } else if (mo instanceof SnowQueen) {
+                    this.bg = this.atlas.findRegion("mod/Snow");
+                } else if (mo instanceof HeartOfAspiration || mo instanceof LungsOfCraving) {
+                    this.bg = this.atlas.findRegion("mod/Heart");
+                } else if (mo instanceof Pinocchio) {
+                    this.bg = this.atlas.findRegion("mod/Lies");
+                } else if (mo instanceof yanDistortion) {
+                    this.bg = this.atlas.findRegion("mod/Yan");
                 } else {
-                    this.bg = this.atlas.findRegion("mod/NightForest");
+                    setBgs();
                 }
             }
         } else {
@@ -113,6 +152,14 @@ public class RuinaScene extends AbstractScene {
                 case CHESED:
                     this.bg = this.atlas.findRegion("mod/Chesed");
                     this.campfireBg = this.atlas.findRegion("mod/ChesedCamp");
+                    break;
+                case BINAH:
+                    this.bg = this.atlas.findRegion("mod/Binah");
+                    this.campfireBg = this.atlas.findRegion("mod/BinahCamp");
+                    break;
+                case HOKMA:
+                    this.bg = this.atlas.findRegion("mod/Hokma");
+                    this.campfireBg = this.atlas.findRegion("mod/HokmaCamp");
                     break;
                 default:
                     this.bg = this.atlas.findRegion("mod/Gebura");

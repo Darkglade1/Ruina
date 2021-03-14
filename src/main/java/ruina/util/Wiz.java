@@ -1,5 +1,7 @@
 package ruina.util;
 
+import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -13,20 +15,24 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.actions.ApplyPowerActionButItCanFizzle;
 import ruina.actions.MakeTempCardInDiscardActionButItCanFizzle;
 import ruina.actions.MakeTempCardInDrawPileActionButItCanFizzle;
+import ruina.patches.RenderHandPatch;
 import ruina.powers.LosePowerPower;
 import ruina.powers.NextTurnPowerPower;
 
 import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -166,7 +172,9 @@ public class Wiz {
     public static void applyToTarget(AbstractCreature target, AbstractCreature source, AbstractPower po) {
         atb(new ApplyPowerActionButItCanFizzle(target, source, po, po.amount));
     }
-
+    public static void applyToTargetTop(AbstractCreature target, AbstractCreature source, AbstractPower po) {
+        att(new ApplyPowerActionButItCanFizzle(target, source, po, po.amount));
+    }
     public static void applyToEnemy(AbstractMonster m, AbstractPower po) {
         atb(new ApplyPowerAction(m, AbstractDungeon.player, po, po.amount));
     }
@@ -211,5 +219,60 @@ public class Wiz {
 
     public static void block(AbstractCreature target, int amount) {
         atb(new GainBlockAction(target, amount));
+    }
+
+    public static void flashImageVfx(Texture image, float duration) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = true;
+                AbstractDungeon.overlayMenu.hideCombatPanels();
+                this.isDone = true;
+            }
+        });
+        AbstractGameEffect appear = new VfxBuilder(image, (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, duration)
+                .fadeIn(0.25f)
+                .fadeOut(0.5f)
+                .build();
+        atb(new VFXAction(appear, duration));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = false;
+                AbstractDungeon.overlayMenu.showCombatPanels();
+                this.isDone = true;
+            }
+        });
+    }
+
+    public static void fullScreenAnimation(ArrayList<Texture> frames, float frameDuration, float animationLength) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = true;
+                AbstractDungeon.overlayMenu.hideCombatPanels();
+                this.isDone = true;
+            }
+        });
+        VfxBuilder effect = new VfxBuilder(frames.get(0), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, animationLength);
+        for (int i = 1; i < frames.size(); i++) {
+            int finalI = i;
+            effect.triggerVfxAt(0.1f * i, i, new BiFunction<Float, Float, AbstractGameEffect>() {
+                @Override
+                public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                    return new VfxBuilder(frames.get(finalI), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();
+                }
+            });
+        }
+        AbstractGameEffect finalEffect = effect.build();
+        atb(new VFXAction(finalEffect, animationLength));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                RenderHandPatch.plsDontRenderHand = false;
+                AbstractDungeon.overlayMenu.showCombatPanels();
+                this.isDone = true;
+            }
+        });
     }
 }

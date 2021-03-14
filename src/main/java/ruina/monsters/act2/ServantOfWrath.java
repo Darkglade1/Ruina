@@ -67,6 +67,7 @@ public class ServantOfWrath extends AbstractAllyMonster
         this.animation.setFlip(true, false);
 
         this.setHp(maxHealth);
+        this.type = EnemyType.ELITE;
 
         if (AbstractDungeon.ascensionLevel >= 18) {
             furyThreshold = HIGH_ASC_FURY_THRESHOLD;
@@ -74,7 +75,7 @@ public class ServantOfWrath extends AbstractAllyMonster
             furyThreshold = FURY_THRESHOLD;
         }
 
-        addMove(EMBODIMENTS_OF_EVIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(7), 3, true);
+        addMove(EMBODIMENTS_OF_EVIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(8), 3, true);
         addMove(RAGE, Intent.ATTACK_DEBUFF, 8, 2, true);
 
         this.allyIcon = makeUIPath("WrathIcon.png");
@@ -226,10 +227,17 @@ public class ServantOfWrath extends AbstractAllyMonster
         this.halfDead = true; //stop aoe from doing damage
         atb(new TalkAction(this, DIALOG[1]));
         atb(new VFXAction(new WaitEffect(), 1.0F));
+        //double addToBot in case hermit dies to combust-esque effect LMAO
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                hermit.wrath.isDead = true;
+                addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        disappear();
+                        this.isDone = true;
+                    }
+                });
                 this.isDone = true;
             }
         });

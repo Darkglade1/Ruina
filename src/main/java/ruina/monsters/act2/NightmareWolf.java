@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
@@ -154,11 +155,14 @@ public class NightmareWolf extends AbstractMultiIntentMonster
 
     @Override
     public void takeTurn() {
+        super.takeTurn();
         atb(new RemoveAllBlockAction(this, this));
         takeCustomTurn(this.moves.get(nextMove), adp());
-        for (EnemyMoveInfo additionalMove : additionalMoves) {
+        for (int i = 0; i < additionalMoves.size(); i++) {
+            EnemyMoveInfo additionalMove = additionalMoves.get(i);
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new IntentFlashAction(this));
+            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
             if (red.isDead || red.isDying) {
                 takeCustomTurn(additionalMove, adp());
             } else {

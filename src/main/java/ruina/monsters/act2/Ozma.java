@@ -48,7 +48,7 @@ public class Ozma extends AbstractRuinaMonster
     private final int BLOCK = calcAscensionTankiness(12);
     private final int DRAW_DEBUFF = 1;
 
-    private final int DRAW_DEBUFF_COOLDOWN = 2;
+    private final int DRAW_DEBUFF_COOLDOWN = 3;
     private final int MAX_DRAW_DEBUFF = calcAscensionSpecial(2);
     private int cooldown = 0;
 
@@ -82,6 +82,7 @@ public class Ozma extends AbstractRuinaMonster
                 description = POWER_DESCRIPTIONS[0];
             }
         });
+        Summon();
     }
 
     private void Summon() {
@@ -166,9 +167,7 @@ public class Ozma extends AbstractRuinaMonster
         if (oblivion != null) {
             drawDebuffAmt = oblivion.amount;
         }
-        if (firstMove) {
-            setMoveShortcut(AWAKEN, MOVES[AWAKEN]);
-        } else if (cooldown <= 0 && drawDebuffAmt < MAX_DRAW_DEBUFF) {
+        if (cooldown <= 0 && drawDebuffAmt < MAX_DRAW_DEBUFF) {
             setMoveShortcut(FADING_MEMORIES, MOVES[FADING_MEMORIES]);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();

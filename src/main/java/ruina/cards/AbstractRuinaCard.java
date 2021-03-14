@@ -141,4 +141,37 @@ public abstract class AbstractRuinaCard extends CustomCard {
     protected void blck() {
         atb(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
     }
+
+    public enum ColorRarity {
+        GREEN,
+        BLUE,
+        PURPLE,
+        GOLD
+    }
+
+    //used to set background of certain cards
+    public void setBackground(ColorRarity rarity) {
+        switch (rarity) {
+            case GOLD:
+                String goldArtLarge = getModID() + "Resources/images/1024/gold.png";
+                String goldArtSmall = getModID() + "Resources/images/512/gold.png";
+                setBackgroundTexture(goldArtSmall, goldArtLarge);
+                break;
+            case PURPLE:
+                String purpleArtLarge = getModID() + "Resources/images/1024/purple.png";
+                String purpleArtSmall = getModID() + "Resources/images/512/purple.png";
+                setBackgroundTexture(purpleArtSmall, purpleArtLarge);
+                break;
+            case BLUE:
+                String blueArtLarge = getModID() + "Resources/images/1024/blue.png";
+                String blueArtSmall = getModID() + "Resources/images/512/blue.png";
+                setBackgroundTexture(blueArtSmall, blueArtLarge);
+                break;
+            case GREEN:
+                String greenArtLarge = getModID() + "Resources/images/1024/green.png";
+                String greenArtSmall = getModID() + "Resources/images/512/green.png";
+                setBackgroundTexture(greenArtSmall, greenArtLarge);
+                break;
+        }
+    }
 }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="BigEgg.png" width="84" height="107" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="BigEggBroken.png" width="110" height="72" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="SmallEgg.png" width="96" height="147" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="SmallEggBroken.png" width="108" height="68" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="LongEgg.png" width="86" height="104" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="LongEggBroken.png" width="93" height="81" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Eggs">
+        <animation id="0" name="BigEgg" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="BigEgg">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-38" y="109" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="BigEggBroken" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="BigEggBroken">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-38" y="67" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="SmallEgg" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="SmallEgg">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-45" y="149" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="SmallEggBroken" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="SmallEggBroken">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-39" y="58" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="LongEgg" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="LongEgg">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-39" y="106" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="LongEggBroken" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="LongEggBroken">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-39" y="77" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

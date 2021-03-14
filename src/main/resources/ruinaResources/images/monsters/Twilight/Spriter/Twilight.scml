@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="548" height="387" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Crush.png" width="596" height="468" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Slam.png" width="650" height="356" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Lamp.png" width="641" height="382" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Punish.png" width="701" height="435" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Special.png" width="500" height="381" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Command.png" width="698" height="382" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Twilight">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-270" y="320" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Crush" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Crush">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-344" y="429"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Slam" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Slam">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-292" y="319"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Lamp" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Lamp">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-215" y="386"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Punish" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Punish">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-299" y="412"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Special" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-247" y="308"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="Command" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Command">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-275" y="380"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

@@ -7,13 +7,23 @@
       "Accept the invitation."
     ]
   },
+  "${ModID}:Atziluth": {
+    "TEXT": [
+      "Atziluth",
+      "Act 3",
+      "This place was strange, wild, and #pterrifying. But through the #pdespair and #rbloodshed, you could see a ray of #ylight seeping through the #pdarkness.",
+      "Continue your ascent."
+    ]
+  },
   "${ModID}:MultiIntentStrings": {
     "TEXT": [
       "This enemy intends to NL #yAttack ",
       " for #b",
       " damage.",
       " damage #b",
-      " times."
+      " times.",
+      "This enemy intends to inflict a #yNegative #yEffect on ",
+      "."
     ]
   },
   "${ModID}:AllyStrings": {
@@ -46,6 +56,24 @@
   "${ModID}:AutoplayMod": {
     "TEXT": [
       "Autoplay. NL "
+    ]
+  },
+  "${ModID}:ManifestMod": {
+    "TEXT": [
+      "ruina:Manifest. NL "
+    ]
+  },
+  "${ModID}:ContractsMod": {
+    "TEXT": [
+      "ruina:Contract. NL "
+    ]
+  },
+  "${ModID}:UninvitedGuests": {
+    "TEXT": [
+      "Uninvited Guests",
+      "The Blue Reverberation",
+      "\"Ohohohoho! Knock, and the door shall open!\" NL \"The entrance to this place was super strong, even after many blows we barely got inside.\" NL \"It's a test of endurance, after all! There's no use giving up after a couple of knocks!\" NL \"Now friends, if you're any rowdier we might scare away the residents of this place. It would be wise that we show the utmost respect so they don't go hiding behind bookshelves, no?\"",
+      "Greet your Uninvited Guests"
     ]
   }
 }

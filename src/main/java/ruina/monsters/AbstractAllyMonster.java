@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.CustomIntent.IntentEnums;
 import ruina.actions.TransferBlockToAllyAction;
+import ruina.monsters.act2.ServantOfWrath;
 import ruina.powers.InvisibleAllyBarricadePower;
 import ruina.util.AllyMove;
 
@@ -28,7 +29,13 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AllyStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
     public String allyIcon;
+
+    //basically just for little Red who is an ally that can become an enemy
     public boolean isAlly = true;
+
+    //essentially lets me have allies that the player can still target with cards
+    public boolean isTargetableByPlayer = false;
+
     public ArrayList<AllyMove> allyMoves = new ArrayList<>();
     private static final int BLOCK_TRANSFER = 5;
 
@@ -56,8 +63,8 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
         blockMove.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
         blockMove.setY(this.intentHb.cY - (32.0f * Settings.scale));
         allyMoves.add(blockMove);
-        if (isAlly) {
-            applyToTarget(this, this, new InvisibleAllyBarricadePower(this));
+        applyToTarget(this, this, new InvisibleAllyBarricadePower(this));
+        if (isAlly && !isTargetableByPlayer) {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
@@ -70,7 +77,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
 
     @Override
     public void takeTurn() {
-        if (isAlly) {
+        if (isAlly && !isTargetableByPlayer) {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
@@ -142,7 +149,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     @Override
     public void damage(DamageInfo info) {
         //failsafe to stop player from damaging allies
-        if (isAlly && info.owner == adp()) {
+        if (isAlly && !isTargetableByPlayer && info.owner == adp()) {
             return;
         }
         super.damage(info);
@@ -150,7 +157,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
 
     @Override
     public void renderReticle(SpriteBatch sb) {
-        if (!isAlly) {
+        if (!isAlly || isTargetableByPlayer) {
             super.renderReticle(sb);
         }
     }
@@ -172,5 +179,13 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
                 allyMove.update();
             }
         }
+    }
+
+    public void disappear() {
+        this.currentHealth = 0;
+        this.loseBlock();
+        this.isDead = true;
+        this.isDying = true;
+        this.healthBarUpdatedEvent();
     }
 }

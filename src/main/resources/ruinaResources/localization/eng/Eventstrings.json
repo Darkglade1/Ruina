@@ -209,5 +209,179 @@
       "[Wake Up]",
       "Choose a card"
     ]
+  },
+  "${ModID}:RedMistRecollection": {
+    "NAME": "Kali's Recollection",
+    "DESCRIPTIONS": [
+      "I woke up in the Laboratory again, a few days after receiving the sword from Carmen. When I first held the sword in my grip, nothing seemed out of the ordinary. It felt normal, despite the truly #pcreepy appearance of the blade. It wasn't unbearable to look at, and all I could do was heed Carmen's advice and get used to it. NL After all, it was by #ysheer #yluck that the extraction even worked.",
+      "While the blade was #yformidable in combat, as I kept wielding it, a sound would #rring in my head. The #pgrinding of teeth. The #pcrackling of bones. The #pmingling of contorted flesh. NL The patterns were irregular, as if to mimic human speech. Anxious that my mind might be consumed by the voice which plagued me, I pretended as if I could not hear its #pcries. NL My thoughts are interrupted by footsteps from outside, yet everyone is already here. I must do what I always do; protect those dear to me. Swallowing my fears, I #rbrandish my blade.",
+      "I peer around the corner, yet no-one was there. Was it the sound inside my head, playing tricks on me? I don't know. I should consult the others, but it's hard when only I could hear the sound that #peats #paway at my mind."
+    ],
+    "OPTIONS": [
+      "[Continue]",
+      "[Encounter] #rFight #rthe #rRed #rMist. #gObtain #ga #gspecial #gRelic.",
+      "[Leave]"
+    ]
+  },
+  "${ModID}:HanaAssociation": {
+    "NAME": "Hana Association",
+    "DESCRIPTIONS": [
+      "She glanced at the report, sighing. \"Another office has fallen to this #pUrban #pNightmare. We'll need to classify it as a #yStar #yof #ythe #yCity now.\" NL Her colleague grimaced. \"More needless #rdeaths. If we had investigated and classified this #phazard properly from the start, offices like these would not fall prey to threats beyond their league!\" NL \"I've told you before, but we do not have the time, resources, or manpower to investigate every hazard in the City ourselves.\" NL She could see him hesitate, waver. Finally, he spoke up with a scowl -",
+      "\"The hazard is a #yStar #yof #ya #yCity now, right? That means it's worthy of our attention. I'll go and handle it, so no one else falls victim to it!\" NL He storms out of the room, and she doesn't try to stop him.",
+      "\"Fine. It's too late to save those offices now, so I'll leave it to you to make sure no one else takes on a threat they can't handle.\" NL He storms out of the room, and she doesn't try to stop him."
+    ],
+    "OPTIONS": [
+      "[I'll do it myself] ",
+      "[I'll leave it to you] ",
+      "Obtain a special Relic.",
+      "Become Cursed - ",
+      ".",
+      "Remove a card.",
+      "[Wake Up]",
+      "Choose a Card to Remove."
+    ]
+  },
+  "${ModID}:ForThoseWeCherish": {
+    "NAME": "For Those We Cherish",
+    "DESCRIPTIONS": [
+      "\"I have a problem.\" NL She gulped. That didn't sound good. NL \"My #yanniversary with #yXiao is coming up soon, and I still can't decide on what to do for it.\" NL Never mind. The Director was just being a #pworrywart as usual. NL \"Surely you have some ideas in mind?\" NL \"I thought about buying something #gcute for her. Or maybe I should improve her armaments for her. We are a combat-based Association, after all. What do you think?\"",
+      "\"I think you should get her something #gcute. It's the more #ysentimental gesture, and I think she would welcome a reprieve from the #rblood and #riron of our work.\" NL The Director nodded. \"You're absolutely right. There was a nice plushie I spotted in the Nest; it'll be the perfect gift for her!\" NL As the Director rushed out to make his purchase, she sighed in relief. Crisis averted.",
+      "\"I think you should improve her #yarmaments for her. It's the more practical gesture and far more likely to be #gbeneficial to her in our line of work.\" NL The Director nodded. \"You're absolutely right. I hear the #yStigma #yWorkshop is having a sale right now; their weaponry will be the perfect gift for her!\" NL As the Director rushed out to make his purchase, she sighed in relief. Crisis averted."
+    ],
+    "OPTIONS": [
+      "[Something cute] ",
+      "[Something practical] ",
+      "Lose ",
+      " gold.",
+      "Obtain a Special Relic.",
+      "Upgrade a card.",
+      "[Wake Up]",
+      "[Locked] Requires: Gold",
+      "Choose a Card to Upgrade"
+    ]
+  },
+  "${ModID}:Philosophy": {
+    "NAME": "Floor of Philosophy",
+    "DESCRIPTIONS": [
+      "\"You're not supposed to be here.\" NL The stern-looking woman takes a sip of #ytea and sighs as she places it back down. \"If I were interested in doing my job properly, I'd #rchase you out. But luckily for you, I can't be bothered to do so at the moment. So why don't you join me for a cup of #ytea?\"",
+      "You sit down and take a sip of the #ytea. It tastes rather #pstrange to you. NL \"So, how is it? Enjoying the flavor?\" NL Looking at the woman's #yexpectant expression, you decide that #ydiscretion is truly the better part of #yvalor and praise the tea's quality.",
+      "\"Well, that's too bad I suppose.\" NL The floor rumbles and shakes, strange #ypillars rising out of the ground near her. NL \"I'll give you a ten second head-start. After that . . . well, you better pray that you can run faster than a #rspeeding #rpillar.\" NL You've never booked it faster than you have in this moment."
+    ],
+    "OPTIONS": [
+      "[Accept her offer] ",
+      "[Reject her offer] ",
+      "Lose ",
+      ".",
+      "Heal ",
+      " HP.",
+      "Give a card in your deck +",
+      " Block and ",
+      "Ethereal.",
+      "[Leave]",
+      "Choose a card to give bonus Block and Ethereal",
+      "[Locked] Requires: Valid Card"
+    ]
+  },
+  "${ModID}:TheThumb": {
+    "NAME": "The Thumb",
+    "DESCRIPTIONS": [
+      "He glanced at the #pmiscreant who had just walked in: a common Fixer from the common Backstreets. NL \"You da #yboss here? I got a great offer -\" NL A set of steel knuckles @caves@ the man's face in, leaving him rolling on the floor, howling in #ragony. NL \"Tell your boss that if he wishes to negotiate with me, he should come himself or not at all.\" NL As the #prat is tossed out, his assistant steps forward. NL \"Sir. Our supplies are running low. Shall we purchase more, or would you like us to raid that rat's Office instead?\"",
+      "\"Make the purchase. I think the rat's boss knows what will happen if he crosses us again.\" NL His subordinate nods, rushing out to fulfill his order. Just as things should be.",
+      "\"Raid them. Show them what happens to anyone who crosses the #yThumb.\" NL His subordinates rush about, preparing themselves for war. For they were his peasants, and he their king."
+    ],
+    "OPTIONS": [
+      "[Purchase supplies] ",
+      "[Raid] ",
+      "Choose 1 of ",
+      " Uncommon cards to add to your deck.",
+      "Give a card in your deck ",
+      " cost and ",
+      "Exhaust.",
+      "[Wake Up]",
+      "Choose a card to give reduced cost and Exhaust",
+      "Choose a card to add to your deck."
+    ]
+  },
+  "${ModID}:CryingChildren": {
+    "NAME": "The Crying Children",
+    "DESCRIPTIONS": [
+      "Everything #rburned. Your home, your family, your friends . . . they had all been caught in a mighty #rconflagration that had manifested in the blink of an eye. NL Someone was crying. But it was not you, the tragic #pvictim. No, it was the #pcriminal who wept, the #pperpetrator who sobbed with every stroke of #rfire that leapt forward from their fingers. NL What a twisted joke. An equally fiery #rrage burned within you, just waiting to be released. You -",
+      "The world shifts, #pblurry and #pdistorted. You do not know who you are. You do not know where you are. All you know is that a #pcrying #pchild is in front of you . . . NL And you desperately wish to #rkill it.",
+      "The #rrage abates, leaving you feeling drained and empty. A hollow #pemptiness fills you, sharp and silent just like that child's tears. NL There was nothing here for you anymore."
+    ],
+    "OPTIONS": [
+      "[Unleash it] ",
+      "[Suppress it] ",
+      "Lose ",
+      " HP.",
+      "Transform a card in your deck into a random EGO card.",
+      "Gain ",
+      " Max HP.",
+      "[Wake Up]",
+      "Choose a card to Transform."
+    ]
+  },
+  "${ModID}:DistortedYan": {
+    "NAME": "Distorted Yan",
+    "DESCRIPTIONS": [
+      "It was #ppointless all along. NL He thought he had been making a difference. He thought he had been #yrebelling against the #yPrescripts, throwing a wrench in the machinations churning behind the scenes. NL But even his rebellion had been accounted for. Even his defiance had been planned for. NL In the end, he had been nothing more than another gear spinning within the wheels. NL Someone like him should just give up and do as he's told.",
+      "There was still another #ypath left to him. A #ypath that he should've taken long ago when he first received the #yPrescript to become a #yMessenger. NL He didn't care if this would be part of another plan of the Prescripts. He didn't care if even this action would not truly be of his own free will. NL He just didn't care anymore. NL Raising his sword, he pointed it at himself."
+    ],
+    "OPTIONS": [
+      "[Give up] ",
+      "[Give in] ",
+      "Fight a special enemy. ",
+      " Obtain an upgraded EGO card.",
+      "[Wake Up]"
+    ]
+  },
+  "${ModID}:PatronLibrarian": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "\"Hello there. I'm Malkuth, the Patron Librarian in charge of the Floor of History. Since I'm in charge of this floor, I sort through all the books that are related to History! Is there anything I can help you with?\"",
+      "\"I am Yesod, the Patron Librarian of the Floor of Technological Sciences. My role is to collect and sort books about the technological sciences of the City. Please kindly take your leave after you decide what to do.\"",
+      "\"Hello. I'm Hod, in charge of the Floor of Literature. A person's life is written out like a book of its own; a story with many different paths, and decisions to make. I wonder what your story will be like?\" NL NL \"I'm sorry. I got carried away in my own thoughts. Is there anything I can help you with?\"",
+      "\"Woken up to do the work I don't want to do again... NL I feel like a sand castle, being swept away by the waves... NL If I do what you wish of me, can I ~please~ go back to sleep?\"",
+      "\"I'm Tiphereth, in charge of the Floor of Natural Sciences. I read and manage all the books sent here, however complete or unstable the books actually are. I don't pretend to understand things I don't get, as understanding a book completely is a repetitive process, you know? But there's so many books, and so much information, so I don't mind taking a break to help while my brain tries to comprehend it all.\"",
+      "\"It's Gebura. The Patron Librarian of the Floor of Language. If you're here for books, I'll figure out what you need. I can get a rough estimate of what people want just from their looks, after all.\"",
+      "\"Heya. I'm Chesed, the Patron Librarian of the Floor of Social Sciences. Why don't you take a seat and drink some coffee, and we can find out what you need. It's been a while since I could give hospitality to a traveler, so please, take respite and relax for a bit.\"",
+      "\"Greetings. I am Binah, the Patron Librarian of the Floor of Philosophy. I have been told that this place feels overbearing unlike the other floors. I wonder how you would describe the Library from what you've seen so far? But I must calm my mind with the help of tea, so please come again at a later time. I will at least, help you with anything you're looking for at this time.\"",
+      "\"So you've come. I wonder, do you have the utmost faith that what you're looking for is in this place? I can at least testify to the truth that it does exist here. My apologies. I am Hokma, the Patron Librarian of the Floor of Religion. Please, take your time.\"",
+      "\"I am Roland, Angela's helper. My Floor is not specialized, as I am primarily responsible for bringing books to other floors. Though, there might be something in this place that may benefit you.\"",
+      "\"Greetings, dear guest. I am Angela, the librarian of my role's namesake. You may find what you desire here, but you'll have to search yourself for the knowledge you require.\" NL NL \"May you find your book in this place.\"",
+      "You say your goodbyes as you leave with a collection of books in your hands. NL They're oddly ~heavy,~ but you don't mind, for the books provide you with all the wisdom, wealth, honor, and power you seek.",
+      "You say your goodbyes as you leave, merely observing, as you think that what you already have is adequate for the journey ahead."
+    ],
+    "OPTIONS": [
+      "Patron Librarian of History",
+      "Patron Librarian of Technological Sciences",
+      "Patron Librarian of Literature",
+      "Patron Librarian of Art",
+      "Patron Librarian of Natural Sciences",
+      "Patron Librarian of Language",
+      "Patron Librarian of Social Sciences",
+      "Patron Librarian of Philosophy",
+      "Patron Librarian of Religion",
+      "Patron Librarian of General Works",
+      "Director Of The Library",
+      "[Inquire] ",
+      "Choose 1 of ",
+      " Upgraded cards to add to your deck.",
+      "[Leave]",
+      "Choose a card to add to your deck"
+    ]
+  },
+  "${ModID}:YesterdayPromise": {
+    "NAME": "Yesterday's Promise",
+    "DESCRIPTIONS": [
+      "@Hohohohoho!@ Through the shadows, you can make out an upright figure. As they pace towards you, the sound of their steps echoing as they move across a marble floor, your vision enhances and you can identify the figure fully. A #bblue top hat. A gray skull, fashioned with a #gdapper monocle. A black suit, fashioned with a #bblue tie and #bblue insignia on the right sleeve, though you have no idea what it represents. The distortion, known as \"Yesterday's Promise\" stands before you, a contract grasped in his skeletal fingertips. NL \"I can give you the power and help you desire, provided you sign this contract. How about it?\"",
+      "Nothing looked off about the contract, other than the fact that it ~was~ a contract, and it wouldn't hurt to be stronger, right? At least, that's how you justified your decision to yourself as you signed the contract. You tried watching the contractor's expressions to see a glimpse of duper's delight; however his expression did not change until the contract was signed. NL \"A pleasure doing business with you, but you should've checked the terms carefully. Here, take a look.\" You still didn't see anything wrong, but after being handed an eyeglass, the contract changes, revealing ambiguous wording and hidden terms, but the terms were not any less appropriate. It appears you've been deceived, and you ~shouldn't~ ~have~ ~done~ ~that.~",
+      "You hold out on the offer. NL More power would be helpful, but the whole ordeal reeked of suspicion. NL You feel like you made the right decision."
+    ],
+    "OPTIONS": [
+      "[Sign] #rLose #r%1$s #rHP. #gObtain #ga #gSpecial #gRelic.",
+      "[Reject the contract]",
+      "[Leave]"
+    ]
   }
 }

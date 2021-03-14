@@ -7,6 +7,9 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
 import ruina.monsters.act2.Jester.JesterOfNihil;
+import ruina.monsters.act2.Ozma;
+import ruina.monsters.act3.Twilight;
+import ruina.monsters.act3.seraphim.Prophet;
 import ruina.scenes.RuinaScene;
 
 import java.util.ArrayList;
@@ -27,9 +30,16 @@ public class AbstractRuinaDungeon extends CustomDungeon {
     }
 
     public enum Floor {
+        MALKUTH,
+        YESOD,
+        HOD,
+        NETZACH,
         TIPHERETH,
         GEBURA,
-        CHESED
+        CHESED,
+        BINAH,
+        HOKMA,
+        ROLAND
     }
 
     public void setFloor() {
@@ -38,8 +48,14 @@ public class AbstractRuinaDungeon extends CustomDungeon {
                 floor = Floor.TIPHERETH;
             } else if (bossKey.equals(EncounterIDs.RED_AND_WOLF)) {
                 floor = Floor.GEBURA;
-            } else {
+            } else if (bossKey.equals(Ozma.ID)){
                 floor = Floor.CHESED;
+            } else if (bossKey.equals(Twilight.ID)){
+                floor = Floor.BINAH;
+            } else if (bossKey.equals(Prophet.ID)){
+                floor = Floor.HOKMA;
+            } else {
+                floor = Floor.GEBURA;
             }
             setMusic();
             if (AbstractDungeon.currMapNode != null) {
@@ -59,6 +75,12 @@ public class AbstractRuinaDungeon extends CustomDungeon {
                     break;
                 case CHESED:
                     this.setMainMusic(RuinaMod.makeMusicPath("Chesed2.ogg"));
+                    break;
+                case BINAH:
+                    this.setMainMusic(RuinaMod.makeMusicPath("Binah2.ogg"));
+                    break;
+                case HOKMA:
+                    this.setMainMusic(RuinaMod.makeMusicPath("Hokma2.ogg"));
                     break;
                 default:
                     this.setMainMusic(RuinaMod.makeMusicPath("Gebura2.ogg"));

@@ -73,6 +73,7 @@ public class LittleRed extends AbstractAllyMonster
         this.animation.setFlip(true, false);
 
         this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.type = EnemyType.BOSS;
 
         addMove(BEAST_HUNT, Intent.ATTACK, calcAscensionDamage(9));
         addMove(CATCH_BREATH, Intent.BUFF);
@@ -261,7 +262,7 @@ public class LittleRed extends AbstractAllyMonster
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                wolf.red.isDead = true;
+                disappear();
                 onBossVictoryLogic();
                 this.isDone = true;
             }

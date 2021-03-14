@@ -30,6 +30,7 @@ import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
+import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
@@ -282,18 +283,27 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
 
     @Override
     public void takeTurn() {
+        super.takeTurn();
         atb(new RemoveAllBlockAction(this, this));
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new IntentFlashAction(this));
+            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
             if (i == 0) {
                 if (!girl1Spawned || girl1.isDead || girl1.isDying) {
                     takeCustomTurn(additionalMove, adp());
                 } else {
                     takeCustomTurn(additionalMove, girl1);
                 }
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        additionalIntent.usePrimaryIntentsColor = true;
+                        this.isDone = true;
+                    }
+                });
             }
             if (i == 1) {
                 if (!girl2Spawned || girl2.isDead || girl2.isDying) {
@@ -301,6 +311,13 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 } else {
                     takeCustomTurn(additionalMove, girl2);
                 }
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        additionalIntent.usePrimaryIntentsColor = true;
+                        this.isDone = true;
+                    }
+                });
             }
         }
         atb(new AbstractGameAction() {
@@ -423,8 +440,8 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                girl1.isDead = true;
-                girl2.isDead = true;
+                girl1.disappear();
+                girl2.disappear();
                 onBossVictoryLogic();
                 this.isDone = true;
             }

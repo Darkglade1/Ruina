@@ -138,5 +138,112 @@
   "ruina:GoodbyePower": {
     "NAME": "Goodbye",
     "DESCRIPTIONS": ["你打出的下一张 #y攻击牌 造成双倍伤害"]
+  },
+  "${ModID}:ParadiseLostPower": {
+    "NAME": "Paradise Lost",
+    "DESCRIPTIONS": ["At the start of your turn, #yexhaust up to #b", " card.", " cards.", " Whenever #b", " cards are #yexhausted, ALL enemies lose #b", " HP."]
+  },
+  "${ModID}:Heaven": {
+    "NAME": "Heaven",
+    "DESCRIPTIONS": ["Whenever you are attacked this turn, deal damage back equal to your remaining #yBlock."]
+  },
+  "${ModID}:BigEgg": {
+    "NAME": "Big Egg",
+    "DESCRIPTIONS": ["Whenever you receive unblocked attack damage from this creature, shuffle #b", " into your draw pile."]
+  },
+  "${ModID}:SmallEgg": {
+    "NAME": "Small Egg",
+    "DESCRIPTIONS": ["The first #b", " cards you draw each turn cost #b", " more this turn."]
+  },
+  "${ModID}:LongEgg": {
+    "NAME": "Long Egg",
+    "DESCRIPTIONS": ["#yNegate ALL #pdebuffs applied to this creature."]
+  },
+  "${ModID}:FadingTwilight": {
+    "NAME": "Fading Twilight",
+    "DESCRIPTIONS": ["This creature cycles between 3 different #yEggs. Every #b", " turns, switches the active #yEgg. NL After losing #b", " more HP, the currently active #yEgg is #rdisabled and removed from the cycle. NL After an #yEgg is #rdisabled, will use a #ypowerful attack next turn."]
+  },
+  "${ModID}:PunishingBirdPunishmentPower": {
+    "NAME": "Punishment",
+    "DESCRIPTIONS": [
+      "When this creature is attacked, it will use a #rpowerful attack next turn.",
+      "This creature will use a #rpowerful attack next turn."
+    ]
+  },
+  "${ModID}:Lock": {
+    "NAME": "Forest Keeper's Lock",
+    "DESCRIPTIONS": ["On death, add #yForest #yKeeper's #yLock with #yRetain and #yExhaust to your hand."]
+  },
+  "${ModID}:Unruffled": {
+    "NAME": "Unruffled",
+    "DESCRIPTIONS": ["Your attacks against this creature deal #b", " damage. NL You cannot apply #pdebuffs to this creature."]
+  },
+  "${ModID}:Salvation": {
+    "NAME": "Salvation",
+    "DESCRIPTIONS": ["This creature’s attacks #rinstantly #rkill #yEnchanted creatures. NL #yEnchanted is #gremoved whenever #yyou attack an #yEnchanted creature."]
+  },
+  "${ModID}:Enchanted": {
+    "NAME": "Enchanted",
+    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL #yEnchanted is #gremoved whenever #yyou attack this creature."]
+  },
+  "${ModID}:Martyr": {
+    "NAME": "Martyr",
+    "DESCRIPTIONS": ["On death, #rexplodes and deals #b", " damage to you."]
+  },
+  "${ModID}:MeetAgain": {
+    "NAME": "Meet Again as Stars",
+    "DESCRIPTIONS": ["If this creature's HP is at or below #b", " HP, it will #rsuicide on its turn without triggering #yMartyr."]
+  },
+  "${ModID}:Unnerving": {
+    "NAME": "Unnerving",
+    "DESCRIPTIONS": ["Receives #b", "% less damage from #yAttacks. NL Whenever you gain #yBlock, this creature loses that much HP."]
+  },
+  "${ModID}:TickingTime": {
+    "NAME": "Ticking Time",
+    "DESCRIPTIONS": ["Whenever you play #b", " cards in a single turn, end your turn."]
+  },
+  "${ModID}:PromiseOfWinter": {
+    "NAME": "Promise of Winter",
+    "DESCRIPTIONS": ["Every #b3rd card you play is #yFrozen and shuffled into your draw pile. NL #yFrozen cards are #yUnplayable and #yRetain."]
+  },
+  "${ModID}:KaiAndGerda": {
+    "NAME": "Kai and Gerda",
+    "DESCRIPTIONS": ["On death, #yUnfreeze all #yFrozen cards in your #yhand."]
+  },
+  "${ModID}:RedMistPower": {
+    "NAME": "Manifest E.G.O",
+    "DESCRIPTIONS": [
+      "HP cannot fall below #b%1$s. NL When HP is at #b%2$s at end of round, transitions to the next phase, uses a #rpowerful attack next turn, and permanently gains an extra #yintent.",
+      "Manifesting #rE.G.O at end of round."
+    ]
+  },
+  "${ModID}:Sin": {
+    "NAME": "Weight of Sin",
+    "DESCRIPTIONS": ["Whenever you play a card that costs #b", " or less, increase its cost by #b", " this combat."]
+  },
+  "${ModID}:Imposter": {
+    "NAME": "Imposter",
+    "DESCRIPTIONS": ["This creature's moves are copied from the base damage and #yBlock of #yyour #ycards. NL At the end of its turn, gains #b", " #yStrength."]
+  },
+  "${ModID}:FaultyHardware": {
+    "NAME": "Faulty Hardware",
+    "DESCRIPTIONS": ["Cannot die. When this creature would die, it cannot act for the rest of combat."]
+  },
+  "${ModID}:OminousPower": {
+    "NAME": "Ominous Power",
+    "DESCRIPTIONS": ["When both #yHands cannot act at end of round or this creature's HP falls below #b%1$s, it merges with the #yHands and gains a new deck. Extra cards are added based on which #yHand was killed first. NL #y(Lock #yor #yBaleful #yBrand.)"]
+  },
+  "${ModID}:Protection": {
+    "NAME": "Protection",
+    "DESCRIPTIONS": ["Takes #b", " less damage from #yAttacks. Reduced by #b", " at end of round."]
+  },
+  "${ModID}:Beak": {
+    "NAME": "Beak",
+    "DESCRIPTIONS": ["At the start of your turn, reduce the cost of the highest cost card in your hand to #b0 and give it #yExhaust.",
+      "At the start of your turn, reduce the cost of the #b", " highest cost cards in your hand to #b0 and give them #yExhaust."]
+  },
+  "${ModID}:Lamp": {
+    "NAME": "Lamp",
+    "DESCRIPTIONS": ["Whenever you are attacked this turn, deal #b", " damage back."]
   }
 }

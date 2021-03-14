@@ -11,6 +11,30 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
+import ruina.cards.EGO.act2.BlindRage;
+import ruina.cards.EGO.act2.CobaltScar;
+import ruina.cards.EGO.act2.CrimsonScar;
+import ruina.cards.EGO.act2.FadedMemories;
+import ruina.cards.EGO.act2.GoldRush;
+import ruina.cards.EGO.act2.Harvest;
+import ruina.cards.EGO.act2.HomingInstinct;
+import ruina.cards.EGO.act2.LoveAndHate;
+import ruina.cards.EGO.act2.Lumber;
+import ruina.cards.EGO.act2.Mimicry;
+import ruina.cards.EGO.act2.Nihil;
+import ruina.cards.EGO.act3.Apocalypse;
+import ruina.cards.EGO.act3.Beak;
+import ruina.cards.EGO.act3.Justitia;
+import ruina.cards.EGO.act3.Lamp;
+import ruina.cards.EGO.act3.Penitence;
+import ruina.cards.EGO.act2.Smile;
+import ruina.cards.EGO.act2.SwordSharpened;
+import ruina.cards.EGO.act2.Thirst;
+import ruina.cards.EGO.act3.DeadSilence;
+import ruina.cards.EGO.act3.Heaven;
+import ruina.cards.EGO.act3.ParadiseLost;
+import ruina.cards.EGO.act3.SoundOfAStar;
+import ruina.cards.EGO.act3.Twilight;
 import ruina.util.TexLoader;
 
 import java.lang.reflect.Method;
@@ -74,8 +98,32 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         return new TextureAtlas.AtlasRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
     }
 
-    public static ArrayList<AbstractCard> getRandomEgoCards(int amount) {
+    public static ArrayList<AbstractCard> getRandomEgoCards(int amount, int actNum) {
         ArrayList<String> list = new ArrayList<>();
+        if (actNum == 2) {
+            addAct2EgoCards(list);
+        } else if (actNum == 3) {
+            addAct3EgoCards(list);
+        } else {
+            addAct2EgoCards(list);
+            addAct3EgoCards(list);
+        }
+
+        Collections.shuffle(list, AbstractDungeon.cardRandomRng.random);
+        ArrayList<String> finalList = new ArrayList<>(list.subList(0, amount));
+        ArrayList<AbstractCard> egoCards = new ArrayList<>();
+        for (String egoID : finalList) {
+            AbstractCard egoCard = CardLibrary.getCard(egoID).makeCopy();
+            egoCards.add(egoCard);
+        }
+        return egoCards;
+    }
+
+    public static ArrayList<AbstractCard> getRandomEgoCards(int amount) {
+        return getRandomEgoCards(amount, AbstractDungeon.actNum);
+    }
+
+    public static void addAct2EgoCards(ArrayList<String> list) {
         list.add(BlindRage.ID);
         list.add(FadedMemories.ID);
         list.add(GoldRush.ID);
@@ -92,14 +140,20 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(CobaltScar.ID);
         list.add(Thirst.ID);
         list.add(CrimsonScar.ID);
+    }
 
-        Collections.shuffle(list, AbstractDungeon.cardRandomRng.random);
-        ArrayList<String> finalList = new ArrayList<>(list.subList(0, amount));
-        ArrayList<AbstractCard> egoCards = new ArrayList<>();
-        for (String egoID : finalList) {
-            AbstractCard egoCard = CardLibrary.getCard(egoID).makeCopy();
-            egoCards.add(egoCard);
+    public static void addAct3EgoCards(ArrayList<String> list) {
+        list.add(ParadiseLost.ID);
+        if (adp().energy.energyMaster >= DeadSilence.COST) {
+            list.add(DeadSilence.ID);
         }
-        return egoCards;
+        list.add(Heaven.ID);
+        list.add(Penitence.ID);
+        list.add(SoundOfAStar.ID);
+        list.add(Apocalypse.ID);
+        list.add(Beak.ID);
+        list.add(Lamp.ID);
+        list.add(Justitia.ID);
+        list.add(Twilight.ID);
     }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="550" height="526" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Attack.png" width="815" height="368" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Debuff.png" width="500" height="470" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Heaven">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-300" y="491"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Attack" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Attack">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-563.043478" y="330.434783"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Debuff" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Debuff">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-286.826087" y="435.608696"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

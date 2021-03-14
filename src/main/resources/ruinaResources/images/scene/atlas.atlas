@@ -1,3 +1,199 @@
+Yan.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Yan
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Lies.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Lies
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Heart.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Heart
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Snow.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Snow
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Bloodbath.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Bloodbath
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Silence.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Silence
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Heaven.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Heaven
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Star.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Star
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+BlackForest.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/BlackForest
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+HokmaCamp.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/HokmaCamp
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Hokma.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Hokma
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+BinahCamp.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/BinahCamp
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Binah.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Binah
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+Twilight.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Twilight
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+
+Paradise.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Paradise
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
 Wrath.png
 size: 2048,2048
 format: RGBA8888

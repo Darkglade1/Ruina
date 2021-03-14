@@ -1,13 +1,16 @@
 package ruina.util;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -18,7 +21,7 @@ import com.megacrit.cardcrawl.vfx.ShieldParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.BuffParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.StunStarEffect;
 import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
-import ruina.RuinaMod;
+import ruina.monsters.AbstractCardMonster;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -37,9 +40,11 @@ public class AdditionalIntent {
     private BobEffect bobEffect;
     private float intentParticleTimer;
     private float intentAngle;
-    private Texture intentImg;
+    public Texture intentImg;
     private Texture intentBg;
     public PowerTip intentTip;
+    public boolean usePrimaryIntentsColor = true;
+    public AbstractCard enemyCard = null;
 
     private ArrayList<AbstractGameEffect> intentVfx;
 
@@ -49,7 +54,7 @@ public class AdditionalIntent {
     float scaleHeight = Settings.scale;
     private static final float X_OFFSET = 106.0f;
 
-    public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move) {
+    public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move, AbstractCard enemyCard) {
         this.source = source;
         intentColor = Color.WHITE.cpy();
 
@@ -59,6 +64,13 @@ public class AdditionalIntent {
         baseDamage = move.baseDamage;
         multihit = move.isMultiDamage;
         numHits = move.multiplier;
+
+        this.enemyCard = enemyCard;
+        if (this.enemyCard != null) {
+            this.enemyCard.drawScale = 0.25f;
+            this.enemyCard.targetDrawScale = 0.25f;
+            this.enemyCard.baseDamage = move.baseDamage;
+        }
 
         intentParticleTimer = 0.5f;
         this.bobEffect = new BobEffect();
@@ -72,8 +84,20 @@ public class AdditionalIntent {
         intentTip = createAdditionalIntentTip(this);
     }
 
+    public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move) {
+        this(source, move, null);
+    }
+
     public void updateDamage(int newDamage) {
         damage = newDamage;
+        if (enemyCard != null) {
+            enemyCard.damage = newDamage;
+            if (enemyCard.baseDamage != newDamage) {
+                enemyCard.isDamageModified = true;
+            } else {
+                enemyCard.isDamageModified = false;
+            }
+        }
         intentTip = createAdditionalIntentTip(this);
         this.intentImg = this.getIntentImg();
     }
@@ -99,6 +123,33 @@ public class AdditionalIntent {
                 i.remove();
             }
         }
+        if (enemyCard != null) {
+            enemyCard.hb.update();
+            if (Settings.FAST_MODE) {
+                enemyCard.current_x = MathHelper.cardLerpSnap(enemyCard.current_x, enemyCard.target_x);
+                enemyCard.current_y = MathHelper.cardLerpSnap(enemyCard.current_y, enemyCard.target_y);
+            }
+
+            enemyCard.current_x = MathHelper.cardLerpSnap(enemyCard.current_x, enemyCard.target_x);
+            enemyCard.current_y = MathHelper.cardLerpSnap(enemyCard.current_y, enemyCard.target_y);
+            enemyCard.hb.move(enemyCard.current_x, enemyCard.current_y);
+            enemyCard.hb.resize(512 * enemyCard.drawScale, 512 * enemyCard.drawScale);
+            if (enemyCard.hb.hovered) {
+                if (AbstractCardMonster.hoveredCard == null) {
+                    AbstractCardMonster.hoveredCard = enemyCard;
+                }
+            } else {
+                if (AbstractCardMonster.hoveredCard == enemyCard) {
+                    AbstractCardMonster.hoveredCard = null;
+                }
+            }
+            if (AbstractCardMonster.hoveredCard == enemyCard) {
+                enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale * 3.0F);
+                enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale * 3.0F);
+            } else {
+                enemyCard.drawScale = MathHelper.cardScaleLerpSnap(enemyCard.drawScale, enemyCard.targetDrawScale);
+            }
+        }
     }
 
     public void setTargetTexture(String path) {
@@ -114,12 +165,36 @@ public class AdditionalIntent {
         this.renderIntent(sb, position);
         this.renderIntentVfxAfter(sb);
         this.renderDamageRange(sb, position);
+        this.renderCard(sb, position);
+    }
+
+    public void renderCard(SpriteBatch sb, int position) {
+        Color color;
+        if (usePrimaryIntentsColor) {
+            color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else {
+            color = intentColor;
+        }
+        if (enemyCard != null && color.a > 0) {
+            //sb.setColor(color);
+            enemyCard.current_x = source.intentHb.cX + (X_OFFSET * scaleWidth * position);
+            enemyCard.target_x = source.intentHb.cX + (X_OFFSET * scaleWidth * position);
+            enemyCard.current_y = source.intentHb.cY + (100.0f * scaleHeight);
+            enemyCard.target_y = source.intentHb.cY + (100.0f * scaleHeight);
+            //enemyCard.render(sb);
+        }
     }
 
     public void renderIntent(SpriteBatch sb, int position) {
-        sb.setColor(intentColor);
+        Color color;
+        if (usePrimaryIntentsColor) {
+            color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else {
+            color = intentColor;
+        }
+        sb.setColor(color);
         if (this.intentBg != null) {
-            sb.setColor(new Color(1.0F, 1.0F, 1.0F, intentColor.a / 2.0F));
+            //sb.setColor(new Color(1.0F, 1.0F, 1.0F, source.intentAlpha / 2.0F));
             sb.draw(this.intentBg, source.intentHb.cX - 64.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 128, 128, false, false);
         }
 
@@ -130,20 +205,27 @@ public class AdditionalIntent {
                 this.intentAngle += Gdx.graphics.getDeltaTime() * 150.0F;
             }
 
-            sb.setColor(this.intentColor);// 1079
+            sb.setColor(color);
             sb.draw(this.intentImg, source.intentHb.cX - 64.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 64.0F + this.bobEffect.y, 64.0F, 64.0F, 128.0F, 128.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 128, 128, false, false);
         }
-        if (targetTexture != null && damage >= 0) {
-            sb.draw(targetTexture, source.intentHb.cX - 48.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 48.0F + (40.0f * scaleHeight) + this.bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, this.intentAngle, 0, 0, 48, 48, false, false);
+        if (targetTexture != null) {
+            sb.setColor(color);
+            sb.draw(targetTexture, source.intentHb.cX - 48.0F + (X_OFFSET * scaleWidth * position), source.intentHb.cY - 48.0F + (40.0f * scaleHeight) + this.bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0f, 0, 0, 48, 48, false, false);
         }
     }
 
     private void renderDamageRange(SpriteBatch sb, int position) {
+        Color color;
+        if (usePrimaryIntentsColor) {
+            color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else {
+            color = intentColor;
+        }
         if (this.intent.name().contains("ATTACK")) {
             if (this.multihit) {
-                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, this.damage + "x" + this.numHits, source.intentHb.cX - (30.0F * Settings.scale) + (X_OFFSET * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, this.damage + "x" + this.numHits, source.intentHb.cX - (30.0F * Settings.scale) + (X_OFFSET * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, color);
             } else {
-                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.damage), source.intentHb.cX - (30.0F * Settings.scale) + (X_OFFSET * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, this.intentColor);
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, Integer.toString(this.damage), source.intentHb.cX - (30.0F * Settings.scale) + (X_OFFSET * Settings.scale * position), source.intentHb.cY + this.bobEffect.y - 12.0F * Settings.scale, color);
             }
         }
     }
@@ -165,7 +247,13 @@ public class AdditionalIntent {
     }
 
     private void updateIntentVFX(int position) {
-        if (intentColor.a > 0.0F) {
+        Color color;
+        if (usePrimaryIntentsColor) {
+            color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else {
+            color = intentColor;
+        }
+        if (color.a > 0.0F) {
             if (this.intent != AbstractMonster.Intent.ATTACK_DEBUFF && this.intent != AbstractMonster.Intent.DEBUFF && this.intent != AbstractMonster.Intent.STRONG_DEBUFF && this.intent != AbstractMonster.Intent.DEFEND_DEBUFF) {
                 if (this.intent != AbstractMonster.Intent.ATTACK_BUFF && this.intent != AbstractMonster.Intent.BUFF && this.intent != AbstractMonster.Intent.DEFEND_BUFF) {
                     if (this.intent == AbstractMonster.Intent.ATTACK_DEFEND) {

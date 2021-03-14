@@ -34,8 +34,8 @@ public class Jack extends AbstractRuinaMonster
     private static final byte MULTI_ATTACK = 1;
 
     public ArrayList<AbstractCard> stolenCards = new ArrayList<>();
-    private boolean startSingle;
-    private Ozma ozma;
+    private final boolean startSingle;
+    private final Ozma ozma;
 
     public static final String POWER_ID = makeID("Steal");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -47,7 +47,7 @@ public class Jack extends AbstractRuinaMonster
     }
 
     public Jack(final float x, final float y, boolean startSingle, Ozma ozma) {
-        super(NAME, ID, 150, -5.0F, 0, 135.0f, 160.0f, null, x, y);
+        super(NAME, ID, 125, -5.0F, 0, 135.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jack/Spriter/Jack.scml"));
         this.type = EnemyType.NORMAL;
         setHp(this.maxHealth);

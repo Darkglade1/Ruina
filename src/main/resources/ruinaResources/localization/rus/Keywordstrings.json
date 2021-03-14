@@ -13,5 +13,19 @@
       "бодрости"
     ],
     "DESCRIPTION": "Ваша след. Атака наносит доп. урон."
+  },
+  {
+    "PROPER_NAME": "Manifest",
+    "NAMES": [
+      "manifest"
+    ],
+    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead #yExhaust #b1 card for every missing [E] ."
+  },
+  {
+    "PROPER_NAME": "Contract",
+    "NAMES": [
+      "contract"
+    ],
+    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead pay #b3 HP for every missing [E] ."
   }
 ]

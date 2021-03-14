@@ -10,6 +10,7 @@ import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditKeywordsSubscriber;
 import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
+import basemod.interfaces.PostBattleSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -20,8 +21,14 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.events.beyond.Falling;
+import com.megacrit.cardcrawl.events.beyond.MindBloom;
+import com.megacrit.cardcrawl.events.beyond.MysteriousSphere;
+import com.megacrit.cardcrawl.events.beyond.SensoryStone;
+import com.megacrit.cardcrawl.events.beyond.WindingHalls;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -33,12 +40,14 @@ import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ruina.CustomIntent.MassAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
+import ruina.dungeons.Atziluth;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
 import ruina.events.act2.ChildrenOfTheCity;
@@ -51,6 +60,7 @@ import ruina.events.act2.SocialSciences;
 import ruina.events.act2.ThePianist;
 import ruina.events.act2.WizardOfOz;
 import ruina.events.act2.ZweiAssociation;
+import ruina.events.act3.*;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Hermit;
 import ruina.monsters.act2.Jester.JesterOfNihil;
@@ -67,12 +77,34 @@ import ruina.monsters.act2.SanguineBat;
 import ruina.monsters.act2.Scarecrow;
 import ruina.monsters.act2.ServantOfWrath;
 import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act3.Bloodbath;
+import ruina.monsters.act3.BurrowingHeaven;
+import ruina.monsters.act3.EyeballChick;
+import ruina.monsters.act3.JudgementBird;
+import ruina.monsters.act3.Pinocchio;
+import ruina.monsters.eventboss.redMist.monster.RedMist;
+import ruina.monsters.act3.RunawayBird;
+import ruina.monsters.act3.SnowQueen.SnowQueen;
+import ruina.monsters.act3.Twilight;
+import ruina.monsters.act3.bigBird.BigBird;
+import ruina.monsters.act3.bigBird.Sage;
+import ruina.monsters.act3.blueStar.BlueStar;
+import ruina.monsters.act3.heart.HeartOfAspiration;
+import ruina.monsters.act3.heart.LungsOfCraving;
+import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
+import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
+import ruina.monsters.act3.punishingBird.PunishingBird;
+import ruina.monsters.act3.seraphim.Prophet;
+import ruina.monsters.eventboss.yan.monster.yanDistortion;
+import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
+
+import static ruina.util.Wiz.adp;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
@@ -82,7 +114,8 @@ public class RuinaMod implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         PostInitializeSubscriber,
-        AddAudioSubscriber {
+        AddAudioSubscriber,
+        PostBattleSubscriber {
 
     private static final String modID = "ruina";
     public static String getModID() {
@@ -110,7 +143,7 @@ public class RuinaMod implements
     private static final String POWER_L_ART = getModID() + "Resources/images/1024/card.png";
     private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
 
-    //This is for the in-game mod settings panel.
+    //This is for the in-EnemyEnergyPanel mod settings panel.
     private static final String MODNAME = "Ruina";
     private static final String AUTHOR = "Darkglade";
     private static final String DESCRIPTION = "An alternate Act mod inspired by Library of Ruina.";
@@ -262,6 +295,80 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("BluntBlow"), makeSFXPath("Blow_Stab.wav"));
         BaseMod.addAudio(makeID("IndexUnlock"), makeSFXPath("IndexUnlock.wav"));
+
+        BaseMod.addAudio(makeID("ProphetBless"), makeSFXPath("WhiteNight_Bless.wav"));
+        BaseMod.addAudio(makeID("ApostleScytheUp"), makeSFXPath("WhiteNight_Apostle_Vert1.wav"));
+        BaseMod.addAudio(makeID("ApostleScytheDown"), makeSFXPath("WhiteNight_Apostle_Vert2.wav"));
+        BaseMod.addAudio(makeID("ApostleSpear"), makeSFXPath("WhiteNight_Apostle_Spear.wav"));
+        BaseMod.addAudio(makeID("ApostleWand"), makeSFXPath("WhiteNight_Apostle_Wand.wav"));
+        BaseMod.addAudio(makeID("WhiteNightSummon"), makeSFXPath("WhiteNight_Apostle_Grogy.wav"));
+        BaseMod.addAudio(makeID("WhiteNightAppear"), makeSFXPath("WhiteNight_Appear.wav"));
+        BaseMod.addAudio(makeID("WhiteNightCall"), makeSFXPath("WhiteNight_Call.wav"));
+        BaseMod.addAudio(makeID("WhiteNightCharge"), makeSFXPath("WhiteNight_Strong_Charge.wav"));
+        BaseMod.addAudio(makeID("WhiteNightFire"), makeSFXPath("WhiteNight_Strong_Fire.wav"));
+
+        BaseMod.addAudio(makeID("BossBirdLamp"), makeSFXPath("Bossbird_Bigbird_FarAtk.wav"));
+        BaseMod.addAudio(makeID("BossBirdBirth"), makeSFXPath("BossBird_Birth.wav"));
+        BaseMod.addAudio(makeID("BossBirdCrush"), makeSFXPath("Bossbird_Bossbird_Stab.wav"));
+        BaseMod.addAudio(makeID("BossBirdStrong"), makeSFXPath("Bossbird_Bossbird_StrongAtk.wav"));
+        BaseMod.addAudio(makeID("BossBirdSlam"), makeSFXPath("Bossbird_Bossbird_VertDown.wav"));
+        BaseMod.addAudio(makeID("BossBirdSpecial"), makeSFXPath("Bossbird_Longbird_On.wav"));
+        BaseMod.addAudio(makeID("BossBirdPunish"), makeSFXPath("Bossbird_Longbird_StrongAtk.wav"));
+
+        BaseMod.addAudio(makeID("BigBirdLamp"), makeSFXPath("Bigbird_Attract.wav"));
+        BaseMod.addAudio(makeID("BigBirdEyes"), makeSFXPath("Bigbird_Eyes.wav"));
+        BaseMod.addAudio(makeID("BigBirdCrunch"), makeSFXPath("Bigbird_HeadCut.wav"));
+        BaseMod.addAudio(makeID("BigBirdOpen"), makeSFXPath("Bigbird_MouseOpen.wav"));
+
+        BaseMod.addAudio(makeID("SmallBirdPeck"), makeSFXPath("SmallBird_Atk.wav"));
+        BaseMod.addAudio(makeID("SmallBirdPunish"), makeSFXPath("SmallBird_StrongAtk.wav"));
+        BaseMod.addAudio(makeID("SmallBirdCage"), makeSFXPath("SmallBird_CageBreak.wav"));
+
+        BaseMod.addAudio(makeID("BlueStarAtk"), makeSFXPath("BlueStar_Atk.wav"));
+        BaseMod.addAudio(makeID("BlueStarCharge"), makeSFXPath("BlueStar_Cast.wav"));
+        BaseMod.addAudio(makeID("WorshipperSuicide"), makeSFXPath("BlueStar_In.wav"));
+        BaseMod.addAudio(makeID("WorshipperAttack"), makeSFXPath("BlueStar_SubAtk.wav"));
+        BaseMod.addAudio(makeID("WorshipperExplode"), makeSFXPath("BlueStar_Suicide.wav"));
+
+        BaseMod.addAudio(makeID("SilenceEffect"), makeSFXPath("Clock_NoCreate.wav"));
+        BaseMod.addAudio(makeID("SilenceStop"), makeSFXPath("Clock_StopCard.wav"));
+
+        BaseMod.addAudio(makeID("BloodAttack"), makeSFXPath("Bloodbath_Atk.wav"));
+        BaseMod.addAudio(makeID("BloodSpecial"), makeSFXPath("Bloodbath_EyeOn.wav"));
+
+        BaseMod.addAudio(makeID("SnowAttack"), makeSFXPath("SnowQueen_Atk.wav"));
+        BaseMod.addAudio(makeID("SnowAttackFar"), makeSFXPath("SnowQueen_Atk_Far.wav"));
+        BaseMod.addAudio(makeID("SnowBlizzard"), makeSFXPath("SnowQueen_Freeze.wav"));
+        BaseMod.addAudio(makeID("SnowPrisonBreak"), makeSFXPath("SnowQueen_IceCrash.wav"));
+
+        BaseMod.addAudio(makeID("BirdSweep"), makeSFXPath("LongBird_SubAtk.wav"));
+        BaseMod.addAudio(makeID("BirdShout"), makeSFXPath("LongBird_SubShout.wav"));
+
+        BaseMod.addAudio(makeID("RedMistChange"), makeSFXPath("Kali_Change.ogg"));
+        BaseMod.addAudio(makeID("RedMistHori2"), makeSFXPath("Kali_EGO_Hori.ogg"));
+        BaseMod.addAudio(makeID("RedMistStab2"), makeSFXPath("Kali_EGO_Stab.ogg"));
+        BaseMod.addAudio(makeID("RedMistVert2"), makeSFXPath("Kali_EGO_Vert.ogg"));
+        BaseMod.addAudio(makeID("RedMistHori1"), makeSFXPath("Kali_Normal_Hori.ogg"));
+        BaseMod.addAudio(makeID("RedMistStab1"), makeSFXPath("Kali_Normal_Stab.ogg"));
+        BaseMod.addAudio(makeID("RedMistVert1"), makeSFXPath("Kali_Normal_Vert.ogg"));
+        BaseMod.addAudio(makeID("RedMistVertFin"), makeSFXPath("Kali_Special_Vert_Fin.ogg"));
+        BaseMod.addAudio(makeID("RedMistVertHit"), makeSFXPath("Kali_Special_Vert_Hit.ogg"));
+        BaseMod.addAudio(makeID("RedMistVertCut"), makeSFXPath("Kali_Special_Cut.ogg"));
+        BaseMod.addAudio(makeID("RedMistHoriEye"), makeSFXPath("Kali_Special_Hori_Eyeon.ogg"));
+        BaseMod.addAudio(makeID("RedMistHoriFin"), makeSFXPath("Kali_Special_Hori_Fin.ogg"));
+        BaseMod.addAudio(makeID("RedMistHoriStart"), makeSFXPath("Kali_Special_Hori_Start.ogg"));
+
+        BaseMod.addAudio(makeID("JudgementAttack"), makeSFXPath("LongBird_Down.wav"));
+        BaseMod.addAudio(makeID("JudgementHang"), makeSFXPath("LongBird_Hang.wav"));
+        BaseMod.addAudio(makeID("JudgementGong"), makeSFXPath("LongBird_On.wav"));
+        BaseMod.addAudio(makeID("JudgementDing"), makeSFXPath("LongBird_Stun.wav"));
+
+        BaseMod.addAudio(makeID("YanLock"), makeSFXPath("Yan_Typing_Atk.wav"));
+        BaseMod.addAudio(makeID("DistortedBladeFinish"), makeSFXPath("Yan_GreatSword_Finish.wav"));
+        BaseMod.addAudio(makeID("DistortedBladeStart"), makeSFXPath("Yan_GreatSword_Start.wav"));
+        BaseMod.addAudio(makeID("YanVert"), makeSFXPath("Yan_Lib_Vert.wav"));
+        BaseMod.addAudio(makeID("YanStab"), makeSFXPath("Yan_Stab.wav"));
+        BaseMod.addAudio(makeID("YanBrand"), makeSFXPath("Yan_Stigma_Atk.wav"));
     }
 
     @Override
@@ -300,8 +407,12 @@ public class RuinaMod implements
         Briah briah = new Briah();
         briah.addAct(TheCity.ID);
 
+        Atziluth atziluth = new Atziluth();
+        atziluth.addAct(TheBeyond.ID);
+
         CustomIntent.add(new MassAttackIntent());
 
+        //Act 2
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
         BaseMod.addMonster(RoadHome.ID, (BaseMod.GetMonster) RoadHome::new);
         BaseMod.addMonster(ServantOfWrath.ID, "Servant_of_Wrath", () -> new MonsterGroup(
@@ -357,6 +468,65 @@ public class RuinaMod implements
         BaseMod.addEvent(ChildrenOfTheCity.ID, ChildrenOfTheCity.class, Briah.ID);
         BaseMod.addEvent(NothingThere.ID, NothingThere.class, Briah.ID);
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
+        BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Briah.ID);
+
+
+        // Act 3
+        atziluth.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
+        atziluth.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
+
+        BaseMod.addMonster(BigBird.ID, "Big Bird", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Sage(-600.0F, 0.0F, 0),
+                        new Sage(-350.0F, 0.0F, 1),
+                        new BigBird(150.0F, 0.0F)
+                }));
+        BaseMod.addMonster(BlueStar.ID, (BaseMod.GetMonster) BlueStar::new);
+        BaseMod.addMonster(SnowQueen.ID, (BaseMod.GetMonster) SnowQueen::new);
+
+        BaseMod.addMonster(PunishingBird.ID, (BaseMod.GetMonster) PunishingBird::new);
+        BaseMod.addMonster(BurrowingHeaven.ID, (BaseMod.GetMonster) BurrowingHeaven::new);
+        BaseMod.addMonster(PriceOfSilence.ID, "Price of Silence", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new RemnantOfTime(-450.0F, 0.0F),
+                        new PriceOfSilence(-50.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Bloodbath.ID, (BaseMod.GetMonster) Bloodbath::new);
+        BaseMod.addMonster(HeartOfAspiration.ID, "Heart of Aspiration", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new LungsOfCraving(-450.0F, 0.0F),
+                        new LungsOfCraving(-150.0F, 0.0F),
+                        new HeartOfAspiration(150.0F, 0.0F)
+                }));
+        BaseMod.addMonster(EncounterIDs.BIRDS_3, "3_Birds", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new RunawayBird(-450.0F, 0.0F),
+                        new RunawayBird(-200.0F, 0.0F),
+                        new EyeballChick(50.0F, 0.0F)
+                }));
+        BaseMod.addMonster(EncounterIDs.BIRDS_4, "4_Birds", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new RunawayBird(-450.0F, 0.0F),
+                        new RunawayBird(-200.0F, 0.0F),
+                        new EyeballChick(50.0F, 0.0F),
+                        new EyeballChick(300.0F, 0.0F)
+                }));
+        BaseMod.addMonster(JudgementBird.ID, (BaseMod.GetMonster) JudgementBird::new);
+        BaseMod.addMonster(Pinocchio.ID, (BaseMod.GetMonster) Pinocchio::new);
+
+        BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
+        BaseMod.addMonster(yanDistortion.ID, (BaseMod.GetMonster) yanDistortion::new);
+
+
+        BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);
+        BaseMod.addEvent(HanaAssociation.ID, HanaAssociation.class, Atziluth.ID);
+        BaseMod.addEvent(ForThoseWeCherish.ID, ForThoseWeCherish.class, Atziluth.ID);
+        BaseMod.addEvent(Philosophy.ID, Philosophy.class, Atziluth.ID);
+        BaseMod.addEvent(TheThumb.ID, TheThumb.class, Atziluth.ID);
+        BaseMod.addEvent(CryingChildren.ID, CryingChildren.class, Atziluth.ID);
+        BaseMod.addEvent(DistortedYan.ID, DistortedYan.class, Atziluth.ID);
+        BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
+        BaseMod.addEvent(YesterdayPromise.ID, YesterdayPromise.class, Atziluth.ID);
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)
@@ -410,8 +580,11 @@ public class RuinaMod implements
     }
 
     @Override
-    public void receiveEditKeywords()
-    {
+    public void receivePostBattle(AbstractRoom abstractRoom) {
+        TotalBlockGainedSpireField.totalBlockGained.set(adp(), 0);
+    }
+
+    public void receiveEditKeywords() {
         loadLocKeywords(Settings.GameLanguage.ENG);
         if (Settings.language != Settings.GameLanguage.ENG) {
             loadLocKeywords(Settings.language);
