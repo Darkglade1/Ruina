@@ -54,7 +54,7 @@ public class yanHand extends AbstractDeckMonster
     private static final byte LOCK = 4;
     private static final byte EMPTY = 5;
 
-    public final int fistDMG = calcAscensionDamage(7);
+    public final int fistDMG = calcAscensionDamage(9);
     public final int fistPara = calcAscensionSpecial(2);
 
     public final int compressBlock = calcAscensionTankiness(15);
@@ -63,10 +63,10 @@ public class yanHand extends AbstractDeckMonster
     public final int flurryStr = calcAscensionSpecial(2);
     public final int flurryHits = 3;
 
-    public final int lockDmg = calcAscensionDamage(10);
+    public final int lockDmg = calcAscensionDamage(12);
     public final int drawReduction = 1;
 
-    public final int brandDmg = calcAscensionDamage(10);
+    public final int brandDmg = calcAscensionDamage(14);
     public final int brandErosion = calcAscensionSpecial(1);
 
     public static final String FAULTYHARDWARE_POWER_ID = makeID("FaultyHardware");

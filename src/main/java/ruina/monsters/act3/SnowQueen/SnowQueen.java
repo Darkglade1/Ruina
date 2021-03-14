@@ -204,7 +204,7 @@ public class SnowQueen extends AbstractRuinaMonster
     public void render(SpriteBatch sb) {
         super.render(sb);
         if (this.hasPower(POWER_ID)) {
-            if (this.getPower(POWER_ID).amount >= THRESHOLD) {
+            if (this.getPower(POWER_ID).amount >= THRESHOLD - 1) {
                 this.particleTimer -= Gdx.graphics.getDeltaTime();
                 if (this.particleTimer < 0.0F) {
                     this.particleTimer = 0.04F;

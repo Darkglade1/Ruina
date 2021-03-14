@@ -80,7 +80,7 @@ public class yanDistortion extends AbstractDeckMonster
     public boolean leftKilledFirst = false;
     public boolean rightKilledFirst = false;
 
-    public final int fistDMG = calcAscensionDamage(7);
+    public final int fistDMG = calcAscensionDamage(9);
     public final int fistPara = calcAscensionSpecial(2);
 
     public final int compressBlock = calcAscensionTankiness(15);
@@ -89,13 +89,13 @@ public class yanDistortion extends AbstractDeckMonster
     public final int flurryStr = calcAscensionSpecial(2);
     public final int flurryHits = 3;
 
-    public final int lockDmg = calcAscensionDamage(10);
+    public final int lockDmg = calcAscensionDamage(12);
     public final int drawReduction = 1;
 
-    public final int brandDmg = calcAscensionDamage(10);
+    public final int brandDmg = calcAscensionDamage(14);
     public final int brandErosion = calcAscensionSpecial(1);
 
-    public final int bladeDMG = calcAscensionDamage(20);
+    public final int bladeDMG = calcAscensionDamage(26);
     public final int bladeErosion = calcAscensionSpecial(2);
 
     public final int attackStr = calcAscensionSpecial(2);
