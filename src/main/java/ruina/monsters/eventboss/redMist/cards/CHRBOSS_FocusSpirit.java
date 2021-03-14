@@ -18,7 +18,6 @@ public class CHRBOSS_FocusSpirit extends AbstractRuinaCard {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
         block = baseBlock = parent.focusSpiritBlock;
         magicNumber = baseMagicNumber = parent.focusSpiritStr;
-        setBackground(ColorRarity.BLUE);
     }
 
     @Override

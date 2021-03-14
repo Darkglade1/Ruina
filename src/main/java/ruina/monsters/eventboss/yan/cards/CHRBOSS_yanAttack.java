@@ -18,7 +18,6 @@ public class CHRBOSS_yanAttack extends AbstractRuinaCard {
     public CHRBOSS_yanAttack(yanDistortion parent) {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         magicNumber = baseMagicNumber = parent.attackStr;
-        setBackground(ColorRarity.GREEN);
     }
 
     @Override

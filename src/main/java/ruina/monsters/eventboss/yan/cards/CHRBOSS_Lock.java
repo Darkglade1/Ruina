@@ -19,14 +19,12 @@ public class CHRBOSS_Lock extends AbstractRuinaCard {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.lockDmg;
         magicNumber = baseMagicNumber = parent.drawReduction;
-        setBackground(ColorRarity.GOLD);
     }
 
     public CHRBOSS_Lock(yanHand parent) {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.lockDmg;
         magicNumber = baseMagicNumber = parent.drawReduction;
-        setBackground(ColorRarity.GOLD);
     }
 
 

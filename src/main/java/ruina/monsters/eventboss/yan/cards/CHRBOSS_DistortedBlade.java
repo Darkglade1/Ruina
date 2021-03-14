@@ -19,7 +19,6 @@ public class CHRBOSS_DistortedBlade extends AbstractRuinaCard {
         super(ID, 7, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.bladeDMG;
         magicNumber = baseMagicNumber = parent.bladeErosion;
-        setBackground(ColorRarity.GOLD);
     }
 
     @Override

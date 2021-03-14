@@ -23,7 +23,6 @@ public class CHRBOSS_FlurryOfFists extends AbstractRuinaCard {
         secondMagicNumber = baseSecondMagicNumber = parent.flurryStr;
         rawDescription = languagePack.getCardStrings(cardID).EXTENDED_DESCRIPTION[0];
         initializeDescription();
-        setBackground(ColorRarity.PURPLE);
     }
 
     public CHRBOSS_FlurryOfFists(yanHand parent) {
@@ -31,7 +30,6 @@ public class CHRBOSS_FlurryOfFists extends AbstractRuinaCard {
         damage = baseDamage = parent.flurryDamage;
         magicNumber = baseMagicNumber = parent.flurryHits;
         secondMagicNumber = baseSecondMagicNumber = parent.flurryStr;
-        setBackground(ColorRarity.PURPLE);
     }
 
 

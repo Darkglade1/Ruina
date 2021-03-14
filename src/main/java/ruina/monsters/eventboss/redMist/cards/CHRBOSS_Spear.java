@@ -20,7 +20,6 @@ public class CHRBOSS_Spear extends AbstractRuinaCard {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = HITS;
-        setBackground(ColorRarity.GREEN);
     }
 
     @Override
