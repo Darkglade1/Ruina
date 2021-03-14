@@ -50,5 +50,12 @@
     "DESCRIPTIONS": [
       "At the start of your #b3rd turn, gain #b", " #yStrength and #b", " #yDexterity."
     ]
+  },
+  "${ModID}:YesterdayPromiseRelic": {
+    "NAME": "Yesterday's Promise",
+    "FLAVOR": "Let me lend you my eyeglass, so you can have a closer look at what you just signed.",
+    "DESCRIPTIONS": [
+      "When you have insufficient [E] to play a card, you may instead pay #b1 HP for every missing [E] ."
+    ]
   }
 }

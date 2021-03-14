@@ -370,5 +370,18 @@
       "[Leave]",
       "Choose a card to add to your deck"
     ]
+  },
+  "${ModID}:YesterdayPromise": {
+    "NAME": "Yesterday's Promise",
+    "DESCRIPTIONS": [
+      "@Hohohohoho!@ Through the shadows, you can make out an upright figure. As they pace towards you, the sound of their steps echoing as they move across a marble floor, your vision enhances and you can identify the figure fully. A #bblue top hat. A gray skull, fashioned with a #gdapper monocle. A black suit, fashioned with a #bblue tie, and #bblue insignia on the right sleeve, though you have no idea what it represents. The distortion, known as \"Yesterday's Promise\" stands before you, a contract grasping his skeletal fingertips. NL \"I can give you the power and help you desire, providing you sign this contract. How about it?\"",
+      "Nothing looked off about the contract, other than the fact that it ~was~ a contract, and it wouldn't hurt to be stronger, right? At least, that's how you justified your decision to yourself as you signed the contract. You tried watching the contractor's, expressions to see a glimpse of duper's delight, however his expression did not change until the contract was signed. NL \"A pleasure doing business with you, but you should've checked the terms carefully. Here, take a look.\" You still didn't see anything wrong, but after being handed an eyeglass, the contract changes, revealing ambiguous wording and hidden terms, but the terms were not any less appropriate. It appears you've been deceived, and you ~shouldn't~ ~have~ ~done~ ~that.~",
+      "You hold out on the offer. NL More power would be helpful, but the whole ordeal reeked of suspicion. NL You feel like you made the right decision."
+    ],
+    "OPTIONS": [
+      "[Sign] Take #b%1$s damage. Gain a special relic.",
+      "[Reject the contract]",
+      "[Leave]"
+    ]
   }
 }

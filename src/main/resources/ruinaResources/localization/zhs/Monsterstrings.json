@@ -1,0 +1,263 @@
+{
+  "ruina:LittleRed": {
+    "MOVES": [
+      "Beast Hunt",
+      "Catch Breath",
+      "Hollow Point Shell",
+      "Bullet Shower"
+    ],
+    "NAME": "Little Red Riding Hooded Mercenary",
+    "DIALOG": [
+      "I will end this nightmare myself!",
+      "YOU DARE STEAL MY PREY?",
+      "My duty is fulfilled at last.",
+      "Still not . . . strong enough . . . "
+    ]
+  },
+  "ruina:NightmareWolf": {
+    "MOVES": [
+      "Cruel Claws",
+      "Ferocious Fangs",
+      "Bloodstained Hunt",
+      "Howl"
+    ],
+    "NAME": "Wolf in Her Nightmares",
+    "DIALOG": [
+    ]
+  },
+  "ruina:Mountain": {
+    "MOVES": [
+      "Devour",
+      "Bite",
+      "Horrid Screech",
+      "Ram",
+      "Vomit"
+    ],
+    "NAME": "Mountain of Smiling Bodies",
+    "DIALOG": [
+      "Hungry . . . must feed . . ."
+    ]
+  },
+  "ruina:MeltedCorpses": {
+    "MOVES": [
+    ],
+    "NAME": "Melted Corpse",
+    "DIALOG": [
+    ]
+  },
+  "ruina:Scarecrow": {
+    "MOVES": [
+      "Rake",
+      "Harvest",
+      "Struggle for Wisdom"
+    ],
+    "NAME": "Scarecrow",
+    "DIALOG": [
+    ]
+  },
+  "ruina:Woodsman": {
+    "MOVES": [
+      "Strike of the Axe",
+      "Lumber",
+      "Warm Pulse"
+    ],
+    "NAME": "Warm-Hearted Woodsman",
+    "DIALOG": [
+      "Give me . . . your heart . . ."
+    ]
+  },
+  "ruina:JesterOfNihil": {
+    "MOVES": [
+      "Will of Nihil",
+      "Consuming Desire",
+      "In the Name of Love and Hate",
+      "Sword Sharpened by Tears",
+      "Rampage"
+    ],
+    "NAME": "Jester of Nihil",
+    "DIALOG": [
+      "All shall return to nothing . . ."
+    ]
+  },
+  "ruina:Statue": {
+    "MOVES": [
+      "Petrified Hate",
+      "Lapidified Wrath",
+      "Ossified Despair",
+      "Fossilized Greed"
+    ],
+    "NAME": "Statue",
+    "DIALOG": [
+    ]
+  },
+  "ruina:QueenOfLove": {
+    "MOVES": [
+      "In the Name of Love and Justice!",
+      "Arcana Beats"
+    ],
+    "NAME": "Queen of Love",
+    "DIALOG": [
+      "Your villainous deeds will not go unpunished!",
+      "Love and Justice prevails once more!",
+      "My strength fades . . ."
+    ]
+  },
+  "ruina:ServantOfCourage": {
+    "MOVES": [
+      "Rumble",
+      "Acidic Sludge"
+    ],
+    "NAME": "Servant of Courage",
+    "DIALOG": [
+      "For the justice and peace of the land.",
+      "The law is upheld.",
+      "The others will carry on."
+    ]
+  },
+  "ruina:SanguineBat": {
+    "MOVES": [
+      "Bloodsucking",
+      "Digging Teeth",
+      "Avid Thirst"
+    ],
+    "NAME": "Sanguine Bat",
+    "DIALOG": [
+    ]
+  },
+  "ruina:Nosferatu": {
+    "MOVES": [
+      "Unbearable Drought",
+      "Merciless Gesture",
+      "Looming Presence"
+    ],
+    "NAME": "Nosferatu",
+    "DIALOG": [
+    ]
+  },
+  "ruina:RoadHome": {
+    "MOVES": [
+      "Let's Go Together!",
+      "Play Tag!",
+      "Homing Instinct"
+    ],
+    "NAME": "Road Home",
+    "DIALOG": [
+      "Let's go home, together!",
+      "Aww, you killed my friend!"
+    ]
+  },
+  "ruina:ScaredyCat": {
+    "MOVES": [
+      "RAWR",
+      "Growl",
+      "Courage"
+    ],
+    "NAME": "Scaredy Cat",
+    "DIALOG": [
+    ]
+  },
+  "ruina:KnightOfDespair": {
+    "MOVES": [
+    ],
+    "NAME": "Knight of Despair",
+    "DIALOG": [
+      "I failed to protect them . . ."
+    ]
+  },
+  "ruina:Sword": {
+    "MOVES": [
+      "Tear Heart"
+    ],
+    "NAME": "Forgotten Sword",
+    "DIALOG": [
+    ]
+  },
+  "ruina:KingOfGreed": {
+    "MOVES": [
+      "Road of the King",
+      "Fixation",
+      "Edacity"
+    ],
+    "NAME": "King of Greed",
+    "DIALOG": [
+      "More . .. I must have MORE!"
+    ]
+  },
+  "ruina:BrilliantBliss": {
+    "MOVES": [
+    ],
+    "NAME": "Brilliant Bliss",
+    "DIALOG": [
+    ]
+  },
+  "ruina:BadWolf": {
+    "MOVES": [
+      "Claw",
+      "Bite",
+      "Hunt"
+    ],
+    "NAME": "Big and Will Be Bad Wolf",
+    "DIALOG": [
+    ]
+  },
+  "ruina:QueenOfHate": {
+    "MOVES": [
+      "Arcana Beats",
+      "In the Name of Hate",
+      "Light of Hatred"
+    ],
+    "NAME": "Queen of Hatred",
+    "DIALOG": [
+    ]
+  },
+  "ruina:Ozma": {
+    "MOVES": [
+      "Fading Memories",
+      "Powder of Life",
+      "Hinder",
+      "Squash",
+      "Awaken"
+    ],
+    "NAME": "Ozma",
+    "DIALOG": [
+    ]
+  },
+  "ruina:Jack": {
+    "MOVES": [
+
+    ],
+    "NAME": "Jack",
+    "DIALOG": [
+    ]
+  },
+  "ruina:ServantOfWrath": {
+    "MOVES": [
+      "EMBODIMENTS OF EVIL!",
+      "Rage"
+    ],
+    "NAME": "Servant of Wrath",
+    "DIALOG": [
+      "EMBODIMENTS OF EVIL!",
+      "Law and order . . . has prevailed."
+    ]
+  },
+  "ruina:Hermit": {
+    "MOVES": [
+      "Hold Still",
+      "Kindly Make Way",
+      "Hello, Companion",
+      "Crackle"
+    ],
+    "NAME": "Hermit of the Azure Forest",
+    "DIALOG": [
+      "Hello, companion."
+    ]
+  },
+  "ruina:HermitStaff": {
+    "MOVES": [
+    ],
+    "NAME": "Hermit's Staff",
+    "DIALOG": [
+    ]
+  }
+}
