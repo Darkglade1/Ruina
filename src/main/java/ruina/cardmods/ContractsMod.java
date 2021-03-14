@@ -39,6 +39,12 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
     }
 
     @Override
+    public boolean shouldApply(AbstractCard card) {
+        //To prevent the player from killing themselves with X cost cards
+        return card.costForTurn >= 0 && !CardModifierManager.hasModifier(card, ID);
+    }
+
+    @Override
     public boolean canSplitCost(AbstractCard card) {
         return true;
     }
@@ -55,7 +61,4 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
         }
         return costToSpend;
     }
-
-    @Override
-    public boolean shouldApply(AbstractCard card) { return !CardModifierManager.hasModifier(card, ID); }
 }
