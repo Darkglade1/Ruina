@@ -6,14 +6,17 @@ import basemod.interfaces.AlternateCardCostModifier;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import static ruina.RuinaMod.makeID;
+import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.atb;
 
 public class ContractsMod extends AbstractCardModifier implements AlternateCardCostModifier {
 
     public static final String ID = makeID(ContractsMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
+
+    private static final int HP_TO_ENERGY_RATIO = 3;
 
     @Override
     public AbstractCardModifier makeCopy() {
@@ -32,7 +35,7 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
 
     @Override
     public int getAlternateResource(AbstractCard card) {
-        return AbstractDungeon.player.currentHealth;
+        return (adp().currentHealth - 1) / HP_TO_ENERGY_RATIO;
     }
 
     @Override
@@ -42,12 +45,12 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
 
     @Override
     public int spendAlternateCost(AbstractCard card, int costToSpend) {
-        int resource = AbstractDungeon.player.currentHealth;
+        int resource = (adp().currentHealth - 1) / HP_TO_ENERGY_RATIO;
         if (resource > costToSpend) {
-            AbstractDungeon.actionManager.addToBottom(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, costToSpend));
+            atb(new LoseHPAction(adp(), adp(), costToSpend * HP_TO_ENERGY_RATIO));
             costToSpend = 0;
         } else if (resource > 0) {
-            AbstractDungeon.actionManager.addToBottom(new LoseHPAction(AbstractDungeon.player, AbstractDungeon.player, resource));
+            atb(new LoseHPAction(adp(), adp(), resource * HP_TO_ENERGY_RATIO));
             costToSpend -= resource;
         }
         return costToSpend;

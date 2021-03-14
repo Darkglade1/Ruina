@@ -71,12 +71,23 @@ public class Atziluth extends AbstractRuinaDungeon {
 
     @Override
     public String getBodyText() {
-        return TEXT[2];
+        if (CardCrawlGame.dungeon instanceof Briah) {
+            return TEXT[2];
+        } else {
+            String[] oldStrings = CardCrawlGame.languagePack.getUIString(Briah.ID).TEXT;
+            return oldStrings[2];
+        }
+
     }
 
     @Override
     public String getOptionText() {
-        return TEXT[3];
+        if (CardCrawlGame.dungeon instanceof Briah) {
+            return TEXT[3];
+        } else {
+            String[] oldStrings = CardCrawlGame.languagePack.getUIString(Briah.ID).TEXT;
+            return oldStrings[3];
+        }
     }
 
     @Override

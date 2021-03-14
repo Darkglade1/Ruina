@@ -468,6 +468,7 @@ public class RuinaMod implements
         BaseMod.addEvent(ChildrenOfTheCity.ID, ChildrenOfTheCity.class, Briah.ID);
         BaseMod.addEvent(NothingThere.ID, NothingThere.class, Briah.ID);
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
+        BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Briah.ID);
 
 
         // Act 3

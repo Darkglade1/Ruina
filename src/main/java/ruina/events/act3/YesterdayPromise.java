@@ -1,27 +1,19 @@
 package ruina.events.act3;
 
-import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.curses.Doubt;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import ruina.RuinaMod;
 import ruina.cardmods.ContractsMod;
-import ruina.cardmods.ExhaustMod;
-import ruina.cardmods.RetainMod;
 import ruina.relics.YesterdayPromiseRelic;
 
 import static ruina.RuinaMod.makeEventPath;
-import static ruina.util.Wiz.adp;
 
 public class YesterdayPromise extends AbstractImageEvent {
 

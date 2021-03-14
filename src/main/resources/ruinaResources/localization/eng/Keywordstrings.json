@@ -18,6 +18,6 @@
     "NAMES": [
       "contract"
     ],
-    "DESCRIPTION": "When you have insufficient [E] to play a card, you may instead pay #b1 HP for every missing [E] ."
+    "DESCRIPTION": "When you have insufficient [E] to play a card, you may instead pay #b3 HP for every missing [E] ."
   }
 ]

@@ -6,7 +6,7 @@ public class YesterdayPromiseRelic extends AbstractEasyRelic {
     public static final String ID = makeID(YesterdayPromiseRelic.class.getSimpleName());
 
     public YesterdayPromiseRelic() {
-        super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);
+        super(ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
     }
 
     @Override
