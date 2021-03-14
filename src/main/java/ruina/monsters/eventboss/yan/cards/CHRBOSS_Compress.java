@@ -18,13 +18,11 @@ public class CHRBOSS_Compress extends AbstractRuinaCard {
     public CHRBOSS_Compress(yanDistortion parent) {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         block = baseBlock = parent.compressBlock;
-        setBackground(ColorRarity.PURPLE);
     }
 
     public CHRBOSS_Compress(yanHand parent) {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         block = baseBlock = parent.compressBlock;
-        setBackground(ColorRarity.PURPLE);
     }
 
 

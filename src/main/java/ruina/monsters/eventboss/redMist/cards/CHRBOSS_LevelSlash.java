@@ -25,7 +25,6 @@ public class CHRBOSS_LevelSlash extends AbstractRuinaCard {
         damage = baseDamage = parent.level_damage;
         magicNumber = baseMagicNumber = HITS;
         secondMagicNumber = baseSecondMagicNumber = parent.level_threshold;
-        setBackground(ColorRarity.GREEN);
     }
 
     @Override

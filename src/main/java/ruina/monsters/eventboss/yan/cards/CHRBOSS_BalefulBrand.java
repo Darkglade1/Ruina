@@ -22,14 +22,12 @@ public class CHRBOSS_BalefulBrand extends AbstractRuinaCard {
         magicNumber = baseMagicNumber = parent.brandErosion;
         rawDescription = languagePack.getCardStrings(cardID).EXTENDED_DESCRIPTION[0];
         initializeDescription();
-        setBackground(ColorRarity.GOLD);
     }
 
     public CHRBOSS_BalefulBrand(yanHand parent) {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.brandDmg;
         magicNumber = baseMagicNumber = parent.brandErosion;
-        setBackground(ColorRarity.GOLD);
     }
 
 

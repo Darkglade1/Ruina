@@ -1,23 +1,18 @@
 package ruina.events.act3;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import ruina.RuinaMod;
 import ruina.dungeons.AbstractRuinaDungeon;
-import ruina.events.act2.NothingThere;
-import ruina.monsters.eventboss.redMist.monster.RedMist;
-import ruina.relics.Strongest;
 
 import static ruina.RuinaMod.makeEventPath;
 
@@ -35,20 +30,29 @@ public class PatronLibrarian extends AbstractImageEvent {
 
     private CurScreen screen = CurScreen.PRE_CARD;
     private boolean pickCard = false;
-    public static int dialogueN;
+    public int dialogueN;
 
-    static {
-        if (CardCrawlGame.dungeon instanceof AbstractRuinaDungeon) { dialogueN = getDialogueSwitchPerFloor(((AbstractRuinaDungeon) CardCrawlGame.dungeon).floor, false);
+    private static final int BASE_NUM_CARD_OPTIONS = 5;
+    private static final int ACT_SCALE_NUM_CARD_OPTIONS = 5;
+    private int numCardOptions;
+
+    public PatronLibrarian() {
+        super(NAME, DESCRIPTIONS[0], IMG);
+        numCardOptions = BASE_NUM_CARD_OPTIONS + (AbstractDungeon.actNum * ACT_SCALE_NUM_CARD_OPTIONS);
+        if (numCardOptions < BASE_NUM_CARD_OPTIONS) {
+            numCardOptions = BASE_NUM_CARD_OPTIONS;
+        }
+        imageEventText.setDialogOption(OPTIONS[11] + FontHelper.colorString(OPTIONS[12] + numCardOptions + OPTIONS[13], "g"));
+        imageEventText.setDialogOption(OPTIONS[14]);
+        boolean isAngela = AbstractDungeon.eventRng.randomBoolean((float) 1 / 24);
+        if (CardCrawlGame.dungeon instanceof AbstractRuinaDungeon && !isAngela) {
+            dialogueN = getDialogueSwitchPerFloor(((AbstractRuinaDungeon) CardCrawlGame.dungeon).floor, isAngela);
         } else {
-            System.out.println("hey");
             dialogueN = getDialogueSwitchPerFloor(null, true);
         }
-    }
-    public PatronLibrarian() {
-        super(NAME, DESCRIPTIONS[dialogueN], IMG);
-        imageEventText.setDialogOption(OPTIONS[11]);
-        imageEventText.setDialogOption(OPTIONS[12]);
         title = OPTIONS[dialogueN];
+        this.body = DESCRIPTIONS[dialogueN];
+        imageEventText.updateBodyText(DESCRIPTIONS[dialogueN]);
     }
 
     @Override
@@ -59,11 +63,11 @@ public class PatronLibrarian extends AbstractImageEvent {
                     case 0:
                         this.imageEventText.clearAllDialogs();
                         imageEventText.updateBodyText(DESCRIPTIONS[11]);
-                        imageEventText.setDialogOption(OPTIONS[12]);
+                        imageEventText.setDialogOption(OPTIONS[14]);
                         screen = CurScreen.LEAVE;
                         this.pickCard = true;
                         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-                        for (int i = 0; i < 20; i++) {
+                        for (int i = 0; i < numCardOptions; i++) {
                             AbstractCard card = AbstractDungeon.getCard(AbstractDungeon.rollRarity()).makeCopy();
                             card.upgrade();
                             boolean containsDupe = true;
@@ -89,12 +93,12 @@ public class PatronLibrarian extends AbstractImageEvent {
                         for (AbstractCard c : group.group) {
                             UnlockTracker.markCardAsSeen(c.cardID);
                         }
-                        AbstractDungeon.gridSelectScreen.open(group, 1, OPTIONS[4], false);
+                        AbstractDungeon.gridSelectScreen.open(group, 1, OPTIONS[15], false);
                         break;
                     case 1:
                         this.imageEventText.clearAllDialogs();
                         imageEventText.updateBodyText(DESCRIPTIONS[12]);
-                        imageEventText.setDialogOption(OPTIONS[12]);
+                        imageEventText.setDialogOption(OPTIONS[14]);
                         screen = CurScreen.LEAVE;
                         break;
                 }
@@ -105,9 +109,9 @@ public class PatronLibrarian extends AbstractImageEvent {
         }
     }
 
-    public static int getDialogueSwitchPerFloor(AbstractRuinaDungeon.Floor floor, boolean isAngela) {
-        System.out.println(floor);
+    public int getDialogueSwitchPerFloor(AbstractRuinaDungeon.Floor floor, boolean isAngela) {
         if (isAngela) {
+            this.imageEventText.loadImage(makeEventPath("Angela.png"));
             return 10;
         }
         switch (floor) {
@@ -120,18 +124,24 @@ public class PatronLibrarian extends AbstractImageEvent {
             case NETZACH:
                 return 3;
             case TIPHERETH:
+                this.imageEventText.loadImage(makeEventPath("PatronTiphereth.png"));
                 return 4;
             case GEBURA:
+                this.imageEventText.loadImage(makeEventPath("PatronGebura.png"));
                 return 5;
             case CHESED:
+                this.imageEventText.loadImage(makeEventPath("PatronChesed.png"));
                 return 6;
             case BINAH:
+                this.imageEventText.loadImage(makeEventPath("PatronBinah.png"));
                 return 7;
             case HOKMA:
+                this.imageEventText.loadImage(makeEventPath("PatronHokma.png"));
                 return 8;
             case ROLAND:
                 return 9;
             default:
+                this.imageEventText.loadImage(makeEventPath("Angela.png"));
                 return 10;
         }
     }

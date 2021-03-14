@@ -19,7 +19,6 @@ public class CHRBOSS_UpstandingSlash extends AbstractRuinaCard {
         damage = baseDamage = parent.upstanding_damage;
         magicNumber = baseMagicNumber = parent.UPSTANDING_SLASH_DEBUFF;
         secondMagicNumber = baseSecondMagicNumber = parent.upstanding_threshold;
-        setBackground(ColorRarity.GREEN);
     }
 
     @Override

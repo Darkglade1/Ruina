@@ -19,14 +19,12 @@ public class CHRBOSS_GiantFist extends AbstractRuinaCard {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.fistDMG;
         magicNumber = baseMagicNumber = parent.fistPara;
-        setBackground(ColorRarity.PURPLE);
     }
 
     public CHRBOSS_GiantFist(yanHand parent) {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.fistDMG;
         magicNumber = baseMagicNumber = parent.fistPara;
-        setBackground(ColorRarity.PURPLE);
     }
 
 

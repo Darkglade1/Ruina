@@ -468,6 +468,7 @@ public class RuinaMod implements
         BaseMod.addEvent(ChildrenOfTheCity.ID, ChildrenOfTheCity.class, Briah.ID);
         BaseMod.addEvent(NothingThere.ID, NothingThere.class, Briah.ID);
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
+        BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Briah.ID);
 
 
         // Act 3
@@ -525,7 +526,6 @@ public class RuinaMod implements
         BaseMod.addEvent(CryingChildren.ID, CryingChildren.class, Atziluth.ID);
         BaseMod.addEvent(DistortedYan.ID, DistortedYan.class, Atziluth.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
-
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)
