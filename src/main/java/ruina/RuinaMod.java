@@ -527,7 +527,6 @@ public class RuinaMod implements
         BaseMod.addEvent(DistortedYan.ID, DistortedYan.class, Atziluth.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
         BaseMod.addEvent(YesterdayPromise.ID, YesterdayPromise.class, Atziluth.ID);
-
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)

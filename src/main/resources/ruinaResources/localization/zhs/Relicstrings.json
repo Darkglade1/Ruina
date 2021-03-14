@@ -29,5 +29,33 @@
     "DESCRIPTIONS": [
       "每场战斗打出的第一张 #y攻击牌 造成双倍伤害."
     ]
+  },
+  "${ModID}:Strongest": {
+    "NAME": "Strongest",
+    "FLAVOR": "The courage to protect others. That is what separates the mighty from the meek.",
+    "DESCRIPTIONS": [
+      "When you deal #b", " unblocked attack damage in a single turn, gain #b", " #yStrength. Can only trigger once per turn."
+    ]
+  },
+  "${ModID}:FourTrigrams": {
+    "NAME": "Four Trigrams",
+    "FLAVOR": "The balance of the City must be upheld.",
+    "DESCRIPTIONS": [
+      "At the start of your turn, randomly activate an effect that hasn't been activated this combat: NL Gain #b", " #yStrength. NL Gain #b", " #yDexterity. NL Gain [E] . NL Draw #b", " card."
+    ]
+  },
+  "${ModID}:LowellsGift": {
+    "NAME": "Lowell's Gift",
+    "FLAVOR": "For you I'd steal the stars.",
+    "DESCRIPTIONS": [
+      "At the start of your #b3rd turn, gain #b", " #yStrength and #b", " #yDexterity."
+    ]
+  },
+  "${ModID}:YesterdayPromiseRelic": {
+    "NAME": "Yesterday's Promise",
+    "FLAVOR": "Let me lend you my eyeglass, so you can have a closer look at what you just signed.",
+    "DESCRIPTIONS": [
+      "When you have insufficient [E] to play a card, you may instead pay #b3 HP for every missing [E] ."
+    ]
   }
 }

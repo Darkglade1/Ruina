@@ -5,5 +5,19 @@
       "流血"
     ],
     "DESCRIPTION": "这个回合,每当这个生物攻击, 其受到等同于其 #y流血 层数的伤害."
+  },
+  {
+    "PROPER_NAME": "Manifest",
+    "NAMES": [
+      "manifest"
+    ],
+    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead #yExhaust #b1 card for every missing [E] ."
+  },
+  {
+    "PROPER_NAME": "Contract",
+    "NAMES": [
+      "contract"
+    ],
+    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead pay #b3 HP for every missing [E] ."
   }
 ]

@@ -68,5 +68,117 @@
   "ruina:CrimsonScar": {
     "NAME": "Crimson Scar",
     "DESCRIPTION": "获得 !B! 点格挡. NL 预见 !M!. NL每丢弃一张卡，获得 !ruina:SecondMagic! 点活力."
+  },
+  "${ModID}:ParadiseLost": {
+    "NAME": "Paradise Lost",
+    "DESCRIPTION": "At the start of your turn, Exhaust up to !M! card. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, Exhaust up to !M! cards. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP."
+  },
+  "${ModID}:DeadSilence": {
+    "NAME": "Dead Silence",
+    "DESCRIPTION": "Deal !D! damage. NL Take an extra turn after this one. NL If this card killed an enemy, gain [E] [E] next turn."
+  },
+  "${ModID}:Heaven": {
+    "NAME": "Heaven",
+    "DESCRIPTION": "Gain !B! Block X times. NL Whenever you are attacked this turn, deal damage back equal to your remaining Block."
+  },
+  "${ModID}:Penitence": {
+    "NAME": "Penitence",
+    "DESCRIPTION": "Heal !M! HP. NL Remove all of your debuffs."
+  },
+  "${ModID}:SoundOfAStar": {
+    "NAME": "Sound of a Star",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL This card's damage is increased by the amount of Block you've gained this combat. NL Exhaustive !stslib:ex!."
+  },
+  "${ModID}:Twilight": {
+    "NAME": "Twilight",
+    "DESCRIPTION": "Deal !D! damage and apply Weak equal to the [E] paid for by ruina:Manifest to ALL enemies."
+  },
+  "${ModID}:Apocalypse": {
+    "NAME": "Apocalypse",
+    "DESCRIPTION": "Deal !D! damage. NL Deals 50% more damage if your HP is at or below 50%. NL Deals 50% more damage to enemies with 50% or less HP."
+  },
+  "${ModID}:Beak": {
+    "NAME": "Beak",
+    "DESCRIPTION": "At the start of your turn, reduce the cost of the highest cost card in your hand to 0 and give it Exhaust."
+  },
+  "${ModID}:Lamp": {
+    "NAME": "Lamp",
+    "DESCRIPTION": "Enemy loses !M! Strength this turn. NL Whenever you are attacked this turn, deal !ruina:SecondMagic! damage back."
+  },
+  "${ModID}:Justitia": {
+    "NAME": "Justitia",
+    "DESCRIPTION": "If the enemy's HP is at or below 30%, kill it. NL Enemy loses !M! HP.",
+    "EXTENDED_DESCRIPTION": ["If the enemy's HP is at or below ", ", kill it. NL Enemy loses !M! HP."]
+  },
+  "${ModID}:Dazzled": {
+    "NAME": "Dazzled",
+    "DESCRIPTION": "When Retained, increase its cost by !M! this combat. If its cost is !ruina:SecondMagic! or more, it becomes Unplayable."
+  },
+  "${ModID}:ForestKeeperLock": {
+    "NAME": "Forest Keeper's Lock",
+    "DESCRIPTION": "Enemy loses !M! Strength this turn."
+  },
+  "${ModID}:StolenTime": {
+    "NAME": "Stolen Time",
+    "DESCRIPTION": "Draw !M! card."
+  },
+  "${ModID}:CHRBOSS_UpstandingSlash": {
+    "NAME": "Upstanding Slash",
+    "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! damage was dealt, apply !M! Frail."
+  },
+  "${ModID}:CHRBOSS_LevelSlash": {
+    "NAME": "Level Slash",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If at least !ruina:SecondMagic! damage was dealt, gains an extra intent for the next turn."
+  },
+  "${ModID}:CHRBOSS_Spear": {
+    "NAME": "Spear",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:CHRBOSS_GreaterSplitHorizontal": {
+    "NAME": "Greater Split: Horizontal",
+    "DESCRIPTION": "Deal !D! damage. NL If any damage was dealt, apply !M! ruina:Bleed."
+  },
+  "${ModID}:CHRBOSS_GreaterSplitVertical": {
+    "NAME": "Greater Split: Vertical",
+    "DESCRIPTION": "Deal !D! damage. NL If any damage was dealt, apply !M! ruina:Bleed."
+  },
+  "${ModID}:CHRBOSS_FocusSpirit": {
+    "NAME": "Focus Spirit",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Temporary Strength next turn."
+  },
+  "${ModID}:CHRBOSS_GiantFist": {
+    "NAME": "Giant Fist",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
+  },
+  "${ModID}:CHRBOSS_Compress": {
+    "NAME": "Compress",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:CHRBOSS_FlurryOfFists": {
+    "NAME": "Flurry Of Fists",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength.",
+    "EXTENDED_DESCRIPTION": ["Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength next turn."]
+  },
+  "${ModID}:CHRBOSS_BalefulBrand": {
+    "NAME": "Baleful Brand",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion.",
+    "EXTENDED_DESCRIPTION": ["Deal !D! damage. NL Apply !M! *Erosion next turn."]
+  },
+  "${ModID}:CHRBOSS_Lock": {
+    "NAME": "Lock",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Draw *Reduction."
+  },
+  "${ModID}:CHRBOSS_yanAttack": {
+    "NAME": "Sword Of Volition",
+    "DESCRIPTION": "A *Hand gains !M! Strength."
+  },
+  "${ModID}:CHRBOSS_yanProtect": {
+    "NAME": "Protect",
+    "DESCRIPTION": "A *Hand gains !M! *Protection"
+  },
+  "${ModID}:CHRBOSS_DistortedBlade": {
+    "NAME": "Distorted Blade",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion."
   }
 }

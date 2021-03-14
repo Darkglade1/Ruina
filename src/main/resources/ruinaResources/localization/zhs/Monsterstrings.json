@@ -259,5 +259,309 @@
     "NAME": "Hermit's Staff",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Seraphim": {
+    "MOVES": [
+      "",
+      "Advent",
+      "Wings Of Grace",
+      "Summon Apostles",
+      "Baptism",
+      "Rise And Serve",
+      "Salvation",
+      "Prayer",
+      "Do Not Deny Me",
+      "Be Not Afraid",
+      "Behold My Power",
+      "Revelation"
+    ],
+    "NAME": "Seraphim of a Long Lost Paradise",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:ParadiseLost": {
+    "MOVES": [
+      "Baptism"
+    ],
+    "NAME": "Prophet",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:ScytheApostle": {
+    "MOVES": [
+      "I will Follow Thee",
+      "Thy Will be Done",
+      "I Shall Preserve Thee",
+      "Teach Us"
+    ],
+    "NAME": "Scythe Apostle",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:SpearApostle": {
+    "MOVES": [
+      "For He is Holy",
+      "The Will of the Lord be Done",
+      "I shall Devote unto Thee",
+      "Let Thy Light Lead Me"
+    ],
+    "NAME": "Spear Apostle",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:StaffApostle": {
+    "MOVES": [
+      "Thy Words Come unto Me",
+      "Give Us Rest"
+    ],
+    "NAME": "Staff Apostle",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:GuardianApostle": {
+    "MOVES": [
+      "Rise And Serve",
+      "Wilt thou that We Command Fire?",
+      "Thou art the King",
+      "Give Us Rest",
+      "Thy Words Come unto Me",
+      "Lord, Shew Us",
+      ""
+    ],
+    "NAME": "Guardian Apostle",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Twilight": {
+    "MOVES": [
+      "Peace for All",
+      "Surveillance",
+      "Torn Mouth",
+      "Tilted Scale",
+      "Talons",
+      "Brilliant Eyes"
+    ],
+    "NAME": "Twilight",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:PunishingBird": {
+    "MOVES": [
+      "Peck",
+      "Punishment"
+    ],
+    "NAME": "Punishing Bird",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Keeper": {
+    "MOVES": [
+      "Cuckoo",
+      "Ring",
+      "Smash"
+    ],
+    "NAME": "Keeper Of The Forest",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Sage": {
+    "MOVES": [
+      "Ring",
+      "Smash"
+    ],
+    "NAME": "Sage of the Forest",
+    "DIALOG": [
+      "The guardian has gone mad!",
+      "We must stop him!",
+      "I hope he has come to his senses.",
+      "That was a harrowing ordeal."
+    ]
+  },
+  "${ModID}:BigBird": {
+    "MOVES": [
+      "Shining Light",
+      "Dazzle",
+      "Dazzle",
+      "Illuminate",
+      "Illuminate"
+    ],
+    "NAME": "Big Bird",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Worshipper": {
+    "MOVES": [
+      "For the Star",
+      "Everlasting Faith",
+      "Hear the Sound of the Star!",
+      "We'll Meet Soon as Stars!"
+    ],
+    "NAME": "Worshipper",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:BlueStar": {
+    "MOVES": [
+      "Rising Star",
+      "Starry Sky",
+      "Sound of a Star",
+      "Worshippers"
+    ],
+    "NAME": "Shrine to the Blue Star",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:BurrowingHeaven": {
+    "MOVES": [
+      "Your Own Heaven",
+      "Bloody Wings",
+      "Gaze of Others"
+    ],
+    "NAME": "Burrowing Heaven",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:RemnantOfTime": {
+    "MOVES": [
+      "Backlash of Time",
+      "Torrent of Hours"
+    ],
+    "NAME": "Remnant of Time",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:PriceOfSilence": {
+    "MOVES": [
+      "Stolen Time",
+      "Silent Hour"
+    ],
+    "NAME": "Price of Silence",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Bloodbath": {
+    "MOVES": [
+      "Pale Hands",
+      "Depression"
+    ],
+    "NAME": "Bloodbath",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:SnowQueen": {
+    "MOVES": [
+      "Blizzard",
+      "Frigid Gaze",
+      "Ice Splinters",
+      "Frozen Throne"
+    ],
+    "NAME": "Snow Queen",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:PrisonOfIce": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Prison of Ice",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:HeartOfAspiration": {
+    "MOVES": [
+      "Pulsation",
+      "Beats of Aspiration"
+    ],
+    "NAME": "Heart of Aspiration",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:LungsOfCraving": {
+    "MOVES": [
+      "Fervent Beats",
+      "Retracting Beats"
+    ],
+    "NAME": "Lungs of Craving",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:RunawayBird": {
+    "MOVES": [
+      "Sweep",
+      "Shriek"
+    ],
+    "NAME": "Runaway Bird",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:EyeballChick": {
+    "MOVES": [
+      "Stare",
+      "Pierce"
+    ],
+    "NAME": "Eyeball Chick",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:RedMist": {
+    "MOVES": [
+      "Focus Spirit",
+      "Upstanding Slash",
+      "Level Slash",
+      "Spear",
+      "Greater Split: Vertical",
+      "Greater Split: Horizontal"
+    ],
+    "NAME": "The Red Mist",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:JudgementBird": {
+    "MOVES": [
+      "Stare",
+      "Judgement",
+      "Heavy Guilt",
+      "Ceaseless Duty"
+    ],
+    "NAME": "Judgement Bird",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Pinocchio": {
+    "MOVES": [
+      "Learn"
+    ],
+    "NAME": "Pinocchio",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:yanHand": {
+    "MOVES": [
+      "Giant Fist",
+      "Compress",
+      "Flurry Of Fists",
+      "Baleful Brand",
+      "Lock"
+    ],
+    "NAME": "Distorted Hand",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:yanDistortion": {
+    "MOVES": [
+      "Protect",
+      "Protect",
+      "Attack",
+      "Attack",
+      "Giant Fist",
+      "Compress",
+      "Flurry Of Fists",
+      "Baleful Brand",
+      "Lock",
+      "Distorted Blade"
+    ],
+    "NAME": "Distorted Yan",
+    "DIALOG": [
+    ]
   }
 }
