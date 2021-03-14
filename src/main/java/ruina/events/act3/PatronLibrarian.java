@@ -111,7 +111,7 @@ public class PatronLibrarian extends AbstractImageEvent {
             return 10;
         }
         switch (floor) {
-            case MAKUTH:
+            case MALKUTH:
                 return 0;
             case YESOD:
                 return 1;
