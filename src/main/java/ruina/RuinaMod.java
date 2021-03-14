@@ -533,12 +533,9 @@ public class RuinaMod implements
     {
         String ret = "localization/";
         switch (language) {
-//            case ZHS:
-//                ret += "zhs/";
-//                break;
-//            case JPN:
-//                ret += "jpn/";
-//                break;
+            case ZHS:
+                ret += "zhs/";
+                break;
             case RUS:
                 ret += "rus/";
                 break;

@@ -1,0 +1,142 @@
+{
+  "ruina:NextTurnPower": {
+    "NAME": "Next Turn ",
+    "DESCRIPTIONS": ["下个回合, 获得 #b", " ", "."]
+  },
+  "ruina:StrikeWithoutHesitation": {
+    "NAME": "Strike Without Hesitation",
+    "DESCRIPTIONS": ["这个回合该生物造成未被格挡的伤害时, 获得 #b", " #y点力量."]
+  },
+  "ruina:FuryWithNoOutlet": {
+    "NAME": "Fury With No Outlet",
+    "DESCRIPTIONS": ["#y小 #y红帽 开始时是你的#g盟友 。如果她对 #y狼 作出 #r致命 #r一击 ，你获得战斗胜利. 如果 #y狼 因其他任何方式 #r死亡, #y小 #y红帽 会恢复所有生命, 进入 #r发怒 状态, 并成为你的 #r敌人."]
+  },
+  "ruina:BloodstainedClaws": {
+    "NAME": "Bloodstained Claws",
+    "DESCRIPTIONS": ["如果 #y小 #y红帽 #r死亡, 恢复 #b", " 生命值并且两个意图都将针对 #r你."]
+  },
+  "ruina:Bleed": {
+    "NAME": "Bleed",
+    "DESCRIPTIONS": ["这个回合，该生物每次 #y攻击时受到 #b", " 点伤害."]
+  },
+  "ruina:Absorption": {
+    "NAME": "Absorption",
+    "DESCRIPTIONS": ["死亡时回退到 #y阶段 #y", " .", "每轮结束时如果生命值满则成长到 #y阶段 #y", " ."]
+  },
+  "ruina:Bodies": {
+    "NAME": "Mountain of Corpses",
+    "DESCRIPTIONS": ["每轮结束时, 如果没有 #yMelted #yCorpses 存活, 召唤一只 #yMelted #yCorpse. NL 如果该生物的意图目标的 #yMelted #yCorpse 死亡，则你作为代替成为目标."]
+  },
+  "ruina:Corpse": {
+    "NAME": "Corpse",
+    "DESCRIPTIONS": ["如果一名 #r敌人 杀死该生物, 那名 #r敌人 回复 #b", " 生命值."]
+  },
+  "ruina:Search": {
+    "NAME": "Searching for Wisdom",
+    "DESCRIPTIONS": ["当该生物对你造成未被格挡的伤害时， #y消耗 你的抽牌堆顶的卡"]
+  },
+  "ruina:Wisdom": {
+    "NAME": "Wisdom",
+    "DESCRIPTIONS": ["这场战斗你观看抽牌堆时，卡牌将按顺序排列"]
+  },
+  "ruina:Heart": {
+    "NAME": "Warm Heart",
+    "DESCRIPTIONS": ["在你每回合开始时, 获得", " . 每轮结束时，每有未使用的 [E] , 该生物获得 #b", " #y力量 ."]
+  },
+  "ruina:Justice": {
+    "NAME": "In the Name of Justice!",
+    "DESCRIPTIONS": ["该生物对没有 #y格挡 的敌人造成三倍伤害."]
+  },
+  "ruina:PointlessHate": {
+    "NAME": "Pointless Hate",
+    "DESCRIPTIONS": ["在它的回合结束时获得 #b", " #y格挡."]
+  },
+  "ruina:Erosion": {
+    "NAME": "Erosion",
+    "DESCRIPTIONS": ["受到 #b", " 点更多的 #y攻击 伤害. 每轮结束时减少 #b", " 层."]
+  },
+  "ruina:SenselessWrath": {
+    "NAME": "Senseless Wrath",
+    "DESCRIPTIONS": ["该生物受到的所有其他的 #y减益效果 都会被 #y抵消."]
+  },
+  "ruina:MagicalGirl": {
+    "NAME": "A Real Magical Girl!",
+    "DESCRIPTIONS": ["死亡时, 将 ", " 召唤到你一方."]
+  },
+  "ruina:Paralysis": {
+    "NAME": "Paralysis",
+    "DESCRIPTIONS": ["这个回合, 你下一次 #y攻击 造成的伤害减少 #b", "% ."]
+  },
+  "ruina:Despair": {
+    "NAME": "Despair",
+    "DESCRIPTIONS": ["爪牙死亡时, 失去 #b", " 生命值."]
+  },
+  "ruina:Worthless": {
+    "NAME": "Worthless",
+    "DESCRIPTIONS": ["如果该生物的攻击未能造成未被格挡的伤害, 该生物 #r死亡."]
+  },
+  "ruina:Road": {
+    "NAME": "Road of the King",
+    "DESCRIPTIONS": ["将会在 #b", " 回合后发动 #r强力 攻击", " 攻击.", "这回合将发动 #r强力 攻击!"]
+  },
+  "ruina:Bliss": {
+    "NAME": "Moment of Bliss",
+    "DESCRIPTIONS": ["死亡时, 将一张 ", " 加入你的手牌且拥有 #y虚无 和 #y消耗 ."]
+  },
+  "ruina:Hunter": {
+    "NAME": "Hunter in the Dark",
+    "DESCRIPTIONS": [" 该生物的生命值首次低于 #b", "%  , 在该轮结束时获得 #b", " #y力量 并 #y无法被选中 和 #y免疫 伤害 #b", " 回合.", " 回合."]
+  },
+  "ruina:Skulk": {
+    "NAME": "Skulk",
+    "DESCRIPTIONS": ["#y无法被选中 和 #y免疫 伤害 #b", " 回合.", " 回合."]
+  },
+  "ruina:Courage": {
+    "NAME": "Courage",
+    "DESCRIPTIONS": ["当 ", " 被攻击, 该生物这回合获得 #b", " #y力量."]
+  },
+  "ruina:Hysteria": {
+    "NAME": "Hysteria",
+    "DESCRIPTIONS": ["当你在同一回合打出 #b", " 张 #y攻击牌 , 你受到 #b", " 层 #y虚弱. NL 当你在同一回合打出 #b", " 张 #y技能牌 , 你受到 #b", " 层 #y脆弱."]
+  },
+  "ruina:Oblivion": {
+    "NAME": "Oblivion",
+    "DESCRIPTIONS": ["每回合少抽 #b", " 张牌", " 张牌", " ."]
+  },
+  "ruina:Steal": {
+    "NAME": "Steal or Be Stolen",
+    "DESCRIPTIONS": ["该生物攻击时会 #y偷走 抽牌堆顶的牌. NL 该生物每次失去生命值，将最早的 #y偷走的牌 放入你的手牌.该生物攻击时会 #y偷走 抽牌堆顶的牌. NL 该生物每次失去生命值，将最早 #y偷走的牌 放入你的手牌."]
+  },
+  "ruina:Agony": {
+    "NAME": "Agony of the Deprived",
+    "DESCRIPTIONS": ["爪牙失去生命值时，该生物失去等量的生命值"]
+  },
+  "ruina:BlindFury": {
+    "NAME": "Blind Fury",
+    "DESCRIPTIONS": ["该生物再失去 #b", " 生命值后, 将在下个回合发动攻击包括你的所有人的 #r强力 攻击.该生物再失去 #b", " 生命值后, 将在下个回合发动攻击包括你的其他所有人的 #r强力 攻击."]
+  },
+  "ruina:SwordCounter": {
+    "NAME": "Tears",
+    "DESCRIPTIONS": ["  已对该敌人打出 #b", " 次.", " 次."]
+  },
+  "ruina:HomingInstinct": {
+    "NAME": "Homing Instinct",
+    "DESCRIPTIONS": ["在你的回合开始时获得 ", "."]
+  },
+  "ruina:Home": {
+    "NAME": "Fickle Home",
+    "DESCRIPTIONS": ["以 #b", "% #y减少 造成和受到的攻击伤害.", "% #y增加 造成和受到的攻击伤害."," 每当你打出 #b", " 张牌, #y切换 这个状态的效果."]
+  },
+  "ruina:CobaltScarPower": {
+    "NAME": "Cobalt Scar",
+    "DESCRIPTIONS": ["每当你打出 #b", " 攻击牌, 对所有敌人造成 #b", " 点伤害."]
+  },
+  "ruina:Thirst": {
+    "NAME": "Thirst",
+    "DESCRIPTIONS": ["这回合每当你攻击带有 #y流血 状态的敌人, 获得 #b" , " #y力量."]
+  },
+  "ruina:GoodbyePower": {
+    "NAME": "Goodbye",
+    "DESCRIPTIONS": ["你打出的下一张 #y攻击牌 造成双倍伤害"]
+  }
+}

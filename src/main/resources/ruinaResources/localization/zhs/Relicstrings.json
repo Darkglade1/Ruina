@@ -1,0 +1,33 @@
+{
+  "ruina:FalsePresent": {
+    "NAME": "False Present",
+    "FLAVOR": "Poor Ozma. She didn't know that lying adults don't approach others without reason.",
+    "DESCRIPTIONS": [
+      "拾起时, 失去 #b", " 点最大生命值. 每场战斗你抽到的第 #b", " 张卡耗能为0直到被打出."
+    ]
+  },
+  "ruina:Prescript": {
+    "NAME": "Prescript",
+    "FLAVOR": "A set of bizarre instructions. Who in their right mind would come up with these?",
+    "DESCRIPTIONS": [
+       "#y处方: NL 1. 遭遇 #b", " 普通", " #r精英", " 敌人. ", " 敌人. ", " #p事件. ", " #p事件. ", "/",
+      " NL 2. 获得 #b", " 普通", " #b罕见", " #y稀有", " 牌. ", " 牌. ",
+      " NL 完成后，变为一件特殊遗物."
+    ]
+  },
+  "ruina:PrescriptsGrace": {
+    "NAME": "Prescript's Grace",
+    "FLAVOR": "It all made sense now. All those pointless endeavours converged onto a single, definite meaning.",
+    "DESCRIPTIONS": [
+      "战斗开始时, 随机从 #y攻击牌, #y技能牌, 和 #y能力牌 中选择. 第一次打出选择的种类的牌时会打出两次. ",
+      "（遗物名） 选择的种类: ", "攻击牌.", "技能牌.", "能力牌."
+    ]
+  },
+  "ruina:Goodbye": {
+    "NAME": "Goodbye",
+    "FLAVOR": "It tries to mimic humans. Looking into a mirror, mumbling to itself, trying to fix its skeletal structure . . . it's as if it was trying to become human.",
+    "DESCRIPTIONS": [
+      "每场战斗打出的第一张 #y攻击牌 造成双倍伤害."
+    ]
+  }
+}
