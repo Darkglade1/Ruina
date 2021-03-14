@@ -60,13 +60,7 @@ import ruina.events.act2.SocialSciences;
 import ruina.events.act2.ThePianist;
 import ruina.events.act2.WizardOfOz;
 import ruina.events.act2.ZweiAssociation;
-import ruina.events.act3.CryingChildren;
-import ruina.events.act3.DistortedYan;
-import ruina.events.act3.ForThoseWeCherish;
-import ruina.events.act3.HanaAssociation;
-import ruina.events.act3.Philosophy;
-import ruina.events.act3.RedMistRecollection;
-import ruina.events.act3.TheThumb;
+import ruina.events.act3.*;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Hermit;
 import ruina.monsters.act2.Jester.JesterOfNihil;
@@ -530,6 +524,8 @@ public class RuinaMod implements
         BaseMod.addEvent(TheThumb.ID, TheThumb.class, Atziluth.ID);
         BaseMod.addEvent(CryingChildren.ID, CryingChildren.class, Atziluth.ID);
         BaseMod.addEvent(DistortedYan.ID, DistortedYan.class, Atziluth.ID);
+        BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
+
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)

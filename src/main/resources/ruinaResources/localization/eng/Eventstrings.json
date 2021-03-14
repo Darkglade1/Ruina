@@ -334,5 +334,38 @@
       " Obtain an upgraded EGO card.",
       "[Wake Up]"
     ]
+  },
+  "${ModID}:PatronLibrarian": {
+    "NAME": "a",
+    "DESCRIPTIONS": [
+      "\"Hello there. I'm Malkuth, the Patron Librarian in charge of the Floor of History. Since I'm in charge of this floor, I sort through all the books that are related to History! Is there anything I can help you with?\"",
+      "\"I am Yesod, the Patron Librarian of the Floor of Technological Sciences. My role is to collect and sort books about the technological sciences of the City. Please kindly take your leave after you decide what to do.\"",
+      "\"Hello. I'm Hod, in charge of the Floor of Literature. A person's life is written out like a book of its own; a story with many different paths, and decisions to make. I wonder what your story would be like?\" NL NL \"I'm sorry. I got carried away in my own thoughts. Is there anything I can help you with?\"",
+      "\"Woken up to do the work I don't want to do again... NL I feel like a sand castle, being swept away by the waves... NL If I do what you wish of me, can I ~please~ go back to sleep?\"",
+      "\"I'm Tiphereth, in charge of the Floor of Natural Sciences. I read and manage all the books sent here, however complete or unstable the books actually are. I don't pretend to understand things I don't get, as understanding a book completely is a repetitive process, you know? But there's so many books, and so much information, so I don't mind taking a break to help while my brain tries to comprehend it all.\"",
+      "\"It's Gebura. The Patron Librarian of the Floor of Language. If you're here for books, I'll figure out what you need. I can get a rough estimate of what people want just from their looks, after all.\"",
+      "\"Heya. I'm Chesed, the Patron Librarian of the Floor of Social Sciences. Why don't you take a comfy seat and drink some coffee, and we can find out what you need. It's been a while since I could give hospitality to a traveler, so please, take respite and relax for a bit.\"",
+      "\"Greetings. I am Binah, the Patron Librarian of the Floor of Philosophy. I have been told that this place feels overbearing unlike the other floors. I wonder how you would describe the Library from what you've seen so far? But I must calm my mind with the help of tea, so please come again at a later time. I will at least, help you with anything you're looking for at this time.",
+      "\"So you've come. I wonder, do you have the utmost faith that what you're looking for is in this place? I can at least testament in the truth that it does exist here. My apologies. I am Hokma, the Patron Librarian of the Floor of Religion. Please, take your time.\"",
+      "\"I am Roland, Angela's helper. My Floor is not specialized, as I am primarily responsible for bringing books to other floors. Though, there might be something in this place that may benefit you.\"",
+      "\"Greetings, dear guest. I am Angela, the librarian of my role's namesake. You may find what you desire here, but you'll have to search yourself for the knowledge you require.\" NL NL \"May you find your book in this place.\"",
+      "You say your goodbyes as you leave, with a collection of books in your hands. NL They're oddly ~heavy~, but you don't mind, for the books provide you with all the wisdom, wealth, honor, and power you seek.",
+      "You say your goodbyes as you leave, merely observing, as you think that what you already have is adequate for the journey ahead."
+    ],
+    "OPTIONS": [
+      "Patron Librarian of History",
+      "Patron Librarian of Technological Sciences",
+      "Patron Librarian of Literature",
+      "Patron Librarian of Art",
+      "Patron Librarian of Natural Sciences",
+      "Patron Librarian of Language",
+      "Patron Librarian of Social Sciences",
+      "Patron Librarian of Philosophy",
+      "Patron Librarian of Religion",
+      "Patron Librarian of General Works",
+      "Director Of The Library",
+      "[Inquire] Choose 1 of 20 Upgraded cards to add to your deck.",
+      "[Leave]"
+    ]
   }
 }
