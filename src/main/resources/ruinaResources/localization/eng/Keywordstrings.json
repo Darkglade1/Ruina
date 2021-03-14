@@ -12,5 +12,13 @@
       "manifest"
     ],
     "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead #yExhaust #b1 card for every missing [E] ."
+  },
+  {
+    "PROPER_NAME": "Contract",
+    "NAMES": [
+      "Contract",
+      "Contract"
+    ],
+    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead pay #b1 HP for every missing [E] ."
   }
 ]
