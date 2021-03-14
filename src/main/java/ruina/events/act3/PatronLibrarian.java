@@ -38,8 +38,11 @@ public class PatronLibrarian extends AbstractImageEvent {
     public static int dialogueN;
 
     static {
-        if (CardCrawlGame.dungeon instanceof AbstractRuinaDungeon) { dialogueN = getDialogueSwitchPerFloor(((AbstractRuinaDungeon) CardCrawlGame.dungeon).floor, (AbstractDungeon.miscRng.random(1, 24) == 1));
-        } else { dialogueN = getDialogueSwitchPerFloor(null, true); }
+        if (CardCrawlGame.dungeon instanceof AbstractRuinaDungeon) { dialogueN = getDialogueSwitchPerFloor(((AbstractRuinaDungeon) CardCrawlGame.dungeon).floor, false);
+        } else {
+            System.out.println("hey");
+            dialogueN = getDialogueSwitchPerFloor(null, true);
+        }
     }
     public PatronLibrarian() {
         super(NAME, DESCRIPTIONS[dialogueN], IMG);
@@ -103,6 +106,7 @@ public class PatronLibrarian extends AbstractImageEvent {
     }
 
     public static int getDialogueSwitchPerFloor(AbstractRuinaDungeon.Floor floor, boolean isAngela) {
+        System.out.println(floor);
         if (isAngela) {
             return 10;
         }
