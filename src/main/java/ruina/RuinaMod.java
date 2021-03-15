@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.events.beyond.Falling;
 import com.megacrit.cardcrawl.events.beyond.MindBloom;
 import com.megacrit.cardcrawl.events.beyond.MysteriousSphere;
@@ -50,6 +51,7 @@ import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.Atziluth;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
+import ruina.dungeons.UninvitedGuests;
 import ruina.events.act2.ChildrenOfTheCity;
 import ruina.events.act2.ChurchOfGears;
 import ruina.events.act2.Language;
@@ -410,6 +412,9 @@ public class RuinaMod implements
         Atziluth atziluth = new Atziluth();
         atziluth.addAct(TheBeyond.ID);
 
+        UninvitedGuests uninvitedGuests = new UninvitedGuests();
+        uninvitedGuests.addAct(TheEnding.ID);
+
         CustomIntent.add(new MassAttackIntent());
 
         //Act 2
@@ -527,6 +532,10 @@ public class RuinaMod implements
         BaseMod.addEvent(DistortedYan.ID, DistortedYan.class, Atziluth.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
         BaseMod.addEvent(YesterdayPromise.ID, YesterdayPromise.class, Atziluth.ID);
+
+        uninvitedGuests.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
+        uninvitedGuests.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
+
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)
