@@ -87,15 +87,15 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         ArrayList<MonsterRoomCreator> row9 = new ArrayList();
 
         // TODO: add encounters, add unique mapart.
-        row1.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", CorruptHeart.ID));
-        row2.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", CorruptHeart.ID));
-        row3.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", CorruptHeart.ID));
-        row4.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", CorruptHeart.ID));
-        row5.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", CorruptHeart.ID));
-        row6.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", CorruptHeart.ID));
-        row7.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", CorruptHeart.ID));
-        row8.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", CorruptHeart.ID));
-        row9.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", CorruptHeart.ID));
+        row1.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
+        row2.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
+        row3.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
+        row4.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
+        row5.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
+        row6.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
+        row7.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
+        row8.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
+        row9.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
 
         map = new ArrayList();
 
@@ -109,7 +109,7 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         map.add(populate(row5, index++));
         map.add(populate(row6, index++));
         map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(tripleNodeArea(new TreasureRoom(), new ShopRoom(), new RestRoom(), index++));
+        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
         map.add(populate(row7, index++));
         map.add(populate(row8, index++));
         map.add(populate(row9, index++));
@@ -130,11 +130,10 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
     }
 
     private ArrayList<MapRoomNode> populate(ArrayList<MonsterRoomCreator> possibilities, int index) {
-        System.out.println("populate");
         ArrayList<MapRoomNode> result = new ArrayList<>();
-        for (int i = 0; i < possibilities.size(); i++) {
+        for (int i = 0; i < 7; i++) {
             MapRoomNode mrn = new MapRoomNode(i, index);
-            if (i % 2 == 1) {
+            if (i == 3) {
                 int rnd = AbstractDungeon.mapRng.random(possibilities.size() - 1);
                 mrn.room = possibilities.get(rnd).get();
                 possibilities.remove(rnd);
