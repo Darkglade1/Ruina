@@ -1,4 +1,4 @@
-package ruina.monsters.eventboss;
+package ruina.monsters;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
@@ -49,7 +49,7 @@ public abstract class AbstractAllyDeckMonster extends AbstractAllyMonster {
     protected CardGroup draw = new CardGroup(CardGroup.CardGroupType.HAND);
     protected CardGroup discard = new CardGroup(CardGroup.CardGroupType.HAND);
     protected CardGroup purge = new CardGroup(CardGroup.CardGroupType.HAND);
-    
+
     public AbstractAllyDeckMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
         this.type = EnemyType.NORMAL;
