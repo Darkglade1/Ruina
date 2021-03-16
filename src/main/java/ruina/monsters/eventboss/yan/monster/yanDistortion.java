@@ -408,11 +408,6 @@ public class yanDistortion extends AbstractDeckMonster
         }
     }
 
-    @Override
-    protected void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
-
-    }
-
     protected void createMoveFromCard(AbstractCard c) {
         if (c.cardID.equals(CHRBOSS_yanProtect.ID)) { setMoveShortcut(PROTECTL, MOVES[0], c);
         } else if (c.cardID.equals(CHRBOSS_yanAttack.ID)) { setMoveShortcut(ATTACKL, MOVES[3], c);

@@ -165,7 +165,7 @@ public class Pinocchio extends AbstractDeckMonster
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         if (!this.firstMove) {
-            createMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove));
+            createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove));
         }
     }
 
@@ -202,8 +202,5 @@ public class Pinocchio extends AbstractDeckMonster
         }
     }
 
-    @Override
-    protected void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
-        setAdditionalMoveShortcut((byte) c.cardID.hashCode(), moveHistory, c);
-    }
+    protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) { setAdditionalMoveShortcut((byte) c.cardID.hashCode(), moveHistory, c); }
 }
