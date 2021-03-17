@@ -1,16 +1,12 @@
 package ruina.powers;
 
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
-import ruina.monsters.eventboss.redMist.monster.RedMist;
 
-import static ruina.util.Wiz.att;
-
-public class RedMistPower extends AbstractEasyPower {
+public class RedMistPower extends AbstractUnremovablePower {
 
     public static final String POWER_ID = RuinaMod.makeID(RedMistPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

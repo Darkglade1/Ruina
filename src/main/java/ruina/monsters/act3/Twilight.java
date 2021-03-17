@@ -7,7 +7,6 @@ import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.brashmonkey.spriter.Animation;
 import com.brashmonkey.spriter.Player;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
@@ -18,7 +17,6 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -213,6 +211,7 @@ public class Twilight extends AbstractRuinaMonster
     }
     
     private void switchEgg(BirdEgg egg) {
+        makePowerRemovable(currentEggPower);
         atb(new RemoveSpecificPowerAction(this, this, currentEggPower));
         AbstractPower eggPower = null;
         switch(egg) {
@@ -387,6 +386,8 @@ public class Twilight extends AbstractRuinaMonster
                 }
                 if (bigEggBroken && smallEggBroken && longEggBroken) {
                     currentEgg = null;
+                    makePowerRemovable(this, currentEggPower.ID);
+                    makePowerRemovable(this, FADING_TWILIGHT_POWER_ID);
                     atb(new RemoveSpecificPowerAction(this, this, currentEggPower));
                     atb(new RemoveSpecificPowerAction(this, this, FADING_TWILIGHT_POWER_ID));
                 } else {

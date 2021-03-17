@@ -11,7 +11,7 @@ import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makePowerPath;
 
-public class PunishingBirdPunishmentPower extends AbstractEasyPower {
+public class PunishingBirdPunishmentPower extends AbstractUnremovablePower {
 
     public static final String POWER_ID = RuinaMod.makeID(PunishingBirdPunishmentPower.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

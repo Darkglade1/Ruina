@@ -228,6 +228,9 @@ public class BadWolf extends AbstractRuinaMonster
 
                 @Override
                 public void atEndOfRound() {
+                    if (amount == 1) {
+                        makePowerRemovable(owner, SKULK_POWER_ID);
+                    }
                     atb(new ReducePowerAction(owner, owner, this, 1));
                 }
 

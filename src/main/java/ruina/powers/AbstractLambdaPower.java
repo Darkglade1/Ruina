@@ -2,7 +2,7 @@ package ruina.powers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 
-public abstract class AbstractLambdaPower extends AbstractEasyPower {
+public abstract class AbstractLambdaPower extends AbstractUnremovablePower {
     public AbstractLambdaPower(String name, String id, PowerType powerType, boolean isTurnBased, AbstractCreature owner, int amount) {
         super(name, id, powerType, isTurnBased, owner, amount);
     }

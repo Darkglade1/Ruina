@@ -155,6 +155,7 @@ public class LittleRed extends AbstractAllyMonster
                         if (justApplied) {
                             justApplied = false;
                         } else {
+                            makePowerRemovable(this);
                             addToBot(new RemoveSpecificPowerAction(owner, owner, this));
                         }
                     }
