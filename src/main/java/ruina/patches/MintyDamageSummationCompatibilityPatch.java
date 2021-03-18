@@ -16,6 +16,7 @@ import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.act2.HermitStaff;
 import ruina.monsters.act2.Mountain;
+import ruina.monsters.act3.bigBird.Sage;
 import ruina.util.AdditionalIntent;
 
 public class MintyDamageSummationCompatibilityPatch {
@@ -53,6 +54,12 @@ public class MintyDamageSummationCompatibilityPatch {
                 }
             }
             if (m instanceof HermitStaff) {
+                dmg[0] -= m.getIntentDmg();
+                c[0]--;
+            }
+
+            //hardcode this ally who isn't halfdead and thus not ignored by default
+            if (m instanceof Sage) {
                 dmg[0] -= m.getIntentDmg();
                 c[0]--;
             }

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -40,6 +41,8 @@ public class PunishingBird extends AbstractRuinaMonster {
     private static final byte PECK = 0;
     private static final byte PUNISHMENT = 1;
 
+    private final int STATUS = calcAscensionSpecial(1);
+
     private boolean playingDeathAnimation = false;
 
     public PunishingBird() {
@@ -51,7 +54,7 @@ public class PunishingBird extends AbstractRuinaMonster {
         this.animation = new BetterSpriterAnimation(makeMonsterPath("PunishingBird/Spriter/SmallBird.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(maxHealth));
-        addMove(PECK, Intent.ATTACK, calcAscensionDamage(2), 3, true);
+        addMove(PECK, Intent.ATTACK_DEBUFF, calcAscensionDamage(2), 3, true);
         addMove(PUNISHMENT, Intent.ATTACK, calcAscensionSpecial(calcAscensionDamage(50)));
     }
 
@@ -70,6 +73,7 @@ public class PunishingBird extends AbstractRuinaMonster {
                     recoilAnimation();
                 }
                 resetIdle(0.0f);
+                intoDrawMo(new Wound(), STATUS, this);
                 break;
             case PUNISHMENT:
                 punishAnimation(adp());

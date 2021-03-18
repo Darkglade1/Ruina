@@ -33,7 +33,7 @@ public class Prescript extends AbstractEasyRelic implements CustomSavable<Intege
     }
 
     private enum CardType {
-        COMMON(4), UNCOMMON(2), RARE(1);
+        COMMON(3), UNCOMMON(2), RARE(1);
 
         private int threshold;
 

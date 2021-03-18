@@ -231,41 +231,17 @@ public class Seraphim extends AbstractMultiIntentMonster {
                 });
                 break;
             case SALVATION:
-                specialAnimation();
-                atb(new HealAction(this, this, salvationBossHeal));
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        for (AbstractMonster m : monsterList()) {
-                            if (m instanceof GuardianApostle && m.halfDead) {
-                                att(new RollMoveAction(m));
-                                att(new HealAction(m, m, m.maxHealth));
-                                m.halfDead = false;
-                            }
-                        }
-                        this.isDone = true;
+                int apostlesToRevive = 0;
+                for (AbstractMonster m : monsterList()) {
+                    if (m instanceof GuardianApostle && m.halfDead) {
+                        apostlesToRevive += 1;
                     }
-                });
-                resetIdle(1.0f);
-                break;
-            case PRAYER:
-                specialAnimation();
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        for (AbstractMonster m : monsterList()) {
-                            if (m instanceof GuardianApostle && m.halfDead) {
-                                att(new RollMoveAction(m));
-                                att(new GainBlockAction(m, prayerBlock));
-                                att(new HealAction(m, m, (int)(m.maxHealth * prayerHeal)));
-                                m.halfDead = false;
-                                break;
-                            }
-                        }
-                        this.isDone = true;
-                    }
-                });
-                resetIdle(1.0f);
+                }
+                if (apostlesToRevive == 1) {
+                    prayer();
+                } else {
+                    salvation();
+                }
                 break;
             case DO_NOT_DENY:
                 shockwaveAnimation(adp());
@@ -290,6 +266,45 @@ public class Seraphim extends AbstractMultiIntentMonster {
                 resetIdle(1.0f);
                 break;
         }
+    }
+
+    private void salvation() {
+        specialAnimation();
+        atb(new HealAction(this, this, salvationBossHeal));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                for (AbstractMonster m : monsterList()) {
+                    if (m instanceof GuardianApostle && m.halfDead) {
+                        att(new RollMoveAction(m));
+                        att(new HealAction(m, m, m.maxHealth));
+                        m.halfDead = false;
+                    }
+                }
+                this.isDone = true;
+            }
+        });
+        resetIdle(1.0f);
+    }
+
+    private void prayer() {
+        specialAnimation();
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                for (AbstractMonster m : monsterList()) {
+                    if (m instanceof GuardianApostle && m.halfDead) {
+                        att(new RollMoveAction(m));
+                        att(new GainBlockAction(m, prayerBlock));
+                        att(new HealAction(m, m, (int)(m.maxHealth * prayerHeal)));
+                        m.halfDead = false;
+                        break;
+                    }
+                }
+                this.isDone = true;
+            }
+        });
+        resetIdle(1.0f);
     }
 
 
@@ -374,8 +389,6 @@ public class Seraphim extends AbstractMultiIntentMonster {
                 if (whichMove == 0) {
                     switch (apostlesToRevive) {
                         case 1:
-                            setAdditionalMoveShortcut(PRAYER, moveHistory);
-                            break;
                         case 2:
                             setAdditionalMoveShortcut(SALVATION, moveHistory);
                             break;

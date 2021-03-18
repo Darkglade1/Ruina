@@ -157,7 +157,7 @@ public class BadWolf extends AbstractRuinaMonster
     public void changePhase(int phase) {
         this.phase = phase;
         if (phase == 2) {
-            playSound("Fog", 3.0f);
+            playSound("Fog", 2.0f);
         }
         runAnim("Idle" + phase);
     }
