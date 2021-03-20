@@ -126,6 +126,11 @@ public class Chesed extends AbstractAllyMonster
                         }
 
                         @Override
+                        public void stackPower(int stackAmount) {
+                            justApplied = true;
+                        }
+
+                        @Override
                         public void atEndOfRound() {
                             if (justApplied) {
                                 justApplied = false;
@@ -167,6 +172,12 @@ public class Chesed extends AbstractAllyMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
+
+        if (firstMove) {
+            atb(new TalkAction(this, DIALOG[0]));
+            firstMove = false;
+        }
+
         DamageInfo info;
         int multiplier = 0;
         if(moves.containsKey(this.nextMove)) {
@@ -232,12 +243,11 @@ public class Chesed extends AbstractAllyMonster
                     addToBot(new AbstractGameAction() {
                         @Override
                         public void update() {
+                            info.applyPowers(Chesed.this, puppeteer);
                             if (puppeteer.hasPower(MARK_POWER_ID)) {
-                                info.applyPowers(Chesed.this, puppeteer);
                                 info.output *= 2;
                             }
                             if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {
-                                info.applyPowers(Chesed.this, puppeteer);
                                 info.output *= 2;
                             }
                             this.isDone = true;
@@ -299,15 +309,17 @@ public class Chesed extends AbstractAllyMonster
     }
 
     public void onBossDeath() {
-        atb(new TalkAction(this, DIALOG[1]));
-        atb(new VFXAction(new WaitEffect(), 1.0F));
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                disappear();
-                this.isDone = true;
-            }
-        });
+        if (!isDead && !isDying) {
+            atb(new TalkAction(this, DIALOG[1]));
+            atb(new VFXAction(new WaitEffect(), 1.0F));
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    disappear();
+                    this.isDone = true;
+                }
+            });
+        }
     }
 
     private void blockAnimation() {

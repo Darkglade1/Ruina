@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.events.beyond.Falling;
 import com.megacrit.cardcrawl.events.beyond.MindBloom;
 import com.megacrit.cardcrawl.events.beyond.MysteriousSphere;
@@ -50,6 +51,7 @@ import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.Atziluth;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
+import ruina.dungeons.UninvitedGuests;
 import ruina.events.act2.ChildrenOfTheCity;
 import ruina.events.act2.ChurchOfGears;
 import ruina.events.act2.Language;
@@ -96,6 +98,8 @@ import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
+import ruina.monsters.uninvitedGuests.puppeteer.Chesed;
+import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
 import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
@@ -426,6 +430,9 @@ public class RuinaMod implements
         Atziluth atziluth = new Atziluth();
         atziluth.addAct(TheBeyond.ID);
 
+        UninvitedGuests guests = new UninvitedGuests();
+        guests.addAct(TheEnding.ID);
+
         CustomIntent.add(new MassAttackIntent());
 
         //Act 2
@@ -543,6 +550,14 @@ public class RuinaMod implements
         BaseMod.addEvent(DistortedYan.ID, DistortedYan.class, Atziluth.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
         BaseMod.addEvent(YesterdayPromise.ID, YesterdayPromise.class, Atziluth.ID);
+
+
+        //Uninvited Guests
+        BaseMod.addMonster(Puppeteer.ID, "Puppeteer", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Chesed(-500.0F, 0.0F),
+                        new Puppeteer(200.0F, 0.0F),
+                }));
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)

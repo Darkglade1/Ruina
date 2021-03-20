@@ -565,7 +565,7 @@
   },
   "${ModID}:Chesed": {
     "MOVES": [
-      "Battlefield Command",
+      "Battle Command",
       "Energy Shield",
       "Concentrate",
       "Disposal"

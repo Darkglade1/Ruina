@@ -69,7 +69,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Puppeteer() {
-        this(100.0f, 0.0f);
+        this(0.0f, 0.0f);
     }
 
     public Puppeteer(final float x, final float y) {
@@ -112,7 +112,11 @@ public class Puppeteer extends AbstractMultiIntentMonster
             }
 
             private float calculateDamageTakenAmount(float damage, DamageInfo.DamageType type) {
-                return damage * (1 - MASTERMIND_DAMAGE_REDUCTION);
+                if (owner.hasPower(Chesed.MARK_POWER_ID)) {
+                    return damage;
+                } else {
+                    return damage * (1 - MASTERMIND_DAMAGE_REDUCTION);
+                }
             }
 
             @Override
@@ -156,7 +160,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
                 waitAnimation();
                 massAttackFinishAnimation();
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
-                resetIdle();
+                resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -184,18 +188,12 @@ public class Puppeteer extends AbstractMultiIntentMonster
                 applyToTarget(target, this, new VulnerablePower(target, VULNERABLE, true));
                 resetIdle();
                 //force puppet to attack this target next turn
-                addToBot(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        if (target == chesed) {
-                            puppet.attackingAlly = true;
-                        } else {
-                            puppet.attackingAlly = false;
-                        }
-                        AbstractDungeon.onModifyPower();
-                        this.isDone = true;
-                    }
-                });
+                if (target == chesed) {
+                    puppet.attackingAlly = true;
+                } else {
+                    puppet.attackingAlly = false;
+                }
+                AbstractDungeon.onModifyPower();
                 break;
             }
             case THIN_STRINGS: {
@@ -206,7 +204,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
                     }
                 }
                 applyToTarget(target, this, new WeakPower(target, WEAK, true));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case PUPPETRY: {
@@ -216,7 +214,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
                         applyToTarget(mo, this, new StrengthPower(mo, STRENGTH));
                     }
                 }
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
         }
@@ -288,7 +286,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
             if (!this.lastMove(TUGGING_STRINGS)) {
                 possibilities.add(TUGGING_STRINGS);
             }
-            if (!this.lastMove(ASSAILING_PULLS) && !chesed.isDead && !chesed.isDying) {
+            if (!this.lastMove(ASSAILING_PULLS) && chesed != null && !chesed.isDead && !chesed.isDying) {
                 possibilities.add(ASSAILING_PULLS);
             }
             if (!this.lastMove(THIN_STRINGS)) {
@@ -306,7 +304,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
         if (!this.lastMove(TUGGING_STRINGS, moveHistory)) {
             possibilities.add(TUGGING_STRINGS);
         }
-        if (!this.lastMove(ASSAILING_PULLS, moveHistory) && !(this.nextMove == ASSAILING_PULLS)) {
+        if (!this.lastMove(ASSAILING_PULLS, moveHistory) && this.nextMove != ASSAILING_PULLS) {
             possibilities.add(ASSAILING_PULLS);
         }
         if (!this.lastMove(PUPPETRY, moveHistory) && !this.lastMoveBefore(PUPPETRY)) {
@@ -347,7 +345,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                float xPosition = -200.0F;
+                float xPosition = -100.0F;
                 puppet = new Puppet(xPosition, 0.0f, Puppeteer.this);
                 att(new UsePreBattleActionAction(puppet));
                 att(new SpawnMonsterAction(puppet, true));

@@ -67,8 +67,8 @@ public class Puppet extends AbstractRuinaMonster
     }
 
     public Puppet(final float x, final float y, Puppeteer puppeteer) {
-        super(NAME, ID, 40, -5.0F, 0, 150.0f, 195.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("Staff/Spriter/Staff.scml"));
+        super(NAME, ID, 40, -5.0F, 0, 250.0f, 395.0f, null, x, y);
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppet/Spriter/Puppet.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(90), calcAscensionTankiness(98));
         addMove(FORCEFUL_GESTURE, Intent.ATTACK_DEFEND, calcAscensionDamage(15));
@@ -81,6 +81,7 @@ public class Puppet extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
+        block(this, PLATED_ARMOR);
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new PlatedArmorPower(this, PLATED_ARMOR));
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
@@ -120,6 +121,7 @@ public class Puppet extends AbstractRuinaMonster
 
         switch (this.nextMove) {
             case FORCEFUL_GESTURE: {
+                bluntAnimation(target);
                 block(this, BLOCK);
                 dmg(target, info);
                 resetIdle();
@@ -127,6 +129,11 @@ public class Puppet extends AbstractRuinaMonster
             }
             case REPRESSED_FLESH: {
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        bluntAnimation(target);
+                    } else {
+                        slashAnimation(target);
+                    }
                     dmg(target, info);
                     resetIdle();
                 }
@@ -193,12 +200,14 @@ public class Puppet extends AbstractRuinaMonster
                 ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
                 PowerTip intentTip = (PowerTip) ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
                 int multiplier = moves.get(this.nextMove).multiplier;
+                Texture attackImg;
                 if (multiplier > 0) {
+                    attackImg = getAttackIntent(info.output * multiplier);
                     intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + multiplier + TEXT[4];
                 } else {
+                    attackImg = getAttackIntent(info.output);
                     intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
                 }
-                Texture attackImg = getAttackIntent(info.output);
                 ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
             }
         } else {
@@ -206,14 +215,18 @@ public class Puppet extends AbstractRuinaMonster
         }
     }
 
-    private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack", "BluntBlow", enemy, this);
+    private void bluntAnimation(AbstractCreature enemy) {
+        animationAction("Blunt", "BluntHori", enemy, this);
+    }
+
+    private void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "BluntVert", enemy, this);
     }
 
     @Override
     public void renderIntent(SpriteBatch sb) {
         super.renderIntent(sb);
-        if (!chesed.isDead && !chesed.isDying && attackingAlly) {
+        if (!chesed.isDead && !chesed.isDying && attackingAlly && !this.isDeadOrEscaped()) {
             BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
             float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
             sb.draw(Chesed.targetTexture, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
