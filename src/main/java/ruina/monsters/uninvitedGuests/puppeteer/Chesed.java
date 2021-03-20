@@ -64,7 +64,7 @@ public class Chesed extends AbstractAllyMonster
     public static final String MARK_POWER_NAME = MARKPowerStrings.NAME;
     public static final String[] MARK_POWER_DESCRIPTIONS = MARKPowerStrings.DESCRIPTIONS;
 
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("WrathIcon.png"));
+    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("ChesedIcon.png"));
 
     public Chesed() {
         this(0.0f, 0.0f);
@@ -72,7 +72,7 @@ public class Chesed extends AbstractAllyMonster
 
     public Chesed(final float x, final float y) {
         super(NAME, ID, 160, -5.0F, 0, 230.0f, 250.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("ServantOfWrath/Spriter/Wrath.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Chesed/Spriter/Chesed.scml"));
         this.animation.setFlip(true, false);
 
         this.setHp(maxHealth);
@@ -83,7 +83,7 @@ public class Chesed extends AbstractAllyMonster
         addMove(CONCENTRATE, Intent.ATTACK_DEFEND, 10, 2, true);
         addMove(DISPOSAL, Intent.ATTACK, 16, 2, true);
 
-        this.allyIcon = makeUIPath("WrathIcon.png");
+        this.allyIcon = makeUIPath("ChesedIcon.png");
     }
 
     @Override
@@ -189,6 +189,7 @@ public class Chesed extends AbstractAllyMonster
         }
         switch (this.nextMove) {
             case BATTLEFIELD_COMMAND: {
+                slashAnimation(target);
                 dmg(target, info);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 applyToTarget(adp(), this, new StrengthPower(adp(), STRENGTH));
@@ -196,8 +197,11 @@ public class Chesed extends AbstractAllyMonster
                 break;
             }
             case ENERGY_SHIELD: {
+                blockAnimation();
                 atb(new AllyGainBlockAction(this, this, ENERGY_SHIELD_BLOCK));
                 block(adp(), ENERGY_SHIELD_BLOCK);
+                waitAnimation();
+                pierceAnimation(target);
                 dmg(target, info);
                 resetIdle();
                 break;
@@ -205,6 +209,11 @@ public class Chesed extends AbstractAllyMonster
             case CONCENTRATE: {
                 atb(new AllyGainBlockAction(this, this, CONCENTRATE_BLOCK));
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        pierceAnimation(target);
+                    } else {
+                        slashAnimation(target);
+                    }
                     dmg(target, info);
                     resetIdle();
                 }
@@ -212,6 +221,14 @@ public class Chesed extends AbstractAllyMonster
             }
             case DISPOSAL: {
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        disposalUp(target);
+                        waitAnimation();
+                        disposalDown(target);
+                    } else {
+                        resetIdle();
+                        disposalFinish(target);
+                    }
                     addToBot(new AbstractGameAction() {
                         @Override
                         public void update() {
@@ -293,24 +310,28 @@ public class Chesed extends AbstractAllyMonster
         });
     }
 
-    private void normal1Animation(AbstractCreature enemy) {
-        animationAction("Normal1", "WrathAtk1", enemy, this);
+    private void blockAnimation() {
+        animationAction("Block", null, this);
     }
 
-    private void normal2Animation(AbstractCreature enemy) {
-        animationAction("Normal2", "WrathAtk2", enemy, this);
+    private void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "SwordHori", enemy, this);
     }
 
-    private void big1Animation(AbstractCreature enemy) {
-        animationAction("Big1", "WrathStrong1", enemy, this);
+    private void pierceAnimation(AbstractCreature enemy) {
+        animationAction("Pierce", "SwordStab", enemy, this);
     }
 
-    private void big2Animation(AbstractCreature enemy) {
-        animationAction("Big2", "WrathStrong2", enemy, this);
+    private void disposalUp(AbstractCreature enemy) {
+        animationAction("Special3", "DisposalUp", enemy, this);
     }
 
-    private void big3Animation(AbstractCreature enemy) {
-        animationAction("Big3", "WrathStrong3", enemy, this);
+    private void disposalDown(AbstractCreature enemy) {
+        animationAction("Special4", "DisposalDown", enemy, this);
+    }
+
+    private void disposalFinish(AbstractCreature enemy) {
+        animationAction("Special2", "DisposalFinish", enemy, this);
     }
 
 }
