@@ -265,5 +265,13 @@
   "${ModID}:Lamp": {
     "NAME": "Lamp",
     "DESCRIPTIONS": ["Whenever you are attacked this turn, deal #b", " damage back."]
+  },
+  "${ModID}:FinishingTouch": {
+    "NAME": "Finishing Touch",
+    "DESCRIPTIONS": ["Whenever this creature attacks, it applies a #yMark to its target for #b", " turn. #yMarked targets receive #b", "% more damage from ALL sources."]
+  },
+  "${ModID}:Mark": {
+    "NAME": "Mark",
+    "DESCRIPTIONS": ["Receives #b", "% more damage from ALL sources for #b" , " turn."]
   }
 }
