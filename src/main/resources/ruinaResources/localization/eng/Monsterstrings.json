@@ -589,5 +589,16 @@
     "DIALOG": [
       "You may be bound at the moment, but I will cut all your strings for you."
     ]
+  },
+  "${ModID}:Puppet": {
+    "MOVES": [
+      "Forceful Gesture",
+      "Repressed Flesh",
+      "Ghghghghgh",
+      "Ghghghghgh"
+    ],
+    "NAME": "Puppet",
+    "DIALOG": [
+    ]
   }
 }

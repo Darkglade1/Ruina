@@ -80,8 +80,8 @@ public class Chesed extends AbstractAllyMonster
 
         addMove(BATTLEFIELD_COMMAND, Intent.ATTACK_BUFF, 16);
         addMove(ENERGY_SHIELD, Intent.ATTACK_DEFEND, 6);
-        addMove(CONCENTRATE, Intent.ATTACK_DEFEND, 20);
-        addMove(DISPOSAL, Intent.ATTACK, 24, 2, true);
+        addMove(CONCENTRATE, Intent.ATTACK_DEFEND, 10, 2, true);
+        addMove(DISPOSAL, Intent.ATTACK, 16, 2, true);
 
         this.allyIcon = makeUIPath("WrathIcon.png");
     }
@@ -204,8 +204,10 @@ public class Chesed extends AbstractAllyMonster
             }
             case CONCENTRATE: {
                 atb(new AllyGainBlockAction(this, this, CONCENTRATE_BLOCK));
-                dmg(target, info);
-                resetIdle();
+                for (int i = 0; i < multiplier; i++) {
+                    dmg(target, info);
+                    resetIdle();
+                }
                 break;
             }
             case DISPOSAL: {
@@ -217,7 +219,7 @@ public class Chesed extends AbstractAllyMonster
                                 info.applyPowers(Chesed.this, puppeteer);
                                 info.output *= 2;
                             }
-                            if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * 0.5f)) {
+                            if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {
                                 info.applyPowers(Chesed.this, puppeteer);
                                 info.output *= 2;
                             }

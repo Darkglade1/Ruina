@@ -11,19 +11,22 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
+import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.UsePreBattleActionAction;
+import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.act2.HermitStaff;
-import ruina.monsters.act2.ServantOfWrath;
+import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -48,11 +51,21 @@ public class Puppeteer extends AbstractMultiIntentMonster
     private static final byte THIN_STRINGS = 3;
     private static final byte PUPPETRY = 4;
 
-    private final int BLOCK = calcAscensionTankiness(11);
-    private final int STRENGTH = calcAscensionSpecial(2);
-    private final int DEBUFF = calcAscensionSpecial(1);
+    private static final float MASTERMIND_DAMAGE_REDUCTION = 0.5f;
+    private static final int MASS_ATTACK_COOLDOWN = 3;
+    private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
+
+    private final int BLOCK = calcAscensionTankiness(12);
+    private final int STRENGTH = calcAscensionSpecial(3);
+    private final int WEAK = calcAscensionSpecial(1);
+    private final int VULNERABLE = calcAscensionSpecial(1);
     public Chesed chesed;
     public Puppet puppet;
+
+    public static final String POWER_ID = makeID("Mastermind");
+    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    public static final String POWER_NAME = powerStrings.NAME;
+    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Puppeteer() {
         this(100.0f, 0.0f);
@@ -77,6 +90,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
 
     @Override
     public void usePreBattleAction() {
+        AbstractDungeon.getCurrRoom().cannotLose = true;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Chesed) {
                 chesed = (Chesed)mo;
@@ -84,6 +98,36 @@ public class Puppeteer extends AbstractMultiIntentMonster
         }
         atb(new TalkAction(this, DIALOG[0]));
         Summon();
+        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            @Override
+            public float atDamageReceive(float damage, DamageInfo.DamageType type) {
+                //handles attack damage
+                if (type == DamageInfo.DamageType.NORMAL) {
+                    return calculateDamageTakenAmount(damage, type);
+                } else {
+                    return damage;
+                }
+            }
+
+            private float calculateDamageTakenAmount(float damage, DamageInfo.DamageType type) {
+                return damage * (1 - MASTERMIND_DAMAGE_REDUCTION);
+            }
+
+            @Override
+            public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
+                //handles non-attack damage
+                if (info.type != DamageInfo.DamageType.NORMAL) {
+                    return (int) calculateDamageTakenAmount(damageAmount, info.type);
+                } else {
+                    return damageAmount;
+                }
+            }
+
+            @Override
+            public void updateDescription() {
+                description = POWER_DESCRIPTIONS[0] + (int)(MASTERMIND_DAMAGE_REDUCTION * 100) + POWER_DESCRIPTIONS[1];
+            }
+        });
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -97,44 +141,65 @@ public class Puppeteer extends AbstractMultiIntentMonster
         }
         switch (move.nextMove) {
             case PULLING_STRINGS_TAUT: {
-                attack1Animation(target);
-                dmg(target, info);
-                resetIdle();
-                if (target == adp()) {
-                    applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
-                } else {
-                    applyToTarget(target, this, new VulnerablePower(target, DEBUFF, true));
+                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
+                info.applyPowers(this, adp());
+                damageArray[damageArray.length - 1] = info.output;
+                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
+                    info.applyPowers(this, mo);
+                    damageArray[i] = info.output;
                 }
+                atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                resetIdle();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        massAttackCooldown = MASS_ATTACK_COOLDOWN + 1;
+                        this.isDone = true;
+                    }
+                });
                 break;
             }
             case TUGGING_STRINGS: {
-                attack2Animation(target);
-                dmg(target, info);
-                resetIdle();
+                for (int i = 0; i < multiplier; i++) {
+                    dmg(target, info);
+                    resetIdle();
+                }
                 break;
             }
             case ASSAILING_PULLS: {
-                specialAnimation();
-                buff();
-                resetIdle(1.0f);
+                dmg(target, info);
+                applyToTarget(target, this, new VulnerablePower(target, VULNERABLE, true));
+                resetIdle();
+                //force puppet to attack this target next turn
+                addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if (target == chesed) {
+                            puppet.attackingAlly = true;
+                        } else {
+                            puppet.attackingAlly = false;
+                        }
+                        AbstractDungeon.onModifyPower();
+                        this.isDone = true;
+                    }
+                });
                 break;
             }
             case THIN_STRINGS: {
-                specialAnimation();
-                if (staff == null) {
-                    Summon();
-                } else {
-                    buff(); //in case someone forces this enemy to use this intent twice in a row :)
+                for (AbstractMonster mo : monsterList()) {
+                    if (!mo.isDeadOrEscaped() && !(mo instanceof AbstractAllyMonster)) {
+                        block(mo, BLOCK);
+                    }
                 }
+                applyToTarget(target, this, new WeakPower(target, WEAK, true));
                 resetIdle(1.0f);
                 break;
             }
             case PUPPETRY: {
-                specialAnimation();
                 for (AbstractMonster mo : monsterList()) {
-                    if (mo instanceof Puppeteer || mo instanceof HermitStaff) {
-                        block(mo, BLOCK);
-                        applyToTargetNextTurn(mo, new StrengthPower(this, STRENGTH));
+                    if (!mo.isDeadOrEscaped() && !(mo instanceof AbstractAllyMonster)) {
+                        applyToTarget(mo, this, new StrengthPower(mo, STRENGTH));
                     }
                 }
                 resetIdle(1.0f);
@@ -168,10 +233,10 @@ public class Puppeteer extends AbstractMultiIntentMonster
             AdditionalIntent additionalIntent = additionalIntents.get(i);
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
             atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (wrath.isDead || wrath.isDying) {
+            if (chesed.isDead || chesed.isDying) {
                 takeCustomTurn(additionalMove, adp());
             } else {
-                takeCustomTurn(additionalMove, wrath);
+                takeCustomTurn(additionalMove, chesed);
             }
         }
         atb(new RollMoveAction(this));
@@ -179,18 +244,18 @@ public class Puppeteer extends AbstractMultiIntentMonster
 
     @Override
     protected void getMove(final int num) {
-        if (staff == null && !firstMove) {
-            setMoveShortcut(HELLO);
+        if (massAttackCooldown <= 0) {
+            setMoveShortcut(PULLING_STRINGS_TAUT);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(HOLD_STILL)) {
-                possibilities.add(HOLD_STILL);
+            if (!this.lastMove(TUGGING_STRINGS)) {
+                possibilities.add(TUGGING_STRINGS);
             }
-            if (!this.lastMove(MAKE_WAY)) {
-                possibilities.add(MAKE_WAY);
+            if (!this.lastMove(ASSAILING_PULLS) && !chesed.isDead && !chesed.isDying) {
+                possibilities.add(ASSAILING_PULLS);
             }
-            if (!this.lastMove(CRACKLE) && !this.lastMoveBefore(CRACKLE)) {
-                possibilities.add(CRACKLE);
+            if (!this.lastMove(THIN_STRINGS)) {
+                possibilities.add(THIN_STRINGS);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move]);
@@ -201,11 +266,14 @@ public class Puppeteer extends AbstractMultiIntentMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(HOLD_STILL, moveHistory)) {
-            possibilities.add(HOLD_STILL);
+        if (!this.lastMove(TUGGING_STRINGS, moveHistory)) {
+            possibilities.add(TUGGING_STRINGS);
         }
-        if (!this.lastTwoMoves(MAKE_WAY, moveHistory)) {
-            possibilities.add(MAKE_WAY);
+        if (!this.lastMove(ASSAILING_PULLS, moveHistory) && !(this.nextMove == ASSAILING_PULLS)) {
+            possibilities.add(ASSAILING_PULLS);
+        }
+        if (!this.lastMove(PUPPETRY, moveHistory) && !this.lastMoveBefore(PUPPETRY)) {
+            possibilities.add(PUPPETRY);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
         setAdditionalMoveShortcut(move, moveHistory);
@@ -221,7 +289,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, wrath, wrath.allyIcon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, chesed, chesed.allyIcon);
             }
         }
     }
@@ -229,23 +297,23 @@ public class Puppeteer extends AbstractMultiIntentMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        wrath.onHermitDeath();
+        AbstractDungeon.getCurrRoom().cannotLose = false;
+        chesed.onBossDeath();
         for (AbstractMonster mo : monsterList()) {
-            if (mo instanceof HermitStaff) {
+            if (mo instanceof Puppet) {
                 atb(new SuicideAction(mo));
             }
         }
     }
 
     private void Summon() {
-        Puppeteer hermit = this;
         atb(new AbstractGameAction() {
             @Override
             public void update() {
                 float xPosition = -200.0F;
-                staff = new HermitStaff(xPosition, 0.0f, hermit);
-                att(new UsePreBattleActionAction(staff));
-                att(new SpawnMonsterAction(staff, true));
+                puppet = new Puppet(xPosition, 0.0f, Puppeteer.this);
+                att(new UsePreBattleActionAction(puppet));
+                att(new SpawnMonsterAction(puppet, true));
                 this.isDone = true;
             }
         });
