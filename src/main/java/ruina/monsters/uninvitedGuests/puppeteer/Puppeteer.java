@@ -1,5 +1,6 @@
 package ruina.monsters.uninvitedGuests.puppeteer;
 
+import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -73,7 +74,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
 
     public Puppeteer(final float x, final float y) {
         super(NAME, ID, 600, -5.0F, 0, 160.0f, 245.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("Hermit/Spriter/Hermit.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppeteer/Spriter/Puppeteer.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
         for (int i = 0; i < numAdditionalMoves; i++) {
@@ -90,6 +91,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
 
     @Override
     public void usePreBattleAction() {
+        CustomDungeon.playTempMusicInstantly("Ensemble2");
         AbstractDungeon.getCurrRoom().cannotLose = true;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Chesed) {
@@ -149,6 +151,10 @@ public class Puppeteer extends AbstractMultiIntentMonster
                     info.applyPowers(this, mo);
                     damageArray[i] = info.output;
                 }
+
+                massAttackStartAnimation();
+                waitAnimation();
+                massAttackFinishAnimation();
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle();
                 atb(new AbstractGameAction() {
@@ -162,12 +168,18 @@ public class Puppeteer extends AbstractMultiIntentMonster
             }
             case TUGGING_STRINGS: {
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        pierceAnimation(target);
+                    } else {
+                        bluntAnimation(target);
+                    }
                     dmg(target, info);
                     resetIdle();
                 }
                 break;
             }
             case ASSAILING_PULLS: {
+                rangedAnimation(target);
                 dmg(target, info);
                 applyToTarget(target, this, new VulnerablePower(target, VULNERABLE, true));
                 resetIdle();
@@ -187,37 +199,55 @@ public class Puppeteer extends AbstractMultiIntentMonster
                 break;
             }
             case THIN_STRINGS: {
+                blockAnimation();
                 for (AbstractMonster mo : monsterList()) {
                     if (!mo.isDeadOrEscaped() && !(mo instanceof AbstractAllyMonster)) {
                         block(mo, BLOCK);
                     }
                 }
                 applyToTarget(target, this, new WeakPower(target, WEAK, true));
-                resetIdle(1.0f);
+                resetIdle();
                 break;
             }
             case PUPPETRY: {
+                buffAnimation();
                 for (AbstractMonster mo : monsterList()) {
                     if (!mo.isDeadOrEscaped() && !(mo instanceof AbstractAllyMonster)) {
                         applyToTarget(mo, this, new StrengthPower(mo, STRENGTH));
                     }
                 }
-                resetIdle(1.0f);
+                resetIdle();
                 break;
             }
         }
     }
 
-    private void attack1Animation(AbstractCreature enemy) {
-        animationAction("Attack1", "HermitAtk", enemy, this);
+    private void bluntAnimation(AbstractCreature enemy) {
+        animationAction("Blunt", "BluntHori", enemy, this);
     }
 
-    private void attack2Animation(AbstractCreature enemy) {
-        animationAction("Attack2", "HermitStrongAtk", enemy, this);
+    private void pierceAnimation(AbstractCreature enemy) {
+        animationAction("Pierce", "BluntBlow", enemy, this);
     }
 
-    private void specialAnimation() {
-        animationAction("Special", "HermitWand", this);
+    private void rangedAnimation(AbstractCreature enemy) {
+        animationAction("Ranged", "PuppetBreak", enemy, this);
+    }
+
+    private void blockAnimation() {
+        animationAction("Block", null, this);
+    }
+
+    private void buffAnimation() {
+        animationAction("Special", null, this);
+    }
+
+    private void massAttackStartAnimation() {
+        animationAction("Special", "PuppetStart", this);
+    }
+
+    private void massAttackFinishAnimation() {
+        animationAction("Special", "PuppetStrongAtk", this);
     }
 
     @Override
@@ -239,6 +269,13 @@ public class Puppeteer extends AbstractMultiIntentMonster
                 takeCustomTurn(additionalMove, chesed);
             }
         }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                massAttackCooldown--;
+                this.isDone = true;
+            }
+        });
         atb(new RollMoveAction(this));
     }
 

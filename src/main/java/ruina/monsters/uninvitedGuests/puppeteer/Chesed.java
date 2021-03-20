@@ -315,7 +315,7 @@ public class Chesed extends AbstractAllyMonster
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "SwordHori", enemy, this);
+        animationAction("Slash", "SwordVert", enemy, this);
     }
 
     private void pierceAnimation(AbstractCreature enemy) {
