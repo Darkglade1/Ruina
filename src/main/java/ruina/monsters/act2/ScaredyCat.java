@@ -154,6 +154,7 @@ public class ScaredyCat extends AbstractRuinaMonster
         this.currentHealth = this.maxHealth = 1;
         healthBarUpdatedEvent();
         applyToTarget(this, this, new StrengthPower(this, -9999));
+        makePowerRemovable(this, POWER_ID);
         atb(new RemoveSpecificPowerAction(this, this, POWER_ID));
         setMoveShortcut(FLEE);
         createIntent();

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
 
-public class Unkillable extends AbstractEasyPower{
+public class Unkillable extends AbstractUnremovablePower{
     public static final String POWER_ID = RuinaMod.makeID(Unkillable.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

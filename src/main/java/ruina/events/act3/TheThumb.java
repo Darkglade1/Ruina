@@ -28,7 +28,7 @@ public class TheThumb extends AbstractImageEvent {
     private static final String[] OPTIONS = eventStrings.OPTIONS;
     public static final String IMG = makeEventPath("Thumb.png");
 
-    private static final int UNCOMMON_CARDS = 20;
+    private static final int UNCOMMON_CARDS = 30;
     private static final int COST_REDUCTION = -1;
 
     private boolean pickCard = false;

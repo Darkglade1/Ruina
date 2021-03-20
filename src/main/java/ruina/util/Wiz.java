@@ -27,6 +27,7 @@ import ruina.actions.ApplyPowerActionButItCanFizzle;
 import ruina.actions.MakeTempCardInDiscardActionButItCanFizzle;
 import ruina.actions.MakeTempCardInDrawPileActionButItCanFizzle;
 import ruina.patches.RenderHandPatch;
+import ruina.powers.AbstractUnremovablePower;
 import ruina.powers.LosePowerPower;
 import ruina.powers.NextTurnPowerPower;
 
@@ -274,5 +275,18 @@ public class Wiz {
                 this.isDone = true;
             }
         });
+    }
+
+    public static void makePowerRemovable(AbstractCreature owner, String powerID) {
+        AbstractPower power = owner.getPower(powerID);
+        if (power instanceof AbstractUnremovablePower) {
+            ((AbstractUnremovablePower) power).isUnremovable = false;
+        }
+    }
+
+    public static void makePowerRemovable(AbstractPower power) {
+        if (power instanceof AbstractUnremovablePower) {
+            ((AbstractUnremovablePower) power).isUnremovable = false;
+        }
     }
 }

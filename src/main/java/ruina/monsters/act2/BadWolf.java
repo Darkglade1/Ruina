@@ -157,7 +157,7 @@ public class BadWolf extends AbstractRuinaMonster
     public void changePhase(int phase) {
         this.phase = phase;
         if (phase == 2) {
-            playSound("Fog", 3.0f);
+            playSound("Fog", 2.0f);
         }
         runAnim("Idle" + phase);
     }
@@ -228,6 +228,9 @@ public class BadWolf extends AbstractRuinaMonster
 
                 @Override
                 public void atEndOfRound() {
+                    if (amount == 1) {
+                        makePowerRemovable(owner, SKULK_POWER_ID);
+                    }
                     atb(new ReducePowerAction(owner, owner, this, 1));
                 }
 

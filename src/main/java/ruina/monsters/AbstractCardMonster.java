@@ -3,6 +3,7 @@ package ruina.monsters;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.MathHelper;
@@ -31,7 +32,7 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
 
     public void update() {
         super.update();
-        if (enemyCard != null && !this.isDeadOrEscaped()) {
+        if (enemyCard != null && !this.isDeadOrEscaped() && !hasPower(StunMonsterPower.POWER_ID)) {
             enemyCard.hb.update();
             if (Settings.FAST_MODE) {
                 enemyCard.current_x = MathHelper.cardLerpSnap(enemyCard.current_x, enemyCard.target_x);
@@ -62,7 +63,7 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
 
     public void renderCard(SpriteBatch sb) {
         Color color = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentColor");
-        if (color.a > 0) {
+        if (color.a > 0 && !hasPower(StunMonsterPower.POWER_ID)) {
             sb.setColor(color);
             for (AbstractCard card : cardsToRender) {
                 if (card != hoveredCard) {

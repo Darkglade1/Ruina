@@ -296,6 +296,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("WrathAtk2"), makeSFXPath("Angry_Vert2.wav"));
 
         BaseMod.addAudio(makeID("BluntBlow"), makeSFXPath("Blow_Stab.wav"));
+        BaseMod.addAudio(makeID("BluntHori"), makeSFXPath("Blow_Hori.wav"));
+        BaseMod.addAudio(makeID("BluntVert"), makeSFXPath("Blow_Vert.wav"));
+
         BaseMod.addAudio(makeID("IndexUnlock"), makeSFXPath("IndexUnlock.wav"));
 
         BaseMod.addAudio(makeID("ProphetBless"), makeSFXPath("WhiteNight_Bless.wav"));
@@ -371,6 +374,19 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("YanVert"), makeSFXPath("Yan_Lib_Vert.wav"));
         BaseMod.addAudio(makeID("YanStab"), makeSFXPath("Yan_Stab.wav"));
         BaseMod.addAudio(makeID("YanBrand"), makeSFXPath("Yan_Stigma_Atk.wav"));
+
+        BaseMod.addAudio(makeID("SwordStab"), makeSFXPath("Sword_Stab.wav"));
+        BaseMod.addAudio(makeID("SwordVert"), makeSFXPath("Sword_Vert.wav"));
+        BaseMod.addAudio(makeID("SwordHori"), makeSFXPath("Sword_Hori.wav"));
+
+        BaseMod.addAudio(makeID("DisposalUp"), makeSFXPath("Nicolrai_Special_SwordUp.wav"));
+        BaseMod.addAudio(makeID("DisposalDown"), makeSFXPath("Nicolrai_Special_SwordDown.wav"));
+        BaseMod.addAudio(makeID("DisposalFinish"), makeSFXPath("Nicolrai_Special_Cut.wav"));
+        BaseMod.addAudio(makeID("DisposalBlood"), makeSFXPath("Nicolrai_Special_Blood.wav"));
+
+        BaseMod.addAudio(makeID("PuppetStart"), makeSFXPath("Puppet_StrongStart.wav"));
+        BaseMod.addAudio(makeID("PuppetStrongAtk"), makeSFXPath("Puppet_StrongAtk.wav"));
+        BaseMod.addAudio(makeID("PuppetBreak"), makeSFXPath("Puppet_Break.wav"));
     }
 
     @Override

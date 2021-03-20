@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.powers.BarricadePower;
 import static ruina.util.Wiz.atb;
 
 //because apparently the block of ALL enemies fall off at the end of the player's turn zzzzzzz
-public class InvisibleBarricadePower extends AbstractEasyPower implements InvisiblePower {
+public class InvisibleBarricadePower extends AbstractUnremovablePower implements InvisiblePower {
     public static final String POWER_ID = BarricadePower.POWER_ID;
 
     public InvisibleBarricadePower(AbstractCreature owner) {

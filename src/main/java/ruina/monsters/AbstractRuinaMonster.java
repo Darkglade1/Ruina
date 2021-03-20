@@ -216,4 +216,12 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         });
     }
 
+    protected void waitAnimation() {
+        atb(new VFXActionButItCanFizzle(this, new WaitEffect(), 0.5f));
+    }
+
+    protected void waitAnimation(float duration) {
+        atb(new VFXActionButItCanFizzle(this, new WaitEffect(), duration));
+    }
+
 }

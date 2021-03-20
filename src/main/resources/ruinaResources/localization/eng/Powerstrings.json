@@ -265,5 +265,21 @@
   "${ModID}:Lamp": {
     "NAME": "Lamp",
     "DESCRIPTIONS": ["Whenever you are attacked this turn, deal #b", " damage back."]
+  },
+  "${ModID}:FinishingTouch": {
+    "NAME": "Finishing Touch",
+    "DESCRIPTIONS": ["Whenever this creature attacks, it applies a #yMark to its target for #b", " turn. #yMarked targets receive #b", "% more damage from ALL sources."]
+  },
+  "${ModID}:Mark": {
+    "NAME": "Mark",
+    "DESCRIPTIONS": ["Receives #b", "% more damage from ALL sources for #b" , " turn."]
+  },
+  "${ModID}:Mastermind": {
+    "NAME": "Mastermind",
+    "DESCRIPTIONS": ["Receives #b", "% less damage from ALL sources unless this creature is #yMarked."]
+  },
+  "${ModID}:PuppetStrings": {
+    "NAME": "Puppet Strings",
+    "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn at full HP. NL The #renemy's Mass Attack #gheals this creature instead."]
   }
 }
