@@ -81,7 +81,7 @@ public class Chesed extends AbstractAllyMonster
         addMove(BATTLEFIELD_COMMAND, Intent.ATTACK_BUFF, 16);
         addMove(ENERGY_SHIELD, Intent.ATTACK_DEFEND, 6);
         addMove(CONCENTRATE, Intent.ATTACK_DEFEND, 10, 2, true);
-        addMove(DISPOSAL, Intent.ATTACK, 16, 2, true);
+        addMove(DISPOSAL, Intent.ATTACK, 11, 2, true);
 
         this.allyIcon = makeUIPath("ChesedIcon.png");
     }
@@ -94,10 +94,12 @@ public class Chesed extends AbstractAllyMonster
             }
         }
         applyToTarget(this, this, new AbstractLambdaPower(FINISHING_POWER_NAME, FINISHING_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            boolean appliedThisTurn = false;
             @Override
             public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (info.type == DamageInfo.DamageType.NORMAL && target != owner && target != adp()) {
-                    applyToTarget(target, owner, new AbstractLambdaPower(MARK_POWER_NAME, MARK_POWER_ID, PowerType.DEBUFF, false, target, MARK_DURATION) {
+                if (info.type == DamageInfo.DamageType.NORMAL && target != owner && target != adp() && !appliedThisTurn) {
+                    appliedThisTurn = true;
+                    applyToTarget(target, owner, new AbstractLambdaPower(MARK_POWER_NAME, MARK_POWER_ID, PowerType.DEBUFF, true, target, MARK_DURATION) {
 
                         boolean justApplied = true;
 
@@ -135,9 +137,6 @@ public class Chesed extends AbstractAllyMonster
                             if (justApplied) {
                                 justApplied = false;
                             } else {
-                                if (amount == 1) {
-                                    makePowerRemovable(this);
-                                }
                                 atb(new ReducePowerAction(owner, owner, this, 1));
                             }
                         }
@@ -152,6 +151,7 @@ public class Chesed extends AbstractAllyMonster
 
             @Override
             public void atEndOfRound() {
+                appliedThisTurn = false;
                 addToBot(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -172,7 +172,6 @@ public class Chesed extends AbstractAllyMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-
         if (firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
             firstMove = false;
@@ -204,14 +203,14 @@ public class Chesed extends AbstractAllyMonster
                 dmg(target, info);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 applyToTarget(adp(), this, new StrengthPower(adp(), STRENGTH));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case ENERGY_SHIELD: {
                 blockAnimation();
                 atb(new AllyGainBlockAction(this, this, ENERGY_SHIELD_BLOCK));
                 block(adp(), ENERGY_SHIELD_BLOCK);
-                waitAnimation();
+                waitAnimation(1.0f);
                 pierceAnimation(target);
                 dmg(target, info);
                 resetIdle();
@@ -237,7 +236,8 @@ public class Chesed extends AbstractAllyMonster
                         waitAnimation();
                         disposalDown(target);
                     } else {
-                        resetIdle();
+                        moveAnimation();
+                        waitAnimation();
                         disposalFinish(target);
                     }
                     addToBot(new AbstractGameAction() {
@@ -254,7 +254,7 @@ public class Chesed extends AbstractAllyMonster
                         }
                     });
                     dmg(target, info);
-                    resetIdle();
+                    resetIdle(1.0f);
                 }
                 break;
             }
@@ -285,7 +285,7 @@ public class Chesed extends AbstractAllyMonster
         if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {
             if (puppeteer.puppet.isDeadOrEscaped()) {
                 if (puppeteer.hasPower(MARK_POWER_ID)) {
-                    atb(new TalkAction(this, DIALOG[2]));
+                    att(new TalkAction(this, DIALOG[2]));
                     setMoveShortcut(DISPOSAL, MOVES[DISPOSAL]);
                     createIntent();
                 }
@@ -305,7 +305,18 @@ public class Chesed extends AbstractAllyMonster
         } else {
             target = puppeteer.puppet;
         }
-        applyPowers(target);
+        if (nextMove == DISPOSAL) {
+            float multiplier = 1;
+            if (puppeteer.hasPower(MARK_POWER_ID)) {
+                multiplier *= 2;
+            }
+            if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {
+                multiplier *= 2;
+            }
+            applyPowers(target, multiplier);
+        } else {
+            applyPowers(target);
+        }
     }
 
     public void onBossDeath() {
@@ -344,6 +355,10 @@ public class Chesed extends AbstractAllyMonster
 
     private void disposalFinish(AbstractCreature enemy) {
         animationAction("Special2", "DisposalFinish", enemy, this);
+    }
+
+    private void moveAnimation() {
+        animationAction("Move", null, this);
     }
 
 }

@@ -555,7 +555,7 @@ public class RuinaMod implements
         //Uninvited Guests
         BaseMod.addMonster(Puppeteer.ID, "Puppeteer", () -> new MonsterGroup(
                 new AbstractMonster[] {
-                        new Chesed(-500.0F, 0.0F),
+                        new Chesed(-550.0F, 0.0F),
                         new Puppeteer(200.0F, 0.0F),
                 }));
     }

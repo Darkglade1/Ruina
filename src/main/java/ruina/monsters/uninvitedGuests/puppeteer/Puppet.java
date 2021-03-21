@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
@@ -28,6 +29,7 @@ import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.BetterPlatedArmor;
 import ruina.powers.InvisibleBarricadePower;
 
 import java.util.ArrayList;
@@ -83,7 +85,7 @@ public class Puppet extends AbstractRuinaMonster
     public void usePreBattleAction() {
         block(this, PLATED_ARMOR);
         applyToTarget(this, this, new InvisibleBarricadePower(this));
-        applyToTarget(this, this, new PlatedArmorPower(this, PLATED_ARMOR));
+        applyToTarget(this, this, new BetterPlatedArmor(this, PLATED_ARMOR));
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
@@ -104,7 +106,7 @@ public class Puppet extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        atb(new RemoveAllBlockAction(this, this));
+        //atb(new RemoveAllBlockAction(this, this));
         DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = this.moves.get(nextMove).multiplier;
 
@@ -145,7 +147,7 @@ public class Puppet extends AbstractRuinaMonster
             case REVIVE: {
                 atb(new HealAction(this, this, this.maxHealth));
                 this.halfDead = false;
-                applyToTarget(this, this, new PlatedArmorPower(this, PLATED_ARMOR));
+                applyToTarget(this, this, new BetterPlatedArmor(this, PLATED_ARMOR));
                 for (AbstractRelic r : AbstractDungeon.player.relics) {
                     r.onSpawnMonster(this);
                 }
@@ -192,13 +194,13 @@ public class Puppet extends AbstractRuinaMonster
             super.applyPowers();
             return;
         }
-        if (!(chesed == null) && !chesed.isDead && !chesed.isDying && attackingAlly) {
+        if (chesed != null && !chesed.isDead && !chesed.isDying && attackingAlly) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             AbstractCreature target = chesed;
             if (info.base > -1) {
                 info.applyPowers(this, target);
                 ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-                PowerTip intentTip = (PowerTip) ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                PowerTip intentTip = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
                 int multiplier = moves.get(this.nextMove).multiplier;
                 Texture attackImg;
                 if (multiplier > 0) {
@@ -247,11 +249,11 @@ public class Puppet extends AbstractRuinaMonster
             if (this.nextMove != REVIVING) {
                 setMoveShortcut(REVIVING);
                 this.createIntent();
-                atb(new SetMoveAction(this, REVIVING, Intent.NONE));
+                atb(new SetMoveAction(this, REVIVING, Intent.UNKNOWN));
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power.ID.equals(MinionPower.POWER_ID)) && !(power.ID.equals(StrengthPower.POWER_ID)) && !(power.ID.equals(GainStrengthPower.POWER_ID)) && !(power.ID.equals(POWER_ID)) && !(power.ID.equals(PlatedArmorPower.POWER_ID))) {
+                if (!(power.ID.equals(MinionPower.POWER_ID)) && !(power.ID.equals(StrengthPower.POWER_ID)) && !(power.ID.equals(GainStrengthPower.POWER_ID)) && !(power.ID.equals(POWER_ID)) && !(power.ID.equals(PlatedArmorPower.POWER_ID)) && !(power.ID.equals(BarricadePower.POWER_ID))) {
                     powersToRemove.add(power);
                 }
             }

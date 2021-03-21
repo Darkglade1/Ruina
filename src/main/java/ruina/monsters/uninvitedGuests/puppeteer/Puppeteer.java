@@ -333,12 +333,12 @@ public class Puppeteer extends AbstractMultiIntentMonster
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
         AbstractDungeon.getCurrRoom().cannotLose = false;
-        chesed.onBossDeath();
         for (AbstractMonster mo : monsterList()) {
             if (mo instanceof Puppet) {
                 atb(new SuicideAction(mo));
             }
         }
+        chesed.onBossDeath();
     }
 
     private void Summon() {
