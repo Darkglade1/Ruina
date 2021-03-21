@@ -3,7 +3,7 @@
     <folder id="0">
         <file id="0" name="Roland.png" width="96" height="268" pivot_x="0" pivot_y="1"/>
     </folder>
-    <entity id="0" name="Argalia">
+    <entity id="0" name="Roland">
         <animation id="0" name="Idle" length="1000" interval="100">
             <mainline>
                 <key id="0">
@@ -12,7 +12,7 @@
             </mainline>
             <timeline id="0" name="Roland">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-40" y="270"/>
+                    <object folder="0" file="0" x="-40" y="270" angle="0"/>
                 </key>
             </timeline>
         </animation>
