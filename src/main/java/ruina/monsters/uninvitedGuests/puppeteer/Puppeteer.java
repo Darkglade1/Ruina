@@ -1,8 +1,11 @@
 package ruina.monsters.uninvitedGuests.puppeteer;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
@@ -10,6 +13,7 @@ import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -19,9 +23,11 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
+import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.UsePreBattleActionAction;
@@ -33,6 +39,8 @@ import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -45,6 +53,9 @@ public class Puppeteer extends AbstractMultiIntentMonster
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
+
+    public static final String RED_LINE = RuinaMod.makeMonsterPath("Puppeteer/Line.png");
+    private static final Texture RED_LINE_TEXTURE = new Texture(RED_LINE);
 
     private static final byte PULLING_STRINGS_TAUT = 0;
     private static final byte TUGGING_STRINGS = 1;
@@ -157,7 +168,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
                 }
 
                 massAttackStartAnimation();
-                waitAnimation();
+                massAttackEffect();
                 massAttackFinishAnimation();
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle(1.0f);
@@ -261,7 +272,7 @@ public class Puppeteer extends AbstractMultiIntentMonster
             AdditionalIntent additionalIntent = additionalIntents.get(i);
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
             atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (chesed.isDead || chesed.isDying) {
+            if (additionalIntent.targetTexture == null) {
                 takeCustomTurn(additionalMove, adp());
             } else {
                 takeCustomTurn(additionalMove, chesed);
@@ -352,6 +363,32 @@ public class Puppeteer extends AbstractMultiIntentMonster
                 this.isDone = true;
             }
         });
+    }
+
+    private void massAttackEffect() {
+        float chargeDuration = 1.5f;
+        float scale = 1.5f;
+        float startY = 0.0f;
+        int numStrings = 20;
+
+        VfxBuilder effect = new VfxBuilder(RED_LINE_TEXTURE, 0.0f, -9999, 0.0f)
+                .scale(0.0f, scale, VfxBuilder.Interpolations.LINEAR)
+                .setY(startY)
+                .setAngle((float)AbstractDungeon.monsterRng.random(45, 135));
+        for (int i = 1; i < numStrings; i++) {
+            int finalI = i;
+            effect.triggerVfxAt(0.0f, 1,new BiFunction<Float, Float, AbstractGameEffect>() {
+                @Override
+                public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                    return new VfxBuilder(RED_LINE_TEXTURE, (float) Settings.WIDTH / numStrings * finalI, -9999, chargeDuration)
+                            .scale(0.0f, scale, VfxBuilder.Interpolations.LINEAR)
+                            .setY(startY)
+                            .setAngle((float)AbstractDungeon.monsterRng.random(45, 135)).build();
+                }
+            });
+        }
+        AbstractGameEffect finalEffect = effect.build();
+        atb(new VFXAction(finalEffect, chargeDuration));
     }
 
 }

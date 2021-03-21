@@ -3,6 +3,7 @@ package ruina.monsters.uninvitedGuests.puppeteer;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -154,7 +155,13 @@ public class Puppet extends AbstractRuinaMonster
                 break;
             }
         }
-        attackingAlly = !attackingAlly;
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                attackingAlly = !attackingAlly;
+                this.isDone = true;
+            }
+        });
         atb(new RollMoveAction(this));
     }
 
