@@ -95,12 +95,19 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     }
 
     public void applyPowers(AbstractCreature target) {
+        applyPowers(target, -1);
+    }
+
+    public void applyPowers(AbstractCreature target, float additionalMultiplier) {
         if (this.nextMove >= 0) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             if (target != adp()) {
                 if(info.base > -1) {
                     if (this.intent == IntentEnums.MASS_ATTACK) {
                         info.applyPowers(this, adp());
+                        if (additionalMultiplier > 0) {
+                            info.output = (int)(info.output * additionalMultiplier);
+                        }
                         ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
                         PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
                         if (moves.get(this.nextMove).multiplier > 0) {
@@ -112,6 +119,9 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
                         Color color = new Color(0.0F, 1.0F, 0.0F, 0.5F);
                         ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
                         info.applyPowers(this, target);
+                        if (additionalMultiplier > 0) {
+                            info.output = (int)(info.output * additionalMultiplier);
+                        }
                         ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
                         PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
                         Texture attackImg;
