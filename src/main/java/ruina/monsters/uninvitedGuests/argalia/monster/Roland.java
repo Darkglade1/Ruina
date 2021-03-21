@@ -76,7 +76,7 @@ public class Roland extends AbstractAllyMonster {
 
     public Roland(final float x, final float y) {
         super(NAME, ID, 750, -5.0F, 0, 230.0f, 265.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("LittleRed/Spriter/LittleRed.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Roland/Spriter/Roland.scml"));
         this.animation.setFlip(true, false);
 
         this.setHp(calcAscensionTankiness(this.maxHealth));
