@@ -31,10 +31,7 @@ import ruina.monsters.act2.LittleRed;
 import ruina.monsters.eventboss.redMist.cards.*;
 import ruina.monsters.eventboss.yan.cards.*;
 import ruina.monsters.uninvitedGuests.argalia.cards.*;
-import ruina.powers.Bleed;
-import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.NextTurnPowerPower;
-import ruina.powers.RedMistPower;
+import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -106,10 +103,12 @@ public class Argalia extends AbstractDeckMonster
     @Override
     public void usePreBattleAction()
     {
+        applyToTarget(this, this, new InvisibleVibrationRemover(this));
         CustomDungeon.playTempMusicInstantly("EnsembleArgalia");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Roland) { roland = (Roland) mo; }
         }
+        applyToTarget(adp(), this, new InvisibleVibrationSender(adp()));
     }
 
     @Override

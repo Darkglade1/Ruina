@@ -14,11 +14,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.InvisibleVibrationRemover;
 
 import java.util.ArrayList;
 
@@ -93,6 +95,8 @@ public class Roland extends AbstractAllyMonster {
     @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, power);
+        applyToTarget(this, this, new InvisibleVibrationRemover(this));
+        applyToTarget(this, this, new ThornsPower(this, 3));
         CustomDungeon.playTempMusicInstantly("Roland1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Argalia) {
