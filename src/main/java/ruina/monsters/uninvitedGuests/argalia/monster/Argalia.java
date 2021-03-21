@@ -3,6 +3,7 @@ package ruina.monsters.uninvitedGuests.argalia.monster;
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -84,7 +85,7 @@ public class Argalia extends AbstractDeckMonster
     public Argalia() { this(0.0f, 0.0f); }
 
     public Argalia(final float x, final float y) {
-        super(NAME, ID, 1800, -5.0F, 0, 250.0f, 255.0f, null, x, y);
+        super(NAME, ID, 1500, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Argalia/Spriter/Argalia.scml"));
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));
@@ -155,9 +156,16 @@ public class Argalia extends AbstractDeckMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (firstMove) {
+                    atb(new TalkAction(Argalia.this, DIALOG[0]));
+                    firstMove = false;
+                }
+                isDone = true;
+            }
+        });
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);

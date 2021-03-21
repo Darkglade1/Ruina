@@ -18,6 +18,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.InvisibleBarricadePower;
 
 import java.util.ArrayList;
 
@@ -42,21 +43,19 @@ public class Roland extends AbstractAllyMonster {
     public final int crystalHits = 3;
     public final int crystalBlock = calcAscensionTankiness(15);
 
-    public final int wheelsBlock = calcAscensionTankiness(25);
-    public final int wheelsDamage = calcAscensionDamage(15);
+    public final int wheelsBlock = calcAscensionTankiness(45);
+    public final int wheelsDamage = calcAscensionDamage(30);
 
     public final int durandalDamage = calcAscensionDamage(15);
     public final int durandalHits = 2;
     public final int durandalStrength = calcAscensionSpecial(4);
 
     public final int furiosoDamage = calcAscensionDamage(50);
-    public final int furiosoBlock = calcAscensionDamage(35);
+    public final int furiosoBlock = calcAscensionDamage(60);
     public final int furiosoHits = 5;
 
     public final int furiosoCap = 9;
     public int furiosoCount = 0;
-
-    public boolean enraged = false;
 
     public Argalia argalia;
 
@@ -69,13 +68,14 @@ public class Roland extends AbstractAllyMonster {
     public static final PowerStrings furyPowerStrings = CardCrawlGame.languagePack.getPowerStrings(FURY_POWER_ID);
     public static final String FURY_POWER_NAME = furyPowerStrings.NAME;
     public static final String[] FURY_POWER_DESCRIPTIONS = furyPowerStrings.DESCRIPTIONS;
+    private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
 
     public Roland() {
         this(0.0f, 0.0f);
     }
 
     public Roland(final float x, final float y) {
-        super(NAME, ID, 150, -5.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 750, -5.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("LittleRed/Spriter/LittleRed.scml"));
         this.animation.setFlip(true, false);
 
@@ -86,8 +86,8 @@ public class Roland extends AbstractAllyMonster {
         addMove(WHEELS, Intent.ATTACK_DEBUFF, wheelsDamage);
         addMove(DURANDAL, Intent.ATTACK_BUFF, durandalDamage, durandalHits, true);
         addMove(FURIOSO, Intent.ATTACK_DEFEND, furiosoDamage, furiosoHits, true);
-
         this.allyIcon = makeUIPath("RedIcon.png");
+        firstMove = true;
     }
 
     @Override
@@ -113,10 +113,16 @@ public class Roland extends AbstractAllyMonster {
             return;
         }
         super.takeTurn();
-        if (this.firstMove && !enraged) {
-            atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
-        }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (firstMove) {
+                    atb(new TalkAction(Roland.this, DIALOG[0]));
+                    firstMove = false;
+                }
+                isDone = true;
+            }
+        });
         DamageInfo info;
         int multiplier = 0;
         if (moves.containsKey(this.nextMove)) {
@@ -132,6 +138,7 @@ public class Roland extends AbstractAllyMonster {
                 for (int i = 0; i < multiplier; i++) {
                     dmg(target, info);
                 }
+                block(target, crystalBlock);
                 break;
             }
             case WHEELS: {
@@ -141,7 +148,8 @@ public class Roland extends AbstractAllyMonster {
             }
             case DURANDAL: {
                 for (int i = 0; i < multiplier; i++) { dmg(target, info); }
-                applyToSelf(new StrengthPower(this, durandalStrength));
+                applyToSelf(new StrengthPower(adp(), durandalStrength));
+                applyToTarget(this, this, new StrengthPower(this, durandalStrength));
                 break;
             }
             case FURIOSO: {
@@ -169,7 +177,8 @@ public class Roland extends AbstractAllyMonster {
 
     @Override
     protected void getMove(final int num) {
-        if(furiosoCap == furiosoCount){ setMoveShortcut(FURIOSO, MOVES[FURIOSO]); }
+        if(firstMove){ setMoveShortcut(CRYSTAL, MOVES[CRYSTAL]); }
+        else if (furiosoCap == furiosoCount){ setMoveShortcut(FURIOSO, MOVES[FURIOSO]); }
         else{
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(CRYSTAL)) { possibilities.add(CRYSTAL); }
