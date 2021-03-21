@@ -27,12 +27,11 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
 
     public UninvitedGuests() {
         super(NAME, ID, "images/ui/event/panel.png", false, 6, 9, 10);
-        this.addTempMusic("Warning1", RuinaMod.makeMusicPath("Warning1.ogg"));
-        this.addTempMusic("Warning2", RuinaMod.makeMusicPath("Warning2.ogg"));
-        this.addTempMusic("Warning3", RuinaMod.makeMusicPath("Warning3.ogg"));
-        this.addTempMusic("Roland1", RuinaMod.makeMusicPath("Roland1.ogg"));
-        this.addTempMusic("Roland2", RuinaMod.makeMusicPath("Roland2.ogg"));
-        this.addTempMusic("Roland3", RuinaMod.makeMusicPath("Roland3.ogg"));
+        this.setMainMusic(RuinaMod.makeMusicPath("Lobby.ogg"));
+        this.addTempMusic("Ensemble1", RuinaMod.makeMusicPath("Reverberation1st_Asiyah.ogg"));
+        this.addTempMusic("Ensemble2", RuinaMod.makeMusicPath("Reverberation1st_Briah.ogg"));
+        this.addTempMusic("Ensemble3", RuinaMod.makeMusicPath("Reverberation1st_Atziluth.ogg"));
+        this.addTempMusic("EnsembleArgalia", RuinaMod.makeMusicPath("Reverberation1st_Argalia.ogg"));
     }
 
     public UninvitedGuests(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {

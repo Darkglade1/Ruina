@@ -107,6 +107,7 @@ public class Argalia extends AbstractDeckMonster
     @Override
     public void usePreBattleAction()
     {
+        CustomDungeon.playTempMusicInstantly("EnsembleArgalia");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Roland) { roland = (Roland) mo; }
         }
