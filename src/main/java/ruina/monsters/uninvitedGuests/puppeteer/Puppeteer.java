@@ -371,16 +371,18 @@ public class Puppeteer extends AbstractMultiIntentMonster
         float startY = 0.0f;
         int numStrings = 20;
 
-        VfxBuilder effect = new VfxBuilder(RED_LINE_TEXTURE, 0.0f, startY, 0.0f)
+        VfxBuilder effect = new VfxBuilder(RED_LINE_TEXTURE, 0.0f, -9999, 0.0f)
                 .scale(0.0f, scale, VfxBuilder.Interpolations.LINEAR)
+                .setY(startY)
                 .setAngle((float)AbstractDungeon.monsterRng.random(45, 135));
         for (int i = 1; i < numStrings; i++) {
             int finalI = i;
-            effect.triggerVfxAt(0.0f, 0,new BiFunction<Float, Float, AbstractGameEffect>() {
+            effect.triggerVfxAt(0.0f, 1,new BiFunction<Float, Float, AbstractGameEffect>() {
                 @Override
                 public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
-                    return new VfxBuilder(RED_LINE_TEXTURE, (float) Settings.WIDTH / numStrings * finalI, startY, chargeDuration)
+                    return new VfxBuilder(RED_LINE_TEXTURE, (float) Settings.WIDTH / numStrings * finalI, -9999, chargeDuration)
                             .scale(0.0f, scale, VfxBuilder.Interpolations.LINEAR)
+                            .setY(startY)
                             .setAngle((float)AbstractDungeon.monsterRng.random(45, 135)).build();
                 }
             });
