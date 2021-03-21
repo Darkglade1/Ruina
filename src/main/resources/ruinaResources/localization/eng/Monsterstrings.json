@@ -613,5 +613,17 @@
     "DIALOG": [
       "You won't talk to me, Roland? What a shame."
     ]
+  },
+  "${ModID}:Roland": {
+    "MOVES": [
+      "Crystal Atelier",
+      "Wheels Industry",
+      "Durandal",
+      "Furioso"
+    ],
+    "NAME": "The Blue Reverberation",
+    "DIALOG": [
+      "..."
+    ]
   }
 }
