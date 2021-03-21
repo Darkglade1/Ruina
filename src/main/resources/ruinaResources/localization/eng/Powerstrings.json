@@ -259,8 +259,8 @@
   },
   "${ModID}:Beak": {
     "NAME": "Beak",
-    "DESCRIPTIONS": ["At the start of your turn, reduce the cost of the highest cost card in your hand to #b0 and give it #yExhaust.",
-                     "At the start of your turn, reduce the cost of the #b", " highest cost cards in your hand to #b0 and give them #yExhaust."]
+    "DESCRIPTIONS": ["At the start of your turn, reduce the cost of the highest cost card in your hand to #b0 this combat and give it #yExhaust.",
+                     "At the start of your turn, reduce the cost of the #b", " highest cost cards in your hand to #b0 this combat and give them #yExhaust."]
   },
   "${ModID}:Lamp": {
     "NAME": "Lamp",
