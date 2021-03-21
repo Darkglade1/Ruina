@@ -106,7 +106,7 @@ public class Puppet extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        //atb(new RemoveAllBlockAction(this, this));
+        atb(new RemoveAllBlockAction(this, this));
         DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = this.moves.get(nextMove).multiplier;
 
