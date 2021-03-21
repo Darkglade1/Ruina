@@ -195,10 +195,10 @@
   },
   "${ModID}:CHRBOSS_TrailsOfBlue": {
     "NAME": "Trails Of Blue",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Vibration next turn."
   },
   "${ModID}:TempestuousDanza": {
     "NAME": "Tempestuous Danza",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies !M! times. NL Increase the *Vibration needed for this by !ruina:SecondMagic!."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies !M! times."
   }
 }

@@ -73,8 +73,8 @@ public class Argalia extends AbstractDeckMonster
     public final int trailsHits = 2;
     public final int trailsVibration = calcAscensionSpecial(2);
 
-    public final int tempestuousDamage = calcAscensionTankiness(5);
-    public final int tempestuousHits = 5;
+    public final int tempestuousDamage = calcAscensionDamage(7);
+    public final int tempestuousHits = 7;
 
     private boolean queueDanza = false;
     private int additionalActions = 1;
