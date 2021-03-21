@@ -17,7 +17,6 @@ public class CHRBOSS_TempestuousDanza extends AbstractRuinaCard {
         super(ID, 7, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.tempestuousDamage;
         magicNumber = baseMagicNumber = parent.tempestuousHits;
-        secondMagicNumber = baseSecondMagicNumber = parent.tempestuousVibrationInc;
     }
 
     @Override

@@ -41,9 +41,9 @@ public class Roland extends AbstractAllyMonster {
 
     public final int crystalDamage = calcAscensionDamage(10);
     public final int crystalHits = 3;
-    public final int crystalBlock = calcAscensionTankiness(15);
+    public final int crystalBlock = calcAscensionTankiness(20);
 
-    public final int wheelsBlock = calcAscensionTankiness(45);
+    public final int wheelsBlock = calcAscensionTankiness(30);
     public final int wheelsDamage = calcAscensionDamage(30);
 
     public final int durandalDamage = calcAscensionDamage(15);

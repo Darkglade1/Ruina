@@ -61,21 +61,20 @@ public class Argalia extends AbstractDeckMonster
     private static final byte TRAILS = 3;
     private static final byte DANZA = 4;
 
-    public final int largoBlock = calcAscensionTankiness(12);
-    public final int largoDamage = calcAscensionDamage(15);
+    public final int largoBlock = calcAscensionTankiness(15);
+    public final int largoDamage = calcAscensionDamage(10);
 
-    public final int allegroDamage = calcAscensionDamage(6);
+    public final int allegroDamage = calcAscensionDamage(3);
     public final int allegroHits = 3;
-    public final int allegroVibration = calcAscensionSpecial(2);
 
-    public final int scytheDamage = calcAscensionDamage(35);
+    public final int scytheDamage = calcAscensionDamage(25);
 
-    public final int trailsDamage = calcAscensionDamage(20);
+    public final int trailsDamage = calcAscensionDamage(3);
     public final int trailsHits = 2;
+    public final int trailsVibration = calcAscensionSpecial(2);
 
     public final int tempestuousDamage = calcAscensionTankiness(5);
     public final int tempestuousHits = 5;
-    public final int tempestuousVibrationInc = 7;
 
     private boolean queueDanza = false;
     private int additionalActions = 1;
@@ -220,12 +219,11 @@ public class Argalia extends AbstractDeckMonster
 
     @Override
     protected void createDeck() {
-        for(int i = 0; i < 3; i += 1){
-            masterDeck.addToBottom(new CHRBOSS_Largo(this));
-            masterDeck.addToBottom(new CHRBOSS_Allegro(this));
-            masterDeck.addToBottom(new CHRBOSS_TrailsOfBlue(this));
-            masterDeck.addToBottom(new CHRBOSS_ResonantScythe(this));
-        }
+        masterDeck.addToBottom(new CHRBOSS_Largo(this));
+        masterDeck.addToBottom(new CHRBOSS_Largo(this));
+        masterDeck.addToBottom(new CHRBOSS_Allegro(this));
+        masterDeck.addToBottom(new CHRBOSS_TrailsOfBlue(this));
+        masterDeck.addToBottom(new CHRBOSS_ResonantScythe(this));
     }
 
     protected void createMoveFromCard(AbstractCard c) {

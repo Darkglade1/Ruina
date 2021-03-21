@@ -281,5 +281,29 @@
   "${ModID}:PuppetStrings": {
     "NAME": "Puppet Strings",
     "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn at full HP. NL NL The #renemy's Mass Attack #gheals this creature instead. NL NL Your #gally will prioritize attacking this creature."]
+  },
+  "${ModID}:PuppetStrings": {
+    "NAME": "Puppet Strings",
+    "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn at full HP. NL NL The #renemy's Mass Attack #gheals this creature instead. NL NL Your #gally will prioritize attacking this creature."]
+  },
+  "${ModID}:Vibration": {
+    "NAME": "Vibration",
+    "DESCRIPTIONS": ["Whenever #yArgalia takes unblocked attack damage, lose #b1 #yVibration."]
+  },
+  "${ModID}:InvisibleVibrationRemover": {
+    "NAME": "",
+    "DESCRIPTIONS": [""]
+  },
+  "${ModID}:InvisibleVibrationSender": {
+    "NAME": "",
+    "DESCRIPTIONS": [""]
+  },
+  "${ModID}:BlackSilence": {
+    "NAME": "The Black Silence",
+    "DESCRIPTIONS": ["Every #3 Turns, use a powerful attack."]
+  },
+  "${ModID}:BlueReverberation": {
+    "NAME": "The Blue Reverberation",
+    "DESCRIPTIONS": ["Gains #b Strength each turn. NL Whenever Argalia deals #runblocked damage, apply #b1 #yVibration to the target. NL If any target has #b7 #yVibration at the end of Argalia's turn, use a powerful attack next turn."]
   }
 }

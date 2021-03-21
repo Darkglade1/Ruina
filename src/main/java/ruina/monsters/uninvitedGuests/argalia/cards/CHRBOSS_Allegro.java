@@ -18,7 +18,6 @@ public class CHRBOSS_Allegro extends AbstractRuinaCard {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.allegroDamage;
         magicNumber = baseMagicNumber = parent.allegroHits;
-        secondMagicNumber = baseSecondMagicNumber = parent.allegroVibration;
     }
 
     @Override
