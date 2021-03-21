@@ -171,6 +171,9 @@ public class Chesed extends AbstractAllyMonster
 
     @Override
     public void takeTurn() {
+        if (this.isDead) {
+            return;
+        }
         super.takeTurn();
         if (firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
@@ -203,14 +206,14 @@ public class Chesed extends AbstractAllyMonster
                 dmg(target, info);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 applyToTarget(adp(), this, new StrengthPower(adp(), STRENGTH));
-                resetIdle(1.0f);
+                resetIdle();
                 break;
             }
             case ENERGY_SHIELD: {
                 blockAnimation();
                 atb(new AllyGainBlockAction(this, this, ENERGY_SHIELD_BLOCK));
                 block(adp(), ENERGY_SHIELD_BLOCK);
-                waitAnimation(1.0f);
+                waitAnimation();
                 pierceAnimation(target);
                 dmg(target, info);
                 resetIdle();
