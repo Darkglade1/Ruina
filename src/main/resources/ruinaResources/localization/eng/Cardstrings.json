@@ -180,5 +180,25 @@
   "${ModID}:CHRBOSS_DistortedBlade": {
     "NAME": "Distorted Blade",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion."
+  },
+  "${ModID}:CHRBOSS_Largo": {
+    "NAME": "Largo",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
+  },
+  "${ModID}:CHRBOSS_Allegro": {
+    "NAME": "Allegro",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:CHRBOSS_ResonantScythe": {
+    "NAME": "Resonant Scythe",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:CHRBOSS_TrailsOfBlue": {
+    "NAME": "Trails Of Blue",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:TempestuousDanza": {
+    "NAME": "Tempestuous Danza",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies !M! times. NL Increase the *Vibration needed for this by !ruina:SecondMagic!."
   }
 }

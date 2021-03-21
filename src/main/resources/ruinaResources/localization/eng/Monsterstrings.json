@@ -600,5 +600,18 @@
     "NAME": "Puppet",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Argalia": {
+    "MOVES": [
+      "Largo",
+      "Allegro",
+      "Scythe",
+      "Trails Of Blue",
+      "Danza"
+    ],
+    "NAME": "The Blue Reverberation",
+    "DIALOG": [
+      "You won't talk to me, Roland? What a shame."
+    ]
   }
 }
