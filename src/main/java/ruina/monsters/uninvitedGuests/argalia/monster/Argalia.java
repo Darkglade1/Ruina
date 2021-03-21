@@ -161,7 +161,7 @@ public class Argalia extends AbstractDeckMonster
             @Override
             public void update() {
                 if (firstMove) {
-                    atb(new TalkAction(Argalia.this, DIALOG[0]));
+                    att(new TalkAction(Argalia.this, DIALOG[0]));
                     firstMove = false;
                 }
                 isDone = true;

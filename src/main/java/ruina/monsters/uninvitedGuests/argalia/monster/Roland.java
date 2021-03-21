@@ -118,7 +118,7 @@ public class Roland extends AbstractAllyMonster {
             @Override
             public void update() {
                 if (firstMove) {
-                    atb(new TalkAction(Roland.this, DIALOG[0]));
+                    att(new TalkAction(Roland.this, DIALOG[0]));
                     firstMove = false;
                 }
                 isDone = true;
