@@ -236,7 +236,7 @@ public class Chesed extends AbstractAllyMonster
                         waitAnimation();
                         disposalDown(target);
                     } else {
-                        moveAnimation();
+                        moveAnimation(target);
                         waitAnimation();
                         disposalFinish(target);
                     }
@@ -355,10 +355,11 @@ public class Chesed extends AbstractAllyMonster
 
     private void disposalFinish(AbstractCreature enemy) {
         animationAction("Special2", "DisposalFinish", enemy, this);
+        animationAction("Special2", "DisposalBlood", enemy, this);
     }
 
-    private void moveAnimation() {
-        animationAction("Move", null, this);
+    private void moveAnimation(AbstractCreature enemy) {
+        animationAction("Move", null, enemy, this);
     }
 
 }
