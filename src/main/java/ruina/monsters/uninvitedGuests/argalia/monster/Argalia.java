@@ -26,6 +26,7 @@ import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractDeckMonster;
+import ruina.monsters.act2.LittleRed;
 import ruina.monsters.eventboss.redMist.cards.*;
 import ruina.monsters.eventboss.yan.cards.*;
 import ruina.monsters.uninvitedGuests.argalia.cards.*;
@@ -78,6 +79,8 @@ public class Argalia extends AbstractDeckMonster
     private boolean queueDanza = false;
     private int additionalActions = 1;
 
+    public Roland roland;
+
     public Argalia() { this(0.0f, 0.0f); }
 
     public Argalia(final float x, final float y) {
@@ -103,6 +106,9 @@ public class Argalia extends AbstractDeckMonster
     @Override
     public void usePreBattleAction()
     {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Roland) { roland = (Roland) mo; }
+        }
     }
 
     @Override
@@ -158,7 +164,8 @@ public class Argalia extends AbstractDeckMonster
             AdditionalIntent additionalIntent = additionalIntents.get(i);
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
             atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            takeCustomTurn(additionalMove, adp());
+            if (roland.isDead || roland.isDying) { takeCustomTurn(additionalMove, adp());
+            } else { takeCustomTurn(additionalMove, roland); }
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
@@ -197,7 +204,7 @@ public class Argalia extends AbstractDeckMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, roland, roland.allyIcon);
             }
         }
     }
