@@ -92,6 +92,7 @@ public class Roland extends AbstractAllyMonster {
 
     @Override
     public void usePreBattleAction() {
+        applyToTarget(this, this, power);
         CustomDungeon.playTempMusicInstantly("Roland1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Argalia) {
