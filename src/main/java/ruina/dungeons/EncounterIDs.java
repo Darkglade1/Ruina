@@ -10,4 +10,6 @@ public class EncounterIDs {
     public static final String NOS_AND_BAT = RuinaMod.makeID("Nos_and_Bat");
     public static final String BIRDS_3 = RuinaMod.makeID("3_Birds");
     public static final String BIRDS_4 = RuinaMod.makeID("4_Birds");
+    public static final String ARGALIA = RuinaMod.makeID("Argalia");
+
 }
