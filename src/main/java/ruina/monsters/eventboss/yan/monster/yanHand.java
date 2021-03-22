@@ -209,11 +209,6 @@ public class yanHand extends AbstractDeckMonster
         }
     }
 
-    @Override
-    protected void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
-
-    }
-
     protected void createMoveFromCard(AbstractCard c) {
         if (c.cardID.equals(CHRBOSS_GiantFist.ID)) { setMoveShortcut(GIANT_FIST, MOVES[0], c);
         } else if (c.cardID.equals(CHRBOSS_Compress.ID)) { setMoveShortcut(COMPRESS, MOVES[1], c);

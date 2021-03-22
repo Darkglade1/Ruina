@@ -281,5 +281,25 @@
   "${ModID}:PuppetStrings": {
     "NAME": "Puppet Strings",
     "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn at full HP. NL NL The #renemy's Mass Attack #gheals this creature instead. NL NL Your #gally will prioritize attacking this creature."]
+  },
+  "${ModID}:Vibration": {
+    "NAME": "Vibration",
+    "DESCRIPTIONS": ["Whenever #yArgalia takes unblocked attack damage, lose #b1 #yVibration."]
+  },
+  "${ModID}:InvisibleVibrationRemover": {
+    "NAME": "",
+    "DESCRIPTIONS": [""]
+  },
+  "${ModID}:InvisibleVibrationSender": {
+    "NAME": "",
+    "DESCRIPTIONS": [""]
+  },
+  "${ModID}:BlackSilence": {
+    "NAME": "The Black Silence",
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength each turn."]
+  },
+  "${ModID}:BlueReverberation": {
+    "NAME": "The Blue Reverberation",
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength each turn. NL When Roland dies, ALL intents are focused on you."]
   }
 }

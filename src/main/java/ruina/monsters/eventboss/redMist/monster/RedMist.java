@@ -358,7 +358,7 @@ public class RedMist extends AbstractDeckMonster
     }
 
     @Override
-    public void getAdditionalMoves(int num, int whichMove) { createMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
+    public void getAdditionalMoves(int num, int whichMove) { createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
 
     @Override
     public void applyPowers() {
@@ -385,8 +385,7 @@ public class RedMist extends AbstractDeckMonster
         }
     }
 
-    @Override
-    protected void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
+    protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
         if (c.cardID.equals(CHRBOSS_LevelSlash.ID)) {
             setAdditionalMoveShortcut(LEVEL_SLASH, moveHistory, c);
         } else if (c.cardID.equals(CHRBOSS_Spear.ID)) {
