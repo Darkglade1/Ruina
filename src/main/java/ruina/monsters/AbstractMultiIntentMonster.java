@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import ruina.monsters.act3.bigBird.BigBird;
+import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
 import ruina.powers.Enchanted;
 import ruina.util.AdditionalIntent;
 
@@ -60,7 +61,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         applyPowers();
     }
 
-    protected void applyPowersToAdditionalIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, String targetTexturePath) {
+    protected void applyPowersToAdditionalIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, String targetTexturePath, int whichMove) {
         if (additionalMove.nextMove == -1 || target.isDead || target.isDying) {
             target = adp();
         }
@@ -96,6 +97,9 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             if (dmg < 0) {
                 dmg = 0;
             }
+            if (this instanceof Argalia && additionalMove.nextMove == Argalia.SCYTHE && whichMove == 0) {
+                dmg = (int)(dmg * Argalia.scytheDamageMultiplier);
+            }
             if (target.hasPower(Enchanted.POWER_ID) && this.hasPower(BigBird.Salvation_POWER_ID)) {
                 dmg = BigBird.INSTANT_KILL_NUM;
             }
@@ -126,6 +130,10 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                 }
             }
         }
+    }
+
+    protected void applyPowersToAdditionalIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, String targetTexturePath) {
+        applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, targetTexturePath, -1);
     }
 
     @Override

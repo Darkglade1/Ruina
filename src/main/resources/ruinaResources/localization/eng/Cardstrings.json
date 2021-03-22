@@ -183,19 +183,19 @@
   },
   "${ModID}:CHRBOSS_Largo": {
     "NAME": "Largo",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Apply 1 *Vibration. If the target already has *Vibration, instead remove it and gain !B! Block again."
   },
   "${ModID}:CHRBOSS_Allegro": {
     "NAME": "Allegro",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply 1 *Vibration. If the target already has *Vibration, instead remove it and gain !ruina:SecondMagic! Strength next turn."
   },
   "${ModID}:CHRBOSS_ResonantScythe": {
     "NAME": "Resonant Scythe",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "Deal !D! damage. NL Deals triple damage if this is on the 2nd intent."
   },
   "${ModID}:CHRBOSS_TrailsOfBlue": {
     "NAME": "Trails Of Blue",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Target loses !ruina:SecondMagic! Strength."
   },
   "${ModID}:CHRBOSS_TempestuousDanza": {
     "NAME": "Tempestuous Danza",

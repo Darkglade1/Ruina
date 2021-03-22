@@ -284,15 +284,11 @@
   },
   "${ModID}:Vibration": {
     "NAME": "Vibration",
-    "DESCRIPTIONS": ["Whenever #yArgalia takes unblocked attack damage, lose #b1 #yVibration."]
+    "DESCRIPTIONS": ["Some of the #renemy's attacks consume #yVibration to trigger an additional effect."]
   },
-  "${ModID}:InvisibleVibrationRemover": {
-    "NAME": "",
-    "DESCRIPTIONS": [""]
-  },
-  "${ModID}:InvisibleVibrationSender": {
-    "NAME": "",
-    "DESCRIPTIONS": [""]
+  "${ModID}:Resonance": {
+    "NAME": "Resonance",
+    "DESCRIPTIONS": ["Whenever you play a card, shift this creature's intents to the right by #b", ". (The first intent targets you. The other intents target your #gally.)"]
   },
   "${ModID}:BlackSilence": {
     "NAME": "The Black Silence",
@@ -300,6 +296,6 @@
   },
   "${ModID}:BlueReverberation": {
     "NAME": "The Blue Reverberation",
-    "DESCRIPTIONS": ["Gains #b%1$s #yStrength each turn. NL When Roland dies, ALL intents are focused on you."]
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength each turn."]
   }
 }

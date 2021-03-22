@@ -14,7 +14,7 @@ public class CHRBOSS_TempestuousDanza extends AbstractRuinaCard {
     public final static String ID = makeID(CHRBOSS_TempestuousDanza.class.getSimpleName());
 
     public CHRBOSS_TempestuousDanza(Argalia parent) {
-        super(ID, 7, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        super(ID, 7, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.tempestuousDamage;
         magicNumber = baseMagicNumber = parent.tempestuousHits;
     }
