@@ -1,26 +1,17 @@
 package ruina.monsters.uninvitedGuests.argalia.monster;
 
 import actlikeit.dungeons.CustomDungeon;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
@@ -28,22 +19,22 @@ import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractDeckMonster;
-import ruina.monsters.act2.LittleRed;
-import ruina.monsters.eventboss.redMist.cards.*;
-import ruina.monsters.eventboss.yan.cards.*;
-import ruina.monsters.uninvitedGuests.argalia.cards.*;
-import ruina.powers.*;
+import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_Allegro;
+import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_Largo;
+import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_ResonantScythe;
+import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_TempestuousDanza;
+import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_TrailsOfBlue;
+import ruina.powers.BlueReverberation;
+import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.NextTurnPowerPower;
 import ruina.util.AdditionalIntent;
-import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
-import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.atb;
 
 public class Argalia extends AbstractDeckMonster
 {
@@ -121,21 +112,40 @@ public class Argalia extends AbstractDeckMonster
         int[] damageArray;
         switch (move.nextMove) {
             case LARGO: {
-                dmg(target, info);
+                slashLeftAnimation(target);
                 block(this, largoBlock);
+                dmg(target, info);
+                resetIdle();
                 break;
             }
             case ALLEGRO: {
-                for (int i = 0; i < multiplier; i++) { dmg(target, info); }
+                for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        slashRightAnimation(target);
+                    } else {
+                        slashDownAnimation(target);
+                    }
+                    dmg(target, info);
+                }
                 break;
             }
             case SCYTHE: {
+                slashDownAnimation(target);
                 dmg(target, info);
+                resetIdle();
                 break;
             }
             case TRAILS:
-                for (int i = 0; i < multiplier; i++) { dmg(target, info); }
-                applyToTarget(target, this, new NextTurnPowerPower(target, new WeakPower(target, trailsWeak, true)));
+                for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        slashUpAnimation(target);
+                    } else {
+                        slamAnimation(target);
+                    }
+                    dmg(target, info);
+                    resetIdle();
+                }
+                applyToTarget(target, this, new WeakPower(target, trailsWeak, true));
                 break;
             case DANZA: {
                 damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
@@ -147,7 +157,19 @@ public class Argalia extends AbstractDeckMonster
                     damageArray[i] = info.output;
                 }
                 for (int i = 0; i < multiplier; i++) {
+                    if (i == 0) {
+                        slashLeftAnimation(adp());
+                    } else if (i == 1) {
+                        slashRightAnimation(adp());
+                    } else if (i == 2) {
+                        slashDownAnimation(adp());
+                    } else if (i == 3) {
+                        slashUpAnimation(adp());
+                    } else {
+                        slamAnimation(adp());
+                    }
                     atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                    resetIdle();
                 }
                 atb(new AbstractGameAction() {
                     @Override
@@ -270,6 +292,26 @@ public class Argalia extends AbstractDeckMonster
                 isDone = true;
             }
         });
+    }
+
+    private void slashLeftAnimation(AbstractCreature enemy) {
+        animationAction("SlashLeft", "SwordHori", enemy, this);
+    }
+
+    private void slashRightAnimation(AbstractCreature enemy) {
+        animationAction("SlashRight", "SwordHori", enemy, this);
+    }
+
+    private void slashUpAnimation(AbstractCreature enemy) {
+        animationAction("SlashUp", "SwordVert", enemy, this);
+    }
+
+    private void slashDownAnimation(AbstractCreature enemy) {
+        animationAction("SlashDown", "SwordVert", enemy, this);
+    }
+
+    private void slamAnimation(AbstractCreature enemy) {
+        animationAction("Slam", "SwordStab", enemy, this);
     }
 
 }

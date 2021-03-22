@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0">
-        <file id="0" name="Argalia_Default.png" width="512" height="1024" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="Argalia_Default.png" width="214" height="341" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Argalia_S1.png" width="506" height="301" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="강한 횡베기1.png" width="512" height="125" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Argalia_S2.png" width="544" height="256" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="강한 횡베기2.png" width="504" height="109" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Argalia_S3.png" width="512" height="425" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="강한 종베기1.png" width="511" height="469" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="Argalia_S4.png" width="422" height="436" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="강한 종베기2.png" width="503" height="488" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="Argalia_S5.png" width="411" height="332" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="내려찍기.png" width="510" height="415" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="Argalia">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -12,7 +22,97 @@
             </mainline>
             <timeline id="0" name="Argalia_Default_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-124.89514" y="434.784828" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="0" x="-124.89514" y="263.784828" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="SlashLeft" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Argalia_S1">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-167" y="252"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="강한 횡베기1">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-230" y="105"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="SlashRight" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Argalia_S2">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-201" y="239"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="강한 횡베기2">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-204" y="120"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="SlashUp" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Argalia_S3">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-253" y="297"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="강한 종베기1">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-256" y="381"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="SlashDown" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Argalia_S4">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-184" y="310"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="강한 종베기2">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-333" y="365"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Slam" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Argalia_S5">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-296" y="291"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="내려찍기">
+                <key id="0" spin="0">
+                    <object folder="0" file="10" x="-466" y="337"/>
                 </key>
             </timeline>
         </animation>

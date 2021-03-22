@@ -9,18 +9,13 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.ThornsPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.BlackSilence;
-import ruina.powers.BlueReverberation;
 import ruina.powers.InvisibleBarricadePower;
 
 import java.util.ArrayList;
@@ -28,7 +23,6 @@ import java.util.ArrayList;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.atb;
 
 public class Roland extends AbstractAllyMonster {
     public static final String ID = RuinaMod.makeID(Roland.class.getSimpleName());
@@ -62,17 +56,6 @@ public class Roland extends AbstractAllyMonster {
 
     public Argalia argalia;
 
-    public static final String STRIKE_POWER_ID = RuinaMod.makeID("StrikeWithoutHesitation");
-    public static final PowerStrings strikePowerStrings = CardCrawlGame.languagePack.getPowerStrings(STRIKE_POWER_ID);
-    public static final String STRIKE_POWER_NAME = strikePowerStrings.NAME;
-    public static final String[] STRIKE_POWER_DESCRIPTIONS = strikePowerStrings.DESCRIPTIONS;
-
-    public static final String FURY_POWER_ID = RuinaMod.makeID("FuryWithNoOutlet");
-    public static final PowerStrings furyPowerStrings = CardCrawlGame.languagePack.getPowerStrings(FURY_POWER_ID);
-    public static final String FURY_POWER_NAME = furyPowerStrings.NAME;
-    public static final String[] FURY_POWER_DESCRIPTIONS = furyPowerStrings.DESCRIPTIONS;
-    private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
-
     public Roland() {
         this(0.0f, 0.0f);
     }
@@ -95,7 +78,6 @@ public class Roland extends AbstractAllyMonster {
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, power);
         applyToTarget(this, this, new BlackSilence(this, calcAscensionSpecial(2)));
         CustomDungeon.playTempMusicInstantly("Roland1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {

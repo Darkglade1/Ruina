@@ -99,6 +99,8 @@ import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
+import ruina.monsters.uninvitedGuests.puppeteer.Chesed;
+import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
 import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
@@ -550,11 +552,16 @@ public class RuinaMod implements
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
         BaseMod.addEvent(YesterdayPromise.ID, YesterdayPromise.class, Atziluth.ID);
 
+        //Uninvited Guests
+        BaseMod.addMonster(Puppeteer.ID, "Puppeteer", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Chesed(-550.0F, 0.0F),
+                        new Puppeteer(200.0F, 0.0F),
+                }));
         BaseMod.addMonster(Argalia.ID, (BaseMod.GetMonster) Argalia::new);
 
         uninvitedGuests.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
         uninvitedGuests.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
-
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)
