@@ -26,7 +26,6 @@ import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_TempestuousDanza;
 import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_TrailsOfBlue;
 import ruina.powers.BlueReverberation;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.NextTurnPowerPower;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -86,9 +85,9 @@ public class Argalia extends AbstractDeckMonster
         numAdditionalMoves = 3;
 
         addMove(LARGO, Intent.ATTACK_DEFEND, largoDamage);
-        addMove(ALLEGRO, Intent.ATTACK_DEBUFF, allegroDamage, allegroHits, true);
+        addMove(ALLEGRO, Intent.ATTACK, allegroDamage, allegroHits, true);
         addMove(SCYTHE, Intent.ATTACK, scytheDamage);
-        addMove(TRAILS, Intent.ATTACK, trailsDamage, trailsHits, true);
+        addMove(TRAILS, Intent.ATTACK_DEBUFF, trailsDamage, trailsHits, true);
         addMove(DANZA, IntentEnums.MASS_ATTACK, tempestuousDamage, tempestuousHits, true);
         initializeDeck();
     }
@@ -126,6 +125,7 @@ public class Argalia extends AbstractDeckMonster
                         slashDownAnimation(target);
                     }
                     dmg(target, info);
+                    resetIdle();
                 }
                 break;
             }

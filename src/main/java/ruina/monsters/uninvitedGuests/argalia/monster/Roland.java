@@ -16,7 +16,6 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.BlackSilence;
-import ruina.powers.InvisibleBarricadePower;
 
 import java.util.ArrayList;
 
@@ -61,9 +60,9 @@ public class Roland extends AbstractAllyMonster {
     }
 
     public Roland(final float x, final float y) {
-        super(NAME, ID, 750, -5.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 750, -15.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Roland/Spriter/Roland.scml"));
-        this.animation.setFlip(true, false);
+        this.animation.setFlip(false, false);
 
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
@@ -114,26 +113,52 @@ public class Roland extends AbstractAllyMonster {
         if (info.base > -1) { info.applyPowers(this, target); }
         switch (this.nextMove) {
             case CRYSTAL: {
+                block(this, crystalBlock);
                 for (int i = 0; i < multiplier; i++) {
+                    if (i == 0) {
+                        slashAnimation(target);
+                    } else if (i == 1) {
+                        sword2Animation(target);
+                    } else {
+                        sword1Animation(target);
+                    }
                     dmg(target, info);
+                    resetIdle();
                 }
-                block(target, crystalBlock);
                 break;
             }
             case WHEELS: {
+                wheelsAnimation(target);
+                block(this, wheelsBlock);
                 dmg(target, info);
-                block(target, wheelsBlock);
+                resetIdle(1.0f);
                 break;
             }
             case DURANDAL: {
-                for (int i = 0; i < multiplier; i++) { dmg(target, info); }
+                for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        sword2Animation(target);
+                    } else {
+                        sword3Animation(target);
+                    }
+                    dmg(target, info);
+                    resetIdle();
+                }
                 applyToSelf(new StrengthPower(adp(), durandalStrength));
                 applyToTarget(this, this, new StrengthPower(this, durandalStrength));
                 break;
             }
             case FURIOSO: {
-                for (int i = 0; i < multiplier; i++) { dmg(target, info); }
-                block(target, furiosoBlock);
+                block(this, furiosoBlock);
+                for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        sword2Animation(target);
+                    } else {
+                        sword3Animation(target);
+                    }
+                    dmg(target, info);
+                    resetIdle();
+                }
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -177,6 +202,75 @@ public class Roland extends AbstractAllyMonster {
         AbstractCreature target;
         target = argalia;
         applyPowers(target);
+    }
+
+    private void attackAnimation(AbstractCreature enemy) {
+        animationAction("Attack", "RolandAxe", enemy, this);
+    }
+
+    private void pierceAnimation(AbstractCreature enemy) {
+        animationAction("Pierce", "RolandAxe", enemy, this);
+    }
+
+    private void gun1Animation(AbstractCreature enemy) {
+        animationAction("Gun1", "RolandRevolver", enemy, this);
+    }
+
+    private void gun2Animation(AbstractCreature enemy) {
+        animationAction("Gun2", "RolandRevolver", enemy, this);
+    }
+
+    private void gun3Animation(AbstractCreature enemy) {
+        animationAction("Gun3", "RolandShotgun", enemy, this);
+    }
+
+    private void mook1Animation(AbstractCreature enemy) {
+        animationAction("Mook1", "RolandLongSwordStart", enemy, this);
+    }
+
+    private void mook2Animation(AbstractCreature enemy) {
+        animationAction("Mook2", "RolandLongSwordAtk", enemy, this);
+        animationAction("Mook2", "RolandLongSwordFin", enemy, this);
+    }
+
+    private void claw1Animation(AbstractCreature enemy) {
+        animationAction("Claw1", "SwordStab", enemy, this);
+    }
+
+    private void claw2Animation(AbstractCreature enemy) {
+        animationAction("Claw2", "SwordStab", enemy, this);
+    }
+
+    private void knifeAnimation(AbstractCreature enemy) {
+        animationAction("Knife", "RolandShortSword", enemy, this);
+    }
+
+    private void club1Animation(AbstractCreature enemy) {
+        animationAction("Club1", "BluntVert", enemy, this);
+    }
+
+    private void club2Animation(AbstractCreature enemy) {
+        animationAction("Club2", "BluntVert", enemy, this);
+    }
+
+    private void wheelsAnimation(AbstractCreature enemy) {
+        animationAction("Wheels", "RolandGreatSword", enemy, this);
+    }
+
+    private void sword1Animation(AbstractCreature enemy) {
+        animationAction("Sword1", "RolandDuralandalDown", enemy, this);
+    }
+
+    private void sword2Animation(AbstractCreature enemy) {
+        animationAction("Sword2", "RolandDuralandalUp", enemy, this);
+    }
+
+    private void sword3Animation(AbstractCreature enemy) {
+        animationAction("Sword3", "RolandDuralandalStrong", enemy, this);
+    }
+
+    private void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "RolandDualSword", enemy, this);
     }
 
 }

@@ -3,15 +3,15 @@
     <folder id="0">
         <file id="0" name="Argalia_Default.png" width="214" height="341" pivot_x="0" pivot_y="1"/>
         <file id="1" name="Argalia_S1.png" width="506" height="301" pivot_x="0" pivot_y="1"/>
-        <file id="2" name="강한 횡베기1.png" width="512" height="125" pivot_x="0" pivot_y="1"/>
-        <file id="3" name="Argalia_S2.png" width="544" height="256" pivot_x="0" pivot_y="1"/>
-        <file id="4" name="강한 횡베기2.png" width="504" height="109" pivot_x="0" pivot_y="1"/>
-        <file id="5" name="Argalia_S3.png" width="512" height="425" pivot_x="0" pivot_y="1"/>
-        <file id="6" name="강한 종베기1.png" width="511" height="469" pivot_x="0" pivot_y="1"/>
-        <file id="7" name="Argalia_S4.png" width="422" height="436" pivot_x="0" pivot_y="1"/>
-        <file id="8" name="강한 종베기2.png" width="503" height="488" pivot_x="0" pivot_y="1"/>
-        <file id="9" name="Argalia_S5.png" width="411" height="332" pivot_x="0" pivot_y="1"/>
-        <file id="10" name="내려찍기.png" width="510" height="415" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Argalia_S2.png" width="544" height="256" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Argalia_S3.png" width="512" height="425" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Argalia_S4.png" width="422" height="436" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Argalia_S5.png" width="411" height="332" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="3.png" width="512" height="125" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="4.png" width="504" height="109" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="1.png" width="511" height="469" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="2.png" width="503" height="488" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="5.png" width="510" height="415" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="Argalia">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -35,12 +35,12 @@
             </mainline>
             <timeline id="0" name="Argalia_S1">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-167" y="252"/>
+                    <object folder="0" file="1" x="-167" y="252" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="강한 횡베기1">
+            <timeline id="1" name="3">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-230" y="105"/>
+                    <object folder="0" file="6" x="-233.870968" y="109.677419"/>
                 </key>
             </timeline>
         </animation>
@@ -53,12 +53,12 @@
             </mainline>
             <timeline id="0" name="Argalia_S2">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-201" y="239"/>
+                    <object folder="0" file="2" x="-201" y="239" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="강한 횡베기2">
+            <timeline id="1" name="4">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-204" y="120"/>
+                    <object folder="0" file="7" x="-214.516129" y="120.967742"/>
                 </key>
             </timeline>
         </animation>
@@ -71,12 +71,12 @@
             </mainline>
             <timeline id="0" name="Argalia_S3">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="-253" y="297"/>
+                    <object folder="0" file="3" x="-253" y="297" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="강한 종베기1">
+            <timeline id="1" name="1">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="-256" y="381"/>
+                    <object folder="0" file="8" x="-259.677419" y="361.290323"/>
                 </key>
             </timeline>
         </animation>
@@ -89,12 +89,12 @@
             </mainline>
             <timeline id="0" name="Argalia_S4">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="-184" y="310"/>
+                    <object folder="0" file="4" x="-184" y="310" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="강한 종베기2">
+            <timeline id="1" name="2">
                 <key id="0" spin="0">
-                    <object folder="0" file="8" x="-333" y="365"/>
+                    <object folder="0" file="9" x="-300" y="367.741935"/>
                 </key>
             </timeline>
         </animation>
@@ -107,12 +107,12 @@
             </mainline>
             <timeline id="0" name="Argalia_S5">
                 <key id="0" spin="0">
-                    <object folder="0" file="9" x="-296" y="291"/>
+                    <object folder="0" file="5" x="-296" y="291" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="내려찍기">
+            <timeline id="1" name="5">
                 <key id="0" spin="0">
-                    <object folder="0" file="10" x="-466" y="337"/>
+                    <object folder="0" file="10" x="-475.806452" y="351.612903"/>
                 </key>
             </timeline>
         </animation>

@@ -197,7 +197,7 @@
     "NAME": "Trails Of Blue",
     "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak."
   },
-  "${ModID}:TempestuousDanza": {
+  "${ModID}:CHRBOSS_TempestuousDanza": {
     "NAME": "Tempestuous Danza",
     "DESCRIPTION": "Deal !D! damage to ALL enemies !M! times."
   }

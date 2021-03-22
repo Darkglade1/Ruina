@@ -99,6 +99,7 @@ import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
+import ruina.monsters.uninvitedGuests.argalia.monster.Roland;
 import ruina.monsters.uninvitedGuests.puppeteer.Chesed;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
 import ruina.patches.TotalBlockGainedSpireField;
@@ -390,6 +391,21 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("PuppetStart"), makeSFXPath("Puppet_StrongStart.wav"));
         BaseMod.addAudio(makeID("PuppetStrongAtk"), makeSFXPath("Puppet_StrongAtk.wav"));
         BaseMod.addAudio(makeID("PuppetBreak"), makeSFXPath("Puppet_Break.wav"));
+
+        BaseMod.addAudio(makeID("RolandAxe"), makeSFXPath("Roland_Axe.wav"));
+        BaseMod.addAudio(makeID("RolandDualSword"), makeSFXPath("Roland_DuelSword.wav"));
+        BaseMod.addAudio(makeID("RolandDualSwordStrong"), makeSFXPath("Roland_DuelSword_Strong.wav"));
+        BaseMod.addAudio(makeID("RolandDuralandalDown"), makeSFXPath("Roland_Duralandal_Down.wav"));
+        BaseMod.addAudio(makeID("RolandDuralandalStrong"), makeSFXPath("Roland_Duralandal_Strong.wav"));
+        BaseMod.addAudio(makeID("RolandDuralandalUp"), makeSFXPath("Roland_Duralandal_Up.wav"));
+        BaseMod.addAudio(makeID("RolandGreatSword"), makeSFXPath("Roland_GreatSword.wav"));
+        BaseMod.addAudio(makeID("RolandLongSwordAtk"), makeSFXPath("Roland_LongSword_Atk.wav"));
+        BaseMod.addAudio(makeID("RolandLongSwordFin"), makeSFXPath("Roland_LongSword_Fin.wav"));
+        BaseMod.addAudio(makeID("RolandLongSwordStart"), makeSFXPath("Roland_LongSword_Start.wav"));
+        BaseMod.addAudio(makeID("RolandMace"), makeSFXPath("Roland_Mace.wav"));
+        BaseMod.addAudio(makeID("RolandRevolver"), makeSFXPath("Roland_Revolver.wav"));
+        BaseMod.addAudio(makeID("RolandShortSword"), makeSFXPath("Roland_ShortSword.wav"));
+        BaseMod.addAudio(makeID("RolandShotgun"), makeSFXPath("Roland_Shotgun.wav"));
     }
 
     @Override
@@ -558,7 +574,11 @@ public class RuinaMod implements
                         new Chesed(-550.0F, 0.0F),
                         new Puppeteer(200.0F, 0.0F),
                 }));
-        BaseMod.addMonster(Argalia.ID, (BaseMod.GetMonster) Argalia::new);
+        BaseMod.addMonster(Argalia.ID, "Argalia", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Roland(-500.0F, 0.0F),
+                        new Argalia(0.0F, 0.0F),
+                }));
 
         uninvitedGuests.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
         uninvitedGuests.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
