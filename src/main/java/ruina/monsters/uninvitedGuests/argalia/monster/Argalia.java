@@ -207,7 +207,9 @@ public class Argalia extends AbstractDeckMonster
     }
 
     @Override
-    public void getAdditionalMoves(int num, int whichMove) { createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
+    public void getAdditionalMoves(int num, int whichMove) {
+        if(!queueDanza){ createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
+    }
 
     @Override
     public void applyPowers() {
