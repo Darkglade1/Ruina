@@ -195,7 +195,7 @@
   },
   "${ModID}:CHRBOSS_TrailsOfBlue": {
     "NAME": "Trails Of Blue",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Vibration next turn."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak next turn."
   },
   "${ModID}:TempestuousDanza": {
     "NAME": "Tempestuous Danza",

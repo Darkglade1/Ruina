@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
@@ -68,15 +69,16 @@ public class Argalia extends AbstractDeckMonster
 
     public final int trailsDamage = calcAscensionDamage(3);
     public final int trailsHits = 2;
-    public final int trailsVibration = calcAscensionSpecial(2);
+    public final int trailsWeak = calcAscensionSpecial(2);
 
-    public final int tempestuousDamage = calcAscensionDamage(7);
-    public final int tempestuousHits = 7;
+    public final int tempestuousDamage = calcAscensionDamage(5);
+    public final int tempestuousHits = 5;
 
     private boolean queueDanza = false;
-    private int additionalActions = 1;
+    private int danzaTimer = 1;
 
     public Roland roland;
+    private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
 
     public Argalia() { this(0.0f, 0.0f); }
 
@@ -103,12 +105,12 @@ public class Argalia extends AbstractDeckMonster
     @Override
     public void usePreBattleAction()
     {
-        applyToTarget(this, this, new InvisibleVibrationRemover(this));
+        applyToTarget(this, this, power);
+        applyToTarget(this, this, new BlueReverberation(this, calcAscensionSpecial(2)));
         CustomDungeon.playTempMusicInstantly("EnsembleArgalia");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Roland) { roland = (Roland) mo; }
         }
-        applyToTarget(adp(), this, new InvisibleVibrationSender(adp()));
     }
 
     @Override
@@ -133,6 +135,7 @@ public class Argalia extends AbstractDeckMonster
             }
             case TRAILS:
                 for (int i = 0; i < multiplier; i++) { dmg(target, info); }
+                applyToTarget(target, this, new NextTurnPowerPower(target, new WeakPower(target, trailsWeak, true)));
                 break;
             case DANZA: {
                 damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
@@ -146,7 +149,13 @@ public class Argalia extends AbstractDeckMonster
                 for (int i = 0; i < multiplier; i++) {
                     atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 }
-                queueDanza = false;
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        queueDanza = false;
+                        isDone = true;
+                    }
+                });
                 break;
             }
         }
@@ -184,7 +193,6 @@ public class Argalia extends AbstractDeckMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                calculateAllocatedMoves();
                 danzaCheck();
                 isDone = true;
             }
@@ -220,6 +228,7 @@ public class Argalia extends AbstractDeckMonster
     protected void createDeck() {
         masterDeck.addToBottom(new CHRBOSS_Largo(this));
         masterDeck.addToBottom(new CHRBOSS_Largo(this));
+        masterDeck.addToBottom(new CHRBOSS_Largo(this));
         masterDeck.addToBottom(new CHRBOSS_Allegro(this));
         masterDeck.addToBottom(new CHRBOSS_TrailsOfBlue(this));
         masterDeck.addToBottom(new CHRBOSS_ResonantScythe(this));
@@ -250,11 +259,15 @@ public class Argalia extends AbstractDeckMonster
         }
     }
 
-    public void calculateAllocatedMoves(){
-
-    }
     public void danzaCheck(){
-
+        att(new AbstractGameAction() {
+            @Override
+            public void update() {
+                danzaTimer += 1;
+                if(danzaTimer % 7 == 0){ queueDanza = true; }
+                isDone = true;
+            }
+        });
     }
 
 }

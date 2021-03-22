@@ -296,10 +296,10 @@
   },
   "${ModID}:BlackSilence": {
     "NAME": "The Black Silence",
-    "DESCRIPTIONS": ["Every #3 Turns, use a powerful attack."]
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength each turn."]
   },
   "${ModID}:BlueReverberation": {
     "NAME": "The Blue Reverberation",
-    "DESCRIPTIONS": ["Gains #b%1$s Strength each turn. NL Whenever Argalia deals #runblocked damage, apply #b%2$s #yVibration to the target. NL If any target has #b%3$s #yVibration at the end of Argalia's turn, use a powerful attack next turn."]
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength each turn. NL When Roland dies, ALL intents are focused on you."]
   }
 }

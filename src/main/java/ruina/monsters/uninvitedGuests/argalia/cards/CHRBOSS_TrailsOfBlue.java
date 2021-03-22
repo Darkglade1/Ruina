@@ -19,7 +19,7 @@ public class CHRBOSS_TrailsOfBlue extends AbstractRuinaCard {
         super(ID, 3, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.trailsDamage;
         magicNumber = baseMagicNumber = parent.trailsHits;
-        secondMagicNumber = baseMagicNumber = parent.trailsVibration;
+        secondMagicNumber = baseMagicNumber = parent.trailsWeak;
     }
 
     @Override

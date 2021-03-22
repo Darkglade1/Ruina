@@ -19,8 +19,9 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.BlackSilence;
+import ruina.powers.BlueReverberation;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.InvisibleVibrationRemover;
 
 import java.util.ArrayList;
 
@@ -56,7 +57,7 @@ public class Roland extends AbstractAllyMonster {
     public final int furiosoBlock = calcAscensionDamage(60);
     public final int furiosoHits = 5;
 
-    public final int furiosoCap = 9;
+    public final int furiosoCap = 3;
     public int furiosoCount = 0;
 
     public Argalia argalia;
@@ -88,27 +89,18 @@ public class Roland extends AbstractAllyMonster {
         addMove(WHEELS, Intent.ATTACK_DEBUFF, wheelsDamage);
         addMove(DURANDAL, Intent.ATTACK_BUFF, durandalDamage, durandalHits, true);
         addMove(FURIOSO, Intent.ATTACK_DEFEND, furiosoDamage, furiosoHits, true);
-        this.allyIcon = makeUIPath("RedIcon.png");
+        this.allyIcon = makeUIPath("RolandIcon.png");
         firstMove = true;
     }
 
     @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, power);
-        applyToTarget(this, this, new InvisibleVibrationRemover(this));
-        applyToTarget(this, this, new ThornsPower(this, 3));
+        applyToTarget(this, this, new BlackSilence(this, calcAscensionSpecial(2)));
         CustomDungeon.playTempMusicInstantly("Roland1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Argalia) {
-                argalia = (Argalia) mo;
-            }
+            if (mo instanceof Argalia) { argalia = (Argalia) mo; }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(FURY_POWER_NAME, FURY_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = FURY_POWER_DESCRIPTIONS[0];
-            }
-        });
         super.usePreBattleAction();
     }
 
@@ -159,7 +151,7 @@ public class Roland extends AbstractAllyMonster {
             }
             case FURIOSO: {
                 for (int i = 0; i < multiplier; i++) { dmg(target, info); }
-                block(target, wheelsBlock);
+                block(target, furiosoBlock);
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
