@@ -195,7 +195,7 @@
   },
   "${ModID}:CHRBOSS_TrailsOfBlue": {
     "NAME": "Trails Of Blue",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Target loses !ruina:SecondMagic! Strength."
+    "DESCRIPTION": "Deal !D! damage. NL Target loses !M! Strength."
   },
   "${ModID}:CHRBOSS_TempestuousDanza": {
     "NAME": "Tempestuous Danza",

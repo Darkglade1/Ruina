@@ -16,8 +16,7 @@ public class CHRBOSS_TrailsOfBlue extends AbstractRuinaCard {
     public CHRBOSS_TrailsOfBlue(Argalia parent) {
         super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.trailsDamage;
-        magicNumber = baseMagicNumber = parent.trailsHits;
-        secondMagicNumber = baseSecondMagicNumber = parent.trailsStrengthLoss;
+        magicNumber = baseMagicNumber = parent.trailsStrengthLoss;
     }
 
     @Override

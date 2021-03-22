@@ -60,15 +60,15 @@ public class Argalia extends AbstractDeckMonster
     public final int largoBlock = calcAscensionTankiness(18);
     public final int largoDamage = calcAscensionDamage(19);
 
-    public final int allegroDamage = calcAscensionDamage(6);
-    public final int allegroHits = 3;
+    public final int allegroDamage = calcAscensionDamage(15);
+    public final int allegroHits = 2;
     public final int allegroStrength = calcAscensionSpecial(4);
 
-    public final int scytheDamage = calcAscensionDamage(25);
+    public final int scytheDamage = calcAscensionDamage(27);
     public static final float scytheDamageMultiplier = 3.0f;
+    public static final int SCYTHE_INTENT_NUM = 0;
 
-    public final int trailsDamage = calcAscensionDamage(10);
-    public final int trailsHits = 2;
+    public final int trailsDamage = calcAscensionDamage(22);
     public final int trailsStrengthLoss = calcAscensionSpecial(3);
 
     public final int tempestuousDamage = calcAscensionDamage(6);
@@ -107,9 +107,9 @@ public class Argalia extends AbstractDeckMonster
         numAdditionalMoves = 2;
 
         addMove(LARGO, Intent.ATTACK_DEFEND, largoDamage);
-        addMove(ALLEGRO, Intent.ATTACK, allegroDamage, allegroHits, true);
+        addMove(ALLEGRO, Intent.ATTACK_BUFF, allegroDamage, allegroHits, true);
         addMove(SCYTHE, Intent.ATTACK, scytheDamage);
-        addMove(TRAILS, Intent.ATTACK_DEBUFF, trailsDamage, trailsHits, true);
+        addMove(TRAILS, Intent.ATTACK_DEBUFF, trailsDamage);
         addMove(DANZA, IntentEnums.MASS_ATTACK, tempestuousDamage, tempestuousHits, true);
         initializeDeck();
     }
@@ -118,7 +118,7 @@ public class Argalia extends AbstractDeckMonster
     public void usePreBattleAction()
     {
         applyToTarget(this, this, power);
-        applyToTarget(this, this, new BlueReverberation(this, calcAscensionSpecial(2)));
+        applyToTarget(this, this, new BlueReverberation(this, 2));
         applyToTarget(this, this, new AbstractLambdaPower(RESONANCE_POWER_NAME, RESONANCE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, INTENT_SHIFT_AMT) {
             @Override
             public void onUseCard(AbstractCard card, UseCardAction action) {
@@ -164,7 +164,7 @@ public class Argalia extends AbstractDeckMonster
             case ALLEGRO: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        slashRightAnimation(enemy);
+                        slashUpAnimation(enemy);
                     } else {
                         slashDownAnimation(enemy);
                     }
@@ -186,8 +186,8 @@ public class Argalia extends AbstractDeckMonster
                 break;
             }
             case SCYTHE: {
-                slashDownAnimation(enemy);
-                if (whichMove == 0) {
+                slamAnimation(enemy);
+                if (whichMove == SCYTHE_INTENT_NUM) {
                     info.output = (int)(info.output * scytheDamageMultiplier);
                 }
                 dmg(enemy, info);
@@ -195,15 +195,9 @@ public class Argalia extends AbstractDeckMonster
                 break;
             }
             case TRAILS:
-                for (int i = 0; i < multiplier; i++) {
-                    if (i % 2 == 0) {
-                        slashUpAnimation(enemy);
-                    } else {
-                        slamAnimation(enemy);
-                    }
-                    dmg(enemy, info);
-                    resetIdle();
-                }
+                slashDownAnimation(enemy);
+                dmg(enemy, info);
+                resetIdle();
                 applyToTarget(enemy, this, new StrengthPower(enemy, -trailsStrengthLoss));
                 break;
             case DANZA: {
@@ -367,7 +361,7 @@ public class Argalia extends AbstractDeckMonster
                 for (AdditionalIntent additionalIntent : additionalIntents) {
                     cards.add(additionalIntent.enemyCard);
                 }
-                if (moves.size() > 0) {
+                if (moves.size() > 1) {
                     for (int i = 0; i < times; i++) {
                         Byte move = moves.remove(moves.size() - 1);
                         moves.add(0, move);
