@@ -240,5 +240,41 @@
   "${ModID}:CHRALLY_FURIOSO": {
     "NAME": "Furioso",
     "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Concentration": {
+    "NAME": "Concentration",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
+  },
+  "${ModID}:EnergyShield": {
+    "NAME": "Energy Shield",
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:BattleCommand": {
+    "NAME": "Battle Command",
+    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! Strength."
+  },
+  "${ModID}:Disposal": {
+    "NAME": "Disposal",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage if the target is *Marked. NL Deals double damage if the target is at or below 25% HP."
+  },
+  "${ModID}:PullingStrings": {
+    "NAME": "Pulling the Strings Taut",
+    "DESCRIPTION": "Deal !D! damage to ALL other characters."
+  },
+  "${ModID}:TuggingStrings": {
+    "NAME": "Tugging Strings",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:AssailingPulls": {
+    "NAME": "Assailing Pulls",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  },
+  "${ModID}:ThinStrings": {
+    "NAME": "Thin Strings",
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Apply !M! Weak."
+  },
+  "${ModID}:Puppetry": {
+    "NAME": "Puppetry",
+    "DESCRIPTION": "ALL allies gain !M! Strength."
   }
 }

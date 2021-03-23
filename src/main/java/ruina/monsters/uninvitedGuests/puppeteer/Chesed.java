@@ -19,7 +19,16 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
+import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractAllyMonster;
+import ruina.monsters.uninvitedGuests.argalia.rolandCards.CHRALLY_ALLAS;
+import ruina.monsters.uninvitedGuests.argalia.rolandCards.CHRALLY_Crystal;
+import ruina.monsters.uninvitedGuests.argalia.rolandCards.CHRALLY_Durandal;
+import ruina.monsters.uninvitedGuests.argalia.rolandCards.CHRALLY_Wheels;
+import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.BattleCommand;
+import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Concentration;
+import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Disposal;
+import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.EnergyShield;
 import ruina.powers.AbstractLambdaPower;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
@@ -30,7 +39,7 @@ import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
 import static ruina.util.Wiz.*;
 
-public class Chesed extends AbstractAllyMonster
+public class Chesed extends AbstractAllyCardMonster
 {
     public static final String ID = RuinaMod.makeID(Chesed.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
@@ -43,9 +52,11 @@ public class Chesed extends AbstractAllyMonster
     private static final byte CONCENTRATE = 2;
     private static final byte DISPOSAL = 3;
 
-    private static final int STRENGTH = 2;
-    private static final int ENERGY_SHIELD_BLOCK = 15;
-    private static final int CONCENTRATE_BLOCK = 11;
+    public final int STRENGTH = 2;
+    public final int ENERGY_SHIELD_BLOCK = 15;
+    public final int CONCENTRATE_BLOCK = 11;
+    public final int CONCENTRATE_HITS = 2;
+    public final int DISPOSAL_HITS = 2;
     
     private static final float MARK_BOOST = 0.50f;
     private static final int MARK_DURATION = 1;
@@ -80,8 +91,13 @@ public class Chesed extends AbstractAllyMonster
 
         addMove(BATTLEFIELD_COMMAND, Intent.ATTACK_BUFF, 16);
         addMove(ENERGY_SHIELD, Intent.ATTACK_DEFEND, 6);
-        addMove(CONCENTRATE, Intent.ATTACK_DEFEND, 10, 2, true);
+        addMove(CONCENTRATE, Intent.ATTACK_DEFEND, 10, CONCENTRATE_HITS, true);
         addMove(DISPOSAL, Intent.ATTACK, 11, 2, true);
+
+        cardList.add(new BattleCommand(this));
+        cardList.add(new EnergyShield(this));
+        cardList.add(new Concentration(this));
+        cardList.add(new Disposal(this));
 
         this.allyIcon = makeUIPath("ChesedIcon.png");
     }
@@ -281,7 +297,7 @@ public class Chesed extends AbstractAllyMonster
             possibilities.add(CONCENTRATE);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
+        setMoveShortcut(move, MOVES[move], cardList.get(move));
     }
 
     public void checkDisposalCanUse() {
@@ -289,7 +305,7 @@ public class Chesed extends AbstractAllyMonster
             if (puppeteer.puppet.isDeadOrEscaped()) {
                 if (puppeteer.hasPower(MARK_POWER_ID)) {
                     att(new TalkAction(this, DIALOG[2]));
-                    setMoveShortcut(DISPOSAL, MOVES[DISPOSAL]);
+                    setMoveShortcut(DISPOSAL, MOVES[DISPOSAL], cardList.get(DISPOSAL));
                     createIntent();
                 }
             }

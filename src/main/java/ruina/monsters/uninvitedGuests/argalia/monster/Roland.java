@@ -97,7 +97,7 @@ public class Roland extends AbstractAllyCardMonster {
 
     public Argalia argalia;
     private ArrayList<Byte> movepool = new ArrayList<>();
-    private ArrayList<AbstractCard> cardList = new ArrayList<>();
+
     private BlackSilence power = new BlackSilence(this, 2);
 
     public Roland() {

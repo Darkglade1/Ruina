@@ -32,7 +32,17 @@ import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractAllyMonster;
+import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
+import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.BattleCommand;
+import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Concentration;
+import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Disposal;
+import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.EnergyShield;
+import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.AssailingPulls;
+import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.PullingStrings;
+import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.Puppetry;
+import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.ThinStrings;
+import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.TuggingStrings;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
@@ -46,7 +56,7 @@ import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
-public class Puppeteer extends AbstractMultiIntentMonster
+public class Puppeteer extends AbstractCardMonster
 {
     public static final String ID = makeID(Puppeteer.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
@@ -63,14 +73,16 @@ public class Puppeteer extends AbstractMultiIntentMonster
     private static final byte THIN_STRINGS = 3;
     private static final byte PUPPETRY = 4;
 
+    public final int tuggingStringsHits = 2;
+
     private static final float MASTERMIND_DAMAGE_REDUCTION = 0.5f;
     private static final int MASS_ATTACK_COOLDOWN = 3;
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
-    private final int BLOCK = calcAscensionTankiness(12);
-    private final int STRENGTH = calcAscensionSpecial(3);
-    private final int WEAK = calcAscensionSpecial(1);
-    private final int VULNERABLE = calcAscensionSpecial(1);
+    public final int BLOCK = calcAscensionTankiness(12);
+    public final int STRENGTH = calcAscensionSpecial(3);
+    public final int WEAK = calcAscensionSpecial(1);
+    public final int VULNERABLE = 1;
     public Chesed chesed;
     public Puppet puppet;
 
@@ -94,10 +106,16 @@ public class Puppeteer extends AbstractMultiIntentMonster
         this.setHp(calcAscensionTankiness(600));
 
         addMove(PULLING_STRINGS_TAUT, IntentEnums.MASS_ATTACK, calcAscensionDamage(36));
-        addMove(TUGGING_STRINGS, Intent.ATTACK, calcAscensionDamage(11), 2, true);
+        addMove(TUGGING_STRINGS, Intent.ATTACK, calcAscensionDamage(11), tuggingStringsHits, true);
         addMove(ASSAILING_PULLS, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
         addMove(THIN_STRINGS, Intent.DEFEND_DEBUFF);
         addMove(PUPPETRY, Intent.BUFF);
+
+        cardList.add(new PullingStrings(this));
+        cardList.add(new TuggingStrings(this));
+        cardList.add(new AssailingPulls(this));
+        cardList.add(new ThinStrings(this));
+        cardList.add(new Puppetry(this));
     }
 
     @Override
@@ -291,20 +309,20 @@ public class Puppeteer extends AbstractMultiIntentMonster
     @Override
     protected void getMove(final int num) {
         if (massAttackCooldown <= 0) {
-            setMoveShortcut(PULLING_STRINGS_TAUT);
+            setMoveShortcut(PULLING_STRINGS_TAUT, MOVES[PULLING_STRINGS_TAUT], cardList.get(PULLING_STRINGS_TAUT).makeCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(TUGGING_STRINGS)) {
                 possibilities.add(TUGGING_STRINGS);
             }
-            if (!this.lastMove(ASSAILING_PULLS) && chesed != null && !chesed.isDead && !chesed.isDying) {
+            if (!this.lastMove(ASSAILING_PULLS) && chesed != null && !chesed.isDead && !chesed.isDying && massAttackCooldown != 1) {
                 possibilities.add(ASSAILING_PULLS);
             }
             if (!this.lastMove(THIN_STRINGS)) {
                 possibilities.add(THIN_STRINGS);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move, MOVES[move], cardList.get(move).makeCopy());
         }
     }
 
@@ -315,14 +333,14 @@ public class Puppeteer extends AbstractMultiIntentMonster
         if (!this.lastMove(TUGGING_STRINGS, moveHistory)) {
             possibilities.add(TUGGING_STRINGS);
         }
-        if (!this.lastMove(ASSAILING_PULLS, moveHistory) && this.nextMove != ASSAILING_PULLS) {
+        if (!this.lastMove(ASSAILING_PULLS, moveHistory) && this.nextMove != ASSAILING_PULLS && massAttackCooldown != 1) {
             possibilities.add(ASSAILING_PULLS);
         }
         if (!this.lastMove(PUPPETRY, moveHistory) && !this.lastMoveBefore(PUPPETRY)) {
             possibilities.add(PUPPETRY);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory);
+        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeCopy());
     }
 
     @Override
