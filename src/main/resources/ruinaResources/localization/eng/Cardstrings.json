@@ -200,5 +200,45 @@
   "${ModID}:CHRBOSS_TempestuousDanza": {
     "NAME": "Tempestuous Danza",
     "DESCRIPTION": "Deal !D! damage to ALL enemies !M! times."
+  },
+  "${ModID}:CHRALLY_Crystal": {
+    "NAME": "Crystal Atelier",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
+  },
+  "${ModID}:CHRALLY_Wheels": {
+    "NAME": "Wheels Industry",
+    "DESCRIPTION": "Deal !D! damage. NL Target loses !M! Strength."
+  },
+  "${ModID}:CHRALLY_Durandal": {
+    "NAME": "Durandal",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:CHRALLY_ALLAS": {
+    "NAME": "Allas Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  },
+  "${ModID}:CHRALLY_GUN": {
+    "NAME": "Atelier Logic",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:CHRALLY_MOOK": {
+    "NAME": "Mook Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  },
+  "${ModID}:CHRALLY_OLDBOYS": {
+    "NAME": "Old Boy's Workshop",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:CHRALLY_RANGA": {
+    "NAME": "Ranga Workshop",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! ruina:Bleed."
+  },
+  "${ModID}:CHRALLY_MACE": {
+    "NAME": "Zelkova Workshop",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:CHRALLY_FURIOSO": {
+    "NAME": "Furioso",
+    "DESCRIPTION": "Deal !D! damage !M! times."
   }
 }

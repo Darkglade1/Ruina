@@ -15,7 +15,7 @@ public class CHRBOSS_Allegro extends AbstractRuinaCard {
     public final static String ID = makeID(CHRBOSS_Allegro.class.getSimpleName());
 
     public CHRBOSS_Allegro(Argalia parent) {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
+        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.allegroDamage;
         magicNumber = baseMagicNumber = parent.allegroHits;
         secondMagicNumber = baseSecondMagicNumber = parent.allegroStrength;

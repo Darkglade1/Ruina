@@ -174,12 +174,12 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
 
     @Override
     public void render(SpriteBatch sb) {
-        super.render(sb);
         if (isAlly && !isDead && !isDying) {
             for (AllyMove allyMove : allyMoves) {
                 allyMove.render(sb);
             }
         }
+        super.render(sb);
     }
 
     public void update() {
