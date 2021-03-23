@@ -269,6 +269,13 @@ public class Roland extends AbstractAllyCardMonster {
                 float initialX = drawX;
                 float targetBehind = target.drawX + 150.0f * Settings.scale;
                 float targetFront = target.drawX - 200.0f * Settings.scale;
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        AbstractDungeon.getCurrRoom().cannotLose = true;
+                        this.isDone = true;
+                    }
+                });
                 gun1Animation(target);
                 dmg(target, info);
                 waitAnimation(target);
@@ -289,7 +296,7 @@ public class Roland extends AbstractAllyCardMonster {
                 waitAnimation(target);
                 setFlipAnimation(false, target);
                 mook1Animation(target);
-                waitAnimation(0.25f, target);
+                waitAnimation(0.15f, target);
                 mook2Animation(target);
                 dmg(target, info);
                 waitAnimation(target);
@@ -325,6 +332,13 @@ public class Roland extends AbstractAllyCardMonster {
                 dmg(target, info);
                 waitAnimation(target);
                 sword3Animation(target);
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        AbstractDungeon.getCurrRoom().cannotLose = false;
+                        this.isDone = true;
+                    }
+                });
                 dmg(target, info);
                 resetIdle();
                 moveAnimation(initialX, null);
@@ -352,7 +366,7 @@ public class Roland extends AbstractAllyCardMonster {
 
     @Override
     protected void waitAnimation(AbstractCreature enemy) {
-        waitAnimation(0.4f, enemy);
+        waitAnimation(0.25f, enemy);
     }
 
     private void moveAnimation(float x, AbstractCreature enemy) {

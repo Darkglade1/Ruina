@@ -1,13 +1,13 @@
 package ruina.monsters.uninvitedGuests.argalia.monster;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -26,7 +26,6 @@ import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractDeckMonster;
-import ruina.monsters.act2.HermitStaff;
 import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_Allegro;
 import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_Largo;
 import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_ResonantScythe;
@@ -76,8 +75,9 @@ public class Argalia extends AbstractDeckMonster
     public final int tempestuousDamage = calcAscensionDamage(6);
     public final int tempestuousHits = 5;
 
+    private static final int DANZA_COOLDOWN = 9;
     private boolean queueDanza = false;
-    private int danzaTimer = 1;
+    private int danzaTimer = 0;
 
     private static final int INTENT_SHIFT_AMT = 1;
 
@@ -120,7 +120,6 @@ public class Argalia extends AbstractDeckMonster
     public void usePreBattleAction()
     {
         applyToTarget(this, this, power);
-        applyToTarget(this, this, new BlueReverberation(this, 2));
         applyToTarget(this, this, new AbstractLambdaPower(RESONANCE_POWER_NAME, RESONANCE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, INTENT_SHIFT_AMT) {
             @Override
             public void onUseCard(AbstractCard card, UseCardAction action) {
@@ -132,10 +131,12 @@ public class Argalia extends AbstractDeckMonster
                 description = RESONANCE_POWER_DESCRIPTIONS[0] + amount + RESONANCE_POWER_DESCRIPTIONS[1];
             }
         });
+        applyToTarget(this, this, new BlueReverberation(this, 2));
         CustomDungeon.playTempMusicInstantly("EnsembleArgalia");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Roland) { roland = (Roland) mo; }
         }
+
     }
 
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature enemy, int whichMove) {
@@ -151,7 +152,9 @@ public class Argalia extends AbstractDeckMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if (enemy.hasPower(POWER_ID)) {
+                        AbstractPower vibration = enemy.getPower(POWER_ID);
+                        if (vibration != null) {
+                            vibration.flash();
                             att(new RemoveSpecificPowerAction(enemy, Argalia.this, POWER_ID));
                             att(new GainBlockAction(Argalia.this, largoBlock));
                         } else {
@@ -176,7 +179,9 @@ public class Argalia extends AbstractDeckMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if (enemy.hasPower(POWER_ID)) {
+                        AbstractPower vibration = enemy.getPower(POWER_ID);
+                        if (vibration != null) {
+                            vibration.flash();
                             att(new RemoveSpecificPowerAction(enemy, Argalia.this, POWER_ID));
                             att(new ApplyPowerAction(Argalia.this, Argalia.this, new NextTurnPowerPower(Argalia.this, new StrengthPower(Argalia.this, allegroStrength))));
                         } else {
@@ -343,13 +348,16 @@ public class Argalia extends AbstractDeckMonster
             @Override
             public void update() {
                 danzaTimer += 1;
-                if(danzaTimer % 7 == 0){ queueDanza = true; }
+                if(danzaTimer % DANZA_COOLDOWN == 0){ queueDanza = true; }
                 isDone = true;
             }
         });
     }
 
     private void shiftIntents(int times) {
+        if (this.hasPower(StunMonsterPower.POWER_ID)) {
+            return;
+        }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -395,8 +403,10 @@ public class Argalia extends AbstractDeckMonster
 
     @Override
     public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
-        roland.onArgaliaDeath();
+        if (!AbstractDungeon.getCurrRoom().cannotLose) {
+            super.die(triggerRelics);
+            roland.onArgaliaDeath();
+        }
     }
 
     private void slashLeftAnimation(AbstractCreature enemy) {
