@@ -45,6 +45,7 @@ import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
+import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
 
 public class RuinaScene extends AbstractScene {
@@ -130,6 +131,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Yan");
                 } else if (mo instanceof Puppeteer) {
                     this.bg = this.atlas.findRegion("mod/Chesed");
+                } else if (mo instanceof Argalia) {
+                    this.bg = this.atlas.findRegion("mod/Keter");
                 } else {
                     setBgs();
                 }

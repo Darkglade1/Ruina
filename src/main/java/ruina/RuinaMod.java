@@ -406,6 +406,12 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("RolandRevolver"), makeSFXPath("Roland_Revolver.wav"));
         BaseMod.addAudio(makeID("RolandShortSword"), makeSFXPath("Roland_ShortSword.wav"));
         BaseMod.addAudio(makeID("RolandShotgun"), makeSFXPath("Roland_Shotgun.wav"));
+
+        BaseMod.addAudio(makeID("ArgaliaStrongAtk2"), makeSFXPath("Blue_Argalria_Strong_Atk2.wav"));
+        BaseMod.addAudio(makeID("ArgaliaAtk"), makeSFXPath("Blue_Argalria_Atk.wav"));
+        BaseMod.addAudio(makeID("ArgaliaFarAtk1"), makeSFXPath("Blue_Argalria_Far_Atk1.wav"));
+        BaseMod.addAudio(makeID("ArgaliaFarAtk2"), makeSFXPath("Blue_Argalria_Far_Atk2.wav"));
+        BaseMod.addAudio(makeID("ArgaliaStrongAtk1"), makeSFXPath("Blue_Argalria_Strong_Atk1.wav"));
     }
 
     @Override

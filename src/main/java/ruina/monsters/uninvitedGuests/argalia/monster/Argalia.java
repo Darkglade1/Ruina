@@ -198,13 +198,13 @@ public class Argalia extends AbstractDeckMonster
                     info.output = (int)(info.output * scytheDamageMultiplier);
                 }
                 dmg(enemy, info);
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case TRAILS:
-                slashDownAnimation(enemy);
+                slashUpAnimation2(enemy);
                 dmg(enemy, info);
-                resetIdle();
+                resetIdle(1.0f);
                 applyToTarget(enemy, this, new StrengthPower(enemy, -trailsStrengthLoss));
                 break;
             case DANZA: {
@@ -229,7 +229,7 @@ public class Argalia extends AbstractDeckMonster
                         slamAnimation(adp());
                     }
                     atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
-                    resetIdle();
+                    resetIdle(1.0f);
                 }
                 atb(new AbstractGameAction() {
                     @Override
@@ -410,23 +410,27 @@ public class Argalia extends AbstractDeckMonster
     }
 
     private void slashLeftAnimation(AbstractCreature enemy) {
-        animationAction("SlashLeft", "SwordHori", enemy, this);
+        animationAction("SlashLeft", "ArgaliaAtk", enemy, this);
     }
 
     private void slashRightAnimation(AbstractCreature enemy) {
-        animationAction("SlashRight", "SwordHori", enemy, this);
+        animationAction("SlashRight", "ArgaliaAtk", enemy, this);
     }
 
     private void slashUpAnimation(AbstractCreature enemy) {
-        animationAction("SlashUp", "SwordVert", enemy, this);
+        animationAction("SlashUp", "ArgaliaStrongAtk1", enemy, this);
     }
 
     private void slashDownAnimation(AbstractCreature enemy) {
-        animationAction("SlashDown", "SwordVert", enemy, this);
+        animationAction("SlashDown", "ArgaliaStrongAtk2", enemy, this);
     }
 
     private void slamAnimation(AbstractCreature enemy) {
-        animationAction("Slam", "SwordStab", enemy, this);
+        animationAction("Slam", "ArgaliaFarAtk1", enemy, this);
+    }
+
+    private void slashUpAnimation2(AbstractCreature enemy) {
+        animationAction("SlashUp", "ArgaliaFarAtk2", enemy, this);
     }
 
 }
