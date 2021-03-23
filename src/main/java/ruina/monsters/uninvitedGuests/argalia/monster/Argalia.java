@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -25,6 +26,7 @@ import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractDeckMonster;
+import ruina.monsters.act2.HermitStaff;
 import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_Allegro;
 import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_Largo;
 import ruina.monsters.uninvitedGuests.argalia.cards.CHRBOSS_ResonantScythe;
@@ -389,6 +391,12 @@ public class Argalia extends AbstractDeckMonster
                 description = POWER_DESCRIPTIONS[0];
             }
         });
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        roland.onArgaliaDeath();
     }
 
     private void slashLeftAnimation(AbstractCreature enemy) {

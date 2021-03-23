@@ -3,19 +3,25 @@ package ruina.monsters.uninvitedGuests.argalia.monster;
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.BlackSilence;
+import ruina.powers.Bleed;
+import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
@@ -33,27 +39,52 @@ public class Roland extends AbstractAllyMonster {
     private static final byte CRYSTAL = 0;
     private static final byte WHEELS = 1;
     private static final byte DURANDAL = 2;
-    private static final byte FURIOSO = 3;
+    private static final byte ALLAS = 3;
+    private static final byte GUN = 4;
+    private static final byte MOOK = 5;
+    private static final byte OLD_BOY = 6;
+    private static final byte RANGA = 7;
+    private static final byte MACE = 8;
+    private static final byte FURIOSO = 9;
 
-    public final int crystalDamage = calcAscensionDamage(10);
-    public final int crystalHits = 3;
-    public final int crystalBlock = calcAscensionTankiness(20);
+    public final int crystalDamage = 22;
+    public final int crystalHits = 2;
+    public final int crystalBlock = 13;
 
-    public final int wheelsBlock = calcAscensionTankiness(30);
-    public final int wheelsDamage = calcAscensionDamage(30);
+    public final int wheelsStrDown = 4;
+    public final int wheelsDamage = 45;
 
-    public final int durandalDamage = calcAscensionDamage(15);
+    public final int durandalDamage = 15;
     public final int durandalHits = 2;
-    public final int durandalStrength = calcAscensionSpecial(4);
+    public final int durandalStrength = 4;
 
-    public final int furiosoDamage = calcAscensionDamage(50);
-    public final int furiosoBlock = calcAscensionDamage(60);
-    public final int furiosoHits = 5;
+    public final int ALLAS_DAMAGE = 32;
+    public final int ALLAS_DEBUFF = 2;
 
-    public final int furiosoCap = 3;
+    public final int GUN_DAMAGE = 16;
+    public final int GUN_HITS = 3;
+
+    public final int MOOK_DAMAGE = 24;
+    public final int MOOK_DEBUFF = 2;
+
+    public final int OLD_BOY_DAMAGE = 12;
+    public final int OLD_BOY_BLOCK = 40;
+
+    public final int RANGA_DAMAGE = 9;
+    public final int RANGA_HITS = 3;
+    public final int RANGA_DEBUFF = 8;
+
+    public final int MACE_DAMAGE = 14;
+    public final int MACE_HITS = 2;
+
+    public final int furiosoDamage = 25;
+    public final int furiosoHits = 16;
+
+    public final int furiosoCap = 9;
     public int furiosoCount = 0;
 
     public Argalia argalia;
+    private ArrayList<Byte> movepool = new ArrayList<>();
 
     public Roland() {
         this(0.0f, 0.0f);
@@ -62,7 +93,6 @@ public class Roland extends AbstractAllyMonster {
     public Roland(final float x, final float y) {
         super(NAME, ID, 750, 10.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Roland/Spriter/Roland.scml"));
-        this.animation.setFlip(false, false);
 
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
@@ -70,7 +100,13 @@ public class Roland extends AbstractAllyMonster {
         addMove(CRYSTAL, Intent.ATTACK_DEFEND, crystalDamage, crystalHits, true);
         addMove(WHEELS, Intent.ATTACK_DEBUFF, wheelsDamage);
         addMove(DURANDAL, Intent.ATTACK_BUFF, durandalDamage, durandalHits, true);
-        addMove(FURIOSO, Intent.ATTACK_DEFEND, furiosoDamage, furiosoHits, true);
+        addMove(ALLAS, Intent.ATTACK_DEBUFF, ALLAS_DAMAGE);
+        addMove(GUN, Intent.ATTACK, GUN_DAMAGE, GUN_HITS, true);
+        addMove(MOOK, Intent.ATTACK_DEBUFF, MOOK_DAMAGE);
+        addMove(OLD_BOY, Intent.ATTACK_DEFEND, OLD_BOY_DAMAGE);
+        addMove(RANGA, Intent.ATTACK_DEBUFF, RANGA_DAMAGE, RANGA_HITS, true);
+        addMove(MACE, Intent.ATTACK, MACE_DAMAGE, MACE_HITS, true);
+        addMove(FURIOSO, Intent.ATTACK, furiosoDamage, furiosoHits, true);
         this.allyIcon = makeUIPath("RolandIcon.png");
         firstMove = true;
     }
@@ -117,8 +153,6 @@ public class Roland extends AbstractAllyMonster {
                 for (int i = 0; i < multiplier; i++) {
                     if (i == 0) {
                         slashAnimation(target);
-                    } else if (i == 1) {
-                        sword2Animation(target);
                     } else {
                         sword1Animation(target);
                     }
@@ -129,8 +163,8 @@ public class Roland extends AbstractAllyMonster {
             }
             case WHEELS: {
                 wheelsAnimation(target);
-                block(this, wheelsBlock);
                 dmg(target, info);
+                applyToTarget(target, this, new StrengthPower(target, -wheelsStrDown));
                 resetIdle(1.0f);
                 break;
             }
@@ -144,21 +178,137 @@ public class Roland extends AbstractAllyMonster {
                     dmg(target, info);
                     resetIdle();
                 }
-                applyToSelf(new StrengthPower(adp(), durandalStrength));
                 applyToTarget(this, this, new StrengthPower(this, durandalStrength));
                 break;
             }
-            case FURIOSO: {
-                block(this, furiosoBlock);
+            case ALLAS: {
+                pierceAnimation(target);
+                dmg(target, info);
+                resetIdle();
+                applyToTarget(target, this, new WeakPower(target, ALLAS_DEBUFF, true));
+                break;
+            }
+            case GUN: {
                 for (int i = 0; i < multiplier; i++) {
-                    if (i % 2 == 0) {
-                        sword2Animation(target);
+                    if (i == 0) {
+                        gun1Animation(target);
+                    } else if (i == 1) {
+                        gun2Animation(target);
                     } else {
-                        sword3Animation(target);
+                        gun3Animation(target);
                     }
                     dmg(target, info);
                     resetIdle();
                 }
+                break;
+            }
+            case MOOK: {
+                mook1Animation(target);
+                waitAnimation(0.25f);
+                mook2Animation(target);
+                dmg(target, info);
+                resetIdle(1.0f);
+                applyToTarget(target, this, new VulnerablePower(target, MOOK_DEBUFF, true));
+                break;
+            }
+            case OLD_BOY: {
+                attackAnimation(target);
+                block(this, OLD_BOY_BLOCK);
+                dmg(target, info);
+                resetIdle();
+                break;
+            }
+            case RANGA: {
+                for (int i = 0; i < multiplier; i++) {
+                    if (i == 0) {
+                        claw1Animation(target);
+                    } else if (i == 1) {
+                        claw2Animation(target);
+                    } else {
+                        knifeAnimation(target);
+                    }
+                    dmg(target, info);
+                    resetIdle();
+                }
+                applyToTarget(target, this, new Bleed(target, RANGA_DEBUFF));
+                break;
+            }
+            case MACE: {
+                for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        club1Animation(target);
+                    } else {
+                        club2Animation(target);
+                    }
+                    dmg(target, info);
+                    resetIdle();
+                }
+                break;
+            }
+            case FURIOSO: {
+                float initialX = drawX;
+                float targetBehind = target.drawX + 150.0f * Settings.scale;
+                float targetFront = target.drawX - 200.0f * Settings.scale;
+                gun1Animation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                gun2Animation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                moveAnimation(targetBehind, target);
+                pierceAnimation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                setFlipAnimation(true, target);
+                attackAnimation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                moveAnimation(targetFront, target);
+                knifeAnimation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                setFlipAnimation(false, target);
+                mook1Animation(target);
+                waitAnimation(0.25f, target);
+                mook2Animation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                moveAnimation(targetBehind, target);
+                claw1Animation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                moveAnimation(targetFront, target);
+                setFlipAnimation(true, target);
+                claw2Animation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                setFlipAnimation(false, target);
+                club1Animation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                club2Animation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                wheelsAnimation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                slashAnimation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                gun3Animation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                sword1Animation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                sword2Animation(target);
+                dmg(target, info);
+                waitAnimation(target);
+                sword3Animation(target);
+                dmg(target, info);
+                resetIdle();
+                moveAnimation(initialX, null);
+                setFlipAnimation(false, null);
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -180,17 +330,57 @@ public class Roland extends AbstractAllyMonster {
     }
 
     @Override
+    protected void waitAnimation(AbstractCreature enemy) {
+        waitAnimation(0.4f, enemy);
+    }
+
+    private void moveAnimation(float x, AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (enemy == null || !enemy.isDeadOrEscaped()) {
+                    drawX = x;
+                }
+                this.isDone = true;
+            }
+        });
+    }
+
+    private void setFlipAnimation(boolean flipHorizontal, AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (enemy == null || !enemy.isDeadOrEscaped()) {
+                    animation.setFlip(flipHorizontal, false);
+                }
+                this.isDone = true;
+            }
+        });
+    }
+
+    @Override
     protected void getMove(final int num) {
-        if(firstMove){ setMoveShortcut(CRYSTAL, MOVES[CRYSTAL]); }
-        else if (furiosoCap == furiosoCount){ setMoveShortcut(FURIOSO, MOVES[FURIOSO]); }
-        else{
-            ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(CRYSTAL)) { possibilities.add(CRYSTAL); }
-            if (!this.lastMove(WHEELS)) { possibilities.add(WHEELS); }
-            if (!this.lastMove(DURANDAL)) { possibilities.add(DURANDAL); }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        if (furiosoCount == furiosoCap) {
+            setMoveShortcut(FURIOSO, MOVES[FURIOSO]);
+        } else {
+            if (movepool.isEmpty()) {
+                populateMovepool();
+            }
+            byte move = movepool.remove(AbstractDungeon.monsterRng.random(movepool.size() - 1));
             setMoveShortcut(move, MOVES[move]);
         }
+    }
+
+    private void populateMovepool() {
+        movepool.add(CRYSTAL);
+        movepool.add(WHEELS);
+        movepool.add(DURANDAL);
+        movepool.add(ALLAS);
+        movepool.add(GUN);
+        movepool.add(MOOK);
+        movepool.add(OLD_BOY);
+        movepool.add(RANGA);
+        movepool.add(MACE);
     }
 
     @Override
@@ -202,6 +392,18 @@ public class Roland extends AbstractAllyMonster {
         AbstractCreature target;
         target = argalia;
         applyPowers(target);
+    }
+
+    public void onArgaliaDeath() {
+        atb(new TalkAction(this, DIALOG[1]));
+        atb(new VFXAction(new WaitEffect(), 1.0F));
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                disappear();
+                this.isDone = true;
+            }
+        });
     }
 
     private void attackAnimation(AbstractCreature enemy) {
