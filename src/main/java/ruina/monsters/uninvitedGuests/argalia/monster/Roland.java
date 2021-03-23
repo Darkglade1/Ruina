@@ -128,6 +128,7 @@ public class Roland extends AbstractAllyCardMonster {
     @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, power);
+        applyToTarget(this, this, new StrengthPower(this, 1)); //because argalia starts with 1 strength so we need the PARALLEL
         updatePower();
         CustomDungeon.playTempMusicInstantly("Roland1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {

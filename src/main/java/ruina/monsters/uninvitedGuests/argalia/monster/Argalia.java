@@ -132,6 +132,7 @@ public class Argalia extends AbstractDeckMonster
             }
         });
         applyToTarget(this, this, new BlueReverberation(this, 2));
+        applyToTarget(this, this, new StrengthPower(this, 1)); //this 1 strength is a hack to make the powers line up properly LOL
         CustomDungeon.playTempMusicInstantly("EnsembleArgalia");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Roland) { roland = (Roland) mo; }
