@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 public abstract class AbstractDeckMonster extends AbstractCardMonster {
 
-    protected CardGroup masterDeck = new CardGroup(CardGroup.CardGroupType.HAND);
-    protected CardGroup hand = new CardGroup(CardGroup.CardGroupType.HAND);
-    protected CardGroup draw = new CardGroup(CardGroup.CardGroupType.HAND);
-    protected CardGroup discard = new CardGroup(CardGroup.CardGroupType.HAND);
-    protected CardGroup purge = new CardGroup(CardGroup.CardGroupType.HAND);
+    protected CardGroup masterDeck = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+    protected CardGroup hand = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+    protected CardGroup draw = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+    protected CardGroup discard = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+    protected CardGroup purge = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
     public AbstractDeckMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -27,11 +27,6 @@ public abstract class AbstractDeckMonster extends AbstractCardMonster {
     }
 
     public void initializeDeck(){
-        masterDeck = new CardGroup(CardGroup.CardGroupType.HAND);
-        draw = new CardGroup(CardGroup.CardGroupType.HAND);
-        discard = new CardGroup(CardGroup.CardGroupType.HAND);
-        purge = new CardGroup(CardGroup.CardGroupType.HAND);
-        hand = new CardGroup(CardGroup.CardGroupType.HAND);
         createDeck();
         masterDeck.shuffle();
         for(AbstractCard c: masterDeck.group){
