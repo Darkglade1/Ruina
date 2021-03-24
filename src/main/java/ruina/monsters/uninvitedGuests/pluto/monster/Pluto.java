@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
@@ -26,6 +27,10 @@ import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractDeckMonster;
 import ruina.monsters.eventboss.redMist.cards.*;
+import ruina.monsters.uninvitedGuests.pluto.cards.contracts.ConfusingContract;
+import ruina.monsters.uninvitedGuests.pluto.cards.contracts.ContractOfLight;
+import ruina.monsters.uninvitedGuests.pluto.cards.contracts.ContractOfMight;
+import ruina.monsters.uninvitedGuests.pluto.cards.contracts.NoContract;
 import ruina.powers.Bleed;
 import ruina.powers.NextTurnPowerPower;
 import ruina.powers.RedMistPower;
@@ -86,7 +91,18 @@ public class Pluto extends AbstractCardMonster {
     @Override
     public void usePreBattleAction()
     {
-
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                ArrayList<AbstractCard> contracts = new ArrayList<>();
+                contracts.add(new ConfusingContract());
+                contracts.add(new ContractOfLight());
+                contracts.add(new ContractOfMight());
+                contracts.add(new NoContract());
+                att(new ChooseOneAction(contracts));
+                isDone = true;
+            }
+        });
     }
 
     @Override
