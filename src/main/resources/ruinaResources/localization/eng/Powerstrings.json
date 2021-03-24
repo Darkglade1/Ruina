@@ -297,5 +297,13 @@
   "${ModID}:BlueReverberation": {
     "NAME": "The Blue Reverberation",
     "DESCRIPTIONS": ["Gains #b%1$s #yStrength each turn."]
+  },
+  "${ModID}:Guts": {
+    "NAME": "Guts",
+    "DESCRIPTIONS": ["The next time this creature #rdies, it immediately #grevives at full HP and gains #b", " #yStrength and #b", " #yMetallicize."]
+  },
+  "${ModID}:GeburaRedMist": {
+    "NAME": "GeburaRedMist",
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, gains #b", " #yStrength.", " #yManifests #yEGO in #b", " turns. When it does, double its #yStrength."]
   }
 }
