@@ -103,6 +103,12 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
         AbstractCardMonster.hoveredCard = null; //in case the player was hovering one of them while it was getting yeeted
     }
 
+    public void setMove(String text, byte next, Intent intent, int damage, AbstractCard enemyCard) {
+        setMove(text, next, intent, damage);
+        setEnemyCard(enemyCard, damage);
+        cardsToRender.add(enemyCard);
+    }
+
     public void setMoveShortcut(byte next, String text, AbstractCard enemyCard) {
         EnemyMoveInfo info = this.moves.get(next);
         this.setMove(text, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
