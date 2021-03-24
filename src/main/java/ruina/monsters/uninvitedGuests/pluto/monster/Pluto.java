@@ -76,7 +76,7 @@ public class Pluto extends AbstractCardMonster {
         this(0.0f, 0.0f);
     }
     public Pluto(final float x, final float y) {
-        super(NAME, ID, 300, -5.0F, 0, 250.0f, 255.0f, null, x, y);
+        super(NAME, ID, 600, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("RedMist/Spriter/RedMist.scml"));
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));

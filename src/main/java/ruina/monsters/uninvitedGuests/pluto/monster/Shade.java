@@ -74,7 +74,7 @@ public class Shade extends AbstractDeckMonster
     }
 
     public Shade(final float x, final float y) {
-        super(NAME, ID, 170, AbstractDungeon.player.hb_x / Settings.scale, AbstractDungeon.player.hb_y / Settings.scale, AbstractDungeon.player.hb_w / Settings.scale, AbstractDungeon.player.hb_h / Settings.scale, null, x, y);
+        super(NAME, ID, 300, AbstractDungeon.player.hb_x / Settings.scale, AbstractDungeon.player.hb_y / Settings.scale, AbstractDungeon.player.hb_w / Settings.scale, AbstractDungeon.player.hb_h / Settings.scale, null, x, y);
         this.type = EnemyType.NORMAL;
         this.setHp(calcAscensionTankiness(maxHealth));
         this.dialogX = -(AbstractDungeon.player.dialogX - AbstractDungeon.player.drawX);
