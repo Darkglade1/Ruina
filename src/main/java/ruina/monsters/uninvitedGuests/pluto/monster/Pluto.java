@@ -148,6 +148,17 @@ public class Pluto extends AbstractCardMonster {
                 }
             });
         }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                boolean shadeExists = false;
+                for(AbstractMonster m: monsterList()){
+                    if(m instanceof Shade){ shadeExists = true; }
+                }
+                if(!shadeExists && currentPhase.equals(PHASE.SHADES)){ currentPhase = PHASE.NO_SHADES; }
+                isDone = true;
+            }
+        });
         atb(new RollMoveAction(this));
     }
 
