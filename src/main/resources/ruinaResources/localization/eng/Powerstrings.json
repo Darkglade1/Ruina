@@ -127,9 +127,21 @@
     "NAME": "Fickle Home",
     "DESCRIPTIONS": ["Deals and receives #b", "% #yless damage from attacks.", "% #ymore damage from attacks."," Whenever you play #b", " cards, #yInvert the effects of this power."]
   },
+  "${ModID}:CobaltScarPower": {
+    "NAME": "Cobalt Scar",
+    "DESCRIPTIONS": ["Whenever you play #b", " Attacks, deal #b", " damage to ALL enemies."]
+  },
+  "${ModID}:Thirst": {
+    "NAME": "Thirst",
+    "DESCRIPTIONS": ["This turn, whenever you attack an enemy with #yBleed, gain #b" , " #yStrength."]
+  },
+  "${ModID}:GoodbyePower": {
+    "NAME": "Goodbye",
+    "DESCRIPTIONS": ["The next #yAttack you play deals double damage."]
+  },
   "${ModID}:Apostles": {
     "NAME": "Apostles",
-    "DESCRIPTIONS": ["Whenever you are healed by this creature, you gain buffs depending on the number of #yApostles #rkilled. NL 1st, 5th, 9th kill: Gain #b", " #yStrength. NL 2nd, 6th, 10th kill: Gain #b", " #yDexterity. NL 3rd, 7th, 11th kill: Draw #b", " extra card each turn. NL 4th, 8th, 12th kill: Gain [E] at the start of your turn. NL NL Whenever an #yApostle dies, a new one spawns at end of round."]
+    "DESCRIPTIONS": ["Whenever you #rkill an #yApostle, you will gain a #ybuff. NL 1st, 5th, 9th kill: Gain #b", " #yStrength. NL 2nd, 6th, 10th kill: Gain #b", " #yDexterity. NL 3rd, 7th, 11th kill: Draw #b", " extra card each turn. NL 4th, 8th, 12th kill: Gain [E] at the start of your turn. NL #yBuffs are received when this creature #gheals you. NL Whenever an #yApostle dies, a new one spawns at end of round."]
   },
   "${ModID}:Advent": {
     "NAME": "Advent",
@@ -146,18 +158,6 @@
   "${ModID}:Unkillable": {
     "NAME": "By Grace Through Faith",
     "DESCRIPTIONS": ["Whenever this creature dies, it is #yrevived next turn by the enemy."]
-  },
-  "${ModID}:CobaltScarPower": {
-    "NAME": "Cobalt Scar",
-    "DESCRIPTIONS": ["Whenever you play #b", " Attacks, deal #b", " damage to ALL enemies."]
-  },
-  "${ModID}:Thirst": {
-    "NAME": "Thirst",
-    "DESCRIPTIONS": ["This turn, whenever you attack an enemy with #yBleed, gain #b" , " #yStrength."]
-  },
-  "${ModID}:GoodbyePower": {
-    "NAME": "Goodbye",
-    "DESCRIPTIONS": ["The next #yAttack you play deals double damage."]
   },
   "${ModID}:ParadiseLostPower": {
     "NAME": "Paradise Lost",
@@ -251,7 +251,7 @@
   },
   "${ModID}:OminousPower": {
     "NAME": "Ominous Power",
-    "DESCRIPTIONS": ["When both #yHands cannot act at end of round or this creature's HP falls below #b%1$s, it merges with the #yHands and gains a new deck. Extra cards are added based on which #yHand was killed first. NL #y(Lock #yor #yBaleful #yBrand.)"]
+    "DESCRIPTIONS": ["When both #yHands cannot act at end of round or this creature's HP is at or below #b%1$s, it merges with the #yHands and gains a new deck."]
   },
   "${ModID}:Protection": {
     "NAME": "Protection",

@@ -139,6 +139,26 @@
     "NAME": "Прощай",
     "DESCRIPTIONS": ["След. #yАтака нанесёт двойной урон."]
   },
+  "${ModID}:Apostles": {
+    "NAME": "Apostles",
+    "DESCRIPTIONS": ["Whenever you #rkill an #yApostle, you will gain a #ybuff. NL 1st, 5th, 9th kill: Gain #b", " #yStrength. NL 2nd, 6th, 10th kill: Gain #b", " #yDexterity. NL 3rd, 7th, 11th kill: Draw #b", " extra card each turn. NL 4th, 8th, 12th kill: Gain [E] at the start of your turn. NL #yBuffs are received when this creature #gheals you. NL Whenever an #yApostle dies, a new one spawns at end of round."]
+  },
+  "${ModID}:Advent": {
+    "NAME": "Advent",
+    "DESCRIPTIONS": ["Progresses to the next phase in #b", " turns.", " turn."]
+  },
+  "${ModID}:Blessing": {
+    "NAME": "Blessing",
+    "DESCRIPTIONS": ["At the start of your turn, gain "]
+  },
+  "${ModID}:WingsOfGrace": {
+    "NAME": "Wings Of Grace",
+    "DESCRIPTIONS": ["Reduces ALL damage by #b", "%. NL After receiving damage, reduce this amount by #b", "."]
+  },
+  "${ModID}:Unkillable": {
+    "NAME": "By Grace Through Faith",
+    "DESCRIPTIONS": ["Whenever this creature dies, it is #yrevived next turn by the enemy."]
+  },
   "${ModID}:ParadiseLostPower": {
     "NAME": "Paradise Lost",
     "DESCRIPTIONS": ["At the start of your turn, #yexhaust up to #b", " card.", " cards.", " Whenever #b", " cards are #yexhausted, ALL enemies lose #b", " HP."]
@@ -231,7 +251,7 @@
   },
   "${ModID}:OminousPower": {
     "NAME": "Ominous Power",
-    "DESCRIPTIONS": ["When both #yHands cannot act at end of round or this creature's HP falls below #b%1$s, it merges with the #yHands and gains a new deck. Extra cards are added based on which #yHand was killed first. NL #y(Lock #yor #yBaleful #yBrand.)"]
+    "DESCRIPTIONS": ["When both #yHands cannot act at end of round or this creature's HP is at or below #b%1$s, it merges with the #yHands and gains a new deck."]
   },
   "${ModID}:Protection": {
     "NAME": "Protection",
