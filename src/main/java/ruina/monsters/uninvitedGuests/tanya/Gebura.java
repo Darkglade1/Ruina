@@ -25,6 +25,11 @@ import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.BattleCommand;
 import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Concentration;
 import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Disposal;
 import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.EnergyShield;
+import ruina.monsters.uninvitedGuests.tanya.geburaCards.Ally_GreaterSplitHorizontal;
+import ruina.monsters.uninvitedGuests.tanya.geburaCards.Ally_GreaterSplitVertical;
+import ruina.monsters.uninvitedGuests.tanya.geburaCards.Ally_LevelSlash;
+import ruina.monsters.uninvitedGuests.tanya.geburaCards.Ally_Spear;
+import ruina.monsters.uninvitedGuests.tanya.geburaCards.Ally_UpstandingSlash;
 import ruina.powers.AbstractLambdaPower;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
@@ -94,10 +99,11 @@ public class Gebura extends AbstractAllyCardMonster
         addMove(GSV, Intent.ATTACK_DEBUFF, 35);
         addMove(GSH, Intent.ATTACK_DEBUFF, 50);
 
-//        cardList.add(new BattleCommand(this));
-//        cardList.add(new EnergyShield(this));
-//        cardList.add(new Concentration(this));
-//        cardList.add(new Disposal(this));
+        cardList.add(new Ally_UpstandingSlash(this));
+        cardList.add(new Ally_Spear(this));
+        cardList.add(new Ally_LevelSlash(this));
+        cardList.add(new Ally_GreaterSplitVertical(this));
+        cardList.add(new Ally_GreaterSplitHorizontal(this));
 
         this.allyIcon = makeUIPath("ChesedIcon.png");
     }

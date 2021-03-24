@@ -276,5 +276,25 @@
   "${ModID}:Puppetry": {
     "NAME": "Puppetry",
     "DESCRIPTION": "ALL allies gain !M! Strength."
+  },
+  "${ModID}:Ally_UpstandingSlash": {
+    "NAME": "Upstanding Slash",
+    "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Vulnerable."
+  },
+  "${ModID}:Ally_LevelSlash": {
+    "NAME": "Level Slash",
+    "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gains !M! Strength."
+  },
+  "${ModID}:Ally_Spear": {
+    "NAME": "Spear",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage against targets without Block."
+  },
+  "${ModID}:Ally_GreaterSplitHorizontal": {
+    "NAME": "Greater Split: Horizontal",
+    "DESCRIPTION": "Deal !D! damage. NL Target loses Strength this turn equal to unblocked damage."
+  },
+  "${ModID}:Ally_GreaterSplitVertical": {
+    "NAME": "Greater Split: Vertical",
+    "DESCRIPTION": "Deal !D! damage. NL Target loses Strength this turn equal to unblocked damage."
   }
 }
