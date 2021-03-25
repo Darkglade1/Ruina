@@ -277,6 +277,22 @@
     "NAME": "Puppetry",
     "DESCRIPTION": "ALL allies gain !M! Strength."
   },
+  "${ModID}:ContractOfMight": {
+    "NAME": "Contract Of Might",
+    "DESCRIPTION": "Gain !M! Strength. NL At the end of your turn, take !ruina:SecondMagic! damage and increase the damage you will take from this power by !ruina:SecondMagic!."
+  },
+  "${ModID}:ContractOfLight": {
+    "NAME": "Contract Of Light",
+    "DESCRIPTION": "Double your energy each turn. NL Take !M! damage at the end of each turn for each unspent [E] ."
+  },
+  "${ModID}:ConfusingContract": {
+    "NAME": "Confusing Contract",
+    "DESCRIPTION": "Become Confused."
+  },
+  "${ModID}:NoContract": {
+    "NAME": "No Contract",
+    "DESCRIPTION": "All Enemies gain !M! Strength."
+  },
   "${ModID}:Ally_UpstandingSlash": {
     "NAME": "Upstanding Slash",
     "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Vulnerable."

@@ -633,6 +633,24 @@
       "Rot in hell."
     ]
   },
+  "${ModID}:Pluto": {
+    "MOVES": [
+      "Magical Safeguard",
+      "Magic Missle",
+      "Magic Onslaught"
+    ],
+    "NAME": "Pluto",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Shade": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Shade",
+    "DIALOG": [
+     ]
+   },
   "${ModID}:Tanya": {
     "MOVES": [
       "Overspeed",
