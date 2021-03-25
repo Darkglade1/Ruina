@@ -316,6 +316,6 @@
   },
   "${ModID}:Relentless": {
     "NAME": "Relentless",
-    "DESCRIPTIONS": ["At end of round, if the #renemy did not receive at least #b", " unblocked attack damage this turn, this creature loses half its #yStrength."]
+    "DESCRIPTIONS": ["At end of round, if the #renemy did not lose at least #b", " HP this turn, this creature loses half its #yStrength."]
   }
 }

@@ -4,7 +4,6 @@ import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -65,8 +64,8 @@ public class Tanya extends AbstractCardMonster
     public final int overspeedHits = 3;
     public final int kicksAndStompsHits = 2;
 
-    private static final int MASS_ATTACK_COOLDOWN = 2;
-    private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
+    private static final int MASS_ATTACK_COOLDOWN = 3; //cooldown resets to 3
+    private int massAttackCooldown = 2; //start cooldown at 2
 
     public final int BLOCK = calcAscensionTankiness(16);
     public final int INITIAL_PLATED_ARMOR = calcAscensionTankiness(20);
@@ -331,15 +330,13 @@ public class Tanya extends AbstractCardMonster
         int nextHealth = currentHealth;
         int difference = previousHealth - nextHealth;
         if (difference > 0) {
-            if (info.type == DamageInfo.DamageType.NORMAL) {
-                AbstractPower relentless = gebura.getPower(Gebura.R_POWER_ID);
-                if (relentless != null) {
-                    relentless.amount -= difference;
-                    if (relentless.amount < 0) {
-                        relentless.amount = 0;
-                    }
-                    relentless.updateDescription();
+            AbstractPower relentless = gebura.getPower(Gebura.R_POWER_ID);
+            if (relentless != null) {
+                relentless.amount -= difference;
+                if (relentless.amount < 0) {
+                    relentless.amount = 0;
                 }
+                relentless.updateDescription();
             }
         }
         if (this.currentHealth <= 0 && !this.halfDead) {
@@ -368,8 +365,7 @@ public class Tanya extends AbstractCardMonster
                 this.powers.remove(power);
             }
 
-            atb(new HealAction(this, this, maxHealth));
-            atb(new AbstractGameAction() {
+            att(new AbstractGameAction() {
                 @Override
                 public void update() {
                     halfDead = false;
@@ -377,6 +373,8 @@ public class Tanya extends AbstractCardMonster
                     this.isDone = true;
                 }
             });
+            att(new HealAction(this, this, maxHealth));
+            
             applyToTarget(this, this, new StrengthPower(this, GUTS_STRENGTH));
             applyToTarget(this, this, new MetallicizePower(this, METALLICIZE_GAIN));
         }
