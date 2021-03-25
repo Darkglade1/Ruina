@@ -4,6 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -325,7 +326,22 @@ public class Tanya extends AbstractCardMonster
 
     @Override
     public void damage(DamageInfo info) {
+        int previousHealth = currentHealth;
         super.damage(info);
+        int nextHealth = currentHealth;
+        int difference = previousHealth - nextHealth;
+        if (difference > 0) {
+            if (info.type == DamageInfo.DamageType.NORMAL) {
+                AbstractPower relentless = gebura.getPower(Gebura.R_POWER_ID);
+                if (relentless != null) {
+                    relentless.amount -= difference;
+                    if (relentless.amount < 0) {
+                        relentless.amount = 0;
+                    }
+                    relentless.updateDescription();
+                }
+            }
+        }
         if (this.currentHealth <= 0 && !this.halfDead) {
             this.halfDead = true;
             Iterator var2 = this.powers.iterator();
@@ -344,7 +360,7 @@ public class Tanya extends AbstractCardMonster
 
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power instanceof PlatedArmorPower) && !(power instanceof MetallicizePower) && !(power instanceof StrengthPower) && !(power instanceof GainStrengthPower)) {
+                if (!(power instanceof PlatedArmorPower) && !(power instanceof MetallicizePower) && !(power instanceof StrengthPower) && !(power instanceof GainStrengthPower) && !(power instanceof InvisibleBarricadePower)) {
                     powersToRemove.add(power);
                 }
             }
@@ -363,16 +379,6 @@ public class Tanya extends AbstractCardMonster
             });
             applyToTarget(this, this, new StrengthPower(this, GUTS_STRENGTH));
             applyToTarget(this, this, new MetallicizePower(this, METALLICIZE_GAIN));
-        }
-        if (info.output > 0 && info.type == DamageInfo.DamageType.NORMAL) {
-            AbstractPower relentless = gebura.getPower(Gebura.R_POWER_ID);
-            if (relentless != null) {
-                relentless.amount -= info.output;
-                if (relentless.amount < 0) {
-                    relentless.amount = 0;
-                }
-                relentless.updateDescription();
-            }
         }
     }
 

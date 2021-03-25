@@ -32,7 +32,7 @@
             </mainline>
             <timeline id="0" name="Idle">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-196" y="201.857143" angle="0" scale_x="0.8" scale_y="0.8"/>
+                    <object folder="0" file="0" x="-221" y="226.857143" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
         </animation>
@@ -57,12 +57,12 @@
             </mainline>
             <timeline id="0" name="Slash">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-168.21374" y="212.89313" scale_x="0.8" scale_y="0.8"/>
+                    <object folder="0" file="1" x="-184.21374" y="243.89313" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
             <timeline id="1" name="effect">
                 <key id="0" spin="0">
-                    <object folder="2" file="0" x="-379.894737" y="246.263158" scale_x="1.623597"/>
+                    <object folder="2" file="0" x="-374.894737" y="250.263158" angle="0" scale_x="1.623597"/>
                 </key>
             </timeline>
         </animation>
@@ -86,7 +86,7 @@
             </mainline>
             <timeline id="0" name="Pierce">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-330.052632" y="176.894737" scale_x="0.8" scale_y="0.8"/>
+                    <object folder="0" file="2" x="-365.052632" y="199.894737" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
         </animation>
@@ -111,12 +111,12 @@
             </mainline>
             <timeline id="0" name="Blunt">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-102.157895" y="269.684211" scale_x="0.8" scale_y="0.8"/>
+                    <object folder="0" file="3" x="-118.157895" y="308.684211" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
             <timeline id="1" name="effect_000">
                 <key id="0" spin="0">
-                    <object folder="2" file="0" x="-475.604238" y="-19.651401" angle="323.637209" scale_x="1.138081" scale_y="-2.059367"/>
+                    <object folder="2" file="0" x="-459.604238" y="6.348599" angle="323.637209" scale_x="1.138081" scale_y="-2.059367"/>
                 </key>
             </timeline>
         </animation>
@@ -140,7 +140,7 @@
             </mainline>
             <timeline id="0" name="Vert Start">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-70.210526" y="354.578947" scale_x="0.8" scale_y="0.8"/>
+                    <object folder="0" file="4" x="-77.210526" y="398.578947" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
         </animation>
@@ -165,12 +165,12 @@
             </mainline>
             <timeline id="0" name="Vert Finish">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="-221.947368" y="201.631579" scale_x="0.8" scale_y="0.8"/>
+                    <object folder="0" file="5" x="-251.947368" y="230.631579" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
             <timeline id="1" name="effect_001">
                 <key id="0" spin="0">
-                    <object folder="2" file="0" x="-411.428571" y="394.962406" scale_x="1.528689" scale_y="1.741186"/>
+                    <object folder="2" file="0" x="-411.428571" y="394.962406" angle="0" scale_x="1.528689" scale_y="1.741186"/>
                 </key>
             </timeline>
         </animation>
@@ -206,7 +206,7 @@
             </mainline>
             <timeline id="0" name="Damaged">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="-194.684211" y="194.631579" scale_x="0.8" scale_y="0.8"/>
+                    <object folder="0" file="6" x="-213.684211" y="220.631579" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
         </animation>
