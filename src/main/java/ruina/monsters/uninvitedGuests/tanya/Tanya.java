@@ -88,7 +88,7 @@ public class Tanya extends AbstractCardMonster
 
     public Tanya(final float x, final float y) {
         super(NAME, ID, 500, -5.0F, 0, 160.0f, 245.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppeteer/Spriter/Puppeteer.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Tanya/Spriter/Tanya.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
         for (int i = 0; i < numAdditionalMoves; i++) {
@@ -145,9 +145,9 @@ public class Tanya extends AbstractCardMonster
             case OVERSPEED: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        pierceAnimation(target);
-                    } else {
                         bluntAnimation(target);
+                    } else {
+                        pierceAnimation(target);
                     }
                     dmg(target, info);
                     resetIdle();
@@ -155,6 +155,7 @@ public class Tanya extends AbstractCardMonster
                 break;
             }
             case BEATDOWN: {
+                bluntAnimation(target);
                 int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
                 info.applyPowers(this, adp());
                 damageArray[damageArray.length - 1] = info.output;
@@ -182,12 +183,12 @@ public class Tanya extends AbstractCardMonster
                     atb(new RemoveSpecificPowerAction(this, this, platedArmor));
                     applyToTarget(this, this, new MetallicizePower(this, amount));
                 }
-                applyToTarget(this, this, new PlatedArmorPower(target, PLATED_ARMOR_GAIN));
+                applyToTarget(this, this, new PlatedArmorPower(this, PLATED_ARMOR_GAIN));
                 resetIdle();
                 break;
             }
             case LUPINE_ASSAULT: {
-                blockAnimation();
+                slashAnimation(target);
                 block(this, BLOCK);
                 dmg(target, info);
                 resetIdle();
@@ -196,9 +197,9 @@ public class Tanya extends AbstractCardMonster
             case KICKS_AND_STOMPS: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        pierceAnimation(target);
-                    } else {
                         bluntAnimation(target);
+                    } else {
+                        slashAnimation(target);
                     }
                     dmg(target, info);
                     resetIdle();
@@ -207,7 +208,7 @@ public class Tanya extends AbstractCardMonster
                 break;
             }
             case FISTICUFFS: {
-                blockAnimation();
+                pierceAnimation(target);
                 dmg(target, info);
                 applyToTarget(target, this, new WeakPower(target, WEAK, true));
                 resetIdle();
@@ -224,16 +225,8 @@ public class Tanya extends AbstractCardMonster
         animationAction("Pierce", "BluntBlow", enemy, this);
     }
 
-    private void rangedAnimation(AbstractCreature enemy) {
-        animationAction("Ranged", "PuppetBreak", enemy, this);
-    }
-
-    private void blockAnimation() {
-        animationAction("Block", null, this);
-    }
-
-    private void buffAnimation() {
-        animationAction("Special", null, this);
+    private void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "BluntVert", enemy, this);
     }
 
     private void massAttackStartAnimation() {
@@ -275,7 +268,9 @@ public class Tanya extends AbstractCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (massAttackCooldown <= 0) {
+        if (gebura != null && !gebura.isDead && !gebura.isDying && gebura.greaterSplitCooldownCounter <= 0) {
+            setMoveShortcut(OVERSPEED, MOVES[OVERSPEED], cardList.get(OVERSPEED).makeStatEquivalentCopy());
+        } else if (massAttackCooldown <= 0) {
             setMoveShortcut(BEATDOWN, MOVES[BEATDOWN], cardList.get(BEATDOWN).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -294,7 +289,9 @@ public class Tanya extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(INTIMIDATE, moveHistory) && !this.lastMoveBefore(INTIMIDATE, moveHistory)) {
+        if (gebura != null && !gebura.isDead && !gebura.isDying && gebura.greaterSplitCooldownCounter <= 0) {
+            setMoveShortcut(OVERSPEED, MOVES[OVERSPEED], cardList.get(OVERSPEED).makeStatEquivalentCopy());
+        } else if (massAttackCooldown <= 0) {
             setAdditionalMoveShortcut(INTIMIDATE, moveHistory, cardList.get(INTIMIDATE).makeStatEquivalentCopy());
         } else {
             if (!this.lastMove(LUPINE_ASSAULT, moveHistory)) {

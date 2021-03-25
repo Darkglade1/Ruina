@@ -1,5 +1,6 @@
 package ruina.monsters.uninvitedGuests.tanya;
 
+import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -44,11 +45,11 @@ public class Gebura extends AbstractAllyCardMonster
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    private static final byte UPSTANDING_SLASH = 1;
-    private static final byte LEVEL_SLASH = 2;
-    private static final byte SPEAR = 3;
-    private static final byte GSV = 4;
-    private static final byte GSH = 5;
+    private static final byte UPSTANDING_SLASH = 0;
+    private static final byte LEVEL_SLASH = 1;
+    private static final byte SPEAR = 2;
+    private static final byte GSV = 3;
+    private static final byte GSH = 4;
 
     public final int STRENGTH = 2;
     public final int VULNERABLE = 1;
@@ -83,15 +84,15 @@ public class Gebura extends AbstractAllyCardMonster
 
     public Gebura(final float x, final float y) {
         super(NAME, ID, 180, -5.0F, 0, 230.0f, 250.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("RedMist/Spriter/RedMist.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Gebura/Spriter/RedMist.scml"));
         this.animation.setFlip(true, false);
 
         this.setHp(maxHealth);
         this.type = EnemyType.BOSS;
 
         addMove(UPSTANDING_SLASH, Intent.ATTACK_DEBUFF, upstanding_damage, upstandingHits, true);
-        addMove(SPEAR, Intent.ATTACK, 4, spearHits, true);
         addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, level_damage, levelHits, true);
+        addMove(SPEAR, Intent.ATTACK, 4, spearHits, true);
         addMove(GSV, Intent.ATTACK_DEBUFF, 35);
         addMove(GSH, Intent.ATTACK_DEBUFF, 50);
 
@@ -101,7 +102,7 @@ public class Gebura extends AbstractAllyCardMonster
         cardList.add(new Ally_GreaterSplitVertical(this));
         cardList.add(new Ally_GreaterSplitHorizontal(this));
 
-        this.allyIcon = makeUIPath("ChesedIcon.png");
+        this.allyIcon = makeUIPath("GeburaIcon.png");
     }
 
     @Override
@@ -119,7 +120,7 @@ public class Gebura extends AbstractAllyCardMonster
 
             @Override
             public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (info.type == DamageInfo.DamageType.NORMAL && target != owner) {
+                if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL && target != owner) {
                     applyToTarget(owner, owner, new StrengthPower(owner, amount));
                 }
             }
@@ -148,6 +149,8 @@ public class Gebura extends AbstractAllyCardMonster
     }
 
     private void manifestEGO() {
+        playSound("RedMistChange");
+        CustomDungeon.playTempMusicInstantly("RedMistBGM");
         manifestedEGO = true;
         phase = 2;
         resetIdle(0.0f);
@@ -315,6 +318,13 @@ public class Gebura extends AbstractAllyCardMonster
                 break;
             }
         }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                greaterSplitCooldownCounter--;
+                this.isDone = true;
+            }
+        });
         atb(new RollMoveAction(this));
     }
 
@@ -356,21 +366,29 @@ public class Gebura extends AbstractAllyCardMonster
 
     @Override
     protected void getMove(final int num) {
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(UPSTANDING_SLASH) && !this.lastMoveBefore(UPSTANDING_SLASH)) {
-            possibilities.add(UPSTANDING_SLASH);
+        if (greaterSplitCooldownCounter <= 0) {
+            if (phase == 1) {
+                setMoveShortcut(GSV, MOVES[GSV], cardList.get(GSV));
+            } else {
+                setMoveShortcut(GSH, MOVES[GSH], cardList.get(GSH));
+            }
+        } else {
+            ArrayList<Byte> possibilities = new ArrayList<>();
+            if (!this.lastMove(UPSTANDING_SLASH) && !this.lastMoveBefore(UPSTANDING_SLASH)) {
+                possibilities.add(UPSTANDING_SLASH);
+            }
+            if (!this.lastMove(SPEAR) && !this.lastMoveBefore(SPEAR)) {
+                possibilities.add(SPEAR);
+            }
+            if (!this.lastMove(LEVEL_SLASH) && !this.lastMoveBefore(LEVEL_SLASH)) {
+                possibilities.add(LEVEL_SLASH);
+            }
+            if (possibilities.isEmpty()) {
+                possibilities.add(UPSTANDING_SLASH);
+            }
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            setMoveShortcut(move, MOVES[move], cardList.get(move));
         }
-        if (!this.lastMove(SPEAR) && !this.lastMoveBefore(SPEAR)) {
-            possibilities.add(SPEAR);
-        }
-        if (!this.lastMove(LEVEL_SLASH) && !this.lastMoveBefore(LEVEL_SLASH)) {
-            possibilities.add(LEVEL_SLASH);
-        }
-        if (possibilities.isEmpty()) {
-            possibilities.add(UPSTANDING_SLASH);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], cardList.get(move));
     }
 
     @Override
