@@ -94,9 +94,13 @@ public class Shade extends AbstractDeckMonster
 
     @Override
     public void usePreBattleAction() {
-        initializeDeck();
-        block(this, BLOCK);
-
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                initializeDeck();
+                isDone = true;
+            }
+        });
         applyToTarget(this, this, new BarricadePower(this));
         applyToTarget(this, this, new ArtifactPower(this, ARTIFACT));
     }

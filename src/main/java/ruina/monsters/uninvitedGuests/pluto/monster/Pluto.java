@@ -94,6 +94,7 @@ public class Pluto extends AbstractCardMonster {
     @Override
     public void usePreBattleAction()
     {
+        Summon();
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -106,7 +107,6 @@ public class Pluto extends AbstractCardMonster {
                 isDone = true;
             }
         });
-        Summon();
     }
 
     @Override
@@ -169,7 +169,7 @@ public class Pluto extends AbstractCardMonster {
     @Override
     protected void getMove(final int num) {
         if(currentPhase.equals(PHASE.NO_SHADES)){
-            setMove(MOVES[ONSLAUGHT], ONSLAUGHT, Intent.ATTACK, magicOnslaughtDamage * (magicOnslaughtPerTurnScaling * GameActionManager.turn), new Madness());
+            setMove(MOVES[ONSLAUGHT], ONSLAUGHT, Intent.ATTACK, magicOnslaughtDamage + (magicOnslaughtPerTurnScaling * GameActionManager.turn), new Madness());
         }
         else {
             if(firstMove){ setMoveShortcut(SAFEGUARD, MOVES[SAFEGUARD], new Madness()); }
