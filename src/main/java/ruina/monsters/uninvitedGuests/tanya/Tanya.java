@@ -28,11 +28,12 @@ import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.AssailingPulls;
-import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.PullingStrings;
-import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.Puppetry;
-import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.ThinStrings;
-import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.TuggingStrings;
+import ruina.monsters.uninvitedGuests.tanya.tanyaCards.Beatdown;
+import ruina.monsters.uninvitedGuests.tanya.tanyaCards.Fisticuffs;
+import ruina.monsters.uninvitedGuests.tanya.tanyaCards.Intimidate;
+import ruina.monsters.uninvitedGuests.tanya.tanyaCards.KicksAndStomps;
+import ruina.monsters.uninvitedGuests.tanya.tanyaCards.LupineAssault;
+import ruina.monsters.uninvitedGuests.tanya.tanyaCards.Overspeed;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
@@ -102,11 +103,12 @@ public class Tanya extends AbstractCardMonster
         addMove(KICKS_AND_STOMPS, Intent.ATTACK_BUFF, calcAscensionDamage(12), kicksAndStompsHits, true);
         addMove(FISTICUFFS, Intent.ATTACK_DEBUFF, calcAscensionDamage(26));
 
-//        cardList.add(new PullingStrings(this));
-//        cardList.add(new TuggingStrings(this));
-//        cardList.add(new AssailingPulls(this));
-//        cardList.add(new ThinStrings(this));
-//        cardList.add(new Puppetry(this));
+        cardList.add(new Overspeed(this));
+        cardList.add(new Beatdown(this));
+        cardList.add(new Intimidate(this));
+        cardList.add(new LupineAssault(this));
+        cardList.add(new KicksAndStomps(this));
+        cardList.add(new Fisticuffs(this));
     }
 
     @Override

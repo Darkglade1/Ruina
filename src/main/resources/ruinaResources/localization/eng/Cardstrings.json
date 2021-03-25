@@ -296,5 +296,29 @@
   "${ModID}:Ally_GreaterSplitVertical": {
     "NAME": "Greater Split: Vertical",
     "DESCRIPTION": "Deal !D! damage. NL Target loses Strength this turn equal to unblocked damage."
+  },
+  "${ModID}:Overspeed": {
+    "NAME": "Overspeed",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Beatdown": {
+    "NAME": "Beatdown",
+    "DESCRIPTION": "Deal !D! damage to ALL other characters. NL Gain !M! *Metallicize."
+  },
+  "${ModID}:Intimidate": {
+    "NAME": "Intimidate",
+    "DESCRIPTION": "Convert all *Plated *Armor into *Metallicize. NL Gain !M! *Plated *Armor."
+  },
+  "${ModID}:LupineAssault": {
+    "NAME": "Lupine Onslaught",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:KicksAndStomps": {
+    "NAME": "Kicks and Stomps",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:Fisticuffs": {
+    "NAME": "Fisticuffs",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
   }
 }
