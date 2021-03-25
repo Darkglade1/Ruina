@@ -102,6 +102,8 @@ import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.argalia.monster.Roland;
 import ruina.monsters.uninvitedGuests.puppeteer.Chesed;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
+import ruina.monsters.uninvitedGuests.tanya.Gebura;
+import ruina.monsters.uninvitedGuests.tanya.Tanya;
 import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
@@ -584,6 +586,11 @@ public class RuinaMod implements
                 new AbstractMonster[] {
                         new Roland(-500.0F, 0.0F),
                         new Argalia(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Tanya.ID, "Tanya", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Gebura(-500.0F, 0.0F),
+                        new Tanya(200.0F, 0.0F),
                 }));
 
         uninvitedGuests.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));

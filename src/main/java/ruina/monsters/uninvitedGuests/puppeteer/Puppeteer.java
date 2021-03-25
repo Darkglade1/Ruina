@@ -33,11 +33,6 @@ import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.BattleCommand;
-import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Concentration;
-import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Disposal;
-import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.EnergyShield;
 import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.AssailingPulls;
 import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.PullingStrings;
 import ruina.monsters.uninvitedGuests.puppeteer.puppeteerCards.Puppetry;
@@ -49,7 +44,6 @@ import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
-import java.util.Set;
 import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.makeID;
@@ -103,7 +97,7 @@ public class Puppeteer extends AbstractCardMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(600));
+        this.setHp(calcAscensionTankiness(maxHealth));
 
         addMove(PULLING_STRINGS_TAUT, IntentEnums.MASS_ATTACK, calcAscensionDamage(36));
         addMove(TUGGING_STRINGS, Intent.ATTACK, calcAscensionDamage(11), tuggingStringsHits, true);
@@ -309,7 +303,7 @@ public class Puppeteer extends AbstractCardMonster
     @Override
     protected void getMove(final int num) {
         if (massAttackCooldown <= 0) {
-            setMoveShortcut(PULLING_STRINGS_TAUT, MOVES[PULLING_STRINGS_TAUT], cardList.get(PULLING_STRINGS_TAUT).makeCopy());
+            setMoveShortcut(PULLING_STRINGS_TAUT, MOVES[PULLING_STRINGS_TAUT], cardList.get(PULLING_STRINGS_TAUT).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(TUGGING_STRINGS)) {
@@ -322,7 +316,7 @@ public class Puppeteer extends AbstractCardMonster
                 possibilities.add(THIN_STRINGS);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], cardList.get(move).makeCopy());
+            setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
         }
     }
 
@@ -340,7 +334,7 @@ public class Puppeteer extends AbstractCardMonster
             possibilities.add(PUPPETRY);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeCopy());
+        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
     }
 
     @Override

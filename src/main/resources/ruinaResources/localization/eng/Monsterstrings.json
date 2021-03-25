@@ -649,6 +649,34 @@
     ],
     "NAME": "Shade",
     "DIALOG": [
+     ]
+   },
+  "${ModID}:Tanya": {
+    "MOVES": [
+      "Overspeed",
+      "Beatdown",
+      "Intimidate",
+      "Lupine Assault",
+      "Kicks and Stomps",
+      "Fisticuffs"
+    ],
+    "NAME": "L'heure du Loup",
+    "DIALOG": [
+      "It's the right of the strong to rule over the weak."
+    ]
+  },
+  "${ModID}:Gebura": {
+    "MOVES": [
+      "Upstanding Slash",
+      "Spear",
+      "Level Slash",
+      "Greater Split: Vertical",
+      "Greater Split: Horizontal"
+    ],
+    "NAME": "Gebura",
+    "DIALOG": [
+      "What a load of rubbish.",
+      "Look where all that strength got you."
     ]
   }
 }

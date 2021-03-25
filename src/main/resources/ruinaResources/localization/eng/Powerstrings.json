@@ -305,5 +305,13 @@
   "${ModID}:ContractOfLight": {
     "NAME": "Contract Of Light",
     "DESCRIPTIONS": ["Double your Energy each turn. Take #b%1$s damage for each unspent [E] at the end of your turn."]
+  },
+  "${ModID}:Guts": {
+    "NAME": "Guts",
+    "DESCRIPTIONS": ["The next time this creature #rdies, it immediately #grevives at full HP and gains #b", " #yStrength and #b", " #yMetallicize."]
+  },
+  "${ModID}:GeburaRedMist": {
+    "NAME": "The Red Mist",
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, gains #b", " #yStrength.", " #yManifests #yEGO in #b", " turns. When it does, double its #yStrength."]
   }
 }

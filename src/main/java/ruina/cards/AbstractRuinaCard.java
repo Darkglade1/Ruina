@@ -45,6 +45,17 @@ public abstract class AbstractRuinaCard extends CustomCard {
         CommonKeywordIconsField.useIcons.set(this, true);
     }
 
+    public AbstractRuinaCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color, String img) {
+        super(cardID, "", img,
+                cost, "", type, color, rarity, target);
+        cardStrings = CardCrawlGame.languagePack.getCardStrings(this.cardID);
+        rawDescription = cardStrings.DESCRIPTION;
+        name = originalName = cardStrings.NAME;
+        initializeTitle();
+        initializeDescription();
+        CommonKeywordIconsField.useIcons.set(this, true);
+    }
+
     @Override
     public void applyPowers() {
         if (baseSecondDamage > -1) {

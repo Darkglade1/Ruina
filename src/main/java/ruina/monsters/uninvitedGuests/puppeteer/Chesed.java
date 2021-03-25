@@ -20,11 +20,6 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
 import ruina.monsters.AbstractAllyCardMonster;
-import ruina.monsters.AbstractAllyMonster;
-import ruina.monsters.uninvitedGuests.argalia.rolandCards.CHRALLY_ALLAS;
-import ruina.monsters.uninvitedGuests.argalia.rolandCards.CHRALLY_Crystal;
-import ruina.monsters.uninvitedGuests.argalia.rolandCards.CHRALLY_Durandal;
-import ruina.monsters.uninvitedGuests.argalia.rolandCards.CHRALLY_Wheels;
 import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.BattleCommand;
 import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Concentration;
 import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Disposal;
@@ -92,7 +87,7 @@ public class Chesed extends AbstractAllyCardMonster
         addMove(BATTLEFIELD_COMMAND, Intent.ATTACK_BUFF, 16);
         addMove(ENERGY_SHIELD, Intent.ATTACK_DEFEND, 6);
         addMove(CONCENTRATE, Intent.ATTACK_DEFEND, 10, CONCENTRATE_HITS, true);
-        addMove(DISPOSAL, Intent.ATTACK, 11, 2, true);
+        addMove(DISPOSAL, Intent.ATTACK, 11, DISPOSAL_HITS, true);
 
         cardList.add(new BattleCommand(this));
         cardList.add(new EnergyShield(this));
