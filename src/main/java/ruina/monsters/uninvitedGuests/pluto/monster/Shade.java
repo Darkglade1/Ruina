@@ -104,32 +104,16 @@ public class Shade extends AbstractDeckMonster
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, AbstractCard card) {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
+        if (info.base > -1) { info.applyPowers(this, target); }
         if (info.base > -1) {
-            info.applyPowers(this, target);
-        }
-        if (info.base > -1) {
-            attackAnimation(adp());
-            if (card.baseBlock > 0) {
-                block(this, card.baseBlock);
-            }
+            if (card.baseBlock > 0) { block(this, card.baseBlock); }
             dmg(adp(), info);
         } else {
-            blockAnimation();
-            if (card.baseBlock > 0) {
-                block(this, card.baseBlock);
-            }
+            if (card.baseBlock > 0) { block(this, card.baseBlock); }
         }
         resetIdle();
     }
 
-
-    private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack", "BluntBlow", enemy, this);
-    }
-
-    private void blockAnimation() {
-        animationAction("Block", null, this);
-    }
 
     @Override
     public void takeTurn() {
