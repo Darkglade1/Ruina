@@ -97,8 +97,8 @@ public class Gebura extends AbstractAllyCardMonster
         addMove(GSH, Intent.ATTACK_DEBUFF, 50);
 
         cardList.add(new Ally_UpstandingSlash(this));
-        cardList.add(new Ally_Spear(this));
         cardList.add(new Ally_LevelSlash(this));
+        cardList.add(new Ally_Spear(this));
         cardList.add(new Ally_GreaterSplitVertical(this));
         cardList.add(new Ally_GreaterSplitHorizontal(this));
 
