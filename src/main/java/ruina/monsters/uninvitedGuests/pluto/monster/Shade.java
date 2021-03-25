@@ -77,6 +77,9 @@ public class Shade extends AbstractDeckMonster
         super(NAME, ID, 300, AbstractDungeon.player.hb_x / Settings.scale, AbstractDungeon.player.hb_y / Settings.scale, AbstractDungeon.player.hb_w / Settings.scale, AbstractDungeon.player.hb_h / Settings.scale, null, x, y);
         this.type = EnemyType.NORMAL;
         this.setHp(calcAscensionTankiness(maxHealth));
+        // you removed my yan code by accident do not remove this or it will NPE and everything will go kaboom boom die and it will be ur fault
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Shade/Spriter/Shade.scml"));
+        // double warning ^ do not touch this or i will be big mad
         this.dialogX = -(AbstractDungeon.player.dialogX - AbstractDungeon.player.drawX);
         this.dialogY =  (AbstractDungeon.player.dialogY - AbstractDungeon.player.drawY);
         maxAdditionalMoves = 1;
