@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -24,8 +25,10 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
+import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractDeckMonster;
+import ruina.monsters.act3.seraphim.GuardianApostle;
 import ruina.monsters.eventboss.redMist.cards.*;
 import ruina.monsters.uninvitedGuests.pluto.cards.contracts.ConfusingContract;
 import ruina.monsters.uninvitedGuests.pluto.cards.contracts.ContractOfLight;
@@ -103,6 +106,7 @@ public class Pluto extends AbstractCardMonster {
                 isDone = true;
             }
         });
+        Summon();
     }
 
     @Override
@@ -200,6 +204,23 @@ public class Pluto extends AbstractCardMonster {
         switch (move){
             default: return new Madness();
         }
+    }
+
+    public void Summon() {
+        float xPos_Farthest_L = -750.0F;
+        float xPos_Middle_L = -450F;
+        float xPos_Short_L = -150F;
+        float xPos_Shortest_L = 0F;
+        AbstractMonster shade1 = new Shade(xPos_Middle_L, 0.0f);
+        atb(new SpawnMonsterAction(shade1, true));
+        atb(new UsePreBattleActionAction(shade1));
+        shade1.rollMove();
+        shade1.createIntent();
+        AbstractMonster shade2 = new Shade(xPos_Short_L, 0.0f);
+        atb(new SpawnMonsterAction(shade2, true));
+        atb(new UsePreBattleActionAction(shade2));
+        shade2.rollMove();
+        shade2.createIntent();
     }
 
 }
