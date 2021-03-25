@@ -76,7 +76,7 @@ public class Pluto extends AbstractCardMonster {
     public PHASE currentPhase = PHASE.SHADES;
 
     public Pluto() {
-        this(0.0f, 0.0f);
+        this(150f, 0.0f);
     }
     public Pluto(final float x, final float y) {
         super(NAME, ID, 600, -5.0F, 0, 250.0f, 255.0f, null, x, y);
