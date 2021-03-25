@@ -668,8 +668,8 @@
   "${ModID}:Gebura": {
     "MOVES": [
       "Upstanding Slash",
-      "Spear",
       "Level Slash",
+      "Spear",
       "Greater Split: Vertical",
       "Greater Split: Horizontal"
     ],

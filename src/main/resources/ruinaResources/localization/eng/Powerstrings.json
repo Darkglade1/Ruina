@@ -308,10 +308,14 @@
   },
   "${ModID}:Guts": {
     "NAME": "Guts",
-    "DESCRIPTIONS": ["The next time this creature #rdies, it immediately #grevives at full HP and gains #b", " #yStrength and #b", " #yMetallicize."]
+    "DESCRIPTIONS": ["The next time this creature #rdies, it #yimmediately #grevives at full HP and gains #b", " #yStrength and #b", " #yMetallicize."]
   },
   "${ModID}:GeburaRedMist": {
     "NAME": "The Red Mist",
-    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, gains #b", " #yStrength.", " #yManifests #yEGO in #b", " turns. When it does, double its #yStrength."]
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, gains #b", " #yStrength.", " #yManifests #yEGO and doubles its #yStrength in #b", " turns."]
+  },
+  "${ModID}:Relentless": {
+    "NAME": "Relentless",
+    "DESCRIPTIONS": ["At end of round, if the #renemy did not receive at least #b", " unblocked attack damage this turn, this creature loses half its #yStrength."]
   }
 }

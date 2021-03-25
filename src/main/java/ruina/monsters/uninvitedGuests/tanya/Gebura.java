@@ -66,6 +66,8 @@ public class Gebura extends AbstractAllyCardMonster
     public final int GREATER_SPLIT_COOLDOWN = 3;
     public int greaterSplitCooldownCounter = GREATER_SPLIT_COOLDOWN;
 
+    public final int RELENTLESS_THRESHOLD = 40;
+
     public final int powerStrength = 1;
     public final int EGOtimer = 4;
     public boolean manifestedEGO = false;
@@ -78,12 +80,17 @@ public class Gebura extends AbstractAllyCardMonster
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
+    public static final String R_POWER_ID = makeID("Relentless");
+    public static final PowerStrings R_powerStrings = CardCrawlGame.languagePack.getPowerStrings(R_POWER_ID);
+    public static final String R_POWER_NAME = R_powerStrings.NAME;
+    public static final String[] R_POWER_DESCRIPTIONS = R_powerStrings.DESCRIPTIONS;
+
     public Gebura() {
         this(0.0f, 0.0f);
     }
 
     public Gebura(final float x, final float y) {
-        super(NAME, ID, 180, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 250, -5.0F, 0, 230.0f, 230.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Gebura/Spriter/RedMist.scml"));
         this.animation.setFlip(true, false);
 
@@ -116,6 +123,7 @@ public class Gebura extends AbstractAllyCardMonster
             @Override
             public void onInitialApplication() {
                 amount2 = EGOtimer;
+                updateDescription();
             }
 
             @Override
@@ -154,6 +162,28 @@ public class Gebura extends AbstractAllyCardMonster
         manifestedEGO = true;
         phase = 2;
         resetIdle(0.0f);
+        AbstractPower strength = getPower(StrengthPower.POWER_ID);
+        if (strength != null) {
+            applyToTarget(this, this, new StrengthPower(this, strength.amount));
+        }
+        applyToTarget(this, this, new AbstractLambdaPower(R_POWER_NAME, R_POWER_ID, AbstractPower.PowerType.BUFF, false, this, RELENTLESS_THRESHOLD) {
+            @Override
+            public void atEndOfRound() {
+                if (amount > 0) {
+                    AbstractPower strength = getPower(StrengthPower.POWER_ID);
+                    if (strength != null) {
+                        applyToTarget(owner, owner, new StrengthPower(owner, -strength.amount / 2));
+                    }
+                }
+                amount = RELENTLESS_THRESHOLD;
+                updateDescription();
+            }
+
+            @Override
+            public void updateDescription() {
+                description = R_POWER_DESCRIPTIONS[0] + amount + R_POWER_DESCRIPTIONS[1];
+            }
+        });
     }
 
     @Override

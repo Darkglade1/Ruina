@@ -67,14 +67,14 @@ public class Tanya extends AbstractCardMonster
     private static final int MASS_ATTACK_COOLDOWN = 2;
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
-    public final int BLOCK = calcAscensionTankiness(24);
+    public final int BLOCK = calcAscensionTankiness(16);
     public final int INITIAL_PLATED_ARMOR = calcAscensionTankiness(20);
-    public final int PLATED_ARMOR_GAIN = calcAscensionTankiness(18);
-    public final int METALLICIZE_GAIN = calcAscensionTankiness(5);
+    public final int PLATED_ARMOR_GAIN = calcAscensionTankiness(15);
+    public final int METALLICIZE_GAIN = calcAscensionSpecial(5);
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int WEAK = calcAscensionSpecial(1);
-    public final int GUTS_METALLICIZE_GAIN = calcAscensionTankiness(10);
-    public final int GUTS_STRENGTH = calcAscensionSpecial(3);
+    public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(5);
+    public final int GUTS_STRENGTH = calcAscensionSpecial(2);
     public Gebura gebura;
 
     public static final String POWER_ID = makeID("Guts");
@@ -87,7 +87,7 @@ public class Tanya extends AbstractCardMonster
     }
 
     public Tanya(final float x, final float y) {
-        super(NAME, ID, 500, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 400, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Tanya/Spriter/Tanya.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
@@ -290,7 +290,7 @@ public class Tanya extends AbstractCardMonster
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (gebura != null && !gebura.isDead && !gebura.isDying && gebura.greaterSplitCooldownCounter <= 0) {
-            setMoveShortcut(OVERSPEED, MOVES[OVERSPEED], cardList.get(OVERSPEED).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(OVERSPEED, moveHistory, cardList.get(OVERSPEED).makeStatEquivalentCopy());
         } else if (massAttackCooldown <= 0) {
             setAdditionalMoveShortcut(INTIMIDATE, moveHistory, cardList.get(INTIMIDATE).makeStatEquivalentCopy());
         } else {
@@ -363,6 +363,16 @@ public class Tanya extends AbstractCardMonster
             });
             applyToTarget(this, this, new StrengthPower(this, GUTS_STRENGTH));
             applyToTarget(this, this, new MetallicizePower(this, METALLICIZE_GAIN));
+        }
+        if (info.output > 0 && info.type == DamageInfo.DamageType.NORMAL) {
+            AbstractPower relentless = gebura.getPower(Gebura.R_POWER_ID);
+            if (relentless != null) {
+                relentless.amount -= info.output;
+                if (relentless.amount < 0) {
+                    relentless.amount = 0;
+                }
+                relentless.updateDescription();
+            }
         }
     }
 

@@ -590,7 +590,7 @@ public class RuinaMod implements
         BaseMod.addMonster(Tanya.ID, "Tanya", () -> new MonsterGroup(
                 new AbstractMonster[] {
                         new Gebura(-500.0F, 0.0F),
-                        new Tanya(200.0F, 0.0F),
+                        new Tanya(0.0F, 0.0F),
                 }));
 
         uninvitedGuests.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));

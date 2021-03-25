@@ -12,7 +12,7 @@ import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makePowerPath;
 
-public class BlueReverberation extends AbstractEasyPower {
+public class BlueReverberation extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(BlueReverberation.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
