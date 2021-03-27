@@ -1,8 +1,12 @@
 package ruina.monsters.uninvitedGuests.tanya;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -10,6 +14,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -22,9 +27,11 @@ import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
+import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractCardMonster;
@@ -37,10 +44,13 @@ import ruina.monsters.uninvitedGuests.tanya.tanyaCards.Overspeed;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
+import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -76,6 +86,7 @@ public class Tanya extends AbstractCardMonster
     public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(5);
     public final int GUTS_STRENGTH = calcAscensionSpecial(2);
     public Gebura gebura;
+    private boolean usingMassAttack = false;
 
     public static final String POWER_ID = makeID("Guts");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -155,17 +166,19 @@ public class Tanya extends AbstractCardMonster
                 break;
             }
             case BEATDOWN: {
-                bluntAnimation(target);
-                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
-                info.applyPowers(this, adp());
-                damageArray[damageArray.length - 1] = info.output;
-                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
-                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-                    info.applyPowers(this, mo);
-                    damageArray[i] = info.output;
-                }
-                atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
-                resetIdle(1.0f);
+                massAttackStartAnimation();
+                waitAnimation(0.25f);
+                massAttackStart();
+                massAttackFinish(info);
+                resetIdle();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        usingMassAttack = false;
+                        this.isDone = true;
+                    }
+                });
+                waitAnimation(0.5f);
                 applyToTarget(this, this, new MetallicizePower(this, METALLICIZE_GAIN));
                 atb(new AbstractGameAction() {
                     @Override
@@ -177,6 +190,7 @@ public class Tanya extends AbstractCardMonster
                 break;
             }
             case INTIMIDATE: {
+                specialAnimation();
                 AbstractPower platedArmor = getPower(PlatedArmorPower.POWER_ID);
                 if (platedArmor != null) {
                     int amount = platedArmor.amount;
@@ -217,6 +231,64 @@ public class Tanya extends AbstractCardMonster
         }
     }
 
+    private void doMassAttack(DamageInfo info) {
+        int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
+        info.applyPowers(this, adp());
+        damageArray[damageArray.length - 1] = info.output;
+        for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+            AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
+            info.applyPowers(this, mo);
+            damageArray[i] = info.output;
+        }
+        att(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+    }
+
+    private void massAttackStart() {
+        String start = RuinaMod.makeMonsterPath("Tanya/Spriter/Special 1.png");
+        Texture texture = TexLoader.getTexture(start);
+        float duration = 0.8f;
+        float y = (float) Settings.HEIGHT + (375.0F * Settings.scale);
+        AbstractGameEffect effect = new VfxBuilder(texture, this.hb.cX, this.hb.cY, duration)
+                .arc(this.hb.cX, this.hb.cY, (float) Settings.WIDTH / 2, y, y)
+                .build();
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                usingMassAttack = true;
+                this.isDone = true;
+            }
+        });
+        atb(new VFXAction(effect, duration));
+    }
+
+    private void massAttackFinish(DamageInfo info) {
+        String drop = RuinaMod.makeMonsterPath("Tanya/Spriter/Special 2.png");
+        Texture texture = TexLoader.getTexture(drop);
+        String finish = RuinaMod.makeMonsterPath("Tanya/Spriter/Special 3.png");
+        Texture finishTexture = TexLoader.getTexture(finish);
+        float duration = 0.8f;
+        float x = (adp().hb.cX + gebura.hb.cX) / 2;
+        float y = (float) Settings.HEIGHT + (375.0F * Settings.scale);
+        AbstractGameEffect effect = new VfxBuilder(texture, (float) Settings.WIDTH / 2, y, duration)
+                .arc((float) Settings.WIDTH / 2, y, x, adp().hb.cY, y)
+                .triggerVfxAt(duration, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        Consumer<VfxBuilder> vfxBuilderConsumer = new Consumer<VfxBuilder>() {
+                            @Override
+                            public void accept(VfxBuilder vfxBuilder) {
+                                doMassAttack(info);
+                            }
+                        };
+                        return new VfxBuilder(finishTexture, x, adp().hb.cY, 1.0f)
+                                .playSoundAt(0.0f, makeID("GreedSlam"))
+                                .whenStarted(vfxBuilderConsumer).build();
+                    }
+                })
+                .build();
+        atb(new VFXAction(effect, duration));
+    }
+
     private void bluntAnimation(AbstractCreature enemy) {
         animationAction("Blunt", "BluntHori", enemy, this);
     }
@@ -229,12 +301,12 @@ public class Tanya extends AbstractCardMonster
         animationAction("Slash", "BluntVert", enemy, this);
     }
 
-    private void massAttackStartAnimation() {
-        animationAction("Special", "PuppetStart", this);
+    private void specialAnimation() {
+        animationAction("Special", null, this);
     }
 
-    private void massAttackFinishAnimation() {
-        animationAction("Special", "PuppetStrongAtk", this);
+    private void massAttackStartAnimation() {
+        animationAction("MassStart", null, this);
     }
 
     @Override
@@ -385,6 +457,13 @@ public class Tanya extends AbstractCardMonster
         if (!AbstractDungeon.getCurrRoom().cannotLose) {
             super.die(triggerRelics);
             gebura.onBossDeath();
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        if (!usingMassAttack) {
+            super.render(sb);
         }
     }
 
