@@ -374,7 +374,7 @@ public class Tanya extends AbstractCardMonster
                 }
             });
             att(new HealAction(this, this, maxHealth));
-            
+
             applyToTarget(this, this, new StrengthPower(this, GUTS_STRENGTH));
             applyToTarget(this, this, new MetallicizePower(this, METALLICIZE_GAIN));
         }
