@@ -298,10 +298,19 @@ public class Gebura extends AbstractAllyCardMonster
                 atb(new VFXAction(new WaitEffect(), 0.25f));
                 RedMist.verticalSplitVfx();
                 verticalDownAnimation(enemy);
+                boolean hadGuts = enemy.hasPower(Tanya.POWER_ID);
+                int previousBlock = enemy.currentBlock;
                 dmg(enemy, info);
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
+                        boolean stillHasGuts = enemy.hasPower(Tanya.POWER_ID);
+                        if (hadGuts != stillHasGuts) {
+                            //because lastDamageTaken doesn't factor in overkill damage
+                            //so a greater split that kills tanya would reduce less strength than expected
+                            //so we have to handle it here
+                            enemy.lastDamageTaken = info.output - previousBlock;
+                        }
                         if (enemy.lastDamageTaken > 0) {
                             applyToTargetTop(enemy, Gebura.this, new StrengthPower(enemy, -enemy.lastDamageTaken));
                             if (!enemy.hasPower(ArtifactPower.POWER_ID)) {
