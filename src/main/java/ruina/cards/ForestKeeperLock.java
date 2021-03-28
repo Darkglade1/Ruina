@@ -36,4 +36,10 @@ public class ForestKeeperLock extends AbstractRuinaCard {
         upgradeMagicNumber(UP_STRENGTH_LOSS);
     }
 
+    @Override
+    public float getTitleFontSize()
+    {
+        return 16;
+    }
+
 }

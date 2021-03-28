@@ -133,15 +133,17 @@ public class Sage extends AbstractAllyMonster
     }
 
     public void onBigBirdDeath() {
-        atb(new TalkAction(this, DIALOG[dialogNum + 2]));
-        atb(new VFXAction(new WaitEffect(), 1.0F));
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                disappear();
-                this.isDone = true;
-            }
-        });
+        if (!isDead && !isDying) {
+            atb(new TalkAction(this, DIALOG[dialogNum + 2]));
+            atb(new VFXAction(new WaitEffect(), 1.0F));
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    disappear();
+                    this.isDone = true;
+                }
+            });
+        }
     }
 
     private void attackAnimation(AbstractCreature enemy) {
