@@ -260,307 +260,307 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:Seraphim": {
+  "ruina:Seraphim": {
     "MOVES": [
       "",
-      "Advent",
-      "Wings Of Grace",
-      "Summon Apostles",
-      "Baptism",
-      "Rise And Serve",
-      "Salvation",
-      "Prayer",
-      "Do Not Deny Me",
-      "Be Not Afraid",
-      "Behold My Power",
-      "Revelation"
+      "Пришествие",
+      "Крылья благодати",
+      "Призыв Апостолов",
+      "Крещение",
+      "Восстань и служи",
+      "Спасение души",
+      "Молитва",
+      "Не отказывай Мне",
+      "Не бойся",
+      "Узри Мою силу",
+      "Откровение"
     ],
-    "NAME": "Seraphim of a Long Lost Paradise",
+    "NAME": "Серафим давно потерянного Рая",
     "DIALOG": [
     ]
   },
-  "${ModID}:ParadiseLost": {
+  "ruina:ParadiseLost": {
     "MOVES": [
-      "Baptism"
+      "Крещение"
     ],
-    "NAME": "Prophet",
+    "NAME": "Пророк",
     "DIALOG": [
     ]
   },
-  "${ModID}:ScytheApostle": {
+  "ruina:ScytheApostle": {
     "MOVES": [
-      "I will Follow Thee",
-      "Thy Will be Done",
-      "I Shall Preserve Thee",
-      "Teach Us"
+      "Я последую за Тобой",
+      "Да будет воля Божья",
+      "Я оберегу Тебя",
+      "Обучи нас"
     ],
-    "NAME": "Scythe Apostle",
+    "NAME": "Апостол с косой",
     "DIALOG": [
     ]
   },
-  "${ModID}:SpearApostle": {
+  "ruina:SpearApostle": {
     "MOVES": [
-      "For He is Holy",
-      "The Will of the Lord be Done",
-      "I shall Devote unto Thee",
-      "Let Thy Light Lead Me"
+      "Для Него, Святого",
+      "Да будет воля Божья",
+      "Я посвящу себя Тебе",
+      "Пусть Твой свет ведёт меня"
     ],
-    "NAME": "Spear Apostle",
+    "NAME": "Апостол с копьём ",
     "DIALOG": [
     ]
   },
-  "${ModID}:StaffApostle": {
+  "ruina:StaffApostle": {
     "MOVES": [
-      "Thy Words Come unto Me",
-      "Give Us Rest"
+      "Твои слова приходят ко мне",
+      "Дай нам спокойствия"
     ],
-    "NAME": "Staff Apostle",
+    "NAME": "Апостол с посохом",
     "DIALOG": [
     ]
   },
-  "${ModID}:GuardianApostle": {
+  "ruina:GuardianApostle": {
     "MOVES": [
-      "Rise And Serve",
-      "Wilt thou that We Command Fire?",
-      "Thou art the King",
-      "Give Us Rest",
-      "Thy Words Come unto Me",
-      "Lord, Shew Us",
+      "Восстань и служи",
+      "Чахнешь ли Ты, чтобы мы владели огнём?",
+      "Ты - Король",
+      "Дай нам спокойствия",
+      "Твои слова приходят ко мне",
+      "Господь, яви нам",
       ""
     ],
-    "NAME": "Guardian Apostle",
+    "NAME": "Апостол-хранитель",
     "DIALOG": [
     ]
   },
-  "${ModID}:Twilight": {
+  "ruina:Twilight": {
     "MOVES": [
-      "Peace for All",
-      "Surveillance",
-      "Torn Mouth",
-      "Tilted Scale",
-      "Talons",
-      "Brilliant Eyes"
+      "Мир для ВСЕХ",
+      "Наблюдение",
+      "Разорванный рот",
+      "Опрокинуть с размахом",
+      "Когти",
+      "Блестящие глаза"
     ],
-    "NAME": "Twilight",
+    "NAME": "Сумерки",
     "DIALOG": [
     ]
   },
-  "${ModID}:PunishingBird": {
+  "ruina:PunishingBird": {
     "MOVES": [
-      "Peck",
-      "Punishment"
+      "Поклевать",
+      "Кара"
     ],
-    "NAME": "Punishing Bird",
+    "NAME": "Карающая птица",
     "DIALOG": [
     ]
   },
-  "${ModID}:Keeper": {
+  "ruina:Keeper": {
     "MOVES": [
-      "Cuckoo",
-      "Ring",
-      "Smash"
+      "Кукушка",
+      "Звон",
+      "Врезать"
     ],
-    "NAME": "Keeper Of The Forest",
+    "NAME": "Хранитель леса",
     "DIALOG": [
     ]
   },
-  "${ModID}:Sage": {
+  "ruina:Sage": {
     "MOVES": [
-      "Ring",
-      "Smash"
+      "Звон",
+      "Врезать"
     ],
-    "NAME": "Sage of the Forest",
+    "NAME": "Мудрец леса",
     "DIALOG": [
-      "The guardian has gone mad!",
-      "We must stop him!",
-      "I hope he has come to his senses.",
-      "That was a harrowing ordeal."
+      "Хранитель сошёл с ума!",
+      "Мы должны остановить его!",
+      "Надеюсь, что он пришёл в себя.",
+      "Это было мучительное испытание."
     ]
   },
-  "${ModID}:BigBird": {
+  "ruina:BigBird": {
     "MOVES": [
-      "Shining Light",
-      "Dazzle",
-      "Dazzle",
-      "Illuminate",
-      "Illuminate"
+      "Сияющий свет",
+      "Ослепить",
+      "Ослепить",
+      "Осветить",
+      "Осветить"
     ],
-    "NAME": "Big Bird",
+    "NAME": "Большая птица",
     "DIALOG": [
     ]
   },
-  "${ModID}:Worshipper": {
+  "ruina:Worshipper": {
     "MOVES": [
-      "For the Star",
-      "Everlasting Faith",
-      "Hear the Sound of the Star!",
-      "We'll Meet Soon as Stars!"
+      "Ради Звезды",
+      "Бесконечная вера",
+      "Услышь звучание Звезды!",
+      "Мы скоро встретимся в виде звёзд!"
     ],
-    "NAME": "Worshipper",
+    "NAME": "Верующий",
     "DIALOG": [
     ]
   },
-  "${ModID}:BlueStar": {
+  "ruina:BlueStar": {
     "MOVES": [
-      "Rising Star",
-      "Starry Sky",
-      "Sound of a Star",
-      "Worshippers"
+      "Восходящая звезда",
+      "Звёздное небо",
+      "Звучание Звезды",
+      "Верующие"
     ],
-    "NAME": "Shrine to the Blue Star",
+    "NAME": "Алтарь Синей Звезды",
     "DIALOG": [
     ]
   },
-  "${ModID}:BurrowingHeaven": {
+  "ruina:BurrowingHeaven": {
     "MOVES": [
-      "Your Own Heaven",
-      "Bloody Wings",
-      "Gaze of Others"
+      "Твоё собственное небо",
+      "Кровавые крылья",
+      "Посторонний взгляд"
     ],
-    "NAME": "Burrowing Heaven",
+    "NAME": "Пронзающий небеса",
     "DIALOG": [
     ]
   },
-  "${ModID}:RemnantOfTime": {
+  "ruina:RemnantOfTime": {
     "MOVES": [
-      "Backlash of Time",
-      "Torrent of Hours"
+      "Вспомни своё прошлое",
+      "Поток часов"
     ],
-    "NAME": "Remnant of Time",
+    "NAME": "Остаток времени",
     "DIALOG": [
     ]
   },
-  "${ModID}:PriceOfSilence": {
+  "ruina:PriceOfSilence": {
     "MOVES": [
-      "Stolen Time",
-      "Silent Hour"
+      "Пропавшее время",
+      "Тихий час"
     ],
-    "NAME": "Price of Silence",
+    "NAME": "Цена тишины",
     "DIALOG": [
     ]
   },
-  "${ModID}:Bloodbath": {
+  "ruina:Bloodbath": {
     "MOVES": [
-      "Pale Hands",
-      "Depression"
+      "Бледные руки",
+      "Депрессия"
     ],
-    "NAME": "Bloodbath",
+    "NAME": "Кровавая ванна",
     "DIALOG": [
     ]
   },
-  "${ModID}:SnowQueen": {
+  "ruina:SnowQueen": {
     "MOVES": [
-      "Blizzard",
-      "Frigid Gaze",
-      "Ice Splinters",
-      "Frozen Throne"
+      "Снежная буря",
+      "Холодный взгляд",
+      "Осколки льда",
+      "Замороженный трон"
     ],
-    "NAME": "Snow Queen",
+    "NAME": "Снежная королева",
     "DIALOG": [
     ]
   },
-  "${ModID}:PrisonOfIce": {
+  "ruina:PrisonOfIce": {
     "MOVES": [
       ""
     ],
-    "NAME": "Prison of Ice",
+    "NAME": "Тюрьма изо льда",
     "DIALOG": [
     ]
   },
-  "${ModID}:HeartOfAspiration": {
+  "ruina:HeartOfAspiration": {
     "MOVES": [
-      "Pulsation",
-      "Beats of Aspiration"
+      "Биение сердца",
+      "Удар стремления"
     ],
-    "NAME": "Heart of Aspiration",
+    "NAME": "Сердце стремления",
     "DIALOG": [
     ]
   },
-  "${ModID}:LungsOfCraving": {
+  "ruina:LungsOfCraving": {
     "MOVES": [
-      "Fervent Beats",
-      "Retracting Beats"
+      "Страстные удары",
+      "Втягивающий удар"
     ],
-    "NAME": "Lungs of Craving",
+    "NAME": "Пристрастное лёгкое",
     "DIALOG": [
     ]
   },
-  "${ModID}:RunawayBird": {
+  "ruina:RunawayBird": {
     "MOVES": [
-      "Sweep",
-      "Shriek"
+      "Взмах",
+      "Вопль"
     ],
-    "NAME": "Runaway Bird",
+    "NAME": "Сбежавшая птица",
     "DIALOG": [
     ]
   },
-  "${ModID}:EyeballChick": {
+  "ruina:EyeballChick": {
     "MOVES": [
-      "Stare",
-      "Pierce"
+      "Уставиться",
+      "Проткнуть"
     ],
-    "NAME": "Eyeball Chick",
+    "NAME": "Глаз цыплёнка",
     "DIALOG": [
     ]
   },
-  "${ModID}:RedMist": {
+  "ruina:RedMist": {
     "MOVES": [
-      "Focus Spirit",
-      "Upstanding Slash",
-      "Level Slash",
-      "Spear",
-      "Greater Split: Vertical",
-      "Greater Split: Horizontal"
+      "Подготовка духа",
+      "Здоровый разрез",
+      "Ровный разрез",
+      "Копьё",
+      "Разрез вверх",
+      "Разрез напрямую"
     ],
-    "NAME": "The Red Mist",
+    "NAME": "Красный Туман",
     "DIALOG": [
     ]
   },
-  "${ModID}:JudgementBird": {
+  "ruina:JudgementBird": {
     "MOVES": [
-      "Stare",
-      "Judgement",
-      "Heavy Guilt",
-      "Ceaseless Duty"
+      "Уставиться",
+      "Правосудие",
+      "Тяжкое чувство вины",
+      "Неустанный долг"
     ],
-    "NAME": "Judgement Bird",
+    "NAME": "Птица правосудия",
     "DIALOG": [
     ]
   },
-  "${ModID}:Pinocchio": {
+  "ruina:Pinocchio": {
     "MOVES": [
-      "Learn"
+      "Изучить"
     ],
-    "NAME": "Pinocchio",
+    "NAME": "Буратино",
     "DIALOG": [
     ]
   },
-  "${ModID}:yanHand": {
+  "ruina:yanHand": {
     "MOVES": [
-      "Giant Fist",
-      "Compress",
-      "Flurry Of Fists",
-      "Baleful Brand",
-      "Lock"
+      "Гигантский кулак",
+      "Сдавить",
+      "Шквал кулаков",
+      "Зловещие клеймо",
+      "Зафиксировать"
     ],
-    "NAME": "Distorted Hand",
+    "NAME": "Искажённая рука",
     "DIALOG": [
     ]
   },
-  "${ModID}:yanDistortion": {
+  "ruina:yanDistortion": {
     "MOVES": [
-      "Protect",
-      "Protect",
-      "Attack",
-      "Attack",
-      "Giant Fist",
-      "Compress",
-      "Flurry Of Fists",
-      "Baleful Brand",
-      "Lock",
-      "Distorted Blade"
+      "Прикрыть",
+      "Прикрыть",
+      "Атаковать",
+      "Атаковать",
+      "Гигантский кулак",
+      "Сдавить",
+      "Шквал кулаков",
+      "Зловещие клеймо",
+      "Зафиксировать",
+      "Искажённое лезвие"
     ],
-    "NAME": "Distorted Yan",
+    "NAME": "Искажённый Ян",
     "DIALOG": [
     ]
   }

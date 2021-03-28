@@ -11,7 +11,7 @@
     "FLAVOR": "Список странных инструкций. Кто в здравом уме мог придумать такое?",
     "DESCRIPTIONS": [
       "#yПредписания: NL 1. Встретьте #b", " обычных", " #rэлитного", " врага. ", " врага. ", " #pсобытие. ", " #pсобытия. ", "/",
-      " NL 2. Добавьте #b", " Обычных", " #bНеобычных", " #yРедкую", " карту. ", " карты. ",
+      " NL 2. Добавьте #b", " Обычные", " #bНеобычные", " #yРедкую", " карту. ", " карты. ",
       " NL После выполнения всех Предписаний заменяется на особую реликвию."
     ]
   },
@@ -30,32 +30,32 @@
       "Первая разыгранная в каждом бою #yАтака наносит двойной урон."
     ]
   },
-  "${ModID}:Strongest": {
-    "NAME": "Strongest",
-    "FLAVOR": "The courage to protect others. That is what separates the mighty from the meek.",
+  "ruina:Strongest": {
+    "NAME": "Сильнейший",
+    "FLAVOR": "Иметь храбрость защищать других. Вот что отличает могучих от покорных.",
     "DESCRIPTIONS": [
-      "When you deal #b", " unblocked attack damage in a single turn, gain #b", " #yStrength. Can only trigger once per turn."
+      "Нанеся #b", " урона по ОЗ врага за ход, вы получаете #b", " #yСилы. Срабатывает только один раз за ход."
     ]
   },
-  "${ModID}:FourTrigrams": {
-    "NAME": "Four Trigrams",
-    "FLAVOR": "The balance of the City must be upheld.",
+  "ruina:FourTrigrams": {
+    "NAME": "Четыре триграммы",
+    "FLAVOR": "Баланс Города должен быть поддержанным.",
     "DESCRIPTIONS": [
-      "At the start of your turn, randomly activate an effect that hasn't been activated this combat: NL Gain #b", " #yStrength. NL Gain #b", " #yDexterity. NL Gain [E] . NL Draw #b", " card."
+      "В начале вашего хода случайно активируется эффект, который ещё не был активирован в этом бою: NL даёт #b", " #yСилы; NL даёт #b", " #yЛовкости; NL даёт [E] ; NL вы берёте #b", " карту."
     ]
   },
-  "${ModID}:LowellsGift": {
-    "NAME": "Lowell's Gift",
-    "FLAVOR": "For you I'd steal the stars.",
+  "ruina:LowellsGift": {
+    "NAME": "Подарок Лоуэлла",
+    "FLAVOR": "Ради тебя я бы украл звёзды.",
     "DESCRIPTIONS": [
-      "At the start of your #b3rd turn, gain #b", " #yStrength and #b", " #yDexterity."
+      "Даёт #b", " #yСилы и #b", " #yЛовкости в начале вашего #b3 хода."
     ]
   },
-  "${ModID}:YesterdayPromiseRelic": {
-    "NAME": "Yesterday's Promise",
-    "FLAVOR": "Let me lend you my eyeglass, so you can have a closer look at what you just signed.",
+  "ruina:YesterdayPromiseRelic": {
+    "NAME": "Вчерашнее обещание",
+    "FLAVOR": "Позвольте одолжить вам мой монокль, чтобы вы могли поближе рассмотреть то, что только что подписали.",
     "DESCRIPTIONS": [
-      "When you have insufficient [E] to play a card, you may instead pay #b3 HP for every missing [E] ."
+      "Если вам недостаточно [E] для разыгрывания карты, вы можете разыграть её, потеряв #b3 ОЗ за каждую недостающую [E] ."
     ]
   }
 }

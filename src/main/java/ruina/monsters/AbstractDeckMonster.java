@@ -27,7 +27,13 @@ public abstract class AbstractDeckMonster extends AbstractCardMonster {
     }
 
     public void initializeDeck(){
+        masterDeck.clear();
+        hand.clear();
+        draw.clear();
+        discard.clear();
+        purge.clear();
         createDeck();
+        System.out.println(masterDeck);
         masterDeck.shuffle();
         for(AbstractCard c: masterDeck.group){
             draw.addToBottom(c);

@@ -15,17 +15,18 @@
     "DESCRIPTION": "Ваша след. Атака наносит доп. урон."
   },
   {
-    "PROPER_NAME": "Manifest",
+    "PROPER_NAME": "Манифест",
     "NAMES": [
-      "manifest"
+      "манифест",
+	  "манифеста"
     ],
-    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead #yExhaust #b1 card for every missing [E] ."
+    "DESCRIPTION": "Если вам недостаточно [E] для разыгрывания этой карты, вы можете разыграть её #yСжиганием #b1 выбранной карты из руки за каждую недостающую [E] ."
   },
   {
-    "PROPER_NAME": "Contract",
+    "PROPER_NAME": "Контракт",
     "NAMES": [
-      "contract"
+      "контракт"
     ],
-    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead pay #b3 HP for every missing [E] ."
+    "DESCRIPTION": "Если вам недостаточно [E] для разыгрывания этой карты, вы можете разыграть её, потеряв #b3 ОЗ за каждую недостающую [E] ."
   }
 ]
