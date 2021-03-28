@@ -1,6 +1,6 @@
 {
   "ruina:NextTurnPower": {
-    "NAME": "В след. ход ",
+    "NAME": "В след. ходу ",
     "DESCRIPTIONS": ["Даёт #b", " ", " в вашем след. ходу."]
   },
   "ruina:StrikeWithoutHesitation": {
@@ -17,11 +17,11 @@
   },
   "ruina:Bleed": {
     "NAME": "Кровотечение",
-    "DESCRIPTIONS": ["Получает #b", " урона за каждую #yАтаку в этом ходу."]
+    "DESCRIPTIONS": ["Получает #b", " урона за каждую атаку в этом ходу."]
   },
   "ruina:Absorption": {
     "NAME": "Поглощение",
-    "DESCRIPTIONS": ["Переходить на #y", " #yСтадию, когда умирает.", "В конце хода переходит на #y", " #yСтадию, если имеет полный запас ОЗ."]
+    "DESCRIPTIONS": ["Переходит на #y", " #yСтадию, когда умирает.", "В конце хода переходит на #y", " #yСтадию, если имеет полный запас ОЗ."]
   },
   "ruina:Bodies": {
     "NAME": "Гора трупов",
@@ -57,7 +57,7 @@
   },
   "ruina:SenselessWrath": {
     "NAME": "Безрассудная ярость",
-    "DESCRIPTIONS": ["Каждый второй #yотрицательный эффект #yотвергается этим врагом."]
+    "DESCRIPTIONS": ["Каждый второй накладываемые #yотриц. эффект #yотвергается этим врагом."]
   },
   "ruina:MagicalGirl": {
     "NAME": "Настоящая Магическая девочка!",
@@ -81,7 +81,7 @@
   },
   "ruina:Bliss": {
     "NAME": "Момент блаженства",
-    "DESCRIPTIONS": ["При смерти добавляет ", " в руку с #yЭфирностью и #yСжигаемостью."]
+    "DESCRIPTIONS": ["Погибая, добавляет ", " в руку с #yЭфирностью и #yСжигаемостью."]
   },
   "ruina:Hunter": {
     "NAME": "Охотник в темноте",
@@ -127,8 +127,28 @@
     "NAME": "Непостоянный дом",
     "DESCRIPTIONS": ["Наносит и получает на #b", "% #yменьше урона (от атак).", "% #yбольше урона (от атак)."," Когда вы разыгрываете #b", " карты, #yИнвертируйте эффект этого таланта."]
   },
+  "ruina:Apostles": {
+    "NAME": "Апостолы",
+    "DESCRIPTIONS": ["За #yубийство #rАпостола вы получите #yполож. #yэффект: NL 1, 5, 9 убито: даёт #b", " #yСилы; NL 2, 6, 10 убито: даёт #b", " #yЛовкости; NL 3, 7, 11 убито: в начале каждого вашего хода вы берёте на #b", " карту больше; NL 4, 8, 12 убито: в начале каждого вашего хода даёт [E] . NL #yЭффекты выдаются, когда это существо #gвосполняет ваши ОЗ. NL Когда #yАпостол умирает, появляется ещё один в конце хода."]
+  },
+  "ruina:Advent": {
+    "NAME": "Пришествие",
+    "DESCRIPTIONS": ["Перейдёт на след. фазу через #b", " хода.", " ход."]
+  },
+  "ruina:Blessing": {
+    "NAME": "Благословение",
+    "DESCRIPTIONS": ["В начале хода даёт ", " ."]
+  },
+  "ruina:WingsOfGrace": {
+    "NAME": "Крылья благодати",
+    "DESCRIPTIONS": ["Получает на #b", "% меньше урона. NL Понижается на #b", " при получении урона."]
+  },
+  "ruina:Unkillable": {
+    "NAME": "Благодать благодаря вере",
+    "DESCRIPTIONS": ["#yВоскрешается намерением врага в след. ходу, когда умирает."]
+  },
   "ruina:CobaltScarPower": {
-    "NAME": "Кобальтовый шрам",
+    "NAME": "Стальной шрам",
     "DESCRIPTIONS": ["Разыграв #b", " #yАтак, наносит #b", " урона ВСЕМ врагам."]
   },
   "ruina:Thirst": {
@@ -139,131 +159,111 @@
     "NAME": "Прощай",
     "DESCRIPTIONS": ["След. #yАтака нанесёт двойной урон."]
   },
-  "${ModID}:Apostles": {
-    "NAME": "Apostles",
-    "DESCRIPTIONS": ["Whenever you #rkill an #yApostle, you will gain a #ybuff. NL 1st, 5th, 9th kill: Gain #b", " #yStrength. NL 2nd, 6th, 10th kill: Gain #b", " #yDexterity. NL 3rd, 7th, 11th kill: Draw #b", " extra card each turn. NL 4th, 8th, 12th kill: Gain [E] at the start of your turn. NL #yBuffs are received when this creature #gheals you. NL Whenever an #yApostle dies, a new one spawns at end of round."]
+  "ruina:ParadiseLostPower": {
+    "NAME": "Потерянный рай",
+    "DESCRIPTIONS": ["Вы #yСжигаете до #b", " выбранной из руки карты в начале вашего хода.", " выбранных из руки карт в начале вашего хода.", " Когда #yСжигаются #b", " карт, ВСЕ враги теряют #b", " ОЗ."]
   },
-  "${ModID}:Advent": {
-    "NAME": "Advent",
-    "DESCRIPTIONS": ["Progresses to the next phase in #b", " turns.", " turn."]
+  "ruina:Heaven": {
+    "NAME": "Небеса",
+    "DESCRIPTIONS": ["Наносит урон, равный количеству оставшейся #yЗащиты, в ответ на каждую атаку в этом ходу."]
   },
-  "${ModID}:Blessing": {
-    "NAME": "Blessing",
-    "DESCRIPTIONS": ["At the start of your turn, gain "]
+  "ruina:BigEgg": {
+    "NAME": "Большое яйцо",
+    "DESCRIPTIONS": ["Добавляет #b", " в стопку добора, когда вы теряете ОЗ от атак этого врага."]
   },
-  "${ModID}:WingsOfGrace": {
-    "NAME": "Wings Of Grace",
-    "DESCRIPTIONS": ["Reduces ALL damage by #b", "%. NL After receiving damage, reduce this amount by #b", "."]
+  "ruina:SmallEgg": {
+    "NAME": "Маленькое яйцо",
+    "DESCRIPTIONS": ["Первые #b", " карты, которые вы берёте, стоят на #b", " [E] больше в этом ходу."]
   },
-  "${ModID}:Unkillable": {
-    "NAME": "By Grace Through Faith",
-    "DESCRIPTIONS": ["Whenever this creature dies, it is #yrevived next turn by the enemy."]
+  "ruina:LongEgg": {
+    "NAME": "Длинное яйцо",
+    "DESCRIPTIONS": ["ВСЕ накладываемые #pотриц. #pэффекты #yотвергаются этим врагом."]
   },
-  "${ModID}:ParadiseLostPower": {
-    "NAME": "Paradise Lost",
-    "DESCRIPTIONS": ["At the start of your turn, #yexhaust up to #b", " card.", " cards.", " Whenever #b", " cards are #yexhausted, ALL enemies lose #b", " HP."]
+  "ruina:FadingTwilight": {
+    "NAME": "Угасающие сумерки",
+    "DESCRIPTIONS": ["Этот враг циклически переключается между 3 разными #yЯйцами. Каждые #b", " хода переключает активное #yЯйцо. NL Когда этот враг теряет #b", " ОЗ, активное #yЯйцо #rотключается и убирается из цикла. NL После #rотключения #yЯйца воспользуется #yмощной атакой в след. ходу."]
   },
-  "${ModID}:Heaven": {
-    "NAME": "Heaven",
-    "DESCRIPTIONS": ["Whenever you are attacked this turn, deal damage back equal to your remaining #yBlock."]
-  },
-  "${ModID}:BigEgg": {
-    "NAME": "Big Egg",
-    "DESCRIPTIONS": ["Whenever you receive unblocked attack damage from this creature, shuffle #b", " into your draw pile."]
-  },
-  "${ModID}:SmallEgg": {
-    "NAME": "Small Egg",
-    "DESCRIPTIONS": ["The first #b", " cards you draw each turn cost #b", " more this turn."]
-  },
-  "${ModID}:LongEgg": {
-    "NAME": "Long Egg",
-    "DESCRIPTIONS": ["#yNegate ALL #pdebuffs applied to this creature."]
-  },
-  "${ModID}:FadingTwilight": {
-    "NAME": "Fading Twilight",
-    "DESCRIPTIONS": ["This creature cycles between 3 different #yEggs. Every #b", " turns, switches the active #yEgg. NL After losing #b", " more HP, the currently active #yEgg is #rdisabled and removed from the cycle. NL After an #yEgg is #rdisabled, will use a #ypowerful attack next turn."]
-  },
-  "${ModID}:PunishingBirdPunishmentPower": {
-    "NAME": "Punishment",
+  "ruina:PunishingBirdPunishmentPower": {
+    "NAME": "Кара",
     "DESCRIPTIONS": [
-      "When this creature is attacked, it will use a #rpowerful attack next turn.",
-      "This creature will use a #rpowerful attack next turn."
+      "Воспользуется #rмощной атакой в след. ходу, если вы разыграете #yАтаку на этого врага.",
+      "Воспользуется #rмощной атакой в след. ходу."
     ]
   },
-  "${ModID}:Lock": {
-    "NAME": "Forest Keeper's Lock",
-    "DESCRIPTIONS": ["On death, add #yForest #yKeeper's #yLock with #yRetain and #yExhaust to your hand."]
+  "ruina:Lock": {
+    "NAME": "Замок лесного хранителя",
+    "DESCRIPTIONS": ["Погибая, добавляет #yЗамок #yлесного #yхранителя в руку с #yОставляемостью и #yСжигаемостью."]
   },
-  "${ModID}:Unruffled": {
-    "NAME": "Unruffled",
-    "DESCRIPTIONS": ["Your attacks against this creature deal #b", " damage. NL You cannot apply #pdebuffs to this creature."]
+  "ruina:Unruffled": {
+    "NAME": "Невозмутимый",
+    "DESCRIPTIONS": ["Понижает ЛЮБОЙ получаемый урон от вас до #b", ". NL Накладываемые вами #pотриц. #pэффекты #yотвергаются этим существом."]
   },
-  "${ModID}:Salvation": {
-    "NAME": "Salvation",
-    "DESCRIPTIONS": ["This creature’s attacks #rinstantly #rkill #yEnchanted creatures. NL #yEnchanted is #gremoved whenever #yyou attack an #yEnchanted creature."]
+  "ruina:Salvation": {
+    "NAME": "Спасение",
+    "DESCRIPTIONS": ["Атаки этого существа #rмгновенно #rубивают #yЗачарованных существ. NL #yЗачарованность #gпропадает, когда #yвы #yАтакуете #yЗачарованное существо."]
   },
-  "${ModID}:Enchanted": {
-    "NAME": "Enchanted",
-    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL #yEnchanted is #gremoved whenever #yyou attack this creature."]
+  "ruina:Enchanted": {
+    "NAME": "Зачарованность",
+    "DESCRIPTIONS": ["Атаки этого существа наносят #b", " урона. NL #yЗачарованность #gпропадает, когда #yвы #yАтакуете это существо."]
   },
-  "${ModID}:Martyr": {
-    "NAME": "Martyr",
-    "DESCRIPTIONS": ["On death, #rexplodes and deals #b", " damage to you."]
+  "ruina:Martyr": {
+    "NAME": "Мученик",
+    "DESCRIPTIONS": ["Погибая, #rвзрывается, нанеся вам #b", " урона."]
   },
-  "${ModID}:MeetAgain": {
-    "NAME": "Meet Again as Stars",
-    "DESCRIPTIONS": ["If this creature's HP is at or below #b", " HP, it will #rsuicide on its turn without triggering #yMartyr."]
+  "ruina:MeetAgain": {
+    "NAME": "Увидимся в виде звёзд",
+    "DESCRIPTIONS": ["Если ОЗ этого врага не более #b", ", #rумрёт в этом ходу, не активировав эффект #yМученик."]
   },
-  "${ModID}:Unnerving": {
-    "NAME": "Unnerving",
-    "DESCRIPTIONS": ["Receives #b", "% less damage from #yAttacks. NL Whenever you gain #yBlock, this creature loses that much HP."]
+  "ruina:Unnerving": {
+    "NAME": "Пугающий",
+    "DESCRIPTIONS": ["Получает на #b", "% меньше урона от #yАтак. NL Когда вы получаете #yЗащиту, получает урон, равный количеству полученной #yЗащиты."]
   },
-  "${ModID}:TickingTime": {
-    "NAME": "Ticking Time",
-    "DESCRIPTIONS": ["Whenever you play #b", " cards in a single turn, end your turn."]
+  "ruina:TickingTime": {
+    "NAME": "Тик-так",
+    "DESCRIPTIONS": ["Когда вы разыграете #b", " карт в одном ходу, завершает ваш ход."]
   },
-  "${ModID}:PromiseOfWinter": {
-    "NAME": "Promise of Winter",
-    "DESCRIPTIONS": ["Every #b3rd card you play is #yFrozen and shuffled into your draw pile. NL #yFrozen cards are #yUnplayable and #yRetain."]
+  "ruina:PromiseOfWinter": {
+    "NAME": "Обещание зимы",
+    "DESCRIPTIONS": ["Каждая #b3 разыгрываемая карта #yЗамораживается и кладётся в стопку добора. NL #yЗамороженные карты #yНеиграбельные и #yОставляемые."]
   },
-  "${ModID}:KaiAndGerda": {
-    "NAME": "Kai and Gerda",
-    "DESCRIPTIONS": ["On death, #yUnfreeze all #yFrozen cards in your #yhand."]
+  "ruina:KaiAndGerda": {
+    "NAME": "Кай и Герда",
+    "DESCRIPTIONS": ["Погибая, #yРазмораживает все #yЗамороженные карты в #yруке."]
   },
-  "${ModID}:RedMistPower": {
-    "NAME": "Manifest E.G.O",
+  "ruina:RedMistPower": {
+    "NAME": "Декларация Э.П.О.С.",
     "DESCRIPTIONS": [
-      "HP cannot fall below #b%1$s. NL When HP is at #b%2$s at end of round, transitions to the next phase, uses a #rpowerful attack next turn, and permanently gains an extra #yintent.",
-      "Manifesting #rE.G.O at end of round."
+      "ОЗ не может быть опуститься ниже #b%1$s. NL Когда ОЗ равно #b%2$s в конце хода, переходит на след. фазу, воспользуется #rмощной атакой в след. ходу и навсегда получит дополнительное #yнамерение.",
+      "Декларация #rЭ.П.О.С. в конце этого хода."
     ]
   },
-  "${ModID}:Sin": {
-    "NAME": "Weight of Sin",
-    "DESCRIPTIONS": ["Whenever you play a card that costs #b", " or less, increase its cost by #b", " this combat."]
+  "ruina:Sin": {
+    "NAME": "Тяжесть греха",
+    "DESCRIPTIONS": ["Когда вы разыгрываете карту с ценой не более #b", ", её стоимость повышается на #b", " в этом бою."]
   },
-  "${ModID}:Imposter": {
-    "NAME": "Imposter",
-    "DESCRIPTIONS": ["This creature's moves are copied from the base damage and #yBlock of #yyour #ycards. NL At the end of its turn, gains #b", " #yStrength."]
+  "ruina:Imposter": {
+    "NAME": "Самозванец",
+    "DESCRIPTIONS": ["Этот враг для своих намерений копирует базовые урон и #yЗащиту #yваших #yкарт. NL Даёт #b", " #yСилы в конце хода."]
   },
-  "${ModID}:FaultyHardware": {
-    "NAME": "Faulty Hardware",
-    "DESCRIPTIONS": ["Cannot die. When this creature would die, it cannot act for the rest of combat."]
+  "ruina:FaultyHardware": {
+    "NAME": "Дефектная техника",
+    "DESCRIPTIONS": ["Не может умереть. Когда этот враг должен умереть, он бездействует до конца боя."]
   },
-  "${ModID}:OminousPower": {
-    "NAME": "Ominous Power",
-    "DESCRIPTIONS": ["When both #yHands cannot act at end of round or this creature's HP is at or below #b%1$s, it merges with the #yHands and gains a new deck."]
+  "ruina:OminousPower": {
+    "NAME": "Грозная сила",
+    "DESCRIPTIONS": ["Когда обе #yРуки бездействуют в конце хода или ОЗ этого врага не более #b%1$s, сливается вместе с #yРуками и получает новую колоду."]
   },
-  "${ModID}:Protection": {
-    "NAME": "Protection",
-    "DESCRIPTIONS": ["Takes #b", " less damage from #yAttacks. Reduced by #b", " at end of round."]
+  "ruina:Protection": {
+    "NAME": "Прикрытие",
+    "DESCRIPTIONS": ["Получает на #b", " меньше урона от #yАтак. Уменьшается на #b", " в конце хода."]
   },
-  "${ModID}:Beak": {
-    "NAME": "Beak",
-    "DESCRIPTIONS": ["At the start of your turn, reduce the cost of the highest cost card in your hand to #b0 this combat and give it #yExhaust.",
-      "At the start of your turn, reduce the cost of the #b", " highest cost cards in your hand to #b0 this combat and give them #yExhaust."]
+  "ruina:Beak": {
+    "NAME": "Клюв",
+    "DESCRIPTIONS": ["В начале вашего хода снижает стоимость самой дорогой карты в руке до #b0 и делает её #yСжигаемой.",
+                     "В начале вашего хода снижает стоимость #b", " самых дорогих карт в руке до #b0 и делает их #yСжигаемыми."]
   },
-  "${ModID}:Lamp": {
-    "NAME": "Lamp",
-    "DESCRIPTIONS": ["Whenever you are attacked this turn, deal #b", " damage back."]
+  "ruina:Lamp": {
+    "NAME": "Лампа",
+    "DESCRIPTIONS": ["Наносит #b", " урона в ответ на каждую атаку в этом ходу."]
   }
 }

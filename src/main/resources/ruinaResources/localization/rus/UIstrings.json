@@ -7,12 +7,12 @@
       "Принять приглашение."
     ]
   },
-  "${ModID}:Atziluth": {
+  "ruina:Atziluth": {
     "TEXT": [
-      "Atziluth",
-      "Act 3",
-      "This place was strange, wild, and #pterrifying. But through the #pdespair and #rbloodshed, you could see a ray of #ylight seeping through the #pdarkness.",
-      "Continue your ascent."
+      "Ацилут",
+      "Акт 3",
+      "Это место было странным, диким и #pпугающим. Но через #pотчаяние и #rкровопролитие можно было увидеть луч #yсвета, просачивающийся сквозь #pтьму.",
+      "Продолжить восхождение."
     ]
   },
   "ruina:MultiIntentStrings": {
@@ -22,7 +22,7 @@
       " урона.",
       " урона #b",
       " раз(а).",
-      "This enemy intends to inflict a #yNegative #yEffect on ",
+      "Этот враг планирует наложить #yотриц. #yэффект на ",
       "."
     ]
   },
@@ -38,7 +38,7 @@
       "Ваш #gсоратник планирует наложить #yполож. #yэффект.",
       "Ваш #gсоратник планирует #yзащищать.",
       "#yНажмите для активации любое количество раз: #yпередать до #b",
-      " #yЗащиты с себя этому #yсоратнику.",
+      " #yЗащиты с вас этому #yсоратнику.",
       "Координация",
       "У меня нет #rЗащиты для передачи!",
       "Ваш #gсоратник планирует #yатаковать, нанеся #b",
@@ -55,25 +55,25 @@
   },
   "ruina:AutoplayMod": {
     "TEXT": [
-      "Автозапуск. NL "
+      "Самовольная. NL "
     ]
   },
-  "${ModID}:ManifestMod": {
+  "ruina:ManifestMod": {
     "TEXT": [
-      "ruina:Manifest. NL "
+      "ruina:Манифест. NL "
     ]
   },
-  "${ModID}:ContractsMod": {
+  "ruina:ContractsMod": {
     "TEXT": [
-      "ruina:Contract. NL "
+      "ruina:Контракт. NL "
     ]
   },
-  "${ModID}:UninvitedGuests": {
+  "ruina:UninvitedGuests": {
     "TEXT": [
-      "Uninvited Guests",
-      "The Blue Reverberation",
-      "\"Ohohohoho! Knock, and the door shall open!\" NL \"The entrance to this place was super strong, even after many blows we barely got inside.\" NL \"It's a test of endurance, after all! There's no use giving up after a couple of knocks!\" NL \"Now friends, if you're any rowdier we might scare away the residents of this place. It would be wise that we show the utmost respect so they don't go hiding behind bookshelves, no?\"",
-      "Greet your Uninvited Guests"
+      "Незваные гости",
+      "Синяя Реверберация",
+      "«Хо-хо-хо-хо! Постучите, и дверь откроется!» NL «Вход в это место был очень трудным, хоть после множества битв мы едва вошли внутрь». NL «В конце концов, это испытание на выносливость! Нет смысла сдаваться после парочки ударов!» NL «А теперь, друзья, если вы продолжите шуметь, мы можем распугать здешний персонал. Было бы умно, если бы мы проявили превеликое уважение, чтобы они не прятались за книжными стеллажами, не так ли?»",
+      "Встречайте своих Незваных гостей"
     ]
   }
 }

@@ -197,7 +197,7 @@
     "NAME": "Этаж Лексики",
     "DESCRIPTIONS": [
       "«Так ты действительно низший Корректировщик 9 Ранга?» NL Мужчина напротив неё закашлял, отмахивая #pдым её сигары. «Да правда это, клянусь! Почему ты так недоверчива?» NL «Шестое чувство подсказывает. Но, если ты действительно на самом дне бочки, ты был бы превелико благодарен, если бы тебя обучила я, бывший #yЦвет Города, верно?» NL « . . . Слушай, я тут вспомнил, что у меня назначена встреча с Нецахом - » NL «Не-а, не прокатит». Она хватает его прежде, чем он успевает сбежать.",
-      "Он смотрит на её большой меч; #pглаза, будто бы внедрённые в необычное лезвие, так же пристально смотрят за ним. «Ты серьёзно собираешься использовать это чудовище на мне?» NL Она поднимает своё оружие, наслаждаясь хорошо знакомым чувством. «Не волнуйся, ты не умрёшь. Во всяком случае, не полностью». NL «Спасибо, но спокойнее мне ничуть не стало!»",
+      "Он смотрит на её большой меч; #pглаза, будто бы внедрённые в необычное лезвие, так же пристально смотрят за ним. NL «Ты серьёзно собираешься использовать это чудовище на мне?» NL Она поднимает своё оружие, наслаждаясь хорошо знакомым чувством. NL «Не волнуйся, ты не умрёшь. Во всяком случае, не полностью». NL «Спасибо, но спокойнее мне ничуть не стало!»",
       "Хорошо знакомое чувство #rгнева наполняет её тело, и как только оно утихает, она снова принимает этот #pпугающий облик, который соответствует её #yЦвету. NL «Эй, постой, я думал ты покажешь мне, как это делается!» NL «Я это и сделала, разве нет? А теперь сосредоточься и покажи мне всё, на что ты способен, пока я не нафаршировала тебя». NL В тот день она узнала, что у Роланда очень сильный словарный запас. Позже она собирается добавить в языковые книги некоторые малоизвестные слова."
     ],
     "OPTIONS": [
@@ -210,178 +210,178 @@
       "Выберите карту."
     ]
   },
-  "${ModID}:RedMistRecollection": {
-    "NAME": "Kali's Recollection",
+  "ruina:RedMistRecollection": {
+    "NAME": "Воспоминание Кали",
     "DESCRIPTIONS": [
-      "I woke up in the Laboratory again, a few days after receiving the sword from Carmen. When I first held the sword in my grip, nothing seemed out of the ordinary. It felt normal, despite the truly #pcreepy appearance of the blade. It wasn't unbearable to look at, and all I could do was heed Carmen's advice and get used to it. NL After all, it was by #ysheer #yluck that the extraction even worked.",
-      "While the blade was #yformidable in combat, as I kept wielding it, a sound would #rring in my head. The #pgrinding of teeth. The #pcrackling of bones. The #pmingling of contorted flesh. NL The patterns were irregular, as if to mimic human speech. Anxious that my mind might be consumed by the voice which plagued me, I pretended as if I could not hear its #pcries. NL My thoughts are interrupted by footsteps from outside, yet everyone is already here. I must do what I always do; protect those dear to me. Swallowing my fears, I #rbrandish my blade.",
-      "I peer around the corner, yet no-one was there. Was it the sound inside my head, playing tricks on me? I don't know. I should consult the others, but it's hard when only I could hear the sound that #peats #paway at my mind."
+      "Я снова очнулась в Лаборатории через несколько дней после того, как получила меч от Кармен. Когда я впервые держала этот меч в руке, всё казалось вполне обычным. Я чувствовала себя нормально, несмотря на по-настоящему #pжуткое на вид лезвие. Смотреть на него было не так уж и невыносимо; я могла лишь прислушаться к совету Кармен и привыкнуть к этому мечу. NL В конце концов, это была #yчистая #yудача, что его создание вообще удалось.",
+      "Хоть меч и был #yгрозен в бою, пока я его держала в своих руках, продолжал #rзвенеть звук в моей голове. #pСкрежет зубов. #pПерелом костей. #pСмешивание искривлённой плоти. NL Эти образы были нечёткими, будто кто-то имитирует человеческую речь. Опасаясь, что мой разум может быть поглощён голосом, мучащий меня, я притворилась, будто не слышу его #pкриков. NL Пока мои мысли мешают мне слышать шаги, все уже приблизились ко мне. Я должна делать, что всегда делала: защищать тех, кто мне дорог. Поглотив свои страхи, я #rразмахиваю своим мечом.",
+      "Я заглядываю за угол, но там никого. Может быть, это звук в моей голове разыгрывает надо мной злую шутку? Я не знаю. Я должна посоветоваться с другими, но это трудно, когда только я могу слышать этот звук, #pразъедающий мой разум."
     ],
     "OPTIONS": [
-      "[Continue]",
-      "[Encounter] #rFight #rthe #rRed #rMist. #gObtain #ga #gspecial #gRelic.",
-      "[Leave]"
+      "[Продолжить]",
+      "[Схватка] #rДраться #rс #rКрасным #rТуманом. #gПолучить #gособую #gреликвию.",
+      "[Уйти]"
     ]
   },
-  "${ModID}:HanaAssociation": {
-    "NAME": "Hana Association",
+  "ruina:HanaAssociation": {
+    "NAME": "Ассоциация Хана",
     "DESCRIPTIONS": [
-      "She glanced at the report, sighing. \"Another office has fallen to this #pUrban #pNightmare. We'll need to classify it as a #yStar #yof #ythe #yCity now.\" NL Her colleague grimaced. \"More needless #rdeaths. If we had investigated and classified this #phazard properly from the start, offices like these would not fall prey to threats beyond their league!\" NL \"I've told you before, but we do not have the time, resources, or manpower to investigate every hazard in the City ourselves.\" NL She could see him hesitate, waver. Finally, he spoke up with a scowl -",
-      "\"The hazard is a #yStar #yof #ya #yCity now, right? That means it's worthy of our attention. I'll go and handle it, so no one else falls victim to it!\" NL He storms out of the room, and she doesn't try to stop him.",
-      "\"Fine. It's too late to save those offices now, so I'll leave it to you to make sure no one else takes on a threat they can't handle.\" NL He storms out of the room, and she doesn't try to stop him."
+      "Она взглянула на отчёт и вздохнула. «Ещё один офис пал жертвой #pГородского #pКошмара. Теперь нам нужно классифицировать его как #yЗвезду #yГорода». NL Её коллега поморщился. «Ещё больше ненужных #rсмертей. Если бы мы исследовали и классифицировали эту #pопасность должным образом с самого начала, подобные офисы не стали бы жертвой слишком высоких угроз для их объединения!» NL «Я тебе уже говорила, но у нас нет ни времени, ни ресурсов, ни людей, чтобы исследовать каждую опасность в Городе». NL Она видела, как он хочет что-то сказать, но колеблется. Наконец он нахмурившись заговорил:",
+      "«Его опасность теперь - #yЗвезда #yГорода, да? Значит, он достоин нашего внимания. Я пойду и разберусь с этим, чтобы никто больше не стал его жертвой!» NL Он выбегает из комнаты, и она даже не пытается его остановить.",
+      "«Хорошо. Теперь уже слишком поздно спасать те офисы, так что я оставлю это на тебя, чтобы убедиться, что никто больше не возьмёт на себя угрозу, с которой не может справиться». NL Он выходит из комнаты, и она даже не пытается его остановить."
     ],
     "OPTIONS": [
-      "[I'll do it myself] ",
-      "[I'll leave it to you] ",
-      "Obtain a special Relic.",
-      "Become Cursed - ",
+      "[Сделать это самому] ",
+      "[Оставить это на неё] ",
+      "Получить особую реликвию.",
+      "Получить Проклятие - ",
       ".",
-      "Remove a card.",
-      "[Wake Up]",
-      "Choose a Card to Remove."
+      "Убрать карту из колоды.",
+      "[Очнуться]",
+      "Выберите карту, которую хотите убрать."
     ]
   },
-  "${ModID}:ForThoseWeCherish": {
-    "NAME": "For Those We Cherish",
+  "ruina:ForThoseWeCherish": {
+    "NAME": "Для тех, кого мы любим",
     "DESCRIPTIONS": [
-      "\"I have a problem.\" NL She gulped. That didn't sound good. NL \"My #yanniversary with #yXiao is coming up soon, and I still can't decide on what to do for it.\" NL Never mind. The Director was just being a #pworrywart as usual. NL \"Surely you have some ideas in mind?\" NL \"I thought about buying something #gcute for her. Or maybe I should improve her armaments for her. We are a combat-based Association, after all. What do you think?\"",
-      "\"I think you should get her something #gcute. It's the more #ysentimental gesture, and I think she would welcome a reprieve from the #rblood and #riron of our work.\" NL The Director nodded. \"You're absolutely right. There was a nice plushie I spotted in the Nest; it'll be the perfect gift for her!\" NL As the Director rushed out to make his purchase, she sighed in relief. Crisis averted.",
-      "\"I think you should improve her #yarmaments for her. It's the more practical gesture and far more likely to be #gbeneficial to her in our line of work.\" NL The Director nodded. \"You're absolutely right. I hear the #yStigma #yWorkshop is having a sale right now; their weaponry will be the perfect gift for her!\" NL As the Director rushed out to make his purchase, she sighed in relief. Crisis averted."
+      "«У меня есть проблема». NL Она сглотнула. Его голос звучал не очень благоприятно. NL «Моя #yгодовщина с #yСяо совсем скоро, и я всё ещё не могу решить, что ей подарить». NL Всё в порядке. Директор, как всегда, был #pозабочен. NL «Наверняка у вас уже есть какие-то идеи?» NL «Я думал: не купить ли ей что-нибудь #gмиленькое. Или, может, я должен улучшить её снаряжение. Всё-таки мы боевая Ассоциация. Что ты думаешь насчёт этого?»",
+      "«Я думаю, вы должны взять для неё что-нибудь #gмиленькое. Это наиболее #yсентиментальный выбор, и я думаю, она будет рада отдыху от нашей #rкровавой и полной #rжелеза работы». NL Директор кивнул. «Ты абсолютно права. Я приметел красивую плюшевую игрушку в Гнезде; это будет идеальным подарком для неё!» NL Когда Директор выбежал, чтобы сделать покупку, она вздохнула с облегчением. Кризис предотвращён.",
+      "«Я думаю, вы должны улучшить её #yснаряжение. Это наиболее практичный выбор, который, скорее всего, принесёт ей #gпользу в нашей работе». NL Директор кивнул. «Ты абсолютно права. Я слышал: в #yМастерской #yСтигмы прямо сейчас проходит распродажа; их оружие будет идеальным подарком для неё!» NL Когда Директор выбежал, чтобы сделать покупку, она вздохнула с облегчением. Кризис предотвращён."
     ],
     "OPTIONS": [
-      "[Something cute] ",
-      "[Something practical] ",
-      "Lose ",
-      " gold.",
-      "Obtain a Special Relic.",
-      "Upgrade a card.",
-      "[Wake Up]",
-      "[Locked] Requires: Gold",
-      "Choose a Card to Upgrade"
+      "[Что-нибудь миленькое] ",
+      "[Что-нибудь практичное] ",
+      "Потерять ",
+      " золота.",
+      "Получить особую реливквию.",
+      "Улучшить карту.",
+      "[Очнуться]",
+      "[Закрыто] Требуется: золото.",
+      "Выберите карту, которую хотите улучшить."
     ]
   },
-  "${ModID}:Philosophy": {
-    "NAME": "Floor of Philosophy",
+  "ruina:Philosophy": {
+    "NAME": "Этаж Философии",
     "DESCRIPTIONS": [
-      "\"You're not supposed to be here.\" NL The stern-looking woman takes a sip of #ytea and sighs as she places it back down. \"If I were interested in doing my job properly, I'd #rchase you out. But luckily for you, I can't be bothered to do so at the moment. So why don't you join me for a cup of #ytea?\"",
-      "You sit down and take a sip of the #ytea. It tastes rather #pstrange to you. NL \"So, how is it? Enjoying the flavor?\" NL Looking at the woman's #yexpectant expression, you decide that #ydiscretion is truly the better part of #yvalor and praise the tea's quality.",
-      "\"Well, that's too bad I suppose.\" NL The floor rumbles and shakes, strange #ypillars rising out of the ground near her. NL \"I'll give you a ten second head-start. After that . . . well, you better pray that you can run faster than a #rspeeding #rpillar.\" NL You've never booked it faster than you have in this moment."
+      "«Ты не должен быть здесь». NL Сурового вида женщина делает глоток #yчая и со вздохом ставит чашку обратно. «Если бы я была заинтересована в надлежащем выполнении своей работы, я бы #rвыгнала тебя отсюда. Но, к счастью для тебя, в данный момент меня это не беспокоит. Так почему бы тебе не присоединиться ко мне за чашкой #yчая?»",
+      "Вы садитесь и делаете глоток #yчая. У него довольно #pстранный вкус. NL «Ну, и как? Наслаждаешься вкусом?» NL Смотря на то, как сильно эта женщина #yжаждет #yоценки, вы решаете, что действительно лучше #yсемь #yраз отмерить и #yодин #yраз отрезать, и хвалите вкус чая.",
+      "«Ну, это очень плохо, я считаю». NL Пол грохочет и трясётся; странные #yстолбы поднимаются из земли рядом с ней. NL «Я дам тебе десять секунд форы. Потом . . . ну, тебе лучше помолиться, чтобы ты мог бежать быстрее, чем #rнесущийся на полной скорости #rстолб». NL Ни один спидометр не в состоянии зарегистрировать скорость, с которой вы бежали в этот момент."
     ],
     "OPTIONS": [
-      "[Accept her offer] ",
-      "[Reject her offer] ",
-      "Lose ",
+      "[Согласиться] ",
+      "[Отказаться] ",
+      "Потерять ",
       ".",
-      "Heal ",
-      " HP.",
-      "Give a card in your deck +",
-      " Block and ",
-      "Ethereal.",
-      "[Leave]",
-      "Choose a card to give bonus Block and Ethereal",
-      "[Locked] Requires: Valid Card"
+      "Восполнить ",
+      " ОЗ.",
+      "Повысить Защиту карты в колоде на ",
+      " и сделать её ",
+      "Эфирной.",
+      "[Уйти]",
+      "Выберите карту, которой хотите дать бонусную Защиту и Эфирность.",
+      "[Закрыто] Требуется: допустимая карта."
     ]
   },
-  "${ModID}:TheThumb": {
-    "NAME": "The Thumb",
+  "ruina:TheThumb": {
+    "NAME": "Большой Палец",
     "DESCRIPTIONS": [
-      "He glanced at the #pmiscreant who had just walked in: a common Fixer from the common Backstreets. NL \"You da #yboss here? I got a great offer -\" NL A set of steel knuckles @caves@ the man's face in, leaving him rolling on the floor, howling in #ragony. NL \"Tell your boss that if he wishes to negotiate with me, he should come himself or not at all.\" NL As the #prat is tossed out, his assistant steps forward. NL \"Sir. Our supplies are running low. Shall we purchase more, or would you like us to raid that rat's Office instead?\"",
-      "\"Make the purchase. I think the rat's boss knows what will happen if he crosses us again.\" NL His subordinate nods, rushing out to fulfill his order. Just as things should be.",
-      "\"Raid them. Show them what happens to anyone who crosses the #yThumb.\" NL His subordinates rush about, preparing themselves for war. For they were his peasants, and he their king."
+      "Он взглянул на #pнегодяя, что только что вошёл. Это был обычный Корректировщик обычных Переулков. NL «Это ты здесь #yбосс? У меня есть отличное предложение -» NL Стальной кастет @врезается@ в лицо мужчины, отправляя его кататься по полу и выть в #rагонии. NL «Скажи своему боссу, что, если он желает вести переговоры со мной, он должен притащиться сам или не связываться с нами вовсе». Когда #pкрыса вышвыривается, помощник босса делает шаг вперёд. «Сэр, наши запасы на исходе. Должны ли мы купить ещё, или вы предпочетаете, чтобы мы совершили вместо этого налёт на Офис этой крысы?»",
+      "«Сделайте покупки. Я думаю, что босс этой крысы знает, что произойдёт, если он снова побеспокоит нас». NL Его подчиненный кивает, бросаясь выполнять приказ. Просто так, как и должно быть.",
+      "«Нападите на них. Покажите им, что происходит с теми, кто беспокоит #yБольшой #yПалец». NL Его подчиненные суетятся, готовясь к войне. Для него они были крестьянами, а он для них - королём."
     ],
     "OPTIONS": [
-      "[Purchase supplies] ",
-      "[Raid] ",
-      "Choose 1 of ",
-      " Uncommon cards to add to your deck.",
-      "Give a card in your deck ",
-      " cost and ",
-      "Exhaust.",
-      "[Wake Up]",
-      "Choose a card to give reduced cost and Exhaust",
-      "Choose a card to add to your deck."
+      "[Закупить запасы] ",
+      "[Налёт] ",
+      "Выбрать 1 из ",
+      " Необычных карт и добавить её в колоду.",
+      "Снизить стоимость карты в колоде (",
+      " стоимость) и сделать её ",
+      "Сжигаемой.",
+      "[Очнуться]",
+      "Выберите карту, которой хотите снизить стоимость и дать Сжигаемость.",
+      "Добавьте карту в колоду."
     ]
   },
-  "${ModID}:CryingChildren": {
-    "NAME": "The Crying Children",
+  "ruina:CryingChildren": {
+    "NAME": "Плачущие дети",
     "DESCRIPTIONS": [
-      "Everything #rburned. Your home, your family, your friends . . . they had all been caught in a mighty #rconflagration that had manifested in the blink of an eye. NL Someone was crying. But it was not you, the tragic #pvictim. No, it was the #pcriminal who wept, the #pperpetrator who sobbed with every stroke of #rfire that leapt forward from their fingers. NL What a twisted joke. An equally fiery #rrage burned within you, just waiting to be released. You -",
-      "The world shifts, #pblurry and #pdistorted. You do not know who you are. You do not know where you are. All you know is that a #pcrying #pchild is in front of you . . . NL And you desperately wish to #rkill it.",
-      "The #rrage abates, leaving you feeling drained and empty. A hollow #pemptiness fills you, sharp and silent just like that child's tears. NL There was nothing here for you anymore."
+      "Всё #rсгорело: твой дом, твоя семья, твои друзья . . . все они были охвачены сильным #rпожаром, который проявился в мгновение ока. NL Кто-то плакал. Но это были не вы, а #pжертва трагедии. Нет, это был #pпреступник, который плакал. #pНарушитель, который рыдал с каждой вспышкой #rогня, вспыхивающей из их пальцев. NL Какая ужасная шутка: столь же огненная ярость горела внутри вас, только и ждущая, чтобы её выпустили. Вы -",
+      "Мир меняется, становится #pразмытым и #pискажённым. Вы не знаете, кто вы. Вы не знаете, где вы. Всё, что вы знаете, это то, что перед вами #pплачущий #pребёнок . . . NL  И вы отчаянно хотите #rубить его.",
+      "#rЯрость утихает, оставляя ощущение глубокой опустошённости. #pПустота наполняет вас, такая острая и тихая, будто слёзы этого ребёнка. NL Здесь для вас больше ничего неважно."
     ],
     "OPTIONS": [
-      "[Unleash it] ",
-      "[Suppress it] ",
-      "Lose ",
-      " HP.",
-      "Transform a card in your deck into a random EGO card.",
-      "Gain ",
-      " Max HP.",
-      "[Wake Up]",
-      "Choose a card to Transform."
+      "[Выпустить это] ",
+      "[Подавить это] ",
+      "Потерять ",
+      " ОЗ.",
+      "Преобразовать карту в случайную Э.П.О.С. карту.",
+      "Макс. ОЗ +",
+      ".",
+      "[Очнуться]",
+      "Выберите карту, которую хотите преобразовать."
     ]
   },
-  "${ModID}:DistortedYan": {
-    "NAME": "Distorted Yan",
+  "ruina:DistortedYan": {
+    "NAME": "Искажённый Ян",
     "DESCRIPTIONS": [
-      "It was #ppointless all along. NL He thought he had been making a difference. He thought he had been #yrebelling against the #yPrescripts, throwing a wrench in the machinations churning behind the scenes. NL But even his rebellion had been accounted for. Even his defiance had been planned for. NL In the end, he had been nothing more than another gear spinning within the wheels. NL Someone like him should just give up and do as he's told.",
-      "There was still another #ypath left to him. A #ypath that he should've taken long ago when he first received the #yPrescript to become a #yMessenger. NL He didn't care if this would be part of another plan of the Prescripts. He didn't care if even this action would not truly be of his own free will. NL He just didn't care anymore. NL Raising his sword, he pointed it at himself."
+      "Всё это было #pбессмысленно. NL Он думал, что способен что-то изменить. Он думал, что #yидёт #yпротив #yПредписаний, портя эти ужасные вещи, что кипят вне чужого взора. NL Но даже его бунт был учтён. Даже его неповиновение было спланировано заранее. NL В конце концов, он был всего лишь ещё одной шестерёнкой, вращающейся внутри колёс. NL Такие как он должны просто сдаться, и молча повиноваться приказам.",
+      "Но был ещё один #yвыход из этой ситуации. Это #yто, что он должен был сделать с самого начала, как получил #yПредписание с приказом стать #yПосланником. NL Ему было всё равно: часть ли это ещё одного плана Предписаний. Ему было всё равно: хочет ли он делать это или нет. NL Ему просто было уже всё равно. NL Подняв свой меч, он направил его на себя."
     ],
     "OPTIONS": [
-      "[Give up] ",
-      "[Give in] ",
-      "Fight a special enemy. ",
-      " Obtain an upgraded EGO card.",
-      "[Wake Up]"
+      "[Восстать] ",
+      "[Сдаться] ",
+      "Драться с особым врагом. ",
+      "Получить случайную улучшенную Э.П.О.С. карту.",
+      "[Очнуться]"
     ]
   },
-  "${ModID}:PatronLibrarian": {
+  "ruina:PatronLibrarian": {
     "NAME": "",
     "DESCRIPTIONS": [
-      "\"Hello there. I'm Malkuth, the Patron Librarian in charge of the Floor of History. Since I'm in charge of this floor, I sort through all the books that are related to History! Is there anything I can help you with?\"",
-      "\"I am Yesod, the Patron Librarian of the Floor of Technological Sciences. My role is to collect and sort books about the technological sciences of the City. Please kindly take your leave after you decide what to do.\"",
-      "\"Hello. I'm Hod, in charge of the Floor of Literature. A person's life is written out like a book of its own; a story with many different paths, and decisions to make. I wonder what your story will be like?\" NL NL \"I'm sorry. I got carried away in my own thoughts. Is there anything I can help you with?\"",
-      "\"Woken up to do the work I don't want to do again... NL I feel like a sand castle, being swept away by the waves... NL If I do what you wish of me, can I ~please~ go back to sleep?\"",
-      "\"I'm Tiphereth, in charge of the Floor of Natural Sciences. I read and manage all the books sent here, however complete or unstable the books actually are. I don't pretend to understand things I don't get, as understanding a book completely is a repetitive process, you know? But there's so many books, and so much information, so I don't mind taking a break to help while my brain tries to comprehend it all.\"",
-      "\"It's Gebura. The Patron Librarian of the Floor of Language. If you're here for books, I'll figure out what you need. I can get a rough estimate of what people want just from their looks, after all.\"",
-      "\"Heya. I'm Chesed, the Patron Librarian of the Floor of Social Sciences. Why don't you take a seat and drink some coffee, and we can find out what you need. It's been a while since I could give hospitality to a traveler, so please, take respite and relax for a bit.\"",
-      "\"Greetings. I am Binah, the Patron Librarian of the Floor of Philosophy. I have been told that this place feels overbearing unlike the other floors. I wonder how you would describe the Library from what you've seen so far? But I must calm my mind with the help of tea, so please come again at a later time. I will at least, help you with anything you're looking for at this time.\"",
-      "\"So you've come. I wonder, do you have the utmost faith that what you're looking for is in this place? I can at least testify to the truth that it does exist here. My apologies. I am Hokma, the Patron Librarian of the Floor of Religion. Please, take your time.\"",
-      "\"I am Roland, Angela's helper. My Floor is not specialized, as I am primarily responsible for bringing books to other floors. Though, there might be something in this place that may benefit you.\"",
-      "\"Greetings, dear guest. I am Angela, the librarian of my role's namesake. You may find what you desire here, but you'll have to search yourself for the knowledge you require.\" NL NL \"May you find your book in this place.\"",
-      "You say your goodbyes as you leave with a collection of books in your hands. NL They're oddly ~heavy,~ but you don't mind, for the books provide you with all the wisdom, wealth, honor, and power you seek.",
-      "You say your goodbyes as you leave, merely observing, as you think that what you already have is adequate for the journey ahead."
+      "«Привет. Я Малхут, Библиотекарь-Покровитель, ответственная за Этаж Истории. Поскольку я отвечаю за этот этаж, я сортирую все книги, связанные с Историей! Могу ли я вам с чем-нибудь помочь?»",
+      "«Я Йесод, Библиотекарь-Покровитель Этажа Технических наук. Моя роль - собирать и сортировать книги о технических науках Города. Пожалуйста, любезно отклоняйтесь, когда решите, что делать».",
+      "«Привет. Я Ход, ответственная за Этаж Литературы. Жизнь человека - это словно отдельно написанная книга. История с множеством путей и решений, которые нужно принять. Мне интересно, какой будет ваша история?» NL NL «Простите меня. Я увлеклась своими мыслями. Могу ли я вам с чем-нибудь помочь?»",
+      "«Проснулся, чтобы сделать работу, которую я не хочу делать снова... NL Я чувствую себя замком из песка, унесённым волнами... NL Если я сделаю то, чего вы от меня хотите, могу ли я, ~пожалуйста,~ вернуться ко сну?»",
+      "«Я Тиферет, ответственная за Этаж Естественных наук. Я читаю и управляю книгами, присланными сюда, какими бы полными или непостоянными они ни были на самом деле. Я не делаю вид, что понимаю то, чего не понимаю, так как понимание книги - это повторяющийся процесс, понимаете? Но здесь так много книг и так много информации, что я не против сделать перерыв, чтобы помочь, пока мой мозг пытается переварить это всё».",
+      "«Это Гебура, Библиотекарь-Покровитель Этажа Лексики. Если вы здесь для книг, я выясню, что вам нужно. В конце концов, я могу приблизительно понять то, чего хотят люди, только взглянув на них».",
+      "«Хей. Я Хесед, Библиотекарь-Покровитель Этажа Общественных наук. Почему бы вам не присесть и не выпить немного кофе, и мы найдём, что вам нужно. Прошло так много времени с тех пор, как я мог оказать гостеприимство страннику, так что прошу, сделайте передышку и немного расслабьтесь».",
+      "«Приветствую. Я Бина, Библиотекарь-Покровитель Этажа Философии. Мне говорили, что это место чувствуется властолюбивым в отличие от других этажей. Мне интересно: как бы вы описали Библиотеку из того, что видели ранее? Но прежде я должна успокоить свой разум с помощью чая, так что, пожалуйста, приходите позже. Я, по крайней мере, помогу вам с тем, что вы ищете прямо сейчас».",
+      "«Так вы пришли. Мне интересно: есть ли у вас абсолютная вера в то, что ищемое вами находится в этом месте? Я, по крайней мере, могу свидетельствовать, что оно существует здесь. Прошу меня простить. Я Хохма, Библиотекарь-Покровитель Этажа Религии. Пожалуйста, не торопитесь».",
+      "«Я Роланд, помощник Анджелы. Мой этаж не является специализированным, так как преимущественно я отвечаю за доставку книг на другие этажи. Впрочем, возможно, здесь есть что-то, что может быть полезным для вас».",
+      "«Приветствую, дорогой гость. Я Анджела, моя роль - библиотекарь - моё второе имя. Здесь вы можете найти всё, что пожелаете, но вам нужно искать знания, в которых вы нуждаетесь». NL NL «Может быть, вы сможете найти свою книгу в этом месте».",
+      "Вы попрощались, уходя с коллекцией книг в руках. NL Они странно ~тяжёлые~, но вам всё равно, ведь эти книги обеспечивают вас мудростью, богатством, честью и силой, что вы так искали.",
+      "Уходя, вы попрощались, просто наблюдая, так как считаете, что у вас уже есть всё для дальнейшего путешествия."
     ],
     "OPTIONS": [
-      "Patron Librarian of History",
-      "Patron Librarian of Technological Sciences",
-      "Patron Librarian of Literature",
-      "Patron Librarian of Art",
-      "Patron Librarian of Natural Sciences",
-      "Patron Librarian of Language",
-      "Patron Librarian of Social Sciences",
-      "Patron Librarian of Philosophy",
-      "Patron Librarian of Religion",
-      "Patron Librarian of General Works",
-      "Director Of The Library",
-      "[Inquire] ",
-      "Choose 1 of ",
-      " Upgraded cards to add to your deck.",
-      "[Leave]",
-      "Choose a card to add to your deck"
+      "Библиотекарь-Покровитель Истории",
+      "Библиотекарь-Покровитель Технических наук",
+      "Библиотекарь-Покровитель Литературы",
+      "Библиотекарь-Покровитель Искусства",
+      "Библиотекарь-Покровитель Естественных наук",
+      "Библиотекарь-Покровитель Лексики",
+      "Библиотекарь-Покровитель Общественных наук",
+      "Библиотекарь-Покровитель Философии",
+      "Библиотекарь-Покровитель Религии",
+      "Библиотекарь-Покровитель Генеральных работ",
+      "Директор Библиотеки",
+      "[Поинтересоваться] ",
+      "Выбрать 1 из ",
+      " Улучшенных карт и добавить её в колоду.",
+      "[Уйти]",
+      "Добавьте карту в колоду."
     ]
   },
-  "${ModID}:YesterdayPromise": {
-    "NAME": "Yesterday's Promise",
+  "ruina:YesterdayPromise": {
+    "NAME": "Вчерашнее обещание",
     "DESCRIPTIONS": [
-      "@Hohohohoho!@ Through the shadows, you can make out an upright figure. As they pace towards you, the sound of their steps echoing as they move across a marble floor, your vision enhances and you can identify the figure fully. A #bblue top hat. A gray skull, fashioned with a #gdapper monocle. A black suit, fashioned with a #bblue tie and #bblue insignia on the right sleeve, though you have no idea what it represents. The distortion, known as \"Yesterday's Promise\" stands before you, a contract grasped in his skeletal fingertips. NL \"I can give you the power and help you desire, provided you sign this contract. How about it?\"",
-      "Nothing looked off about the contract, other than the fact that it ~was~ a contract, and it wouldn't hurt to be stronger, right? At least, that's how you justified your decision to yourself as you signed the contract. You tried watching the contractor's expressions to see a glimpse of duper's delight; however his expression did not change until the contract was signed. NL \"A pleasure doing business with you, but you should've checked the terms carefully. Here, take a look.\" You still didn't see anything wrong, but after being handed an eyeglass, the contract changes, revealing ambiguous wording and hidden terms, but the terms were not any less appropriate. It appears you've been deceived, and you ~shouldn't~ ~have~ ~done~ ~that.~",
-      "You hold out on the offer. NL More power would be helpful, but the whole ordeal reeked of suspicion. NL You feel like you made the right decision."
+      "@Хо-хо-хо-хо-хо!@ Через тени у вас получается разглядеть стоящую фигуру. Когда они шагают к вам по мраморному полу, звук их шагов отдаётся эхом, и через мгновение у вас получается разглядеть фигуру. Чёрный цилиндр с #bсиней полосой. Серый череп, украшенный #gщёгольским моноклем. Чёрный костюм с #bсиним галстуком и с #bсиней эмблемой на правом рукаве; вы же понятия не имеете, что это за эмблема. Искажение, известное вам как «Вчерашнее обещание», стоит перед вами, сжимая контракт в костлявых пальцах. «Я могу дать вам силу и помочь вам с достижением желаемого, если вы подпишите этот контракт. Что вы думаете насчёт этого?»",
+      "В контракте не было ничего необычного, кроме того, что это ~был~ контракт, да и не повредило бы быть сильнее, не так ли? По крайней мере, так вы оправдали своё решение, когда подписывали контракт. Вы пытались наблюдать за выражением лица контрактника, чтобы увидеть проблеск радости обманщика. Однако его лица не менялось до того момента, пока контракт не был подписан. «Приятно иметь с вами дело, но вам нужно было внимательнее проверять условия. Вот, взгляните». Вы до сих пор не видели ничего необычного, но после того, как вам вручили монокль, контракт изменился; вы заметили неоднозначные формулировки и скрытые условия, но условия всё-таки были не менее подходящими. Похоже, вас обманули, и вы ~не~ ~должны~ ~были~ ~этого~ ~делать.~",
+      "Вы воздерживаетесь от предложения. NL Больше силы было бы полезно, но вся эта сделка пахла слишком подозрительно. NL Вы чувствуете, что приняли верное решение."
     ],
     "OPTIONS": [
-      "[Sign] #rLose #r%1$s #rHP. #gObtain #ga #gSpecial #gRelic.",
-      "[Reject the contract]",
-      "[Leave]"
+      "[Подписать контракт] #rПотерять #r%1$s #rОЗ. #gПолучить #gособую #gреликвию.",
+      "[Отклонить контракт]",
+      "[Уйти]"
     ]
   }
 }
