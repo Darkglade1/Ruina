@@ -32,7 +32,7 @@ import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
 public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
-    protected ArrayList<EnemyMoveInfo> additionalMoves = new ArrayList<>();
+    public ArrayList<EnemyMoveInfo> additionalMoves = new ArrayList<>();
     protected ArrayList<ArrayList<Byte>> additionalMovesHistory = new ArrayList<>();
     public ArrayList<AdditionalIntent> additionalIntents = new ArrayList<>();
     protected int numAdditionalMoves = 0;

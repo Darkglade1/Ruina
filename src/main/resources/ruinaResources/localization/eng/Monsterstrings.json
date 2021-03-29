@@ -678,5 +678,43 @@
       "What a load of rubbish.",
       "Look where all that strength got you."
     ]
+  },
+  "${ModID}:VermilionCross": {
+    "MOVES": [
+      "Obstruct",
+      "Shockwave",
+      "Heated Weapon",
+      "Rampageous Strike",
+      "Heat Up"
+    ],
+    "NAME": "Vermilion Cross",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Elena": {
+    "MOVES": [
+      "Circulation",
+      "Sanguine Nails",
+      "Siphon",
+      "Bloodspreading",
+      "Inject"
+    ],
+    "NAME": "Elena",
+    "DIALOG": [
+      "A feast awaits us in the Light!",
+      "It was but a hollow, empty husk."
+    ]
+  },
+  "${ModID}:Binah": {
+    "MOVES": [
+      "Degraded Pillar",
+      "Degraded Chain",
+      "Degraded Fairy"
+    ],
+    "NAME": "Binah",
+    "DIALOG": [
+      "No feast would be served to the likes of you.",
+      "That was quite bothersome."
+    ]
   }
 }

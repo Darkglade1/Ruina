@@ -317,5 +317,13 @@
   "${ModID}:Relentless": {
     "NAME": "Relentless",
     "DESCRIPTIONS": ["At end of round, if the #renemy did not lose at least #b", " HP this turn, this creature loses half its #yStrength."]
+  },
+  "${ModID}:BloodRed": {
+    "NAME": "Blood Red Night",
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it heals that much HP."]
+  },
+  "${ModID}:Arbiter": {
+    "NAME": "Arbiter's Judgement",
+    "DESCRIPTIONS": ["Your #gally targets the last #renemy you targeted this combat. NL Whenever this creature attacks, it #ycancels the 2nd intent of its target."]
   }
 }
