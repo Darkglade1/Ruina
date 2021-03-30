@@ -21,6 +21,11 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.uninvitedGuests.elena.elenaCards.Bloodspreading;
+import ruina.monsters.uninvitedGuests.elena.elenaCards.Circulation;
+import ruina.monsters.uninvitedGuests.elena.elenaCards.Inject;
+import ruina.monsters.uninvitedGuests.elena.elenaCards.Nails;
+import ruina.monsters.uninvitedGuests.elena.elenaCards.Siphon;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 import ruina.powers.InvisibleBarricadePower;
@@ -85,11 +90,11 @@ public class Elena extends AbstractCardMonster
         addMove(BLOODSPREADING, Intent.ATTACK, calcAscensionDamage(36));
         addMove(INJECT, Intent.STRONG_DEBUFF);
 
-//        cardList.add(new PullingStrings(this));
-//        cardList.add(new TuggingStrings(this));
-//        cardList.add(new AssailingPulls(this));
-//        cardList.add(new ThinStrings(this));
-//        cardList.add(new Puppetry(this));
+        cardList.add(new Circulation(this));
+        cardList.add(new Nails(this));
+        cardList.add(new Siphon(this));
+        cardList.add(new Bloodspreading(this));
+        cardList.add(new Inject(this));
     }
 
     @Override
@@ -108,6 +113,7 @@ public class Elena extends AbstractCardMonster
             @Override
             public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
                 if (info.type == DamageInfo.DamageType.NORMAL && info.owner == owner && damageAmount > 0) {
+                    flash();
                     att(new HealAction(owner, owner, damageAmount));
                 }
             }
@@ -238,13 +244,13 @@ public class Elena extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(BLOODSPREADING, moveHistory) && !this.lastMoveBefore(BLOODSPREADING)) {
+        if (!this.lastMove(BLOODSPREADING, moveHistory) && !this.lastMoveBefore(BLOODSPREADING, moveHistory)) {
             possibilities.add(BLOODSPREADING);
         }
-        if (!this.lastMove(INJECT, moveHistory) && !this.lastMoveBefore(INJECT)) {
+        if (!this.lastMove(INJECT, moveHistory) && !this.lastMoveBefore(INJECT, moveHistory)) {
             possibilities.add(INJECT);
         }
-        if (!this.lastMove(SANGUINE_NAILS, moveHistory) && !this.lastMoveBefore(SANGUINE_NAILS)) {
+        if (!this.lastMove(SANGUINE_NAILS, moveHistory) && !this.lastMoveBefore(SANGUINE_NAILS, moveHistory)) {
             possibilities.add(SANGUINE_NAILS);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
@@ -270,15 +276,18 @@ public class Elena extends AbstractCardMonster
         }
     }
 
-    @Override
-    public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
-        binah.onBossDeath();
-    }
-
     public void onVermilionDeath() {
         if (!this.isDeadOrEscaped()) {
             atb(new TalkAction(this, DIALOG[1]));
+        }
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        binah.targetEnemy = vermilionCross;
+        if (vermilionCross.isDeadOrEscaped()) {
+            binah.onBossDeath();
         }
     }
 

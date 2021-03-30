@@ -336,5 +336,57 @@
   "${ModID}:Fisticuffs": {
     "NAME": "Fisticuffs",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  },
+  "${ModID}:Circulation": {
+    "NAME": "Circulation",
+    "DESCRIPTION": "An ally gains !M! Strength and !ruina:SecondMagic! *Protection."
+  },
+  "${ModID}:Nails": {
+    "NAME": "Sanguine Nails",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Siphon": {
+    "NAME": "Siphon",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Frail."
+  },
+  "${ModID}:Bloodspreading": {
+    "NAME": "Bloodspreading",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:Inject": {
+    "NAME": "Inject",
+    "DESCRIPTION": "Apply !M! *Bleed. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:Obstruct": {
+    "NAME": "Obstruct",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:Shockwave": {
+    "NAME": "Shockwave",
+    "DESCRIPTION": "Deal !D! damage. NL If this creature has any Block remaining, an ally gains !M! Intangible."
+  },
+  "${ModID}:HeatedWeapon": {
+    "NAME": "Heated Weapon",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Shuffle !ruina:SecondMagic! *Burn(s) into your draw pile."
+  },
+  "${ModID}:Rampage": {
+    "NAME": "Rampageous Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:HeatUp": {
+    "NAME": "Heat Up",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Strength."
+  },
+  "${ModID}:Pillar": {
+    "NAME": "Degraded Pillar",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:Fairy": {
+    "NAME": "Degraded Fairy",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Chain": {
+    "NAME": "Degraded Chain",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
   }
 }

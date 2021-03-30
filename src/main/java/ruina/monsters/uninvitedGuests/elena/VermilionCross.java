@@ -18,6 +18,11 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.uninvitedGuests.elena.vermilionCards.HeatUp;
+import ruina.monsters.uninvitedGuests.elena.vermilionCards.HeatedWeapon;
+import ruina.monsters.uninvitedGuests.elena.vermilionCards.Obstruct;
+import ruina.monsters.uninvitedGuests.elena.vermilionCards.Rampage;
+import ruina.monsters.uninvitedGuests.elena.vermilionCards.Shockwave;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
@@ -60,7 +65,7 @@ public class VermilionCross extends AbstractCardMonster
 
     public VermilionCross(final float x, final float y) {
         super(NAME, ID, 500, -5.0F, 0, 160.0f, 245.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppeteer/Spriter/Puppeteer.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Vermilion/Spriter/Vermilion.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
         for (int i = 0; i < numAdditionalMoves; i++) {
@@ -74,11 +79,11 @@ public class VermilionCross extends AbstractCardMonster
         addMove(RAMPAGE, Intent.ATTACK, calcAscensionDamage(42));
         addMove(HEAT_UP, Intent.DEFEND_BUFF);
 
-//        cardList.add(new PullingStrings(this));
-//        cardList.add(new TuggingStrings(this));
-//        cardList.add(new AssailingPulls(this));
-//        cardList.add(new ThinStrings(this));
-//        cardList.add(new Puppetry(this));
+        cardList.add(new Obstruct(this));
+        cardList.add(new Shockwave(this));
+        cardList.add(new HeatedWeapon(this));
+        cardList.add(new Rampage(this));
+        cardList.add(new HeatUp(this));
     }
 
     @Override
@@ -125,6 +130,7 @@ public class VermilionCross extends AbstractCardMonster
                         this.isDone = true;
                     }
                 });
+                atb(new RemoveAllBlockAction(this, this));
                 resetIdle();
                 break;
             }
@@ -180,7 +186,6 @@ public class VermilionCross extends AbstractCardMonster
         if (this.firstMove) {
             firstMove = false;
         }
-        atb(new RemoveAllBlockAction(this, this));
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
@@ -226,7 +231,7 @@ public class VermilionCross extends AbstractCardMonster
         if (!this.lastMove(HEATED_WEAPON, moveHistory) && !this.lastMoveBefore(HEATED_WEAPON, moveHistory)) {
             possibilities.add(HEATED_WEAPON);
         }
-        if (!this.lastMove(HEAT_UP, moveHistory) && !this.lastMoveBefore(HEAT_UP)) {
+        if (!this.lastMove(HEAT_UP, moveHistory) && !this.lastMoveBefore(HEAT_UP, moveHistory)) {
             possibilities.add(HEAT_UP);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
@@ -252,6 +257,10 @@ public class VermilionCross extends AbstractCardMonster
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
         elena.onVermilionDeath();
+        binah.targetEnemy = elena;
+        if (elena.isDeadOrEscaped()) {
+            binah.onBossDeath();
+        }
     }
 
 }

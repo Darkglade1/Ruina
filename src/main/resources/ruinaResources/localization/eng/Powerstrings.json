@@ -275,7 +275,7 @@
     "DESCRIPTIONS": ["Receives #b", "% more damage from ALL sources for #b" , " turn."]
   },
   "${ModID}:Mastermind": {
-    "NAME": "Mastermind",
+    "NAME": "Puppeteer",
     "DESCRIPTIONS": ["Receives #b", "% less damage from ALL sources unless this creature is #yMarked."]
   },
   "${ModID}:PuppetStrings": {
