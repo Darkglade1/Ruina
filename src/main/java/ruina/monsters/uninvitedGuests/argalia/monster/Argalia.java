@@ -61,9 +61,9 @@ public class Argalia extends AbstractDeckMonster
     public final int largoBlock = calcAscensionTankiness(18);
     public final int largoDamage = calcAscensionDamage(19);
 
-    public final int allegroDamage = calcAscensionDamage(11);
+    public final int allegroDamage = calcAscensionDamage(10);
     public final int allegroHits = 2;
-    public final int allegroStrength = calcAscensionSpecial(3);
+    public final int allegroStrength = calcAscensionSpecial(4);
 
     public final int scytheDamage = calcAscensionDamage(30);
     public static final float scytheDamageMultiplier = 3.0f;

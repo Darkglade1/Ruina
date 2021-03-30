@@ -1,12 +1,8 @@
 package ruina.monsters.uninvitedGuests.pluto.monster;
 
-import actlikeit.dungeons.CustomDungeon;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
@@ -19,28 +15,19 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
+import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.AbstractDeckMonster;
-import ruina.monsters.act3.seraphim.GuardianApostle;
-import ruina.monsters.eventboss.redMist.cards.*;
 import ruina.monsters.uninvitedGuests.pluto.cards.contracts.ConfusingContract;
 import ruina.monsters.uninvitedGuests.pluto.cards.contracts.ContractOfLight;
 import ruina.monsters.uninvitedGuests.pluto.cards.contracts.ContractOfMight;
 import ruina.monsters.uninvitedGuests.pluto.cards.contracts.NoContract;
-import ruina.powers.Bleed;
-import ruina.powers.NextTurnPowerPower;
-import ruina.powers.RedMistPower;
 import ruina.util.AdditionalIntent;
-import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
-import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
@@ -80,7 +67,7 @@ public class Pluto extends AbstractCardMonster {
     }
     public Pluto(final float x, final float y) {
         super(NAME, ID, 600, -5.0F, 0, 250.0f, 255.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("RedMist/Spriter/RedMist.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Pluto/Spriter/Pluto.scml"));
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));
 
@@ -113,20 +100,36 @@ public class Pluto extends AbstractCardMonster {
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
-        if(info.base > -1) { info.applyPowers(this, target); }
+        if (info.base > -1) {
+            info.applyPowers(this, target);
+        }
         switch (move.nextMove) {
             case SAFEGUARD: {
-                for(AbstractMonster m: monsterList()){
-                    block(m, magicSafeguardBlock);
-                    atb(new ApplyPowerAction(m, m, new StrengthPower(m, magicSafeguardStr)));
+                buffAnimation();
+                for (AbstractMonster m : monsterList()) {
+                    if (!(m instanceof AbstractAllyMonster)) {
+                        block(m, magicSafeguardBlock);
+                        atb(new ApplyPowerAction(m, m, new StrengthPower(m, magicSafeguardStr)));
+                    }
                 }
+                resetIdle();
                 break;
             }
             case MISSLE:
-                for (int i = 0; i < multiplier; i++) { dmg(adp(), info); }
+                for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        pierceAnimation(target);
+                    } else {
+                        slashAnimation(target);
+                    }
+                    dmg(adp(), info);
+                    resetIdle();
+                }
                 break;
             case ONSLAUGHT:
+                bluntAnimation(target);
                 dmg(adp(), info);
+                resetIdle();
                 break;
         }
     }
@@ -214,13 +217,33 @@ public class Pluto extends AbstractCardMonster {
         AbstractMonster shade1 = new Shade(xPos_Middle_L, 0.0f);
         atb(new SpawnMonsterAction(shade1, true));
         atb(new UsePreBattleActionAction(shade1));
-        shade1.rollMove();
-        shade1.createIntent();
         AbstractMonster shade2 = new Shade(xPos_Short_L, 0.0f);
         atb(new SpawnMonsterAction(shade2, true));
         atb(new UsePreBattleActionAction(shade2));
-        shade2.rollMove();
-        shade2.createIntent();
+    }
+
+    private void bluntAnimation(AbstractCreature enemy) {
+        animationAction("Hit", "PlutoHori", enemy, this);
+    }
+
+    private void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "PlutoVert", enemy, this);
+    }
+
+    private void pierceAnimation(AbstractCreature enemy) {
+        animationAction("Pierce", "PlutoStab", enemy, this);
+    }
+
+    private void contractAnimation(AbstractCreature enemy) {
+        animationAction("Contract", "PlutoContract", enemy, this);
+    }
+
+    private void specialAnimation() {
+        animationAction("Special", "PlutoStrongStart", this);
+    }
+
+    private void buffAnimation() {
+        animationAction("Block", "PlutoGuard", this);
     }
 
 }

@@ -14,7 +14,7 @@ import static ruina.util.Wiz.adp;
 @AutoAdd.Ignore
 public class ContractOfLight extends AbstractRuinaCard {
     public final static String ID = makeID(ContractOfLight.class.getSimpleName());
-    private static final int DAMAGE_AMOUNT = 6;
+    private static final int DAMAGE_AMOUNT = 8;
 
     public ContractOfLight() {
         super(ID, -2, CardType.POWER, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);

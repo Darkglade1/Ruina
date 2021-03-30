@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Pluto_Default.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Pluto_Guard.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Pluto_Hit.png" width="1024" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Pluto_Penetrate.png" width="1024" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Pluto_S1.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Pluto_S2.png" width="1024" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Pluto_Slash.png" width="1024" height="1024" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Pluto">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pluto_Default">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-252" y="499"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Block" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pluto_Guard">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-250" y="496"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Hit" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pluto_Hit">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-503" y="498"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Pierce" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pluto_Penetrate">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-480" y="499"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Slash" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pluto_Slash">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-506" y="757"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Contract" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pluto_S1">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-245" y="502"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="Special" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pluto_S2">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-505" y="500"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
