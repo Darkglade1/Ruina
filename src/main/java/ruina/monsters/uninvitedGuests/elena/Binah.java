@@ -1,44 +1,35 @@
 package ruina.monsters.uninvitedGuests.elena;
 
-import com.badlogic.gdx.graphics.Color;
+import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
+import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.uninvitedGuests.puppeteer.Chesed;
-import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
-import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.BattleCommand;
-import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Concentration;
-import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.Disposal;
-import ruina.monsters.uninvitedGuests.puppeteer.chesedCards.EnergyShield;
 import ruina.powers.AbstractLambdaPower;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
@@ -60,6 +51,7 @@ public class Binah extends AbstractAllyCardMonster
     public final int fairyHits = 2;
 
     public Elena elena;
+    public VermilionCross vermilionCross;
     private AbstractCreature targetEnemy;
 
     public static final String POWER_ID = makeID("Arbiter");
@@ -73,7 +65,7 @@ public class Binah extends AbstractAllyCardMonster
 
     public Binah(final float x, final float y) {
         super(NAME, ID, 180, -5.0F, 0, 230.0f, 250.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("Chesed/Spriter/Chesed.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Binah/Spriter/Binah.scml"));
         this.animation.setFlip(true, false);
 
         this.setHp(maxHealth);
@@ -98,6 +90,9 @@ public class Binah extends AbstractAllyCardMonster
                 elena = (Elena)mo;
                 targetEnemy = elena;
             }
+            if (mo instanceof VermilionCross) {
+                vermilionCross = (VermilionCross)mo;
+            }
         }
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
@@ -118,7 +113,10 @@ public class Binah extends AbstractAllyCardMonster
             @Override
             public void onAfterUseCard(AbstractCard card, UseCardAction action) {
                 flashWithoutSound();
-                targetEnemy = action.target;
+                AbstractCreature newTarget = action.target;
+                if (newTarget instanceof AbstractMultiIntentMonster) {
+                    targetEnemy = action.target;
+                }
             }
 
             @Override
@@ -160,62 +158,27 @@ public class Binah extends AbstractAllyCardMonster
         }
         switch (this.nextMove) {
             case DEGRADED_PILLAR: {
-                slashAnimation(target);
+                specialAnimation(target);
+                atb(new AllyGainBlockAction(this, this, BLOCK));
+                waitAnimation(0.25f);
+                pillarEffect(target);
                 dmg(target, info);
-                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-                applyToTarget(adp(), this, new StrengthPower(adp(), STRENGTH));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case DEGRADED_CHAIN: {
-                blockAnimation();
-                atb(new AllyGainBlockAction(this, this, ENERGY_SHIELD_BLOCK));
-                block(adp(), ENERGY_SHIELD_BLOCK);
-                waitAnimation();
-                pierceAnimation(target);
+                bluntAnimation(target);
                 dmg(target, info);
+                chainsEffect(target);
+                applyToTarget(target, this, new WeakPower(target, WEAK, false));
                 resetIdle();
                 break;
             }
             case DEGRADED_FAIRY: {
-                atb(new AllyGainBlockAction(this, this, CONCENTRATE_BLOCK));
                 for (int i = 0; i < multiplier; i++) {
-                    if (i % 2 == 0) {
-                        pierceAnimation(target);
-                    } else {
-                        slashAnimation(target);
-                    }
+                    slashAnimation(target);
                     dmg(target, info);
                     resetIdle();
-                }
-                break;
-            }
-            case DISPOSAL: {
-                for (int i = 0; i < multiplier; i++) {
-                    if (i % 2 == 0) {
-                        disposalUp(target);
-                        waitAnimation();
-                        disposalDown(target);
-                    } else {
-                        moveAnimation(target);
-                        waitAnimation();
-                        disposalFinish(target);
-                    }
-                    addToBot(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            info.applyPowers(Binah.this, puppeteer);
-                            if (puppeteer.hasPower(MARK_POWER_ID)) {
-                                info.output *= 2;
-                            }
-                            if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {
-                                info.output *= 2;
-                            }
-                            this.isDone = true;
-                        }
-                    });
-                    dmg(target, info);
-                    resetIdle(1.0f);
                 }
                 break;
             }
@@ -242,42 +205,24 @@ public class Binah extends AbstractAllyCardMonster
         setMoveShortcut(move, MOVES[move], cardList.get(move));
     }
 
-    public void checkDisposalCanUse() {
-        if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {
-            if (puppeteer.puppet.isDeadOrEscaped()) {
-                if (puppeteer.hasPower(MARK_POWER_ID)) {
-                    att(new TalkAction(this, DIALOG[2]));
-                    setMoveShortcut(DISPOSAL, MOVES[DISPOSAL], cardList.get(DISPOSAL));
-                    createIntent();
-                }
-            }
-        }
-    }
-
     @Override
     public void applyPowers() {
-        if (this.nextMove == -1 || puppeteer.isDeadOrEscaped()) {
+        if (this.nextMove == -1) {
             super.applyPowers();
             return;
         }
-        AbstractCreature target;
-        if (puppeteer.puppet.isDeadOrEscaped()) {
-            target = puppeteer;
-        } else {
-            target = puppeteer.puppet;
+        AbstractCreature target = targetEnemy;
+        if (target == null) {
+            target = elena;
         }
-        if (nextMove == DISPOSAL) {
-            float multiplier = 1;
-            if (puppeteer.hasPower(MARK_POWER_ID)) {
-                multiplier *= 2;
+        if (target.isDeadOrEscaped()) {
+            if (elena.isDeadOrEscaped()) {
+                target = vermilionCross;
+            } else {
+                target = elena;
             }
-            if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {
-                multiplier *= 2;
-            }
-            applyPowers(target, multiplier);
-        } else {
-            applyPowers(target);
         }
+        applyPowers(target);
     }
 
     public void onBossDeath() {
@@ -294,33 +239,37 @@ public class Binah extends AbstractAllyCardMonster
         }
     }
 
-    private void blockAnimation() {
-        animationAction("Block", null, this);
+    private void specialAnimation(AbstractCreature enemy) {
+        animationAction("Special", "BinahStoneReady", enemy, this);
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "SwordVert", enemy, this);
+        animationAction("Slash", "BinahFairy", enemy, this);
     }
 
-    private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "SwordStab", enemy, this);
+    private void bluntAnimation(AbstractCreature enemy) {
+        animationAction("Blunt", "BinahChain", enemy, this);
     }
 
-    private void disposalUp(AbstractCreature enemy) {
-        animationAction("Special3", "DisposalUp", enemy, this);
+    private void chainsEffect(AbstractCreature target) {
+        String CHAINS = RuinaMod.makeMonsterPath("Binah/Spriter/fetter2.png");
+        Texture CHAINS_TEXTURE = TexLoader.getTexture(CHAINS);
+        float duration = 0.6f;
+        AbstractGameEffect appear = new VfxBuilder(CHAINS_TEXTURE, target.hb.cX, target.hb.cY, duration)
+                .fadeOut(duration)
+                .build();
+        atb(new VFXAction(appear, duration));
     }
 
-    private void disposalDown(AbstractCreature enemy) {
-        animationAction("Special4", "DisposalDown", enemy, this);
-    }
-
-    private void disposalFinish(AbstractCreature enemy) {
-        animationAction("Special2", "DisposalFinish", enemy, this);
-        animationAction("Special2", "DisposalBlood", enemy, this);
-    }
-
-    private void moveAnimation(AbstractCreature enemy) {
-        animationAction("Move", null, enemy, this);
+    private void pillarEffect(AbstractCreature target) {
+        String pillar = RuinaMod.makeMonsterPath("Binah/Spriter/stigma.png");
+        Texture pillarTexture = TexLoader.getTexture(pillar);
+        float duration = 0.8f;
+        AbstractGameEffect appear = new VfxBuilder(pillarTexture, this.hb.cX, target.hb.cY, duration)
+                .moveX(this.hb.cX, target.hb.cX + (200.0f * Settings.scale), VfxBuilder.Interpolations.EXP5)
+                .playSoundAt(0.1f, makeID("BinahStoneFire"))
+                .build();
+        atb(new VFXAction(appear, duration));
     }
 
 }

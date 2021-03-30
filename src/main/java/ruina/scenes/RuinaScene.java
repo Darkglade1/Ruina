@@ -46,6 +46,7 @@ import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
+import ruina.monsters.uninvitedGuests.elena.Elena;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.tanya.Tanya;
 
@@ -136,6 +137,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Keter");
                 } else if (mo instanceof Tanya) {
                     this.bg = this.atlas.findRegion("mod/Gebura");
+                } else if (mo instanceof Elena) {
+                    this.bg = this.atlas.findRegion("mod/Binah");
                 } else {
                     setBgs();
                 }

@@ -100,6 +100,9 @@ import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.argalia.monster.Roland;
+import ruina.monsters.uninvitedGuests.elena.Binah;
+import ruina.monsters.uninvitedGuests.elena.Elena;
+import ruina.monsters.uninvitedGuests.elena.VermilionCross;
 import ruina.monsters.uninvitedGuests.puppeteer.Chesed;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.tanya.Gebura;
@@ -414,6 +417,11 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("ArgaliaFarAtk1"), makeSFXPath("Blue_Argalria_Far_Atk1.wav"));
         BaseMod.addAudio(makeID("ArgaliaFarAtk2"), makeSFXPath("Blue_Argalria_Far_Atk2.wav"));
         BaseMod.addAudio(makeID("ArgaliaStrongAtk1"), makeSFXPath("Blue_Argalria_Strong_Atk1.wav"));
+
+        BaseMod.addAudio(makeID("BinahStoneReady"), makeSFXPath("Binah_Stone_Ready.wav"));
+        BaseMod.addAudio(makeID("BinahStoneFire"), makeSFXPath("Binah_Stone_Fire.wav"));
+        BaseMod.addAudio(makeID("BinahChain"), makeSFXPath("Binah_Chain.wav"));
+        BaseMod.addAudio(makeID("BinahFairy"), makeSFXPath("Binah_Fairy.wav"));
     }
 
     @Override
@@ -591,6 +599,12 @@ public class RuinaMod implements
                 new AbstractMonster[] {
                         new Gebura(-500.0F, 0.0F),
                         new Tanya(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Elena.ID, "Elena", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Binah(-550.0F, 0.0F),
+                        new VermilionCross(-100.0F, 0.0F),
+                        new Elena(200.0F, 0.0F),
                 }));
 
         uninvitedGuests.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
