@@ -422,6 +422,15 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("BinahStoneFire"), makeSFXPath("Binah_Stone_Fire.wav"));
         BaseMod.addAudio(makeID("BinahChain"), makeSFXPath("Binah_Chain.wav"));
         BaseMod.addAudio(makeID("BinahFairy"), makeSFXPath("Binah_Fairy.wav"));
+
+        BaseMod.addAudio(makeID("ElenaStrongUp"), makeSFXPath("Elena_StrongUp.wav"));
+        BaseMod.addAudio(makeID("ElenaStrongAtk"), makeSFXPath("Elena_StrongAtk.wav"));
+        BaseMod.addAudio(makeID("ElenaStrongStart"), makeSFXPath("Elena_StrongStart.wav"));
+
+        BaseMod.addAudio(makeID("FireVert"), makeSFXPath("Riu_Vert.wav"));
+        BaseMod.addAudio(makeID("FireHori"), makeSFXPath("Riu_Hori.wav"));
+        BaseMod.addAudio(makeID("FireGuard"), makeSFXPath("Riu_Guard.wav"));
+        BaseMod.addAudio(makeID("FireStrong"), makeSFXPath("Riu_Strong.wav"));
     }
 
     @Override

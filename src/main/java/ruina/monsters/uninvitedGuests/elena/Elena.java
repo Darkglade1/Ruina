@@ -1,6 +1,7 @@
 package ruina.monsters.uninvitedGuests.elena;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -25,12 +26,12 @@ import ruina.powers.Bleed;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Protection;
 import ruina.util.AdditionalIntent;
+import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class Elena extends AbstractCardMonster
@@ -53,6 +54,7 @@ public class Elena extends AbstractCardMonster
     public final int STRENGTH = calcAscensionSpecial(3);
     public final int FRAIL = calcAscensionSpecial(2);
     public final int BLEED = calcAscensionSpecial(10);
+    public final int INJECT_STR = calcAscensionSpecial(1);
     public Binah binah;
     public VermilionCross vermilionCross;
 
@@ -61,13 +63,15 @@ public class Elena extends AbstractCardMonster
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
+    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("ElenaIcon.png"));
+
     public Elena() {
         this(0.0f, 0.0f);
     }
 
     public Elena(final float x, final float y) {
         super(NAME, ID, 400, -5.0F, 0, 160.0f, 245.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppeteer/Spriter/Puppeteer.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Elena/Spriter/Elena.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
         for (int i = 0; i < numAdditionalMoves; i++) {
@@ -126,19 +130,20 @@ public class Elena extends AbstractCardMonster
         }
         switch (move.nextMove) {
             case CIRCULATION: {
+                buffAnimation();
                 AbstractCreature buffTarget = vermilionCross;
                 if (buffTarget.isDeadOrEscaped()) {
                     buffTarget = this;
                 }
                 applyToTarget(buffTarget, this, new StrengthPower(buffTarget, STRENGTH));
                 applyToTarget(buffTarget, this, new Protection(buffTarget, PROTECTION));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case SANGUINE_NAILS: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        pierceAnimation(target);
+                        slashAnimation(target);
                     } else {
                         bluntAnimation(target);
                     }
@@ -148,20 +153,22 @@ public class Elena extends AbstractCardMonster
                 break;
             }
             case SIPHON: {
-                rangedAnimation(target);
+                slashAnimation(target);
                 dmg(target, info);
                 applyToTarget(target, this, new FrailPower(target, FRAIL, true));
                 resetIdle();
                 break;
             }
             case BLOODSPREADING: {
+                specialAttackAnimation(target);
                 dmg(target, info);
                 resetIdle(1.0f);
                 break;
             }
             case INJECT: {
-                buffAnimation();
+                specialAnimation();
                 applyToTarget(target, this, new Bleed(target, BLEED));
+                applyToTarget(this, this, new StrengthPower(this, INJECT_STR));
                 resetIdle(1.0f);
                 break;
             }
@@ -169,32 +176,25 @@ public class Elena extends AbstractCardMonster
     }
 
     private void bluntAnimation(AbstractCreature enemy) {
-        animationAction("Blunt", "BluntHori", enemy, this);
+        animationAction("Blunt", "SwordHori", enemy, this);
     }
 
-    private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "BluntBlow", enemy, this);
+    private void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "SwordVert", enemy, this);
     }
 
-    private void rangedAnimation(AbstractCreature enemy) {
-        animationAction("Ranged", "PuppetBreak", enemy, this);
+    private void specialAttackAnimation(AbstractCreature enemy) {
+        animationAction("Special", "ElenaStrongAtk", enemy, this);
     }
 
-    private void blockAnimation() {
-        animationAction("Block", null, this);
+    private void specialAnimation() {
+        animationAction("Special", "ElenaStrongUp", this);
     }
 
     private void buffAnimation() {
-        animationAction("Special", null, this);
+        animationAction("Block", "ElenaStrongStart", this);
     }
 
-    private void massAttackStartAnimation() {
-        animationAction("Special", "PuppetStart", this);
-    }
-
-    private void massAttackFinishAnimation() {
-        animationAction("Special", "PuppetStrongAtk", this);
-    }
 
     @Override
     public void takeTurn() {

@@ -1,5 +1,6 @@
 package ruina.monsters.uninvitedGuests.elena;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -19,12 +20,12 @@ import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
+import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class VermilionCross extends AbstractCardMonster
@@ -50,6 +51,8 @@ public class VermilionCross extends AbstractCardMonster
     public final int allyIntangible = calcAscensionSpecial(1);
     public Binah binah;
     public Elena elena;
+
+    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("VermilionIcon.png"));
 
     public VermilionCross() {
         this(0.0f, 0.0f);
@@ -101,11 +104,13 @@ public class VermilionCross extends AbstractCardMonster
         }
         switch (move.nextMove) {
             case OBSTRUCT: {
+                blockAnimation();
                 block(this, OBSTRUCT_BLOCK);
                 resetIdle();
                 break;
             }
             case SHOCKWAVE: {
+                slashAnimation(target);
                 dmg(target, info);
                 atb(new AbstractGameAction() {
                     @Override
@@ -115,7 +120,7 @@ public class VermilionCross extends AbstractCardMonster
                             if (elena.isDeadOrEscaped()) {
                                 powerTarget = VermilionCross.this;
                             }
-                            applyToTargetTop(powerTarget, VermilionCross.this, new IntangiblePlayerPower(powerTarget, allyIntangible));
+                            applyToTargetTop(powerTarget, VermilionCross.this, new IntangiblePlayerPower(powerTarget, allyIntangible + 1));
                         }
                         this.isDone = true;
                     }
@@ -125,19 +130,25 @@ public class VermilionCross extends AbstractCardMonster
             }
             case HEATED_WEAPON: {
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        slashAnimation(target);
+                    } else {
+                        bluntAnimation(target);
+                    }
                     dmg(target, info);
                     resetIdle();
                 }
-                intoDiscardMo(new Burn(), BURNS, this);
+                intoDrawMo(new Burn(), BURNS, this);
                 break;
             }
             case RAMPAGE: {
+                strongAttackAnimation(target);
                 dmg(target, info);
                 resetIdle(1.0f);
                 break;
             }
             case HEAT_UP: {
-                buffAnimation();
+                blockAnimation();
                 block(this, HEAT_UP_BLOCK);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 resetIdle(1.0f);
@@ -147,23 +158,19 @@ public class VermilionCross extends AbstractCardMonster
     }
 
     private void bluntAnimation(AbstractCreature enemy) {
-        animationAction("Blunt", "BluntHori", enemy, this);
+        animationAction("Blunt", "FireHori", enemy, this);
     }
 
-    private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "BluntBlow", enemy, this);
-    }
-
-    private void rangedAnimation(AbstractCreature enemy) {
-        animationAction("Ranged", "PuppetBreak", enemy, this);
+    private void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "FireVert", enemy, this);
     }
 
     private void blockAnimation() {
-        animationAction("Block", null, this);
+        animationAction("Block", "FireGuard", this);
     }
 
-    private void buffAnimation() {
-        animationAction("Special", null, this);
+    private void strongAttackAnimation(AbstractCreature enemy) {
+        animationAction("Blunt", "FireStrong", enemy, this);
     }
 
 

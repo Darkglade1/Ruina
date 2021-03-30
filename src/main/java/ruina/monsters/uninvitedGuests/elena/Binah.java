@@ -1,7 +1,9 @@
 package ruina.monsters.uninvitedGuests.elena;
 
+import basemod.ReflectionHacks;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -20,6 +22,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
@@ -270,6 +273,22 @@ public class Binah extends AbstractAllyCardMonster
                 .playSoundAt(0.1f, makeID("BinahStoneFire"))
                 .build();
         atb(new VFXAction(appear, duration));
+    }
+
+    @Override
+    public void renderIntent(SpriteBatch sb) {
+        super.renderIntent(sb);
+        Texture targetTexture = null;
+        if (targetEnemy == elena) {
+            targetTexture = Elena.targetTexture;
+        } else if (targetEnemy == vermilionCross) {
+            targetTexture = VermilionCross.targetTexture;
+        }
+        if (targetTexture != null) {
+            BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
+            float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
+            sb.draw(targetTexture, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
+        }
     }
 
 }

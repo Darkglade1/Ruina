@@ -280,7 +280,7 @@
   },
   "${ModID}:PuppetStrings": {
     "NAME": "Puppet Strings",
-    "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn at full HP. NL NL The #renemy's Mass Attack #gheals this creature instead. NL NL Your #gally will prioritize attacking this creature."]
+    "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn at full HP. NL NL The #renemy's Mass Attack #gheals this creature instead."]
   },
   "${ModID}:Vibration": {
     "NAME": "Vibration",
