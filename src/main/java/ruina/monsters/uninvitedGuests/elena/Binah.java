@@ -125,7 +125,6 @@ public class Binah extends AbstractAllyCardMonster
 
             @Override
             public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-                flashWithoutSound();
                 AbstractCreature newTarget = action.target;
                 if (newTarget instanceof AbstractMultiIntentMonster) {
                     targetEnemy = action.target;

@@ -16,7 +16,7 @@ public class Intimidate extends AbstractRuinaCard {
     Tanya parent;
 
     public Intimidate(Tanya parent) {
-        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         this.parent = parent;
         magicNumber = baseMagicNumber = parent.PLATED_ARMOR_GAIN;
     }

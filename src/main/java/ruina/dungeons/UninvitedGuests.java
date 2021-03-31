@@ -8,14 +8,17 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapGenerator;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.monsters.MonsterInfo;
-import com.megacrit.cardcrawl.monsters.ending.CorruptHeart;
-import com.megacrit.cardcrawl.rooms.*;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.rooms.RestRoom;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
+import com.megacrit.cardcrawl.rooms.TreasureRoom;
+import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
-import ruina.monsters.act2.*;
+import ruina.events.act2.ChurchOfGears;
 import ruina.monsters.uninvitedGuests.elena.Elena;
-import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.tanya.Tanya;
 import ruina.rooms.ReverbMonsterRoom;
@@ -30,7 +33,8 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
     public static final String NAME = TEXT[0];
 
     public UninvitedGuests() {
-        super(NAME, ID, "images/ui/event/panel.png", false, 6, 9, 10);
+        super(NAME, ID, "images/ui/event/panel.png", false, 2, 12, 10);
+        this.onEnterEvent(ChurchOfGears.class);
         this.addTempMusic("Ensemble1", RuinaMod.makeMusicPath("Reverberation1st_Asiyah.ogg"));
         this.addTempMusic("Ensemble2", RuinaMod.makeMusicPath("Reverberation1st_Briah.ogg"));
         this.addTempMusic("Ensemble3", RuinaMod.makeMusicPath("Reverberation1st_Atziluth.ogg"));

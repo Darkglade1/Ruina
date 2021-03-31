@@ -90,7 +90,7 @@ public class Puppeteer extends AbstractCardMonster
     }
 
     public Puppeteer(final float x, final float y) {
-        super(NAME, ID, 600, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 700, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppeteer/Spriter/Puppeteer.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;

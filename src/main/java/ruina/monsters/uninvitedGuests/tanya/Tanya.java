@@ -98,7 +98,7 @@ public class Tanya extends AbstractCardMonster
     }
 
     public Tanya(final float x, final float y) {
-        super(NAME, ID, 400, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 500, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Tanya/Spriter/Tanya.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
