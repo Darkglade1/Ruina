@@ -102,7 +102,7 @@ public class Tiph extends AbstractAllyCardMonster
         }
         switch (this.nextMove) {
             case AUGURY_KICK: {
-                slashAnimation(target);
+                bluntAnimation(target);
                 dmg(target, info);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 if (isAlly) {
@@ -146,6 +146,11 @@ public class Tiph extends AbstractAllyCardMonster
         }
     }
 
+    public void onBrainwashed() {
+        setMoveShortcut(CONFRONTATION, MOVES[CONFRONTATION], cardList.get(CONFRONTATION));
+        createIntent();
+    }
+
     @Override
     public void applyPowers() {
         if (this.nextMove == -1 || !isAlly) {
@@ -169,12 +174,12 @@ public class Tiph extends AbstractAllyCardMonster
         }
     }
 
-    private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "SwordVert", enemy, this);
+    private void bluntAnimation(AbstractCreature enemy) {
+        animationAction("Blunt", "HanaBlunt", enemy, this);
     }
 
     private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "SwordStab", enemy, this);
+        animationAction("Pierce", "HanaStab", enemy, this);
     }
 
 }

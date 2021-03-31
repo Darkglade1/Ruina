@@ -6,7 +6,9 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -114,10 +116,12 @@ public class Oswald extends AbstractCardMonster
         switch (move.nextMove) {
             case CLIMAX: {
                 for (int i = 0; i < multiplier; i++) {
-                    if (i % 2 == 0) {
-                        slashAnimation(target);
+                    if (i == multiplier - 1) {
+                        specialAttackAnimation(target);
+                    } else if (i % 2 == 0) {
+                        pierceAnimation(target);
                     } else {
-                        bluntAnimation(target);
+                        slashAnimation(target);
                     }
                     dmg(target, info);
                     resetIdle();
@@ -129,9 +133,9 @@ public class Oswald extends AbstractCardMonster
             case FUN: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        slashAnimation(target);
-                    } else {
                         bluntAnimation(target);
+                    } else {
+                        slashAnimation(target);
                     }
                     dmg(target, info);
                     resetIdle();
@@ -139,13 +143,13 @@ public class Oswald extends AbstractCardMonster
                 break;
             }
             case CATCH: {
-                slashAnimation(target);
+                buffAnimation();
                 intoDrawMo(new Wound(), STATUS, this);
                 resetIdle();
                 break;
             }
             case POW: {
-                specialAttackAnimation(target);
+                buffAnimation();
                 applyToTarget(target, this, new WeakPower(target, WEAK, true));
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 resetIdle(1.0f);
@@ -162,6 +166,9 @@ public class Oswald extends AbstractCardMonster
                             owner.halfDead = false;
                             ((AbstractAllyMonster) owner).isAlly = false;
                             ((AbstractAllyMonster) owner).setAnimationFlip(false, false);
+                        }
+                        if (owner instanceof Tiph) {
+                            ((Tiph) owner).onBrainwashed();
                         }
                         amount2 = BRAINWASH_HITS;
                         updateDescription();
@@ -210,23 +217,27 @@ public class Oswald extends AbstractCardMonster
     }
 
     private void bluntAnimation(AbstractCreature enemy) {
-        animationAction("Blunt", "SwordHori", enemy, this);
+        animationAction("Blunt", "OswaldHori", enemy, this);
+    }
+
+    private void pierceAnimation(AbstractCreature enemy) {
+        animationAction("Pierce", "OswaldStab", enemy, this);
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "SwordVert", enemy, this);
-    }
-
-    private void specialAttackAnimation(AbstractCreature enemy) {
-        animationAction("Special", "ElenaStrongAtk", enemy, this);
+        animationAction("Slash", "OswaldVert", enemy, this);
     }
 
     private void specialAnimation() {
-        animationAction("Special", "ElenaStrongUp", this);
+        animationAction("Special", "OswaldAttract", this);
+    }
+
+    private void specialAttackAnimation(AbstractCreature enemy) {
+        animationAction("Special", "OswaldFinish", enemy, this);
     }
 
     private void buffAnimation() {
-        animationAction("Block", "ElenaStrongStart", this);
+        animationAction("Block", "OswaldLaugh", this);
     }
 
 
@@ -266,12 +277,22 @@ public class Oswald extends AbstractCardMonster
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        if (this.lastMove(BRAINWASH, moveHistory)) {
+        if (this.lastMove(BRAINWASH, moveHistory) || this.lastMove(CATCH, moveHistory)) {
             setAdditionalMoveShortcut(FUN, moveHistory, cardList.get(FUN).makeStatEquivalentCopy());
         } else if (this.lastMove(FUN, moveHistory)) {
             setAdditionalMoveShortcut(POW, moveHistory, cardList.get(POW).makeStatEquivalentCopy());
         } else {
-            setAdditionalMoveShortcut(BRAINWASH, moveHistory, cardList.get(BRAINWASH).makeStatEquivalentCopy());
+            if (!tiph.isDead && !tiph.isDying) {
+                setAdditionalMoveShortcut(BRAINWASH, moveHistory, cardList.get(BRAINWASH).makeStatEquivalentCopy());
+            } else {
+                setAdditionalMoveShortcut(CATCH, moveHistory, cardList.get(CATCH).makeStatEquivalentCopy());
+            }
+        }
+    }
+
+    protected AbstractCard getMoveCardFromByte(Byte move) {
+        switch (move){
+            default: return new Madness();
         }
     }
 

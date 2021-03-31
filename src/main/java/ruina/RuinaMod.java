@@ -442,6 +442,16 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("PlutoContract"), makeSFXPath("Pluto_Contract.wav"));
         BaseMod.addAudio(makeID("PlutoStrong"), makeSFXPath("Pluto_StrongAtk.wav"));
         BaseMod.addAudio(makeID("PlutoStrongStart"), makeSFXPath("Pluto_StrongStart.wav"));
+
+        BaseMod.addAudio(makeID("OswaldVert"), makeSFXPath("Oswald_Vert.wav"));
+        BaseMod.addAudio(makeID("OswaldAttract"), makeSFXPath("Oswald_Attract.wav"));
+        BaseMod.addAudio(makeID("OswaldHori"), makeSFXPath("Oswald_Hori.wav"));
+        BaseMod.addAudio(makeID("OswaldStab"), makeSFXPath("Oswald_Stab.wav"));
+        BaseMod.addAudio(makeID("OswaldFinish"), makeSFXPath("Oswald_Strong_Up.wav"));
+        BaseMod.addAudio(makeID("OswaldLaugh"), makeSFXPath("Oswald_Standby.wav"));
+
+        BaseMod.addAudio(makeID("HanaBlunt"), makeSFXPath("Hana_Blow.wav"));
+        BaseMod.addAudio(makeID("HanaStab"), makeSFXPath("Hana_Stab.wav"));
     }
 
     @Override
