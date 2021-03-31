@@ -1,5 +1,6 @@
 package ruina.monsters.uninvitedGuests.pluto.monster;
 
+import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -81,6 +82,7 @@ public class Pluto extends AbstractCardMonster {
     @Override
     public void usePreBattleAction()
     {
+        CustomDungeon.playTempMusicInstantly("Ensemble3");
         Summon();
         atb(new AbstractGameAction() {
             @Override

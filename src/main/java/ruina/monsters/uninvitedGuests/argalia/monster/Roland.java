@@ -206,7 +206,7 @@ public class Roland extends AbstractAllyCardMonster {
                 pierceAnimation(target);
                 dmg(target, info);
                 resetIdle();
-                applyToTarget(target, this, new WeakPower(target, ALLAS_DEBUFF, true));
+                applyToTarget(target, this, new WeakPower(target, ALLAS_DEBUFF, false));
                 break;
             }
             case GUN: {

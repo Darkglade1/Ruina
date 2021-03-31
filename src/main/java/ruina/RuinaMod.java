@@ -103,6 +103,7 @@ import ruina.monsters.uninvitedGuests.argalia.monster.Roland;
 import ruina.monsters.uninvitedGuests.elena.Binah;
 import ruina.monsters.uninvitedGuests.elena.Elena;
 import ruina.monsters.uninvitedGuests.elena.VermilionCross;
+import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
 import ruina.monsters.uninvitedGuests.puppeteer.Chesed;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.tanya.Gebura;
@@ -607,11 +608,6 @@ public class RuinaMod implements
                         new Chesed(-550.0F, 0.0F),
                         new Puppeteer(200.0F, 0.0F),
                 }));
-        BaseMod.addMonster(Argalia.ID, "Argalia", () -> new MonsterGroup(
-                new AbstractMonster[] {
-                        new Roland(-500.0F, 0.0F),
-                        new Argalia(0.0F, 0.0F),
-                }));
         BaseMod.addMonster(Tanya.ID, "Tanya", () -> new MonsterGroup(
                 new AbstractMonster[] {
                         new Gebura(-500.0F, 0.0F),
@@ -623,9 +619,13 @@ public class RuinaMod implements
                         new VermilionCross(-100.0F, 0.0F),
                         new Elena(200.0F, 0.0F),
                 }));
+        BaseMod.addMonster(Pluto.ID, (BaseMod.GetMonster) Pluto::new);
 
-        uninvitedGuests.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
-        uninvitedGuests.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
+        uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Roland(-500.0F, 0.0F),
+                        new Argalia(0.0F, 0.0F),
+                }), makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)
