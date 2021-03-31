@@ -198,4 +198,8 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
         this.isDying = true;
         this.healthBarUpdatedEvent();
     }
+
+    public void setAnimationFlip(boolean horizontal, boolean vertical) {
+        animation.setFlip(horizontal, vertical);
+    }
 }

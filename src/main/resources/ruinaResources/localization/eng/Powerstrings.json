@@ -325,5 +325,9 @@
   "${ModID}:Arbiter": {
     "NAME": "Arbiter's Judgement",
     "DESCRIPTIONS": ["Your #gally targets the last #renemy you targeted this combat. NL Whenever this creature attacks, it #ycancels the 2nd intent of its target."]
+  },
+  "${ModID}:Brainwash": {
+    "NAME": "Brainwash",
+    "DESCRIPTIONS": ["Your #gally has been #yBrainwashed into an #renemy for #b", " turn(s). #yBrainwash is removed after this creature is attacked #b", " more time(s)."]
   }
 }
