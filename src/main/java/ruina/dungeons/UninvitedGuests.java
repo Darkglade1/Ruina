@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.rooms.TreasureRoom;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
-import ruina.events.act2.ChurchOfGears;
+import ruina.events.act4.Ensemble;
 import ruina.monsters.uninvitedGuests.elena.Elena;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.tanya.Tanya;
@@ -34,7 +34,7 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
 
     public UninvitedGuests() {
         super(NAME, ID, "images/ui/event/panel.png", false, 2, 12, 10);
-        this.onEnterEvent(ChurchOfGears.class);
+        this.onEnterEvent(Ensemble.class);
         this.addTempMusic("Ensemble1", RuinaMod.makeMusicPath("Reverberation1st_Asiyah.ogg"));
         this.addTempMusic("Ensemble2", RuinaMod.makeMusicPath("Reverberation1st_Briah.ogg"));
         this.addTempMusic("Ensemble3", RuinaMod.makeMusicPath("Reverberation1st_Atziluth.ogg"));
