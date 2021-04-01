@@ -181,7 +181,7 @@ public class Oswald extends AbstractCardMonster
 
                     @Override
                     public int onAttacked(DamageInfo info, int damageAmount) {
-                        if (info.type == DamageInfo.DamageType.NORMAL && info.owner != owner && damageAmount > 0) {
+                        if (info.type == DamageInfo.DamageType.NORMAL && info.owner != owner) {
                             flash();
                             amount2--;
                             if (amount2 <= 0) {
