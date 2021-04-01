@@ -15,6 +15,8 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyCardMonster;
+import ruina.monsters.uninvitedGuests.clown.tiphCards.Confrontation;
+import ruina.monsters.uninvitedGuests.clown.tiphCards.Kick;
 import ruina.powers.Protection;
 import ruina.vfx.WaitEffect;
 
@@ -43,7 +45,7 @@ public class Tiph extends AbstractAllyCardMonster
     }
 
     public Tiph(final float x, final float y) {
-        super(NAME, ID, 200, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 200, -5.0F, 0, 200, 260.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Tiph/Spriter/Tiph.scml"));
         this.animation.setFlip(true, false);
 
@@ -53,8 +55,8 @@ public class Tiph extends AbstractAllyCardMonster
         addMove(AUGURY_KICK, Intent.ATTACK_BUFF, 10);
         addMove(CONFRONTATION, Intent.ATTACK_DEFEND, 7);
 
-        //cardList.add(new BattleCommand(this));
-        //cardList.add(new EnergyShield(this));
+        cardList.add(new Kick(this));
+        cardList.add(new Confrontation(this));
 
         this.allyIcon = makeUIPath("TiphIcon.png");
     }

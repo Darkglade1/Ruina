@@ -1,6 +1,8 @@
 package ruina.monsters.uninvitedGuests.clown;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.ReflectionHacks;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -8,7 +10,6 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -25,6 +26,11 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.uninvitedGuests.clown.oswaldCards.Brainwash;
+import ruina.monsters.uninvitedGuests.clown.oswaldCards.Catch;
+import ruina.monsters.uninvitedGuests.clown.oswaldCards.Climax;
+import ruina.monsters.uninvitedGuests.clown.oswaldCards.Fun;
+import ruina.monsters.uninvitedGuests.clown.oswaldCards.Pow;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
@@ -53,9 +59,10 @@ public class Oswald extends AbstractCardMonster
     public final int funHits = 2;
     public final int climaxDamage = calcAscensionDamage(4);
     public int climaxHits = 3;
+    public final int climaxHitIncrease = 1;
 
     public final int STATUS = calcAscensionSpecial(2);
-    public final int STRENGTH = calcAscensionSpecial(3);
+    public final int STRENGTH = calcAscensionSpecial(1);
     public final int WEAK = calcAscensionSpecial(2);
     public final int BRAINWASH_LENGTH = 2;
     public final int BRAINWASH_HITS = 4;
@@ -71,7 +78,7 @@ public class Oswald extends AbstractCardMonster
     }
 
     public Oswald(final float x, final float y) {
-        super(NAME, ID, 650, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 650, -5.0F, 0, 200.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Oswald/Spriter/Oswald.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
@@ -85,12 +92,6 @@ public class Oswald extends AbstractCardMonster
         addMove(CATCH, Intent.DEBUFF);
         addMove(POW, Intent.BUFF);
         addMove(BRAINWASH, Intent.STRONG_DEBUFF);
-
-//        cardList.add(new Circulation(this));
-//        cardList.add(new Nails(this));
-//        cardList.add(new Siphon(this));
-//        cardList.add(new Bloodspreading(this));
-//        cardList.add(new Inject(this));
     }
 
     @Override
@@ -124,9 +125,10 @@ public class Oswald extends AbstractCardMonster
                         slashAnimation(target);
                     }
                     dmg(target, info);
-                    resetIdle();
+                    waitAnimation();
                 }
-                climaxHits++;
+                resetIdle();
+                climaxHits += climaxHitIncrease;
                 addMove(CLIMAX, Intent.ATTACK, climaxDamage, climaxHits, true);
                 break;
             }
@@ -145,7 +147,7 @@ public class Oswald extends AbstractCardMonster
             case CATCH: {
                 buffAnimation();
                 intoDrawMo(new Wound(), STATUS, this);
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case POW: {
@@ -166,12 +168,15 @@ public class Oswald extends AbstractCardMonster
                             owner.halfDead = false;
                             ((AbstractAllyMonster) owner).isAlly = false;
                             ((AbstractAllyMonster) owner).setAnimationFlip(false, false);
+                            Color color = new Color(1.0F, 1.0F, 1.0F, 0.5F);
+                            ReflectionHacks.setPrivate(owner, AbstractMonster.class, "intentColor", color);
                         }
                         if (owner instanceof Tiph) {
                             ((Tiph) owner).onBrainwashed();
                         }
                         amount2 = BRAINWASH_HITS;
                         updateDescription();
+                        AbstractDungeon.onModifyPower();
                     }
 
                     @Override
@@ -266,11 +271,11 @@ public class Oswald extends AbstractCardMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(CLIMAX)) {
-            setMoveShortcut(FUN, MOVES[FUN], cardList.get(FUN).makeStatEquivalentCopy());
+            setMoveShortcut(FUN, MOVES[FUN], getMoveCardFromByte(FUN));
         } else if (this.lastMove(FUN)) {
-            setMoveShortcut(CATCH, MOVES[CATCH], cardList.get(CATCH).makeStatEquivalentCopy());
+            setMoveShortcut(CATCH, MOVES[CATCH], getMoveCardFromByte(CATCH));
         } else {
-            setMoveShortcut(CLIMAX, MOVES[CLIMAX], cardList.get(CLIMAX).makeStatEquivalentCopy());
+            setMoveShortcut(CLIMAX, MOVES[CLIMAX], getMoveCardFromByte(CLIMAX));
         }
     }
 
@@ -278,22 +283,26 @@ public class Oswald extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (this.lastMove(BRAINWASH, moveHistory) || this.lastMove(CATCH, moveHistory)) {
-            setAdditionalMoveShortcut(FUN, moveHistory, cardList.get(FUN).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(FUN, moveHistory, getMoveCardFromByte(FUN));
         } else if (this.lastMove(FUN, moveHistory)) {
-            setAdditionalMoveShortcut(POW, moveHistory, cardList.get(POW).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(POW, moveHistory, getMoveCardFromByte(POW));
         } else {
-            if (!tiph.isDead && !tiph.isDying) {
-                setAdditionalMoveShortcut(BRAINWASH, moveHistory, cardList.get(BRAINWASH).makeStatEquivalentCopy());
+            if (firstMove || (tiph != null && !tiph.isDead && !tiph.isDying)) {
+                setAdditionalMoveShortcut(BRAINWASH, moveHistory, getMoveCardFromByte(BRAINWASH));
             } else {
-                setAdditionalMoveShortcut(CATCH, moveHistory, cardList.get(CATCH).makeStatEquivalentCopy());
+                setAdditionalMoveShortcut(CATCH, moveHistory, getMoveCardFromByte(CATCH));
             }
         }
     }
 
     protected AbstractCard getMoveCardFromByte(Byte move) {
-        switch (move){
-            default: return new Madness();
-        }
+        ArrayList<AbstractCard> list = new ArrayList<>();
+        list.add(new Climax(this));
+        list.add(new Fun(this));
+        list.add(new Catch(this));
+        list.add(new Pow(this));
+        list.add(new Brainwash(this));
+        return list.get(move);
     }
 
     @Override

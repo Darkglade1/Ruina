@@ -388,5 +388,33 @@
   "${ModID}:Chain": {
     "NAME": "Degraded Chain",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  },
+  "${ModID}:Climax": {
+    "NAME": "Rising Climax",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Increase the number of hits this combat by !ruina:SecondMagic!."
+  },
+  "${ModID}:Fun": {
+    "NAME": "Let's Have Some Fun",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Catch": {
+    "NAME": "Here, Catch",
+    "DESCRIPTION": "Shuffle !M! *Wounds into your draw pile."
+  },
+  "${ModID}:Pow": {
+    "NAME": "Pow! Kablammo!",
+    "DESCRIPTION": "Apply !M! Weak. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:Brainwash": {
+    "NAME": "We Need You, You Know",
+    "DESCRIPTION": "Apply !M! *Brainwash."
+  },
+  "${ModID}:Kick": {
+    "NAME": "Augury Kick",
+    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! Strength."
+  },
+  "${ModID}:Confrontation": {
+    "NAME": "Confrontation",
+    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! *Protection."
   }
 }

@@ -720,10 +720,10 @@
   "${ModID}:Oswald": {
     "MOVES": [
       "Rising Climax",
-      "Let's Have Some Fun~",
-      "Here, Catch~",
+      "Let's Have Some Fun",
+      "Here, Catch",
       "Pow! Kablammo!",
-      "We Need You, You Know~"
+      "We Need You, You Know"
     ],
     "NAME": "Oswald",
     "DIALOG": [
