@@ -28,6 +28,9 @@ import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
+import ruina.cards.AttackPrescript;
+import ruina.cards.PowerPrescript;
+import ruina.cards.SkillPrescript;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
@@ -101,9 +104,17 @@ public class Netzach extends AbstractAllyCardMonster
             }
         }
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            final ArrayList<AbstractCard> prescripts = new ArrayList<>();
+
             @Override
             public void atStartOfTurn() {
-
+                if (prescripts.isEmpty()) {
+                    prescripts.add(new AttackPrescript());
+                    prescripts.add(new SkillPrescript());
+                    prescripts.add(new PowerPrescript());
+                }
+                AbstractCard chosenCard = prescripts.remove(AbstractDungeon.monsterRng.random(prescripts.size() - 1));
+                makeInHand(chosenCard);
             }
 
             @Override

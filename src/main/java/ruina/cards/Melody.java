@@ -17,7 +17,6 @@ import static ruina.util.Wiz.monsterList;
 public class Melody extends AbstractRuinaCard {
     public final static String ID = makeID(Melody.class.getSimpleName());
 
-
     public Melody() {
         super(ID, -2, CardType.CURSE, CardRarity.CURSE, CardTarget.NONE, CardColor.CURSE);
     }

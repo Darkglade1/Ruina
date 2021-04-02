@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -103,6 +104,7 @@ public class Bremen extends AbstractCardMonster
         }
         atb(new TalkAction(this, DIALOG[0]));
         applyToTarget(this, this, melodyPower);
+        AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(melodyCard));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -116,72 +118,87 @@ public class Bremen extends AbstractCardMonster
         }
         switch (move.nextMove) {
             case MELODY: {
+                bluntAnimation(target);
                 dmg(target, info);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 resetIdle();
                 break;
             }
             case NEIGH: {
+                slashAnimation(target);
                 dmg(target, info);
                 resetIdle();
                 break;
             }
             case BAWK: {
-                buffAnimation();
+                debuffAnimation();
                 intoDrawMo(new Dazed(), STATUS, this);
                 resetIdle(1.0f);
                 break;
             }
             case RARF: {
-                buffAnimation();
+                pierceAnimation(target);
                 block(this, BLOCK);
                 applyToTarget(target, this, new Paralysis(target, PARALYSIS));
                 resetIdle(1.0f);
                 break;
             }
             case TENDON: {
-                specialAnimation();
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        slashAnimation(target);
+                    } else {
+                        pierceAnimation(target);
+                    }
                     dmg(target, info);
-                    resetIdle();
+                    resetIdle(1.0f);
                 }
                 break;
             }
             case TRIO: {
-                specialAnimation();
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        specialAttackAnimation(target);
+                    } else {
+                        specialAttackAnimation2(target);
+                    }
                     dmg(target, info);
-                    resetIdle();
+                    resetIdle(1.0f);
                 }
                 currentMelodyLength += MELODY_LENGTH_INCREASE;
                 melodyPower.amount = currentMelodyLength;
+                cooldown = TRIO_COOLDOWN + 1;
                 break;
             }
         }
     }
 
     private void bluntAnimation(AbstractCreature enemy) {
-        animationAction("Blunt", "OswaldHori", enemy, this);
+        animationAction("Blunt", "BluntHori", enemy, this);
     }
 
     private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "OswaldStab", enemy, this);
+        animationAction("Pierce", "BremenDog", enemy, this);
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "OswaldVert", enemy, this);
+        animationAction("Slash", "BremenHorse", enemy, this);
     }
 
-    private void specialAnimation() {
-        animationAction("Special", "OswaldAttract", this);
+    private void blockAnimation() {
+        animationAction("Block", null, this);
     }
 
     private void specialAttackAnimation(AbstractCreature enemy) {
-        animationAction("Special", "OswaldFinish", enemy, this);
+        animationAction("Special1", "BremenStrong", enemy, this);
     }
 
-    private void buffAnimation() {
-        animationAction("Block", "OswaldLaugh", this);
+    private void specialAttackAnimation2(AbstractCreature enemy) {
+        animationAction("Special2", "BremenStrongFar", enemy, this);
+    }
+
+    private void debuffAnimation() {
+        animationAction("Debuff", "BremenChicken", this);
     }
 
 

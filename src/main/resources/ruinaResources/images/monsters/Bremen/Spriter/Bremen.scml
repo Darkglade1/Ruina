@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Blue_Bremen_Default.png" width="94" height="257" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Blue_Bremen_Slash.png" width="236" height="230" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Blue_Bremen_Penetrate.png" width="251" height="240" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Blue_Bremen_Hit.png" width="274" height="233" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Blue_Bremen_Guard.png" width="141" height="244" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Blue_Bremen_Fire.png" width="259" height="300" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Blue_Bremen_S1.png" width="302" height="293" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="Blue_Bremen_S2.png" width="342" height="261" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Bremen">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Bremen_Default">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-55" y="259"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Slash" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Bremen_Slash">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-165" y="224"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Pierce" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Bremen_Penetrate">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-190" y="232"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Blunt" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Bremen_Hit">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-115" y="238"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Block" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Bremen_Guard">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-89" y="246"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Debuff" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Bremen_Fire">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-131" y="289"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="Special1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Bremen_S1">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-160" y="293"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="7" name="Special2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Bremen_S2">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-166" y="260"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

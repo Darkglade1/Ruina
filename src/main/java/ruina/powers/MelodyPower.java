@@ -17,7 +17,7 @@ import static com.megacrit.cardcrawl.core.CardCrawlGame.languagePack;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.applyToTarget;
 
-public class MelodyPower extends AbstractEasyPower {
+public class MelodyPower extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID("Melody");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
@@ -27,7 +27,7 @@ public class MelodyPower extends AbstractEasyPower {
     private final ArrayList<AbstractCard.CardType> currentProgress = new ArrayList<>();
     boolean completed = false;
     private Melody melodyCard;
-    private Bremen bremen;
+    private final Bremen bremen;
     private final int MELODY_PLAYER_STR;
     private final int MELODY_BOSS_STR;
 

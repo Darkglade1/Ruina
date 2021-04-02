@@ -428,5 +428,17 @@
       "[#00ff00]Attack[] ",
       "[#00ff00]Skill[] ",
       "[#00ff00]Power[] "]
+  },
+  "${ModID}:AttackPrescript": {
+    "NAME": "Attack Prescript",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:SkillPrescript": {
+    "NAME": "Skill Prescript",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:PowerPrescript": {
+    "NAME": "Power Prescript",
+    "DESCRIPTION": "Gain !M! Strength."
   }
 }
