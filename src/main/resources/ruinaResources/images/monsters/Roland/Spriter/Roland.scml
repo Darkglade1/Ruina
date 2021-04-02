@@ -3,24 +3,27 @@
     <folder id="0">
         <file id="0" name="BlackSilence_Default.png" width="84" height="237" pivot_x="0" pivot_y="1"/>
         <file id="1" name="BlackSilence_Hit.png" width="240" height="220" pivot_x="0" pivot_y="1"/>
-        <file id="2" name="BlackSilence_Penetrate.png" width="690" height="512" pivot_x="0" pivot_y="1"/>
-        <file id="3" name="BlackSilence_S1.png" width="449" height="343" pivot_x="0" pivot_y="1"/>
-        <file id="4" name="BlackSilence_S2.png" width="508" height="299" pivot_x="0" pivot_y="1"/>
-        <file id="5" name="BlackSilence_S3.png" width="362" height="263" pivot_x="0" pivot_y="1"/>
-        <file id="6" name="BlackSilence_S4.png" width="331" height="270" pivot_x="0" pivot_y="1"/>
-        <file id="7" name="BlackSilence_S5.png" width="368" height="278" pivot_x="0" pivot_y="1"/>
-        <file id="8" name="BlackSilence_S6.png" width="268" height="270" pivot_x="0" pivot_y="1"/>
-        <file id="9" name="BlackSilence_S7.png" width="440" height="252" pivot_x="0" pivot_y="1"/>
-        <file id="10" name="BlackSilence_S8.png" width="467" height="308" pivot_x="0" pivot_y="1"/>
-        <file id="11" name="BlackSilence_S9.png" width="512" height="484" pivot_x="0" pivot_y="1"/>
-        <file id="12" name="BlackSilence_S10.png" width="755" height="423" pivot_x="0" pivot_y="1"/>
-        <file id="13" name="BlackSilence_S11.png" width="556" height="299" pivot_x="0" pivot_y="1"/>
-        <file id="14" name="BlackSilence_S12.png" width="512" height="424" pivot_x="0" pivot_y="1"/>
-        <file id="15" name="BlackSilence_S13.png" width="512" height="393" pivot_x="0" pivot_y="1"/>
-        <file id="16" name="BlackSilence_S14.png" width="807" height="582" pivot_x="0" pivot_y="1"/>
-        <file id="17" name="BlackSilence_Slash.png" width="512" height="337" pivot_x="0" pivot_y="1"/>
-        <file id="18" name="Pierce.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
-        <file id="19" name="Hori.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="BlackSilence_Penetrate.png" width="570" height="188" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="BlackSilence_S1.png" width="372" height="243" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="BlackSilence_S2.png" width="441" height="239" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="BlackSilence_S3.png" width="256" height="213" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="BlackSilence_S4.png" width="260" height="210" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="BlackSilence_S5.png" width="295" height="186" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="BlackSilence_S6.png" width="178" height="184" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="BlackSilence_S7.png" width="424" height="182" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="BlackSilence_S8.png" width="390" height="257" pivot_x="0" pivot_y="1"/>
+        <file id="11" name="BlackSilence_S9.png" width="380" height="380" pivot_x="0" pivot_y="1"/>
+        <file id="12" name="BlackSilence_S10.png" width="617" height="341" pivot_x="0" pivot_y="1"/>
+        <file id="13" name="BlackSilence_S11.png" width="481" height="260" pivot_x="0" pivot_y="1"/>
+        <file id="14" name="BlackSilence_S12.png" width="349" height="358" pivot_x="0" pivot_y="1"/>
+        <file id="15" name="BlackSilence_S13.png" width="369" height="393" pivot_x="0" pivot_y="1"/>
+        <file id="16" name="BlackSilence_S14.png" width="374" height="452" pivot_x="0" pivot_y="1"/>
+        <file id="17" name="BlackSilence_Slash.png" width="290" height="252" pivot_x="0" pivot_y="1"/>
+        <file id="18" name="3.png" width="338" height="118" pivot_x="0" pivot_y="1"/>
+        <file id="19" name="4.png" width="448" height="209" pivot_x="0" pivot_y="1"/>
+        <file id="20" name="5.png" width="326" height="414" pivot_x="0" pivot_y="1"/>
+        <file id="21" name="8.png" width="348" height="353" pivot_x="0" pivot_y="1"/>
+        <file id="22" name="9.png" width="305" height="381" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="Roland">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -31,19 +34,25 @@
             </mainline>
             <timeline id="0" name="BlackSilence_Default">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-33" y="241"/>
+                    <object folder="0" file="0" x="-38" y="238" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="1" name="Attack" length="1000" interval="100">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
                 </key>
             </mainline>
             <timeline id="0" name="BlackSilence_Hit">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-161" y="224"/>
+                    <object folder="0" file="1" x="-155" y="222" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="3">
+                <key id="0" spin="0">
+                    <object folder="0" file="18" x="-151" y="209" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -51,11 +60,17 @@
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
                 </key>
             </mainline>
             <timeline id="0" name="BlackSilence_Penetrate">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-147" y="489"/>
+                    <object folder="0" file="2" x="-61" y="187" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="4">
+                <key id="0" spin="0">
+                    <object folder="0" file="19" x="151" y="227"/>
                 </key>
             </timeline>
         </animation>
@@ -67,7 +82,7 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S1">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-168" y="325"/>
+                    <object folder="0" file="3" x="-91" y="246" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -79,7 +94,7 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S2">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-194" y="280"/>
+                    <object folder="0" file="4" x="-163" y="240" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -91,7 +106,7 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S11">
                 <key id="0" spin="0">
-                    <object folder="0" file="13" x="-127" y="280"/>
+                    <object folder="0" file="13" x="-64" y="259" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -103,7 +118,7 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S3">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="-215" y="246"/>
+                    <object folder="0" file="5" x="-181" y="215" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -116,12 +131,12 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S4">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="-199" y="254"/>
+                    <object folder="0" file="6" x="-182" y="218" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="Hori">
+            <timeline id="1" name="5">
                 <key id="0" spin="0">
-                    <object folder="0" file="19" x="857.25" y="-530.3125" angle="206.861918" scale_x="1" scale_y="3.678664"/>
+                    <object folder="0" file="20" x="-29.586207" y="331.37931" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -133,7 +148,7 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S5">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="-139" y="251"/>
+                    <object folder="0" file="7" x="-66" y="188" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -145,7 +160,7 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S6">
                 <key id="0" spin="0">
-                    <object folder="0" file="8" x="-121" y="247"/>
+                    <object folder="0" file="8" x="-70" y="190" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -157,25 +172,25 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S7">
                 <key id="0" spin="0">
-                    <object folder="0" file="9" x="-276" y="225"/>
+                    <object folder="0" file="9" x="-256" y="187" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="11" name="Club1" length="1000" interval="100">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
-                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
                 </key>
             </mainline>
-            <timeline id="0" name="BlackSilence_S8">
+            <timeline id="0" name="BlackSilence_S8_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="10" x="-226" y="287"/>
+                    <object folder="0" file="10" x="-171" y="251" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="Hori_000">
+            <timeline id="1" name="8">
                 <key id="0" spin="0">
-                    <object folder="0" file="19" x="1229.119318" y="-256.107955" angle="230.912184" scale_x="1" scale_y="4.793021"/>
+                    <object folder="0" file="21" x="-124.172414" y="383.172414" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -188,12 +203,12 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S9">
                 <key id="0" spin="0">
-                    <object folder="0" file="11" x="-282" y="320"/>
+                    <object folder="0" file="11" x="-205" y="261" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="Hori_001">
+            <timeline id="1" name="9">
                 <key id="0" spin="0">
-                    <object folder="0" file="19" x="972.727273" y="-309.090909" angle="223.058514" scale_x="1" scale_y="3.879655"/>
+                    <object folder="0" file="22" x="-41.206897" y="268.275862" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -201,11 +216,17 @@
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
                 </key>
             </mainline>
             <timeline id="0" name="BlackSilence_S10">
                 <key id="0" spin="0">
-                    <object folder="0" file="12" x="-148" y="327"/>
+                    <object folder="0" file="12" x="-75" y="328" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="8_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="21" x="75" y="408"/>
                 </key>
             </timeline>
         </animation>
@@ -218,12 +239,12 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S12">
                 <key id="0" spin="0">
-                    <object folder="0" file="14" x="-307" y="286"/>
+                    <object folder="0" file="14" x="-252" y="219" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="Hori_002">
+            <timeline id="1" name="9_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="19" x="455.30303" y="-856.565657" angle="170.028626" scale_x="1.660757" scale_y="3.443186"/>
+                    <object folder="0" file="22" x="102.965517" y="155.448276" angle="289.440035"/>
                 </key>
             </timeline>
         </animation>
@@ -236,12 +257,12 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S13">
                 <key id="0" spin="0">
-                    <object folder="0" file="15" x="-308" y="373"/>
+                    <object folder="0" file="15" x="-267" y="371" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="Hori_003">
+            <timeline id="1" name="8_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="19" x="688.372093" y="1334.883721" angle="305.80061" scale_x="1.508373" scale_y="4.696723"/>
+                    <object folder="0" file="21" x="179.413793" y="414" angle="340.117788" scale_x="-1"/>
                 </key>
             </timeline>
         </animation>
@@ -254,12 +275,12 @@
             </mainline>
             <timeline id="0" name="BlackSilence_S14">
                 <key id="0" spin="0">
-                    <object folder="0" file="16" x="-424" y="323"/>
+                    <object folder="0" file="16" x="-236" y="220" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="Hori_004">
+            <timeline id="1" name="9_001">
                 <key id="0" spin="0">
-                    <object folder="0" file="19" x="-246.985213" y="-1450.458606" angle="155.027964" scale_x="1" scale_y="6.009569"/>
+                    <object folder="0" file="22" x="138.137931" y="87.862069" angle="287.326137"/>
                 </key>
             </timeline>
         </animation>
@@ -272,12 +293,12 @@
             </mainline>
             <timeline id="0" name="BlackSilence_Slash">
                 <key id="0" spin="0">
-                    <object folder="0" file="17" x="-296" y="270"/>
+                    <object folder="0" file="17" x="-202" y="191" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="Hori_004">
+            <timeline id="1" name="5_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="19" x="-366.593057" y="-1315.164488" angle="150.073307" scale_x="1" scale_y="6.009569"/>
+                    <object folder="0" file="20" x="-9" y="297"/>
                 </key>
             </timeline>
         </animation>
