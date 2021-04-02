@@ -21,7 +21,9 @@ public class FadedMemories extends AbstractEgoCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         for (AbstractMonster mo : monsterList()) {
-            atb(new DrawCardAction(p, magicNumber));
+            if (!mo.isDeadOrEscaped()) {
+                atb(new DrawCardAction(p, magicNumber));
+            }
         }
     }
 

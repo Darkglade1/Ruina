@@ -278,6 +278,9 @@ public class Chesed extends AbstractAllyCardMonster
 
     @Override
     protected void getMove(final int num) {
+        if (moveHistory.size() >= 3) {
+            moveHistory.clear(); //resets the cooldowns after all moves have been used once
+        }
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (!this.lastMove(BATTLEFIELD_COMMAND) && !this.lastMoveBefore(BATTLEFIELD_COMMAND)) {
             possibilities.add(BATTLEFIELD_COMMAND);

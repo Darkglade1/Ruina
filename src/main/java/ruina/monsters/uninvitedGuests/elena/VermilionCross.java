@@ -207,6 +207,9 @@ public class VermilionCross extends AbstractCardMonster
             setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
+            if (moveHistory.size() >= 3) {
+                moveHistory.clear(); //resets the cooldowns after all moves have been used once
+            }
             if (!this.lastMove(OBSTRUCT) && !this.lastMoveBefore(OBSTRUCT)) {
                 possibilities.add(OBSTRUCT);
             }
@@ -224,6 +227,9 @@ public class VermilionCross extends AbstractCardMonster
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
+        if (moveHistory.size() >= 3) {
+            moveHistory.clear(); //resets the cooldowns after all moves have been used once
+        }
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (!this.lastMove(RAMPAGE, moveHistory) && !this.lastMoveBefore(RAMPAGE, moveHistory)) {
             possibilities.add(RAMPAGE);

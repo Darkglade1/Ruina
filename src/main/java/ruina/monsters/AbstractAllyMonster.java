@@ -199,6 +199,11 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
         this.healthBarUpdatedEvent();
     }
 
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(false);
+    }
+
     public void setAnimationFlip(boolean horizontal, boolean vertical) {
         animation.setFlip(horizontal, vertical);
     }

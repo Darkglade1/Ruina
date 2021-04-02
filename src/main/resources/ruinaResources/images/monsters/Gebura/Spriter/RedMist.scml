@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0" name="Kali">
-        <file id="0" name="Kali/Idle.png" width="343" height="365" pivot_x="0" pivot_y="1"/>
-        <file id="1" name="Kali/Slash.png" width="505" height="358" pivot_x="0" pivot_y="1"/>
-        <file id="2" name="Kali/Pierce.png" width="557" height="218" pivot_x="0" pivot_y="1"/>
-        <file id="3" name="Kali/Blunt.png" width="467" height="370" pivot_x="0" pivot_y="1"/>
-        <file id="4" name="Kali/Vert Start.png" width="185" height="438" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="Kali/Idle.png" width="354" height="386" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Kali/Slash.png" width="505" height="359" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Kali/Pierce.png" width="564" height="235" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Kali/Blunt.png" width="393" height="304" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Kali/Vert Start.png" width="191" height="438" pivot_x="0" pivot_y="1"/>
         <file id="5" name="Kali/Vert Finish.png" width="508" height="404" pivot_x="0" pivot_y="1"/>
-        <file id="6" name="Kali/Damaged.png" width="355" height="353" pivot_x="0" pivot_y="1"/>
     </folder>
     <folder id="1" name="Ego">
         <file id="0" name="Ego/Idle.png" width="406" height="220" pivot_x="0" pivot_y="1"/>
@@ -32,7 +31,7 @@
             </mainline>
             <timeline id="0" name="Idle">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-221" y="226.857143" angle="0" scale_x="0.9" scale_y="0.9"/>
+                    <object folder="0" file="0" x="-221" y="242.857143" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
         </animation>
@@ -86,7 +85,7 @@
             </mainline>
             <timeline id="0" name="Pierce">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-365.052632" y="199.894737" angle="0" scale_x="0.9" scale_y="0.9"/>
+                    <object folder="0" file="2" x="-374.052632" y="211.894737" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
         </animation>
@@ -111,7 +110,7 @@
             </mainline>
             <timeline id="0" name="Blunt">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-118.157895" y="308.684211" angle="0" scale_x="0.9" scale_y="0.9"/>
+                    <object folder="0" file="3" x="-74.157895" y="276.684211" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
             <timeline id="1" name="effect_000">
@@ -195,18 +194,6 @@
             <timeline id="0" name="Horizontal">
                 <key id="0" spin="0">
                     <object folder="1" file="8" x="-412.913043" y="463.130435" angle="0"/>
-                </key>
-            </timeline>
-        </animation>
-        <animation id="13" name="Staggered" length="1000" interval="100">
-            <mainline>
-                <key id="0">
-                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
-                </key>
-            </mainline>
-            <timeline id="0" name="Damaged">
-                <key id="0" spin="0">
-                    <object folder="0" file="6" x="-213.684211" y="220.631579" angle="0" scale_x="0.9" scale_y="0.9"/>
                 </key>
             </timeline>
         </animation>

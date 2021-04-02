@@ -312,7 +312,7 @@
   },
   "${ModID}:GeburaRedMist": {
     "NAME": "The Red Mist",
-    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, gains #b", " #yStrength.", " NL #yManifests #yEGO and doubles its #yStrength in #b", " turns."]
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, gains #b", " #yStrength.", " NL #yManifests #yEGO and doubles its #yStrength in #b", " turn(s)."]
   },
   "${ModID}:Relentless": {
     "NAME": "Relentless",

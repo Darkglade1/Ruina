@@ -72,7 +72,7 @@ public class Binah extends AbstractAllyCardMonster
     }
 
     public Binah(final float x, final float y) {
-        super(NAME, ID, 180, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 150, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Binah/Spriter/Binah.scml"));
         this.animation.setFlip(true, false);
 
@@ -201,6 +201,9 @@ public class Binah extends AbstractAllyCardMonster
 
     @Override
     protected void getMove(final int num) {
+        if (moveHistory.size() >= 3) {
+            moveHistory.clear(); //resets the cooldowns after all moves have been used once
+        }
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (!this.lastMove(DEGRADED_PILLAR) && !this.lastMoveBefore(DEGRADED_PILLAR)) {
             possibilities.add(DEGRADED_PILLAR);

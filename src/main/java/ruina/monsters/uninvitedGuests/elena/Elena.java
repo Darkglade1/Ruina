@@ -226,6 +226,9 @@ public class Elena extends AbstractCardMonster
 
     @Override
     protected void getMove(final int num) {
+        if (moveHistory.size() >= 3) {
+            moveHistory.clear(); //resets the cooldowns after all moves have been used once
+        }
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (!this.lastMove(SANGUINE_NAILS) && !this.lastMoveBefore(SANGUINE_NAILS)) {
             possibilities.add(SANGUINE_NAILS);
@@ -243,6 +246,9 @@ public class Elena extends AbstractCardMonster
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
+        if (moveHistory.size() >= 3) {
+            moveHistory.clear(); //resets the cooldowns after all moves have been used once
+        }
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (!this.lastMove(BLOODSPREADING, moveHistory) && !this.lastMoveBefore(BLOODSPREADING, moveHistory)) {
             possibilities.add(BLOODSPREADING);
