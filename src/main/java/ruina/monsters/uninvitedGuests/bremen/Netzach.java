@@ -1,20 +1,13 @@
 package ruina.monsters.uninvitedGuests.bremen;
 
-import basemod.ReflectionHacks;
-import basemod.helpers.VfxBuilder;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -22,9 +15,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
@@ -32,16 +22,8 @@ import ruina.cards.AttackPrescript;
 import ruina.cards.PowerPrescript;
 import ruina.cards.SkillPrescript;
 import ruina.monsters.AbstractAllyCardMonster;
-import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.uninvitedGuests.elena.Elena;
-import ruina.monsters.uninvitedGuests.elena.VermilionCross;
-import ruina.monsters.uninvitedGuests.elena.binahCards.Chain;
-import ruina.monsters.uninvitedGuests.elena.binahCards.Fairy;
-import ruina.monsters.uninvitedGuests.elena.binahCards.Pillar;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
-import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
@@ -153,7 +135,7 @@ public class Netzach extends AbstractAllyCardMonster
         }
         switch (this.nextMove) {
             case WILL: {
-                specialAnimation(target);
+                blockAnimation();
                 block(adp(), BLOCK);
                 atb(new AllyGainBlockAction(this, this, BLOCK));
                 applyToTarget(adp(), this, new DrawCardNextTurnPower(adp(), DRAW));
@@ -161,15 +143,19 @@ public class Netzach extends AbstractAllyCardMonster
                 break;
             }
             case BALEFUL: {
-                bluntAnimation(target);
+                specialAnimation(target);
                 dmg(target, info);
                 applyToTarget(target, this, new Erosion(target, EROSION));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case BLIND_FAITH: {
                 for (int i = 0; i < multiplier; i++) {
-                    slashAnimation(target);
+                    if (i % 2 == 0) {
+                        pierceAnimation(target);
+                    } else {
+                        slashAnimation(target);
+                    }
                     dmg(target, info);
                     resetIdle();
                 }
@@ -225,15 +211,19 @@ public class Netzach extends AbstractAllyCardMonster
     }
 
     private void specialAnimation(AbstractCreature enemy) {
-        animationAction("Special", "BinahStoneReady", enemy, this);
+        animationAction("Special", "YanBrand", enemy, this);
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "BinahFairy", enemy, this);
+        animationAction("Slash", "YanVert", enemy, this);
     }
 
-    private void bluntAnimation(AbstractCreature enemy) {
-        animationAction("Blunt", "BinahChain", enemy, this);
+    private void pierceAnimation(AbstractCreature enemy) {
+        animationAction("Pierce", "YanStab", enemy, this);
+    }
+
+    private void blockAnimation() {
+        animationAction("Block", null, this);
     }
 
 }
