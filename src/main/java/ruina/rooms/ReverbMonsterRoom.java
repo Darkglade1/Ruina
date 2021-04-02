@@ -3,8 +3,6 @@ package ruina.rooms;
 import actlikeit.RazIntent.AssetLoader;
 import actlikeit.patches.AbstractRoomUpdateIncrementElitesPatch;
 import basemod.BaseMod;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 
 public class ReverbMonsterRoom extends MonsterRoom {

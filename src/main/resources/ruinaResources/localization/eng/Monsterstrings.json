@@ -740,5 +740,31 @@
       "The only clown here is you.",
       "What a nuisance."
     ]
+  },
+  "${ModID}:Bremen": {
+    "MOVES": [
+      "Everlasting Melody",
+      "NEIGHHH",
+      "BAWK BAWK",
+      "RARF RARF",
+      "Powerful Tendon Chords",
+      "Trio"
+    ],
+    "NAME": "Musicians of Bremen",
+    "DIALOG": [
+      "RARF! BAWK! NEIGHHH!"
+    ]
+  },
+  "${ModID}:Netzach": {
+    "MOVES": [
+      "Will of the City",
+      "Baleful Brand",
+      "Blind Faith"
+    ],
+    "NAME": "Netzach",
+    "DIALOG": [
+      ". . . Shut up.",
+      "At least that's over now. Care for a drink?"
+    ]
   }
 }

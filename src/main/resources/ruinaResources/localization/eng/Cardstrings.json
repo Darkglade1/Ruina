@@ -416,5 +416,17 @@
   "${ModID}:Confrontation": {
     "NAME": "Confrontation",
     "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! *Protection."
+  },
+  "${ModID}:Melody": {
+    "NAME": "Melody",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": ["Play these cards in order: ",
+      "Attack ",
+      "Skill ",
+      "Power ",
+      "(Completed)",
+      "[#00ff00]Attack[] ",
+      "[#00ff00]Skill[] ",
+      "[#00ff00]Power[] "]
   }
 }

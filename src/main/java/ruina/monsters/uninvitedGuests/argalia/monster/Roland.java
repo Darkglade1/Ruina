@@ -108,7 +108,7 @@ public class Roland extends AbstractAllyCardMonster {
         super(NAME, ID, 750, 10.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Roland/Spriter/Roland.scml"));
 
-        this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.setHp(this.maxHealth);
         this.type = EnemyType.BOSS;
 
         addMove(CRYSTAL, Intent.ATTACK_DEFEND, crystalDamage, crystalHits, true);
