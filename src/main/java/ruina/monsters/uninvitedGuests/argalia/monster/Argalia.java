@@ -117,6 +117,12 @@ public class Argalia extends AbstractDeckMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
+    @Override
     public void usePreBattleAction()
     {
         applyToTarget(this, this, power);

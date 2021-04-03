@@ -126,6 +126,12 @@ public class Roland extends AbstractAllyCardMonster {
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
+    @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, power);
         applyToTarget(this, this, new StrengthPower(this, 1)); //because argalia starts with 1 strength so we need the PARALLEL

@@ -101,6 +101,12 @@ public class Bremen extends AbstractCardMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
+    @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Ensemble1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {

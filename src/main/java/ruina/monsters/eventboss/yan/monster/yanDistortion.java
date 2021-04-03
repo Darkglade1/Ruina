@@ -140,6 +140,12 @@ public class yanDistortion extends AbstractDeckMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
+    @Override
     public void usePreBattleAction()
     {
         AbstractDungeon.getCurrRoom().cannotLose = true;

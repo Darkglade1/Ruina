@@ -75,7 +75,7 @@ public class Shade extends AbstractDeckMonster
 
     public Shade(final float x, final float y) {
         super(NAME, ID, 300, AbstractDungeon.player.hb_x / Settings.scale, AbstractDungeon.player.hb_y / Settings.scale, AbstractDungeon.player.hb_w / Settings.scale, AbstractDungeon.player.hb_h / Settings.scale, null, x, y);
-        this.type = EnemyType.NORMAL;
+        this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));
         // you removed my yan code by accident do not remove this or it will NPE and everything will go kaboom boom die and it will be ur fault
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Shade/Spriter/Shade.scml"));
@@ -90,6 +90,12 @@ public class Shade extends AbstractDeckMonster
         name = AbstractDungeon.player.title;
         AbstractCard fillerCard = new Madness(); //in case deck somehow has no cards
         addMove((byte) fillerCard.cardID.hashCode(), Intent.ATTACK, 12);
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
     }
 
     @Override

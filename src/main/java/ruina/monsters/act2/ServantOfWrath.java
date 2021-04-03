@@ -82,6 +82,12 @@ public class ServantOfWrath extends AbstractAllyMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.ELITE;
+    }
+
+    @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning2");
         playSound("WrathMeet");

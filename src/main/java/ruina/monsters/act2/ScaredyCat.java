@@ -61,8 +61,9 @@ public class ScaredyCat extends AbstractRuinaMonster
     }
 
     @Override
-    public void usePreBattleAction() {
-
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.ELITE;
     }
 
     @Override

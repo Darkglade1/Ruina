@@ -147,7 +147,7 @@ public class KingOfGreed extends AbstractRuinaMonster
         playSound("GreedDiamond");
         float xPosition2 = -400.0F;
         float xPosition1 = -250.0F;
-        if (AbstractDungeon.ascensionLevel >= 19) {
+        if (AbstractDungeon.ascensionLevel >= 17) {
             AbstractMonster bliss1 = new BrilliantBliss(xPosition1, 0.0f);
             atb(new SpawnMonsterAction(bliss1, true));
             atb(new UsePreBattleActionAction(bliss1));

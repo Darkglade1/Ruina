@@ -120,6 +120,12 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.ELITE;
+    }
+
+    @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning3");
         AbstractDungeon.getCurrRoom().cannotLose = true;

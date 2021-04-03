@@ -72,6 +72,12 @@ public class Hermit extends AbstractMultiIntentMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.ELITE;
+    }
+
+    @Override
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof ServantOfWrath) {

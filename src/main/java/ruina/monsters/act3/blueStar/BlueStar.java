@@ -69,6 +69,12 @@ public class BlueStar extends AbstractRuinaMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.ELITE;
+    }
+
+    @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning3");
         Summon();

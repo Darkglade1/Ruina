@@ -46,7 +46,6 @@ public class QueenOfLove extends AbstractMagicalGirl
         super(NAME, ID, 120, -5.0F, 0, 170.0f, 215.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("QueenOfLove/Spriter/QueenOfLove.scml"));
         this.animation.setFlip(true, false);
-
         if (AbstractDungeon.ascensionLevel >= 9) {
             this.setHp(120);
         } else {
@@ -58,6 +57,12 @@ public class QueenOfLove extends AbstractMagicalGirl
 
         this.jester = jester;
         this.allyIcon = makeUIPath("LoveIcon.png");
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
     }
 
     @Override

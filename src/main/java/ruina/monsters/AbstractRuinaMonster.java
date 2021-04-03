@@ -42,7 +42,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
 
-    private void setUpMisc() {
+    protected void setUpMisc() {
         moves = new HashMap<>();
         this.dialogX = (this.hb_x - 70.0F) * Settings.scale;
         this.dialogY -= (this.hb_y - 55.0F) * Settings.scale;

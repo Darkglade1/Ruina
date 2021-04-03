@@ -123,6 +123,12 @@ public class Tanya extends AbstractCardMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
+    @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Ensemble2");
         AbstractDungeon.getCurrRoom().cannotLose = true;
