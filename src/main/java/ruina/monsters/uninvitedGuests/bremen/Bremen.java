@@ -83,7 +83,7 @@ public class Bremen extends AbstractCardMonster
     }
 
     public Bremen(final float x, final float y) {
-        super(NAME, ID, 800, -5.0F, 0, 200.0f, 245.0f, null, x, y);
+        super(NAME, ID, 800, -5.0F, 0, 200.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Bremen/Spriter/Bremen.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 2;
@@ -93,11 +93,11 @@ public class Bremen extends AbstractCardMonster
         this.setHp(calcAscensionTankiness(maxHealth));
 
         addMove(MELODY, Intent.ATTACK_BUFF, calcAscensionDamage(6));
-        addMove(NEIGH, Intent.ATTACK, calcAscensionDamage(22));
+        addMove(NEIGH, Intent.ATTACK, calcAscensionDamage(17));
         addMove(BAWK, Intent.DEBUFF);
         addMove(RARF, Intent.DEFEND_DEBUFF);
-        addMove(TENDON, Intent.ATTACK, calcAscensionDamage(8), tendonHits, true);
-        addMove(TRIO, Intent.ATTACK_DEBUFF, calcAscensionDamage(7), trioHits, true);
+        addMove(TENDON, Intent.ATTACK, calcAscensionDamage(6), tendonHits, true);
+        addMove(TRIO, Intent.ATTACK_DEBUFF, calcAscensionDamage(5), trioHits, true);
     }
 
     @Override
@@ -112,6 +112,7 @@ public class Bremen extends AbstractCardMonster
         applyToTarget(this, this, melodyPower);
         AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(melodyCard));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
+        applyToTarget(this, this, new StrengthPower(this, 1)); //hacky solution again LOL
     }
 
     @Override
@@ -138,7 +139,7 @@ public class Bremen extends AbstractCardMonster
             }
             case BAWK: {
                 debuffAnimation();
-                intoDrawMo(new Dazed(), STATUS, this);
+                intoDiscardMo(new Dazed(), STATUS, this);
                 resetIdle(1.0f);
                 break;
             }

@@ -42,11 +42,6 @@ public class MelodyPower extends AbstractUnremovablePower {
     }
 
     @Override
-    public void onInitialApplication() {
-
-    }
-
-    @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         if (!completed) {
             currentProgress.add(card.type);
@@ -61,6 +56,7 @@ public class MelodyPower extends AbstractUnremovablePower {
                 }
             }
             if (correct && currentProgress.size() == sequence.size()) {
+                flash();
                 completed = true;
             }
             updateMelodyText();

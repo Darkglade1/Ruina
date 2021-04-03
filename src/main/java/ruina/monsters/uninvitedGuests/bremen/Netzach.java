@@ -47,7 +47,7 @@ public class Netzach extends AbstractAllyCardMonster
     private static final byte BLIND_FAITH = 2;
 
     public final int EROSION = 3;
-    public final int BLOCK = 10;
+    public final int BLOCK = 13;
     public final int DRAW = 2;
     public final int faithHits = 2;
 
@@ -63,7 +63,7 @@ public class Netzach extends AbstractAllyCardMonster
     }
 
     public Netzach(final float x, final float y) {
-        super(NAME, ID, 180, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 220, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Netzach/Spriter/Netzach.scml"));
         this.animation.setFlip(true, false);
 
@@ -96,7 +96,7 @@ public class Netzach extends AbstractAllyCardMonster
                 if (prescripts.isEmpty()) {
                     prescripts.add(new AttackPrescript());
                     prescripts.add(new SkillPrescript());
-                    prescripts.add(new PowerPrescript());
+                    //prescripts.add(new PowerPrescript());
                 }
                 AbstractCard chosenCard = prescripts.remove(AbstractDungeon.monsterRng.random(prescripts.size() - 1));
                 makeInHand(chosenCard);

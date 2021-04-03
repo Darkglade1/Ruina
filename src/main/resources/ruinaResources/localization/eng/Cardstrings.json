@@ -451,7 +451,7 @@
   },
   "${ModID}:Bawk": {
     "NAME": "BAWK BAWK",
-    "DESCRIPTION": "Shuffle !M! *Dazed into your draw pile."
+    "DESCRIPTION": "Shuffle !M! *Dazed into your discard pile."
   },
   "${ModID}:Rarf": {
     "NAME": "RARF RARF",
