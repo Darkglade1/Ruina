@@ -332,9 +332,9 @@
   },
   "${ModID}:Messenger": {
     "NAME": "Messenger",
-    "DESCRIPTIONS": ["At the start of your turn, put a random #yPrescript card into your hand."]
+    "DESCRIPTIONS": ["At the start of this creature's turn, put a random #yPrescript card into your hand."]
   },
-  "${ModID}:Melody": {
+  "${ModID}:MelodyPower": {
     "NAME": "Melody",
     "DESCRIPTIONS": ["Each turn, a random #yMelody sequence is generated in your hand. If you complete the #yMelody by the end of the round, you gain #b", " #yStrength. If you didn't, this creature gains #b", " #yStrength."]
   }

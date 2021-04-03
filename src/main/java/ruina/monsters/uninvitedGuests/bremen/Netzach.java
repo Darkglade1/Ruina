@@ -22,6 +22,9 @@ import ruina.cards.AttackPrescript;
 import ruina.cards.PowerPrescript;
 import ruina.cards.SkillPrescript;
 import ruina.monsters.AbstractAllyCardMonster;
+import ruina.monsters.uninvitedGuests.bremen.netzachCards.BalefulBrand;
+import ruina.monsters.uninvitedGuests.bremen.netzachCards.Faith;
+import ruina.monsters.uninvitedGuests.bremen.netzachCards.Will;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
 import ruina.vfx.WaitEffect;
@@ -71,9 +74,9 @@ public class Netzach extends AbstractAllyCardMonster
         addMove(BALEFUL, Intent.ATTACK_DEBUFF, 17);
         addMove(BLIND_FAITH, Intent.ATTACK, 13, faithHits, true);
 
-//        cardList.add(new Pillar(this));
-//        cardList.add(new Chain(this));
-//        cardList.add(new Fairy(this));
+        cardList.add(new Will(this));
+        cardList.add(new BalefulBrand(this));
+        cardList.add(new Faith(this));
 
         this.allyIcon = makeUIPath("NetzachIcon.png");
     }

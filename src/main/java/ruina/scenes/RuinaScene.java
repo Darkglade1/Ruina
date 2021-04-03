@@ -46,6 +46,7 @@ import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
+import ruina.monsters.uninvitedGuests.bremen.Bremen;
 import ruina.monsters.uninvitedGuests.clown.Oswald;
 import ruina.monsters.uninvitedGuests.elena.Elena;
 import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
@@ -145,6 +146,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Hokma");
                 } else if (mo instanceof Oswald) {
                     this.bg = this.atlas.findRegion("mod/Tiph");
+                } else if (mo instanceof Bremen) {
+                    this.bg = this.atlas.findRegion("mod/Netzach");
                 } else {
                     setBgs();
                 }

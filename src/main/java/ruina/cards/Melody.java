@@ -19,6 +19,7 @@ public class Melody extends AbstractRuinaCard {
 
     public Melody() {
         super(ID, -2, CardType.CURSE, CardRarity.CURSE, CardTarget.NONE, CardColor.CURSE);
+        selfRetain = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

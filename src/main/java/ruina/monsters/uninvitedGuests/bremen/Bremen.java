@@ -21,6 +21,12 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.cards.Melody;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.uninvitedGuests.bremen.bremenCards.Bawk;
+import ruina.monsters.uninvitedGuests.bremen.bremenCards.EverlastingMelody;
+import ruina.monsters.uninvitedGuests.bremen.bremenCards.Neigh;
+import ruina.monsters.uninvitedGuests.bremen.bremenCards.Rarf;
+import ruina.monsters.uninvitedGuests.bremen.bremenCards.Tendon;
+import ruina.monsters.uninvitedGuests.bremen.bremenCards.Trio;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.MelodyPower;
 import ruina.powers.Paralysis;
@@ -151,7 +157,7 @@ public class Bremen extends AbstractCardMonster
                         pierceAnimation(target);
                     }
                     dmg(target, info);
-                    resetIdle(1.0f);
+                    resetIdle();
                 }
                 break;
             }
@@ -269,17 +275,21 @@ public class Bremen extends AbstractCardMonster
                 possibilities.add(MELODY);
             }
         }
+        if (possibilities.isEmpty()) {
+            possibilities.add(NEIGH);
+        }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
         setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
     }
 
     protected AbstractCard getMoveCardFromByte(Byte move) {
         ArrayList<AbstractCard> list = new ArrayList<>();
-//        list.add(new Climax(this));
-//        list.add(new Fun(this));
-//        list.add(new Catch(this));
-//        list.add(new Pow(this));
-//        list.add(new Brainwash(this));
+        list.add(new EverlastingMelody(this));
+        list.add(new Neigh(this));
+        list.add(new Bawk(this));
+        list.add(new Rarf(this));
+        list.add(new Tendon(this));
+        list.add(new Trio(this));
         return list.get(move);
     }
 

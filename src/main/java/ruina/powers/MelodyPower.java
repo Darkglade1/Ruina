@@ -18,7 +18,7 @@ import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.applyToTarget;
 
 public class MelodyPower extends AbstractUnremovablePower {
-    public static final String POWER_ID = RuinaMod.makeID("Melody");
+    public static final String POWER_ID = RuinaMod.makeID("MelodyPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -38,6 +38,7 @@ public class MelodyPower extends AbstractUnremovablePower {
         this.melodyCard = melodyCard;
         this.bremen = bremen;
         generateSequence();
+        updateDescription();
     }
 
     @Override
@@ -45,6 +46,7 @@ public class MelodyPower extends AbstractUnremovablePower {
 
     }
 
+    @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         if (!completed) {
             currentProgress.add(card.type);
@@ -61,6 +63,7 @@ public class MelodyPower extends AbstractUnremovablePower {
             if (correct && currentProgress.size() == sequence.size()) {
                 completed = true;
             }
+            updateMelodyText();
         }
     }
 

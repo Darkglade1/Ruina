@@ -420,7 +420,7 @@
   "${ModID}:Melody": {
     "NAME": "Melody",
     "DESCRIPTION": "",
-    "EXTENDED_DESCRIPTION": ["Play these cards in order: ",
+    "EXTENDED_DESCRIPTION": ["Play these cards in order: NL ",
       "Attack ",
       "Skill ",
       "Power ",
@@ -440,5 +440,41 @@
   "${ModID}:PowerPrescript": {
     "NAME": "Power Prescript",
     "DESCRIPTION": "Gain !M! Strength."
+  },
+  "${ModID}:EverlastingMelody": {
+    "NAME": "Everlasting Melody",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength."
+  },
+  "${ModID}:Neigh": {
+    "NAME": "NEIGHHH",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:Bawk": {
+    "NAME": "BAWK BAWK",
+    "DESCRIPTION": "Shuffle !M! *Dazed into your draw pile."
+  },
+  "${ModID}:Rarf": {
+    "NAME": "RARF RARF",
+    "DESCRIPTION": "Gain !B! Block. NL Apply !M! *Paralysis."
+  },
+  "${ModID}:Tendon": {
+    "NAME": "Powerful Tendon Chords",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Trio": {
+    "NAME": "Trio",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Increase the length of the *Melody by !ruina:SecondMagic!."
+  },
+  "${ModID}:Faith": {
+    "NAME": "Blind Faith",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:BalefulBrand": {
+    "NAME": "Baleful Brand",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion."
+  },
+  "${ModID}:Will": {
+    "NAME": "Will of the City",
+    "DESCRIPTION": "ALL allies gain !B! Block. NL An ally draws !M! cards next turn."
   }
 }

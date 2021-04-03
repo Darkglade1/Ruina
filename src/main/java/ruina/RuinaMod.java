@@ -100,6 +100,8 @@ import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.argalia.monster.Roland;
+import ruina.monsters.uninvitedGuests.bremen.Bremen;
+import ruina.monsters.uninvitedGuests.bremen.Netzach;
 import ruina.monsters.uninvitedGuests.clown.Oswald;
 import ruina.monsters.uninvitedGuests.clown.Tiph;
 import ruina.monsters.uninvitedGuests.elena.Binah;
@@ -642,6 +644,11 @@ public class RuinaMod implements
                 new AbstractMonster[] {
                         new Tiph(-500.0F, 0.0F),
                         new Oswald(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Bremen.ID, "Bremen", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Netzach(-500.0F, 0.0F),
+                        new Bremen(0.0F, 0.0F),
                 }));
 
         uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(
