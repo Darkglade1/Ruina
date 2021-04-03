@@ -378,7 +378,7 @@ public class Tanya extends AbstractCardMonster
             if (!this.lastMove(FISTICUFFS, moveHistory)) {
                 possibilities.add(FISTICUFFS);
             }
-            if (!this.lastMove(KICKS_AND_STOMPS, moveHistory) && !this.lastMoveBefore(KICKS_AND_STOMPS)) {
+            if (!this.lastMove(KICKS_AND_STOMPS, moveHistory) && !this.lastMoveBefore(KICKS_AND_STOMPS, moveHistory)) {
                 possibilities.add(KICKS_AND_STOMPS);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));

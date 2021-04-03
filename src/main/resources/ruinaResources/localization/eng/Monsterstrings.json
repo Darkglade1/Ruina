@@ -766,5 +766,32 @@
       ". . . Shut up.",
       "At least that's over now. Care for a drink?"
     ]
+  },
+  "${ModID}:Philip": {
+    "MOVES": [
+      "Waned Eventide",
+      "Conflicting Emotions",
+      "Despairingly Stigmatize",
+      "Searing Resolution",
+      "Wound of Sorrow"
+    ],
+    "NAME": "Philip",
+    "DIALOG": [
+      "Passion is a deception that will only lead to despair."
+    ]
+  },
+  "${ModID}:Malkuth": {
+    "MOVES": [
+      "Coordinated Assault",
+      "Emotional Turbulence",
+      "Fervid Emotions",
+      "Raging Storm: Love",
+      "Inferno"
+    ],
+    "NAME": "Malkuth",
+    "DIALOG": [
+      "What a sad way to live.",
+      "I hope he can finally rest now."
+    ]
   }
 }
