@@ -348,11 +348,11 @@
   },
   "${ModID}:Dragon": {
     "NAME": "Children of the Dragon",
-    "DESCRIPTIONS": ["ALL your cards have #yManifest. NL Whenever a card is #yexhausted, this creature gains #b", " #yEmotion."]
+    "DESCRIPTIONS": ["At the start of combat, give ALL your cards #yManifest. NL Whenever a card is #yexhausted, this creature gains #b", " #yEmotion."]
   },
   "${ModID}:Emotion": {
     "NAME": "Emotion",
-    "DESCRIPTIONS": ["This creature's #yEmotion #yLevel is #b", ". Whenever this creature gains #b", " #yEmotion, it doubles its #yStrength and gains #b1 #yEmotion #yLevel. This creature gains additional benefits at #yEmotion #yLevels #b", " and #b", "."]
+    "DESCRIPTIONS": ["This creature's #yEmotion #yLevel is #b", ". Whenever this creature gains #b", " #yEmotion, it doubles its #yStrength and gains #b1 #yEmotion #yLevel. NL This creature gains additional benefits at #yEmotion #yLevels #b", " and #b", ". NL The *Emotion *Level is capped at #b","."]
   },
   "${ModID}:Wildfire": {
     "NAME": "Force of a Wildfire",

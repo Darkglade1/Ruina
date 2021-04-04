@@ -10,8 +10,6 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.philip.Malkuth;
 
-import static ruina.util.Wiz.applyToTarget;
-
 public class Emotion extends AbstractEasyPower {
     public static final String POWER_ID = RuinaMod.makeID(Emotion.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -28,9 +26,11 @@ public class Emotion extends AbstractEasyPower {
 
     @Override
     public void stackPower(int stackAmount) {
-        this.fontScale = 8.0F;
-        this.amount += stackAmount;
-        checkTrigger();
+        if (amount2 < Malkuth.EMOTION_CAP) {
+            this.fontScale = 8.0F;
+            this.amount += stackAmount;
+            checkTrigger();
+        }
     }
 
     public void checkTrigger() {
@@ -47,22 +47,22 @@ public class Emotion extends AbstractEasyPower {
                 AbstractDungeon.onModifyPower();
             }
         }
+        if (amount2 >= Malkuth.EMOTION_CAP) {
+            amount = 0;
+        }
         updateDescription();
     }
 
     @Override
     public void onExhaust(AbstractCard card) {
-        flash();
-        stackPower(Malkuth.EXHAUST_GAIN);
-    }
-
-    @Override
-    public void atEndOfRound() {
-
+        if (amount2 < Malkuth.EMOTION_CAP) {
+            flash();
+            stackPower(Malkuth.EXHAUST_GAIN);
+        }
     }
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + amount2 + DESCRIPTIONS[1] + threshold + DESCRIPTIONS[2] + Malkuth.firstEmotionThreshold + DESCRIPTIONS[3] + Malkuth.secondEmotionThreshold + DESCRIPTIONS[4];
+        this.description = DESCRIPTIONS[0] + amount2 + DESCRIPTIONS[1] + threshold + DESCRIPTIONS[2] + Malkuth.firstEmotionThreshold + DESCRIPTIONS[3] + Malkuth.secondEmotionThreshold + DESCRIPTIONS[4] + Malkuth.EMOTION_CAP + DESCRIPTIONS[5];
     }
 }

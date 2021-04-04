@@ -3,6 +3,7 @@ package ruina.monsters.uninvitedGuests.philip;
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -63,7 +64,7 @@ public class Philip extends AbstractCardMonster
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int SEARING_BURNS = calcAscensionSpecial(1);
     public final int damageBonus = 50;
-    public final int damageReduction = 75;
+    public final int damageReduction = 90;
     public final int damageReductionDecay = 15;
     private int TURNS_TILL_BONUS_INTENT = 3;
     public boolean gotBonusIntent = false;
@@ -431,17 +432,25 @@ public class Philip extends AbstractCardMonster
     }
 
     public void Summon() {
-        //float xPos_Farthest_L = -450.0F;
-        float xPos_Middle_L = -75F;
-        float xPos_Short_L = 50F;
+        //float xPos_Farthest_L = -450.0f;
+        float xPos_Middle_L = -175.0f;
+        float xPos_Short_L = 0F;
+        float y = 125.0f;
+
+        for (AbstractMonster mo : monsterList()) {
+            if (mo instanceof CryingChild) {
+                //heals all existing minions to full if they're still alive
+                atb(new HealAction(mo, this, mo.maxHealth));
+            }
+        }
 
         for (int i = 0; i < minions.length; i++) {
             if (minions[i] == null) {
                 AbstractMonster minion;
                 if (i == 0) {
-                    minion = new CryingChild(xPos_Middle_L, 200.0f, this);
+                    minion = new CryingChild(xPos_Middle_L, y, this);
                 } else {
-                    minion = new CryingChild(xPos_Short_L, 200.0f, this);
+                    minion = new CryingChild(xPos_Short_L, y, this);
                 }
                 atb(new SpawnMonsterAction(minion, true));
                 atb(new UsePreBattleActionAction(minion));

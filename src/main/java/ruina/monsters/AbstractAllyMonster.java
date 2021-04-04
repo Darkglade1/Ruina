@@ -101,6 +101,8 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             if (target != adp()) {
                 if(info.base > -1) {
+                    Color color = new Color(0.0F, 1.0F, 0.0F, 0.5F);
+                    ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
                     if (this.intent == IntentEnums.MASS_ATTACK) {
                         if (massAttackHitsPlayer) {
                             info.applyPowers(this, adp());
@@ -128,8 +130,6 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
                             }
                         }
                     } else {
-                        Color color = new Color(0.0F, 1.0F, 0.0F, 0.5F);
-                        ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
                         info.applyPowers(this, target);
                         if (additionalMultiplier > 0) {
                             info.output = (int)(info.output * additionalMultiplier);

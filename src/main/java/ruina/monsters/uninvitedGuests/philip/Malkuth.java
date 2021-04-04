@@ -70,6 +70,7 @@ public class Malkuth extends AbstractAllyCardMonster
     public final int passiveVulnerable = 1;
     public static final int firstEmotionThreshold = 2;
     public static final int secondEmotionThreshold = 4;
+    public static final int EMOTION_CAP = 4;
 
     public final int massAttackCooldown = 2;
     public int massAttackCooldownCounter = massAttackCooldown;
@@ -152,20 +153,12 @@ public class Malkuth extends AbstractAllyCardMonster
                 }
 
                 @Override
-                public void onInitialApplication() {
-                    for (AbstractMonster mo : monsterList()) {
-                        if (!mo.isDeadOrEscaped() && !(mo instanceof AbstractAllyMonster)) {
-                            applyToTarget(mo, owner, new VulnerablePower(mo, amount, true));
-                        }
-                    }
-                }
-
-                @Override
                 public void updateDescription() {
                     description = R_POWER_DESCRIPTIONS[0] + amount + R_POWER_DESCRIPTIONS[1];
                 }
             });
             IdlePose();
+            waitAnimation();
         }
     }
 
@@ -199,8 +192,8 @@ public class Malkuth extends AbstractAllyCardMonster
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
             }
         });
-        applyToTarget(this, this, new StrengthPower(this, STARTING_STR));
         applyToTarget(this, this, new Emotion(this, 0, EMOTION_THRESHOLD));
+        applyToTarget(this, this, new StrengthPower(this, STARTING_STR));
         super.usePreBattleAction();
     }
 
@@ -299,7 +292,7 @@ public class Malkuth extends AbstractAllyCardMonster
                     damageArray[i] = info.output;
                 }
                 infernoStart(target);
-                waitAnimation();
+                waitAnimation(1.0f);
                 infernoFin(target);
                 atb(new AllyDamageAllEnemiesAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle(1.0f);
@@ -320,15 +313,21 @@ public class Malkuth extends AbstractAllyCardMonster
                 this.isDone = true;
             }
         });
-        Emotion power = (Emotion) getPower(Emotion.POWER_ID);
-        if (power != null) {
-            if (power.amount2 >= Malkuth.secondEmotionThreshold) {
-                manifest();
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                Emotion power = (Emotion) getPower(Emotion.POWER_ID);
+                if (power != null) {
+                    if (power.amount2 >= Malkuth.secondEmotionThreshold) {
+                        manifest();
+                    }
+                    if (power.amount2 >= Malkuth.firstEmotionThreshold) {
+                        distort();
+                    }
+                }
+                this.isDone = true;
             }
-            if (power.amount2 >= Malkuth.firstEmotionThreshold) {
-                distort();
-            }
-        }
+        });
         atb(new RollMoveAction(this));
     }
 
