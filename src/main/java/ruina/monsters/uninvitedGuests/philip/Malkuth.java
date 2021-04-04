@@ -1,6 +1,5 @@
 package ruina.monsters.uninvitedGuests.philip;
 
-import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -16,25 +15,16 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
+import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
 import ruina.actions.AllyDamageAllEnemiesAction;
-import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.cardmods.ManifestMod;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.monsters.eventboss.redMist.monster.RedMist;
-import ruina.monsters.uninvitedGuests.tanya.Tanya;
-import ruina.monsters.uninvitedGuests.tanya.geburaCards.Ally_GreaterSplitHorizontal;
-import ruina.monsters.uninvitedGuests.tanya.geburaCards.Ally_GreaterSplitVertical;
-import ruina.monsters.uninvitedGuests.tanya.geburaCards.Ally_LevelSlash;
-import ruina.monsters.uninvitedGuests.tanya.geburaCards.Ally_Spear;
-import ruina.monsters.uninvitedGuests.tanya.geburaCards.Ally_UpstandingSlash;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Emotion;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -43,7 +33,6 @@ import ruina.vfx.WaitEffect;
 import java.util.ArrayList;
 
 import static ruina.RuinaMod.*;
-import static ruina.monsters.eventboss.redMist.monster.RedMist.horizontalSplitVfx;
 import static ruina.util.Wiz.*;
 
 public class Malkuth extends AbstractAllyCardMonster
@@ -115,8 +104,8 @@ public class Malkuth extends AbstractAllyCardMonster
         addMove(COORDINATED_ASSAULT, Intent.DEFEND_BUFF);
         addMove(EMOTIONAL_TURBULENCE, Intent.ATTACK_DEFEND, 16);
         addMove(FERVID_EMOTIONS, Intent.ATTACK_BUFF, 12, fervidHits, true);
-        addMove(RAGING_STORM, Intent.ATTACK_DEBUFF, 20, stormHits, true);
-        addMove(INFERNO, Intent.ATTACK, 50);
+        addMove(RAGING_STORM, IntentEnums.MASS_ATTACK, 20, stormHits, true);
+        addMove(INFERNO, IntentEnums.MASS_ATTACK, 50);
 
 //        cardList.add(new Ally_UpstandingSlash(this));
 //        cardList.add(new Ally_LevelSlash(this));
@@ -139,6 +128,7 @@ public class Malkuth extends AbstractAllyCardMonster
         if (!manifestedEGO) {
             phase = EGO;
             manifestedEGO = true;
+            distorted = true;
             applyToTargetTop(this, this, new AbstractLambdaPower(R_POWER_NAME, R_POWER_ID, AbstractPower.PowerType.BUFF, false, this, passiveVulnerable) {
                 @Override
                 public void atEndOfRound() {
@@ -236,6 +226,7 @@ public class Malkuth extends AbstractAllyCardMonster
 
         switch (this.nextMove) {
             case COORDINATED_ASSAULT: {
+                blockAnimation();
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 block(adp(), ALLY_BLOCK);
                 applyToTarget(adp(), this, new DrawCardNextTurnPower(adp(), DRAW));
@@ -243,6 +234,7 @@ public class Malkuth extends AbstractAllyCardMonster
                 break;
             }
             case EMOTIONAL_TURBULENCE: {
+                slashAnimation(target);
                 block(this, SELF_BLOCK);
                 dmg(target, info);
                 applyToTarget(this, this, new Emotion(this, emotionalEmotions, EMOTION_THRESHOLD));
@@ -252,9 +244,9 @@ public class Malkuth extends AbstractAllyCardMonster
             case FERVID_EMOTIONS: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        spearAnimation(target);
+                        pierceAnimation(target);
                     } else {
-                        upstandingAnimation(target);
+                        slashAnimation(target);
                     }
                     dmg(target, info);
                     resetIdle();
@@ -270,14 +262,19 @@ public class Malkuth extends AbstractAllyCardMonster
                     damageArray[i] = info.output;
                 }
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        ragingStormStart(target);
+                    } else {
+                        ragingStormFin(target);
+                    }
                     atb(new AllyDamageAllEnemiesAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                     for (AbstractMonster mo : monsterList()) {
                         if (!mo.isDeadOrEscaped() && !(mo instanceof AbstractAllyMonster)) {
                             applyToTarget(mo, this, new VulnerablePower(mo, VULNERABLE, true));
                         }
                     }
+                    resetIdle(1.0f);
                 }
-                resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -294,6 +291,9 @@ public class Malkuth extends AbstractAllyCardMonster
                     info.applyPowers(this, mo);
                     damageArray[i] = info.output;
                 }
+                infernoStart(target);
+                waitAnimation();
+                infernoFin(target);
                 atb(new AllyDamageAllEnemiesAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
@@ -316,28 +316,32 @@ public class Malkuth extends AbstractAllyCardMonster
         atb(new RollMoveAction(this));
     }
 
-    private void upstandingAnimation(AbstractCreature enemy) {
-        animationAction("Upstanding" + phase, "RedMistVert" + phase, enemy, this);
+    private void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash" + phase, "XiaoVert", enemy, this);
     }
 
-    private void spearAnimation(AbstractCreature enemy) {
-        animationAction("Spear" + phase, "RedMistStab" + phase, enemy, this);
+    private void pierceAnimation(AbstractCreature enemy) {
+        animationAction("Pierce" + phase, "XiaoStab", enemy, this);
     }
 
-    private void levelAnimation(AbstractCreature enemy) {
-        animationAction("Level" + phase, "RedMistHori" + phase, enemy, this);
+    private void blockAnimation() {
+        animationAction("Guard" + phase, "FireGuard", this);
     }
 
-    private void verticalUpAnimation(AbstractCreature enemy) {
-        animationAction("VerticalUp" + phase, "RedMistVertHit", enemy, this);
+    private void ragingStormStart(AbstractCreature enemy) {
+        animationAction("Slash" + phase, "XiaoStrongStart", enemy, this);
     }
 
-    private void verticalDownAnimation(AbstractCreature enemy) {
-        animationAction("VerticalDown" + phase, "RedMistVertFin", enemy, this);
+    private void ragingStormFin(AbstractCreature enemy) {
+        animationAction("Special2", "XiaoStrongFin", enemy, this);
     }
 
-    private void horizontalAnimation(AbstractCreature enemy) {
-        animationAction("Horizontal", "RedMistHoriFin", enemy, this);
+    private void infernoStart(AbstractCreature enemy) {
+        animationAction("Special3", "XiaoStart", enemy, this);
+    }
+
+    private void infernoFin(AbstractCreature enemy) {
+        animationAction("Special4", "XiaoFin", enemy, this);
     }
 
     @Override

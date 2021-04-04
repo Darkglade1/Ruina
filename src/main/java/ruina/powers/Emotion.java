@@ -48,11 +48,11 @@ public class Emotion extends AbstractEasyPower {
     @Override
     public void atEndOfRound() {
         if (owner instanceof Malkuth) {
-            if (amount2 >= Malkuth.firstEmotionThreshold) {
-                ((Malkuth) owner).distort();
-            }
             if (amount2 >= Malkuth.secondEmotionThreshold) {
                 ((Malkuth) owner).manifest();
+            }
+            if (amount2 >= Malkuth.firstEmotionThreshold) {
+                ((Malkuth) owner).distort();
             }
         }
     }

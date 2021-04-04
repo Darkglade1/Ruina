@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
@@ -45,7 +46,7 @@ public class CryingChild extends AbstractRuinaMonster
     private static final byte WING_STROKE = 0;
     private static final byte MURMUR = 1;
 
-    private final int STR_LOSS = calcAscensionSpecial(2);
+    private final int WEAK = calcAscensionSpecial(1);
     private final int DAMAGE_REDUCTION = 50;
 
     public boolean attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
@@ -122,7 +123,7 @@ public class CryingChild extends AbstractRuinaMonster
             case WING_STROKE: {
                 slashAnimation(target);
                 dmg(target, info);
-                applyToTarget(target, this, new StrengthPower(target, -STR_LOSS));
+                applyToTarget(target, this, new WeakPower(target, WEAK, true));
                 resetIdle();
                 break;
             }
