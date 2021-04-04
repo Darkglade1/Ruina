@@ -487,7 +487,7 @@
   },
   "${ModID}:Coordinated": {
     "NAME": "Coordinated Assault",
-    "DESCRIPTION": "Gain !M! Strength. NL An ally gains !B! Block and draws !ruina:SecondMagic! card next turn."
+    "DESCRIPTION": "An ally gains !M! Strength, !B! Block, and draws !ruina:SecondMagic! card next turn."
   },
   "${ModID}:RagingStorm": {
     "NAME": "Raging Storm: Love",

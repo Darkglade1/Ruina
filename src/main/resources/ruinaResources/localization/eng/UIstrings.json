@@ -45,7 +45,7 @@
       " damage to ALL other characters (including you)",
       ".",
       " times.",
-      " damage to ALL enemies "
+      " damage to ALL enemies"
     ]
   },
   "${ModID}:MassAttackIntent": {

@@ -63,7 +63,7 @@ public class Philip extends AbstractCardMonster
     public final int EVENTIDE_BURNS = calcAscensionSpecial(3);
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int SEARING_BURNS = calcAscensionSpecial(1);
-    public final int damageBonus = 50;
+    public final int damageBonus = calcAscensionSpecial(30);
     public final int damageReduction = 90;
     public final int damageReductionDecay = 15;
     private int TURNS_TILL_BONUS_INTENT = 3;
@@ -241,7 +241,6 @@ public class Philip extends AbstractCardMonster
     }
 
 
-
     @Override
     public void takeTurn() {
         super.takeTurn();
@@ -311,6 +310,11 @@ public class Philip extends AbstractCardMonster
         playSound("PhilipTransform", 2.0f);
         runAnim("Idle" + phase);
         applyToTarget(this, this, new AbstractLambdaPower(DAMAGE_POWER_NAME, DAMAGE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, damageBonus) {
+            @Override
+            public void onInitialApplication() {
+                this.priority = 99;
+            }
+
             @Override
             public float atDamageGive(float damage, DamageInfo.DamageType type) {
                 if (type == DamageInfo.DamageType.NORMAL) {
@@ -432,6 +436,7 @@ public class Philip extends AbstractCardMonster
     }
 
     public void Summon() {
+        malkuth.massAttackCooldownCounter = 0;
         //float xPos_Farthest_L = -450.0f;
         float xPos_Middle_L = -175.0f;
         float xPos_Short_L = 0F;

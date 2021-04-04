@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
@@ -34,6 +35,7 @@ import ruina.monsters.uninvitedGuests.philip.malkuthCards.RagingStorm;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Emotion;
 import ruina.util.TexLoader;
+import ruina.vfx.ExplosionEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
@@ -227,7 +229,7 @@ public class Malkuth extends AbstractAllyCardMonster
         switch (this.nextMove) {
             case COORDINATED_ASSAULT: {
                 blockAnimation();
-                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                applyToTarget(adp(), this, new StrengthPower(adp(), STRENGTH));
                 block(adp(), ALLY_BLOCK);
                 applyToTarget(adp(), this, new DrawCardNextTurnPower(adp(), DRAW));
                 resetIdle();
@@ -294,6 +296,7 @@ public class Malkuth extends AbstractAllyCardMonster
                 infernoStart(target);
                 waitAnimation(1.0f);
                 infernoFin(target);
+                atb(new VFXAction(new ExplosionEffect(target.hb.cX, target.hb.cY), 0.1F));
                 atb(new AllyDamageAllEnemiesAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {

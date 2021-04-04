@@ -352,7 +352,7 @@
   },
   "${ModID}:Emotion": {
     "NAME": "Emotion",
-    "DESCRIPTIONS": ["This creature's #yEmotion #yLevel is #b", ". Whenever this creature gains #b", " #yEmotion, it doubles its #yStrength and gains #b1 #yEmotion #yLevel. NL This creature gains additional benefits at #yEmotion #yLevels #b", " and #b", ". NL The *Emotion *Level is capped at #b","."]
+    "DESCRIPTIONS": ["This creature's #yEmotion #yLevel is #b", ". Whenever this creature gains #b", " #yEmotion, it doubles its #yStrength and gains #b1 #yEmotion #yLevel. NL This creature gains additional benefits at #yEmotion #yLevels #b", " and #b", ". NL The #yEmotion #yLevel is capped at #b","."]
   },
   "${ModID}:Wildfire": {
     "NAME": "Force of a Wildfire",
