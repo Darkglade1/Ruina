@@ -793,5 +793,14 @@
       "What a sad way to live.",
       "I hope he can finally rest now."
     ]
+  },
+  "${ModID}:CryingChild": {
+    "MOVES": [
+      "Wing Stroke",
+      "Murmur"
+    ],
+    "NAME": "Crying Child",
+    "DIALOG": [
+    ]
   }
 }

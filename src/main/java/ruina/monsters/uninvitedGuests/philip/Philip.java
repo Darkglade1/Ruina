@@ -1,60 +1,36 @@
 package ruina.monsters.uninvitedGuests.philip;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.helpers.VfxBuilder;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
-import com.megacrit.cardcrawl.powers.MetallicizePower;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.CustomIntent.IntentEnums;
-import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
-import ruina.actions.DamageAllOtherCharactersAction;
+import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.uninvitedGuests.tanya.Gebura;
-import ruina.monsters.uninvitedGuests.tanya.tanyaCards.Beatdown;
-import ruina.monsters.uninvitedGuests.tanya.tanyaCards.Fisticuffs;
-import ruina.monsters.uninvitedGuests.tanya.tanyaCards.Intimidate;
-import ruina.monsters.uninvitedGuests.tanya.tanyaCards.KicksAndStomps;
-import ruina.monsters.uninvitedGuests.tanya.tanyaCards.LupineAssault;
-import ruina.monsters.uninvitedGuests.tanya.tanyaCards.Overspeed;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
-import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -88,8 +64,10 @@ public class Philip extends AbstractCardMonster
     public boolean gotBonusIntent = false;
     public int TURNS_TILL_BONUS_DAMAGE = 6;
     public boolean gotBonusDamage = false;
-    public Malkuth malkth;
+    public Malkuth malkuth;
     private int phase = 1;
+
+    public AbstractMonster[] minions = new AbstractMonster[2];
 
     public static final String POWER_ID = makeID("Passion");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -106,7 +84,7 @@ public class Philip extends AbstractCardMonster
     }
 
     public Philip(final float x, final float y) {
-        super(NAME, ID, 900, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 750, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Philip/Spriter/Philip.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
@@ -141,7 +119,7 @@ public class Philip extends AbstractCardMonster
         CustomDungeon.playTempMusicInstantly("Ensemble1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Malkuth) {
-                malkth = (Malkuth)mo;
+                malkuth = (Malkuth)mo;
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
@@ -187,11 +165,13 @@ public class Philip extends AbstractCardMonster
         }
         switch (move.nextMove) {
             case EVENTIDE: {
+                buffAnimation();
                 intoDiscardMo(new Burn(), EVENTIDE_BURNS, this);
                 resetIdle();
                 break;
             }
             case EMOTIONS: {
+                buffAnimation();
                 block(this, BLOCK);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 resetIdle();
@@ -218,39 +198,43 @@ public class Philip extends AbstractCardMonster
             }
             case SORROW: {
                 for (int i = 0; i < multiplier; i++) {
-                    if (i % 2 == 0) {
-                        bluntAnimation(target);
+                    if (i == multiplier - 1) {
+                        rangeAnimation(target);
+                    } else if (i % 2 == 0) {
+                        pierceAnimation(target);
                     } else {
                         slashAnimation(target);
                     }
                     dmg(target, info);
-                    resetIdle();
+                    waitAnimation();
                 }
-                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                resetIdle();
                 break;
             }
         }
     }
 
     private void bluntAnimation(AbstractCreature enemy) {
-        animationAction("Blunt", "BluntHori", enemy, this);
+        animationAction("Blunt" + phase, "PhilipHori", enemy, this);
     }
 
     private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "BluntBlow", enemy, this);
+        animationAction("Pierce" + phase, "PhilipStab", enemy, this);
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "BluntVert", enemy, this);
+        animationAction("Slash" + phase, "PhilipVert", enemy, this);
     }
 
-    private void specialAnimation() {
-        animationAction("Special", null, this);
+    private void rangeAnimation(AbstractCreature enemy) {
+        animationAction("Far" + phase, "PhilipExplosion", enemy, this);
     }
 
-    private void massAttackStartAnimation() {
-        animationAction("MassStart", null, this);
+    private void buffAnimation() {
+        animationAction("Guard" + phase, "FireGuard", this);
     }
+
+
 
     @Override
     public void takeTurn() {
@@ -268,7 +252,7 @@ public class Philip extends AbstractCardMonster
             if (additionalIntent.targetTexture == null) {
                 takeCustomTurn(additionalMove, adp());
             } else {
-                takeCustomTurn(additionalMove, malkth);
+                takeCustomTurn(additionalMove, malkuth);
             }
         }
         atb(new AbstractGameAction() {
@@ -291,12 +275,15 @@ public class Philip extends AbstractCardMonster
     private void getAnotherIntent() {
         numAdditionalMoves++;
         gotBonusIntent = true;
-        //summon crying children
+        playSound("PhilipTransform");
+        Summon();
+        atb(new RollMoveAction(malkuth)); //to make her roll for mass attack if she can
     }
 
     private void getBonusDamage() {
         gotBonusDamage = true;
         phase = 2;
+        playSound("PhilipTransform");
         runAnim("Idle" + phase);
         applyToTarget(this, this, new AbstractLambdaPower(DAMAGE_POWER_NAME, DAMAGE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, damageBonus) {
             @Override
@@ -313,6 +300,8 @@ public class Philip extends AbstractCardMonster
                 description = DAMAGE_POWER_DESCRIPTIONS[0] + amount + DAMAGE_POWER_DESCRIPTIONS[1];
             }
         });
+        Summon();
+        atb(new RollMoveAction(malkuth)); //to make her roll for mass attack if she can
     }
 
     @Override
@@ -396,7 +385,7 @@ public class Philip extends AbstractCardMonster
                 if (additionalMove.nextMove == EMOTIONS) {
                     applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
                 } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, malkth, malkth.allyIcon);
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, malkuth, malkuth.allyIcon);
                 }
             }
         }
@@ -405,7 +394,32 @@ public class Philip extends AbstractCardMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        malkth.onBossDeath();
+        for (AbstractMonster mo : monsterList()) {
+            if (mo instanceof CryingChild) {
+                atb(new SuicideAction(mo));
+            }
+        }
+        malkuth.onBossDeath();
+    }
+
+    public void Summon() {
+        //float xPos_Farthest_L = -450.0F;
+        float xPos_Middle_L = -150F;
+        float xPos_Short_L = 150F;
+
+        for (int i = 0; i < minions.length; i++) {
+            if (minions[i] == null) {
+                AbstractMonster minion;
+                if (i == 0) {
+                    minion = new CryingChild(xPos_Middle_L, 0.0f, this);
+                } else {
+                    minion = new CryingChild(xPos_Short_L, 0.0f, this);
+                }
+                atb(new SpawnMonsterAction(minion, true));
+                atb(new UsePreBattleActionAction(minion));
+                minions[i] = minion;
+            }
+        }
     }
 
 }

@@ -357,5 +357,9 @@
   "${ModID}:Wildfire": {
     "NAME": "Force of a Wildfire",
     "DESCRIPTIONS": ["At end of round, apply #b" , " #yVulnerable to ALL enemies."]
+  },
+  "${ModID}:TorchedHeart": {
+    "NAME": "Torched Heart",
+    "DESCRIPTIONS": ["Receives #b", "% less damage from attacks unless this creature is #yVulnerable."]
   }
 }

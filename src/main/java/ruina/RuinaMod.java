@@ -107,6 +107,8 @@ import ruina.monsters.uninvitedGuests.clown.Tiph;
 import ruina.monsters.uninvitedGuests.elena.Binah;
 import ruina.monsters.uninvitedGuests.elena.Elena;
 import ruina.monsters.uninvitedGuests.elena.VermilionCross;
+import ruina.monsters.uninvitedGuests.philip.Malkuth;
+import ruina.monsters.uninvitedGuests.philip.Philip;
 import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
 import ruina.monsters.uninvitedGuests.puppeteer.Chesed;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
@@ -434,6 +436,7 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("FireVert"), makeSFXPath("Riu_Vert.wav"));
         BaseMod.addAudio(makeID("FireHori"), makeSFXPath("Riu_Hori.wav"));
+        BaseMod.addAudio(makeID("FireStab"), makeSFXPath("Riu_Stab.wav"));
         BaseMod.addAudio(makeID("FireGuard"), makeSFXPath("Riu_Guard.wav"));
         BaseMod.addAudio(makeID("FireStrong"), makeSFXPath("Riu_Strong.wav"));
 
@@ -460,6 +463,15 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("BremenChicken"), makeSFXPath("Bremen_Chicken.wav"));
         BaseMod.addAudio(makeID("BremenDog"), makeSFXPath("Bremen_Dog.wav"));
         BaseMod.addAudio(makeID("BremenHorse"), makeSFXPath("Bremen_Horse.wav"));
+
+        BaseMod.addAudio(makeID("PhilipTransform"), makeSFXPath("Philip_FilterOn.wav"));
+        BaseMod.addAudio(makeID("PhilipVert"), makeSFXPath("Philip_Vert.wav"));
+        BaseMod.addAudio(makeID("PhilipHori"), makeSFXPath("Philip_Hori.wav"));
+        BaseMod.addAudio(makeID("PhilipStab"), makeSFXPath("Philip_Stab.wav"));
+        BaseMod.addAudio(makeID("PhilipStrong"), makeSFXPath("Philip_Strong.wav"));
+        BaseMod.addAudio(makeID("PhilipExplosion"), makeSFXPath("Cry_FarExplosion.wav"));
+        BaseMod.addAudio(makeID("CryHori"), makeSFXPath("Cry_Kid_Hori.wav"));
+        BaseMod.addAudio(makeID("CryStab"), makeSFXPath("Cry_Kid_Stab.wav"));
     }
 
     @Override
@@ -649,6 +661,11 @@ public class RuinaMod implements
                 new AbstractMonster[] {
                         new Netzach(-500.0F, 0.0F),
                         new Bremen(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Philip.ID, "Philip", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Malkuth(-550.0F, 0.0F),
+                        new Philip(200.0F, 0.0F),
                 }));
 
         uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(

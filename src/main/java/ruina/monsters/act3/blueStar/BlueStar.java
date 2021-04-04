@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -42,11 +41,6 @@ public class BlueStar extends AbstractRuinaMonster
     private final int BLOCK = calcAscensionTankiness(13);
     private final int STRENGTH = calcAscensionSpecial(4);
     private final int VULNERABLE = calcAscensionSpecial(1);
-
-    public static final String POWER_ID = makeID("Worshippers");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public AbstractMonster[] minions = new AbstractMonster[2];
     private final AbstractAnimation star;

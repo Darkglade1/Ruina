@@ -29,6 +29,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AllyStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
     public String allyIcon;
+    protected boolean massAttackHitsPlayer = false;
 
     //basically just for little Red who is an ally that can become an enemy
     public boolean isAlly = true;
@@ -101,16 +102,30 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
             if (target != adp()) {
                 if(info.base > -1) {
                     if (this.intent == IntentEnums.MASS_ATTACK) {
-                        info.applyPowers(this, adp());
-                        if (additionalMultiplier > 0) {
-                            info.output = (int)(info.output * additionalMultiplier);
-                        }
-                        ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-                        PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
-                        if (moves.get(this.nextMove).multiplier > 0) {
-                            intentTip.body = TEXT[13] + info.output + TEXT[14] + " " + FontHelper.colorString(String.valueOf(moves.get(this.nextMove).multiplier), "b") + TEXT[16];
+                        if (massAttackHitsPlayer) {
+                            info.applyPowers(this, adp());
+                            if (additionalMultiplier > 0) {
+                                info.output = (int)(info.output * additionalMultiplier);
+                            }
+                            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+                            PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                            if (moves.get(this.nextMove).multiplier > 0) {
+                                intentTip.body = TEXT[13] + info.output + TEXT[14] + " " + FontHelper.colorString(String.valueOf(moves.get(this.nextMove).multiplier), "b") + TEXT[16];
+                            } else {
+                                intentTip.body = TEXT[13] + info.output + TEXT[14] + TEXT[15];
+                            }
                         } else {
-                            intentTip.body = TEXT[13] + info.output + TEXT[14] + TEXT[15];
+                            info.applyPowers(this, target);
+                            if (additionalMultiplier > 0) {
+                                info.output = (int)(info.output * additionalMultiplier);
+                            }
+                            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+                            PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                            if (moves.get(this.nextMove).multiplier > 0) {
+                                intentTip.body = TEXT[13] + info.output + TEXT[17] + " " + FontHelper.colorString(String.valueOf(moves.get(this.nextMove).multiplier), "b") + TEXT[16];
+                            } else {
+                                intentTip.body = TEXT[13] + info.output + TEXT[17] + TEXT[15];
+                            }
                         }
                     } else {
                         Color color = new Color(0.0F, 1.0F, 0.0F, 0.5F);

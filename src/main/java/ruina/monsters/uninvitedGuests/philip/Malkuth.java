@@ -23,6 +23,8 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
+import ruina.actions.AllyDamageAllEnemiesAction;
+import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.cardmods.ManifestMod;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractAllyMonster;
@@ -261,7 +263,20 @@ public class Malkuth extends AbstractAllyCardMonster
                 break;
             }
             case RAGING_STORM: {
-
+                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
+                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
+                    info.applyPowers(this, mo);
+                    damageArray[i] = info.output;
+                }
+                for (int i = 0; i < multiplier; i++) {
+                    atb(new AllyDamageAllEnemiesAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                    for (AbstractMonster mo : monsterList()) {
+                        if (!mo.isDeadOrEscaped() && !(mo instanceof AbstractAllyMonster)) {
+                            applyToTarget(mo, this, new VulnerablePower(mo, VULNERABLE, true));
+                        }
+                    }
+                }
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
@@ -273,6 +288,13 @@ public class Malkuth extends AbstractAllyCardMonster
                 break;
             }
             case INFERNO: {
+                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
+                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
+                    info.applyPowers(this, mo);
+                    damageArray[i] = info.output;
+                }
+                atb(new AllyDamageAllEnemiesAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
@@ -335,7 +357,7 @@ public class Malkuth extends AbstractAllyCardMonster
         if (moveHistory.size() >= 3) {
             moveHistory.clear();
         }
-        if (massAttackCooldownCounter <= 0 && phase > NORMAL && philip != null && philip.gotBonusIntent) {
+        if (canUseMassAttack()) {
             if (phase == EGO) {
                 setMoveShortcut(INFERNO, MOVES[INFERNO], cardList.get(INFERNO));
             } else {
@@ -360,6 +382,17 @@ public class Malkuth extends AbstractAllyCardMonster
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move], cardList.get(move));
         }
+    }
+
+    public boolean canUseMassAttack() {
+        if (massAttackCooldownCounter <= 0 && phase > NORMAL) {
+            for (AbstractMonster mo : monsterList()) {
+                if (mo instanceof CryingChild) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

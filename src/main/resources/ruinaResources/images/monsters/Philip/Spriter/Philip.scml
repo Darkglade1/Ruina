@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Blue_Philip_Default.png" width="171" height="239" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Blue_Philip_Burn_Default.png" width="630" height="319" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Blue_Philip_Slash.png" width="613" height="501" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Blue_Philip_Burn_Slash.png" width="535" height="371" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Blue_Philip_Penetrate.png" width="428" height="196" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Blue_Philip_Burn_Penetrate.png" width="642" height="299" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Blue_Philip_Hit.png" width="643" height="192" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="Blue_Philip_Burn_Hit.png" width="469" height="305" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="Blue_Philip_Far.png" width="162" height="236" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="Blue_Philip_Burn_Far.png" width="501" height="365" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="Blue_Philip_Guard.png" width="141" height="240" pivot_x="0" pivot_y="1"/>
+        <file id="11" name="Blue_Philip_Burn_Guard.png" width="384" height="335" pivot_x="0" pivot_y="1"/>
+        <file id="12" name="Blue_Philip_Burn_S1.png" width="362" height="374" pivot_x="0" pivot_y="1"/>
+        <file id="13" name="Blue_Philip_Burn_S2.png" width="618" height="441" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Philip">
+        <animation id="0" name="Idle1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Default">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-34" y="241"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Idle2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Burn_Default">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-335" y="320"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Slash1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Slash">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-306" y="453"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Slash2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Burn_Slash">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-279" y="342"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Pierce1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Penetrate">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-359" y="198"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Pierce2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Burn_Penetrate">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-364" y="301"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="Blunt1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Hit">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-317" y="186"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="7" name="Blunt2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Burn_Hit">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-140" y="289"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="8" name="Far1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Far">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-96" y="238"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="9" name="Far2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Burn_Far">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-196" y="355"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="10" name="Guard1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Guard">
+                <key id="0" spin="0">
+                    <object folder="0" file="10" x="-88" y="233"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="11" name="Guard2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Burn_Guard">
+                <key id="0" spin="0">
+                    <object folder="0" file="11" x="-198" y="240"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="12" name="Special2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Philip_Burn_S2">
+                <key id="0" spin="0">
+                    <object folder="0" file="13" x="-129" y="443"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
