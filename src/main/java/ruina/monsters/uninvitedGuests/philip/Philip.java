@@ -24,6 +24,11 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.uninvitedGuests.philip.philipCards.Emotions;
+import ruina.monsters.uninvitedGuests.philip.philipCards.Eventide;
+import ruina.monsters.uninvitedGuests.philip.philipCards.Searing;
+import ruina.monsters.uninvitedGuests.philip.philipCards.Sorrow;
+import ruina.monsters.uninvitedGuests.philip.philipCards.Stigmatize;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
@@ -55,7 +60,7 @@ public class Philip extends AbstractCardMonster
 
     public final int BLOCK = calcAscensionTankiness(10);
     public final int EVENTIDE_BURNS = calcAscensionSpecial(3);
-    public final int STRENGTH = calcAscensionSpecial(3);
+    public final int STRENGTH = calcAscensionSpecial(2);
     public final int SEARING_BURNS = calcAscensionSpecial(1);
     public final int damageBonus = 50;
     public final int damageReduction = 75;
@@ -66,6 +71,7 @@ public class Philip extends AbstractCardMonster
     public boolean gotBonusDamage = false;
     public Malkuth malkuth;
     private int phase = 1;
+    private boolean attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
 
     public AbstractMonster[] minions = new AbstractMonster[2];
 
@@ -96,16 +102,15 @@ public class Philip extends AbstractCardMonster
 
         addMove(EVENTIDE, Intent.DEBUFF);
         addMove(EMOTIONS, Intent.DEFEND_BUFF);
-        addMove(STIGMATIZE, Intent.ATTACK, calcAscensionDamage(10), stigmatizeHits, true);
-        addMove(SEARING, Intent.ATTACK_DEBUFF, calcAscensionDamage(19));
-        addMove(SORROW, Intent.ATTACK, calcAscensionDamage(7), sorrowHits, true);
+        addMove(STIGMATIZE, Intent.ATTACK, calcAscensionDamage(9), stigmatizeHits, true);
+        addMove(SEARING, Intent.ATTACK_DEBUFF, calcAscensionDamage(17));
+        addMove(SORROW, Intent.ATTACK, calcAscensionDamage(6), sorrowHits, true);
 
-//        cardList.add(new Overspeed(this));
-//        cardList.add(new Beatdown(this));
-//        cardList.add(new Intimidate(this));
-//        cardList.add(new LupineAssault(this));
-//        cardList.add(new KicksAndStomps(this));
-//        cardList.add(new Fisticuffs(this));
+        cardList.add(new Eventide(this));
+        cardList.add(new Emotions(this));
+        cardList.add(new Stigmatize(this));
+        cardList.add(new Searing(this));
+        cardList.add(new Sorrow(this));
     }
 
     @Override
@@ -133,7 +138,7 @@ public class Philip extends AbstractCardMonster
             @Override
             public float atDamageReceive(float damage, DamageInfo.DamageType type) {
                 if (type == DamageInfo.DamageType.NORMAL) {
-                    return damage * (1.0f - amount);
+                    return damage * (1.0f - ((float)amount / 100));
                 } else {
                     return damage;
                 }
@@ -166,7 +171,7 @@ public class Philip extends AbstractCardMonster
         switch (move.nextMove) {
             case EVENTIDE: {
                 buffAnimation();
-                intoDiscardMo(new Burn(), EVENTIDE_BURNS, this);
+                intoDrawMo(new Burn(), EVENTIDE_BURNS, this);
                 resetIdle();
                 break;
             }
@@ -254,6 +259,13 @@ public class Philip extends AbstractCardMonster
             } else {
                 takeCustomTurn(additionalMove, malkuth);
             }
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    additionalIntent.usePrimaryIntentsColor = true;
+                    this.isDone = true;
+                }
+            });
         }
         atb(new AbstractGameAction() {
             @Override
@@ -269,6 +281,13 @@ public class Philip extends AbstractCardMonster
                 this.isDone = true;
             }
         });
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
+                this.isDone = true;
+            }
+        });
         atb(new RollMoveAction(this));
     }
 
@@ -277,6 +296,11 @@ public class Philip extends AbstractCardMonster
         gotBonusIntent = true;
         playSound("PhilipTransform");
         Summon();
+        //reset all the cooldowns
+        moveHistory.clear();
+        for (ArrayList<Byte> additionalMoveHistory : additionalMovesHistory) {
+            additionalMoveHistory.clear();
+        }
         atb(new RollMoveAction(malkuth)); //to make her roll for mass attack if she can
     }
 
@@ -382,10 +406,14 @@ public class Philip extends AbstractCardMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                if (additionalMove.nextMove == EMOTIONS) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-                } else {
+                if (i == 0) {
                     applyPowersToAdditionalIntent(additionalMove, additionalIntent, malkuth, malkuth.allyIcon);
+                } else {
+                    if (attackingAlly) {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, malkuth, malkuth.allyIcon);
+                    } else {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                    }
                 }
             }
         }
@@ -404,8 +432,8 @@ public class Philip extends AbstractCardMonster
 
     public void Summon() {
         //float xPos_Farthest_L = -450.0F;
-        float xPos_Middle_L = -150F;
-        float xPos_Short_L = 150F;
+        float xPos_Middle_L = -125F;
+        float xPos_Short_L = 100F;
 
         for (int i = 0; i < minions.length; i++) {
             if (minions[i] == null) {

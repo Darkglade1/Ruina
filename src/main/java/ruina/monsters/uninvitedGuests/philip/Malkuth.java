@@ -1,6 +1,7 @@
 package ruina.monsters.uninvitedGuests.philip;
 
 import basemod.helpers.CardModifierManager;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -32,6 +33,7 @@ import ruina.monsters.uninvitedGuests.philip.malkuthCards.Inferno;
 import ruina.monsters.uninvitedGuests.philip.malkuthCards.RagingStorm;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Emotion;
+import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
@@ -72,8 +74,8 @@ public class Malkuth extends AbstractAllyCardMonster
     public final int massAttackCooldown = 2;
     public int massAttackCooldownCounter = massAttackCooldown;
 
-    public final int EMOTION_THRESHOLD = 15;
-    public final int EXHAUST_GAIN = 2;
+    public final int EMOTION_THRESHOLD = 10;
+    public static final int EXHAUST_GAIN = 2;
 
     private boolean distorted = false;
     private boolean manifestedEGO = false;
@@ -93,6 +95,8 @@ public class Malkuth extends AbstractAllyCardMonster
     public static final PowerStrings R_powerStrings = CardCrawlGame.languagePack.getPowerStrings(R_POWER_ID);
     public static final String R_POWER_NAME = R_powerStrings.NAME;
     public static final String[] R_POWER_DESCRIPTIONS = R_powerStrings.DESCRIPTIONS;
+
+    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("MalkuthIcon.png"));
 
     public Malkuth() {
         this(0.0f, 0.0f);
@@ -186,11 +190,6 @@ public class Malkuth extends AbstractAllyCardMonster
                 for (AbstractCard card : adp().drawPile.group) {
                     CardModifierManager.addModifier(card, new ManifestMod());
                 }
-            }
-
-            @Override
-            public void onExhaust(AbstractCard card) {
-                applyToTarget(owner, owner, new Emotion(owner, amount, EMOTION_THRESHOLD));
             }
 
             @Override

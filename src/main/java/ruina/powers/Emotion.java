@@ -1,5 +1,6 @@
 package ruina.powers;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -43,6 +44,12 @@ public class Emotion extends AbstractEasyPower {
             }
         }
         updateDescription();
+    }
+
+    @Override
+    public void onExhaust(AbstractCard card) {
+        flash();
+        stackPower(Malkuth.EXHAUST_GAIN);
     }
 
     @Override

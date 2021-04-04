@@ -20,6 +20,12 @@ public class Emotional extends AbstractRuinaCard {
     }
 
     @Override
+    public float getTitleFontSize()
+    {
+        return 16;
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
     @Override

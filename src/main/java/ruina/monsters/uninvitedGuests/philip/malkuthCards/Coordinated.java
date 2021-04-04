@@ -14,10 +14,16 @@ public class Coordinated extends AbstractRuinaCard {
     public final static String ID = makeID(Coordinated.class.getSimpleName());
 
     public Coordinated(Malkuth parent) {
-        super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        super(ID, 3, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         magicNumber = baseMagicNumber = parent.STRENGTH;
         baseBlock = parent.ALLY_BLOCK;
         baseSecondMagicNumber = secondMagicNumber = parent.DRAW;
+    }
+
+    @Override
+    public float getTitleFontSize()
+    {
+        return 18;
     }
 
     @Override

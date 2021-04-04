@@ -63,7 +63,7 @@ public class CryingChild extends AbstractRuinaMonster
     }
 
     public CryingChild(final float x, final float y, Philip philip) {
-        super(NAME, ID, 40, -5.0F, 0, 250.0f, 395.0f, null, x, y);
+        super(NAME, ID, 40, -5.0F, 0, 100.0f, 305.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("CryingChild/Spriter/CryingChild.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(102), calcAscensionTankiness(108));
@@ -206,7 +206,7 @@ public class CryingChild extends AbstractRuinaMonster
         if (!malkuth.isDead && !malkuth.isDying && attackingAlly && !this.isDeadOrEscaped()) {
             BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
             float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
-            sb.draw(Chesed.targetTexture, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
+            sb.draw(Malkuth.targetTexture, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
         }
     }
 
