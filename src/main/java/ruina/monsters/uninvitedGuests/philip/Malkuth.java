@@ -25,6 +25,11 @@ import ruina.actions.AllyDamageAllEnemiesAction;
 import ruina.cardmods.ManifestMod;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractAllyMonster;
+import ruina.monsters.uninvitedGuests.philip.malkuthCards.Coordinated;
+import ruina.monsters.uninvitedGuests.philip.malkuthCards.Emotional;
+import ruina.monsters.uninvitedGuests.philip.malkuthCards.FervidEmotions;
+import ruina.monsters.uninvitedGuests.philip.malkuthCards.Inferno;
+import ruina.monsters.uninvitedGuests.philip.malkuthCards.RagingStorm;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Emotion;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -59,7 +64,7 @@ public class Malkuth extends AbstractAllyCardMonster
     public final int emotionalEmotions = 3;
     public final int stormHits = 2;
     public final int infernoStrScaling = 5;
-    public final int VULNERABLE = 2;
+    public final int VULNERABLE = 1;
     public final int passiveVulnerable = 1;
     public static final int firstEmotionThreshold = 2;
     public static final int secondEmotionThreshold = 4;
@@ -107,11 +112,11 @@ public class Malkuth extends AbstractAllyCardMonster
         addMove(RAGING_STORM, IntentEnums.MASS_ATTACK, 20, stormHits, true);
         addMove(INFERNO, IntentEnums.MASS_ATTACK, 50);
 
-//        cardList.add(new Ally_UpstandingSlash(this));
-//        cardList.add(new Ally_LevelSlash(this));
-//        cardList.add(new Ally_Spear(this));
-//        cardList.add(new Ally_GreaterSplitVertical(this));
-//        cardList.add(new Ally_GreaterSplitHorizontal(this));
+        cardList.add(new Coordinated(this));
+        cardList.add(new Emotional(this));
+        cardList.add(new FervidEmotions(this));
+        cardList.add(new RagingStorm(this));
+        cardList.add(new Inferno(this));
 
         this.allyIcon = makeUIPath("MalkuthIcon.png");
     }
@@ -129,6 +134,7 @@ public class Malkuth extends AbstractAllyCardMonster
             phase = EGO;
             manifestedEGO = true;
             distorted = true;
+            playSound("XiaoRoar");
             applyToTargetTop(this, this, new AbstractLambdaPower(R_POWER_NAME, R_POWER_ID, AbstractPower.PowerType.BUFF, false, this, passiveVulnerable) {
                 @Override
                 public void atEndOfRound() {

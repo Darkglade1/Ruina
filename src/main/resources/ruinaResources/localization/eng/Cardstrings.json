@@ -476,5 +476,25 @@
   "${ModID}:Will": {
     "NAME": "Will of the City",
     "DESCRIPTION": "ALL allies gain !B! Block. NL An ally draws !M! cards next turn."
+  },
+  "${ModID}:FervidEmotions": {
+    "NAME": "Fervid Emotions",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! *Emotion."
+  },
+  "${ModID}:Emotional": {
+    "NAME": "Emotional Turbulence",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Gain !M! *Emotion."
+  },
+  "${ModID}:Coordinated": {
+    "NAME": "Coordinated Assault",
+    "DESCRIPTION": "Gain !M! Strength. NL An ally gains !B! Block and draws !ruina:SecondMagic! card next turn."
+  },
+  "${ModID}:RagingStorm": {
+    "NAME": "Raging Storm: Love",
+    "DESCRIPTION": "Deal !D! damage and apply !ruina:SecondMagic! Vulnerable to ALL enemies !M! times."
+  },
+  "${ModID}:Inferno": {
+    "NAME": "Inferno",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Strength affects this card !M! times"
   }
 }
