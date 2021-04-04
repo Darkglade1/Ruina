@@ -129,6 +129,7 @@ public class Malkuth extends AbstractAllyCardMonster
         if (!distorted) {
             phase = DISTORTED;
             distorted = true;
+            massAttackCooldownCounter = 0;
             IdlePose();
         }
     }
@@ -138,6 +139,7 @@ public class Malkuth extends AbstractAllyCardMonster
             phase = EGO;
             manifestedEGO = true;
             distorted = true;
+            massAttackCooldownCounter = 0;
             playSound("XiaoRoar");
             applyToTargetTop(this, this, new AbstractLambdaPower(R_POWER_NAME, R_POWER_ID, AbstractPower.PowerType.BUFF, false, this, passiveVulnerable) {
                 @Override
@@ -318,6 +320,15 @@ public class Malkuth extends AbstractAllyCardMonster
                 this.isDone = true;
             }
         });
+        Emotion power = (Emotion) getPower(Emotion.POWER_ID);
+        if (power != null) {
+            if (power.amount2 >= Malkuth.secondEmotionThreshold) {
+                manifest();
+            }
+            if (power.amount2 >= Malkuth.firstEmotionThreshold) {
+                distort();
+            }
+        }
         atb(new RollMoveAction(this));
     }
 

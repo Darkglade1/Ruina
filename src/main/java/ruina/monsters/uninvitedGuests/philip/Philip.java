@@ -294,7 +294,7 @@ public class Philip extends AbstractCardMonster
     private void getAnotherIntent() {
         numAdditionalMoves++;
         gotBonusIntent = true;
-        playSound("PhilipTransform");
+        playSound("PhilipTransform", 2.0f);
         Summon();
         //reset all the cooldowns
         moveHistory.clear();
@@ -307,7 +307,7 @@ public class Philip extends AbstractCardMonster
     private void getBonusDamage() {
         gotBonusDamage = true;
         phase = 2;
-        playSound("PhilipTransform");
+        playSound("PhilipTransform", 2.0f);
         runAnim("Idle" + phase);
         applyToTarget(this, this, new AbstractLambdaPower(DAMAGE_POWER_NAME, DAMAGE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, damageBonus) {
             @Override
@@ -432,16 +432,16 @@ public class Philip extends AbstractCardMonster
 
     public void Summon() {
         //float xPos_Farthest_L = -450.0F;
-        float xPos_Middle_L = -125F;
-        float xPos_Short_L = 100F;
+        float xPos_Middle_L = -75F;
+        float xPos_Short_L = 50F;
 
         for (int i = 0; i < minions.length; i++) {
             if (minions[i] == null) {
                 AbstractMonster minion;
                 if (i == 0) {
-                    minion = new CryingChild(xPos_Middle_L, 0.0f, this);
+                    minion = new CryingChild(xPos_Middle_L, 200.0f, this);
                 } else {
-                    minion = new CryingChild(xPos_Short_L, 0.0f, this);
+                    minion = new CryingChild(xPos_Short_L, 200.0f, this);
                 }
                 atb(new SpawnMonsterAction(minion, true));
                 atb(new UsePreBattleActionAction(minion));
