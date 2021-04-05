@@ -97,7 +97,7 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         ArrayList<MonsterRoomCreator> row7 = new ArrayList();
         ArrayList<MonsterRoomCreator> row8 = new ArrayList();
         ArrayList<MonsterRoomCreator> row9 = new ArrayList();
-        
+
         row1.add(new MonsterRoomCreator(makeUIPath("MalkuthMap.png"), makeUIPath("MalkuthMapOutline.png"), Philip.ID));
         row2.add(new MonsterRoomCreator(makeUIPath("YesodMap.png"), makeUIPath("YesodMapOutline.png"), EncounterIDs.RED_AND_WOLF));
         row3.add(new MonsterRoomCreator(makeUIPath("HodMap.png"), makeUIPath("HodMapOutline.png"), EncounterIDs.RED_AND_WOLF));

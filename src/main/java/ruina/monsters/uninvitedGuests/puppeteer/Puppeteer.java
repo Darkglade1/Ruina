@@ -73,7 +73,7 @@ public class Puppeteer extends AbstractCardMonster
     private static final int MASS_ATTACK_COOLDOWN = 3;
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
-    public final int BLOCK = calcAscensionTankiness(12);
+    public final int BLOCK = calcAscensionTankiness(16);
     public final int STRENGTH = calcAscensionSpecial(3);
     public final int WEAK = calcAscensionSpecial(1);
     public final int VULNERABLE = 1;
@@ -101,7 +101,7 @@ public class Puppeteer extends AbstractCardMonster
 
         addMove(PULLING_STRINGS_TAUT, IntentEnums.MASS_ATTACK, calcAscensionDamage(36));
         addMove(TUGGING_STRINGS, Intent.ATTACK, calcAscensionDamage(11), tuggingStringsHits, true);
-        addMove(ASSAILING_PULLS, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
+        addMove(ASSAILING_PULLS, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
         addMove(THIN_STRINGS, Intent.DEFEND_DEBUFF);
         addMove(PUPPETRY, Intent.BUFF);
 
@@ -310,6 +310,8 @@ public class Puppeteer extends AbstractCardMonster
     protected void getMove(final int num) {
         if (massAttackCooldown <= 0) {
             setMoveShortcut(PULLING_STRINGS_TAUT, MOVES[PULLING_STRINGS_TAUT], cardList.get(PULLING_STRINGS_TAUT).makeStatEquivalentCopy());
+        } else if (lastMove(ASSAILING_PULLS)) {
+            setMoveShortcut(TUGGING_STRINGS, MOVES[TUGGING_STRINGS], cardList.get(TUGGING_STRINGS).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(TUGGING_STRINGS)) {
@@ -329,18 +331,22 @@ public class Puppeteer extends AbstractCardMonster
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(TUGGING_STRINGS, moveHistory)) {
-            possibilities.add(TUGGING_STRINGS);
+        if (this.lastMove(ASSAILING_PULLS, moveHistory)) {
+            setAdditionalMoveShortcut(TUGGING_STRINGS, moveHistory, cardList.get(TUGGING_STRINGS).makeStatEquivalentCopy());
+        } else {
+            ArrayList<Byte> possibilities = new ArrayList<>();
+            if (!this.lastMove(TUGGING_STRINGS, moveHistory)) {
+                possibilities.add(TUGGING_STRINGS);
+            }
+            if (!this.lastMove(ASSAILING_PULLS, moveHistory) && this.nextMove != ASSAILING_PULLS && massAttackCooldown != 1) {
+                possibilities.add(ASSAILING_PULLS);
+            }
+            if (!this.lastMove(PUPPETRY, moveHistory)) {
+                possibilities.add(PUPPETRY);
+            }
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
         }
-        if (!this.lastMove(ASSAILING_PULLS, moveHistory) && this.nextMove != ASSAILING_PULLS && massAttackCooldown != 1) {
-            possibilities.add(ASSAILING_PULLS);
-        }
-        if (!this.lastMove(PUPPETRY, moveHistory) && !this.lastMoveBefore(PUPPETRY)) {
-            possibilities.add(PUPPETRY);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
     }
 
     @Override
