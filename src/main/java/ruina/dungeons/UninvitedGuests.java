@@ -18,12 +18,18 @@ import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
 import ruina.events.act4.Ensemble;
+import ruina.monsters.uninvitedGuests.bremen.Bremen;
+import ruina.monsters.uninvitedGuests.clown.Oswald;
 import ruina.monsters.uninvitedGuests.elena.Elena;
+import ruina.monsters.uninvitedGuests.philip.Philip;
+import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.tanya.Tanya;
 import ruina.rooms.ReverbMonsterRoom;
 
 import java.util.ArrayList;
+
+import static ruina.RuinaMod.makeUIPath;
 
 public class UninvitedGuests extends AbstractRuinaDungeon {
 
@@ -91,34 +97,33 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         ArrayList<MonsterRoomCreator> row7 = new ArrayList();
         ArrayList<MonsterRoomCreator> row8 = new ArrayList();
         ArrayList<MonsterRoomCreator> row9 = new ArrayList();
-
-        // TODO: add encounters, add unique mapart.
-//        row1.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
-//        row2.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
-//        row3.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
-//        row4.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
-//        row5.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", EncounterIDs.RED_AND_WOLF));
-        row6.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", Tanya.ID));
-        row7.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", Puppeteer.ID));
-        row8.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", Elena.ID));
-        //row9.add(new MonsterRoomCreator("images/ui/map/monster.png", "images/ui/map/monsterOutline.png", Pluto.ID));
+        
+        row1.add(new MonsterRoomCreator(makeUIPath("MalkuthMap.png"), makeUIPath("MalkuthMapOutline.png"), Philip.ID));
+        row2.add(new MonsterRoomCreator(makeUIPath("YesodMap.png"), makeUIPath("YesodMapOutline.png"), EncounterIDs.RED_AND_WOLF));
+        row3.add(new MonsterRoomCreator(makeUIPath("HodMap.png"), makeUIPath("HodMapOutline.png"), EncounterIDs.RED_AND_WOLF));
+        row4.add(new MonsterRoomCreator(makeUIPath("NetzachMap.png"), makeUIPath("NetzachMapOutline.png"), Bremen.ID));
+        row5.add(new MonsterRoomCreator(makeUIPath("TiphMap.png"), makeUIPath("TiphMapOutline.png"), Oswald.ID));
+        row6.add(new MonsterRoomCreator(makeUIPath("GeburaMap.png"), makeUIPath("GeburaMapOutline.png"), Tanya.ID));
+        row7.add(new MonsterRoomCreator(makeUIPath("ChesedMap.png"), makeUIPath("ChesedMapOutline.png"), Puppeteer.ID));
+        row8.add(new MonsterRoomCreator(makeUIPath("BinahMap.png"), makeUIPath("BinahMapOutline.png"), Elena.ID));
+        row9.add(new MonsterRoomCreator(makeUIPath("HokmaMap.png"), makeUIPath("HokmaMapOutline.png"), Pluto.ID));
 
         map = new ArrayList();
 
         int index = 0;
-//        map.add(populate(row1, index++));
-//        map.add(populate(row2, index++));
-//        map.add(populate(row3, index++));
-//        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-//        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-//        map.add(populate(row4, index++));
-//        map.add(populate(row5, index++));
+        map.add(populate(row1, index++));
+        map.add(populate(row2, index++));
+        map.add(populate(row3, index++));
+        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
+        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
+        map.add(populate(row4, index++));
+        map.add(populate(row5, index++));
         map.add(populate(row6, index++));
         map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
         map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
         map.add(populate(row7, index++));
         map.add(populate(row8, index++));
-        //map.add(populate(row9, index++));
+        map.add(populate(row9, index++));
         map.add(tripleNodeArea(new TreasureRoom(), new ShopRoom(), new RestRoom(), index++));
         map.add(tripleNodeArea(new TreasureRoom(), new ShopRoom(), new RestRoom(), index++));
         map.add(singleNodeArea(new MonsterRoomBoss(), index++));
