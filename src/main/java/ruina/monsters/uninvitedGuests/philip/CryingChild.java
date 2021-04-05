@@ -66,7 +66,7 @@ public class CryingChild extends AbstractRuinaMonster
         super(NAME, ID, 40, -5.0F, 0, 100.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("CryingChild/Spriter/CryingChild.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(92), calcAscensionTankiness(98));
+        setHp(calcAscensionTankiness(72), calcAscensionTankiness(78));
         addMove(WING_STROKE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
         addMove(MURMUR, Intent.ATTACK, calcAscensionDamage(10));
         this.philip = philip;

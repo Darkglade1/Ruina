@@ -336,7 +336,7 @@
   },
   "${ModID}:MelodyPower": {
     "NAME": "Melody",
-    "DESCRIPTIONS": ["Each turn, a random #yMelody sequence is generated in your hand. If you complete the #yMelody by the end of the round, you gain #b", " #yStrength. If you didn't, this creature gains #b", " #yStrength."]
+    "DESCRIPTIONS": ["Each turn, a random sequence is generated in the #yMelody card. If you complete the #yMelody by the end of the round, you gain #b", " #yStrength. If you didn't, this creature gains #b", " #yStrength."]
   },
   "${ModID}:Passion": {
     "NAME": "Tempered Passion",

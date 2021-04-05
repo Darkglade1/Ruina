@@ -64,8 +64,8 @@ public class Philip extends AbstractCardMonster
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int SEARING_BURNS = calcAscensionSpecial(1);
     public final int damageBonus = calcAscensionSpecial(30);
-    public final int damageReduction = 90;
-    public final int damageReductionDecay = 15;
+    public final int damageReduction = 60;
+    public final int damageReductionDecay = 10;
     private int TURNS_TILL_BONUS_INTENT = 3;
     public boolean gotBonusIntent = false;
     public int TURNS_TILL_BONUS_DAMAGE = 6;
@@ -172,7 +172,7 @@ public class Philip extends AbstractCardMonster
         switch (move.nextMove) {
             case EVENTIDE: {
                 buffAnimation();
-                intoDrawMo(new Burn(), EVENTIDE_BURNS, this);
+                intoDiscardMo(new Burn(), EVENTIDE_BURNS, this);
                 resetIdle();
                 break;
             }

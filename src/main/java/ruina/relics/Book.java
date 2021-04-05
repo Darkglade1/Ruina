@@ -9,7 +9,7 @@ import static ruina.util.Wiz.adp;
 public class Book extends AbstractEasyRelic {
     public static final String ID = makeID(Book.class.getSimpleName());
 
-    private static final int HEAL = 50;
+    private static final int HEAL = 35;
 
     public Book() {
         super(ID, RelicTier.SPECIAL, LandingSound.MAGICAL);

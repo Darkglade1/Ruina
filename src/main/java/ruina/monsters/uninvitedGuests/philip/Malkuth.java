@@ -19,7 +19,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
@@ -65,7 +64,7 @@ public class Malkuth extends AbstractAllyCardMonster
     public final int DRAW = 1;
     public final int fervidHits = 2;
     public final int fervidEmotions = 4;
-    public final int emotionalEmotions = 3;
+    public final int emotionalEmotions = 4;
     public final int stormHits = 2;
     public final int infernoStrScaling = 5;
     public final int VULNERABLE = 1;
@@ -106,7 +105,7 @@ public class Malkuth extends AbstractAllyCardMonster
     }
 
     public Malkuth(final float x, final float y) {
-        super(NAME, ID, 180, -5.0F, 0, 200.0f, 240.0f, null, x, y);
+        super(NAME, ID, 200, -5.0F, 0, 200.0f, 240.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Malkuth/Spriter/Malkuth.scml"));
         this.animation.setFlip(true, false);
 

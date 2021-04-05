@@ -73,7 +73,7 @@ public class Puppeteer extends AbstractCardMonster
     private static final int MASS_ATTACK_COOLDOWN = 3;
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
-    public final int BLOCK = calcAscensionTankiness(16);
+    public final int BLOCK = calcAscensionTankiness(20);
     public final int STRENGTH = calcAscensionSpecial(3);
     public final int WEAK = calcAscensionSpecial(1);
     public final int VULNERABLE = 1;

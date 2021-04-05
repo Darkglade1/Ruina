@@ -499,7 +499,7 @@
   },
   "${ModID}:Eventide": {
     "NAME": "Waned Eventide",
-    "DESCRIPTION": "Shuffle !M! *Burns into your draw pile."
+    "DESCRIPTION": "Shuffle !M! *Burns into your discard pile."
   },
   "${ModID}:Emotions": {
     "NAME": "Conflicting Emotions",

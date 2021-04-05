@@ -60,13 +60,13 @@ public class Bremen extends AbstractCardMonster
     public final int STATUS = calcAscensionSpecial(3);
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int PARALYSIS = calcAscensionSpecial(2);
-    public final int BLOCK = calcAscensionTankiness(18);
+    public final int BLOCK = calcAscensionTankiness(22);
     public final int MELODY_LENGTH = 3;
     public final int MELODY_LENGTH_INCREASE = 1;
     private int currentMelodyLength = MELODY_LENGTH;
     public final int MELODY_BOSS_STR = calcAscensionSpecial(2);
     public final int MELODY_PLAYER_STR = 1;
-    public final int TRIO_COOLDOWN = 3;
+    public final int TRIO_COOLDOWN = 2;
     private int cooldown = TRIO_COOLDOWN;
     public Netzach netzach;
     private boolean lastIntentTargetAlly = true;
@@ -92,12 +92,12 @@ public class Bremen extends AbstractCardMonster
         }
         this.setHp(calcAscensionTankiness(maxHealth));
 
-        addMove(MELODY, Intent.ATTACK_BUFF, calcAscensionDamage(6));
-        addMove(NEIGH, Intent.ATTACK, calcAscensionDamage(17));
+        addMove(MELODY, Intent.ATTACK_BUFF, calcAscensionDamage(8));
+        addMove(NEIGH, Intent.ATTACK, calcAscensionDamage(19));
         addMove(BAWK, Intent.DEBUFF);
         addMove(RARF, Intent.DEFEND_DEBUFF);
-        addMove(TENDON, Intent.ATTACK, calcAscensionDamage(6), tendonHits, true);
-        addMove(TRIO, Intent.ATTACK_DEBUFF, calcAscensionDamage(5), trioHits, true);
+        addMove(TENDON, Intent.ATTACK, calcAscensionDamage(7), tendonHits, true);
+        addMove(TRIO, Intent.ATTACK_DEBUFF, calcAscensionDamage(6), trioHits, true);
     }
 
     @Override
