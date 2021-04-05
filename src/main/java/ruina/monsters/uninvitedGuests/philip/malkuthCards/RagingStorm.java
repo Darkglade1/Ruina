@@ -22,7 +22,7 @@ public class RagingStorm extends AbstractRuinaCard {
     @Override
     public float getTitleFontSize()
     {
-        return 14;
+        return 16;
     }
 
     @Override

@@ -68,7 +68,7 @@ public class CryingChild extends AbstractRuinaMonster
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(92), calcAscensionTankiness(98));
         addMove(WING_STROKE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
-        addMove(MURMUR, Intent.ATTACK, calcAscensionDamage(11));
+        addMove(MURMUR, Intent.ATTACK, calcAscensionDamage(10));
         this.philip = philip;
         this.malkuth = philip.malkuth;
     }

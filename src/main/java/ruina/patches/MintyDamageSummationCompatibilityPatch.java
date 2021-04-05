@@ -17,6 +17,7 @@ import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.act2.HermitStaff;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act3.bigBird.Sage;
+import ruina.monsters.uninvitedGuests.philip.CryingChild;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppet;
 import ruina.util.AdditionalIntent;
 
@@ -47,7 +48,7 @@ public class MintyDamageSummationCompatibilityPatch {
                     c[0]--;
                 }
             }
-            //hardcode these two cases where the enemy attacks NPC with primary intent
+            //hardcode these cases where the enemy attacks NPC with primary intent
             if (m instanceof Mountain) {
                 if (((Mountain) m).currentStage == Mountain.STAGE1) {
                     dmg[0] -= m.getIntentDmg();
@@ -60,6 +61,16 @@ public class MintyDamageSummationCompatibilityPatch {
             }
             if (m instanceof Puppet) {
                 if (((Puppet) m).attackingAlly) {
+                    int damage = m.getIntentDmg();
+                    if ((Boolean) ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg")) {
+                        damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
+                    }
+                    dmg[0] -= damage;
+                    c[0]--;
+                }
+            }
+            if (m instanceof CryingChild) {
+                if (((CryingChild) m).attackingAlly) {
                     int damage = m.getIntentDmg();
                     if ((Boolean) ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg")) {
                         damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
@@ -92,7 +103,7 @@ public class MintyDamageSummationCompatibilityPatch {
         public static void patch(AbstractDungeon fakeInstance, SpriteBatch sb, @ByRef int[] dmg, @ByRef int[] c) {
             for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
                 if (mo instanceof AbstractAllyMonster) {
-                    if (mo.intent == IntentEnums.MASS_ATTACK) {
+                    if (mo.intent == IntentEnums.MASS_ATTACK && ((AbstractAllyMonster) mo).massAttackHitsPlayer) {
                         int tmp;
                         c[0]++;
                         int multiAmt;

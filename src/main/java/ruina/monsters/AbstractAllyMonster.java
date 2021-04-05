@@ -29,7 +29,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AllyStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
     public String allyIcon;
-    protected boolean massAttackHitsPlayer = false;
+    public boolean massAttackHitsPlayer = false;
 
     //basically just for little Red who is an ally that can become an enemy
     public boolean isAlly = true;

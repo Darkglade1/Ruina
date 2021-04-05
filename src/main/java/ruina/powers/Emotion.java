@@ -56,7 +56,6 @@ public class Emotion extends AbstractEasyPower {
     @Override
     public void onExhaust(AbstractCard card) {
         if (amount2 < Malkuth.EMOTION_CAP) {
-            flash();
             stackPower(Malkuth.EXHAUST_GAIN);
         }
     }
