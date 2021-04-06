@@ -1,6 +1,7 @@
 package ruina.monsters.uninvitedGuests.bremen;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -9,6 +10,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -116,7 +118,6 @@ public class Bremen extends AbstractCardMonster
         }
         atb(new TalkAction(this, DIALOG[0]));
         applyToTarget(this, this, melodyPower);
-        AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(melodyCard));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new StrengthPower(this, 1)); //hacky solution again LOL
     }
@@ -327,6 +328,19 @@ public class Bremen extends AbstractCardMonster
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
         netzach.onBossDeath();
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        float drawScale = 0.6f;
+        float offsetX1 = 300.0F * Settings.scale;
+        float offsetY = 100.0F * Settings.scale;
+        AbstractCard card = melodyCard;
+        card.drawScale = drawScale;
+        card.current_x = this.hb.x + offsetX1;
+        card.current_y = this.hb.y + offsetY;
+        card.render(sb);
     }
 
 }
