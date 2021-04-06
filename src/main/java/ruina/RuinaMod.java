@@ -107,6 +107,8 @@ import ruina.monsters.uninvitedGuests.clown.Tiph;
 import ruina.monsters.uninvitedGuests.elena.Binah;
 import ruina.monsters.uninvitedGuests.elena.Elena;
 import ruina.monsters.uninvitedGuests.elena.VermilionCross;
+import ruina.monsters.uninvitedGuests.greta.Greta;
+import ruina.monsters.uninvitedGuests.greta.Hod;
 import ruina.monsters.uninvitedGuests.philip.Malkuth;
 import ruina.monsters.uninvitedGuests.philip.Philip;
 import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
@@ -675,6 +677,11 @@ public class RuinaMod implements
                 new AbstractMonster[] {
                         new Malkuth(-550.0F, 0.0F),
                         new Philip(200.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Greta.ID, "Greta", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Hod(-550.0F, 0.0F),
+                        new Greta(200.0F, 0.0F),
                 }));
 
         uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(

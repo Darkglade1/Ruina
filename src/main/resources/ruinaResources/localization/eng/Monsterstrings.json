@@ -802,5 +802,38 @@
     "NAME": "Crying Child",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Greta": {
+    "MOVES": [
+      "Break an Egg",
+      "Slap and Fold",
+      "Mince",
+      "Season the Meat",
+      "Trial Smack",
+      "Into the Sack You Go!"
+    ],
+    "NAME": "Greta",
+    "DIALOG": [
+      "All the ingredients here are so filthy! It makes my stomach churn."
+    ]
+  },
+  "${ModID}:Hod": {
+    "MOVES": [
+      "Snake Slit",
+      "Violet Blade",
+      "Laceration",
+      "Venomous Fangs",
+      "Serpentine Barrier",
+      "Duel"
+    ],
+    "NAME": "Hod",
+    "DIALOG": [
+      "No one here is untainted. But that doesn't mean we can't be beautiful too.",
+      "Thank you kindly, stranger.",
+      "Stance Change",
+      "Click to switch this creature to #ySlash stance, which focuses on dealing damage.",
+      "Click to switch this creature to #yPierce stance, which focuses on applying #rdebuffs.",
+      "Click to switch this creature to #yGuard stance, which focuses on #yBlocking and #yNegating #rdebuffs."
+    ]
   }
 }

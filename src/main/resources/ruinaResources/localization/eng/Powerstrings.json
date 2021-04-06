@@ -361,5 +361,25 @@
   "${ModID}:TorchedHeart": {
     "NAME": "Torched Heart",
     "DESCRIPTIONS": ["Receives #b", "% less damage from attacks unless this creature is #yVulnerable."]
+  },
+  "${ModID}:Sharkskin": {
+    "NAME": "Sharkskin",
+    "DESCRIPTIONS": ["Receives #b", "% less damage from attacks unless this creature has a #ydebuff. NL Every #b", " turns, this creature removes ALL #ydebuffs from itself."]
+  },
+  "${ModID}:FreshMeat": {
+    "NAME": "Fresh Meat",
+    "DESCRIPTIONS": ["On death, if the #renemy killed it, the #renemy heals #b", " HP and ", " is #rPurged and #rremoved from your master deck. Otherwise, ", " is put into your hand."]
+  },
+  "${ModID}:PurpleTearStance": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "Slash Stance",
+      "Deals #b",
+      "% more damage with attacks.",
+      "Pierce Stance",
+      "Every #b",
+      "nd attack from this creature #ydoubles its target's #rdebuffs.",
+      "Guard Stance",
+      "#yNegate ALL #rdebuffs applied to this creature."]
   }
 }
