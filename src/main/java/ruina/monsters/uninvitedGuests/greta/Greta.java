@@ -17,8 +17,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -59,7 +60,7 @@ public class Greta extends AbstractCardMonster
     public final int PARALYSIS = calcAscensionSpecial(2);
     public final int BLEED = calcAscensionSpecial(4);
     public final int BLOCK = calcAscensionTankiness(30);
-    public final int POISON = calcAscensionSpecial(10);
+    public final int DEBUFF = calcAscensionSpecial(3);
     public final int damageReduction = 50;
     public final int debuffCleanseTurns = 3;
 
@@ -169,7 +170,7 @@ public class Greta extends AbstractCardMonster
                 break;
             }
             case SLAP: {
-                slashAnimation(target);
+                blockAnimation();
                 block(this, BLOCK);
                 if (target == adp()) {
                     applyToTarget(target, this, new Bleed(target, BLEED));
@@ -182,9 +183,9 @@ public class Greta extends AbstractCardMonster
             case MINCE: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        slashAnimation(target);
-                    } else {
                         pierceAnimation(target);
+                    } else {
+                        slashAnimation(target);
                     }
                     dmg(target, info);
                     resetIdle();
@@ -192,20 +193,23 @@ public class Greta extends AbstractCardMonster
                 break;
             }
             case SEASON: {
-                pierceAnimation(target);
-                applyToTarget(target, this, new PoisonPower(target, this, POISON));
-                resetIdle(1.0f);
+                debuffAnimation();
+                applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                applyToTarget(target, this, new VulnerablePower(target, DEBUFF, true));
+                resetIdle();
                 break;
             }
             case TRIAL: {
+                specialAttackAnimation(target);
                 atb(new VampireDamageActionButItCanFizzle(target, info, AbstractGameAction.AttackEffect.NONE));
                 resetIdle();
                 break;
             }
             case SACK: {
+                sackAnimation(target);
                 atb(new GretaStealCardAction(this));
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-                resetIdle(1.0f);
+                resetIdle();
                 break;
             }
         }
@@ -216,11 +220,11 @@ public class Greta extends AbstractCardMonster
     }
 
     private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "BremenDog", enemy, this);
+        animationAction("Pierce", "BluntBlow", enemy, this);
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "BremenHorse", enemy, this);
+        animationAction("Slash", "BluntVert", enemy, this);
     }
 
     private void blockAnimation() {
@@ -228,15 +232,15 @@ public class Greta extends AbstractCardMonster
     }
 
     private void specialAttackAnimation(AbstractCreature enemy) {
-        animationAction("Special1", "BremenStrong", enemy, this);
+        animationAction("Special", "GretaEat", enemy, this);
     }
 
-    private void specialAttackAnimation2(AbstractCreature enemy) {
-        animationAction("Special2", "BremenStrongFar", enemy, this);
+    private void sackAnimation(AbstractCreature enemy) {
+        animationAction("Sack", null, enemy, this);
     }
 
     private void debuffAnimation() {
-        animationAction("Debuff", "BremenChicken", this);
+        animationAction("Range", null, this);
     }
 
 
@@ -300,7 +304,11 @@ public class Greta extends AbstractCardMonster
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
         } else {
-            setAdditionalMoveShortcut(TRIAL, moveHistory, getMoveCardFromByte(TRIAL));
+            if (meat != null) {
+                setAdditionalMoveShortcut(TRIAL, moveHistory, getMoveCardFromByte(TRIAL));
+            } else {
+                setAdditionalMoveShortcut(SACK, moveHistory, getMoveCardFromByte(SACK));
+            }
         }
     }
 

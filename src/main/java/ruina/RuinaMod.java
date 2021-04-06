@@ -483,6 +483,8 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("XiaoRoar"), makeSFXPath("Xiao_Roar.wav"));
         BaseMod.addAudio(makeID("XiaoStrongFin"), makeSFXPath("Xiao_Strong_Hori.wav"));
         BaseMod.addAudio(makeID("XiaoStrongStart"), makeSFXPath("Xiao_Strong_Upper.wav"));
+
+        BaseMod.addAudio(makeID("GretaEat"), makeSFXPath("Greta_Eat.wav"));
     }
 
     @Override
@@ -678,11 +680,11 @@ public class RuinaMod implements
                         new Malkuth(-550.0F, 0.0F),
                         new Philip(200.0F, 0.0F),
                 }));
-//        BaseMod.addMonster(Greta.ID, "Greta", () -> new MonsterGroup(
-//                new AbstractMonster[] {
-//                        new Hod(-550.0F, 0.0F),
-//                        new Greta(200.0F, 0.0F),
-//                }));
+        BaseMod.addMonster(Greta.ID, "Greta", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Hod(-550.0F, 0.0F),
+                        new Greta(200.0F, 0.0F),
+                }));
 
         uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(
                 new AbstractMonster[] {

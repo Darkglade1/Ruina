@@ -62,6 +62,10 @@ public class Hod extends AbstractAllyCardMonster
     public static final int GUARD = 3;
     private int stance = PIERCE;
 
+    private byte slashMove = SNAKE_SLIT;
+    private byte pierceMove = LACERATION;
+    private byte guardMove = SERPENTINE_BARRIER;
+
     public Hod() {
         this(0.0f, 0.0f);
     }
@@ -105,21 +109,33 @@ public class Hod extends AbstractAllyCardMonster
         applyToTarget(this, this, stancePower);
         super.usePreBattleAction();
         AllyMove changeToSlash = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("defend.png")), DIALOG[3], () -> {
-            stancePower.changeStance(SLASH);
+            if (stance == SLASH) {
+                atb(new TalkAction(this, DIALOG[6]));
+            } else {
+                stancePower.changeStance(SLASH);
+            }
         });
         changeToSlash.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
         changeToSlash.setY(this.intentHb.cY - ((32.0f - 30.0f) * Settings.scale));
         allyMoves.add(changeToSlash);
 
         AllyMove changeToPierce = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("defend.png")), DIALOG[4], () -> {
-            stancePower.changeStance(PIERCE);
+            if (stance == PIERCE) {
+                atb(new TalkAction(this, DIALOG[6]));
+            } else {
+                stancePower.changeStance(PIERCE);
+            }
         });
         changeToPierce.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
         changeToPierce.setY(this.intentHb.cY - ((32.0f - 60.0f) * Settings.scale));
         allyMoves.add(changeToPierce);
 
         AllyMove changeToGuard = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("defend.png")), DIALOG[5], () -> {
-            stancePower.changeStance(GUARD);
+            if (stance == GUARD) {
+                atb(new TalkAction(this, DIALOG[6]));
+            } else {
+                stancePower.changeStance(GUARD);
+            }
         });
         changeToGuard.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
         changeToGuard.setY(this.intentHb.cY - ((32.0f - 90.0f) * Settings.scale));
@@ -164,6 +180,7 @@ public class Hod extends AbstractAllyCardMonster
                     resetIdle();
                 }
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                slashMove = VIOLET_BLADE;
                 break;
             }
             case VIOLET_BLADE: {
@@ -176,24 +193,28 @@ public class Hod extends AbstractAllyCardMonster
                     dmg(target, info);
                     resetIdle();
                 }
+                slashMove = SNAKE_SLIT;
                 break;
             }
             case LACERATION: {
                 dmg(target, info);
                 applyToTarget(target, this, new VulnerablePower(target, VULNERABLE, true));
                 resetIdle();
+                pierceMove = VENOMOUS_FANGS;
                 break;
             }
             case VENOMOUS_FANGS: {
                 dmg(target, info);
                 applyToTarget(target, this, new WeakPower(target, WEAK, false));
                 resetIdle();
+                pierceMove = LACERATION;
                 break;
             }
             case SERPENTINE_BARRIER: {
                 block(adp(), BARRIER_BLOCK);
                 atb(new AllyGainBlockAction(this, BARRIER_BLOCK));
                 resetIdle();
+                guardMove = DUEL;
                 break;
             }
             case DUEL: {
@@ -201,6 +222,7 @@ public class Hod extends AbstractAllyCardMonster
                 atb(new AllyGainBlockAction(this, DUEL_BLOCK));
                 dmg(target, info);
                 resetIdle();
+                guardMove = SERPENTINE_BARRIER;
                 break;
             }
         }
@@ -210,19 +232,19 @@ public class Hod extends AbstractAllyCardMonster
     @Override
     protected void getMove(final int num) {
         if (stance == SLASH) {
-            if (lastMove(SNAKE_SLIT)) {
+            if (slashMove == VIOLET_BLADE) {
                 setMoveShortcut(VIOLET_BLADE, MOVES[VIOLET_BLADE], cardList.get(VIOLET_BLADE));
             } else {
                 setMoveShortcut(SNAKE_SLIT, MOVES[SNAKE_SLIT], cardList.get(SNAKE_SLIT));
             }
         } else if (stance == PIERCE) {
-            if (lastMove(LACERATION)) {
+            if (pierceMove == VENOMOUS_FANGS) {
                 setMoveShortcut(VENOMOUS_FANGS, MOVES[VENOMOUS_FANGS], cardList.get(VENOMOUS_FANGS));
             } else {
                 setMoveShortcut(LACERATION, MOVES[LACERATION], cardList.get(LACERATION));
             }
         } else {
-            if (lastMove(SERPENTINE_BARRIER)) {
+            if (guardMove == DUEL) {
                 setMoveShortcut(DUEL, MOVES[DUEL], cardList.get(DUEL));
             } else {
                 setMoveShortcut(SERPENTINE_BARRIER, MOVES[SERPENTINE_BARRIER], cardList.get(SERPENTINE_BARRIER));

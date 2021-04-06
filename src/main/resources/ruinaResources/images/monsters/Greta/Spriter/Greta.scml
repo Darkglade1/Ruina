@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Blue_Greta_Default.png" width="314" height="295" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Blue_Greta_Slash.png" width="475" height="423" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Blue_Greta_Penetrate.png" width="581" height="252" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Blue_Greta_Hit.png" width="540" height="284" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Blue_Greta_Fire.png" width="332" height="294" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Blue_Greta_Guard.png" width="264" height="275" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Blue_Greta_S1.png" width="363" height="230" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="Blue_Greta_S5.png" width="306" height="258" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Greta">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Greta_Default">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-147.660714" y="267.598214"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Slash" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Greta_Slash">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-283.333333" y="354.444444"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Pierce" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Greta_Penetrate">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-292.222222" y="256.666667"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Blunt" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Greta_Hit">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-302.222222" y="286.666667"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Sack" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Greta_S5">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-201.111111" y="255"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Range" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Greta_Fire">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-163.333333" y="297.777778"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="Block" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Greta_Guard">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-80" y="272.222222"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="7" name="Special" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blue_Greta_S1">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-154.444444" y="234.444444"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

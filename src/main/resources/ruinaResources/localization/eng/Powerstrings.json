@@ -368,7 +368,7 @@
   },
   "${ModID}:FreshMeat": {
     "NAME": "Fresh Meat",
-    "DESCRIPTIONS": ["On death, if the #renemy killed it, the #renemy heals #b", " HP and ", " is #rPurged and #rremoved from your master deck. Otherwise, ", " is put into your hand."]
+    "DESCRIPTIONS": ["On death, if the #renemy killed it, the #renemy heals #b", " HP and ", " is #rPurged and #rremoved from your master deck. Otherwise, ", " is put into your hand. NL NL If this creature dies while the #renemy is targeting it, the #renemy will target #yyou instead."]
   },
   "${ModID}:PurpleTearStance": {
     "NAME": "",
