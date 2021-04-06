@@ -13,6 +13,9 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 
 import java.util.ArrayList;
 
+import static ruina.util.AdditionalIntent.ENEMY_CARD_HOVERED_HEIGHT;
+import static ruina.util.AdditionalIntent.ENEMY_CARD_HOVERED_WIDTH;
+
 public abstract class AbstractAllyCardMonster extends AbstractAllyMonster {
     protected AbstractCard allyCard = null;
     public static AbstractCard hoveredCard = null;
@@ -42,7 +45,7 @@ public abstract class AbstractAllyCardMonster extends AbstractAllyMonster {
             allyCard.current_x = MathHelper.cardLerpSnap(allyCard.current_x, allyCard.target_x);
             allyCard.current_y = MathHelper.cardLerpSnap(allyCard.current_y, allyCard.target_y);
             allyCard.hb.move(allyCard.current_x, allyCard.current_y);
-            allyCard.hb.resize(512 * allyCard.drawScale, 512 * allyCard.drawScale);
+            allyCard.hb.resize(ENEMY_CARD_HOVERED_WIDTH * allyCard.drawScale, ENEMY_CARD_HOVERED_HEIGHT * allyCard.drawScale);
             if (allyCard.hb.hovered) {
                 if (hoveredCard == null) {
                     hoveredCard = allyCard;
@@ -97,7 +100,7 @@ public abstract class AbstractAllyCardMonster extends AbstractAllyMonster {
     public void rollMove() {
         allyCard = null;
         super.rollMove();
-        AbstractCardMonster.hoveredCard = null; //in case the player was hovering one of them while it was getting yeeted
+        AbstractAllyCardMonster.hoveredCard = null; //in case the player was hovering one of them while it was getting yeeted
     }
 
     public void setMoveShortcut(byte next, String text, AbstractCard allyCard) {

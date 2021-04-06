@@ -328,7 +328,7 @@
   },
   "${ModID}:Brainwash": {
     "NAME": "Brainwash",
-    "DESCRIPTIONS": ["Your #gally has been #yBrainwashed into an #renemy for #b", " turn(s). #yBrainwash is removed after this creature is attacked #b", " more time(s)."]
+    "DESCRIPTIONS": ["Your #gally has been #yBrainwashed into an #renemy for #b", " turn(s). #yBrainwash is removed after this creature loses #b", " more HP."]
   },
   "${ModID}:Messenger": {
     "NAME": "Messenger",

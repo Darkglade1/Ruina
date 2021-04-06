@@ -65,7 +65,7 @@ public class Oswald extends AbstractCardMonster
     public final int STRENGTH = calcAscensionSpecial(1);
     public final int WEAK = calcAscensionSpecial(2);
     public final int BRAINWASH_LENGTH = 2;
-    public final int BRAINWASH_HITS = 4;
+    public final int BRAINWASH_DAMAGE = calcAscensionTankiness(30);
     public Tiph tiph;
 
     public static final String POWER_ID = makeID("Brainwash");
@@ -180,21 +180,19 @@ public class Oswald extends AbstractCardMonster
                         if (owner instanceof Tiph) {
                             ((Tiph) owner).onBrainwashed();
                         }
-                        amount2 = BRAINWASH_HITS;
+                        amount2 = BRAINWASH_DAMAGE;
                         updateDescription();
                         AbstractDungeon.onModifyPower();
                     }
 
                     @Override
                     public int onAttacked(DamageInfo info, int damageAmount) {
-                        if (info.type == DamageInfo.DamageType.NORMAL && info.owner != owner) {
-                            flash();
-                            amount2--;
-                            if (amount2 <= 0) {
-                                atb(new RemoveSpecificPowerAction(owner, owner, this));
-                            }
-                            updateDescription();
+                        flash();
+                        amount2 -= damageAmount;
+                        if (amount2 <= 0) {
+                            atb(new RemoveSpecificPowerAction(owner, owner, this));
                         }
+                        updateDescription();
                         return damageAmount;
                     }
 

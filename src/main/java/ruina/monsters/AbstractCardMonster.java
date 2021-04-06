@@ -13,6 +13,9 @@ import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
 
+import static ruina.util.AdditionalIntent.ENEMY_CARD_HOVERED_HEIGHT;
+import static ruina.util.AdditionalIntent.ENEMY_CARD_HOVERED_WIDTH;
+
 public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
     protected AbstractCard enemyCard = null;
     public ArrayList<AbstractCard> cardsToRender = new ArrayList<>();
@@ -43,7 +46,7 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
             enemyCard.current_x = MathHelper.cardLerpSnap(enemyCard.current_x, enemyCard.target_x);
             enemyCard.current_y = MathHelper.cardLerpSnap(enemyCard.current_y, enemyCard.target_y);
             enemyCard.hb.move(enemyCard.current_x, enemyCard.current_y);
-            enemyCard.hb.resize(512 * enemyCard.drawScale, 512 * enemyCard.drawScale);
+            enemyCard.hb.resize(ENEMY_CARD_HOVERED_WIDTH * enemyCard.drawScale, ENEMY_CARD_HOVERED_HEIGHT * enemyCard.drawScale);
             if (enemyCard.hb.hovered) {
                 if (AbstractCardMonster.hoveredCard == null) {
                     AbstractCardMonster.hoveredCard = enemyCard;

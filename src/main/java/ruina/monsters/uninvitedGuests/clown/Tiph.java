@@ -35,7 +35,7 @@ public class Tiph extends AbstractAllyCardMonster
     private static final byte AUGURY_KICK = 0;
     private static final byte CONFRONTATION = 1;
 
-    public final int STRENGTH = 3;
+    public final int STRENGTH = 2;
     public final int PROTECTION = 2;
 
     public Oswald oswald;
@@ -45,7 +45,7 @@ public class Tiph extends AbstractAllyCardMonster
     }
 
     public Tiph(final float x, final float y) {
-        super(NAME, ID, 190, -5.0F, 0, 200, 260.0f, null, x, y);
+        super(NAME, ID, 300, -5.0F, 0, 200, 260.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Tiph/Spriter/Tiph.scml"));
         this.animation.setFlip(true, false);
 
