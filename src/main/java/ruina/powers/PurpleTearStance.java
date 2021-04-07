@@ -3,6 +3,7 @@ package ruina.powers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnReceivePowerPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -58,11 +59,18 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
             if (amount >= Hod.pierceTriggerHits) {
                 flash();
                 amount = 0;
-                for (AbstractPower power : target.powers) {
-                    if (power.type == PowerType.DEBUFF) {
-                        atb(new ApplyPowerAction(target, owner, power, power.amount));
+                AbstractCreature enemy = target;
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        for (AbstractPower power : enemy.powers) {
+                            if (power.type == PowerType.DEBUFF) {
+                                atb(new ApplyPowerAction(enemy, owner, power, power.amount));
+                            }
+                        }
+                        this.isDone = true;
                     }
-                }
+                });
             }
         }
     }
@@ -84,15 +92,14 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
             amount = 0;
         }
         updateDescription();
-        AbstractDungeon.onModifyPower();
         AbstractRuinaMonster.playSound("PurpleChange");
-        flash();
         if (owner instanceof Hod) {
             ((Hod) owner).stance = stance;
             ((Hod) owner).IdlePose();
             ((Hod) owner).rollMove();
             ((Hod) owner).createIntent();
         }
+        AbstractDungeon.onModifyPower();
     }
 
     @Override

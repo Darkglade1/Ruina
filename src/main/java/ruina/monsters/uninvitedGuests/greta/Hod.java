@@ -86,7 +86,7 @@ public class Hod extends AbstractAllyCardMonster
         this.type = EnemyType.BOSS;
 
         addMove(SNAKE_SLIT, Intent.ATTACK_BUFF, 7, snakeHits, true);
-        addMove(VIOLET_BLADE, Intent.ATTACK, 8, violetHits);
+        addMove(VIOLET_BLADE, Intent.ATTACK, 8, violetHits, true);
         addMove(LACERATION, Intent.ATTACK_DEBUFF, 12);
         addMove(VENOMOUS_FANGS, Intent.ATTACK_DEBUFF, 14);
         addMove(SERPENTINE_BARRIER, Intent.DEFEND);
@@ -117,7 +117,13 @@ public class Hod extends AbstractAllyCardMonster
         }
         stancePower = new PurpleTearStance(this, stance);
         applyToTarget(this, this, stancePower);
-        stancePower.changeStance(stance);
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                stancePower.changeStance(stance);
+                this.isDone = true;
+            }
+        });
         super.usePreBattleAction();
         AllyMove changeToSlash = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("SlashStance.png")), DIALOG[3], () -> {
             if (stance == SLASH) {
@@ -126,8 +132,8 @@ public class Hod extends AbstractAllyCardMonster
                 stancePower.changeStance(SLASH);
             }
         });
-        changeToSlash.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
-        changeToSlash.setY(this.intentHb.cY - ((32.0f - 30.0f) * Settings.scale));
+        changeToSlash.setX(this.intentHb.x - ((50.0F + 32.0f) * Settings.scale));
+        changeToSlash.setY(this.intentHb.cY - ((32.0f - 80.0f) * Settings.scale));
         allyMoves.add(changeToSlash);
 
         AllyMove changeToPierce = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("PierceStance.png")), DIALOG[4], () -> {
@@ -137,8 +143,8 @@ public class Hod extends AbstractAllyCardMonster
                 stancePower.changeStance(PIERCE);
             }
         });
-        changeToPierce.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
-        changeToPierce.setY(this.intentHb.cY - ((32.0f - 60.0f) * Settings.scale));
+        changeToPierce.setX(this.intentHb.x - ((50.0F + 32.0f) * Settings.scale));
+        changeToPierce.setY(this.intentHb.cY - ((32.0f - 160.0f) * Settings.scale));
         allyMoves.add(changeToPierce);
 
         AllyMove changeToGuard = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("GuardStance.png")), DIALOG[5], () -> {
@@ -148,8 +154,8 @@ public class Hod extends AbstractAllyCardMonster
                 stancePower.changeStance(GUARD);
             }
         });
-        changeToGuard.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
-        changeToGuard.setY(this.intentHb.cY - ((32.0f - 90.0f) * Settings.scale));
+        changeToGuard.setX(this.intentHb.x - ((50.0F + 32.0f) * Settings.scale));
+        changeToGuard.setY(this.intentHb.cY - ((32.0f - 240.0f) * Settings.scale));
         allyMoves.add(changeToGuard);
     }
 

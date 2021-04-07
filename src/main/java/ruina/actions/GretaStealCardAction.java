@@ -1,19 +1,15 @@
 package ruina.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.utility.ShowCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.StasisPower;
 import ruina.monsters.uninvitedGuests.greta.FreshMeat;
 import ruina.monsters.uninvitedGuests.greta.Greta;
 
-import static ruina.util.Wiz.atb;
 import static ruina.util.Wiz.att;
 
 public class GretaStealCardAction extends AbstractGameAction {
@@ -75,7 +71,7 @@ public class GretaStealCardAction extends AbstractGameAction {
 
             this.tickDuration();// 82
             if (this.isDone && this.card != null) {// 83
-                FreshMeat meat = new FreshMeat(-100.0f, 0.0f, card, owner);
+                FreshMeat meat = new FreshMeat(-150.0f, 0.0f, card, owner);
                 owner.meat = meat;
                 att(new ShowCardAction(this.card));// 85
                 att(new UsePreBattleActionAction(meat));

@@ -540,5 +540,29 @@
   "${ModID}:Duel": {
     "NAME": "Duel",
     "DESCRIPTION": "ALL allies gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:BreakEgg": {
+    "NAME": "Break an Egg",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
+  },
+  "${ModID}:Slap": {
+    "NAME": "Slap and Fold",
+    "DESCRIPTION": "Gain !B! Block. NL Apply !M! *Bleed."
+  },
+  "${ModID}:Mince": {
+    "NAME": "Mince",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Season": {
+    "NAME": "Season the Meat",
+    "DESCRIPTION": "Apply !M! Weak and Vulnerable."
+  },
+  "${ModID}:Trial": {
+    "NAME": "Trial Smack",
+    "DESCRIPTION": "Deal !D! damage. NL Heal HP equal to unblocked damage."
+  },
+  "${ModID}:Sack": {
+    "NAME": "Into the Sack You Go!",
+    "DESCRIPTION": "Turn a random card in your deck into *Fresh *Meat. NL Gain !M! Strength."
   }
 }

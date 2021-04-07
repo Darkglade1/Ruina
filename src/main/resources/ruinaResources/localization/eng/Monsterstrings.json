@@ -831,10 +831,18 @@
       "No one here is untainted. But that doesn't mean we can't be beautiful too.",
       "Thank you kindly, stranger.",
       "Stance Change",
-      "Click to switch this creature to #ySlash stance, which focuses on dealing damage.",
-      "Click to switch this creature to #yPierce stance, which focuses on applying #rdebuffs.",
-      "Click to switch this creature to #yGuard stance, which focuses on #yBlocking and #yNegating #rdebuffs.",
+      "#yClick to switch this #gally to #ySlash stance, which focuses on dealing damage.",
+      "#yClick to switch this #gally to #yPierce stance, which focuses on applying #rdebuffs.",
+      "#yClick to switch this #gally to #yGuard stance, which focuses on #yBlocking and #yNegating #rdebuffs.",
       "I am already in that stance."
+    ]
+  },
+  "${ModID}:FreshMeat": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Fresh Meat",
+    "DIALOG": [
     ]
   }
 }

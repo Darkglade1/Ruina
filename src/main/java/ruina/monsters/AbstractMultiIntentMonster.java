@@ -119,7 +119,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                 additionalIntent.clearTargetTexture();
             }
         } else {
-            if (additionalIntent.intent == Intent.DEBUFF || additionalIntent.intent == Intent.STRONG_DEBUFF) {
+            if (additionalIntent.intent == Intent.DEBUFF || additionalIntent.intent == Intent.STRONG_DEBUFF || additionalIntent.intent == Intent.DEFEND_DEBUFF) {
                 if (target != adp()) {
                     PowerTip intentTip = additionalIntent.intentTip;
                     intentTip.body = TEXT[5] + FontHelper.colorString(target.name, "y") + TEXT[6];

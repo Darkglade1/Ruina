@@ -26,6 +26,12 @@ import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.GretaStealCardAction;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.uninvitedGuests.greta.gretaCards.BreakEgg;
+import ruina.monsters.uninvitedGuests.greta.gretaCards.Mince;
+import ruina.monsters.uninvitedGuests.greta.gretaCards.Sack;
+import ruina.monsters.uninvitedGuests.greta.gretaCards.Season;
+import ruina.monsters.uninvitedGuests.greta.gretaCards.Slap;
+import ruina.monsters.uninvitedGuests.greta.gretaCards.Trial;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 import ruina.powers.InvisibleBarricadePower;
@@ -59,7 +65,7 @@ public class Greta extends AbstractCardMonster
     public final int STRENGTH = calcAscensionSpecial(3);
     public final int PARALYSIS = calcAscensionSpecial(2);
     public final int BLEED = calcAscensionSpecial(4);
-    public final int BLOCK = calcAscensionTankiness(30);
+    public final int BLOCK = calcAscensionTankiness(24);
     public final int DEBUFF = calcAscensionSpecial(3);
     public final int damageReduction = 50;
     public final int debuffCleanseTurns = 3;
@@ -314,12 +320,12 @@ public class Greta extends AbstractCardMonster
 
     protected AbstractCard getMoveCardFromByte(Byte move) {
         ArrayList<AbstractCard> list = new ArrayList<>();
-//        list.add(new EverlastingMelody(this));
-//        list.add(new Neigh(this));
-//        list.add(new Bawk(this));
-//        list.add(new Rarf(this));
-//        list.add(new Tendon(this));
-//        list.add(new Trio(this));
+        list.add(new BreakEgg(this));
+        list.add(new Slap(this));
+        list.add(new Mince(this));
+        list.add(new Season(this));
+        list.add(new Trial(this));
+        list.add(new Sack(this));
         return list.get(move);
     }
 
@@ -349,12 +355,12 @@ public class Greta extends AbstractCardMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        hod.onBossDeath();
         for (AbstractMonster mo : monsterList()) {
             if (mo instanceof FreshMeat) {
                 atb(new SuicideAction(mo));
             }
         }
+        hod.onBossDeath();
     }
 
 }

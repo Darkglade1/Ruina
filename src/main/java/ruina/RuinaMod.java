@@ -691,7 +691,7 @@ public class RuinaMod implements
         BaseMod.addMonster(Greta.ID, "Greta", () -> new MonsterGroup(
                 new AbstractMonster[] {
                         new Hod(-550.0F, 0.0F),
-                        new Greta(200.0F, 0.0F),
+                        new Greta(150.0F, 0.0F),
                 }));
 
         uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(
