@@ -516,5 +516,29 @@
   "${ModID}:Sorrow": {
     "NAME": "Wound of Sorrow",
     "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:SnakeSlit": {
+    "NAME": "Snake Slit",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:VioletBlade": {
+    "NAME": "Violet Blade",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Laceration": {
+    "NAME": "Laceration",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  },
+  "${ModID}:VenomousFangs": {
+    "NAME": "Venomous Fang",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  },
+  "${ModID}:SerpentineBarrier": {
+    "NAME": "Serpentine Barrier",
+    "DESCRIPTION": "ALL allies gain !B! Block."
+  },
+  "${ModID}:Duel": {
+    "NAME": "Duel",
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Deal !D! damage."
   }
 }

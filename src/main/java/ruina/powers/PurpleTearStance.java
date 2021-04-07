@@ -1,5 +1,7 @@
 package ruina.powers;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnReceivePowerPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -11,7 +13,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.uninvitedGuests.greta.Hod;
+import ruina.util.TexLoader;
 
+import static ruina.RuinaMod.makePowerPath;
 import static ruina.util.Wiz.atb;
 
 public class PurpleTearStance extends AbstractUnremovablePower implements OnReceivePowerPower {
@@ -20,6 +24,15 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
+    private static final Texture slash84 = TexLoader.getTexture(makePowerPath("SlashStance84.png"));
+    private static final Texture slash32 = TexLoader.getTexture(makePowerPath("SlashStance32.png"));
+
+    private static final Texture pierce84 = TexLoader.getTexture(makePowerPath("PierceStance84.png"));
+    private static final Texture pierce32 = TexLoader.getTexture(makePowerPath("PierceStance32.png"));
+
+    private static final Texture guard84 = TexLoader.getTexture(makePowerPath("GuardStance84.png"));
+    private static final Texture guard32 = TexLoader.getTexture(makePowerPath("GuardStance32.png"));
 
     private int stance;
 
@@ -58,7 +71,16 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
         this.stance = stance;
         if (stance == Hod.SLASH) {
             amount = Hod.slashDamageBonus;
+            this.region128 = new TextureAtlas.AtlasRegion(slash84, 0, 0, 84, 84);
+            this.region48 = new TextureAtlas.AtlasRegion(slash32, 0, 0, 32, 32);
         } else {
+            if (stance == Hod.PIERCE) {
+                this.region128 = new TextureAtlas.AtlasRegion(pierce84, 0, 0, 84, 84);
+                this.region48 = new TextureAtlas.AtlasRegion(pierce32, 0, 0, 32, 32);
+            } else {
+                this.region128 = new TextureAtlas.AtlasRegion(guard84, 0, 0, 84, 84);
+                this.region48 = new TextureAtlas.AtlasRegion(guard32, 0, 0, 32, 32);
+            }
             amount = 0;
         }
         updateDescription();
@@ -66,6 +88,8 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
         AbstractRuinaMonster.playSound("PurpleChange");
         flash();
         if (owner instanceof Hod) {
+            ((Hod) owner).stance = stance;
+            ((Hod) owner).IdlePose();
             ((Hod) owner).rollMove();
             ((Hod) owner).createIntent();
         }

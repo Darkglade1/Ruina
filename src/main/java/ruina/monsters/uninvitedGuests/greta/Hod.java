@@ -21,6 +21,12 @@ import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
 import ruina.actions.TransferBlockToAllyAction;
 import ruina.monsters.AbstractAllyCardMonster;
+import ruina.monsters.uninvitedGuests.greta.hodCards.Duel;
+import ruina.monsters.uninvitedGuests.greta.hodCards.Laceration;
+import ruina.monsters.uninvitedGuests.greta.hodCards.SerpentineBarrier;
+import ruina.monsters.uninvitedGuests.greta.hodCards.SnakeSlit;
+import ruina.monsters.uninvitedGuests.greta.hodCards.VenomousFangs;
+import ruina.monsters.uninvitedGuests.greta.hodCards.VioletBlade;
 import ruina.powers.PurpleTearStance;
 import ruina.util.AllyMove;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -61,7 +67,7 @@ public class Hod extends AbstractAllyCardMonster
     public static final int SLASH = 1;
     public static final int PIERCE = 2;
     public static final int GUARD = 3;
-    private int stance = PIERCE;
+    public int stance = PIERCE;
 
     private byte slashMove = SNAKE_SLIT;
     private byte pierceMove = LACERATION;
@@ -86,9 +92,12 @@ public class Hod extends AbstractAllyCardMonster
         addMove(SERPENTINE_BARRIER, Intent.DEFEND);
         addMove(DUEL, Intent.ATTACK_DEFEND, 17);
 
-//        cardList.add(new Will(this));
-//        cardList.add(new BalefulBrand(this));
-//        cardList.add(new Faith(this));
+        cardList.add(new SnakeSlit(this));
+        cardList.add(new VioletBlade(this));
+        cardList.add(new Laceration(this));
+        cardList.add(new VenomousFangs(this));
+        cardList.add(new SerpentineBarrier(this));
+        cardList.add(new Duel(this));
 
         this.allyIcon = makeUIPath("HodIcon.png");
     }
@@ -108,37 +117,35 @@ public class Hod extends AbstractAllyCardMonster
         }
         stancePower = new PurpleTearStance(this, stance);
         applyToTarget(this, this, stancePower);
+        stancePower.changeStance(stance);
         super.usePreBattleAction();
-        AllyMove changeToSlash = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("defend.png")), DIALOG[3], () -> {
+        AllyMove changeToSlash = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("SlashStance.png")), DIALOG[3], () -> {
             if (stance == SLASH) {
                 atb(new TalkAction(this, DIALOG[6]));
             } else {
                 stancePower.changeStance(SLASH);
-                IdlePose();
             }
         });
         changeToSlash.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
         changeToSlash.setY(this.intentHb.cY - ((32.0f - 30.0f) * Settings.scale));
         allyMoves.add(changeToSlash);
 
-        AllyMove changeToPierce = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("defend.png")), DIALOG[4], () -> {
+        AllyMove changeToPierce = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("PierceStance.png")), DIALOG[4], () -> {
             if (stance == PIERCE) {
                 atb(new TalkAction(this, DIALOG[6]));
             } else {
                 stancePower.changeStance(PIERCE);
-                IdlePose();
             }
         });
         changeToPierce.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
         changeToPierce.setY(this.intentHb.cY - ((32.0f - 60.0f) * Settings.scale));
         allyMoves.add(changeToPierce);
 
-        AllyMove changeToGuard = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("defend.png")), DIALOG[5], () -> {
+        AllyMove changeToGuard = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("GuardStance.png")), DIALOG[5], () -> {
             if (stance == GUARD) {
                 atb(new TalkAction(this, DIALOG[6]));
             } else {
                 stancePower.changeStance(GUARD);
-                IdlePose();
             }
         });
         changeToGuard.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
@@ -307,7 +314,7 @@ public class Hod extends AbstractAllyCardMonster
         animationAction("Block", "PurpleGuard", this);
     }
 
-    private void IdlePose() {
+    public void IdlePose() {
         runAnim("Idle" + stance);
     }
 
