@@ -1,6 +1,9 @@
 package ruina.monsters.uninvitedGuests.greta;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -20,6 +23,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -37,6 +41,8 @@ import ruina.powers.Bleed;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Paralysis;
 import ruina.util.AdditionalIntent;
+import ruina.vfx.FlexibleStanceAuraEffect;
+import ruina.vfx.FlexibleWrathParticleEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
@@ -66,12 +72,15 @@ public class Greta extends AbstractCardMonster
     public final int PARALYSIS = calcAscensionSpecial(2);
     public final int BLEED = calcAscensionSpecial(4);
     public final int BLOCK = calcAscensionTankiness(24);
-    public final int DEBUFF = calcAscensionSpecial(3);
+    public final int DEBUFF = calcAscensionSpecial(2);
     public final int damageReduction = 50;
     public final int debuffCleanseTurns = 3;
 
     public Hod hod;
     public FreshMeat meat;
+
+    private float particleTimer;
+    private float particleTimer2;
 
     public static final String POWER_ID = makeID("Sharkskin");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -83,7 +92,7 @@ public class Greta extends AbstractCardMonster
     }
 
     public Greta(final float x, final float y) {
-        super(NAME, ID, 900, -5.0F, 0, 200.0f, 265.0f, null, x, y);
+        super(NAME, ID, 800, -5.0F, 0, 200.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Greta/Spriter/Greta.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 2;
@@ -361,6 +370,26 @@ public class Greta extends AbstractCardMonster
             }
         }
         hod.onBossDeath();
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if (this.hasPower(POWER_ID)) {
+            if (this.getPower(POWER_ID).amount >= debuffCleanseTurns - 1) {
+                this.particleTimer -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer < 0.0F) {
+                    this.particleTimer = 0.04F;
+                    AbstractDungeon.effectsQueue.add(new FlexibleWrathParticleEffect(this));
+                }
+
+                this.particleTimer2 -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer2 < 0.0F) {
+                    this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
+                    AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(WrathStance.STANCE_ID, this));
+                }
+            }
+        }
     }
 
 }

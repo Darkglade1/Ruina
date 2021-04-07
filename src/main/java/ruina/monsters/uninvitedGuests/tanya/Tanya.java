@@ -4,6 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -435,7 +436,7 @@ public class Tanya extends AbstractCardMonster
 
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power instanceof PlatedArmorPower) && !(power instanceof MetallicizePower) && !(power instanceof StrengthPower) && !(power instanceof GainStrengthPower) && !(power instanceof InvisibleBarricadePower)) {
+                if (!(power instanceof PlatedArmorPower) && !(power instanceof MetallicizePower) && !(power instanceof StrengthPower) && !(power instanceof GainStrengthPower) && !(power instanceof InvisibleBarricadePower) && !(power instanceof StunMonsterPower)) {
                     powersToRemove.add(power);
                 }
             }

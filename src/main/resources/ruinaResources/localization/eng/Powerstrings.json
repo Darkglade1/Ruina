@@ -378,7 +378,7 @@
       "% more damage with attacks.",
       "Pierce Stance",
       "Every #b",
-      "nd attack from this creature #ydoubles its target's #rdebuffs.",
+      "nd attack from this creature #ydoubles ALL of its target's #rdebuffs.",
       "Guard Stance",
       "#yNegate ALL #rdebuffs applied to this creature."]
   }

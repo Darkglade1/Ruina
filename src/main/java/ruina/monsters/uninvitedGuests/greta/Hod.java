@@ -1,6 +1,9 @@
 package ruina.monsters.uninvitedGuests.greta;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -16,10 +19,10 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.stances.DivinityStance;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
-import ruina.actions.TransferBlockToAllyAction;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.greta.hodCards.Duel;
 import ruina.monsters.uninvitedGuests.greta.hodCards.Laceration;
@@ -29,6 +32,8 @@ import ruina.monsters.uninvitedGuests.greta.hodCards.VenomousFangs;
 import ruina.monsters.uninvitedGuests.greta.hodCards.VioletBlade;
 import ruina.powers.PurpleTearStance;
 import ruina.util.AllyMove;
+import ruina.vfx.FlexibleDivinityParticleEffect;
+import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
@@ -72,6 +77,9 @@ public class Hod extends AbstractAllyCardMonster
     private byte slashMove = SNAKE_SLIT;
     private byte pierceMove = LACERATION;
     private byte guardMove = SERPENTINE_BARRIER;
+
+    private float particleTimer;
+    private float particleTimer2;
 
     public Hod() {
         this(0.0f, 0.0f);
@@ -238,9 +246,9 @@ public class Hod extends AbstractAllyCardMonster
                 break;
             }
             case DUEL: {
-                bluntAnimation(target);
                 block(adp(), DUEL_BLOCK);
                 atb(new AllyGainBlockAction(this, DUEL_BLOCK));
+                bluntAnimation(target);
                 dmg(target, info);
                 resetIdle();
                 guardMove = SERPENTINE_BARRIER;
@@ -334,6 +342,26 @@ public class Hod extends AbstractAllyCardMonster
                 this.isDone = true;
             }
         });
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if (this.hasPower(PurpleTearStance.POWER_ID)) {
+            if (stance == PIERCE && this.getPower(PurpleTearStance.POWER_ID).amount >= pierceTriggerHits - 1) {
+                this.particleTimer -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer < 0.0F) {
+                    this.particleTimer = 0.04F;
+                    AbstractDungeon.effectsQueue.add(new FlexibleDivinityParticleEffect(this));
+                }
+
+                this.particleTimer2 -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer2 < 0.0F) {
+                    this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
+                    AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(DivinityStance.STANCE_ID, this));
+                }
+            }
+        }
     }
 
 }

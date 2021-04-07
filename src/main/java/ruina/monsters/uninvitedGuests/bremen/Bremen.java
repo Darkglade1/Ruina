@@ -85,7 +85,7 @@ public class Bremen extends AbstractCardMonster
     }
 
     public Bremen(final float x, final float y) {
-        super(NAME, ID, 800, -5.0F, 0, 200.0f, 265.0f, null, x, y);
+        super(NAME, ID, 850, -5.0F, 0, 200.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Bremen/Spriter/Bremen.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 2;
@@ -333,7 +333,7 @@ public class Bremen extends AbstractCardMonster
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        float drawScale = 0.6f;
+        float drawScale = 0.65f;
         float offsetX1 = 300.0F * Settings.scale;
         float offsetY = 100.0F * Settings.scale;
         AbstractCard card = melodyCard;

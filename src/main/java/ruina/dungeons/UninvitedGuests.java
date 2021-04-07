@@ -21,6 +21,7 @@ import ruina.events.act4.Ensemble;
 import ruina.monsters.uninvitedGuests.bremen.Bremen;
 import ruina.monsters.uninvitedGuests.clown.Oswald;
 import ruina.monsters.uninvitedGuests.elena.Elena;
+import ruina.monsters.uninvitedGuests.greta.Greta;
 import ruina.monsters.uninvitedGuests.philip.Philip;
 import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
@@ -100,7 +101,7 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
 
         row1.add(new MonsterRoomCreator(makeUIPath("MalkuthMap.png"), makeUIPath("MalkuthMapOutline.png"), Philip.ID));
         row2.add(new MonsterRoomCreator(makeUIPath("YesodMap.png"), makeUIPath("YesodMapOutline.png"), EncounterIDs.RED_AND_WOLF));
-        row3.add(new MonsterRoomCreator(makeUIPath("HodMap.png"), makeUIPath("HodMapOutline.png"), EncounterIDs.RED_AND_WOLF));
+        row3.add(new MonsterRoomCreator(makeUIPath("HodMap.png"), makeUIPath("HodMapOutline.png"), Greta.ID));
         row4.add(new MonsterRoomCreator(makeUIPath("NetzachMap.png"), makeUIPath("NetzachMapOutline.png"), Bremen.ID));
         row5.add(new MonsterRoomCreator(makeUIPath("TiphMap.png"), makeUIPath("TiphMapOutline.png"), Oswald.ID));
         row6.add(new MonsterRoomCreator(makeUIPath("GeburaMap.png"), makeUIPath("GeburaMapOutline.png"), Tanya.ID));
@@ -113,7 +114,7 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         int index = 0;
         map.add(populate(row1, index++));
         //map.add(populate(row2, index++));
-        //map.add(populate(row3, index++));
+        map.add(populate(row3, index++));
         map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
         map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
         map.add(populate(row4, index++));

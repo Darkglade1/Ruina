@@ -36,6 +36,7 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
     private static final Texture guard32 = TexLoader.getTexture(makePowerPath("GuardStance32.png"));
 
     private int stance;
+    private int pierceStanceCounter = 0;
 
     public PurpleTearStance(AbstractCreature owner, int stance) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, 0);
@@ -55,10 +56,11 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (info.type == DamageInfo.DamageType.NORMAL && info.owner == owner && stance == Hod.PIERCE) {
-            amount++;
+            pierceStanceCounter++;
+            amount = pierceStanceCounter;
             if (amount >= Hod.pierceTriggerHits) {
                 flash();
-                amount = 0;
+                pierceStanceCounter = amount = 0;
                 AbstractCreature enemy = target;
                 atb(new AbstractGameAction() {
                     @Override
@@ -83,13 +85,14 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
             this.region48 = new TextureAtlas.AtlasRegion(slash32, 0, 0, 32, 32);
         } else {
             if (stance == Hod.PIERCE) {
+                amount = pierceStanceCounter;
                 this.region128 = new TextureAtlas.AtlasRegion(pierce84, 0, 0, 84, 84);
                 this.region48 = new TextureAtlas.AtlasRegion(pierce32, 0, 0, 32, 32);
             } else {
+                amount = 0;
                 this.region128 = new TextureAtlas.AtlasRegion(guard84, 0, 0, 84, 84);
                 this.region48 = new TextureAtlas.AtlasRegion(guard32, 0, 0, 32, 32);
             }
-            amount = 0;
         }
         updateDescription();
         AbstractRuinaMonster.playSound("PurpleChange");

@@ -65,7 +65,7 @@ public class Oswald extends AbstractCardMonster
     public final int STRENGTH = calcAscensionSpecial(1);
     public final int WEAK = calcAscensionSpecial(2);
     public final int BRAINWASH_LENGTH = 2;
-    public final int BRAINWASH_DAMAGE = calcAscensionTankiness(30);
+    public final int BRAINWASH_DAMAGE = calcAscensionTankiness(35);
     public Tiph tiph;
 
     public static final String POWER_ID = makeID("Brainwash");

@@ -15,7 +15,7 @@ public class Duel extends AbstractRuinaCard {
 
     public Duel(Hod parent) {
         super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
-        baseBlock = parent.BARRIER_BLOCK;
+        baseBlock = parent.DUEL_BLOCK;
     }
 
     @Override
