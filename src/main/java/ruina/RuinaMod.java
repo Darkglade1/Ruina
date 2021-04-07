@@ -485,6 +485,14 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("XiaoStrongStart"), makeSFXPath("Xiao_Strong_Upper.wav"));
 
         BaseMod.addAudio(makeID("GretaEat"), makeSFXPath("Greta_Eat.wav"));
+
+        BaseMod.addAudio(makeID("PurpleStab2"), makeSFXPath("Purple_Stab_Stab2.wav"));
+        BaseMod.addAudio(makeID("PurpleStab1"), makeSFXPath("Purple_Stab_Stab1.wav"));
+        BaseMod.addAudio(makeID("PurpleGuard"), makeSFXPath("Purple_Guard.wav"));
+        BaseMod.addAudio(makeID("PurpleChange"), makeSFXPath("Purple_Change.wav"));
+        BaseMod.addAudio(makeID("PurpleBlunt"), makeSFXPath("Purple_Hit_Vert.wav"));
+        BaseMod.addAudio(makeID("PurpleSlashHori"), makeSFXPath("Purple_Slash_Hori.wav"));
+        BaseMod.addAudio(makeID("PurpleSlashVert"), makeSFXPath("Purple_Slash_VertDown.wav"));
     }
 
     @Override

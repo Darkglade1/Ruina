@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle1.png" width="272" height="259" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Idle2.png" width="279" height="276" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Idle3.png" width="242" height="301" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Slash1.png" width="423" height="513" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Slash3.png" width="442" height="501" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Pierce.png" width="577" height="343" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Guard.png" width="242" height="302" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="Blunt.png" width="583" height="275" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Hod">
+        <animation id="0" name="Idle1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle1">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-79" y="235"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Idle2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle2">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-200" y="252"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Idle3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle3">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-81" y="259"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="SlashVert" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Slash1">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-291.836735" y="370.408163"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Blunt" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Slash3">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-247.959184" y="418.367347"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Pierce" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pierce">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-492.857143" y="218.367347"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="SlashHori" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blunt">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-356.122449" y="229.591837"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="7" name="Block" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Guard">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-80.571429" y="260.183673"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

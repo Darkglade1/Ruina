@@ -5,9 +5,11 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.RuinaMod;
+import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.uninvitedGuests.greta.Hod;
 
 import static ruina.util.Wiz.atb;
@@ -60,6 +62,8 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
             amount = 0;
         }
         updateDescription();
+        AbstractDungeon.onModifyPower();
+        AbstractRuinaMonster.playSound("PurpleChange");
         flash();
         if (owner instanceof Hod) {
             ((Hod) owner).rollMove();

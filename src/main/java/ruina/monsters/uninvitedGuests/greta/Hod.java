@@ -23,6 +23,7 @@ import ruina.actions.TransferBlockToAllyAction;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.powers.PurpleTearStance;
 import ruina.util.AllyMove;
+import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeMonsterPath;
@@ -113,6 +114,7 @@ public class Hod extends AbstractAllyCardMonster
                 atb(new TalkAction(this, DIALOG[6]));
             } else {
                 stancePower.changeStance(SLASH);
+                IdlePose();
             }
         });
         changeToSlash.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
@@ -124,6 +126,7 @@ public class Hod extends AbstractAllyCardMonster
                 atb(new TalkAction(this, DIALOG[6]));
             } else {
                 stancePower.changeStance(PIERCE);
+                IdlePose();
             }
         });
         changeToPierce.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
@@ -135,6 +138,7 @@ public class Hod extends AbstractAllyCardMonster
                 atb(new TalkAction(this, DIALOG[6]));
             } else {
                 stancePower.changeStance(GUARD);
+                IdlePose();
             }
         });
         changeToGuard.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
@@ -172,9 +176,9 @@ public class Hod extends AbstractAllyCardMonster
             case SNAKE_SLIT: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        pierceAnimation(target);
+                        slashHoriAnimation(target);
                     } else {
-                        slashAnimation(target);
+                        slashVertAnimation(target);
                     }
                     dmg(target, info);
                     resetIdle();
@@ -186,9 +190,9 @@ public class Hod extends AbstractAllyCardMonster
             case VIOLET_BLADE: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        pierceAnimation(target);
+                        slashVertAnimation(target);
                     } else {
-                        slashAnimation(target);
+                        slashHoriAnimation(target);
                     }
                     dmg(target, info);
                     resetIdle();
@@ -197,6 +201,7 @@ public class Hod extends AbstractAllyCardMonster
                 break;
             }
             case LACERATION: {
+                pierceAnimation(target);
                 dmg(target, info);
                 applyToTarget(target, this, new VulnerablePower(target, VULNERABLE, true));
                 resetIdle();
@@ -204,6 +209,7 @@ public class Hod extends AbstractAllyCardMonster
                 break;
             }
             case VENOMOUS_FANGS: {
+                pierceAnimation2(target);
                 dmg(target, info);
                 applyToTarget(target, this, new WeakPower(target, WEAK, false));
                 resetIdle();
@@ -211,6 +217,7 @@ public class Hod extends AbstractAllyCardMonster
                 break;
             }
             case SERPENTINE_BARRIER: {
+                blockAnimation();
                 block(adp(), BARRIER_BLOCK);
                 atb(new AllyGainBlockAction(this, BARRIER_BLOCK));
                 resetIdle();
@@ -218,6 +225,7 @@ public class Hod extends AbstractAllyCardMonster
                 break;
             }
             case DUEL: {
+                bluntAnimation(target);
                 block(adp(), DUEL_BLOCK);
                 atb(new AllyGainBlockAction(this, DUEL_BLOCK));
                 dmg(target, info);
@@ -275,20 +283,44 @@ public class Hod extends AbstractAllyCardMonster
         }
     }
 
-    private void specialAnimation(AbstractCreature enemy) {
-        animationAction("Special", "YanBrand", enemy, this);
+    private void slashHoriAnimation(AbstractCreature enemy) {
+        animationAction("SlashHori", "PurpleSlashHori", enemy, this);
     }
 
-    private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "YanVert", enemy, this);
+    private void slashVertAnimation(AbstractCreature enemy) {
+        animationAction("SlashVert", "PurpleSlashVert", enemy, this);
     }
 
     private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "YanStab", enemy, this);
+        animationAction("Pierce", "PurpleStab1", enemy, this);
+    }
+
+    private void pierceAnimation2(AbstractCreature enemy) {
+        animationAction("Pierce", "PurpleStab2", enemy, this);
+    }
+
+    private void bluntAnimation(AbstractCreature enemy) {
+        animationAction("Blunt", "PurpleBlunt", enemy, this);
     }
 
     private void blockAnimation() {
-        animationAction("Block", null, this);
+        animationAction("Block", "PurpleGuard", this);
+    }
+
+    private void IdlePose() {
+        runAnim("Idle" + stance);
+    }
+
+    @Override
+    protected void resetIdle(float duration) {
+        atb(new VFXActionButItCanFizzle(this, new WaitEffect(), duration));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                IdlePose();
+                this.isDone = true;
+            }
+        });
     }
 
 }
