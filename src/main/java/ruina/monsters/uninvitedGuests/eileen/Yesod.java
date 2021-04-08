@@ -29,6 +29,8 @@ import ruina.monsters.uninvitedGuests.bremen.Bremen;
 import ruina.monsters.uninvitedGuests.bremen.netzachCards.BalefulBrand;
 import ruina.monsters.uninvitedGuests.bremen.netzachCards.Faith;
 import ruina.monsters.uninvitedGuests.bremen.netzachCards.Will;
+import ruina.monsters.uninvitedGuests.eileen.yesodCards.FloodingBullets;
+import ruina.monsters.uninvitedGuests.eileen.yesodCards.Reload;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
 import ruina.util.TexLoader;
@@ -82,9 +84,8 @@ public class Yesod extends AbstractAllyCardMonster
         addMove(RELOAD, Intent.DEFEND_BUFF);
         addMove(FLOODING_BULLETS, IntentEnums.MASS_ATTACK, 8, bulletHits, true);
 
-//        cardList.add(new Will(this));
-//        cardList.add(new BalefulBrand(this));
-//        cardList.add(new Faith(this));
+        cardList.add(new Reload(this));
+        cardList.add(new FloodingBullets(this));
 
         this.allyIcon = makeUIPath("YesodIcon.png");
     }
@@ -108,6 +109,7 @@ public class Yesod extends AbstractAllyCardMonster
                 if (target == adp() && damageAmount <= 0 && info.type == DamageInfo.DamageType.NORMAL) {
                     flash();
                     currentDamageBonus += damageGrowth;
+                    updateDescription();
                 }
             }
 
@@ -151,7 +153,7 @@ public class Yesod extends AbstractAllyCardMonster
                 atb(new AllyGainBlockAction(this, this, BLOCK));
                 applyToTarget(adp(), this, new EnergizedPower(adp(), ENERGY));
                 applyToTarget(adp(), this, new DrawCardNextTurnPower(adp(), DRAW));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case FLOODING_BULLETS: {

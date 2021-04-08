@@ -25,6 +25,10 @@ import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.uninvitedGuests.eileen.eileenCards.Accelerate;
+import ruina.monsters.uninvitedGuests.eileen.eileenCards.Preach;
+import ruina.monsters.uninvitedGuests.eileen.eileenCards.Propagate;
+import ruina.monsters.uninvitedGuests.eileen.eileenCards.ThoughtGearBrainwash;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
@@ -68,7 +72,7 @@ public class Eileen extends AbstractCardMonster
     }
 
     public Eileen(final float x, final float y) {
-        super(NAME, ID, 1000, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 1000, -5.0F, 0, 160.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Eileen/Spriter/Eileen.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
@@ -80,13 +84,12 @@ public class Eileen extends AbstractCardMonster
         addMove(PREACH, Intent.BUFF);
         addMove(ACCELERATE, Intent.DEFEND);
         addMove(PROPAGATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
-        addMove(BRAINWASH, Intent.ATTACK, calcAscensionDamage(16));
+        addMove(BRAINWASH, Intent.ATTACK, calcAscensionDamage(15));
 
-//        cardList.add(new Eventide(this));
-//        cardList.add(new Emotions(this));
-//        cardList.add(new Stigmatize(this));
-//        cardList.add(new Searing(this));
-//        cardList.add(new Sorrow(this));
+        cardList.add(new Preach(this));
+        cardList.add(new Accelerate(this));
+        cardList.add(new Propagate(this));
+        cardList.add(new ThoughtGearBrainwash(this));
     }
 
     @Override
@@ -103,6 +106,7 @@ public class Eileen extends AbstractCardMonster
                 yesod = (Yesod)mo;
             }
         }
+        Summon();
         atb(new TalkAction(this, DIALOG[0]));
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, HP_LOSS) {
 
@@ -153,7 +157,7 @@ public class Eileen extends AbstractCardMonster
             case BRAINWASH: {
                 strongAttackAnimation(target);
                 dmg(target, info);
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
         }
@@ -255,7 +259,7 @@ public class Eileen extends AbstractCardMonster
         //float xPos_Farthest_L = -450.0f;
         float xPos_Middle_L = -175.0f;
         float xPos_Short_L = 0F;
-        float y = 125.0f;
+        float y = 0.0f;
 
         for (int i = 0; i < minions.length; i++) {
             if (minions[i] == null) {

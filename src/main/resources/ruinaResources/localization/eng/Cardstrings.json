@@ -564,5 +564,29 @@
   "${ModID}:Sack": {
     "NAME": "Into the Sack You Go!",
     "DESCRIPTION": "Turn a random card in your deck into *Fresh *Meat. NL Gain !M! Strength."
+  },
+  "${ModID}:FloodingBullets": {
+    "NAME": "Flooding Bullets",
+    "DESCRIPTION": "Deal !D! damage to ALL other characters !M! times."
+  },
+  "${ModID}:Reload": {
+    "NAME": "Reload",
+    "DESCRIPTION": "Gain !B! Block. NL An ally gains [E] and draws !M! card next turn."
+  },
+  "${ModID}:Preach": {
+    "NAME": "Thought Gear: Preach",
+    "DESCRIPTION": "ALL allies gain !M! Strength next turn."
+  },
+  "${ModID}:Accelerate": {
+    "NAME": "Thought Gear: Accelerate",
+    "DESCRIPTION": "ALL allies gain !B! Block."
+  },
+  "${ModID}:Propagate": {
+    "NAME": "Thought Gear: Propagate",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  },
+  "${ModID}:ThoughtGearBrainwash": {
+    "NAME": "Thought Gear: Brainwash",
+    "DESCRIPTION": "Deal !D! damage."
   }
 }
