@@ -104,6 +104,8 @@ import ruina.monsters.uninvitedGuests.bremen.Bremen;
 import ruina.monsters.uninvitedGuests.bremen.Netzach;
 import ruina.monsters.uninvitedGuests.clown.Oswald;
 import ruina.monsters.uninvitedGuests.clown.Tiph;
+import ruina.monsters.uninvitedGuests.eileen.Eileen;
+import ruina.monsters.uninvitedGuests.eileen.Yesod;
 import ruina.monsters.uninvitedGuests.elena.Binah;
 import ruina.monsters.uninvitedGuests.elena.Elena;
 import ruina.monsters.uninvitedGuests.elena.VermilionCross;
@@ -692,6 +694,11 @@ public class RuinaMod implements
                 new AbstractMonster[] {
                         new Hod(-550.0F, 0.0F),
                         new Greta(150.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Eileen.ID, "Eileen", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Yesod(-550.0F, 0.0F),
+                        new Eileen(200.0F, 0.0F),
                 }));
 
         uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(

@@ -381,5 +381,13 @@
       "nd attack from this creature #ydoubles ALL of its target's #rdebuffs.",
       "Guard Stance",
       "#yNegate ALL #rdebuffs applied to this creature."]
+  },
+  "${ModID}:Gears": {
+    "NAME": "Church of Gears",
+    "DESCRIPTIONS": ["Whenever a minion dies, loses #b", " HP. Dead minions are replaced at end of round."]
+  },
+  "${ModID}:DarkBargain": {
+    "NAME": "Dark Bargain",
+    "DESCRIPTIONS": ["This creature's #yMass #yAttack targets ALL other characters (including you). NL This creature's attacks deal #b","x damage to enemies. Whenever you fully #yBlock a hit from this creature's #yMass #yAttack, increase this bonus by #b", "."]
   }
 }

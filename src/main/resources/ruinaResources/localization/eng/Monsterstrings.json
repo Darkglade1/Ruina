@@ -844,5 +844,35 @@
     "NAME": "Fresh Meat",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Eileen": {
+    "MOVES": [
+      "Thought Gear: Preach",
+      "Thought Gear: Accelerate",
+      "Thought Gear: Propagate",
+      "Thought Gear: Brainwash"
+    ],
+    "NAME": "Eileen",
+    "DIALOG": [
+      "A gear is most beautiful when it spins with another."
+    ]
+  },
+  "${ModID}:GearsWorshipper": {
+    "MOVES": [
+      "Vapor"
+    ],
+    "NAME": "Gears Worshipper",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Yesod": {
+    "MOVES": [
+      "Reload",
+      "Flooding Bullets"
+    ],
+    "NAME": "Yesod",
+    "DIALOG": [
+      "People are more than just gears in a machine."
+    ]
   }
 }
