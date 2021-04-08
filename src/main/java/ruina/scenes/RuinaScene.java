@@ -48,6 +48,7 @@ import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.bremen.Bremen;
 import ruina.monsters.uninvitedGuests.clown.Oswald;
+import ruina.monsters.uninvitedGuests.eileen.Eileen;
 import ruina.monsters.uninvitedGuests.elena.Elena;
 import ruina.monsters.uninvitedGuests.greta.Greta;
 import ruina.monsters.uninvitedGuests.philip.Philip;
@@ -154,6 +155,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Malkuth");
                 } else if (mo instanceof Greta) {
                     this.bg = this.atlas.findRegion("mod/Hod");
+                } else if (mo instanceof Eileen) {
+                    this.bg = this.atlas.findRegion("mod/Yesod");
                 } else {
                     setBgs();
                 }

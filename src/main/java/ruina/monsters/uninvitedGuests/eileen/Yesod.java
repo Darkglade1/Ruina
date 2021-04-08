@@ -147,7 +147,7 @@ public class Yesod extends AbstractAllyCardMonster
         }
         switch (this.nextMove) {
             case RELOAD: {
-                blockAnimation();
+                specialAnimation();
                 atb(new AllyGainBlockAction(this, this, BLOCK));
                 applyToTarget(adp(), this, new EnergizedPower(adp(), ENERGY));
                 applyToTarget(adp(), this, new DrawCardNextTurnPower(adp(), DRAW));
@@ -165,8 +165,10 @@ public class Yesod extends AbstractAllyCardMonster
                     damageArray[i] = info.output;
                 }
                 for (int i = 0; i < multiplier; i++) {
+                    rangeAnimation(target);
                     atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
-                    resetIdle(1.0f);
+                    resetIdle();
+                    waitAnimation();
                 }
                 break;
             }
@@ -206,20 +208,12 @@ public class Yesod extends AbstractAllyCardMonster
         }
     }
 
-    private void specialAnimation(AbstractCreature enemy) {
-        animationAction("Special", "YanBrand", enemy, this);
+    private void specialAnimation() {
+        animationAction("Special", "BulletFlame", this);
     }
 
-    private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "YanVert", enemy, this);
-    }
-
-    private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "YanStab", enemy, this);
-    }
-
-    private void blockAnimation() {
-        animationAction("Block", null, this);
+    private void rangeAnimation(AbstractCreature enemy) {
+        animationAction("Ranged", "BulletFinalShot", enemy, this);
     }
 
 }

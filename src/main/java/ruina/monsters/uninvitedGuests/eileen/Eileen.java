@@ -134,7 +134,7 @@ public class Eileen extends AbstractCardMonster
                 break;
             }
             case ACCELERATE: {
-                buffAnimation();
+                blockAnimation();
                 for (AbstractMonster mo : monsterList()) {
                     if (!(mo instanceof AbstractAllyMonster)) {
                         block(mo, BLOCK);
@@ -144,14 +144,14 @@ public class Eileen extends AbstractCardMonster
                 break;
             }
             case PROPAGATE: {
-
+                rangeAnimation(target);
                 dmg(target, info);
                 applyToTarget(target, this, new VulnerablePower(target, VULNERABLE, true));
                 resetIdle();
                 break;
             }
             case BRAINWASH: {
-
+                strongAttackAnimation(target);
                 dmg(target, info);
                 resetIdle();
                 break;
@@ -159,12 +159,20 @@ public class Eileen extends AbstractCardMonster
         }
     }
 
+    private void strongAttackAnimation(AbstractCreature enemy) {
+        animationAction("Attack2", "GearStrongAtk", enemy, this);
+    }
+
     private void rangeAnimation(AbstractCreature enemy) {
-        animationAction("Far", "PhilipExplosion", enemy, this);
+        animationAction("Attack1", "GearFar", enemy, this);
     }
 
     private void buffAnimation() {
-        animationAction("Guard", "FireGuard", this);
+        animationAction("Buff", "GearStrongStart", this);
+    }
+
+    private void blockAnimation() {
+        animationAction("Block", "GearStrongStart", this);
     }
 
 
