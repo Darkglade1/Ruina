@@ -17,6 +17,7 @@ import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.act2.HermitStaff;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act3.bigBird.Sage;
+import ruina.monsters.uninvitedGuests.eileen.GearsWorshipper;
 import ruina.monsters.uninvitedGuests.philip.CryingChild;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppet;
 import ruina.util.AdditionalIntent;
@@ -71,6 +72,16 @@ public class MintyDamageSummationCompatibilityPatch {
             }
             if (m instanceof CryingChild) {
                 if (((CryingChild) m).attackingAlly) {
+                    int damage = m.getIntentDmg();
+                    if ((Boolean) ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg")) {
+                        damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
+                    }
+                    dmg[0] -= damage;
+                    c[0]--;
+                }
+            }
+            if (m instanceof GearsWorshipper) {
+                if (((GearsWorshipper) m).attackingAlly) {
                     int damage = m.getIntentDmg();
                     if ((Boolean) ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg")) {
                         damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");

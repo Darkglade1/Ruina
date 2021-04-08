@@ -1,5 +1,6 @@
 package ruina.monsters.uninvitedGuests.eileen;
 
+import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -9,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -17,6 +19,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
@@ -37,6 +40,7 @@ import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
+import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
@@ -52,7 +56,10 @@ public class Yesod extends AbstractAllyCardMonster
     private static final byte RELOAD = 0;
     private static final byte FLOODING_BULLETS = 1;
 
-    public final int BLOCK = 10;
+    public static final String LASER = RuinaMod.makeMonsterPath("Yesod/Laser.png");
+    private static final Texture LASER_TEXTURE = TexLoader.getTexture(LASER);
+
+    public final int BLOCK = 16;
     public final int ENERGY = 1;
     public final int DRAW = 1;
     public final int bulletHits = 3;
@@ -82,7 +89,7 @@ public class Yesod extends AbstractAllyCardMonster
         this.type = EnemyType.BOSS;
 
         addMove(RELOAD, Intent.DEFEND_BUFF);
-        addMove(FLOODING_BULLETS, IntentEnums.MASS_ATTACK, 8, bulletHits, true);
+        addMove(FLOODING_BULLETS, IntentEnums.MASS_ATTACK, calcAscensionDamage(8), bulletHits, true);
 
         cardList.add(new Reload(this));
         cardList.add(new FloodingBullets(this));
@@ -168,6 +175,8 @@ public class Yesod extends AbstractAllyCardMonster
                 }
                 for (int i = 0; i < multiplier; i++) {
                     rangeAnimation(target);
+                    waitAnimation();
+                    massAttackEffect();
                     atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                     resetIdle();
                     waitAnimation();
@@ -197,13 +206,21 @@ public class Yesod extends AbstractAllyCardMonster
     }
 
     public void onBossDeath() {
+        this.halfDead = true; //stop aoe from doing damage
         if (!isDead && !isDying) {
             atb(new TalkAction(this, DIALOG[1]));
             atb(new VFXAction(new WaitEffect(), 1.0F));
+            //double addToBot in case boxx dies to combust-esque effect LMAO
             addToBot(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    disappear();
+                    addToBot(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            disappear();
+                            this.isDone = true;
+                        }
+                    });
                     this.isDone = true;
                 }
             });
@@ -216,6 +233,14 @@ public class Yesod extends AbstractAllyCardMonster
 
     private void rangeAnimation(AbstractCreature enemy) {
         animationAction("Ranged", "BulletFinalShot", enemy, this);
+    }
+
+    private void massAttackEffect() {
+        float duration = 0.7f;
+        AbstractGameEffect effect = new VfxBuilder(LASER_TEXTURE, -(float)Settings.WIDTH / 2, this.hb.cY, duration)
+                .moveX(-(float)Settings.WIDTH / 2, (float)Settings.WIDTH * 1.5f)
+                .build();
+        atb(new VFXAction(effect, duration));
     }
 
 }

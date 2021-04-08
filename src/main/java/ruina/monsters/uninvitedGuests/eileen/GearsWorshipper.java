@@ -47,7 +47,7 @@ public class GearsWorshipper extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("GearsWorshipper/Spriter/GearsWorshipper.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(132), calcAscensionTankiness(144));
-        addMove(VAPOR, Intent.ATTACK, calcAscensionDamage(10));
+        addMove(VAPOR, Intent.ATTACK, calcAscensionDamage(11));
         this.eileen = eileen;
         this.yesod = eileen.yesod;
     }

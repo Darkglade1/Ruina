@@ -307,7 +307,7 @@ public class Greta extends AbstractCardMonster
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (whichMove == 0) {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(MINCE, moveHistory)) {
+            if (!this.lastTwoMoves(MINCE, moveHistory)) {
                 possibilities.add(MINCE);
             }
             if (!this.lastMove(SLAP, moveHistory) && !this.lastMoveBefore(SLAP, moveHistory)) {
