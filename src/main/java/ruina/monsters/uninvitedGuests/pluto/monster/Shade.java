@@ -99,6 +99,7 @@ public class Shade extends AbstractDeckMonster
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, AbstractCard card) {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
+        System.out.println(target.name);
         if (info.base > -1) {
             info.applyPowers(this, target);
         }
@@ -106,7 +107,7 @@ public class Shade extends AbstractDeckMonster
             if (card.baseBlock > 0) {
                 block(this, card.baseBlock);
             }
-            dmg(target, info);
+            dmg(target, info, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         } else {
             if (card.baseBlock > 0) {
                 block(this, card.baseBlock);
@@ -136,9 +137,9 @@ public class Shade extends AbstractDeckMonster
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, additionalIntent.enemyCard.name)));
             atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
             if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
+                takeCustomTurn(additionalMove, adp(), additionalIntent.enemyCard);
             } else {
-                takeCustomTurn(additionalMove, hokma);
+                takeCustomTurn(additionalMove, hokma, additionalIntent.enemyCard);
             }
             atb(new AbstractGameAction() {
                 @Override

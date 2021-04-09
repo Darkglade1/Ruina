@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
+import ruina.monsters.AbstractAllyMonster;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;
@@ -23,16 +24,22 @@ public class NoContract extends AbstractRuinaCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) { }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+    }
 
     @Override
-    public void upp() { }
+    public void upp() {
+    }
 
-    public void onChoseThisOption(){
+    public void onChoseThisOption() {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                for(AbstractMonster m: monsterList()){ att(new ApplyPowerAction(m, m, new StrengthPower(m ,magicNumber))); }
+                for (AbstractMonster m : monsterList()) {
+                    if (!(m instanceof AbstractAllyMonster)) {
+                        att(new ApplyPowerAction(m, m, new StrengthPower(m, magicNumber)));
+                    }
+                }
                 isDone = true;
             }
         });

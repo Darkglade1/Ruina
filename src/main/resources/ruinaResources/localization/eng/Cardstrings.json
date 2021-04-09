@@ -291,7 +291,7 @@
   },
   "${ModID}:NoContract": {
     "NAME": "No Contract",
-    "DESCRIPTION": "All Enemies gain !M! Strength."
+    "DESCRIPTION": "All enemies gain !M! Strength."
   },
   "${ModID}:Ally_UpstandingSlash": {
     "NAME": "Upstanding Slash",
