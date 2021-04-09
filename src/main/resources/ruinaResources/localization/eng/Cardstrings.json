@@ -595,7 +595,7 @@
   },
   "${ModID}:Time": {
     "NAME": "Time",
-    "DESCRIPTION": "Take an extra turn after this one. NL End your turn."
+    "DESCRIPTION": "You take an extra turn after this one. NL End your turn."
   },
   "${ModID}:Safeguard": {
     "NAME": "Magical Safeguard",

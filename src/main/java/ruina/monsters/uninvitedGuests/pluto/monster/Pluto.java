@@ -56,13 +56,13 @@ public class Pluto extends AbstractCardMonster {
     private static final byte CONTRACT = 3;
     private static final byte BINDING_TERMS = 4;
 
-    public final int magicSafeguardBlock = calcAscensionTankiness(18);
+    public final int magicSafeguardBlock = calcAscensionTankiness(25);
     public final int magicSafeguardStr = calcAscensionSpecial(2);
 
-    public final int magicMissleDamage = calcAscensionDamage(6);
+    public final int magicMissleDamage = calcAscensionDamage(7);
     public final int magicMissleHits = 3;
 
-    public final int magicOnslaughtDamage = calcAscensionDamage(15);
+    public final int magicOnslaughtDamage = calcAscensionDamage(20);
     public final int magicOnslaughtPerUseScaling = calcAscensionDamage(5);
 
     public final int STATUS = calcAscensionSpecial(2);
@@ -82,7 +82,7 @@ public class Pluto extends AbstractCardMonster {
         this(150f, 0.0f);
     }
     public Pluto(final float x, final float y) {
-        super(NAME, ID, 800, -5.0F, 0, 250.0f, 255.0f, null, x, y);
+        super(NAME, ID, 900, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Pluto/Spriter/Pluto.scml"));
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));

@@ -90,7 +90,7 @@ public class Puppeteer extends AbstractCardMonster
     }
 
     public Puppeteer(final float x, final float y) {
-        super(NAME, ID, 700, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 800, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppeteer/Spriter/Puppeteer.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
@@ -99,9 +99,9 @@ public class Puppeteer extends AbstractCardMonster
         }
         this.setHp(calcAscensionTankiness(maxHealth));
 
-        addMove(PULLING_STRINGS_TAUT, IntentEnums.MASS_ATTACK, calcAscensionDamage(36));
-        addMove(TUGGING_STRINGS, Intent.ATTACK, calcAscensionDamage(11), tuggingStringsHits, true);
-        addMove(ASSAILING_PULLS, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
+        addMove(PULLING_STRINGS_TAUT, IntentEnums.MASS_ATTACK, calcAscensionDamage(38));
+        addMove(TUGGING_STRINGS, Intent.ATTACK, calcAscensionDamage(12), tuggingStringsHits, true);
+        addMove(ASSAILING_PULLS, Intent.ATTACK_DEBUFF, calcAscensionDamage(16));
         addMove(THIN_STRINGS, Intent.DEFEND_DEBUFF);
         addMove(PUPPETRY, Intent.BUFF);
 

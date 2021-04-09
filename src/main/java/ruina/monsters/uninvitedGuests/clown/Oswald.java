@@ -57,7 +57,7 @@ public class Oswald extends AbstractCardMonster
     private static final byte BRAINWASH = 4;
 
     public final int funHits = 2;
-    public final int climaxDamage = calcAscensionDamage(4);
+    public final int climaxDamage = calcAscensionDamage(5);
     public int climaxHits = 3;
     public final int climaxHitIncrease = 1;
 
@@ -78,7 +78,7 @@ public class Oswald extends AbstractCardMonster
     }
 
     public Oswald(final float x, final float y) {
-        super(NAME, ID, 650, -5.0F, 0, 200.0f, 245.0f, null, x, y);
+        super(NAME, ID, 700, -5.0F, 0, 200.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Oswald/Spriter/Oswald.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
@@ -88,7 +88,7 @@ public class Oswald extends AbstractCardMonster
         this.setHp(calcAscensionTankiness(maxHealth));
 
         addMove(CLIMAX, Intent.ATTACK, climaxDamage, climaxHits, true);
-        addMove(FUN, Intent.ATTACK, calcAscensionDamage(8), funHits, true);
+        addMove(FUN, Intent.ATTACK, calcAscensionDamage(9), funHits, true);
         addMove(CATCH, Intent.DEBUFF);
         addMove(POW, Intent.BUFF);
         addMove(BRAINWASH, Intent.STRONG_DEBUFF);

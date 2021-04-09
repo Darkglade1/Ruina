@@ -57,7 +57,7 @@ public class Hokma extends AbstractAllyCardMonster
     }
 
     public Hokma(final float x, final float y) {
-        super(NAME, ID, 190, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 160, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Hokma/Spriter/Hokma.scml"));
         this.animation.setFlip(true, false);
 

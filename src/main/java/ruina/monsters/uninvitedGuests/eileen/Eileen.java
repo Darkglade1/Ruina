@@ -83,8 +83,8 @@ public class Eileen extends AbstractCardMonster
 
         addMove(PREACH, Intent.BUFF);
         addMove(ACCELERATE, Intent.DEFEND);
-        addMove(PROPAGATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
-        addMove(BRAINWASH, Intent.ATTACK, calcAscensionDamage(15));
+        addMove(PROPAGATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
+        addMove(BRAINWASH, Intent.ATTACK, calcAscensionDamage(17));
 
         cardList.add(new Preach(this));
         cardList.add(new Accelerate(this));

@@ -90,7 +90,7 @@ public class Gebura extends AbstractAllyCardMonster
     }
 
     public Gebura(final float x, final float y) {
-        super(NAME, ID, 250, -5.0F, 0, 200.0f, 240.0f, null, x, y);
+        super(NAME, ID, 200, -5.0F, 0, 200.0f, 240.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Gebura/Spriter/RedMist.scml"));
         this.animation.setFlip(true, false);
 

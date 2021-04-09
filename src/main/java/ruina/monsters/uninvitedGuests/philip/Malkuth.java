@@ -105,7 +105,7 @@ public class Malkuth extends AbstractAllyCardMonster
     }
 
     public Malkuth(final float x, final float y) {
-        super(NAME, ID, 180, -5.0F, 0, 200.0f, 240.0f, null, x, y);
+        super(NAME, ID, 150, -5.0F, 0, 200.0f, 240.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Malkuth/Spriter/Malkuth.scml"));
         this.animation.setFlip(true, false);
 

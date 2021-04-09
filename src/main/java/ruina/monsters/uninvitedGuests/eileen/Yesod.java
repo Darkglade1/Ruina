@@ -59,7 +59,7 @@ public class Yesod extends AbstractAllyCardMonster
     public static final String LASER = RuinaMod.makeMonsterPath("Yesod/Laser.png");
     private static final Texture LASER_TEXTURE = TexLoader.getTexture(LASER);
 
-    public final int BLOCK = 16;
+    public final int BLOCK = 14;
     public final int ENERGY = 1;
     public final int DRAW = 1;
     public final int bulletHits = 3;
@@ -81,7 +81,7 @@ public class Yesod extends AbstractAllyCardMonster
     }
 
     public Yesod(final float x, final float y) {
-        super(NAME, ID, 200, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 160, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Yesod/Spriter/Yesod.scml"));
         this.animation.setFlip(true, false);
         massAttackHitsPlayer = true;

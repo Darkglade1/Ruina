@@ -71,6 +71,7 @@ public class Shade extends AbstractDeckMonster
         //name = AbstractDungeon.player.title;
         AbstractCard fillerCard = new Madness(); //in case deck somehow has no cards
         addMove((byte) fillerCard.cardID.hashCode(), Intent.ATTACK, 12);
+        initializeDeck();
     }
 
     @Override
@@ -86,13 +87,6 @@ public class Shade extends AbstractDeckMonster
                 hokma = (Hokma)mo;
             }
         }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                initializeDeck();
-                isDone = true;
-            }
-        });
         applyToTarget(this, this, new BarricadePower(this));
     }
 

@@ -86,7 +86,7 @@ public class Hod extends AbstractAllyCardMonster
     }
 
     public Hod(final float x, final float y) {
-        super(NAME, ID, 160, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 130, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Hod/Spriter/Hod.scml"));
         this.animation.setFlip(true, false);
 

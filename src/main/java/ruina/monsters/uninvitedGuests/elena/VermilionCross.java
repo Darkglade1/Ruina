@@ -64,7 +64,7 @@ public class VermilionCross extends AbstractCardMonster
     }
 
     public VermilionCross(final float x, final float y) {
-        super(NAME, ID, 500, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 600, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Vermilion/Spriter/Vermilion.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
@@ -76,7 +76,7 @@ public class VermilionCross extends AbstractCardMonster
         addMove(OBSTRUCT, Intent.DEFEND);
         addMove(SHOCKWAVE, Intent.ATTACK_BUFF, calcAscensionDamage(16));
         addMove(HEATED_WEAPON, Intent.ATTACK_DEBUFF, calcAscensionDamage(7), heatedWeaponHits, true);
-        addMove(RAMPAGE, Intent.ATTACK, calcAscensionDamage(42));
+        addMove(RAMPAGE, Intent.ATTACK, calcAscensionDamage(45));
         addMove(HEAT_UP, Intent.DEFEND_BUFF);
 
         cardList.add(new Obstruct(this));

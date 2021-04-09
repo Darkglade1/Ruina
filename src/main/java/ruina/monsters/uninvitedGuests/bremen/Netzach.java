@@ -63,7 +63,7 @@ public class Netzach extends AbstractAllyCardMonster
     }
 
     public Netzach(final float x, final float y) {
-        super(NAME, ID, 180, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 150, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Netzach/Spriter/Netzach.scml"));
         this.animation.setFlip(true, false);
 

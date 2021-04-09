@@ -32,11 +32,6 @@ public class ManifestMod extends AbstractCardModifier implements AlternateCardCo
     }
 
     @Override
-    public boolean isInherent(AbstractCard card) {
-        return true;
-    }
-
-    @Override
     public boolean shouldApply(AbstractCard card) {
         return card.costForTurn >= 0 && !CardModifierManager.hasModifier(card, ID);
     }

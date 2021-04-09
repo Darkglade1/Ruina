@@ -75,7 +75,7 @@ public class Elena extends AbstractCardMonster
     }
 
     public Elena(final float x, final float y) {
-        super(NAME, ID, 400, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 500, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Elena/Spriter/Elena.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
@@ -87,7 +87,7 @@ public class Elena extends AbstractCardMonster
         addMove(CIRCULATION, Intent.BUFF);
         addMove(SANGUINE_NAILS, Intent.ATTACK, calcAscensionDamage(9), sanguineNailsHits, true);
         addMove(SIPHON, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
-        addMove(BLOODSPREADING, Intent.ATTACK, calcAscensionDamage(36));
+        addMove(BLOODSPREADING, Intent.ATTACK, calcAscensionDamage(38));
         addMove(INJECT, Intent.STRONG_DEBUFF);
 
         cardList.add(new Circulation(this));

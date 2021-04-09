@@ -5,6 +5,7 @@ import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -72,7 +73,7 @@ public class Binah extends AbstractAllyCardMonster
     }
 
     public Binah(final float x, final float y) {
-        super(NAME, ID, 150, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 120, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Binah/Spriter/Binah.scml"));
         this.animation.setFlip(true, false);
 
@@ -114,14 +115,16 @@ public class Binah extends AbstractAllyCardMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if (enemy instanceof AbstractMultiIntentMonster) {
-                            ((AbstractMultiIntentMonster) enemy).additionalIntents.clear();
-                            ((AbstractMultiIntentMonster) enemy).additionalMoves.clear();
-                        }
-                        if (enemy instanceof AbstractCardMonster) {
-                            ArrayList<AbstractCard> cards = ((AbstractCardMonster) enemy).cardsToRender;
-                            if (cards.size() > 1) {
-                                cards.remove(cards.size() - 1);
+                        if (!enemy.hasPower(StunMonsterPower.POWER_ID)) {
+                            if (enemy instanceof AbstractMultiIntentMonster) {
+                                ((AbstractMultiIntentMonster) enemy).additionalIntents.clear();
+                                ((AbstractMultiIntentMonster) enemy).additionalMoves.clear();
+                            }
+                            if (enemy instanceof AbstractCardMonster) {
+                                ArrayList<AbstractCard> cards = ((AbstractCardMonster) enemy).cardsToRender;
+                                if (cards.size() > 1) {
+                                    cards.remove(cards.size() - 1);
+                                }
                             }
                         }
                         this.isDone = true;
