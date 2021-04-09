@@ -134,6 +134,7 @@ public class Hokma extends AbstractAllyCardMonster
         }
         switch (this.nextMove) {
             case SILENCE: {
+                slashAnimation(target);
                 dmg(target, info);
                 resetIdle();
                 int newDamage = info.base += DAMAGE_INCREASE;
@@ -202,20 +203,8 @@ public class Hokma extends AbstractAllyCardMonster
         }
     }
 
-    private void specialAnimation(AbstractCreature enemy) {
-        animationAction("Special", "YanBrand", enemy, this);
-    }
-
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "YanVert", enemy, this);
-    }
-
-    private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "YanStab", enemy, this);
-    }
-
-    private void blockAnimation() {
-        animationAction("Block", null, this);
+        animationAction("Slash", "SilenceEffect", enemy, this);
     }
 
 }
