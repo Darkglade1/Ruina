@@ -304,7 +304,7 @@
   },
   "${ModID}:ContractOfLight": {
     "NAME": "Contract Of Light",
-    "DESCRIPTIONS": ["Double your Energy each turn. Take #b%1$s damage for each unspent [E] at the end of your turn."]
+    "DESCRIPTIONS": ["Gain ", " each turn. You cannot draw cards besides your starting hand each turn."]
   },
   "${ModID}:Guts": {
     "NAME": "Guts",
@@ -389,5 +389,9 @@
   "${ModID}:DarkBargain": {
     "NAME": "Dark Bargain",
     "DESCRIPTIONS": ["This creature's #yMass #yAttack targets ALL other characters (including you). NL This creature's attacks deal #b","x damage to enemies. Whenever you fully #yBlock a hit from this creature's #yMass #yAttack, increase this bonus by #b", "."]
+  },
+  "${ModID}:PriceOfTime": {
+    "NAME": "Price of Time",
+    "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature takes a turn. NL This creature's normal turn is skipped."]
   }
 }

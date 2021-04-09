@@ -1,5 +1,15 @@
 package ruina.monsters.uninvitedGuests.pluto.monster;
 
+import basemod.ReflectionHacks;
+import basemod.abstracts.CustomPlayer;
+import basemod.animations.AbstractAnimation;
+import basemod.animations.SpriterAnimation;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.lwjgl.LwjglGraphics;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.brashmonkey.spriter.Player;
+import com.brashmonkey.spriter.Point;
+import com.esotericsoftware.spine.Skeleton;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -7,18 +17,17 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.BarricadePower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.TintEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractDeckMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -27,34 +36,6 @@ import java.util.ArrayList;
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.adp;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.backends.lwjgl.LwjglGraphics;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.brashmonkey.spriter.Player;
-import com.brashmonkey.spriter.Point;
-import com.esotericsoftware.spine.Skeleton;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.ShoutAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ShaderHelper;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.TintEffect;
-
-import basemod.ReflectionHacks;
-import basemod.abstracts.CustomPlayer;
-import basemod.animations.AbstractAnimation;
-import basemod.animations.SpriterAnimation;
 
 public class Shade extends AbstractDeckMonster
 {
@@ -65,9 +46,10 @@ public class Shade extends AbstractDeckMonster
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     public final int MAX_DAMAGE = calcAscensionSpecial(50);
-    public final int ARTIFACT = calcAscensionSpecial(3);
     public final int BLOCK = calcAscensionTankiness(20);
     public final int STRENGTH = calcAscensionSpecial(2);
+
+    private Hokma hokma;
 
     public Shade() {
         this(0.0f, 0.0f);
@@ -82,12 +64,11 @@ public class Shade extends AbstractDeckMonster
         // double warning ^ do not touch this or i will be big mad
         this.dialogX = -(AbstractDungeon.player.dialogX - AbstractDungeon.player.drawX);
         this.dialogY =  (AbstractDungeon.player.dialogY - AbstractDungeon.player.drawY);
-        maxAdditionalMoves = 1;
-        for (int i = 0; i < maxAdditionalMoves; i++) {
+        numAdditionalMoves = 1;
+        for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        numAdditionalMoves = maxAdditionalMoves;
-        name = AbstractDungeon.player.title;
+        //name = AbstractDungeon.player.title;
         AbstractCard fillerCard = new Madness(); //in case deck somehow has no cards
         addMove((byte) fillerCard.cardID.hashCode(), Intent.ATTACK, 12);
     }
@@ -100,6 +81,11 @@ public class Shade extends AbstractDeckMonster
 
     @Override
     public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Hokma) {
+                hokma = (Hokma)mo;
+            }
+        }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -108,7 +94,6 @@ public class Shade extends AbstractDeckMonster
             }
         });
         applyToTarget(this, this, new BarricadePower(this));
-        applyToTarget(this, this, new ArtifactPower(this, ARTIFACT));
     }
 
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, AbstractCard card) {
@@ -117,7 +102,7 @@ public class Shade extends AbstractDeckMonster
         if (info.base > -1) { info.applyPowers(this, target); }
         if (info.base > -1) {
             if (card.baseBlock > 0) { block(this, card.baseBlock); }
-            dmg(adp(), info);
+            dmg(target, info);
         } else {
             if (card.baseBlock > 0) { block(this, card.baseBlock); }
         }
@@ -131,13 +116,24 @@ public class Shade extends AbstractDeckMonster
         if (this.firstMove) {
             firstMove = false;
         }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                hokma.halfDead = false;
+                this.isDone = true;
+            }
+        });
         takeCustomTurn(this.moves.get(nextMove), adp(), enemyCard);
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
             AdditionalIntent additionalIntent = additionalIntents.get(i);
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, additionalIntent.enemyCard.name)));
             atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            takeCustomTurn(additionalMove, adp(), additionalIntent.enemyCard);
+            if (additionalIntent.targetTexture == null) {
+                takeCustomTurn(additionalMove, adp());
+            } else {
+                takeCustomTurn(additionalMove, hokma);
+            }
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
@@ -157,9 +153,7 @@ public class Shade extends AbstractDeckMonster
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
-        if (!this.firstMove) {
-            createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove));
-        }
+        createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove));
     }
 
     @Override
@@ -172,7 +166,7 @@ public class Shade extends AbstractDeckMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, hokma, hokma.allyIcon);
             }
         }
     }

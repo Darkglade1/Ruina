@@ -637,10 +637,24 @@
     "MOVES": [
       "Magical Safeguard",
       "Magic Missle",
-      "Magic Onslaught"
+      "Magic Onslaught",
+      "Contract",
+      "Binding Terms"
     ],
     "NAME": "Pluto",
     "DIALOG": [
+      "Empty words and hollow faith are meaningless."
+    ]
+  },
+  "${ModID}:Hokma": {
+    "MOVES": [
+      "Silence",
+      "Time"
+    ],
+    "NAME": "Hokma",
+    "DIALOG": [
+      "A faith is only as strong as the one who carries it.",
+      "I had faith that we would prevail."
     ]
   },
   "${ModID}:Shade": {

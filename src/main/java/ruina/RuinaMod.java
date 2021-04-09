@@ -12,6 +12,7 @@ import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostBattleSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
+import basemod.interfaces.PreMonsterTurnSubscriber;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -113,6 +114,7 @@ import ruina.monsters.uninvitedGuests.greta.Greta;
 import ruina.monsters.uninvitedGuests.greta.Hod;
 import ruina.monsters.uninvitedGuests.philip.Malkuth;
 import ruina.monsters.uninvitedGuests.philip.Philip;
+import ruina.monsters.uninvitedGuests.pluto.monster.Hokma;
 import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
 import ruina.monsters.uninvitedGuests.puppeteer.Chesed;
 import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
@@ -137,7 +139,8 @@ public class RuinaMod implements
         EditKeywordsSubscriber,
         PostInitializeSubscriber,
         AddAudioSubscriber,
-        PostBattleSubscriber {
+        PostBattleSubscriber,
+        PreMonsterTurnSubscriber {
 
     private static final String modID = "ruina";
     public static String getModID() {
@@ -682,7 +685,6 @@ public class RuinaMod implements
                         new VermilionCross(-100.0F, 0.0F),
                         new Elena(200.0F, 0.0F),
                 }));
-        BaseMod.addMonster(Pluto.ID, (BaseMod.GetMonster) Pluto::new);
         BaseMod.addMonster(Oswald.ID, "Oswald", () -> new MonsterGroup(
                 new AbstractMonster[] {
                         new Tiph(-500.0F, 0.0F),
@@ -707,6 +709,11 @@ public class RuinaMod implements
                 new AbstractMonster[] {
                         new Yesod(-550.0F, 0.0F),
                         new Eileen(200.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Pluto.ID, "Pluto", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Hokma(-550.0F, 0.0F),
+                        new Pluto(200.0F, 0.0F),
                 }));
 
         uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(
@@ -769,6 +776,12 @@ public class RuinaMod implements
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         TotalBlockGainedSpireField.totalBlockGained.set(adp(), 0);
+    }
+
+    @Override
+    public boolean receivePreMonsterTurn(AbstractMonster abstractMonster) {
+        return !abstractMonster.hasPower(Hokma.POWER_ID);
+
     }
 
     public void receiveEditKeywords() {

@@ -4,7 +4,6 @@ import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ConfusionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
@@ -30,7 +29,7 @@ public class ContractOfMight extends AbstractRuinaCard {
     @Override
     public void upp() { }
 
-    public void onChooseThisOption(){
+    public void onChoseThisOption(){
         addToBot(new ApplyPowerAction(adp(), adp(), new StrengthPower(adp(), magicNumber)));
         addToBot(new ApplyPowerAction(adp(), adp(), new ruina.powers.ContractOfMight(adp(), secondMagicNumber)));
     }

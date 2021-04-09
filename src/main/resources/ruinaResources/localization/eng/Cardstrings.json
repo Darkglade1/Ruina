@@ -283,7 +283,7 @@
   },
   "${ModID}:ContractOfLight": {
     "NAME": "Contract Of Light",
-    "DESCRIPTION": "Double your energy each turn. NL Take !M! damage at the end of each turn for each unspent [E] ."
+    "DESCRIPTION": "Gain [E] [E] each turn. NL You cannot draw cards besides your starting hand each turn."
   },
   "${ModID}:ConfusingContract": {
     "NAME": "Confusing Contract",
