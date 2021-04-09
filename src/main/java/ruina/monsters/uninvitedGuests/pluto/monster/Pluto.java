@@ -66,6 +66,7 @@ public class Pluto extends AbstractCardMonster {
     public final int magicOnslaughtPerUseScaling = calcAscensionDamage(5);
 
     public final int STATUS = calcAscensionSpecial(2);
+    private int onslaughtTimesUsed;
 
     private Hokma hokma;
     public Shade shade;
@@ -151,8 +152,7 @@ public class Pluto extends AbstractCardMonster {
                 bluntAnimation(target);
                 dmg(target, info);
                 resetIdle();
-                int newDamage = info.base += magicOnslaughtPerUseScaling;
-                addMove(ONSLAUGHT, Intent.ATTACK, newDamage);
+                onslaughtTimesUsed++;
                 break;
             case CONTRACT:
                 contractAnimation(target);
@@ -218,6 +218,15 @@ public class Pluto extends AbstractCardMonster {
                     if(m instanceof Shade){ shadeExists = true; }
                 }
                 if(!shadeExists && currentPhase.equals(PHASE.SHADES)){ currentPhase = PHASE.NO_SHADES; }
+                isDone = true;
+            }
+        });
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                int newDamage = moves.get(ONSLAUGHT).baseDamage += magicOnslaughtPerUseScaling * onslaughtTimesUsed;
+                onslaughtTimesUsed = 0;
+                addMove(ONSLAUGHT, Intent.ATTACK, newDamage);
                 isDone = true;
             }
         });
