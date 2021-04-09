@@ -14,8 +14,8 @@ import static ruina.util.Wiz.adp;
 @AutoAdd.Ignore
 public class ContractOfMight extends AbstractRuinaCard {
     public final static String ID = makeID(ContractOfMight.class.getSimpleName());
-    private static final int STRENGTH = 5;
-    public static final int SELF_DAMAGE = 2;
+    private static final int STRENGTH = 4;
+    public static final int SELF_DAMAGE = 1;
 
     public ContractOfMight() {
         super(ID, -2, CardType.POWER, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);

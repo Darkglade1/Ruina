@@ -588,5 +588,33 @@
   "${ModID}:ThoughtGearBrainwash": {
     "NAME": "Thought Gear: Brainwash",
     "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:Silence": {
+    "NAME": "Silence",
+    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat."
+  },
+  "${ModID}:Time": {
+    "NAME": "Time",
+    "DESCRIPTION": "Take an extra turn after this one. NL End your turn."
+  },
+  "${ModID}:Safeguard": {
+    "NAME": "Magical Safeguard",
+    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength."
+  },
+  "${ModID}:Missile": {
+    "NAME": "Magic Missile",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Onslaught": {
+    "NAME": "Magic Onslaught",
+    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat."
+  },
+  "${ModID}:Contract": {
+    "NAME": "Contract",
+    "DESCRIPTION": "Present a list of *Contracts."
+  },
+  "${ModID}:BindingTerms": {
+    "NAME": "Binding Terms",
+    "DESCRIPTION": "Shuffle !M! *Voids into your discard pile."
   }
 }

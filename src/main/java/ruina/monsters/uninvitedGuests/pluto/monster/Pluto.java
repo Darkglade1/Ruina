@@ -2,14 +2,14 @@ package ruina.monsters.uninvitedGuests.pluto.monster;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,11 +24,16 @@ import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.uninvitedGuests.bremen.Bremen;
 import ruina.monsters.uninvitedGuests.pluto.cards.contracts.ConfusingContract;
 import ruina.monsters.uninvitedGuests.pluto.cards.contracts.ContractOfLight;
 import ruina.monsters.uninvitedGuests.pluto.cards.contracts.ContractOfMight;
 import ruina.monsters.uninvitedGuests.pluto.cards.contracts.NoContract;
+import ruina.monsters.uninvitedGuests.pluto.plutoCards.BindingTerms;
+import ruina.monsters.uninvitedGuests.pluto.plutoCards.Contract;
+import ruina.monsters.uninvitedGuests.pluto.plutoCards.Missile;
+import ruina.monsters.uninvitedGuests.pluto.plutoCards.Onslaught;
+import ruina.monsters.uninvitedGuests.pluto.plutoCards.Safeguard;
+import ruina.monsters.uninvitedGuests.puppeteer.Puppet;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -57,8 +62,8 @@ public class Pluto extends AbstractCardMonster {
     public final int magicMissleDamage = calcAscensionDamage(6);
     public final int magicMissleHits = 3;
 
-    public final int magicOnslaughtDamage = calcAscensionDamage(20);
-    public final int magicOnslaughtPerUseScaling = calcAscensionDamage(10);
+    public final int magicOnslaughtDamage = calcAscensionDamage(15);
+    public final int magicOnslaughtPerUseScaling = calcAscensionDamage(5);
 
     public final int STATUS = calcAscensionSpecial(2);
 
@@ -108,6 +113,7 @@ public class Pluto extends AbstractCardMonster {
                 hokma = (Hokma)mo;
             }
         }
+        atb(new TalkAction(this, DIALOG[0]));
         Summon();
     }
 
@@ -137,13 +143,13 @@ public class Pluto extends AbstractCardMonster {
                     } else {
                         slashAnimation(target);
                     }
-                    dmg(adp(), info);
+                    dmg(target, info);
                     resetIdle();
                 }
                 break;
             case ONSLAUGHT:
                 bluntAnimation(target);
-                dmg(adp(), info);
+                dmg(target, info);
                 resetIdle();
                 int newDamage = info.base += magicOnslaughtPerUseScaling;
                 addMove(ONSLAUGHT, Intent.ATTACK, newDamage);
@@ -250,7 +256,7 @@ public class Pluto extends AbstractCardMonster {
             possibilities.add(SAFEGUARD);
         }
         if (!this.lastMove(ONSLAUGHT, moveHistory)) {
-            possibilities.add(SAFEGUARD);
+            possibilities.add(ONSLAUGHT);
         }
         if (!this.lastMove(MISSLE, moveHistory)) {
             possibilities.add(MISSLE);
@@ -277,9 +283,13 @@ public class Pluto extends AbstractCardMonster {
 
 
     protected AbstractCard getMoveCardFromByte(Byte move) {
-        switch (move){
-            default: return new Madness();
-        }
+        ArrayList<AbstractCard> list = new ArrayList<>();
+        list.add(new Safeguard(this));
+        list.add(new Missile(this));
+        list.add(new Onslaught(this));
+        list.add(new Contract(this));
+        list.add(new BindingTerms(this));
+        return list.get(move);
     }
 
     public void Summon() {
@@ -291,6 +301,17 @@ public class Pluto extends AbstractCardMonster {
         this.shade = shade;
         atb(new SpawnMonsterAction(shade, true));
         atb(new UsePreBattleActionAction(shade));
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        for (AbstractMonster mo : monsterList()) {
+            if (mo instanceof Shade) {
+                atb(new SuicideAction(mo));
+            }
+        }
+        hokma.onBossDeath();
     }
 
     private void bluntAnimation(AbstractCreature enemy) {

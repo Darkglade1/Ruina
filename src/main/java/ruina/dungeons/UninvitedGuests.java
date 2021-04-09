@@ -125,7 +125,7 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
         map.add(populate(row7, index++));
         map.add(populate(row8, index++));
-        //map.add(populate(row9, index++));
+        map.add(populate(row9, index++));
         map.add(tripleNodeArea(new TreasureRoom(), new ShopRoom(), new RestRoom(), index++));
         map.add(tripleNodeArea(new TreasureRoom(), new ShopRoom(), new RestRoom(), index++));
         map.add(singleNodeArea(new MonsterRoomBoss(), index++));

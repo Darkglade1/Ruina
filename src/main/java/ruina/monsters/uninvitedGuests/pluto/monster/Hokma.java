@@ -23,6 +23,8 @@ import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyCardMonster;
+import ruina.monsters.uninvitedGuests.pluto.hokmaCards.Silence;
+import ruina.monsters.uninvitedGuests.pluto.hokmaCards.Time;
 import ruina.powers.AbstractLambdaPower;
 import ruina.vfx.WaitEffect;
 
@@ -44,7 +46,6 @@ public class Hokma extends AbstractAllyCardMonster
     public final int CARDS_PER_TURN = 6;
 
     public Pluto pluto;
-    public Shade shade;
 
     public static final String POWER_ID = makeID("PriceOfTime");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -56,7 +57,7 @@ public class Hokma extends AbstractAllyCardMonster
     }
 
     public Hokma(final float x, final float y) {
-        super(NAME, ID, 180, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 190, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Hokma/Spriter/Hokma.scml"));
         this.animation.setFlip(true, false);
 
@@ -66,9 +67,8 @@ public class Hokma extends AbstractAllyCardMonster
         addMove(SILENCE, Intent.ATTACK, 10);
         addMove(TIME, Intent.UNKNOWN);
 
-//        cardList.add(new Will(this));
-//        cardList.add(new BalefulBrand(this));
-//        cardList.add(new Faith(this));
+        cardList.add(new Silence(this));
+        cardList.add(new Time(this));
 
         this.allyIcon = makeUIPath("HokmaIcon.png");
     }
@@ -86,7 +86,7 @@ public class Hokma extends AbstractAllyCardMonster
                 pluto = (Pluto)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, CARDS_PER_TURN) {
+        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
             @Override
             public void onAfterUseCard(AbstractCard card, UseCardAction action) {
                 this.amount++;
@@ -97,7 +97,7 @@ public class Hokma extends AbstractAllyCardMonster
             }
             @Override
             public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
+                description = POWER_DESCRIPTIONS[0] + CARDS_PER_TURN + POWER_DESCRIPTIONS[1];
             }
         });
         super.usePreBattleAction();
@@ -124,7 +124,7 @@ public class Hokma extends AbstractAllyCardMonster
             info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
         }
 
-        AbstractCreature target = shade;
+        AbstractCreature target = pluto.shade;
         if (target.isDeadOrEscaped()) {
             target = pluto;
         }
@@ -182,9 +182,11 @@ public class Hokma extends AbstractAllyCardMonster
             super.applyPowers();
             return;
         }
-        AbstractCreature target = shade;
-        if (target.isDeadOrEscaped()) {
+        AbstractCreature target;
+        if (pluto.shade.isDeadOrEscaped()) {
             target = pluto;
+        } else {
+            target = pluto.shade;
         }
         applyPowers(target);
     }

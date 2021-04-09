@@ -99,12 +99,18 @@ public class Shade extends AbstractDeckMonster
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, AbstractCard card) {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
-        if (info.base > -1) { info.applyPowers(this, target); }
         if (info.base > -1) {
-            if (card.baseBlock > 0) { block(this, card.baseBlock); }
+            info.applyPowers(this, target);
+        }
+        if (info.base > -1) {
+            if (card.baseBlock > 0) {
+                block(this, card.baseBlock);
+            }
             dmg(target, info);
         } else {
-            if (card.baseBlock > 0) { block(this, card.baseBlock); }
+            if (card.baseBlock > 0) {
+                block(this, card.baseBlock);
+            }
         }
         resetIdle();
     }
@@ -158,6 +164,10 @@ public class Shade extends AbstractDeckMonster
 
     @Override
     public void applyPowers() {
+        if (this.nextMove == -1) {
+            super.applyPowers();
+            return;
+        }
         super.applyPowers();
         for (int i = 0; i < additionalIntents.size(); i++) {
             AdditionalIntent additionalIntent = additionalIntents.get(i);
@@ -190,6 +200,12 @@ public class Shade extends AbstractDeckMonster
     }
 
     protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) { setAdditionalMoveShortcut((byte) c.cardID.hashCode(), moveHistory, c); }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        AbstractDungeon.onModifyPower();
+    }
 
     @Override
     public void render(SpriteBatch sb) {
