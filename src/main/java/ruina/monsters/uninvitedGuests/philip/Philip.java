@@ -60,9 +60,9 @@ public class Philip extends AbstractCardMonster
     public final int sorrowHits = 3;
 
     public final int BLOCK = calcAscensionTankiness(10);
-    public final int EVENTIDE_BURNS = calcAscensionSpecial(3);
+    public final int EVENTIDE_BURNS = 3;
     public final int STRENGTH = calcAscensionSpecial(2);
-    public final int SEARING_BURNS = calcAscensionSpecial(1);
+    public final int SEARING_BURNS = 1;
     public final int damageBonus = calcAscensionSpecial(30);
     public final int damageReduction = 60;
     public final int damageReductionDecay = 10;
