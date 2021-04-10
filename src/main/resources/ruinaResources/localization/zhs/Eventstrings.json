@@ -383,5 +383,16 @@
       "[Reject the contract]",
       "[Leave]"
     ]
+  },
+  "${ModID}:Ensemble": {
+    "NAME": "Reverberation Ensemble",
+    "DESCRIPTIONS": [
+      "\"Ohohohoho! Knock, and the door shall open!\" NL \"The entrance to this place was super strong, even after many blows we barely got inside.\" NL \"It's a test of endurance, after all! There's no use giving up after a couple of knocks!\" NL \"Now friends, if you're any rowdier we might scare away the residents of this place. It would be wise that we show the utmost respect so they don't go hiding behind bookshelves, no?\"",
+      "You don't know what compelled you to do so, to risk your very #ylife for a place such as this. But you could tell there was a #yLight here, a ray of hope that these villains sought to #pdefile. NL NL And you would not stand for it."
+    ],
+    "OPTIONS": [
+      "[Make a stand] #gObtain #ga #gSpecial #gRelic.",
+      "[Prepare yourself]"
+    ]
   }
 }
