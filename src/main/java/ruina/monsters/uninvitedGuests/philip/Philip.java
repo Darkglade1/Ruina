@@ -91,7 +91,7 @@ public class Philip extends AbstractCardMonster
     }
 
     public Philip(final float x, final float y) {
-        super(NAME, ID, 750, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 700, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Philip/Spriter/Philip.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;

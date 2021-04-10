@@ -29,6 +29,7 @@ public class FreshMeat extends AbstractRuinaMonster
     private final int HEAL = calcAscensionSpecial(100);
     private final AbstractCard card;
     private Greta greta;
+    private boolean gaveCard = false;
 
     public static final String POWER_ID = makeID("FreshMeat");
     public static final PowerStrings PowerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -81,7 +82,10 @@ public class FreshMeat extends AbstractRuinaMonster
                     adp().masterDeck.removeCard(masterCard);
                 }
             } else {
-                makeInHand(card);
+                if (!gaveCard) {
+                    makeInHand(card);
+                    gaveCard = true;
+                }
             }
         }
         AbstractDungeon.onModifyPower();

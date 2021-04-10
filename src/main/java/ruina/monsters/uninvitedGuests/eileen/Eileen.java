@@ -55,7 +55,7 @@ public class Eileen extends AbstractCardMonster
 
     public final int BLOCK = calcAscensionTankiness(22);
     public final int STRENGTH = calcAscensionSpecial(4);
-    public final int VULNERABLE = calcAscensionSpecial(1);
+    public final int VULNERABLE = 1;
     public final int HP_LOSS = 100;
 
     public Yesod yesod;

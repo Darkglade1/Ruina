@@ -68,7 +68,7 @@ public class Greta extends AbstractCardMonster
 
     public final int minceHits = 2;
 
-    public final int STRENGTH = calcAscensionSpecial(3);
+    public final int STRENGTH = calcAscensionSpecial(2);
     public final int PARALYSIS = calcAscensionSpecial(2);
     public final int BLEED = calcAscensionSpecial(4);
     public final int BLOCK = calcAscensionTankiness(24);

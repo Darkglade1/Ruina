@@ -94,12 +94,12 @@ public class Bremen extends AbstractCardMonster
         }
         this.setHp(calcAscensionTankiness(maxHealth));
 
-        addMove(MELODY, Intent.ATTACK_BUFF, calcAscensionDamage(9));
-        addMove(NEIGH, Intent.ATTACK, calcAscensionDamage(20));
+        addMove(MELODY, Intent.ATTACK_BUFF, calcAscensionDamage(8));
+        addMove(NEIGH, Intent.ATTACK, calcAscensionDamage(19));
         addMove(BAWK, Intent.DEBUFF);
         addMove(RARF, Intent.DEFEND_DEBUFF);
         addMove(TENDON, Intent.ATTACK, calcAscensionDamage(8), tendonHits, true);
-        addMove(TRIO, Intent.ATTACK_DEBUFF, calcAscensionDamage(7), trioHits, true);
+        addMove(TRIO, Intent.ATTACK_DEBUFF, calcAscensionDamage(6), trioHits, true);
     }
 
     @Override
