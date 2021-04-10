@@ -258,7 +258,7 @@ public class Wiz {
         VfxBuilder effect = new VfxBuilder(frames.get(0), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, animationLength);
         for (int i = 1; i < frames.size(); i++) {
             int finalI = i;
-            effect.triggerVfxAt(0.1f * i, i, new BiFunction<Float, Float, AbstractGameEffect>() {
+            effect.triggerVfxAt(0.1f * i, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
                 @Override
                 public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
                     return new VfxBuilder(frames.get(finalI), (float) Settings.WIDTH / 2, (float)Settings.HEIGHT / 2, frameDuration).build();

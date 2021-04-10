@@ -145,6 +145,12 @@ public class Seraphim extends AbstractMultiIntentMonster {
         addMove(REVELATION, Intent.BUFF);
     }
 
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
 
     @Override
     public void usePreBattleAction() {

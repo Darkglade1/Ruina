@@ -1,36 +1,29 @@
 package ruina.patches;
 
-
+import basemod.ReflectionHacks;
 import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import ruina.cardmods.ContractsMod;
-import ruina.cardmods.UnplayableMod;
 import ruina.relics.YesterdayPromiseRelic;
 
-@SpirePatch(
-        clz= AbstractCard.class,
-        method = SpirePatch.CONSTRUCTOR,
-        paramtypez= {
-                String.class,
-                String.class,
-                String.class,
-                int.class,
-                String.class,
-                AbstractCard.CardType.class,
-                AbstractCard.CardColor.class,
-                AbstractCard.CardRarity.class,
-                AbstractCard.CardTarget.class,
-                DamageInfo.DamageType.class
+import static ruina.util.Wiz.adp;
+
+
+public class YesterdayPromisePatch {
+    @SpirePatch(clz = ShowCardAndAddToDiscardEffect.class, method = "update")
+    @SpirePatch(clz = ShowCardAndAddToHandEffect.class, method = "update")
+    @SpirePatch(clz = ShowCardAndAddToDrawPileEffect.class, method = "update")
+    public static class InDraw {
+        public static void Prefix(AbstractGameEffect __instance) {
+            if (__instance.duration == (float) ReflectionHacks.getPrivateStatic(__instance.getClass(), "EFFECT_DUR")) {
+                if (adp().hasRelic(YesterdayPromiseRelic.ID)) {
+                    CardModifierManager.addModifier(ReflectionHacks.getPrivate(__instance, __instance.getClass(), "card"), new ContractsMod());
+                }
+            }
         }
-)
-public class YesterdayPromisePatch
-{
-    @SpirePostfixPatch
-    public static void contractPatch(AbstractCard __instance, String id, String name, String imgUrl, int cost, String rawDescription, AbstractCard.CardType type, AbstractCard.CardColor color, AbstractCard.CardRarity rarity, AbstractCard.CardTarget target, DamageInfo.DamageType dType) {
-        if(AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(YesterdayPromiseRelic.ID)){ CardModifierManager.addModifier(__instance, new ContractsMod()); }
     }
 }

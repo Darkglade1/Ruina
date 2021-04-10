@@ -13,10 +13,14 @@ import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
 
+import static ruina.util.AdditionalIntent.ENEMY_CARD_HOVERED_HEIGHT;
+import static ruina.util.AdditionalIntent.ENEMY_CARD_HOVERED_WIDTH;
+
 public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
     protected AbstractCard enemyCard = null;
     public ArrayList<AbstractCard> cardsToRender = new ArrayList<>();
     public static AbstractCard hoveredCard = null;
+    protected ArrayList<AbstractCard> cardList = new ArrayList<>();
 
     public AbstractCardMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -42,7 +46,7 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
             enemyCard.current_x = MathHelper.cardLerpSnap(enemyCard.current_x, enemyCard.target_x);
             enemyCard.current_y = MathHelper.cardLerpSnap(enemyCard.current_y, enemyCard.target_y);
             enemyCard.hb.move(enemyCard.current_x, enemyCard.current_y);
-            enemyCard.hb.resize(512 * enemyCard.drawScale, 512 * enemyCard.drawScale);
+            enemyCard.hb.resize(ENEMY_CARD_HOVERED_WIDTH * enemyCard.drawScale, ENEMY_CARD_HOVERED_HEIGHT * enemyCard.drawScale);
             if (enemyCard.hb.hovered) {
                 if (AbstractCardMonster.hoveredCard == null) {
                     AbstractCardMonster.hoveredCard = enemyCard;
@@ -100,6 +104,12 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
         cardsToRender.clear();
         super.rollMove();
         AbstractCardMonster.hoveredCard = null; //in case the player was hovering one of them while it was getting yeeted
+    }
+
+    public void setMove(String text, byte next, Intent intent, int damage, AbstractCard enemyCard) {
+        setMove(text, next, intent, damage);
+        setEnemyCard(enemyCard, damage);
+        cardsToRender.add(enemyCard);
     }
 
     public void setMoveShortcut(byte next, String text, AbstractCard enemyCard) {

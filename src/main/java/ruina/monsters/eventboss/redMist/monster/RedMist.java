@@ -106,6 +106,12 @@ public class RedMist extends AbstractDeckMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
+    @Override
     public void usePreBattleAction()
     {
         CustomDungeon.playTempMusicInstantly("Gebura2");
@@ -358,7 +364,7 @@ public class RedMist extends AbstractDeckMonster
     }
 
     @Override
-    public void getAdditionalMoves(int num, int whichMove) { createMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
+    public void getAdditionalMoves(int num, int whichMove) { createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
 
     @Override
     public void applyPowers() {
@@ -385,8 +391,7 @@ public class RedMist extends AbstractDeckMonster
         }
     }
 
-    @Override
-    protected void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
+    protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
         if (c.cardID.equals(CHRBOSS_LevelSlash.ID)) {
             setAdditionalMoveShortcut(LEVEL_SLASH, moveHistory, c);
         } else if (c.cardID.equals(CHRBOSS_Spear.ID)) {
@@ -440,7 +445,7 @@ public class RedMist extends AbstractDeckMonster
         }
     }
 
-    private void verticalSplitVfx() {
+    public static void verticalSplitVfx() {
         ArrayList<Texture> frames = new ArrayList<>();
         for (int i = 0; i <= 9; i++) {
             frames.add(TexLoader.getTexture(makeMonsterPath("RedMist/Vertical/frame" + i + ".png")));
@@ -455,7 +460,7 @@ public class RedMist extends AbstractDeckMonster
         fullScreenAnimation(frames, 0.1f, 0.9f);
     }
 
-    private void horizontalSplitVfx() {
+    public static void horizontalSplitVfx() {
         ArrayList<Texture> frames = new ArrayList<>();
         for (int i = 1; i <= 12; i++) {
             frames.add(TexLoader.getTexture(makeMonsterPath("RedMist/Horizontal/frame" + i + ".png")));

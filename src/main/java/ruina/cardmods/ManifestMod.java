@@ -1,6 +1,7 @@
 package ruina.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import basemod.interfaces.AlternateCardCostModifier;
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,6 +17,10 @@ public class ManifestMod extends AbstractCardModifier implements AlternateCardCo
     public static final String ID = RuinaMod.makeID("ManifestMod");
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
+    public ManifestMod() {
+        this.priority = -1; //make it more likely to go first
+    }
+
     @Override
     public AbstractCardModifier makeCopy() {
         return new ManifestMod();
@@ -27,8 +32,8 @@ public class ManifestMod extends AbstractCardModifier implements AlternateCardCo
     }
 
     @Override
-    public boolean isInherent(AbstractCard card) {
-        return true;
+    public boolean shouldApply(AbstractCard card) {
+        return card.costForTurn >= 0 && !CardModifierManager.hasModifier(card, ID);
     }
 
     @Override

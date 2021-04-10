@@ -57,5 +57,12 @@
     "DESCRIPTIONS": [
       "When you have insufficient [E] to play a card, you may instead pay #b3 HP for every missing [E] ."
     ]
+  },
+  "${ModID}:Book": {
+    "NAME": "Book of Someone",
+    "FLAVOR": "Some must fight so that all may be free.",
+    "DESCRIPTIONS": [
+      "At the end of combat, heal #b", "% of your HP."
+    ]
   }
 }

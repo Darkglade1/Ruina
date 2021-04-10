@@ -141,6 +141,12 @@ public class Twilight extends AbstractRuinaMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
+    @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland3");
         playSound("BossBirdBirth", 0.5f);

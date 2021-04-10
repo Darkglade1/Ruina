@@ -65,6 +65,12 @@ public class RoadHome extends AbstractRuinaMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.ELITE;
+    }
+
+    @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning1");
         float xPosition = -300.0F;

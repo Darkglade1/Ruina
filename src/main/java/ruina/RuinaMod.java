@@ -12,6 +12,7 @@ import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.EditStringsSubscriber;
 import basemod.interfaces.PostBattleSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
+import basemod.interfaces.PreMonsterTurnSubscriber;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -24,6 +25,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.events.beyond.Falling;
 import com.megacrit.cardcrawl.events.beyond.MindBloom;
 import com.megacrit.cardcrawl.events.beyond.MysteriousSphere;
@@ -50,6 +52,7 @@ import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.Atziluth;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
+import ruina.dungeons.UninvitedGuests;
 import ruina.events.act2.ChildrenOfTheCity;
 import ruina.events.act2.ChurchOfGears;
 import ruina.events.act2.Language;
@@ -96,6 +99,27 @@ import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
+import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
+import ruina.monsters.uninvitedGuests.argalia.monster.Roland;
+import ruina.monsters.uninvitedGuests.bremen.Bremen;
+import ruina.monsters.uninvitedGuests.bremen.Netzach;
+import ruina.monsters.uninvitedGuests.clown.Oswald;
+import ruina.monsters.uninvitedGuests.clown.Tiph;
+import ruina.monsters.uninvitedGuests.eileen.Eileen;
+import ruina.monsters.uninvitedGuests.eileen.Yesod;
+import ruina.monsters.uninvitedGuests.elena.Binah;
+import ruina.monsters.uninvitedGuests.elena.Elena;
+import ruina.monsters.uninvitedGuests.elena.VermilionCross;
+import ruina.monsters.uninvitedGuests.greta.Greta;
+import ruina.monsters.uninvitedGuests.greta.Hod;
+import ruina.monsters.uninvitedGuests.philip.Malkuth;
+import ruina.monsters.uninvitedGuests.philip.Philip;
+import ruina.monsters.uninvitedGuests.pluto.monster.Hokma;
+import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
+import ruina.monsters.uninvitedGuests.puppeteer.Chesed;
+import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
+import ruina.monsters.uninvitedGuests.tanya.Gebura;
+import ruina.monsters.uninvitedGuests.tanya.Tanya;
 import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
@@ -115,7 +139,8 @@ public class RuinaMod implements
         EditKeywordsSubscriber,
         PostInitializeSubscriber,
         AddAudioSubscriber,
-        PostBattleSubscriber {
+        PostBattleSubscriber,
+        PreMonsterTurnSubscriber {
 
     private static final String modID = "ruina";
     public static String getModID() {
@@ -294,6 +319,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("WrathAtk2"), makeSFXPath("Angry_Vert2.wav"));
 
         BaseMod.addAudio(makeID("BluntBlow"), makeSFXPath("Blow_Stab.wav"));
+        BaseMod.addAudio(makeID("BluntHori"), makeSFXPath("Blow_Hori.wav"));
+        BaseMod.addAudio(makeID("BluntVert"), makeSFXPath("Blow_Vert.wav"));
+
         BaseMod.addAudio(makeID("IndexUnlock"), makeSFXPath("IndexUnlock.wav"));
 
         BaseMod.addAudio(makeID("ProphetBless"), makeSFXPath("WhiteNight_Bless.wav"));
@@ -369,6 +397,115 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("YanVert"), makeSFXPath("Yan_Lib_Vert.wav"));
         BaseMod.addAudio(makeID("YanStab"), makeSFXPath("Yan_Stab.wav"));
         BaseMod.addAudio(makeID("YanBrand"), makeSFXPath("Yan_Stigma_Atk.wav"));
+
+        BaseMod.addAudio(makeID("SwordStab"), makeSFXPath("Sword_Stab.wav"));
+        BaseMod.addAudio(makeID("SwordVert"), makeSFXPath("Sword_Vert.wav"));
+        BaseMod.addAudio(makeID("SwordHori"), makeSFXPath("Sword_Hori.wav"));
+
+        BaseMod.addAudio(makeID("DisposalUp"), makeSFXPath("Nicolrai_Special_SwordUp.wav"));
+        BaseMod.addAudio(makeID("DisposalDown"), makeSFXPath("Nicolrai_Special_SwordDown.wav"));
+        BaseMod.addAudio(makeID("DisposalFinish"), makeSFXPath("Nicolrai_Special_Cut.wav"));
+        BaseMod.addAudio(makeID("DisposalBlood"), makeSFXPath("Nicolrai_Special_Blood.wav"));
+
+        BaseMod.addAudio(makeID("PuppetStart"), makeSFXPath("Puppet_StrongStart.wav"));
+        BaseMod.addAudio(makeID("PuppetStrongAtk"), makeSFXPath("Puppet_StrongAtk.wav"));
+        BaseMod.addAudio(makeID("PuppetBreak"), makeSFXPath("Puppet_Break.wav"));
+
+        BaseMod.addAudio(makeID("RolandAxe"), makeSFXPath("Roland_Axe.wav"));
+        BaseMod.addAudio(makeID("RolandDualSword"), makeSFXPath("Roland_DuelSword.wav"));
+        BaseMod.addAudio(makeID("RolandDualSwordStrong"), makeSFXPath("Roland_DuelSword_Strong.wav"));
+        BaseMod.addAudio(makeID("RolandDuralandalDown"), makeSFXPath("Roland_Duralandal_Down.wav"));
+        BaseMod.addAudio(makeID("RolandDuralandalStrong"), makeSFXPath("Roland_Duralandal_Strong.wav"));
+        BaseMod.addAudio(makeID("RolandDuralandalUp"), makeSFXPath("Roland_Duralandal_Up.wav"));
+        BaseMod.addAudio(makeID("RolandGreatSword"), makeSFXPath("Roland_GreatSword.wav"));
+        BaseMod.addAudio(makeID("RolandLongSwordAtk"), makeSFXPath("Roland_LongSword_Atk.wav"));
+        BaseMod.addAudio(makeID("RolandLongSwordFin"), makeSFXPath("Roland_LongSword_Fin.wav"));
+        BaseMod.addAudio(makeID("RolandLongSwordStart"), makeSFXPath("Roland_LongSword_Start.wav"));
+        BaseMod.addAudio(makeID("RolandMace"), makeSFXPath("Roland_Mace.wav"));
+        BaseMod.addAudio(makeID("RolandRevolver"), makeSFXPath("Roland_Revolver.wav"));
+        BaseMod.addAudio(makeID("RolandShortSword"), makeSFXPath("Roland_ShortSword.wav"));
+        BaseMod.addAudio(makeID("RolandShotgun"), makeSFXPath("Roland_Shotgun.wav"));
+
+        BaseMod.addAudio(makeID("ArgaliaStrongAtk2"), makeSFXPath("Blue_Argalria_Strong_Atk2.wav"));
+        BaseMod.addAudio(makeID("ArgaliaAtk"), makeSFXPath("Blue_Argalria_Atk.wav"));
+        BaseMod.addAudio(makeID("ArgaliaFarAtk1"), makeSFXPath("Blue_Argalria_Far_Atk1.wav"));
+        BaseMod.addAudio(makeID("ArgaliaFarAtk2"), makeSFXPath("Blue_Argalria_Far_Atk2.wav"));
+        BaseMod.addAudio(makeID("ArgaliaStrongAtk1"), makeSFXPath("Blue_Argalria_Strong_Atk1.wav"));
+
+        BaseMod.addAudio(makeID("BinahStoneReady"), makeSFXPath("Binah_Stone_Ready.wav"));
+        BaseMod.addAudio(makeID("BinahStoneFire"), makeSFXPath("Binah_Stone_Fire.wav"));
+        BaseMod.addAudio(makeID("BinahChain"), makeSFXPath("Binah_Chain.wav"));
+        BaseMod.addAudio(makeID("BinahFairy"), makeSFXPath("Binah_Fairy.wav"));
+
+        BaseMod.addAudio(makeID("ElenaStrongUp"), makeSFXPath("Elena_StrongUp.wav"));
+        BaseMod.addAudio(makeID("ElenaStrongAtk"), makeSFXPath("Elena_StrongAtk.wav"));
+        BaseMod.addAudio(makeID("ElenaStrongStart"), makeSFXPath("Elena_StrongStart.wav"));
+
+        BaseMod.addAudio(makeID("FireVert"), makeSFXPath("Riu_Vert.wav"));
+        BaseMod.addAudio(makeID("FireHori"), makeSFXPath("Riu_Hori.wav"));
+        BaseMod.addAudio(makeID("FireStab"), makeSFXPath("Riu_Stab.wav"));
+        BaseMod.addAudio(makeID("FireGuard"), makeSFXPath("Riu_Guard.wav"));
+        BaseMod.addAudio(makeID("FireStrong"), makeSFXPath("Riu_Strong.wav"));
+
+        BaseMod.addAudio(makeID("PlutoVert"), makeSFXPath("Pluto_Vert.wav"));
+        BaseMod.addAudio(makeID("PlutoHori"), makeSFXPath("Pluto_Hori.wav"));
+        BaseMod.addAudio(makeID("PlutoStab"), makeSFXPath("Pluto_Stab.wav"));
+        BaseMod.addAudio(makeID("PlutoGuard"), makeSFXPath("Pluto_Guard.wav"));
+        BaseMod.addAudio(makeID("PlutoContract"), makeSFXPath("Pluto_Contract.wav"));
+        BaseMod.addAudio(makeID("PlutoStrong"), makeSFXPath("Pluto_StrongAtk.wav"));
+        BaseMod.addAudio(makeID("PlutoStrongStart"), makeSFXPath("Pluto_StrongStart.wav"));
+
+        BaseMod.addAudio(makeID("OswaldVert"), makeSFXPath("Oswald_Vert.wav"));
+        BaseMod.addAudio(makeID("OswaldAttract"), makeSFXPath("Oswald_Attract.wav"));
+        BaseMod.addAudio(makeID("OswaldHori"), makeSFXPath("Oswald_Hori.wav"));
+        BaseMod.addAudio(makeID("OswaldStab"), makeSFXPath("Oswald_Stab.wav"));
+        BaseMod.addAudio(makeID("OswaldFinish"), makeSFXPath("Oswald_Strong_Up.wav"));
+        BaseMod.addAudio(makeID("OswaldLaugh"), makeSFXPath("Oswald_Standby.wav"));
+
+        BaseMod.addAudio(makeID("HanaBlunt"), makeSFXPath("Hana_Blow.wav"));
+        BaseMod.addAudio(makeID("HanaStab"), makeSFXPath("Hana_Stab.wav"));
+
+        BaseMod.addAudio(makeID("BremenStrongFar"), makeSFXPath("Bremen_StrongFar.wav"));
+        BaseMod.addAudio(makeID("BremenStrong"), makeSFXPath("Bremen_Strong.wav"));
+        BaseMod.addAudio(makeID("BremenChicken"), makeSFXPath("Bremen_Chicken.wav"));
+        BaseMod.addAudio(makeID("BremenDog"), makeSFXPath("Bremen_Dog.wav"));
+        BaseMod.addAudio(makeID("BremenHorse"), makeSFXPath("Bremen_Horse.wav"));
+
+        BaseMod.addAudio(makeID("PhilipTransform"), makeSFXPath("Philip_FilterOn.wav"));
+        BaseMod.addAudio(makeID("PhilipVert"), makeSFXPath("Philip_Vert.wav"));
+        BaseMod.addAudio(makeID("PhilipHori"), makeSFXPath("Philip_Hori.wav"));
+        BaseMod.addAudio(makeID("PhilipStab"), makeSFXPath("Philip_Stab.wav"));
+        BaseMod.addAudio(makeID("PhilipStrong"), makeSFXPath("Philip_Strong.wav"));
+        BaseMod.addAudio(makeID("PhilipExplosion"), makeSFXPath("Cry_FarExplosion.wav"));
+        BaseMod.addAudio(makeID("CryHori"), makeSFXPath("Cry_Kid_Hori.wav"));
+        BaseMod.addAudio(makeID("CryStab"), makeSFXPath("Cry_Kid_Stab.wav"));
+
+        BaseMod.addAudio(makeID("XiaoVert"), makeSFXPath("Xiao_Vert.wav"));
+        BaseMod.addAudio(makeID("XiaoHori"), makeSFXPath("Xiao_Hori.wav"));
+        BaseMod.addAudio(makeID("XiaoStab"), makeSFXPath("Xiao_Stab.wav"));
+        BaseMod.addAudio(makeID("XiaoStart"), makeSFXPath("Xiao_LandHit_Charge.wav"));
+        BaseMod.addAudio(makeID("XiaoFin"), makeSFXPath("Xiao_LandHit_Hit.wav"));
+        BaseMod.addAudio(makeID("XiaoRoar"), makeSFXPath("Xiao_Roar.wav"));
+        BaseMod.addAudio(makeID("XiaoStrongFin"), makeSFXPath("Xiao_Strong_Hori.wav"));
+        BaseMod.addAudio(makeID("XiaoStrongStart"), makeSFXPath("Xiao_Strong_Upper.wav"));
+
+        BaseMod.addAudio(makeID("GretaEat"), makeSFXPath("Greta_Eat.wav"));
+
+        BaseMod.addAudio(makeID("PurpleStab2"), makeSFXPath("Purple_Stab_Stab2.wav"));
+        BaseMod.addAudio(makeID("PurpleStab1"), makeSFXPath("Purple_Stab_Stab1.wav"));
+        BaseMod.addAudio(makeID("PurpleGuard"), makeSFXPath("Purple_Guard.wav"));
+        BaseMod.addAudio(makeID("PurpleChange"), makeSFXPath("Purple_Change.wav"));
+        BaseMod.addAudio(makeID("PurpleBlunt"), makeSFXPath("Purple_Hit_Vert.wav"));
+        BaseMod.addAudio(makeID("PurpleSlashHori"), makeSFXPath("Purple_Slash_Hori.wav"));
+        BaseMod.addAudio(makeID("PurpleSlashVert"), makeSFXPath("Purple_Slash_VertDown.wav"));
+
+        BaseMod.addAudio(makeID("BulletFlame"), makeSFXPath("Matan_Flame.wav"));
+        BaseMod.addAudio(makeID("BulletFinalShot"), makeSFXPath("Matan_FinalShot.wav"));
+
+        BaseMod.addAudio(makeID("GearStrongStart"), makeSFXPath("Eilin_StrongStart.wav"));
+        BaseMod.addAudio(makeID("GearStrongAtk"), makeSFXPath("Eilin_StrongAtk.wav"));
+        BaseMod.addAudio(makeID("GearFar"), makeSFXPath("Eilin_FarAtk.wav"));
+        BaseMod.addAudio(makeID("GearVert"), makeSFXPath("Blue_Gear_Vert.wav"));
     }
 
     @Override
@@ -409,6 +546,9 @@ public class RuinaMod implements
 
         Atziluth atziluth = new Atziluth();
         atziluth.addAct(TheBeyond.ID);
+
+        UninvitedGuests uninvitedGuests = new UninvitedGuests();
+        uninvitedGuests.addAct(TheEnding.ID);
 
         CustomIntent.add(new MassAttackIntent());
 
@@ -527,6 +667,60 @@ public class RuinaMod implements
         BaseMod.addEvent(DistortedYan.ID, DistortedYan.class, Atziluth.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
         BaseMod.addEvent(YesterdayPromise.ID, YesterdayPromise.class, Atziluth.ID);
+
+        //Uninvited Guests
+        BaseMod.addMonster(Puppeteer.ID, "Puppeteer", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Chesed(-550.0F, 0.0F),
+                        new Puppeteer(200.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Tanya.ID, "Tanya", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Gebura(-500.0F, 0.0F),
+                        new Tanya(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Elena.ID, "Elena", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Binah(-550.0F, 0.0F),
+                        new VermilionCross(-100.0F, 0.0F),
+                        new Elena(200.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Oswald.ID, "Oswald", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Tiph(-500.0F, 0.0F),
+                        new Oswald(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Bremen.ID, "Bremen", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Netzach(-500.0F, 0.0F),
+                        new Bremen(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Philip.ID, "Philip", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Malkuth(-550.0F, 0.0F),
+                        new Philip(200.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Greta.ID, "Greta", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Hod(-550.0F, 0.0F),
+                        new Greta(150.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Eileen.ID, "Eileen", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Yesod(-550.0F, 0.0F),
+                        new Eileen(200.0F, 0.0F),
+                }));
+        BaseMod.addMonster(Pluto.ID, "Pluto", () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Hokma(-550.0F, 0.0F),
+                        new Pluto(200.0F, 0.0F),
+                }));
+
+        uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(
+                new AbstractMonster[] {
+                        new Roland(-500.0F, 0.0F),
+                        new Argalia(0.0F, 0.0F),
+                }), makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename)
@@ -582,6 +776,12 @@ public class RuinaMod implements
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         TotalBlockGainedSpireField.totalBlockGained.set(adp(), 0);
+    }
+
+    @Override
+    public boolean receivePreMonsterTurn(AbstractMonster abstractMonster) {
+        return !abstractMonster.hasPower(Hokma.POWER_ID);
+
     }
 
     public void receiveEditKeywords() {

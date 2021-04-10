@@ -29,6 +29,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AllyStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
     public String allyIcon;
+    public boolean massAttackHitsPlayer = false;
 
     //basically just for little Red who is an ally that can become an enemy
     public boolean isAlly = true;
@@ -41,17 +42,14 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
 
     public AbstractAllyMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
-        this.type = EnemyType.NORMAL;
     }
 
     public AbstractAllyMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, boolean ignoreBlights) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY, ignoreBlights);
-        this.type = EnemyType.NORMAL;
     }
 
     public AbstractAllyMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
-        this.type = EnemyType.NORMAL;
     }
 
     @Override
@@ -60,7 +58,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
         AllyMove blockMove = new AllyMove(TEXT[11], this, new Texture(makeUIPath("defend.png")), TEXT[9] + BLOCK_TRANSFER + TEXT[10], () -> {
             atb(new TransferBlockToAllyAction(BLOCK_TRANSFER, this));
         });
-        blockMove.setX(this.intentHb.x - ((30.0F + 32.0f) * Settings.scale));
+        blockMove.setX(this.intentHb.x - ((50.0F + 32.0f) * Settings.scale));
         blockMove.setY(this.intentHb.cY - (32.0f * Settings.scale));
         allyMoves.add(blockMove);
         applyToTarget(this, this, new InvisibleAllyBarricadePower(this));
@@ -95,23 +93,47 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     }
 
     public void applyPowers(AbstractCreature target) {
+        applyPowers(target, -1);
+    }
+
+    public void applyPowers(AbstractCreature target, float additionalMultiplier) {
         if (this.nextMove >= 0) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             if (target != adp()) {
                 if(info.base > -1) {
+                    Color color = new Color(0.0F, 1.0F, 0.0F, 0.5F);
+                    ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
                     if (this.intent == IntentEnums.MASS_ATTACK) {
-                        info.applyPowers(this, adp());
-                        ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-                        PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
-                        if (moves.get(this.nextMove).multiplier > 0) {
-                            intentTip.body = TEXT[13] + info.output + TEXT[14] + " " + FontHelper.colorString(String.valueOf(moves.get(this.nextMove).multiplier), "b") + TEXT[16];
+                        if (massAttackHitsPlayer) {
+                            info.applyPowers(this, adp());
+                            if (additionalMultiplier > 0) {
+                                info.output = (int)(info.output * additionalMultiplier);
+                            }
+                            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+                            PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                            if (moves.get(this.nextMove).multiplier > 0) {
+                                intentTip.body = TEXT[13] + info.output + TEXT[14] + " " + FontHelper.colorString(String.valueOf(moves.get(this.nextMove).multiplier), "b") + TEXT[16];
+                            } else {
+                                intentTip.body = TEXT[13] + info.output + TEXT[14] + TEXT[15];
+                            }
                         } else {
-                            intentTip.body = TEXT[13] + info.output + TEXT[14] + TEXT[15];
+                            info.applyPowers(this, target);
+                            if (additionalMultiplier > 0) {
+                                info.output = (int)(info.output * additionalMultiplier);
+                            }
+                            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+                            PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                            if (moves.get(this.nextMove).multiplier > 0) {
+                                intentTip.body = TEXT[13] + info.output + TEXT[17] + " " + FontHelper.colorString(String.valueOf(moves.get(this.nextMove).multiplier), "b") + TEXT[16];
+                            } else {
+                                intentTip.body = TEXT[13] + info.output + TEXT[17] + TEXT[15];
+                            }
                         }
                     } else {
-                        Color color = new Color(0.0F, 1.0F, 0.0F, 0.5F);
-                        ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
                         info.applyPowers(this, target);
+                        if (additionalMultiplier > 0) {
+                            info.output = (int)(info.output * additionalMultiplier);
+                        }
                         ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
                         PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
                         Texture attackImg;
@@ -164,12 +186,12 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
 
     @Override
     public void render(SpriteBatch sb) {
-        super.render(sb);
         if (isAlly && !isDead && !isDying) {
             for (AllyMove allyMove : allyMoves) {
                 allyMove.render(sb);
             }
         }
+        super.render(sb);
     }
 
     public void update() {
@@ -187,5 +209,14 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
         this.isDead = true;
         this.isDying = true;
         this.healthBarUpdatedEvent();
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(false);
+    }
+
+    public void setAnimationFlip(boolean horizontal, boolean vertical) {
+        animation.setFlip(horizontal, vertical);
     }
 }

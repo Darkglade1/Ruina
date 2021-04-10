@@ -89,6 +89,12 @@ public class BigBird extends AbstractMultiIntentMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.ELITE;
+    }
+
+    @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning2");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="85" height="238" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Blunt.png" width="477" height="377" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Pierce.png" width="544" height="381" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Block.png" width="327" height="493" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Ranged.png" width="217" height="269" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Special 1.png" width="216" height="295" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Puppeteer">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-43" y="239"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Blunt" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blunt">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-349" y="330"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Pierce" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pierce">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-416" y="321"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Block" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Block">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-255" y="346"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Ranged" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Ranged">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-96" y="260"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Special" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special 1">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-115" y="261"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

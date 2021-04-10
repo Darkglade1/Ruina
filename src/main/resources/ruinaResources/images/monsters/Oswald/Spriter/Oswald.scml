@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Oswald_Default.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Oswald_Slash.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Oswald_Penetrate.png" width="1024" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Oswald_Hit.png" width="1024" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Oswald_Guard.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Oswald_S1.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Oswald_J.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="Oswald_G.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="Oswald_H.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="Oswald_Z.png" width="512" height="512" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Oswald">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Oswald_Default">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-251" y="488" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Slash" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Oswald_Slash">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-233" y="486" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Oswald_J">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-212" y="327" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Pierce" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Oswald_Penetrate">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-505" y="489" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Oswald_G">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-307" y="292" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Blunt" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Oswald_Hit">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-467" y="489" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Oswald_H">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-287" y="215" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Block" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Oswald_Guard">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-257" y="489" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Special" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Oswald_S1">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-254" y="488" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Oswald_Z">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-349" y="258" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

@@ -41,7 +41,6 @@ public abstract class AbstractDeckMonster extends AbstractCardMonster {
     }
 
     protected abstract void createDeck();
-    protected abstract void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory);
 
     public AbstractCard topDeckCardForMoveAction() {
         if (draw.isEmpty() && discard.isEmpty()) {

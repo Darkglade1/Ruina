@@ -54,6 +54,9 @@ public class AdditionalIntent {
     float scaleHeight = Settings.scale;
     private static final float X_OFFSET = 106.0f;
 
+    public static final int ENEMY_CARD_HOVERED_WIDTH = 350;
+    public static final int ENEMY_CARD_HOVERED_HEIGHT = 400;
+
     public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move, AbstractCard enemyCard) {
         this.source = source;
         intentColor = Color.WHITE.cpy();
@@ -133,7 +136,7 @@ public class AdditionalIntent {
             enemyCard.current_x = MathHelper.cardLerpSnap(enemyCard.current_x, enemyCard.target_x);
             enemyCard.current_y = MathHelper.cardLerpSnap(enemyCard.current_y, enemyCard.target_y);
             enemyCard.hb.move(enemyCard.current_x, enemyCard.current_y);
-            enemyCard.hb.resize(512 * enemyCard.drawScale, 512 * enemyCard.drawScale);
+            enemyCard.hb.resize(ENEMY_CARD_HOVERED_WIDTH * enemyCard.drawScale, ENEMY_CARD_HOVERED_HEIGHT * enemyCard.drawScale);
             if (enemyCard.hb.hovered) {
                 if (AbstractCardMonster.hoveredCard == null) {
                     AbstractCardMonster.hoveredCard = enemyCard;

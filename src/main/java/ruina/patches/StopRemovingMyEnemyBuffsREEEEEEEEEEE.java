@@ -15,7 +15,7 @@ public class StopRemovingMyEnemyBuffsREEEEEEEEEEE {
 	public static SpireReturn<Void> EveryTimeAnEnemyBuffsGetsRemovedIDieALittleInside(RemoveSpecificPowerAction instance) {
 		AbstractPower powerBeingRemoved = ReflectionHacks.getPrivate(instance, RemoveSpecificPowerAction.class, "powerInstance");
 		if (powerBeingRemoved instanceof AbstractUnremovablePower && instance.target instanceof AbstractMonster) {
-			if (((AbstractUnremovablePower)powerBeingRemoved).isUnremovable) {
+			if (((AbstractUnremovablePower)powerBeingRemoved).isUnremovable && powerBeingRemoved.type == AbstractPower.PowerType.BUFF) {
 				instance.isDone = true;
 				return SpireReturn.Return(null);
 			}

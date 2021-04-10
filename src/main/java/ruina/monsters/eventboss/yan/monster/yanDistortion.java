@@ -140,6 +140,12 @@ public class yanDistortion extends AbstractDeckMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
+    @Override
     public void usePreBattleAction()
     {
         AbstractDungeon.getCurrRoom().cannotLose = true;
@@ -405,11 +411,6 @@ public class yanDistortion extends AbstractDeckMonster
                 masterDeck.addToBottom(new CHRBOSS_BalefulBrand(this));
             }
         }
-    }
-
-    @Override
-    protected void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
-
     }
 
     protected void createMoveFromCard(AbstractCard c) {

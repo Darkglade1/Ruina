@@ -16,6 +16,7 @@ import java.util.Map;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.att;
 
 public abstract class AbstractRuinaMonster extends CustomMonster {
 
@@ -41,7 +42,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
 
-    private void setUpMisc() {
+    protected void setUpMisc() {
         moves = new HashMap<>();
         this.dialogX = (this.hb_x - 70.0F) * Settings.scale;
         this.dialogY -= (this.hb_y - 55.0F) * Settings.scale;
@@ -211,6 +212,36 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
             @Override
             public void update() {
                 runAnim("Idle");
+                this.isDone = true;
+            }
+        });
+    }
+
+    protected void waitAnimation() {
+        waitAnimation(0.5f, null);
+    }
+
+    protected void waitAnimation(float duration) {
+        waitAnimation(duration, null);
+    }
+
+    protected void waitAnimation(AbstractCreature enemy) {
+        waitAnimation(0.5f, enemy);
+    }
+
+    protected void waitAnimation(float time, AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (AbstractRuinaMonster.this.isDeadOrEscaped()) {
+                    isDone = true;
+                    return;
+                }
+                if (enemy == null) {
+                    att(new VFXActionButItCanFizzle(AbstractRuinaMonster.this, new WaitEffect(), time));
+                } else if (!enemy.isDeadOrEscaped()) {
+                    att(new VFXActionButItCanFizzle(AbstractRuinaMonster.this, new WaitEffect(), time));
+                }
                 this.isDone = true;
             }
         });

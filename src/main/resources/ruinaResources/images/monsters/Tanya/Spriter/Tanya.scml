@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="194" height="249" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Slash.png" width="219" height="264" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Pierce.png" width="312" height="233" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Blunt.png" width="486" height="261" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Special 5.png" width="209" height="326" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Special 1.png" width="163" height="320" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Special 2.png" width="272" height="250" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="Special 3.png" width="337" height="254" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Tanya">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-118" y="246" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Slash" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Slash">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-137" y="264" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Pierce" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pierce">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-228" y="228" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Blunt" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Blunt">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-254" y="256" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Special" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special 5">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-127" y="277"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="MassStart" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special 1">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-86" y="287"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="MassDrop" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special 2">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-137" y="208"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="7" name="MassFinish" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special 3">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-208" y="216"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

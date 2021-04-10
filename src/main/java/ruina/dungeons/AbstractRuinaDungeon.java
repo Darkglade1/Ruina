@@ -10,6 +10,7 @@ import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.Ozma;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.seraphim.Prophet;
+import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
 import ruina.scenes.RuinaScene;
 
 import java.util.ArrayList;
@@ -39,7 +40,8 @@ public class AbstractRuinaDungeon extends CustomDungeon {
         CHESED,
         BINAH,
         HOKMA,
-        ROLAND
+        ROLAND,
+        GUESTS
     }
 
     public void setFloor() {
@@ -54,6 +56,8 @@ public class AbstractRuinaDungeon extends CustomDungeon {
                 floor = Floor.BINAH;
             } else if (bossKey.equals(Prophet.ID)){
                 floor = Floor.HOKMA;
+            } else if (bossKey.equals(Argalia.ID)){
+                floor = Floor.GUESTS;
             } else {
                 floor = Floor.GEBURA;
             }
@@ -81,6 +85,9 @@ public class AbstractRuinaDungeon extends CustomDungeon {
                     break;
                 case HOKMA:
                     this.setMainMusic(RuinaMod.makeMusicPath("Hokma2.ogg"));
+                    break;
+                case GUESTS:
+                    this.setMainMusic(RuinaMod.makeMusicPath("Lobby.ogg"));
                     break;
                 default:
                     this.setMainMusic(RuinaMod.makeMusicPath("Gebura2.ogg"));

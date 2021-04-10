@@ -132,6 +132,12 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         addMove(SETUP, Intent.UNKNOWN);
     }
 
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
     public AbstractMagicalGirl returnGirl(int num, float xPosition) {
         AbstractMagicalGirl girl = null;
         if (num == 0) {

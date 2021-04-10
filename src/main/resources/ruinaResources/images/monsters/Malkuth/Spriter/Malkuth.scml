@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle1.png" width="330" height="259" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Idle2.png" width="334" height="237" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Idle3.png" width="576" height="411" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Guard1.png" width="285" height="320" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Guard2.png" width="291" height="241" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Guard3.png" width="394" height="269" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Slash1.png" width="424" height="306" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="Slash2.png" width="369" height="347" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="Slash3.png" width="501" height="557" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="Pierce1.png" width="502" height="264" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="Pierce2.png" width="440" height="199" pivot_x="0" pivot_y="1"/>
+        <file id="11" name="Pierce3.png" width="1018" height="567" pivot_x="0" pivot_y="1"/>
+        <file id="12" name="Special2.png" width="443" height="327" pivot_x="0" pivot_y="1"/>
+        <file id="13" name="Special 3.png" width="721" height="548" pivot_x="0" pivot_y="1"/>
+        <file id="14" name="Special 4.png" width="809" height="534" pivot_x="0" pivot_y="1"/>
+        <file id="15" name="1.png" width="570" height="168" pivot_x="0" pivot_y="1"/>
+        <file id="16" name="2.png" width="675" height="169" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Malkuth">
+        <animation id="0" name="Idle1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle1">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-261" y="238"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Idle2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle2">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-261" y="203"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Idle3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle3">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-294" y="377"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Guard1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Guard1">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-142" y="321"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Guard2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Guard2">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-144" y="217"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Guard3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Guard3">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-155" y="273"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="Slash1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Slash1">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-316" y="250"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="7" name="Slash2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Slash2">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-267" y="276"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="8" name="Slash3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Slash3">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-212" y="558"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="9" name="Pierce1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pierce1">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-258" y="258"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="1">
+                <key id="0" spin="0">
+                    <object folder="0" file="15" x="-367" y="175"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="10" name="Pierce2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pierce2">
+                <key id="0" spin="0">
+                    <object folder="0" file="10" x="-325" y="199"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="2">
+                <key id="0" spin="0">
+                    <object folder="0" file="16" x="-410" y="195"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="11" name="Pierce3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pierce3">
+                <key id="0" spin="0">
+                    <object folder="0" file="11" x="-634" y="351"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="12" name="Special2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special2">
+                <key id="0" spin="0">
+                    <object folder="0" file="12" x="-154" y="280"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="13" name="Special3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special 3">
+                <key id="0" spin="0">
+                    <object folder="0" file="13" x="-315" y="508"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="14" name="Special4" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special 4">
+                <key id="0" spin="0">
+                    <object folder="0" file="14" x="-436" y="482"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

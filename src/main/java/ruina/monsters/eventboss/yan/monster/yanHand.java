@@ -86,7 +86,7 @@ public class yanHand extends AbstractDeckMonster
         super(NAME, ID, 40, -5.0F, 0, 250.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("YanHand/Spriter/YanHand.scml"));
         currentMode = mode;
-        this.type = EnemyType.ELITE;
+        this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));
         this.parent = parent;
 
@@ -97,6 +97,12 @@ public class yanHand extends AbstractDeckMonster
         addMove(LOCK, Intent.ATTACK_DEBUFF, lockDmg);
         addMove(EMPTY, Intent.NONE);
         initializeDeck();
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
     }
 
     @Override
@@ -207,11 +213,6 @@ public class yanHand extends AbstractDeckMonster
             masterDeck.addToBottom(new CHRBOSS_Compress(this));
             masterDeck.addToBottom(new CHRBOSS_FlurryOfFists(this));
         }
-    }
-
-    @Override
-    protected void createMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
-
     }
 
     protected void createMoveFromCard(AbstractCard c) {

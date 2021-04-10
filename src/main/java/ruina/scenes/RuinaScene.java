@@ -45,6 +45,16 @@ import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
+import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
+import ruina.monsters.uninvitedGuests.bremen.Bremen;
+import ruina.monsters.uninvitedGuests.clown.Oswald;
+import ruina.monsters.uninvitedGuests.eileen.Eileen;
+import ruina.monsters.uninvitedGuests.elena.Elena;
+import ruina.monsters.uninvitedGuests.greta.Greta;
+import ruina.monsters.uninvitedGuests.philip.Philip;
+import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
+import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
+import ruina.monsters.uninvitedGuests.tanya.Tanya;
 
 public class RuinaScene extends AbstractScene {
 
@@ -127,6 +137,26 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Lies");
                 } else if (mo instanceof yanDistortion) {
                     this.bg = this.atlas.findRegion("mod/Yan");
+                } else if (mo instanceof Puppeteer) {
+                    this.bg = this.atlas.findRegion("mod/Chesed");
+                } else if (mo instanceof Argalia) {
+                    this.bg = this.atlas.findRegion("mod/Keter");
+                } else if (mo instanceof Tanya) {
+                    this.bg = this.atlas.findRegion("mod/Gebura");
+                } else if (mo instanceof Elena) {
+                    this.bg = this.atlas.findRegion("mod/Binah");
+                } else if (mo instanceof Pluto) {
+                    this.bg = this.atlas.findRegion("mod/Hokma");
+                } else if (mo instanceof Oswald) {
+                    this.bg = this.atlas.findRegion("mod/Tiph");
+                } else if (mo instanceof Bremen) {
+                    this.bg = this.atlas.findRegion("mod/Netzach");
+                } else if (mo instanceof Philip) {
+                    this.bg = this.atlas.findRegion("mod/Malkuth");
+                } else if (mo instanceof Greta) {
+                    this.bg = this.atlas.findRegion("mod/Hod");
+                } else if (mo instanceof Eileen) {
+                    this.bg = this.atlas.findRegion("mod/Yesod");
                 } else {
                     setBgs();
                 }
@@ -160,6 +190,10 @@ public class RuinaScene extends AbstractScene {
                 case HOKMA:
                     this.bg = this.atlas.findRegion("mod/Hokma");
                     this.campfireBg = this.atlas.findRegion("mod/HokmaCamp");
+                    break;
+                case GUESTS:
+                    this.bg = this.atlas.findRegion("mod/Entrance");
+                    this.campfireBg = this.atlas.findRegion("mod/Entrance");
                     break;
                 default:
                     this.bg = this.atlas.findRegion("mod/Gebura");
