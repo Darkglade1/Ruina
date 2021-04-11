@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 import ruina.cards.Melody;
-import ruina.monsters.uninvitedGuests.bremen.Bremen;
+import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
 
 import java.util.ArrayList;
 
