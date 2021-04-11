@@ -33,6 +33,7 @@ public class Ensemble extends AbstractImageEvent {
         super(NAME, DESCRIPTIONS[0], IMG);
         imageEventText.setDialogOption(OPTIONS[0], relic);
         // add trigger later. (Extra Content.)
+        body = DESCRIPTIONS[2];
         imageEventText.setDialogOption(OPTIONS[2], relic);
     }
 
@@ -63,6 +64,8 @@ public class Ensemble extends AbstractImageEvent {
                         Class clazz = CardCrawlGame.dungeon.getClass();
                         Method retrieveItems = null;
                         try {
+                            // TODO: Find why this pauses the game for a second.
+                            // And calls register tempbgm keys again?
                             retrieveItems = clazz.getDeclaredMethod("makeAltMap");
                             retrieveItems.invoke(clazz.newInstance());
                         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | InstantiationException e) { e.printStackTrace(); }
