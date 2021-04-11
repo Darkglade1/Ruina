@@ -51,7 +51,7 @@ public class Sage extends AbstractAllyMonster
     }
 
     public Sage(final float x, final float y, int dialogNum) {
-        super(NAME, ID, 300, -5.0F, 0, 200.0f, 220.0f, null, x, y);
+        super(NAME, ID, 500, -5.0F, 0, 200.0f, 220.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Keeper/Spriter/Keeper.scml"));
         this.animation.setFlip(true, false);
         this.dialogNum = dialogNum;
