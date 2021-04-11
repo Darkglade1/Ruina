@@ -792,7 +792,7 @@ public class RuinaMod implements
         }
     }
 
-    private static void saveConfig() {
+    public static void saveConfig() {
         try {
             ruinaConfig.setBool("reverbClear", reverbClear);
             ruinaConfig.setBool("altReverbClear", altReverbClear);
@@ -802,7 +802,7 @@ public class RuinaMod implements
         }
     }
 
-    private static void loadConfig(){
+    public static void loadConfig(){
         reverbClear = ruinaConfig.getBool("reverbClear");
         altReverbClear = ruinaConfig.getBool("altReverbClear");
     }

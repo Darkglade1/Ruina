@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
+import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractDeckMonster;
@@ -40,8 +41,7 @@ import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class Argalia extends AbstractDeckMonster
@@ -412,6 +412,8 @@ public class Argalia extends AbstractDeckMonster
     public void die(boolean triggerRelics) {
         if (!AbstractDungeon.getCurrRoom().cannotLose) {
             super.die(triggerRelics);
+            reverbClear = true;
+            saveConfig();
             roland.onArgaliaDeath();
         }
     }
