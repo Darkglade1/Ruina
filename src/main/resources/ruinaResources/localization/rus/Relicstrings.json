@@ -57,5 +57,12 @@
     "DESCRIPTIONS": [
       "Если вам недостаточно [E] для разыгрывания карты, вы можете разыграть её, потеряв #b3 ОЗ за каждую недостающую [E] ."
     ]
+  },
+  "${ModID}:Book": {
+    "NAME": "Book of Someone",
+    "FLAVOR": "Some must fight so that all may be free.",
+    "DESCRIPTIONS": [
+      "At the end of combat, heal #b", "% of your HP."
+    ]
   }
 }

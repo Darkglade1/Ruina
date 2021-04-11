@@ -44,7 +44,8 @@
       "你的 #g盟友 将对包括你的所有其他角色造成 #b",
       " 点伤害",
       ".",
-      " 次."
+      " 次.",
+      " damage to ALL enemies"
     ]
   },
   "ruina:MassAttackIntent": {
@@ -72,7 +73,7 @@
     "TEXT": [
       "Uninvited Guests",
       "The Blue Reverberation",
-      "\"Ohohohoho! Knock, and the door shall open!\" NL \"The entrance to this place was super strong, even after many blows we barely got inside.\" NL \"It's a test of endurance, after all! There's no use giving up after a couple of knocks!\" NL \"Now friends, if you're any rowdier we might scare away the residents of this place. It would be wise that we show the utmost respect so they don't go hiding behind bookshelves, no?\"",
+      "The door to the library flies open, and a motley crew of #pstrange and #pdisturbing figures waltz in. You cannot help but feel that they are up to no good.",
       "Greet your Uninvited Guests"
     ]
   }

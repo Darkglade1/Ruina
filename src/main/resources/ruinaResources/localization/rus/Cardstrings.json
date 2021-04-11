@@ -180,5 +180,441 @@
   "ruina:CHRBOSS_DistortedBlade": {
     "NAME": "Неверное лезвие",
     "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! *Эрозии."
+  },
+  "${ModID}:CHRBOSS_Largo": {
+    "NAME": "Largo",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Apply 1 *Vibration. If the target already has *Vibration, instead remove it and gain !B! Block again."
+  },
+  "${ModID}:CHRBOSS_Allegro": {
+    "NAME": "Allegro",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply 1 *Vibration. If the target already has *Vibration, instead remove it and gain !ruina:SecondMagic! Strength next turn."
+  },
+  "${ModID}:CHRBOSS_ResonantScythe": {
+    "NAME": "Resonant Scythe",
+    "DESCRIPTION": "Deal !D! damage. NL Deals triple damage if this is on the 2nd intent."
+  },
+  "${ModID}:CHRBOSS_TrailsOfBlue": {
+    "NAME": "Trails Of Blue",
+    "DESCRIPTION": "Deal !D! damage. NL Target loses !M! Strength."
+  },
+  "${ModID}:CHRBOSS_TempestuousDanza": {
+    "NAME": "Tempestuous Danza",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies !M! times."
+  },
+  "${ModID}:CHRALLY_Crystal": {
+    "NAME": "Crystal Atelier",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
+  },
+  "${ModID}:CHRALLY_Wheels": {
+    "NAME": "Wheels Industry",
+    "DESCRIPTION": "Deal !D! damage. NL Target loses !M! Strength."
+  },
+  "${ModID}:CHRALLY_Durandal": {
+    "NAME": "Durandal",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:CHRALLY_ALLAS": {
+    "NAME": "Allas Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  },
+  "${ModID}:CHRALLY_GUN": {
+    "NAME": "Atelier Logic",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:CHRALLY_MOOK": {
+    "NAME": "Mook Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  },
+  "${ModID}:CHRALLY_OLDBOYS": {
+    "NAME": "Old Boy's Workshop",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:CHRALLY_RANGA": {
+    "NAME": "Ranga Workshop",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! ruina:Bleed."
+  },
+  "${ModID}:CHRALLY_MACE": {
+    "NAME": "Zelkova Workshop",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:CHRALLY_FURIOSO": {
+    "NAME": "Furioso",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Concentration": {
+    "NAME": "Concentration",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
+  },
+  "${ModID}:EnergyShield": {
+    "NAME": "Energy Shield",
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:BattleCommand": {
+    "NAME": "Battle Command",
+    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! Strength."
+  },
+  "${ModID}:Disposal": {
+    "NAME": "Disposal",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage if the target is *Marked. NL Deals double damage if the target is at or below 25% HP."
+  },
+  "${ModID}:PullingStrings": {
+    "NAME": "Pulling the Strings Taut",
+    "DESCRIPTION": "Deal !D! damage to ALL other characters."
+  },
+  "${ModID}:TuggingStrings": {
+    "NAME": "Tugging Strings",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:AssailingPulls": {
+    "NAME": "Assailing Pulls",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  },
+  "${ModID}:ThinStrings": {
+    "NAME": "Thin Strings",
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Apply !M! Weak."
+  },
+  "${ModID}:Puppetry": {
+    "NAME": "Puppetry",
+    "DESCRIPTION": "ALL allies gain !M! Strength."
+  },
+  "${ModID}:ContractOfMight": {
+    "NAME": "Contract Of Might",
+    "DESCRIPTION": "Gain !M! Strength. NL At the end of your turn, take !ruina:SecondMagic! damage and increase the damage you will take from this power by !ruina:SecondMagic!."
+  },
+  "${ModID}:ContractOfLight": {
+    "NAME": "Contract Of Light",
+    "DESCRIPTION": "Gain [E] [E] each turn. NL You cannot draw cards besides your starting hand each turn."
+  },
+  "${ModID}:ConfusingContract": {
+    "NAME": "Confusing Contract",
+    "DESCRIPTION": "Become Confused."
+  },
+  "${ModID}:NoContract": {
+    "NAME": "No Contract",
+    "DESCRIPTION": "All enemies gain !M! Strength."
+  },
+  "${ModID}:Ally_UpstandingSlash": {
+    "NAME": "Upstanding Slash",
+    "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Vulnerable."
+  },
+  "${ModID}:Ally_LevelSlash": {
+    "NAME": "Level Slash",
+    "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gains !M! Strength."
+  },
+  "${ModID}:Ally_Spear": {
+    "NAME": "Spear",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage against targets without Block."
+  },
+  "${ModID}:Ally_GreaterSplitHorizontal": {
+    "NAME": "Greater Split: Horizontal",
+    "DESCRIPTION": "Deal !D! damage. NL Target loses Strength this turn equal to unblocked damage."
+  },
+  "${ModID}:Ally_GreaterSplitVertical": {
+    "NAME": "Greater Split: Vertical",
+    "DESCRIPTION": "Deal !D! damage. NL Target loses Strength this turn equal to unblocked damage."
+  },
+  "${ModID}:Overspeed": {
+    "NAME": "Overspeed",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Beatdown": {
+    "NAME": "Beatdown",
+    "DESCRIPTION": "Deal !D! damage to ALL other characters. NL Gain !M! *Metallicize."
+  },
+  "${ModID}:Intimidate": {
+    "NAME": "Intimidate",
+    "DESCRIPTION": "Convert all *Plated *Armor into *Metallicize. NL Gain !M! *Plated *Armor."
+  },
+  "${ModID}:LupineAssault": {
+    "NAME": "Lupine Onslaught",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:KicksAndStomps": {
+    "NAME": "Kicks and Stomps",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:Fisticuffs": {
+    "NAME": "Fisticuffs",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  },
+  "${ModID}:Circulation": {
+    "NAME": "Circulation",
+    "DESCRIPTION": "An ally gains !M! Strength and !ruina:SecondMagic! *Protection."
+  },
+  "${ModID}:Nails": {
+    "NAME": "Sanguine Nails",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Siphon": {
+    "NAME": "Siphon",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Frail."
+  },
+  "${ModID}:Bloodspreading": {
+    "NAME": "Bloodspreading",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:Inject": {
+    "NAME": "Inject",
+    "DESCRIPTION": "Apply !M! *Bleed. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:Obstruct": {
+    "NAME": "Obstruct",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:Shockwave": {
+    "NAME": "Shockwave",
+    "DESCRIPTION": "Deal !D! damage. NL If this creature has any Block remaining, an ally gains !M! Intangible."
+  },
+  "${ModID}:HeatedWeapon": {
+    "NAME": "Heated Weapon",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Shuffle !ruina:SecondMagic! *Burn(s) into your draw pile."
+  },
+  "${ModID}:Rampage": {
+    "NAME": "Rampageous Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:HeatUp": {
+    "NAME": "Heat Up",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Strength."
+  },
+  "${ModID}:Pillar": {
+    "NAME": "Degraded Pillar",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:Fairy": {
+    "NAME": "Degraded Fairy",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Chain": {
+    "NAME": "Degraded Chain",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  },
+  "${ModID}:Climax": {
+    "NAME": "Rising Climax",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Increase the number of hits this combat by !ruina:SecondMagic!."
+  },
+  "${ModID}:Fun": {
+    "NAME": "Let's Have Some Fun",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Catch": {
+    "NAME": "Here, Catch",
+    "DESCRIPTION": "Shuffle !M! *Wounds into your draw pile."
+  },
+  "${ModID}:Pow": {
+    "NAME": "Pow! Kablammo!",
+    "DESCRIPTION": "Apply !M! Weak. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:Brainwash": {
+    "NAME": "We Need You, You Know",
+    "DESCRIPTION": "Apply !M! *Brainwash."
+  },
+  "${ModID}:Kick": {
+    "NAME": "Augury Kick",
+    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! Strength."
+  },
+  "${ModID}:Confrontation": {
+    "NAME": "Confrontation",
+    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! *Protection."
+  },
+  "${ModID}:Melody": {
+    "NAME": "Melody",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": ["Play these cards in order: NL ",
+      "Attack ",
+      "Skill ",
+      "Power ",
+      "(Completed)",
+      "[#00ff00]Attack[] ",
+      "[#00ff00]Skill[] ",
+      "[#00ff00]Power[] "]
+  },
+  "${ModID}:AttackPrescript": {
+    "NAME": "Attack Prescript",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:SkillPrescript": {
+    "NAME": "Skill Prescript",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "${ModID}:PowerPrescript": {
+    "NAME": "Power Prescript",
+    "DESCRIPTION": "Gain !M! Strength."
+  },
+  "${ModID}:EverlastingMelody": {
+    "NAME": "Everlasting Melody",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength."
+  },
+  "${ModID}:Neigh": {
+    "NAME": "NEIGHHH",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:Bawk": {
+    "NAME": "BAWK BAWK",
+    "DESCRIPTION": "Shuffle !M! *Dazed into your discard pile."
+  },
+  "${ModID}:Rarf": {
+    "NAME": "RARF RARF",
+    "DESCRIPTION": "Gain !B! Block. NL Apply !M! *Paralysis."
+  },
+  "${ModID}:Tendon": {
+    "NAME": "Powerful Tendon Chords",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Trio": {
+    "NAME": "Trio",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Increase the length of the *Melody by !ruina:SecondMagic!."
+  },
+  "${ModID}:Faith": {
+    "NAME": "Blind Faith",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:BalefulBrand": {
+    "NAME": "Baleful Brand",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion."
+  },
+  "${ModID}:Will": {
+    "NAME": "Will of the City",
+    "DESCRIPTION": "ALL allies gain !B! Block. NL An ally draws !M! cards next turn."
+  },
+  "${ModID}:FervidEmotions": {
+    "NAME": "Fervid Emotions",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! *Emotion."
+  },
+  "${ModID}:Emotional": {
+    "NAME": "Emotional Turbulence",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Gain !M! *Emotion."
+  },
+  "${ModID}:Coordinated": {
+    "NAME": "Coordinated Assault",
+    "DESCRIPTION": "An ally gains !M! Strength, !B! Block, and draws !ruina:SecondMagic! card next turn."
+  },
+  "${ModID}:RagingStorm": {
+    "NAME": "Raging Storm: Love",
+    "DESCRIPTION": "Deal !D! damage and apply !ruina:SecondMagic! Vulnerable to ALL enemies !M! times."
+  },
+  "${ModID}:Inferno": {
+    "NAME": "Inferno",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  },
+  "${ModID}:Eventide": {
+    "NAME": "Waned Eventide",
+    "DESCRIPTION": "Shuffle !M! *Burns into your discard pile."
+  },
+  "${ModID}:Emotions": {
+    "NAME": "Conflicting Emotions",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Strength."
+  },
+  "${ModID}:Stigmatize": {
+    "NAME": "Despairingly Stigmatize",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Searing": {
+    "NAME": "Searing Resolution",
+    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Burn(s) into your draw pile."
+  },
+  "${ModID}:Sorrow": {
+    "NAME": "Wound of Sorrow",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:SnakeSlit": {
+    "NAME": "Snake Slit",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:VioletBlade": {
+    "NAME": "Violet Blade",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Laceration": {
+    "NAME": "Laceration",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  },
+  "${ModID}:VenomousFangs": {
+    "NAME": "Venomous Fang",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  },
+  "${ModID}:SerpentineBarrier": {
+    "NAME": "Serpentine Barrier",
+    "DESCRIPTION": "ALL allies gain !B! Block."
+  },
+  "${ModID}:Duel": {
+    "NAME": "Duel",
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:BreakEgg": {
+    "NAME": "Break an Egg",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
+  },
+  "${ModID}:Slap": {
+    "NAME": "Slap and Fold",
+    "DESCRIPTION": "Gain !B! Block. NL Apply !M! *Bleed."
+  },
+  "${ModID}:Mince": {
+    "NAME": "Mince",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Season": {
+    "NAME": "Season the Meat",
+    "DESCRIPTION": "Apply !M! Weak and Vulnerable."
+  },
+  "${ModID}:Trial": {
+    "NAME": "Trial Smack",
+    "DESCRIPTION": "Deal !D! damage. NL Heal HP equal to unblocked damage."
+  },
+  "${ModID}:Sack": {
+    "NAME": "Into the Sack You Go!",
+    "DESCRIPTION": "Turn a random card in your deck into *Fresh *Meat. NL Gain !M! Strength."
+  },
+  "${ModID}:FloodingBullets": {
+    "NAME": "Flooding Bullets",
+    "DESCRIPTION": "Deal !D! damage to ALL other characters !M! times."
+  },
+  "${ModID}:Reload": {
+    "NAME": "Reload",
+    "DESCRIPTION": "Gain !B! Block. NL An ally gains [E] and draws !M! card next turn."
+  },
+  "${ModID}:Preach": {
+    "NAME": "Thought Gear: Preach",
+    "DESCRIPTION": "ALL allies gain !M! Strength next turn."
+  },
+  "${ModID}:Accelerate": {
+    "NAME": "Thought Gear: Accelerate",
+    "DESCRIPTION": "ALL allies gain !B! Block."
+  },
+  "${ModID}:Propagate": {
+    "NAME": "Thought Gear: Propagate",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  },
+  "${ModID}:ThoughtGearBrainwash": {
+    "NAME": "Thought Gear: Brainwash",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:Silence": {
+    "NAME": "Silence",
+    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat."
+  },
+  "${ModID}:Time": {
+    "NAME": "Time",
+    "DESCRIPTION": "You take an extra turn after this one. NL End your turn."
+  },
+  "${ModID}:Safeguard": {
+    "NAME": "Magical Safeguard",
+    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength."
+  },
+  "${ModID}:Missile": {
+    "NAME": "Magic Missile",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Onslaught": {
+    "NAME": "Magic Onslaught",
+    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat."
+  },
+  "${ModID}:Contract": {
+    "NAME": "Contract",
+    "DESCRIPTION": "Present a list of *Contracts."
+  },
+  "${ModID}:BindingTerms": {
+    "NAME": "Binding Terms",
+    "DESCRIPTION": "Shuffle !M! *Voids into your discard pile."
   }
 }

@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.monsters.uninvitedGuests.greta.Hod;
+import ruina.monsters.uninvitedGuests.normal.greta.Hod;
 import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makePowerPath;

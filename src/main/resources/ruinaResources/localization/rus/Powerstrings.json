@@ -265,5 +265,133 @@
   "ruina:Lamp": {
     "NAME": "Лампа",
     "DESCRIPTIONS": ["Наносит #b", " урона в ответ на каждую атаку в этом ходу."]
+  },
+  "${ModID}:FinishingTouch": {
+    "NAME": "Finishing Touch",
+    "DESCRIPTIONS": ["Whenever this creature attacks, it applies a #yMark to its target for #b", " turn. #yMarked targets receive #b", "% more damage from ALL sources."]
+  },
+  "${ModID}:Mark": {
+    "NAME": "Mark",
+    "DESCRIPTIONS": ["Receives #b", "% more damage from ALL sources for #b" , " turn."]
+  },
+  "${ModID}:Mastermind": {
+    "NAME": "Puppeteer",
+    "DESCRIPTIONS": ["Receives #b", "% less damage from ALL sources unless this creature is #yMarked."]
+  },
+  "${ModID}:PuppetStrings": {
+    "NAME": "Puppet Strings",
+    "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn at full HP. NL NL The #renemy's Mass Attack #gheals this creature instead."]
+  },
+  "${ModID}:Vibration": {
+    "NAME": "Vibration",
+    "DESCRIPTIONS": ["Some of the #renemy's attacks consume #yVibration to trigger an additional effect."]
+  },
+  "${ModID}:Resonance": {
+    "NAME": "Resonance",
+    "DESCRIPTIONS": ["Whenever you play a card, shift this creature's intents to the right by #b", ". (The first intent targets you. The other intents target your #gally.)"]
+  },
+  "${ModID}:BlackSilence": {
+    "NAME": "The Black Silence",
+    "DESCRIPTIONS": ["Gains #b", " #yStrength each turn.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
+  },
+  "${ModID}:BlueReverberation": {
+    "NAME": "The Blue Reverberation",
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength each turn."]
+  },
+  "${ModID}:ContractOfMight": {
+    "NAME": "Contract Of Might",
+    "DESCRIPTIONS": ["At the end of your turn, take #b", " damage and increase the damage you will take from this power by #b", "."]
+  },
+  "${ModID}:ContractOfLight": {
+    "NAME": "Contract Of Light",
+    "DESCRIPTIONS": ["Gain ", " each turn. You cannot draw cards besides your starting hand each turn."]
+  },
+  "${ModID}:Guts": {
+    "NAME": "Guts",
+    "DESCRIPTIONS": ["The next time this creature #rdies, it #yimmediately #grevives at full HP and gains #b", " #yStrength and #b", " #yMetallicize."]
+  },
+  "${ModID}:GeburaRedMist": {
+    "NAME": "The Red Mist",
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, gains #b", " #yStrength.", " NL #yManifests #yEGO and doubles its #yStrength in #b", " turn(s)."]
+  },
+  "${ModID}:Relentless": {
+    "NAME": "Relentless",
+    "DESCRIPTIONS": ["At end of round, if the #renemy did not lose at least #b", " HP this turn, this creature loses half its #yStrength."]
+  },
+  "${ModID}:BloodRed": {
+    "NAME": "Blood Red Night",
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it heals that much HP."]
+  },
+  "${ModID}:Arbiter": {
+    "NAME": "Arbiter's Judgement",
+    "DESCRIPTIONS": ["Your #gally targets the last #renemy you targeted this combat. NL Whenever this creature attacks, it #ycancels the 2nd intent of its target."]
+  },
+  "${ModID}:Brainwash": {
+    "NAME": "Brainwash",
+    "DESCRIPTIONS": ["Your #gally has been #yBrainwashed into an #renemy for #b", " turn(s). #yBrainwash is removed after this creature loses #b", " more HP."]
+  },
+  "${ModID}:Messenger": {
+    "NAME": "Messenger",
+    "DESCRIPTIONS": ["At the start of this creature's turn, put a random #yPrescript card into your hand."]
+  },
+  "${ModID}:MelodyPower": {
+    "NAME": "Melody",
+    "DESCRIPTIONS": ["Each turn, a random sequence is generated in the #yMelody card. If you complete the #yMelody by the end of the round, you gain #b", " #yStrength. If you didn't, this creature gains #b", " #yStrength."]
+  },
+  "${ModID}:Passion": {
+    "NAME": "Tempered Passion",
+    "DESCRIPTIONS": ["Receives #b", "% less damage from attacks. Reduced by #b", "% each turn."]
+  },
+  "${ModID}:Embers": {
+    "NAME": "Sword of Embers",
+    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks."]
+  },
+  "${ModID}:Dragon": {
+    "NAME": "Children of the Dragon",
+    "DESCRIPTIONS": ["At the start of combat, give ALL your cards #yManifest. NL Whenever a card is #yexhausted, this creature gains #b", " #yEmotion."]
+  },
+  "${ModID}:Emotion": {
+    "NAME": "Emotion",
+    "DESCRIPTIONS": ["This creature's #yEmotion #yLevel is #b", ". Whenever this creature gains #b", " #yEmotion, it doubles its #yStrength and gains #b1 #yEmotion #yLevel. NL This creature gains additional benefits at #yEmotion #yLevels #b", " and #b", ". NL The #yEmotion #yLevel is capped at #b","."]
+  },
+  "${ModID}:Wildfire": {
+    "NAME": "Force of a Wildfire",
+    "DESCRIPTIONS": ["At end of round, apply #b" , " #yVulnerable to ALL enemies."]
+  },
+  "${ModID}:TorchedHeart": {
+    "NAME": "Torched Heart",
+    "DESCRIPTIONS": ["Receives #b", "% less damage from attacks unless this creature is #yVulnerable."]
+  },
+  "${ModID}:Sharkskin": {
+    "NAME": "Sharkskin",
+    "DESCRIPTIONS": ["Receives #b", "% less damage from attacks unless this creature has a #ydebuff. NL Every #b", " turns, this creature removes ALL #ydebuffs from itself."]
+  },
+  "${ModID}:FreshMeat": {
+    "NAME": "Fresh Meat",
+    "DESCRIPTIONS": ["On death, if the #renemy killed it, the #renemy heals #b", " HP and ", " is #rPurged and #rremoved from your master deck. Otherwise, ", " is put into your hand. NL NL If this creature dies while the #renemy is targeting it, the #renemy will target #yyou instead."]
+  },
+  "${ModID}:PurpleTearStance": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "Slash Stance",
+      "Deals #b",
+      "% more damage with attacks.",
+      "Pierce Stance",
+      "Every #b",
+      "nd attack from this creature #ydoubles ALL of its target's #rdebuffs.",
+      "Guard Stance",
+      "#yNegate ALL #rdebuffs applied to this creature."]
+  },
+  "${ModID}:Gears": {
+    "NAME": "Church of Gears",
+    "DESCRIPTIONS": ["Whenever a minion dies, loses #b", " HP. Dead minions are replaced at end of round."]
+  },
+  "${ModID}:DarkBargain": {
+    "NAME": "Dark Bargain",
+    "DESCRIPTIONS": ["This creature's #yMass #yAttack targets ALL other characters (including you). NL This creature's attacks deal #b","x damage to enemies. Whenever you fully #yBlock a hit from this creature's #yMass #yAttack, increase this bonus by #b", "."]
+  },
+  "${ModID}:PriceOfTime": {
+    "NAME": "Price of Time",
+    "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature takes a turn. NL This creature's normal turn is skipped."]
   }
 }

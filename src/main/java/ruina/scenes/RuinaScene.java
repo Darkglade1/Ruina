@@ -45,16 +45,16 @@ import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
-import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
-import ruina.monsters.uninvitedGuests.bremen.Bremen;
-import ruina.monsters.uninvitedGuests.clown.Oswald;
-import ruina.monsters.uninvitedGuests.eileen.Eileen;
-import ruina.monsters.uninvitedGuests.elena.Elena;
-import ruina.monsters.uninvitedGuests.greta.Greta;
-import ruina.monsters.uninvitedGuests.philip.Philip;
-import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
-import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
-import ruina.monsters.uninvitedGuests.tanya.Tanya;
+import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
+import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
+import ruina.monsters.uninvitedGuests.normal.clown.Oswald;
+import ruina.monsters.uninvitedGuests.normal.eileen.Eileen;
+import ruina.monsters.uninvitedGuests.normal.elena.Elena;
+import ruina.monsters.uninvitedGuests.normal.greta.Greta;
+import ruina.monsters.uninvitedGuests.normal.philip.Philip;
+import ruina.monsters.uninvitedGuests.normal.pluto.monster.Pluto;
+import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
+import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
 
 public class RuinaScene extends AbstractScene {
 

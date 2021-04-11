@@ -3,8 +3,6 @@ package ruina.monsters;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,7 +10,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -20,7 +17,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import ruina.monsters.act3.bigBird.BigBird;
-import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
+import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.powers.Enchanted;
 import ruina.util.AdditionalIntent;
 
@@ -29,7 +26,6 @@ import java.util.Iterator;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
-import static ruina.util.Wiz.atb;
 
 public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     public ArrayList<EnemyMoveInfo> additionalMoves = new ArrayList<>();

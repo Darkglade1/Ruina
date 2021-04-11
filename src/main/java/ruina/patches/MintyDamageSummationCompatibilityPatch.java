@@ -17,9 +17,9 @@ import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.act2.HermitStaff;
 import ruina.monsters.act2.Mountain;
 import ruina.monsters.act3.bigBird.Sage;
-import ruina.monsters.uninvitedGuests.eileen.GearsWorshipper;
-import ruina.monsters.uninvitedGuests.philip.CryingChild;
-import ruina.monsters.uninvitedGuests.puppeteer.Puppet;
+import ruina.monsters.uninvitedGuests.normal.eileen.GearsWorshipper;
+import ruina.monsters.uninvitedGuests.normal.philip.CryingChild;
+import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.util.AdditionalIntent;
 
 public class MintyDamageSummationCompatibilityPatch {

@@ -26,11 +26,6 @@ import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
-import com.megacrit.cardcrawl.events.beyond.Falling;
-import com.megacrit.cardcrawl.events.beyond.MindBloom;
-import com.megacrit.cardcrawl.events.beyond.MysteriousSphere;
-import com.megacrit.cardcrawl.events.beyond.SensoryStone;
-import com.megacrit.cardcrawl.events.beyond.WindingHalls;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -99,27 +94,27 @@ import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
-import ruina.monsters.uninvitedGuests.argalia.monster.Argalia;
-import ruina.monsters.uninvitedGuests.argalia.monster.Roland;
-import ruina.monsters.uninvitedGuests.bremen.Bremen;
-import ruina.monsters.uninvitedGuests.bremen.Netzach;
-import ruina.monsters.uninvitedGuests.clown.Oswald;
-import ruina.monsters.uninvitedGuests.clown.Tiph;
-import ruina.monsters.uninvitedGuests.eileen.Eileen;
-import ruina.monsters.uninvitedGuests.eileen.Yesod;
-import ruina.monsters.uninvitedGuests.elena.Binah;
-import ruina.monsters.uninvitedGuests.elena.Elena;
-import ruina.monsters.uninvitedGuests.elena.VermilionCross;
-import ruina.monsters.uninvitedGuests.greta.Greta;
-import ruina.monsters.uninvitedGuests.greta.Hod;
-import ruina.monsters.uninvitedGuests.philip.Malkuth;
-import ruina.monsters.uninvitedGuests.philip.Philip;
-import ruina.monsters.uninvitedGuests.pluto.monster.Hokma;
-import ruina.monsters.uninvitedGuests.pluto.monster.Pluto;
-import ruina.monsters.uninvitedGuests.puppeteer.Chesed;
-import ruina.monsters.uninvitedGuests.puppeteer.Puppeteer;
-import ruina.monsters.uninvitedGuests.tanya.Gebura;
-import ruina.monsters.uninvitedGuests.tanya.Tanya;
+import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
+import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
+import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
+import ruina.monsters.uninvitedGuests.normal.bremen.Netzach;
+import ruina.monsters.uninvitedGuests.normal.clown.Oswald;
+import ruina.monsters.uninvitedGuests.normal.clown.Tiph;
+import ruina.monsters.uninvitedGuests.normal.eileen.Eileen;
+import ruina.monsters.uninvitedGuests.normal.eileen.Yesod;
+import ruina.monsters.uninvitedGuests.normal.elena.Binah;
+import ruina.monsters.uninvitedGuests.normal.elena.Elena;
+import ruina.monsters.uninvitedGuests.normal.elena.VermilionCross;
+import ruina.monsters.uninvitedGuests.normal.greta.Greta;
+import ruina.monsters.uninvitedGuests.normal.greta.Hod;
+import ruina.monsters.uninvitedGuests.normal.philip.Malkuth;
+import ruina.monsters.uninvitedGuests.normal.philip.Philip;
+import ruina.monsters.uninvitedGuests.normal.pluto.monster.Hokma;
+import ruina.monsters.uninvitedGuests.normal.pluto.monster.Pluto;
+import ruina.monsters.uninvitedGuests.normal.puppeteer.Chesed;
+import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
+import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
+import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
 import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
@@ -143,9 +138,11 @@ public class RuinaMod implements
         PreMonsterTurnSubscriber {
 
     private static final String modID = "ruina";
+
     public static String getModID() {
         return modID;
     }
+
     public static String makeID(String idText) {
         return getModID() + ":" + idText;
     }
@@ -153,7 +150,8 @@ public class RuinaMod implements
     public static class Enums {
         @SpireEnum(name = "EGO") // These two HAVE to have the same absolutely identical name.
         public static AbstractCard.CardColor EGO;
-        @SpireEnum(name = "EGO") @SuppressWarnings("unused")
+        @SpireEnum(name = "EGO")
+        @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }
 
@@ -181,6 +179,9 @@ public class RuinaMod implements
     public static SpireConfig ruinaConfig;
     private static Logger logger = LogManager.getLogger(RuinaMod.class.getName());
 
+    public static Boolean reverbClear;
+    public static Boolean altReverbClear;
+
     public RuinaMod() {
         BaseMod.subscribe(this);
 
@@ -193,6 +194,8 @@ public class RuinaMod implements
         Properties ruinaDefaults = new Properties();
         ruinaDefaults.setProperty("Ally Tutorial Seen", "FALSE");
         try {
+            ruinaDefaults.put("reverbClear", false);
+            ruinaDefaults.put("altReverbClear", false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -200,6 +203,7 @@ public class RuinaMod implements
         }
         logger.info("RUINA CONFIG OPTIONS LOADED:");
         logger.info("Ally tutorial seen: " + ruinaConfig.getString("Ally Tutorial Seen") + ".");
+        loadConfig();
     }
 
     public static String makePath(String resourcePath) {
@@ -242,9 +246,7 @@ public class RuinaMod implements
         return modID + "Resources/images/events/" + resourcePath;
     }
 
-    public static void initialize() {
-        RuinaMod ruinaMod = new RuinaMod();
-    }
+    public static void initialize() { RuinaMod ruinaMod = new RuinaMod(); }
 
     @Override
     public void receiveAddAudio() {
@@ -556,32 +558,32 @@ public class RuinaMod implements
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
         BaseMod.addMonster(RoadHome.ID, (BaseMod.GetMonster) RoadHome::new);
         BaseMod.addMonster(ServantOfWrath.ID, "Servant_of_Wrath", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new ServantOfWrath(-500.0F, 0.0F),
                         new Hermit(100.0F, 0.0F),
                 }));
 
         BaseMod.addMonster(EncounterIDs.SCARECROWS_2, "2_Scarecrows", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Scarecrow(-450.0F, 0.0F, 1),
                         new Scarecrow(-150.0F, 0.0F, 0),
                 }));
         BaseMod.addMonster(EncounterIDs.SCARECROWS_3, "3_Scarecrowss", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Scarecrow(-450.0F, 0.0F, 2),
                         new Scarecrow(-200.0F, 0.0F, 1),
                         new Scarecrow(50.0F, 0.0F, 0)
                 }));
         BaseMod.addMonster(Woodsman.ID, (BaseMod.GetMonster) Woodsman::new);
         BaseMod.addMonster(EncounterIDs.BATS_3, "3_Bats", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new SanguineBat(-450.0F, 0.0F),
                         new SanguineBat(-200.0F, 0.0F),
                         new SanguineBat(50.0F, 0.0F)
                 }));
         BaseMod.addMonster(Nosferatu.ID, (BaseMod.GetMonster) Nosferatu::new);
         BaseMod.addMonster(EncounterIDs.NOS_AND_BAT, "Nos_and_Bat", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new SanguineBat(-450.0F, 0.0F),
                         new Nosferatu(-150.0F, 0.0F),
                 }));
@@ -591,7 +593,7 @@ public class RuinaMod implements
         BaseMod.addMonster(QueenOfHate.ID, (BaseMod.GetMonster) QueenOfHate::new);
 
         briah.addBoss(EncounterIDs.RED_AND_WOLF, () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new LittleRed(-480.0F, 0.0F),
                         new NightmareWolf(),
                 }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
@@ -616,7 +618,7 @@ public class RuinaMod implements
         atziluth.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
 
         BaseMod.addMonster(BigBird.ID, "Big Bird", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Sage(-600.0F, 0.0F, 0),
                         new Sage(-350.0F, 0.0F, 1),
                         new BigBird(150.0F, 0.0F)
@@ -627,25 +629,25 @@ public class RuinaMod implements
         BaseMod.addMonster(PunishingBird.ID, (BaseMod.GetMonster) PunishingBird::new);
         BaseMod.addMonster(BurrowingHeaven.ID, (BaseMod.GetMonster) BurrowingHeaven::new);
         BaseMod.addMonster(PriceOfSilence.ID, "Price of Silence", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new RemnantOfTime(-450.0F, 0.0F),
                         new PriceOfSilence(-50.0F, 0.0F),
                 }));
         BaseMod.addMonster(Bloodbath.ID, (BaseMod.GetMonster) Bloodbath::new);
         BaseMod.addMonster(HeartOfAspiration.ID, "Heart of Aspiration", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new LungsOfCraving(-450.0F, 0.0F),
                         new LungsOfCraving(-150.0F, 0.0F),
                         new HeartOfAspiration(150.0F, 0.0F)
                 }));
         BaseMod.addMonster(EncounterIDs.BIRDS_3, "3_Birds", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new RunawayBird(-450.0F, 0.0F),
                         new RunawayBird(-200.0F, 0.0F),
                         new EyeballChick(50.0F, 0.0F)
                 }));
         BaseMod.addMonster(EncounterIDs.BIRDS_4, "4_Birds", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new RunawayBird(-450.0F, 0.0F),
                         new RunawayBird(-200.0F, 0.0F),
                         new EyeballChick(50.0F, 0.0F),
@@ -670,61 +672,63 @@ public class RuinaMod implements
 
         //Uninvited Guests
         BaseMod.addMonster(Puppeteer.ID, "Puppeteer", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Chesed(-550.0F, 0.0F),
                         new Puppeteer(200.0F, 0.0F),
                 }));
         BaseMod.addMonster(Tanya.ID, "Tanya", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Gebura(-500.0F, 0.0F),
                         new Tanya(0.0F, 0.0F),
                 }));
         BaseMod.addMonster(Elena.ID, "Elena", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Binah(-550.0F, 0.0F),
                         new VermilionCross(-100.0F, 0.0F),
                         new Elena(200.0F, 0.0F),
                 }));
         BaseMod.addMonster(Oswald.ID, "Oswald", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Tiph(-500.0F, 0.0F),
                         new Oswald(0.0F, 0.0F),
                 }));
         BaseMod.addMonster(Bremen.ID, "Bremen", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Netzach(-500.0F, 0.0F),
                         new Bremen(0.0F, 0.0F),
                 }));
         BaseMod.addMonster(Philip.ID, "Philip", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Malkuth(-550.0F, 0.0F),
                         new Philip(200.0F, 0.0F),
                 }));
         BaseMod.addMonster(Greta.ID, "Greta", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Hod(-550.0F, 0.0F),
                         new Greta(150.0F, 0.0F),
                 }));
         BaseMod.addMonster(Eileen.ID, "Eileen", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Yesod(-550.0F, 0.0F),
                         new Eileen(200.0F, 0.0F),
                 }));
         BaseMod.addMonster(Pluto.ID, "Pluto", () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Hokma(-550.0F, 0.0F),
                         new Pluto(200.0F, 0.0F),
                 }));
 
         uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(
-                new AbstractMonster[] {
+                new AbstractMonster[]{
                         new Roland(-500.0F, 0.0F),
                         new Argalia(0.0F, 0.0F),
                 }), makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
+
+        reverbClear = ruinaConfig.getBool("reverbClear");
+        altReverbClear = ruinaConfig.getBool("altReverbClear");
     }
 
-    private static String makeLocPath(Settings.GameLanguage language, String filename)
-    {
+    private static String makeLocPath(Settings.GameLanguage language, String filename) {
         String ret = "localization/";
         switch (language) {
             case ZHS:
@@ -740,8 +744,7 @@ public class RuinaMod implements
         return getModID() + "Resources/" + (ret + filename + ".json");
     }
 
-    private void loadLocFiles(Settings.GameLanguage language)
-    {
+    private void loadLocFiles(Settings.GameLanguage language) {
         BaseMod.loadCustomStringsFile(CardStrings.class, makeLocPath(language, "Cardstrings"));
         BaseMod.loadCustomStringsFile(EventStrings.class, makeLocPath(language, "Eventstrings"));
         BaseMod.loadCustomStringsFile(MonsterStrings.class, makeLocPath(language, "Monsterstrings"));
@@ -752,16 +755,14 @@ public class RuinaMod implements
     }
 
     @Override
-    public void receiveEditStrings()
-    {
+    public void receiveEditStrings() {
         loadLocFiles(Settings.GameLanguage.ENG);
         if (Settings.language != Settings.GameLanguage.ENG) {
             loadLocFiles(Settings.language);
         }
     }
 
-    private void loadLocKeywords(Settings.GameLanguage language)
-    {
+    private void loadLocKeywords(Settings.GameLanguage language) {
         Gson gson = new Gson();
         String json = Gdx.files.internal(makeLocPath(language, "Keywordstrings")).readString(String.valueOf(StandardCharsets.UTF_8));
         Keyword[] keywords = gson.fromJson(json, Keyword[].class);
@@ -789,5 +790,20 @@ public class RuinaMod implements
         if (Settings.language != Settings.GameLanguage.ENG) {
             loadLocKeywords(Settings.language);
         }
+    }
+
+    public static void saveConfig() {
+        try {
+            ruinaConfig.setBool("reverbClear", reverbClear);
+            ruinaConfig.setBool("altReverbClear", altReverbClear);
+            ruinaConfig.save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void loadConfig(){
+        reverbClear = ruinaConfig.getBool("reverbClear");
+        altReverbClear = ruinaConfig.getBool("altReverbClear");
     }
 }

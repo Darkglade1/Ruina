@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
-import ruina.monsters.uninvitedGuests.philip.Malkuth;
+import ruina.monsters.uninvitedGuests.normal.philip.Malkuth;
 
 public class Emotion extends AbstractEasyPower {
     public static final String POWER_ID = RuinaMod.makeID(Emotion.class.getSimpleName());

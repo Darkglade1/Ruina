@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.AbstractCard.CardRarity;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import ruina.monsters.uninvitedGuests.greta.FreshMeat;
-import ruina.monsters.uninvitedGuests.greta.Greta;
+import ruina.monsters.uninvitedGuests.normal.greta.FreshMeat;
+import ruina.monsters.uninvitedGuests.normal.greta.Greta;
 
 import static ruina.util.Wiz.att;
 

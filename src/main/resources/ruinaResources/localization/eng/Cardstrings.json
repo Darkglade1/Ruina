@@ -511,7 +511,7 @@
   },
   "${ModID}:Searing": {
     "NAME": "Searing Resolution",
-    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Burn(s) into your draw pile."
+    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Burn into your draw pile."
   },
   "${ModID}:Sorrow": {
     "NAME": "Wound of Sorrow",
