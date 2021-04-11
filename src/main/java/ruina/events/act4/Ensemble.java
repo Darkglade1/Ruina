@@ -13,6 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import static ruina.RuinaMod.makeEventPath;
+import static ruina.RuinaMod.reverbClear;
 import static ruina.util.Wiz.adp;
 
 public class Ensemble extends AbstractImageEvent {
@@ -30,11 +31,9 @@ public class Ensemble extends AbstractImageEvent {
     private int screenNum = 0;
 
     public Ensemble() {
-        super(NAME, DESCRIPTIONS[0], IMG);
+        super(NAME, reverbClear ? DESCRIPTIONS[2] : DESCRIPTIONS[0], IMG);
         imageEventText.setDialogOption(OPTIONS[0], relic);
-        // add trigger later. (Extra Content.)
-        body = DESCRIPTIONS[2];
-        imageEventText.setDialogOption(OPTIONS[2], relic);
+        if(reverbClear){ imageEventText.setDialogOption(OPTIONS[2], relic); }
     }
 
     @Override
