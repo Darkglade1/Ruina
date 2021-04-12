@@ -111,6 +111,11 @@ public class Eileen extends AbstractCardMonster
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, HP_LOSS) {
 
             @Override
+            public void atEndOfRound() {
+                Summon();
+            }
+
+            @Override
             public void updateDescription() {
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
             }
@@ -206,7 +211,6 @@ public class Eileen extends AbstractCardMonster
                 }
             });
         }
-        Summon();
         atb(new RollMoveAction(this));
     }
 

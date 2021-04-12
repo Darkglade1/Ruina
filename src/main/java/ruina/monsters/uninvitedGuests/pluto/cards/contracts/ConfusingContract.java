@@ -10,6 +10,7 @@ import ruina.cards.AbstractRuinaCard;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.att;
 
 @AutoAdd.Ignore
 public class ConfusingContract extends AbstractRuinaCard {
@@ -25,6 +26,6 @@ public class ConfusingContract extends AbstractRuinaCard {
     public void upp() { }
 
     public void onChoseThisOption(){
-        addToBot(new ApplyPowerAction(adp(), adp(), new ConfusionPower(adp())));
+        att(new ApplyPowerAction(adp(), adp(), new ConfusionPower(adp())));
     }
 }

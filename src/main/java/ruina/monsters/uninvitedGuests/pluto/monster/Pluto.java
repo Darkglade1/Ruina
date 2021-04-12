@@ -56,13 +56,13 @@ public class Pluto extends AbstractCardMonster {
     private static final byte CONTRACT = 3;
     private static final byte BINDING_TERMS = 4;
 
-    public final int magicSafeguardBlock = calcAscensionTankiness(25);
+    public final int magicSafeguardBlock = calcAscensionTankiness(30);
     public final int magicSafeguardStr = calcAscensionSpecial(2);
 
-    public final int magicMissleDamage = calcAscensionDamage(7);
+    public final int magicMissleDamage = calcAscensionDamage(8);
     public final int magicMissleHits = 3;
 
-    public final int magicOnslaughtDamage = calcAscensionDamage(20);
+    public final int magicOnslaughtDamage = calcAscensionDamage(23);
     public final int magicOnslaughtPerUseScaling = calcAscensionDamage(5);
 
     public final int STATUS = calcAscensionSpecial(2);
