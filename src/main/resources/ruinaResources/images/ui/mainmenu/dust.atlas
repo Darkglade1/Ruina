@@ -1,0 +1,13 @@
+
+dust.jpg
+size: 1,1
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dust
+  rotate: false
+  xy: 0, 0
+  size: 1, 1
+  orig: 0, 0
+  offset: 0, 0
+  index: -1																													
