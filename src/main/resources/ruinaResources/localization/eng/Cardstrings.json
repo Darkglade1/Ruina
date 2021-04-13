@@ -616,5 +616,21 @@
   "${ModID}:BindingTerms": {
     "NAME": "Binding Terms",
     "DESCRIPTION": "Shuffle !M! *Voids into your discard pile."
+  },
+  "${ModID}:CHRBOSS_FourthMatchFlame": {
+    "NAME": "Fourth Match Flame",
+    "DESCRIPTION": "Deal !D! damage and apply !M! ruina:Burn to ALL enemies."
+  },
+  "${ModID}:CHRBOSS_CrumbledHope": {
+    "NAME": "Crumbled Hope",
+    "DESCRIPTION": "Gain !B! Block. NL Draw !M! card. NL Whenever you are attacked this turn, deal !ruina:SecondMagic! damage."
+  },
+  "${ModID}:CHRBOSS_CrumbledHope": {
+    "NAME": "Crumbled Hope",
+    "DESCRIPTION": "Gain !B! Block. NL Draw !M! card. NL Whenever you are attacked this turn, deal !ruina:SecondMagic! damage."
+  },
+  "${ModID}:CHRBOSS_Ember": {
+    "NAME": "Ember",
+    "DESCRIPTION": "Gain !B! Block. NL Draw !M! card. NL Whenever you are attacked this turn, deal !ruina:SecondMagic! damage."
   }
 }

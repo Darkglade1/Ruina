@@ -393,5 +393,9 @@
   "${ModID}:PriceOfTime": {
     "NAME": "Price of Time",
     "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature takes a turn. NL This creature's normal turn is skipped."]
+  },
+  "${ModID}:PatronLibrarian": {
+    "NAME": "Patron Librarian",
+    "DESCRIPTIONS": ["Seeing through the perspective of {X}. NL HP is restored to whatever it was at the start of the encounter."]
   }
 }
