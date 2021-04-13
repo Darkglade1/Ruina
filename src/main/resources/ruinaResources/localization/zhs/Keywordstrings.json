@@ -4,20 +4,20 @@
     "NAMES": [
       "流血"
     ],
-    "DESCRIPTION": "这个回合,每当这个生物攻击, 其受到等同于其 #y流血 层数的伤害."
+    "DESCRIPTION": "这个回合，每当攻击时，受到等同 #y流血 层数的伤害。"
   },
   {
-    "PROPER_NAME": "Manifest",
+    "PROPER_NAME": "展现",
     "NAMES": [
-      "manifest"
+      "展现"
     ],
-    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead #yExhaust #b1 card for every missing [E] ."
+    "DESCRIPTION": "当你缺乏足够的 [E] 时，可以打出并根据缺少的每点 [E] #y消耗 #b1 张牌。"
   },
   {
-    "PROPER_NAME": "Contract",
+    "PROPER_NAME": "契约",
     "NAMES": [
-      "contract"
+      "契约"
     ],
-    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead pay #b3 HP for every missing [E] ."
+    "DESCRIPTION": "当你缺乏足够的 [E] 时，可以打出并根据缺少的每点 [E] 失去 #b3 点生命。"
   }
 ]

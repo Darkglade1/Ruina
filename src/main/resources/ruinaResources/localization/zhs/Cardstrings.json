@@ -1,620 +1,620 @@
 {
   "ruina:Wisdom": {
     "NAME": "被扯出的智慧",
-    "DESCRIPTION": "抽 !M! 张卡. NL 如果一个 *稻草人 消耗了这张卡, *在下个回合击晕它."
+    "DESCRIPTION": "抽 !M! 张牌。 NL 如果一个 *稻草人 消耗 了这张牌，它在下个回合会被 *击晕 。"
   },
   "ruina:FragmentOfBliss": {
     "NAME": "彼方的碎片",
-    "DESCRIPTION": "获得 !M! 点格挡. NL 这张卡不受影响格挡的效果影响."
+    "DESCRIPTION": "获得 !M! 点 格挡 。 NL 这张牌不受影响格挡的效果影响。"
   },
   "ruina:FalseThrone": {
     "NAME": "虚伪王座",
-    "DESCRIPTION": "下个回合，将所有非状态非诅咒卡从消耗堆加入手牌并使它们获得虚无"
+    "DESCRIPTION": "下个回合，将所有非状态和非诅咒牌从消耗堆加入手牌并使它们获得 虚无 。"
   },
   "ruina:Smile": {
     "NAME": "笑靥",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害 并给予 !M! 层虚弱和易伤"
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害 并给予 !M! 层 虚弱 和 易伤 。"
   },
   "ruina:Mimicry": {
-    "NAME": "学习",
-    "DESCRIPTION": "造成 !D! 点伤害. 未被格挡的伤害将回复你的生命."
+    "NAME": "拟态",
+    "DESCRIPTION": "造成 !D! 点伤害。 未被格挡的伤害将恢复你的生命。"
   },
   "ruina:Nihil": {
     "NAME": "虚无缥缈",
-    "DESCRIPTION": "所有敌人失去 !M! 点力量. NL如果你手牌没有卡，效果加倍."
+    "DESCRIPTION": "所有敌人失去 !M! 点 力量 。 NL 如果你的手中没有其他牌，效果翻倍。"
   },
   "ruina:FadedMemories": {
-    "NAME": "褪色的记忆",
-    "DESCRIPTION": "当前每有一名敌人，抽 !M! 张卡."
+    "NAME": "褪色记忆",
+    "DESCRIPTION": "当前每有一名敌人，抽 !M! 张牌。"
   },
   "ruina:LoveAndHate": {
     "NAME": "以爱与恨的名义",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害"
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。"
   },
   "ruina:GoldRush": {
-    "NAME": "贪婪",
-    "DESCRIPTION": "获得 !M! 点力量. NL 如果本场战斗中打出的上一张牌是攻击牌，将你的力量翻倍."
+    "NAME": "闪金冲锋",
+    "DESCRIPTION": "获得 !M! 点 力量 。 NL 如果本场战斗中打出的上一张牌是攻击牌，将你的 力量 翻倍。"
   },
   "ruina:BlindRage": {
-    "NAME": "Blind Rage",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害. NL 受到 !M! 点伤害. NL 如果你的生命值等于或低于50%，这张卡耗能变为0."
+    "NAME": "盲眼怒火",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL 受到 !M! 点伤害。 NL 如果你的生命不超过50%，这张牌的耗能变为0。"
   },
   "ruina:SwordSharpened": {
-    "NAME": "泪剑",
-    "DESCRIPTION": "给予 !M! 层虚弱. NL 如果你对同一个敌人使用这张卡 !ruina:SecondMagic! 次, 改为基于1层 *击晕并消耗这张卡",
-    "UPGRADE_DESCRIPTION": "给予 !M! 层虚弱. NL 将这张卡洗入你的抽牌堆.NL 如果你对同一个敌人使用这张卡 !ruina:SecondMagic! 次, 改为基于1层 *击晕并消耗这张卡."
+    "NAME": "泪锋之剑",
+    "DESCRIPTION": "给予 !M! 层 虚弱 。 NL 如果你对同一个敌人打出这张牌 !ruina:SecondMagic! 次, 改为 *击晕 敌人并 消耗 这张牌。",
+    "UPGRADE_DESCRIPTION": "给予 !M! 层 虚弱 。 NL 将这张牌放入你的抽牌堆。NL 如果你对同一个敌人打出这张牌 !ruina:SecondMagic! 次, 改为 *击晕 敌人并 消耗 这张牌。"
   },
   "ruina:Lumber": {
-    "NAME": "Lumber",
-    "DESCRIPTION": "造成 !D! 点伤害. NL 消耗最多 !M! 张卡. 每消耗一张攻击牌， 将它的基础伤害加到这张卡的伤害上."
+    "NAME": "滥伐",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 消耗 最多 !M! 张牌。每 消耗 一张攻击牌，将它的基础伤害加到这张牌上。"
   },
   "ruina:Harvest": {
-    "NAME": "Harvest",
-    "DESCRIPTION": "造成 !D! 点伤害. NL 这张卡的伤害会随着你的生命值百分比减少而减少 (生命值满时造成最大伤害).",
-    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害. NL 这张卡的伤害会随着你的生命值百分比减少而减少 (生命值满时造成最大伤害).NL 获得 !B! 点格挡."
+    "NAME": "丰收",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌的伤害会随着你的生命百分比减少而减少 (生命为满时造成最大伤害)。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 这张牌的伤害会随着你的生命百分比减少而减少 (生命为满时造成最大伤害)。 NL 获得 !B! 点 格挡 。"
   },
   "ruina:HomingInstinct": {
     "NAME": "归巢本能",
-    "DESCRIPTION": "消耗最多 !M! 张卡. NL 在你的回合开始时，获得与它们耗能相等的 [E] ."
+    "DESCRIPTION": "消耗最多 !M! 张牌。 NL 在你的回合开始时，获得与它们耗能相等的 [E] 。"
   },
   "ruina:CobaltScar": {
-    "NAME": "Cobalt Scar",
-    "DESCRIPTION": "每当你打出 !ruina:SecondMagic! 张攻击牌, 对所有敌人造成 !M! 点伤害."
+    "NAME": "郁蓝创痕",
+    "DESCRIPTION": "每当你打出 !ruina:SecondMagic! 张攻击牌,，对所有敌人造成 !M! 点伤害。"
   },
   "ruina:Thirst": {
-    "NAME": "Thirst",
-    "DESCRIPTION": "给予 !M! 层 ruina:流血 . NL 这个回合，每当你攻击有 ruina:流血 状态的敌人, 获得 !ruina:SecondMagic! 点力量."
+    "NAME": "渴血症",
+    "DESCRIPTION": "给予 !M! 层 ruina:流血 。 NL 这个回合，每当你攻击有 ruina:流血 状态的敌人，获得 !ruina:SecondMagic! 点 力量 。"
   },
   "ruina:CrimsonScar": {
-    "NAME": "Crimson Scar",
-    "DESCRIPTION": "获得 !B! 点格挡. NL 预见 !M!. NL每丢弃一张卡，获得 !ruina:SecondMagic! 点活力."
+    "NAME": "猩红创痕",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 预见 !M! 。 NL 预见时每丢弃一张牌，获得 !ruina:SecondMagic! 点 活力 。"
   },
-  "${ModID}:ParadiseLost": {
-    "NAME": "Paradise Lost",
-    "DESCRIPTION": "At the start of your turn, Exhaust up to !M! card. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP.",
-    "UPGRADE_DESCRIPTION": "At the start of your turn, Exhaust up to !M! cards. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP."
+  "ruina:ParadiseLost": {
+    "NAME": "失乐园",
+    "DESCRIPTION": "在你的回合开始时， 消耗 最多 !M! 张牌。 NL 每当 !ruina:SecondMagic! 张牌被 消耗 ，所有敌人失去666点生命。",
+    "UPGRADE_DESCRIPTION": "在你的回合开始时， 消耗 最多 !M! 张牌。 NL 每当 !ruina:SecondMagic! 张牌被 消耗 ，所有敌人失去666点生命。"
   },
-  "${ModID}:DeadSilence": {
-    "NAME": "Dead Silence",
-    "DESCRIPTION": "Deal !D! damage. NL Take an extra turn after this one. NL If this card killed an enemy, gain [E] [E] next turn."
+  "ruina:DeadSilence": {
+    "NAME": "死寂",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 这个回合结束后额外获得一回合。 NL 如果这张牌杀死了敌人，在下一回合获得 [E] [E] 。"
   },
-  "${ModID}:Heaven": {
-    "NAME": "Heaven",
-    "DESCRIPTION": "Gain !B! Block X times. NL Whenever you are attacked this turn, deal damage back equal to your remaining Block."
+  "ruina:Heaven": {
+    "NAME": "天堂",
+    "DESCRIPTION": "获得 !B! 点 格挡 X 次。 NL 你在这个回合每受到一次攻击, 就对攻击者造成等同 格挡 的伤害。"
   },
-  "${ModID}:Penitence": {
-    "NAME": "Penitence",
-    "DESCRIPTION": "Heal !M! HP. NL Remove all of your debuffs."
+  "ruina:Penitence": {
+    "NAME": "忏悔",
+    "DESCRIPTION": "恢复 !M! 点生命。 NL 移除你身上所有的 debuff。"
   },
-  "${ModID}:SoundOfAStar": {
-    "NAME": "Sound of a Star",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL This card's damage is increased by the amount of Block you've gained this combat. NL Exhaustive !stslib:ex!."
+  "ruina:SoundOfAStar": {
+    "NAME": "新星之声",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL 这张牌的伤害根据你在本场战斗中获得的 格挡 而增加。 NL 消耗性 !stslib:ex! 。"
   },
-  "${ModID}:Twilight": {
-    "NAME": "Twilight",
-    "DESCRIPTION": "Deal !D! damage and apply Weak equal to the [E] paid for by ruina:Manifest to ALL enemies."
+  "ruina:Twilight": {
+    "NAME": "薄暝",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害并根据 ruina:展现 补充的 [E] 给予 虚弱 。"
   },
-  "${ModID}:Apocalypse": {
-    "NAME": "Apocalypse",
-    "DESCRIPTION": "Deal !D! damage. NL Deals 50% more damage if your HP is at or below 50%. NL Deals 50% more damage to enemies with 50% or less HP."
+  "ruina:Apocalypse": {
+    "NAME": "终末",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果你的生命不高于50%，额外造成50%伤害。 NL 如果敌人的生命不高于50%，额外造成50%伤害。"
   },
-  "${ModID}:Beak": {
-    "NAME": "Beak",
-    "DESCRIPTION": "At the start of your turn, reduce the cost of the highest cost card in your hand to 0 this combat and give it Exhaust."
+  "ruina:Beak": {
+    "NAME": "尖喙",
+    "DESCRIPTION": "在你的回合开始时，你的手牌中耗能最高的一张牌在本场战斗中耗能变为0并获得 消耗 。"
   },
-  "${ModID}:Lamp": {
-    "NAME": "Lamp",
-    "DESCRIPTION": "Enemy loses !M! Strength this turn. NL Whenever you are attacked this turn, deal !ruina:SecondMagic! damage back."
+  "ruina:Lamp": {
+    "NAME": "目灯",
+    "DESCRIPTION": "这个回合敌人失去 !M! 点 力量 。 NL 这个回合每当你被攻击，对攻击者造成 !ruina:SecondMagic! 点伤害。"
   },
-  "${ModID}:Justitia": {
-    "NAME": "Justitia",
-    "DESCRIPTION": "If the enemy's HP is at or below 30%, kill it. NL Enemy loses !M! HP.",
-    "EXTENDED_DESCRIPTION": ["If the enemy's HP is at or below ", ", kill it. NL Enemy loses !M! HP."]
+  "ruina:Justitia": {
+    "NAME": "正义裁决",
+    "DESCRIPTION": "如果敌人的生命不高于30%，杀死它。 NL 敌人失去 !M! 点生命。",
+    "EXTENDED_DESCRIPTION": ["如果敌人的生命不高于 ", ", 杀死它。 NL 敌人失去 !M! 点生命。"]
   },
-  "${ModID}:Dazzled": {
-    "NAME": "Dazzled",
-    "DESCRIPTION": "When Retained, increase its cost by !M! this combat. If its cost is !ruina:SecondMagic! or more, it becomes Unplayable."
+  "ruina:Dazzled": {
+    "NAME": "眩晕",
+    "DESCRIPTION": "每当 保留 ，在本场战斗中增加其耗能 !M! 。如果耗能不小于 !ruina:SecondMagic! ，则变为 不能被打出 。"
   },
-  "${ModID}:ForestKeeperLock": {
-    "NAME": "Forest Keeper's Lock",
-    "DESCRIPTION": "Enemy loses !M! Strength this turn."
+  "ruina:ForestKeeperLock": {
+    "NAME": "森林的守望者之锁",
+    "DESCRIPTION": "敌人失去 !M! 点 力量 1回合。"
   },
-  "${ModID}:StolenTime": {
-    "NAME": "Stolen Time",
-    "DESCRIPTION": "Draw !M! card."
+  "ruina:StolenTime": {
+    "NAME": "被偷走的时光",
+    "DESCRIPTION": "抽 !M! 张牌。"
   },
-  "${ModID}:CHRBOSS_UpstandingSlash": {
-    "NAME": "Upstanding Slash",
-    "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Frail."
+  "ruina:CHRBOSS_UpstandingSlash": {
+    "NAME": "大刀纵切",
+    "DESCRIPTION": "造成 !D! 点伤害2次。 NL 如果至少造成 !ruina:SecondMagic! 未被 格挡 的伤害，给予 !M! 层 脆弱 。"
   },
-  "${ModID}:CHRBOSS_LevelSlash": {
-    "NAME": "Level Slash",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gains an extra intent for the next turn."
+  "ruina:CHRBOSS_LevelSlash": {
+    "NAME": "大刀横斩",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 如果至少造成 !ruina:SecondMagic! 未被 格挡 的伤害，在下个回合获得额外的意图。"
   },
-  "${ModID}:CHRBOSS_Spear": {
-    "NAME": "Spear",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:CHRBOSS_Spear": {
+    "NAME": "大刀直刺",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:CHRBOSS_GreaterSplitHorizontal": {
-    "NAME": "Greater Split: Horizontal",
-    "DESCRIPTION": "Deal !D! damage. NL If any unblocked damage was dealt, apply !M! ruina:Bleed."
+  "ruina:CHRBOSS_GreaterSplitHorizontal": {
+    "NAME": "血雾弥漫",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果造成未被格挡的伤害，给予 !M! 层 ruina:流血 。"
   },
-  "${ModID}:CHRBOSS_GreaterSplitVertical": {
-    "NAME": "Greater Split: Vertical",
-    "DESCRIPTION": "Deal !D! damage. NL If any unblocked damage was dealt, apply !M! ruina:Bleed."
+  "ruina:CHRBOSS_GreaterSplitVertical": {
+    "NAME": "尸横遍野",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果造成未被格挡的伤害，给予 !M! 层 ruina:流血 。"
   },
-  "${ModID}:CHRBOSS_FocusSpirit": {
-    "NAME": "Focus Spirit",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Temporary Strength next turn."
+  "ruina:CHRBOSS_FocusSpirit": {
+    "NAME": "屏息凝神",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 在下个回合获得 !M! 点临时 力量 。"
   },
-  "${ModID}:CHRBOSS_GiantFist": {
-    "NAME": "Giant Fist",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
+  "ruina:CHRBOSS_GiantFist": {
+    "NAME": "巨拳轰击",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 *麻痹 。"
   },
-  "${ModID}:CHRBOSS_Compress": {
-    "NAME": "Compress",
-    "DESCRIPTION": "Gain !B! Block."
+  "ruina:CHRBOSS_Compress": {
+    "NAME": "巨拳压击",
+    "DESCRIPTION": "获得 !B! 点 格挡 。"
   },
-  "${ModID}:CHRBOSS_FlurryOfFists": {
-    "NAME": "Flurry Of Fists",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength.",
-    "EXTENDED_DESCRIPTION": ["Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength next turn."]
+  "ruina:CHRBOSS_FlurryOfFists": {
+    "NAME": "乱拳痛殴",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 获得 !ruina:SecondMagic! 点 力量 。",
+    "EXTENDED_DESCRIPTION": ["造成 !D! 点伤害 !M! 次。 NL 在下个回合获得 !ruina:SecondMagic! 点 力量 。"]
   },
-  "${ModID}:CHRBOSS_BalefulBrand": {
-    "NAME": "Baleful Brand",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion.",
-    "EXTENDED_DESCRIPTION": ["Deal !D! damage. NL Apply !M! *Erosion next turn."]
+  "ruina:CHRBOSS_BalefulBrand": {
+    "NAME": "不详烙印",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 *腐蚀 。",
+    "EXTENDED_DESCRIPTION": ["造成 !D! 点伤害。 NL 在下个回合给予 !M! 层 *腐蚀 。"]
   },
-  "${ModID}:CHRBOSS_Lock": {
-    "NAME": "Lock",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Draw *Reduction."
+  "ruina:CHRBOSS_Lock": {
+    "NAME": "封锁目标",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! *抽牌减少 。"
   },
-  "${ModID}:CHRBOSS_yanAttack": {
-    "NAME": "Sword Of Volition",
-    "DESCRIPTION": "A *Hand gains !M! Strength."
+  "ruina:CHRBOSS_yanAttack": {
+    "NAME": "意志之刃",
+    "DESCRIPTION": "一只 *手 获得 !M! 点 力量 。"
   },
-  "${ModID}:CHRBOSS_yanProtect": {
-    "NAME": "Protect",
-    "DESCRIPTION": "A *Hand gains !M! *Protection"
+  "ruina:CHRBOSS_yanProtect": {
+    "NAME": "执行-护卫",
+    "DESCRIPTION": "一只 *手 获得 !M! 层 *守护 。"
   },
-  "${ModID}:CHRBOSS_DistortedBlade": {
-    "NAME": "Distorted Blade",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion."
+  "ruina:CHRBOSS_DistortedBlade": {
+    "NAME": "扭曲之刃",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 *腐蚀 。"
   },
-  "${ModID}:CHRBOSS_Largo": {
-    "NAME": "Largo",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Apply 1 *Vibration. If the target already has *Vibration, instead remove it and gain !B! Block again."
+  "ruina:CHRBOSS_Largo": {
+    "NAME": "崩坏序曲",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。 NL 给予1层 *震颤 。 如果目标已经拥有 *震颤 ，改为移除并再次获得 !B! 点 格挡 。"
   },
-  "${ModID}:CHRBOSS_Allegro": {
-    "NAME": "Allegro",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply 1 *Vibration. If the target already has *Vibration, instead remove it and gain !ruina:SecondMagic! Strength next turn."
+  "ruina:CHRBOSS_Allegro": {
+    "NAME": "不谐和音",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 给予1层 *震颤 。如果目标已经拥有 *震颤 ，改为移除并在下一回合获得 !ruina:SecondMagic! 点 力量 。"
   },
-  "${ModID}:CHRBOSS_ResonantScythe": {
-    "NAME": "Resonant Scythe",
-    "DESCRIPTION": "Deal !D! damage. NL Deals triple damage if this is on the 2nd intent."
+  "ruina:CHRBOSS_ResonantScythe": {
+    "NAME": "破空律斩",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果是自身的第二个行动意图，则造成三倍伤害。"
   },
-  "${ModID}:CHRBOSS_TrailsOfBlue": {
-    "NAME": "Trails Of Blue",
-    "DESCRIPTION": "Deal !D! damage. NL Target loses !M! Strength."
+  "ruina:CHRBOSS_TrailsOfBlue": {
+    "NAME": "苍蓝轨迹",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 目标失去 !M! 点 力量 。"
   },
-  "${ModID}:CHRBOSS_TempestuousDanza": {
-    "NAME": "Tempestuous Danza",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies !M! times."
+  "ruina:CHRBOSS_TempestuousDanza": {
+    "NAME": "最终旋律",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:CHRALLY_Crystal": {
-    "NAME": "Crystal Atelier",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
+  "ruina:CHRALLY_Crystal": {
+    "NAME": "卡莉斯塔工作室",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:CHRALLY_Wheels": {
-    "NAME": "Wheels Industry",
-    "DESCRIPTION": "Deal !D! damage. NL Target loses !M! Strength."
+  "ruina:CHRALLY_Wheels": {
+    "NAME": "轮盘重工",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 目标失去 !M! 点 力量 。"
   },
-  "${ModID}:CHRALLY_Durandal": {
-    "NAME": "Durandal",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  "ruina:CHRALLY_Durandal": {
+    "NAME": "杜兰达尔",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 获得 !ruina:SecondMagic! 点 力量 。"
   },
-  "${ModID}:CHRALLY_ALLAS": {
-    "NAME": "Allas Workshop",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  "ruina:CHRALLY_ALLAS": {
+    "NAME": "阿拉斯工坊",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 。"
   },
-  "${ModID}:CHRALLY_GUN": {
-    "NAME": "Atelier Logic",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:CHRALLY_GUN": {
+    "NAME": "逻辑工作室",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:CHRALLY_MOOK": {
-    "NAME": "Mook Workshop",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  "ruina:CHRALLY_MOOK": {
+    "NAME": "墨工坊",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 易伤 。"
   },
-  "${ModID}:CHRALLY_OLDBOYS": {
-    "NAME": "Old Boy's Workshop",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  "ruina:CHRALLY_OLDBOYS": {
+    "NAME": "老男孩工坊",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。"
   },
-  "${ModID}:CHRALLY_RANGA": {
-    "NAME": "Ranga Workshop",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! ruina:Bleed."
+  "ruina:CHRALLY_RANGA": {
+    "NAME": "琅琊工坊",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 给予 !ruina:SecondMagic! 层 ruina:流血 。"
   },
-  "${ModID}:CHRALLY_MACE": {
-    "NAME": "Zelkova Workshop",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:CHRALLY_MACE": {
+    "NAME": "桦树工坊",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:CHRALLY_FURIOSO": {
+  "ruina:CHRALLY_FURIOSO": {
     "NAME": "Furioso",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:Concentration": {
-    "NAME": "Concentration",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
+  "ruina:Concentration": {
+    "NAME": "心神凝聚",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:EnergyShield": {
-    "NAME": "Energy Shield",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Deal !D! damage."
+  "ruina:EnergyShield": {
+    "NAME": "能量护盾",
+    "DESCRIPTION": "所有友方获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。"
   },
-  "${ModID}:BattleCommand": {
-    "NAME": "Battle Command",
-    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! Strength."
+  "ruina:BattleCommand": {
+    "NAME": "沙场指挥",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 所有友方获得 !M! 点 力量 。"
   },
-  "${ModID}:Disposal": {
-    "NAME": "Disposal",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage if the target is *Marked. NL Deals double damage if the target is at or below 25% HP."
+  "ruina:Disposal": {
+    "NAME": "宰杀处置",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 如果目标被 *标记 则造成双倍伤害。 NL 如果目标的生命不高于25%则造成双倍伤害。"
   },
-  "${ModID}:PullingStrings": {
-    "NAME": "Pulling the Strings Taut",
-    "DESCRIPTION": "Deal !D! damage to ALL other characters."
+  "ruina:PullingStrings": {
+    "NAME": "绞杀线",
+    "DESCRIPTION": "对所有其他角色造成 !D! 点伤害。"
   },
-  "${ModID}:TuggingStrings": {
-    "NAME": "Tugging Strings",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:TuggingStrings": {
+    "NAME": "傀儡线",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:AssailingPulls": {
-    "NAME": "Assailing Pulls",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  "ruina:AssailingPulls": {
+    "NAME": "攻击命令",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 易伤 。"
   },
-  "${ModID}:ThinStrings": {
-    "NAME": "Thin Strings",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Apply !M! Weak."
+  "ruina:ThinStrings": {
+    "NAME": "纤细傀儡线",
+    "DESCRIPTION": "所有友方获得 !B! 点 格挡 。 NL 给予 !M! 层 虚弱 。"
   },
-  "${ModID}:Puppetry": {
-    "NAME": "Puppetry",
-    "DESCRIPTION": "ALL allies gain !M! Strength."
+  "ruina:Puppetry": {
+    "NAME": "操控傀儡",
+    "DESCRIPTION": "所有友方获得 !M! 点 力量 。"
   },
-  "${ModID}:ContractOfMight": {
-    "NAME": "Contract Of Might",
-    "DESCRIPTION": "Gain !M! Strength. NL At the end of your turn, take !ruina:SecondMagic! damage and increase the damage you will take from this power by !ruina:SecondMagic!."
+  "ruina:ContractOfMight": {
+    "NAME": "力量合同",
+    "DESCRIPTION": "获得 !M! 点 力量 。 NL 在你的回合结束时，受到 !ruina:SecondMagic! 点伤害然后增加你下次受到的伤害 !ruina:SecondMagic! 点。"
   },
-  "${ModID}:ContractOfLight": {
-    "NAME": "Contract Of Light",
-    "DESCRIPTION": "Gain [E] [E] each turn. NL You cannot draw cards besides your starting hand each turn."
+  "ruina:ContractOfLight": {
+    "NAME": "光明合同",
+    "DESCRIPTION": "每个回合获得 [E] [E] 。 NL 每个回合你除了起始抽牌无法再抽牌。"
   },
-  "${ModID}:ConfusingContract": {
-    "NAME": "Confusing Contract",
-    "DESCRIPTION": "Become Confused."
+  "ruina:ConfusingContract": {
+    "NAME": "混乱合同",
+    "DESCRIPTION": "获得 混乱 。"
   },
-  "${ModID}:NoContract": {
-    "NAME": "No Contract",
-    "DESCRIPTION": "All enemies gain !M! Strength."
+  "ruina:NoContract": {
+    "NAME": "拒签合同",
+    "DESCRIPTION": "所有敌人获得 !M! 点 力量 。"
   },
-  "${ModID}:Ally_UpstandingSlash": {
-    "NAME": "Upstanding Slash",
-    "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Vulnerable."
+  "ruina:Ally_UpstandingSlash": {
+    "NAME": "大刀纵切",
+    "DESCRIPTION": "造成 !D! 点伤害2次。 NL 如果至少造成 !ruina:SecondMagic! 点未被 格挡 的伤害，给予 !M! 层 易伤 。"
   },
-  "${ModID}:Ally_LevelSlash": {
-    "NAME": "Level Slash",
-    "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gains !M! Strength."
+  "ruina:Ally_LevelSlash": {
+    "NAME": "大刀横斩",
+    "DESCRIPTION": "造成 !D! 点伤害2次。 NL 如果至少造成 !ruina:SecondMagic! 点未被 格挡 的伤害，获得 !M! 点 力量 。"
   },
-  "${ModID}:Ally_Spear": {
-    "NAME": "Spear",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage against targets without Block."
+  "ruina:Ally_Spear": {
+    "NAME": "大刀直刺",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 对没有 格挡 的目标造成双倍伤害。"
   },
-  "${ModID}:Ally_GreaterSplitHorizontal": {
-    "NAME": "Greater Split: Horizontal",
-    "DESCRIPTION": "Deal !D! damage. NL Target loses Strength this turn equal to unblocked damage."
+  "ruina:Ally_GreaterSplitHorizontal": {
+    "NAME": "血雾弥漫",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 目标本回合失去等同未被 格挡 伤害的 力量 。"
   },
-  "${ModID}:Ally_GreaterSplitVertical": {
-    "NAME": "Greater Split: Vertical",
-    "DESCRIPTION": "Deal !D! damage. NL Target loses Strength this turn equal to unblocked damage."
+  "ruina:Ally_GreaterSplitVertical": {
+    "NAME": "尸横遍野",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 目标本回合失去等同未被 格挡 伤害的 力量 。"
   },
-  "${ModID}:Overspeed": {
-    "NAME": "Overspeed",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Overspeed": {
+    "NAME": "超速",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:Beatdown": {
-    "NAME": "Beatdown",
-    "DESCRIPTION": "Deal !D! damage to ALL other characters. NL Gain !M! *Metallicize."
+  "ruina:Beatdown": {
+    "NAME": "拳打",
+    "DESCRIPTION": "对所有其他角色造成 !D! 点伤害。 NL 获得 !M! 层 *金属化 。"
   },
-  "${ModID}:Intimidate": {
-    "NAME": "Intimidate",
-    "DESCRIPTION": "Convert all *Plated *Armor into *Metallicize. NL Gain !M! *Plated *Armor."
+  "ruina:Intimidate": {
+    "NAME": "恐吓",
+    "DESCRIPTION": "将所有的 *多层护甲 变成 *金属化 。 NL 获得 !M! 层 *多层护甲 。"
   },
-  "${ModID}:LupineAssault": {
-    "NAME": "Lupine Onslaught",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  "ruina:LupineAssault": {
+    "NAME": "狼之猛袭",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。"
   },
-  "${ModID}:KicksAndStomps": {
-    "NAME": "Kicks and Stomps",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  "ruina:KicksAndStomps": {
+    "NAME": "脚踢",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 获得 !ruina:SecondMagic! 点 力量 。"
   },
-  "${ModID}:Fisticuffs": {
-    "NAME": "Fisticuffs",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  "ruina:Fisticuffs": {
+    "NAME": "痛殴",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 。"
   },
-  "${ModID}:Circulation": {
-    "NAME": "Circulation",
-    "DESCRIPTION": "An ally gains !M! Strength and !ruina:SecondMagic! *Protection."
+  "ruina:Circulation": {
+    "NAME": "体液循环",
+    "DESCRIPTION": "一个盟友获得 !M! 点 力量 和 !ruina:SecondMagic! 层 *守护 。"
   },
-  "${ModID}:Nails": {
-    "NAME": "Sanguine Nails",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Nails": {
+    "NAME": "猩红之爪",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:Siphon": {
-    "NAME": "Siphon",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Frail."
+  "ruina:Siphon": {
+    "NAME": "血液扩散",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 脆弱  。"
   },
-  "${ModID}:Bloodspreading": {
-    "NAME": "Bloodspreading",
-    "DESCRIPTION": "Deal !D! damage."
+  "ruina:Bloodspreading": {
+    "NAME": "鲜血吸收",
+    "DESCRIPTION": "造成 !D! 点伤害。"
   },
-  "${ModID}:Inject": {
-    "NAME": "Inject",
-    "DESCRIPTION": "Apply !M! *Bleed. NL Gain !ruina:SecondMagic! Strength."
+  "ruina:Inject": {
+    "NAME": "能量灌注",
+    "DESCRIPTION": "给予 !M! 层 *流血 。 NL 获得 !ruina:SecondMagic! 点 力量 。"
   },
-  "${ModID}:Obstruct": {
-    "NAME": "Obstruct",
-    "DESCRIPTION": "Gain !B! Block."
+  "ruina:Obstruct": {
+    "NAME": "肉身阻隔",
+    "DESCRIPTION": "获得 !B! 点 格挡 。"
   },
-  "${ModID}:Shockwave": {
-    "NAME": "Shockwave",
-    "DESCRIPTION": "Deal !D! damage. NL If this creature has any Block remaining, an ally gains !M! Intangible."
+  "ruina:Shockwave": {
+    "NAME": "震撼冲击",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果还有 格挡 存留，则使一个盟友获得 !M! 层 无实体 。"
   },
-  "${ModID}:HeatedWeapon": {
-    "NAME": "Heated Weapon",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Shuffle !ruina:SecondMagic! *Burn(s) into your draw pile."
+  "ruina:HeatedWeapon": {
+    "NAME": "焦热兵装",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 将 !ruina:SecondMagic! 张 *灼伤 放入你的抽牌堆。"
   },
-  "${ModID}:Rampage": {
-    "NAME": "Rampageous Strike",
-    "DESCRIPTION": "Deal !D! damage."
+  "ruina:Rampage": {
+    "NAME": "狂乱一击",
+    "DESCRIPTION": "造成 !D! 点伤害。"
   },
-  "${ModID}:HeatUp": {
-    "NAME": "Heat Up",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Strength."
+  "ruina:HeatUp": {
+    "NAME": "加热",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 力量 。"
   },
-  "${ModID}:Pillar": {
-    "NAME": "Degraded Pillar",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  "ruina:Pillar": {
+    "NAME": "劣化之柱",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。"
   },
-  "${ModID}:Fairy": {
-    "NAME": "Degraded Fairy",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Fairy": {
+    "NAME": "劣化妖灵",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:Chain": {
-    "NAME": "Degraded Chain",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  "ruina:Chain": {
+    "NAME": "劣化之链",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 。"
   },
-  "${ModID}:Climax": {
-    "NAME": "Rising Climax",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Increase the number of hits this combat by !ruina:SecondMagic!."
+  "ruina:Climax": {
+    "NAME": "逐渐上涨的高潮",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 在本场战斗中增加 !ruina:SecondMagic! 攻击次数。"
   },
-  "${ModID}:Fun": {
-    "NAME": "Let's Have Some Fun",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Fun": {
+    "NAME": "一起玩耍吧",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:Catch": {
-    "NAME": "Here, Catch",
-    "DESCRIPTION": "Shuffle !M! *Wounds into your draw pile."
+  "ruina:Catch": {
+    "NAME": "块来抓住我",
+    "DESCRIPTION": "将 !M! 张 *伤口 放入你的抽牌堆。"
   },
-  "${ModID}:Pow": {
-    "NAME": "Pow! Kablammo!",
-    "DESCRIPTION": "Apply !M! Weak. NL Gain !ruina:SecondMagic! Strength."
+  "ruina:Pow": {
+    "NAME": "砰！嘭！",
+    "DESCRIPTION": "给予 !M! 层 虚弱 。 NL 获得 !ruina:SecondMagic! 点 力量 。"
   },
-  "${ModID}:Brainwash": {
-    "NAME": "We Need You, You Know",
-    "DESCRIPTION": "Apply !M! *Brainwash."
+  "ruina:Brainwash": {
+    "NAME": "我需要你哟",
+    "DESCRIPTION": "给予 !M! *洗脑 。"
   },
-  "${ModID}:Kick": {
-    "NAME": "Augury Kick",
-    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! Strength."
+  "ruina:Kick": {
+    "NAME": "卦脚",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 所有友方获得 !M! 点 力量 。"
   },
-  "${ModID}:Confrontation": {
-    "NAME": "Confrontation",
-    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! *Protection."
+  "ruina:Confrontation": {
+    "NAME": "一触即发",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 所有友方获得 !M! 层 *守护 。"
   },
-  "${ModID}:Melody": {
-    "NAME": "Melody",
+  "ruina:Melody": {
+    "NAME": "旋律",
     "DESCRIPTION": "",
-    "EXTENDED_DESCRIPTION": ["Play these cards in order: NL ",
-      "Attack ",
-      "Skill ",
-      "Power ",
-      "(Completed)",
-      "[#00ff00]Attack[] ",
-      "[#00ff00]Skill[] ",
-      "[#00ff00]Power[] "]
+    "EXTENDED_DESCRIPTION": ["按顺序打出以下牌: NL ",
+      "攻击 ",
+      "技能 ",
+      "能力 ",
+      "(完成)",
+      "[#00ff00]攻击 ",
+      "[#00ff00]技能 ",
+      "[#00ff00]能力 "]
   },
-  "${ModID}:AttackPrescript": {
-    "NAME": "Attack Prescript",
-    "DESCRIPTION": "Deal !D! damage."
+  "ruina:AttackPrescript": {
+    "NAME": "攻击指令",
+    "DESCRIPTION": "造成 !D! 点伤害。"
   },
-  "${ModID}:SkillPrescript": {
-    "NAME": "Skill Prescript",
-    "DESCRIPTION": "Gain !B! Block."
+  "ruina:SkillPrescript": {
+    "NAME": "技能指令",
+    "DESCRIPTION": "获得 !B! 点 格挡 。"
   },
-  "${ModID}:PowerPrescript": {
-    "NAME": "Power Prescript",
-    "DESCRIPTION": "Gain !M! Strength."
+  "ruina:PowerPrescript": {
+    "NAME": "防御指令",
+    "DESCRIPTION": "获得 !M! 点 力量 。"
   },
-  "${ModID}:EverlastingMelody": {
-    "NAME": "Everlasting Melody",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength."
+  "ruina:EverlastingMelody": {
+    "NAME": "永恒的旋律",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 获得 !M! 点 力量 。"
   },
-  "${ModID}:Neigh": {
+  "ruina:Neigh": {
     "NAME": "NEIGHHH",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "造成 !D! 点伤害。"
   },
-  "${ModID}:Bawk": {
+  "ruina:Bawk": {
     "NAME": "BAWK BAWK",
-    "DESCRIPTION": "Shuffle !M! *Dazed into your discard pile."
+    "DESCRIPTION": "将 !M! 张 *晕眩 放入你的弃牌堆。"
   },
-  "${ModID}:Rarf": {
+  "ruina:Rarf": {
     "NAME": "RARF RARF",
-    "DESCRIPTION": "Gain !B! Block. NL Apply !M! *Paralysis."
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 给予 !M! 层 *麻痹 。"
   },
-  "${ModID}:Tendon": {
-    "NAME": "Powerful Tendon Chords",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Tendon": {
+    "NAME": "肌腱之音",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:Trio": {
-    "NAME": "Trio",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Increase the length of the *Melody by !ruina:SecondMagic!."
+  "ruina:Trio": {
+    "NAME": "三重奏",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 增加 *旋律 的长度 !ruina:SecondMagic! 。"
   },
-  "${ModID}:Faith": {
-    "NAME": "Blind Faith",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Faith": {
+    "NAME": "盲目信念",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:BalefulBrand": {
-    "NAME": "Baleful Brand",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion."
+  "ruina:BalefulBrand": {
+    "NAME": "不详烙印",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 *腐蚀 。"
   },
-  "${ModID}:Will": {
-    "NAME": "Will of the City",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL An ally draws !M! cards next turn."
+  "ruina:Will": {
+    "NAME": "都市之意",
+    "DESCRIPTION": "所有友方获得 !B! 点 格挡 。 NL 令你在下一回合额外抽 !M! 张牌。"
   },
-  "${ModID}:FervidEmotions": {
-    "NAME": "Fervid Emotions",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! *Emotion."
+  "ruina:FervidEmotions": {
+    "NAME": "热血沸腾",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 获得 !ruina:SecondMagic! *情感 。"
   },
-  "${ModID}:Emotional": {
-    "NAME": "Emotional Turbulence",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Gain !M! *Emotion."
+  "ruina:Emotional": {
+    "NAME": "慷慨激昂",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。 NL 获得 !M! *情感 。"
   },
-  "${ModID}:Coordinated": {
-    "NAME": "Coordinated Assault",
-    "DESCRIPTION": "An ally gains !M! Strength, !B! Block, and draws !ruina:SecondMagic! card next turn."
+  "ruina:Coordinated": {
+    "NAME": "两面夹击",
+    "DESCRIPTION": "令你获得 !M! 点 力量 ， !B! 点 格挡 ，在下一回合额外抽 !ruina:SecondMagic! 张牌。"
   },
-  "${ModID}:RagingStorm": {
-    "NAME": "Raging Storm: Love",
-    "DESCRIPTION": "Deal !D! damage and apply !ruina:SecondMagic! Vulnerable to ALL enemies !M! times."
+  "ruina:RagingStorm": {
+    "NAME": "燎原挚焰",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害且给予 !ruina:SecondMagic! 层 易伤 !M! 次。"
   },
-  "${ModID}:Inferno": {
-    "NAME": "Inferno",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  "ruina:Inferno": {
+    "NAME": "饕餮饗食",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。"
   },
-  "${ModID}:Eventide": {
-    "NAME": "Waned Eventide",
-    "DESCRIPTION": "Shuffle !M! *Burns into your discard pile."
+  "ruina:Eventide": {
+    "NAME": "冰冷残阳",
+    "DESCRIPTION": "将 !M! 张 *灼伤 放入你的弃牌堆。"
   },
-  "${ModID}:Emotions": {
-    "NAME": "Conflicting Emotions",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Strength."
+  "ruina:Emotions": {
+    "NAME": "情感碰撞",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 力量 。"
   },
-  "${ModID}:Stigmatize": {
-    "NAME": "Despairingly Stigmatize",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Stigmatize": {
+    "NAME": "绝望烙印",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:Searing": {
-    "NAME": "Searing Resolution",
-    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Burn(s) into your draw pile."
+  "ruina:Searing": {
+    "NAME": "灼烧勇气",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 将 !M! 张 *灼伤 放入你的抽牌堆。"
   },
-  "${ModID}:Sorrow": {
-    "NAME": "Wound of Sorrow",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Sorrow": {
+    "NAME": "痛彻骨髓",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:SnakeSlit": {
-    "NAME": "Snake Slit",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  "ruina:SnakeSlit": {
+    "NAME": "游蛇切断",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 获得 !ruina:SecondMagic! 点 力量 。"
   },
-  "${ModID}:VioletBlade": {
-    "NAME": "Violet Blade",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:VioletBlade": {
+    "NAME": "紫光凝剑",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:Laceration": {
-    "NAME": "Laceration",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  "ruina:Laceration": {
+    "NAME": "贯通创伤",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 易伤 。"
   },
-  "${ModID}:VenomousFangs": {
-    "NAME": "Venomous Fang",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  "ruina:VenomousFangs": {
+    "NAME": "毒牙穿透",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 。"
   },
-  "${ModID}:SerpentineBarrier": {
-    "NAME": "Serpentine Barrier",
-    "DESCRIPTION": "ALL allies gain !B! Block."
+  "ruina:SerpentineBarrier": {
+    "NAME": "防御架势",
+    "DESCRIPTION": "所有友方获得 !B! 点 格挡 。"
   },
-  "${ModID}:Duel": {
-    "NAME": "Duel",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Deal !D! damage."
+  "ruina:Duel": {
+    "NAME": "决斗之舞",
+    "DESCRIPTION": "所有友方获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。"
   },
-  "${ModID}:BreakEgg": {
-    "NAME": "Break an Egg",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
+  "ruina:BreakEgg": {
+    "NAME": "碎蛋",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 *麻痹 。"
   },
-  "${ModID}:Slap": {
-    "NAME": "Slap and Fold",
-    "DESCRIPTION": "Gain !B! Block. NL Apply !M! *Bleed."
+  "ruina:Slap": {
+    "NAME": "敲晕",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 给予 !M! 层 *流血 。"
   },
-  "${ModID}:Mince": {
-    "NAME": "Mince",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Mince": {
+    "NAME": "切碎",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:Season": {
-    "NAME": "Season the Meat",
-    "DESCRIPTION": "Apply !M! Weak and Vulnerable."
+  "ruina:Season": {
+    "NAME": "调味",
+    "DESCRIPTION": "给予 !M! 层 虚弱 和 易伤 。"
   },
-  "${ModID}:Trial": {
-    "NAME": "Trial Smack",
-    "DESCRIPTION": "Deal !D! damage. NL Heal HP equal to unblocked damage."
+  "ruina:Trial": {
+    "NAME": "焖透",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 恢复等同未被 格挡 伤害的生命。"
   },
-  "${ModID}:Sack": {
-    "NAME": "Into the Sack You Go!",
-    "DESCRIPTION": "Turn a random card in your deck into *Fresh *Meat. NL Gain !M! Strength."
+  "ruina:Sack": {
+    "NAME": "生擒!",
+    "DESCRIPTION": "将你卡组中的随机一张牌变为 *鲜肉 。 NL 获得 !M! 点 力量 。"
   },
-  "${ModID}:FloodingBullets": {
-    "NAME": "Flooding Bullets",
-    "DESCRIPTION": "Deal !D! damage to ALL other characters !M! times."
+  "ruina:FloodingBullets": {
+    "NAME": "倾泻魔弹",
+    "DESCRIPTION": "对所有其他角色造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:Reload": {
-    "NAME": "Reload",
-    "DESCRIPTION": "Gain !B! Block. NL An ally gains [E] and draws !M! card next turn."
+  "ruina:Reload": {
+    "NAME": "装填",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 下一回合一个盟友获得 [E] 并抽 !M! 张牌。"
   },
-  "${ModID}:Preach": {
-    "NAME": "Thought Gear: Preach",
-    "DESCRIPTION": "ALL allies gain !M! Strength next turn."
+  "ruina:Preach": {
+    "NAME": "思想齿轮：传教",
+    "DESCRIPTION": "下个回合所有友方获得 !M! 点 力量 。"
   },
-  "${ModID}:Accelerate": {
-    "NAME": "Thought Gear: Accelerate",
-    "DESCRIPTION": "ALL allies gain !B! Block."
+  "ruina:Accelerate": {
+    "NAME": "思想齿轮：加速",
+    "DESCRIPTION": "所有友方获得 !B! 点 格挡 。"
   },
-  "${ModID}:Propagate": {
-    "NAME": "Thought Gear: Propagate",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  "ruina:Propagate": {
+    "NAME": "思想齿轮：道破",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 易伤 。"
   },
-  "${ModID}:ThoughtGearBrainwash": {
-    "NAME": "Thought Gear: Brainwash",
-    "DESCRIPTION": "Deal !D! damage."
+  "ruina:ThoughtGearBrainwash": {
+    "NAME": "思想齿轮：洗脑",
+    "DESCRIPTION": "造成 !D! 点伤害。"
   },
-  "${ModID}:Silence": {
-    "NAME": "Silence",
-    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat."
+  "ruina:Silence": {
+    "NAME": "静默",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 在这场战斗中增加这张牌的伤害 !M! 。"
   },
-  "${ModID}:Time": {
-    "NAME": "Time",
-    "DESCRIPTION": "You take an extra turn after this one. NL End your turn."
+  "ruina:Time": {
+    "NAME": "时间",
+    "DESCRIPTION": "你获得一个额外的行动回合。 NL 强制结束你的回合。"
   },
-  "${ModID}:Safeguard": {
-    "NAME": "Magical Safeguard",
-    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength."
+  "ruina:Safeguard": {
+    "NAME": "魔法 防御",
+    "DESCRIPTION": "所有友方获得 !B! 点 格挡 和 !M! 点 力量 。"
   },
-  "${ModID}:Missile": {
-    "NAME": "Magic Missile",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Missile": {
+    "NAME": "魔法 投射",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
-  "${ModID}:Onslaught": {
-    "NAME": "Magic Onslaught",
-    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat."
+  "ruina:Onslaught": {
+    "NAME": "魔法 反冲",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 在这场战斗中增加这张牌的伤害 !M! 。"
   },
-  "${ModID}:Contract": {
-    "NAME": "Contract",
-    "DESCRIPTION": "Present a list of *Contracts."
+  "ruina:Contract": {
+    "NAME": "合同",
+    "DESCRIPTION": "提供 *合同 列表。"
   },
-  "${ModID}:BindingTerms": {
-    "NAME": "Binding Terms",
-    "DESCRIPTION": "Shuffle !M! *Voids into your discard pile."
+  "ruina:BindingTerms": {
+    "NAME": "约束合约",
+    "DESCRIPTION": "将 !M! 张 *虚空 放入你的弃牌堆。"
   }
 }

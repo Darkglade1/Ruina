@@ -1,224 +1,224 @@
 {
   "ruina:LittleRed": {
     "MOVES": [
-      "Beast Hunt",
-      "Catch Breath",
-      "Hollow Point Shell",
-      "Bullet Shower"
+      "猎杀野兽",
+      "稳定呼吸",
+      "爆裂射击",
+      "无差别射击"
     ],
-    "NAME": "Little Red Riding Hooded Mercenary",
+    "NAME": "小红帽雇佣兵",
     "DIALOG": [
-      "I will end this nightmare myself!",
-      "YOU DARE STEAL MY PREY?",
-      "My duty is fulfilled at last.",
-      "Still not . . . strong enough . . . "
+      "别挡道……这是我自己的事，我必须完成这份委托！",
+      "你竟敢抢我的猎物？",
+      "我的任务终于完成了。",
+      "还是不够。。。。。。强。。。。。。 "
     ]
   },
   "ruina:NightmareWolf": {
     "MOVES": [
-      "Cruel Claws",
-      "Ferocious Fangs",
-      "Bloodstained Hunt",
-      "Howl"
+      "惊骇利爪",
+      "残暴尖牙",
+      "血腥追猎",
+      "噩狼咆哮"
     ],
-    "NAME": "Wolf in Her Nightmares",
+    "NAME": "噩梦中的狼",
     "DIALOG": [
     ]
   },
   "ruina:Mountain": {
     "MOVES": [
-      "Devour",
-      "Bite",
-      "Horrid Screech",
-      "Ram",
-      "Vomit"
+      "吸收",
+      "咬",
+      "惨叫",
+      "冲撞",
+      "呕吐"
     ],
-    "NAME": "Mountain of Smiling Bodies",
+    "NAME": "微笑的尸山",
     "DIALOG": [
-      "Hungry . . . must feed . . ."
+      "饿了。。。。。。必须进食。。。。 。"
     ]
   },
   "ruina:MeltedCorpses": {
     "MOVES": [
     ],
-    "NAME": "Melted Corpse",
+    "NAME": "溶解的死尸",
     "DIALOG": [
     ]
   },
   "ruina:Scarecrow": {
     "MOVES": [
-      "Rake",
-      "Harvest",
-      "Struggle for Wisdom"
+      "耕耘",
+      "收获",
+      "收割智慧"
     ],
-    "NAME": "Scarecrow",
+    "NAME": "稻草人",
     "DIALOG": [
     ]
   },
   "ruina:Woodsman": {
     "MOVES": [
-      "Strike of the Axe",
-      "Lumber",
-      "Warm Pulse"
+      "巨斧劈砍",
+      "伐木",
+      "温暖的心跳"
     ],
-    "NAME": "Warm-Hearted Woodsman",
+    "NAME": "热心的樵夫",
     "DIALOG": [
-      "Give me . . . your heart . . ."
+      "给我。。。 。。。你的心。。。 。。。"
     ]
   },
   "ruina:JesterOfNihil": {
     "MOVES": [
-      "Will of Nihil",
-      "Consuming Desire",
-      "In the Name of Love and Hate",
-      "Sword Sharpened by Tears",
-      "Rampage"
+      "虚无的意志",
+      "吞食欲望",
+      "以爱与恨之名",
+      "泪峰之剑",
+      "暴走"
     ],
-    "NAME": "Jester of Nihil",
+    "NAME": "虚无弄臣",
     "DIALOG": [
-      "All shall return to nothing . . ."
+      "一切都将归于虚无。。。。。。"
     ]
   },
   "ruina:Statue": {
     "MOVES": [
-      "Petrified Hate",
-      "Lapidified Wrath",
-      "Ossified Despair",
-      "Fossilized Greed"
+      "凝结的憎恶",
+      "凝结的愤怒",
+      "凝结的绝望",
+      "凝结的贪婪"
     ],
-    "NAME": "Statue",
+    "NAME": "石质雕像",
     "DIALOG": [
     ]
   },
   "ruina:QueenOfLove": {
     "MOVES": [
-      "In the Name of Love and Justice!",
-      "Arcana Beats"
+      "以爱与正义之名！",
+      "魔法之力"
     ],
-    "NAME": "Queen of Love",
+    "NAME": "博爱之女皇",
     "DIALOG": [
-      "Your villainous deeds will not go unpunished!",
-      "Love and Justice prevails once more!",
-      "My strength fades . . ."
+      "你罪恶的行为无法得到原谅！",
+      "爱与正义再次占了上风！",
+      "我的力量消失了 。 。 。"
     ]
   },
   "ruina:ServantOfCourage": {
     "MOVES": [
-      "Rumble",
-      "Acidic Sludge"
+      "轰鸣",
+      "酸性污泥"
     ],
-    "NAME": "Servant of Courage",
+    "NAME": "勇敢的仆从",
     "DIALOG": [
-      "For the justice and peace of the land.",
-      "The law is upheld.",
-      "The others will carry on."
+      "为了这片土地的正义与和平。",
+      "法律得到了维护。",
+      "其他的人将会继续。"
     ]
   },
   "ruina:SanguineBat": {
     "MOVES": [
-      "Bloodsucking",
-      "Digging Teeth",
-      "Avid Thirst"
+      "吸血",
+      "尖牙深入",
+      "干渴"
     ],
-    "NAME": "Sanguine Bat",
+    "NAME": "血蝙蝠",
     "DIALOG": [
     ]
   },
   "ruina:Nosferatu": {
     "MOVES": [
-      "Unbearable Drought",
-      "Merciless Gesture",
-      "Looming Presence"
+      "无法忍耐的饥渴",
+      "阴森的气息",
+      "激烈的手势"
     ],
-    "NAME": "Nosferatu",
+    "NAME": "诺斯费拉图",
     "DIALOG": [
     ]
   },
   "ruina:RoadHome": {
     "MOVES": [
-      "Let's Go Together!",
-      "Play Tag!",
-      "Homing Instinct"
+      "一起走吧！",
+      "躲猫猫！",
+      "归巢本能"
     ],
-    "NAME": "Road Home",
+    "NAME": "归家的路途",
     "DIALOG": [
-      "Let's go home, together!",
-      "Aww, you killed my friend!"
+      "我们一起回家吧！",
+      "噢！你杀了我的朋友！"
     ]
   },
   "ruina:ScaredyCat": {
     "MOVES": [
-      "RAWR",
-      "Growl",
-      "Courage"
+      "嗷呜呜",
+      "咕噜噜",
+      "勇气"
     ],
-    "NAME": "Scaredy Cat",
+    "NAME": "胆小的猫咪",
     "DIALOG": [
     ]
   },
   "ruina:KnightOfDespair": {
     "MOVES": [
     ],
-    "NAME": "Knight of Despair",
+    "NAME": "绝望骑士",
     "DIALOG": [
-      "I failed to protect them . . ."
+      "我没能保护好他们。。。"
     ]
   },
   "ruina:Sword": {
     "MOVES": [
-      "Tear Heart"
+      "泪锋之剑"
     ],
-    "NAME": "Forgotten Sword",
+    "NAME": "遗忘骑士之剑",
     "DIALOG": [
     ]
   },
   "ruina:KingOfGreed": {
     "MOVES": [
-      "Road of the King",
-      "Fixation",
-      "Edacity"
+      "暴君之路",
+      "固化",
+      "勤奋"
     ],
-    "NAME": "King of Greed",
+    "NAME": "贪婪国王",
     "DIALOG": [
-      "More . .. I must have MORE!"
+      "更多。。。我要更多！"
     ]
   },
   "ruina:BrilliantBliss": {
     "MOVES": [
     ],
-    "NAME": "Brilliant Bliss",
+    "NAME": "金色琥珀s",
     "DIALOG": [
     ]
   },
   "ruina:BadWolf": {
     "MOVES": [
-      "Claw",
-      "Bite",
-      "Hunt"
+      "抓",
+      "妖",
+      "扑食"
     ],
-    "NAME": "Big and Will Be Bad Wolf",
+    "NAME": "大坏狼",
     "DIALOG": [
     ]
   },
   "ruina:QueenOfHate": {
     "MOVES": [
-      "Arcana Beats",
-      "In the Name of Hate",
-      "Light of Hatred"
+      "魔法之力",
+      "以恶之名",
+      "憎恶之光"
     ],
-    "NAME": "Queen of Hatred",
+    "NAME": "憎恶皇后",
     "DIALOG": [
     ]
   },
   "ruina:Ozma": {
     "MOVES": [
-      "Fading Memories",
-      "Powder of Life",
-      "Hinder",
-      "Squash",
-      "Awaken"
+      "消逝的记忆",
+      "生命的粉末",
+      "干扰",
+      "重压",
+      "唤醒"
     ],
-    "NAME": "Ozma",
+    "NAME": "奥兹玛",
     "DIALOG": [
     ]
   },
@@ -226,31 +226,31 @@
     "MOVES": [
 
     ],
-    "NAME": "Jack",
+    "NAME": "杰克",
     "DIALOG": [
     ]
   },
   "ruina:ServantOfWrath": {
     "MOVES": [
-      "EMBODIMENTS OF EVIL!",
-      "Rage"
+      "邪恶的化身！",
+      "愤怒"
     ],
-    "NAME": "Servant of Wrath",
+    "NAME": "愤怒侍从",
     "DIALOG": [
-      "EMBODIMENTS OF EVIL!",
-      "Law and order . . . has prevailed."
+      "邪恶的化身！",
+      "法律和秩序。。获胜。。。"
     ]
   },
   "ruina:Hermit": {
     "MOVES": [
-      "Hold Still",
-      "Kindly Make Way",
-      "Hello, Companion",
-      "Crackle"
+      "老实待着",
+      "起开",
+      "朋友啊",
+      "喀嚓喀嚓"
     ],
-    "NAME": "Hermit of the Azure Forest",
+    "NAME": "青林隐士",
     "DIALOG": [
-      "Hello, companion."
+      "你好啊，朋友。"
     ]
   },
   "ruina:HermitStaff": {
@@ -260,635 +260,635 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:Seraphim": {
+  "ruina:Seraphim": {
     "MOVES": [
       "",
-      "Advent",
-      "Wings Of Grace",
-      "Summon Apostles",
-      "Baptism",
-      "Rise And Serve",
-      "Salvation",
-      "Prayer",
-      "Do Not Deny Me",
-      "Be Not Afraid",
-      "Behold My Power",
-      "Revelation"
+      "降临",
+      "优雅之翼",
+      "召唤使徒",
+      "圣洗",
+      "起身迎接我吧",
+      "我是你的救主",
+      "祈祷",
+      "不要否认我的存在",
+      "不要惊惶",
+      "使他们知道我的权能",
+      "启示"
     ],
-    "NAME": "Seraphim of a Long Lost Paradise",
+    "NAME": "失乐园的六翼天使",
     "DIALOG": [
     ]
   },
-  "${ModID}:ParadiseLost": {
+  "ruina:ParadiseLost": {
     "MOVES": [
-      "Baptism"
+      "圣洗"
     ],
-    "NAME": "Prophet",
+    "NAME": "先知",
     "DIALOG": [
     ]
   },
-  "${ModID}:ScytheApostle": {
+  "ruina:ScytheApostle": {
     "MOVES": [
-      "I will Follow Thee",
-      "Thy Will be Done",
-      "I Shall Preserve Thee",
-      "Teach Us"
+      "我将跟随您",
+      "愿您的国降临",
+      "我要保全他的性命",
+      "求您教导我"
     ],
-    "NAME": "Scythe Apostle",
+    "NAME": "镰刀使徒",
     "DIALOG": [
     ]
   },
-  "${ModID}:SpearApostle": {
+  "ruina:SpearApostle": {
     "MOVES": [
-      "For He is Holy",
-      "The Will of the Lord be Done",
-      "I shall Devote unto Thee",
-      "Let Thy Light Lead Me"
+      "因为他是圣洁的",
+      "愿您的旨意成就",
+      "我将永献于您",
+      "求您引导我吧"
     ],
-    "NAME": "Spear Apostle",
+    "NAME": "长枪使徒",
     "DIALOG": [
     ]
   },
-  "${ModID}:StaffApostle": {
+  "ruina:StaffApostle": {
     "MOVES": [
-      "Thy Words Come unto Me",
-      "Give Us Rest"
+      "愿您的话语降临到我身上",
+      "使我们得安息"
     ],
-    "NAME": "Staff Apostle",
+    "NAME": "权杖使徒",
     "DIALOG": [
     ]
   },
-  "${ModID}:GuardianApostle": {
+  "ruina:GuardianApostle": {
     "MOVES": [
-      "Rise And Serve",
-      "Wilt thou that We Command Fire?",
-      "Thou art the King",
-      "Give Us Rest",
-      "Thy Words Come unto Me",
-      "Lord, Shew Us",
+      "起来跟随您",
+      "您要烧灭他们吗?",
+      "您生来为王",
+      "使我们得安息",
+      "您的话语降临到我身上",
+      "求您显给我们看",
       ""
     ],
-    "NAME": "Guardian Apostle",
+    "NAME": "护卫使徒",
     "DIALOG": [
     ]
   },
-  "${ModID}:Twilight": {
+  "ruina:Twilight": {
     "MOVES": [
-      "Peace for All",
-      "Surveillance",
-      "Torn Mouth",
-      "Tilted Scale",
-      "Talons",
-      "Brilliant Eyes"
+      "大家的和平",
+      "监视",
+      "撕破的巨口",
+      "歪斜的天秤",
+      "横扫",
+      "璀璨的眼珠"
     ],
-    "NAME": "Twilight",
+    "NAME": "天启鸟",
     "DIALOG": [
     ]
   },
-  "${ModID}:PunishingBird": {
+  "ruina:PunishingBird": {
     "MOVES": [
-      "Peck",
-      "Punishment"
+      "啄",
+      "惩罚"
     ],
-    "NAME": "Punishing Bird",
+    "NAME": "惩戒鸟",
     "DIALOG": [
     ]
   },
-  "${ModID}:Keeper": {
+  "ruina:Keeper": {
     "MOVES": [
-      "Cuckoo",
-      "Ring",
-      "Smash"
+      "叫声",
+      "铃声",
+      "粉碎"
     ],
-    "NAME": "Keeper Of The Forest",
+    "NAME": "森林的守望者",
     "DIALOG": [
     ]
   },
-  "${ModID}:Sage": {
+  "ruina:Sage": {
     "MOVES": [
-      "Ring",
-      "Smash"
+      "铃声",
+      "冲撞"
     ],
-    "NAME": "Sage of the Forest",
+    "NAME": "森林智者",
     "DIALOG": [
-      "The guardian has gone mad!",
-      "We must stop him!",
-      "I hope he has come to his senses.",
-      "That was a harrowing ordeal."
+      "守护者已经疯了！",
+      "我们必须阻止它！",
+      "我希望它已经恢复了理智。",
+      "真是一场痛苦的灾难。"
     ]
   },
-  "${ModID}:BigBird": {
+  "ruina:BigBird": {
     "MOVES": [
-      "Shining Light",
-      "Dazzle",
-      "Dazzle",
-      "Illuminate",
-      "Illuminate"
+      "闪光",
+      "刺眼",
+      "刺眼",
+      "照亮",
+      "照亮"
     ],
-    "NAME": "Big Bird",
+    "NAME": "大鸟",
     "DIALOG": [
     ]
   },
-  "${ModID}:Worshipper": {
+  "ruina:Worshipper": {
     "MOVES": [
-      "For the Star",
-      "Everlasting Faith",
-      "Hear the Sound of the Star!",
-      "We'll Meet Soon as Stars!"
+      "为了新星",
+      "信仰没有错",
+      "我听见星之声了！",
+      "化作星辰再会！！"
     ],
-    "NAME": "Worshipper",
+    "NAME": "信徒",
     "DIALOG": [
     ]
   },
-  "${ModID}:BlueStar": {
+  "ruina:BlueStar": {
     "MOVES": [
-      "Rising Star",
-      "Starry Sky",
-      "Sound of a Star",
-      "Worshippers"
+      "新星升起",
+      "星空",
+      "新星之声",
+      "殉教者"
     ],
-    "NAME": "Shrine to the Blue Star",
+    "NAME": "碧蓝新星",
     "DIALOG": [
     ]
   },
-  "${ModID}:BurrowingHeaven": {
+  "ruina:BurrowingHeaven": {
     "MOVES": [
-      "Your Own Heaven",
-      "Bloody Wings",
-      "Gaze of Others"
+      "独属于你的天堂",
+      "血色之翼",
+      "他人的凝视"
     ],
-    "NAME": "Burrowing Heaven",
+    "NAME": "渗透天堂",
     "DIALOG": [
     ]
   },
-  "${ModID}:RemnantOfTime": {
+  "ruina:RemnantOfTime": {
     "MOVES": [
-      "Backlash of Time",
-      "Torrent of Hours"
+      "时间的反冲",
+      "时间的洪流"
     ],
-    "NAME": "Remnant of Time",
+    "NAME": "时间的痕迹",
     "DIALOG": [
     ]
   },
-  "${ModID}:PriceOfSilence": {
+  "ruina:PriceOfSilence": {
     "MOVES": [
-      "Stolen Time",
-      "Silent Hour"
+      "被偷走的时间",
+      "静默"
     ],
-    "NAME": "Price of Silence",
+    "NAME": "沉默的代价",
     "DIALOG": [
     ]
   },
-  "${ModID}:Bloodbath": {
+  "ruina:Bloodbath": {
     "MOVES": [
-      "Pale Hands",
-      "Depression"
+      "瘆白之手",
+      "抑郁"
     ],
-    "NAME": "Bloodbath",
+    "NAME": "血浴缸",
     "DIALOG": [
     ]
   },
-  "${ModID}:SnowQueen": {
+  "ruina:SnowQueen": {
     "MOVES": [
-      "Blizzard",
-      "Frigid Gaze",
-      "Ice Splinters",
-      "Frozen Throne"
+      "雪暴",
+      "冰冷目光",
+      "霜凌",
+      "冰封王座"
     ],
-    "NAME": "Snow Queen",
+    "NAME": "冰雪女皇",
     "DIALOG": [
     ]
   },
-  "${ModID}:PrisonOfIce": {
+  "ruina:PrisonOfIce": {
     "MOVES": [
       ""
     ],
-    "NAME": "Prison of Ice",
+    "NAME": "冰狱",
     "DIALOG": [
     ]
   },
-  "${ModID}:HeartOfAspiration": {
+  "ruina:HeartOfAspiration": {
     "MOVES": [
-      "Pulsation",
-      "Beats of Aspiration"
+      "脉动",
+      "渴望脉搏"
     ],
-    "NAME": "Heart of Aspiration",
+    "NAME": "渴望之心",
     "DIALOG": [
     ]
   },
-  "${ModID}:LungsOfCraving": {
+  "ruina:LungsOfCraving": {
     "MOVES": [
-      "Fervent Beats",
-      "Retracting Beats"
+      "剧烈搏动",
+      "收缩搏动"
     ],
-    "NAME": "Lungs of Craving",
+    "NAME": "渴望之肺",
     "DIALOG": [
     ]
   },
-  "${ModID}:RunawayBird": {
+  "ruina:RunawayBird": {
     "MOVES": [
-      "Sweep",
-      "Shriek"
+      "恐慌振翅",
+      "凄惨悲鸣"
     ],
-    "NAME": "Runaway Bird",
+    "NAME": "逃亡鸟",
     "DIALOG": [
     ]
   },
-  "${ModID}:EyeballChick": {
+  "ruina:EyeballChick": {
     "MOVES": [
-      "Stare",
-      "Pierce"
+      "凝视",
+      "啄击"
     ],
-    "NAME": "Eyeball Chick",
+    "NAME": "眼珠儿鸟",
     "DIALOG": [
     ]
   },
-  "${ModID}:RedMist": {
+  "ruina:RedMist": {
     "MOVES": [
-      "Focus Spirit",
-      "Upstanding Slash",
-      "Level Slash",
-      "Spear",
-      "Greater Split: Vertical",
-      "Greater Split: Horizontal"
+      "屏息凝神",
+      "大刀纵切",
+      "大刀横斩",
+      "大刀直刺",
+      "尸横遍野",
+      "血雾弥漫"
     ],
-    "NAME": "The Red Mist",
+    "NAME": "殷红迷雾",
     "DIALOG": [
     ]
   },
-  "${ModID}:JudgementBird": {
+  "ruina:JudgementBird": {
     "MOVES": [
-      "Stare",
-      "Judgement",
-      "Heavy Guilt",
-      "Ceaseless Duty"
+      "凝视",
+      "审判",
+      "沉重的罪孽",
+      "永恒的审判"
     ],
-    "NAME": "Judgement Bird",
+    "NAME": "审判鸟",
     "DIALOG": [
     ]
   },
-  "${ModID}:Pinocchio": {
+  "ruina:Pinocchio": {
     "MOVES": [
-      "Learn"
+      "学习"
     ],
-    "NAME": "Pinocchio",
+    "NAME": "匹诺曹",
     "DIALOG": [
     ]
   },
-  "${ModID}:yanHand": {
+  "ruina:yanHand": {
     "MOVES": [
-      "Giant Fist",
-      "Compress",
-      "Flurry Of Fists",
-      "Baleful Brand",
-      "Lock"
+      "巨拳轰击",
+      "巨拳压击",
+      "乱拳痛殴",
+      "不详烙印",
+      "封锁目标"
     ],
-    "NAME": "Distorted Hand",
+    "NAME": "扭曲的手",
     "DIALOG": [
     ]
   },
-  "${ModID}:yanDistortion": {
+  "ruina:yanDistortion": {
     "MOVES": [
-      "Protect",
-      "Protect",
-      "Attack",
-      "Attack",
-      "Giant Fist",
-      "Compress",
-      "Flurry Of Fists",
-      "Baleful Brand",
-      "Lock",
-      "Distorted Blade"
+      "执行-固守",
+      "执行-护卫",
+      "执行-进攻",
+      "执行-警戒",
+      "巨拳轰击",
+      "巨拳压击",
+      "乱拳痛殴",
+      "不详烙印",
+      "封锁目标",
+      "意志之刃"
     ],
-    "NAME": "Distorted Yan",
+    "NAME": "扭曲阳",
     "DIALOG": [
     ]
   },
-  "${ModID}:Chesed": {
+  "ruina:Chesed": {
     "MOVES": [
-      "Battle Command",
-      "Energy Shield",
-      "Concentration",
-      "Disposal"
+      "沙场指挥",
+      "能量护盾",
+      "心神凝聚",
+      "宰杀处置"
     ],
     "NAME": "Chesed",
     "DIALOG": [
-      "That's a rather cynical way of looking at things.",
-      "Thanks for the help, stranger.",
-      "Time for a finishing blow."
+      "真是相当愤世嫉俗的看法啊。",
+      "感谢你的帮助，陌生人。",
+      "是时候做最后一击了。"
     ]
   },
-  "${ModID}:Puppeteer": {
+  "ruina:Puppeteer": {
     "MOVES": [
-      "Pulling the Strings Taut",
-      "Tugging Strings",
-      "Assailing Pulls",
-      "Thin Strings",
-      "Puppetry"
+      "绞杀线",
+      "傀儡线",
+      "攻击命令",
+      "纤细傀儡线",
+      "操控傀儡"
     ],
-    "NAME": "Jae-heon",
+    "NAME": "在宪",
     "DIALOG": [
-      "We are all bound by the strings of others."
+      "我们都在他人的绳索束缚之下。"
     ]
   },
-  "${ModID}:Puppet": {
+  "ruina:Puppet": {
     "MOVES": [
-      "Forceful Gesture",
-      "Repressed Flesh",
-      "Ghghghghgh",
-      "Ghghghghgh"
+      "自行移动",
+      "受压肉体",
+      "嘎吱嘎吱",
+      "嘎吱嘎吱"
     ],
-    "NAME": "Puppet",
+    "NAME": "傀儡",
     "DIALOG": [
     ]
   },
-  "${ModID}:Argalia": {
+  "ruina:Argalia": {
     "MOVES": [
-      "Largo",
-      "Allegro",
-      "Resonant Scythe",
-      "Trails Of Blue",
-      "Tempestuous Danza"
+      "崩坏序曲",
+      "不谐和音",
+      "破空律斩",
+      "苍蓝轨迹",
+      "最终旋律"
     ],
-    "NAME": "Argalia",
+    "NAME": "阿尔加利亚",
     "DIALOG": [
-      "You won't talk to me, Roland? What a shame."
+      "你不和我聊一聊吗，罗兰？真是可惜。"
     ]
   },
-  "${ModID}:Roland": {
+  "ruina:Roland": {
     "MOVES": [
-      "Crystal Atelier",
-      "Wheels Industry",
-      "Durandal",
-      "Allas Workshop",
-      "Atelier Logic",
-      "Mook Workshop",
-      "Old Boy's Workshop",
-      "Ranga Workshop",
-      "Zelkova Workshop",
+      "卡莉斯塔工作室",
+      "轮盘重工",
+      "杜兰达尔",
+      "阿拉斯工坊",
+      "逻辑工作室",
+      "墨工坊",
+      "老男孩工坊",
+      "琅琊工坊",
+      "桦树工坊",
       "Furioso"
     ],
-    "NAME": "Roland",
+    "NAME": "罗兰",
     "DIALOG": [
-      "...",
-      "Rot in hell."
+      "。。。",
+      "下地狱去吧。"
     ]
   },
-  "${ModID}:Pluto": {
+  "ruina:Pluto": {
     "MOVES": [
-      "Magical Safeguard",
-      "Magic Missle",
-      "Magic Onslaught",
-      "Contract",
-      "Binding Terms"
+      "魔法 防御",
+      "魔法 投射",
+      "魔法 反冲",
+      "合同",
+      "约束合约"
     ],
-    "NAME": "Pluto",
+    "NAME": "普鲁托",
     "DIALOG": [
-      "Empty words and hollow faith are meaningless."
+      "空洞的话语和的信仰是毫无意义的。"
     ]
   },
-  "${ModID}:Hokma": {
+  "ruina:Hokma": {
     "MOVES": [
-      "Silence",
-      "Time"
+      "静默",
+      "时间"
     ],
     "NAME": "Hokma",
     "DIALOG": [
-      "A faith is only as strong as the one who carries it.",
-      "I had faith that we would prevail."
+      "信仰的力量来自于承载它的人。",
+      "我坚信我们会获胜。"
     ]
   },
-  "${ModID}:Shade": {
+  "ruina:Shade": {
     "MOVES": [
       ""
     ],
-    "NAME": "Shade",
+    "NAME": "阴影",
     "DIALOG": [
     ]
   },
-  "${ModID}:Tanya": {
+  "ruina:Tanya": {
     "MOVES": [
-      "Overspeed",
-      "Beatdown",
-      "Intimidate",
-      "Lupine Assault",
-      "Kicks and Stomps",
-      "Fisticuffs"
+      "超速",
+      "拳打",
+      "恐吓",
+      "狼之猛袭",
+      "脚踢",
+      "痛殴"
     ],
-    "NAME": "Tanya",
+    "NAME": "塔尼娅",
     "DIALOG": [
-      "It's the right of the strong to rule over the weak."
+      "强者统治弱者天经地义。"
     ]
   },
-  "${ModID}:Gebura": {
+  "ruina:Gebura": {
     "MOVES": [
-      "Upstanding Slash",
-      "Level Slash",
-      "Spear",
-      "Greater Split: Vertical",
-      "Greater Split: Horizontal"
+      "大刀纵切",
+      "大刀横斩",
+      "大刀直刺",
+      "血雾弥漫",
+      "尸横遍野"
     ],
     "NAME": "Gebura",
     "DIALOG": [
-      "What a load of rubbish.",
-      "Look where all that strength got you."
+      "一堆垃圾。",
+      "看看你的力气都到哪去了。"
     ]
   },
-  "${ModID}:VermilionCross": {
+  "ruina:VermilionCross": {
     "MOVES": [
-      "Obstruct",
-      "Shockwave",
-      "Heated Weapon",
-      "Rampageous Strike",
-      "Heat Up"
+      "肉身阻隔",
+      "震撼冲击",
+      "焦热兵装",
+      "狂乱一击",
+      "加热"
     ],
-    "NAME": "Vermilion Cross",
+    "NAME": "朱红十字",
     "DIALOG": [
     ]
   },
-  "${ModID}:Elena": {
+  "ruina:Elena": {
     "MOVES": [
-      "Circulation",
-      "Sanguine Nails",
-      "Siphon",
-      "Bloodspreading",
-      "Inject"
+      "体液循环",
+      "猩红之爪",
+      "血液扩散",
+      "鲜血吸收",
+      "能量灌注"
     ],
-    "NAME": "Elena",
+    "NAME": "伊莲娜",
     "DIALOG": [
-      "A feast awaits us in the Light!",
-      "It was but a hollow, empty husk."
+      "一场盛宴在光明中等待着我们！",
+      "它只是一个空洞的空壳。"
     ]
   },
-  "${ModID}:Binah": {
+  "ruina:Binah": {
     "MOVES": [
-      "Degraded Pillar",
-      "Degraded Chain",
-      "Degraded Fairy"
+      "劣化之柱",
+      "劣化之链",
+      "劣化妖灵"
     ],
     "NAME": "Binah",
     "DIALOG": [
-      "No feast would be served to the likes of you.",
-      "That was quite bothersome."
+      "像你这样的人不会有宴会。",
+      "真是麻烦。"
     ]
   },
-  "${ModID}:Oswald": {
+  "ruina:Oswald": {
     "MOVES": [
-      "Rising Climax",
-      "Let's Have Some Fun",
-      "Here, Catch",
-      "Pow! Kablammo!",
-      "We Need You, You Know"
+      "高潮",
+      "愉快玩耍吧",
+      "块抓住我",
+      "砰！嘭！",
+      "我需要你哟"
     ],
-    "NAME": "Oswald",
+    "NAME": "奥斯瓦尔德",
     "DIALOG": [
-      "Fancy some clown-to-clown communication?"
+      "想来点小丑之间的交流吗?"
     ]
   },
-  "${ModID}:Tiph": {
+  "ruina:Tiph": {
     "MOVES": [
-      "Augury Kick",
-      "Confrontation"
+      "卦脚",
+      "一触即发"
     ],
     "NAME": "Tiphereth",
     "DIALOG": [
-      "The only clown here is you.",
-      "What a nuisance."
+      "这里唯一的小丑就是你。",
+      "真是讨厌。"
     ]
   },
-  "${ModID}:Bremen": {
+  "ruina:Bremen": {
     "MOVES": [
-      "Everlasting Melody",
+      "永恒的旋律",
       "NEIGHHH",
       "BAWK BAWK",
       "RARF RARF",
-      "Powerful Tendon Chords",
-      "Trio"
+      "肌腱之音",
+      "三重奏"
     ],
-    "NAME": "Musicians of Bremen",
+    "NAME": "不莱梅乐队",
     "DIALOG": [
-      "RARF! BAWK! NEIGHHH!"
+      "RARF！ BAWK！ NEIGHHH！"
     ]
   },
-  "${ModID}:Netzach": {
+  "ruina:Netzach": {
     "MOVES": [
-      "Will of the City",
-      "Baleful Brand",
-      "Blind Faith"
+      "都市之意",
+      "不详烙印",
+      "盲目信念"
     ],
     "NAME": "Netzach",
     "DIALOG": [
-      ". . . Shut up.",
-      "At least that's over now. Care for a drink?"
+      "。 。 。 闭嘴。",
+      "至少现在结束了。想喝点什么吗？"
     ]
   },
-  "${ModID}:Philip": {
+  "ruina:Philip": {
     "MOVES": [
-      "Waned Eventide",
-      "Conflicting Emotions",
-      "Despairingly Stigmatize",
-      "Searing Resolution",
-      "Wound of Sorrow"
+      "冰冷残阳",
+      "情感碰撞",
+      "绝望烙印",
+      "灼烧勇气",
+      "痛彻骨髓"
     ],
-    "NAME": "Philip",
+    "NAME": "菲利普",
     "DIALOG": [
-      "Passion is a deception that will only lead to despair."
+      "激情是一种欺骗，只会让人绝望。"
     ]
   },
-  "${ModID}:Malkuth": {
+  "ruina:Malkuth": {
     "MOVES": [
-      "Coordinated Assault",
-      "Emotional Turbulence",
-      "Fervid Emotions",
-      "Raging Storm: Love",
-      "Inferno"
+      "两面夹击",
+      "慷慨激昂",
+      "热血沸腾",
+      "燎原挚焰",
+      "饕餮饗食"
     ],
     "NAME": "Malkuth",
     "DIALOG": [
-      "What a sad way to live.",
-      "I hope he can finally rest now."
+      "多么可悲的生活方式。",
+      "我想他现在总算可以安息了。"
     ]
   },
-  "${ModID}:CryingChild": {
+  "ruina:CryingChild": {
     "MOVES": [
-      "Wing Stroke",
-      "Murmur"
+      "秽翼抽打",
+      "喃喃细语"
     ],
-    "NAME": "Crying Child",
+    "NAME": "哭泣之子",
     "DIALOG": [
     ]
   },
-  "${ModID}:Greta": {
+  "ruina:Greta": {
     "MOVES": [
-      "Break an Egg",
-      "Slap and Fold",
-      "Mince",
-      "Season the Meat",
-      "Trial Smack",
-      "Into the Sack You Go!"
+      "碎蛋",
+      "敲晕",
+      "切碎",
+      "调味",
+      "焖透",
+      "生擒！"
     ],
-    "NAME": "Greta",
+    "NAME": "格雷塔",
     "DIALOG": [
-      "All the ingredients here are so filthy! It makes my stomach churn."
+      "这里所有的原材料都很脏！简直令我反胃。"
     ]
   },
-  "${ModID}:Hod": {
+  "ruina:Hod": {
     "MOVES": [
-      "Snake Slit",
-      "Violet Blade",
-      "Laceration",
-      "Venomous Fangs",
-      "Serpentine Barrier",
-      "Duel"
+      "游蛇切断",
+      "紫光凝剑",
+      "贯通创伤",
+      "毒牙穿透",
+      "防御架势",
+      "决斗之舞"
     ],
     "NAME": "Hod",
     "DIALOG": [
-      "No one here is untainted. But that doesn't mean we can't be beautiful too.",
-      "Thank you kindly, stranger.",
-      "Stance Change",
-      "#yClick to switch this #gally to #ySlash stance, which focuses on dealing damage.",
-      "#yClick to switch this #gally to #yPierce stance, which focuses on applying #rdebuffs.",
-      "#yClick to switch this #gally to #yGuard stance, which focuses on #yBlocking and #yNegating #rdebuffs.",
-      "I am already in that stance."
+      "这里没有好人，但这不意味着我们不能成为好人。",
+      "感谢你的善意，陌生人。",
+      "姿态变化",
+      "#y单击 可以让 #g盟友 改变至 #y斩击 姿态，专注于进攻。",
+      "#y单击 可以让 #g盟友 改变至 #y穿刺 姿态，专注于给予 #r负面状态 。",
+      "#y单击 可以让 #g盟友 改变至 #y防守 姿态，专注于 #y格挡 以及 #y抵抗 #r负面状态 。",
+      "我已经表明立场了。"
     ]
   },
-  "${ModID}:FreshMeat": {
+  "ruina:FreshMeat": {
     "MOVES": [
       ""
     ],
-    "NAME": "Fresh Meat",
+    "NAME": "鲜肉",
     "DIALOG": [
     ]
   },
-  "${ModID}:Eileen": {
+  "ruina:Eileen": {
     "MOVES": [
-      "Thought Gear: Preach",
-      "Thought Gear: Accelerate",
-      "Thought Gear: Propagate",
-      "Thought Gear: Brainwash"
+      "思想齿轮：传教",
+      "思想齿轮：加速",
+      "思想齿轮：道破",
+      "思想齿轮：洗脑"
     ],
-    "NAME": "Eileen",
+    "NAME": "艾琳",
     "DIALOG": [
-      "A gear is most beautiful when it spins with another."
+      "齿轮与齿轮嵌合转动的时候是最美丽的。"
     ]
   },
-  "${ModID}:GearsWorshipper": {
+  "ruina:GearsWorshipper": {
     "MOVES": [
-      "Vapor"
+      "烟气"
     ],
-    "NAME": "Gears Worshipper",
+    "NAME": "齿轮信徒",
     "DIALOG": [
     ]
   },
-  "${ModID}:Yesod": {
+  "ruina:Yesod": {
     "MOVES": [
-      "Reload",
-      "Flooding Bullets"
+      "装填",
+      "倾泻魔弹"
     ],
     "NAME": "Yesod",
     "DIALOG": [
-      "People are more than just gears in a machine.",
-      "Your assistance was most welcome."
+      "人不能被当作是机器中的齿轮。",
+      "非常感谢你的帮助。"
     ]
   }
 }

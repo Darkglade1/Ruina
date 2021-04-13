@@ -100,8 +100,8 @@ public class Gebura extends AbstractAllyCardMonster
         addMove(UPSTANDING_SLASH, Intent.ATTACK_DEBUFF, upstanding_damage, upstandingHits, true);
         addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, level_damage, levelHits, true);
         addMove(SPEAR, Intent.ATTACK, 4, spearHits, true);
-        addMove(GSV, Intent.ATTACK_DEBUFF, 35);
-        addMove(GSH, Intent.ATTACK_DEBUFF, 50);
+        addMove(GSV, Intent.ATTACK_DEBUFF, 30);
+        addMove(GSH, Intent.ATTACK_DEBUFF, 40);
 
         cardList.add(new Ally_UpstandingSlash(this));
         cardList.add(new Ally_LevelSlash(this));
