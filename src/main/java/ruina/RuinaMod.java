@@ -80,6 +80,7 @@ import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.EyeballChick;
 import ruina.monsters.act3.JudgementBird;
 import ruina.monsters.act3.Pinocchio;
+import ruina.monsters.blackSilence.BlackSilence1;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.act3.RunawayBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
@@ -723,6 +724,9 @@ public class RuinaMod implements
                         new Roland(-500.0F, 0.0F),
                         new Argalia(0.0F, 0.0F),
                 }), makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
+
+        //Black Silence
+        BaseMod.addMonster(BlackSilence1.ID, (BaseMod.GetMonster) BlackSilence1::new);
 
         reverbClear = ruinaConfig.getBool("reverbClear");
         altReverbClear = ruinaConfig.getBool("altReverbClear");

@@ -393,5 +393,9 @@
   "${ModID}:PriceOfTime": {
     "NAME": "Price of Time",
     "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature takes a turn. NL This creature's normal turn is skipped."]
+  },
+  "${ModID}:Orlando": {
+    "NAME": "Orlando",
+    "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature takes a turn."]
   }
 }

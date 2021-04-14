@@ -889,5 +889,22 @@
       "People are more than just gears in a machine.",
       "Your assistance was most welcome."
     ]
+  },
+  "${ModID}:BlackSilence1": {
+    "MOVES": [
+      "Crystal Atelier",
+      "Wheels Industry",
+      "Durandal",
+      "Allas Workshop",
+      "Atelier Logic",
+      "Mook Workshop",
+      "Old Boy's Workshop",
+      "Ranga Workshop",
+      "Zelkova Workshop",
+      "Furioso"
+    ],
+    "NAME": "The Black Silence",
+    "DIALOG": [
+    ]
   }
 }
