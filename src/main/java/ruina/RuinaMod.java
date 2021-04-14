@@ -80,7 +80,7 @@ import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.EyeballChick;
 import ruina.monsters.act3.JudgementBird;
 import ruina.monsters.act3.Pinocchio;
-import ruina.monsters.blackSilence.BlackSilence1;
+import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.act3.RunawayBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;

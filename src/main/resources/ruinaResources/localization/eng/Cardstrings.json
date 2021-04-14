@@ -616,5 +616,45 @@
   "${ModID}:BindingTerms": {
     "NAME": "Binding Terms",
     "DESCRIPTION": "Shuffle !M! *Voids into your discard pile."
+  },
+  "${ModID}:Crystal": {
+    "NAME": "Crystal Atelier",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's NOT the player's turn, gain !B! Block."
+  },
+  "${ModID}:Wheels": {
+    "NAME": "Wheels Industry",
+    "DESCRIPTION": "Deal !D! damage. NL If it's the player's turn, target loses !M! Strength this turn."
+  },
+  "${ModID}:Durandal": {
+    "NAME": "Durandal",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's the player's turn, gain !ruina:SecondMagic! Strength this turn."
+  },
+  "${ModID}:Allas": {
+    "NAME": "Allas Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL If it's the player's turn, target loses !M! Strength this turn."
+  },
+  "${ModID}:Gun": {
+    "NAME": "Atelier Logic",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Mook": {
+    "NAME": "Mook Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL Remove all Block from the target."
+  },
+  "${ModID}:OldBoys": {
+    "NAME": "Old Boy's Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL If it's NOT the player's turn, gain !B! Block."
+  },
+  "${ModID}:Ranga": {
+    "NAME": "Ranga Workshop",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's NOT the player's turn, apply !ruina:SecondMagic! ruina:Bleed."
+  },
+  "${ModID}:Mace": {
+    "NAME": "Zelkova Workshop",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's the player's turn, gain !ruina:SecondMagic! Strength this turn."
+  },
+  "${ModID}:Furioso": {
+    "NAME": "Furioso",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak, Frail, and Vulnerable."
   }
 }

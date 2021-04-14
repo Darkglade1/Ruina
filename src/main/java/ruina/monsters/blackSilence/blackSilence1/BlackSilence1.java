@@ -1,11 +1,7 @@
-package ruina.monsters.blackSilence;
+package ruina.monsters.blackSilence.blackSilence1;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -17,7 +13,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
@@ -29,26 +24,21 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_ALLAS;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_Crystal;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_Durandal;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_GUN;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_MACE;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_MOOK;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_OLDBOYS;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_RANGA;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_Wheels;
+import ruina.monsters.blackSilence.blackSilence1.cards.Allas;
+import ruina.monsters.blackSilence.blackSilence1.cards.Crystal;
+import ruina.monsters.blackSilence.blackSilence1.cards.Durandal;
+import ruina.monsters.blackSilence.blackSilence1.cards.Furioso;
+import ruina.monsters.blackSilence.blackSilence1.cards.Gun;
+import ruina.monsters.blackSilence.blackSilence1.cards.Mace;
+import ruina.monsters.blackSilence.blackSilence1.cards.Mook;
+import ruina.monsters.blackSilence.blackSilence1.cards.OldBoys;
+import ruina.monsters.blackSilence.blackSilence1.cards.Ranga;
+import ruina.monsters.blackSilence.blackSilence1.cards.Wheels;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.BlackSilence;
 import ruina.powers.Bleed;
-import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 import static ruina.RuinaMod.*;
@@ -137,6 +127,7 @@ public class BlackSilence1 extends AbstractCardMonster {
         addMove(MACE, Intent.ATTACK_BUFF, MACE_DAMAGE, MACE_HITS, true);
         addMove(FURIOSO, Intent.ATTACK_DEBUFF, furiosoDamage, furiosoHits, true);
         populateCards();
+        populateMovepool();
     }
 
     @Override
@@ -153,8 +144,11 @@ public class BlackSilence1 extends AbstractCardMonster {
             public void onAfterUseCard(AbstractCard card, UseCardAction action) {
                 this.amount++;
                 if (this.amount >= CARDS_PER_TURN) {
+                    flash();
                     this.amount = 0;
                     takeTurn();
+                } else {
+                    flashWithoutSound();
                 }
             }
 
@@ -189,8 +183,8 @@ public class BlackSilence1 extends AbstractCardMonster {
                 for (int i = 0; i < multiplier; i++) {
                     slashAnimation(target);
                     dmg(target, info);
-                    resetIdle(0.0f);
-                    waitAnimation();
+                    resetIdle();
+                    waitAnimation(0.25f);
                 }
                 if (!isPlayerTurn()) {
                     block(this, crystalBlock);
@@ -304,7 +298,7 @@ public class BlackSilence1 extends AbstractCardMonster {
             }
             case FURIOSO: {
                 float initialX = drawX;
-                float targetBehind = target.drawX - 150.0f * Settings.scale;
+                float targetBehind = target.drawX - 200.0f * Settings.scale;
                 float targetFront = target.drawX + 200.0f * Settings.scale;
                 gun1Animation(target);
                 dmg(target, info);
@@ -373,6 +367,13 @@ public class BlackSilence1 extends AbstractCardMonster {
             }
         }
         atb(new RollMoveAction(this));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                createIntent();
+                this.isDone = true;
+            }
+        });
     }
 
     @Override
@@ -430,16 +431,16 @@ public class BlackSilence1 extends AbstractCardMonster {
     }
 
     private void populateCards() {
-//        cardList.add(new CHRALLY_Crystal(this));
-//        cardList.add(new CHRALLY_Wheels(this));
-//        cardList.add(new CHRALLY_Durandal(this));
-//        cardList.add(new CHRALLY_ALLAS(this));
-//        cardList.add(new CHRALLY_GUN(this));
-//        cardList.add(new CHRALLY_MOOK(this));
-//        cardList.add(new CHRALLY_OLDBOYS(this));
-//        cardList.add(new CHRALLY_RANGA(this));
-//        cardList.add(new CHRALLY_MACE(this));
-//        cardList.add(new CHRALLY_FURIOSO(this));
+        cardList.add(new Crystal(this));
+        cardList.add(new Wheels(this));
+        cardList.add(new Durandal(this));
+        cardList.add(new Allas(this));
+        cardList.add(new Gun(this));
+        cardList.add(new Mook(this));
+        cardList.add(new OldBoys(this));
+        cardList.add(new Ranga(this));
+        cardList.add(new Mace(this));
+        cardList.add(new Furioso(this));
     }
 
     private void attackAnimation(AbstractCreature enemy) {
