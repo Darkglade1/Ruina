@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
@@ -49,17 +50,39 @@ public class PhillipEX extends AbstractCardMonster
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    private static final byte EVENTIDE = 0;
-    private static final byte EMOTIONS = 1;
+    private static final byte DESPERATION = 0;
+    private static final byte EVENTIDE = 1;
     private static final byte STIGMATIZE = 2;
-    private static final byte SEARING = 3;
-    private static final byte SORROW = 4;
+    private static final byte EMOTIONS = 3;
+    private static final byte REKINDLED = 4;
+    private static final byte RESOLUTION = 5;
+    private static final byte SORROW = 6;
+    private static final byte FLAMES = 7;
 
-    public final int stigmatizeHits = 2;
-    public final int sorrowHits = 3;
+    public final int desperationDamage = calcAscensionDamage(35);
+    public final int desperationDelayedDamage = 10;
+
+    public final int eventideDamage = calcAscensionDamage(10);
+    public final int EVENTIDE_BURNS = 2;
+
+    public final int stigmatizeDamage = calcAscensionDamage(9);
+    public final int stigmatizeHits = 3;
+
+    public final int rekindledBlock = calcAscensionTankiness(15);
+    public final int rekindledDamage = calcAscensionDamage(25);
+    public final int rekindledDelayedDamage = 5;
+
+    public final int searingDamage = calcAscensionDamage(15);
+    public final int searingDelayedDamage = 20;
+
+    public final int sorrowDamage = calcAscensionDamage(6);
+    public final int sorrowHits = 4;
+
+    public final int flamesDamage = calcAscensionDamage(12);
+    public final int flamesHits = 3;
+
 
     public final int BLOCK = calcAscensionTankiness(10);
-    public final int EVENTIDE_BURNS = 3;
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int SEARING_BURNS = 1;
     public final int damageBonus = calcAscensionSpecial(30);
@@ -101,11 +124,13 @@ public class PhillipEX extends AbstractCardMonster
         }
         this.setHp(calcAscensionTankiness(maxHealth));
 
-        addMove(EVENTIDE, Intent.DEBUFF);
+        addMove(DESPERATION, IntentEnums.MASS_ATTACK, desperationDamage);
+        addMove(EVENTIDE, Intent.ATTACK_DEBUFF, eventideDamage);
         addMove(EMOTIONS, Intent.DEFEND_BUFF);
-        addMove(STIGMATIZE, Intent.ATTACK, calcAscensionDamage(9), stigmatizeHits, true);
-        addMove(SEARING, Intent.ATTACK_DEBUFF, calcAscensionDamage(17));
-        addMove(SORROW, Intent.ATTACK, calcAscensionDamage(6), sorrowHits, true);
+        addMove(REKINDLED, Intent.ATTACK_DEFEND, rekindledDamage);
+        addMove(RESOLUTION, Intent.ATTACK_DEBUFF, searingDamage);
+        addMove(SORROW, Intent.ATTACK, sorrowDamage, sorrowHits, true);
+        addMove(FLAMES, IntentEnums.MASS_ATTACK, flamesDamage, flamesHits, true);
 
         cardList.add(new Madness());
         cardList.add(new Madness());
