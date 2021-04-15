@@ -31,8 +31,8 @@ public class CHRBOSS_StigmaOfGlory extends AbstractRuinaCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         block(p, block);
-        atb(new DrawCardAction(magicNumber));
         atb(new GainEnergyAction(secondMagicNumber));
+        atb(new DrawCardAction(magicNumber));
     }
 
     @Override

@@ -22,7 +22,7 @@ public class CHRBOSS_FourthMatchFlame extends AbstractRuinaCard {
     public static final int STR_SCALING = 3;
 
     public CHRBOSS_FourthMatchFlame() {
-        super(ID, 4, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF, RuinaMod.Enums.EGO);
+        super(ID, 4, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = BURN;
         tags.add(RuinaMod.Enums.ABNO_SG);

@@ -25,7 +25,7 @@ public class CHRBOSS_CrumbledHope extends AbstractRuinaCard {
     public static final int UPG_DAMAGE = 3;
 
     public CHRBOSS_CrumbledHope() {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = DRAW;
         tags.add(RuinaMod.Enums.ABNO_SG);

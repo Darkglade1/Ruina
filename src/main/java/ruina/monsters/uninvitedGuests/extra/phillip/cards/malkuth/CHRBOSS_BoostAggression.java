@@ -24,7 +24,7 @@ public class CHRBOSS_BoostAggression extends AbstractRuinaCard {
     public static final int UPG_DAMAGE = 3;
 
     public CHRBOSS_BoostAggression() {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
+        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         block = baseBlock = BLOCK;
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = STR;
