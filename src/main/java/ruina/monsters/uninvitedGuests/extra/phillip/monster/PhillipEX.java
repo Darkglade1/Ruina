@@ -23,6 +23,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.uninvitedGuests.extra.phillip.cards.malkuth.*;
 import ruina.monsters.uninvitedGuests.normal.philip.CryingChild;
 import ruina.monsters.uninvitedGuests.normal.philip.Malkuth;
 import ruina.monsters.uninvitedGuests.normal.philip.philipCards.*;
@@ -141,6 +142,25 @@ public class PhillipEX extends AbstractCardMonster
             @Override
             public void update() {
                 ArrayList<AbstractCard> newStartingDeck = new ArrayList<>();
+                for(int i = 0; i < 3; i += 1){
+                    newStartingDeck.add(new CHRBOSS_CrumbledHope());
+                    newStartingDeck.add(new CHRBOSS_TimidEndearment());
+                    newStartingDeck.add(new CHRBOSS_Respite());
+                }
+                for(int i = 0; i < 2; i += 1){
+                    newStartingDeck.add(new CHRBOSS_Predation());
+                    newStartingDeck.add(new CHRBOSS_RoughLoving());
+                    newStartingDeck.add(new CHRBOSS_Ember());
+                    newStartingDeck.add(new CHRBOSS_BoostAggression());
+                    newStartingDeck.add(new CHRBOSS_EncroachingMalice());
+                    newStartingDeck.add(new CHRBOSS_GreenStems());
+                }
+                newStartingDeck.add(new CHRBOSS_FourthMatchFlame());
+                newStartingDeck.add(new CHRBOSS_StrikeOfRetribution());
+                newStartingDeck.add(new CHRBOSS_NostalgicEmbrace());
+                newStartingDeck.add(new CHRBOSS_RaveningHunger());
+                newStartingDeck.add(new CHRBOSS_StigmaOfGlory());
+                newStartingDeck.add(new CHRBOSS_IntertwinedVines());
                 AbstractDungeon.player.drawPile.group.addAll(newStartingDeck);
                 AbstractDungeon.player.drawPile.shuffle();
                 this.isDone = true;

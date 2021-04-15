@@ -619,18 +619,63 @@
   },
   "${ModID}:CHRBOSS_FourthMatchFlame": {
     "NAME": "Fourth Match Flame",
-    "DESCRIPTION": "Deal !D! damage and apply !M! ruina:Burn to ALL enemies."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! ruina:Embers to ALL enemies. NL Strength Affects this card !ruina:SecondMagic! times."
   },
   "${ModID}:CHRBOSS_CrumbledHope": {
     "NAME": "Crumbled Hope",
-    "DESCRIPTION": "Gain !B! Block. NL Draw !M! card. NL Whenever you are attacked this turn, deal !ruina:SecondMagic! damage."
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card. NL If you draw an Attack, or a card belonging to *Scorched *Girl, deal !D! damage."
   },
-  "${ModID}:CHRBOSS_CrumbledHope": {
-    "NAME": "Crumbled Hope",
-    "DESCRIPTION": "Gain !B! Block. NL Draw !M! card. NL Whenever you are attacked this turn, deal !ruina:SecondMagic! damage."
+  "${ModID}:CHRBOSS_TimidEndearment": {
+    "NAME": "Timid Endearment",
+    "DESCRIPTION": "Gain !B! Block. NL Draw !M! card. NL If you draw a Skill, or a card belonging to *Happy *Teddy *Bear, Gain !B! Block."
+  },
+  "${ModID}:CHRBOSS_Respite": {
+    "NAME": "Respite",
+    "DESCRIPTION": "Gain !B! Block. NL Put a card from your discard pile on top of your draw pile."
+  },
+  "${ModID}:CHRBOSS_Predation": {
+    "NAME": "Respite",
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card. NL If this dealt damage, gain !M! Temporary HP."
+  },
+  "${ModID}:CHRBOSS_RoughLoving": {
+    "NAME": "Rough Loving",
+    "DESCRIPTION": "Gain !B! Block. NL Target loses !M! Strength this turn."
   },
   "${ModID}:CHRBOSS_Ember": {
     "NAME": "Ember",
-    "DESCRIPTION": "Gain !B! Block. NL Draw !M! card. NL Whenever you are attacked this turn, deal !ruina:SecondMagic! damage."
+    "DESCRIPTION": "Gain !B! Block. NL Your next attack costs 0."
+  },
+  "${ModID}:CHRBOSS_BoostAggression": {
+    "NAME": "Boost Aggression",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL If this dealt damage, gain !M! Strength next turn."
+  },
+  "${ModID}:CHRBOSS_EncroachingMalice": {
+    "NAME": "Encroaching Malice",
+    "DESCRIPTION": "Gain !B! Block !M! times. NL Whenever you are attacked this turn, deal !ruina:SecondMagic! damage back."
+  },
+  "${ModID}:CHRBOSS_GreenStems": {
+    "NAME": "Green Stems",
+    "DESCRIPTION": "Unplayable. NL When you draw this card, gain [E] [E] , draw !ruina:SecondMagic! card and Exhaust."
+  },
+  "${ModID}:CHRBOSS_StrikeOfRetribution": {
+    "NAME": "Strike of Retribution",
+    "DESCRIPTION": "Deal !D! damage. NL Deals triple damage to enemies without Block."
+  },
+  "${ModID}:CHRBOSS_NostalgicEmbrace": {
+    "NAME": "Nostalgic Embrace",
+    "DESCRIPTION": "Deal !D! damage. NL Gain Block equal to unblocked damage dealt."
+  },
+  "${ModID}:CHRBOSS_RaveningHunger": {
+    "NAME": "Ravening Hunger",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL On each hit, if it dealt damage, gain !ruina:SecondMagic! Temporary HP."
+  },
+  "${ModID}:CHRBOSS_StigmaOfGlory": {
+    "NAME": "Stigma Of Glory",
+    "DESCRIPTION": "Gain !B! Block. NL Gain [E] NL Draw !M! cards."
+  },
+  "${ModID}:CHRBOSS_IntertwinedVines": {
+    "NAME": "IntertwinedVines",
+    "DESCRIPTION": "Discard any number of cards then draw that many.",
+    "UPGRADE_DESCRIPTION": "Discard any number of cards then draw that many. NL Whenever this card is drawn, draw !ruina:SecondMagic! card."
   }
 }

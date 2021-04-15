@@ -902,5 +902,14 @@
     "DIALOG": [
       "Passion is a deception that will only lead to despair."
     ]
+  },
+  "${ModID}:MalkuthEX": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "",
+    "DIALOG": [
+      ""
+    ]
   }
 }

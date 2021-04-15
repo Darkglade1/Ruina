@@ -154,6 +154,10 @@ public class RuinaMod implements
         @SpireEnum(name = "EGO")
         @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
+        @SpireEnum
+        public static AbstractCard.CardTags ABNO_HTB;
+        @SpireEnum
+        public static AbstractCard.CardTags ABNO_SG;
     }
 
     public static Color EGO_COLOR = CardHelper.getColor(76, 7, 23);
