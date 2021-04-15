@@ -398,5 +398,26 @@
       "[Brace the Distortion] #gObtain #ga #gSpecial #gRelic.",
       "[See through a different perspective]"
     ]
+  },
+  "${ModID}:Sorrow": {
+    "NAME": "Sorrow",
+    "DESCRIPTIONS": [
+      "I have nothing but my #psorrow. And I want nothing more. NL NL It has been, it still is, #gfaithful to me.",
+      "Why should I begrudge it, since during the hours . . . NL NL When my soul #rcrushed the depths of my heart, NL NL It was seated there beside me?",
+      "O sorrow, I have #pended, you see, by respecting you, NL NL Because I am certain you will never leave me.",
+      "Ah! I realize it: NL Your #ybeauty lies in the force of your being. NL NL You are like those who never left NL The sad #rfireside corner of my poor #pblack heart.",
+      "O my #psorrow, you are better than a #gwell-beloved: NL NL Because I know that on the day of my final #pagony, NL You will be there, lying in my sheets, O #psorrow, NL NL So that you might once again attempt to enter my heart."
+    ],
+    "OPTIONS": [
+      "[. . .] ",
+      "Transform a card.",
+      "Upgrade a card.",
+      "Remove a card.",
+      "Obtain ",
+      ".",
+      "Choose a Card to Transform",
+      "Choose a Card to Upgrade",
+      "Choose a Card to Remove"
+    ]
   }
 }

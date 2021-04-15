@@ -59,6 +59,7 @@ import ruina.events.act2.ThePianist;
 import ruina.events.act2.WizardOfOz;
 import ruina.events.act2.ZweiAssociation;
 import ruina.events.act3.*;
+import ruina.events.act4.Sorrow;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Hermit;
 import ruina.monsters.act2.Jester.JesterOfNihil;
@@ -727,6 +728,8 @@ public class RuinaMod implements
 
         //Black Silence
         BaseMod.addMonster(BlackSilence1.ID, (BaseMod.GetMonster) BlackSilence1::new);
+
+        BaseMod.addEvent(Sorrow.ID, Sorrow.class, Atziluth.ID);
 
         reverbClear = ruinaConfig.getBool("reverbClear");
         altReverbClear = ruinaConfig.getBool("altReverbClear");
