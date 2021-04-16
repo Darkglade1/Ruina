@@ -12,48 +12,37 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.RestRoom;
-import com.megacrit.cardcrawl.rooms.ShopRoom;
-import com.megacrit.cardcrawl.rooms.TreasureRoom;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
-import ruina.events.act4.Ensemble;
-import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
-import ruina.monsters.uninvitedGuests.normal.clown.Oswald;
+import ruina.events.act4.Sorrow;
+import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.uninvitedGuests.normal.eileen.Eileen;
-import ruina.monsters.uninvitedGuests.normal.elena.Elena;
 import ruina.monsters.uninvitedGuests.normal.greta.Greta;
-import ruina.monsters.uninvitedGuests.normal.philip.Philip;
-import ruina.monsters.uninvitedGuests.normal.pluto.monster.Pluto;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
-import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
 import ruina.rooms.ReverbMonsterRoom;
 
 import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeUIPath;
 
-public class UninvitedGuests extends AbstractRuinaDungeon {
+public class BlackSilence extends AbstractRuinaDungeon {
 
-    public static String ID = RuinaMod.makeID(UninvitedGuests.class.getSimpleName());
+    public static String ID = RuinaMod.makeID(BlackSilence.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     public static final String[] TEXT = uiStrings.TEXT;
     public static final String NAME = TEXT[0];
 
-    public UninvitedGuests() {
+    public BlackSilence() {
         super(NAME, ID, "images/ui/event/panel.png", false, 2, 12, 10);
-        this.onEnterEvent(Ensemble.class);
-        this.addTempMusic("Ensemble1", RuinaMod.makeMusicPath("Reverberation1st_Asiyah.ogg"));
-        this.addTempMusic("Ensemble2", RuinaMod.makeMusicPath("Reverberation1st_Briah.ogg"));
-        this.addTempMusic("Ensemble3", RuinaMod.makeMusicPath("Reverberation1st_Atziluth.ogg"));
-        this.addTempMusic("EnsembleArgalia", RuinaMod.makeMusicPath("Reverberation1st_Argalia.ogg"));
+        this.onEnterEvent(Sorrow.class);
+        this.addTempMusic("GoneAngels", RuinaMod.makeMusicPath("Gone Angels.ogg"));
     }
 
-    public UninvitedGuests(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {
+    public BlackSilence(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {
         super(cd, p, emptyList);
     }
 
-    public UninvitedGuests(CustomDungeon cd, AbstractPlayer p, SaveFile saveFile) {
+    public BlackSilence(CustomDungeon cd, AbstractPlayer p, SaveFile saveFile) {
         super(cd, p, saveFile);
     }
 
@@ -87,47 +76,26 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         return TEXT[3];
     }
 
+
     @Override
     protected void makeMap() {
-        System.out.println("ho");
         ArrayList<MonsterRoomCreator> row1 = new ArrayList();
         ArrayList<MonsterRoomCreator> row2 = new ArrayList();
         ArrayList<MonsterRoomCreator> row3 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row4 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row5 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row6 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row7 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row8 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row9 = new ArrayList();
 
-        row1.add(new MonsterRoomCreator(makeUIPath("MalkuthMap.png"), makeUIPath("MalkuthMapOutline.png"), Philip.ID));
+        row1.add(new MonsterRoomCreator(makeUIPath("MalkuthMap.png"), makeUIPath("MalkuthMapOutline.png"), BlackSilence1.ID));
         row2.add(new MonsterRoomCreator(makeUIPath("YesodMap.png"), makeUIPath("YesodMapOutline.png"), Eileen.ID));
         row3.add(new MonsterRoomCreator(makeUIPath("HodMap.png"), makeUIPath("HodMapOutline.png"), Greta.ID));
-        row4.add(new MonsterRoomCreator(makeUIPath("NetzachMap.png"), makeUIPath("NetzachMapOutline.png"), Bremen.ID));
-        row5.add(new MonsterRoomCreator(makeUIPath("TiphMap.png"), makeUIPath("TiphMapOutline.png"), Oswald.ID));
-        row6.add(new MonsterRoomCreator(makeUIPath("GeburaMap.png"), makeUIPath("GeburaMapOutline.png"), Tanya.ID));
-        row7.add(new MonsterRoomCreator(makeUIPath("ChesedMap.png"), makeUIPath("ChesedMapOutline.png"), Puppeteer.ID));
-        row8.add(new MonsterRoomCreator(makeUIPath("BinahMap.png"), makeUIPath("BinahMapOutline.png"), Elena.ID));
-        row9.add(new MonsterRoomCreator(makeUIPath("HokmaMap.png"), makeUIPath("HokmaMapOutline.png"), Pluto.ID));
 
         map = new ArrayList();
 
         int index = 0;
         map.add(populate(row1, index++));
+        map.add(singleNodeArea(new RestRoom(), index++));
         map.add(populate(row2, index++));
+        map.add(singleNodeArea(new RestRoom(), index++));
         map.add(populate(row3, index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(populate(row4, index++));
-        map.add(populate(row5, index++));
-        map.add(populate(row6, index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(populate(row7, index++));
-        map.add(populate(row8, index++));
-        map.add(populate(row9, index++));
-        map.add(tripleNodeArea(new TreasureRoom(), new ShopRoom(), new RestRoom(), index++));
-        map.add(tripleNodeArea(new TreasureRoom(), new ShopRoom(), new RestRoom(), index++));
+        map.add(singleNodeArea(new RestRoom(), index++));
         map.add(singleNodeArea(new MonsterRoomBoss(), index++));
         map.add(singleNodeArea(new TrueVictoryRoom(), index++, false));
 
@@ -138,55 +106,6 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         fadeIn();
     }
 
-    public void makeAltMap() {
-        System.out.println("hoha");
-        ArrayList<MonsterRoomCreator> row1 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row2 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row3 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row4 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row5 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row6 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row7 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row8 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row9 = new ArrayList();
-
-        row1.add(new MonsterRoomCreator(makeUIPath("YesodMap.png"), makeUIPath("YesodMap.png"), Philip.ID));
-        row2.add(new MonsterRoomCreator(makeUIPath("YesodMap.png"), makeUIPath("YesodMapOutline.png"), Eileen.ID));
-        row3.add(new MonsterRoomCreator(makeUIPath("HodMap.png"), makeUIPath("HodMapOutline.png"), Greta.ID));
-        row4.add(new MonsterRoomCreator(makeUIPath("NetzachMap.png"), makeUIPath("NetzachMapOutline.png"), Bremen.ID));
-        row5.add(new MonsterRoomCreator(makeUIPath("TiphMap.png"), makeUIPath("TiphMapOutline.png"), Oswald.ID));
-        row6.add(new MonsterRoomCreator(makeUIPath("GeburaMap.png"), makeUIPath("GeburaMapOutline.png"), Tanya.ID));
-        row7.add(new MonsterRoomCreator(makeUIPath("ChesedMap.png"), makeUIPath("ChesedMapOutline.png"), Puppeteer.ID));
-        row8.add(new MonsterRoomCreator(makeUIPath("BinahMap.png"), makeUIPath("BinahMapOutline.png"), Elena.ID));
-        row9.add(new MonsterRoomCreator(makeUIPath("HokmaMap.png"), makeUIPath("HokmaMapOutline.png"), Pluto.ID));
-
-        map = new ArrayList();
-
-        int index = 0;
-        map.add(populate(row1, index++));
-        map.add(populate(row2, index++));
-        map.add(populate(row3, index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(populate(row4, index++));
-        map.add(populate(row5, index++));
-        map.add(populate(row6, index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(populate(row7, index++));
-        map.add(populate(row8, index++));
-        map.add(populate(row9, index++));
-        map.add(tripleNodeArea(new TreasureRoom(), new ShopRoom(), new RestRoom(), index++));
-        map.add(tripleNodeArea(new TreasureRoom(), new ShopRoom(), new RestRoom(), index++));
-        map.add(singleNodeArea(new MonsterRoomBoss(), index++));
-        map.add(singleNodeArea(new TrueVictoryRoom(), index++, false));
-
-        logger.info("Generated the following dungeon map:");
-        logger.info(MapGenerator.toString(map, true));
-
-        firstRoomChosen = false;
-        fadeIn();
-    }
     private void connectNode(MapRoomNode src, MapRoomNode dst) {
         src.addEdge(new MapEdge(src.x, src.y, src.offsetX, src.offsetY, dst.x, dst.y, dst.offsetX, dst.offsetY, false));
     }

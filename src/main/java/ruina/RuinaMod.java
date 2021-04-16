@@ -45,6 +45,7 @@ import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.Atziluth;
+import ruina.dungeons.BlackSilence;
 import ruina.dungeons.Briah;
 import ruina.dungeons.EncounterIDs;
 import ruina.dungeons.UninvitedGuests;
@@ -82,6 +83,7 @@ import ruina.monsters.act3.EyeballChick;
 import ruina.monsters.act3.JudgementBird;
 import ruina.monsters.act3.Pinocchio;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
+import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.act3.RunawayBird;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
@@ -554,6 +556,9 @@ public class RuinaMod implements
         UninvitedGuests uninvitedGuests = new UninvitedGuests();
         uninvitedGuests.addAct(TheEnding.ID);
 
+        BlackSilence silence = new BlackSilence();
+        silence.addAct(TheEnding.ID);
+
         CustomIntent.add(new MassAttackIntent());
 
         //Act 2
@@ -729,7 +734,8 @@ public class RuinaMod implements
         //Black Silence
         BaseMod.addMonster(BlackSilence1.ID, (BaseMod.GetMonster) BlackSilence1::new);
 
-        BaseMod.addEvent(Sorrow.ID, Sorrow.class, Atziluth.ID);
+        silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
+
 
         reverbClear = ruinaConfig.getBool("reverbClear");
         altReverbClear = ruinaConfig.getBool("altReverbClear");

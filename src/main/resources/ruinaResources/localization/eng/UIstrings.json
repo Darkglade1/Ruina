@@ -76,5 +76,13 @@
       "The door to the library flies open, and a motley crew of #pstrange and #pdisturbing figures waltz in. You cannot help but feel that they are up to no good.",
       "Greet the Uninvited Guests"
     ]
+  },
+  "${ModID}:BlackSilence": {
+    "TEXT": [
+      "The Black Silence",
+      "The Black Silence",
+      "The fighting stops, but a #pdeathly #pchill still pervades the air. NL \"Angela. You know what I'm about to do now, right?\"",
+      "Quell a raging sorrow"
+    ]
   }
 }
