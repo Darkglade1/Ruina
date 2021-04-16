@@ -4,7 +4,9 @@ import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
@@ -18,17 +20,21 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
+import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.extra.phillip.cards.malkuth.*;
 import ruina.monsters.uninvitedGuests.normal.philip.CryingChild;
 import ruina.monsters.uninvitedGuests.normal.philip.Malkuth;
 import ruina.monsters.uninvitedGuests.normal.philip.philipCards.*;
+import ruina.monsters.uninvitedGuests.normal.pluto.monster.Pluto;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.Erosion;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.PatronLibrarian;
 import ruina.util.AdditionalIntent;
@@ -58,6 +64,15 @@ public class PhillipEX extends AbstractCardMonster
     private static final byte RESOLUTION = 5;
     private static final byte SORROW = 6;
     private static final byte FLAMES = 7;
+
+    public enum PHASE{
+        T1,
+        T2,
+        T3,
+        T4
+    }
+
+    public PHASE currentPhase = PHASE.T1;
 
     public final int desperationDamage = calcAscensionDamage(35);
     public final int desperationDelayedDamage = 10;
@@ -239,16 +254,42 @@ public class PhillipEX extends AbstractCardMonster
             info.applyPowers(this, target);
         }
         switch (move.nextMove) {
-            case EVENTIDE: {
-                buffAnimation();
-                intoDiscardMo(new Burn(), EVENTIDE_BURNS, this);
+            case DESPERATION:
+                atb(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
+                atb(new VFXAction(new CollectorCurseEffect(adp().hb.cX, adp().hb.cY)));
+                for (int i = 0; i < monsterList().size(); i++) {
+                    AbstractMonster mo = monsterList().get(i);
+                    if (i == monsterList().size() - 2) {
+                        //makes the special effects appear all at once for multiple monsters instead of one-by-one
+                        atb(new VFXAction(new CollectorCurseEffect(mo.hb.cX, mo.hb.cY), 2.0F));
+                    } else if (mo != this) {
+                        atb(new VFXAction(new CollectorCurseEffect(mo.hb.cX, mo.hb.cY)));
+                    }
+                }
+                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
+                info.applyPowers(this, adp());
+                damageArray[damageArray.length - 1] = info.output;
+                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
+                    info.applyPowers(this, mo);
+                    damageArray[i] = info.output;
+                }
+                atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                // apply power to all other later
+                /*
+                applyToTargetNextTurn(adp(), new Erosion(adp(), EROSION + 1));
+                for (AbstractMonster mo : monsterList()) {
+                    if (mo != this) {
+                        applyToTargetNextTurn(mo, new Erosion(mo, EROSION + 1));
+                    }
+                }
+                 */
                 resetIdle();
                 break;
-            }
-            case EMOTIONS: {
+            case EVENTIDE: {
+                dmg(target, info);
                 buffAnimation();
-                block(this, BLOCK);
-                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                intoDiscardMo(new Burn(), EVENTIDE_BURNS, this);
                 resetIdle();
                 break;
             }
@@ -264,10 +305,23 @@ public class PhillipEX extends AbstractCardMonster
                 }
                 break;
             }
-            case SEARING: {
+            case EMOTIONS: {
+                buffAnimation();
+                block(this, BLOCK);
+                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                resetIdle();
+                break;
+            }
+            case REKINDLED:
+                buffAnimation();
+                block(this, BLOCK);
+                bluntAnimation(target);
+                dmg(target, info);
+                break;
+            case RESOLUTION: {
                 slashAnimation(target);
                 dmg(target, info);
-                intoDrawMo(new Burn(), SEARING_BURNS, this);
+                // power later
                 resetIdle();
                 break;
             }
@@ -284,6 +338,28 @@ public class PhillipEX extends AbstractCardMonster
                     waitAnimation();
                 }
                 resetIdle();
+                break;
+            }
+            case FLAMES: {
+                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
+                info.applyPowers(this, adp());
+                damageArray[damageArray.length - 1] = info.output;
+                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
+                    info.applyPowers(this, mo);
+                    damageArray[i] = info.output;
+                }
+                for (int i = 0; i < multiplier; i++) {
+                    if (i == 0) {
+
+                    } else if (i == 1){
+
+                    } else {
+
+                    }
+                    atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                    resetIdle(1.0f);
+                }
                 break;
             }
         }
