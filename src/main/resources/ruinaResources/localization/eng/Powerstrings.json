@@ -397,5 +397,29 @@
   "${ModID}:PatronLibrarian": {
     "NAME": "Patron Librarian",
     "DESCRIPTIONS": ["Seeing through the perspective of {X}. NL HP is restored to whatever it was at the start of the encounter."]
+  },
+  "${ModID}:ScorchedGirl": {
+    "NAME": "Scorched Girl",
+    "DESCRIPTIONS": ["Attacks deal #b%1$s more damage. When you play an attack, lose #b%2$s HP."]
+  },
+  "${ModID}:FairyFestival": {
+    "NAME": "Fairy Festival",
+    "DESCRIPTIONS": ["Start this combat with 30%% #bHP. NL When your HP is below 50%% at the start of each turn, gain #b%1$s #yStrength."]
+  },
+  "${ModID}:HappyTeddyBear": {
+    "NAME": "Happy Teddy Bear",
+    "DESCRIPTIONS": ["At the start of each turn, any unused #yBlock becomes Temporary HP."]
+  },
+  "${ModID}:QueenBee": {
+    "NAME": "Queen Bee",
+    "DESCRIPTIONS": [
+      "Deal double damage in #b%1$s turns.",
+      "Deal double damage in #b%1$s turn.",
+      "Dealing double damage this turn."
+    ]
+  },
+  "${ModID}:SnowWhiteApple": {
+    "NAME": "Snow White's Apple",
+    "DESCRIPTIONS": ["At the start of combat, gain a #b%1$s HP Shield."]
   }
 }

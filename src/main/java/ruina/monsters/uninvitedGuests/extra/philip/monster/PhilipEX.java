@@ -2,6 +2,7 @@ package ruina.monsters.uninvitedGuests.extra.philip.monster;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -28,6 +29,7 @@ import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.extra.philip.cards.malkuth.*;
+import ruina.monsters.uninvitedGuests.extra.philip.powers.*;
 import ruina.monsters.uninvitedGuests.normal.philip.CryingChild;
 import ruina.monsters.uninvitedGuests.normal.philip.Malkuth;
 import ruina.powers.AbstractLambdaPower;
@@ -86,7 +88,7 @@ public class PhilipEX extends AbstractCardMonster
     public final int searingDamage = calcAscensionDamage(15);
     public final int searingDelayedDamage = 20;
 
-    public final int sorrowDamage = calcAscensionDamage(6);
+    public final int sorrowDamage = calcAscensionDamage(5);
     public final int sorrowHits = 4;
 
     public final int flamesDamage = calcAscensionDamage(12);
@@ -100,7 +102,7 @@ public class PhilipEX extends AbstractCardMonster
     public final int damageReduction = 60;
     public final int damageReductionDecay = 10;
     public boolean gotBonusIntent = false;
-    public int TURNS_TILL_BONUS_DAMAGE = 6;
+    public int TURNS_TILL_BONUS_DAMAGE = 5;
     public boolean gotBonusDamage = false;
     private int phase = 1;
     private boolean attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
@@ -124,11 +126,11 @@ public class PhilipEX extends AbstractCardMonster
     }
 
     public PhilipEX(final float x, final float y) {
-        super(NAME, ID, 700, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 700, -5.0F, 0, 160.0f, 245.0f, null, 0f, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Philip/Spriter/Philip.scml"));
         this.type = EnemyType.BOSS;
-        numAdditionalMoves = 2;
-        maxAdditionalMoves = 2;
+        numAdditionalMoves = 1;
+        maxAdditionalMoves = 3;
         for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
@@ -168,6 +170,28 @@ public class PhilipEX extends AbstractCardMonster
         PatronLibrarian power = new PatronLibrarian(AbstractDungeon.player, -1);
         power.updateDescription();
         AbstractDungeon.player.powers.add(power);
+
+        ScorchedGirl scorchedGirl = new ScorchedGirl(AbstractDungeon.player, 8);
+        scorchedGirl.updateDescription();
+        AbstractDungeon.player.powers.add(scorchedGirl);
+
+        HappyTeddyBear happyTeddyBear = new HappyTeddyBear(AbstractDungeon.player);
+        happyTeddyBear.updateDescription();
+        AbstractDungeon.player.powers.add(happyTeddyBear);
+
+        AbstractDungeon.player.currentHealth = ((AbstractDungeon.player.maxHealth / 10) * 3);
+        FairyFestival fairyFestival = new FairyFestival(AbstractDungeon.player);
+        fairyFestival.updateDescription();
+        AbstractDungeon.player.powers.add(fairyFestival);
+        atb(new ApplyPowerAction(adp(), adp(), new StrengthPower(adp(), fairyFestival.STR_GAIN)));
+        QueenBee queenBee = new QueenBee(AbstractDungeon.player);
+        queenBee.updateDescription();
+        AbstractDungeon.player.powers.add(queenBee);
+
+        SnowWhiteApple snowWhiteApple = new SnowWhiteApple(AbstractDungeon.player);
+        snowWhiteApple.updateDescription();
+        AbstractDungeon.player.powers.add(snowWhiteApple);
+        atb(new AddTemporaryHPAction(adp(), adp(), snowWhiteApple.HP_SHIELD));
 
         addToBot(new AbstractGameAction() {
             @Override
@@ -214,6 +238,7 @@ public class PhilipEX extends AbstractCardMonster
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
+        /*
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, damageReduction) {
             @Override
             public void onInitialApplication() {
@@ -243,6 +268,7 @@ public class PhilipEX extends AbstractCardMonster
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1] + amount2 + POWER_DESCRIPTIONS[2];
             }
         });
+         */
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -430,6 +456,7 @@ public class PhilipEX extends AbstractCardMonster
                         break;
                     case T4:
                         currentPhase = PHASE.T1;
+                        numAdditionalMoves += 1;
                         break;
 
                 }
@@ -520,8 +547,8 @@ public class PhilipEX extends AbstractCardMonster
                 else { setAdditionalMoveShortcut(EMOTIONS, moveHistory, cardList.get(EMOTIONS).makeStatEquivalentCopy()); }
                 break;
             case T3:
-                if(whichMove == 0){ setAdditionalMoveShortcut(RESOLUTION, moveHistory, cardList.get(RESOLUTION).makeStatEquivalentCopy()); }
-                else { setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeStatEquivalentCopy()); }
+                if(whichMove == 0){ setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeStatEquivalentCopy()); }
+                else { setAdditionalMoveShortcut(RESOLUTION, moveHistory, cardList.get(RESOLUTION).makeStatEquivalentCopy()); }
                 break;
             case T4:
                 if(whichMove == 0){ setAdditionalMoveShortcut(EVENTIDE, moveHistory, cardList.get(EVENTIDE).makeStatEquivalentCopy()); }

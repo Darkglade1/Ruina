@@ -634,8 +634,8 @@
     "DESCRIPTION": "Gain !B! Block. NL Put a card from your discard pile on top of your draw pile."
   },
   "${ModID}:CHRBOSS_Predation": {
-    "NAME": "Respite",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card. NL If this dealt damage, gain !ruina:SecondMagic! Temporary HP."
+    "NAME": "Predation",
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card. NL If this dealt damage, gain !ruina:SecondMagic! Temporary_HP."
   },
   "${ModID}:CHRBOSS_RoughLoving": {
     "NAME": "Rough Loving",
@@ -667,14 +667,14 @@
   },
   "${ModID}:CHRBOSS_RaveningHunger": {
     "NAME": "Ravening Hunger",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL On each hit, if it dealt damage, gain !ruina:SecondMagic! Temporary HP."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL On each hit, if it dealt damage, gain !ruina:SecondMagic! Temporary_HP."
   },
   "${ModID}:CHRBOSS_StigmaOfGlory": {
     "NAME": "Stigma Of Glory",
     "DESCRIPTION": "Gain !B! Block. NL Gain [E] NL Draw !M! cards."
   },
   "${ModID}:CHRBOSS_IntertwinedVines": {
-    "NAME": "IntertwinedVines",
+    "NAME": "Intertwined Vines",
     "DESCRIPTION": "Discard any number of cards then draw that many.",
     "UPGRADE_DESCRIPTION": "Discard any number of cards then draw that many. NL Whenever this card is drawn, draw !ruina:SecondMagic! card."
   }
