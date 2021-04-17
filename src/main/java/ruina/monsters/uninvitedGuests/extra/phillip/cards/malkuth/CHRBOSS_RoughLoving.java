@@ -23,7 +23,7 @@ public class CHRBOSS_RoughLoving extends AbstractRuinaCard {
     public static final int UPG_BLOCK = 4;
 
     public CHRBOSS_RoughLoving() {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
+        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF_AND_ENEMY, RuinaMod.Enums.EGO);
         block = baseBlock = BLOCK;
         magicNumber = baseMagicNumber = STR_DOWN;
         tags.add(RuinaMod.Enums.ABNO_HTB);
