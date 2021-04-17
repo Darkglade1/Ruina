@@ -1,4 +1,4 @@
-package ruina.monsters.uninvitedGuests.extra.phillip.monster;
+package ruina.monsters.uninvitedGuests.extra.philip.monster;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,15 +26,11 @@ import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
-import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.uninvitedGuests.extra.phillip.cards.malkuth.*;
+import ruina.monsters.uninvitedGuests.extra.philip.cards.malkuth.*;
 import ruina.monsters.uninvitedGuests.normal.philip.CryingChild;
 import ruina.monsters.uninvitedGuests.normal.philip.Malkuth;
-import ruina.monsters.uninvitedGuests.normal.philip.philipCards.*;
-import ruina.monsters.uninvitedGuests.normal.pluto.monster.Pluto;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.Erosion;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.PatronLibrarian;
 import ruina.util.AdditionalIntent;
@@ -48,9 +44,9 @@ import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 import static ruina.util.Wiz.atb;
 
-public class PhillipEX extends AbstractCardMonster
+public class PhilipEX extends AbstractCardMonster
 {
-    public static final String ID = makeID(PhillipEX.class.getSimpleName());
+    public static final String ID = makeID(PhilipEX.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
@@ -123,11 +119,11 @@ public class PhillipEX extends AbstractCardMonster
 
     private MalkuthEX malkuthPlayer = null;
 
-    public PhillipEX() {
+    public PhilipEX() {
         this(0.0f, 0.0f);
     }
 
-    public PhillipEX(final float x, final float y) {
+    public PhilipEX(final float x, final float y) {
         super(NAME, ID, 700, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Philip/Spriter/Philip.scml"));
         this.type = EnemyType.BOSS;
@@ -140,6 +136,7 @@ public class PhillipEX extends AbstractCardMonster
 
         addMove(DESPERATION, IntentEnums.MASS_ATTACK, desperationDamage);
         addMove(EVENTIDE, Intent.ATTACK_DEBUFF, eventideDamage);
+        addMove(STIGMATIZE, Intent.ATTACK, stigmatizeDamage, stigmatizeHits, true);
         addMove(EMOTIONS, Intent.DEFEND_BUFF);
         addMove(REKINDLED, Intent.ATTACK_DEFEND, rekindledDamage);
         addMove(RESOLUTION, Intent.ATTACK_DEBUFF, searingDamage);
@@ -401,6 +398,7 @@ public class PhillipEX extends AbstractCardMonster
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
             AdditionalIntent additionalIntent = additionalIntents.get(i);
+            System.out.println(MOVES[additionalMove.nextMove]);
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
             atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
             if (additionalIntent.targetTexture == null) {
@@ -499,6 +497,8 @@ public class PhillipEX extends AbstractCardMonster
                 setMoveShortcut(DESPERATION, MOVES[DESPERATION], cardList.get(DESPERATION).makeStatEquivalentCopy());
                 break;
             case T4:
+                setMoveShortcut(FLAMES, MOVES[FLAMES], cardList.get(FLAMES).makeStatEquivalentCopy());
+                break;
             case T2:
                 setMoveShortcut(EVENTIDE, MOVES[EVENTIDE], cardList.get(EVENTIDE).makeStatEquivalentCopy());
                 break;
@@ -524,7 +524,7 @@ public class PhillipEX extends AbstractCardMonster
                 else { setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeStatEquivalentCopy()); }
                 break;
             case T4:
-                if(whichMove == 0){ setAdditionalMoveShortcut(FLAMES, moveHistory, cardList.get(FLAMES).makeStatEquivalentCopy()); }
+                if(whichMove == 0){ setAdditionalMoveShortcut(EVENTIDE, moveHistory, cardList.get(EVENTIDE).makeStatEquivalentCopy()); }
                 else { setAdditionalMoveShortcut(EMOTIONS, moveHistory, cardList.get(EMOTIONS).makeStatEquivalentCopy()); }
                 break;
 

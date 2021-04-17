@@ -1,4 +1,4 @@
-package ruina.monsters.uninvitedGuests.extra.phillip.monster;
+package ruina.monsters.uninvitedGuests.extra.philip.monster;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;

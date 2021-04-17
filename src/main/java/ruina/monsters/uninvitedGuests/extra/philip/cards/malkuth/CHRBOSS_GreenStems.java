@@ -1,4 +1,4 @@
-package ruina.monsters.uninvitedGuests.extra.phillip.cards.malkuth;
+package ruina.monsters.uninvitedGuests.extra.philip.cards.malkuth;
 
 import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;

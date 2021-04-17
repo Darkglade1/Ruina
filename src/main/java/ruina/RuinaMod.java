@@ -94,7 +94,7 @@ import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
-import ruina.monsters.uninvitedGuests.extra.phillip.monster.PhillipEX;
+import ruina.monsters.uninvitedGuests.extra.philip.monster.PhilipEX;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
@@ -730,9 +730,9 @@ public class RuinaMod implements
                 }), makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
 
         // Uninvited Guests {Extra}
-        BaseMod.addMonster(PhillipEX.ID, "PhilipEX", () -> new MonsterGroup(
+        BaseMod.addMonster(PhilipEX.ID, "PhilipEX", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new PhillipEX(200.0F, 0.0F),
+                        new PhilipEX(200.0F, 0.0F),
                 }));
 
         reverbClear = ruinaConfig.getBool("reverbClear");

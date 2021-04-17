@@ -1,4 +1,4 @@
-package ruina.monsters.uninvitedGuests.extra.phillip.cards.malkuth;
+package ruina.monsters.uninvitedGuests.extra.philip.cards.malkuth;
 
 import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 import ruina.actions.DrawCardCallbackAction;
 import ruina.cards.AbstractRuinaCard;

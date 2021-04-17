@@ -1,7 +1,6 @@
-package ruina.monsters.uninvitedGuests.extra.phillip.cards.malkuth;
+package ruina.monsters.uninvitedGuests.extra.philip.cards.malkuth;
 
 import basemod.AutoAdd;
-import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
