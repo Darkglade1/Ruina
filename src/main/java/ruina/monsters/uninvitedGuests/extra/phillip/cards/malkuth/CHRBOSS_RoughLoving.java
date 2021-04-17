@@ -33,7 +33,7 @@ public class CHRBOSS_RoughLoving extends AbstractRuinaCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new GainBlockAction(p, block));
         applyToTarget(m,m, new StrengthPower(m, -magicNumber));
-        if(m.hasPower(ArtifactPower.POWER_ID)){ applyToTarget(m,m, new GainStrengthPower(m, magicNumber)); }
+        if(!m.hasPower(ArtifactPower.POWER_ID)){ applyToTarget(m,m, new GainStrengthPower(m, magicNumber)); }
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
+import ruina.powers.NextTurnPowerPower;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;
@@ -37,7 +38,7 @@ public class CHRBOSS_BoostAggression extends AbstractRuinaCard {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                if(m.lastDamageTaken > 0){ applyToSelfTop(new StrengthPower(p, magicNumber)); }
+                if(m.lastDamageTaken > 0){ applyToSelfTop(new NextTurnPowerPower(p, new StrengthPower(p, magicNumber))); }
                 isDone = true;
             }
         });

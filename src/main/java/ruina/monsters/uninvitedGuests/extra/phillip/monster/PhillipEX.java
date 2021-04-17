@@ -515,15 +515,16 @@ public class PhillipEX extends AbstractCardMonster
         switch (currentPhase){
             case T1: break;
             case T2:
-                if(num == 0){ setAdditionalMoveShortcut(STIGMATIZE, moveHistory, cardList.get(STIGMATIZE).makeStatEquivalentCopy()); }
+                System.out.println(whichMove);
+                if(whichMove == 0){ setAdditionalMoveShortcut(STIGMATIZE, moveHistory, cardList.get(STIGMATIZE).makeStatEquivalentCopy()); }
                 else { setAdditionalMoveShortcut(EMOTIONS, moveHistory, cardList.get(EMOTIONS).makeStatEquivalentCopy()); }
                 break;
             case T3:
-                if(num == 0){ setAdditionalMoveShortcut(RESOLUTION, moveHistory, cardList.get(RESOLUTION).makeStatEquivalentCopy()); }
+                if(whichMove == 0){ setAdditionalMoveShortcut(RESOLUTION, moveHistory, cardList.get(RESOLUTION).makeStatEquivalentCopy()); }
                 else { setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeStatEquivalentCopy()); }
                 break;
             case T4:
-                if(num == 0){ setAdditionalMoveShortcut(FLAMES, moveHistory, cardList.get(FLAMES).makeStatEquivalentCopy()); }
+                if(whichMove == 0){ setAdditionalMoveShortcut(FLAMES, moveHistory, cardList.get(FLAMES).makeStatEquivalentCopy()); }
                 else { setAdditionalMoveShortcut(EMOTIONS, moveHistory, cardList.get(EMOTIONS).makeStatEquivalentCopy()); }
                 break;
 
