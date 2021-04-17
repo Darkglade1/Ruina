@@ -21,7 +21,7 @@ public class CHRBOSS_NostalgicEmbrace extends AbstractRuinaCard {
     public static final int UPG_DAMAGE = 5;
 
     public CHRBOSS_NostalgicEmbrace() {
-        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF, RuinaMod.Enums.EGO);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = DAMAGE;
         tags.add(RuinaMod.Enums.ABNO_HTB);
     }

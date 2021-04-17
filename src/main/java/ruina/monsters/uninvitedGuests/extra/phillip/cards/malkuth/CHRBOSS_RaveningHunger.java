@@ -25,7 +25,7 @@ public class CHRBOSS_RaveningHunger extends AbstractRuinaCard {
     public static final int TEMP_THORNS = 6;
 
     public CHRBOSS_RaveningHunger() {
-        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
+        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = TIMES;
         secondMagicNumber = baseSecondMagicNumber = HEAL;

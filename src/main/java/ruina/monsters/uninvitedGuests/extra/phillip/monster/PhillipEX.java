@@ -103,7 +103,6 @@ public class PhillipEX extends AbstractCardMonster
     public final int damageBonus = calcAscensionSpecial(30);
     public final int damageReduction = 60;
     public final int damageReductionDecay = 10;
-    private int TURNS_TILL_BONUS_INTENT = 3;
     public boolean gotBonusIntent = false;
     public int TURNS_TILL_BONUS_DAMAGE = 6;
     public boolean gotBonusDamage = false;
@@ -132,7 +131,7 @@ public class PhillipEX extends AbstractCardMonster
         super(NAME, ID, 700, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Philip/Spriter/Philip.scml"));
         this.type = EnemyType.BOSS;
-        numAdditionalMoves = 1;
+        numAdditionalMoves = 2;
         maxAdditionalMoves = 2;
         for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
@@ -147,6 +146,11 @@ public class PhillipEX extends AbstractCardMonster
         addMove(SORROW, Intent.ATTACK, sorrowDamage, sorrowHits, true);
         addMove(FLAMES, IntentEnums.MASS_ATTACK, flamesDamage, flamesHits, true);
 
+        cardList.add(new Madness());
+        cardList.add(new Madness());
+        cardList.add(new Madness());
+        cardList.add(new Madness());
+        cardList.add(new Madness());
         cardList.add(new Madness());
         cardList.add(new Madness());
         cardList.add(new Madness());
@@ -249,7 +253,7 @@ public class PhillipEX extends AbstractCardMonster
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
-
+        int[] damageArray;
         if(info.base > -1) {
             info.applyPowers(this, target);
         }
@@ -266,7 +270,7 @@ public class PhillipEX extends AbstractCardMonster
                         atb(new VFXAction(new CollectorCurseEffect(mo.hb.cX, mo.hb.cY)));
                     }
                 }
-                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
+                damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
                 info.applyPowers(this, adp());
                 damageArray[damageArray.length - 1] = info.output;
                 for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
@@ -341,7 +345,7 @@ public class PhillipEX extends AbstractCardMonster
                 break;
             }
             case FLAMES: {
-                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
+                damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
                 info.applyPowers(this, adp());
                 damageArray[damageArray.length - 1] = info.output;
                 for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
@@ -416,14 +420,23 @@ public class PhillipEX extends AbstractCardMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                TURNS_TILL_BONUS_INTENT--;
-                if (TURNS_TILL_BONUS_INTENT <= 0 && !gotBonusIntent) {
-                    getAnotherIntent();
+                switch (currentPhase){
+                    case T1:
+                        currentPhase = PHASE.T2;
+                        break;
+                    case T2:
+                        currentPhase = PHASE.T3;
+                        break;
+                    case T3:
+                        currentPhase = PHASE.T4;
+                        break;
+                    case T4:
+                        currentPhase = PHASE.T1;
+                        break;
+
                 }
                 TURNS_TILL_BONUS_DAMAGE--;
-                if (TURNS_TILL_BONUS_DAMAGE <= 0 && !gotBonusDamage) {
-                    getBonusDamage();
-                }
+                if (TURNS_TILL_BONUS_DAMAGE <= 0 && !gotBonusDamage) { getBonusDamage(); }
                 this.isDone = true;
             }
         });
@@ -437,18 +450,6 @@ public class PhillipEX extends AbstractCardMonster
         atb(new RollMoveAction(this));
     }
 
-    private void getAnotherIntent() {
-        numAdditionalMoves++;
-        gotBonusIntent = true;
-        playSound("PhilipTransform", 2.0f);
-        Summon();
-        //reset all the cooldowns
-        moveHistory.clear();
-        for (ArrayList<Byte> additionalMoveHistory : additionalMovesHistory) {
-            additionalMoveHistory.clear();
-        }
-        //atb(new RollMoveAction(malkuth)); //to make her roll for mass attack if she can
-    }
 
     private void getBonusDamage() {
         gotBonusDamage = true;
@@ -493,58 +494,41 @@ public class PhillipEX extends AbstractCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (moveHistory.size() >= 3 && !gotBonusIntent) {
-            moveHistory.clear();
+        switch (currentPhase){
+            case T1:
+                setMoveShortcut(DESPERATION, MOVES[DESPERATION], cardList.get(DESPERATION).makeStatEquivalentCopy());
+                break;
+            case T4:
+            case T2:
+                setMoveShortcut(EVENTIDE, MOVES[EVENTIDE], cardList.get(EVENTIDE).makeStatEquivalentCopy());
+                break;
+            case T3:
+                setMoveShortcut(REKINDLED, MOVES[REKINDLED], cardList.get(DESPERATION).makeStatEquivalentCopy());
+                break;
+
         }
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(SEARING) && !this.lastMoveBefore(SEARING)) {
-            possibilities.add(SEARING);
-        }
-        if (!this.lastMove(EVENTIDE) && !this.lastMoveBefore(EVENTIDE)) {
-            possibilities.add(EVENTIDE);
-        }
-        if (!this.lastMove(STIGMATIZE) && !this.lastMoveBefore(STIGMATIZE)) {
-            possibilities.add(STIGMATIZE);
-        }
-        if (gotBonusIntent) {
-            if (!this.lastMove(SORROW) && !this.lastMoveBefore(SORROW)) {
-                possibilities.add(SORROW);
-            }
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
     }
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        if (moveHistory.size() >= 3 && !gotBonusIntent) {
-            moveHistory.clear();
+        switch (currentPhase){
+            case T1: break;
+            case T2:
+                if(num == 0){ setAdditionalMoveShortcut(STIGMATIZE, moveHistory, cardList.get(STIGMATIZE).makeStatEquivalentCopy()); }
+                else { setAdditionalMoveShortcut(EMOTIONS, moveHistory, cardList.get(EMOTIONS).makeStatEquivalentCopy()); }
+                break;
+            case T3:
+                if(num == 0){ setAdditionalMoveShortcut(RESOLUTION, moveHistory, cardList.get(RESOLUTION).makeStatEquivalentCopy()); }
+                else { setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeStatEquivalentCopy()); }
+                break;
+            case T4:
+                if(num == 0){ setAdditionalMoveShortcut(FLAMES, moveHistory, cardList.get(FLAMES).makeStatEquivalentCopy()); }
+                else { setAdditionalMoveShortcut(EMOTIONS, moveHistory, cardList.get(EMOTIONS).makeStatEquivalentCopy()); }
+                break;
+
         }
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(SEARING, moveHistory) && !this.lastMoveBefore(SEARING, moveHistory)) {
-            possibilities.add(SEARING);
-        }
-        if (!this.lastMove(STIGMATIZE, moveHistory) && !this.lastMoveBefore(STIGMATIZE, moveHistory)) {
-            possibilities.add(STIGMATIZE);
-        }
-        if (whichMove == 0 && !gotBonusIntent) {
-            if (!this.lastMove(EMOTIONS, moveHistory) && !this.lastMoveBefore(EMOTIONS, moveHistory)) {
-                possibilities.add(EMOTIONS);
-            }
-        }
-        if (whichMove == 1 && gotBonusIntent) {
-            if (!this.lastMove(EMOTIONS, moveHistory) && !this.lastMoveBefore(EMOTIONS, moveHistory)) {
-                possibilities.add(EMOTIONS);
-            }
-        }
-        if (gotBonusIntent) {
-            if (!this.lastMove(SORROW, moveHistory) && !this.lastMoveBefore(SORROW, moveHistory)) {
-                possibilities.add(SORROW);
-            }
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+
     }
 
     @Override

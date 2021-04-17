@@ -635,7 +635,7 @@
   },
   "${ModID}:CHRBOSS_Predation": {
     "NAME": "Respite",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card. NL If this dealt damage, gain !M! Temporary HP."
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card. NL If this dealt damage, gain !ruina:SecondMagic! Temporary HP."
   },
   "${ModID}:CHRBOSS_RoughLoving": {
     "NAME": "Rough Loving",

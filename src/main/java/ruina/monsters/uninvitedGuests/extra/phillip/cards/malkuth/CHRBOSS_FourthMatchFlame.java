@@ -1,6 +1,8 @@
 package ruina.monsters.uninvitedGuests.extra.phillip.cards.malkuth;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -30,6 +32,7 @@ public class CHRBOSS_FourthMatchFlame extends AbstractRuinaCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        dmg(m, AbstractGameAction.AttackEffect.FIRE);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class CHRBOSS_Predation extends AbstractRuinaCard {
     public static final int UPG_DAMAGE = 4;
 
     public CHRBOSS_Predation() {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
+        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = DRAW;
         secondMagicNumber = baseSecondMagicNumber = HEAL;

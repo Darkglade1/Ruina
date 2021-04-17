@@ -23,7 +23,7 @@ public class CHRBOSS_StrikeOfRetribution extends AbstractRuinaCard {
     public static final int UPG_DAMAGE = 10;
 
     public CHRBOSS_StrikeOfRetribution() {
-        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF, RuinaMod.Enums.EGO);
+        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = DAMAGE;
     }
 
