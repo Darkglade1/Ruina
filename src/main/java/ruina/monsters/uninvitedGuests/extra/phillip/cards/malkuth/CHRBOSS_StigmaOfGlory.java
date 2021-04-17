@@ -25,7 +25,7 @@ public class CHRBOSS_StigmaOfGlory extends AbstractRuinaCard {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF, RuinaMod.Enums.EGO);
         block = baseBlock = BLOCK;
         magicNumber = baseMagicNumber = DRAW;
-        secondMagicNumber = baseMagicNumber = ENERGY;
+        secondMagicNumber = baseSecondMagicNumber = ENERGY;
     }
 
     @Override

@@ -27,6 +27,7 @@ public class CHRBOSS_FourthMatchFlame extends AbstractRuinaCard {
         super(ID, 4, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = BURN;
+        secondMagicNumber = baseSecondMagicNumber = STR_SCALING;
         tags.add(RuinaMod.Enums.ABNO_SG);
     }
 
