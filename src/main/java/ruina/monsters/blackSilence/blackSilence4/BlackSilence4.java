@@ -24,22 +24,34 @@ import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.cards.EGO.act2.Mimicry;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.blackSilence.blackSilence4.cards.Agony;
+import ruina.monsters.blackSilence.blackSilence4.cards.Scream;
+import ruina.monsters.blackSilence.blackSilence4.cards.Void;
+import ruina.monsters.blackSilence.blackSilence4.memories.Shi.Shi;
 import ruina.monsters.blackSilence.blackSilence4.memories.Shi.Shi1;
 import ruina.monsters.blackSilence.blackSilence4.memories.Shi.Shi2;
+import ruina.monsters.blackSilence.blackSilence4.memories.blue.Blue;
 import ruina.monsters.blackSilence.blackSilence4.memories.blue.Blue1;
 import ruina.monsters.blackSilence.blackSilence4.memories.blue.Blue2;
+import ruina.monsters.blackSilence.blackSilence4.memories.dawn.Dawn;
 import ruina.monsters.blackSilence.blackSilence4.memories.dawn.Dawn1;
 import ruina.monsters.blackSilence.blackSilence4.memories.dawn.Dawn2;
+import ruina.monsters.blackSilence.blackSilence4.memories.hana.Hana;
 import ruina.monsters.blackSilence.blackSilence4.memories.hana.Hana1;
 import ruina.monsters.blackSilence.blackSilence4.memories.hana.Hana2;
+import ruina.monsters.blackSilence.blackSilence4.memories.liu.Liu;
 import ruina.monsters.blackSilence.blackSilence4.memories.liu.Liu1;
 import ruina.monsters.blackSilence.blackSilence4.memories.liu.Liu2;
+import ruina.monsters.blackSilence.blackSilence4.memories.love.Love;
 import ruina.monsters.blackSilence.blackSilence4.memories.love.Love1;
 import ruina.monsters.blackSilence.blackSilence4.memories.love.Love2;
+import ruina.monsters.blackSilence.blackSilence4.memories.purple.Purple;
 import ruina.monsters.blackSilence.blackSilence4.memories.purple.Purple1;
 import ruina.monsters.blackSilence.blackSilence4.memories.purple.Purple2;
+import ruina.monsters.blackSilence.blackSilence4.memories.yun.Yun;
 import ruina.monsters.blackSilence.blackSilence4.memories.yun.Yun1;
 import ruina.monsters.blackSilence.blackSilence4.memories.yun.Yun2;
+import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei1;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei2;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
@@ -134,20 +146,18 @@ public class BlackSilence4 extends AbstractCardMonster {
         addMove(BLUE_REVERB, Intent.UNKNOWN);
         populateMemories();
 
-        //        cardList.add(new Crystal(this));
-//        cardList.add(new Wheels(this));
-//        cardList.add(new Durandal(this));
-//        cardList.add(new Allas(this));
-//        cardList.add(new Gun(this));
-//        cardList.add(new Mook(this));
-//        cardList.add(new OldBoys(this));
-//        cardList.add(new Ranga(this));
-//        cardList.add(new Mace(this));
-//        cardList.add(new Furioso(this));
-
-        for (int i = 0; i < 15; i++) {
-            cardList.add(new Mimicry());
-        }
+        cardList.add(new Agony(this));
+        cardList.add(new Scream(this));
+        cardList.add(new Void(this));
+        cardList.add(new Yun(this));
+        cardList.add(new Zwei(this));
+        cardList.add(new Dawn(this));
+        cardList.add(new Shi(this));
+        cardList.add(new Love(this));
+        cardList.add(new Liu(this));
+        cardList.add(new Purple(this));
+        cardList.add(new Hana(this));
+        cardList.add(new Blue(this));
     }
 
     @Override

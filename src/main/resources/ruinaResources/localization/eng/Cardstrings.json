@@ -701,5 +701,17 @@
     "NAME": "Memory - The Blue Reverberation",
     "DESCRIPTION": "Choose one:",
     "EXTENDED_DESCRIPTION": ["The enemy gains an additional intent.", "Whenever you play a card, Exhaust it."]
+  },
+  "${ModID}:Agony": {
+    "NAME": "Agony",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:Scream": {
+    "NAME": "Scream",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak and Frail."
+  },
+  "${ModID}:Void": {
+    "NAME": "Void",
+    "DESCRIPTION": "Shuffle !M! *Void into your discard pile."
   }
 }
