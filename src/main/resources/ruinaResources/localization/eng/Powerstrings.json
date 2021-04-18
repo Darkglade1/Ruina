@@ -420,6 +420,14 @@
   },
   "${ModID}:SnowWhiteApple": {
     "NAME": "Snow White's Apple",
-    "DESCRIPTIONS": ["At the start of combat, gain a #b%1$s HP Shield."]
+    "DESCRIPTIONS": ["At the start of combat, gain #yTemporary #y HP equal to #b70% of your max HP."]
+  },
+  "${ModID}:DelayedCombustion": {
+    "NAME": "Delayed Combustion",
+    "DESCRIPTIONS": ["Take #b%1$s damage at the end of this turn, then remove this power."]
+  },
+  "${ModID}:TemperedFlame": {
+    "NAME": "SupraHeat",
+    "DESCRIPTIONS": ["Becomes #renraged when this power is removed, gaining an additional intent and dealing more damage on attacks. Reduced by #b", " each turn."]
   }
 }

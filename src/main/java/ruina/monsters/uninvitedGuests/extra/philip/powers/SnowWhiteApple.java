@@ -27,6 +27,6 @@ public class SnowWhiteApple extends AbstractEasyPower {
 
 
     @Override
-    public void updateDescription() { this.description = String.format(DESCRIPTIONS[0], HP_SHIELD); }
+    public void updateDescription() { this.description = DESCRIPTIONS[0]; }
 
 }

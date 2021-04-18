@@ -37,6 +37,7 @@ public class QueenBee extends AbstractEasyPower {
     public void atStartOfTurnPostDraw(){
         flash();
         if(amount == -1){ amount = TURN_NORMAL; }
+        else if (amount - 1 == 0){ amount = -1; }
         else { amount -= 1; }
         updateDescription();
     }

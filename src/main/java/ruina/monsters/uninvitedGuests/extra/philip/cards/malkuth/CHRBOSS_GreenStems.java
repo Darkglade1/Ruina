@@ -12,6 +12,7 @@ import ruina.cards.AbstractRuinaCard;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.att;
 
 @AutoAdd.Ignore
 public class CHRBOSS_GreenStems extends AbstractRuinaCard {
@@ -33,9 +34,9 @@ public class CHRBOSS_GreenStems extends AbstractRuinaCard {
     }
     @Override
     public void triggerWhenDrawn() {
-            addToBot(new GainEnergyAction(magicNumber));
-            addToBot(new DrawCardAction(secondMagicNumber));
-            addToBot(new ExhaustSpecificCardAction(this, adp().hand));
+            att(new GainEnergyAction(magicNumber));
+            att(new DrawCardAction(secondMagicNumber));
+            att(new ExhaustSpecificCardAction(this, adp().hand));
     }
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) { return false; }

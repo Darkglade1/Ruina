@@ -19,7 +19,7 @@ public class CHRBOSS_BoostAggression extends AbstractRuinaCard {
     public final static String ID = makeID(CHRBOSS_BoostAggression.class.getSimpleName());
     public static final int DAMAGE = 6;
     public static final int BLOCK = 8;
-    public static final int STR = 5;
+    public static final int STR = 2;
     public static final int UPG_BLOCK = 2;
     public static final int UPG_DAMAGE = 3;
 

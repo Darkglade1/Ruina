@@ -17,15 +17,14 @@ import static ruina.util.Wiz.att;
 @AutoAdd.Ignore
 public class CHRBOSS_RaveningHunger extends AbstractRuinaCard {
     public final static String ID = makeID(CHRBOSS_RaveningHunger.class.getSimpleName());
-    public static final int DAMAGE = 3;
+    public static final int DAMAGE = 2;
     public static final int UPG_DAMAGE = 2;
 
     public static final int HEAL = 3;
     public static final int TIMES = 5;
-    public static final int TEMP_THORNS = 6;
 
     public CHRBOSS_RaveningHunger() {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = TIMES;
         secondMagicNumber = baseSecondMagicNumber = HEAL;
@@ -45,7 +44,6 @@ public class CHRBOSS_RaveningHunger extends AbstractRuinaCard {
                 }
             });
         }
-        applyToSelf(new FlameBarrierPower(p, secondMagicNumber));
     }
 
     @Override
