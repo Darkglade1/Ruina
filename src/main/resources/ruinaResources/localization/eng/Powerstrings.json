@@ -429,5 +429,9 @@
   "${ModID}:TemperedFlame": {
     "NAME": "SupraHeat",
     "DESCRIPTIONS": ["Becomes #renraged when this power is removed, gaining an additional intent and dealing more damage on attacks. Reduced by #b", " each turn."]
+  },
+  "${ModID}:Orlando": {
+    "NAME": "Orlando",
+    "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature takes a turn."]
   }
 }
