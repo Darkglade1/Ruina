@@ -19,5 +19,12 @@
       "contract"
     ],
     "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead pay #b3 HP for every missing [E] ."
+  },
+  {
+    "PROPER_NAME": "Embers",
+    "NAMES": [
+      "embers"
+    ],
+    "DESCRIPTION": "hello"
   }
 ]

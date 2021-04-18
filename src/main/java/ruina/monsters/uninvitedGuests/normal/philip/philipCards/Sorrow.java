@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
+import ruina.monsters.uninvitedGuests.extra.philip.monster.PhilipEX;
 import ruina.monsters.uninvitedGuests.normal.philip.Philip;
 
 import static ruina.RuinaMod.makeID;
@@ -14,11 +15,18 @@ import static ruina.RuinaMod.makeID;
 public class Sorrow extends AbstractRuinaCard {
     public final static String ID = makeID(Sorrow.class.getSimpleName());
     Philip parent;
+    PhilipEX parentEX;
 
     public Sorrow(Philip parent) {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF, RuinaMod.Enums.EGO);
         magicNumber = baseMagicNumber = parent.sorrowHits;
         this.parent = parent;
+    }
+
+    public Sorrow(PhilipEX parent) {
+        super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.SELF, RuinaMod.Enums.EGO);
+        magicNumber = baseMagicNumber = parent.sorrowHits;
+        this.parentEX = parent;
     }
 
     @Override

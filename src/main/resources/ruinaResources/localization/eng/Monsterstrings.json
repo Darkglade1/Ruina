@@ -890,6 +890,33 @@
       "Your assistance was most welcome."
     ]
   },
+  "${ModID}:PhilipEX": {
+    "MOVES": [
+      "Waned Eventide",
+      "Conflicting Emotions",
+      "Despairingly Stigmatize",
+      "Searing Resolution",
+      "Wound of Sorrow",
+      "Waned Eventide",
+      "Conflicting Emotions",
+      "Despairingly Stigmatize",
+      "Searing Resolution",
+      "Wound of Sorrow"
+    ],
+    "NAME": "Philip (Distorted)",
+    "DIALOG": [
+      "Passion is a deception that will only lead to despair."
+    ]
+  },
+  "${ModID}:MalkuthEX": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "",
+    "DIALOG": [
+      ""
+    ]
+  },
   "${ModID}:BlackSilence1": {
     "MOVES": [
       "Crystal Atelier",

@@ -98,6 +98,7 @@ import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
+import ruina.monsters.uninvitedGuests.extra.philip.monster.PhilipEX;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
@@ -157,6 +158,10 @@ public class RuinaMod implements
         @SpireEnum(name = "EGO")
         @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
+        @SpireEnum
+        public static AbstractCard.CardTags ABNO_HTB;
+        @SpireEnum
+        public static AbstractCard.CardTags ABNO_SG;
     }
 
     public static Color EGO_COLOR = CardHelper.getColor(76, 7, 23);
@@ -731,10 +736,18 @@ public class RuinaMod implements
                         new Argalia(0.0F, 0.0F),
                 }), makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
 
+
+        // Uninvited Guests {Extra}
+        BaseMod.addMonster(PhilipEX.ID, "PhilipEX", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new PhilipEX(200.0F, 0.0F),
+                }));
+
         //Black Silence
         BaseMod.addMonster(BlackSilence1.ID, (BaseMod.GetMonster) BlackSilence1::new);
 
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
+
 
 
         reverbClear = ruinaConfig.getBool("reverbClear");
