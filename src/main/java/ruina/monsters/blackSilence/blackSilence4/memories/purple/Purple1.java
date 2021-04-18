@@ -26,6 +26,6 @@ public class Purple1 extends Purple {
     public void upp() { }
 
     public void onChoseThisOption(){
-        applyToTarget(parent, parent, new IntangiblePlayerPower(parent, magicNumber));
+        applyToTarget(parent, parent, new IntangiblePlayerPower(parent, magicNumber + 1));
     }
 }

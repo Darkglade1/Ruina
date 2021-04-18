@@ -21,7 +21,9 @@ public class Hana extends AbstractRuinaCard {
         this.initializeDescription();
         this.parent = parent;
         magicNumber = baseMagicNumber = parent.hanaRegret;
-        secondMagicNumber = baseSecondMagicNumber = (int)(adp().maxHealth * ((float)parent.hanaHpLoss / 100));
+        if (adp() != null) {
+            secondMagicNumber = baseSecondMagicNumber = (int)(adp().maxHealth * ((float)parent.hanaHpLoss / 100));
+        }
     }
 
     @Override

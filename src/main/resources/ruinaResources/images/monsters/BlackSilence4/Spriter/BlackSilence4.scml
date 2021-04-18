@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="294" height="311" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Hammer.png" width="336" height="302" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Lance.png" width="631" height="227" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Revolver.png" width="388" height="277" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Shotgun.png" width="624" height="301" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Gauntlet.png" width="316" height="210" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Greatsword.png" width="459" height="497" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="Long Sword.png" width="699" height="258" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="Mace Axe.png" width="374" height="244" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="DualSword.png" width="433" height="272" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="Block.png" width="244" height="259" pivot_x="0" pivot_y="1"/>
+        <file id="11" name="Defeat.png" width="331" height="172" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Roland">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-198" y="273" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Block" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Block">
+                <key id="0" spin="0">
+                    <object folder="0" file="10" x="-177" y="259" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Attack" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Hammer">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-189" y="190" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Pierce" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Lance">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-520" y="229" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Gun1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Revolver">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-247" y="279" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Gun3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Shotgun">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-520" y="302" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="Claw1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Gauntlet">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-197" y="210" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="7" name="Club1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Mace Axe">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-295" y="205" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="8" name="Wheels" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Greatsword">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-99" y="236" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="9" name="Sword1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Long Sword">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-346" y="248" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="10" name="Slash" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="DualSword">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-214" y="276" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="11" name="Defeat" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Defeat">
+                <key id="0" spin="0">
+                    <object folder="0" file="11" x="-232" y="159" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

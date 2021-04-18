@@ -22,7 +22,6 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
-import ruina.cards.EGO.act2.Mimicry;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence4.cards.Agony;
 import ruina.monsters.blackSilence.blackSilence4.cards.Scream;
@@ -121,7 +120,7 @@ public class BlackSilence4 extends AbstractCardMonster {
 
     public BlackSilence4(final float x, final float y) {
         super(NAME, ID, 1300, 0.0F, 0, 230.0f, 265.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence1/Spriter/BlackSilence1.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence4/Spriter/BlackSilence4.scml"));
 
         numAdditionalMoves = 1;
         maxAdditionalMoves = 99;
@@ -187,16 +186,47 @@ public class BlackSilence4 extends AbstractCardMonster {
         }
         switch (move.nextMove) {
             case AGONY: {
+                int animation = AbstractDungeon.monsterRng.random(2);
+                switch (animation) {
+                    case 0:
+                        wheelsAnimation(target);
+                        break;
+                    case 1:
+                        claw1Animation(target);
+                        break;
+                    case 2:
+                        club1Animation(target);
+                        break;
+                }
                 dmg(target, info);
                 resetIdle();
                 break;
             }
             case SCREAM: {
+                int animation = AbstractDungeon.monsterRng.random(2);
                 for (int i = 0; i < multiplier; i++) {
-                    if (i % 2 == 0) {
-                        pierceAnimation(target);
-                    } else {
-                        slashAnimation(target);
+                    switch (animation) {
+                        case 0:
+                            if (i % 2 == 0) {
+                                pierceAnimation(target);
+                            } else {
+                                attackAnimation(target);
+                            }
+                            break;
+                        case 1:
+                            if (i % 2 == 0) {
+                                gun1Animation(target);
+                            } else {
+                                gun3Animation(target);
+                            }
+                            break;
+                        case 2:
+                            if (i % 2 == 0) {
+                                slashAnimation(target);
+                            } else {
+                                sword1Animation(target);
+                            }
+                            break;
                     }
                     dmg(target, info);
                     resetIdle();
@@ -206,6 +236,7 @@ public class BlackSilence4 extends AbstractCardMonster {
                 break;
             }
             case VOID: {
+                blockAnimation();
                 intoDiscardMo(new VoidCard(), NUM_VOIDS, this);
                 resetIdle(1.0f);
                 break;
@@ -282,7 +313,6 @@ public class BlackSilence4 extends AbstractCardMonster {
         if (this.firstMove) {
             firstMove = false;
         }
-        atb(new RemoveAllBlockAction(this, this));
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
@@ -298,10 +328,11 @@ public class BlackSilence4 extends AbstractCardMonster {
                 }
             });
         }
+        if (!memories.isEmpty()) {
+            memories.remove(0);
+        }
         if (memories.isEmpty()) {
             populateMemories();
-        } else {
-            memories.remove(0);
         }
         atb(new RollMoveAction(this));
     }
@@ -327,7 +358,7 @@ public class BlackSilence4 extends AbstractCardMonster {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (whichMove == numAdditionalMoves - 1) { //the last intent handles memories
             byte move = memories.get(0);
-            setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(move, moveHistory, cardList.get(move));
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(AGONY, moveHistory)) {
@@ -374,6 +405,7 @@ public class BlackSilence4 extends AbstractCardMonster {
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
+        runAnim("Defeat");
         for (AbstractMonster mo : monsterList()) {
             if (mo instanceof Puppet) {
                 atb(new SuicideAction(mo));
@@ -393,41 +425,16 @@ public class BlackSilence4 extends AbstractCardMonster {
         animationAction("Gun1", "RolandRevolver", enemy, this);
     }
 
-    private void gun2Animation(AbstractCreature enemy) {
-        animationAction("Gun2", "RolandRevolver", enemy, this);
-    }
-
     private void gun3Animation(AbstractCreature enemy) {
         animationAction("Gun3", "RolandShotgun", enemy, this);
-    }
-
-    private void mook1Animation(AbstractCreature enemy) {
-        animationAction("Mook1", "RolandLongSwordStart", enemy, this);
-    }
-
-    private void mook2Animation(AbstractCreature enemy) {
-        animationAction("Mook2", "RolandLongSwordAtk", enemy, this);
-        animationAction("Mook2", "RolandLongSwordFin", enemy, this);
     }
 
     private void claw1Animation(AbstractCreature enemy) {
         animationAction("Claw1", "SwordStab", enemy, this);
     }
 
-    private void claw2Animation(AbstractCreature enemy) {
-        animationAction("Claw2", "SwordStab", enemy, this);
-    }
-
-    private void knifeAnimation(AbstractCreature enemy) {
-        animationAction("Knife", "RolandShortSword", enemy, this);
-    }
-
     private void club1Animation(AbstractCreature enemy) {
         animationAction("Club1", "BluntVert", enemy, this);
-    }
-
-    private void club2Animation(AbstractCreature enemy) {
-        animationAction("Club2", "BluntVert", enemy, this);
     }
 
     private void wheelsAnimation(AbstractCreature enemy) {
@@ -438,16 +445,12 @@ public class BlackSilence4 extends AbstractCardMonster {
         animationAction("Sword1", "RolandDuralandalDown", enemy, this);
     }
 
-    private void sword2Animation(AbstractCreature enemy) {
-        animationAction("Sword2", "RolandDuralandalUp", enemy, this);
-    }
-
-    private void sword3Animation(AbstractCreature enemy) {
-        animationAction("Sword3", "RolandDuralandalStrong", enemy, this);
-    }
-
     private void slashAnimation(AbstractCreature enemy) {
         animationAction("Slash", "RolandDualSword", enemy, this);
+    }
+
+    private void blockAnimation() {
+        animationAction("Block", null, this);
     }
 
 }

@@ -44,6 +44,7 @@ import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
+import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
@@ -157,6 +158,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Hod");
                 } else if (mo instanceof Eileen) {
                     this.bg = this.atlas.findRegion("mod/Yesod");
+                } else if (mo instanceof BlackSilence4) {
+                    this.bg = this.atlas.findRegion("mod/BlackSilence4");
                 } else {
                     setBgs();
                 }
