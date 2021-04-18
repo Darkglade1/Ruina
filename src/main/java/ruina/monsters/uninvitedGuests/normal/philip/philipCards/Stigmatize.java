@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
+import ruina.monsters.uninvitedGuests.extra.philip.monster.PhilipEX;
 import ruina.monsters.uninvitedGuests.normal.philip.Philip;
 
 import static ruina.RuinaMod.makeID;
@@ -14,6 +15,7 @@ import static ruina.RuinaMod.makeID;
 public class Stigmatize extends AbstractRuinaCard {
     public final static String ID = makeID(Stigmatize.class.getSimpleName());
     Philip parent;
+    PhilipEX parentEX;
 
     public Stigmatize(Philip parent) {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
@@ -21,6 +23,11 @@ public class Stigmatize extends AbstractRuinaCard {
         this.parent = parent;
     }
 
+    public Stigmatize(PhilipEX parent) {
+        super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
+        magicNumber = baseMagicNumber = parent.stigmatizeHits;
+        this.parentEX = parent;
+    }
     @Override
     public float getTitleFontSize()
     {
