@@ -656,5 +656,50 @@
   "${ModID}:Furioso": {
     "NAME": "Furioso",
     "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak, Frail, and Vulnerable."
+  },
+  "${ModID}:Yun": {
+    "NAME": "Memory - Yun's Office",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["Shuffle !M! *Dazed into your draw pile.", "Shuffle !ruina:SecondMagic! *Wounds into your discard pile."]
+  },
+  "${ModID}:Zwei": {
+    "NAME": "Memory - Zwei Association",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["The enemy gains !M! *Metallicize.", "The enemy gains !ruina:SecondMagic! *Plated *Armor."]
+  },
+  "${ModID}:Dawn": {
+    "NAME": "Memory - Dawn Office",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["Shuffle !M! *Burns into your draw pile.", "The enemy gains !ruina:SecondMagic! *Protection."]
+  },
+  "${ModID}:Shi": {
+    "NAME": "Memory - Shi Association",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["You gain !M! Weak.", "You gain !ruina:SecondMagic! Frail."]
+  },
+  "${ModID}:Love": {
+    "NAME": "Memory - Love Town",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["The enemy gains !M! *Regen.", "Shuffle !ruina:SecondMagic! *Slimed into your discard pile."]
+  },
+  "${ModID}:Liu": {
+    "NAME": "Memory - Liu Association",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["The enemy gains !M! Strength.", "You gain !ruina:SecondMagic! Vulnerable."]
+  },
+  "${ModID}:Purple": {
+    "NAME": "Memory - The Purple Tear",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["The enemy gains !M! Intangible.", "The enemy summons !ruina:SecondMagic! minion(s)."]
+  },
+  "${ModID}:Hana": {
+    "NAME": "Memory - Hana Association",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["Put !M! *Regret into your hand.", "You lose !ruina:SecondMagic! HP."]
+  },
+  "${ModID}:Blue": {
+    "NAME": "Memory - The Blue Reverberation",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["The enemy gains an additional intent.", "Whenever you play a card, Exhaust it."]
   }
 }

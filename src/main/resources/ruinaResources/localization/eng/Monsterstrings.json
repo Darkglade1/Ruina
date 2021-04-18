@@ -906,5 +906,24 @@
     "NAME": "The Black Silence",
     "DIALOG": [
     ]
+  },
+  "${ModID}:BlackSilence4": {
+    "MOVES": [
+      "Agony",
+      "Scream",
+      "Void",
+      "Memory - Yun's Office",
+      "Memory - Zwei Association",
+      "Memory - Dawn Office",
+      "Memory - Shi Association",
+      "Memory - Love Town",
+      "Memory - Liu Association",
+      "Memory - The Purple Tear",
+      "Memory - Hana Association",
+      "Memory - The Blue Reverberation"
+    ],
+    "NAME": "The Black Silence",
+    "DIALOG": [
+    ]
   }
 }

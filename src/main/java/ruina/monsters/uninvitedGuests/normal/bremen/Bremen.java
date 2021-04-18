@@ -2,6 +2,7 @@ package ruina.monsters.uninvitedGuests.normal.bremen;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -233,6 +234,13 @@ public class Bremen extends AbstractCardMonster
             } else {
                 takeCustomTurn(additionalMove, netzach);
             }
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    additionalIntent.usePrimaryIntentsColor = true;
+                    this.isDone = true;
+                }
+            });
         }
         cooldown--;
         lastIntentTargetAlly = !lastIntentTargetAlly;
