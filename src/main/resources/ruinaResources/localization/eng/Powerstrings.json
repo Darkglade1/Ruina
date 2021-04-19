@@ -405,5 +405,13 @@
   "${ModID}:Sorrow": {
     "NAME": "Sorrow",
     "DESCRIPTIONS": ["Whenever you play a card, #yExhaust it."]
+  },
+  "${ModID}:BlackSilence3": {
+    "NAME": "Black Silence",
+    "DESCRIPTIONS": ["Each time you play #b%1$s #yAttacks or #yPowers in a single turn, Roland takes a turn. If Roland does not act in this way this turn, the allocated card is played instead. The allocated card changes every #b%2$s turns, or when #yAngelica #rdies"]
+  },
+  "${ModID}:WhiteNoise": {
+    "NAME": "White Noise",
+    "DESCRIPTIONS": ["Each time you play #b%1$s #ySkills or #yPowers in a single turn, Angelica takes a turn. If Angelica does not act in this way this turn, the allocated card is played instead. The allocated card changes every #b%2$s turns, or when #yRoland #rdies"]
   }
 }
