@@ -734,7 +734,7 @@ public class RuinaMod implements
         //Black Silence
         BaseMod.addMonster(BlackSilence1.ID, (BaseMod.GetMonster) BlackSilence1::new);
 
-        silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
+        silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 
 
         reverbClear = ruinaConfig.getBool("reverbClear");
