@@ -159,7 +159,17 @@ public class Wiz {
     }
 
     public static void intoDiscardMo(AbstractCard c, int i, AbstractMonster source) {
-        atb(new MakeTempCardInDiscardActionButItCanFizzle(c, i, source));
+        //because for some reason the action is HARDCODED to only take up to FIVE
+        if (i > 5) {
+            int times = i / 5;
+            int remainder = i % 5;
+            for (int count = 0; count < times; count++) {
+                atb(new MakeTempCardInDiscardActionButItCanFizzle(c, 5, source));
+            }
+            atb(new MakeTempCardInDiscardActionButItCanFizzle(c, remainder, source));
+        } else {
+            atb(new MakeTempCardInDiscardActionButItCanFizzle(c, i, source));
+        }
     }
 
     public static void topDeck(AbstractCard c, int i) {

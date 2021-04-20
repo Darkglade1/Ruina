@@ -690,7 +690,7 @@
   "${ModID}:Purple": {
     "NAME": "Memory - The Purple Tear",
     "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["The enemy gains !M! Intangible.", "The enemy summons !ruina:SecondMagic! minion(s)."]
+    "EXTENDED_DESCRIPTION": ["The enemy gains !M! Intangible.", "The enemy summons !ruina:SecondMagic! minion."]
   },
   "${ModID}:Hana": {
     "NAME": "Memory - Hana Association",
@@ -712,6 +712,6 @@
   },
   "${ModID}:Void": {
     "NAME": "Void",
-    "DESCRIPTION": "Shuffle !M! *Void into your discard pile."
+    "DESCRIPTION": "Gain !B! Block. NL Shuffle !M! *Void into your discard pile."
   }
 }

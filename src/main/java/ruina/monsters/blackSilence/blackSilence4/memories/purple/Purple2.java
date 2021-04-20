@@ -24,6 +24,6 @@ public class Purple2 extends Purple {
     public void upp() { }
 
     public void onChoseThisOption(){
-        //todo implement
+        parent.Summon();
     }
 }

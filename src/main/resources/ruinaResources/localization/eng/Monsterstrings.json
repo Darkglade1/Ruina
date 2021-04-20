@@ -925,5 +925,15 @@
     "NAME": "The Black Silence",
     "DIALOG": [
     ]
+  },
+  "${ModID}:ImageOfBygones": {
+    "MOVES": [
+      "Agony",
+      "Scream",
+      "Pulsation"
+    ],
+    "NAME": "Image of Bygones",
+    "DIALOG": [
+    ]
   }
 }
