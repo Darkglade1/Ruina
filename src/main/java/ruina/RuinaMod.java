@@ -83,6 +83,8 @@ import ruina.monsters.act3.EyeballChick;
 import ruina.monsters.act3.JudgementBird;
 import ruina.monsters.act3.Pinocchio;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
+import ruina.monsters.blackSilence.blackSilence3.Angelica;
+import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.act3.RunawayBird;
@@ -736,6 +738,11 @@ public class RuinaMod implements
 
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
 
+        BaseMod.addMonster(BlackSilence3.ID, "BS3", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new BlackSilence3(),
+                        new Angelica(),
+                }));
 
         reverbClear = ruinaConfig.getBool("reverbClear");
         altReverbClear = ruinaConfig.getBool("altReverbClear");
