@@ -1,6 +1,7 @@
 package ruina;
 
 import actlikeit.RazIntent.CustomIntent;
+import actlikeit.dungeons.CustomDungeon;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModPanel;
@@ -557,7 +558,7 @@ public class RuinaMod implements
         uninvitedGuests.addAct(TheEnding.ID);
 
         BlackSilence silence = new BlackSilence();
-        silence.addAct(TheEnding.ID);
+        CustomDungeon.addAct(5, silence);
 
         CustomIntent.add(new MassAttackIntent());
 

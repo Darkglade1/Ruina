@@ -79,10 +79,7 @@
   },
   "${ModID}:BlackSilence": {
     "TEXT": [
-      "The Black Silence",
-      "The Black Silence",
-      "The fighting stops, but a #pdeathly #pchill still pervades the air. NL \"Angela. You know what I'm about to do now, right?\"",
-      "Quell a raging sorrow"
+      "The Black Silence"
     ]
   }
 }

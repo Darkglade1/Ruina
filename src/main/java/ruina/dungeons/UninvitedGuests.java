@@ -1,14 +1,17 @@
 package ruina.dungeons;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapGenerator;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.RestRoom;
@@ -17,6 +20,7 @@ import com.megacrit.cardcrawl.rooms.TreasureRoom;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
+import ruina.events.act4.BlackSilenceFork;
 import ruina.events.act4.Ensemble;
 import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
 import ruina.monsters.uninvitedGuests.normal.clown.Oswald;
@@ -32,6 +36,7 @@ import ruina.rooms.ReverbMonsterRoom;
 import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeUIPath;
+import static ruina.util.Wiz.adp;
 
 public class UninvitedGuests extends AbstractRuinaDungeon {
 
@@ -78,7 +83,28 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
     }
 
     @Override
-    public String getAfterSelectText() {
+    public void Ending() {
+        adp().hand.group.clear(); //stop the card playable crashes LOL
+        AbstractDungeon.currMapNode.room = new ForkEventRoom();
+        AbstractDungeon.getCurrRoom().onPlayerEntry();
+        AbstractDungeon.rs = AbstractDungeon.RenderScene.EVENT;
+
+        AbstractDungeon.combatRewardScreen.clear();
+        AbstractDungeon.previousScreen = null;
+        AbstractDungeon.closeCurrentScreen();
+    }
+
+    public static class ForkEventRoom extends EventRoom {
+        @Override
+        public void onPlayerEntry() {
+            AbstractDungeon.overlayMenu.proceedButton.hide();
+            this.event = new BlackSilenceFork();
+            this.event.onEnterRoom();
+        }
+    }
+
+    @Override
+    public String getBodyText() {
         return TEXT[2];
     }
 

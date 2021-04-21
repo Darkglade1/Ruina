@@ -419,5 +419,15 @@
       "Choose a Card to Upgrade",
       "Choose a Card to Remove"
     ]
+  },
+  "${ModID}:BlackSilenceFork": {
+    "NAME": "The End",
+    "DESCRIPTIONS": [
+      "The fighting stops, a welcome #greprieve from the gruesome gauntlet you've been subjected to. But as the #psilence stretches onward, a #pdeathly #pchill fills the air as a #rheartbeat begins to pound louder and louder in your ear. NL NL \"Angela. You know what I'm about to do now, right?\""
+    ],
+    "OPTIONS": [
+      "[Succumb to the heartbeat] Return to the Corrupt Heart",
+      "[See things to the end] Confront the Black Silence"
+    ]
   }
 }

@@ -66,16 +66,6 @@ public class BlackSilence extends AbstractRuinaDungeon {
         }
     }
 
-    @Override
-    public String getAfterSelectText() {
-        return TEXT[2];
-    }
-
-    @Override
-    public String getOptionText() {
-        return TEXT[3];
-    }
-
 
     @Override
     protected void makeMap() {
