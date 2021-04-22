@@ -1,8 +1,13 @@
 package ruina.monsters.blackSilence.blackSilence4;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -17,10 +22,12 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
+import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence4.cards.Agony;
 import ruina.monsters.blackSilence.blackSilence4.cards.Scream;
@@ -52,14 +59,15 @@ import ruina.monsters.blackSilence.blackSilence4.memories.yun.Yun2;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei1;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei2;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.powers.Scars;
 import ruina.util.AdditionalIntent;
+import ruina.vfx.FlexibleStanceAuraEffect;
+import ruina.vfx.FlexibleWrathParticleEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class BlackSilence4 extends AbstractCardMonster {
@@ -84,8 +92,9 @@ public class BlackSilence4 extends AbstractCardMonster {
 
     public final int screamHits = 2;
     public final int screamDebuff = calcAscensionSpecial(1);
-    public final int NUM_VOIDS = calcAscensionSpecial(3);
-    public final int INVINCIBLE = 200;
+    public final int BLOCK = calcAscensionTankiness(23);
+    public final int NUM_VOIDS = calcAscensionSpecial(2);
+    public final int INVINCIBLE = 250;
 
     public final int yunDazes = calcAscensionSpecial(3);
     public final int yunWounds = calcAscensionSpecial(2);
@@ -106,23 +115,28 @@ public class BlackSilence4 extends AbstractCardMonster {
     public final int liuVulnerable = calcAscensionSpecial(2);
 
     public final int purpleIntangible = calcAscensionSpecial(1);
-    public final int purpleMinions = calcAscensionSpecial(1);
+    public final int purpleMinions = 1;
 
     public final int hanaRegret = calcAscensionSpecial(2);
     public final int hanaHpLoss = calcAscensionSpecial(20);
 
     private final ArrayList<Byte> memories = new ArrayList<>();
 
+    private float particleTimer;
+    private float particleTimer2;
+
+    AbstractMonster minion;
+
     public BlackSilence4() {
         this(0.0f, 0.0f);
     }
 
     public BlackSilence4(final float x, final float y) {
-        super(NAME, ID, 1300, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 1300, -15.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence4/Spriter/BlackSilence4.scml"));
 
         numAdditionalMoves = 1;
-        maxAdditionalMoves = 99;
+        maxAdditionalMoves = 4;
         for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
@@ -132,7 +146,7 @@ public class BlackSilence4 extends AbstractCardMonster {
 
         addMove(AGONY, Intent.ATTACK, calcAscensionDamage(38));
         addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(14), screamHits, true);
-        addMove(VOID, Intent.STRONG_DEBUFF);
+        addMove(VOID, Intent.DEFEND_DEBUFF);
         addMove(YUN, Intent.UNKNOWN);
         addMove(ZWEI, Intent.UNKNOWN);
         addMove(DAWN, Intent.UNKNOWN);
@@ -166,6 +180,9 @@ public class BlackSilence4 extends AbstractCardMonster {
 
     public void increaseNumIntents() {
         numAdditionalMoves++;
+        if (numAdditionalMoves > maxAdditionalMoves) {
+            numAdditionalMoves = maxAdditionalMoves;
+        }
     }
 
     @Override
@@ -236,6 +253,7 @@ public class BlackSilence4 extends AbstractCardMonster {
             }
             case VOID: {
                 blockAnimation();
+                block(this, BLOCK);
                 intoDiscardMo(new VoidCard(), NUM_VOIDS, this);
                 resetIdle(1.0f);
                 break;
@@ -339,7 +357,7 @@ public class BlackSilence4 extends AbstractCardMonster {
     @Override
     protected void getMove(final int num) {
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(AGONY)) {
+        if (!this.lastTwoMoves(AGONY)) {
             possibilities.add(AGONY);
         }
         if (!this.lastMove(SCREAM) && !this.lastMoveBefore(SCREAM)) {
@@ -360,7 +378,7 @@ public class BlackSilence4 extends AbstractCardMonster {
             setAdditionalMoveShortcut(move, moveHistory, cardList.get(move));
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(AGONY, moveHistory)) {
+            if (!this.lastTwoMoves(AGONY, moveHistory)) {
                 possibilities.add(AGONY);
             }
             if (!this.lastMove(SCREAM, moveHistory) && !this.lastMoveBefore(SCREAM, moveHistory)) {
@@ -403,11 +421,42 @@ public class BlackSilence4 extends AbstractCardMonster {
 
     @Override
     public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
         runAnim("Defeat");
+        blacksilenceClear = true;
+        saveConfig();
         for (AbstractMonster mo : monsterList()) {
-            if (mo instanceof Puppet) {
+            if (mo instanceof ImageOfBygones) {
                 atb(new SuicideAction(mo));
+            }
+        }
+        waitAnimation(1.0f);
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                BlackSilence4.super.die(triggerRelics);
+                onBossVictoryLogic();
+                onFinalBossVictoryLogic();
+                this.isDone = true;
+            }
+        });
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if (this.hasPower(Scars.POWER_ID)) {
+            if (this.getPower(Scars.POWER_ID).amount >= Scars.THRESHOLD) {
+                this.particleTimer -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer < 0.0F) {
+                    this.particleTimer = 0.04F;
+                    AbstractDungeon.effectsQueue.add(new FlexibleWrathParticleEffect(this));
+                }
+
+                this.particleTimer2 -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer2 < 0.0F) {
+                    this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
+                    AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(WrathStance.STANCE_ID, this));
+                }
             }
         }
     }
@@ -450,6 +499,17 @@ public class BlackSilence4 extends AbstractCardMonster {
 
     private void blockAnimation() {
         animationAction("Block", null, this);
+    }
+
+    public void Summon() {
+        if (minion != null) {
+            atb(new HealAction(minion, minion, minion.maxHealth));
+        } else {
+            float xPosition = -350.0F;
+            minion = new ImageOfBygones(xPosition, 0.0f, this);
+            atb(new SpawnMonsterAction(minion, true));
+            atb(new UsePreBattleActionAction(minion));
+        }
     }
 
 }

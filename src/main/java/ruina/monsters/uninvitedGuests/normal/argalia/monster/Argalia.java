@@ -410,6 +410,8 @@ public class Argalia extends AbstractDeckMonster
             reverbClear = true;
             saveConfig();
             roland.onArgaliaDeath();
+            this.onBossVictoryLogic();
+            this.onFinalBossVictoryLogic();
         }
     }
 

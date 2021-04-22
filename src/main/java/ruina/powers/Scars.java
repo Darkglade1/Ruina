@@ -14,7 +14,7 @@ public class Scars extends AbstractEasyPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final int THRESHOLD = 5;
+    public static final int THRESHOLD = 5;
 
     public Scars(AbstractCreature owner) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, 1);

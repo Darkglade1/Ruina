@@ -62,16 +62,6 @@ public class BlackSilence extends AbstractRuinaDungeon {
         }
     }
 
-    @Override
-    public String getAfterSelectText() {
-        return TEXT[2];
-    }
-
-    @Override
-    public String getOptionText() {
-        return TEXT[3];
-    }
-
 
     @Override
     protected void makeMap() {
@@ -79,9 +69,9 @@ public class BlackSilence extends AbstractRuinaDungeon {
         ArrayList<MonsterRoomCreator> row2 = new ArrayList();
         ArrayList<MonsterRoomCreator> row3 = new ArrayList();
 
-        row1.add(new MonsterRoomCreator(makeUIPath("MalkuthMap.png"), makeUIPath("MalkuthMapOutline.png"), BlackSilence1.ID));
-        row2.add(new MonsterRoomCreator(makeUIPath("YesodMap.png"), makeUIPath("YesodMapOutline.png"), Eileen.ID));
-        row3.add(new MonsterRoomCreator(makeUIPath("HodMap.png"), makeUIPath("HodMapOutline.png"), Greta.ID));
+        row1.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), BlackSilence1.ID));
+        row2.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), Eileen.ID));
+        row3.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), Greta.ID));
 
         map = new ArrayList();
 

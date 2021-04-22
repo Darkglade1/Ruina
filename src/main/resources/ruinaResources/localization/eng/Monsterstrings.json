@@ -926,6 +926,16 @@
     "DIALOG": [
     ]
   },
+  "${ModID}:ImageOfBygones": {
+    "MOVES": [
+      "Agony",
+      "Scream",
+      "Pulsation"
+    ],
+    "NAME": "Image of Bygones",
+    "DIALOG": [
+    ]
+  },
   "${ModID}:BlackSilence3": {
     "MOVES": [
       "United Workshop",

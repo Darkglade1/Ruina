@@ -1,6 +1,7 @@
 package ruina;
 
 import actlikeit.RazIntent.CustomIntent;
+import actlikeit.dungeons.CustomDungeon;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModPanel;
@@ -139,7 +140,7 @@ public class RuinaMod implements
     private static Logger logger = LogManager.getLogger(RuinaMod.class.getName());
 
     public static Boolean reverbClear;
-    public static Boolean altReverbClear;
+    public static Boolean blacksilenceClear;
 
     public RuinaMod() {
         BaseMod.subscribe(this);
@@ -154,7 +155,7 @@ public class RuinaMod implements
         ruinaDefaults.setProperty("Ally Tutorial Seen", "FALSE");
         try {
             ruinaDefaults.put("reverbClear", false);
-            ruinaDefaults.put("altReverbClear", false);
+            ruinaDefaults.put("blacksilenceClear", false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -512,7 +513,7 @@ public class RuinaMod implements
         uninvitedGuests.addAct(TheEnding.ID);
 
         BlackSilence silence = new BlackSilence();
-        silence.addAct(TheEnding.ID);
+        CustomDungeon.addAct(5, silence);
 
         CustomIntent.add(new MassAttackIntent());
 
@@ -689,7 +690,7 @@ public class RuinaMod implements
         //Black Silence
         BaseMod.addMonster(BlackSilence1.ID, (BaseMod.GetMonster) BlackSilence1::new);
 
-        silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
+        silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 
         BaseMod.addMonster(BlackSilence3.ID, "BS3", () -> new MonsterGroup(
                 new AbstractMonster[]{
@@ -698,7 +699,7 @@ public class RuinaMod implements
                 }));
 
         reverbClear = ruinaConfig.getBool("reverbClear");
-        altReverbClear = ruinaConfig.getBool("altReverbClear");
+        blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename) {
@@ -768,7 +769,7 @@ public class RuinaMod implements
     public static void saveConfig() {
         try {
             ruinaConfig.setBool("reverbClear", reverbClear);
-            ruinaConfig.setBool("altReverbClear", altReverbClear);
+            ruinaConfig.setBool("blacksilenceClear", blacksilenceClear);
             ruinaConfig.save();
         } catch (IOException e) {
             e.printStackTrace();
@@ -777,6 +778,6 @@ public class RuinaMod implements
 
     public static void loadConfig(){
         reverbClear = ruinaConfig.getBool("reverbClear");
-        altReverbClear = ruinaConfig.getBool("altReverbClear");
+        blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
     }
 }

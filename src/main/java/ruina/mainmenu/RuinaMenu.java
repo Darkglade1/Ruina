@@ -24,7 +24,7 @@ public class RuinaMenu {
 
         @SpirePostfixPatch
         public static void RuinaTitle(TitleBackground __instance) {
-            if(altReverbClear) {
+            if(blacksilenceClear) {
                 TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(makeUIPath("mainmenu/title.atlas")));
                 setTitleBackgroundAtlasRegion(__instance, atlas, "sky", "jpg/sky");
                 setTitleBackgroundAtlasRegion(__instance, atlas, "mg3Bot", "mg3Bot");
@@ -62,7 +62,7 @@ public class RuinaMenu {
     public static class MusicHijack {
         @SpirePostfixPatch
         public static Music Postfix(Music __result, MainMusic __instance, String key) {
-            if (altReverbClear) { if (key.equals("MENU")) { return MainMusic.newMusic("audio/music/m1.ogg"); } }
+            if (blacksilenceClear) { if (key.equals("MENU")) { return MainMusic.newMusic("audio/music/m1.ogg"); } }
             return __result;
         }
     }
