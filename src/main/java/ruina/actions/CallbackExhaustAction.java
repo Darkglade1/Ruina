@@ -1,8 +1,8 @@
 package ruina.actions;
 
-import ruina.patches.ExhaustCardHook;
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import ruina.patches.ExhaustCardHook;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;

@@ -8,15 +8,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
-import ruina.monsters.act2.BadWolf;
-import ruina.monsters.act2.KingOfGreed;
-import ruina.monsters.act2.KnightOfDespair;
-import ruina.monsters.act2.Mountain;
-import ruina.monsters.act2.Nosferatu;
-import ruina.monsters.act2.QueenOfHate;
-import ruina.monsters.act2.RoadHome;
-import ruina.monsters.act2.ServantOfWrath;
-import ruina.monsters.act2.Woodsman;
+import ruina.monsters.act2.*;
 
 import java.util.ArrayList;
 

@@ -1,39 +1,26 @@
 package ruina.monsters.act3.seraphim;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.IntentFlashAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
-import com.megacrit.cardcrawl.powers.MinionPower;
-import com.megacrit.cardcrawl.powers.RitualPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
-import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Unkillable;
 import ruina.powers.WingsOfGrace;
-import ruina.util.AdditionalIntent;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.atb;
 
 public class GuardianApostle extends AbstractRuinaMonster {
     public static final String ID = makeID(GuardianApostle.class.getSimpleName());

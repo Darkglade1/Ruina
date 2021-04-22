@@ -14,34 +14,19 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.*;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.blackSilence.blackSilence1.cards.Allas;
-import ruina.monsters.blackSilence.blackSilence1.cards.Crystal;
-import ruina.monsters.blackSilence.blackSilence1.cards.Durandal;
-import ruina.monsters.blackSilence.blackSilence1.cards.Furioso;
-import ruina.monsters.blackSilence.blackSilence1.cards.Gun;
-import ruina.monsters.blackSilence.blackSilence1.cards.Mace;
-import ruina.monsters.blackSilence.blackSilence1.cards.Mook;
-import ruina.monsters.blackSilence.blackSilence1.cards.OldBoys;
-import ruina.monsters.blackSilence.blackSilence1.cards.Ranga;
-import ruina.monsters.blackSilence.blackSilence1.cards.Wheels;
+import ruina.monsters.blackSilence.blackSilence1.cards.*;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.makeID;
+import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
 public class BlackSilence1 extends AbstractCardMonster {

@@ -2,9 +2,7 @@ package ruina.mainmenu;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -13,11 +11,11 @@ import com.megacrit.cardcrawl.audio.MainMusic;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.scenes.TitleBackground;
 import com.megacrit.cardcrawl.scenes.TitleCloud;
-import ruina.util.TexLoader;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.altReverbClear;
+import static ruina.RuinaMod.makeUIPath;
 
 public class RuinaMenu {
 

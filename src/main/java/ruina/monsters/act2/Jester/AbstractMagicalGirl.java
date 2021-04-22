@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.util.Wiz;
 
-import static ruina.util.Wiz.atb;
 import static ruina.util.Wiz.att;
 
 public abstract class AbstractMagicalGirl extends AbstractAllyMonster {

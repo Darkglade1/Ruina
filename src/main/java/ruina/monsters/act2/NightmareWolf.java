@@ -1,11 +1,9 @@
 package ruina.monsters.act2;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.LoseBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -28,7 +26,8 @@ import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.makeID;
+import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
 public class NightmareWolf extends AbstractMultiIntentMonster

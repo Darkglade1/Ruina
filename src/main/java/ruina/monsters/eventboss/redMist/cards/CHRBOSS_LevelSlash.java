@@ -1,18 +1,13 @@
 package ruina.monsters.eventboss.redMist.cards;
 
 import basemod.AutoAdd;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
-import ruina.cards.EGO.AbstractEgoCard;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
-import ruina.powers.CobaltScarPower;
 
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.adp;
-import static ruina.util.Wiz.atb;
 
 @AutoAdd.Ignore
 public class CHRBOSS_LevelSlash extends AbstractRuinaCard {

@@ -1,17 +1,13 @@
 package ruina.monsters.blackSilence.blackSilence4.memories.zwei;
 
 import basemod.AutoAdd;
-import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
-import ruina.monsters.blackSilence.blackSilence4.memories.yun.Yun;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.applyToTarget;
-import static ruina.util.Wiz.intoDrawMo;
 
 @AutoAdd.Ignore
 public class Zwei1 extends Zwei {
