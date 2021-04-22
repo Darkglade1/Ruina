@@ -1,7 +1,5 @@
 package ruina.events.act3;
 
-import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,7 +8,6 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.RuinaMod;
-import ruina.cardmods.ContractsMod;
 import ruina.relics.YesterdayPromiseRelic;
 
 import static ruina.RuinaMod.makeEventPath;

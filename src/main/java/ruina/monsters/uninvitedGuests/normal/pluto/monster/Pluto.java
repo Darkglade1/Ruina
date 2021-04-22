@@ -28,11 +28,7 @@ import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.ConfusingCont
 import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.ContractOfLight;
 import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.ContractOfMight;
 import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.NoContract;
-import ruina.monsters.uninvitedGuests.normal.pluto.plutoCards.BindingTerms;
-import ruina.monsters.uninvitedGuests.normal.pluto.plutoCards.Contract;
-import ruina.monsters.uninvitedGuests.normal.pluto.plutoCards.Missile;
-import ruina.monsters.uninvitedGuests.normal.pluto.plutoCards.Onslaught;
-import ruina.monsters.uninvitedGuests.normal.pluto.plutoCards.Safeguard;
+import ruina.monsters.uninvitedGuests.normal.pluto.plutoCards.*;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 

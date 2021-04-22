@@ -19,7 +19,6 @@ import ruina.cardmods.AutoplayMod;
 import ruina.cardmods.InnateMod;
 
 import static ruina.RuinaMod.makeEventPath;
-import static ruina.util.Wiz.adp;
 
 public class ThePianist extends AbstractImageEvent {
 

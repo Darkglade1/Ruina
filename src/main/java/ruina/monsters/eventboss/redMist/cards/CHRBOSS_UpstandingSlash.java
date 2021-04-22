@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
-import ruina.cards.EGO.AbstractEgoCard;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 
 import static ruina.RuinaMod.makeID;

@@ -5,14 +5,8 @@ import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.IntentFlashAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.InstantKillAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SetMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.Slimed;
@@ -44,7 +38,6 @@ import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;

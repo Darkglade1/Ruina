@@ -1,11 +1,8 @@
 package ruina.powers;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.BarricadePower;
-
-import static ruina.util.Wiz.atb;
 
 //because apparently the block of ALL enemies fall off at the end of the player's turn zzzzzzz
 public class InvisibleBarricadePower extends AbstractUnremovablePower implements InvisiblePower {

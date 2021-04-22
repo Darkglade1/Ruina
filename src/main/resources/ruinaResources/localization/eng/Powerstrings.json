@@ -405,5 +405,17 @@
   "${ModID}:Sorrow": {
     "NAME": "Sorrow",
     "DESCRIPTIONS": ["Whenever you play a card, #yExhaust it."]
+  },
+  "${ModID}:BlackSilence3": {
+    "NAME": "Black Silence",
+    "DESCRIPTIONS": ["Each time you play #b%1$s #yAttacks or #yPowers in a single turn, Roland takes a turn, and this effect can only activate #ronce per turn. If Roland does not act in this way this turn, the allocated card is played instead."]
+  },
+  "${ModID}:WhiteNoise": {
+    "NAME": "White Noise",
+    "DESCRIPTIONS": ["Each time you play #b%1$s #ySkills or #yPowers in a single turn, Roland takes a turn, and this effect can only activate #ronce per turn. If Roland does not act in this way this turn, the allocated card is played instead."]
+  },
+  "${ModID}:SoulLink": {
+    "NAME": "Soul Link",
+    "DESCRIPTIONS": ["This creature cannot die. If this creature would die, it revives to #bfull #bHP next turn. The combat ends if both enemies with #bSoul #bLink are killed on the same turn."]
   }
 }

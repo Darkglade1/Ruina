@@ -1,8 +1,8 @@
 package ruina.actions;
 
-import ruina.patches.ScryCardHook;
 import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import ruina.patches.ScryCardHook;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;

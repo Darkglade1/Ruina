@@ -935,5 +935,29 @@
     "NAME": "Image of Bygones",
     "DIALOG": [
     ]
+  },
+  "${ModID}:BlackSilence3": {
+    "MOVES": [
+      "United Workshop",
+      "Unstable Loneliness",
+      "Blind Fury",
+      "Waltz of Black",
+      "Dark Bond"
+    ],
+    "NAME": "The Black Silence",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Angelica": {
+    "MOVES": [
+      "Zelkova Workshop",
+      "Allas Workshop",
+      "Atelier Logic",
+      "Waltz of White",
+      "Ashen Bond"
+    ],
+    "NAME": "Angelica",
+    "DIALOG": [
+    ]
   }
 }

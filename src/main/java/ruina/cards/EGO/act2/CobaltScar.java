@@ -7,7 +7,8 @@ import ruina.cards.EGO.AbstractEgoCard;
 import ruina.powers.CobaltScarPower;
 
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.*;
+import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.atb;
 
 public class CobaltScar extends AbstractEgoCard {
     public final static String ID = makeID(CobaltScar.class.getSimpleName());

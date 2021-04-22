@@ -34,6 +34,21 @@ public class FlexibleWrathParticleEffect extends AbstractGameEffect {
         this.creature = creature;
     }
 
+    public FlexibleWrathParticleEffect(AbstractCreature creature, Color colour) {
+        this.img = ImageMaster.GLOW_SPARK;
+        this.duration = MathUtils.random(1.3F, 1.8F);
+        this.scale = MathUtils.random(0.6F, 1.0F) * Settings.scale;
+        this.dur_div2 = this.duration / 2.0F;
+        this.color = colour;
+        this.x = creature.hb.cX + MathUtils.random(-creature.hb.width / 2.0F - 30.0F * Settings.scale, creature.hb.width / 2.0F + 30.0F * Settings.scale);
+        this.y = creature.hb.cY + MathUtils.random(-creature.hb.height / 2.0F - -10.0F * Settings.scale, creature.hb.height / 2.0F - 10.0F * Settings.scale);
+        this.x -= (float)this.img.packedWidth / 2.0F;
+        this.y -= (float)this.img.packedHeight / 2.0F;
+        this.renderBehind = MathUtils.randomBoolean(0.2F + (this.scale - 0.5F));
+        this.rotation = MathUtils.random(-8.0F, 8.0F);
+        this.creature = creature;
+    }
+
     public void update() {
         if (this.duration > this.dur_div2) {
             this.color.a = Interpolation.fade.apply(1.0F, 0.0F, (this.duration - this.dur_div2) / this.dur_div2);

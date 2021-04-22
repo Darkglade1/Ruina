@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.CustomIntent.IntentEnums;
 import ruina.actions.TransferBlockToAllyAction;
-import ruina.monsters.act2.ServantOfWrath;
 import ruina.powers.InvisibleAllyBarricadePower;
 import ruina.util.AllyMove;
 
