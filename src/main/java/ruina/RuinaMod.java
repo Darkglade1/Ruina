@@ -199,7 +199,7 @@ public class RuinaMod implements
         ruinaDefaults.setProperty("Ally Tutorial Seen", "FALSE");
         try {
             ruinaDefaults.put("reverbClear", false);
-            ruinaDefaults.put("altReverbClear", false);
+            ruinaDefaults.put("blacksilenceClear", false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -738,7 +738,7 @@ public class RuinaMod implements
 
 
         reverbClear = ruinaConfig.getBool("reverbClear");
-        blacksilenceClear = ruinaConfig.getBool("altReverbClear");
+        blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename) {
@@ -808,7 +808,7 @@ public class RuinaMod implements
     public static void saveConfig() {
         try {
             ruinaConfig.setBool("reverbClear", reverbClear);
-            ruinaConfig.setBool("altReverbClear", blacksilenceClear);
+            ruinaConfig.setBool("blacksilenceClear", blacksilenceClear);
             ruinaConfig.save();
         } catch (IOException e) {
             e.printStackTrace();
@@ -817,6 +817,6 @@ public class RuinaMod implements
 
     public static void loadConfig(){
         reverbClear = ruinaConfig.getBool("reverbClear");
-        blacksilenceClear = ruinaConfig.getBool("altReverbClear");
+        blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
     }
 }
