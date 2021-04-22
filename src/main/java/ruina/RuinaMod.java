@@ -61,7 +61,6 @@ import ruina.events.act2.ThePianist;
 import ruina.events.act2.WizardOfOz;
 import ruina.events.act2.ZweiAssociation;
 import ruina.events.act3.*;
-import ruina.events.act4.Sorrow;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.Hermit;
 import ruina.monsters.act2.Jester.JesterOfNihil;
@@ -185,7 +184,7 @@ public class RuinaMod implements
     private static Logger logger = LogManager.getLogger(RuinaMod.class.getName());
 
     public static Boolean reverbClear;
-    public static Boolean altReverbClear;
+    public static Boolean blacksilenceClear;
 
     public RuinaMod() {
         BaseMod.subscribe(this);
@@ -739,7 +738,7 @@ public class RuinaMod implements
 
 
         reverbClear = ruinaConfig.getBool("reverbClear");
-        altReverbClear = ruinaConfig.getBool("altReverbClear");
+        blacksilenceClear = ruinaConfig.getBool("altReverbClear");
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename) {
@@ -809,7 +808,7 @@ public class RuinaMod implements
     public static void saveConfig() {
         try {
             ruinaConfig.setBool("reverbClear", reverbClear);
-            ruinaConfig.setBool("altReverbClear", altReverbClear);
+            ruinaConfig.setBool("altReverbClear", blacksilenceClear);
             ruinaConfig.save();
         } catch (IOException e) {
             e.printStackTrace();
@@ -818,6 +817,6 @@ public class RuinaMod implements
 
     public static void loadConfig(){
         reverbClear = ruinaConfig.getBool("reverbClear");
-        altReverbClear = ruinaConfig.getBool("altReverbClear");
+        blacksilenceClear = ruinaConfig.getBool("altReverbClear");
     }
 }

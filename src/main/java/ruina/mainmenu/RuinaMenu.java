@@ -2,9 +2,7 @@ package ruina.mainmenu;
 
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -13,7 +11,6 @@ import com.megacrit.cardcrawl.audio.MainMusic;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.scenes.TitleBackground;
 import com.megacrit.cardcrawl.scenes.TitleCloud;
-import ruina.util.TexLoader;
 
 import java.util.ArrayList;
 
@@ -26,7 +23,7 @@ public class RuinaMenu {
 
         @SpirePostfixPatch
         public static void RuinaTitle(TitleBackground __instance) {
-            if(altReverbClear) {
+            if(blacksilenceClear) {
                 TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(makeUIPath("mainmenu/title.atlas")));
                 setTitleBackgroundAtlasRegion(__instance, atlas, "sky", "jpg/sky");
                 setTitleBackgroundAtlasRegion(__instance, atlas, "mg3Bot", "mg3Bot");
@@ -64,7 +61,7 @@ public class RuinaMenu {
     public static class MusicHijack {
         @SpirePostfixPatch
         public static Music Postfix(Music __result, MainMusic __instance, String key) {
-            if (altReverbClear) { if (key.equals("MENU")) { return MainMusic.newMusic("audio/music/m1.ogg"); } }
+            if (blacksilenceClear) { if (key.equals("MENU")) { return MainMusic.newMusic("audio/music/m1.ogg"); } }
             return __result;
         }
     }

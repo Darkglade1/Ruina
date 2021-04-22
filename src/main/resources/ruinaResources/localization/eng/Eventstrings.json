@@ -389,14 +389,10 @@
     "DESCRIPTIONS": [
       "\"Ohohohoho! Knock, and the door shall open!\" NL \"The entrance to this place was super strong, even after many blows we barely got inside.\" NL \"It's a test of endurance, after all! There's no use giving up after a couple of knocks!\" NL \"Now friends, if you're any rowdier we might scare away the residents of this place. It would be wise that we show the utmost respect so they don't go hiding behind bookshelves, no?\"",
       "You don't know what compelled you to do so, to risk your very #ylife for a place such as this. But you could tell there was a #yLight here, a ray of hope that these villains sought to #pdefile. NL NL And you would not stand for it.",
-      "\"#rT2hvaG9ob2hv! Knock, and the door shall open!\" NL \"The entrance to this #rcGxhY2Ugd2FzIHN1cGVyIHN0cm9uZywgZXZlbiBhZnRlciBtYW55IGJsb3dz we barely got inside.\" NL \"It's a test of #rZW5kdXJhbmNl, after all! There's no use giving up after #rYSBjb3VwbGUgb2Yga25vY2tz!\" NL \"#pTm93IGZyaWVuZHMsIGlmIHlvdSdyZSBhbnkgcm93ZGllciB3ZSBtaWdodCBzY2FyZSBhd2F5IHRoZSByZXNpZGVudHMgb2YgdGhpcyBwbGFjZS4gSXQgd291bGQgYmUgd2lzZSB0aGF0IHdlIHNob3cgdGhlIHV0bW9zdCByZXNwZWN0IHNvIHRoZXkgZG9uJ3QgZ28gaGlkaW5nIGJlaGluZCBib29rc2hlbHZlcywgbm8/\"",
-      "You brace the #pdistortions, but with each passing second your body grows wearier and wearier. You try to hold on, until everything ~fades~ ~away...~"
     ],
     "OPTIONS": [
       "[Make a stand] #gObtain #ga #gSpecial #gRelic.",
-      "[Prepare yourself]",
-      "[Brace the Distortion] #gObtain #ga #gSpecial #gRelic.",
-      "[See through a different perspective]"
+      "[Prepare yourself]"
     ]
   },
   "${ModID}:Sorrow": {

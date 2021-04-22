@@ -67,7 +67,7 @@ import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class BlackSilence4 extends AbstractCardMonster {
@@ -421,13 +421,24 @@ public class BlackSilence4 extends AbstractCardMonster {
 
     @Override
     public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
         runAnim("Defeat");
+        blacksilenceClear = true;
+        saveConfig();
         for (AbstractMonster mo : monsterList()) {
             if (mo instanceof ImageOfBygones) {
                 atb(new SuicideAction(mo));
             }
         }
+        waitAnimation(1.0f);
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                BlackSilence4.super.die(triggerRelics);
+                onBossVictoryLogic();
+                onFinalBossVictoryLogic();
+                this.isDone = true;
+            }
+        });
     }
 
     @Override
