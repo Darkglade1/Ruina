@@ -5,9 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
-import ruina.cards.EGO.AbstractEgoCard;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
-import ruina.monsters.eventboss.yan.monster.yanHand;
 
 import static ruina.RuinaMod.makeID;
 

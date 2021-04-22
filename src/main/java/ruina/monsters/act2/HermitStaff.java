@@ -1,7 +1,6 @@
 package ruina.monsters.act2;
 
 import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;

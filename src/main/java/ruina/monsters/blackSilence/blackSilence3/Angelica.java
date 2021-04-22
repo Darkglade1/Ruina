@@ -3,55 +3,33 @@ package ruina.monsters.blackSilence.blackSilence3;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.stances.WrathStance;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence3.angelicaCards.*;
-import ruina.monsters.blackSilence.blackSilence4.cards.Agony;
-import ruina.monsters.blackSilence.blackSilence4.cards.Scream;
-import ruina.monsters.blackSilence.blackSilence4.cards.Void;
-import ruina.monsters.blackSilence.blackSilence4.memories.Shi.Shi;
-import ruina.monsters.blackSilence.blackSilence4.memories.blue.Blue;
-import ruina.monsters.blackSilence.blackSilence4.memories.dawn.Dawn;
-import ruina.monsters.blackSilence.blackSilence4.memories.hana.Hana;
-import ruina.monsters.blackSilence.blackSilence4.memories.liu.Liu;
-import ruina.monsters.blackSilence.blackSilence4.memories.love.Love;
-import ruina.monsters.blackSilence.blackSilence4.memories.purple.Purple;
-import ruina.monsters.blackSilence.blackSilence4.memories.yun.Yun;
-import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei;
-import ruina.powers.Bleed;
 import ruina.powers.WhiteNoise;
-import ruina.util.AdditionalIntent;
-import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.FlexibleWrathParticleEffect;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.applyToTarget;
 
 public class Angelica extends AbstractCardMonster {
 
