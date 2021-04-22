@@ -62,7 +62,7 @@ public class BlackSilence3 extends AbstractCardMonster {
     public BlackSilence3() { this(70.0f, 10.0f); }
     public BlackSilence3(final float x, final float y) {
         super(NAME, ID, 450, 0.0F, 0, 230.0f, 265.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence4/Spriter/BlackSilence4.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence3/Spriter/BlackSilence3.scml"));
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
