@@ -1,5 +1,9 @@
 package ruina.monsters.blackSilence.blackSilence3;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -17,6 +21,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -37,6 +42,8 @@ import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei;
 import ruina.powers.Bleed;
 import ruina.powers.WhiteNoise;
 import ruina.util.AdditionalIntent;
+import ruina.vfx.FlexibleStanceAuraEffect;
+import ruina.vfx.FlexibleWrathParticleEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
@@ -79,6 +86,9 @@ public class Angelica extends AbstractCardMonster {
     private static final byte TURNS_UNTIL_WALTZ = 3;
     private int turn = TURNS_UNTIL_WALTZ;
 
+    private float particleTimer;
+    private float particleTimer2;
+
     public Angelica() {
         this(-1000.0f, 0.0f);
     }
@@ -88,13 +98,11 @@ public class Angelica extends AbstractCardMonster {
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence4/Spriter/BlackSilence4.scml"));
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
-
         addMove(ZELKOVA, Intent.ATTACK, zelkovaDamage, zelkovaHits, true);
         addMove(ALLAS, Intent.ATTACK_DEBUFF, allasDamage);
         addMove(ATELIER, Intent.ATTACK, atelierDamage, atelierHits, true);
         addMove(WALTZ, Intent.ATTACK, waltzDamage, waltzHits, true);
         addMove(ASHENBOND, Intent.BUFF);
-
         cardList.add(new Madness());
         cardList.add(new Madness());
         cardList.add(new Madness());
@@ -110,13 +118,17 @@ public class Angelica extends AbstractCardMonster {
             EnemyMoveInfo emi = moves.get(this.nextMove);
             info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
             multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
+        } else { info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL); }
         AbstractCreature target = adp();
-        if (info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        if (info.base > -1) { info.applyPowers(this, target); }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if(nextMove == WALTZ){ turn = TURNS_UNTIL_WALTZ; }
+                else if(nextMove != NONE) {turn -= 1; }
+                isDone = true;
+            }
+        });
         switch (this.nextMove) {
             case ZELKOVA:
                 for (int i = 0; i < multiplier; i++) {
@@ -157,18 +169,24 @@ public class Angelica extends AbstractCardMonster {
     }
 
     @Override
+    public void createIntent() {
+        super.createIntent();
+        applyPowers();
+    }
+
+    @Override
     protected void getMove(final int num) {
         if (turn == 0) {
             setMoveShortcut(WALTZ, MOVES[WALTZ], cardList.get(WALTZ).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(ZELKOVA)) {
+            if (!this.lastTwoMoves(ZELKOVA)) {
                 possibilities.add(ZELKOVA);
             }
-            if (!this.lastMove(ALLAS)) {
+            if (!this.lastTwoMoves(ALLAS)) {
                 possibilities.add(ALLAS);
             }
-            if (!this.lastMove(ATELIER)) {
+            if (!this.lastTwoMoves(ATELIER)) {
                 possibilities.add(ATELIER);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
@@ -218,5 +236,24 @@ public class Angelica extends AbstractCardMonster {
     }
 
     public void die() { if (!(AbstractDungeon.getCurrRoom()).cannotLose) super.die(); }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        this.particleTimer -= Gdx.graphics.getDeltaTime();
+        if (this.particleTimer < 0.0F) {
+            this.particleTimer = 0.04F;
+            AbstractDungeon.effectsQueue.add(new FlexibleWrathParticleEffect(this, Color.WHITE.cpy()));
+        }
+
+        /*
+        this.particleTimer2 -= Gdx.graphics.getDeltaTime();
+        if (this.particleTimer2 < 0.0F) {
+            this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
+            AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect("BS3_LIGHT", this));
+        }
+
+         */
+    }
 
 }

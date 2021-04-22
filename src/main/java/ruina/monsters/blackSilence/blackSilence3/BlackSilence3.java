@@ -1,5 +1,9 @@
 package ruina.monsters.blackSilence.blackSilence3;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -17,6 +21,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -39,6 +44,8 @@ import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.powers.BlackSilence;
 import ruina.util.AdditionalIntent;
+import ruina.vfx.FlexibleStanceAuraEffect;
+import ruina.vfx.FlexibleWrathParticleEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
@@ -78,6 +85,9 @@ public class BlackSilence3 extends AbstractCardMonster {
     private int turn = TURNS_UNTIL_WALTZ;
     private Angelica angelica;
 
+    private float particleTimer;
+    private float particleTimer2;
+
     public BlackSilence3() { this(70.0f, 10.0f); }
     public BlackSilence3(final float x, final float y) {
         super(NAME, ID, 500, 0.0F, 0, 230.0f, 265.0f, null, x, y);
@@ -111,6 +121,14 @@ public class BlackSilence3 extends AbstractCardMonster {
         } else { info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL); }
         AbstractCreature target = adp();
         if (info.base > -1) { info.applyPowers(this, target); }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if(nextMove == WALTZ){ turn = TURNS_UNTIL_WALTZ; }
+                else if(nextMove != NONE) { turn -= 1; }
+                isDone = true;
+            }
+        });
         switch (this.nextMove) {
             case UNITED_WORKSHOP:
                 for (int i = 0; i < multiplier; i++) { dmg(target, info); }
@@ -171,9 +189,9 @@ public class BlackSilence3 extends AbstractCardMonster {
         if(turn == 0){ setMoveShortcut(WALTZ, MOVES[WALTZ], cardList.get(WALTZ).makeStatEquivalentCopy()); }
         else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(UNITED_WORKSHOP)) { possibilities.add(UNITED_WORKSHOP); }
-            if (!this.lastMove(LONELINESS)) { possibilities.add(LONELINESS); }
-            if (!this.lastMove(FURY)) { possibilities.add(FURY); }
+            if (!this.lastTwoMoves(UNITED_WORKSHOP)) { possibilities.add(UNITED_WORKSHOP); }
+            if (!this.lastTwoMoves(LONELINESS)) { possibilities.add(LONELINESS); }
+            if (!this.lastTwoMoves(FURY)) { possibilities.add(FURY); }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
         }
@@ -222,4 +240,5 @@ public class BlackSilence3 extends AbstractCardMonster {
     }
 
     public void die() { if (!(AbstractDungeon.getCurrRoom()).cannotLose) super.die(); }
+    
 }
