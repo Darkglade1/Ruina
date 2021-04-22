@@ -38,8 +38,8 @@ public class BlackSilence3 extends AbstractUnremovablePower {
 
     private Melody bond;
     private ruina.monsters.blackSilence.blackSilence3.BlackSilence3 roland;
-    private static final Texture tex84 = TexLoader.getTexture(makePowerPath("Vibration84.png"));
-    private static final Texture tex32 = TexLoader.getTexture(makePowerPath("Vibration32.png"));
+    private static final Texture tex84 = TexLoader.getTexture(makePowerPath("BlackEnergy84.png"));
+    private static final Texture tex32 = TexLoader.getTexture(makePowerPath("BlackEnergy32.png"));
 
     public BlackSilence3(ruina.monsters.blackSilence.blackSilence3.BlackSilence3 owner) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, CARD_AMOUNT_NEEDED);

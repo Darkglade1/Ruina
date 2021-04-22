@@ -31,8 +31,8 @@ public class WhiteNoise extends AbstractUnremovablePower {
 
     private Melody bond;
     private Angelica angelica;
-    private static final Texture tex84 = TexLoader.getTexture(makePowerPath("Vibration84.png"));
-    private static final Texture tex32 = TexLoader.getTexture(makePowerPath("Vibration32.png"));
+    private static final Texture tex84 = TexLoader.getTexture(makePowerPath("WhiteEnergy84.png"));
+    private static final Texture tex32 = TexLoader.getTexture(makePowerPath("WhiteEnergy32.png"));
 
     public WhiteNoise(Angelica owner) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, CARD_AMOUNT_NEEDED);
@@ -45,7 +45,7 @@ public class WhiteNoise extends AbstractUnremovablePower {
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         if (!completed && !angelica.halfDead) {
-            if (card.type.equals(AbstractCard.CardType.ATTACK) || card.type.equals(AbstractCard.CardType.POWER)) {
+            if (card.type.equals(AbstractCard.CardType.SKILL) || card.type.equals(AbstractCard.CardType.POWER)) {
                 if (amount - 1 == 0) {
                     amount = -1;
                     atb(new AbstractGameAction() {
