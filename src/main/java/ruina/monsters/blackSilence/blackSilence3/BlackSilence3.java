@@ -28,6 +28,7 @@ import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.monsters.blackSilence.blackSilence3.rolandCards.*;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.blackSilence.blackSilence4.cards.Agony;
 import ruina.monsters.blackSilence.blackSilence4.cards.Scream;
@@ -74,13 +75,13 @@ public class BlackSilence3 extends AbstractCardMonster {
     private static final byte NONE = 5;
     private static final byte SOUL_LINK_REVIVAL = 6;
 
-    private final int unitedDamage = calcAscensionDamage(7);
-    private final int unitedHits = 2;
-    private final int lonelyDamage = calcAscensionDamage(15);
+    public final int unitedDamage = calcAscensionDamage(7);
+    public final int unitedHits = 2;
+    public final int lonelyDamage = calcAscensionDamage(15);
     public final int lonelyDebuff = calcAscensionSpecial(2);
     public final int furyStrength = 2;
-    private final int waltzDamage = calcAscensionDamage(30);
-    private final int bondStrength = calcAscensionSpecial(3);
+    public final int waltzDamage = calcAscensionDamage(30);
+    public final int bondStrength = calcAscensionSpecial(3);
     private static final byte TURNS_UNTIL_WALTZ = 3;
     private int turn = TURNS_UNTIL_WALTZ;
     private Angelica angelica;
@@ -90,7 +91,7 @@ public class BlackSilence3 extends AbstractCardMonster {
 
     public BlackSilence3() { this(70.0f, 10.0f); }
     public BlackSilence3(final float x, final float y) {
-        super(NAME, ID, 500, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 450, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence4/Spriter/BlackSilence4.scml"));
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
@@ -101,13 +102,11 @@ public class BlackSilence3 extends AbstractCardMonster {
         addMove(WALTZ, Intent.ATTACK, waltzDamage);
         addMove(DARKBOND, Intent.BUFF);
 
-        cardList.add(new Madness());
-        cardList.add(new Madness());
-        cardList.add(new Madness());
-        cardList.add(new Madness());
-        cardList.add(new Madness());
-        cardList.add(new Madness());
-        cardList.add(new Madness());
+        cardList.add(new UnitedWorkshop(this));
+        cardList.add(new UnstableLoneliness(this));
+        cardList.add(new BlindFury(this));
+        cardList.add(new WaltzInBlack(this));
+        cardList.add(new DarkBond(this));
     }
 
     @Override
@@ -240,5 +239,5 @@ public class BlackSilence3 extends AbstractCardMonster {
     }
 
     public void die() { if (!(AbstractDungeon.getCurrRoom()).cannotLose) super.die(); }
-    
+
 }

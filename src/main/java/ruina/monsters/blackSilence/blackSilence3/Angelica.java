@@ -27,6 +27,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.blackSilence.blackSilence3.angelicaCards.*;
 import ruina.monsters.blackSilence.blackSilence4.cards.Agony;
 import ruina.monsters.blackSilence.blackSilence4.cards.Scream;
 import ruina.monsters.blackSilence.blackSilence4.cards.Void;
@@ -73,15 +74,15 @@ public class Angelica extends AbstractCardMonster {
     private static final byte NONE = 5;
     private static final byte SOUL_LINK_REVIVAL = 6;
 
-    private final int zelkovaDamage = calcAscensionDamage(8);
-    private final int zelkovaHits = 2;
-    private final int allasDamage = calcAscensionDamage(20);
-    private final int allasDebuff = 1;
-    private final int atelierDamage = calcAscensionDamage(8);
-    private final int atelierHits = 3;
-    private final int waltzDamage = calcAscensionDamage(10);
-    private final int waltzHits = 3;
-    private final int bondStrength = calcAscensionSpecial(3);
+    public final int zelkovaDamage = calcAscensionDamage(8);
+    public final int zelkovaHits = 2;
+    public final int allasDamage = calcAscensionDamage(20);
+    public final int allasDebuff = 1;
+    public final int atelierDamage = calcAscensionDamage(6);
+    public final int atelierHits = 3;
+    public final int waltzDamage = calcAscensionDamage(10);
+    public final int waltzHits = 3;
+    public final int bondStrength = calcAscensionSpecial(3);
     private BlackSilence3 roland;
     private static final byte TURNS_UNTIL_WALTZ = 3;
     private int turn = TURNS_UNTIL_WALTZ;
@@ -94,7 +95,7 @@ public class Angelica extends AbstractCardMonster {
     }
 
     public Angelica(final float x, final float y) {
-        super(NAME, ID, 500, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 450, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence4/Spriter/BlackSilence4.scml"));
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
@@ -103,11 +104,11 @@ public class Angelica extends AbstractCardMonster {
         addMove(ATELIER, Intent.ATTACK, atelierDamage, atelierHits, true);
         addMove(WALTZ, Intent.ATTACK, waltzDamage, waltzHits, true);
         addMove(ASHENBOND, Intent.BUFF);
-        cardList.add(new Madness());
-        cardList.add(new Madness());
-        cardList.add(new Madness());
-        cardList.add(new Madness());
-        cardList.add(new Madness());
+        cardList.add(new ZelkovaWorkshop(this));
+        cardList.add(new AllasWorkshop(this));
+        cardList.add(new AtelierLogic(this));
+        cardList.add(new WaltzInWhite(this));
+        cardList.add(new AshenBond(this));
     }
 
     @Override

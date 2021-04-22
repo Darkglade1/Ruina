@@ -713,5 +713,45 @@
   "${ModID}:Void": {
     "NAME": "Void",
     "DESCRIPTION": "Shuffle !M! *Void into your discard pile."
+  },
+  "${ModID}:ZelkovaWorkshop": {
+    "NAME": "Zelkova Workshop",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:AllasWorkshop": {
+    "NAME": "Allas Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL Apply! !M! Vulnerable."
+  },
+  "${ModID}:AtelierLogic": {
+    "NAME": "Atelier Logic",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:WaltzInWhite": {
+    "NAME": "Waltz In White",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:AshenBond": {
+    "NAME": "Ashen Bond",
+    "DESCRIPTION": "The Black Silence gains !M! Strength."
+  },
+  "${ModID}:UnitedWorkshop": {
+    "NAME": "United Assault",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:UnstableLoneliness": {
+    "NAME": "Unstable Loneliness",
+    "DESCRIPTION": "Deal !D! damage. NL If this dealt damage, apply !M! Weak, Frail, and Vulnerable."
+  },
+  "${ModID}:BlindFury": {
+    "NAME": "Blind Fury",
+    "DESCRIPTION": "All Enemies gain !M! Strength."
+  },
+  "${ModID}:DarkBond": {
+    "NAME": "Dark Bond",
+    "DESCRIPTION": "Angelica gains !M! Strength."
+  },
+  "${ModID}:WaltzInBlack": {
+    "NAME": "Waltz In Black",
+    "DESCRIPTION": "Deal !D! damage."
   }
 }
