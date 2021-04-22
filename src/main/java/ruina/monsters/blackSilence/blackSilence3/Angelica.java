@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -40,9 +41,7 @@ public class Angelica extends AbstractCardMonster {
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     public AbstractCard bond;
-    public AbstractCard waltz;
 
-    public boolean rolandAttackedThisTurn = false;
 
     private static final byte ZELKOVA = 0;
     private static final byte ALLAS = 1; // sword img
@@ -87,6 +86,7 @@ public class Angelica extends AbstractCardMonster {
         cardList.add(new AtelierLogic(this));
         cardList.add(new WaltzInWhite(this));
         cardList.add(new AshenBond(this));
+        bond = new AshenBond(this);
     }
 
     @Override
@@ -224,15 +224,16 @@ public class Angelica extends AbstractCardMonster {
             this.particleTimer = 0.04F;
             AbstractDungeon.effectsQueue.add(new FlexibleWrathParticleEffect(this, Color.WHITE.cpy()));
         }
-
-        /*
-        this.particleTimer2 -= Gdx.graphics.getDeltaTime();
-        if (this.particleTimer2 < 0.0F) {
-            this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
-            AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect("BS3_LIGHT", this));
+        if(bond != null) {
+            float drawScale = 0.65f;
+            float offsetX1 = 150F * Settings.scale;
+            float offsetY = 150F * Settings.scale;
+            AbstractCard card = bond;
+            card.drawScale = drawScale;
+            card.current_x = this.hb.x - offsetX1;
+            card.current_y = this.hb.y + offsetY;
+            card.render(sb);
         }
-
-         */
     }
 
 }

@@ -1,5 +1,6 @@
 package ruina.monsters.blackSilence.blackSilence3;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -16,6 +17,7 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
+import ruina.cards.Melody;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence3.rolandCards.*;
 
@@ -33,9 +35,6 @@ public class BlackSilence3 extends AbstractCardMonster {
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     public AbstractCard bond;
-    public AbstractCard waltz;
-
-    public boolean rolandAttackedThisTurn = false;
 
     private static final byte UNITED_WORKSHOP = 0;
     private static final byte LONELINESS = 1;
@@ -56,10 +55,7 @@ public class BlackSilence3 extends AbstractCardMonster {
     private int turn = TURNS_UNTIL_WALTZ;
     private Angelica angelica;
 
-    private float particleTimer;
-    private float particleTimer2;
-
-    public BlackSilence3() { this(70.0f, 10.0f); }
+    public BlackSilence3() { this(70.0f, 0f); }
     public BlackSilence3(final float x, final float y) {
         super(NAME, ID, 450, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence3/Spriter/BlackSilence3.scml"));
@@ -77,6 +73,7 @@ public class BlackSilence3 extends AbstractCardMonster {
         cardList.add(new BlindFury(this));
         cardList.add(new WaltzInBlack(this));
         cardList.add(new DarkBond(this));
+        bond = new DarkBond(this);
     }
 
     @Override
@@ -146,7 +143,6 @@ public class BlackSilence3 extends AbstractCardMonster {
         });
     }
 
-
     @Override
     public void createIntent() {
         super.createIntent();
@@ -210,4 +206,18 @@ public class BlackSilence3 extends AbstractCardMonster {
 
     public void die() { if (!(AbstractDungeon.getCurrRoom()).cannotLose) super.die(); }
 
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if(bond != null) {
+            float drawScale = 0.65f;
+            float offsetX1 = 350.0F * Settings.scale;
+            float offsetY = 150.0F * Settings.scale;
+            AbstractCard card = bond;
+            card.drawScale = drawScale;
+            card.current_x = this.hb.x + offsetX1;
+            card.current_y = this.hb.y + offsetY;
+            card.render(sb);
+        }
+    }
 }
