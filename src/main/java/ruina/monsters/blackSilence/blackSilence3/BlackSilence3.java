@@ -2,6 +2,7 @@ package ruina.monsters.blackSilence.blackSilence3;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -15,7 +16,11 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.BackAttackPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
+import com.megacrit.cardcrawl.powers.MetallicizePower;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.SurroundedPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -29,6 +34,7 @@ import ruina.monsters.blackSilence.blackSilence3.rolandCards.DarkBond;
 import ruina.monsters.blackSilence.blackSilence3.rolandCards.UnitedWorkshop;
 import ruina.monsters.blackSilence.blackSilence3.rolandCards.UnstableLoneliness;
 import ruina.monsters.blackSilence.blackSilence3.rolandCards.WaltzInBlack;
+import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.SoulLink;
 
 import java.util.ArrayList;
@@ -102,7 +108,7 @@ public class BlackSilence3 extends AbstractCardMonster {
         }
         AbstractCreature target = adp();
         if (info.base > -1) {
-            info.applyPowers(this, target);
+            info.output = this.getIntentDmg(); //fuck back attack
         }
         atb(new AbstractGameAction() {
             @Override
@@ -152,11 +158,9 @@ public class BlackSilence3 extends AbstractCardMonster {
                 resetIdle();
                 break;
             case WALTZ: {
-                for (int i = 0; i < multiplier; i++) {
-                    sword2Animation(target);
-                    dmg(target, info);
-                    resetIdle();
-                }
+                sword2Animation(target);
+                dmg(target, info);
+                resetIdle();
                 break;
             }
             case DARKBOND:
@@ -165,8 +169,8 @@ public class BlackSilence3 extends AbstractCardMonster {
                 resetIdle();
                 break;
             case SOUL_LINK_REVIVAL:
-                halfDead = false;
                 atb(new HealAction(this, this, this.maxHealth));
+                halfDead = false;
                 break;
         }
         atb(new AbstractGameAction() {
@@ -243,14 +247,23 @@ public class BlackSilence3 extends AbstractCardMonster {
             for (AbstractRelic r : AbstractDungeon.player.relics) {
                 r.onMonsterDeath(this);
             }
-            this.powers.clear();
+            ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
+            for (AbstractPower power : this.powers) {
+                if (!(power instanceof StrengthPower) && !(power instanceof GainStrengthPower) && !(power instanceof ruina.powers.BlackSilence3) && !(power instanceof SoulLink)) {
+                    powersToRemove.add(power);
+                }
+            }
+            for (AbstractPower power : powersToRemove) {
+                this.powers.remove(power);
+            }
+
             boolean allDead = true;
             for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) {
                 if (m instanceof Angelica && !m.halfDead) {
                     allDead = false;
                 }
             }
-            System.out.println(allDead);
+
             if (!allDead) {
                 atb(new AbstractGameAction() {
                     @Override

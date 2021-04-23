@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
 import ruina.events.act4.Sorrow;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
+import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.uninvitedGuests.normal.eileen.Eileen;
 import ruina.monsters.uninvitedGuests.normal.greta.Greta;
 import ruina.rooms.ReverbMonsterRoom;
@@ -67,11 +68,9 @@ public class BlackSilence extends AbstractRuinaDungeon {
     protected void makeMap() {
         ArrayList<MonsterRoomCreator> row1 = new ArrayList();
         ArrayList<MonsterRoomCreator> row2 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row3 = new ArrayList();
 
         row1.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), BlackSilence1.ID));
-        row2.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), Eileen.ID));
-        row3.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), Greta.ID));
+        row2.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), BlackSilence3.ID));
 
         map = new ArrayList();
 
@@ -79,8 +78,6 @@ public class BlackSilence extends AbstractRuinaDungeon {
         map.add(populate(row1, index++));
         map.add(singleNodeArea(new RestRoom(), index++));
         map.add(populate(row2, index++));
-        map.add(singleNodeArea(new RestRoom(), index++));
-        map.add(populate(row3, index++));
         map.add(singleNodeArea(new RestRoom(), index++));
         map.add(singleNodeArea(new MonsterRoomBoss(), index++));
         map.add(singleNodeArea(new TrueVictoryRoom(), index++, false));

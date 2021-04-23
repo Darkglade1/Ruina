@@ -416,6 +416,6 @@
   },
   "${ModID}:SoulLink": {
     "NAME": "Soul Link",
-    "DESCRIPTIONS": ["Whenever this creature #rdies, it revives at #gfull #gHP next turn if its ally is still alive."]
+    "DESCRIPTIONS": ["Whenever this creature #rdies, it revives at #gfull #gHP this turn if its ally is still alive."]
   }
 }

@@ -17,6 +17,8 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.BackAttackPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -97,14 +99,21 @@ public class Angelica extends AbstractCardMonster {
             EnemyMoveInfo emi = moves.get(this.nextMove);
             info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
             multiplier = emi.multiplier;
-        } else { info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL); }
+        } else {
+            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
+        }
         AbstractCreature target = adp();
-        if (info.base > -1) { info.applyPowers(this, target); }
+        if (info.base > -1) {
+            info.output = this.getIntentDmg();
+        }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                if(nextMove == WALTZ){ turn = TURNS_UNTIL_WALTZ; }
-                else if(nextMove != NONE) {turn -= 1; }
+                if (nextMove == WALTZ) {
+                    turn = TURNS_UNTIL_WALTZ;
+                } else if (nextMove != NONE) {
+                    turn -= 1;
+                }
                 isDone = true;
             }
         });
@@ -131,8 +140,7 @@ public class Angelica extends AbstractCardMonster {
                 for (int i = 0; i < multiplier; i++) {
                     gunAnimation(target);
                     dmg(target, info);
-                    resetIdle(0.0f);
-                    waitAnimation();
+                    resetIdle();
                 }
                 break;
             case WALTZ: {
@@ -154,17 +162,19 @@ public class Angelica extends AbstractCardMonster {
                 break;
             case SOUL_LINK_REVIVAL:
                 atb(new HealAction(this, this, this.maxHealth));
+                halfDead = false;
                 break;
         }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
                 AbstractPower power = Angelica.this.getPower(ruina.powers.WhiteNoise.POWER_ID);
-                if(power != null && power.amount == -1){
+                if (power != null && power.amount == -1) {
                     Angelica.this.setEmptyMove();
                     createIntent();
+                } else {
+                    att(new RollMoveAction(Angelica.this));
                 }
-                else { att(new RollMoveAction(Angelica.this)); }
                 isDone = true;
             }
         });
@@ -206,19 +216,40 @@ public class Angelica extends AbstractCardMonster {
         }
     }
 
-    public void setEmptyMove() { atb(new SetMoveAction(this, NONE, Intent.NONE)); }
-    public void setBondIntent(){ setMoveShortcut(ASHENBOND, MOVES[ASHENBOND]); }
+    public void setEmptyMove() {
+        atb(new SetMoveAction(this, NONE, Intent.NONE));
+    }
+
+    public void setBondIntent() {
+        setMoveShortcut(ASHENBOND, MOVES[ASHENBOND]);
+    }
 
     public void damage(DamageInfo info) {
         super.damage(info);
         if (this.currentHealth <= 0 && !this.halfDead) {
             this.halfDead = true;
-            for (AbstractPower p : this.powers) { p.onDeath(); }
-            for (AbstractRelic r : AbstractDungeon.player.relics) { r.onMonsterDeath(this); }
-            this.powers.clear();
+            for (AbstractPower p : this.powers) {
+                p.onDeath();
+            }
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                r.onMonsterDeath(this);
+            }
+
+            ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
+            for (AbstractPower power : this.powers) {
+                if (!(power instanceof StrengthPower) && !(power instanceof GainStrengthPower) && !(power instanceof ruina.powers.WhiteNoise) && !(power instanceof SoulLink)) {
+                    powersToRemove.add(power);
+                }
+            }
+            for (AbstractPower power : powersToRemove) {
+                this.powers.remove(power);
+            }
+
             boolean allDead = true;
             for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) {
-                if (m.id.equals(BlackSilence3.ID) && !m.halfDead) { allDead = false; }
+                if (m.id.equals(BlackSilence3.ID) && !m.halfDead) {
+                    allDead = false;
+                }
             }
             if (!allDead) {
                 atb(new AbstractGameAction() {
@@ -233,12 +264,16 @@ public class Angelica extends AbstractCardMonster {
             } else {
                 (AbstractDungeon.getCurrRoom()).cannotLose = false;
                 this.halfDead = false;
-                for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) { m.die(); }
+                for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) {
+                    m.die();
+                }
             }
         }
     }
 
-    public void die() { if (!(AbstractDungeon.getCurrRoom()).cannotLose) super.die(); }
+    public void die() {
+        if (!(AbstractDungeon.getCurrRoom()).cannotLose) super.die();
+    }
 
     @Override
     public void render(SpriteBatch sb) {
@@ -248,7 +283,7 @@ public class Angelica extends AbstractCardMonster {
             this.particleTimer = 0.04F;
             AbstractDungeon.effectsQueue.add(new FlexibleWrathParticleEffect(this, Color.WHITE.cpy()));
         }
-        if(bond != null) {
+        if (bond != null) {
             float drawScale = 0.65f;
             float offsetX1 = 150F * Settings.scale;
             float offsetY = 150F * Settings.scale;
