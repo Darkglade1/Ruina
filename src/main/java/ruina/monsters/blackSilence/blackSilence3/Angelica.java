@@ -24,6 +24,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence3.angelicaCards.*;
+import ruina.powers.SoulLink;
 import ruina.powers.WhiteNoise;
 import ruina.vfx.FlexibleWrathParticleEffect;
 
@@ -41,7 +42,6 @@ public class Angelica extends AbstractCardMonster {
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     public AbstractCard bond;
-
 
     private static final byte ZELKOVA = 0;
     private static final byte ALLAS = 1; // sword img
@@ -65,15 +65,15 @@ public class Angelica extends AbstractCardMonster {
     private int turn = TURNS_UNTIL_WALTZ;
 
     private float particleTimer;
-    private float particleTimer2;
 
     public Angelica() {
         this(-1000.0f, 0.0f);
     }
 
     public Angelica(final float x, final float y) {
-        super(NAME, ID, 450, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 550, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Angelica/Spriter/Angelica.scml"));
+        this.animation.setFlip(true, false);
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
         addMove(ZELKOVA, Intent.ATTACK, zelkovaDamage, zelkovaHits, true);
@@ -111,23 +111,46 @@ public class Angelica extends AbstractCardMonster {
         switch (this.nextMove) {
             case ZELKOVA:
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        club1Animation(target);
+                    } else {
+                        club2Animation(target);
+                    }
                     dmg(target, info);
+                    resetIdle();
                 }
                 break;
             case ALLAS: {
+                wheelsAnimation(target);
                 dmg(target, info);
                 applyToTarget(target, this, new VulnerablePower(target, allasDebuff, true));
+                resetIdle();
                 break;
             }
             case ATELIER:
+                for (int i = 0; i < multiplier; i++) {
+                    gunAnimation(target);
+                    dmg(target, info);
+                    resetIdle(0.0f);
+                    waitAnimation();
+                }
+                break;
             case WALTZ: {
                 for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        club1Animation(target);
+                    } else {
+                        club2Animation(target);
+                    }
                     dmg(target, info);
+                    resetIdle();
                 }
                 break;
             }
             case ASHENBOND:
+                guardAnimation();
                 applyToTarget(roland, this, new StrengthPower(roland, bondStrength));
+                resetIdle();
                 break;
             case SOUL_LINK_REVIVAL:
                 atb(new HealAction(this, this, this.maxHealth));
@@ -175,6 +198,7 @@ public class Angelica extends AbstractCardMonster {
 
     public void usePreBattleAction() {
         applyToTarget(this, this, new WhiteNoise(this));
+        applyToTarget(this, this, new SoulLink(this));
         for (AbstractMonster mo : monsterList()) {
             if (mo instanceof BlackSilence3) {
                 roland = (BlackSilence3) mo;
@@ -234,6 +258,26 @@ public class Angelica extends AbstractCardMonster {
             card.current_y = this.hb.y + offsetY;
             card.render(sb);
         }
+    }
+
+    private void guardAnimation() {
+        animationAction("Guard", null, this);
+    }
+
+    private void gunAnimation(AbstractCreature enemy) {
+        animationAction("Fire", "RolandShotgun", enemy, this);
+    }
+
+    private void club1Animation(AbstractCreature enemy) {
+        animationAction("Hit", "BluntVert", enemy, this);
+    }
+
+    private void club2Animation(AbstractCreature enemy) {
+        animationAction("Slash", "BluntVert", enemy, this);
+    }
+
+    private void wheelsAnimation(AbstractCreature enemy) {
+        animationAction("GreatSword", "RolandGreatSword", enemy, this);
     }
 
 }

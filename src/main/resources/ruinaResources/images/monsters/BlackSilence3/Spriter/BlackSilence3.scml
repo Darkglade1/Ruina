@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0">
-        <file id="0" name="Idle.png" width="361" height="403" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="Idle.png" width="253" height="282" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="BlackSilence3_Guard.png" width="244" height="259" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="BlackSilence3_Hit.png" width="483" height="221" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="BlackSilence3_Penetrate.png" width="438" height="246" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="BlackSilence3_S1.png" width="388" height="363" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="BlackSilence3_Slash.png" width="385" height="403" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="BlackSilence3">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -12,7 +17,67 @@
             </mainline>
             <timeline id="0" name="Idle">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-99.737947" y="399.439024" angle="0"/>
+                    <object folder="0" file="0" x="-71.737947" y="281.439024" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Guard" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="BlackSilence3_Guard">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-154" y="258"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Hit" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="BlackSilence3_Hit">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-152" y="221"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Pierce" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="BlackSilence3_Penetrate">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-325" y="248"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="SwordDown" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="BlackSilence3_S1">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-69" y="235"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="SwordUp" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="BlackSilence3_Slash">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-75" y="404"/>
                 </key>
             </timeline>
         </animation>

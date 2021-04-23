@@ -17,9 +17,15 @@ public class ZelkovaWorkshop extends AbstractRuinaCard {
 
     public ZelkovaWorkshop(Angelica parent) {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
-        damage = baseDamage = parent.waltzDamage;
-        magicNumber = baseMagicNumber = parent.waltzDamage;
+        damage = baseDamage = parent.zelkovaDamage;
+        magicNumber = baseMagicNumber = parent.zelkovaHits;
         this.parent = parent;
+    }
+
+    @Override
+    public float getTitleFontSize()
+    {
+        return 18;
     }
 
     @Override

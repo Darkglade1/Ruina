@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.scenes.TitleCloud;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.altReverbClear;
+import static ruina.RuinaMod.blacksilenceClear;
 import static ruina.RuinaMod.makeUIPath;
 
 public class RuinaMenu {

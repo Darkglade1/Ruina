@@ -941,10 +941,10 @@
       "United Workshop",
       "Unstable Loneliness",
       "Blind Fury",
-      "Waltz of Black",
+      "Waltz in Black",
       "Dark Bond"
     ],
-    "NAME": "The Black Silence",
+    "NAME": "Roland",
     "DIALOG": [
     ]
   },
@@ -953,7 +953,7 @@
       "Zelkova Workshop",
       "Allas Workshop",
       "Atelier Logic",
-      "Waltz of White",
+      "Waltz in White",
       "Ashen Bond"
     ],
     "NAME": "Angelica",

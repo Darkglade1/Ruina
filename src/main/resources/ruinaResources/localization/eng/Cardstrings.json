@@ -727,12 +727,12 @@
     "DESCRIPTION": "Deal !D! damage !M! times."
   },
   "${ModID}:WaltzInWhite": {
-    "NAME": "Waltz In White",
+    "NAME": "Waltz in White",
     "DESCRIPTION": "Deal !D! damage !M! times."
   },
   "${ModID}:AshenBond": {
     "NAME": "Ashen Bond",
-    "DESCRIPTION": "The Black Silence gains !M! Strength."
+    "DESCRIPTION": "An ally gains !M! Strength."
   },
   "${ModID}:UnitedWorkshop": {
     "NAME": "United Assault",
@@ -740,18 +740,18 @@
   },
   "${ModID}:UnstableLoneliness": {
     "NAME": "Unstable Loneliness",
-    "DESCRIPTION": "Deal !D! damage. NL If this dealt damage, apply !M! Weak, Frail, and Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL If this dealt unblocked damage, apply !M! Weak, Frail, and Vulnerable."
   },
   "${ModID}:BlindFury": {
     "NAME": "Blind Fury",
-    "DESCRIPTION": "All Enemies gain !M! Strength."
+    "DESCRIPTION": "ALL allies gain !M! Strength."
   },
   "${ModID}:DarkBond": {
     "NAME": "Dark Bond",
-    "DESCRIPTION": "Angelica gains !M! Strength."
+    "DESCRIPTION": "An ally gains !M! Strength."
   },
   "${ModID}:WaltzInBlack": {
-    "NAME": "Waltz In Black",
+    "NAME": "Waltz in Black",
     "DESCRIPTION": "Deal !D! damage."
   }
 }

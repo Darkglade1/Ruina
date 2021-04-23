@@ -20,7 +20,12 @@ public class UnstableLoneliness extends AbstractRuinaCard {
         damage = baseDamage = parent.lonelyDamage;
         magicNumber = baseMagicNumber = parent.lonelyDebuff;
         this.parent = parent;
+    }
 
+    @Override
+    public float getTitleFontSize()
+    {
+        return 18;
     }
 
     @Override
