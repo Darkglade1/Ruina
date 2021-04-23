@@ -17,7 +17,7 @@ public class BlindFury extends AbstractRuinaCard {
 
     public BlindFury(BlackSilence3 parent) {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
-        magicNumber = baseMagicNumber = parent.furyStrength;
+        magicNumber = baseMagicNumber = parent.furyDebuff;
         this.parent = parent;
 
     }

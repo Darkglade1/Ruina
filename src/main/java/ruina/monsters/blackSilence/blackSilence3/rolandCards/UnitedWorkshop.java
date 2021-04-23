@@ -19,6 +19,7 @@ public class UnitedWorkshop extends AbstractRuinaCard {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.unitedDamage;
         magicNumber = baseMagicNumber = parent.unitedHits;
+        secondMagicNumber = baseSecondMagicNumber = parent.unitedStrength;
         this.parent = parent;
 
     }

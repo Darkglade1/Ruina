@@ -1,13 +1,14 @@
 package ruina.monsters.blackSilence.blackSilence3;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -16,14 +17,10 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.BackAttackPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
-import com.megacrit.cardcrawl.powers.MetallicizePower;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.SurroundedPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
@@ -34,7 +31,7 @@ import ruina.monsters.blackSilence.blackSilence3.rolandCards.DarkBond;
 import ruina.monsters.blackSilence.blackSilence3.rolandCards.UnitedWorkshop;
 import ruina.monsters.blackSilence.blackSilence3.rolandCards.UnstableLoneliness;
 import ruina.monsters.blackSilence.blackSilence3.rolandCards.WaltzInBlack;
-import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.Paralysis;
 import ruina.powers.SoulLink;
 
 import java.util.ArrayList;
@@ -62,30 +59,36 @@ public class BlackSilence3 extends AbstractCardMonster {
 
     public final int unitedDamage = calcAscensionDamage(7);
     public final int unitedHits = 2;
+    public final int unitedStrength = calcAscensionSpecial(3);
     public final int lonelyDamage = calcAscensionDamage(15);
     public final int lonelyDebuff = calcAscensionSpecial(2);
-    public final int furyStrength = 2;
-    public final int waltzDamage = calcAscensionDamage(30);
-    public final int bondStrength = calcAscensionSpecial(3);
+    public final int furyDamage = calcAscensionDamage(18);
+    public final int furyDebuff = calcAscensionSpecial(2);
+    public final int waltzDamage = calcAscensionDamage(10);
+    public final int waltzHits = 3;
+    public final int bondBlock = calcAscensionTankiness(25);
+    public final int bondVoid = calcAscensionSpecial(1);
+    public final int REVIVE_PERCENT = 50;
     private static final byte TURNS_UNTIL_WALTZ = 3;
     private int turn = TURNS_UNTIL_WALTZ;
     private Angelica angelica;
 
     public BlackSilence3() {
-        this(70.0f, 0f);
+        this(-1000.0f, 0f);
     }
 
     public BlackSilence3(final float x, final float y) {
         super(NAME, ID, 550, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence3/Spriter/BlackSilence3.scml"));
+        this.animation.setFlip(true, false);
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
-        addMove(UNITED_WORKSHOP, Intent.ATTACK, unitedDamage, unitedHits, true);
+        addMove(UNITED_WORKSHOP, Intent.ATTACK_BUFF, unitedDamage, unitedHits, true);
         addMove(LONELINESS, Intent.ATTACK_DEBUFF, lonelyDamage);
-        addMove(FURY, Intent.BUFF);
-        addMove(WALTZ, Intent.ATTACK, waltzDamage);
-        addMove(DARKBOND, Intent.BUFF);
+        addMove(FURY, Intent.ATTACK_DEBUFF, furyDamage);
+        addMove(WALTZ, Intent.ATTACK, waltzDamage, waltzHits, true);
+        addMove(DARKBOND, Intent.DEFEND_DEBUFF);
 
         cardList.add(new UnitedWorkshop(this));
         cardList.add(new UnstableLoneliness(this));
@@ -93,6 +96,21 @@ public class BlackSilence3 extends AbstractCardMonster {
         cardList.add(new WaltzInBlack(this));
         cardList.add(new DarkBond(this));
         bond = new DarkBond(this);
+    }
+
+    public void usePreBattleAction() {
+        CustomDungeon.playTempMusicInstantly("Roland3");
+        (AbstractDungeon.getCurrRoom()).cannotLose = true;
+        applyToTarget(this, this, new ruina.powers.BlackSilence3(this));
+        applyToTarget(this, this, new SoulLink(this, REVIVE_PERCENT));
+        AbstractDungeon.player.drawX += 480.0F * Settings.scale;
+        AbstractDungeon.player.dialogX += 480.0F * Settings.scale;
+        applyToTarget(adp(), this, new SurroundedPower(adp()));
+        for (AbstractMonster mo : monsterList()) {
+            if (mo instanceof Angelica) {
+                angelica = (Angelica) mo;
+            }
+        }
     }
 
     @Override
@@ -132,32 +150,39 @@ public class BlackSilence3 extends AbstractCardMonster {
                     dmg(target, info);
                     resetIdle();
                 }
+                if (isAngelicaAttacking()) {
+                    applyToTarget(this, this, new StrengthPower(this, unitedStrength));
+                }
                 break;
             case LONELINESS: {
                 sword1Animation(target);
                 dmg(target, info);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        if (adp().lastDamageTaken > 0) {
-                            applyToTargetTop(adp(), BlackSilence3.this, new WeakPower(adp(), lonelyDebuff, true));
-                            applyToTargetTop(adp(), BlackSilence3.this, new FrailPower(adp(), lonelyDebuff, true));
-                            applyToTargetTop(adp(), BlackSilence3.this, new VulnerablePower(adp(), lonelyDebuff, true));
-                        }
-                        isDone = true;
-                    }
-                });
                 resetIdle();
+                if (!isAngelicaAttacking()) {
+                    applyToTarget(adp(), this, new WeakPower(adp(), lonelyDebuff, true));
+                    applyToTarget(adp(), this, new FrailPower(adp(), lonelyDebuff, true));
+                }
                 break;
             }
             case FURY:
-                guardAnimation();
-                for (AbstractMonster m : monsterList()) {
-                    applyToTarget(m, this, new StrengthPower(m, furyStrength));
-                }
+                sword2Animation(target);
+                dmg(target, info);
+                applyToTarget(adp(), this, new Paralysis(adp(), furyDebuff));
                 resetIdle();
                 break;
             case WALTZ: {
+                sword1Animation(target);
+                dmg(target, info);
+                resetIdle();
+                if (!angelica.isDeadOrEscaped()) {
+                    angelica.gunAnimation(target);
+                    dmg(target, info);
+                    angelica.resetIdle();
+                } else {
+                    pierceAnimation(target);
+                    dmg(target, info);
+                    resetIdle();
+                }
                 sword2Animation(target);
                 dmg(target, info);
                 resetIdle();
@@ -165,33 +190,28 @@ public class BlackSilence3 extends AbstractCardMonster {
             }
             case DARKBOND:
                 guardAnimation();
-                applyToTarget(angelica, this, new StrengthPower(angelica, bondStrength));
+                block(this, bondBlock);
+                block(angelica, bondBlock);
+                intoDrawMo(new VoidCard(), bondVoid, this);
                 resetIdle();
                 break;
             case SOUL_LINK_REVIVAL:
-                atb(new HealAction(this, this, this.maxHealth));
+                atb(new HealAction(this, this, (int) (this.maxHealth * ((float) REVIVE_PERCENT / 100))));
                 halfDead = false;
                 break;
         }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                AbstractPower power = BlackSilence3.this.getPower(ruina.powers.BlackSilence3.POWER_ID);
-                if (power != null && power.amount == -1) {
-                    BlackSilence3.this.setEmptyMove();
-                    createIntent();
-                } else {
-                    att(new RollMoveAction(BlackSilence3.this));
-                }
-                isDone = true;
-            }
-        });
+        atb(new RollMoveAction(BlackSilence3.this));
+    }
+
+    private boolean isAngelicaAttacking() {
+        System.out.println(angelica.getIntentDmg());
+        return angelica.getIntentDmg() >= 0;
     }
 
     @Override
-    public void createIntent() {
-        super.createIntent();
-        applyPowers();
+    public void renderTip(SpriteBatch sb) {
+        super.renderTip(sb);
+        tips.add(new CardPowerTip(bond.makeStatEquivalentCopy()));
     }
 
     @Override
@@ -200,13 +220,13 @@ public class BlackSilence3 extends AbstractCardMonster {
             setMoveShortcut(WALTZ, MOVES[WALTZ], cardList.get(WALTZ).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastTwoMoves(UNITED_WORKSHOP)) {
+            if (!this.lastMove(UNITED_WORKSHOP) && !this.lastMoveBefore(UNITED_WORKSHOP)) {
                 possibilities.add(UNITED_WORKSHOP);
             }
-            if (!this.lastTwoMoves(LONELINESS)) {
+            if (!this.lastMove(LONELINESS) && !this.lastMoveBefore(LONELINESS)) {
                 possibilities.add(LONELINESS);
             }
-            if (!this.lastTwoMoves(FURY)) {
+            if (!this.lastMove(FURY) && !this.lastMoveBefore(FURY)) {
                 possibilities.add(FURY);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
@@ -214,27 +234,9 @@ public class BlackSilence3 extends AbstractCardMonster {
         }
     }
 
-    public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("Roland3");
-        (AbstractDungeon.getCurrRoom()).cannotLose = true;
-        applyToTarget(this, this, new ruina.powers.BlackSilence3(this));
-        applyToTarget(this, this, new SoulLink(this));
-        AbstractDungeon.player.drawX += 480.0F * Settings.scale;
-        AbstractDungeon.player.dialogX += 480.0F * Settings.scale;
-        applyToTarget(adp(), this, new SurroundedPower(adp()));
-        for (AbstractMonster mo : monsterList()) {
-            if (mo instanceof Angelica) {
-                angelica = (Angelica) mo;
-            }
-        }
-    }
-
-    public void setEmptyMove() {
-        setMove(NONE, Intent.NONE);
-    }
-
     public void setBondIntent() {
-        setMoveShortcut(DARKBOND, MOVES[DARKBOND]);
+        setMoveShortcut(DARKBOND, MOVES[DARKBOND], cardList.get(DARKBOND).makeStatEquivalentCopy());
+        createIntent();
     }
 
     public void damage(DamageInfo info) {
@@ -285,41 +287,28 @@ public class BlackSilence3 extends AbstractCardMonster {
     }
 
     public void die() {
-        if (!(AbstractDungeon.getCurrRoom()).cannotLose) super.die();
-    }
-
-    @Override
-    public void render(SpriteBatch sb) {
-        super.render(sb);
-        if (bond != null) {
-            float drawScale = 0.65f;
-            float offsetX1 = 350.0F * Settings.scale;
-            float offsetY = 150.0F * Settings.scale;
-            AbstractCard card = bond;
-            card.drawScale = drawScale;
-            card.current_x = this.hb.x + offsetX1;
-            card.current_y = this.hb.y + offsetY;
-            card.render(sb);
+        if (!(AbstractDungeon.getCurrRoom()).cannotLose) {
+            super.die();
         }
     }
 
-    private void guardAnimation() {
+    public void guardAnimation() {
         animationAction("Guard", null, this);
     }
 
-    private void pierceAnimation(AbstractCreature enemy) {
+    public void pierceAnimation(AbstractCreature enemy) {
         animationAction("Pierce", "RolandAxe", enemy, this);
     }
 
-    private void sword1Animation(AbstractCreature enemy) {
+    public void sword1Animation(AbstractCreature enemy) {
         animationAction("SwordDown", "RolandDuralandalDown", enemy, this);
     }
 
-    private void sword2Animation(AbstractCreature enemy) {
+    public void sword2Animation(AbstractCreature enemy) {
         animationAction("SwordUp", "RolandDuralandalUp", enemy, this);
     }
 
-    private void slashAnimation(AbstractCreature enemy) {
+    public void slashAnimation(AbstractCreature enemy) {
         animationAction("Hit", "RolandDualSword", enemy, this);
     }
 }

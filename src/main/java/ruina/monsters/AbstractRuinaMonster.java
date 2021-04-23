@@ -202,7 +202,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         playSound(sound, 1.0f);
     }
 
-    protected void resetIdle() {
+    public void resetIdle() {
         resetIdle(0.5f);
     }
 

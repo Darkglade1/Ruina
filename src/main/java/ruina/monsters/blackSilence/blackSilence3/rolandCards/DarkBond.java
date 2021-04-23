@@ -17,7 +17,8 @@ public class DarkBond extends AbstractRuinaCard {
 
     public DarkBond(BlackSilence3 parent) {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
-        magicNumber = baseMagicNumber = parent.bondStrength;
+        magicNumber = baseMagicNumber = parent.bondVoid;
+        baseBlock = parent.bondBlock;
         this.parent = parent;
     }
 

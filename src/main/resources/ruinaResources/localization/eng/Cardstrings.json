@@ -716,11 +716,11 @@
   },
   "${ModID}:ZelkovaWorkshop": {
     "NAME": "Zelkova Workshop",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
   },
   "${ModID}:AllasWorkshop": {
     "NAME": "Allas Workshop",
-    "DESCRIPTION": "Deal !D! damage. NL Apply! !M! Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL If its *Partner intends to attack, apply! !M! Vulnerable."
   },
   "${ModID}:AtelierLogic": {
     "NAME": "Atelier Logic",
@@ -732,26 +732,26 @@
   },
   "${ModID}:AshenBond": {
     "NAME": "Ashen Bond",
-    "DESCRIPTION": "An ally gains !M! Strength."
+    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength."
   },
   "${ModID}:UnitedWorkshop": {
     "NAME": "United Assault",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If its *Partner intends to attack, gain !ruina:SecondMagic! Strength."
   },
   "${ModID}:UnstableLoneliness": {
     "NAME": "Unstable Loneliness",
-    "DESCRIPTION": "Deal !D! damage. NL If this dealt unblocked damage, apply !M! Weak, Frail, and Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL If its *Partner does NOT intend to attack, apply !M! Weak and Frail."
   },
   "${ModID}:BlindFury": {
     "NAME": "Blind Fury",
-    "DESCRIPTION": "ALL allies gain !M! Strength."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
   },
   "${ModID}:DarkBond": {
     "NAME": "Dark Bond",
-    "DESCRIPTION": "An ally gains !M! Strength."
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void(s) into your draw pile."
   },
   "${ModID}:WaltzInBlack": {
     "NAME": "Waltz in Black",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "Deal !D! damage !M! times."
   }
 }

@@ -691,8 +691,9 @@ public class RuinaMod implements
         BaseMod.addMonster(BlackSilence1.ID, (BaseMod.GetMonster) BlackSilence1::new);
         BaseMod.addMonster(BlackSilence3.ID, "BS3", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new Angelica(),
-                        new BlackSilence3()
+                        new BlackSilence3(),
+                        new Angelica()
+
                 }));
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 

@@ -1,12 +1,12 @@
 package ruina.monsters.blackSilence.blackSilence3;
 
+import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -17,7 +17,6 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.BackAttackPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -25,7 +24,11 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.blackSilence.blackSilence3.angelicaCards.*;
+import ruina.monsters.blackSilence.blackSilence3.angelicaCards.AllasWorkshop;
+import ruina.monsters.blackSilence.blackSilence3.angelicaCards.AshenBond;
+import ruina.monsters.blackSilence.blackSilence3.angelicaCards.AtelierLogic;
+import ruina.monsters.blackSilence.blackSilence3.angelicaCards.WaltzInWhite;
+import ruina.monsters.blackSilence.blackSilence3.angelicaCards.ZelkovaWorkshop;
 import ruina.powers.SoulLink;
 import ruina.powers.WhiteNoise;
 import ruina.vfx.FlexibleWrathParticleEffect;
@@ -55,13 +58,16 @@ public class Angelica extends AbstractCardMonster {
 
     public final int zelkovaDamage = calcAscensionDamage(8);
     public final int zelkovaHits = 2;
+    public final int zelkovaBlock = calcAscensionTankiness(24);
     public final int allasDamage = calcAscensionDamage(20);
-    public final int allasDebuff = 1;
+    public final int allasDebuff = calcAscensionSpecial(2);
     public final int atelierDamage = calcAscensionDamage(6);
     public final int atelierHits = 3;
     public final int waltzDamage = calcAscensionDamage(10);
     public final int waltzHits = 3;
-    public final int bondStrength = calcAscensionSpecial(3);
+    public final int bondStrength = calcAscensionSpecial(2);
+    public final int bondBlock = calcAscensionTankiness(10);
+    public final int REVIVE_PERCENT = 50;
     private BlackSilence3 roland;
     private static final byte TURNS_UNTIL_WALTZ = 3;
     private int turn = TURNS_UNTIL_WALTZ;
@@ -69,26 +75,35 @@ public class Angelica extends AbstractCardMonster {
     private float particleTimer;
 
     public Angelica() {
-        this(-1000.0f, 0.0f);
+        this(70.0f, 0.0f);
     }
 
     public Angelica(final float x, final float y) {
         super(NAME, ID, 550, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Angelica/Spriter/Angelica.scml"));
-        this.animation.setFlip(true, false);
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
-        addMove(ZELKOVA, Intent.ATTACK, zelkovaDamage, zelkovaHits, true);
+        addMove(ZELKOVA, Intent.ATTACK_DEFEND, zelkovaDamage, zelkovaHits, true);
         addMove(ALLAS, Intent.ATTACK_DEBUFF, allasDamage);
         addMove(ATELIER, Intent.ATTACK, atelierDamage, atelierHits, true);
         addMove(WALTZ, Intent.ATTACK, waltzDamage, waltzHits, true);
-        addMove(ASHENBOND, Intent.BUFF);
+        addMove(ASHENBOND, Intent.DEFEND_BUFF);
         cardList.add(new ZelkovaWorkshop(this));
         cardList.add(new AllasWorkshop(this));
         cardList.add(new AtelierLogic(this));
         cardList.add(new WaltzInWhite(this));
         cardList.add(new AshenBond(this));
         bond = new AshenBond(this);
+    }
+
+    public void usePreBattleAction() {
+        applyToTarget(this, this, new WhiteNoise(this));
+        applyToTarget(this, this, new SoulLink(this, REVIVE_PERCENT));
+        for (AbstractMonster mo : monsterList()) {
+            if (mo instanceof BlackSilence3) {
+                roland = (BlackSilence3) mo;
+            }
+        }
     }
 
     @Override
@@ -119,6 +134,7 @@ public class Angelica extends AbstractCardMonster {
         });
         switch (this.nextMove) {
             case ZELKOVA:
+                block(this, zelkovaBlock);
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
                         club1Animation(target);
@@ -132,8 +148,10 @@ public class Angelica extends AbstractCardMonster {
             case ALLAS: {
                 wheelsAnimation(target);
                 dmg(target, info);
-                applyToTarget(target, this, new VulnerablePower(target, allasDebuff, true));
                 resetIdle();
+                if (isRolandAttacking()) {
+                    applyToTarget(target, this, new VulnerablePower(target, allasDebuff, true));
+                }
                 break;
             }
             case ATELIER:
@@ -144,46 +162,48 @@ public class Angelica extends AbstractCardMonster {
                 }
                 break;
             case WALTZ: {
-                for (int i = 0; i < multiplier; i++) {
-                    if (i % 2 == 0) {
-                        club1Animation(target);
-                    } else {
-                        club2Animation(target);
-                    }
+                gunAnimation(target);
+                dmg(target, info);
+                resetIdle();
+                if (!roland.isDeadOrEscaped()) {
+                    roland.sword1Animation(target);
+                    dmg(target, info);
+                    roland.resetIdle();
+                } else {
+                    club1Animation(target);
                     dmg(target, info);
                     resetIdle();
                 }
+                wheelsAnimation(target);
+                dmg(target, info);
+                resetIdle();
                 break;
             }
             case ASHENBOND:
                 guardAnimation();
+                block(this, bondBlock);
+                applyToTarget(this, this, new StrengthPower(this, bondStrength));
+                block(roland, bondBlock);
                 applyToTarget(roland, this, new StrengthPower(roland, bondStrength));
                 resetIdle();
                 break;
             case SOUL_LINK_REVIVAL:
-                atb(new HealAction(this, this, this.maxHealth));
+                atb(new HealAction(this, this, (int)(this.maxHealth * ((float)REVIVE_PERCENT / 100))));
                 halfDead = false;
                 break;
         }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                AbstractPower power = Angelica.this.getPower(ruina.powers.WhiteNoise.POWER_ID);
-                if (power != null && power.amount == -1) {
-                    Angelica.this.setEmptyMove();
-                    createIntent();
-                } else {
-                    att(new RollMoveAction(Angelica.this));
-                }
-                isDone = true;
-            }
-        });
+        atb(new RollMoveAction(Angelica.this));
+    }
+
+    private boolean isRolandAttacking() {
+        System.out.println(roland.getIntentDmg());
+        return roland.getIntentDmg() >= 0;
     }
 
     @Override
-    public void createIntent() {
-        super.createIntent();
-        applyPowers();
+    public void renderTip(SpriteBatch sb) {
+        super.renderTip(sb);
+        tips.add(new CardPowerTip(bond.makeStatEquivalentCopy()));
     }
 
     @Override
@@ -192,13 +212,13 @@ public class Angelica extends AbstractCardMonster {
             setMoveShortcut(WALTZ, MOVES[WALTZ], cardList.get(WALTZ).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastTwoMoves(ZELKOVA)) {
+            if (!this.lastMove(ZELKOVA) && !this.lastMoveBefore(ZELKOVA)) {
                 possibilities.add(ZELKOVA);
             }
-            if (!this.lastTwoMoves(ALLAS)) {
+            if (!this.lastMove(ALLAS) && !this.lastMoveBefore(ALLAS)) {
                 possibilities.add(ALLAS);
             }
-            if (!this.lastTwoMoves(ATELIER)) {
+            if (!this.lastMove(ATELIER) && !this.lastMoveBefore(ATELIER)) {
                 possibilities.add(ATELIER);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
@@ -206,22 +226,9 @@ public class Angelica extends AbstractCardMonster {
         }
     }
 
-    public void usePreBattleAction() {
-        applyToTarget(this, this, new WhiteNoise(this));
-        applyToTarget(this, this, new SoulLink(this));
-        for (AbstractMonster mo : monsterList()) {
-            if (mo instanceof BlackSilence3) {
-                roland = (BlackSilence3) mo;
-            }
-        }
-    }
-
-    public void setEmptyMove() {
-        atb(new SetMoveAction(this, NONE, Intent.NONE));
-    }
-
     public void setBondIntent() {
-        setMoveShortcut(ASHENBOND, MOVES[ASHENBOND]);
+        setMoveShortcut(ASHENBOND, MOVES[ASHENBOND], cardList.get(ASHENBOND).makeStatEquivalentCopy());
+        createIntent();
     }
 
     public void damage(DamageInfo info) {
@@ -283,35 +290,25 @@ public class Angelica extends AbstractCardMonster {
             this.particleTimer = 0.04F;
             AbstractDungeon.effectsQueue.add(new FlexibleWrathParticleEffect(this, Color.WHITE.cpy()));
         }
-        if (bond != null) {
-            float drawScale = 0.65f;
-            float offsetX1 = 150F * Settings.scale;
-            float offsetY = 150F * Settings.scale;
-            AbstractCard card = bond;
-            card.drawScale = drawScale;
-            card.current_x = this.hb.x - offsetX1;
-            card.current_y = this.hb.y + offsetY;
-            card.render(sb);
-        }
     }
 
-    private void guardAnimation() {
+    public void guardAnimation() {
         animationAction("Guard", null, this);
     }
 
-    private void gunAnimation(AbstractCreature enemy) {
+    public void gunAnimation(AbstractCreature enemy) {
         animationAction("Fire", "RolandShotgun", enemy, this);
     }
 
-    private void club1Animation(AbstractCreature enemy) {
+    public void club1Animation(AbstractCreature enemy) {
         animationAction("Hit", "BluntVert", enemy, this);
     }
 
-    private void club2Animation(AbstractCreature enemy) {
+    public void club2Animation(AbstractCreature enemy) {
         animationAction("Slash", "BluntVert", enemy, this);
     }
 
-    private void wheelsAnimation(AbstractCreature enemy) {
+    public void wheelsAnimation(AbstractCreature enemy) {
         animationAction("GreatSword", "RolandGreatSword", enemy, this);
     }
 

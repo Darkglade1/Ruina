@@ -408,14 +408,14 @@
   },
   "${ModID}:BlackSilence3": {
     "NAME": "Black Silence",
-    "DESCRIPTIONS": ["The first time you play #b%1$s #yAttacks or #yPowers each turn, this creature takes a turn. If this power was not triggered this turn, the allocated card is played instead."]
+    "DESCRIPTIONS": ["The first time you play #b", " #yAttacks each turn, this creature changes its intent to ", "."]
   },
   "${ModID}:WhiteNoise": {
     "NAME": "White Noise",
-    "DESCRIPTIONS": ["The first time you play #b%1$s #ySkills or #yPowers each turn, this creature takes a turn. If this power was not triggered this turn, the allocated card is played instead."]
+    "DESCRIPTIONS": ["The first time you play #b", " #ySkills each turn, this creature changes its intent to ", "."]
   },
   "${ModID}:SoulLink": {
     "NAME": "Soul Link",
-    "DESCRIPTIONS": ["Whenever this creature #rdies, it revives at #gfull #gHP this turn if its ally is still alive."]
+    "DESCRIPTIONS": ["Creatures with #ySoul #yLink are #yPartners. Whenever this creature #rdies, it revives at #b", "% HP this turn if its #yPartner is still alive."]
   }
 }

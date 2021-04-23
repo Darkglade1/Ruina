@@ -18,6 +18,7 @@ public class AshenBond extends AbstractRuinaCard {
     public AshenBond(Angelica parent) {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         magicNumber = baseMagicNumber = parent.bondStrength;
+        baseBlock = parent.bondBlock;
         this.parent = parent;
     }
 

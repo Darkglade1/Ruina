@@ -19,6 +19,7 @@ public class WaltzInBlack extends AbstractRuinaCard {
     public WaltzInBlack(BlackSilence3 parent) {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + "Waltz" + ".png"));
         damage = baseDamage = parent.waltzDamage;
+        magicNumber = baseMagicNumber = parent.waltzHits;
         this.parent = parent;
 
     }
