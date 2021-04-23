@@ -53,6 +53,12 @@ public class WhiteNoise extends AbstractUnremovablePower {
     }
 
     @Override
+    public void atEndOfRound() {
+        amount = 0;
+        completed = false;
+    }
+
+    @Override
     public void updateDescription() {
         if (angelica == null) {
             return;

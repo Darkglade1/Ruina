@@ -124,9 +124,9 @@ public class Angelica extends AbstractCardMonster {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                if (nextMove == WALTZ) {
+                if (turn <= 0) {
                     turn = TURNS_UNTIL_WALTZ;
-                } else if (nextMove != NONE) {
+                } else {
                     turn -= 1;
                 }
                 isDone = true;
@@ -192,12 +192,11 @@ public class Angelica extends AbstractCardMonster {
                 halfDead = false;
                 break;
         }
-        atb(new RollMoveAction(Angelica.this));
+        atb(new RollMoveAction(this));
     }
 
     private boolean isRolandAttacking() {
-        System.out.println(roland.getIntentDmg());
-        return roland.getIntentDmg() >= 0;
+        return roland.getIntentBaseDmg() >= 0;
     }
 
     @Override
@@ -208,7 +207,7 @@ public class Angelica extends AbstractCardMonster {
 
     @Override
     protected void getMove(final int num) {
-        if (turn == 0) {
+        if (turn <= 0) {
             setMoveShortcut(WALTZ, MOVES[WALTZ], cardList.get(WALTZ).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();

@@ -52,6 +52,12 @@ public class BlackSilence3 extends AbstractUnremovablePower {
     }
 
     @Override
+    public void atEndOfRound() {
+        amount = 0;
+        completed = false;
+    }
+
+    @Override
     public void updateDescription() {
         if (roland == null) {
             return;

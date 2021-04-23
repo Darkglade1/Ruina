@@ -131,9 +131,9 @@ public class BlackSilence3 extends AbstractCardMonster {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                if (nextMove == WALTZ) {
+                if (turn <= 0) {
                     turn = TURNS_UNTIL_WALTZ;
-                } else if (nextMove != NONE) {
+                } else {
                     turn -= 1;
                 }
                 isDone = true;
@@ -171,7 +171,7 @@ public class BlackSilence3 extends AbstractCardMonster {
                 resetIdle();
                 break;
             case WALTZ: {
-                sword1Animation(target);
+                pierceAnimation(target);
                 dmg(target, info);
                 resetIdle();
                 if (!angelica.isDeadOrEscaped()) {
@@ -179,11 +179,11 @@ public class BlackSilence3 extends AbstractCardMonster {
                     dmg(target, info);
                     angelica.resetIdle();
                 } else {
-                    pierceAnimation(target);
+                    sword1Animation(target);
                     dmg(target, info);
                     resetIdle();
                 }
-                sword2Animation(target);
+                slashAnimation(target);
                 dmg(target, info);
                 resetIdle();
                 break;
@@ -200,12 +200,11 @@ public class BlackSilence3 extends AbstractCardMonster {
                 halfDead = false;
                 break;
         }
-        atb(new RollMoveAction(BlackSilence3.this));
+        atb(new RollMoveAction(this));
     }
 
     private boolean isAngelicaAttacking() {
-        System.out.println(angelica.getIntentDmg());
-        return angelica.getIntentDmg() >= 0;
+        return angelica.getIntentBaseDmg() >= 0;
     }
 
     @Override
@@ -216,7 +215,7 @@ public class BlackSilence3 extends AbstractCardMonster {
 
     @Override
     protected void getMove(final int num) {
-        if (turn == 0) {
+        if (turn <= 0) {
             setMoveShortcut(WALTZ, MOVES[WALTZ], cardList.get(WALTZ).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();

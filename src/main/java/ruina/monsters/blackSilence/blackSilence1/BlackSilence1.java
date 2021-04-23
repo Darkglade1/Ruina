@@ -1,6 +1,7 @@
 package ruina.monsters.blackSilence.blackSilence1;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -131,7 +132,9 @@ public class BlackSilence1 extends AbstractCardMonster {
                 if (this.amount >= CARDS_PER_TURN) {
                     flash();
                     this.amount = 0;
-                    takeTurn();
+                    if (!owner.hasPower(StunMonsterPower.POWER_ID)) {
+                        takeTurn();
+                    }
                 } else {
                     flashWithoutSound();
                 }
