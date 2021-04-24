@@ -25,7 +25,7 @@ public class GretaStealCardAction extends AbstractGameAction {
     }// 22
 
     public void update() {
-        if (AbstractDungeon.player.drawPile.isEmpty() && AbstractDungeon.player.discardPile.isEmpty()) {// 26
+        if ((AbstractDungeon.player.drawPile.isEmpty() && AbstractDungeon.player.discardPile.isEmpty()) || owner.isDeadOrEscaped()) {// 26
             this.isDone = true;// 27
         } else {
             if (this.duration == this.startingDuration) {// 31

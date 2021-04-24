@@ -1,80 +1,80 @@
 {
   "ruina:Briah": {
     "TEXT": [
-      "创造层",
+      "Briah",
       "Act 2",
-      "你手中有一张精致的邀请函, 许诺了远超你最狂野的想象的 #y财富 和 #y知识 .",
-      "接受邀请."
+      "你的手中有一张精致的邀请函, 上面许诺了远超你最疯狂的想象的 #y财富 与 #y知识 。",
+      "接受邀请。"
     ]
   },
-  "${ModID}:Atziluth": {
+  "ruina:Atziluth": {
     "TEXT": [
       "Atziluth",
       "Act 3",
-      "This place was strange, wild, and #pterrifying. But through the #pdespair and #rbloodshed, you could see a ray of #ylight seeping through the #pdarkness.",
-      "Continue your ascent."
+      "这个奇怪的地方充斥着野蛮与 #p恐怖 。但是透过 #p绝望 和 #r阴影 ，你可以看到远处的 #p黑暗 中渗透出一道淡淡的 #y微光 。",
+      "继续攀升。"
     ]
   },
   "ruina:MultiIntentStrings": {
     "TEXT": [
       "这名敌人将 NL #y攻击 ",
       " 造成 #b",
-      " 点伤害.",
+      " 点伤害。",
       " 点伤害 #b",
-      " 次.",
-      "This enemy intends to inflict a #yNegative #yEffect on ",
-      "."
+      " 次。",
+      "这名敌人将给予 NL #y负面效果 ",
+      "。"
     ]
   },
   "ruina:AllyStrings": {
     "TEXT": [
       "你的 #g盟友 将 #y攻击 ",
       " 造成 #b",
-      " 点伤害.",
+      " 点伤害。",
       " 点伤害 #b",
-      " 次.",
+      " 次。",
       "你的 #g盟友 将对 ",
-      "造成 #y负面状态 #y状态.",
-      "你的 #g盟友 将要进行 #y强化.",
-      "你的 #g盟友 将进行 #y防御.",
+      "造成 #y负面状态 #y状态。",
+      "你的 #g盟友 将要进行 #y强化 。",
+      "你的 #g盟友 将进行 #y防御 。",
       "可 #y点击 进行任意次: 将 #y传递 最多 #b",
-      " 点 #y格挡 给这名 #y盟友.",
+      " 点 #y格挡 给这名 #y盟友 。",
       "协防",
       "我没有格挡可以传递!",
-      "你的 #g盟友 将对包括你的所有其他角色造成 #b",
+      "你的 #g盟友 将对包括你在内的所有其他角色造成 #b",
       " 点伤害",
-      ".",
-      " 次.",
-      " damage to ALL enemies"
+      "。",
+      " 次。",
+      " 点伤害"
     ]
   },
   "ruina:MassAttackIntent": {
     "TEXT": [
-      "Mass Attack",
-      "这名敌人将对所有其他角色造成 #b", " 点伤害", ".", " 次."
+      "群体攻击",
+      "这名敌人将对所有其他角色造成 #b", " 点伤害", "。", " 次。"
     ]
   },
   "ruina:AutoplayMod": {
     "TEXT": [
-      "自动打出. NL "
+      "自动打出。 NL "
     ]
   },
-  "${ModID}:ManifestMod": {
+  "ruina:ManifestMod": {
     "TEXT": [
-      "ruina:Manifest. NL "
+      "ruina:展现 。 NL "
     ]
   },
-  "${ModID}:ContractsMod": {
+  "ruina:ContractsMod": {
     "TEXT": [
-      "ruina:Contract. NL "
+      "ruina:契约 。 NL "
     ]
   },
-  "${ModID}:UninvitedGuests": {
+  "ruina:UninvitedGuests": {
     "TEXT": [
-      "Uninvited Guests",
-      "The Blue Reverberation",
-      "The door to the library flies open, and a motley crew of #pstrange and #pdisturbing figures waltz in. You cannot help but feel that they are up to no good.",
-      "Greet your Uninvited Guests"
+      "不速之客",
+      "苍蓝残响",
+      "图书馆的大门突然打开了，从外面窜进一群 #p陌生 而 #p令人不安 的人。你不禁觉得这群人不怀好意。",
+      "迎接不速之客"
     ]
   }
 }
