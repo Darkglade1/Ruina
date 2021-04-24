@@ -959,5 +959,28 @@
     "NAME": "Angelica",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Baral": {
+    "MOVES": [
+      "Serum W",
+      "Trail",
+      "Extirpation",
+      "Tri-Serum Cocktail",
+      "Serum K"
+    ],
+    "NAME": "Baral",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Zena": {
+    "MOVES": [
+      "Line",
+      "Thin Line",
+      "Thick Line",
+      "Shockwave"
+    ],
+    "NAME": "Zena",
+    "DIALOG": [
+    ]
   }
 }

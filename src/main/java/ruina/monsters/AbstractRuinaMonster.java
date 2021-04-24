@@ -217,11 +217,11 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         });
     }
 
-    protected void waitAnimation() {
+    public void waitAnimation() {
         waitAnimation(0.5f, null);
     }
 
-    protected void waitAnimation(float duration) {
+    public void waitAnimation(float duration) {
         waitAnimation(duration, null);
     }
 
@@ -229,7 +229,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         waitAnimation(0.5f, enemy);
     }
 
-    protected void waitAnimation(float time, AbstractCreature enemy) {
+    public void waitAnimation(float time, AbstractCreature enemy) {
         atb(new AbstractGameAction() {
             @Override
             public void update() {

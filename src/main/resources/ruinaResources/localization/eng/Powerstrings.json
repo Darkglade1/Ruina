@@ -417,5 +417,9 @@
   "${ModID}:SoulLink": {
     "NAME": "Soul Link",
     "DESCRIPTIONS": ["Creatures with #ySoul #yLink are #yPartners. Whenever this creature #rdies, it revives at #b", "% HP this turn if its #yPartner is still alive."]
+  },
+  "${ModID}:PlayerBlackSilence": {
+    "NAME": "The Black Silence",
+    "DESCRIPTIONS": ["Whenever you play #b", " unique cards, add #yFurioso to your hand."]
   }
 }
