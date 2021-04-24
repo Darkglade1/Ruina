@@ -54,7 +54,9 @@ public class Language extends AbstractImageEvent {
                                 group.addToBottom(card);
                             }
                         }
-                        AbstractDungeon.gridSelectScreen.open(group, 1, OPTIONS[6], false);
+                        if (group.size() > 0) {
+                            AbstractDungeon.gridSelectScreen.open(group, 1, OPTIONS[6], false);
+                        }
                         break;
                     case 1:
                         this.imageEventText.updateBodyText(DESCRIPTIONS[2]);

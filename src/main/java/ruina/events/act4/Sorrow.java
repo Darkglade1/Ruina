@@ -192,8 +192,10 @@ public class Sorrow extends AbstractImageEvent {
             AbstractDungeon.dynamicBanner.hide();
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
         }
-        upgradeCard = true;
-        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck.getUpgradableCards(), 1, OPTIONS[7], true, false, false, false);
+        if (AbstractDungeon.player.masterDeck.getUpgradableCards().size() > 0) {
+            upgradeCard = true;
+            AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck.getUpgradableCards(), 1, OPTIONS[7], true, false, false, false);
+        }
     }
 
     private void remove() {
@@ -201,7 +203,9 @@ public class Sorrow extends AbstractImageEvent {
             AbstractDungeon.dynamicBanner.hide();
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
         }
-        removeCard = true;
-        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck.getPurgeableCards(), 1, OPTIONS[8], false, false, false, true);
+        if (AbstractDungeon.player.masterDeck.getPurgeableCards().size() > 0) {
+            removeCard = true;
+            AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck.getPurgeableCards(), 1, OPTIONS[8], false, false, false, true);
+        }
     }
 }
