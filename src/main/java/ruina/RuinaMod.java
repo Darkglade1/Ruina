@@ -48,6 +48,7 @@ import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
+import ruina.monsters.act3.smolderingAbomination.SmolderingAbomination;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
@@ -698,7 +699,7 @@ public class RuinaMod implements
 
                 }));
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
-
+        BaseMod.addMonster(SmolderingAbomination.ID, (BaseMod.GetMonster) SmolderingAbomination::new);
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");

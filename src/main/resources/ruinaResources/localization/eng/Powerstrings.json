@@ -417,5 +417,9 @@
   "${ModID}:SoulLink": {
     "NAME": "Soul Link",
     "DESCRIPTIONS": ["Creatures with #ySoul #yLink are #yPartners. Whenever this creature #rdies, it revives at #b", "% HP this turn if its #yPartner is still alive."]
+  },
+  "${ModID}:HatchingDead": {
+    "NAME": "The Hatching Dead",
+    "DESCRIPTIONS": ["Whenever a minion loses HP, this creature loses HP. NL Dead minions are replaced at the end of each turn."]
   }
 }

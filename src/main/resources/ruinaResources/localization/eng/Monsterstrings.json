@@ -959,5 +959,24 @@
     "NAME": "Angelica",
     "DIALOG": [
     ]
+  },
+  "${ModID}:SmolderingAbomination": {
+    "MOVES": [
+      "Spew Smoke",
+      "Amalgamated Sinews",
+      "Tail Swipe"
+    ],
+    "NAME": "Smoldering Abomination",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:SmolderingByproduct": {
+    "MOVES": [
+      "Stabbing Tendrils",
+      "Gnaw"
+    ],
+    "NAME": "Smoldering Byproduct",
+    "DIALOG": [
+    ]
   }
 }
