@@ -144,8 +144,8 @@ public class BlackSilence4 extends AbstractCardMonster {
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
-        addMove(AGONY, Intent.ATTACK, calcAscensionDamage(38));
-        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(14), screamHits, true);
+        addMove(AGONY, Intent.ATTACK, calcAscensionDamage(42));
+        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(15), screamHits, true);
         addMove(VOID, Intent.DEFEND_DEBUFF);
         addMove(YUN, Intent.UNKNOWN);
         addMove(ZWEI, Intent.UNKNOWN);

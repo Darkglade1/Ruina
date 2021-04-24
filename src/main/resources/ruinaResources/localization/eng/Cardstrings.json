@@ -655,7 +655,7 @@
   },
   "${ModID}:Furioso": {
     "NAME": "Furioso",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak, Frail, and Vulnerable."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak and Frail."
   },
   "${ModID}:Yun": {
     "NAME": "Memory - Yun's Office",

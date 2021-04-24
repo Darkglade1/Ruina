@@ -60,15 +60,15 @@ public class BlackSilence3 extends AbstractCardMonster {
     public final int unitedDamage = calcAscensionDamage(7);
     public final int unitedHits = 2;
     public final int unitedStrength = calcAscensionSpecial(3);
-    public final int lonelyDamage = calcAscensionDamage(15);
+    public final int lonelyDamage = calcAscensionDamage(20);
     public final int lonelyDebuff = calcAscensionSpecial(2);
     public final int furyDamage = calcAscensionDamage(18);
     public final int furyDebuff = calcAscensionSpecial(2);
-    public final int waltzDamage = calcAscensionDamage(10);
+    public final int waltzDamage = calcAscensionDamage(8);
     public final int waltzHits = 3;
     public final int bondBlock = calcAscensionTankiness(25);
     public final int bondVoid = calcAscensionSpecial(1);
-    public final int REVIVE_PERCENT = 50;
+    public final int REVIVE_PERCENT = calcAscensionSpecial(30);
     private static final byte TURNS_UNTIL_WALTZ = 3;
     private int turn = TURNS_UNTIL_WALTZ;
     private Angelica angelica;

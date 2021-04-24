@@ -141,6 +141,7 @@ public class RuinaMod implements
 
     public static Boolean reverbClear;
     public static Boolean blacksilenceClear;
+    public static Boolean headClear;
 
     public RuinaMod() {
         BaseMod.subscribe(this);
@@ -156,6 +157,7 @@ public class RuinaMod implements
         try {
             ruinaDefaults.put("reverbClear", false);
             ruinaDefaults.put("blacksilenceClear", false);
+            ruinaDefaults.put("headClear", false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -697,10 +699,9 @@ public class RuinaMod implements
                 }));
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 
-
-
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
+        headClear = ruinaConfig.getBool("headClear");
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename) {
@@ -771,6 +772,7 @@ public class RuinaMod implements
         try {
             ruinaConfig.setBool("reverbClear", reverbClear);
             ruinaConfig.setBool("blacksilenceClear", blacksilenceClear);
+            ruinaConfig.setBool("headClear", headClear);
             ruinaConfig.save();
         } catch (IOException e) {
             e.printStackTrace();
@@ -780,5 +782,10 @@ public class RuinaMod implements
     public static void loadConfig(){
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
+        headClear = ruinaConfig.getBool("headClear");
+    }
+
+    public static boolean hijackMenu() {
+        return headClear;
     }
 }

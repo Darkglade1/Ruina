@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.vfx.scene.TitleDustEffect;
+import ruina.RuinaMod;
 
-import static ruina.RuinaMod.blacksilenceClear;
 import static ruina.RuinaMod.makeUIPath;
 
 public class DustPatch {
@@ -17,7 +17,7 @@ public class DustPatch {
 
         @SpirePostfixPatch
         public static void JustMonikaNoDust(TitleDustEffect __instance) {
-            if(blacksilenceClear) {
+            if(RuinaMod.hijackMenu()) {
                 TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(makeUIPath("mainmenu/dust.atlas")));
                 ReflectionHacks.setPrivate(__instance, TitleDustEffect.class, "img", atlas.findRegion("dust"));
             }

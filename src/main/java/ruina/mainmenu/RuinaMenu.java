@@ -11,10 +11,10 @@ import com.megacrit.cardcrawl.audio.MainMusic;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.scenes.TitleBackground;
 import com.megacrit.cardcrawl.scenes.TitleCloud;
+import ruina.RuinaMod;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.blacksilenceClear;
 import static ruina.RuinaMod.makeUIPath;
 
 public class RuinaMenu {
@@ -24,7 +24,7 @@ public class RuinaMenu {
 
         @SpirePostfixPatch
         public static void RuinaTitle(TitleBackground __instance) {
-            if(blacksilenceClear) {
+            if(RuinaMod.hijackMenu()) {
                 TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(makeUIPath("mainmenu/title.atlas")));
                 setTitleBackgroundAtlasRegion(__instance, atlas, "sky", "jpg/sky");
                 setTitleBackgroundAtlasRegion(__instance, atlas, "mg3Bot", "mg3Bot");
@@ -62,7 +62,7 @@ public class RuinaMenu {
     public static class MusicHijack {
         @SpirePostfixPatch
         public static Music Postfix(Music __result, MainMusic __instance, String key) {
-            if (blacksilenceClear) { if (key.equals("MENU")) { return MainMusic.newMusic("audio/music/m1.ogg"); } }
+            if (RuinaMod.hijackMenu()) { if (key.equals("MENU")) { return MainMusic.newMusic("audio/music/m1.ogg"); } }
             return __result;
         }
     }

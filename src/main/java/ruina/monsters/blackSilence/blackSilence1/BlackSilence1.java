@@ -48,31 +48,31 @@ public class BlackSilence1 extends AbstractCardMonster {
     private static final byte MACE = 8;
     private static final byte FURIOSO = 9;
 
-    public final int crystalDamage = calcAscensionDamage(13);
+    public final int crystalDamage = calcAscensionDamage(12);
     public final int crystalHits = 2;
     public final int crystalBlock = calcAscensionTankiness(30);
 
     public final int wheelsStrDown = calcAscensionSpecial(8);
-    public final int wheelsDamage = calcAscensionDamage(24);
+    public final int wheelsDamage = calcAscensionDamage(22);
 
-    public final int durandalDamage = calcAscensionDamage(9);
+    public final int durandalDamage = calcAscensionDamage(8);
     public final int durandalHits = 2;
     public final int durandalStrength = calcAscensionSpecial(6);
 
-    public final int ALLAS_DAMAGE = calcAscensionDamage(22);
+    public final int ALLAS_DAMAGE = calcAscensionDamage(20);
     public final int ALLAS_DEBUFF = calcAscensionSpecial(10);
 
-    public final int GUN_DAMAGE = calcAscensionDamage(10);
+    public final int GUN_DAMAGE = calcAscensionDamage(8);
     public final int GUN_HITS = 3;
 
-    public final int MOOK_DAMAGE = calcAscensionDamage(23);
+    public final int MOOK_DAMAGE = calcAscensionDamage(21);
 
-    public final int OLD_BOY_DAMAGE = calcAscensionDamage(14);
+    public final int OLD_BOY_DAMAGE = calcAscensionDamage(12);
     public final int OLD_BOY_BLOCK = calcAscensionTankiness(50);
 
-    public final int RANGA_DAMAGE = calcAscensionDamage(7);
+    public final int RANGA_DAMAGE = calcAscensionDamage(6);
     public final int RANGA_HITS = 3;
-    public final int RANGA_DEBUFF = calcAscensionSpecial(6);
+    public final int RANGA_DEBUFF = calcAscensionSpecial(4);
 
     public final int MACE_DAMAGE = calcAscensionDamage(8);
     public final int MACE_HITS = 2;
@@ -82,7 +82,7 @@ public class BlackSilence1 extends AbstractCardMonster {
     public final int furiosoHits = 16;
     public final int furiosoDebuff = calcAscensionSpecial(2);
 
-    public final int CARDS_PER_TURN = 3;
+    public final int CARDS_PER_TURN = 5;
 
     private ArrayList<Byte> movepool = new ArrayList<>();
 
@@ -96,7 +96,7 @@ public class BlackSilence1 extends AbstractCardMonster {
     }
 
     public BlackSilence1(final float x, final float y) {
-        super(NAME, ID, 1000, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 850, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence1/Spriter/BlackSilence1.scml"));
         animation.setFlip(true, false);
         this.setHp(calcAscensionTankiness(this.maxHealth));
@@ -350,7 +350,6 @@ public class BlackSilence1 extends AbstractCardMonster {
                 setFlipAnimation(true, null);
                 applyToTarget(target, this, new WeakPower(target, furiosoDebuff, true));
                 applyToTarget(target, this, new FrailPower(target, furiosoDebuff, true));
-                applyToTarget(target, this, new VulnerablePower(target, furiosoDebuff, true));
                 break;
             }
         }
