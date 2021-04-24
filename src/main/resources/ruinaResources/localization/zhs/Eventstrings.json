@@ -2,397 +2,397 @@
   "ruina:WizardOfOz": {
     "NAME": "绿野仙踪",
     "DESCRIPTIONS": [
-      "当你浏览迷路图书馆的曲折和转弯时, 你遇到了 #y神奇的书 #ycurious cover. NL NL It flies open before you, beckoning you to peer within its pages.",
-      "The wizard spoke to the scarecrow seeking #ywisdom. NL NL \"I will give you a brand-new brain, full of pins and needles! All I ask is that you swear #yloyalty to me.\"",
-      "The wizard spoke to the woodsman seeking a #yheart. NL NL \"I will give you a silk heart stuffed with saw-dust. All I ask is that you swear #yloyalty to me.\"",
-      "The wizard spoke to the lion seeking #ycourage. NL NL \"I will give you a drought filled with boundless courage. All I ask is that you swear #yloyalty to me.\"",
-      "The wizard spoke to the girl seeking to return #yhome. NL NL \"I will give you a pair of silver shoes that will take you wherever you desire. All I ask is that you swear #yloyalty to me.\"",
-      "The wizard smiled in #ydelight. NL NL \"Wonderful! You will all make very fine servants; come closer and receive your presents.\"",
-      "The wizard #pfrowned. NL NL \"What an insolent lot we have here. To think you would all defy the #ymighty wizard of Oz!\"",
-      "The wizard #ysighed. NL NL \"It appears your group lacks the resolve to commit one way or another. What a #pshame.\"",
-      "The story ends, leaving you with an #pempty ache in your #yheart.",
-      "You don't feel like diving into a #ystory right now."
+      "当你深陷于图书馆的曲折迷宫时, 你遇到了一本 #y神奇的书 。 NL NL 它飞跃着在你身前打开，吸引着你想要一窥究竟。",
+      "巫师对寻找 #y智慧 的稻草人说。 NL NL \"我会给予你一个全新的，充满针的大脑!而我需要的只是你的 #y效忠 。\"",
+      "巫师对寻找 #y心脏 的樵夫说。 NL NL \"我会给予你一颗布满了锯末的心脏，而我需要的只是你的 #y效忠 。\"",
+      "巫师对寻找 #y勇气 的狮子说。 NL NL \"我会给予你无穷的勇气，而我需要的只是你的 #y效忠 。\"",
+      "巫师对寻找 #y回家 的路的女孩说。 NL NL \"我会给予你一双哪里都能去的鞋子，而我需要的只是你的 #y效忠 。\"",
+      "巫师在 #y灯光 下微笑。 NL NL \"真是太棒了！你们将会是很好的仆人；现在上前来接受你们的礼物吧。\"",
+      "巫师 #p皱了皱眉 。 NL NL \"现在的人真是太无礼了。 难道你们认为自己可以反抗 #y强大的 绿野仙踪吗!\"",
+      "巫师 #y叹了口气 。 NL NL \"看上去你们的团队无法做出正确的决定。真是令人 #p遗憾 。\"",
+      "故事结束了，留给你的只剩下一颗空虚的心。",
+      "你现在并不想进入一本奇怪的故事书。"
     ],
     "OPTIONS": [
       "[阅读] 开始这个故事",
       "[离开] ",
       "[接受] ",
       "[拒绝] ",
-      "取出卡片.",
+      " 移除 一张牌。",
       "被诅咒 - ",
-      "输 ",
-      " HP.",
-      "增益 ",
-      "最大生命值.",
-      "黄金.",
-      "获取药剂.",
-      "在牌堆里放张牌 +",
-      " 损害",
-      " 和排气.",
-      "[接受现在] ",
-      "获得特殊遗物.",
-      "[推翻巫师] ",
+      "失去 ",
+      " 点生命。",
       "获得 ",
-      "[Stop reading] ",
-      ".",
-      "[Locked] 要求：接受多于拒绝.",
-      "[Locked] 要求：拒绝多于接受.",
-      "选择一张卡片."
+      "点最大生命值。",
+      "黄金。",
+      "获取药水。",
+      "选择牌组中的一张牌增加",
+      " 伤害 ",
+      " 并给予 消耗 。",
+      "[接受故事] ",
+      "获得一件特别的遗物。",
+      "[反抗巫师] ",
+      "获得 ",
+      "[停止阅读] ",
+      "。",
+      "[锁定] 要求：接受多于拒绝。",
+      "[锁定] 要求：拒绝多于接受。",
+      "选择一张牌。"
     ]
   },
   "ruina:ChurchOfGears": {
     "NAME": "齿轮教堂",
     "DESCRIPTIONS": [
-      "@WHIRRRRRRRRRRRRRRRR@ NL NL You hear bones #rcracking, blood #rsplattering, and joints #rbreaking. And through it all, an intense whirring noise fills the air. NL NL The hooded figure next to the noisy machine turns to face you. \"Join us, stranger. Join us and be free of your #pheavy thoughts and worldly burdens!\"",
-      "You sit down in the machine, and it feels as if a #pvise had clamped itself over your head. NL NL The @whirring@ noise grows #ylouder and #ylouder, the dull pain flares #rhigher and #rhigher until suddenly, it all #rstops. NL NL Your head had never felt lighter.",
-      "You have no intention of subjecting yourself to such a #psinister-looking machine."
+      "@哇啊呜呜呜呜呜呜呜@ NL NL 你听到骨头在 #r断裂 ，血液在 #r飞溅 ，关节在 #r撕裂 。 在整个过程中，空气中充斥着沉重的喘息。 NL NL 喧闹的机器旁，一个戴着兜帽的身影转过来面对你。 \"加入我们吧，陌生人。 加入我们就能摆脱你 #p臃肿 的思想和世俗的负担！\"",
+      "你坐在了机器里，感觉好像一把 #r虎钳 紧紧夹住了你的头骨。 NL NL @沉重@ 的噪音变得 #y越来越大声 ，隐隐的疼痛变得 #r越来越强烈 突然间，一切都 #r停止 了。 NL NL 你感觉自己的头从来没有这么轻过。",
+      "你并不想将自身的安危置于这个看上去 #邪恶满满 的机器中。"
     ],
     "OPTIONS": [
       "[接受] ",
-      "输 ",
-      " HP.",
-      "升级一张卡，然后复制它.",
-      "变换一张卡，然后升级它.",
+      "失去 ",
+      " 点生命。",
+      " 升级 一张牌，然后 复制 它。",
+      " 变化 一张牌，然后 升级 它。",
       "选择要升级的卡，然后复制",
-      "选择要变换的卡，然后升级",
-      "[Leave]"
+      "选择要变化的卡，然后升级",
+      "[离开]"
     ]
   },
   "ruina:ZweiAssociation": {
-    "NAME": "两个协会",
+    "NAME": "二协会",
     "DESCRIPTIONS": [
-      "\"Our #rcasualty rates have @skyrocketed@ over the past few months. This rate of attrition is unsustainable; at this rate, our #yAssociation will cease to be #yrelevant!\" NL NL The woman pounds her fist on the table. \"Something needs to be done. Either we make efforts to #yimprove our training and equipment, or we make efforts to scout out these #pmonstrosities before facing them.\"",
-      "\"Very good. I'll make plans for a new training regimen immediately.\"",
-      "\"Very well then. I will lead the first expedition myself.\"",
-      "The woman scowls. \"Such half-heartedness does not suit you, Director.\" NL NL She sighs. \"But I will respect your #yjudgment this time.\"",
-      " NL NL The meeting adjourns, and you find yourself finally free of a #ymemory that was not yours."
+      "\"在过去两个月我们的 #r伤亡 率 @直线上升@ 。 这样的减员率我们根本无法承受；再这样下去，我们的 #y协会 将没有任何 #y存在价值 ！\" NL NL 那个女人用拳头猛击桌子。 \"一些事情需要解决了。 我们要么努力 #y改进 自身的技术和装备，要么在面对那些怪物之前先 #p侦察 它们的情报。\"",
+      "\"很好。我马上制定新的训练计划。\"",
+      "\"很好，我将亲自带领第一批探险队。\"",
+      "那个女人面带愁容。 \"犹豫不决可不是你的作风，会长。\" NL NL 她叹了口气。 \"但这一次我尊重您的 #y判断 。\"",
+      " NL NL 会议结束了，你发现自己终于摆脱了这份不属于你的 #y记忆 。"
     ],
     "OPTIONS": [
       "[培训] ",
       "[侦察] ",
-      "Lose ",
-      " 金.",
-      " 最大生命值.",
-      "获得稀有卡.",
-      "获得ego卡.",
+      "失去 ",
+      " 金币。",
+      " 最大生命值。",
+      "获得一张稀有牌。",
+      "获得一张ego卡牌。",
       "[妥协]",
-      "[醒醒]",
-      "[Locked] 需要：黄金"
+      "[醒来]",
+      "[锁定] 需要：金币"
     ]
   },
   "ruina:RCorp": {
     "NAME": "R公司",
     "DESCRIPTIONS": [
-      "Gunfire @ripped@ across the field. The commander watched on in silence as her subordinate's clones killed each other for #ydominance. NL NL \"Hey, how much do you want to bet that the little rabbit over there is going to win?\" NL NL \"That one seems a little too cowardly to grasp victory. The one on a #rkilling #rspree seems much more likely to be the victor.\" NL NL There were only a few clones left. And with a flash of steel, it was over. The #ywinner was -",
-      "\"It appears my deduction was correct. So I suppose that means the next round of drinks is on you, Maxim.\" NL NL \"Damnit! I thought that one looked wily enough to survive, but I guess not.\"",
-      "\"Hah! I guess running isn't always such a bad option for a rabbit, is it?\" NL NL \"I didn't think such a passive variant of Myo could win; I suppose it’s my loss then.\"",
-      " NL NL As the others bickered, the commander simply looked on impassively. For she knew that it was likely that they would all be replaced someday."
+      "枪声 @划过@ 田野。 指挥官沉默地看着她的克隆人部下为了 #y权力 互相厮杀。 NL NL \"嘿，要不要赌一赌，你觉得那边的小兔子谁会赢?\" NL NL \"有一个有些胆小的，似乎抓不住胜利的时机。 还有一个 #r喜欢杀戮 的看上去更有可能获得胜利。\" NL NL 只剩下最后几个了，随着钢铁的闪光，最后的 #y胜利者 是 -",
+      "\"看来我的推断是对的，这意味着下一次喝酒得你请客了，马克西姆。\" NL NL \"该死的！我以为那个看上去狡猾的家伙能活下来，结果我猜错了。\"",
+      "\"哈哈！我想逃跑对兔子来说并不总是一件坏事，对吗?\" NL NL \"我起初并不认为一个如此消极的Myo异变体能够赢；我想这是我的损失。\"",
+      " NL NL 当其他人在争吵的时候，指挥官只是摸摸地看着。 因为她知道总有一天这些人都将被取代。"
     ],
     "OPTIONS": [
-      "[凶手] ",
+      "[杀手] ",
       "[懦夫] ",
-      "升级任意数量的卡.",
-      "输 ",
-      " HP每升级一张卡.",
-      "取出卡片.",
-      "选择任意数量的卡进行升级",
-      "选择要删除的卡",
-      "[Wake Up]"
+      "升级任意数量的牌。",
+      "每升级一张牌失去 ",
+      " 点生命。",
+      "移除一张牌。",
+      "选择任意数量的牌进行升级",
+      "选择要移除的牌",
+      "[醒来]"
     ]
   },
   "ruina:SocialSciences": {
-    "NAME": "社会科学院",
+    "NAME": "社会层",
     "DESCRIPTIONS": [
-      "You see a #bblue-haired man pouring a drink. Despite his apparently #ynormal look, you can't help but wonder if this is a trick of one of the #rmonsters. NL NL \"Ah, a guest! You don't look like one of the librarians here, but that's no reason to be a rude host! Come, allow me to pour you a drink.\" NL NL His calm demeanor and #gpleasant attitude win you over. You sit yourself down at the table.",
-      "The drink was soothing, like relaxing after a long day of work. NL NL You wish this moment could last #yforever."
+      "你看见一位 #b蓝头发 的男人在沏一杯饮料。 尽管他看上去 #y平平无奇 ，但你不禁在怀疑这是不是 #r怪物 的把戏。 NL NL \"噢，一位客人！尽管你看上去并不像这里的司书，但这不是当一位无礼东道主的理由。来吧，让我给你倒一杯好喝的。\" NL NL 他沉着的举止和 #g令人愉悦 的态度赢得了你的好感。你坐在了桌子前。",
+      "饮料令人舒适，就好像辛苦工作一天之后得到了解放。 NL NL 你真希望这一刻能 #y永远 持续下去。"
     ],
     "OPTIONS": [
       "[喝] ",
       "[先加点酒] ",
-      "治愈 ",
-      " 生命值.",
-      "Lose ",
-      ".",
-      "增益 ",
-      " 最大生命值.",
-      "[Leave]",
-      "[锁定] 需要：药剂"
+      "恢复 ",
+      " 点生命。",
+      "失去 ",
+      "。",
+      "增加 ",
+      " 点最大生命值。",
+      "[离开]",
+      "[锁定] 需要：药水"
     ]
   },
   "ruina:ThePianist": {
     "NAME": "钢琴家",
     "DESCRIPTIONS": [
-      "The city #r@shudders,@ vibrating like a plucked string. The grand #yperformance stretches ever outward, curling around the minds of its victims like a slowly tightening noose. NL NL You try to fight it. You try to beat back those notes ringing in your skull, those beats pounding away at your mind. And in the end, you -",
-      "With great force of will, you push away the Distortion's #pcorrupting influence. But where was your family? Your friends? You needed to get them away from here, away from that maddening performer and its #punholy melody. NL NL You see your best friend up ahead. He's smiling at you. NL NL His smile is the last thing you ever see.",
-      "Your mind #rfractures and #rcracks. This music was so . . . #gwonderful. So #gbeautiful. You can't help but want to get closer, to press your very body against the instrument that could make such #ydivine melodies. NL NL You can't help but want to ~evaporate~ into the air like so many of those notes you #glove."
+      "城市突然开始 #r@颤抖，@ 就好像被拨动的弦一样。 这场盛大的 #y表演 不停地向外延伸，像一根慢慢缩紧的绳索般缠绕在受害者的头部。 NL NL 你尝试与之抗争。 你试着击退那些在你头颅中响起的音符和敲打在你脑海中的节拍。 而最终，你发现 -",
+      "利用强大的意志力，你排斥开扭曲的 #p腐蚀 和影响。 但是你的家人，你的朋友怎么办？你需要让他们离开这里，远离这个疯狂的演奏者和 #p邪恶 的旋律。 NL NL 你看到你最好的朋友正在前面，他朝着你微笑。 NL NL 他的笑容是你最后看见的东西。",
+      "你的思维 #r开裂 ，布满了 #r裂痕 。 这音乐实在是太... #g棒 了。 如此的 #g美妙 。 你忍不住想更靠近一点，将自己的身体压在能奏出如此 #y神圣 旋律的乐器上。 NL NL 你忍不住想像你 #g爱 的音符一起 ~蒸发~ 在空气中。"
     ],
     "OPTIONS": [
       "[保持理智] ",
       "[屈服] ",
-      "随机获得稀有遗物.",
+      "随机获得一件稀有遗物。",
       "被诅咒 - ",
-      ".",
-      "在牌堆里放一张牌",
-      "自动播放.",
-      "[Wake Up]",
-      "Choose a card to give Innate and Autoplay."
+      "。",
+      "在牌组中选择一张牌获得 固有 和",
+      "自动打出。",
+      "[醒来]",
+      "选择一张牌获得 固有 和 自动打出 。"
     ]
   },
   "ruina:Messenger": {
-    "NAME": "索引信使",
+    "NAME": "信使",
     "DESCRIPTIONS": [
-      "Another day, another Prescript delivered to some poor, #phapless soul. NL NL Sneak #rneedles into your friend’s birthday cake. #rCut off your right leg and eat it raw. Wave to the first pedestrian you meet on the street. NL NL All of them seemed like such pointless, meaningless Prescripts. But it was his duty to deliver them nonetheless. The Messenger glanced at the final Prescript he was to deliver for the day. NL NL \"Take the heart of the one you love.\"",
-      "What a #pcruel, #pwretched order. It would be so easy for him to replace it with his own fabricated, gentler Prescript. It would be so easy for him to betray the organization he had belonged to for so long. NL NL But today was not that day. NL NL With a #pheavy heart, he delivered the final Prescript.",
-      "What a #pcruel, #pwretched order. Enough was enough. He was done with following these #pabsurd, #pvile orders. He was done with forcing others to follow these #pheinous, #punspeakable commands. NL NL He would grant the people of this City what small #ymercy he could muster. NL NL Crumpling the final Prescript up, he took out pen and paper and began writing."
+      "又是一天，又有一些指令被传递给了那些贫穷的， #r毫无希望 的灵魂。 NL NL 把 #r针 放到你朋友的生日蛋糕里。 #r切下 你的右腿然后生吃掉。 向你在街上遇到的第一个路人招手。 NL NL 所有的这些看上去都是毫无意义的指令。 但他有责任将这些指令传递出去。 信使看了一眼他今天要送的最后一条指令。 NL NL \"拿走你最爱的人的心。\"",
+      "多么 #p残酷 ， #p悲惨 的指令啊。对他来说，用他编造的更温和的指令去替代似乎是一件很轻松的事。 也很容易让他背叛自身长久以往所属的组织。 NL NL 但今时不同往日。 NL NL 怀着 #p沉重 的心情，他念出了最后的指令。",
+      "多么 #p残酷 ， #p悲惨 的指令啊。他受够了。 他受够了这些 #p荒谬 ， #糟糕 的指令。他不想再强迫别人遵守这些 #p令人发指的 ， #p让人无法接受 的命令了。 NL NL 他会给予这座都市的居民以他能鼓起的小小的 #y仁慈 。 NL NL 他将最后的指令揉成一团，拿出了纸和笔开始书写。"
     ],
     "OPTIONS": [
       "[交付它] ",
       "[丢弃它] ",
-      "满足几个条件.之后，获得一件特别的遗物.",
-      "Lose ",
-      " 最大生命值.",
-      "取下一张卡片.",
-      "选择要删除的卡",
-      "[Wake Up]"
+      "满足几个条件。之后，获得一件特别的遗物。",
+      "失去 ",
+      " 点最大生命值。",
+      "移除一张牌。",
+      "选择要移除的牌",
+      "[醒来]"
     ]
   },
   "ruina:ChildrenOfTheCity": {
     "NAME": "城市的孩子们",
     "DESCRIPTIONS": [
-      "The machine @thrummed@ in rhythm with the heartbeat of the #yCity. Every footstep caused the machine to @shudder,@ every off-hand comment caused it to ~rotate,~ every wayward deed displaced its pen a little. NL NL The Weaver thought it was #gbeautiful. The City was creating #yPrescripts for its people to follow, like a parent giving instructions to their children. NL NL But she was not a part of that. As a #yWeaver, it was her duty to prepare Prescripts, not to receive them. Yet she desperately wished to be part of the City's #ylight.",
-      "It wouldn't hurt if she took one for herself, right? She was a child of the #yCity too. It was her right! NL NL Swiping the next #yPrescript the machine printed out, she looked at what instruction the #yCity had for her. NL NL \"Do not go home until you finish reading the value of e.\"",
-      "No. She had to resist the #ptemptation. There was a reason she was chosen to be a #yWeaver. For the sake of the #yCity, she had to continue faithfully fulfilling her duty."
+      "机器随着 #y城市 的心跳有节奏地 @嗡嗡作响@ 。 每一个脚步声都会使机器 @颤抖,@ 每一个不经意的评论都会让它 ~旋转,~ 每一个任性的举动都会让它的部件稍稍位移。 NL NL 织布人认为它很 #g漂亮 。 这座城市正在为居住在这的人们创造 #y指令 ，就好像父母在给孩子下命令一样。 NL NL 但她不是其中的一员。作为一名 #y织布人 ，她的职责是准备指令，而不是接受指令。 然而，她迫切想成为 #y城市之光 的一部分。",
+      "她就算拿走其中的一个也不会受伤，对吧? 她也是这座 #y城市 的孩子。 这是她的权力! NL NL 挥了挥机器打印出的下一个 #y指令 ，她准备看看 #y城市 需要她做什么。 NL NL \"在读完e的值之前不要回家。\"",
+      "不。她不得不拒绝这个 #p指令 。 这也是她选择成为一名 #y织布人 的原因。 为了这座 #y城市 ，她必须忠实履行她的职责。"
     ],
     "OPTIONS": [
-      "[刷一个处方] ",
+      "[刷新一条指令] ",
       "[抵制冲动] ",
-      "获得遗物.",
+      "获得遗物。",
       "被诅咒 - ",
-      ".",
-      "在甲板上保留一张牌并",
-      "Exhaust.",
-      "[Wake Up]",
-      "选择一张卡来保留和排气."
+      "。",
+      "选择一张牌获得 保留 和",
+      "消耗。",
+      "[醒来]",
+      "选择一张卡获得 保留 和 消耗。"
     ]
   },
   "ruina:NothingThere": {
     "NAME": "一无所有",
     "DESCRIPTIONS": [
-      "You hear joints #rtwisting and #rbreaking up ahead, like someone was trying to contort their body into an #punnatural position. NL NL Peeking around the corner, you see a #pgrotesque figure toying with the bodies of several fallen figures. More bodies littered the ground nearby, victims of this horrid #pmonstrosity. NL NL As tragic as this scene was, you wouldn't pass up the chance to take some of the spoils of this battle for yourself.",
-      "You quickly dart forward, snatching the first valuable-looking #ytrinket you see. But despite your best attempts at stealth, the creature still turns and snarls at you. NL NL A blinding #pheadache assaults you. Indistinct words pound against your brain, trying to turn your head into mush. NL NL Hello. Goodbye. hElLo. GoOdByE. @HELLo!@ @GOOdBYe!@ NL NL Despite the pounding headache, your feet manage to carry you away from that twisted creature. But no matter how far you run, you can't get those #pwords out of your head.",
-      "You're not going to risk getting any closer to that creature. The #ywealth in the pockets of the fallen around you are good enough for you."
+      "你听到了前方发出关节 #r弯曲 和 #r断裂 的声音，就像有人试图把身体扭成一个 #p不自然 的姿势。 NL NL 朝拐角处瞥了一眼，你看到一个 #p怪诞 的生物在玩弄几具倒下的尸体。 更多的尸体散落在附近的地面上，他们都是这个可怕怪物的 #p受害者 。 NL NL 虽然这一幕很悲惨，但你不会错过这个得到战利品的机会。",
+      "你迅速向前冲去，抢走了你第一眼看到的看起来很值钱的 #y小饰物 。 但是尽管你尽了最大的努力去潜行，这个生物还是转过了头朝你咆哮。 NL NL 一股眩目的 #r头痛 袭击着你，模糊的话语敲击着你的大脑，试图把你的头变成糊状。 NL NL 你好。再见。你好。再见。 @H你好！@ @再见！@ NL NL 尽管头疼得厉害，你的脚还是下意识地把你从那个扭曲的生物身边带走了。 但是无论你跑多远，你都无法把那些 #p词语 从你的脑海中抹去。",
+      "你不能冒险接近那个生物。 你周围那些倒下的人口袋里的 #y财富 对你来说已经足够了。"
     ],
     "OPTIONS": [
       "[抢劫远处的尸体] ",
       "[抢劫附近的尸体] ",
-      "获得一件特别的遗物.",
+      "获得一件特别的遗物。",
       "被诅咒 - ",
-      ".",
-      "Gain ",
-      " gold.",
-      "[Leave]"
+      "。",
+      "获得 ",
+      " 金币。",
+      "[离开]"
     ]
   },
   "ruina:Language": {
-    "NAME": "Floor of Language",
+    "NAME": "语言层",
     "DESCRIPTIONS": [
-      "\"Are you really a lowly Grade 9 Fixer?\" NL NL The man in front of her coughed, waving away the #psmoke from her cigar. \"It's the truth, I swear! Why are you so skeptical?\" NL NL \"Gut feeling. But if you really are bottom of the barrel, that means you'd be grateful to be trained by me, a former #yColor of the City, right?\" NL NL \". . . I just remembered I have an appointment with Netzach - \" NL NL \"No, you don't.\" She grabs him before he can run off.",
-      "He eyes her greatsword, the #peyeballs embedded in the grotesque blade staring back at him in turn. \"Are you really going to use that monster of a thing on me?\" NL NL She hefts her weapon, relishing in the #gfamiliar feeling. \"Don't worry, it's not like you're going to die. Not permanently, anyway.\" NL NL \"That doesn't make me feel any better!\"",
-      "A familiar #rburning feeling fills her body, and once it abated, she was once again clad in the #pterrifying visage that earned her Color. NL NL \"Hey, wait, I thought you were going to show me how to do that!\" NL NL \"I just did, didn't I? Now, hurry up and manifest yours before I split you in half.\" NL NL That day, she learned that Roland had a very colorful vocabulary. She would have to add some of the lesser-known words to the language books later."
+      "\"你真的是一个底层的九阶收尾人吗?\" NL NL 她身前的男人一边咳嗽，一边挥动着她雪茄上的烟雾。 \"这是事实，我发誓！所以为什么你会怀疑我？\" NL NL \"直觉罢了。不过如果你真的是底层的收尾人，那么你应该庆幸你能接受我，一位都市的 #y色彩级 收尾人的亲自教导，对吗?\" NL NL \"。。。我刚想起来我有事要和Netzach见一面 - \" NL NL \"不，你不想。\" 她在他逃跑之前抓住了他。",
+      "他看着她那把巨大的剑，嵌在那把怪诞的剑里的 #p小眼球 反过来又盯着他。 \"你真的要拿那把怪物来对付我吗?\" NL NL \n她举起武器，沉浸在 #g熟悉 的感觉中。 \"别担心，你不会死的。总之不会一直死。\" NL NL \"但那并不会让我有多好过！\"",
+      "一种熟悉的 #r灼热感 充满了她的身体，随着感觉的减弱，她又一次戴上了那 #p可怕 的面容，这使她染上了颜色。 NL NL \"嘿，等等！我以为你是要教我怎么做！\" NL NL \"我不是正在这么干吗？在我把你劈成两半前，快把你的本事拿出来。\" NL NL 那天，她第一次知道罗兰的词汇量到底有多么丰富。后来她不得不在语言书中增加一些不太为人所知的单词。"
     ],
     "OPTIONS": [
       "[十字剑] ",
       "[训练自我] ",
-      "给你的牌 +",
-      " 损害.",
-      "获得随机的ego卡.",
-      "[Wake Up]",
-      "选择一张卡"
+      "给你的牌增加",
+      " 伤害。",
+      "获得随机的ego卡。",
+      "[醒来]",
+      "选择一张牌"
     ]
   },
-  "${ModID}:RedMistRecollection": {
-    "NAME": "Kali's Recollection",
+  "ruina:RedMistRecollection": {
+    "NAME": "卡莉的回忆",
     "DESCRIPTIONS": [
-      "I woke up in the Laboratory again, a few days after receiving the sword from Carmen. When I first held the sword in my grip, nothing seemed out of the ordinary. It felt normal, despite the truly #pcreepy appearance of the blade. It wasn't unbearable to look at, and all I could do was heed Carmen's advice and get used to it. NL After all, it was by #ysheer #yluck that the extraction even worked.",
-      "While the blade was #yformidable in combat, as I kept wielding it, a sound would #rring in my head. The #pgrinding of teeth. The #pcrackling of bones. The #pmingling of contorted flesh. NL The patterns were irregular, as if to mimic human speech. Anxious that my mind might be consumed by the voice which plagued me, I pretended as if I could not hear its #pcries. NL My thoughts are interrupted by footsteps from outside, yet everyone is already here. I must do what I always do; protect those dear to me. Swallowing my fears, I #rbrandish my blade.",
-      "I peer around the corner, yet no-one was there. Was it the sound inside my head, playing tricks on me? I don't know. I should consult the others, but it's hard when only I could hear the sound that #peats #paway at my mind."
+      "在收到Carmen的剑的几天后，我在实验室中醒来了。当我第一次握着这把剑，我并不觉得有什么奇怪的地方。它看上去很正常，尽管刀锋的外观确实让人 #y毛骨悚然 。 这并不是无法忍受的，我所能做的就是听从Carmen的建议，习惯它。 NL 毕竟，这种萃取想起作用纯粹是 #y看运气 。",
+      "虽然这把刀在战斗中 #r令人生畏 ，但是在我挥舞它的时候，一道声音就会在我的脑海中 #r响起 。  #p磨牙 的声音。 #p骨裂 的声音。 扭曲的血肉在 #p混合 。 NL 这些声音毫无规律，彷佛在模仿人类的语言。 我担心我的心会被折磨的声音吞噬，所以我假装听不到它的 #y叫声 。 NL 我的思绪被外面的脚步声打断了，然而所有人都已经在这里了。 我必须要做我一直在做的事：保护我亲爱的人。 吞下我的恐惧，我 #r挥舞 着刀。",
+      "我朝拐角处望去，却没有人。是我脑中的声音在捉弄我吗? 我不知道。 我应该向其他人寻求建议，但这很难，因为只有我能听见那 #p吞噬心灵 的声音。"
     ],
     "OPTIONS": [
-      "[Continue]",
-      "[Encounter] #rFight #rthe #rRed #rMist. #gObtain #ga #gspecial #gRelic.",
-      "[Leave]"
+      "[继续]",
+      "[邂逅] #r和殷红迷雾战斗 。 #g获得一件特别的遗物 。",
+      "[离开]"
     ]
   },
-  "${ModID}:HanaAssociation": {
-    "NAME": "Hana Association",
+  "ruina:HanaAssociation": {
+    "NAME": "Hana 协会",
     "DESCRIPTIONS": [
-      "She glanced at the report, sighing. \"Another office has fallen to this #pUrban #pNightmare. We'll need to classify it as a #yStar #yof #ythe #yCity now.\" NL Her colleague grimaced. \"More needless #rdeaths. If we had investigated and classified this #phazard properly from the start, offices like these would not fall prey to threats beyond their league!\" NL \"I've told you before, but we do not have the time, resources, or manpower to investigate every hazard in the City ourselves.\" NL She could see him hesitate, waver. Finally, he spoke up with a scowl -",
-      "\"The hazard is a #yStar #yof #ya #yCity now, right? That means it's worthy of our attention. I'll go and handle it, so no one else falls victim to it!\" NL He storms out of the room, and she doesn't try to stop him.",
-      "\"Fine. It's too late to save those offices now, so I'll leave it to you to make sure no one else takes on a threat they can't handle.\" NL He storms out of the room, and she doesn't try to stop him."
+      "她看了眼报告，叹了口气。 \"又一个事务所已经陷落进了这个 #p都市梦魇 之中。 我们现在需要把它归类为 #y都市之星 。\" NL 她的同伴说。 \"太多不必要的 #r死亡 。 如果我们从一开始就对这个 #p危险 进行了适当的调查和分级，事务所就不会成为超出他们能力范围的威胁的牺牲品！\" NL \"我以前就告诉过你，我们没有时间、资源或人力来调查城市中的每一个危险。\" NL 他看得出他犹豫不定，犹豫不决。最后，他满脸愁容地说了出来 -",
+      "\"危险现在的评级是 #y都市之星 ，对吧? 这意味着它值得我们关注。 我去处理，这样就不会有人成为受害者！\" NL 他冲出房间，而她没有试图阻止他。",
+      "\"好吧。现在拯救那些事务所已经太迟了，所以我让你来确保没有其他人来承担那些他们无法处理的威胁。\" NL 他冲出房间，而她没有试图阻止他。"
     ],
     "OPTIONS": [
-      "[I'll do it myself] ",
-      "[I'll leave it to you] ",
-      "Obtain a special Relic.",
-      "Become Cursed - ",
-      ".",
-      "Remove a card.",
-      "[Wake Up]",
-      "Choose a Card to Remove."
+      "[我决定亲自上阵] ",
+      "[这件事交给你来做] ",
+      "获得一件特别的遗物。",
+      "被诅咒 - ",
+      "。",
+      "移除一张牌。",
+      "[醒来]",
+      "选择一张牌移除。"
     ]
   },
-  "${ModID}:ForThoseWeCherish": {
-    "NAME": "For Those We Cherish",
+  "ruina:ForThoseWeCherish": {
+    "NAME": "为了我们所珍视的",
     "DESCRIPTIONS": [
-      "\"I have a problem.\" NL She gulped. That didn't sound good. NL \"My #yanniversary with #yXiao is coming up soon, and I still can't decide on what to do for it.\" NL Never mind. The Director was just being a #pworrywart as usual. NL \"Surely you have some ideas in mind?\" NL \"I thought about buying something #gcute for her. Or maybe I should improve her armaments for her. We are a combat-based Association, after all. What do you think?\"",
-      "\"I think you should get her something #gcute. It's the more #ysentimental gesture, and I think she would welcome a reprieve from the #rblood and #riron of our work.\" NL The Director nodded. \"You're absolutely right. There was a nice plushie I spotted in the Nest; it'll be the perfect gift for her!\" NL As the Director rushed out to make his purchase, she sighed in relief. Crisis averted.",
-      "\"I think you should improve her #yarmaments for her. It's the more practical gesture and far more likely to be #gbeneficial to her in our line of work.\" NL The Director nodded. \"You're absolutely right. I hear the #yStigma #yWorkshop is having a sale right now; their weaponry will be the perfect gift for her!\" NL As the Director rushed out to make his purchase, she sighed in relief. Crisis averted."
+      "\"我有一个问题。\" NL 她狼吞虎咽。那听起来不太妙。 NL \"我和 #y 的 #y结婚纪念日快来了 ，但我还没有决定该怎么做。\" NL 不用在意，科长跟平常一样是一个 #p讨厌鬼 。 NL \"所以你有什么想法吗?\" NL \"我想给她买一点 #g可爱 的小玩意，或者帮她升级一下装备。毕竟，我们是一个以战斗为基础的协会，你怎么看?\"",
+      "\"我想你应该给她买一些 #g小玩意 。 这比较 #y感性 ，我想她可能会因此给我们放个假，从 #r血肉横飞 的工作中暂时解脱。\" NL 科长点了点头。 \"你说的很对。 我在巢里面发现了一个可爱的毛绒玩具，这将是一件完美的礼物!\" NL 就在科长冲出去买东西的时候，她松了一口气，危机避免了。",
+      "\"我觉得你应该为她改善一下 #y武器装备 。这比较实质，可以让她在我们这行混的 #g更好 。\" NL 科长点了点头。 \"你说的很对。我听说 #yStigma作坊 最近在举办促销活动；他们的武器将会是最佳的礼物!\" NL 就在科长冲出去买东西的时候，她松了一口气，危机避免了。"
     ],
     "OPTIONS": [
-      "[Something cute] ",
-      "[Something practical] ",
-      "Lose ",
-      " gold.",
-      "Obtain a Special Relic.",
-      "Upgrade a card.",
-      "[Wake Up]",
-      "[Locked] Requires: Gold",
-      "Choose a Card to Upgrade"
+      "[可爱的玩意] ",
+      "[一些训练] ",
+      "失去 ",
+      " 金币。",
+      "获得一件特别的遗物。",
+      "选择升级一张牌。",
+      "[醒来]",
+      "[锁定] 需要: 金币",
+      "选择一张牌升级"
     ]
   },
-  "${ModID}:Philosophy": {
-    "NAME": "Floor of Philosophy",
+  "ruina:Philosophy": {
+    "NAME": "哲学层",
     "DESCRIPTIONS": [
-      "\"You're not supposed to be here.\" NL The stern-looking woman takes a sip of #ytea and sighs as she places it back down. \"If I were interested in doing my job properly, I'd #rchase you out. But luckily for you, I can't be bothered to do so at the moment. So why don't you join me for a cup of #ytea?\"",
-      "You sit down and take a sip of the #ytea. It tastes rather #pstrange to you. NL \"So, how is it? Enjoying the flavor?\" NL Looking at the woman's #yexpectant expression, you decide that #ydiscretion is truly the better part of #yvalor and praise the tea's quality.",
-      "\"Well, that's too bad I suppose.\" NL The floor rumbles and shakes, strange #ypillars rising out of the ground near her. NL \"I'll give you a ten second head-start. After that . . . well, you better pray that you can run faster than a #rspeeding #rpillar.\" NL You've never booked it faster than you have in this moment."
+      "\"你不应该来到这里。\" NL 面色严肃的女人喝了一口 #y茶 然后将茶杯放回原处。 \"如果我热衷于现在的工作，那应该会把你 #r赶出去 。但你运气不错，我现在只想摸鱼。所以为什么不跟我一起来杯 #y茶 呢?\"",
+      "你坐下来，喝了一口 #y茶 。 对你来说它的味道相当 #p奇怪 。 NL \"怎么样？味道不错吧?\" NL 看着她 #y期待 的表情，你觉得 #y谨慎 是 #y勇敢 的一部分并称赞起了茶的质量。",
+      "\"我想那真是太糟糕了。\" NL 地板轰轰作响，奇怪的 #p柱子 从她身旁升起。 NL \"我给你十秒钟的事件。在那之后...好吧，你最好祈祷自己跑得比 #r飞快的柱子 还要快。\" NL 你跑得从来没有这么快过。"
     ],
     "OPTIONS": [
-      "[Accept her offer] ",
-      "[Reject her offer] ",
-      "Lose ",
-      ".",
-      "Heal ",
-      " HP.",
-      "Give a card in your deck +",
-      " Block and ",
-      "Ethereal.",
-      "[Leave]",
-      "Choose a card to give bonus Block and Ethereal",
-      "[Locked] Requires: Valid Card"
+      "[接受她的提议] ",
+      "[拒绝她的提议] ",
+      "失去 ",
+      "。",
+      "恢复 ",
+      " 点生命。",
+      "选择你牌组中的一张牌增加",
+      " 格挡和 ",
+      "虚无。",
+      "[离开]",
+      "选择一张牌增加基础格挡并获得 虚无 ",
+      "[锁定] 需要: 有效的牌"
     ]
   },
-  "${ModID}:TheThumb": {
-    "NAME": "The Thumb",
+  "ruina:TheThumb": {
+    "NAME": "拇指",
     "DESCRIPTIONS": [
-      "He glanced at the #pmiscreant who had just walked in: a common Fixer from the common Backstreets. NL \"You da #yboss here? I got a great offer -\" NL A set of steel knuckles @caves@ the man's face in, leaving him rolling on the floor, howling in #ragony. NL \"Tell your boss that if he wishes to negotiate with me, he should come himself or not at all.\" NL As the #prat is tossed out, his assistant steps forward. NL \"Sir. Our supplies are running low. Shall we purchase more, or would you like us to raid that rat's Office instead?\"",
-      "\"Make the purchase. I think the rat's boss knows what will happen if he crosses us again.\" NL His subordinate nods, rushing out to fulfill his order. Just as things should be.",
-      "\"Raid them. Show them what happens to anyone who crosses the #yThumb.\" NL His subordinates rush about, preparing themselves for war. For they were his peasants, and he their king."
+      "他瞥了一眼刚刚进来的那个 #p恶棍 : 一个从平常后巷来的平常收尾人。 NL \"你是这里的 #y头 吗? 我有一个不错的建议 -\" NL 一套钢制的指节 @插@ 进男人的脸，令他在地上打滚， #r痛苦 地呼喊。 NL \"告诉你的上司，如果他想和我谈判，那就让他自己来。\" NL #p耗子 被扔了出去，他的助手走上前来。 NL \"头，我们的补给要用完了。我们需要去采购一些吗？还是去搜刮那群耗子的帮派？\"",
+      "\"做一下采购计划。 我想耗子的上司会知道和我们作对有什么下场。\" NL 他的助手点了点头，召集人马出去执行命令。 一切本该如此。",
+      "\"突袭他们，让他们知道触碰了 #y拇指 的利益会有什么下场。\" NL 他的助手立马冲了出去，召集人马为战斗做准备。 因为他们是他的奴隶，他是他们的王。"
     ],
     "OPTIONS": [
-      "[Purchase supplies] ",
-      "[Raid] ",
-      "Choose 1 of ",
-      " Uncommon cards to add to your deck.",
-      "Give a card in your deck ",
-      " cost and ",
-      "Exhaust.",
-      "[Wake Up]",
-      "Choose a card to give reduced cost and Exhaust",
-      "Choose a card to add to your deck."
+      "[采购物资] ",
+      "[劫掠] ",
+      "从 ",
+      " 张稀有牌中选择一张增加到你的牌组中。",
+      "选择卡组中的一张牌减少 ",
+      " 费用并获得 ",
+      "消耗。",
+      "[醒来]",
+      "选择减少卡组中的一张牌并获得 消耗 ",
+      "选择一张牌添加到你的卡组中。"
     ]
   },
-  "${ModID}:CryingChildren": {
-    "NAME": "The Crying Children",
+  "ruina:CryingChildren": {
+    "NAME": "哭泣之子",
     "DESCRIPTIONS": [
-      "Everything #rburned. Your home, your family, your friends . . . they had all been caught in a mighty #rconflagration that had manifested in the blink of an eye. NL Someone was crying. But it was not you, the tragic #pvictim. No, it was the #pcriminal who wept, the #pperpetrator who sobbed with every stroke of #rfire that leapt forward from their fingers. NL What a twisted joke. An equally fiery #rrage burned within you, just waiting to be released. You -",
-      "The world shifts, #pblurry and #pdistorted. You do not know who you are. You do not know where you are. All you know is that a #pcrying #pchild is in front of you . . . NL And you desperately wish to #rkill it.",
-      "The #rrage abates, leaving you feeling drained and empty. A hollow #pemptiness fills you, sharp and silent just like that child's tears. NL There was nothing here for you anymore."
+      "一切都在 #r燃烧 。你的房子，你的家人，你的朋友...他们都陷入了一场巨大的 #r火灾 之中，火焰彷佛是一瞬间冒出来的。 NL 有谁在哭泣，但不是你，这场悲剧的 #p主角 。 不，是 #p罪魁祸首 在哭，为了每一束从他手指上跃出的 #r火焰 而抽泣的 #p肇事者 。 NL 真是个可笑的笑话。一股同样炽烈的怒火在你心中燃烧，等待着释放。 你 -",
+      "世界在变化， #p模糊 而 #p扭曲 。 你不知道你是谁，也不知道自己在那里。 你只知道一个 #p哭泣的孩子 在你面前...... NL 而你拼命地想要 #r杀 了它。",
+      "#r怒火 平息了，让你感到筋疲力尽和空虚。 一种空洞的 #p虚无 填满了你，尖锐而沉默就像那孩子的眼泪。 NL 这里没有任何属于你的东西了。"
     ],
     "OPTIONS": [
-      "[Unleash it] ",
-      "[Suppress it] ",
-      "Lose ",
-      " HP.",
-      "Transform a card in your deck into a random EGO card.",
-      "Gain ",
-      " Max HP.",
-      "[Wake Up]",
-      "Choose a card to Transform."
+      "[释放了它] ",
+      "[压制了它] ",
+      "失去 ",
+      " 点生命。",
+      "变化你卡组中的一张牌为随机EGO卡牌。",
+      "获得 ",
+      " 最大生命值。",
+      "[醒来]",
+      "选择一张牌进行变化。"
     ]
   },
-  "${ModID}:DistortedYan": {
-    "NAME": "Distorted Yan",
+  "ruina:DistortedYan": {
+    "NAME": "扭曲的阳",
     "DESCRIPTIONS": [
-      "It was #ppointless all along. NL He thought he had been making a difference. He thought he had been #yrebelling against the #yPrescripts, throwing a wrench in the machinations churning behind the scenes. NL But even his rebellion had been accounted for. Even his defiance had been planned for. NL In the end, he had been nothing more than another gear spinning within the wheels. NL Someone like him should just give up and do as he's told.",
-      "There was still another #ypath left to him. A #ypath that he should've taken long ago when he first received the #yPrescript to become a #yMessenger. NL He didn't care if this would be part of another plan of the Prescripts. He didn't care if even this action would not truly be of his own free will. NL He just didn't care anymore. NL Raising his sword, he pointed it at himself."
+      "一切都是 #p毫无意义的 。 NL 他认为自己做出了改变。 他认为自己一直在 #y反抗 #y处方，对幕后的阴谋诡计泼了一把冷水。 NL 但即使是他的叛变，也已经有了交代。 就连他的反抗也都是有计划的。 NL 最后，他不过是在另一个轮子里打转的齿轮。 NL 像他这样的人就应该放弃思考，遵从指令。",
+      "他还有另一条 #y路 可以走。当他第一次收到成为 #y信使 的 #y命令 时，他就应该走上这条 #y路 。 NL 他不在乎这是否是另一个指令的一部分。 他不在乎这样的行为是否真的出自自己的意愿。 NL他只是不在乎了。 NL 他举起剑，指向了自己。"
     ],
     "OPTIONS": [
-      "[Give up] ",
-      "[Give in] ",
-      "Fight a special enemy. ",
-      " Obtain an upgraded EGO card.",
-      "[Wake Up]"
+      "[放弃] ",
+      "[坚持] ",
+      "和一名特别的敌人战斗。 ",
+      " 获得一张已升级的EGO卡牌。",
+      "[醒来]"
     ]
   },
-  "${ModID}:PatronLibrarian": {
+  "ruina:PatronLibrarian": {
     "NAME": "",
     "DESCRIPTIONS": [
-      "\"Hello there. I'm Malkuth, the Patron Librarian in charge of the Floor of History. Since I'm in charge of this floor, I sort through all the books that are related to History! Is there anything I can help you with?\"",
-      "\"I am Yesod, the Patron Librarian of the Floor of Technological Sciences. My role is to collect and sort books about the technological sciences of the City. Please kindly take your leave after you decide what to do.\"",
-      "\"Hello. I'm Hod, in charge of the Floor of Literature. A person's life is written out like a book of its own; a story with many different paths, and decisions to make. I wonder what your story will be like?\" NL NL \"I'm sorry. I got carried away in my own thoughts. Is there anything I can help you with?\"",
-      "\"Woken up to do the work I don't want to do again... NL I feel like a sand castle, being swept away by the waves... NL If I do what you wish of me, can I ~please~ go back to sleep?\"",
-      "\"I'm Tiphereth, in charge of the Floor of Natural Sciences. I read and manage all the books sent here, however complete or unstable the books actually are. I don't pretend to understand things I don't get, as understanding a book completely is a repetitive process, you know? But there's so many books, and so much information, so I don't mind taking a break to help while my brain tries to comprehend it all.\"",
-      "\"It's Gebura. The Patron Librarian of the Floor of Language. If you're here for books, I'll figure out what you need. I can get a rough estimate of what people want just from their looks, after all.\"",
-      "\"Heya. I'm Chesed, the Patron Librarian of the Floor of Social Sciences. Why don't you take a seat and drink some coffee, and we can find out what you need. It's been a while since I could give hospitality to a traveler, so please, take respite and relax for a bit.\"",
-      "\"Greetings. I am Binah, the Patron Librarian of the Floor of Philosophy. I have been told that this place feels overbearing unlike the other floors. I wonder how you would describe the Library from what you've seen so far? But I must calm my mind with the help of tea, so please come again at a later time. I will at least, help you with anything you're looking for at this time.\"",
-      "\"So you've come. I wonder, do you have the utmost faith that what you're looking for is in this place? I can at least testify to the truth that it does exist here. My apologies. I am Hokma, the Patron Librarian of the Floor of Religion. Please, take your time.\"",
-      "\"I am Roland, Angela's helper. My Floor is not specialized, as I am primarily responsible for bringing books to other floors. Though, there might be something in this place that may benefit you.\"",
-      "\"Greetings, dear guest. I am Angela, the librarian of my role's namesake. You may find what you desire here, but you'll have to search yourself for the knowledge you require.\" NL NL \"May you find your book in this place.\"",
-      "You say your goodbyes as you leave with a collection of books in your hands. NL They're oddly ~heavy,~ but you don't mind, for the books provide you with all the wisdom, wealth, honor, and power you seek.",
-      "You say your goodbyes as you leave, merely observing, as you think that what you already have is adequate for the journey ahead."
+      "\"你好。我是Malkuth。是历史层的指定司书。因为我是历史层的指定司书，所以我负责整理和历史有关的书!有什么我可以帮忙的吗?\"",
+      "\"我是Yesod，科技层的指定司书，我的任务是收集和整理有关都市技术科学的书籍。请你在决定好该怎么办之后，就告辞吧。\"",
+      "\"你好，我叫Hod，是文学层的指定司书。 一个人的一生就像自己写出的一本书；一个有许多不同路线和选择的故事。我想知道你的故事是什么样的？\" NL NL \"我很抱歉，我一直沉迷于自己的想法。 有什么是我能帮到你的吗?\"",
+      "\"醒来做我不想做的工作... NL 我感觉自己像一座沙堡，被海浪冲走... NL 如果我照你说的做， ~可以~ 让我回去睡个觉吗?\"",
+      "\"我是Tiphereth，是自然层的指定司书。我阅读并管理所有带过来的书，无论它是完整还是残缺。 我不想假装知道我不知道的东西，因为完全理解一本书是一个反复而重要的过程，你知道吗?但是书太多了，信息也太多了，所以我不介意在大脑理解它们之余休息一下帮个忙。\"",
+      "\"Gebura。是语言层的指定司书。如果你想要书，我会知道你需要什么。毕竟，只是看外表我就能大致判断出人们想要什么。\"",
+      "\"哈喽。我是Chesed，是社会层的指定司书。为什么不先坐下来喝杯咖啡聊一聊呢，这样我就能更好的知道你需要什么了。我已经很久没有款待来宾了，所以请稍事休息，放松一下。\"",
+      "\"（打招呼）。 我叫Binah，是哲学层的指定司书。有人说这个楼层比其他地方更霸道一些。 我不知道以现在的情况你会怎么评价?但我必须喝点茶来平缓一下性情，所以稍后再来吧。至少，这一次我会帮你找到想要的书。\"",
+      "\"所以你来了。我想知道，你有没有最大的信心以在这个地方找到想要的? 至少我可以证明它确实存在于此。请容许我向你道歉。我的名字是Hokma，是宗教层的指定司书。请慢找。\"",
+      "\"我是罗兰，安吉拉的助手。我没有专门的楼层，我负责把书带到其他的楼层。不过，这里应该会有些东西对你有所帮助。\"",
+      "\"者为来宾，欢迎你的到来。我叫安吉拉，是这座图书馆的馆长兼司书。 您将在此地得到任何想要的东西，但你需要寻找自己所需要的知识。\" NL NL \"愿您找到想要的书。\"",
+      "你带着一本书离开同时挥手告别。 NL 奇怪的是，它们很 ~重，~ 但你不介意，因为这本书为你提供了你所寻求的所有智慧、财富、荣誉和权力。",
+      "你挥手告别，仅仅只是看了一眼，因为你认为自己所拥有的已经足够应对接下来的旅程。"
     ],
     "OPTIONS": [
-      "Patron Librarian of History",
-      "Patron Librarian of Technological Sciences",
-      "Patron Librarian of Literature",
-      "Patron Librarian of Art",
-      "Patron Librarian of Natural Sciences",
-      "Patron Librarian of Language",
-      "Patron Librarian of Social Sciences",
-      "Patron Librarian of Philosophy",
-      "Patron Librarian of Religion",
-      "Patron Librarian of General Works",
-      "Director Of The Library",
-      "[Inquire] ",
-      "Choose 1 of ",
-      " Upgraded cards to add to your deck.",
-      "[Leave]",
-      "Choose a card to add to your deck"
+      "图书馆历史层司书",
+      "图书馆科技层司书",
+      "图书馆文学层司书",
+      "图书馆艺术层司书",
+      "图书馆自然层司书",
+      "图书馆语言层司书",
+      "图书馆社会层司书",
+      "图书馆哲学层司书",
+      "图书馆宗教层司书",
+      "图书馆总类层司书",
+      "图书馆馆长",
+      "[查询] ",
+      "从 ",
+      " 张已升级的牌中选择1张加入你的卡组。",
+      "[离开]",
+      "选择一张牌加入你的卡组"
     ]
   },
-  "${ModID}:YesterdayPromise": {
-    "NAME": "Yesterday's Promise",
+  "ruina:YesterdayPromise": {
+    "NAME": "昨日之约",
     "DESCRIPTIONS": [
-      "@Hohohohoho!@ Through the shadows, you can make out an upright figure. As they pace towards you, the sound of their steps echoing as they move across a marble floor, your vision enhances and you can identify the figure fully. A #bblue top hat. A gray skull, fashioned with a #gdapper monocle. A black suit, fashioned with a #bblue tie and #bblue insignia on the right sleeve, though you have no idea what it represents. The distortion, known as \"Yesterday's Promise\" stands before you, a contract grasped in his skeletal fingertips. NL \"I can give you the power and help you desire, provided you sign this contract. How about it?\"",
-      "Nothing looked off about the contract, other than the fact that it ~was~ a contract, and it wouldn't hurt to be stronger, right? At least, that's how you justified your decision to yourself as you signed the contract. You tried watching the contractor's expressions to see a glimpse of duper's delight; however his expression did not change until the contract was signed. NL \"A pleasure doing business with you, but you should've checked the terms carefully. Here, take a look.\" You still didn't see anything wrong, but after being handed an eyeglass, the contract changes, revealing ambiguous wording and hidden terms, but the terms were not any less appropriate. It appears you've been deceived, and you ~shouldn't~ ~have~ ~done~ ~that.~",
-      "You hold out on the offer. NL More power would be helpful, but the whole ordeal reeked of suspicion. NL You feel like you made the right decision."
+      "@吼吼吼吼！@ 透过阴影，你看到一道直立的身影。 当他走向你的时候，他的脚步声在大理石地板上回响，你的视力恢复到了可以完全辨认出这个身影的地步。 一顶 #b蓝色 的高帽。 一个灰色的头骨，装饰着一个 #g整齐 的单片眼镜。 一套黑色的西装，系着 #b蓝色的领带，右袖上有着 #b蓝色 的徽章，虽然你并不知道这些东西意味着什么。 这是被称为 \"昨日之约\" ，站在你面前，手上握着一份契约。 NL \"如果你签了这份契约，我会给予你力量和渴望的事物，考虑一下?\"",
+      "不要再仔细观察那份契约了，它不过 ~曾经是~ 一件普通的合同罢了，为了力量，这么做并没有什么坏处，不是吗? 至少，在签下契约的时候你已经做完了决定。 你试着观察那个人的表情，想看一眼他的表情; 然而他的情绪直到契约签订后才有所改变。 NL \"跟你做生意真是一件开心的事，但你应该仔细看一下条款。来，让我们看看。\" 你仍然没有看到任何错误，但是在戴上递过来的眼镜后，契约变了，露出了模棱两可的措辞和隐藏的条款，但是这些条款并没有任何不合适的地方。 看起来你被骗了，你实在 ~不应该那么做。~",
+      "你拒绝了这份契约。 NL 更强大的力量或许有所帮助，但是这件事全程都散发出了阴谋的气息。 NL 你觉得自己做了正确的决定。"
     ],
     "OPTIONS": [
-      "[Sign] #rLose #r%1$s #rHP. #gObtain #ga #gSpecial #gRelic.",
-      "[Reject the contract]",
-      "[Leave]"
+      "[签订] #r失去 #r%1$s #r点生命 。 #g获得一件特别的遗物 。",
+      "[拒绝契约]",
+      "[离开]"
     ]
   },
-  "${ModID}:Ensemble": {
-    "NAME": "Reverberation Ensemble",
+  "ruina:Ensemble": {
+    "NAME": "残响乐团",
     "DESCRIPTIONS": [
-      "\"Ohohohoho! Knock, and the door shall open!\" NL \"The entrance to this place was super strong, even after many blows we barely got inside.\" NL \"It's a test of endurance, after all! There's no use giving up after a couple of knocks!\" NL \"Now friends, if you're any rowdier we might scare away the residents of this place. It would be wise that we show the utmost respect so they don't go hiding behind bookshelves, no?\"",
-      "You don't know what compelled you to do so, to risk your very #ylife for a place such as this. But you could tell there was a #yLight here, a ray of hope that these villains sought to #pdefile. NL NL And you would not stand for it."
+      "\"哦哦哦！再敲几下，门就会开！\" NL \"这个地方的入口非常坚固，以至于我们费了好大的劲都差点没能进去。\" NL \"这是对耐力的考验！敲了几次门就放弃是毫无用处的!\" NL \"朋友们，会把这里的人吓得躲起来的...明智的做法是我们表现出最大的尊重，这样他们就不会躲在书架后面了，不是吗？\"",
+      "你不知道是什么促使你这样做，为了这样一个陌生的地方冒着 #y生命 危险。 但你能发现这里有着 #y光芒 和希望，而那些恶棍想要 #p玷污 这里。 NL NL 这是你无法容忍的。"
     ],
     "OPTIONS": [
-      "[Make a stand] #gObtain #ga #gSpecial #gRelic.",
-      "[Prepare yourself]"
+      "[表明立场] #g获得一件特别的遗物 。",
+      "[做好准备]"
     ]
   }
 }

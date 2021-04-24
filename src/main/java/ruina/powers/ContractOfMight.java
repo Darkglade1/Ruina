@@ -14,7 +14,7 @@ public class ContractOfMight extends AbstractEasyPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    private final int selfDamageIncrease = 1;
+    private final int selfDamageIncrease = 2;
 
     public ContractOfMight(AbstractCreature owner, int amount) {
         super(NAME, POWER_ID, PowerType.DEBUFF, false, owner, amount);

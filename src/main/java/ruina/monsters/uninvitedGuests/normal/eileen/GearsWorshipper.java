@@ -55,6 +55,7 @@ public class GearsWorshipper extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, new InvisibleBarricadePower(this));
+        createIntent();
     }
 
     @Override

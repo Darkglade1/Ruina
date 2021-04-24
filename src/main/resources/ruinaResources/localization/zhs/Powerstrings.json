@@ -1,397 +1,397 @@
 {
   "ruina:NextTurnPower": {
-    "NAME": "Next Turn ",
-    "DESCRIPTIONS": ["下个回合, 获得 #b", " ", "."]
+    "NAME": "下一回合",
+    "DESCRIPTIONS": ["下一回合, 获得 #b", " ", "。"]
   },
   "ruina:StrikeWithoutHesitation": {
-    "NAME": "Strike Without Hesitation",
-    "DESCRIPTIONS": ["这个回合该生物造成未被格挡的伤害时, 获得 #b", " #y点力量."]
+    "NAME": "决然一击",
+    "DESCRIPTIONS": ["这个回合造成未被格挡的伤害时，获得 #b", " 点 #y力量 。"]
   },
   "ruina:FuryWithNoOutlet": {
-    "NAME": "Fury With No Outlet",
-    "DESCRIPTIONS": ["#y小 #y红帽 开始时是你的#g盟友 。如果她对 #y狼 作出 #r致命 #r一击 ，你获得战斗胜利. 如果 #y狼 因其他任何方式 #r死亡, #y小 #y红帽 会恢复所有生命, 进入 #r发怒 状态, 并成为你的 #r敌人."]
+    "NAME": "无处宣泄的怒火",
+    "DESCRIPTIONS": ["#y小红帽 开始时是你的 #g盟友 。如果她对 #y狼 做出 #r致命一击 ，你将获得战斗胜利。 如果 #y狼 因其他任何方式 #r死亡 ， #y小红帽 会恢复所有生命，进入 #r愤怒 状态，并成为你的 #r敌人 。"]
   },
   "ruina:BloodstainedClaws": {
-    "NAME": "Bloodstained Claws",
-    "DESCRIPTIONS": ["如果 #y小 #y红帽 #r死亡, 恢复 #b", " 生命值并且两个意图都将针对 #r你."]
+    "NAME": "沾满血迹的爪子",
+    "DESCRIPTIONS": ["如果 #y小红帽 #r死亡 ，恢复 #b", " 点生命并且两个行动意图都将针对 #r你 。"]
   },
   "ruina:Bleed": {
-    "NAME": "Bleed",
-    "DESCRIPTIONS": ["这个回合，该生物每次 #y攻击时受到 #b", " 点伤害."]
+    "NAME": "流血",
+    "DESCRIPTIONS": ["这个回合，每次 #y攻击 时受到 #b", " 点伤害。"]
   },
   "ruina:Absorption": {
-    "NAME": "Absorption",
-    "DESCRIPTIONS": ["死亡时回退到 #y阶段 #y", " .", "每轮结束时如果生命值满则成长到 #y阶段 #y", " ."]
+    "NAME": "吸收",
+    "DESCRIPTIONS": ["死亡时回退到 #y阶段 #y", " 。", "回合结束时如果生命值满则成长到 #y阶段 #y", " 。"]
   },
   "ruina:Bodies": {
-    "NAME": "Mountain of Corpses",
-    "DESCRIPTIONS": ["每轮结束时, 如果没有 #yMelted #yCorpses 存活, 召唤一只 #yMelted #yCorpse. NL 如果该生物的意图目标的 #yMelted #yCorpse 死亡，则你作为代替成为目标."]
+    "NAME": "尸山",
+    "DESCRIPTIONS": ["回合结束时, 如果没有 #y溶解的死尸 存活, 召唤一只 #y溶解的死尸 。 NL 如果这个生物意图攻击的 #y溶解的死尸 死亡，则你将代替成为目标。"]
   },
   "ruina:Corpse": {
-    "NAME": "Corpse",
-    "DESCRIPTIONS": ["如果一名 #r敌人 杀死该生物, 那名 #r敌人 回复 #b", " 生命值."]
+    "NAME": "尸体",
+    "DESCRIPTIONS": ["如果被一名 #r敌人 杀死，那名 #r敌人 恢复 #b", " 点生命。"]
   },
   "ruina:Search": {
-    "NAME": "Searching for Wisdom",
-    "DESCRIPTIONS": ["当该生物对你造成未被格挡的伤害时， #y消耗 你的抽牌堆顶的卡"]
+    "NAME": "寻找智慧",
+    "DESCRIPTIONS": ["当对你造成未被格挡的伤害时， #y消耗 你抽牌堆顶的牌。"]
   },
   "ruina:Wisdom": {
-    "NAME": "Wisdom",
-    "DESCRIPTIONS": ["这场战斗你观看抽牌堆时，卡牌将按顺序排列"]
+    "NAME": "智慧",
+    "DESCRIPTIONS": ["这场战斗观看抽牌堆时，卡牌将按顺序排列。"]
   },
   "ruina:Heart": {
-    "NAME": "Warm Heart",
-    "DESCRIPTIONS": ["在你每回合开始时, 获得", " . 每轮结束时，每有未使用的 [E] , 该生物获得 #b", " #y力量 ."]
+    "NAME": "渴望之心",
+    "DESCRIPTIONS": ["你在回合开始时，获得 ", " 。 行动结束时，你每有未使用的 [E] ，其获得 #b", " 点 #y力量 。"]
   },
   "ruina:Justice": {
-    "NAME": "In the Name of Justice!",
-    "DESCRIPTIONS": ["该生物对没有 #y格挡 的敌人造成三倍伤害."]
+    "NAME": "以正义之名!",
+    "DESCRIPTIONS": ["对没有 #y格挡 的敌人造成三倍伤害。"]
   },
   "ruina:PointlessHate": {
-    "NAME": "Pointless Hate",
-    "DESCRIPTIONS": ["在它的回合结束时获得 #b", " #y格挡."]
+    "NAME": "毫无来由的憎恶",
+    "DESCRIPTIONS": ["回合结束时获得 #b", " 点 #y格挡 。"]
   },
   "ruina:Erosion": {
-    "NAME": "Erosion",
-    "DESCRIPTIONS": ["受到 #b", " 点更多的 #y攻击 伤害. 每轮结束时减少 #b", " 层."]
+    "NAME": "腐蚀",
+    "DESCRIPTIONS": ["额外受到 #b", " 点 #y攻击 伤害。回合结束时减少 #b", " 层。"]
   },
   "ruina:SenselessWrath": {
-    "NAME": "Senseless Wrath",
-    "DESCRIPTIONS": ["该生物受到的所有其他的 #y减益效果 都会被 #y抵消."]
+    "NAME": "无情的愤怒",
+    "DESCRIPTIONS": ["获得的所有其他 #y负面状态 都会被 #y抵消 。"]
   },
   "ruina:MagicalGirl": {
-    "NAME": "A Real Magical Girl!",
-    "DESCRIPTIONS": ["死亡时, 将 ", " 召唤到你一方."]
+    "NAME": "一个真正的魔法少女!",
+    "DESCRIPTIONS": ["死亡时，将 ", " 召唤到你的一方。"]
   },
   "ruina:Paralysis": {
-    "NAME": "Paralysis",
-    "DESCRIPTIONS": ["这个回合, 你下一次 #y攻击 造成的伤害减少 #b", "% ."]
+    "NAME": "麻痹",
+    "DESCRIPTIONS": ["这个回合，你的下一次 #y攻击 造成的伤害减少 #b", "% 。"]
   },
   "ruina:Despair": {
-    "NAME": "Despair",
-    "DESCRIPTIONS": ["爪牙死亡时, 失去 #b", " 生命值."]
+    "NAME": "绝望",
+    "DESCRIPTIONS": ["爪牙死亡时，失去 #b", " 点生命。"]
   },
   "ruina:Worthless": {
-    "NAME": "Worthless",
-    "DESCRIPTIONS": ["如果该生物的攻击未能造成未被格挡的伤害, 该生物 #r死亡."]
+    "NAME": "毫无价值",
+    "DESCRIPTIONS": ["如果该生物的攻击未能造成未被格挡的伤害, 该生物 #r死亡。"]
   },
   "ruina:Road": {
-    "NAME": "Road of the King",
-    "DESCRIPTIONS": ["将会在 #b", " 回合后发动 #r强力 攻击", " 攻击.", "这回合将发动 #r强力 攻击!"]
+    "NAME": "暴君之路",
+    "DESCRIPTIONS": ["将会在 #b", " 回合后发动 #r强力 攻击", " 攻击。", "这回合将发动 #r强力 攻击!"]
   },
   "ruina:Bliss": {
-    "NAME": "Moment of Bliss",
-    "DESCRIPTIONS": ["死亡时, 将一张 ", " 加入你的手牌且拥有 #y虚无 和 #y消耗 ."]
+    "NAME": "幸福的瞬间",
+    "DESCRIPTIONS": ["死亡时, 将一张 ", " 加入你的手牌且拥有 #y虚无 和 #y消耗 。"]
   },
   "ruina:Hunter": {
-    "NAME": "Hunter in the Dark",
-    "DESCRIPTIONS": [" 该生物的生命值首次低于 #b", "%  , 在该轮结束时获得 #b", " #y力量 并 #y无法被选中 和 #y免疫 伤害 #b", " 回合.", " 回合."]
+    "NAME": "黑暗中的猎手",
+    "DESCRIPTIONS": [" 当生命首次低于 #b", "%  ，在回合结束时获得 #b", " 点 #y力量 ， #y无法被选中 和 #y免疫 伤害 #b", " 回合。", " 回合。"]
   },
   "ruina:Skulk": {
-    "NAME": "Skulk",
-    "DESCRIPTIONS": ["#y无法被选中 和 #y免疫 伤害 #b", " 回合.", " 回合."]
+    "NAME": "躲藏",
+    "DESCRIPTIONS": ["#y无法被选中 并 #y免疫 伤害 #b", " 回合。", " 回合。"]
   },
   "ruina:Courage": {
-    "NAME": "Courage",
-    "DESCRIPTIONS": ["当 ", " 被攻击, 该生物这回合获得 #b", " #y力量."]
+    "NAME": "胆量",
+    "DESCRIPTIONS": ["每当 ", " 受到攻击，这回合获得 #b", " 点 #y力量 。"]
   },
   "ruina:Hysteria": {
-    "NAME": "Hysteria",
-    "DESCRIPTIONS": ["当你在同一回合打出 #b", " 张 #y攻击牌 , 你受到 #b", " 层 #y虚弱. NL 当你在同一回合打出 #b", " 张 #y技能牌 , 你受到 #b", " 层 #y脆弱."]
+    "NAME": "歇斯底里",
+    "DESCRIPTIONS": ["当你在同一回合内打出 #b", " 张 #y攻击牌 ，你获得 #b", " 层 #y虚弱 。 NL 当你在同一回合内打出 #b", " 张 #y技能牌 ，你获得 #b", " 层 #y脆弱 。"]
   },
   "ruina:Oblivion": {
-    "NAME": "Oblivion",
-    "DESCRIPTIONS": ["每回合少抽 #b", " 张牌", " 张牌", " ."]
+    "NAME": "遗忘",
+    "DESCRIPTIONS": ["你的回合开始时少抽 #b", " 张牌", " 张牌", " 。"]
   },
   "ruina:Steal": {
-    "NAME": "Steal or Be Stolen",
-    "DESCRIPTIONS": ["该生物攻击时会 #y偷走 抽牌堆顶的牌. NL 该生物每次失去生命值，将最早的 #y偷走的牌 放入你的手牌.该生物攻击时会 #y偷走 抽牌堆顶的牌. NL 该生物每次失去生命值，将最早 #y偷走的牌 放入你的手牌."]
+    "NAME": "偷或被偷",
+    "DESCRIPTIONS": ["攻击时会 #y偷走 你抽牌堆顶的牌。 NL 每次失去生命时，将最早 #y偷走 的牌放入你的手牌。"]
   },
   "ruina:Agony": {
-    "NAME": "Agony of the Deprived",
-    "DESCRIPTIONS": ["爪牙失去生命值时，该生物失去等量的生命值"]
+    "NAME": "被剥夺者的苦痛",
+    "DESCRIPTIONS": ["爪牙失去生命值时，自身失去同等生命。"]
   },
   "ruina:BlindFury": {
-    "NAME": "Blind Fury",
-    "DESCRIPTIONS": ["该生物再失去 #b", " 生命值后, 将在下个回合发动攻击包括你的所有人的 #r强力 攻击.该生物再失去 #b", " 生命值后, 将在下个回合发动攻击包括你的其他所有人的 #r强力 攻击."]
+    "NAME": "盲眼怒火",
+    "DESCRIPTIONS": ["失去 #b", " 点生命后，将在下个回合发动对包括你在内所有人的 #r强力 攻击。"]
   },
   "ruina:SwordCounter": {
-    "NAME": "Tears",
-    "DESCRIPTIONS": ["  已对该敌人打出 #b", " 次.", " 次."]
+    "NAME": "泪",
+    "DESCRIPTIONS": ["已对该敌人打出 #b", " 次。", " 次。"]
   },
   "ruina:HomingInstinct": {
-    "NAME": "Homing Instinct",
-    "DESCRIPTIONS": ["在你的回合开始时获得 ", "."]
+    "NAME": "归巢本能",
+    "DESCRIPTIONS": ["在你的回合开始时获得 ", "。"]
   },
   "ruina:Home": {
-    "NAME": "Fickle Home",
-    "DESCRIPTIONS": ["以 #b", "% #y减少 造成和受到的攻击伤害.", "% #y增加 造成和受到的攻击伤害."," 每当你打出 #b", " 张牌, #y切换 这个状态的效果."]
+    "NAME": "变化的家",
+    "DESCRIPTIONS": ["造成和受到 #b", "% #y更少 的攻击伤害。", "% #y更多 的攻击伤害。"," 每当你打出 #b", " 张牌, #y切换 这个状态的效果。"]
   },
   "ruina:CobaltScarPower": {
-    "NAME": "Cobalt Scar",
-    "DESCRIPTIONS": ["每当你打出 #b", " 攻击牌, 对所有敌人造成 #b", " 点伤害."]
+    "NAME": "郁蓝创痕",
+    "DESCRIPTIONS": ["每当你打出 #b", " 张攻击牌，对所有敌人造成 #b", " 点伤害。"]
   },
   "ruina:Thirst": {
-    "NAME": "Thirst",
-    "DESCRIPTIONS": ["这回合每当你攻击带有 #y流血 状态的敌人, 获得 #b" , " #y力量."]
+    "NAME": "渴血症",
+    "DESCRIPTIONS": ["这个回合每当你攻击带有 #y流血 状态的敌人，获得 #b" , " 点 #y力量 。"]
   },
   "ruina:GoodbyePower": {
-    "NAME": "Goodbye",
+    "NAME": "再见",
     "DESCRIPTIONS": ["你打出的下一张 #y攻击牌 造成双倍伤害"]
   },
-  "${ModID}:Apostles": {
-    "NAME": "Apostles",
-    "DESCRIPTIONS": ["Whenever you #rkill an #yApostle, you will gain a #ybuff. NL 1st, 5th, 9th kill: Gain #b", " #yStrength. NL 2nd, 6th, 10th kill: Gain #b", " #yDexterity. NL 3rd, 7th, 11th kill: Draw #b", " extra card each turn. NL 4th, 8th, 12th kill: Gain [E] at the start of your turn. NL #yBuffs are received when this creature #gheals you. NL Whenever an #yApostle dies, a new one spawns at end of round."]
+  "ruina:Apostles": {
+    "NAME": "使徒",
+    "DESCRIPTIONS": ["每当你 #r杀死 一个 #y使徒 ，他将会给予你1次 #y增益 。 NL 第1，5，9次击杀: 获得 #b", " 点 #y力量 。 NL 第2，6，10次击杀: 获得 #b", " 点 #y敏捷 。 NL 第3，7，11次击杀: 在你的回合开始时额外抽 #b", " 张牌。 NL 第4，8，12次击杀: 在你的回合开始时获得 [E] 。 NL #y增益 会在 #g治疗 你时给予。 NL 每当一个 #y使徒 死亡, 回合结束时会生成新的一个。"]
   },
-  "${ModID}:Advent": {
-    "NAME": "Advent",
-    "DESCRIPTIONS": ["Progresses to the next phase in #b", " turns.", " turn."]
+  "ruina:Advent": {
+    "NAME": "降临",
+    "DESCRIPTIONS": ["距离进入下个阶段还有 #b", " 回合。", " 回合。"]
   },
-  "${ModID}:Blessing": {
-    "NAME": "Blessing",
-    "DESCRIPTIONS": ["At the start of your turn, gain "]
+  "ruina:Blessing": {
+    "NAME": "祝福",
+    "DESCRIPTIONS": ["在你的回合开始时，获得 "]
   },
-  "${ModID}:WingsOfGrace": {
-    "NAME": "Wings Of Grace",
-    "DESCRIPTIONS": ["Reduces ALL damage by #b", "%. NL After receiving damage, reduce this amount by #b", "."]
+  "ruina:WingsOfGrace": {
+    "NAME": "优雅之翼",
+    "DESCRIPTIONS": ["受到的所有伤害减少 #b", "%。 NL 在受到伤害后，减少 #b", " 层。"]
   },
-  "${ModID}:Unkillable": {
-    "NAME": "By Grace Through Faith",
-    "DESCRIPTIONS": ["Whenever this creature dies, it is #yrevived next turn by the enemy."]
+  "ruina:Unkillable": {
+    "NAME": "因信得恩",
+    "DESCRIPTIONS": ["死亡后，在下个回合会被 #y复活 。"]
   },
-  "${ModID}:ParadiseLostPower": {
-    "NAME": "Paradise Lost",
-    "DESCRIPTIONS": ["At the start of your turn, #yexhaust up to #b", " card.", " cards.", " Whenever #b", " cards are #yexhausted, ALL enemies lose #b", " HP."]
+  "ruina:ParadiseLostPower": {
+    "NAME": "失乐园",
+    "DESCRIPTIONS": ["在你的回合开始时, #y消耗 最多 #b", " 张牌。", " 张牌。", " 每当 #y消耗 #b", " 张牌，所有敌人失去 #b", " 点生命。"]
   },
-  "${ModID}:Heaven": {
-    "NAME": "Heaven",
-    "DESCRIPTIONS": ["Whenever you are attacked this turn, deal damage back equal to your remaining #yBlock."]
+  "ruina:Heaven": {
+    "NAME": "天堂",
+    "DESCRIPTIONS": ["你在这个回合每受到一次攻击, 就对攻击者造成等同 #y格挡 的伤害。"]
   },
-  "${ModID}:BigEgg": {
-    "NAME": "Big Egg",
-    "DESCRIPTIONS": ["Whenever you receive unblocked attack damage from this creature, shuffle #b", " into your draw pile."]
+  "ruina:BigEgg": {
+    "NAME": "巨目",
+    "DESCRIPTIONS": ["每当你受到这个生物造成的未被格挡的伤害时, 将一张 #b", " 放入你的抽牌堆。"]
   },
-  "${ModID}:SmallEgg": {
-    "NAME": "Small Egg",
-    "DESCRIPTIONS": ["The first #b", " cards you draw each turn cost #b", " more this turn."]
+  "ruina:SmallEgg": {
+    "NAME": "小喙",
+    "DESCRIPTIONS": ["每个回合你抽到的前 #b", " 张牌在本回合会额外增加 #b", " 耗能。"]
   },
-  "${ModID}:LongEgg": {
-    "NAME": "Long Egg",
-    "DESCRIPTIONS": ["#yNegate ALL #pdebuffs applied to this creature."]
+  "ruina:LongEgg": {
+    "NAME": "长臂",
+    "DESCRIPTIONS": ["#y否定 所有给予这个生物的 #p负面状态 。"]
   },
-  "${ModID}:FadingTwilight": {
-    "NAME": "Fading Twilight",
-    "DESCRIPTIONS": ["This creature cycles between 3 different #yEggs. Every #b", " turns, switches the active #yEgg. NL After losing #b", " more HP, the currently active #yEgg is #rdisabled and removed from the cycle. NL After an #yEgg is #rdisabled, will use a #ypowerful attack next turn."]
+  "ruina:FadingTwilight": {
+    "NAME": "天启",
+    "DESCRIPTIONS": ["循环切换三种不同的 #y终末鸟之卵 效果。 每 #b", " 个回合，会更换一次 #y终末鸟之卵 。 NL 在失去 #b", " 或更多的生命后，当前持有的 #y终末鸟之卵 会被 #r摧毁 并从循环中 #r移除 。 NL 每当一颗 #y终末鸟之卵 被 #r移除 ，会在下个回合发动一次 #y强力 攻击。"]
   },
-  "${ModID}:PunishingBirdPunishmentPower": {
-    "NAME": "Punishment",
+  "ruina:PunishingBirdPunishmentPower": {
+    "NAME": "惩戒",
     "DESCRIPTIONS": [
-      "When this creature is attacked, it will use a #rpowerful attack next turn.",
-      "This creature will use a #rpowerful attack next turn."
+      "每当这个生物被攻击，它会在下个回合使用 #r强力 攻击。",
+      "这个生物会在下一回合使用 #r强力 攻击。"
     ]
   },
-  "${ModID}:Lock": {
-    "NAME": "Forest Keeper's Lock",
-    "DESCRIPTIONS": ["On death, add #yForest #yKeeper's #yLock with #yRetain and #yExhaust to your hand."]
+  "ruina:Lock": {
+    "NAME": "森林的守望者之锁",
+    "DESCRIPTIONS": ["死亡时，增加一张拥有 #y保留 和 #y消耗 的 #y森林的守望者之锁 到你的手中。"]
   },
-  "${ModID}:Unruffled": {
-    "NAME": "Unruffled",
-    "DESCRIPTIONS": ["Your attacks against this creature deal #b", " damage. NL You cannot apply #pdebuffs to this creature."]
+  "ruina:Unruffled": {
+    "NAME": "和平",
+    "DESCRIPTIONS": ["你对这个生物的攻击造成 #b", " 点伤害。 NL 你无法给予这个生物 #p负面状态 。"]
   },
-  "${ModID}:Salvation": {
-    "NAME": "Salvation",
-    "DESCRIPTIONS": ["This creature’s attacks #rinstantly #rkill #yEnchanted creatures. NL #yEnchanted is #gremoved whenever #yyou attack an #yEnchanted creature."]
+  "ruina:Salvation": {
+    "NAME": "救赎",
+    "DESCRIPTIONS": ["这个生物的攻击会 #r秒杀 #y着魔 的生物。 NL 如果你攻击一个 #y着魔 的生物 ， #y着魔 就会被 #g移除 。"]
   },
-  "${ModID}:Enchanted": {
-    "NAME": "Enchanted",
-    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL #yEnchanted is #gremoved whenever #yyou attack this creature."]
+  "ruina:Enchanted": {
+    "NAME": "着魔",
+    "DESCRIPTIONS": ["这个生物的攻击造成 #b", " 点伤害。 NL 如果你攻击这个生物， #y着魔 就会被 #g移除 。"]
   },
-  "${ModID}:Martyr": {
-    "NAME": "Martyr",
-    "DESCRIPTIONS": ["On death, #rexplodes and deals #b", " damage to you."]
+  "ruina:Martyr": {
+    "NAME": "殉教者",
+    "DESCRIPTIONS": ["死亡时， #r爆炸 并对你造成 #b", " 点伤害。"]
   },
-  "${ModID}:MeetAgain": {
-    "NAME": "Meet Again as Stars",
-    "DESCRIPTIONS": ["If this creature's HP is at or below #b", " HP, it will #rsuicide on its turn without triggering #yMartyr."]
+  "ruina:MeetAgain": {
+    "NAME": "化作星辰再会",
+    "DESCRIPTIONS": ["如果生命不大于 #b", " ，会在自己的回合 #r自杀 并且不会触发 #y殉道 。"]
   },
-  "${ModID}:Unnerving": {
-    "NAME": "Unnerving",
-    "DESCRIPTIONS": ["Receives #b", "% less damage from #yAttacks. NL Whenever you gain #yBlock, this creature loses that much HP."]
+  "ruina:Unnerving": {
+    "NAME": "不安",
+    "DESCRIPTIONS": ["受到的 #y攻击伤害降低 #b", "% 。 NL 每当你获得 #y格挡 时，失去相应的生命。"]
   },
-  "${ModID}:TickingTime": {
-    "NAME": "Ticking Time",
-    "DESCRIPTIONS": ["Whenever you play #b", " cards in a single turn, end your turn."]
+  "ruina:TickingTime": {
+    "NAME": "嘀 嗒",
+    "DESCRIPTIONS": ["每当你在一个回合内打出 #b", " 张牌，强制结束你的回合。"]
   },
-  "${ModID}:PromiseOfWinter": {
-    "NAME": "Promise of Winter",
-    "DESCRIPTIONS": ["Every #b3rd card you play is #yFrozen and shuffled into your draw pile. NL #yFrozen cards are #yUnplayable and #yRetain."]
+  "ruina:PromiseOfWinter": {
+    "NAME": "冬之约定",
+    "DESCRIPTIONS": ["你打出的每第 #b3 张牌将会被 #y冰冻 并放入你的抽牌堆。 NL #y冰冻 的牌 #y无法被打出 并获得 #y保留 。"]
   },
-  "${ModID}:KaiAndGerda": {
-    "NAME": "Kai and Gerda",
-    "DESCRIPTIONS": ["On death, #yUnfreeze all #yFrozen cards in your #yhand."]
+  "ruina:KaiAndGerda": {
+    "NAME": "加伊与格尔达",
+    "DESCRIPTIONS": ["死亡时，将你 #y手中 所有的 #y冰冻 牌 #y解冻 。"]
   },
-  "${ModID}:RedMistPower": {
-    "NAME": "Manifest E.G.O",
+  "ruina:RedMistPower": {
+    "NAME": "E.G.O 展现",
     "DESCRIPTIONS": [
-      "HP cannot fall below #b%1$s. NL When HP is at #b%2$s at end of round, transitions to the next phase, uses a #rpowerful attack next turn, and permanently gains an extra #yintent.",
-      "Manifesting #rE.G.O at end of round."
+      "生命不会低于 #b%1$s 。 NL 回合结束时若生命为 #b%2$s ，进入下一阶段，并在下一回合使用 #r强力 攻击，然后永久增加一个额外 #y意图 。",
+      "回合结束时展现 #rE.G.O 。"
     ]
   },
-  "${ModID}:Sin": {
-    "NAME": "Weight of Sin",
-    "DESCRIPTIONS": ["Whenever you play a card that costs #b", " or less, increase its cost by #b", " this combat."]
+  "ruina:Sin": {
+    "NAME": "罪孽的重量",
+    "DESCRIPTIONS": ["每当你打出一张耗能不大于 #b", " 的牌，在这场战斗中将其耗能增加 #b", " 。"]
   },
-  "${ModID}:Imposter": {
-    "NAME": "Imposter",
-    "DESCRIPTIONS": ["This creature's moves are copied from the base damage and #yBlock of #yyour #ycards. NL At the end of its turn, gains #b", " #yStrength."]
+  "ruina:Imposter": {
+    "NAME": "冒牌货",
+    "DESCRIPTIONS": ["行动将复制 #y你的牌 的基础 #y伤害 和 #y格挡 。 NL 在回合结束时，获得 #b", " 点 #y力量 。"]
   },
-  "${ModID}:FaultyHardware": {
-    "NAME": "Faulty Hardware",
-    "DESCRIPTIONS": ["Cannot die. When this creature would die, it cannot act for the rest of combat."]
+  "ruina:FaultyHardware": {
+    "NAME": "硬件故障",
+    "DESCRIPTIONS": ["不会死亡。即将要死亡时，在剩下的战斗中无法行动。"]
   },
-  "${ModID}:OminousPower": {
-    "NAME": "Ominous Power",
-    "DESCRIPTIONS": ["When both #yHands cannot act at end of round or this creature's HP is at or below #b%1$s, it merges with the #yHands and gains a new deck."]
+  "ruina:OminousPower": {
+    "NAME": "不详之力",
+    "DESCRIPTIONS": ["当所有的 #y手 都不能行动并且生命在回合结束时不大于 #b%1$s ，会跟 #y手 合并然后执行新的行动。"]
   },
-  "${ModID}:Protection": {
-    "NAME": "Protection",
-    "DESCRIPTIONS": ["Takes #b", " less damage from #yAttacks. Reduced by #b", " at end of round."]
+  "ruina:Protection": {
+    "NAME": "守护",
+    "DESCRIPTIONS": ["减少受到的 #y攻击 伤害 #b", " 点。 回合结束时减少 #b", " 层。"]
   },
-  "${ModID}:Beak": {
-    "NAME": "Beak",
-    "DESCRIPTIONS": ["At the start of your turn, reduce the cost of the highest cost card in your hand to #b0 this combat and give it #yExhaust.",
-      "At the start of your turn, reduce the cost of the #b", " highest cost cards in your hand to #b0 this combat and give them #yExhaust."]
+  "ruina:Beak": {
+    "NAME": "尖喙",
+    "DESCRIPTIONS": ["在你的回合开始时，你的手牌中耗能最高的一张牌在本场战斗中耗能变为 #b0 并获得 #y消耗 。",
+      "在你的回合开始时，你的手牌中耗能最高的 #b", " 张牌在本场战斗中耗能变为 #b0 并获得 #y消耗 。"]
   },
-  "${ModID}:Lamp": {
-    "NAME": "Lamp",
-    "DESCRIPTIONS": ["Whenever you are attacked this turn, deal #b", " damage back."]
+  "ruina:Lamp": {
+    "NAME": "目灯",
+    "DESCRIPTIONS": ["这个回合每当你被攻击，对攻击者造成 #b", " 点伤害。"]
   },
-  "${ModID}:FinishingTouch": {
-    "NAME": "Finishing Touch",
-    "DESCRIPTIONS": ["Whenever this creature attacks, it applies a #yMark to its target for #b", " turn. #yMarked targets receive #b", "% more damage from ALL sources."]
+  "ruina:FinishingTouch": {
+    "NAME": "终末",
+    "DESCRIPTIONS": ["每当攻击时，会给予 #y标记 持续 #b", " 回合。被 #y标记 的目标从所有来源受到的伤害都增加 #b", "% 。"]
   },
-  "${ModID}:Mark": {
-    "NAME": "Mark",
-    "DESCRIPTIONS": ["Receives #b", "% more damage from ALL sources for #b" , " turn."]
+  "ruina:Mark": {
+    "NAME": "标记",
+    "DESCRIPTIONS": ["从所有来源受到的伤害都增加 #b", "% ，持续 #b" , " 回合。"]
   },
-  "${ModID}:Mastermind": {
-    "NAME": "Puppeteer",
-    "DESCRIPTIONS": ["Receives #b", "% less damage from ALL sources unless this creature is #yMarked."]
+  "ruina:Mastermind": {
+    "NAME": "傀儡师",
+    "DESCRIPTIONS": ["除非被 #y标记 ，否则从所有其他来源受到的伤害都降低 #b", "% 。"]
   },
-  "${ModID}:PuppetStrings": {
-    "NAME": "Puppet Strings",
-    "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn at full HP. NL NL The #renemy's Mass Attack #gheals this creature instead."]
+  "ruina:PuppetStrings": {
+    "NAME": "傀儡",
+    "DESCRIPTIONS": ["每当 #r死亡 ，会在下个回合满血 #g复活 。 NL #r敌人 的全体攻击会 #g治疗 这个生物。"]
   },
-  "${ModID}:Vibration": {
-    "NAME": "Vibration",
-    "DESCRIPTIONS": ["Some of the #renemy's attacks consume #yVibration to trigger an additional effect."]
+  "ruina:Vibration": {
+    "NAME": "震颤",
+    "DESCRIPTIONS": ["#r敌人的 部分攻击会消耗 #y震颤 获得额外的效果。"]
   },
-  "${ModID}:Resonance": {
-    "NAME": "Resonance",
-    "DESCRIPTIONS": ["Whenever you play a card, shift this creature's intents to the right by #b", ". (The first intent targets you. The other intents target your #gally.)"]
+  "ruina:Resonance": {
+    "NAME": "共鸣",
+    "DESCRIPTIONS": ["每当你打出一张牌，自身的意图向右移动 #b", "。 (第一个意图以你为目标，其他的意图以你的 #g盟友 为目标。)"]
   },
-  "${ModID}:BlackSilence": {
-    "NAME": "The Black Silence",
-    "DESCRIPTIONS": ["Gains #b", " #yStrength each turn.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
+  "ruina:BlackSilence": {
+    "NAME": "漆黑噤默",
+    "DESCRIPTIONS": ["每个回合都会获得 #b", " 点 #y力量 。", " NL 将在 #b", " 回合后使用 #y强力 攻击。", " 回合后使用 #y强力 攻击。", " NL 本回合使用 #y强力 攻击。"]
   },
-  "${ModID}:BlueReverberation": {
-    "NAME": "The Blue Reverberation",
-    "DESCRIPTIONS": ["Gains #b%1$s #yStrength each turn."]
+  "ruina:BlueReverberation": {
+    "NAME": "苍蓝残响",
+    "DESCRIPTIONS": ["每个回合增加 #b%1$s #y力量 。"]
   },
-  "${ModID}:ContractOfMight": {
-    "NAME": "Contract Of Might",
-    "DESCRIPTIONS": ["At the end of your turn, take #b", " damage and increase the damage you will take from this power by #b", "."]
+  "ruina:ContractOfMight": {
+    "NAME": "力量合同",
+    "DESCRIPTIONS": ["在你的回合结束时，受到 #b", " 点伤害然后增加你下次受到的伤害 #b", " 点。"]
   },
-  "${ModID}:ContractOfLight": {
-    "NAME": "Contract Of Light",
-    "DESCRIPTIONS": ["Gain ", " each turn. You cannot draw cards besides your starting hand each turn."]
+  "ruina:ContractOfLight": {
+    "NAME": "光明合同",
+    "DESCRIPTIONS": ["每个回合获得 ", " 。 每个回合你除了起始抽牌无法再抽牌。"]
   },
-  "${ModID}:Guts": {
-    "NAME": "Guts",
-    "DESCRIPTIONS": ["The next time this creature #rdies, it #yimmediately #grevives at full HP and gains #b", " #yStrength and #b", " #yMetallicize."]
+  "ruina:Guts": {
+    "NAME": "勇气",
+    "DESCRIPTIONS": ["在下一次 #r死亡 时，会 #y立刻 满血 #g复活 然后获得 #b", " 点 #y力量 和 #b", " 层 #y金属化 。"]
   },
-  "${ModID}:GeburaRedMist": {
-    "NAME": "The Red Mist",
-    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, gains #b", " #yStrength.", " NL #yManifests #yEGO and doubles its #yStrength in #b", " turn(s)."]
+  "ruina:GeburaRedMist": {
+    "NAME": "殷红迷雾",
+    "DESCRIPTIONS": ["每当造成未被格挡的伤害，获得 #b", " 点 #y力量 。", " NL 在 #b", " 回合后将会 #y展现E.G.O 并翻倍 #y力量 。"]
   },
-  "${ModID}:Relentless": {
-    "NAME": "Relentless",
-    "DESCRIPTIONS": ["At end of round, if the #renemy did not lose at least #b", " HP this turn, this creature loses half its #yStrength."]
+  "ruina:Relentless": {
+    "NAME": "锲而不舍",
+    "DESCRIPTIONS": ["在回合结束时，如果 #r敌人 在本回合没有失去至少 #b", " 点生命，失去一半的 #y力量 。"]
   },
-  "${ModID}:BloodRed": {
-    "NAME": "Blood Red Night",
-    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it heals that much HP."]
+  "ruina:BloodRed": {
+    "NAME": "血色",
+    "DESCRIPTIONS": ["造成未被格挡的伤害时恢复同等的生命。"]
   },
-  "${ModID}:Arbiter": {
-    "NAME": "Arbiter's Judgement",
-    "DESCRIPTIONS": ["Your #gally targets the last #renemy you targeted this combat. NL Whenever this creature attacks, it #ycancels the 2nd intent of its target."]
+  "ruina:Arbiter": {
+    "NAME": "正义裁决",
+    "DESCRIPTIONS": ["你的 #g盟友 将指定你最后一次攻击的 #r敌人。 NL 每当攻击时， #y摧毁 目标的第二个行动意图。"]
   },
-  "${ModID}:Brainwash": {
-    "NAME": "Brainwash",
-    "DESCRIPTIONS": ["Your #gally has been #yBrainwashed into an #renemy for #b", " turn(s). #yBrainwash is removed after this creature loses #b", " more HP."]
+  "ruina:Brainwash": {
+    "NAME": "洗脑",
+    "DESCRIPTIONS": ["你的 #g盟友 被一个 #r敌人 #y洗脑 持续 #b", " 回合。 在失去不少于 #b", " 点生命之后移除 #y洗脑 。"]
   },
-  "${ModID}:Messenger": {
-    "NAME": "Messenger",
-    "DESCRIPTIONS": ["At the start of this creature's turn, put a random #yPrescript card into your hand."]
+  "ruina:Messenger": {
+    "NAME": "信使",
+    "DESCRIPTIONS": ["在行动时，将一张 #y预言 牌放入你的手牌。"]
   },
-  "${ModID}:MelodyPower": {
-    "NAME": "Melody",
-    "DESCRIPTIONS": ["Each turn, a random sequence is generated in the #yMelody card. If you complete the #yMelody by the end of the round, you gain #b", " #yStrength. If you didn't, this creature gains #b", " #yStrength."]
+  "ruina:MelodyPower": {
+    "NAME": "旋律",
+    "DESCRIPTIONS": ["在你的回合开始时， #y旋律 牌会生成一个序列。 在所有角色行动结束后，如果你完成了 #y旋律 ，你会获得 #b", " 点 #y力量 。 否则不莱梅乐队将获得 #b", " 点 #y力量 。"]
   },
-  "${ModID}:Passion": {
-    "NAME": "Tempered Passion",
-    "DESCRIPTIONS": ["Receives #b", "% less damage from attacks. Reduced by #b", "% each turn."]
+  "ruina:Passion": {
+    "NAME": "热情洋溢",
+    "DESCRIPTIONS": ["受到的所有攻击伤害减少 #b", "% 。每回合降低 #b", "% 。"]
   },
-  "${ModID}:Embers": {
-    "NAME": "Sword of Embers",
-    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks."]
+  "ruina:Embers": {
+    "NAME": "燃烧之剑",
+    "DESCRIPTIONS": ["造成的攻击伤害增加 #b", "% 。"]
   },
-  "${ModID}:Dragon": {
-    "NAME": "Children of the Dragon",
-    "DESCRIPTIONS": ["At the start of combat, give ALL your cards #yManifest. NL Whenever a card is #yexhausted, this creature gains #b", " #yEmotion."]
+  "ruina:Dragon": {
+    "NAME": "龙之子",
+    "DESCRIPTIONS": ["在战斗开始时，给予你所有的卡牌 #y展现 。 NL 每当一张牌被 #y消耗 ，获得 #b", " #y情感 。"]
   },
-  "${ModID}:Emotion": {
-    "NAME": "Emotion",
-    "DESCRIPTIONS": ["This creature's #yEmotion #yLevel is #b", ". Whenever this creature gains #b", " #yEmotion, it doubles its #yStrength and gains #b1 #yEmotion #yLevel. NL This creature gains additional benefits at #yEmotion #yLevels #b", " and #b", ". NL The #yEmotion #yLevel is capped at #b","."]
+  "ruina:Emotion": {
+    "NAME": "情感",
+    "DESCRIPTIONS": ["你的盟友的 #y情感等级 是 #b", "。 每当获得 #b", " #y情感 ，会翻倍 #y力量 然后获得 #b1 #y情感等级。 NL 她会在 #y情感等级 #b", " 和 #b", " 时获得额外的增益。 NL #y情感等级 上限是 #b","。"]
   },
-  "${ModID}:Wildfire": {
-    "NAME": "Force of a Wildfire",
-    "DESCRIPTIONS": ["At end of round, apply #b" , " #yVulnerable to ALL enemies."]
+  "ruina:Wildfire": {
+    "NAME": "野火之力",
+    "DESCRIPTIONS": ["回合结束时，给予所有敌人 #b" , " 层 #y易伤 。"]
   },
-  "${ModID}:TorchedHeart": {
-    "NAME": "Torched Heart",
-    "DESCRIPTIONS": ["Receives #b", "% less damage from attacks unless this creature is #yVulnerable."]
+  "ruina:TorchedHeart": {
+    "NAME": "燃烧之心",
+    "DESCRIPTIONS": ["除非拥有 #y易伤 ，否则受到的攻击伤害减少 #b", "% 。"]
   },
-  "${ModID}:Sharkskin": {
-    "NAME": "Sharkskin",
-    "DESCRIPTIONS": ["Receives #b", "% less damage from attacks unless this creature has a #ydebuff. NL Every #b", " turns, this creature removes ALL #ydebuffs from itself."]
+  "ruina:Sharkskin": {
+    "NAME": "鲨鱼皮",
+    "DESCRIPTIONS": ["除非拥有 #y负面状态 否则受到的攻击伤害减少 #b", "% 。 NL 每 #b", " 个回合，移除自身的所有 #y负面状态 。"]
   },
-  "${ModID}:FreshMeat": {
-    "NAME": "Fresh Meat",
-    "DESCRIPTIONS": ["On death, if the #renemy killed it, the #renemy heals #b", " HP and ", " is #rPurged and #rremoved from your master deck. Otherwise, ", " is put into your hand. NL NL If this creature dies while the #renemy is targeting it, the #renemy will target #yyou instead."]
+  "ruina:FreshMeat": {
+    "NAME": "鲜肉",
+    "DESCRIPTIONS": ["死亡时，如果是 #r敌人击杀了它， #r敌人 会恢复 #b", " 点生命然后 ", " 会被 #r清洗 并从你的主卡组中 #r移除 。否则，将 ", " 放入你的手牌。 NL NL 如果它在被 #r敌人 指定为攻击目标时死亡， #r敌人 会将攻击目标改变为 #y你 。"]
   },
-  "${ModID}:PurpleTearStance": {
+  "ruina:PurpleTearStance": {
     "NAME": "",
     "DESCRIPTIONS": [
-      "Slash Stance",
-      "Deals #b",
-      "% more damage with attacks.",
-      "Pierce Stance",
-      "Every #b",
-      "nd attack from this creature #ydoubles ALL of its target's #rdebuffs.",
-      "Guard Stance",
-      "#yNegate ALL #rdebuffs applied to this creature."]
+      "斩击姿态",
+      "额外造成 #b",
+      "% 的攻击伤害。",
+      "穿刺姿态",
+      "每第 #b",
+      " 次攻击 #y翻倍 目标所有的 #r负面状态 。",
+      "防守姿态",
+      "#y否定 所有给予自身的 #r负面状态 。"]
   },
-  "${ModID}:Gears": {
-    "NAME": "Church of Gears",
-    "DESCRIPTIONS": ["Whenever a minion dies, loses #b", " HP. Dead minions are replaced at end of round."]
+  "ruina:Gears": {
+    "NAME": "齿轮教会",
+    "DESCRIPTIONS": ["每当有下属死亡，失去 #b", " 点生命。死去的下属会在回合结束时被替换。"]
   },
-  "${ModID}:DarkBargain": {
-    "NAME": "Dark Bargain",
-    "DESCRIPTIONS": ["This creature's #yMass #yAttack targets ALL other characters (including you). NL This creature's attacks deal #b","x damage to enemies. Whenever you fully #yBlock a hit from this creature's #yMass #yAttack, increase this bonus by #b", "."]
+  "ruina:DarkBargain": {
+    "NAME": "黑暗交易",
+    "DESCRIPTIONS": ["你的盟友的 #y群体攻击 指定所有其他角色为攻击目标（包括你）。 NL 对所有敌人造成 #b","x 倍伤害。 每当你完全 #y格挡 一次他的 #y群体攻击，倍率增加 #b", "。"]
   },
-  "${ModID}:PriceOfTime": {
-    "NAME": "Price of Time",
-    "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature takes a turn. NL This creature's normal turn is skipped."]
+  "ruina:PriceOfTime": {
+    "NAME": "时间的代价",
+    "DESCRIPTIONS": ["每当你打出 #b", " 张牌，他会行动1回合。 NL 他的正常行动回合会被跳过。"]
   }
 }

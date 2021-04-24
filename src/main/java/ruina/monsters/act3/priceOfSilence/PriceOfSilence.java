@@ -71,10 +71,7 @@ public class PriceOfSilence extends AbstractRuinaMonster
                 this.updateDescription();
             }
 
-            @Override
-            public void atEndOfRound() {
-                amount = 0;
-            }
+           //this power gets reset in the halfdead allies patch so it works with take extra turn shit LOL
 
             @Override
             public void updateDescription() {

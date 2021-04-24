@@ -10,12 +10,13 @@ import ruina.cards.AbstractRuinaCard;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.att;
 
 @AutoAdd.Ignore
 public class ContractOfMight extends AbstractRuinaCard {
     public final static String ID = makeID(ContractOfMight.class.getSimpleName());
-    private static final int STRENGTH = 4;
-    public static final int SELF_DAMAGE = 1;
+    private static final int STRENGTH = 5;
+    public static final int SELF_DAMAGE = 2;
 
     public ContractOfMight() {
         super(ID, -2, CardType.POWER, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
@@ -30,7 +31,7 @@ public class ContractOfMight extends AbstractRuinaCard {
     public void upp() { }
 
     public void onChoseThisOption(){
-        addToBot(new ApplyPowerAction(adp(), adp(), new StrengthPower(adp(), magicNumber)));
-        addToBot(new ApplyPowerAction(adp(), adp(), new ruina.powers.ContractOfMight(adp(), secondMagicNumber)));
+        att(new ApplyPowerAction(adp(), adp(), new StrengthPower(adp(), magicNumber)));
+        att(new ApplyPowerAction(adp(), adp(), new ruina.powers.ContractOfMight(adp(), secondMagicNumber)));
     }
 }

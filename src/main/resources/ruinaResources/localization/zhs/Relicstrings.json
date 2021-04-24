@@ -1,68 +1,68 @@
 {
   "ruina:FalsePresent": {
-    "NAME": "False Present",
-    "FLAVOR": "Poor Ozma. She didn't know that lying adults don't approach others without reason.",
+    "NAME": "假象",
+    "FLAVOR": "可怜的奥兹玛。她不知道说谎的成年人不会无缘无故接近别人。",
     "DESCRIPTIONS": [
-      "拾起时, 失去 #b", " 点最大生命值. 每场战斗你抽到的第 #b", " 张卡耗能为0直到被打出."
+      "拾起时, 失去 #b", " 点最大生命值。 每场战斗你抽到的第 #b", " 张牌在被打出前耗能为0。"
     ]
   },
   "ruina:Prescript": {
-    "NAME": "Prescript",
-    "FLAVOR": "A set of bizarre instructions. Who in their right mind would come up with these?",
+    "NAME": "指令",
+    "FLAVOR": "一套奇怪的指示。到底是谁想出了这些玩意?",
     "DESCRIPTIONS": [
-       "#y处方: NL 1. 遭遇 #b", " 普通", " #r精英", " 敌人. ", " 敌人. ", " #p事件. ", " #p事件. ", "/",
-      " NL 2. 获得 #b", " 普通", " #b罕见", " #y稀有", " 牌. ", " 牌. ",
-      " NL 完成后，变为一件特殊遗物."
+       "#y指令 : NL 1.遭遇 #b", " 个普通", " 个 #r精英", " 敌人。 ", " 敌人。 ", " #p事件。 ", " #p事件。 ", "/",
+      " NL 2.获得 #b", " 张普通", " 张 #b罕见", " 张 #y稀有", " 牌。 ", " 牌。 ",
+      " NL 完成后，变为一件特殊遗物。"
     ]
   },
   "ruina:PrescriptsGrace": {
-    "NAME": "Prescript's Grace",
-    "FLAVOR": "It all made sense now. All those pointless endeavours converged onto a single, definite meaning.",
+    "NAME": "指令的恩典",
+    "FLAVOR": "现在一切都说得通了。所有那些毫无意义的努力都集中在一个单一的、明确的意义上。",
     "DESCRIPTIONS": [
-      "战斗开始时, 随机从 #y攻击牌, #y技能牌, 和 #y能力牌 中选择. 第一次打出选择的种类的牌时会打出两次. ",
-      "（遗物名） 选择的种类: ", "攻击牌.", "技能牌.", "能力牌."
+      "战斗开始时， 随机从 #y攻击牌 ， #y技能牌 ， 和 #y能力牌 中选择一种。 第一次打出相同类型的牌时会打出两次。 ",
+      "选择的种类: ", "攻击牌。", "技能牌。", "能力牌。"
     ]
   },
   "ruina:Goodbye": {
-    "NAME": "Goodbye",
-    "FLAVOR": "It tries to mimic humans. Looking into a mirror, mumbling to itself, trying to fix its skeletal structure . . . it's as if it was trying to become human.",
+    "NAME": "再见",
+    "FLAVOR": "它试图模仿人类。于是对着镜子，喃喃地对自己说，修复骨骼结构……看上去它在试图成为人类。",
     "DESCRIPTIONS": [
-      "每场战斗打出的第一张 #y攻击牌 造成双倍伤害."
+      "每场战斗打出的第一张 #y攻击牌 将造成双倍伤害。"
     ]
   },
-  "${ModID}:Strongest": {
-    "NAME": "Strongest",
-    "FLAVOR": "The courage to protect others. That is what separates the mighty from the meek.",
+  "ruina:Strongest": {
+    "NAME": "强壮",
+    "FLAVOR": "守护他人的勇气便是强者和绵羊的区别。",
     "DESCRIPTIONS": [
-      "When you deal #b", " unblocked attack damage in a single turn, gain #b", " #yStrength. Can only trigger once per turn."
+      "每当你在一个回合内造成 #b", " 点未被格挡的伤害，获得 #b", " 点 #y力量 。 每回合仅能触发一次。"
     ]
   },
-  "${ModID}:FourTrigrams": {
-    "NAME": "Four Trigrams",
-    "FLAVOR": "The balance of the City must be upheld.",
+  "ruina:FourTrigrams": {
+    "NAME": "四卦",
+    "FLAVOR": "必须维护都市的平衡。",
     "DESCRIPTIONS": [
-      "At the start of your turn, randomly activate an effect that hasn't been activated this combat: NL Gain #b", " #yStrength. NL Gain #b", " #yDexterity. NL Gain [E] . NL Draw #b", " card."
+      "在你的回合开始时，从下列还未触发过的效果中选择一种触发: NL 获得 #b", " 点 #y力量 。 NL 获得 #b", " 点 #y敏捷 。 NL 获得 [E] 。 NL 抽 #b", " 张牌。"
     ]
   },
-  "${ModID}:LowellsGift": {
-    "NAME": "Lowell's Gift",
-    "FLAVOR": "For you I'd steal the stars.",
+  "ruina:LowellsGift": {
+    "NAME": "罗威尔的礼物",
+    "FLAVOR": "为了你我愿意去摘星星。",
     "DESCRIPTIONS": [
-      "At the start of your #b3rd turn, gain #b", " #yStrength and #b", " #yDexterity."
+      "在你的每第 #b3 个回合开始时，获得 #b", " 点 #y力量 和 #b", " 点 #y敏捷 。"
     ]
   },
-  "${ModID}:YesterdayPromiseRelic": {
-    "NAME": "Yesterday's Promise",
-    "FLAVOR": "Let me lend you my eyeglass, so you can have a closer look at what you just signed.",
+  "ruina:YesterdayPromiseRelic": {
+    "NAME": "昨日之约",
+    "FLAVOR": "来，戴上眼镜，这样你就能仔细看看自己刚才签了什么了。",
     "DESCRIPTIONS": [
-      "When you have insufficient [E] to play a card, you may instead pay #b3 HP for every missing [E] ."
+      "当你缺乏足够的 [E] 时，可以打出并根据缺少的每点 [E] 失去 #b3 点生命。"
     ]
   },
-  "${ModID}:Book": {
-    "NAME": "Book of Someone",
-    "FLAVOR": "Some must fight so that all may be free.",
+  "ruina:Book": {
+    "NAME": "某本书",
+    "FLAVOR": "总有人要为所有人的自由而战斗。",
     "DESCRIPTIONS": [
-      "At the end of combat, heal #b", "% of your HP."
+      "在每场战斗结束时，恢复你 #b", "% 的生命。"
     ]
   }
 }

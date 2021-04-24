@@ -93,7 +93,6 @@ public class Shade extends AbstractDeckMonster
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, AbstractCard card) {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
-        System.out.println(target.name);
         if (info.base > -1) {
             info.applyPowers(this, target);
         }
