@@ -748,7 +748,7 @@
   },
   "${ModID}:DarkBond": {
     "NAME": "Dark Bond",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void(s) into your draw pile."
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile."
   },
   "${ModID}:WaltzInBlack": {
     "NAME": "Waltz in Black",

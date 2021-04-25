@@ -55,17 +55,17 @@ public class Angelica extends AbstractCardMonster {
     private static final byte NONE = 5;
     private static final byte SOUL_LINK_REVIVAL = 6;
 
-    public final int zelkovaDamage = calcAscensionDamage(8);
+    public final int zelkovaDamage = calcAscensionDamage(9);
     public final int zelkovaHits = 2;
     public final int zelkovaBlock = calcAscensionTankiness(24);
     public final int allasDamage = calcAscensionDamage(19);
     public final int allasDebuff = calcAscensionSpecial(2);
-    public final int atelierDamage = calcAscensionDamage(6);
+    public final int atelierDamage = calcAscensionDamage(7);
     public final int atelierHits = 3;
-    public final int waltzDamage = calcAscensionDamage(8);
+    public final int waltzDamage = calcAscensionDamage(9);
     public final int waltzHits = 3;
     public final int bondStrength = calcAscensionSpecial(2);
-    public final int bondBlock = calcAscensionTankiness(10);
+    public final int bondBlock = calcAscensionTankiness(20);
     public final int REVIVE_PERCENT = calcAscensionSpecial(30);
     private BlackSilence3 roland;
     private static final byte TURNS_UNTIL_WALTZ = 3;
@@ -78,7 +78,7 @@ public class Angelica extends AbstractCardMonster {
     }
 
     public Angelica(final float x, final float y) {
-        super(NAME, ID, 550, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 600, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Angelica/Spriter/Angelica.scml"));
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;

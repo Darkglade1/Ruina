@@ -396,7 +396,7 @@
   },
   "${ModID}:Orlando": {
     "NAME": "Orlando",
-    "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature takes a turn."]
+    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards."]
   },
   "${ModID}:Scars": {
     "NAME": "Scars",

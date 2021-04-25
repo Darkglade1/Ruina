@@ -92,33 +92,33 @@ public class BlackSilence4 extends AbstractCardMonster {
 
     public final int screamHits = 2;
     public final int screamDebuff = calcAscensionSpecial(1);
-    public final int BLOCK = calcAscensionTankiness(23);
+    public final int BLOCK = calcAscensionTankiness(40);
     public final int NUM_VOIDS = calcAscensionSpecial(2);
-    public final int INVINCIBLE = 250;
+    public final int INVINCIBLE = 150;
 
     public final int yunDazes = calcAscensionSpecial(3);
     public final int yunWounds = calcAscensionSpecial(2);
 
-    public final int zweiMetallicize = calcAscensionTankiness(10);
-    public final int zweiArmor = calcAscensionTankiness(20);
+    public final int zweiMetallicize = calcAscensionTankiness(15);
+    public final int zweiArmor = calcAscensionTankiness(30);
 
     public final int dawnBurns = calcAscensionSpecial(2);
-    public final int dawnProtection = calcAscensionSpecial(4);
+    public final int dawnProtection = calcAscensionSpecial(5);
 
-    public final int shiWeak = calcAscensionSpecial(3);
-    public final int shiFrail = calcAscensionSpecial(3);
+    public final int shiWeak = calcAscensionSpecial(4);
+    public final int shiFrail = calcAscensionSpecial(4);
 
-    public final int loveRegen = calcAscensionSpecial(10);
-    public final int loveSlimed = calcAscensionSpecial(4);
+    public final int loveRegen = calcAscensionSpecial(15);
+    public final int loveSlimed = calcAscensionSpecial(5);
 
-    public final int liuStrength = calcAscensionSpecial(4);
-    public final int liuVulnerable = calcAscensionSpecial(2);
+    public final int liuStrength = calcAscensionSpecial(5);
+    public final int liuVulnerable = calcAscensionSpecial(3);
 
     public final int purpleIntangible = calcAscensionSpecial(1);
     public final int purpleMinions = 1;
 
     public final int hanaRegret = calcAscensionSpecial(2);
-    public final int hanaHpLoss = calcAscensionSpecial(20);
+    public final int hanaHpLoss = calcAscensionSpecial(25);
 
     private final ArrayList<Byte> memories = new ArrayList<>();
 
@@ -144,8 +144,8 @@ public class BlackSilence4 extends AbstractCardMonster {
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
-        addMove(AGONY, Intent.ATTACK, calcAscensionDamage(42));
-        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(15), screamHits, true);
+        addMove(AGONY, Intent.ATTACK, calcAscensionDamage(45));
+        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(16), screamHits, true);
         addMove(VOID, Intent.DEFEND_DEBUFF);
         addMove(YUN, Intent.UNKNOWN);
         addMove(ZWEI, Intent.UNKNOWN);
