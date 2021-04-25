@@ -144,12 +144,7 @@ public class Roland extends AbstractAllyCardMonster {
         power.updateDescription();
     }
 
-    @Override
-    public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
-        super.takeTurn();
+    public void dialogue() {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -160,6 +155,15 @@ public class Roland extends AbstractAllyCardMonster {
                 isDone = true;
             }
         });
+    }
+
+    @Override
+    public void takeTurn() {
+        if (this.isDead) {
+            return;
+        }
+        super.takeTurn();
+        dialogue();
         DamageInfo info;
         int multiplier = 0;
         if (moves.containsKey(this.nextMove)) {

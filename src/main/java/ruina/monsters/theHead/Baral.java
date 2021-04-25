@@ -3,18 +3,13 @@ package ruina.monsters.theHead;
 import actlikeit.dungeons.CustomDungeon;
 import basemod.animations.AbstractAnimation;
 import basemod.helpers.CardModifierManager;
-import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
@@ -23,44 +18,25 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
-import ruina.actions.DamageAllOtherCharactersAction;
-import ruina.actions.UsePreBattleActionAction;
 import ruina.cardmods.BlackSilenceRenderMod;
-import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.dialogue.TestHeadDialogue;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
-import ruina.monsters.uninvitedGuests.normal.pluto.monster.Pluto;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.Chesed;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.puppeteerCards.AssailingPulls;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.puppeteerCards.PullingStrings;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.puppeteerCards.Puppetry;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.puppeteerCards.ThinStrings;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.puppeteerCards.TuggingStrings;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.Mystery;
 import ruina.powers.PlayerBlackSilence;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
-import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -92,7 +68,7 @@ public class Baral extends AbstractCardMonster
     public final int STRENGTH = calcAscensionSpecial(3);
 
     public RolandHead roland;
-    //public Zena zena;
+    public Zena zena;
 
     public enum PHASE{
         PHASE1,
@@ -102,12 +78,12 @@ public class Baral extends AbstractCardMonster
     public PHASE currentPhase = PHASE.PHASE1;
 
     public Baral() {
-        this(0.0f, 0.0f, PHASE.PHASE1);
+        this(0.0f, 0.0f);
     }
 
-    public Baral(final float x, final float y, PHASE phase) {
+    public Baral(final float x, final float y) {
         super(NAME, ID, 999999, -5.0F, 0, 160.0f, 245.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppeteer/Spriter/Puppeteer.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Baral/Spriter/Baral.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 0;
         maxAdditionalMoves = 1;
@@ -115,7 +91,6 @@ public class Baral extends AbstractCardMonster
             additionalMovesHistory.add(new ArrayList<>());
         }
         this.setHp(calcAscensionTankiness(maxHealth));
-        currentPhase = phase;
         addMove(SERUM_W, Intent.ATTACK, calcAscensionDamage(45));
         addMove(TRAIL, Intent.ATTACK_BUFF, calcAscensionDamage(12), trailHits, true);
         addMove(EXTIRPATION, Intent.ATTACK_DEFEND, calcAscensionDamage(26));
@@ -141,14 +116,15 @@ public class Baral extends AbstractCardMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Ensemble2");
-//        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-//            if (mo instanceof Zena) {
-//                zena = (Zena)mo;
-//            }
-//        }
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Zena) {
+                zena = (Zena)mo;
+            }
+        }
+        applyToTarget(this, this, new Mystery(this));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         //applyToTarget(this, this, new InvinciblePower(this, 100));
-        AbstractDungeon.topLevelEffectsQueue.add(new TestHeadDialogue());
+        //AbstractDungeon.topLevelEffectsQueue.add(new TestHeadDialogue());
         roland = new RolandHead(-1700.0F, -20.0f);
         roland.drawX = AbstractDungeon.player.drawX;
         AbstractPower power = new PlayerBlackSilence(adp(), roland);
@@ -226,7 +202,6 @@ public class Baral extends AbstractCardMonster
         else {
             super.render(sb);
         }
-
     }
 
     @Override
@@ -254,9 +229,9 @@ public class Baral extends AbstractCardMonster
             case TRAIL: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        pierceAnimation(target);
-                    } else {
                         bluntAnimation(target);
+                    } else {
+                        slashAnimation(target);
                     }
                     dmg(target, info);
                     resetIdle();
@@ -266,7 +241,7 @@ public class Baral extends AbstractCardMonster
             }
             case EXTIRPATION: {
                 block(this, BLOCK);
-                rangedAnimation(target);
+                bluntAnimation(target);
                 dmg(target, info);
                 resetIdle();
                 break;
@@ -276,7 +251,7 @@ public class Baral extends AbstractCardMonster
                     if (i % 2 == 0) {
                         pierceAnimation(target);
                     } else {
-                        bluntAnimation(target);
+                        slashAnimation(target);
                     }
                     dmg(target, info);
                     resetIdle();
@@ -294,31 +269,23 @@ public class Baral extends AbstractCardMonster
     }
 
     private void bluntAnimation(AbstractCreature enemy) {
-        animationAction("Blunt", "BluntHori", enemy, this);
+        animationAction("Blunt", "ClawUp", enemy, this);
     }
 
     private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "BluntBlow", enemy, this);
+        animationAction("Pierce", "ClawStab", enemy, this);
     }
 
-    private void rangedAnimation(AbstractCreature enemy) {
-        animationAction("Ranged", "PuppetBreak", enemy, this);
-    }
-
-    private void blockAnimation() {
-        animationAction("Block", null, this);
+    private void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "ClawDown", enemy, this);
     }
 
     private void buffAnimation() {
-        animationAction("Special", null, this);
+        animationAction("Heal", "ClawInjection", this);
     }
 
-    private void massAttackStartAnimation() {
-        animationAction("Special", "PuppetStart", this);
-    }
-
-    private void massAttackFinishAnimation() {
-        animationAction("Special", "PuppetStrongAtk", this);
+    private void moveAnimation() {
+        animationAction("Move", "ClawUltiMove", this);
     }
 
     @Override

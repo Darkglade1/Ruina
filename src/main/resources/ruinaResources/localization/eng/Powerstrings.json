@@ -421,5 +421,17 @@
   "${ModID}:PlayerBlackSilence": {
     "NAME": "The Black Silence",
     "DESCRIPTIONS": ["Whenever you play #b", " unique cards, add #yFurioso to your hand."]
+  },
+  "${ModID}:AClaw": {
+    "NAME": "A Claw",
+    "DESCRIPTIONS": ["This creature cannot lose #yStrength. This creature cannot be #yWeak or #yVulnerable."]
+  },
+  "${ModID}:AnArbiter": {
+    "NAME": "An Arbiter",
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, its target loses #b", " #yStrength and #yDexterity."]
+  },
+  "${ModID}:Mystery": {
+    "NAME": "???",
+    "DESCRIPTIONS": ["This creature is shrouded in #pmystery . . ."]
   }
 }

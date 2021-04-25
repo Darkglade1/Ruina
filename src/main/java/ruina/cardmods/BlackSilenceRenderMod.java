@@ -61,6 +61,7 @@ public class BlackSilenceRenderMod extends AbstractCardModifier {
                     active = false;
                     if(p.amount >= THRESHOLD){
                         p.flash();
+                        active = true;
                         p.amount = 0;
                         AbstractCard furioso = new CHRALLY_FURIOSO(((PlayerBlackSilence) p).parent);
                         CardModifierManager.addModifier(furioso, new RetainMod());

@@ -57,6 +57,7 @@ import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.theHead.Baral;
+import ruina.monsters.theHead.Zena;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
@@ -475,6 +476,15 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("GearStrongAtk"), makeSFXPath("Eilin_StrongAtk.wav"));
         BaseMod.addAudio(makeID("GearFar"), makeSFXPath("Eilin_FarAtk.wav"));
         BaseMod.addAudio(makeID("GearVert"), makeSFXPath("Blue_Gear_Vert.wav"));
+
+        BaseMod.addAudio(makeID("ClawUp"), makeSFXPath("Claw_UpAtk.wav"));
+        BaseMod.addAudio(makeID("ClawCutscene"), makeSFXPath("Claw_Blue_CutScene.wav"));
+        BaseMod.addAudio(makeID("ClawFin"), makeSFXPath("Claw_Blue_Fin.wav"));
+        BaseMod.addAudio(makeID("ClawDown"), makeSFXPath("Claw_DownAtk.wav"));
+        BaseMod.addAudio(makeID("ClawInjection"), makeSFXPath("Claw_Injection.wav"));
+        BaseMod.addAudio(makeID("ClawStab"), makeSFXPath("Claw_Stab.wav"));
+        BaseMod.addAudio(makeID("ClawUltiEnd"), makeSFXPath("Claw_Ulti_End.wav"));
+        BaseMod.addAudio(makeID("ClawUltiMove"), makeSFXPath("Claw_Ulti_Move.wav"));
     }
 
     @Override
@@ -709,7 +719,11 @@ public class RuinaMod implements
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 
         //The Head
-        BaseMod.addMonster(Baral.ID, (BaseMod.GetMonster) Baral::new);
+        BaseMod.addMonster(Baral.ID, "The Head", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Baral(-200.0F, 0.0F),
+                        new Zena(0.0F, 0.0F),
+                }));
 
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
