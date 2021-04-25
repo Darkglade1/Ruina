@@ -1,6 +1,7 @@
 package ruina.monsters.theHead;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -35,6 +36,7 @@ import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.UsePreBattleActionAction;
+import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
@@ -154,6 +156,7 @@ public class Baral extends AbstractCardMonster
             public void update() {
                 for (AbstractCard card : roland.cardList) {
                     if (!card.cardID.equals(CHRALLY_FURIOSO.ID)) {
+                        CardModifierManager.addModifier(card, new BlackSilenceRenderMod());
                         AbstractDungeon.player.drawPile.group.add(card.makeStatEquivalentCopy());
                     }
                 }

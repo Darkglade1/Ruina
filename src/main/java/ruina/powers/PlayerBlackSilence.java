@@ -27,7 +27,7 @@ public class PlayerBlackSilence extends AbstractEasyPower {
     private static final Texture tex32 = TexLoader.getTexture(makePowerPath("BlackSilence32.png"));
 
     public static final int THRESHOLD = 9;
-    private Roland parent;
+    public Roland parent;
 
     public PlayerBlackSilence(AbstractCreature owner, Roland parent) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, 0);
@@ -36,20 +36,6 @@ public class PlayerBlackSilence extends AbstractEasyPower {
         this.parent = parent;
     }
 
-    @Override
-    public void onAfterCardPlayed(AbstractCard card) {
-        amount++;
-        if (amount >= THRESHOLD) {
-            flash();
-            amount = 0;
-            AbstractCard furioso = new CHRALLY_FURIOSO(parent);
-            CardModifierManager.addModifier(furioso, new RetainMod());
-            CardModifierManager.addModifier(furioso, new ExhaustMod());
-            makeInHand(furioso);
-        } else {
-            flashWithoutSound();
-        }
-    }
 
     @Override
     public void updateDescription() {

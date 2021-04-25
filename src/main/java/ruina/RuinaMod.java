@@ -8,8 +8,10 @@ import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
@@ -99,6 +101,8 @@ public class RuinaMod implements
         PreMonsterTurnSubscriber {
 
     private static final String modID = "ruina";
+    public static final TextureAtlas UIAtlas = new TextureAtlas();
+    private static Texture silenceImg;
 
     public static String getModID() {
         return modID;
@@ -498,6 +502,10 @@ public class RuinaMod implements
 
     @Override
     public void receivePostInitialize() {
+
+        silenceImg = new Texture(makeUIPath("silenceImg.png"));
+        UIAtlas.addRegion("silenceImg", silenceImg, 0, 0, silenceImg.getWidth(), silenceImg.getHeight());
+
         // Load the Mod Badge
         Texture badgeTexture = TexLoader.getTexture(BADGE_IMAGE);
 
