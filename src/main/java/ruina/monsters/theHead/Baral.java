@@ -1,8 +1,11 @@
 package ruina.monsters.theHead;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.animations.AbstractAnimation;
 import basemod.helpers.CardModifierManager;
 import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -28,6 +31,7 @@ import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
@@ -40,6 +44,7 @@ import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
+import ruina.monsters.uninvitedGuests.normal.pluto.monster.Pluto;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Chesed;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.puppeteerCards.AssailingPulls;
@@ -88,12 +93,19 @@ public class Baral extends AbstractCardMonster
     public RolandHead roland;
     //public Zena zena;
 
-    public Baral() {
-        this(0.0f, 0.0f);
+    public enum PHASE{
+        PHASE1,
+        PHASE2
     }
 
-    public Baral(final float x, final float y) {
-        super(NAME, ID, 1000, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+    public PHASE currentPhase = PHASE.PHASE1;
+
+    public Baral() {
+        this(0.0f, 0.0f, PHASE.PHASE1);
+    }
+
+    public Baral(final float x, final float y, PHASE phase) {
+        super(NAME, ID, 99999, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppeteer/Spriter/Puppeteer.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 0;
@@ -102,7 +114,7 @@ public class Baral extends AbstractCardMonster
             additionalMovesHistory.add(new ArrayList<>());
         }
         this.setHp(calcAscensionTankiness(maxHealth));
-
+        currentPhase = phase;
         addMove(SERUM_W, Intent.ATTACK, calcAscensionDamage(45));
         addMove(TRAIL, Intent.ATTACK_BUFF, calcAscensionDamage(12), trailHits, true);
         addMove(EXTIRPATION, Intent.ATTACK_DEFEND, calcAscensionDamage(26));
@@ -168,10 +180,52 @@ public class Baral extends AbstractCardMonster
 
     @Override
     public void render(SpriteBatch sb) {
-        super.render(sb);
-        if (roland != null) {
-            roland.render(sb);
+        if(currentPhase == PHASE.PHASE1){
+            if (!this.isDead && !this.escaped) {
+                if (this.animation != null && this.animation.type() == AbstractAnimation.Type.SPRITE) {
+                    this.animation.renderSprite(sb, this.drawX + this.animX, this.drawY + this.animY + AbstractDungeon.sceneOffsetY);
+                } else if (this.atlas == null) {
+                    sb.setColor(this.tint.color);
+                    sb.draw(this.img, this.drawX - (float)this.img.getWidth() * Settings.scale / 2.0F + this.animX, this.drawY + this.animY + AbstractDungeon.sceneOffsetY, (float)this.img.getWidth() * Settings.scale, (float)this.img.getHeight() * Settings.scale, 0, 0, this.img.getWidth(), this.img.getHeight(), this.flipHorizontal, this.flipVertical);
+                } else {
+                    this.state.update(Gdx.graphics.getDeltaTime());
+                    this.state.apply(this.skeleton);
+                    this.skeleton.updateWorldTransform();
+                    this.skeleton.setPosition(this.drawX + this.animX, this.drawY + this.animY + AbstractDungeon.sceneOffsetY);
+                    this.skeleton.setColor(this.tint.color);
+                    this.skeleton.setFlip(this.flipHorizontal, this.flipVertical);
+                    sb.end();
+                    CardCrawlGame.psb.begin();
+                    AbstractMonster.sr.draw(CardCrawlGame.psb, this.skeleton);
+                    CardCrawlGame.psb.end();
+                    sb.begin();
+                    sb.setBlendFunction(770, 771);
+                }
+
+                if (this == AbstractDungeon.getCurrRoom().monsters.hoveredMonster && this.atlas == null && this.animation == null) {
+                    sb.setBlendFunction(770, 1);
+                    sb.setColor(new Color(1.0F, 1.0F, 1.0F, 0.1F));
+                    sb.draw(this.img, this.drawX - (float)this.img.getWidth() * Settings.scale / 2.0F + this.animX, this.drawY + this.animY + AbstractDungeon.sceneOffsetY, (float)this.img.getWidth() * Settings.scale, (float)this.img.getHeight() * Settings.scale, 0, 0, this.img.getWidth(), this.img.getHeight(), this.flipHorizontal, this.flipVertical);
+                    sb.setBlendFunction(770, 771);
+                }
+
+                if (!this.isDying && !this.isEscaping && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.player.isDead && !AbstractDungeon.player.hasRelic("Runic Dome") && this.intent != Intent.NONE && !Settings.hideCombatElements) {
+                    this.renderIntentVfxBehind(sb);
+                    this.renderIntent(sb);
+                    this.renderIntentVfxAfter(sb);
+                    this.renderDamageRange(sb);
+                }
+                this.intentHb.render(sb);
+            }
+
+            if (roland != null) {
+                roland.render(sb);
+            }
         }
+        else {
+            super.render(sb);
+        }
+
     }
 
     @Override
