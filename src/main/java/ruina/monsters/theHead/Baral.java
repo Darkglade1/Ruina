@@ -77,11 +77,9 @@ public class Baral extends AbstractCardMonster
 
     public PHASE currentPhase = PHASE.PHASE1;
 
-    public Baral() {
-        this(0.0f, 0.0f);
-    }
-
-    public Baral(final float x, final float y) {
+    public Baral() { this(0.0f, 0.0f, PHASE.PHASE1); }
+    public Baral(final float x, final float y) { this(x, y, PHASE.PHASE1); }
+    public Baral(final float x, final float y, PHASE phase) {
         super(NAME, ID, 999999, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Baral/Spriter/Baral.scml"));
         this.type = EnemyType.BOSS;
@@ -90,7 +88,9 @@ public class Baral extends AbstractCardMonster
         for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(maxHealth));
+        currentPhase = phase;
+        this.setHp(calcAscensionTankiness(currentPhase == PHASE.PHASE1 ? maxHealth : 3000));
+        System.out.println(maxHealth);
         addMove(SERUM_W, Intent.ATTACK, calcAscensionDamage(45));
         addMove(TRAIL, Intent.ATTACK_BUFF, calcAscensionDamage(12), trailHits, true);
         addMove(EXTIRPATION, Intent.ATTACK_DEFEND, calcAscensionDamage(26));
