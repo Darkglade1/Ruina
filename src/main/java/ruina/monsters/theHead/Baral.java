@@ -43,6 +43,7 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.theHead.dialogue.TestHeadDialogue;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.monsters.uninvitedGuests.normal.pluto.monster.Pluto;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Chesed;
@@ -147,7 +148,7 @@ public class Baral extends AbstractCardMonster
 //        }
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         //applyToTarget(this, this, new InvinciblePower(this, 100));
-
+        AbstractDungeon.topLevelEffectsQueue.add(new TestHeadDialogue());
         roland = new RolandHead(-1700.0F, -20.0f);
         roland.drawX = AbstractDungeon.player.drawX;
         AbstractPower power = new PlayerBlackSilence(adp(), roland);
