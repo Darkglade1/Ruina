@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -28,7 +29,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.theHead.dialogue.TestHeadDialogue;
+import ruina.monsters.theHead.dialogue.HeadDialogue;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Mystery;
@@ -124,7 +125,7 @@ public class Baral extends AbstractCardMonster
         applyToTarget(this, this, new Mystery(this));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         //applyToTarget(this, this, new InvinciblePower(this, 100));
-        //AbstractDungeon.topLevelEffectsQueue.add(new TestHeadDialogue());
+
         roland = new RolandHead(-1700.0F, -20.0f);
         roland.drawX = AbstractDungeon.player.drawX;
         AbstractPower power = new PlayerBlackSilence(adp(), roland);
@@ -315,6 +316,16 @@ public class Baral extends AbstractCardMonster
             }
         });
         atb(new RollMoveAction(this));
+
+        if (GameActionManager.turn == 2) {
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(0, 2));
+                    this.isDone = true;
+                }
+            });
+        }
     }
 
     @Override

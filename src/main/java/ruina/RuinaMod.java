@@ -210,6 +210,10 @@ public class RuinaMod implements
         return modID + "Resources/images/ui/" + resourcePath;
     }
 
+    public static String makeScenePath(String resourcePath) {
+        return modID + "Resources/images/scene/" + resourcePath;
+    }
+
     public static String makeEventPath(String resourcePath) {
         return modID + "Resources/images/events/" + resourcePath;
     }

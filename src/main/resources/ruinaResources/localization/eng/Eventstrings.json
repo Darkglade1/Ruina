@@ -426,16 +426,23 @@
       "[See things to the end] Confront the Black Silence"
     ]
   },
-  "${ModID}:TestHeadDialogue": {
+  "${ModID}:HeadDialogue": {
     "NAME": "",
     "DESCRIPTIONS": [
-      "Test Head Dialogue 1",
-      "Test Head Dialogue 2",
-      "update body text",
-      "UPDATE BODY TEXT",
-      "UPDATE BODY TEXT UPDATE BODY TEXT UPDATE BODY TEXT UPDATE BODY TEXT"
+      "Exhausted Already? We have yet to even expend any real effort.",
+      "Executioner.",
+      "I'll finish them.",
+      "You have shown up at last.",
+      "Have we met before?",
+      "It's a relief to have you."
     ],
     "OPTIONS": [
+      "Zena",
+      "Zena",
+      "Baral",
+      "Zena",
+      "Gebura",
+      "Roland"
     ]
   }
 }
