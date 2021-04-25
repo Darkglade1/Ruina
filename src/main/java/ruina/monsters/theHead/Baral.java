@@ -105,7 +105,7 @@ public class Baral extends AbstractCardMonster
     }
 
     public Baral(final float x, final float y, PHASE phase) {
-        super(NAME, ID, 99999, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 999999, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppeteer/Spriter/Puppeteer.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 0;
@@ -146,7 +146,7 @@ public class Baral extends AbstractCardMonster
 //            }
 //        }
         applyToTarget(this, this, new InvisibleBarricadePower(this));
-        applyToTarget(this, this, new InvinciblePower(this, 100));
+        //applyToTarget(this, this, new InvinciblePower(this, 100));
 
         roland = new RolandHead(-1700.0F, -20.0f);
         roland.drawX = AbstractDungeon.player.drawX;
