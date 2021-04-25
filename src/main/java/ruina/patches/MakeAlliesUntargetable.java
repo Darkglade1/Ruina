@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import javassist.CtBehavior;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.act2.BadWolf;
+import ruina.monsters.theHead.Zena;
 
 @SpirePatch(
         clz = AbstractPlayer.class,
@@ -27,6 +28,11 @@ public class MakeAlliesUntargetable {
         if (hoveredMonster[0] != null && hoveredMonster[0].hasPower(BadWolf.SKULK_POWER_ID)) {
             hoveredMonster[0] = null;
         }
+
+        if (hoveredMonster[0] != null && hoveredMonster[0] instanceof Zena && hoveredMonster[0].halfDead) {
+            hoveredMonster[0] = null;
+        }
+
     }
     private static class Locator extends SpireInsertLocator {
         @Override

@@ -89,7 +89,7 @@ public class Baral extends AbstractCardMonster
             additionalMovesHistory.add(new ArrayList<>());
         }
         currentPhase = phase;
-        this.setHp(calcAscensionTankiness(currentPhase == PHASE.PHASE1 ? maxHealth : 3000));
+        this.setHp(currentPhase == PHASE.PHASE1 ? maxHealth : calcAscensionTankiness(3000));
         System.out.println(maxHealth);
         addMove(SERUM_W, Intent.ATTACK, calcAscensionDamage(45));
         addMove(TRAIL, Intent.ATTACK_BUFF, calcAscensionDamage(12), trailHits, true);

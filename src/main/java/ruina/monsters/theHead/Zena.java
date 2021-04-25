@@ -95,11 +95,11 @@ public class Zena extends AbstractCardMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Zena() {
-        this(0.0f, 0.0f);
+        this(0.0f, 0.0f, PHASE.PHASE1);
     }
-
-    public Zena(final float x, final float y) {
-        super(NAME, ID, 1000, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+    public Zena(final float x, final float y) { this(x, y, PHASE.PHASE1); }
+    public Zena(final float x, final float y, PHASE phase) {
+        super(NAME, ID, 999999, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppeteer/Spriter/Puppeteer.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 0;
@@ -107,8 +107,9 @@ public class Zena extends AbstractCardMonster
         for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(maxHealth));
-
+        currentPhase = phase;
+        this.setHp(currentPhase == PHASE.PHASE1 ? maxHealth : calcAscensionTankiness(3000));
+        halfDead = currentPhase.equals(PHASE.PHASE1);
         addMove(LINE, Intent.ATTACK, calcAscensionDamage(26));
         addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
         addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
