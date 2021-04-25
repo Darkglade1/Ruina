@@ -100,7 +100,7 @@ public class Zena extends AbstractCardMonster
     public Zena(final float x, final float y) { this(x, y, PHASE.PHASE1); }
     public Zena(final float x, final float y, PHASE phase) {
         super(NAME, ID, 999999, -5.0F, 0, 160.0f, 245.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppeteer/Spriter/Puppeteer.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Zena/Spriter/Zena.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 0;
         maxAdditionalMoves = 1;
