@@ -753,5 +753,25 @@
   "${ModID}:WaltzInBlack": {
     "NAME": "Waltz in Black",
     "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:SerumW": {
+    "NAME": "Serum W",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:SerumR": {
+    "NAME": "Serum R",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:Extirpation": {
+    "NAME": "Extirpation",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:TriSerum": {
+    "NAME": "Tri Serum Cocktail",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:SerumK": {
+    "NAME": "Serum K",
+    "DESCRIPTION": "Gain !B! Block. NL Heal !ruina:SecondMagic! HP."
   }
 }

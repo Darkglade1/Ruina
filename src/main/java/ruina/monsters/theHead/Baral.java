@@ -29,6 +29,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.theHead.baralCards.*;
 import ruina.monsters.theHead.dialogue.HeadDialogue;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.powers.InvisibleBarricadePower;
@@ -52,21 +53,28 @@ public class Baral extends AbstractCardMonster
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte SERUM_W = 0;
-    private static final byte TRAIL = 1;
+    private static final byte SERUM_R = 1;
     private static final byte EXTIRPATION = 2;
     private static final byte TRI_SERUM_COCKTAIL = 3;
     private static final byte SERUM_K = 4;
 
-    public final int trailHits = 2;
+    public final int SERUM_W_DAMAGE = calcAscensionDamage(45);
+
+    public final int serumR_Damage = calcAscensionDamage(12);
+    public final int serumR_Hits = 2;
+    public final int serumR_Strength = calcAscensionSpecial(3);
+
+    public final int extirpationDamage = calcAscensionDamage(26);
+    public final int extirpationBlock = calcAscensionTankiness(50);
+
+    public final int triSerumDamage = calcAscensionDamage(10);
     public final int triSerumHits = 3;
 
     private static final int SERUM_COOLDOWN = 3;
     private int serumCooldown = SERUM_COOLDOWN;
 
-    public final int BLOCK = calcAscensionTankiness(50);
     public final int SERUM_K_BLOCK = calcAscensionTankiness(60);
-    public final int HEAL = calcAscensionTankiness(100);
-    public final int STRENGTH = calcAscensionSpecial(3);
+    public final int SERUM_K_HEAL = calcAscensionTankiness(100);
 
     public RolandHead roland;
     public Zena zena;
@@ -92,20 +100,16 @@ public class Baral extends AbstractCardMonster
         currentPhase = phase;
         this.setHp(currentPhase == PHASE.PHASE1 ? maxHealth : calcAscensionTankiness(3000));
         System.out.println(maxHealth);
-        addMove(SERUM_W, Intent.ATTACK, calcAscensionDamage(45));
-        addMove(TRAIL, Intent.ATTACK_BUFF, calcAscensionDamage(12), trailHits, true);
-        addMove(EXTIRPATION, Intent.ATTACK_DEFEND, calcAscensionDamage(26));
-        addMove(TRI_SERUM_COCKTAIL, Intent.ATTACK, calcAscensionDamage(10), triSerumHits, true);
+        addMove(SERUM_W, Intent.ATTACK, SERUM_W_DAMAGE);
+        addMove(SERUM_R, Intent.ATTACK_BUFF, serumR_Damage, serumR_Hits, true);
+        addMove(EXTIRPATION, Intent.ATTACK_DEFEND, extirpationDamage);
+        addMove(TRI_SERUM_COCKTAIL, Intent.ATTACK, triSerumDamage, triSerumHits, true);
         addMove(SERUM_K, Intent.DEFEND_BUFF);
-
-//        cardList.add(new PullingStrings(this));
-//        cardList.add(new TuggingStrings(this));
-//        cardList.add(new AssailingPulls(this));
-//        cardList.add(new ThinStrings(this));
-//        cardList.add(new Puppetry(this));
-        for (int i = 0; i < 10; i++) {
-            cardList.add(new Madness());
-        }
+        cardList.add(new SerumW(this));
+        cardList.add(new SerumR(this));
+        cardList.add(new Extirpation(this));
+        cardList.add(new TriSerum(this));
+        cardList.add(new SerumK(this));
     }
 
     @Override
@@ -227,7 +231,7 @@ public class Baral extends AbstractCardMonster
                 });
                 break;
             }
-            case TRAIL: {
+            case SERUM_R: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
                         bluntAnimation(target);
@@ -237,11 +241,11 @@ public class Baral extends AbstractCardMonster
                     dmg(target, info);
                     resetIdle();
                 }
-                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                applyToTarget(this, this, new StrengthPower(this, serumR_Strength));
                 break;
             }
             case EXTIRPATION: {
-                block(this, BLOCK);
+                block(this, extirpationBlock);
                 bluntAnimation(target);
                 dmg(target, info);
                 resetIdle();
@@ -262,7 +266,7 @@ public class Baral extends AbstractCardMonster
             case SERUM_K: {
                 buffAnimation();
                 block(this, SERUM_K_BLOCK);
-                atb(new HealAction(this, this, HEAL));
+                atb(new HealAction(this, this, SERUM_K_HEAL));
                 resetIdle(1.0f);
                 break;
             }
@@ -334,8 +338,8 @@ public class Baral extends AbstractCardMonster
             setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(TRAIL)) {
-                possibilities.add(TRAIL);
+            if (!this.lastMove(SERUM_R)) {
+                possibilities.add(SERUM_R);
             }
             if (!this.lastMove(EXTIRPATION)) {
                 possibilities.add(EXTIRPATION);
@@ -352,11 +356,11 @@ public class Baral extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (this.lastMove(EXTIRPATION, moveHistory)) {
-            setAdditionalMoveShortcut(TRAIL, moveHistory, cardList.get(TRAIL).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(SERUM_R, moveHistory, cardList.get(SERUM_R).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(TRAIL, moveHistory)) {
-                possibilities.add(TRAIL);
+            if (!this.lastMove(SERUM_R, moveHistory)) {
+                possibilities.add(SERUM_R);
             }
             if (!this.lastMove(EXTIRPATION, moveHistory)) {
                 possibilities.add(EXTIRPATION);
