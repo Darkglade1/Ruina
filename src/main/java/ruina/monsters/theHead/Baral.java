@@ -89,7 +89,7 @@ public class Baral extends AbstractCardMonster
     public Baral() { this(0.0f, 0.0f, PHASE.PHASE1); }
     public Baral(final float x, final float y) { this(x, y, PHASE.PHASE1); }
     public Baral(final float x, final float y, PHASE phase) {
-        super(NAME, ID, 999999, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 999999, -5.0F, 0, 160.0f, 300.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Baral/Spriter/Baral.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 0;
