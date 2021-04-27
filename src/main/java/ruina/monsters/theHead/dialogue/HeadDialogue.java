@@ -52,7 +52,7 @@ public class HeadDialogue extends AbstractGameEffect {
         characters.add(new ts_Roland());
         characters.add(new ts_Gebura());
         characters.add(new ts_Binah());
-        ReflectionHacks.setPrivateStaticFinal(roomEventText.getClass(), "DIALOG_MSG_Y", (float) 325f * Settings.scale);
+        ReflectionHacks.setPrivateStaticFinal(roomEventText.getClass(), "DIALOG_MSG_Y", (float) 350f * Settings.scale);
     }
 
     public void update() {
