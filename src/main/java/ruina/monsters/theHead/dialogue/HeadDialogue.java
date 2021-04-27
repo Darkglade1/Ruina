@@ -16,8 +16,11 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.RuinaMod;
 import ruina.monsters.theHead.Baral;
 import ruina.monsters.theHead.Zena;
+import ruina.monsters.theHead.dialogue.speaker.*;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.util.TexLoader;
+
+import java.util.ArrayList;
 
 public class HeadDialogue extends AbstractGameEffect {
     public static final String ID = HeadDialogue.class.getSimpleName();
@@ -25,41 +28,35 @@ public class HeadDialogue extends AbstractGameEffect {
     public static final String NAME = eventStrings.NAME;
     public static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     public static final String[] OPTIONS = eventStrings.OPTIONS;
-    private final TextureRegion BARAL;
-    private final String baralName = CardCrawlGame.languagePack.getMonsterStrings(RuinaMod.makeID(Baral.class.getSimpleName())).NAME;
-    private final TextureRegion ZENA;
-    private final String zenaName = CardCrawlGame.languagePack.getMonsterStrings(RuinaMod.makeID(Zena.class.getSimpleName())).NAME;
-    private final TextureRegion ROLAND;
-    private final String rolandName = CardCrawlGame.languagePack.getMonsterStrings(RuinaMod.makeID(Roland.class.getSimpleName())).NAME;
     private final TextureRegion KETER;
     private final RoomEventDialog roomEventText = new RoomEventDialog();
     private int dialogue;
     private Hitbox hb;
     private boolean show;
     private int end;
-    private String speaker;
+    private ArrayList<AbstractSpeaker> characters = new ArrayList<>();
+    private int charsOnScreen;
 
     public HeadDialogue(int start, int end) {
-        Texture BARAL_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("Baral.png"));
-        BARAL = new TextureRegion(BARAL_TEXTURE);
-        Texture ZENA_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("Zena.png"));
-        ZENA = new TextureRegion(ZENA_TEXTURE);
-        Texture ROLAND_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("Roland.png"));
-        ROLAND = new TextureRegion(ROLAND_TEXTURE);
-        Texture KETER_TEXTURE = TexLoader.getTexture(RuinaMod.makeScenePath("Keter.png"));
+        Texture KETER_TEXTURE = TexLoader.getTexture(RuinaMod.makeScenePath("KeterDialogue.png"));
         KETER = new TextureRegion(KETER_TEXTURE);
         this.dialogue = start;
         this.end = end;
-        speaker = OPTIONS[dialogue];
         this.hb = new Hitbox(Settings.WIDTH, Settings.HEIGHT);
         this.hb.x = 0.0F;
         this.hb.y = 0.0F;
         this.show = true;
+        characters.add(new ts_Baral());
+        characters.add(new ts_Zena());
+        characters.add(new ts_Roland());
+        characters.add(new ts_Gebura());
+        characters.add(new ts_Binah());
     }
 
     public void update() {
         if (this.show) {
             this.show = false;
+            calculateSpeakers();
             AbstractDungeon.isScreenUp = true;
             this.roomEventText.show(DESCRIPTIONS[this.dialogue]);
         }
@@ -81,7 +78,7 @@ public class HeadDialogue extends AbstractGameEffect {
 //        }
         if (this.dialogue < end) {
             this.dialogue++;
-            speaker = OPTIONS[dialogue];
+            calculateSpeakers();
             this.roomEventText.updateBodyText(DESCRIPTIONS[this.dialogue]);
         } else {
             AbstractDungeon.isScreenUp = false;
@@ -92,21 +89,22 @@ public class HeadDialogue extends AbstractGameEffect {
     public void render(SpriteBatch sb) {
         sb.setColor(Color.WHITE.cpy());
         sb.draw(KETER, 0.0F, 0.0F, 0.0f, 0.0f, KETER.getRegionWidth(), KETER.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
-        if (speaker.equals(zenaName)) {
-            drawSprite(sb, ZENA);
-        } else if (speaker.equals(baralName)) {
-            drawSprite(sb, BARAL);
-        } else if (speaker.equals(rolandName)) {
-            drawSprite(sb, ROLAND);
-        }
+        for(AbstractSpeaker s : characters){ s.render(sb, charsOnScreen); }
         this.roomEventText.render(sb);
-    }
-
-    public void drawSprite(SpriteBatch sb, TextureRegion texture) {
-        sb.draw(texture, Settings.WIDTH * 0.75F - ((float)texture.getRegionWidth() / 2), 0.0f, (float)texture.getRegionWidth() / 2, 0.0f, texture.getRegionWidth(), texture.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
     }
 
     public void dispose() {
         this.roomEventText.clear();
     }
+
+    public void calculateSpeakers(){
+        charsOnScreen = 0;
+        String[] speakerData = OPTIONS[dialogue].split("_");
+        for(AbstractSpeaker s: characters){
+            s.setTexture(speakerData[1]);
+            s.setShowBasedOnCharList(speakerData[0]);
+            if(s.getShow()){ charsOnScreen += 1; }
+        }
+    }
+
 }

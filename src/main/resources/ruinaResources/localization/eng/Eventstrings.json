@@ -466,7 +466,11 @@
       "Though, this was truly unexpected.",
       "To think the library could invite guests from another worlds...",
       "Such disorder cannot be reasonably accounted for. Perhaps we were too lenient with this place.",
-      "Executioner. Eliminate every single one of them."
+      "Executioner. Eliminate every single one of them.",
+
+
+      "DO NOT TRANSLATE OPTIONS AS IT DETERMINES WHICH CHARACTER APPEARS IN THE CUTSCENE AND WHO SPEAKS IN THE CURRENT LINE. TRANSLATING ANY LINE OF IT CAUSES THE CUTSCENE TO BREAK.",
+      "Please do not touch it. -Squeeny"
     ],
     "OPTIONS": [
       "ZenaBaralRoland_ZenaSpeak",
