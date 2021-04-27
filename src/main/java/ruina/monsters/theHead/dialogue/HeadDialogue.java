@@ -1,5 +1,6 @@
 package ruina.monsters.theHead.dialogue;
 
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -51,6 +52,7 @@ public class HeadDialogue extends AbstractGameEffect {
         characters.add(new ts_Roland());
         characters.add(new ts_Gebura());
         characters.add(new ts_Binah());
+        ReflectionHacks.setPrivateStaticFinal(roomEventText.getClass(), "DIALOG_MSG_Y", (float) 325f * Settings.scale);
     }
 
     public void update() {

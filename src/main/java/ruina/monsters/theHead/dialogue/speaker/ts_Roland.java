@@ -16,6 +16,6 @@ public class ts_Roland extends AbstractSpeaker {
         internalSpeakerKey = internalSpeakerName + "Speak";
     }
 
-    public void drawSprite(SpriteBatch sb, TextureRegion texture) { sb.draw(texture, Settings.WIDTH * 0.75F - ((float)texture.getRegionWidth() / 0.75f), 0.0f, (float)texture.getRegionWidth() / 2, 0.0f, texture.getRegionWidth(), texture.getRegionHeight(), Settings.scale, Settings.scale, 0.0f); }
+    public void drawSprite(SpriteBatch sb, TextureRegion texture, int charsOnScreen) { sb.draw(texture, Settings.WIDTH * 0.25F - ((float)texture.getRegionWidth() / 2), 0.0f, (float)texture.getRegionWidth() / 2, 0.0f, texture.getRegionWidth(), texture.getRegionHeight(), Settings.scale, Settings.scale, 0.0f); }
 
 }

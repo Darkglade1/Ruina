@@ -26,12 +26,10 @@ public abstract class AbstractSpeaker {
     }
 
     public void render(SpriteBatch sb, int charsOnScreen){
-        if(show){
-            drawSprite(sb, activeSprite);
-        }
+        if(show){ drawSprite(sb, activeSprite, charsOnScreen); }
     }
 
-    public void drawSprite(SpriteBatch sb, TextureRegion texture) { sb.draw(texture, Settings.WIDTH * 0.75F - ((float)texture.getRegionWidth() / 2), 0.0f, (float)texture.getRegionWidth() / 2, 0.0f, texture.getRegionWidth(), texture.getRegionHeight(), Settings.scale, Settings.scale, 0.0f); }
+    public void drawSprite(SpriteBatch sb, TextureRegion texture, int charsOnScreen) { sb.draw(texture, Settings.WIDTH * 0.75F - ((float)texture.getRegionWidth() / 2), 0.0f, (float)texture.getRegionWidth() / 2, 0.0f, texture.getRegionWidth(), texture.getRegionHeight(), Settings.scale, Settings.scale, 0.0f); }
 
     public void setShowBasedOnCharList(String characters){ show = characters.contains(internalSpeakerName); }
 
