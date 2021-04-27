@@ -4,6 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -134,7 +136,6 @@ public class Roland extends AbstractAllyCardMonster {
     @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, power);
-        applyToTarget(this, this, new StrengthPower(this, 1)); //because argalia starts with 1 strength so we need the PARALLEL
         updatePower();
         CustomDungeon.playTempMusicInstantly("Roland1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
@@ -276,6 +277,7 @@ public class Roland extends AbstractAllyCardMonster {
                 float initialX = drawX;
                 float targetBehind = target.drawX + 150.0f * Settings.scale;
                 float targetFront = target.drawX - 200.0f * Settings.scale;
+                atb(new RemoveSpecificPowerAction(target, this, InvinciblePower.POWER_ID));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
