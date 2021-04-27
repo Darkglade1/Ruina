@@ -80,6 +80,8 @@ public class RedMist extends AbstractDeckMonster
     private static final int GREATER_SPLIT_COOLDOWN = 3;
     private int greaterSplitCooldownCounter = GREATER_SPLIT_COOLDOWN;
 
+    private int HP_THRESHOLD;
+
     public RedMist() {
         this(0.0f, 0.0f);
     }
@@ -102,6 +104,7 @@ public class RedMist extends AbstractDeckMonster
         addMove(GSV, Intent.ATTACK_DEBUFF, calcAscensionDamage(30));
         addMove(GSH, Intent.ATTACK_DEBUFF, calcAscensionDamage(40));
 
+        HP_THRESHOLD = maxHealth / 2;
         initializeDeck();
     }
 
@@ -326,10 +329,6 @@ public class RedMist extends AbstractDeckMonster
             @Override
             public void update() {
                 if(!EGO){ EGOTrigger(); }
-                /*
-                AbstractPower P = RedMist.this.getPower(RedMistPower.POWER_ID);
-                if(P != null){ ((RedMistPower) P).EGOTrigger(); }
-                 */
                 isDone = true;
             }
         });
@@ -477,7 +476,7 @@ public class RedMist extends AbstractDeckMonster
     }
 
     private void EGOTrigger() {
-        if(currentHealth <= maxHealth / 2){
+        if(currentHealth <= HP_THRESHOLD){
             activateEGO();
             makePowerRemovable(this, RedMistPower.POWER_ID);
             att(new RemoveSpecificPowerAction(this, this, RedMistPower.POWER_ID));
