@@ -109,7 +109,6 @@ public class Zena extends AbstractCardMonster
         }
         currentPhase = phase;
         this.setHp(currentPhase == PHASE.PHASE1 ? maxHealth : calcAscensionTankiness(3000));
-        halfDead = currentPhase.equals(PHASE.PHASE1);
         addMove(LINE, Intent.ATTACK, calcAscensionDamage(26));
         addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
         addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
@@ -157,6 +156,13 @@ public class Zena extends AbstractCardMonster
         }
         applyToTarget(this, this, new Mystery(this));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if(currentPhase == PHASE.PHASE1){ halfDead = true; }
+                isDone = true;
+            }
+        });
     }
 
     @Override

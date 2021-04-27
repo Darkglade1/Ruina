@@ -321,7 +321,7 @@ public class Baral extends AbstractCardMonster
         });
         atb(new RollMoveAction(this));
 
-        if (GameActionManager.turn == 1) {
+        if (GameActionManager.turn == 3) {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
