@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
@@ -133,7 +134,7 @@ public class Argalia extends AbstractDeckMonster
             }
         });
         applyToTarget(this, this, new BlueReverberation(this, 2));
-        applyToTarget(this, this, new StrengthPower(this, 1)); //this 1 strength is a hack to make the powers line up properly LOL
+        applyToTarget(this, this, new InvinciblePower(this, maxHealth / 11));
         CustomDungeon.playTempMusicInstantly("EnsembleArgalia");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Roland) { roland = (Roland) mo; }

@@ -239,7 +239,7 @@
   },
   "${ModID}:CHRALLY_FURIOSO": {
     "NAME": "Furioso",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Remove target's *Invincible. NL Deal !D! damage !M! times."
   },
   "${ModID}:Concentration": {
     "NAME": "Concentration",

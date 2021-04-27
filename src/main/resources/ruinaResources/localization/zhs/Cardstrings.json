@@ -239,7 +239,7 @@
   },
   "ruina:CHRALLY_FURIOSO": {
     "NAME": "Furioso",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+    "DESCRIPTION": "Remove target's *Invincible。 NL 造成 !D! 点伤害 !M! 次。"
   },
   "ruina:Concentration": {
     "NAME": "心神凝聚",
