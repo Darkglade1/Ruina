@@ -1,6 +1,5 @@
 package ruina.monsters.theHead.dialogue;
 
-import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -8,17 +7,16 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.RoomEventDialog;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.RuinaMod;
-import ruina.monsters.theHead.Baral;
-import ruina.monsters.theHead.Zena;
-import ruina.monsters.theHead.dialogue.speaker.*;
-import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
+import ruina.monsters.theHead.dialogue.speaker.ts_Baral;
+import ruina.monsters.theHead.dialogue.speaker.ts_Binah;
+import ruina.monsters.theHead.dialogue.speaker.ts_Gebura;
+import ruina.monsters.theHead.dialogue.speaker.ts_Roland;
+import ruina.monsters.theHead.dialogue.speaker.ts_Zena;
 import ruina.util.TexLoader;
 
 import java.util.ArrayList;
@@ -30,7 +28,8 @@ public class HeadDialogue extends AbstractGameEffect {
     public static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     public static final String[] OPTIONS = eventStrings.OPTIONS;
     private final TextureRegion KETER;
-    private final RoomEventDialog roomEventText = new RoomEventDialog();
+    private final TextureRegion TEXTBOX;
+    private final Dialog roomEventText = new Dialog();
     private int dialogue;
     private Hitbox hb;
     private boolean show;
@@ -41,6 +40,8 @@ public class HeadDialogue extends AbstractGameEffect {
     public HeadDialogue(int start, int end) {
         Texture KETER_TEXTURE = TexLoader.getTexture(RuinaMod.makeScenePath("KeterDialogue.png"));
         KETER = new TextureRegion(KETER_TEXTURE);
+        Texture TEXTBOX_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("Textbox.png"));
+        TEXTBOX = new TextureRegion(TEXTBOX_TEXTURE);
         this.dialogue = start;
         this.end = end;
         this.hb = new Hitbox(Settings.WIDTH, Settings.HEIGHT);
@@ -52,7 +53,6 @@ public class HeadDialogue extends AbstractGameEffect {
         characters.add(new ts_Roland());
         characters.add(new ts_Gebura());
         characters.add(new ts_Binah());
-        ReflectionHacks.setPrivateStaticFinal(roomEventText.getClass(), "DIALOG_MSG_Y", (float) 350f * Settings.scale);
     }
 
     public void update() {
@@ -92,6 +92,7 @@ public class HeadDialogue extends AbstractGameEffect {
         sb.setColor(Color.WHITE.cpy());
         sb.draw(KETER, 0.0F, 0.0F, 0.0f, 0.0f, KETER.getRegionWidth(), KETER.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
         for(AbstractSpeaker s : characters){ s.render(sb, charsOnScreen); }
+        sb.draw(TEXTBOX, Dialog.DIALOG_MSG_X - (100.0f * Settings.scale), Dialog.DIALOG_MSG_Y + (180.0f * Settings.scale), 0.0f, 0.0f, TEXTBOX.getRegionWidth(), TEXTBOX.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
         this.roomEventText.render(sb);
     }
 

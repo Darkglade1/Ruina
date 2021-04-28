@@ -969,82 +969,18 @@
     ],
     "NAME": "Zena",
     "DIALOG": [
-      "Exhausted Already? We have yet to even expend any real effort.",
-      "Executioner.",
-      "You have shown up at last.",
-      "Be aware that joining forces cannot change your fate.",
-      "Nevertheless, it is enjoyable to witness your struggle.",
-      "While it has been a pleasure to spectate, We must see this place dealt with.",
-      "Isolated, without a way out... What a pitiful situation.",
-      "Though, you managed to hold out longer than anticipated. What a shame it must end this way...",
-      "Garion...",
-      "You failed your responsibility, and turned your back on us. How imprudent of you.",
-      "Though I suppose, your accountability can be called upon later.",
-      "We will tear down your grave and extract you before long.",
-      "Executioner. Be Prepared. It will take place any minute now.",
-      "It is truly amazing that you managed to withstand for such a long time.",
-      "Garion.. As much as it is a shame that we've failed to retrieve you...",
-      "The end is nigh.",
-      "This place will be expelled as planned.",
-      "I only ask that you do not return.",
-      "So mark my words well, and stay where you rightfully belong.",
-      "...",
-      "The territory expulsion procedure failed...?",
-      "To think the library could invite guests from another worlds...",
-      "Such disorder cannot be reasonably accounted for. Perhaps we were too lenient with this place.",
-      "Executioner. Eliminate every single one of them."
     ]
   },
   "${ModID}:Baral": {
     "MOVES": [
       "Serum W",
-      "Trail",
+      "Serum R",
       "Extirpation",
       "Tri-Serum Cocktail",
       "Serum K"
     ],
     "NAME": "Baral",
     "DIALOG": [
-      "I'll finish them."
-    ]
-  },
-  "${ModID}:Roland_H": {
-    "MOVES": [
-      "h"
-    ],
-    "NAME": "Roland",
-    "DIALOG": [
-      "It's a relief to have you.",
-      "Well... We'll have to try and stop them for as long as we can.",
-      "And this just got even more troublesome.",
-      "What's with this tremor?"
-    ]
-  },
-  "${ModID}:Gebura_H": {
-    "MOVES": [
-      "h"
-    ],
-    "NAME": "Gebura",
-    "DIALOG": [
-      "Have we met before?",
-      "I can't guarantee that I'll power through this either...",
-      "What took you so long?",
-      "Looks like they're going ahead with the plan."
-    ]
-  },
-  "${ModID}:Binah_H": {
-    "MOVES": [
-      "h"
-    ],
-    "NAME": "Binah",
-    "DIALOG": [
-      "It is indeed true that verbosity leaves you vulnerable.",
-      "That is a name I have not heard in a long while...",
-      "But such a name is not for me anymore.",
-      "I was simply watching from afar.",
-      "I can only pity your vain endeavor to seek an entity whose husk is all that remains.",
-      "The same verbosity left you vulnerable again.",
-      "Though, this was truly unexpected."
     ]
   }
 }

@@ -321,11 +321,11 @@ public class Baral extends AbstractCardMonster
         });
         atb(new RollMoveAction(this));
 
-        if (GameActionManager.turn == 3) {
+        if (GameActionManager.turn == 1) {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(0, 2));
+                    AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(0, 37));
                     this.isDone = true;
                 }
             });

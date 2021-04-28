@@ -429,7 +429,7 @@
   "${ModID}:HeadDialogue": {
     "NAME": "",
     "DESCRIPTIONS": [
-      "Exhausted Already? We have yet to even expend any real effort.",
+      "Exhausted already? We have yet to even expend any real effort.",
       "Executioner.",
       "I'll finish them.",
       "You have shown up at last.",
