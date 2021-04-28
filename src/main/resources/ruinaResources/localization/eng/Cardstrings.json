@@ -708,11 +708,11 @@
   },
   "${ModID}:Scream": {
     "NAME": "Scream",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak and Frail."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
   },
   "${ModID}:Void": {
     "NAME": "Void",
-    "DESCRIPTION": "Gain !B! Block. NL Shuffle !M! *Void into your discard pile."
+    "DESCRIPTION": "Apply !ruina:SecondMagic! Weak and Frail. NL Shuffle !M! *Void into your discard pile."
   },
   "${ModID}:ZelkovaWorkshop": {
     "NAME": "Zelkova Workshop",

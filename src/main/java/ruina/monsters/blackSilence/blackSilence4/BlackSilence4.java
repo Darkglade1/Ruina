@@ -59,6 +59,7 @@ import ruina.monsters.blackSilence.blackSilence4.memories.yun.Yun2;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei1;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei2;
+import ruina.powers.Paralysis;
 import ruina.powers.Scars;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.FlexibleStanceAuraEffect;
@@ -91,16 +92,17 @@ public class BlackSilence4 extends AbstractCardMonster {
     private static final byte BLUE_REVERB = 11;
 
     public final int screamHits = 2;
-    public final int screamDebuff = calcAscensionSpecial(1);
-    public final int BLOCK = calcAscensionTankiness(40);
+    public final int screamDebuff = 3;
+    public final int DEBUFF = calcAscensionSpecial(1);
     public final int NUM_VOIDS = calcAscensionSpecial(2);
+    public final int scarHeal = calcAscensionSpecial(50);
     public final int INVINCIBLE = 150;
 
     public final int yunDazes = calcAscensionSpecial(3);
     public final int yunWounds = calcAscensionSpecial(2);
 
     public final int zweiMetallicize = calcAscensionTankiness(15);
-    public final int zweiArmor = calcAscensionTankiness(30);
+    public final int zweiArmor = calcAscensionTankiness(25);
 
     public final int dawnBurns = calcAscensionSpecial(2);
     public final int dawnProtection = calcAscensionSpecial(5);
@@ -145,8 +147,8 @@ public class BlackSilence4 extends AbstractCardMonster {
         this.type = EnemyType.BOSS;
 
         addMove(AGONY, Intent.ATTACK, calcAscensionDamage(45));
-        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(16), screamHits, true);
-        addMove(VOID, Intent.DEFEND_DEBUFF);
+        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(17), screamHits, true);
+        addMove(VOID, Intent.STRONG_DEBUFF);
         addMove(YUN, Intent.UNKNOWN);
         addMove(ZWEI, Intent.UNKNOWN);
         addMove(DAWN, Intent.UNKNOWN);
@@ -188,7 +190,7 @@ public class BlackSilence4 extends AbstractCardMonster {
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("GoneAngels");
-        applyToTarget(this, this, new Scars(this));
+        applyToTarget(this, this, new Scars(this, scarHeal));
         applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
     }
 
@@ -247,13 +249,13 @@ public class BlackSilence4 extends AbstractCardMonster {
                     dmg(target, info);
                     resetIdle();
                 }
-                applyToTarget(target, this, new WeakPower(target, screamDebuff, true));
-                applyToTarget(target, this, new FrailPower(target, screamDebuff, true));
+                applyToTarget(target, this, new Paralysis(target, screamDebuff));
                 break;
             }
             case VOID: {
                 blockAnimation();
-                block(this, BLOCK);
+                applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
                 intoDiscardMo(new VoidCard(), NUM_VOIDS, this);
                 resetIdle(1.0f);
                 break;
@@ -357,10 +359,10 @@ public class BlackSilence4 extends AbstractCardMonster {
     @Override
     protected void getMove(final int num) {
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastTwoMoves(AGONY)) {
+        if (!this.lastMove(AGONY)) {
             possibilities.add(AGONY);
         }
-        if (!this.lastMove(SCREAM) && !this.lastMoveBefore(SCREAM)) {
+        if (!this.lastMove(SCREAM)) {
             possibilities.add(SCREAM);
         }
         if (!this.lastMove(VOID) && !this.lastMoveBefore(VOID)) {
@@ -378,10 +380,10 @@ public class BlackSilence4 extends AbstractCardMonster {
             setAdditionalMoveShortcut(move, moveHistory, cardList.get(move));
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastTwoMoves(AGONY, moveHistory)) {
+            if (!this.lastMove(AGONY, moveHistory)) {
                 possibilities.add(AGONY);
             }
-            if (!this.lastMove(SCREAM, moveHistory) && !this.lastMoveBefore(SCREAM, moveHistory)) {
+            if (!this.lastMove(SCREAM, moveHistory)) {
                 possibilities.add(SCREAM);
             }
             if (!this.lastMove(VOID, moveHistory) && !this.lastMoveBefore(VOID, moveHistory)) {

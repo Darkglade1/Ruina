@@ -380,7 +380,8 @@
       "Every #b",
       "nd attack from this creature #ydoubles ALL of its target's #rdebuffs.",
       "Guard Stance",
-      "#yNegate ALL #rdebuffs applied to this creature."]
+      "#yNegate ALL #rdebuffs applied to this creature.",
+      " NL NL You can change this creature's #yStance by clicking on the #yStance #yChange buttons next to this creature's intent."]
   },
   "${ModID}:Gears": {
     "NAME": "Church of Gears",
@@ -400,7 +401,7 @@
   },
   "${ModID}:Scars": {
     "NAME": "Scars",
-    "DESCRIPTIONS": ["Every #b","th #yAttack you play deals #b0 damage to this creature."]
+    "DESCRIPTIONS": ["Every #b","th #yAttack you play instead #gheals this creature for #b", "% of the unblocked damage it would have done."]
   },
   "${ModID}:Sorrow": {
     "NAME": "Sorrow",
