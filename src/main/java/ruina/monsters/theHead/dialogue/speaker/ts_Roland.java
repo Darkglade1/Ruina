@@ -10,8 +10,8 @@ import ruina.util.TexLoader;
 public class ts_Roland extends AbstractSpeaker {
 
     public ts_Roland(){
-        idleSprite = TexLoader.getTexture(RuinaMod.makeUIPath("Roland.png"));
-        speakingSprite = TexLoader.getTexture(RuinaMod.makeUIPath("Roland_nospeak.png"));
+        idleSprite = TexLoader.getTexture(RuinaMod.makeUIPath("roland.png"));
+        speakingSprite = TexLoader.getTexture(RuinaMod.makeUIPath("roland_nospeak.png"));
         internalSpeakerName = "Roland";
         internalSpeakerKey = internalSpeakerName + "Speak";
     }
