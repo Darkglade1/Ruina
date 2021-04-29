@@ -1,5 +1,6 @@
 package ruina.monsters.theHead;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
 import basemod.animations.AbstractAnimation;
 import com.badlogic.gdx.Gdx;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -37,8 +39,10 @@ import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.HeadDialogueAction;
+import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.dialogue.HeadDialogue;
+import ruina.monsters.uninvitedGuests.normal.elena.Binah;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Mystery;
@@ -48,8 +52,7 @@ import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class Zena extends AbstractCardMonster
@@ -91,6 +94,8 @@ public class Zena extends AbstractCardMonster
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
+    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("ZenaIcon.png"));
+
     public Zena() {
         this(0.0f, 0.0f, PHASE.PHASE1);
     }
@@ -109,7 +114,7 @@ public class Zena extends AbstractCardMonster
         addMove(LINE, Intent.ATTACK, calcAscensionDamage(28));
         addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(24));
         addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
-        addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(40));
+        addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(60));
         addMove(NONE, Intent.NONE);
         halfDead = currentPhase.equals(PHASE.PHASE1);
 //        cardList.add(new PullingStrings(this));
@@ -268,22 +273,20 @@ public class Zena extends AbstractCardMonster
             switch (GameActionManager.turn){
                 case 4:
                     waitAnimation();
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            // same idea as with gebura. do the anims where zena binds and claw attacks.
-                            isDone = true;
-                        }
-                    });
                     atb(new HeadDialogueAction(12, 13));
+                    BinahHead binah = new BinahHead(-1250.0f, 0.0f);
+                    atb(new SpawnMonsterAction(binah, false));
+                    atb(new UsePreBattleActionAction(binah));
+                    binah.onEntry();
+                    atb(new HeadDialogueAction(14, 24));
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
-                            // animation where binah joins and the claw tp's back
+                            binah.resetIdle(0.0f);
+                            CustomDungeon.playTempMusicInstantly("TheHead");
                             isDone = true;
                         }
                     });
-                    atb(new HeadDialogueAction(14, 24));
                     break;
                 case 6:
                     waitAnimation();
@@ -372,7 +375,7 @@ public class Zena extends AbstractCardMonster
             super.applyPowers();
             return;
         }
-        if (currentPhase == PHASE.PHASE1 && gebura != null && !gebura.isDead && !gebura.isDying) {
+        if (currentPhase == PHASE.PHASE1 && gebura != null && !gebura.isDead && !gebura.isDying && nextMove != SHOCKWAVE) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             AbstractCreature target = gebura;
             if (info.base > -1) {
@@ -408,7 +411,7 @@ public class Zena extends AbstractCardMonster
     @Override
     public void renderIntent(SpriteBatch sb) {
         super.renderIntent(sb);
-        if (currentPhase == PHASE.PHASE1 && gebura != null && !gebura.isDead && !gebura.isDying && !this.isDeadOrEscaped()) {
+        if (currentPhase == PHASE.PHASE1 && gebura != null && !gebura.isDead && !gebura.isDying && !this.isDeadOrEscaped() && nextMove != SHOCKWAVE) {
             BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
             float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
             sb.draw(TexLoader.getTexture(gebura.allyIcon), this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);

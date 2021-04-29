@@ -5,6 +5,7 @@ import basemod.animations.AbstractAnimation;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -41,12 +42,12 @@ import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Mystery;
 import ruina.powers.PlayerBlackSilence;
 import ruina.util.AdditionalIntent;
+import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class Baral extends AbstractCardMonster
@@ -63,16 +64,16 @@ public class Baral extends AbstractCardMonster
     private static final byte TRI_SERUM_COCKTAIL = 3;
     private static final byte SERUM_K = 4;
 
-    public final int SERUM_W_DAMAGE = calcAscensionDamage(45);
+    public final int SERUM_W_DAMAGE = calcAscensionDamage(50);
 
     public final int serumR_Damage = calcAscensionDamage(12);
     public final int serumR_Hits = 2;
     public final int serumR_Strength = calcAscensionSpecial(3);
 
-    public final int extirpationDamage = calcAscensionDamage(26);
+    public final int extirpationDamage = calcAscensionDamage(30);
     public final int extirpationBlock = calcAscensionTankiness(50);
 
-    public final int triSerumDamage = calcAscensionDamage(10);
+    public final int triSerumDamage = calcAscensionDamage(11);
     public final int triSerumHits = 3;
 
     private static final int SERUM_COOLDOWN = 3;
@@ -90,6 +91,8 @@ public class Baral extends AbstractCardMonster
     }
 
     public PHASE currentPhase;
+
+    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("BaralIcon.png"));
 
     public Baral() { this(0.0f, 0.0f, PHASE.PHASE1); }
     public Baral(final float x, final float y) { this(x, y, PHASE.PHASE1); }

@@ -149,16 +149,20 @@ public class Binah extends AbstractAllyCardMonster
         super.usePreBattleAction();
     }
 
+    public void dialogue() {
+        if (firstMove) {
+            atb(new TalkAction(this, DIALOG[0]));
+            firstMove = false;
+        }
+    }
+
     @Override
     public void takeTurn() {
         if (this.isDead) {
             return;
         }
         super.takeTurn();
-        if (firstMove) {
-            atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
-        }
+        dialogue();
 
         DamageInfo info;
         int multiplier = 0;
@@ -171,9 +175,6 @@ public class Binah extends AbstractAllyCardMonster
         }
 
         AbstractCreature target = targetEnemy;
-        if (target == null || (target != elena && target != elena.vermilionCross)) {
-            target = elena;
-        }
 
         if(info.base > -1) {
             info.applyPowers(this, target);
