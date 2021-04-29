@@ -18,6 +18,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
+import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.monsters.uninvitedGuests.normal.tanya.geburaCards.*;
 import ruina.powers.AbstractLambdaPower;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -62,10 +63,10 @@ public class Gebura extends AbstractAllyCardMonster
 
     public final int powerStrength = 1;
     public final int EGOtimer = 4;
-    public boolean manifestedEGO = false;
-    private int phase = 1;
+    protected boolean manifestedEGO = false;
+    protected int phase = 1;
 
-    public Tanya tanya;
+    public AbstractMonster enemyBoss;
 
     public static final String POWER_ID = makeID("GeburaRedMist");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -114,7 +115,7 @@ public class Gebura extends AbstractAllyCardMonster
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Tanya) {
-                tanya = (Tanya)mo;
+                enemyBoss = mo;
             }
         }
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, powerStrength) {
@@ -154,7 +155,7 @@ public class Gebura extends AbstractAllyCardMonster
         super.usePreBattleAction();
     }
 
-    private void manifestEGO() {
+    protected void manifestEGO() {
         playSound("RedMistChange");
         CustomDungeon.playTempMusicInstantly("RedMistBGM");
         manifestedEGO = true;
@@ -184,17 +185,20 @@ public class Gebura extends AbstractAllyCardMonster
         });
     }
 
+    public void dialogue() {
+        if (firstMove) {
+            atb(new TalkAction(this, DIALOG[0]));
+            firstMove = false;
+        }
+    }
+
     @Override
     public void takeTurn() {
         if (this.isDead) {
             return;
         }
         super.takeTurn();
-        if (firstMove) {
-            atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
-        }
-
+        dialogue();
         DamageInfo info;
         int multiplier = 0;
         if(moves.containsKey(this.nextMove)) {
@@ -205,7 +209,7 @@ public class Gebura extends AbstractAllyCardMonster
             info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
         }
 
-        AbstractCreature enemy = tanya;
+        AbstractCreature enemy = enemyBoss;
 
         if(info.base > -1) {
             info.applyPowers(this, enemy);
@@ -399,7 +403,7 @@ public class Gebura extends AbstractAllyCardMonster
     }
 
     @Override
-    protected void resetIdle(float duration) {
+    public void resetIdle(float duration) {
         atb(new VFXActionButItCanFizzle(this, new WaitEffect(), duration));
         atb(new AbstractGameAction() {
             @Override
@@ -439,11 +443,11 @@ public class Gebura extends AbstractAllyCardMonster
 
     @Override
     public void applyPowers() {
-        if (this.nextMove == -1 || tanya.isDeadOrEscaped()) {
+        if (this.nextMove == -1 || enemyBoss.isDeadOrEscaped()) {
             super.applyPowers();
             return;
         }
-        AbstractCreature target = tanya;
+        AbstractCreature target = enemyBoss;
         applyPowers(target);
     }
 

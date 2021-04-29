@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
@@ -27,11 +28,14 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
+import ruina.actions.UsePreBattleActionAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.baralCards.*;
 import ruina.monsters.theHead.dialogue.HeadDialogue;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
+import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
+import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Mystery;
 import ruina.powers.PlayerBlackSilence;
@@ -99,7 +103,7 @@ public class Baral extends AbstractCardMonster
         }
         currentPhase = phase;
         this.setHp(currentPhase == PHASE.PHASE1 ? maxHealth : calcAscensionTankiness(3000));
-        System.out.println(maxHealth);
+
         addMove(SERUM_W, Intent.ATTACK, SERUM_W_DAMAGE);
         addMove(SERUM_R, Intent.ATTACK_BUFF, serumR_Damage, serumR_Hits, true);
         addMove(EXTIRPATION, Intent.ATTACK_DEFEND, extirpationDamage);
@@ -120,7 +124,7 @@ public class Baral extends AbstractCardMonster
 
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("Ensemble2");
+        CustomDungeon.playTempMusicInstantly("TheHead");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Zena) {
                 zena = (Zena)mo;
@@ -128,7 +132,6 @@ public class Baral extends AbstractCardMonster
         }
         applyToTarget(this, this, new Mystery(this));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
-        //applyToTarget(this, this, new InvinciblePower(this, 100));
 
         roland = new RolandHead(-1700.0F, -20.0f);
         roland.drawX = AbstractDungeon.player.drawX;
@@ -323,7 +326,8 @@ public class Baral extends AbstractCardMonster
 
         if(currentPhase.equals(PHASE.PHASE1)){
             switch (GameActionManager.turn){
-                case 3:
+                case 2:
+                    waitAnimation();
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
@@ -331,13 +335,10 @@ public class Baral extends AbstractCardMonster
                             this.isDone = true;
                         }
                     });
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            // add animation here, gebura moves in and clashes
-                            isDone = true;
-                        }
-                    });
+                    GeburaHead gebura = new GeburaHead(-700.0f, 0.0f);
+                    atb(new SpawnMonsterAction(gebura, false));
+                    atb(new UsePreBattleActionAction(gebura));
+                    gebura.onEntry();
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
@@ -348,42 +349,13 @@ public class Baral extends AbstractCardMonster
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
+                            gebura.resetIdle(0.0f);
                             zena.halfDead = false;
                             isDone = true;
                         }
                     });
                     break;
             }
-        }
-        if (GameActionManager.turn == 1) {
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(0, 2));
-                    this.isDone = true;
-                }
-            });
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    // add animation here, gebura moves in and clashes
-                    isDone = true;
-                }
-            });
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(3, 11));
-                    this.isDone = true;
-                }
-            });
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    zena.halfDead = false;
-                    isDone = true;
-                }
-            });
         }
     }
 

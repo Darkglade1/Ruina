@@ -1,60 +1,49 @@
 package ruina.monsters.theHead;
 
-import actlikeit.dungeons.CustomDungeon;
+import basemod.ReflectionHacks;
 import basemod.animations.AbstractAnimation;
-import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
-import ruina.actions.UsePreBattleActionAction;
-import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.theHead.dialogue.HeadDialogue;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.Chesed;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Mystery;
-import ruina.powers.PlayerBlackSilence;
 import ruina.util.AdditionalIntent;
+import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
-import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -67,6 +56,8 @@ public class Zena extends AbstractCardMonster
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
+    protected static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("MultiIntentStrings"));
+    protected static final String[] TEXT = uiStrings.TEXT;
 
     private static final byte LINE = 0;
     private static final byte THIN_LINE = 1;
@@ -82,7 +73,7 @@ public class Zena extends AbstractCardMonster
     public final int POWER_DEBUFF = calcAscensionSpecial(2);
     public final int STUN = calcAscensionSpecial(1);
 
-    //public Chesed chesed;
+    public GeburaHead gebura;
     public Baral baral;
 
     public enum PHASE{
@@ -90,7 +81,7 @@ public class Zena extends AbstractCardMonster
         PHASE2
     }
 
-    public PHASE currentPhase = PHASE.PHASE1;
+    public PHASE currentPhase;
 
     public static final String POWER_ID = makeID("AnArbiter");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -205,6 +196,7 @@ public class Zena extends AbstractCardMonster
                 }
 
                 massAttackStartAnimation();
+                waitAnimation();
                 massAttackFinishAnimation();
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle(1.0f);
@@ -247,7 +239,11 @@ public class Zena extends AbstractCardMonster
             firstMove = false;
         }
         atb(new RemoveAllBlockAction(this, this));
-        takeCustomTurn(this.moves.get(nextMove), adp());
+        if (currentPhase == PHASE.PHASE1 && gebura != null && !gebura.isDead && !gebura.isDying) {
+            takeCustomTurn(this.moves.get(nextMove), gebura);
+        } else {
+            takeCustomTurn(this.moves.get(nextMove), adp());
+        }
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
             AdditionalIntent additionalIntent = additionalIntents.get(i);
@@ -268,8 +264,8 @@ public class Zena extends AbstractCardMonster
         });
         if(currentPhase.equals(Zena.PHASE.PHASE1)){
             switch (GameActionManager.turn){
-                case 5:
-                    // 5
+                case 4:
+                    waitAnimation();
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
@@ -299,8 +295,9 @@ public class Zena extends AbstractCardMonster
                         }
                     });
                     break;
-                case 7:
-                    // 7 - shockwave is used on t6.
+                case 6:
+                    waitAnimation();
+                    // 6 - shockwave is used on t5.
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
@@ -376,16 +373,50 @@ public class Zena extends AbstractCardMonster
 
     @Override
     public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
+        if (this.nextMove == -1) {
+            super.applyPowers();
+            return;
+        }
+        if (currentPhase == PHASE.PHASE1 && gebura != null && !gebura.isDead && !gebura.isDying) {
+            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
+            AbstractCreature target = gebura;
+            if (info.base > -1) {
+                info.applyPowers(this, target);
+                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+                PowerTip intentTip = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+                int multiplier = moves.get(this.nextMove).multiplier;
+                Texture attackImg;
+                if (multiplier > 0) {
+                    attackImg = getAttackIntent(info.output * multiplier);
+                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + multiplier + TEXT[4];
+                } else {
+                    attackImg = getAttackIntent(info.output);
+                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
+                }
+                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
             }
-            if (additionalMove != null) {
-                //applyPowersToAdditionalIntent(additionalMove, additionalIntent, chesed, chesed.allyIcon);
+        } else {
+            super.applyPowers();
+            for (int i = 0; i < additionalIntents.size(); i++) {
+                AdditionalIntent additionalIntent = additionalIntents.get(i);
+                EnemyMoveInfo additionalMove = null;
+                if (i < additionalMoves.size()) {
+                    additionalMove = additionalMoves.get(i);
+                }
+                if (additionalMove != null) {
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, gebura, gebura.allyIcon);
+                }
             }
+        }
+    }
+
+    @Override
+    public void renderIntent(SpriteBatch sb) {
+        super.renderIntent(sb);
+        if (currentPhase == PHASE.PHASE1 && gebura != null && !gebura.isDead && !gebura.isDying && !this.isDeadOrEscaped()) {
+            BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
+            float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
+            sb.draw(TexLoader.getTexture(gebura.allyIcon), this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
         }
     }
 

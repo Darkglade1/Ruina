@@ -495,7 +495,7 @@ public class yanDistortion extends AbstractDeckMonster
     }
 
     @Override
-    protected void resetIdle(float duration) {
+    public void resetIdle(float duration) {
         atb(new VFXActionButItCanFizzle(this, new WaitEffect(), duration));
         atb(new AbstractGameAction() {
             @Override
