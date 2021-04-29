@@ -57,7 +57,6 @@ public class Baral extends AbstractCardMonster
     private static final byte EXTIRPATION = 2;
     private static final byte TRI_SERUM_COCKTAIL = 3;
     private static final byte SERUM_K = 4;
-    private static final byte ZENA_NONE = 4;
 
     public final int SERUM_W_DAMAGE = calcAscensionDamage(45);
 
@@ -85,7 +84,7 @@ public class Baral extends AbstractCardMonster
         PHASE2
     }
 
-    public PHASE currentPhase = PHASE.PHASE1;
+    public PHASE currentPhase;
 
     public Baral() { this(0.0f, 0.0f, PHASE.PHASE1); }
     public Baral(final float x, final float y) { this(x, y, PHASE.PHASE1); }

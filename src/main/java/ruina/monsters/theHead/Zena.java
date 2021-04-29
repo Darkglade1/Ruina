@@ -171,8 +171,8 @@ public class Zena extends AbstractCardMonster
         }
         switch (move.nextMove) {
             case LINE: {
-                pierceAnimation(target);
                 block(this, BLOCK);
+                slashAnimation(target);
                 dmg(target, info);
                 resetIdle();
                 break;
@@ -186,7 +186,7 @@ public class Zena extends AbstractCardMonster
                 break;
             }
             case THICK_LINE: {
-                pierceAnimation(target);
+                bluntAnimation(target);
                 dmg(target, info);
                 if (target instanceof AbstractMonster) {
                     atb(new StunMonsterAction((AbstractMonster) target, this, STUN));
@@ -221,31 +221,23 @@ public class Zena extends AbstractCardMonster
     }
 
     private void bluntAnimation(AbstractCreature enemy) {
-        animationAction("Blunt", "BluntHori", enemy, this);
+        animationAction("Blunt", "ZenaNormalLine", enemy, this);
     }
 
     private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "BluntBlow", enemy, this);
+        animationAction("Pierce", "ZenaThinLine", enemy, this);
     }
 
-    private void rangedAnimation(AbstractCreature enemy) {
-        animationAction("Ranged", "PuppetBreak", enemy, this);
-    }
-
-    private void blockAnimation() {
-        animationAction("Block", null, this);
-    }
-
-    private void buffAnimation() {
-        animationAction("Special", null, this);
+    private void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "ZenaBoldLine", enemy, this);
     }
 
     private void massAttackStartAnimation() {
-        animationAction("Special", "PuppetStart", this);
+        animationAction("Shockwave1", "ZenaStart", this);
     }
 
     private void massAttackFinishAnimation() {
-        animationAction("Special", "PuppetStrongAtk", this);
+        animationAction("Shockwave2", "ZenaBoom", this);
     }
 
     @Override

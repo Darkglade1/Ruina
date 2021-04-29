@@ -489,6 +489,16 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("ClawStab"), makeSFXPath("Claw_Stab.wav"));
         BaseMod.addAudio(makeID("ClawUltiEnd"), makeSFXPath("Claw_Ulti_End.wav"));
         BaseMod.addAudio(makeID("ClawUltiMove"), makeSFXPath("Claw_Ulti_Move.wav"));
+
+        BaseMod.addAudio(makeID("ZenaBoldLine"), makeSFXPath("Abiter_BoldLine.wav"));
+        BaseMod.addAudio(makeID("ZenaNormalLine"), makeSFXPath("Abiter_NormalLine.wav"));
+        BaseMod.addAudio(makeID("ZenaThinLine"), makeSFXPath("Abiter_ThinLine.wav"));
+        BaseMod.addAudio(makeID("ZenaBoom"), makeSFXPath("Abiter_Special_Boom.wav"));
+        BaseMod.addAudio(makeID("ZenaCutscene"), makeSFXPath("Abiter_Special_CutScene.wav"));
+        BaseMod.addAudio(makeID("ZenaStart"), makeSFXPath("Abiter_Special_Start.wav"));
+        BaseMod.addAudio(makeID("Shaking"), makeSFXPath("Shake_End.wav"));
+        BaseMod.addAudio(makeID("BinahArrive"), makeSFXPath("Binah_On.wav"));
+        BaseMod.addAudio(makeID("GeburaArrive"), makeSFXPath("Gebura_On.wav"));
     }
 
     @Override
