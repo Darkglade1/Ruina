@@ -1,5 +1,6 @@
 package ruina.monsters.theHead;
 
+import actlikeit.dungeons.CustomDungeon;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -49,6 +50,13 @@ public class GeburaHead extends Gebura {
 
     public void onEntry() {
         animationAction("Upstanding" + phase, "GeburaArrive", null, this);
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                CustomDungeon.playTempMusicInstantly("Gebura3");
+                isDone = true;
+            }
+        });
         waitAnimation(1.0f);
     }
 

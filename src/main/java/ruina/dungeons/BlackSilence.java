@@ -34,6 +34,9 @@ public class BlackSilence extends AbstractRuinaDungeon {
         this.onEnterEvent(Sorrow.class);
         this.addTempMusic("GoneAngels", RuinaMod.makeMusicPath("Gone Angels.ogg"));
         this.addTempMusic("TheHead", RuinaMod.makeMusicPath("TheHead.ogg"));
+        this.addTempMusic("Gebura3", RuinaMod.makeMusicPath("Gebura3.ogg"));
+        this.addTempMusic("Binah3", RuinaMod.makeMusicPath("Binah3.ogg"));
+
     }
 
     public BlackSilence(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {
