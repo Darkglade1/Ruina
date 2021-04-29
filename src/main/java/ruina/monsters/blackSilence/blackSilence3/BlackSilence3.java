@@ -190,8 +190,11 @@ public class BlackSilence3 extends AbstractCardMonster {
             }
             case DARKBOND:
                 guardAnimation();
-                block(this, bondBlock);
-                block(angelica, bondBlock);
+                for (AbstractMonster mo : monsterList()) {
+                    if (!mo.isDeadOrEscaped()) {
+                        block(mo, bondBlock);
+                    }
+                }
                 intoDrawMo(new VoidCard(), bondVoid, this);
                 resetIdle();
                 break;

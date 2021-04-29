@@ -180,10 +180,12 @@ public class Angelica extends AbstractCardMonster {
             }
             case ASHENBOND:
                 guardAnimation();
-                block(this, bondBlock);
-                applyToTarget(this, this, new StrengthPower(this, bondStrength));
-                block(roland, bondBlock);
-                applyToTarget(roland, this, new StrengthPower(roland, bondStrength));
+                for (AbstractMonster mo : monsterList()) {
+                    if (!mo.isDeadOrEscaped()) {
+                        block(mo, bondBlock);
+                        applyToTarget(mo, this, new StrengthPower(this, bondStrength));
+                    }
+                }
                 resetIdle();
                 break;
             case SOUL_LINK_REVIVAL:
