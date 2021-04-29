@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -42,11 +43,13 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
+import ruina.monsters.theHead.dialogue.HeadDialogue;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Chesed;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Mystery;
+import ruina.powers.PlayerBlackSilence;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
@@ -114,7 +117,7 @@ public class Zena extends AbstractCardMonster
         addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
         addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(40));
         addMove(NONE, Intent.NONE);
-
+        halfDead = currentPhase.equals(PHASE.PHASE1);
 //        cardList.add(new PullingStrings(this));
 //        cardList.add(new TuggingStrings(this));
 //        cardList.add(new AssailingPulls(this));
@@ -154,15 +157,8 @@ public class Zena extends AbstractCardMonster
                 baral = (Baral)mo;
             }
         }
-        applyToTarget(this, this, new Mystery(this));
-        applyToTarget(this, this, new InvisibleBarricadePower(this));
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if(currentPhase == PHASE.PHASE1){ halfDead = true; }
-                isDone = true;
-            }
-        });
+        this.powers.add(new Mystery(this));
+        this.powers.add(new InvisibleBarricadePower(this));
     }
 
     @Override
@@ -278,15 +274,80 @@ public class Zena extends AbstractCardMonster
                 this.isDone = true;
             }
         });
+        if(currentPhase.equals(Zena.PHASE.PHASE1)){
+            switch (GameActionManager.turn){
+                case 5:
+                    // 5
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            // same idea as with gebura. do the anims where zena binds and claw attacks.
+                            isDone = true;
+                        }
+                    });
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(12, 13));
+                            this.isDone = true;
+                        }
+                    });
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            // animation where binah joins and the claw tp's back
+                            isDone = true;
+                        }
+                    });
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(14, 24));
+                            this.isDone = true;
+                        }
+                    });
+                    break;
+                case 7:
+                    // 7 - shockwave is used on t6.
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(25, 30));
+                            isDone = true;
+                        }
+                    });
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            // screenshake and (falling rocks?)
+                            this.isDone = true;
+                        }
+                    });
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            // player interrupt animation
+                            this.isDone = true;
+                        }
+                    });
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(31, 37));
+                            this.isDone = true;
+                        }
+                    });
+                    break;
+            }
+        }
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (massAttackCooldown <= 0) {
-            setMoveShortcut(LINE, MOVES[LINE], cardList.get(LINE).makeStatEquivalentCopy());
-        } else if (lastMove(THICK_LINE)) {
-            setMoveShortcut(THIN_LINE, MOVES[THIN_LINE], cardList.get(THIN_LINE).makeStatEquivalentCopy());
+        if(halfDead){ setMoveShortcut(NONE); }
+        else if (massAttackCooldown <= 0) { setMoveShortcut(LINE, MOVES[LINE], cardList.get(LINE).makeStatEquivalentCopy());
+        } else if (lastMove(THICK_LINE)) { setMoveShortcut(THIN_LINE, MOVES[THIN_LINE], cardList.get(THIN_LINE).makeStatEquivalentCopy());
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(THIN_LINE)) {
@@ -301,7 +362,6 @@ public class Zena extends AbstractCardMonster
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
         }
-        setMoveShortcut(NONE);
     }
 
     @Override

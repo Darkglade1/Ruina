@@ -57,6 +57,7 @@ public class Baral extends AbstractCardMonster
     private static final byte EXTIRPATION = 2;
     private static final byte TRI_SERUM_COCKTAIL = 3;
     private static final byte SERUM_K = 4;
+    private static final byte ZENA_NONE = 4;
 
     public final int SERUM_W_DAMAGE = calcAscensionDamage(45);
 
@@ -321,12 +322,67 @@ public class Baral extends AbstractCardMonster
         });
         atb(new RollMoveAction(this));
 
+        if(currentPhase.equals(PHASE.PHASE1)){
+            switch (GameActionManager.turn){
+                case 3:
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(0, 2));
+                            this.isDone = true;
+                        }
+                    });
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            // add animation here, gebura moves in and clashes
+                            isDone = true;
+                        }
+                    });
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(3, 11));
+                            this.isDone = true;
+                        }
+                    });
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            zena.halfDead = false;
+                            isDone = true;
+                        }
+                    });
+                    break;
+            }
+        }
         if (GameActionManager.turn == 1) {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(0, 37));
+                    AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(0, 2));
                     this.isDone = true;
+                }
+            });
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    // add animation here, gebura moves in and clashes
+                    isDone = true;
+                }
+            });
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(3, 11));
+                    this.isDone = true;
+                }
+            });
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    zena.halfDead = false;
+                    isDone = true;
                 }
             });
         }
