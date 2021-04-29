@@ -28,6 +28,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
+import ruina.actions.HeadDialogueAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
@@ -328,29 +329,18 @@ public class Baral extends AbstractCardMonster
             switch (GameActionManager.turn){
                 case 2:
                     waitAnimation();
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(0, 2));
-                            this.isDone = true;
-                        }
-                    });
+                    atb(new HeadDialogueAction(0, 2));
                     GeburaHead gebura = new GeburaHead(-700.0f, 0.0f);
                     atb(new SpawnMonsterAction(gebura, false));
                     atb(new UsePreBattleActionAction(gebura));
                     gebura.onEntry();
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            AbstractDungeon.topLevelEffectsQueue.add(new HeadDialogue(3, 11));
-                            this.isDone = true;
-                        }
-                    });
+                    atb(new HeadDialogueAction(3, 11));
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
                             gebura.resetIdle(0.0f);
                             zena.halfDead = false;
+                            CustomDungeon.playTempMusicInstantly("TheHead");
                             isDone = true;
                         }
                     });

@@ -75,9 +75,6 @@ public class HeadDialogue extends AbstractGameEffect {
     }
 
     private void nextDialogue() {
-//        if (this.dialogue == 0) {
-//            AbstractDungeon.topLevelEffectsQueue.add(new BorderFlashEffect(Color.YELLOW));
-//        }
         if (this.dialogue < end) {
             this.dialogue++;
             calculateSpeakers();
