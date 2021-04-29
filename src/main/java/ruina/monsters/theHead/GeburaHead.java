@@ -13,12 +13,14 @@ import static ruina.util.Wiz.atb;
 
 public class GeburaHead extends Gebura {
 
+    private int GEBURA_MHP = 500;
     public GeburaHead() {
         this(0.0f, 0.0f);
     }
 
     public GeburaHead(final float x, final float y) {
         super(x, y);
+        this.setHp(GEBURA_MHP);
     }
 
     @Override
