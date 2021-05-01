@@ -20,7 +20,7 @@ public class Marionette extends AbstractEgoCard {
     public static final int COST = 1;
     public static final int INC_COST = 1;
     public static final int DAMAGE = 25;
-    public static final int UPG_DAMAGE = 30;
+    public static final int UPG_DAMAGE = 5;
 
     public Marionette() {
         super(ID, COST, CardType.ATTACK, CardTarget.ENEMY);
