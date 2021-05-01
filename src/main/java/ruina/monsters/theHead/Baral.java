@@ -260,8 +260,12 @@ public class Baral extends AbstractCardMonster
             }
             case SERUM_K: {
                 buffAnimation();
-                block(this, SERUM_K_BLOCK);
-                atb(new HealAction(this, this, SERUM_K_HEAL));
+                AbstractCreature healTarget = this;
+                if (!zena.isDeadOrEscaped() && zena.currentHealth <= this.currentHealth) {
+                    healTarget = zena;
+                }
+                block(healTarget, SERUM_K_BLOCK);
+                atb(new HealAction(healTarget, this, SERUM_K_HEAL));
                 resetIdle(1.0f);
                 break;
             }

@@ -772,6 +772,6 @@
   },
   "${ModID}:SerumK": {
     "NAME": "Serum K",
-    "DESCRIPTION": "Gain !B! Block. NL Heal !M! HP."
+    "DESCRIPTION": "The lowest HP ally gains !B! Block and heals !M! HP."
   }
 }

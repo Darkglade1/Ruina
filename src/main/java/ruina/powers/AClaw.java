@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 
@@ -23,7 +24,7 @@ public class AClaw extends AbstractUnremovablePower implements OnReceivePowerPow
 
     @Override
     public boolean onReceivePower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        if (power instanceof StrengthPower && power.amount < 0) {
+        if ((power instanceof StrengthPower || power instanceof GainStrengthPower) && power.amount < 0) {
             return false;
         }
         return true;
