@@ -781,5 +781,9 @@
   "${ModID}:WristCutter": {
     "NAME": "Wrist Cutter",
     "DESCRIPTION": "Deal !D! Damage to ALL enemies. NL Replace all cards in your hand with wounds."
+  },
+  "${ModID}:Remorse": {
+    "NAME": "Remorse",
+    "DESCRIPTION": "Deal !D! Damage. NL Apply !M! Weak and Vulnerable."
   }
 }
