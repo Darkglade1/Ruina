@@ -1,13 +1,9 @@
-package ruina.monsters.act3.smolderingAbomination;
+package ruina.monsters.blackSilence.blackSilence2;
 
-import actlikeit.dungeons.CustomDungeon;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -15,28 +11,13 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ShiftingPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
-import ruina.monsters.AbstractAllyMonster;
-import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.uninvitedGuests.normal.eileen.GearsWorshipper;
-import ruina.monsters.uninvitedGuests.normal.eileen.Yesod;
-import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.Accelerate;
-import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.Preach;
-import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.Propagate;
-import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.ThoughtGearBrainwash;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Paralysis;
-import ruina.util.AdditionalIntent;
-import ruina.vfx.VFXActionButItCanFizzle;
-
-import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
