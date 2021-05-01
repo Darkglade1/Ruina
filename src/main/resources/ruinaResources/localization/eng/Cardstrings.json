@@ -773,5 +773,9 @@
   "${ModID}:SerumK": {
     "NAME": "Serum K",
     "DESCRIPTION": "Gain !B! Block. NL Heal !M! HP."
+  },
+  "${ModID}:Marionette": {
+    "NAME": "Marionette",
+    "DESCRIPTION": "Deal !D! Damage. NL Increase the cost of ALL your cards by !M!."
   }
 }
