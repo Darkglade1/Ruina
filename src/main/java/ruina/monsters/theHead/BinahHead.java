@@ -18,6 +18,8 @@ public class BinahHead extends Binah {
     public AbstractMonster baral;
     public AbstractMonster zena;
 
+    private boolean usedPreBattleAction = false;
+
     public BinahHead() {
         this(0.0f, 0.0f);
     }
@@ -28,14 +30,17 @@ public class BinahHead extends Binah {
 
     @Override
     public void usePreBattleAction() {
-        super.usePreBattleAction();
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Baral) {
-                baral = mo;
-                targetEnemy = mo;
-            }
-            if (mo instanceof Zena) {
-                zena = mo;
+        if (!usedPreBattleAction) {
+            usedPreBattleAction = true;
+            super.usePreBattleAction();
+            for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (mo instanceof Baral) {
+                    baral = mo;
+                    targetEnemy = mo;
+                }
+                if (mo instanceof Zena) {
+                    zena = mo;
+                }
             }
         }
     }

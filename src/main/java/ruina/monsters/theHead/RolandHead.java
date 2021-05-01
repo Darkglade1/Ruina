@@ -6,6 +6,8 @@ import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 
 public class RolandHead extends Roland {
 
+    private boolean usedPreBattleAction = false;
+
     public RolandHead() {
         this(0.0f, 0.0f);
     }
@@ -16,9 +18,12 @@ public class RolandHead extends Roland {
 
     @Override
     public void usePreBattleAction() {
-        super.usePreBattleAction();
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Baral) { enemyBoss = mo; }
+        if (!usedPreBattleAction) {
+            usedPreBattleAction = true;
+            super.usePreBattleAction();
+            for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (mo instanceof Baral) { enemyBoss = mo; }
+            }
         }
     }
 

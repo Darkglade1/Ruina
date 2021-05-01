@@ -24,7 +24,9 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
@@ -38,6 +40,7 @@ import ruina.monsters.theHead.dialogue.HeadDialogue;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
+import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Mystery;
 import ruina.powers.PlayerBlackSilence;
@@ -66,24 +69,29 @@ public class Baral extends AbstractCardMonster
 
     public final int SERUM_W_DAMAGE = calcAscensionDamage(50);
 
-    public final int serumR_Damage = calcAscensionDamage(12);
+    public final int serumR_Damage = calcAscensionDamage(13);
     public final int serumR_Hits = 2;
     public final int serumR_Strength = calcAscensionSpecial(3);
 
     public final int extirpationDamage = calcAscensionDamage(30);
     public final int extirpationBlock = calcAscensionTankiness(50);
 
-    public final int triSerumDamage = calcAscensionDamage(11);
+    public final int triSerumDamage = calcAscensionDamage(12);
     public final int triSerumHits = 3;
 
-    private static final int SERUM_COOLDOWN = 3;
-    private int serumCooldown = SERUM_COOLDOWN;
+    private static final int SERUM_COOLDOWN = 2;
+    private int serumCooldown = 1;
 
     public final int SERUM_K_BLOCK = calcAscensionTankiness(60);
     public final int SERUM_K_HEAL = calcAscensionTankiness(100);
 
     public RolandHead roland;
     public Zena zena;
+
+    public int playerMaxHp;
+    public int playerCurrentHp;
+    public ArrayList<AbstractRelic> playerRelics = new ArrayList<>();
+    private boolean usedPreBattleAction = false;
 
     public enum PHASE{
         PHASE1,
@@ -126,45 +134,74 @@ public class Baral extends AbstractCardMonster
         this.type = EnemyType.BOSS;
     }
 
+    public void transitionToPhase2() {
+        currentPhase = PHASE.PHASE2;
+        numAdditionalMoves++;
+        rollMove();
+        createIntent();
+//        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, POWER_DEBUFF) {
+//            @Override
+//            public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
+//                if (damageAmount > 0 && info.owner == owner && info.type == DamageInfo.DamageType.NORMAL) {
+//                    applyToTarget(target, owner, new StrengthPower(target, -amount));
+//                    applyToTarget(target, owner, new DexterityPower(target, -amount));
+//                }
+//            }
+//            @Override
+//            public void updateDescription() {
+//                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
+//            }
+//        });
+    }
+
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("TheHead");
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Zena) {
-                zena = (Zena)mo;
-            }
-        }
-        applyToTarget(this, this, new Mystery(this));
-        applyToTarget(this, this, new InvisibleBarricadePower(this));
-
-        roland = new RolandHead(-1700.0F, -20.0f);
-        roland.drawX = AbstractDungeon.player.drawX;
-        AbstractPower power = new PlayerBlackSilence(adp(), roland);
-        AbstractDungeon.player.powers.add(power);
-
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                AbstractDungeon.player.drawPile.group.clear();
-                AbstractDungeon.player.discardPile.group.clear();
-                AbstractDungeon.player.exhaustPile.group.clear();
-                AbstractDungeon.player.hand.group.clear();
-                this.isDone = true;
-            }
-        });
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                for (AbstractCard card : roland.cardList) {
-                    if (!card.cardID.equals(CHRALLY_FURIOSO.ID)) {
-                        CardModifierManager.addModifier(card, new BlackSilenceRenderMod());
-                        AbstractDungeon.player.drawPile.group.add(card.makeStatEquivalentCopy());
-                    }
+        if (!usedPreBattleAction) {
+            usedPreBattleAction = true;
+            CustomDungeon.playTempMusicInstantly("TheHead");
+            for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (mo instanceof Zena) {
+                    zena = (Zena)mo;
                 }
-                AbstractDungeon.player.drawPile.shuffle();
-                this.isDone = true;
             }
-        });
+            applyToTarget(this, this, new Mystery(this));
+            applyToTarget(this, this, new InvisibleBarricadePower(this));
+
+            roland = new RolandHead(-1100.0F, -20.0f);
+            roland.drawX = AbstractDungeon.player.drawX;
+            AbstractPower power = new PlayerBlackSilence(adp(), roland);
+            AbstractDungeon.player.powers.add(power);
+
+            playerMaxHp = adp().maxHealth;
+            playerCurrentHp = adp().currentHealth;
+            adp().maxHealth = roland.maxHealth;
+            adp().currentHealth = (int) (roland.maxHealth * 0.75f);
+            adp().healthBarUpdatedEvent();
+
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    AbstractDungeon.player.drawPile.group.clear();
+                    AbstractDungeon.player.discardPile.group.clear();
+                    AbstractDungeon.player.exhaustPile.group.clear();
+                    AbstractDungeon.player.hand.group.clear();
+                    this.isDone = true;
+                }
+            });
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    for (AbstractCard card : roland.cardList) {
+                        if (!card.cardID.equals(CHRALLY_FURIOSO.ID)) {
+                            CardModifierManager.addModifier(card, new BlackSilenceRenderMod());
+                            AbstractDungeon.player.drawPile.group.add(card.makeStatEquivalentCopy());
+                        }
+                    }
+                    AbstractDungeon.player.drawPile.shuffle();
+                    this.isDone = true;
+                }
+            });
+        }
     }
 
     @Override
@@ -357,40 +394,54 @@ public class Baral extends AbstractCardMonster
         if (serumCooldown <= 0) {
             setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
         } else {
-            ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(SERUM_R)) {
-                possibilities.add(SERUM_R);
+            if (currentPhase == PHASE.PHASE1) {
+                ArrayList<Byte> possibilities = new ArrayList<>();
+                if (!this.lastMove(SERUM_R)) {
+                    possibilities.add(SERUM_R);
+                }
+                if (!this.lastMove(EXTIRPATION)) {
+                    possibilities.add(EXTIRPATION);
+                }
+                if (!this.lastMove(TRI_SERUM_COCKTAIL)) {
+                    possibilities.add(TRI_SERUM_COCKTAIL);
+                }
+                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+            } else {
+                ArrayList<Byte> possibilities = new ArrayList<>();
+                if (!this.lastMove(SERUM_K) && !this.lastMoveBefore(SERUM_K)) {
+                    possibilities.add(SERUM_K);
+                }
+                if (!this.lastMove(EXTIRPATION)) {
+                    possibilities.add(EXTIRPATION);
+                }
+                if (!this.lastMove(TRI_SERUM_COCKTAIL)) {
+                    possibilities.add(TRI_SERUM_COCKTAIL);
+                }
+                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
             }
-            if (!this.lastMove(EXTIRPATION)) {
-                possibilities.add(EXTIRPATION);
-            }
-            if (!this.lastMove(TRI_SERUM_COCKTAIL)) {
-                possibilities.add(TRI_SERUM_COCKTAIL);
-            }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
         }
     }
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        if (this.lastMove(EXTIRPATION, moveHistory)) {
-            setAdditionalMoveShortcut(SERUM_R, moveHistory, cardList.get(SERUM_R).makeStatEquivalentCopy());
-        } else {
-            ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(SERUM_R, moveHistory)) {
-                possibilities.add(SERUM_R);
-            }
-            if (!this.lastMove(EXTIRPATION, moveHistory)) {
-                possibilities.add(EXTIRPATION);
-            }
-            if (!this.lastMove(SERUM_K, moveHistory)) {
-                possibilities.add(SERUM_K);
-            }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+        if (moveHistory.size() >= 3) {
+            moveHistory.clear(); //resetss cooldowns
         }
+        ArrayList<Byte> possibilities = new ArrayList<>();
+        if (!this.lastMove(SERUM_R, moveHistory) && !this.lastMoveBefore(SERUM_R, moveHistory)) {
+            possibilities.add(SERUM_R);
+        }
+        if (!this.lastMove(SERUM_W, moveHistory) && !this.lastMoveBefore(SERUM_W, moveHistory)) {
+            possibilities.add(SERUM_W);
+        }
+        if (!this.lastMove(EXTIRPATION, moveHistory) && !this.lastMoveBefore(EXTIRPATION, moveHistory)) {
+            possibilities.add(EXTIRPATION);
+        }
+        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
     }
 
     @Override

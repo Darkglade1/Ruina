@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
@@ -21,6 +22,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -34,6 +36,8 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
+import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
+import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
@@ -71,7 +75,7 @@ public class Zena extends AbstractCardMonster
     private static final byte SHOCKWAVE = 3;
     private static final byte NONE = 4;
 
-    private static final int MASS_ATTACK_COOLDOWN = 5;
+    private static final int MASS_ATTACK_COOLDOWN = 3;
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
     public final int BLOCK = calcAscensionTankiness(45);
@@ -88,6 +92,7 @@ public class Zena extends AbstractCardMonster
     }
 
     public PHASE currentPhase;
+    private boolean usedPreBattleAction = false;
 
     public static final String POWER_ID = makeID("AnArbiter");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -114,7 +119,7 @@ public class Zena extends AbstractCardMonster
         addMove(LINE, Intent.ATTACK, calcAscensionDamage(28));
         addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(24));
         addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
-        addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(60));
+        addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(40));
         addMove(NONE, Intent.NONE);
         halfDead = currentPhase.equals(PHASE.PHASE1);
 //        cardList.add(new PullingStrings(this));
@@ -134,6 +139,8 @@ public class Zena extends AbstractCardMonster
     }
 
     public void transitionToPhase2() {
+        currentPhase = PHASE.PHASE2;
+        numAdditionalMoves++;
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, POWER_DEBUFF) {
             @Override
             public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
@@ -151,6 +158,9 @@ public class Zena extends AbstractCardMonster
 
     @Override
     public void usePreBattleAction() {
+        if (!usedPreBattleAction) {
+            usedPreBattleAction = true;
+        }
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Baral) {
                 baral = (Baral)mo;
@@ -259,7 +269,7 @@ public class Zena extends AbstractCardMonster
             if (additionalIntent.targetTexture == null) {
                 takeCustomTurn(additionalMove, adp());
             } else {
-                takeCustomTurn(additionalMove, adp());
+                takeCustomTurn(additionalMove, gebura);
             }
         }
         atb(new AbstractGameAction() {
@@ -290,27 +300,77 @@ public class Zena extends AbstractCardMonster
                     break;
                 case 6:
                     waitAnimation();
-                    // 6 - shockwave is used on t5.
                     atb(new HeadDialogueAction(25, 30));
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
-                            // screenshake and (falling rocks?)
+                            CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.HIGH, ScreenShake.ShakeDur.MED, false);
+                            playSound("Shaking");
+                            this.isDone = true;
+                        }
+                    });
+                    waitAnimation(1.0f);
+                    float playerX = 1700.0f;
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            adp().drawX = playerX;
+                            adp().flipHorizontal = true;
+                            AbstractPower strength = adp().getPower(StrengthPower.POWER_ID);
+                            if (strength != null) {
+                                baral.roland.powers.add(strength);
+                            }
+                            adp().powers.clear();
                             this.isDone = true;
                         }
                     });
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
-                            // player interrupt animation
+                            baral.useStaggerAnimation();
+                            Zena.this.useStaggerAnimation();
+                            AbstractDungeon.effectList.add(new StrikeEffect(baral, baral.hb.cX, baral.hb.cY, 999));
+                            AbstractDungeon.effectList.add(new StrikeEffect(Zena.this, Zena.this.hb.cX, Zena.this.hb.cY, 999));
                             this.isDone = true;
                         }
                     });
+
+                    atb(new SpawnMonsterAction(baral.roland, false));
+                    atb(new UsePreBattleActionAction(baral.roland));
+                    atb(new VFXAction(new SmokeBombEffect(playerX, adp().hb.cY), 1.0f));
                     atb(new HeadDialogueAction(31, 37));
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            transitionToPhase2();
+                            baral.transitionToPhase2();
+                            adp().drawPile.initializeDeck(adp().masterDeck);
+                            adp().hand.clear();
+                            adp().discardPile.clear();
+                            adp().exhaustPile.clear();
+                            adp().applyPreCombatLogic();
+                            adp().applyStartOfCombatLogic();
+                            adp().applyStartOfCombatPreDrawLogic();
+                            baral.roland.rollMove();
+                            baral.roland.currentHealth = adp().currentHealth;
+                            baral.roland.healthBarUpdatedEvent();
+                            adp().maxHealth = baral.playerMaxHp;
+                            adp().currentHealth = baral.playerCurrentHp;
+                            adp().healthBarUpdatedEvent();
+                            fixOrbPositioning();
+                            this.isDone = true;
+                        }
+                    });
                     break;
             }
         }
         atb(new RollMoveAction(this));
+    }
+
+    private void fixOrbPositioning() {
+        for (int i = 0; i < AbstractDungeon.player.orbs.size(); i++) {
+            (AbstractDungeon.player.orbs.get(i)).setSlot(i, AbstractDungeon.player.maxOrbs);
+        }
     }
 
     @Override
@@ -349,20 +409,22 @@ public class Zena extends AbstractCardMonster
                 setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
             }
         }
-
     }
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
+        if (moveHistory.size() >= 3) {
+            moveHistory.clear(); //resetss cooldowns
+        }
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(THIN_LINE, moveHistory)) {
+        if (!this.lastMove(THIN_LINE, moveHistory) && !this.lastMoveBefore(THIN_LINE, moveHistory)) {
             possibilities.add(THIN_LINE);
         }
         if (!this.lastMove(THICK_LINE, moveHistory) && !this.lastMoveBefore(THICK_LINE, moveHistory)) {
             possibilities.add(THICK_LINE);
         }
-        if (!this.lastMove(LINE, moveHistory)) {
+        if (!this.lastMove(LINE, moveHistory) && !this.lastMoveBefore(LINE, moveHistory)) {
             possibilities.add(LINE);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));

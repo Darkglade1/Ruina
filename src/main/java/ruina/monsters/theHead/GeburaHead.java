@@ -14,7 +14,8 @@ import static ruina.util.Wiz.atb;
 
 public class GeburaHead extends Gebura {
 
-    private int GEBURA_MHP = 500;
+    private int GEBURA_MHP = 300;
+    private boolean usedPreBattleAction = false;
     public GeburaHead() {
         this(0.0f, 0.0f);
     }
@@ -26,26 +27,29 @@ public class GeburaHead extends Gebura {
 
     @Override
     public void usePreBattleAction() {
-        super.usePreBattleAction();
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Zena) {
-                enemyBoss = mo;
-                ((Zena)enemyBoss).gebura = this;
-            }
-        }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                AbstractPower power = getPower(POWER_ID);
-                if (power != null) {
-                    if (power instanceof TwoAmountPower) {
-                        ((TwoAmountPower) power).amount2++;
-                        power.updateDescription(); //stop her power from ticking down too early
-                    }
+        if (!usedPreBattleAction) {
+            usedPreBattleAction = true;
+            super.usePreBattleAction();
+            for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (mo instanceof Zena) {
+                    enemyBoss = mo;
+                    ((Zena)enemyBoss).gebura = this;
                 }
-                this.isDone = true;
             }
-        });
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    AbstractPower power = getPower(POWER_ID);
+                    if (power != null) {
+                        if (power instanceof TwoAmountPower) {
+                            ((TwoAmountPower) power).amount2++;
+                            power.updateDescription(); //stop her power from ticking down too early
+                        }
+                    }
+                    this.isDone = true;
+                }
+            });
+        }
     }
 
     public void onEntry() {
