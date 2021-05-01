@@ -6,12 +6,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.monsters.uninvitedGuests.normal.elena.Binah;
 import ruina.powers.AnArbiter;
+import ruina.vfx.WaitEffect;
 
 import static ruina.util.Wiz.applyToTarget;
 import static ruina.util.Wiz.atb;
@@ -97,6 +100,20 @@ public class BinahHead extends Binah {
     }
 
     public void dialogue() {
+    }
+
+    public void onBossDeath() {
+        if (!isDead && !isDying) {
+            atb(new TalkAction(this, DIALOG[2]));
+            atb(new VFXAction(new WaitEffect(), 1.0F));
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    disappear();
+                    this.isDone = true;
+                }
+            });
+        }
     }
 
 }

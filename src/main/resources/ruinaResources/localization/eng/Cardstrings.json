@@ -773,5 +773,21 @@
   "${ModID}:SerumK": {
     "NAME": "Serum K",
     "DESCRIPTION": "The lowest HP ally gains !B! Block and heals !M! HP."
+  },
+  "${ModID}:Line": {
+    "NAME": "Line",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:ThinLine": {
+    "NAME": "Thin Line",
+    "DESCRIPTION": "Deal !D! damage. NL Steal !M! Strength from the target."
+  },
+  "${ModID}:ThickLine": {
+    "NAME": "Thick Line",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak nd Vulnerable."
+  },
+  "${ModID}:ZenaShockwave": {
+    "NAME": "Shockwave",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
   }
 }

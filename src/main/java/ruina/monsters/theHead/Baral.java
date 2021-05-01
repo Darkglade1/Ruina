@@ -88,6 +88,7 @@ public class Baral extends AbstractCardMonster
     public ArrayList<AbstractRelic> playerRelics = new ArrayList<>();
     public int playerEnergy;
     public int playerCardDraw;
+    public boolean deathTriggered = false;
     private boolean usedPreBattleAction = false;
 
     public enum PHASE{
@@ -166,7 +167,7 @@ public class Baral extends AbstractCardMonster
             playerEnergy = adp().energy.energy;
             playerCardDraw = adp().gameHandSize;
             adp().energy.energy = 5;
-            EnergyPanel.totalCount = 5;
+            EnergyPanel.totalCount = 5 - playerEnergy; //that way when the initial energy is added it adds up to 5
             adp().gameHandSize = 5;
 
             addToBot(new AbstractGameAction() {
@@ -378,9 +379,6 @@ public class Baral extends AbstractCardMonster
                 if (!this.lastMove(EXTIRPATION)) {
                     possibilities.add(EXTIRPATION);
                 }
-                if (!this.lastMove(TRI_SERUM_COCKTAIL)) {
-                    possibilities.add(TRI_SERUM_COCKTAIL);
-                }
                 byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
                 setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
             } else {
@@ -439,6 +437,24 @@ public class Baral extends AbstractCardMonster
     public void damage(DamageInfo info) {
         if (info.owner != zena) {
             super.damage(info);
+        }
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        roland.enemyBoss = zena;
+        zena.binah.targetEnemy = zena;
+        AbstractDungeon.onModifyPower();
+        if (zena.isDeadOrEscaped() && !zena.deathTriggered) {
+            deathTriggered = true;
+            zena.binah.onBossDeath();
+            roland.onBossDeath();
+            zena.gebura.onBossDeath();
+            headClear = true;
+            saveConfig();
+            this.onBossVictoryLogic();
+            this.onFinalBossVictoryLogic();
         }
     }
 }

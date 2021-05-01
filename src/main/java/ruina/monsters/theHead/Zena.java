@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -40,6 +39,10 @@ import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.HeadDialogueAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.theHead.zenaCards.Line;
+import ruina.monsters.theHead.zenaCards.ThickLine;
+import ruina.monsters.theHead.zenaCards.ThinLine;
+import ruina.monsters.theHead.zenaCards.ZenaShockwave;
 import ruina.powers.AnArbiter;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.PlayerBackAttack;
@@ -77,7 +80,9 @@ public class Zena extends AbstractCardMonster
     public final int THICK_LINE_DEBUFF = calcAscensionSpecial(2);
 
     public GeburaHead gebura;
+    public BinahHead binah;
     public Baral baral;
+    public boolean deathTriggered = false;
 
     public enum PHASE{
         PHASE1,
@@ -115,14 +120,11 @@ public class Zena extends AbstractCardMonster
         addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(40));
         addMove(NONE, Intent.NONE);
         halfDead = currentPhase.equals(PHASE.PHASE1);
-//        cardList.add(new PullingStrings(this));
-//        cardList.add(new TuggingStrings(this));
-//        cardList.add(new AssailingPulls(this));
-//        cardList.add(new ThinStrings(this));
-//        cardList.add(new Puppetry(this));
-        for (int i = 0; i < 10; i++) {
-            cardList.add(new Madness());
-        }
+
+        cardList.add(new Line(this));
+        cardList.add(new ThinLine(this));
+        cardList.add(new ThickLine(this));
+        cardList.add(new ZenaShockwave(this));
     }
 
     @Override
@@ -284,7 +286,7 @@ public class Zena extends AbstractCardMonster
                 case 4:
                     waitAnimation();
                     atb(new HeadDialogueAction(12, 13));
-                    BinahHead binah = new BinahHead(-1250.0f, 0.0f);
+                    binah = new BinahHead(-1250.0f, 0.0f);
                     atb(new SpawnMonsterAction(binah, false));
                     atb(new UsePreBattleActionAction(binah));
                     binah.onEntry();
@@ -485,6 +487,24 @@ public class Zena extends AbstractCardMonster
             BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
             float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
             sb.draw(TexLoader.getTexture(gebura.allyIcon), this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
+        }
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        gebura.enemyBoss = baral;
+        binah.targetEnemy = baral;
+        AbstractDungeon.onModifyPower();
+        if (baral.isDeadOrEscaped() && !baral.deathTriggered) {
+            deathTriggered = true;
+            binah.onBossDeath();
+            baral.roland.onBossDeath();
+            gebura.onBossDeath();
+            headClear = true;
+            saveConfig();
+            this.onBossVictoryLogic();
+            this.onFinalBossVictoryLogic();
         }
     }
 

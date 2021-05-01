@@ -3,12 +3,15 @@ package ruina.monsters.theHead;
 import actlikeit.dungeons.CustomDungeon;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.powers.GeburaProwess;
+import ruina.vfx.WaitEffect;
 
 import static ruina.util.Wiz.applyToTarget;
 import static ruina.util.Wiz.atb;
@@ -78,6 +81,20 @@ public class GeburaHead extends Gebura {
         AbstractPower strength = getPower(StrengthPower.POWER_ID);
         if (strength != null) {
             applyToTarget(this, this, new StrengthPower(this, strength.amount));
+        }
+    }
+
+    public void onBossDeath() {
+        if (!isDead && !isDying) {
+            atb(new TalkAction(this, DIALOG[2]));
+            atb(new VFXAction(new WaitEffect(), 1.0F));
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    disappear();
+                    this.isDone = true;
+                }
+            });
         }
     }
 
