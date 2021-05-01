@@ -777,5 +777,9 @@
   "${ModID}:Marionette": {
     "NAME": "Marionette",
     "DESCRIPTION": "Deal !D! Damage. NL Increase the cost of ALL your cards by !M!."
+  },
+  "${ModID}:WristCutter": {
+    "NAME": "Wrist Cutter",
+    "DESCRIPTION": "Deal !D! Damage to ALL enemies. NL Replace all cards in your hand with wounds."
   }
 }
