@@ -26,7 +26,7 @@ public class ImageOfBygones extends AbstractRuinaMonster
     private static final byte AGONY = 0;
     private static final byte SCREAM = 1;
 
-    private final int STRENGTH = calcAscensionSpecial(2);
+    private final int STRENGTH = calcAscensionSpecial(3);
     private final BlackSilence4 parent;
 
     public ImageOfBygones() {
@@ -37,7 +37,7 @@ public class ImageOfBygones extends AbstractRuinaMonster
         super(NAME, ID, 100, -15.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence4/Spriter/BlackSilence4.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(102), calcAscensionTankiness(113));
+        setHp(calcAscensionTankiness(132), calcAscensionTankiness(143));
         addMove(AGONY, Intent.ATTACK, calcAscensionDamage(20));
         addMove(SCREAM, Intent.ATTACK, calcAscensionDamage(9), 2, true);
         this.parent = parent;

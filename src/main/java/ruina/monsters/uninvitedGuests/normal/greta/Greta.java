@@ -66,7 +66,7 @@ public class Greta extends AbstractCardMonster
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int PARALYSIS = calcAscensionSpecial(2);
     public final int BLEED = calcAscensionSpecial(4);
-    public final int BLOCK = calcAscensionTankiness(24);
+    public final int BLOCK = calcAscensionTankiness(20);
     public final int DEBUFF = calcAscensionSpecial(2);
     public final int damageReduction = 50;
     public final int debuffCleanseTurns = 3;
@@ -87,7 +87,7 @@ public class Greta extends AbstractCardMonster
     }
 
     public Greta(final float x, final float y) {
-        super(NAME, ID, 800, -5.0F, 0, 200.0f, 265.0f, null, x, y);
+        super(NAME, ID, 750, -5.0F, 0, 200.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Greta/Spriter/Greta.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 2;

@@ -74,7 +74,9 @@
       "Uninvited Guests",
       "The Blue Reverberation",
       "The door to the library flies open, and a motley crew of #pstrange and #pdisturbing figures waltz in. You cannot help but feel that they are up to no good.",
-      "Greet the Uninvited Guests"
+      "Greet the Uninvited Guests",
+      " (Long)",
+      " (Short)"
     ]
   },
   "${ModID}:BlackSilence": {

@@ -36,27 +36,25 @@ import java.util.ArrayList;
 import static ruina.RuinaMod.makeUIPath;
 import static ruina.util.Wiz.adp;
 
-public class UninvitedGuests extends AbstractRuinaDungeon {
+public class UninvitedGuestsShort extends AbstractRuinaDungeon {
 
     public static String ID = RuinaMod.makeID(UninvitedGuests.class.getSimpleName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(ID);
     public static final String[] TEXT = uiStrings.TEXT;
     public static final String NAME = TEXT[0];
 
-    public UninvitedGuests() {
-        super(NAME, ID, "images/ui/event/panel.png", false, 2, 12, 10);
+    public static String REAL_ID = RuinaMod.makeID(UninvitedGuestsShort.class.getSimpleName());
+
+    public UninvitedGuestsShort() {
+        super(NAME, REAL_ID, "images/ui/event/panel.png", false, 2, 12, 10);
         this.onEnterEvent(Ensemble.class);
-        this.addTempMusic("Ensemble1", RuinaMod.makeMusicPath("Reverberation1st_Asiyah.ogg"));
-        this.addTempMusic("Ensemble2", RuinaMod.makeMusicPath("Reverberation1st_Briah.ogg"));
-        this.addTempMusic("Ensemble3", RuinaMod.makeMusicPath("Reverberation1st_Atziluth.ogg"));
-        this.addTempMusic("EnsembleArgalia", RuinaMod.makeMusicPath("Reverberation1st_Argalia.ogg"));
     }
 
-    public UninvitedGuests(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {
+    public UninvitedGuestsShort(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {
         super(cd, p, emptyList);
     }
 
-    public UninvitedGuests(CustomDungeon cd, AbstractPlayer p, SaveFile saveFile) {
+    public UninvitedGuestsShort(CustomDungeon cd, AbstractPlayer p, SaveFile saveFile) {
         super(cd, p, saveFile);
     }
 
@@ -85,7 +83,7 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         adp().hand.group.clear(); //stop the card playable crashes LOL
         AbstractDungeon.currMapNode.room = new ForkEventRoom();
         AbstractDungeon.getCurrRoom().onPlayerEntry();
-        AbstractDungeon.rs = AbstractDungeon.RenderScene.EVENT;
+        AbstractDungeon.rs = RenderScene.EVENT;
 
         AbstractDungeon.combatRewardScreen.clear();
         AbstractDungeon.previousScreen = null;
@@ -103,12 +101,12 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
 
     @Override
     public String getBodyText() {
-        return TEXT[2];
+        return "";
     }
 
     @Override
     public String getOptionText() {
-        return TEXT[3] + TEXT[4];
+        return TEXT[3] + TEXT[5];
     }
 
     @Override
@@ -116,40 +114,25 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         ArrayList<MonsterRoomCreator> row1 = new ArrayList();
         ArrayList<MonsterRoomCreator> row2 = new ArrayList();
         ArrayList<MonsterRoomCreator> row3 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row4 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row5 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row6 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row7 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row8 = new ArrayList();
-        ArrayList<MonsterRoomCreator> row9 = new ArrayList();
 
         row1.add(new MonsterRoomCreator(makeUIPath("MalkuthMap.png"), makeUIPath("MalkuthMapOutline.png"), Philip.ID));
-        row2.add(new MonsterRoomCreator(makeUIPath("YesodMap.png"), makeUIPath("YesodMapOutline.png"), Eileen.ID));
-        row3.add(new MonsterRoomCreator(makeUIPath("HodMap.png"), makeUIPath("HodMapOutline.png"), Greta.ID));
-        row4.add(new MonsterRoomCreator(makeUIPath("NetzachMap.png"), makeUIPath("NetzachMapOutline.png"), Bremen.ID));
-        row5.add(new MonsterRoomCreator(makeUIPath("TiphMap.png"), makeUIPath("TiphMapOutline.png"), Oswald.ID));
-        row6.add(new MonsterRoomCreator(makeUIPath("GeburaMap.png"), makeUIPath("GeburaMapOutline.png"), Tanya.ID));
-        row7.add(new MonsterRoomCreator(makeUIPath("ChesedMap.png"), makeUIPath("ChesedMapOutline.png"), Puppeteer.ID));
-        row8.add(new MonsterRoomCreator(makeUIPath("BinahMap.png"), makeUIPath("BinahMapOutline.png"), Elena.ID));
-        row9.add(new MonsterRoomCreator(makeUIPath("HokmaMap.png"), makeUIPath("HokmaMapOutline.png"), Pluto.ID));
+        row1.add(new MonsterRoomCreator(makeUIPath("YesodMap.png"), makeUIPath("YesodMapOutline.png"), Eileen.ID));
+        row1.add(new MonsterRoomCreator(makeUIPath("HodMap.png"), makeUIPath("HodMapOutline.png"), Greta.ID));
+        row2.add(new MonsterRoomCreator(makeUIPath("NetzachMap.png"), makeUIPath("NetzachMapOutline.png"), Bremen.ID));
+        row2.add(new MonsterRoomCreator(makeUIPath("TiphMap.png"), makeUIPath("TiphMapOutline.png"), Oswald.ID));
+        row2.add(new MonsterRoomCreator(makeUIPath("GeburaMap.png"), makeUIPath("GeburaMapOutline.png"), Tanya.ID));
+        row3.add(new MonsterRoomCreator(makeUIPath("ChesedMap.png"), makeUIPath("ChesedMapOutline.png"), Puppeteer.ID));
+        row3.add(new MonsterRoomCreator(makeUIPath("BinahMap.png"), makeUIPath("BinahMapOutline.png"), Elena.ID));
+        row3.add(new MonsterRoomCreator(makeUIPath("HokmaMap.png"), makeUIPath("HokmaMapOutline.png"), Pluto.ID));
 
         map = new ArrayList();
 
         int index = 0;
         map.add(populate(row1, index++));
+        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
         map.add(populate(row2, index++));
+        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
         map.add(populate(row3, index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(populate(row4, index++));
-        map.add(populate(row5, index++));
-        map.add(populate(row6, index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(doubleNodeArea(new TreasureRoom(), new RestRoom(), index++));
-        map.add(populate(row7, index++));
-        map.add(populate(row8, index++));
-        map.add(populate(row9, index++));
-        map.add(tripleNodeArea(new TreasureRoom(), new ShopRoom(), new RestRoom(), index++));
         map.add(tripleNodeArea(new TreasureRoom(), new ShopRoom(), new RestRoom(), index++));
         map.add(singleNodeArea(new MonsterRoomBoss(), index++));
         map.add(singleNodeArea(new TrueVictoryRoom(), index++, false));
@@ -161,18 +144,17 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         fadeIn();
     }
 
-    protected void connectNode(MapRoomNode src, MapRoomNode dst) {
+    private void connectNode(MapRoomNode src, MapRoomNode dst) {
         src.addEdge(new MapEdge(src.x, src.y, src.offsetX, src.offsetY, dst.x, dst.y, dst.offsetX, dst.offsetY, false));
     }
 
-    protected ArrayList<MapRoomNode> populate(ArrayList<MonsterRoomCreator> possibilities, int index) {
+    private ArrayList<MapRoomNode> populate(ArrayList<MonsterRoomCreator> possibilities, int index) {
         ArrayList<MapRoomNode> result = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             MapRoomNode mrn = new MapRoomNode(i, index);
-            if (i == 3) {
-                int rnd = AbstractDungeon.mapRng.random(possibilities.size() - 1);
-                mrn.room = possibilities.get(rnd).get();
-                possibilities.remove(rnd);
+            if (i % 2 == 1) {
+                mrn.room = possibilities.get(0).get();
+                possibilities.remove(0);
             }
             result.add(mrn);
         }
@@ -247,7 +229,7 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         return result;
     }
 
-    protected ArrayList<MapRoomNode> doubleNodeArea(AbstractRoom roomOne, AbstractRoom roomTwo, int index) {
+    private ArrayList<MapRoomNode> doubleNodeArea(AbstractRoom roomOne, AbstractRoom roomTwo, int index) {
         ArrayList<MapRoomNode> result = new ArrayList<>();
         MapRoomNode mrn;
         result.add(new MapRoomNode(0, index));
@@ -267,11 +249,11 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         return result;
     }
 
-    protected ArrayList<MapRoomNode> singleNodeArea(AbstractRoom room, int index) {
+    private ArrayList<MapRoomNode> singleNodeArea(AbstractRoom room, int index) {
         return singleNodeArea(room, index, true);
     }
 
-    protected ArrayList<MapRoomNode> singleNodeArea(AbstractRoom room, int index, boolean connected) {
+    private ArrayList<MapRoomNode> singleNodeArea(AbstractRoom room, int index, boolean connected) {
         ArrayList<MapRoomNode> result = new ArrayList<>();
         MapRoomNode mrn;
         result.add(new MapRoomNode(0, index));
@@ -291,7 +273,7 @@ public class UninvitedGuests extends AbstractRuinaDungeon {
         return result;
     }
 
-    protected void linkNonMonsterAreas(ArrayList<MapRoomNode> result) {
+    private void linkNonMonsterAreas(ArrayList<MapRoomNode> result) {
         if (!map.isEmpty()) {
             ArrayList<MapRoomNode> mapcontent = map.get(map.size() - 1);
             for (int i = 0; i < mapcontent.size(); i++) {

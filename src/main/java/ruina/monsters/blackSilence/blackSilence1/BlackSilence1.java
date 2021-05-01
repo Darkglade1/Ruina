@@ -55,7 +55,7 @@ public class BlackSilence1 extends AbstractCardMonster {
     public final int wheelsStrDown = calcAscensionSpecial(8);
     public final int wheelsDamage = calcAscensionDamage(22);
 
-    public final int durandalDamage = calcAscensionDamage(8);
+    public final int durandalDamage = calcAscensionDamage(9);
     public final int durandalHits = 2;
     public final int durandalStrength = calcAscensionSpecial(6);
 
@@ -70,7 +70,7 @@ public class BlackSilence1 extends AbstractCardMonster {
     public final int OLD_BOY_DAMAGE = calcAscensionDamage(12);
     public final int OLD_BOY_BLOCK = calcAscensionTankiness(50);
 
-    public final int RANGA_DAMAGE = calcAscensionDamage(6);
+    public final int RANGA_DAMAGE = calcAscensionDamage(7);
     public final int RANGA_HITS = 3;
     public final int RANGA_DEBUFF = calcAscensionSpecial(4);
 
@@ -80,11 +80,11 @@ public class BlackSilence1 extends AbstractCardMonster {
 
     public final int furiosoDamage = calcAscensionDamage(4);
     public final int furiosoHits = 16;
-    public final int furiosoDebuff = calcAscensionSpecial(2);
+    public final int furiosoDebuff = calcAscensionSpecial(3);
 
-    public final int CARDS_PER_TURN = 5;
+    public int CARDS_PER_TURN;
 
-    private ArrayList<Byte> movepool = new ArrayList<>();
+    private final ArrayList<Byte> movepool = new ArrayList<>();
 
     public static final String POWER_ID = makeID("Orlando");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -96,7 +96,7 @@ public class BlackSilence1 extends AbstractCardMonster {
     }
 
     public BlackSilence1(final float x, final float y) {
-        super(NAME, ID, 850, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 1000, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence1/Spriter/BlackSilence1.scml"));
         animation.setFlip(true, false);
         this.setHp(calcAscensionTankiness(this.maxHealth));
@@ -114,6 +114,12 @@ public class BlackSilence1 extends AbstractCardMonster {
         addMove(FURIOSO, Intent.ATTACK_DEBUFF, furiosoDamage, furiosoHits, true);
         populateCards();
         populateMovepool();
+
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            CARDS_PER_TURN = 4;
+        } else {
+            CARDS_PER_TURN = 5;
+        }
     }
 
     @Override

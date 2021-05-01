@@ -45,7 +45,7 @@ public class Tiph extends AbstractAllyCardMonster
     }
 
     public Tiph(final float x, final float y) {
-        super(NAME, ID, 250, -5.0F, 0, 200, 260.0f, null, x, y);
+        super(NAME, ID, 300, -5.0F, 0, 200, 260.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Tiph/Spriter/Tiph.scml"));
         this.animation.setFlip(true, false);
 
