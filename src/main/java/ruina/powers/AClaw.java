@@ -24,7 +24,7 @@ public class AClaw extends AbstractUnremovablePower implements OnReceivePowerPow
 
     @Override
     public boolean onReceivePower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        if ((power instanceof StrengthPower || power instanceof GainStrengthPower) && power.amount < 0) {
+        if ((power instanceof StrengthPower && power.amount < 0) || (power instanceof GainStrengthPower && power.amount > 0)) {
             return false;
         }
         return true;
