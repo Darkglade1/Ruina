@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -21,6 +22,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -84,6 +86,8 @@ public class Baral extends AbstractCardMonster
     public int playerMaxHp;
     public int playerCurrentHp;
     public ArrayList<AbstractRelic> playerRelics = new ArrayList<>();
+    public int playerEnergy;
+    public int playerCardDraw;
     private boolean usedPreBattleAction = false;
 
     public enum PHASE{
@@ -157,6 +161,13 @@ public class Baral extends AbstractCardMonster
             adp().maxHealth = roland.maxHealth;
             adp().currentHealth = (int) (roland.maxHealth * 0.60f);
             adp().healthBarUpdatedEvent();
+            playerRelics.addAll(adp().relics);
+            adp().relics.clear();
+            playerEnergy = adp().energy.energy;
+            playerCardDraw = adp().gameHandSize;
+            adp().energy.energy = 5;
+            EnergyPanel.totalCount = 5;
+            adp().gameHandSize = 5;
 
             addToBot(new AbstractGameAction() {
                 @Override

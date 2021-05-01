@@ -28,6 +28,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.relics.SlaversCollar;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
@@ -108,7 +109,7 @@ public class Zena extends AbstractCardMonster
         }
         currentPhase = phase;
         this.setHp(calcAscensionTankiness(3000));
-        addMove(LINE, Intent.ATTACK, calcAscensionDamage(28));
+        addMove(LINE, Intent.ATTACK_DEFEND, calcAscensionDamage(28));
         addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(24));
         addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
         addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(40));
@@ -324,6 +325,7 @@ public class Zena extends AbstractCardMonster
                             adp().maxHealth = baral.playerMaxHp;
                             adp().currentHealth = baral.playerCurrentHp;
                             adp().healthBarUpdatedEvent();
+                            adp().loseBlock();
                             fixOrbPositioning();
                             adp().powers.clear();
                             this.isDone = true;
@@ -353,6 +355,12 @@ public class Zena extends AbstractCardMonster
                             adp().hand.clear();
                             adp().discardPile.clear();
                             adp().exhaustPile.clear();
+                            adp().relics.addAll(baral.playerRelics);
+                            adp().energy.energy = baral.playerEnergy;
+                            adp().gameHandSize = baral.playerCardDraw;
+                            if (adp().hasRelic(SlaversCollar.ID)) {
+                                ((SlaversCollar)adp().getRelic(SlaversCollar.ID)).beforeEnergyPrep();
+                            }
                             adp().applyPreCombatLogic();
                             adp().applyStartOfCombatLogic();
                             adp().applyStartOfCombatPreDrawLogic();
