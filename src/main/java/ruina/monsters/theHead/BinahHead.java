@@ -11,7 +11,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.monsters.uninvitedGuests.normal.elena.Binah;
+import ruina.powers.AnArbiter;
 
+import static ruina.util.Wiz.applyToTarget;
 import static ruina.util.Wiz.atb;
 
 public class BinahHead extends Binah {
@@ -32,6 +34,7 @@ public class BinahHead extends Binah {
     public void usePreBattleAction() {
         if (!usedPreBattleAction) {
             usedPreBattleAction = true;
+            applyToTarget(this, this, new AnArbiter(this, 2));
             super.usePreBattleAction();
             for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (mo instanceof Baral) {

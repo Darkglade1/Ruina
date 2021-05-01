@@ -772,6 +772,6 @@
   },
   "${ModID}:SerumK": {
     "NAME": "Serum K",
-    "DESCRIPTION": "Gain !B! Block. NL Heal !ruina:SecondMagic! HP."
+    "DESCRIPTION": "Gain !B! Block. NL Heal !M! HP."
   }
 }

@@ -424,14 +424,22 @@
   },
   "${ModID}:AClaw": {
     "NAME": "Executioner",
-    "DESCRIPTIONS": ["This creature cannot lose #yStrength. This creature cannot be #yWeak or #yVulnerable."]
+    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL If this creature would receive #b", " or more unblocked attack damage, reduce the damage by #b", "%."]
   },
   "${ModID}:AnArbiter": {
     "NAME": "Complete Arbiter",
-    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, its target loses #b", " #yStrength and #yDexterity."]
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it steals #b", " #yStrength from its target."]
   },
   "${ModID}:Mystery": {
     "NAME": "???",
     "DESCRIPTIONS": ["This creature is shrouded in #pmystery . . ."]
+  },
+  "${ModID}:GeburaProwess": {
+    "NAME": "Gebura's Prowess",
+    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks."]
+  },
+  "${ModID}:PlayerBackAttack": {
+    "NAME": "Back Attack",
+    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks."]
   }
 }

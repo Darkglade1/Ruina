@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
+import ruina.powers.GeburaProwess;
 
 import static ruina.util.Wiz.applyToTarget;
 import static ruina.util.Wiz.atb;
@@ -16,6 +17,7 @@ public class GeburaHead extends Gebura {
 
     private int GEBURA_MHP = 300;
     private boolean usedPreBattleAction = false;
+
     public GeburaHead() {
         this(0.0f, 0.0f);
     }
@@ -29,6 +31,7 @@ public class GeburaHead extends Gebura {
     public void usePreBattleAction() {
         if (!usedPreBattleAction) {
             usedPreBattleAction = true;
+            applyToTarget(this, this, new GeburaProwess(this, 30));
             super.usePreBattleAction();
             for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (mo instanceof Zena) {

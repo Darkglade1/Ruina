@@ -1,10 +1,7 @@
 package ruina.monsters.theHead;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.animations.AbstractAnimation;
 import basemod.helpers.CardModifierManager;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -15,19 +12,15 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -35,14 +28,14 @@ import ruina.actions.HeadDialogueAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.theHead.baralCards.*;
-import ruina.monsters.theHead.dialogue.HeadDialogue;
+import ruina.monsters.theHead.baralCards.Extirpation;
+import ruina.monsters.theHead.baralCards.SerumK;
+import ruina.monsters.theHead.baralCards.SerumR;
+import ruina.monsters.theHead.baralCards.SerumW;
+import ruina.monsters.theHead.baralCards.TriSerum;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.AClaw;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.Mystery;
 import ruina.powers.PlayerBlackSilence;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
@@ -69,21 +62,21 @@ public class Baral extends AbstractCardMonster
 
     public final int SERUM_W_DAMAGE = calcAscensionDamage(50);
 
-    public final int serumR_Damage = calcAscensionDamage(13);
+    public final int serumR_Damage = calcAscensionDamage(12);
     public final int serumR_Hits = 2;
-    public final int serumR_Strength = calcAscensionSpecial(3);
+    public final int serumR_Strength = calcAscensionSpecial(5);
 
     public final int extirpationDamage = calcAscensionDamage(30);
     public final int extirpationBlock = calcAscensionTankiness(50);
 
-    public final int triSerumDamage = calcAscensionDamage(12);
+    public final int triSerumDamage = calcAscensionDamage(11);
     public final int triSerumHits = 3;
 
     private static final int SERUM_COOLDOWN = 2;
     private int serumCooldown = 1;
 
     public final int SERUM_K_BLOCK = calcAscensionTankiness(60);
-    public final int SERUM_K_HEAL = calcAscensionTankiness(100);
+    public final int SERUM_K_HEAL = calcAscensionTankiness(150);
 
     public RolandHead roland;
     public Zena zena;
@@ -114,7 +107,7 @@ public class Baral extends AbstractCardMonster
             additionalMovesHistory.add(new ArrayList<>());
         }
         currentPhase = phase;
-        this.setHp(currentPhase == PHASE.PHASE1 ? maxHealth : calcAscensionTankiness(3000));
+        this.setHp(calcAscensionTankiness(3000));
 
         addMove(SERUM_W, Intent.ATTACK, SERUM_W_DAMAGE);
         addMove(SERUM_R, Intent.ATTACK_BUFF, serumR_Damage, serumR_Hits, true);
@@ -139,19 +132,7 @@ public class Baral extends AbstractCardMonster
         numAdditionalMoves++;
         rollMove();
         createIntent();
-//        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, POWER_DEBUFF) {
-//            @Override
-//            public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-//                if (damageAmount > 0 && info.owner == owner && info.type == DamageInfo.DamageType.NORMAL) {
-//                    applyToTarget(target, owner, new StrengthPower(target, -amount));
-//                    applyToTarget(target, owner, new DexterityPower(target, -amount));
-//                }
-//            }
-//            @Override
-//            public void updateDescription() {
-//                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-//            }
-//        });
+        applyToTarget(this, this, new AClaw(this, 30));
     }
 
     @Override
@@ -164,7 +145,6 @@ public class Baral extends AbstractCardMonster
                     zena = (Zena)mo;
                 }
             }
-            applyToTarget(this, this, new Mystery(this));
             applyToTarget(this, this, new InvisibleBarricadePower(this));
 
             roland = new RolandHead(-1100.0F, -20.0f);
@@ -175,7 +155,7 @@ public class Baral extends AbstractCardMonster
             playerMaxHp = adp().maxHealth;
             playerCurrentHp = adp().currentHealth;
             adp().maxHealth = roland.maxHealth;
-            adp().currentHealth = (int) (roland.maxHealth * 0.75f);
+            adp().currentHealth = (int) (roland.maxHealth * 0.60f);
             adp().healthBarUpdatedEvent();
 
             addToBot(new AbstractGameAction() {
@@ -206,50 +186,11 @@ public class Baral extends AbstractCardMonster
 
     @Override
     public void render(SpriteBatch sb) {
+        super.render(sb);
         if(currentPhase == PHASE.PHASE1){
-            if (!this.isDead && !this.escaped) {
-                if (this.animation != null && this.animation.type() == AbstractAnimation.Type.SPRITE) {
-                    this.animation.renderSprite(sb, this.drawX + this.animX, this.drawY + this.animY + AbstractDungeon.sceneOffsetY);
-                } else if (this.atlas == null) {
-                    sb.setColor(this.tint.color);
-                    sb.draw(this.img, this.drawX - (float)this.img.getWidth() * Settings.scale / 2.0F + this.animX, this.drawY + this.animY + AbstractDungeon.sceneOffsetY, (float)this.img.getWidth() * Settings.scale, (float)this.img.getHeight() * Settings.scale, 0, 0, this.img.getWidth(), this.img.getHeight(), this.flipHorizontal, this.flipVertical);
-                } else {
-                    this.state.update(Gdx.graphics.getDeltaTime());
-                    this.state.apply(this.skeleton);
-                    this.skeleton.updateWorldTransform();
-                    this.skeleton.setPosition(this.drawX + this.animX, this.drawY + this.animY + AbstractDungeon.sceneOffsetY);
-                    this.skeleton.setColor(this.tint.color);
-                    this.skeleton.setFlip(this.flipHorizontal, this.flipVertical);
-                    sb.end();
-                    CardCrawlGame.psb.begin();
-                    AbstractMonster.sr.draw(CardCrawlGame.psb, this.skeleton);
-                    CardCrawlGame.psb.end();
-                    sb.begin();
-                    sb.setBlendFunction(770, 771);
-                }
-
-                if (this == AbstractDungeon.getCurrRoom().monsters.hoveredMonster && this.atlas == null && this.animation == null) {
-                    sb.setBlendFunction(770, 1);
-                    sb.setColor(new Color(1.0F, 1.0F, 1.0F, 0.1F));
-                    sb.draw(this.img, this.drawX - (float)this.img.getWidth() * Settings.scale / 2.0F + this.animX, this.drawY + this.animY + AbstractDungeon.sceneOffsetY, (float)this.img.getWidth() * Settings.scale, (float)this.img.getHeight() * Settings.scale, 0, 0, this.img.getWidth(), this.img.getHeight(), this.flipHorizontal, this.flipVertical);
-                    sb.setBlendFunction(770, 771);
-                }
-
-                if (!this.isDying && !this.isEscaping && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.player.isDead && !AbstractDungeon.player.hasRelic("Runic Dome") && this.intent != Intent.NONE && !Settings.hideCombatElements) {
-                    this.renderIntentVfxBehind(sb);
-                    this.renderIntent(sb);
-                    this.renderIntentVfxAfter(sb);
-                    this.renderDamageRange(sb);
-                }
-                this.intentHb.render(sb);
-            }
-
             if (roland != null) {
                 roland.render(sb);
             }
-        }
-        else {
-            super.render(sb);
         }
     }
 
@@ -257,6 +198,16 @@ public class Baral extends AbstractCardMonster
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
+
+        if (move.baseDamage >= 0 && currentPhase == PHASE.PHASE2 && target == adp()) {
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    animation.setFlip(true, false);
+                    this.isDone = true;
+                }
+            });
+        }
 
         if(info.base > -1) {
             info.applyPowers(this, target);
@@ -314,6 +265,16 @@ public class Baral extends AbstractCardMonster
                 resetIdle(1.0f);
                 break;
             }
+        }
+
+        if (move.baseDamage >= 0 && currentPhase == PHASE.PHASE2 && target == adp()) {
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    animation.setFlip(false, false);
+                    this.isDone = true;
+                }
+            });
         }
     }
 
@@ -459,4 +420,10 @@ public class Baral extends AbstractCardMonster
         }
     }
 
+    @Override
+    public void damage(DamageInfo info) {
+        if (info.owner != zena) {
+            super.damage(info);
+        }
+    }
 }
