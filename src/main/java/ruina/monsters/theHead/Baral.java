@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -27,6 +28,7 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.HeadDialogueAction;
+import ruina.actions.SerumWAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
@@ -226,7 +228,17 @@ public class Baral extends AbstractCardMonster
         }
         switch (move.nextMove) {
             case SERUM_W: {
-                pierceAnimation(target);
+                moveAnimation();
+                float duration = 4.0f;
+                if (currentPhase == PHASE.PHASE1) {
+                    atb(new VFXAction(new SerumWAnimation(roland, this, false), duration));
+                } else {
+                    if (target == adp()) {
+                        atb(new VFXAction(new SerumWAnimation(target, this, true), duration));
+                    } else {
+                        atb(new VFXAction(new SerumWAnimation(target, this, false), duration));
+                    }
+                }
                 dmg(target, info);
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
