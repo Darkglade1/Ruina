@@ -8,10 +8,10 @@ import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
@@ -34,6 +34,7 @@ import ruina.CustomIntent.MassAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
+import ruina.chr.chr_aya;
 import ruina.dungeons.*;
 import ruina.events.act2.*;
 import ruina.events.act3.*;
@@ -87,6 +88,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
+import static ruina.chr.chr_aya.characterStrings;
 import static ruina.util.Wiz.adp;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
@@ -99,7 +101,8 @@ public class RuinaMod implements
         PostInitializeSubscriber,
         AddAudioSubscriber,
         PostBattleSubscriber,
-        PreMonsterTurnSubscriber {
+        PreMonsterTurnSubscriber,
+        EditCharactersSubscriber {
 
     private static final String modID = "ruina";
     public static final TextureAtlas UIAtlas = new TextureAtlas();
@@ -132,6 +135,21 @@ public class RuinaMod implements
     private static final String POWER_L_ART = getModID() + "Resources/images/1024/card.png";
     private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
 
+    public static Color ANGELA_COLOR = new Color(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1);
+    public static final String SHOULDER1 = getModID() + "Resources/images/char/mainChar/shoulder.png";
+    public static final String SHOULDER2 = getModID() + "Resources/images/char/mainChar/shoulder2.png";
+    public static final String CORPSE = getModID() + "Resources/images/char/mainChar/corpse.png";
+    private static final String ANGELA_ATTACK_S_ART = getModID() + "Resources/images/512/attack.png";
+    private static final String ANGELA_SKILL_S_ART = getModID() + "Resources/images/512/skill.png";
+    private static final String ANGELA_POWER_S_ART = getModID() + "Resources/images/512/power.png";
+    private static final String ANGELA_CARD_ENERGY_S = getModID() + "Resources/images/512/energy.png";
+    private static final String ANGELA_TEXT_ENERGY = getModID() + "Resources/images/512/text_energy.png";
+    private static final String ANGELA_ATTACK_L_ART = getModID() + "Resources/images/1024/attack.png";
+    private static final String ANGELA_SKILL_L_ART = getModID() + "Resources/images/1024/skill.png";
+    private static final String ANGELA_POWER_L_ART = getModID() + "Resources/images/1024/power.png";
+    private static final String ANGELA_CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
+    private static final String CHARSELECT_BUTTON = getModID() + "Resources/images/charSelect/charButton.png";
+    private static final String CHARSELECT_PORTRAIT = getModID() + "Resources/images/charSelect/charBG.png";
     //This is for the in-EnemyEnergyPanel mod settings panel.
     private static final String MODNAME = "Ruina";
     private static final String AUTHOR = "Darkglade";
@@ -154,7 +172,7 @@ public class RuinaMod implements
 
         BaseMod.addColor(Enums.EGO, EGO_COLOR, EGO_COLOR, EGO_COLOR,
                 EGO_COLOR, EGO_COLOR, EGO_COLOR, EGO_COLOR,
-                ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
+                ANGELA_ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
                 ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
                 CARD_ENERGY_L, TEXT_ENERGY);
 
@@ -217,6 +235,8 @@ public class RuinaMod implements
     public static String makeEventPath(String resourcePath) {
         return modID + "Resources/images/events/" + resourcePath;
     }
+
+    public static String makeCharacterPath(String resourcePath) { return modID + "Resources/images/character/" + resourcePath; }
 
     public static void initialize() { RuinaMod ruinaMod = new RuinaMod(); }
 
@@ -502,6 +522,12 @@ public class RuinaMod implements
     }
 
     @Override
+    public void receiveEditCharacters() {
+        BaseMod.addCharacter(new chr_aya(characterStrings.NAMES[0], chr_aya.Enums.ANGELA_LOR),
+                CHARSELECT_BUTTON, CHARSELECT_PORTRAIT, chr_aya.Enums.ANGELA_LOR);
+    }
+
+    @Override
     public void receiveEditRelics() {
         new AutoAdd(modID)
                 .packageFilter(AbstractEasyRelic.class)
@@ -777,6 +803,7 @@ public class RuinaMod implements
         BaseMod.loadCustomStringsFile(PowerStrings.class, makeLocPath(language, "Powerstrings"));
         BaseMod.loadCustomStringsFile(UIStrings.class, makeLocPath(language, "UIstrings"));
         BaseMod.loadCustomStringsFile(TutorialStrings.class, makeLocPath(language, "Tutorialstrings"));
+        BaseMod.loadCustomStringsFile(CharacterStrings.class, getModID() + "Resources/localization/eng/Charstrings.json");
     }
 
     @Override
