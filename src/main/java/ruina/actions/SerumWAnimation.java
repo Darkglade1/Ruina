@@ -27,10 +27,10 @@ public class SerumWAnimation extends AbstractGameEffect {
     private float startX;
     private float endX;
     private boolean grabbed = false;
-    public static ArrayList<TextureRegion> bgTextures = new ArrayList<>();
-    int bgCounter = 0;
+    private ArrayList<TextureRegion> bgTextures;
+    int bgCounter = -1;
 
-    public SerumWAnimation(AbstractCreature enemy, AbstractCreature owner, boolean flipped) {
+    public SerumWAnimation(AbstractCreature enemy, AbstractCreature owner, boolean flipped, ArrayList<TextureRegion> textureRegions) {
         this.duration = Settings.ACTION_DUR_FAST;
         this.enemy = enemy;
         this.owner = owner;
@@ -42,13 +42,7 @@ public class SerumWAnimation extends AbstractGameEffect {
             endX = 0.0f;
         }
         startX = owner.drawX;
-        ArrayList<Texture> bgs = new ArrayList<>();
-        for (int i = 1; i <= 9; i++) {
-            bgs.add(TexLoader.getTexture(makeMonsterPath("Baral/Backgrounds/BG" + i + ".png")));
-        }
-        for (Texture texture : bgs) {
-            bgTextures.add(new TextureRegion(texture));
-        }
+        bgTextures = textureRegions;
     }
 
     @Override
@@ -99,9 +93,11 @@ public class SerumWAnimation extends AbstractGameEffect {
     }
 
     public void render(SpriteBatch sb) {
-        sb.setColor(Color.WHITE.cpy());
-        TextureRegion region = bgTextures.get(bgCounter);
-        sb.draw(region, 0.0F, 0.0F, 0.0f, 0.0f, region.getRegionWidth(), region.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
+        if (bgCounter >= 0) {
+            sb.setColor(Color.WHITE.cpy());
+            TextureRegion region = bgTextures.get(bgCounter);
+            sb.draw(region, 0.0F, 0.0F, 0.0f, 0.0f, region.getRegionWidth(), region.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
+        }
         enemy.render(sb);
         owner.render(sb);
     }

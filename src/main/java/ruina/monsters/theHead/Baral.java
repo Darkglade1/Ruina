@@ -4,6 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -20,6 +21,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -88,6 +90,7 @@ public class Baral extends AbstractCardMonster
     public int playerMaxHp;
     public int playerCurrentHp;
     public ArrayList<AbstractRelic> playerRelics = new ArrayList<>();
+    public ArrayList<AbstractPotion> playerPotions = new ArrayList<>();
     public int playerEnergy;
     public int playerCardDraw;
     public boolean deathTriggered = false;
@@ -101,6 +104,7 @@ public class Baral extends AbstractCardMonster
     public PHASE currentPhase;
 
     public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("BaralIcon.png"));
+    private static final ArrayList<TextureRegion> bgTextures = new ArrayList<>();
 
     public Baral() { this(0.0f, 0.0f, PHASE.PHASE1); }
     public Baral(final float x, final float y) { this(x, y, PHASE.PHASE1); }
@@ -126,6 +130,16 @@ public class Baral extends AbstractCardMonster
         cardList.add(new Extirpation(this));
         cardList.add(new TriSerum(this));
         cardList.add(new SerumK(this));
+
+        if (bgTextures.isEmpty()) {
+            ArrayList<Texture> bgs = new ArrayList<>();
+            for (int i = 1; i <= 9; i++) {
+                bgs.add(TexLoader.getTexture(makeMonsterPath("Baral/Backgrounds/BG" + i + ".png")));
+            }
+            for (Texture texture : bgs) {
+                bgTextures.add(new TextureRegion(texture));
+            }
+        }
     }
 
     @Override
@@ -166,6 +180,8 @@ public class Baral extends AbstractCardMonster
             adp().healthBarUpdatedEvent();
             playerRelics.addAll(adp().relics);
             adp().relics.clear();
+            playerPotions.addAll(adp().potions);
+            adp().potions.clear();
             playerEnergy = adp().energy.energy;
             playerCardDraw = adp().gameHandSize;
             adp().energy.energy = 5;
@@ -231,12 +247,12 @@ public class Baral extends AbstractCardMonster
                 moveAnimation();
                 float duration = 4.0f;
                 if (currentPhase == PHASE.PHASE1) {
-                    atb(new VFXAction(new SerumWAnimation(roland, this, false), duration));
+                    atb(new VFXAction(new SerumWAnimation(roland, this, false, bgTextures), duration));
                 } else {
                     if (target == adp()) {
-                        atb(new VFXAction(new SerumWAnimation(target, this, true), duration));
+                        atb(new VFXAction(new SerumWAnimation(target, this, true, bgTextures), duration));
                     } else {
-                        atb(new VFXAction(new SerumWAnimation(target, this, false), duration));
+                        atb(new VFXAction(new SerumWAnimation(target, this, false, bgTextures), duration));
                     }
                 }
                 dmg(target, info);

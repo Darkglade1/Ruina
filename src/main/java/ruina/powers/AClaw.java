@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 
+import static ruina.util.Wiz.applyToTarget;
+
 public class AClaw extends AbstractUnremovablePower implements OnReceivePowerPower {
     public static final String POWER_ID = RuinaMod.makeID(AClaw.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -17,6 +19,7 @@ public class AClaw extends AbstractUnremovablePower implements OnReceivePowerPow
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public static final int DAMAGE_REDUCTION = 30;
+    public static final int STRENGTH = 10;
 
     public AClaw(AbstractCreature owner, int amount) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
@@ -38,5 +41,11 @@ public class AClaw extends AbstractUnremovablePower implements OnReceivePowerPow
     }
 
     @Override
-    public void updateDescription() { this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + DAMAGE_REDUCTION + DESCRIPTIONS[2]; }
+    public void onSpecificTrigger() {
+        flash();
+        applyToTarget(owner, owner, new StrengthPower(owner, STRENGTH));
+    }
+
+    @Override
+    public void updateDescription() { this.description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + DAMAGE_REDUCTION + DESCRIPTIONS[2] + STRENGTH + DESCRIPTIONS[3]; }
 }
