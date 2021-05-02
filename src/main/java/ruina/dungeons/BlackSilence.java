@@ -11,7 +11,9 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
+import ruina.events.act4.BlackSilenceFork;
 import ruina.events.act4.Sorrow;
+import ruina.events.act4.TheHead;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.uninvitedGuests.normal.eileen.Eileen;
@@ -21,6 +23,7 @@ import ruina.rooms.ReverbMonsterRoom;
 import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeUIPath;
+import static ruina.util.Wiz.adp;
 
 public class BlackSilence extends AbstractRuinaDungeon {
 
@@ -64,6 +67,27 @@ public class BlackSilence extends AbstractRuinaDungeon {
             cardUpgradedChance = 0.125F;
         } else {
             cardUpgradedChance = 0.25F;
+        }
+    }
+
+    @Override
+    public void Ending() {
+        adp().hand.group.clear(); //stop the card playable crashes LOL
+        AbstractDungeon.currMapNode.room = new ForkEventRoom();
+        AbstractDungeon.getCurrRoom().onPlayerEntry();
+        AbstractDungeon.rs = AbstractDungeon.RenderScene.EVENT;
+
+        AbstractDungeon.combatRewardScreen.clear();
+        AbstractDungeon.previousScreen = null;
+        AbstractDungeon.closeCurrentScreen();
+    }
+
+    public static class ForkEventRoom extends EventRoom {
+        @Override
+        public void onPlayerEntry() {
+            AbstractDungeon.overlayMenu.proceedButton.hide();
+            this.event = new TheHead();
+            this.event.onEnterRoom();
         }
     }
 

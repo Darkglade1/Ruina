@@ -75,7 +75,7 @@ public class Zena extends AbstractCardMonster
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
     public final int BLOCK = calcAscensionTankiness(45);
-    public final int DEBUFF = calcAscensionSpecial(2);
+    public final int DEBUFF = calcAscensionSpecial(1);
     public final int POWER_DEBUFF = calcAscensionSpecial(2);
     public final int THICK_LINE_DEBUFF = calcAscensionSpecial(2);
 

@@ -94,7 +94,7 @@ public class BlackSilence4 extends AbstractCardMonster {
     public final int screamDebuff = calcAscensionSpecial(1);
     public final int BLOCK = calcAscensionTankiness(23);
     public final int NUM_VOIDS = calcAscensionSpecial(2);
-    public final int INVINCIBLE = 250;
+    public final int INVINCIBLE = 2250;
 
     public final int yunDazes = calcAscensionSpecial(3);
     public final int yunWounds = calcAscensionSpecial(2);
