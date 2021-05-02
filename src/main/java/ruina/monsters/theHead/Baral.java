@@ -2,6 +2,7 @@ package ruina.monsters.theHead;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardModifierManager;
+import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,6 +18,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -26,6 +28,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -40,6 +43,7 @@ import ruina.monsters.theHead.baralCards.SerumR;
 import ruina.monsters.theHead.baralCards.SerumW;
 import ruina.monsters.theHead.baralCards.TriSerum;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
+import ruina.patches.RenderHandPatch;
 import ruina.powers.AClaw;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.PlayerBlackSilence;
@@ -48,6 +52,7 @@ import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
+import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
@@ -105,6 +110,7 @@ public class Baral extends AbstractCardMonster
 
     public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("BaralIcon.png"));
     private static final ArrayList<TextureRegion> bgTextures = new ArrayList<>();
+    private static final ArrayList<Texture> serumWFinish = new ArrayList<>();
 
     public Baral() { this(0.0f, 0.0f, PHASE.PHASE1); }
     public Baral(final float x, final float y) { this(x, y, PHASE.PHASE1); }
@@ -138,6 +144,12 @@ public class Baral extends AbstractCardMonster
             }
             for (Texture texture : bgs) {
                 bgTextures.add(new TextureRegion(texture));
+            }
+        }
+
+        if (serumWFinish.isEmpty()) {
+            for (int i = 6; i <= 15; i++) {
+                serumWFinish.add(TexLoader.getTexture(makeMonsterPath("Baral/Frames/frame" + i + ".png")));
             }
         }
     }
@@ -245,7 +257,7 @@ public class Baral extends AbstractCardMonster
         switch (move.nextMove) {
             case SERUM_W: {
                 moveAnimation();
-                float duration = 4.0f;
+                float duration = 3.5f;
                 if (currentPhase == PHASE.PHASE1) {
                     atb(new VFXAction(new SerumWAnimation(roland, this, false, bgTextures), duration));
                 } else {
@@ -255,6 +267,9 @@ public class Baral extends AbstractCardMonster
                         atb(new VFXAction(new SerumWAnimation(target, this, false, bgTextures), duration));
                     }
                 }
+                serumWFinishAnimation();
+                waitAnimation(0.25f);
+                serumWAnimation(target);
                 dmg(target, info);
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
@@ -342,6 +357,11 @@ public class Baral extends AbstractCardMonster
         animationAction("Move", "ClawUltiMove", this);
     }
 
+    private void serumWAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "ClawFin", enemy, this);
+    }
+
+
     @Override
     public void takeTurn() {
         super.takeTurn();
@@ -385,7 +405,6 @@ public class Baral extends AbstractCardMonster
                         public void update() {
                             gebura.resetIdle(0.0f);
                             zena.halfDead = false;
-                            CustomDungeon.playTempMusicInstantly("TheHead");
                             isDone = true;
                         }
                     });
@@ -484,5 +503,17 @@ public class Baral extends AbstractCardMonster
             this.onBossVictoryLogic();
             this.onFinalBossVictoryLogic();
         }
+    }
+
+    public void serumWFinishAnimation() {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound("ClawCutscene");
+                this.isDone = true;
+            }
+        });
+        waitAnimation();
+        fullScreenAnimation(serumWFinish, 0.1f, 1.0f);
     }
 }

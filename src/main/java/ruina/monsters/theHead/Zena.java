@@ -295,7 +295,6 @@ public class Zena extends AbstractCardMonster
                         @Override
                         public void update() {
                             binah.resetIdle(0.0f);
-                            CustomDungeon.playTempMusicInstantly("TheHead");
                             isDone = true;
                         }
                     });
@@ -368,6 +367,7 @@ public class Zena extends AbstractCardMonster
                             adp().applyStartOfCombatLogic();
                             adp().applyStartOfCombatPreDrawLogic();
                             baral.roland.rollMove();
+                            CustomDungeon.playTempMusicInstantly("TheHead");
                             this.isDone = true;
                         }
                     });
