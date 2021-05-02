@@ -58,7 +58,7 @@ public class Roland extends AbstractAllyCardMonster {
 
     public final int crystalDamage = 22;
     public final int crystalHits = 2;
-    public final int crystalBlock = 13;
+    public final int crystalBlock = 33;
 
     public final int wheelsStrDown = 4;
     public final int wheelsDamage = 45;
@@ -77,7 +77,7 @@ public class Roland extends AbstractAllyCardMonster {
     public final int MOOK_DEBUFF = 2;
 
     public final int OLD_BOY_DAMAGE = 12;
-    public final int OLD_BOY_BLOCK = 40;
+    public final int OLD_BOY_BLOCK = 20;
 
     public final int RANGA_DAMAGE = 9;
     public final int RANGA_HITS = 3;

@@ -547,6 +547,9 @@ public class RuinaMod implements
         UninvitedGuests uninvitedGuests = new UninvitedGuests();
         uninvitedGuests.addAct(TheEnding.ID);
 
+        UninvitedGuestsShort uninvitedGuestsShort = new UninvitedGuestsShort();
+        uninvitedGuestsShort.addAct(TheEnding.ID);
+
         BlackSilence silence = new BlackSilence();
         CustomDungeon.addAct(5, silence);
 
@@ -717,6 +720,12 @@ public class RuinaMod implements
                 }));
 
         uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Roland(-500.0F, 0.0F),
+                        new Argalia(0.0F, 0.0F),
+                }), makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
+
+        uninvitedGuestsShort.addBoss(Argalia.ID, () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Roland(-500.0F, 0.0F),
                         new Argalia(0.0F, 0.0F),

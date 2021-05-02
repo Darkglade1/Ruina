@@ -126,5 +126,6 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
             name = DESCRIPTIONS[6];
             description = DESCRIPTIONS[7];
         }
+        description += DESCRIPTIONS[8];
     }
 }

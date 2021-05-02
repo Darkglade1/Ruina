@@ -19,7 +19,7 @@ public class ParadiseLost extends AbstractEgoCard {
     public static final int EXHAUST = 1;
     public static final int UP_EXHAUST = 1;
     public static final int THRESHOLD = 12;
-    public static final int DAMAGE = 666;
+    public static final int DAMAGE = 150;
 
     public static final String POWER_ID = makeID("ParadiseLost");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

@@ -1,6 +1,8 @@
 package ruina.monsters.theHead;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.powers.AbstractLambdaPower;
+import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.applyToTarget;
@@ -74,6 +77,20 @@ public class RolandHead extends Roland {
     }
 
     public void dialogue() {
+    }
+
+    public void onBossDeath() {
+        if (!isDead && !isDying) {
+            atb(new TalkAction(this, DIALOG[2]));
+            atb(new VFXAction(new WaitEffect(), 1.0F));
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    disappear();
+                    this.isDone = true;
+                }
+            });
+        }
     }
 
 }

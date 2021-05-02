@@ -25,7 +25,7 @@ public class Beak extends AbstractEgoCard {
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Beak() {
-        super(ID, 2, CardType.POWER, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardTarget.SELF);
     }
 
     @Override

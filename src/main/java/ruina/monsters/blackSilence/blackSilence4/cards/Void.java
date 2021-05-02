@@ -18,7 +18,7 @@ public class Void extends AbstractRuinaCard {
     public Void(BlackSilence4 parent) {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         this.parent = parent;
-        baseBlock = parent.BLOCK;
+        secondMagicNumber = baseSecondMagicNumber = parent.DEBUFF;
         magicNumber = baseMagicNumber = parent.NUM_VOIDS;
     }
 

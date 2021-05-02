@@ -708,11 +708,11 @@
   },
   "${ModID}:Scream": {
     "NAME": "Scream",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak and Frail."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
   },
   "${ModID}:Void": {
     "NAME": "Void",
-    "DESCRIPTION": "Gain !B! Block. NL Shuffle !M! *Void into your discard pile."
+    "DESCRIPTION": "Apply !ruina:SecondMagic! Weak and Frail. NL Shuffle !M! *Void into your discard pile."
   },
   "${ModID}:ZelkovaWorkshop": {
     "NAME": "Zelkova Workshop",
@@ -748,7 +748,7 @@
   },
   "${ModID}:DarkBond": {
     "NAME": "Dark Bond",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void(s) into your draw pile."
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile."
   },
   "${ModID}:WaltzInBlack": {
     "NAME": "Waltz in Black",
@@ -772,26 +772,22 @@
   },
   "${ModID}:SerumK": {
     "NAME": "Serum K",
-    "DESCRIPTION": "Gain !B! Block. NL Heal !M! HP."
+    "DESCRIPTION": "The lowest HP ally gains !B! Block and heals !M! HP."
   },
-  "${ModID}:Marionette": {
-    "NAME": "Marionette",
-    "DESCRIPTION": "Deal !D! Damage. NL Increase the cost of ALL your cards in your hand by !M! for the rest of combat."
+  "${ModID}:Line": {
+    "NAME": "Line",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
   },
-  "${ModID}:WristCutter": {
-    "NAME": "Wrist Cutter",
-    "DESCRIPTION": "Gain [E] [E] . NL Add !M! Wound to your hand with Retain."
+  "${ModID}:ThinLine": {
+    "NAME": "Thin Line",
+    "DESCRIPTION": "Deal !D! damage. NL Steal !M! Strength from the target."
   },
-  "${ModID}:Remorse": {
-    "NAME": "Remorse",
-    "DESCRIPTION": "Deal !D! Damage. NL Apply !M! Weak and Vulnerable."
+  "${ModID}:ThickLine": {
+    "NAME": "Thick Line",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak nd Vulnerable."
   },
-  "${ModID}:Aspiration": {
-    "NAME": "Aspiration",
-    "DESCRIPTION": "Gain !M! Strength. NL Lose half of your current HP. At the end of combat, heal the HP lost by this card."
-  },
-  "${ModID}:FrostSplinter": {
-    "NAME": "Frost Splinter",
-    "DESCRIPTION": "Gain [E] , draw !M! card and ruina:Freeze a card each turn."
+  "${ModID}:ZenaShockwave": {
+    "NAME": "Shockwave",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
   }
 }

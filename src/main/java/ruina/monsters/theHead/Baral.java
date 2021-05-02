@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -21,6 +22,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -84,6 +86,9 @@ public class Baral extends AbstractCardMonster
     public int playerMaxHp;
     public int playerCurrentHp;
     public ArrayList<AbstractRelic> playerRelics = new ArrayList<>();
+    public int playerEnergy;
+    public int playerCardDraw;
+    public boolean deathTriggered = false;
     private boolean usedPreBattleAction = false;
 
     public enum PHASE{
@@ -157,6 +162,13 @@ public class Baral extends AbstractCardMonster
             adp().maxHealth = roland.maxHealth;
             adp().currentHealth = (int) (roland.maxHealth * 0.60f);
             adp().healthBarUpdatedEvent();
+            playerRelics.addAll(adp().relics);
+            adp().relics.clear();
+            playerEnergy = adp().energy.energy;
+            playerCardDraw = adp().gameHandSize;
+            adp().energy.energy = 5;
+            EnergyPanel.totalCount = 5 - playerEnergy; //that way when the initial energy is added it adds up to 5
+            adp().gameHandSize = 5;
 
             addToBot(new AbstractGameAction() {
                 @Override
@@ -260,8 +272,12 @@ public class Baral extends AbstractCardMonster
             }
             case SERUM_K: {
                 buffAnimation();
-                block(this, SERUM_K_BLOCK);
-                atb(new HealAction(this, this, SERUM_K_HEAL));
+                AbstractCreature healTarget = this;
+                if (!zena.isDeadOrEscaped() && zena.currentHealth <= this.currentHealth) {
+                    healTarget = zena;
+                }
+                block(healTarget, SERUM_K_BLOCK);
+                atb(new HealAction(healTarget, this, SERUM_K_HEAL));
                 resetIdle(1.0f);
                 break;
             }
@@ -363,9 +379,6 @@ public class Baral extends AbstractCardMonster
                 if (!this.lastMove(EXTIRPATION)) {
                     possibilities.add(EXTIRPATION);
                 }
-                if (!this.lastMove(TRI_SERUM_COCKTAIL)) {
-                    possibilities.add(TRI_SERUM_COCKTAIL);
-                }
                 byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
                 setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
             } else {
@@ -424,6 +437,24 @@ public class Baral extends AbstractCardMonster
     public void damage(DamageInfo info) {
         if (info.owner != zena) {
             super.damage(info);
+        }
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        roland.enemyBoss = zena;
+        zena.binah.targetEnemy = zena;
+        AbstractDungeon.onModifyPower();
+        if (zena.isDeadOrEscaped() && !zena.deathTriggered) {
+            deathTriggered = true;
+            zena.binah.onBossDeath();
+            roland.onBossDeath();
+            zena.gebura.onBossDeath();
+            headClear = true;
+            saveConfig();
+            this.onBossVictoryLogic();
+            this.onFinalBossVictoryLogic();
         }
     }
 }
