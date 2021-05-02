@@ -21,7 +21,7 @@ import static ruina.util.Wiz.att;
 
 public class WristCutter extends AbstractEgoCard {
     public final static String ID = makeID(WristCutter.class.getSimpleName());
-    public static final int COST = 2;
+    public static final int COST = 0;
     public static final int WOUND = 1;
     public static final int ENERGY = 2;
     public WristCutter() {

@@ -16,8 +16,8 @@ public class Aspiration extends AbstractEgoCard {
     public final static String ID = makeID(Aspiration.class.getSimpleName());
 
     public static final int COST = 0;
-    public static final int STRENGTH = 4;
-    public static final int UPG_STRENGTH = 2;
+    public static final int STRENGTH = 3;
+    public static final int UPG_STRENGTH = 1;
 
     public Aspiration() {
         super(ID, COST, CardType.SKILL, CardTarget.SELF);
