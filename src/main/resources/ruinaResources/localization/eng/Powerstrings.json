@@ -445,5 +445,12 @@
   "${ModID}:Aspiration": {
     "NAME": "Heart Of Aspiration",
     "DESCRIPTIONS": ["Heal #b%1$s #yHP at the end of combat."]
+  },
+  "${ModID}:FrostSplinter": {
+    "NAME": "Frost Splinter",
+    "DESCRIPTIONS": [
+      "Gain [E] , draw #b%1$s card and #yFreeze #b%2$s card at the start of each turn",
+      "Gain [E] , draw #b%1$s cards and #yFreeze #b%2$s card at the start of each turn"
+    ]
   }
 }

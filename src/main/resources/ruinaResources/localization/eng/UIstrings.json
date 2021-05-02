@@ -81,5 +81,10 @@
     "TEXT": [
       "The Black Silence"
     ]
+  },
+  "${ModID}:FrostSplinter": {
+    "TEXT": [
+      "Choose A Card To Freeze."
+    ]
   }
 }
