@@ -380,7 +380,8 @@
       "每第 #b",
       " 次攻击 #y翻倍 目标所有的 #r负面状态 。",
       "防守姿态",
-      "#y否定 所有给予自身的 #r负面状态 。"]
+      "#y否定 所有给予自身的 #r负面状态 。",
+      " NL NL You can change this creature's #yStance by clicking on the #yStance #yChange buttons next to this creature's intent."]
   },
   "ruina:Gears": {
     "NAME": "齿轮教会",
