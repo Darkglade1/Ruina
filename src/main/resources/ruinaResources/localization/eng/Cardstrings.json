@@ -780,7 +780,7 @@
   },
   "${ModID}:WristCutter": {
     "NAME": "Wrist Cutter",
-    "DESCRIPTION": "Deal !D! Damage to ALL enemies. NL Replace all cards in your hand with Wounds."
+    "DESCRIPTION": "Gain [E] [E] . NL Add !M! Wound to your hand with Retain."
   },
   "${ModID}:Remorse": {
     "NAME": "Remorse",
@@ -792,6 +792,6 @@
   },
   "${ModID}:FrostSplinter": {
     "NAME": "Frost Splinter",
-    "DESCRIPTION": "Gain [E] , draw !M! cards and ruina:Freeze a card each turn."
+    "DESCRIPTION": "Gain [E] , draw !M! card and ruina:Freeze a card each turn."
   }
 }

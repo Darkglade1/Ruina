@@ -16,7 +16,7 @@ public class FrostSplinter extends AbstractEgoCard {
     public final static String ID = makeID(FrostSplinter.class.getSimpleName());
 
     public static final int COST = 1;
-    public static final int DRAW = 2;
+    public static final int DRAW = 1;
     public static final int DISPLAY_FREEZE = 1;
 
     public FrostSplinter() {

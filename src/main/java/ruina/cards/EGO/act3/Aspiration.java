@@ -20,8 +20,9 @@ public class Aspiration extends AbstractEgoCard {
     public static final int UPG_STRENGTH = 2;
 
     public Aspiration() {
-        super(ID, COST, CardType.POWER, CardTarget.SELF);
+        super(ID, COST, CardType.SKILL, CardTarget.SELF);
         magicNumber = baseMagicNumber = STRENGTH;
+        isEthereal = true;
     }
 
     @Override
