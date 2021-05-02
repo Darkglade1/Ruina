@@ -35,9 +35,6 @@ public class Marionette extends AbstractEgoCard {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                for(AbstractCard c: p.drawPile.group){ att(new IncreaseCostAction(c, magicNumber)); }
-                for(AbstractCard c: p.discardPile.group){ att(new IncreaseCostAction(c, magicNumber)); }
-                for(AbstractCard c: p.exhaustPile.group){ att(new IncreaseCostAction(c, magicNumber)); }
                 for(AbstractCard c: p.hand.group){ att(new IncreaseCostAction(c, magicNumber)); }
                 isDone = true;
             }
