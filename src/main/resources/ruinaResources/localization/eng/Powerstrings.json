@@ -441,5 +441,9 @@
   "${ModID}:PlayerBackAttack": {
     "NAME": "Back Attack",
     "DESCRIPTIONS": ["Deals #b", "% more damage with attacks."]
+  },
+  "${ModID}:Aspiration": {
+    "NAME": "Heart Of Aspiration",
+    "DESCRIPTIONS": ["Heal #b%1$s #yHP at the end of combat."]
   }
 }

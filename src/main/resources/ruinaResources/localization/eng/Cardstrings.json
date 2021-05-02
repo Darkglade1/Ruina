@@ -785,5 +785,9 @@
   "${ModID}:Remorse": {
     "NAME": "Remorse",
     "DESCRIPTION": "Deal !D! Damage. NL Apply !M! Weak and Vulnerable."
+  },
+  "${ModID}:Aspiration": {
+    "NAME": "Aspiration",
+    "DESCRIPTION": "Gain !M! Strength. NL Lose half of your current HP. At the end of combat, heal the HP lost by this card."
   }
 }
