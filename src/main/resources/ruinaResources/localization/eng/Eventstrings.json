@@ -445,7 +445,7 @@
       "You have shown up at last.",
       "Have we met before?",
       "It's a relief to have you.",
-      "I can't guarantee that I'll power through this either...",
+      "I can't guarantee that I'll power through this either . . .",
       "Well . . . we'll have to try and stop them for as long as we can.",
       "Be aware that joining forces cannot change your fate.",
       "Nevertheless, it is enjoyable to witness your struggle.",
@@ -521,6 +521,20 @@
       "ZenaBaralBinahGeburaRoland_ZenaSpeak",
       "ZenaBaralBinahGeburaRoland_ZenaSpeak",
       "ZenaBaralBinahGeburaRoland_ZenaSpeak"
+    ]
+  },
+  "${ModID}:HeadEnding": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "Will we be alright, Roland? I doubt the Head will be pleased with the defeat of two of its agents.",
+      "The Head can be as displeased as it likes. But our story won’t end here.",
+      "I suppose not. All with a little help from far away. Shall we continue writing this story together?",
+      "Of course, Miss Director. There are still so many things both of us want to do, after all.",
+      "And why don’t you join us, stranger? This story has enough room for someone else to be written in.",
+      "Don't be shy. After all . . . ",
+      "Strangers are just friends you haven't met yet."
+    ],
+    "OPTIONS": [
     ]
   }
 }

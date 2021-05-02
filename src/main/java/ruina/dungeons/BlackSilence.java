@@ -19,6 +19,7 @@ import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.uninvitedGuests.normal.eileen.Eileen;
 import ruina.monsters.uninvitedGuests.normal.greta.Greta;
 import ruina.rooms.ReverbMonsterRoom;
+import ruina.rooms.RuinaVictoryRoom;
 
 import java.util.ArrayList;
 
@@ -88,6 +89,17 @@ public class BlackSilence extends AbstractRuinaDungeon {
             AbstractDungeon.overlayMenu.proceedButton.hide();
             this.event = new TheHead();
             this.event.onEnterRoom();
+        }
+
+        @Override
+        public void endBattle() {
+            super.endBattle();
+            CardCrawlGame.music.fadeOutBGM();
+            MapRoomNode node = new MapRoomNode(3, 4);
+            node.room = new RuinaVictoryRoom();
+            AbstractDungeon.nextRoom = node;
+            AbstractDungeon.closeCurrentScreen();
+            AbstractDungeon.nextRoomTransitionStart();
         }
     }
 
