@@ -2,20 +2,17 @@ package ruina.actions;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.util.TexLoader;
 
 import java.util.ArrayList;
-
-import static ruina.RuinaMod.makeMonsterPath;
+import java.util.Collections;
 
 public class SerumWAnimation extends AbstractGameEffect {
     AbstractCreature owner;
@@ -43,12 +40,13 @@ public class SerumWAnimation extends AbstractGameEffect {
         }
         startX = owner.drawX;
         bgTextures = textureRegions;
+        Collections.shuffle(bgTextures, AbstractDungeon.miscRng.random); //randomize it a little every time
     }
 
     @Override
     public void update() {
         this.graphicsAnimation += Gdx.graphics.getDeltaTime();
-        float destinationX = Interpolation.linear.apply(startX, endX, this.graphicsAnimation * 3.0F);
+        float destinationX = Interpolation.linear.apply(startX, endX, this.graphicsAnimation * 2.0F);
         if (startX > endX) {
             if (destinationX > endX) {
                 owner.drawX = destinationX;
@@ -78,7 +76,7 @@ public class SerumWAnimation extends AbstractGameEffect {
             grabbed = true;
         }
         if (owner.drawX == endX) {
-            if (bgCounter < bgTextures.size() - 1) {
+            if (bgCounter < bgTextures.size() - 4) {
                 bgCounter++;
                 startX = Math.abs(endX - Settings.WIDTH);
                 graphicsAnimation = 0.0f;

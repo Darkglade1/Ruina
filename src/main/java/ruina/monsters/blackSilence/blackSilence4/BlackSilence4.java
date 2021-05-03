@@ -423,6 +423,7 @@ public class BlackSilence4 extends AbstractCardMonster {
 
     @Override
     public void die(boolean triggerRelics) {
+        halfDead = true;
         runAnim("Defeat");
         blacksilenceClear = true;
         saveConfig();

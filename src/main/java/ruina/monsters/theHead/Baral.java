@@ -6,6 +6,8 @@ import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
+import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -28,6 +30,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
@@ -183,7 +186,7 @@ public class Baral extends AbstractCardMonster
             }
             applyToTarget(this, this, new InvisibleBarricadePower(this));
 
-            roland = new RolandHead(-1100.0F, -20.0f);
+            roland = new RolandHead(-1100.0F, 0.0f);
             roland.drawX = AbstractDungeon.player.drawX;
             AbstractPower power = new PlayerBlackSilence(adp(), roland);
             AbstractDungeon.player.powers.add(power);
@@ -202,6 +205,9 @@ public class Baral extends AbstractCardMonster
             adp().energy.energy = 5;
             EnergyPanel.totalCount = 5 - playerEnergy; //that way when the initial energy is added it adds up to 5
             adp().gameHandSize = 5;
+            adp().loseBlock();
+            TempHPField.tempHp.set(adp(), 0);
+            adp().stance = new NeutralStance();
 
             addToBot(new AbstractGameAction() {
                 @Override
