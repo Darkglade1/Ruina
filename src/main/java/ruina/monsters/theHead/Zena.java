@@ -311,7 +311,7 @@ public class Zena extends AbstractCardMonster
                         }
                     });
                     waitAnimation(1.5f);
-                    float playerX = 1700.0f;
+                    float playerX = 1700.0f * Settings.scale;
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {

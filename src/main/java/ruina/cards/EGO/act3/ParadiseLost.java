@@ -29,12 +29,12 @@ public class ParadiseLost extends AbstractEgoCard {
     public ParadiseLost() {
         super(ID, 3, CardType.POWER, CardTarget.SELF);
         magicNumber = baseMagicNumber = EXHAUST;
-        secondMagicNumber = baseSecondMagicNumber = THRESHOLD;
+        secondMagicNumber = baseSecondMagicNumber = DAMAGE;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new ApplyPowerAction(adp(), adp(), new ParadiseLostPower(adp(), DAMAGE, magicNumber, secondMagicNumber), magicNumber));
+        atb(new ApplyPowerAction(adp(), adp(), new ParadiseLostPower(adp(), secondMagicNumber, magicNumber, THRESHOLD), magicNumber));
     }
 
     @Override
