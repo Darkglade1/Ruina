@@ -88,5 +88,17 @@
     "TEXT": [
       "Choose A Card To Freeze."
     ]
+  },
+  "${ModID}:BookButton": {
+    "TEXT": [
+      "Frozen Pile",
+      "When cards are Frozen, they go into the Frozen Pile. NL NL Frozen cards are not drawn or shuffled normally, but can be played or drawn by using certain cards.",
+      "The Frozen Pile is empty!"
+    ]
+  },
+  "${ModID}:FrozenPileViewScreen": {
+    "TEXT": [
+      "These are your Frozen cards, shown in order from oldest to newest."
+    ]
   }
 }

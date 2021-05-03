@@ -3,11 +3,13 @@ package ruina.util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 
 import java.util.HashMap;
 
@@ -89,6 +91,31 @@ public class TexLoader {
                 return entry.getValue().equals(__instance);
             });
         }
+    }
+
+    public static void draw(SpriteBatch sb, Texture texture, float cX, float cY) { drawScaledAndRotated(sb, texture, cX, cY, 1f, 0f); }
+
+    public static void drawScaledAndRotated(SpriteBatch sb, Texture texture, float cX, float cY, float scale, float rotation) {
+        float w = texture.getWidth();
+        float h = texture.getHeight();
+        float halfW = w / 2f;
+        float halfH = h / 2f;
+        sb.draw(texture,
+                cX - halfW,
+                cY - halfH,
+                halfW,
+                halfH,
+                w,
+                h,
+                scale * Settings.scale,
+                scale * Settings.scale,
+                rotation,
+                0,
+                0,
+                (int) w,
+                (int) h,
+                false,
+                false);
     }
 
 }

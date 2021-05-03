@@ -8,8 +8,10 @@ import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
@@ -18,7 +20,9 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
@@ -82,10 +86,13 @@ import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
 import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
+import ruina.ui.BookButton;
+import ruina.ui.EGOButton;
 import ruina.util.TexLoader;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import static ruina.chr.chr_aya.characterStrings;
@@ -102,7 +109,10 @@ public class RuinaMod implements
         AddAudioSubscriber,
         PostBattleSubscriber,
         PreMonsterTurnSubscriber,
-        EditCharactersSubscriber {
+        EditCharactersSubscriber,
+        StartGameSubscriber,
+        PostDungeonUpdateSubscriber
+{
 
     private static final String modID = "ruina";
     public static final TextureAtlas UIAtlas = new TextureAtlas();
@@ -135,6 +145,7 @@ public class RuinaMod implements
     private static final String POWER_L_ART = getModID() + "Resources/images/1024/card.png";
     private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
 
+    // Angela stuff
     public static Color ANGELA_COLOR = new Color(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1);
     public static final String SHOULDER1 = getModID() + "Resources/images/char/mainChar/shoulder.png";
     public static final String SHOULDER2 = getModID() + "Resources/images/char/mainChar/shoulder2.png";
@@ -150,6 +161,15 @@ public class RuinaMod implements
     private static final String ANGELA_CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
     private static final String CHARSELECT_BUTTON = getModID() + "Resources/images/charSelect/charButton.png";
     private static final String CHARSELECT_PORTRAIT = getModID() + "Resources/images/charSelect/charBG.png";
+
+    public static CardGroup bookPile;
+    public static ArrayList<AbstractCard> cardsToBook;
+    public static ArrayList<AbstractCard> bookedThisCombat;
+    private static BookButton bookPileButton;
+
+    public static CardGroup egoPile;
+    private static EGOButton egoPileButton;
+
     //This is for the in-EnemyEnergyPanel mod settings panel.
     private static final String MODNAME = "Ruina";
     private static final String AUTHOR = "Darkglade";
@@ -829,6 +849,10 @@ public class RuinaMod implements
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         TotalBlockGainedSpireField.totalBlockGained.set(adp(), 0);
+        bookPile.clear();
+        cardsToBook.clear();
+        bookedThisCombat.clear();
+        egoPile.clear();
     }
 
     @Override
@@ -863,5 +887,53 @@ public class RuinaMod implements
 
     public static boolean hijackMenu() {
         return headClear;
+    }
+
+    public static void renderCombatUiElements(SpriteBatch sb) {
+        if (
+                AbstractDungeon.isPlayerInDungeon() &&
+                        AbstractDungeon.getCurrMapNode() != null &&
+                        AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT &&
+                        AbstractDungeon.getMonsters() != null &&
+                        !AbstractDungeon.getMonsters().areMonstersDead()
+        ) {
+            renderBookPile(sb, AbstractDungeon.overlayMenu.combatDeckPanel.current_x);
+            renderEGOPile(sb, AbstractDungeon.overlayMenu.combatDeckPanel.current_x);
+        }
+    }
+
+    public static void renderBookPile(SpriteBatch spriteBatch, float x) {
+        if (bookPileButton != null) {
+            bookPileButton.setX(x);
+            bookPileButton.render(spriteBatch);
+        }
+    }
+
+    public static void renderEGOPile(SpriteBatch spriteBatch, float x) {
+        if (egoPileButton != null) {
+            egoPileButton.setX(x);
+            egoPileButton.render(spriteBatch);
+        }
+    }
+
+    @Override
+    public void receivePostDungeonUpdate() {
+        if (bookPileButton != null) {
+            bookPileButton.update();
+        }
+        if(egoPileButton != null){
+            egoPileButton.update();
+        }
+    }
+
+    @Override
+    public void receiveStartGame() {
+        bookPileButton = new BookButton();
+        bookPile = new CardGroup(CardGroup.CardGroupType.DRAW_PILE);
+        cardsToBook = new ArrayList<>();
+        bookedThisCombat = new ArrayList<>();
+
+        egoPileButton = new EGOButton();
+        egoPile = new CardGroup(CardGroup.CardGroupType.DRAW_PILE);
     }
 }
