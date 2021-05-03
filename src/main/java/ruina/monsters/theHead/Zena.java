@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -78,6 +79,7 @@ public class Zena extends AbstractCardMonster
     public final int DEBUFF = calcAscensionSpecial(2);
     public final int POWER_DEBUFF = calcAscensionSpecial(2);
     public final int THICK_LINE_DEBUFF = calcAscensionSpecial(1);
+    public final int INVINCIBLE = 500;
 
     public GeburaHead gebura;
     public BinahHead binah;
@@ -98,6 +100,7 @@ public class Zena extends AbstractCardMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("ZenaIcon.png"));
+    private static final ArrayList<Texture> shockwave = new ArrayList<>();
 
     public Zena() {
         this(0.0f, 0.0f, PHASE.PHASE1);
@@ -125,6 +128,12 @@ public class Zena extends AbstractCardMonster
         cardList.add(new ThinLine(this));
         cardList.add(new ThickLine(this));
         cardList.add(new ZenaShockwave(this));
+
+        if (shockwave.isEmpty()) {
+            for (int i = 1; i <= 2; i++) {
+                shockwave.add(TexLoader.getTexture(makeMonsterPath("Zena/Shockwave/frame" + i + ".png")));
+            }
+        }
     }
 
     @Override
@@ -137,6 +146,7 @@ public class Zena extends AbstractCardMonster
         currentPhase = PHASE.PHASE2;
         numAdditionalMoves++;
         applyToTarget(this, this, new AnArbiter(this, POWER_DEBUFF));
+        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
     }
 
     @Override
@@ -206,6 +216,7 @@ public class Zena extends AbstractCardMonster
 
                 massAttackStartAnimation();
                 waitAnimation();
+                shockwaveCutscene();
                 massAttackFinishAnimation();
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle(1.0f);
@@ -507,6 +518,17 @@ public class Zena extends AbstractCardMonster
             this.onBossVictoryLogic();
             this.onFinalBossVictoryLogic();
         }
+    }
+
+    public void shockwaveCutscene() {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound("ZenaCutscene");
+                this.isDone = true;
+            }
+        });
+        fullScreenAnimation(shockwave, 0.5f, 1.0f);
     }
 
 }

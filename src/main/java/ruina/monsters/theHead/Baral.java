@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -88,6 +89,7 @@ public class Baral extends AbstractCardMonster
 
     public final int SERUM_K_BLOCK = calcAscensionTankiness(60);
     public final int SERUM_K_HEAL = calcAscensionTankiness(150);
+    public final int INVINCIBLE = 500;
 
     public RolandHead roland;
     public Zena zena;
@@ -166,6 +168,7 @@ public class Baral extends AbstractCardMonster
         rollMove();
         createIntent();
         applyToTarget(this, this, new AClaw(this, 30));
+        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
     }
 
     @Override
@@ -257,6 +260,14 @@ public class Baral extends AbstractCardMonster
         switch (move.nextMove) {
             case SERUM_W: {
                 moveAnimation();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        RenderHandPatch.plsDontRenderHand = true;
+                        AbstractDungeon.overlayMenu.hideCombatPanels();
+                        this.isDone = true;
+                    }
+                });
                 float duration = 3.5f;
                 if (currentPhase == PHASE.PHASE1) {
                     atb(new VFXAction(new SerumWAnimation(roland, this, false, bgTextures), duration));
