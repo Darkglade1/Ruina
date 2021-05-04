@@ -105,7 +105,7 @@ public class Roland extends AbstractAllyCardMonster {
         super(NAME, ID, 750, 10.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Roland/Spriter/Roland.scml"));
 
-        this.setHp(this.maxHealth);
+        this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
         addMove(CRYSTAL, Intent.ATTACK_DEFEND, crystalDamage, crystalHits, true);
@@ -131,10 +131,9 @@ public class Roland extends AbstractAllyCardMonster {
     @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, power);
-        applyToTarget(this, this, new StrengthPower(this, 1)); //because argalia starts with 1 strength so we need the PARALLEL
         updatePower();
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Argalia) { enemyBoss = (Argalia) mo; }
+            if (mo instanceof Argalia) { enemyBoss = mo; }
         }
         super.usePreBattleAction();
     }

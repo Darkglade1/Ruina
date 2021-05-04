@@ -28,6 +28,7 @@ import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
+import ruina.monsters.theHead.Zena;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
 import ruina.monsters.uninvitedGuests.normal.clown.Oswald;
@@ -144,6 +145,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/BlackSilence4");
                 } else if (mo instanceof BlackSilence3 || mo instanceof Angelica) {
                     this.bg = this.atlas.findRegion("mod/BlackSilence3");
+                } else if (mo instanceof Zena && ((Zena) mo).usedShockwave) {
+                    this.bg = this.atlas.findRegion("mod/Crater");
                 } else {
                     setBgs();
                 }

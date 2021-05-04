@@ -71,8 +71,8 @@
   },
   "${ModID}:ParadiseLost": {
     "NAME": "Paradise Lost",
-    "DESCRIPTION": "At the start of your turn, Exhaust up to !M! card. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP.",
-    "UPGRADE_DESCRIPTION": "At the start of your turn, Exhaust up to !M! cards. NL Whenever !ruina:SecondMagic! cards are Exhausted, ALL enemies lose 666 HP."
+    "DESCRIPTION": "At the start of your turn, Exhaust up to !M! card. NL Whenever 12 cards are Exhausted, ALL enemies lose !ruina:SecondMagic! HP.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, Exhaust up to !M! cards. NL Whenever 12 cards are Exhausted, ALL enemies lose !ruina:SecondMagic! HP."
   },
   "${ModID}:DeadSilence": {
     "NAME": "Dead Silence",
@@ -756,7 +756,7 @@
   },
   "${ModID}:SerumW": {
     "NAME": "Serum W",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "Deal !D! damage. NL If this creature has at least !M! Strength, instantly kill the target."
   },
   "${ModID}:SerumR": {
     "NAME": "Serum R",
@@ -784,7 +784,7 @@
   },
   "${ModID}:ThickLine": {
     "NAME": "Thick Line",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak nd Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak and Vulnerable."
   },
   "${ModID}:ZenaShockwave": {
     "NAME": "Shockwave",

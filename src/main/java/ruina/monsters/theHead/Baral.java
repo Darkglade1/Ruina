@@ -2,10 +2,15 @@ package ruina.monsters.theHead;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardModifierManager;
+import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
+import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -15,19 +20,27 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
+import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.HeadDialogueAction;
+import ruina.actions.SerumWAnimation;
 import ruina.actions.UsePreBattleActionAction;
+import ruina.actions.YeetPlayerAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.baralCards.Extirpation;
@@ -36,6 +49,7 @@ import ruina.monsters.theHead.baralCards.SerumR;
 import ruina.monsters.theHead.baralCards.SerumW;
 import ruina.monsters.theHead.baralCards.TriSerum;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
+import ruina.patches.RenderHandPatch;
 import ruina.powers.AClaw;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.PlayerBlackSilence;
@@ -44,6 +58,7 @@ import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
+import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
@@ -79,6 +94,11 @@ public class Baral extends AbstractCardMonster
 
     public final int SERUM_K_BLOCK = calcAscensionTankiness(60);
     public final int SERUM_K_HEAL = calcAscensionTankiness(150);
+    public final int POWER_STRENGTH = calcAscensionSpecial(8);
+    public final int POWER_DAMAGE_REDUCTION = calcAscensionSpecial(30);
+    public final int POWER_THRESHOLD = 30;
+    public final int KILL_THRESHOLD = 25;
+    public final int INVINCIBLE;
 
     public RolandHead roland;
     public Zena zena;
@@ -86,6 +106,7 @@ public class Baral extends AbstractCardMonster
     public int playerMaxHp;
     public int playerCurrentHp;
     public ArrayList<AbstractRelic> playerRelics = new ArrayList<>();
+    public ArrayList<AbstractPotion> playerPotions = new ArrayList<>();
     public int playerEnergy;
     public int playerCardDraw;
     public boolean deathTriggered = false;
@@ -99,6 +120,8 @@ public class Baral extends AbstractCardMonster
     public PHASE currentPhase;
 
     public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("BaralIcon.png"));
+    private static final ArrayList<TextureRegion> bgTextures = new ArrayList<>();
+    private static final ArrayList<Texture> serumWFinish = new ArrayList<>();
 
     public Baral() { this(0.0f, 0.0f, PHASE.PHASE1); }
     public Baral(final float x, final float y) { this(x, y, PHASE.PHASE1); }
@@ -124,6 +147,28 @@ public class Baral extends AbstractCardMonster
         cardList.add(new Extirpation(this));
         cardList.add(new TriSerum(this));
         cardList.add(new SerumK(this));
+
+        if (bgTextures.isEmpty()) {
+            ArrayList<Texture> bgs = new ArrayList<>();
+            for (int i = 1; i <= 9; i++) {
+                bgs.add(TexLoader.getTexture(makeMonsterPath("Baral/Backgrounds/BG" + i + ".png")));
+            }
+            for (Texture texture : bgs) {
+                bgTextures.add(new TextureRegion(texture));
+            }
+        }
+
+        if (serumWFinish.isEmpty()) {
+            for (int i = 6; i <= 15; i++) {
+                serumWFinish.add(TexLoader.getTexture(makeMonsterPath("Baral/Frames/frame" + i + ".png")));
+            }
+        }
+
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            INVINCIBLE = 400;
+        } else {
+            INVINCIBLE = 500;
+        }
     }
 
     @Override
@@ -137,7 +182,8 @@ public class Baral extends AbstractCardMonster
         numAdditionalMoves++;
         rollMove();
         createIntent();
-        applyToTarget(this, this, new AClaw(this, 30));
+        applyToTarget(this, this, new AClaw(this, POWER_THRESHOLD, POWER_DAMAGE_REDUCTION, POWER_STRENGTH));
+        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
     }
 
     @Override
@@ -152,7 +198,7 @@ public class Baral extends AbstractCardMonster
             }
             applyToTarget(this, this, new InvisibleBarricadePower(this));
 
-            roland = new RolandHead(-1100.0F, -20.0f);
+            roland = new RolandHead(-1100.0F, 0.0f);
             roland.drawX = AbstractDungeon.player.drawX;
             AbstractPower power = new PlayerBlackSilence(adp(), roland);
             AbstractDungeon.player.powers.add(power);
@@ -164,11 +210,16 @@ public class Baral extends AbstractCardMonster
             adp().healthBarUpdatedEvent();
             playerRelics.addAll(adp().relics);
             adp().relics.clear();
+            playerPotions.addAll(adp().potions);
+            adp().potions.clear();
             playerEnergy = adp().energy.energy;
             playerCardDraw = adp().gameHandSize;
             adp().energy.energy = 5;
             EnergyPanel.totalCount = 5 - playerEnergy; //that way when the initial energy is added it adds up to 5
             adp().gameHandSize = 5;
+            adp().loseBlock();
+            TempHPField.tempHp.set(adp(), 0);
+            adp().stance = new NeutralStance();
 
             addToBot(new AbstractGameAction() {
                 @Override
@@ -226,8 +277,48 @@ public class Baral extends AbstractCardMonster
         }
         switch (move.nextMove) {
             case SERUM_W: {
-                pierceAnimation(target);
+                moveAnimation();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        RenderHandPatch.plsDontRenderHand = true;
+                        AbstractDungeon.overlayMenu.hideCombatPanels();
+                        this.isDone = true;
+                    }
+                });
+                float duration = 3.5f;
+                if (currentPhase == PHASE.PHASE1) {
+                    atb(new VFXAction(new SerumWAnimation(roland, this, false, bgTextures), duration));
+                } else {
+                    if (target == adp()) {
+                        atb(new VFXAction(new SerumWAnimation(target, this, true, bgTextures), duration));
+                    } else {
+                        atb(new VFXAction(new SerumWAnimation(target, this, false, bgTextures), duration));
+                    }
+                }
+                serumWFinishAnimation();
+                waitAnimation(0.25f);
+                serumWAnimation(target);
                 dmg(target, info);
+                AbstractPower strength = getPower(StrengthPower.POWER_ID);
+                if (strength != null && strength.amount >= KILL_THRESHOLD) {
+                    if (target == adp()) {
+                        atb(new YeetPlayerAction());
+                    } else {
+                        AbstractCreature enemy = target;
+                        atb(new AbstractGameAction() {
+                            @Override
+                            public void update() {
+                                enemy.currentHealth = 0;
+                                enemy.healthBarUpdatedEvent();
+                                enemy.useStaggerAnimation();
+                                AbstractDungeon.effectList.add(new StrikeEffect(enemy, enemy.hb.cX, enemy.hb.cY, 999));
+                                enemy.damage(new DamageInfo(null, 0, DamageInfo.DamageType.HP_LOSS));
+                                this.isDone = true;
+                            }
+                        });
+                    }
+                }
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
@@ -314,6 +405,11 @@ public class Baral extends AbstractCardMonster
         animationAction("Move", "ClawUltiMove", this);
     }
 
+    private void serumWAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "ClawFin", enemy, this);
+    }
+
+
     @Override
     public void takeTurn() {
         super.takeTurn();
@@ -357,7 +453,6 @@ public class Baral extends AbstractCardMonster
                         public void update() {
                             gebura.resetIdle(0.0f);
                             zena.halfDead = false;
-                            CustomDungeon.playTempMusicInstantly("TheHead");
                             isDone = true;
                         }
                     });
@@ -456,5 +551,17 @@ public class Baral extends AbstractCardMonster
             this.onBossVictoryLogic();
             this.onFinalBossVictoryLogic();
         }
+    }
+
+    public void serumWFinishAnimation() {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound("ClawCutscene");
+                this.isDone = true;
+            }
+        });
+        waitAnimation();
+        fullScreenAnimation(serumWFinish, 0.1f, 1.0f);
     }
 }

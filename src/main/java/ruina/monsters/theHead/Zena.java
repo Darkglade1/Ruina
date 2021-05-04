@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -77,12 +78,14 @@ public class Zena extends AbstractCardMonster
     public final int BLOCK = calcAscensionTankiness(45);
     public final int DEBUFF = calcAscensionSpecial(2);
     public final int POWER_DEBUFF = calcAscensionSpecial(2);
-    public final int THICK_LINE_DEBUFF = calcAscensionSpecial(1);
+    public final int THICK_LINE_DEBUFF = 2;
+    public final int INVINCIBLE;
 
     public GeburaHead gebura;
     public BinahHead binah;
     public Baral baral;
     public boolean deathTriggered = false;
+    public boolean usedShockwave = false;
 
     public enum PHASE{
         PHASE1,
@@ -98,6 +101,7 @@ public class Zena extends AbstractCardMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("ZenaIcon.png"));
+    private static final ArrayList<Texture> shockwave = new ArrayList<>();
 
     public Zena() {
         this(0.0f, 0.0f, PHASE.PHASE1);
@@ -125,6 +129,18 @@ public class Zena extends AbstractCardMonster
         cardList.add(new ThinLine(this));
         cardList.add(new ThickLine(this));
         cardList.add(new ZenaShockwave(this));
+
+        if (shockwave.isEmpty()) {
+            for (int i = 1; i <= 2; i++) {
+                shockwave.add(TexLoader.getTexture(makeMonsterPath("Zena/Shockwave/frame" + i + ".png")));
+            }
+        }
+
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            INVINCIBLE = 400;
+        } else {
+            INVINCIBLE = 500;
+        }
     }
 
     @Override
@@ -137,6 +153,7 @@ public class Zena extends AbstractCardMonster
         currentPhase = PHASE.PHASE2;
         numAdditionalMoves++;
         applyToTarget(this, this, new AnArbiter(this, POWER_DEBUFF));
+        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
     }
 
     @Override
@@ -206,8 +223,17 @@ public class Zena extends AbstractCardMonster
 
                 massAttackStartAnimation();
                 waitAnimation();
+                shockwaveCutscene();
                 massAttackFinishAnimation();
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        usedShockwave = true;
+                        AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
+                        this.isDone = true;
+                    }
+                });
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
@@ -295,7 +321,6 @@ public class Zena extends AbstractCardMonster
                         @Override
                         public void update() {
                             binah.resetIdle(0.0f);
-                            CustomDungeon.playTempMusicInstantly("TheHead");
                             isDone = true;
                         }
                     });
@@ -312,7 +337,7 @@ public class Zena extends AbstractCardMonster
                         }
                     });
                     waitAnimation(1.5f);
-                    float playerX = 1700.0f;
+                    float playerX = 1700.0f * Settings.scale;
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
@@ -358,6 +383,7 @@ public class Zena extends AbstractCardMonster
                             adp().discardPile.clear();
                             adp().exhaustPile.clear();
                             adp().relics.addAll(baral.playerRelics);
+                            adp().potions.addAll(baral.playerPotions);
                             adp().energy.energy = baral.playerEnergy;
                             adp().gameHandSize = baral.playerCardDraw;
                             if (adp().hasRelic(SlaversCollar.ID)) {
@@ -367,6 +393,7 @@ public class Zena extends AbstractCardMonster
                             adp().applyStartOfCombatLogic();
                             adp().applyStartOfCombatPreDrawLogic();
                             baral.roland.rollMove();
+                            CustomDungeon.playTempMusicInstantly("TheHead");
                             this.isDone = true;
                         }
                     });
@@ -404,13 +431,12 @@ public class Zena extends AbstractCardMonster
         } else {
             if (massAttackCooldown <= 0) {
                 setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
+            } else if (AbstractDungeon.ascensionLevel >= 19 && !this.lastMove(THICK_LINE) && !this.lastMoveBefore(THICK_LINE)) {
+                setMoveShortcut(THICK_LINE, MOVES[THICK_LINE], cardList.get(THICK_LINE).makeStatEquivalentCopy());
             } else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
                 if (!this.lastMove(THIN_LINE)) {
                     possibilities.add(THIN_LINE);
-                }
-                if (!this.lastMove(THICK_LINE) && !this.lastMoveBefore(THICK_LINE)) {
-                    possibilities.add(THICK_LINE);
                 }
                 if (!this.lastMove(LINE)) {
                     possibilities.add(LINE);
@@ -506,6 +532,17 @@ public class Zena extends AbstractCardMonster
             this.onBossVictoryLogic();
             this.onFinalBossVictoryLogic();
         }
+    }
+
+    public void shockwaveCutscene() {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound("ZenaCutscene");
+                this.isDone = true;
+            }
+        });
+        fullScreenAnimation(shockwave, 0.5f, 1.0f);
     }
 
 }

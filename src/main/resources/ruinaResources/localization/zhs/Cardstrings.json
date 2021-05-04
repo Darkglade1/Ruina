@@ -71,8 +71,8 @@
   },
   "ruina:ParadiseLost": {
     "NAME": "失乐园",
-    "DESCRIPTION": "在你的回合开始时， 消耗 最多 !M! 张牌。 NL 每当 !ruina:SecondMagic! 张牌被 消耗 ，所有敌人失去666点生命。",
-    "UPGRADE_DESCRIPTION": "在你的回合开始时， 消耗 最多 !M! 张牌。 NL 每当 !ruina:SecondMagic! 张牌被 消耗 ，所有敌人失去666点生命。"
+    "DESCRIPTION": "在你的回合开始时， 消耗 最多 !M! 张牌。 NL 每当12张牌被 消耗 ，所有敌人失去 !ruina:SecondMagic! 点生命。",
+    "UPGRADE_DESCRIPTION": "在你的回合开始时， 消耗 最多 !M! 张牌。 NL 每当12张牌被 消耗 ，所有敌人失去 !ruina:SecondMagic! 点生命。"
   },
   "ruina:DeadSilence": {
     "NAME": "死寂",

@@ -64,7 +64,7 @@ public class BlackSilence3 extends AbstractCardMonster {
     public final int lonelyDebuff = calcAscensionSpecial(2);
     public final int furyDamage = calcAscensionDamage(20);
     public final int furyDebuff = calcAscensionSpecial(2);
-    public final int waltzDamage = calcAscensionDamage(9);
+    public final int waltzDamage = calcAscensionDamage(8);
     public final int waltzHits = 3;
     public final int bondBlock = calcAscensionTankiness(20);
     public final int bondVoid = calcAscensionSpecial(2);

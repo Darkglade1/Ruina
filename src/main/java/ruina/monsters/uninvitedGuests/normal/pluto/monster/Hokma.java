@@ -61,7 +61,7 @@ public class Hokma extends AbstractAllyCardMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Hokma/Spriter/Hokma.scml"));
         this.animation.setFlip(true, false);
 
-        this.setHp(maxHealth);
+        this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
         addMove(SILENCE, Intent.ATTACK, 10);

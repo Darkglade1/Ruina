@@ -425,7 +425,7 @@
   },
   "${ModID}:AClaw": {
     "NAME": "Executioner",
-    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL If this creature would receive #b", " or more unblocked attack damage, reduce the damage by #b", "%."]
+    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL If this creature would receive #b", " or more unblocked attack damage, reduce the damage by #b", "%. NL Whenever a creature dies, gains #b", " #yStrength."]
   },
   "${ModID}:AnArbiter": {
     "NAME": "Complete Arbiter",
