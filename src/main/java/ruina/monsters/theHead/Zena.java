@@ -85,6 +85,7 @@ public class Zena extends AbstractCardMonster
     public BinahHead binah;
     public Baral baral;
     public boolean deathTriggered = false;
+    public boolean usedShockwave = false;
 
     public enum PHASE{
         PHASE1,
@@ -225,6 +226,14 @@ public class Zena extends AbstractCardMonster
                 shockwaveCutscene();
                 massAttackFinishAnimation();
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        usedShockwave = true;
+                        AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
+                        this.isDone = true;
+                    }
+                });
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
