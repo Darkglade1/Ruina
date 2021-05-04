@@ -34,11 +34,13 @@ import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
+import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.HeadDialogueAction;
 import ruina.actions.SerumWAnimation;
 import ruina.actions.UsePreBattleActionAction;
+import ruina.actions.YeetPlayerAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.baralCards.Extirpation;
@@ -92,7 +94,11 @@ public class Baral extends AbstractCardMonster
 
     public final int SERUM_K_BLOCK = calcAscensionTankiness(60);
     public final int SERUM_K_HEAL = calcAscensionTankiness(150);
-    public final int INVINCIBLE = 500;
+    public final int POWER_STRENGTH = calcAscensionSpecial(8);
+    public final int POWER_DAMAGE_REDUCTION = calcAscensionSpecial(30);
+    public final int POWER_THRESHOLD = 30;
+    public final int KILL_THRESHOLD = 25;
+    public final int INVINCIBLE;
 
     public RolandHead roland;
     public Zena zena;
@@ -157,6 +163,12 @@ public class Baral extends AbstractCardMonster
                 serumWFinish.add(TexLoader.getTexture(makeMonsterPath("Baral/Frames/frame" + i + ".png")));
             }
         }
+
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            INVINCIBLE = 400;
+        } else {
+            INVINCIBLE = 500;
+        }
     }
 
     @Override
@@ -170,7 +182,7 @@ public class Baral extends AbstractCardMonster
         numAdditionalMoves++;
         rollMove();
         createIntent();
-        applyToTarget(this, this, new AClaw(this, 30));
+        applyToTarget(this, this, new AClaw(this, POWER_THRESHOLD, POWER_DAMAGE_REDUCTION, POWER_STRENGTH));
         applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
     }
 
@@ -288,6 +300,25 @@ public class Baral extends AbstractCardMonster
                 waitAnimation(0.25f);
                 serumWAnimation(target);
                 dmg(target, info);
+                AbstractPower strength = getPower(StrengthPower.POWER_ID);
+                if (strength != null && strength.amount >= KILL_THRESHOLD) {
+                    if (target == adp()) {
+                        atb(new YeetPlayerAction());
+                    } else {
+                        AbstractCreature enemy = target;
+                        atb(new AbstractGameAction() {
+                            @Override
+                            public void update() {
+                                enemy.currentHealth = 0;
+                                enemy.healthBarUpdatedEvent();
+                                enemy.useStaggerAnimation();
+                                AbstractDungeon.effectList.add(new StrikeEffect(enemy, enemy.hb.cX, enemy.hb.cY, 999));
+                                enemy.damage(new DamageInfo(null, 0, DamageInfo.DamageType.HP_LOSS));
+                                this.isDone = true;
+                            }
+                        });
+                    }
+                }
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override

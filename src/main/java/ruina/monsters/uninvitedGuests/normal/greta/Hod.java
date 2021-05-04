@@ -85,7 +85,7 @@ public class Hod extends AbstractAllyCardMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Hod/Spriter/Hod.scml"));
         this.animation.setFlip(true, false);
 
-        this.setHp(maxHealth);
+        this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
         addMove(SNAKE_SLIT, Intent.ATTACK_BUFF, 7, snakeHits, true);

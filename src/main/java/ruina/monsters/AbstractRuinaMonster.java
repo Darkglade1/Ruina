@@ -25,6 +25,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     private static final float ASCENSION_DAMAGE_BUFF_PERCENT = 1.10f;
     private static final float ASCENSION_TANK_BUFF_PERCENT = 1.10f;
     private static final float ASCENSION_SPECIAL_BUFF_PERCENT = 1.5f;
+    private static final float ASCENSION_TANK_NERF_PERCENT = 0.85f;
 
     public AbstractRuinaMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -91,22 +92,42 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
     protected int calcAscensionTankiness(float base) {
-        switch (this.type) {
-            case BOSS:
-                if(AbstractDungeon.ascensionLevel >= 9) {
-                    base *= ASCENSION_TANK_BUFF_PERCENT;
-                }
-                break;
-            case ELITE:
-                if(AbstractDungeon.ascensionLevel >= 8) {
-                    base *= ASCENSION_TANK_BUFF_PERCENT;
-                }
-                break;
-            case NORMAL:
-                if(AbstractDungeon.ascensionLevel >= 7) {
-                    base *= ASCENSION_TANK_BUFF_PERCENT;
-                }
-                break;
+        if (this instanceof AbstractAllyMonster) {
+            switch (this.type) {
+                case BOSS:
+                    if(AbstractDungeon.ascensionLevel >= 9) {
+                        base *= ASCENSION_TANK_NERF_PERCENT;
+                    }
+                    break;
+                case ELITE:
+                    if(AbstractDungeon.ascensionLevel >= 8) {
+                        base *= ASCENSION_TANK_NERF_PERCENT;
+                    }
+                    break;
+                case NORMAL:
+                    if(AbstractDungeon.ascensionLevel >= 7) {
+                        base *= ASCENSION_TANK_NERF_PERCENT;
+                    }
+                    break;
+            }
+        } else {
+            switch (this.type) {
+                case BOSS:
+                    if(AbstractDungeon.ascensionLevel >= 9) {
+                        base *= ASCENSION_TANK_BUFF_PERCENT;
+                    }
+                    break;
+                case ELITE:
+                    if(AbstractDungeon.ascensionLevel >= 8) {
+                        base *= ASCENSION_TANK_BUFF_PERCENT;
+                    }
+                    break;
+                case NORMAL:
+                    if(AbstractDungeon.ascensionLevel >= 7) {
+                        base *= ASCENSION_TANK_BUFF_PERCENT;
+                    }
+                    break;
+            }
         }
         return Math.round(base);
     }

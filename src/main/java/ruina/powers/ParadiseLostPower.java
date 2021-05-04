@@ -18,17 +18,14 @@ public class ParadiseLostPower extends AbstractEasyPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private int currentDamage;
-    private final int baseDamage;
     private final int threshold;
     private int exhaustNum;
 
     public ParadiseLostPower(AbstractCreature owner, int damage, int amount, int threshold) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
-        this.currentDamage = damage;
-        this.baseDamage = damage;
+        this.amount = damage;
         this.exhaustNum = amount;
-        this.amount = 0;
+        this.amount2 = 0;
         this.threshold = threshold;
         updateDescription();
     }
@@ -40,29 +37,29 @@ public class ParadiseLostPower extends AbstractEasyPower {
 
     @Override
     public void onExhaust(AbstractCard card) {
-        amount++;
-        if (amount % threshold == 0) {
-            amount = 0;
+        amount2++;
+        if (amount2 % threshold == 0) {
+            amount2 = 0;
             this.flash();
-            atb(new DamageAllEnemiesAction(this.owner, DamageInfo.createDamageMatrix(currentDamage, true), DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.FIRE, true));
+            atb(new DamageAllEnemiesAction(this.owner, DamageInfo.createDamageMatrix(amount, true), DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.FIRE, true));
         } else {
             flashWithoutSound();
         }
     }
 
     @Override
-    public void stackPower(int stackAmount) {
-        exhaustNum += stackAmount;
-        currentDamage += baseDamage;
+    public void stackPower(int stackamount) {
+        amount += stackamount;
+        exhaustNum ++;
         updateDescription();
     }
 
     @Override
     public void updateDescription() {
         if (exhaustNum == 1) {
-            this.description = DESCRIPTIONS[0] + exhaustNum + DESCRIPTIONS[1] + DESCRIPTIONS[3] + threshold + DESCRIPTIONS[4] + currentDamage + DESCRIPTIONS[5];
+            this.description = DESCRIPTIONS[0] + exhaustNum + DESCRIPTIONS[1] + DESCRIPTIONS[3] + threshold + DESCRIPTIONS[4] + amount + DESCRIPTIONS[5];
         } else {
-            this.description = DESCRIPTIONS[0] + exhaustNum + DESCRIPTIONS[2] + DESCRIPTIONS[3] + threshold + DESCRIPTIONS[4] + currentDamage + DESCRIPTIONS[5];
+            this.description = DESCRIPTIONS[0] + exhaustNum + DESCRIPTIONS[2] + DESCRIPTIONS[3] + threshold + DESCRIPTIONS[4] + amount + DESCRIPTIONS[5];
         }
     }
 }

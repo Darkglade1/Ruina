@@ -756,7 +756,7 @@
   },
   "${ModID}:SerumW": {
     "NAME": "Serum W",
-    "DESCRIPTION": "Deal !D! damage."
+    "DESCRIPTION": "Deal !D! damage. NL If this creature has at least !M! Strength, instantly kill the target."
   },
   "${ModID}:SerumR": {
     "NAME": "Serum R",
@@ -784,7 +784,7 @@
   },
   "${ModID}:ThickLine": {
     "NAME": "Thick Line",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak nd Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak and Vulnerable."
   },
   "${ModID}:ZenaShockwave": {
     "NAME": "Shockwave",

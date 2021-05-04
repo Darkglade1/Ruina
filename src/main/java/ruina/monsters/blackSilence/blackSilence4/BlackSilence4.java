@@ -96,7 +96,7 @@ public class BlackSilence4 extends AbstractCardMonster {
     public final int DEBUFF = calcAscensionSpecial(1);
     public final int NUM_VOIDS = calcAscensionSpecial(2);
     public final int scarHeal = calcAscensionSpecial(50);
-    public final int INVINCIBLE = 150;
+    public final int INVINCIBLE;
 
     public final int yunDazes = calcAscensionSpecial(3);
     public final int yunWounds = calcAscensionSpecial(2);
@@ -107,20 +107,20 @@ public class BlackSilence4 extends AbstractCardMonster {
     public final int dawnBurns = calcAscensionSpecial(2);
     public final int dawnProtection = calcAscensionSpecial(5);
 
-    public final int shiWeak = calcAscensionSpecial(4);
-    public final int shiFrail = calcAscensionSpecial(4);
+    public final int shiWeak = calcAscensionSpecial(3);
+    public final int shiFrail = calcAscensionSpecial(3);
 
     public final int loveRegen = calcAscensionSpecial(15);
-    public final int loveSlimed = calcAscensionSpecial(5);
+    public final int loveSlimed = calcAscensionSpecial(4);
 
-    public final int liuStrength = calcAscensionSpecial(5);
-    public final int liuVulnerable = calcAscensionSpecial(3);
+    public final int liuStrength = calcAscensionSpecial(4);
+    public final int liuVulnerable = calcAscensionSpecial(2);
 
     public final int purpleIntangible = calcAscensionSpecial(1);
     public final int purpleMinions = 1;
 
     public final int hanaRegret = calcAscensionSpecial(2);
-    public final int hanaHpLoss = calcAscensionSpecial(25);
+    public final int hanaHpLoss = calcAscensionSpecial(20);
 
     private final ArrayList<Byte> memories = new ArrayList<>();
 
@@ -146,8 +146,8 @@ public class BlackSilence4 extends AbstractCardMonster {
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
-        addMove(AGONY, Intent.ATTACK, calcAscensionDamage(45));
-        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(17), screamHits, true);
+        addMove(AGONY, Intent.ATTACK, calcAscensionDamage(40));
+        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(16), screamHits, true);
         addMove(VOID, Intent.STRONG_DEBUFF);
         addMove(YUN, Intent.UNKNOWN);
         addMove(ZWEI, Intent.UNKNOWN);
@@ -172,6 +172,12 @@ public class BlackSilence4 extends AbstractCardMonster {
         cardList.add(new Purple(this));
         cardList.add(new Hana(this));
         cardList.add(new Blue(this));
+
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            INVINCIBLE = 150;
+        } else {
+            INVINCIBLE = 250;
+        }
     }
 
     @Override

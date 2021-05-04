@@ -105,7 +105,7 @@ public class Malkuth extends AbstractAllyCardMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Malkuth/Spriter/Malkuth.scml"));
         this.animation.setFlip(true, false);
 
-        this.setHp(maxHealth);
+        this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
         addMove(COORDINATED_ASSAULT, Intent.DEFEND_BUFF);

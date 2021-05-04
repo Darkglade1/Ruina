@@ -55,14 +55,14 @@ public class Angelica extends AbstractCardMonster {
     private static final byte NONE = 5;
     private static final byte SOUL_LINK_REVIVAL = 6;
 
-    public final int zelkovaDamage = calcAscensionDamage(9);
+    public final int zelkovaDamage = calcAscensionDamage(8);
     public final int zelkovaHits = 2;
     public final int zelkovaBlock = calcAscensionTankiness(24);
     public final int allasDamage = calcAscensionDamage(19);
     public final int allasDebuff = calcAscensionSpecial(2);
-    public final int atelierDamage = calcAscensionDamage(7);
+    public final int atelierDamage = calcAscensionDamage(6);
     public final int atelierHits = 3;
-    public final int waltzDamage = calcAscensionDamage(9);
+    public final int waltzDamage = calcAscensionDamage(8);
     public final int waltzHits = 3;
     public final int bondStrength = calcAscensionSpecial(2);
     public final int bondBlock = calcAscensionTankiness(20);

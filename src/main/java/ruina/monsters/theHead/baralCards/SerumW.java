@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
-import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.theHead.Baral;
 
 import static ruina.RuinaMod.makeID;
@@ -19,6 +18,7 @@ public class SerumW extends AbstractRuinaCard {
     public SerumW(Baral parent) {
         super(ID, -2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.SERUM_W_DAMAGE;
+        magicNumber = baseMagicNumber = parent.KILL_THRESHOLD;
         this.parent = parent;
     }
 

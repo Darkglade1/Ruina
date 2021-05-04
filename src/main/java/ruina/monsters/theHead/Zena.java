@@ -78,8 +78,8 @@ public class Zena extends AbstractCardMonster
     public final int BLOCK = calcAscensionTankiness(45);
     public final int DEBUFF = calcAscensionSpecial(2);
     public final int POWER_DEBUFF = calcAscensionSpecial(2);
-    public final int THICK_LINE_DEBUFF = calcAscensionSpecial(1);
-    public final int INVINCIBLE = 500;
+    public final int THICK_LINE_DEBUFF = 2;
+    public final int INVINCIBLE;
 
     public GeburaHead gebura;
     public BinahHead binah;
@@ -133,6 +133,12 @@ public class Zena extends AbstractCardMonster
             for (int i = 1; i <= 2; i++) {
                 shockwave.add(TexLoader.getTexture(makeMonsterPath("Zena/Shockwave/frame" + i + ".png")));
             }
+        }
+
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            INVINCIBLE = 400;
+        } else {
+            INVINCIBLE = 500;
         }
     }
 
@@ -416,13 +422,12 @@ public class Zena extends AbstractCardMonster
         } else {
             if (massAttackCooldown <= 0) {
                 setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
+            } else if (AbstractDungeon.ascensionLevel >= 19 && !this.lastMove(THICK_LINE) && !this.lastMoveBefore(THICK_LINE)) {
+                setMoveShortcut(THICK_LINE, MOVES[THICK_LINE], cardList.get(THICK_LINE).makeStatEquivalentCopy());
             } else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
                 if (!this.lastMove(THIN_LINE)) {
                     possibilities.add(THIN_LINE);
-                }
-                if (!this.lastMove(THICK_LINE) && !this.lastMoveBefore(THICK_LINE)) {
-                    possibilities.add(THICK_LINE);
                 }
                 if (!this.lastMove(LINE)) {
                     possibilities.add(LINE);

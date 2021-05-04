@@ -74,7 +74,7 @@ public class Yesod extends AbstractAllyCardMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Yesod/Spriter/Yesod.scml"));
         this.animation.setFlip(true, false);
         massAttackHitsPlayer = true;
-        this.setHp(maxHealth);
+        this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
         addMove(RELOAD, Intent.DEFEND_BUFF);

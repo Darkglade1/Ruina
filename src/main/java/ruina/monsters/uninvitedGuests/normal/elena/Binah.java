@@ -77,7 +77,7 @@ public class Binah extends AbstractAllyCardMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Binah/Spriter/Binah.scml"));
         this.animation.setFlip(true, false);
 
-        this.setHp(maxHealth);
+        this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
         addMove(DEGRADED_PILLAR, Intent.ATTACK_DEFEND, 24);

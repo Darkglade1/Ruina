@@ -18,11 +18,14 @@ public class AClaw extends AbstractUnremovablePower implements OnReceivePowerPow
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public static final int DAMAGE_REDUCTION = 30;
-    public static final int STRENGTH = 10;
+    public final int DAMAGE_REDUCTION;
+    public final int STRENGTH;
 
-    public AClaw(AbstractCreature owner, int amount) {
+    public AClaw(AbstractCreature owner, int amount, int damageReduction, int strength) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
+        DAMAGE_REDUCTION = damageReduction;
+        STRENGTH = strength;
+        updateDescription();
     }
 
     @Override
