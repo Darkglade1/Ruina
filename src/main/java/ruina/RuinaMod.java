@@ -539,6 +539,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("Shaking"), makeSFXPath("Shake_End.wav"));
         BaseMod.addAudio(makeID("BinahArrive"), makeSFXPath("Binah_On.wav"));
         BaseMod.addAudio(makeID("GeburaArrive"), makeSFXPath("Gebura_On.wav"));
+
+        BaseMod.addAudio(makeID("AngelaSnap"), makeSFXPath("ch1_FingerSnap.wav"));
+
     }
 
     @Override
