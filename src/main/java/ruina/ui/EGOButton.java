@@ -1,34 +1,34 @@
 package ruina.ui;
 
-        import basemod.ClickableUIElement;
-        import com.badlogic.gdx.Gdx;
-        import com.badlogic.gdx.Input;
-        import com.badlogic.gdx.graphics.Color;
-        import com.badlogic.gdx.graphics.Texture;
-        import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-        import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
-        import com.megacrit.cardcrawl.actions.AbstractGameAction;
-        import com.megacrit.cardcrawl.cards.AbstractCard;
-        import com.megacrit.cardcrawl.characters.AbstractPlayer;
-        import com.megacrit.cardcrawl.core.CardCrawlGame;
-        import com.megacrit.cardcrawl.core.Settings;
-        import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-        import com.megacrit.cardcrawl.helpers.FontHelper;
-        import com.megacrit.cardcrawl.helpers.ImageMaster;
-        import com.megacrit.cardcrawl.helpers.TipHelper;
-        import com.megacrit.cardcrawl.helpers.input.InputHelper;
-        import com.megacrit.cardcrawl.localization.UIStrings;
-        import com.megacrit.cardcrawl.rooms.AbstractRoom;
-        import com.megacrit.cardcrawl.vfx.BobEffect;
-        import com.megacrit.cardcrawl.vfx.ThoughtBubble;
-        import ruina.chr.chr_aya;
-        import ruina.patches.chr_angela.ExhaustPileViewScreenPatch;
-        import ruina.util.TexLoader;
+import basemod.ClickableUIElement;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.SelectCardsAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.vfx.BobEffect;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
+import ruina.chr.chr_aya;
+import ruina.patches.chr_angela.ExhaustPileViewScreenPatch;
+import ruina.util.TexLoader;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
-        import static ruina.RuinaMod.*;
-        import static ruina.util.Wiz.*;
+import static ruina.RuinaMod.*;
+import static ruina.util.Wiz.*;
 
 public class EGOButton extends ClickableUIElement {
     private static final float X_OFF = 0f; // 200f * Settings.scale;
@@ -42,7 +42,7 @@ public class EGOButton extends ClickableUIElement {
     private static final float DECK_TIP_X = 0F * Settings.scale;
     private static final float DECK_TIP_Y = 128.0F * Settings.scale;
     private final Texture bookButton = TexLoader.getTexture(makeUIPath("egoButton.png"));
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("BookButton"));
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("EGOButton"));
     public static final String[] TEXT = uiStrings.TEXT;
     private final BobEffect bob;
     private boolean isOpen = false;
@@ -71,7 +71,7 @@ public class EGOButton extends ClickableUIElement {
             CardCrawlGame.sound.play("DECK_CLOSE");
             AbstractDungeon.closeCurrentScreen();
         } else if (!AbstractDungeon.isScreenUp) {
-            if (bookPile.isEmpty()) {
+            if (egoPile.isEmpty()) {
                 AbstractPlayer p = AbstractDungeon.player;
                 AbstractDungeon.effectList.add(new ThoughtBubble(p.dialogX, p.dialogY, 3.0F, TEXT[2], true));
             } else {
@@ -100,7 +100,7 @@ public class EGOButton extends ClickableUIElement {
                         @Override
                         public void update() {
                             adp().hand.removeCard(c);
-                            bookPile.addToBottom(c.makeStatEquivalentCopy());
+                            egoPile.addToBottom(c.makeStatEquivalentCopy());
                             isDone = true;
                         }
                     });
@@ -111,10 +111,10 @@ public class EGOButton extends ClickableUIElement {
 
     @Override
     public void render(SpriteBatch sb) {
-        if (bookPile != null && (AbstractDungeon.player.chosenClass == chr_aya.Enums.ANGELA_LOR || egoPile.size() > 0)) {
+        if (egoPile != null && (AbstractDungeon.player.chosenClass == chr_aya.Enums.ANGELA_LOR || egoPile.size() > 0)) {
             if (!AbstractDungeon.overlayMenu.combatDeckPanel.isHidden) {
                 float x = hitbox.x + hitbox.width / 2f;
-                float y = hitbox.y + hitbox.height;
+                float y = hitbox.y + hitbox.height / 2f;
                 sb.setColor(Color.WHITE);
                 TexLoader.draw(sb, bookButton, x, y + bob.y);
 

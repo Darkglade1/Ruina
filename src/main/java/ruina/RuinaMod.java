@@ -8,7 +8,6 @@ import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -86,7 +85,6 @@ import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
 import ruina.patches.TotalBlockGainedSpireField;
 import ruina.relics.AbstractEasyRelic;
-import ruina.ui.BookButton;
 import ruina.ui.EGOButton;
 import ruina.util.TexLoader;
 
@@ -161,11 +159,6 @@ public class RuinaMod implements
     private static final String ANGELA_CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
     private static final String CHARSELECT_BUTTON = getModID() + "Resources/images/charSelect/charButton.png";
     private static final String CHARSELECT_PORTRAIT = getModID() + "Resources/images/charSelect/charBG.png";
-
-    public static CardGroup bookPile;
-    public static ArrayList<AbstractCard> cardsToBook;
-    public static ArrayList<AbstractCard> bookedThisCombat;
-    private static BookButton bookPileButton;
 
     public static CardGroup egoPile;
     private static EGOButton egoPileButton;
@@ -852,9 +845,7 @@ public class RuinaMod implements
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         TotalBlockGainedSpireField.totalBlockGained.set(adp(), 0);
-        bookPile.clear();
-        cardsToBook.clear();
-        bookedThisCombat.clear();
+        egoPile.clear();
         egoPile.clear();
     }
 
@@ -900,15 +891,7 @@ public class RuinaMod implements
                         AbstractDungeon.getMonsters() != null &&
                         !AbstractDungeon.getMonsters().areMonstersDead()
         ) {
-            renderBookPile(sb, AbstractDungeon.overlayMenu.combatDeckPanel.current_x);
             renderEGOPile(sb, AbstractDungeon.overlayMenu.combatDeckPanel.current_x);
-        }
-    }
-
-    public static void renderBookPile(SpriteBatch spriteBatch, float x) {
-        if (bookPileButton != null) {
-            bookPileButton.setX(x);
-            bookPileButton.render(spriteBatch);
         }
     }
 
@@ -921,9 +904,6 @@ public class RuinaMod implements
 
     @Override
     public void receivePostDungeonUpdate() {
-        if (bookPileButton != null) {
-            bookPileButton.update();
-        }
         if(egoPileButton != null){
             egoPileButton.update();
         }
@@ -931,11 +911,6 @@ public class RuinaMod implements
 
     @Override
     public void receiveStartGame() {
-        bookPileButton = new BookButton();
-        bookPile = new CardGroup(CardGroup.CardGroupType.DRAW_PILE);
-        cardsToBook = new ArrayList<>();
-        bookedThisCombat = new ArrayList<>();
-
         egoPileButton = new EGOButton();
         egoPile = new CardGroup(CardGroup.CardGroupType.DRAW_PILE);
     }

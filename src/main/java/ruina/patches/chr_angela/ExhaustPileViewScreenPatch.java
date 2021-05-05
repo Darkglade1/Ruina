@@ -15,8 +15,6 @@ import static ruina.RuinaMod.*;
 
 public class ExhaustPileViewScreenPatch {
 
-    public static boolean showFrozen = false;
-    private static boolean isShowingFrozen = false;
     public static boolean showEGO = false;
     private static boolean isShowingEGO = false;
 
@@ -29,20 +27,13 @@ public class ExhaustPileViewScreenPatch {
     public static class OpenExhaustPileViewScreenPatch {
         @SpireInsertPatch( locator = OpenExhaustPileViewScreenPatchLocator.class )
         public static void Insert(ExhaustPileViewScreen _instance) {
-            if (showFrozen) {
-                CardGroup group = (CardGroup) ReflectionHacks.getPrivate(_instance, ExhaustPileViewScreen.class, "exhaustPileCopy");
-                group.clear();
-                group.group.addAll(bookPile.group);
-                showFrozen = false;
-                isShowingFrozen = true;
-            } else if (showEGO){
+            if (showEGO){
                 CardGroup group = (CardGroup) ReflectionHacks.getPrivate(_instance, ExhaustPileViewScreen.class, "exhaustPileCopy");
                 group.clear();
                 group.group.addAll(egoPile.group);
                 showEGO = false;
                 isShowingEGO = true;
             } else {
-                isShowingFrozen = false;
                 isShowingEGO = false;
             }
         }
@@ -63,10 +54,7 @@ public class ExhaustPileViewScreenPatch {
     public static class RenderExhaustPileViewScreenPatch {
         @SpireInsertPatch( locator = RenderExhaustPileViewScreenPatchLocator.class )
         public static SpireReturn<Void> Insert(ExhaustPileViewScreen _instance, SpriteBatch sb) {
-            if (isShowingFrozen) {
-                FontHelper.renderDeckViewTip(sb, uiStrings.TEXT[0], 96.0F * Settings.scale, Settings.CREAM_COLOR);// 311
-                return SpireReturn.Return(null);
-            } else if (isShowingEGO){
+            if (isShowingEGO){
                 FontHelper.renderDeckViewTip(sb, uiStrings.TEXT[0], 96.0F * Settings.scale, Settings.CREAM_COLOR);// 311
                 return SpireReturn.Return(null);
             } else {
