@@ -985,5 +985,13 @@
     "NAME": "Baral",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Angela_Bloodbath": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Book Of BloodBath",
+    "DIALOG": [
+    ]
   }
 }

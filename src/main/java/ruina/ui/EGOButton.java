@@ -42,7 +42,7 @@ public class EGOButton extends ClickableUIElement {
     private static final float DECK_TIP_X = 0F * Settings.scale;
     private static final float DECK_TIP_Y = 128.0F * Settings.scale;
     private final Texture bookButton = TexLoader.getTexture(makeUIPath("egoButton.png"));
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("EGOButton"));
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("BookButton"));
     public static final String[] TEXT = uiStrings.TEXT;
     private final BobEffect bob;
     private boolean isOpen = false;

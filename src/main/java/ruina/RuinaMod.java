@@ -54,6 +54,7 @@ import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
+import ruina.monsters.angela.Abnormalities.Angela_BloodBath;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
@@ -793,6 +794,9 @@ public class RuinaMod implements
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");
+
+        // Angela
+        BaseMod.addMonster(Angela_BloodBath.ID, (BaseMod.GetMonster) Angela_BloodBath::new);
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename) {
