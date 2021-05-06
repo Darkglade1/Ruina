@@ -43,9 +43,9 @@ public class Angela_BloodBath extends AbnormalityContainer
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FreshMeat/Spriter/FreshMeat.scml"));
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 9) {
-            setHp(60);
+            setHp(1);
         } else {
-            setHp(80);
+            setHp(1);
         }
     }
 
@@ -61,8 +61,6 @@ public class Angela_BloodBath extends AbnormalityContainer
 
     @Override
     public void takeTurn() {
-        getAbnormality(timesBreached++);
-
     }
 
     @Override
