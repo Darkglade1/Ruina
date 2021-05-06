@@ -35,6 +35,7 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
 
     protected AbstractMonster abnormality;
     protected int timesBreached = 0;
+    protected boolean currentlyBreaching;
 
     public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -57,7 +58,10 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
             this.halfDead = true;
             for (AbstractPower p : this.powers) { p.onDeath(); }
             for (AbstractRelic r : AbstractDungeon.player.relics) { r.onMonsterDeath(this); }
-            getAbnormality(timesBreached++);
+            if(!currentlyBreaching){
+                currentlyBreaching = true;
+                getAbnormality(timesBreached++);
+            }
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {

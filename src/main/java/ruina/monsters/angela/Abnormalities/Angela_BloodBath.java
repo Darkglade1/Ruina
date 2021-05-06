@@ -33,7 +33,7 @@ public class Angela_BloodBath extends AbnormalityContainer
 
     private static final byte NONE = 0;
     private final int HEAL = calcAscensionSpecial(100);
-
+    private float x;
     public Angela_BloodBath(){
         this(0, 350f);
     }
@@ -47,11 +47,12 @@ public class Angela_BloodBath extends AbnormalityContainer
         } else {
             setHp(1);
         }
+        this.x = x;
     }
 
     @Override
     protected void getAbnormality(int timesBreached) {
-        Bloodbath bloodbath = new Bloodbath();
+        Bloodbath bloodbath = new Bloodbath(x, 0);
         atb(new SpawnMonsterAction(bloodbath, true));
         atb(new UsePreBattleActionAction(bloodbath));
         bloodbath.rollMove();
