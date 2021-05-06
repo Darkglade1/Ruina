@@ -353,7 +353,8 @@ public class Zena extends AbstractCardMonster
                             if (AbstractDungeon.ascensionLevel >= 19) {
                                 adp().currentHealth = baral.playerCurrentHp;
                             } else {
-                                adp().currentHealth = baral.playerMaxHp;
+                                adp().currentHealth = baral.playerCurrentHp;
+                                adp().heal(adp().maxHealth);
                             }
                             adp().healthBarUpdatedEvent();
                             adp().loseBlock();

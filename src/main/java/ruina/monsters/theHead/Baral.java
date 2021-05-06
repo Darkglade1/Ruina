@@ -2,11 +2,9 @@ package ruina.monsters.theHead;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardModifierManager;
-import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -19,8 +17,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.EnergyManager;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -32,7 +28,6 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
@@ -58,7 +53,6 @@ import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
-import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
