@@ -388,6 +388,7 @@ public class Zena extends AbstractCardMonster
                             adp().exhaustPile.clear();
                             adp().relics.addAll(baral.playerRelics);
                             adp().potions.addAll(baral.playerPotions);
+                            adp().powers.addAll(baral.playerPowers);
                             adp().energy.energy = baral.playerEnergy;
                             adp().gameHandSize = baral.playerCardDraw;
                             if (adp().hasRelic(SlaversCollar.ID)) {

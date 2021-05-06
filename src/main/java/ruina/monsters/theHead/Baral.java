@@ -107,6 +107,7 @@ public class Baral extends AbstractCardMonster
     public int playerCurrentHp;
     public ArrayList<AbstractRelic> playerRelics = new ArrayList<>();
     public ArrayList<AbstractPotion> playerPotions = new ArrayList<>();
+    public ArrayList<AbstractPower> playerPowers = new ArrayList<>(); //gotta catch stuff like guardian's MODE SHIFT from DOWNFALL
     public int playerEnergy;
     public int playerCardDraw;
     public boolean deathTriggered = false;
@@ -198,10 +199,31 @@ public class Baral extends AbstractCardMonster
             }
             applyToTarget(this, this, new InvisibleBarricadePower(this));
 
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            playerPowers.addAll(adp().powers);
+                            adp().powers.clear();
+                            this.isDone = true;
+                        }
+                    });
+                    this.isDone = true;
+                }
+            });
+
             roland = new RolandHead(-1100.0F, 0.0f);
             roland.drawX = AbstractDungeon.player.drawX;
             AbstractPower power = new PlayerBlackSilence(adp(), roland);
-            AbstractDungeon.player.powers.add(power);
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    applyToTarget(adp(), adp(), power);
+                    this.isDone = true;
+                }
+            });
 
             playerMaxHp = adp().maxHealth;
             playerCurrentHp = adp().currentHealth;
