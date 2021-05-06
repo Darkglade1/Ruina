@@ -616,5 +616,178 @@
   "ruina:BindingTerms": {
     "NAME": "约束合约",
     "DESCRIPTION": "将 !M! 张 *虚空 放入你的弃牌堆。"
+  },
+  "${ModID}:Crystal": {
+    "NAME": "Crystal Atelier",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's NOT the player's turn, gain !B! Block."
+  },
+  "${ModID}:Wheels": {
+    "NAME": "Wheels Industry",
+    "DESCRIPTION": "Deal !D! damage. NL If it's the player's turn, target loses !M! Strength this turn."
+  },
+  "${ModID}:Durandal": {
+    "NAME": "Durandal",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's the player's turn, gain !ruina:SecondMagic! Strength this turn."
+  },
+  "${ModID}:Allas": {
+    "NAME": "Allas Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL If it's the player's turn, target loses !M! Strength this turn."
+  },
+  "${ModID}:Gun": {
+    "NAME": "Atelier Logic",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Mook": {
+    "NAME": "Mook Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL Remove all Block from the target."
+  },
+  "${ModID}:OldBoys": {
+    "NAME": "Old Boy's Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL If it's NOT the player's turn, gain !B! Block."
+  },
+  "${ModID}:Ranga": {
+    "NAME": "Ranga Workshop",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's NOT the player's turn, apply !ruina:SecondMagic! ruina:Bleed."
+  },
+  "${ModID}:Mace": {
+    "NAME": "Zelkova Workshop",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's the player's turn, gain !ruina:SecondMagic! Strength this turn."
+  },
+  "${ModID}:Furioso": {
+    "NAME": "Furioso",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak and Frail."
+  },
+  "${ModID}:Yun": {
+    "NAME": "Memory - Yun's Office",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["Shuffle !M! *Dazed into your draw pile.", "Shuffle !ruina:SecondMagic! *Wounds into your discard pile."]
+  },
+  "${ModID}:Zwei": {
+    "NAME": "Memory - Zwei Association",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["The enemy gains !M! *Metallicize.", "The enemy gains !ruina:SecondMagic! *Plated *Armor."]
+  },
+  "${ModID}:Dawn": {
+    "NAME": "Memory - Dawn Office",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["Shuffle !M! *Burns into your draw pile.", "The enemy gains !ruina:SecondMagic! *Protection."]
+  },
+  "${ModID}:Shi": {
+    "NAME": "Memory - Shi Association",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["You gain !M! Weak.", "You gain !ruina:SecondMagic! Frail."]
+  },
+  "${ModID}:Love": {
+    "NAME": "Memory - Love Town",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["The enemy gains !M! *Regen.", "Shuffle !ruina:SecondMagic! *Slimed into your discard pile."]
+  },
+  "${ModID}:Liu": {
+    "NAME": "Memory - Liu Association",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["The enemy gains !M! Strength.", "You gain !ruina:SecondMagic! Vulnerable."]
+  },
+  "${ModID}:Purple": {
+    "NAME": "Memory - The Purple Tear",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["The enemy gains !M! Intangible.", "The enemy summons !ruina:SecondMagic! minion."]
+  },
+  "${ModID}:Hana": {
+    "NAME": "Memory - Hana Association",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["Put !M! *Regret into your hand.", "You lose !ruina:SecondMagic! HP."]
+  },
+  "${ModID}:Blue": {
+    "NAME": "Memory - The Blue Reverberation",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["The enemy gains an additional intent.", "Whenever you play a card, Exhaust it."]
+  },
+  "${ModID}:Agony": {
+    "NAME": "Agony",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:Scream": {
+    "NAME": "Scream",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
+  },
+  "${ModID}:Void": {
+    "NAME": "Void",
+    "DESCRIPTION": "Apply !ruina:SecondMagic! Weak and Frail. NL Shuffle !M! *Void into your discard pile."
+  },
+  "${ModID}:ZelkovaWorkshop": {
+    "NAME": "Zelkova Workshop",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
+  },
+  "${ModID}:AllasWorkshop": {
+    "NAME": "Allas Workshop",
+    "DESCRIPTION": "Deal !D! damage. NL If its *Partner intends to attack, apply! !M! Vulnerable."
+  },
+  "${ModID}:AtelierLogic": {
+    "NAME": "Atelier Logic",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:WaltzInWhite": {
+    "NAME": "Waltz in White",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:AshenBond": {
+    "NAME": "Ashen Bond",
+    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength."
+  },
+  "${ModID}:UnitedWorkshop": {
+    "NAME": "United Assault",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If its *Partner intends to attack, gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:UnstableLoneliness": {
+    "NAME": "Unstable Loneliness",
+    "DESCRIPTION": "Deal !D! damage. NL If its *Partner does NOT intend to attack, apply !M! Weak and Frail."
+  },
+  "${ModID}:BlindFury": {
+    "NAME": "Blind Fury",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
+  },
+  "${ModID}:DarkBond": {
+    "NAME": "Dark Bond",
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile."
+  },
+  "${ModID}:WaltzInBlack": {
+    "NAME": "Waltz in Black",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:SerumW": {
+    "NAME": "Serum W",
+    "DESCRIPTION": "Deal !D! damage. NL If this creature has at least !M! Strength, instantly kill the target."
+  },
+  "${ModID}:SerumR": {
+    "NAME": "Serum R",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:Extirpation": {
+    "NAME": "Extirpation",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:TriSerum": {
+    "NAME": "Tri Serum Cocktail",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:SerumK": {
+    "NAME": "Serum K",
+    "DESCRIPTION": "The lowest HP ally gains !B! Block and heals !M! HP."
+  },
+  "${ModID}:Line": {
+    "NAME": "Line",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  },
+  "${ModID}:ThinLine": {
+    "NAME": "Thin Line",
+    "DESCRIPTION": "Deal !D! damage. NL Steal !M! Strength from the target."
+  },
+  "${ModID}:ThickLine": {
+    "NAME": "Thick Line",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak and Vulnerable."
+  },
+  "${ModID}:ZenaShockwave": {
+    "NAME": "Shockwave",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
   }
 }

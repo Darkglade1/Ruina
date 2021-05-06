@@ -394,5 +394,147 @@
       "[表明立场] #g获得一件特别的遗物 。",
       "[做好准备]"
     ]
+  },
+  "${ModID}:Sorrow": {
+    "NAME": "Sorrow",
+    "DESCRIPTIONS": [
+      "I have nothing but my #psorrow. And I want nothing more. NL NL It has been, it still is, #gfaithful to me.",
+      "Why should I begrudge it, since during the hours . . . NL NL When my soul #rcrushed the depths of my heart, NL NL It was seated there beside me?",
+      "O sorrow, I have #pended, you see, by respecting you, NL NL Because I am certain you will never leave me.",
+      "Ah! I realize it: NL Your #ybeauty lies in the force of your being. NL NL You are like those who never left NL The sad #rfireside corner of my poor #pblack heart.",
+      "O my #psorrow, you are better than a #gwell-beloved: NL NL Because I know that on the day of my final #pagony, NL You will be there, lying in my sheets, O #psorrow, NL NL So that you might once again attempt to enter my heart."
+    ],
+    "OPTIONS": [
+      "[. . .] ",
+      "Transform a card.",
+      "Upgrade a card.",
+      "Remove a card.",
+      "Obtain ",
+      ".",
+      "Choose a Card to Transform",
+      "Choose a Card to Upgrade",
+      "Choose a Card to Remove"
+    ]
+  },
+  "${ModID}:BlackSilenceFork": {
+    "NAME": "One Man's Sorrow",
+    "DESCRIPTIONS": [
+      "The fighting stops, a welcome #greprieve from the gruesome gauntlet you've been subjected to. But as the #psilence stretches onward, a #pdeathly #pchill fills the air as a #rheartbeat begins to pound louder and louder in your ear. NL NL \"Angela. You know what I'm about to do now, right?\""
+    ],
+    "OPTIONS": [
+      "[Succumb to the heartbeat] Return to the Corrupt Heart",
+      "[See things to the end] Confront the Black Silence"
+    ]
+  },
+  "${ModID}:TheHead": {
+    "NAME": "The End",
+    "DESCRIPTIONS": [
+      "You see him slump to his knees, tired and drained from the non-stop fighting. NL NL You see them sigh, breath in, and #glet #ggo. You see them let go of their #rhatred and #rfear, their #ranger and #rpain. You see them let go of their #ptrauma, of their lingering darkness that had nearly drove them to ruin. NL NL You see them turn away from the #ypast so that they might finally face the #yfuture.",
+      "The library @shudders,@ and you find that yet another group of uninvited guests had #rinvaded. NL NL \"So this is the #pImpurity known as the Library.\" The woman sneered. \"What a heartwarming scene of a man reconciling with a machine. Too bad this is where it ends for you.\" NL NL You see him push himself to his feet, the #rbattered and #rbruised body of a man doing his best to protect the peace and #ghappiness he had only just found."
+    ],
+    "OPTIONS": [
+      "[Continue]"
+    ]
+  },
+  "${ModID}:HeadDialogue": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "Exhausted already? We have yet to even expend any real effort.",
+      "Executioner.",
+      "I'll finish them.",
+      "You have shown up at last.",
+      "Have we met before?",
+      "It's a relief to have you.",
+      "I can't guarantee that I'll power through this either . . .",
+      "Well . . . we'll have to try and stop them for as long as we can.",
+      "Be aware that joining forces cannot change your fate.",
+      "Nevertheless, it is enjoyable to witness your struggle.",
+      "While it has been a pleasure to spectate, We must see this place dealt with.",
+      "And this just got even more troublesome.",
+      "Isolated, without a way out . . . what a pitiful situation.",
+      "Though, you managed to hold out longer than anticipated. What a shame it must end this way . . .",
+      "It is indeed true that verbosity leaves you vulnerable.",
+      "Garion . . .",
+      "That is a name I have not heard in a long while . . .",
+      "But such a name is not for me anymore.",
+      "What took you so long?",
+      "I was simply watching from afar.",
+      "You failed your responsibility and turned your back on us. How imprudent of you.",
+      "Though I suppose, your accountability can be called upon later.",
+      "We will tear down your grave and extract you before long.",
+      "I can only pity your vain endeavor to seek an entity whose husk is all that remains.",
+      "Executioner. Be prepared. It will take place any minute now.",
+      "It is truly amazing that you managed to withstand for such a long time.",
+      "Garion . . . as much as it is a shame that we've failed to retrieve you . . .",
+      "The end is nigh.",
+      "This place will be expelled as planned.",
+      "I only ask that you do not return.",
+      "So mark my words well and stay where you rightfully belong.",
+      " . . .",
+      "The territory expulsion procedure failed . . . ?",
+      "The same verbosity left you vulnerable again.",
+      "Though, this was truly unexpected.",
+      "To think the Library could invite guests from other worlds . . .",
+      "Such disorder cannot be reasonably accounted for. Perhaps we were too lenient with this place.",
+      "Executioner. Eliminate every single one of them.",
+
+
+      "DO NOT TRANSLATE OPTIONS AS IT DETERMINES WHICH CHARACTER APPEARS IN THE CUTSCENE AND WHO SPEAKS IN THE CURRENT LINE. TRANSLATING ANY LINE OF IT CAUSES THE CUTSCENE TO BREAK.",
+      "Please do not touch it. -Squeeny"
+    ],
+    "OPTIONS": [
+      "ZenaBaralRoland_ZenaSpeak",
+      "ZenaBaralRoland_ZenaSpeak",
+      "ZenaBaralRoland_BaralSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralGeburaRoland_GeburaSpeak",
+      "ZenaBaralGeburaRoland_RolandSpeak",
+      "ZenaBaralGeburaRoland_GeburaSpeak",
+      "ZenaBaralGeburaRoland_RolandSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralGeburaRoland_RolandSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_GeburaSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak"
+    ]
+  },
+  "${ModID}:HeadEnding": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "Will we be alright, Roland? I doubt the Head will be pleased with the defeat of two of its agents.",
+      "The Head can be as displeased as it likes. But our story won’t end here.",
+      "I suppose not. All with a little help from far away. Shall we continue writing this story together?",
+      "Of course, Miss Director. There are still so many things both of us want to do, after all.",
+      "And why don’t you join us, stranger? This story has enough room for someone else to be written in.",
+      "Don't be shy. After all . . . ",
+      "Strangers are just friends you haven't met yet."
+    ],
+    "OPTIONS": [
+    ]
   }
 }

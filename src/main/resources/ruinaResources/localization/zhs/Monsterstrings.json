@@ -890,5 +890,98 @@
       "人不能被当作是机器中的齿轮。",
       "非常感谢你的帮助。"
     ]
+  },
+  "${ModID}:BlackSilence1": {
+    "MOVES": [
+      "Crystal Atelier",
+      "Wheels Industry",
+      "Durandal",
+      "Allas Workshop",
+      "Atelier Logic",
+      "Mook Workshop",
+      "Old Boy's Workshop",
+      "Ranga Workshop",
+      "Zelkova Workshop",
+      "Furioso"
+    ],
+    "NAME": "The Black Silence",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:BlackSilence4": {
+    "MOVES": [
+      "Agony",
+      "Scream",
+      "Void",
+      "Memory - Yun's Office",
+      "Memory - Zwei Association",
+      "Memory - Dawn Office",
+      "Memory - Shi Association",
+      "Memory - Love Town",
+      "Memory - Liu Association",
+      "Memory - The Purple Tear",
+      "Memory - Hana Association",
+      "Memory - The Blue Reverberation"
+    ],
+    "NAME": "The Black Silence",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:ImageOfBygones": {
+    "MOVES": [
+      "Agony",
+      "Scream",
+      "Pulsation"
+    ],
+    "NAME": "Image of Bygones",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:BlackSilence3": {
+    "MOVES": [
+      "United Workshop",
+      "Unstable Loneliness",
+      "Blind Fury",
+      "Waltz in Black",
+      "Dark Bond"
+    ],
+    "NAME": "Roland",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Angelica": {
+    "MOVES": [
+      "Zelkova Workshop",
+      "Allas Workshop",
+      "Atelier Logic",
+      "Waltz in White",
+      "Ashen Bond"
+    ],
+    "NAME": "Angelica",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Zena": {
+    "MOVES": [
+      "Line",
+      "Thin Line",
+      "Thick Line",
+      "Shockwave"
+    ],
+    "NAME": "Zena",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Baral": {
+    "MOVES": [
+      "Serum W",
+      "Serum R",
+      "Extirpation",
+      "Tri-Serum Cocktail",
+      "Serum K"
+    ],
+    "NAME": "Baral",
+    "DIALOG": [
+    ]
   }
 }

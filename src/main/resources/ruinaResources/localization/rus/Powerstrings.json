@@ -394,5 +394,49 @@
   "${ModID}:PriceOfTime": {
     "NAME": "Price of Time",
     "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature takes a turn. NL This creature's normal turn is skipped."]
+  },
+  "${ModID}:Orlando": {
+    "NAME": "Orlando",
+    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards."]
+  },
+  "${ModID}:Scars": {
+    "NAME": "Scars",
+    "DESCRIPTIONS": ["Every #b","th #yAttack you play instead #gheals this creature for #b", "% of the unblocked damage it would have done."]
+  },
+  "${ModID}:Sorrow": {
+    "NAME": "Sorrow",
+    "DESCRIPTIONS": ["Whenever you play a card, #yExhaust it."]
+  },
+  "${ModID}:BlackSilence3": {
+    "NAME": "Black Silence",
+    "DESCRIPTIONS": ["The first time you play #b", " #yAttacks each turn, this creature changes its intent to ", "."]
+  },
+  "${ModID}:WhiteNoise": {
+    "NAME": "White Noise",
+    "DESCRIPTIONS": ["The first time you play #b", " #ySkills each turn, this creature changes its intent to ", "."]
+  },
+  "${ModID}:SoulLink": {
+    "NAME": "Soul Link",
+    "DESCRIPTIONS": ["Creatures with #ySoul #yLink are #yPartners. Whenever this creature #rdies, it revives at #b", "% HP this turn if its #yPartner is still alive."]
+  },
+  "${ModID}:PlayerBlackSilence": {
+    "NAME": "The Black Silence",
+    "DESCRIPTIONS": ["Whenever you play #b", " unique cards, add #yFurioso to your hand."]
+  },
+  "${ModID}:AClaw": {
+    "NAME": "Executioner",
+    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL If this creature would receive #b", " or more unblocked attack damage, reduce the damage by #b", "%. NL Whenever a creature dies, gains #b", " #yStrength."]
+  },
+  "${ModID}:AnArbiter": {
+    "NAME": "Complete Arbiter",
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it steals #b", " #yStrength from its target."]
+  },
+  "${ModID}:GeburaProwess": {
+    "NAME": "Gebura's Prowess",
+    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks. Whenever this creature deals unblocked attack damage, increase this bonus by #b", "%."]
+  },
+  "${ModID}:PlayerBackAttack": {
+    "NAME": "Back Attack",
+    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks."]
   }
 }
