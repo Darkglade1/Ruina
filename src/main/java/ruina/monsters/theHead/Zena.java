@@ -118,10 +118,10 @@ public class Zena extends AbstractCardMonster
         }
         currentPhase = phase;
         this.setHp(calcAscensionTankiness(3000));
-        addMove(LINE, Intent.ATTACK_DEFEND, calcAscensionDamage(28));
-        addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(24));
-        addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
-        addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(40));
+        addMove(LINE, Intent.ATTACK_DEFEND, calcAscensionDamage(26));
+        addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(22));
+        addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
+        addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(36));
         addMove(NONE, Intent.NONE);
         halfDead = currentPhase.equals(PHASE.PHASE1);
 

@@ -71,16 +71,16 @@ public class Baral extends AbstractCardMonster
     private static final byte TRI_SERUM_COCKTAIL = 3;
     private static final byte SERUM_K = 4;
 
-    public final int SERUM_W_DAMAGE = calcAscensionDamage(50);
+    public final int SERUM_W_DAMAGE = calcAscensionDamage(48);
 
     public final int serumR_Damage = calcAscensionDamage(12);
     public final int serumR_Hits = 2;
     public final int serumR_Strength = calcAscensionSpecial(5);
 
-    public final int extirpationDamage = calcAscensionDamage(30);
+    public final int extirpationDamage = calcAscensionDamage(28);
     public final int extirpationBlock = calcAscensionTankiness(50);
 
-    public final int triSerumDamage = calcAscensionDamage(11);
+    public final int triSerumDamage = calcAscensionDamage(10);
     public final int triSerumHits = 3;
 
     private static final int SERUM_COOLDOWN = 2;
