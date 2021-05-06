@@ -431,13 +431,9 @@
     "NAME": "Complete Arbiter",
     "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it steals #b", " #yStrength from its target."]
   },
-  "${ModID}:Mystery": {
-    "NAME": "???",
-    "DESCRIPTIONS": ["This creature is shrouded in #pmystery . . ."]
-  },
   "${ModID}:GeburaProwess": {
     "NAME": "Gebura's Prowess",
-    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks."]
+    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks. Whenever this creature deals unblocked attack damage, increase this bonus by #b", "%."]
   },
   "${ModID}:PlayerBackAttack": {
     "NAME": "Back Attack",

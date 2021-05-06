@@ -1,14 +1,20 @@
 package ruina.monsters.theHead;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.ReflectionHacks;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.powers.GeburaProwess;
 import ruina.vfx.WaitEffect;
@@ -34,7 +40,7 @@ public class GeburaHead extends Gebura {
     public void usePreBattleAction() {
         if (!usedPreBattleAction) {
             usedPreBattleAction = true;
-            applyToTarget(this, this, new GeburaProwess(this, 35));
+            applyToTarget(this, this, new GeburaProwess(this, 10, 5));
             super.usePreBattleAction();
             for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (mo instanceof Zena) {
@@ -74,13 +80,36 @@ public class GeburaHead extends Gebura {
     }
 
     protected void manifestEGO() {
-        playSound("RedMistChange");
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound("RedMistChange");
+                this.isDone = true;
+            }
+        });
         manifestedEGO = true;
         phase = 2;
         resetIdle(0.0f);
         AbstractPower strength = getPower(StrengthPower.POWER_ID);
         if (strength != null) {
             applyToTarget(this, this, new StrengthPower(this, strength.amount));
+        }
+    }
+
+    @Override
+    public void renderIntent(SpriteBatch sb) {
+        super.renderIntent(sb);
+        Texture targetTexture = null;
+        if (enemyBoss instanceof Baral) {
+            targetTexture = Baral.targetTexture;
+        } else if (enemyBoss instanceof Zena) {
+            targetTexture = Zena.targetTexture;
+        }
+        if (targetTexture != null) {
+            sb.setColor(Color.WHITE.cpy());
+            BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
+            float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
+            sb.draw(targetTexture, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
         }
     }
 

@@ -295,7 +295,7 @@ public class Dialog {
 
             while(var2.hasNext()) {
                 DialogWord w = (DialogWord)var2.next();
-                w.render(sb, (float)Settings.HEIGHT - 525.0F * Settings.scale);// 308
+                w.render(sb, -50.0F * Settings.scale);// 308
             }
 
             var2 = optionList.iterator();// 311
@@ -327,7 +327,7 @@ public class Dialog {
         CHAR_SPACING = 8.0F * Settings.scale;// 41
         LINE_SPACING = 34.0F * Settings.scale;// 42
         DIALOG_MSG_X = (float)Settings.WIDTH * 0.23F;// 43
-        DIALOG_MSG_Y = -350.0F * Settings.scale;// 44
+        DIALOG_MSG_Y = 250.0F * Settings.scale;// 44
         DIALOG_MSG_W = (float)Settings.WIDTH * 0.8F;// 45
         optionList = new ArrayList();// 48
         selectedOption = -1;// 49

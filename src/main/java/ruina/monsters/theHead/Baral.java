@@ -165,9 +165,9 @@ public class Baral extends AbstractCardMonster
         }
 
         if (AbstractDungeon.ascensionLevel >= 19) {
-            INVINCIBLE = 400;
+            INVINCIBLE = 450;
         } else {
-            INVINCIBLE = 500;
+            INVINCIBLE = 600;
         }
     }
 
@@ -467,15 +467,11 @@ public class Baral extends AbstractCardMonster
             setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
         } else {
             if (currentPhase == PHASE.PHASE1) {
-                ArrayList<Byte> possibilities = new ArrayList<>();
-                if (!this.lastMove(SERUM_R)) {
-                    possibilities.add(SERUM_R);
+                if (!this.lastMove(SERUM_R) && !this.lastMoveBefore(SERUM_R)) {
+                    setMoveShortcut(SERUM_R, MOVES[SERUM_R], cardList.get(SERUM_R).makeStatEquivalentCopy());
+                } else {
+                    setMoveShortcut(EXTIRPATION, MOVES[EXTIRPATION], cardList.get(EXTIRPATION).makeStatEquivalentCopy());
                 }
-                if (!this.lastMove(EXTIRPATION)) {
-                    possibilities.add(EXTIRPATION);
-                }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
             } else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
                 if (!this.lastMove(SERUM_K) && !this.lastMoveBefore(SERUM_K)) {

@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnReceivePowerPower
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
@@ -26,6 +27,7 @@ public class AClaw extends AbstractUnremovablePower implements OnReceivePowerPow
         DAMAGE_REDUCTION = damageReduction;
         STRENGTH = strength;
         updateDescription();
+        this.priority = 99;
     }
 
     @Override
@@ -36,11 +38,12 @@ public class AClaw extends AbstractUnremovablePower implements OnReceivePowerPow
         return true;
     }
 
-    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-        if (damageAmount >= amount && info.type == DamageInfo.DamageType.NORMAL) {
-            return (int) (damageAmount * (1 - ((float)DAMAGE_REDUCTION / 100)));
+    @Override
+    public float atDamageReceive(float damage, DamageInfo.DamageType type) {
+        if (damage >= amount && type == DamageInfo.DamageType.NORMAL) {
+            return (damage * (1 - ((float)DAMAGE_REDUCTION / 100)));
         }
-        return damageAmount;
+        return damage;
     }
 
     @Override

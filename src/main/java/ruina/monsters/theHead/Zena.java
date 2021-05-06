@@ -137,9 +137,9 @@ public class Zena extends AbstractCardMonster
         }
 
         if (AbstractDungeon.ascensionLevel >= 19) {
-            INVINCIBLE = 400;
+            INVINCIBLE = 450;
         } else {
-            INVINCIBLE = 500;
+            INVINCIBLE = 600;
         }
     }
 
@@ -350,7 +350,11 @@ public class Zena extends AbstractCardMonster
                             baral.roland.currentHealth = adp().currentHealth;
                             baral.roland.healthBarUpdatedEvent();
                             adp().maxHealth = baral.playerMaxHp;
-                            adp().currentHealth = baral.playerCurrentHp;
+                            if (AbstractDungeon.ascensionLevel >= 19) {
+                                adp().currentHealth = baral.playerCurrentHp;
+                            } else {
+                                adp().currentHealth = baral.playerMaxHp;
+                            }
                             adp().healthBarUpdatedEvent();
                             adp().loseBlock();
                             fixOrbPositioning();

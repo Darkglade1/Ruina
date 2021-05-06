@@ -86,7 +86,7 @@ public class HeadEnding extends AbstractGameEffect {
         } else {
             sb.draw(SCENE1, 0.0F, 0.0F, 0.0f, 0.0f, SCENE1.getRegionWidth(), SCENE1.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
         }
-        sb.draw(TEXTBOX, Dialog.DIALOG_MSG_X - (100.0f * Settings.scale), Dialog.DIALOG_MSG_Y + (180.0f * Settings.scale), 0.0f, 0.0f, TEXTBOX.getRegionWidth(), TEXTBOX.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
+        sb.draw(TEXTBOX, Dialog.DIALOG_MSG_X - (100.0f * Settings.scale), (-170.0f * Settings.scale), 0.0f, 0.0f, TEXTBOX.getRegionWidth(), TEXTBOX.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
         this.roomEventText.render(sb);
     }
 
