@@ -631,7 +631,8 @@
     "NAME": "罗兰",
     "DIALOG": [
       "。。。",
-      "下地狱去吧。"
+      "下地狱去吧。",
+      "It's finally over."
     ]
   },
   "ruina:Pluto": {
@@ -691,7 +692,8 @@
     "NAME": "Gebura",
     "DIALOG": [
       "一堆垃圾。",
-      "看看你的力气都到哪去了。"
+      "看看你的力气都到哪去了。",
+      "I've always wanted to give the Head a bloody nose."
     ]
   },
   "ruina:VermilionCross": {
@@ -729,7 +731,8 @@
     "NAME": "Binah",
     "DIALOG": [
       "像你这样的人不会有宴会。",
-      "真是麻烦。"
+      "真是麻烦。",
+      "We defied the Head and lived . . . for now."
     ]
   },
   "ruina:Oswald": {

@@ -631,7 +631,8 @@
     "NAME": "Roland",
     "DIALOG": [
       "...",
-      "Rot in hell."
+      "Rot in hell.",
+      "It's finally over."
     ]
   },
   "${ModID}:Pluto": {
@@ -691,7 +692,8 @@
     "NAME": "Gebura",
     "DIALOG": [
       "What a load of rubbish.",
-      "Look where all that strength got you."
+      "Look where all that strength got you.",
+      "I've always wanted to give the Head a bloody nose."
     ]
   },
   "${ModID}:VermilionCross": {
@@ -729,7 +731,8 @@
     "NAME": "Binah",
     "DIALOG": [
       "No feast would be served to the likes of you.",
-      "That was quite bothersome."
+      "That was quite bothersome.",
+      "We defied the Head and lived . . . for now."
     ]
   },
   "${ModID}:Oswald": {
