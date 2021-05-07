@@ -1,6 +1,8 @@
 package ruina.monsters.angela;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardPowerTip;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -17,6 +19,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
@@ -62,7 +65,15 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
 
     protected abstract void setupAbnormality();
     protected abstract void getAbnormality(int timesBreached);
-
+    protected void prepareBreach(){
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                AbstractDungeon.topLevelEffectsQueue.add(new BorderFlashEffect(Color.RED));
+                this.isDone = true;
+            }
+        });
+    }
     @Override
     public void damage(DamageInfo info) {
         super.damage(info);
@@ -72,6 +83,7 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
             for (AbstractRelic r : AbstractDungeon.player.relics) { r.onMonsterDeath(this); }
             if(!currentlyBreaching){
                 currentlyBreaching = true;
+                prepareBreach();
                 getAbnormality(timesBreached++);
             }
             atb(new AbstractGameAction() {

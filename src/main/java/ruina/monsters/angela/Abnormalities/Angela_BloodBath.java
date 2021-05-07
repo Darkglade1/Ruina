@@ -1,5 +1,6 @@
 package ruina.monsters.angela.Abnormalities;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.StSLib;
@@ -65,12 +66,13 @@ public class Angela_BloodBath extends AbnormalityContainer
 
     @Override
     protected void getAbnormality(int timesBreached) {
+        prepareBreach();
+        CustomDungeon.playTempMusicInstantly("Trumpet1");
         Bloodbath bloodbath = new Bloodbath(x, 0);
         atb(new SpawnMonsterAction(bloodbath, true));
         atb(new UsePreBattleActionAction(bloodbath));
         bloodbath.rollMove();
         bloodbath.createIntent();
-
     }
 
     @Override
