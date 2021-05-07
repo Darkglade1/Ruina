@@ -796,11 +796,8 @@ public class RuinaMod implements
         headClear = ruinaConfig.getBool("headClear");
 
         // Angela
-        BaseMod.addMonster(Angela_BloodBath.ID, "BloodBathTests", () -> new MonsterGroup(
-                new AbstractMonster[]{
-                        new Angela_BloodBath(-250.0F, 350),
-                        new Angela_BloodBath(0.0F, 350F),
-                }));
+        BaseMod.addMonster(Angela_BloodBath.ID, (BaseMod.GetMonster) Angela_BloodBath::new);
+
     }
 
     private static String makeLocPath(Settings.GameLanguage language, String filename) {

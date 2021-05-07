@@ -39,7 +39,7 @@ public class Angela_BloodBath extends AbnormalityContainer
     private float x;
     private float y;
     public Angela_BloodBath(){
-        this(0, 350f);
+        this(0, 0f);
     }
 
     public Angela_BloodBath(final float x, final float y) {

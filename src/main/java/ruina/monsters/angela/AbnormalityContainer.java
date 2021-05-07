@@ -94,14 +94,14 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
     public void properDie(){ super.die(); }
 
     public void render(SpriteBatch sb){
-        super.render(sb);
         if(currentlyBreaching && staticDischarge != null){ staticDischarge.render(sb); }
         else {
             System.out.println("hi?");
-            if(abnormalityWarning != null){ abnormalityWarning.render(sb); }
-            if(abnormalityEncyclopedia != null){ abnormalityEncyclopedia.render(sb); }
             if(abnormalityBG != null){ abnormalityBG.render(sb); }
             if(abnormality != null){ abnormality.render(sb); }
         }
+        super.render(sb);
+        if(abnormalityWarning != null){ abnormalityWarning.render(sb); }
+        if(abnormalityEncyclopedia != null){ abnormalityEncyclopedia.render(sb); }
     }
 }
