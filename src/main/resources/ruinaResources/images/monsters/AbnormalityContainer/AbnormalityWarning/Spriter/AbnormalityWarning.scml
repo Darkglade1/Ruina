@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0">
-        <file id="0" name="Idle.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
-        <file id="1" name="He.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
-        <file id="2" name="Aleph.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
-        <file id="3" name="Waw.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
-        <file id="4" name="Teth.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
-        <file id="5" name="Zayin.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="He.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Aleph.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Waw.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Teth.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Zayin.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="AbnormalityWarning">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -22,7 +21,7 @@
             </mainline>
             <timeline id="0" name="Zayin">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="-520" y="740"/>
+                    <object folder="0" file="4" x="-520" y="740" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -34,7 +33,7 @@
             </mainline>
             <timeline id="0" name="He">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-520" y="740"/>
+                    <object folder="0" file="0" x="-520" y="740" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -46,7 +45,7 @@
             </mainline>
             <timeline id="0" name="Aleph">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-520" y="132.467532"/>
+                    <object folder="0" file="1" x="-520" y="740" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -58,7 +57,7 @@
             </mainline>
             <timeline id="0" name="Waw">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-520" y="740"/>
+                    <object folder="0" file="2" x="-520" y="740" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -70,7 +69,7 @@
             </mainline>
             <timeline id="0" name="Teth">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-520" y="740"/>
+                    <object folder="0" file="3" x="-520" y="740" angle="0"/>
                 </key>
             </timeline>
         </animation>

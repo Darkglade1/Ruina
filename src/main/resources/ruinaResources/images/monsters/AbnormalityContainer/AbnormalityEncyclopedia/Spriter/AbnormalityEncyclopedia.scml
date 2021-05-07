@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0">
-        <file id="0" name="Idle.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
-        <file id="1" name="BLOODBATH.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="BLOODBATH.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="AbnormalityEncyclopedia">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -18,7 +17,7 @@
             </mainline>
             <timeline id="0" name="BLOODBATH">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-520" y="740" angle="0"/>
+                    <object folder="0" file="0" x="-520" y="740" angle="0"/>
                 </key>
             </timeline>
         </animation>
