@@ -34,21 +34,33 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
 {
 
     protected AbstractMonster abnormality;
+    protected AbstractMonster abnormalityBG;
+    protected AbstractMonster abnormalityEncyclopedia;
+    protected AbstractMonster abnormalityWarning;
+    protected AbstractMonster staticDischarge;
+
     protected int timesBreached = 0;
     protected boolean currentlyBreaching;
 
     public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
+        setupAbnormality();
     }
 
     public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, boolean ignoreBlights) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY, ignoreBlights);
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
+        setupAbnormality();
     }
 
     public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
+        setupAbnormality();
     }
 
+    protected abstract void setupAbnormality();
     protected abstract void getAbnormality(int timesBreached);
 
     @Override
@@ -80,4 +92,16 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
     }
 
     public void properDie(){ super.die(); }
+
+    public void render(SpriteBatch sb){
+        super.render(sb);
+        if(currentlyBreaching && staticDischarge != null){ staticDischarge.render(sb); }
+        else {
+            System.out.println("hi?");
+            if(abnormalityWarning != null){ abnormalityWarning.render(sb); }
+            if(abnormalityEncyclopedia != null){ abnormalityEncyclopedia.render(sb); }
+            if(abnormalityBG != null){ abnormalityBG.render(sb); }
+            if(abnormality != null){ abnormality.render(sb); }
+        }
+    }
 }
