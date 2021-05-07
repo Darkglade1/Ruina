@@ -48,19 +48,16 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
     public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
-        setupAbnormality();
     }
 
     public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, boolean ignoreBlights) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY, ignoreBlights);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
-        setupAbnormality();
     }
 
     public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
-        setupAbnormality();
     }
 
     protected abstract void setupAbnormality();
@@ -79,6 +76,7 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
         super.damage(info);
         if (this.currentHealth <= 0 && !this.halfDead) {
             this.halfDead = true;
+            this.hideHealthBar();
             for (AbstractPower p : this.powers) { p.onDeath(); }
             for (AbstractRelic r : AbstractDungeon.player.relics) { r.onMonsterDeath(this); }
             if(!currentlyBreaching){
@@ -90,8 +88,6 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
                 @Override
                 public void update() {
                     currentHealth = maxHealth;
-                    healthBarUpdatedEvent();
-                    halfDead = false;
                     isDone = true;
                 }
             });

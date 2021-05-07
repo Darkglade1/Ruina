@@ -40,7 +40,7 @@ public class Angela_BloodBath extends AbnormalityContainer
     private float x;
     private float y;
     public Angela_BloodBath(){
-        this(0, 0f);
+        this(0, 275);
     }
 
     public Angela_BloodBath(final float x, final float y) {
@@ -58,10 +58,20 @@ public class Angela_BloodBath extends AbnormalityContainer
     @Override
     protected void setupAbnormality() {
         abnormality = new AbnormalityUnit(x, y, ABNOID);
+        abnormality.drawX = adp().drawX;
         abnormalityBG = new AbnormalityBackground(x, y, ABNOID);
+        abnormalityBG.drawX = adp().drawX;
         abnormalityEncyclopedia = new AbnormalityEncyclopedia(x, y, ABNOID);
+        abnormalityEncyclopedia.drawX = adp().drawX;
         abnormalityWarning = new AbnormalityWarning(x, y, WARNING);
+        abnormalityWarning.drawX = adp().drawX;
         staticDischarge = new Static(x, y);
+        staticDischarge.drawX = adp().drawX;
+    }
+
+    public void usePreBattleAction(){
+        this.drawX = adp().drawX;
+        setupAbnormality();
     }
 
     @Override
