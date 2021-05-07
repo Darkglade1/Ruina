@@ -21,12 +21,12 @@
             </mainline>
             <timeline id="0" name="Idle_000">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-72" y="420"/>
+                    <object folder="0" file="0" x="-35" y="230" angle="0" scale_x="0.6" scale_y="0.6"/>
                 </key>
             </timeline>
             <timeline id="1" name="Special">
                 <key id="0" time="6000" spin="0">
-                    <object folder="0" file="1" x="-75" y="391"/>
+                    <object folder="0" file="1" x="-35" y="215" angle="0" scale_x="0.6" scale_y="0.6"/>
                 </key>
             </timeline>
         </animation>

@@ -21,7 +21,7 @@
             </mainline>
             <timeline id="0" name="Zayin">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-520" y="740" angle="0"/>
+                    <object folder="0" file="4" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -33,7 +33,7 @@
             </mainline>
             <timeline id="0" name="He">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-520" y="740" angle="0"/>
+                    <object folder="0" file="0" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -45,7 +45,7 @@
             </mainline>
             <timeline id="0" name="Aleph">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-520" y="740" angle="0"/>
+                    <object folder="0" file="1" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -57,7 +57,7 @@
             </mainline>
             <timeline id="0" name="Waw">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-520" y="740" angle="0"/>
+                    <object folder="0" file="2" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -69,7 +69,7 @@
             </mainline>
             <timeline id="0" name="Teth">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-520" y="740" angle="0"/>
+                    <object folder="0" file="3" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
