@@ -535,6 +535,7 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("GeburaArrive"), makeSFXPath("Gebura_On.wav"));
 
         BaseMod.addAudio(makeID("AngelaSnap"), makeSFXPath("ch1_FingerSnap.wav"));
+        BaseMod.addAudio(makeID("Breach"), makeSFXPath("Breach.wav"));
 
     }
 
