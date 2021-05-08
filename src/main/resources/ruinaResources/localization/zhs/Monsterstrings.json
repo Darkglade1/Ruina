@@ -186,7 +186,7 @@
   "ruina:BrilliantBliss": {
     "MOVES": [
     ],
-    "NAME": "金色琥珀s",
+    "NAME": "金色琥珀",
     "DIALOG": [
     ]
   },
@@ -256,7 +256,7 @@
   "ruina:HermitStaff": {
     "MOVES": [
     ],
-    "NAME": "Hermit's Staff",
+    "NAME": "隐士的法杖",
     "DIALOG": [
     ]
   },
@@ -632,7 +632,7 @@
     "DIALOG": [
       "。。。",
       "下地狱去吧。",
-      "It's finally over."
+      "终于结束了。"
     ]
   },
   "ruina:Pluto": {
@@ -693,7 +693,7 @@
     "DIALOG": [
       "一堆垃圾。",
       "看看你的力气都到哪去了。",
-      "I've always wanted to give the Head a bloody nose."
+      "我老早就想给她来一拳了。"
     ]
   },
   "ruina:VermilionCross": {
@@ -732,7 +732,7 @@
     "DIALOG": [
       "像你这样的人不会有宴会。",
       "真是麻烦。",
-      "We defied the Head and lived . . . for now."
+      "我们违抗了首脑，并活了下来...目前是这样。"
     ]
   },
   "ruina:Oswald": {
@@ -894,96 +894,96 @@
       "非常感谢你的帮助。"
     ]
   },
-  "${ModID}:BlackSilence1": {
+  "ruina:BlackSilence1": {
     "MOVES": [
-      "Crystal Atelier",
-      "Wheels Industry",
-      "Durandal",
-      "Allas Workshop",
-      "Atelier Logic",
-      "Mook Workshop",
-      "Old Boy's Workshop",
-      "Ranga Workshop",
-      "Zelkova Workshop",
+      "卡莉斯塔工作室",
+      "轮盘重工",
+      "杜兰达尔",
+      "阿拉斯工坊",
+      "逻辑工作室",
+      "墨工坊",
+      "老男孩工坊",
+      "琅琊工坊",
+      "桦树工坊",
       "Furioso"
     ],
-    "NAME": "The Black Silence",
+    "NAME": "漆黑噤默",
     "DIALOG": [
     ]
   },
-  "${ModID}:BlackSilence4": {
+  "ruina:BlackSilence4": {
     "MOVES": [
-      "Agony",
-      "Scream",
-      "Void",
-      "Memory - Yun's Office",
-      "Memory - Zwei Association",
-      "Memory - Dawn Office",
-      "Memory - Shi Association",
-      "Memory - Love Town",
-      "Memory - Liu Association",
-      "Memory - The Purple Tear",
-      "Memory - Hana Association",
-      "Memory - The Blue Reverberation"
+      "愤怒",
+      "呐喊",
+      "空虚",
+      "追忆-澜事务所",
+      "追忆-Zwei协会",
+      "追忆-黎明事务所",
+      "追忆-し协会",
+      "追忆-爱之小镇",
+      "追忆-六协会",
+      "追忆-堇紫泪滴",
+      "追忆-Hana协会",
+      "追忆-苍蓝残响"
     ],
-    "NAME": "The Black Silence",
+    "NAME": "漆黑噤默",
     "DIALOG": [
     ]
   },
-  "${ModID}:ImageOfBygones": {
+  "ruina:ImageOfBygones": {
     "MOVES": [
-      "Agony",
-      "Scream",
-      "Pulsation"
+      "愤怒",
+      "呐喊",
+      "脉动"
     ],
-    "NAME": "Image of Bygones",
+    "NAME": "昔日残像",
     "DIALOG": [
     ]
   },
-  "${ModID}:BlackSilence3": {
+  "ruina:BlackSilence3": {
     "MOVES": [
-      "United Workshop",
-      "Unstable Loneliness",
-      "Blind Fury",
-      "Waltz in Black",
-      "Dark Bond"
+      "联合-工坊",
+      "孤独",
+      "怒火中烧",
+      "漆黑华尔兹",
+      "漆黑之束"
     ],
-    "NAME": "Roland",
+    "NAME": "罗兰",
     "DIALOG": [
     ]
   },
-  "${ModID}:Angelica": {
+  "ruina:Angelica": {
     "MOVES": [
-      "Zelkova Workshop",
-      "Allas Workshop",
-      "Atelier Logic",
-      "Waltz in White",
-      "Ashen Bond"
+      "桦树工坊",
+      "阿拉斯工坊",
+      "逻辑工作室",
+      "纯白圆舞曲",
+      "纯白之束"
     ],
-    "NAME": "Angelica",
+    "NAME": "安吉丽卡",
     "DIALOG": [
     ]
   },
-  "${ModID}:Zena": {
+  "ruina:Zena": {
     "MOVES": [
-      "Line",
-      "Thin Line",
-      "Thick Line",
-      "Shockwave"
+      "线",
+      "细线",
+      "粗线",
+      "震击"
     ],
-    "NAME": "Zena",
+    "NAME": "珍娜",
     "DIALOG": [
     ]
   },
-  "${ModID}:Baral": {
+  "ruina:Baral": {
     "MOVES": [
-      "Serum W",
-      "Serum R",
-      "Extirpation",
-      "Tri-Serum Cocktail",
-      "Serum K"
+      "血清-W",
+      "血清-R",
+      "剜除",
+      "三血清齐注",
+      "血清-K"
     ],
-    "NAME": "Baral",
+    "NAME": "巴拉尔",
     "DIALOG": [
     ]
   }

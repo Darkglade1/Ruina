@@ -57,7 +57,7 @@
   },
   "ruina:SenselessWrath": {
     "NAME": "无情的愤怒",
-    "DESCRIPTIONS": ["获得的所有其他 #y负面状态 都会被 #y抵消 。"]
+    "DESCRIPTIONS": ["每获得一次 #y负面状态 ， #y免疫 一次 #y负面状态 。"]
   },
   "ruina:MagicalGirl": {
     "NAME": "一个真正的魔法少女!",
@@ -73,7 +73,7 @@
   },
   "ruina:Worthless": {
     "NAME": "毫无价值",
-    "DESCRIPTIONS": ["如果该生物的攻击未能造成未被格挡的伤害, 该生物 #r死亡。"]
+    "DESCRIPTIONS": ["如果未能造成未被格挡的伤害, 则 #r死亡 。"]
   },
   "ruina:Road": {
     "NAME": "暴君之路",
@@ -169,7 +169,7 @@
   },
   "ruina:BigEgg": {
     "NAME": "巨目",
-    "DESCRIPTIONS": ["每当你受到这个生物造成的未被格挡的伤害时, 将一张 #b", " 放入你的抽牌堆。"]
+    "DESCRIPTIONS": ["每当造成的未被格挡的伤害时, 将 #b", " 放入你的抽牌堆。"]
   },
   "ruina:SmallEgg": {
     "NAME": "小喙",
@@ -381,7 +381,7 @@
       " 次攻击 #y翻倍 目标所有的 #r负面状态 。",
       "防守姿态",
       "#y否定 所有给予自身的 #r负面状态 。",
-      " NL NL You can change this creature's #yStance by clicking on the #yStance #yChange buttons next to this creature's intent."]
+      " NL NL 你可以通过点击盟友旁的 #y姿态更改 按钮来更改盟友的 #y姿态 。"]
   },
   "ruina:Gears": {
     "NAME": "齿轮教会",
@@ -395,48 +395,48 @@
     "NAME": "时间的代价",
     "DESCRIPTIONS": ["每当你打出 #b", " 张牌，他会行动1回合。 NL 他的正常行动回合会被跳过。"]
   },
-  "${ModID}:Orlando": {
+  "ruina:Orlando": {
     "NAME": "Orlando",
-    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards."]
+    "DESCRIPTIONS": ["除了正常的行动回合，每当你打出 #b", " 张牌时会行动一次。"]
   },
-  "${ModID}:Scars": {
-    "NAME": "Scars",
-    "DESCRIPTIONS": ["Every #b","th #yAttack you play instead #gheals this creature for #b", "% of the unblocked damage it would have done."]
+  "ruina:Scars": {
+    "NAME": "疤痕",
+    "DESCRIPTIONS": ["你打出的每第 #b"," 次 #y攻击 改为 #g回复 漆黑噤默等同于原本将要造成的未被格挡的伤害的 #b", "% 的生命。"]
   },
-  "${ModID}:Sorrow": {
-    "NAME": "Sorrow",
-    "DESCRIPTIONS": ["Whenever you play a card, #yExhaust it."]
+  "ruina:Sorrow": {
+    "NAME": "悲伤",
+    "DESCRIPTIONS": ["每当你打出一张牌，将其 #y消耗 。"]
   },
-  "${ModID}:BlackSilence3": {
-    "NAME": "Black Silence",
-    "DESCRIPTIONS": ["The first time you play #b", " #yAttacks each turn, this creature changes its intent to ", "."]
+  "ruina:BlackSilence3": {
+    "NAME": "漆黑噤默",
+    "DESCRIPTIONS": ["每个回合你打出 #b", " #y攻击牌 ，会将意图更改为 ", "."]
   },
-  "${ModID}:WhiteNoise": {
-    "NAME": "White Noise",
-    "DESCRIPTIONS": ["The first time you play #b", " #ySkills each turn, this creature changes its intent to ", "."]
+  "ruina:WhiteNoise": {
+    "NAME": "纯白喧声",
+    "DESCRIPTIONS": ["T每个回合你打出 #b", " #y技能牌 ，会将意图更改为 ", "."]
   },
-  "${ModID}:SoulLink": {
-    "NAME": "Soul Link",
-    "DESCRIPTIONS": ["Creatures with #ySoul #yLink are #yPartners. Whenever this creature #rdies, it revives at #b", "% HP this turn if its #yPartner is still alive."]
+  "ruina:SoulLink": {
+    "NAME": "灵魂连接",
+    "DESCRIPTIONS": ["拥有 #y灵魂连接 的生物是 #y同伴 。每当 #r死亡 ，如果 #y同伴 仍然存活，则本回合以 #b", "% 生命复活。"]
   },
-  "${ModID}:PlayerBlackSilence": {
-    "NAME": "The Black Silence",
-    "DESCRIPTIONS": ["Whenever you play #b", " unique cards, add #yFurioso to your hand."]
+  "ruina:PlayerBlackSilence": {
+    "NAME": "漆黑噤默",
+    "DESCRIPTIONS": ["每当你打出 #b", " 张不同的牌，将 #yFurioso 加入你的手牌。"]
   },
-  "${ModID}:AClaw": {
-    "NAME": "Executioner",
-    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL If this creature would receive #b", " or more unblocked attack damage, reduce the damage by #b", "%. NL Whenever a creature dies, gains #b", " #yStrength."]
+  "ruina:AClaw": {
+    "NAME": "处刑者",
+    "DESCRIPTIONS": ["不会失去 #y力量 。 NL 如果即将受到 #b", " 或更多的未被格挡的伤害，伤害减少 #b", "% 。 NL 每当一个生物死亡，获得 #b", " 点 #y力量 。"]
   },
-  "${ModID}:AnArbiter": {
-    "NAME": "Complete Arbiter",
-    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it steals #b", " #yStrength from its target."]
+  "ruina:AnArbiter": {
+    "NAME": "完整的调律者",
+    "DESCRIPTIONS": ["每当造成未被格挡的伤害时，从目标处偷取 #b", " 点 #y力量 。"]
   },
-  "${ModID}:GeburaProwess": {
-    "NAME": "Gebura's Prowess",
-    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks. Whenever this creature deals unblocked attack damage, increase this bonus by #b", "%."]
+  "ruina:GeburaProwess": {
+    "NAME": "红雾传说",
+    "DESCRIPTIONS": ["攻击造成 #b", "% 额外伤害。 每当造成未被格挡的伤害时，提高 #b", "% 。"]
   },
-  "${ModID}:PlayerBackAttack": {
-    "NAME": "Back Attack",
-    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks."]
+  "ruina:PlayerBackAttack": {
+    "NAME": "夹击",
+    "DESCRIPTIONS": ["攻击造成 #b", "% 额外伤害。"]
   }
 }
