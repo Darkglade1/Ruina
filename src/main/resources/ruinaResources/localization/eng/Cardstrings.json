@@ -720,7 +720,7 @@
   },
   "${ModID}:AllasWorkshop": {
     "NAME": "Allas Workshop",
-    "DESCRIPTION": "Deal !D! damage. NL If its *Partner intends to attack, apply! !M! Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL If its *Partner intends to attack, apply !M! Vulnerable."
   },
   "${ModID}:AtelierLogic": {
     "NAME": "Atelier Logic",
