@@ -100,5 +100,12 @@
     "TEXT": [
       "These are your Frozen cards, shown in order from oldest to newest."
     ]
+  },
+  "${ModID}:RabbitTeam": {
+    "TEXT": [
+      "RABBIT",
+      "PROTOCOL",
+      "TERMINATE"
+    ]
   }
 }
