@@ -56,6 +56,7 @@ import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.angela.Abnormalities.AngelaBloodBath;
 import ruina.monsters.angela.Abnormalities.AngelaQueenOfHatred;
+import ruina.monsters.angela.Abnormalities.WhiteNight.AngelaWhiteNight;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
@@ -799,6 +800,7 @@ public class RuinaMod implements
         // Angela
         BaseMod.addMonster(AngelaBloodBath.ID, (BaseMod.GetMonster) AngelaBloodBath::new);
         BaseMod.addMonster(AngelaQueenOfHatred.ID, (BaseMod.GetMonster) AngelaQueenOfHatred::new);
+        BaseMod.addMonster(AngelaWhiteNight.ID, (BaseMod.GetMonster) AngelaWhiteNight::new);
 
     }
 

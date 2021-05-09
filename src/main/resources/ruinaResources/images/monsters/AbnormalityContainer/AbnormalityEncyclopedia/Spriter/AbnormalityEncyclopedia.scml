@@ -3,6 +3,7 @@
     <folder id="0">
         <file id="0" name="BLOODBATH.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
         <file id="1" name="QUEENOFHATRED.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="WHITENIGHT.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="AbnormalityEncyclopedia">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -10,7 +11,19 @@
                 <key id="0"/>
             </mainline>
         </animation>
-        <animation id="1" name="QueenOfHatred" length="1000" interval="100">
+        <animation id="1" name="WhiteNight" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="WHITENIGHT">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="QueenOfHatred" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -18,11 +31,11 @@
             </mainline>
             <timeline id="0" name="QUEENOFHATRED">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="1" x="-262" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="2" name="BloodBath" length="1000" interval="100">
+        <animation id="3" name="BloodBath" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>

@@ -1001,5 +1001,21 @@
     "NAME": "Book Of BloodBath",
     "DIALOG": [
     ]
+  },
+  "${ModID}:AngelaWhiteNight": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Book Of WhiteNight",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:WhiteNight": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "WhiteNight",
+    "DIALOG": [
+    ]
   }
 }
