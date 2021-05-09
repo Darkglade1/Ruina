@@ -4,13 +4,37 @@
         <file id="0" name="BloodBath/Idle.png" width="154" height="373" pivot_x="0" pivot_y="1"/>
         <file id="1" name="BloodBath/Special.png" width="233" height="317" pivot_x="0" pivot_y="1"/>
     </folder>
+    <folder id="1" name="QueenOfHatred">
+        <file id="0" name="QueenOfHatred/Idle.png" width="188" height="193" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="QueenOfHatred/Pose.png" width="263" height="212" pivot_x="0" pivot_y="1"/>
+    </folder>
     <entity id="0" name="AbnormalityUnit">
         <animation id="0" name="Idle" length="1000" interval="100">
             <mainline>
                 <key id="0"/>
             </mainline>
         </animation>
-        <animation id="1" name="BloodBath" length="8500" interval="100">
+        <animation id="1" name="QueenOfHatred" length="6500" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="5000">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="1" file="0" x="-53" y="207" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Pose">
+                <key id="0" time="5000" spin="0">
+                    <object folder="1" file="1" x="-171" y="223" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="BloodBath" length="8500" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>

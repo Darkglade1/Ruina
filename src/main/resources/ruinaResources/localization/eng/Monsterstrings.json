@@ -986,7 +986,15 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:Angela_Bloodbath": {
+  "${ModID}:AngelaBloodbath": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Book Of BloodBath",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:AngelaQueenOfHatred": {
     "MOVES": [
       ""
     ],

@@ -54,7 +54,8 @@ import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
-import ruina.monsters.angela.Abnormalities.Angela_BloodBath;
+import ruina.monsters.angela.Abnormalities.AngelaBloodBath;
+import ruina.monsters.angela.Abnormalities.AngelaQueenOfHatred;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
@@ -91,7 +92,6 @@ import ruina.util.TexLoader;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Properties;
 
 import static ruina.chr.chr_aya.characterStrings;
@@ -797,7 +797,8 @@ public class RuinaMod implements
         headClear = ruinaConfig.getBool("headClear");
 
         // Angela
-        BaseMod.addMonster(Angela_BloodBath.ID, (BaseMod.GetMonster) Angela_BloodBath::new);
+        BaseMod.addMonster(AngelaBloodBath.ID, (BaseMod.GetMonster) AngelaBloodBath::new);
+        BaseMod.addMonster(AngelaQueenOfHatred.ID, (BaseMod.GetMonster) AngelaQueenOfHatred::new);
 
     }
 
