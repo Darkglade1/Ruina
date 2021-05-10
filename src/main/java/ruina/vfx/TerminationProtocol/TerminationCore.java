@@ -13,7 +13,6 @@ public class TerminationCore extends AbstractGameEffect {
         AbstractDungeon.topLevelEffectsQueue.add(new TerminationWarningText());
         AbstractDungeon.topLevelEffectsQueue.add(new TerminationRabbitImage());
         AbstractDungeon.topLevelEffectsQueue.add(new TerminationPrimaryMessage());
-        CardCrawlGame.sound.play("RabbitTeam_Alert");
         this.isDone = true;
     }
 
