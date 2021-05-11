@@ -34,7 +34,7 @@ public class AngelaBigBird extends AbnormalityContainer
     }
 
     protected void setupAbnormality() {
-        abnormalityBG = new AbnormalityBackground(abnoID);
+        abnormalityBG = new AbnormalityBackground("Birds");
         abnormalityBG.drawX = adp().drawX;
         abnormalityEncyclopedia = new AbnormalityEncyclopedia(abnoID);
         abnormalityEncyclopedia.drawX = adp().drawX;
