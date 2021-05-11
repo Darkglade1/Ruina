@@ -44,23 +44,48 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
 
     protected int timesBreached = 0;
     protected boolean currentlyBreaching;
+    protected String abnoID;
+    protected String warningTier;
 
-    public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
+    public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, String abnormalityID, String threatLevel) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
+        abnoID = abnormalityID;
+        warningTier = threatLevel;
     }
 
-    public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, boolean ignoreBlights) {
+    public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, boolean ignoreBlights, String abnormalityID, String threatLevel) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY, ignoreBlights);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
+        abnoID = abnormalityID;
+        warningTier = threatLevel;
     }
 
-    public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl) {
+    public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, String abnormalityID, String threatLevel) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
+        abnoID = abnormalityID;
+        warningTier = threatLevel;
     }
 
-    protected abstract void setupAbnormality();
+    protected void setupAbnormality() {
+        abnormality = new AbnormalityUnit(abnoID);
+        abnormality.drawX = adp().drawX;
+        abnormalityBG = new AbnormalityBackground(abnoID);
+        abnormalityBG.drawX = adp().drawX;
+        abnormalityEncyclopedia = new AbnormalityEncyclopedia(abnoID);
+        abnormalityEncyclopedia.drawX = adp().drawX;
+        abnormalityWarning = new AbnormalityWarning(abnoID);
+        abnormalityWarning.drawX = adp().drawX;
+        staticDischarge = new Static();
+        staticDischarge.drawX = adp().drawX;
+    }
+
+    public void usePreBattleAction(){
+        this.drawX = adp().drawX;
+        setupAbnormality();
+    }
+
     protected abstract void getAbnormality(int timesBreached);
     protected void prepareBreach(){
         atb(new AbstractGameAction() {
@@ -70,6 +95,17 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
                 this.isDone = true;
             }
         });
+        switch (warningTier){
+            default:
+                CustomDungeon.playTempMusicInstantly("Trumpet1");
+                break;
+            case "WAW":
+                CustomDungeon.playTempMusicInstantly("Trumpet2");
+                break;
+            case "ALEPH":
+                CustomDungeon.playTempMusicInstantly("Trumpet3");
+                break;
+        }
     }
     @Override
     public void damage(DamageInfo info) {
@@ -104,7 +140,6 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
     public void render(SpriteBatch sb){
         if(currentlyBreaching && staticDischarge != null){ staticDischarge.render(sb); }
         else {
-            System.out.println("hi?");
             if(abnormalityBG != null){ abnormalityBG.render(sb); }
             if(abnormality != null){ abnormality.render(sb); }
         }

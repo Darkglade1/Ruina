@@ -17,7 +17,7 @@ public class AbnormalityEncyclopedia extends AbstractRuinaMonster
     public AbnormalityEncyclopedia() {
         this(0.0f, 0.0f, "BloodBath");
     }
-
+    public AbnormalityEncyclopedia(String ABNOID) { this(0.0f, 0.0f, ABNOID); }
     public AbnormalityEncyclopedia(final float x, final float y, String ABNOID) {
         super(NAME, ID, 20, -5.0F, 0, 130.0f, 125.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/AbnormalityEncyclopedia/Spriter/AbnormalityEncyclopedia.scml"));
