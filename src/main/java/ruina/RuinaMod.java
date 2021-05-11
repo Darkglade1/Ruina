@@ -187,7 +187,7 @@ public class RuinaMod implements
 
         BaseMod.addColor(Enums.EGO, EGO_COLOR, EGO_COLOR, EGO_COLOR,
                 EGO_COLOR, EGO_COLOR, EGO_COLOR, EGO_COLOR,
-                ANGELA_ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
+                ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
                 ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
                 CARD_ENERGY_L, TEXT_ENERGY);
 
