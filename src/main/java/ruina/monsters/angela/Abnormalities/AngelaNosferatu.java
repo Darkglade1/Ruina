@@ -12,18 +12,18 @@ import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
-public class AngelaHeartOfAspiration extends AbnormalityContainer
+public class AngelaNosferatu extends AbnormalityContainer
 {
-    public static final String ABNOID = "HeartOfAspiration";
-    public static final String WARNING = "TETH";
-    public static final String ID = makeID(AngelaHeartOfAspiration.class.getSimpleName());
+    public static final String ABNOID = "Nosferatu";
+    public static final String WARNING = "WAW";
+    public static final String ID = makeID(AngelaNosferatu.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     private static final byte NONE = 0;
-    public AngelaHeartOfAspiration(){
+    public AngelaNosferatu(){
         this(0, 275);
     }
-    public AngelaHeartOfAspiration(final float x, final float y) {
+    public AngelaNosferatu(final float x, final float y) {
         super(NAME, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y, ABNOID, WARNING);
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 9) {
