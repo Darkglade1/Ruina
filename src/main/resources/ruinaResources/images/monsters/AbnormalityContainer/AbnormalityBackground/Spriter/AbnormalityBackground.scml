@@ -22,6 +22,7 @@
         <file id="18" name="3b.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
         <file id="19" name="hvn.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
         <file id="20" name="sil.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="21" name="dummy.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="AbnormalityBackground">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -29,7 +30,19 @@
                 <key id="0"/>
             </mainline>
         </animation>
-        <animation id="1" name="HeartOfAspiration" length="1000" interval="100">
+        <animation id="1" name="Dummy" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="dummy">
+                <key id="0" spin="0">
+                    <object folder="0" file="21" x="-262.5" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="HeartOfAspiration" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -41,7 +54,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="2" name="Pinocchio" length="1000" interval="100">
+        <animation id="3" name="Pinocchio" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -53,7 +66,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="3" name="SnowQueen" length="1000" interval="100">
+        <animation id="4" name="SnowQueen" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -65,7 +78,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="4" name="KnightOfDespair" length="1000" interval="100">
+        <animation id="5" name="KnightOfDespair" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -77,7 +90,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="5" name="KingOfGreed" length="1000" interval="100">
+        <animation id="6" name="KingOfGreed" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -89,7 +102,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="6" name="ServantOfWrath" length="1000" interval="100">
+        <animation id="7" name="ServantOfWrath" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -101,7 +114,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="7" name="LittleRedRidingHood" length="1000" interval="100">
+        <animation id="8" name="LittleRedRidingHood" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -113,7 +126,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="8" name="BigBadWolf" length="1000" interval="100">
+        <animation id="9" name="BigBadWolf" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -125,7 +138,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="9" name="MountainOfSmilingBodies" length="1000" interval="100">
+        <animation id="10" name="MountainOfSmilingBodies" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -137,7 +150,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="10" name="Nosferatu" length="1000" interval="100">
+        <animation id="11" name="Nosferatu" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -149,7 +162,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="11" name="Scarecrow" length="1000" interval="100">
+        <animation id="12" name="Scarecrow" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -161,7 +174,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="12" name="Woodsman" length="1000" interval="100">
+        <animation id="13" name="Woodsman" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -173,7 +186,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="13" name="RoadHome" length="1000" interval="100">
+        <animation id="14" name="RoadHome" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -185,7 +198,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="14" name="Ozma" length="1000" interval="100">
+        <animation id="15" name="Ozma" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -197,7 +210,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="15" name="Birds" length="1000" interval="100">
+        <animation id="16" name="Birds" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -209,7 +222,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="16" name="BurrowingHeaven" length="1000" interval="100">
+        <animation id="17" name="BurrowingHeaven" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -221,7 +234,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="17" name="PriceOfSilence" length="1000" interval="100">
+        <animation id="18" name="PriceOfSilence" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -233,7 +246,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="18" name="WhiteNight" length="1000" interval="100">
+        <animation id="19" name="WhiteNight" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -245,7 +258,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="19" name="BloodBath" length="20000" interval="100">
+        <animation id="20" name="BloodBath" length="20000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -265,7 +278,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="20" name="QueenOfHatred" length="1000" interval="100">
+        <animation id="21" name="QueenOfHatred" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
