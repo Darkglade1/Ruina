@@ -1,4 +1,4 @@
-package ruina.monsters.angela.Abnormalities;
+package ruina.monsters.angela.Abnormalities.Woodsman;
 
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,18 +12,18 @@ import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
-public class AngelaScarecrow extends AbnormalityContainer
+public class AngelaWoodsman extends AbnormalityContainer
 {
-    public static final String ABNOID = "Scarecrow";
+    public static final String ABNOID = "Woodsman";
     public static final String WARNING = "HE";
-    public static final String ID = makeID(AngelaScarecrow.class.getSimpleName());
+    public static final String ID = makeID(AngelaWoodsman.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     private static final byte NONE = 0;
-    public AngelaScarecrow(){
+    public AngelaWoodsman(){
         this(0, 275);
     }
-    public AngelaScarecrow(final float x, final float y) {
+    public AngelaWoodsman(final float x, final float y) {
         super(NAME, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y, ABNOID, WARNING);
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 9) {

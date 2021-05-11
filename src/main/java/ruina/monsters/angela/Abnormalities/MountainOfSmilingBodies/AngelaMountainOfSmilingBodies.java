@@ -1,4 +1,4 @@
-package ruina.monsters.angela.Abnormalities;
+package ruina.monsters.angela.Abnormalities.MountainOfSmilingBodies;
 
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,18 +12,18 @@ import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
-public class AngelaServantOfWrath extends AbnormalityContainer
+public class AngelaMountainOfSmilingBodies extends AbnormalityContainer
 {
-    public static final String ABNOID = "ServantOfWrath";
-    public static final String WARNING = "WAW";
-    public static final String ID = makeID(AngelaServantOfWrath.class.getSimpleName());
+    public static final String ABNOID = "MountainOfSmilingBodies";
+    public static final String WARNING = "ALEPH";
+    public static final String ID = makeID(AngelaMountainOfSmilingBodies.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     private static final byte NONE = 0;
-    public AngelaServantOfWrath(){
+    public AngelaMountainOfSmilingBodies(){
         this(0, 275);
     }
-    public AngelaServantOfWrath(final float x, final float y) {
+    public AngelaMountainOfSmilingBodies(final float x, final float y) {
         super(NAME, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y, ABNOID, WARNING);
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 9) {

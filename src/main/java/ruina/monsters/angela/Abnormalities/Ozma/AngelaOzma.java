@@ -1,4 +1,4 @@
-package ruina.monsters.angela.Abnormalities;
+package ruina.monsters.angela.Abnormalities.Ozma;
 
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,18 +12,18 @@ import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
-public class AngelaBigBird extends AbnormalityContainer
+public class AngelaOzma extends AbnormalityContainer
 {
-    public static final String ABNOID = "BigBird";
-    public static final String WARNING = "WAW";
-    public static final String ID = makeID(AngelaBigBird.class.getSimpleName());
+    public static final String ABNOID = "Ozma";
+    public static final String WARNING = "UNK";
+    public static final String ID = makeID(AngelaOzma.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     private static final byte NONE = 0;
-    public AngelaBigBird(){
+    public AngelaOzma(){
         this(0, 275);
     }
-    public AngelaBigBird(final float x, final float y) {
+    public AngelaOzma(final float x, final float y) {
         super(NAME, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y, ABNOID, WARNING);
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 9) {
@@ -34,7 +34,7 @@ public class AngelaBigBird extends AbnormalityContainer
     }
 
     protected void setupAbnormality() {
-        abnormalityBG = new AbnormalityBackground("Birds");
+        abnormalityBG = new AbnormalityBackground(abnoID);
         abnormalityBG.drawX = adp().drawX;
         abnormalityEncyclopedia = new AbnormalityEncyclopedia(abnoID);
         abnormalityEncyclopedia.drawX = adp().drawX;

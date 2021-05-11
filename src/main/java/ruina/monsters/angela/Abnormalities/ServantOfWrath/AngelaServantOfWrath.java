@@ -1,6 +1,4 @@
-package ruina.monsters.angela.Abnormalities;
-
-import ruina.monsters.angela.AbnormalityContainer;
+package ruina.monsters.angela.Abnormalities.ServantOfWrath;
 
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -14,18 +12,18 @@ import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
-public class AngelaSnowQueen extends AbnormalityContainer
+public class AngelaServantOfWrath extends AbnormalityContainer
 {
-    public static final String ABNOID = "SnowQueen";
-    public static final String WARNING = "HE";
-    public static final String ID = makeID(AngelaSnowQueen.class.getSimpleName());
+    public static final String ABNOID = "ServantOfWrath";
+    public static final String WARNING = "WAW";
+    public static final String ID = makeID(AngelaServantOfWrath.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     private static final byte NONE = 0;
-    public AngelaSnowQueen(){
+    public AngelaServantOfWrath(){
         this(0, 275);
     }
-    public AngelaSnowQueen(final float x, final float y) {
+    public AngelaServantOfWrath(final float x, final float y) {
         super(NAME, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y, ABNOID, WARNING);
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 9) {
