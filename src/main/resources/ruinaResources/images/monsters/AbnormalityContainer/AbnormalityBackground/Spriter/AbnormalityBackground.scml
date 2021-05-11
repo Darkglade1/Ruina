@@ -37,7 +37,7 @@
             </mainline>
             <timeline id="0" name="hrt">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="4" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -49,7 +49,7 @@
             </mainline>
             <timeline id="0" name="puppet">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="5" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -61,7 +61,7 @@
             </mainline>
             <timeline id="0" name="sq">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="6" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -73,7 +73,7 @@
             </mainline>
             <timeline id="0" name="kod">
                 <key id="0" spin="0">
-                    <object folder="0" file="8" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="8" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -85,7 +85,7 @@
             </mainline>
             <timeline id="0" name="kog">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="7" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -97,7 +97,7 @@
             </mainline>
             <timeline id="0" name="sow">
                 <key id="0" spin="0">
-                    <object folder="0" file="9" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="9" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -109,7 +109,7 @@
             </mainline>
             <timeline id="0" name="rrh">
                 <key id="0" spin="0">
-                    <object folder="0" file="10" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="10" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -121,7 +121,7 @@
             </mainline>
             <timeline id="0" name="bbw">
                 <key id="0" spin="0">
-                    <object folder="0" file="11" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="11" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -133,7 +133,7 @@
             </mainline>
             <timeline id="0" name="mosb">
                 <key id="0" spin="0">
-                    <object folder="0" file="12" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="12" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -145,7 +145,7 @@
             </mainline>
             <timeline id="0" name="vmp">
                 <key id="0" spin="0">
-                    <object folder="0" file="13" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="13" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -157,7 +157,7 @@
             </mainline>
             <timeline id="0" name="sc">
                 <key id="0" spin="0">
-                    <object folder="0" file="14" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="14" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -169,7 +169,7 @@
             </mainline>
             <timeline id="0" name="wm">
                 <key id="0" spin="0">
-                    <object folder="0" file="15" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="15" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -181,7 +181,7 @@
             </mainline>
             <timeline id="0" name="rh">
                 <key id="0" spin="0">
-                    <object folder="0" file="16" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="16" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -193,7 +193,7 @@
             </mainline>
             <timeline id="0" name="oz">
                 <key id="0" spin="0">
-                    <object folder="0" file="17" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="17" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -205,7 +205,7 @@
             </mainline>
             <timeline id="0" name="3b">
                 <key id="0" spin="0">
-                    <object folder="0" file="18" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="18" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -217,7 +217,7 @@
             </mainline>
             <timeline id="0" name="hvn">
                 <key id="0" spin="0">
-                    <object folder="0" file="19" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="19" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -229,7 +229,7 @@
             </mainline>
             <timeline id="0" name="sil">
                 <key id="0" spin="0">
-                    <object folder="0" file="20" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="20" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -241,7 +241,7 @@
             </mainline>
             <timeline id="0" name="wn">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-262" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="3" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
@@ -273,7 +273,7 @@
             </mainline>
             <timeline id="0" name="qoh">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-262" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="2" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
