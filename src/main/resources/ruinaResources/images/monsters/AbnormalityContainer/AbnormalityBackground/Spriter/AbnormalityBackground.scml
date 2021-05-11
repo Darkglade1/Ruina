@@ -5,6 +5,23 @@
         <file id="1" name="bbeyes.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
         <file id="2" name="qoh.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
         <file id="3" name="wn.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="hrt.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="puppet.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="sq.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="kog.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="kod.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="sow.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="rrh.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="11" name="bbw.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="12" name="mosb.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="13" name="vmp.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="14" name="sc.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="15" name="wm.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="16" name="rh.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="17" name="oz.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="18" name="3b.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="19" name="hvn.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="20" name="sil.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="AbnormalityBackground">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -12,7 +29,211 @@
                 <key id="0"/>
             </mainline>
         </animation>
-        <animation id="1" name="WhiteNight" length="1000" interval="100">
+        <animation id="1" name="HeartOfAspiration" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="hrt">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Pinocchio" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="puppet">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="SnowQueen" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="sq">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="KnightOfDespair" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="kod">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="KingOfGreed" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="kog">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-262" y="370" scale_x="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="ServantOfWrath" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="sow">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-262" y="74.074074" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="7" name="LittleRedRidingHood" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="rrh">
+                <key id="0" spin="0">
+                    <object folder="0" file="10" x="-262" y="22.222222" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="8" name="BigBadWolf" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="bbw">
+                <key id="0" spin="0">
+                    <object folder="0" file="11" x="-262" y="118.518519" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="9" name="MountainOfSmilingBodies" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="mosb">
+                <key id="0" spin="0">
+                    <object folder="0" file="12" x="-262" y="411.111111" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="10" name="Nosferatu" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="vmp">
+                <key id="0" spin="0">
+                    <object folder="0" file="13" x="-262" y="329.62963" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="11" name="Scarecrow" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="sc">
+                <key id="0" spin="0">
+                    <object folder="0" file="14" x="-318.518519" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="12" name="Woodsman" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="wm">
+                <key id="0" spin="0">
+                    <object folder="0" file="15" x="-262" y="370" scale_x="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="13" name="RoadHome" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="rh">
+                <key id="0" spin="0">
+                    <object folder="0" file="16" x="-262" y="370.37037" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="14" name="Ozma" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="oz">
+                <key id="0" spin="0">
+                    <object folder="0" file="17" x="-596.296296" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="15" name="Birds" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="3b">
+                <key id="0" spin="0">
+                    <object folder="0" file="18" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="16" name="BurrowingHeaven" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="hvn">
+                <key id="0" spin="0">
+                    <object folder="0" file="19" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="17" name="PriceOfSilence" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="sil">
+                <key id="0" spin="0">
+                    <object folder="0" file="20" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="18" name="WhiteNight" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -20,11 +241,11 @@
             </mainline>
             <timeline id="0" name="wn">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-262" y="370" scale_x="0.5" scale_y="0.5"/>
+                    <object folder="0" file="3" x="-262" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="2" name="BloodBath" length="20000" interval="100">
+        <animation id="19" name="BloodBath" length="20000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -44,7 +265,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="3" name="QueenOfHatred" length="1000" interval="100">
+        <animation id="20" name="QueenOfHatred" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
