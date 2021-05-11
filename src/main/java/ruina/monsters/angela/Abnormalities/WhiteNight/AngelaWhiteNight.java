@@ -36,6 +36,17 @@ public class AngelaWhiteNight extends AbnormalityContainer
         }
     }
 
+    protected void setupAbnormality() {
+        abnormalityBG = new AbnormalityBackground(abnoID);
+        abnormalityBG.drawX = adp().drawX;
+        abnormalityEncyclopedia = new AbnormalityEncyclopedia(abnoID);
+        abnormalityEncyclopedia.drawX = adp().drawX;
+        abnormalityWarning = new AbnormalityWarning(warningTier);
+        abnormalityWarning.drawX = adp().drawX;
+        staticDischarge = new Static();
+        staticDischarge.drawX = adp().drawX;
+    }
+
     @Override
     protected void getAbnormality(int timesBreached) {
         prepareBreach();

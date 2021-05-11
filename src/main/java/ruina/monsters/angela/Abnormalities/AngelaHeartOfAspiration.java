@@ -6,9 +6,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.act3.Bloodbath;
-import ruina.monsters.angela.AbnormalityContainer;
+import ruina.monsters.angela.*;
 
 import static ruina.RuinaMod.makeID;
+import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
 public class AngelaHeartOfAspiration extends AbnormalityContainer
@@ -30,6 +31,17 @@ public class AngelaHeartOfAspiration extends AbnormalityContainer
         } else {
             setHp(1);
         }
+    }
+
+    protected void setupAbnormality() {
+        abnormalityBG = new AbnormalityBackground(abnoID);
+        abnormalityBG.drawX = adp().drawX;
+        abnormalityEncyclopedia = new AbnormalityEncyclopedia(abnoID);
+        abnormalityEncyclopedia.drawX = adp().drawX;
+        abnormalityWarning = new AbnormalityWarning(warningTier);
+        abnormalityWarning.drawX = adp().drawX;
+        staticDischarge = new Static();
+        staticDischarge.drawX = adp().drawX;
     }
 
     @Override

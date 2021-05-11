@@ -75,7 +75,7 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
         abnormalityBG.drawX = adp().drawX;
         abnormalityEncyclopedia = new AbnormalityEncyclopedia(abnoID);
         abnormalityEncyclopedia.drawX = adp().drawX;
-        abnormalityWarning = new AbnormalityWarning(abnoID);
+        abnormalityWarning = new AbnormalityWarning(warningTier);
         abnormalityWarning.drawX = adp().drawX;
         staticDischarge = new Static();
         staticDischarge.drawX = adp().drawX;
