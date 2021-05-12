@@ -17,7 +17,6 @@ public class Static extends AbstractRuinaMonster
     public Static() {
         this(0.0f, 0.0f);
     }
-
     public Static(final float x, final float y) {
         super(NAME, ID, 20, -5.0F, 0, 130.0f, 125.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/Static/Spriter/Static.scml"));

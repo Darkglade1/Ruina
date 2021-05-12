@@ -1,7 +1,5 @@
-package ruina.monsters.angela.Abnormalities.WhiteNight;
+package ruina.monsters.angela.Abnormalities.LittleRedRidingHood;
 
-import actlikeit.dungeons.CustomDungeon;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -9,24 +7,23 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.angela.*;
-import ruina.monsters.angela.Abnormalities.WhiteNight.vfx.WhiteNightAura;
 
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.*;
+import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.atb;
 
-public class AngelaWhiteNight extends AbnormalityContainer
+public class AngelaLittleRedRidingHood extends AbnormalityContainer
 {
-    private static final String ABNOID = "WhiteNight";
-    private static final String WARNING = "ALEPH";
-    public static final String ID = makeID(AngelaWhiteNight.class.getSimpleName());
+    public static final String ABNOID = "LittleRedRidingHood";
+    public static final String WARNING = "WAW";
+    public static final String ID = makeID(AngelaLittleRedRidingHood.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     private static final byte NONE = 0;
-    private final int HEAL = calcAscensionSpecial(100);
-    public AngelaWhiteNight(){
+    public AngelaLittleRedRidingHood(){
         this(0, 275);
     }
-    public AngelaWhiteNight(final float x, final float y) {
+    public AngelaLittleRedRidingHood(final float x, final float y) {
         super(NAME, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y, ABNOID, WARNING);
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 9) {
@@ -50,18 +47,11 @@ public class AngelaWhiteNight extends AbnormalityContainer
     @Override
     protected void getAbnormality(int timesBreached) {
         prepareBreach();
-        WhiteNight whiteNight = new WhiteNight();
-        atb(new SpawnMonsterAction(whiteNight, true));
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                AbstractDungeon.effectsQueue.add(new WhiteNightAura(whiteNight.hb));
-                att(new UsePreBattleActionAction(whiteNight));
-                isDone = true;
-            }
-        });
-        whiteNight.rollMove();
-        whiteNight.createIntent();
+        Bloodbath bloodbath = new Bloodbath();
+        atb(new SpawnMonsterAction(bloodbath, true));
+        atb(new UsePreBattleActionAction(bloodbath));
+        bloodbath.rollMove();
+        bloodbath.createIntent();
     }
 
     @Override

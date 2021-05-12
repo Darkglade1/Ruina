@@ -14,10 +14,8 @@ public class AbnormalityBackground extends AbstractRuinaMonster
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     private static final byte NONE = 0;
-    public AbnormalityBackground() {
-        this(0.0f, 0.0f, "BloodBath");
-    }
-
+    public AbnormalityBackground() { this(0.0f, 0.0f, "BloodBath"); }
+    public AbnormalityBackground(String ABNOID) { this(0.0f, 0.0f, ABNOID); }
     public AbnormalityBackground(final float x, final float y, String ABNOID) {
         super(NAME, ID, 20, -5.0F, 0, 130.0f, 125.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/AbnormalityBackground/Spriter/AbnormalityBackground.scml"));

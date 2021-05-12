@@ -17,7 +17,7 @@ public class AbnormalityWarning extends AbstractRuinaMonster
     public AbnormalityWarning() {
         this(0.0f, 0.0f, "WAW");
     }
-
+    public AbnormalityWarning(String WARNING) { this(0.0f, 0.0f, WARNING); }
     public AbnormalityWarning(final float x, final float y, String WARNINGID) {
         super(NAME, ID, 20, -5.0F, 0, 130.0f, 125.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/AbnormalityWarning/Spriter/AbnormalityWarning.scml"));
