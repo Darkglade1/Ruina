@@ -134,6 +134,14 @@ public class RuinaMod implements
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }
 
+    public static class AbnoEnums {
+        @SpireEnum(name = "ANGELA_LOR_ABNO") // These two HAVE to have the same absolutely identical name.
+        public static AbstractCard.CardColor ANGELA_LOR_ABNO;
+        @SpireEnum(name = "ANGELA_LOR_ABNO")
+        @SuppressWarnings("unused")
+        public static CardLibrary.LibraryType LIBRARY_COLOR;
+    }
+
     public static Color EGO_COLOR = CardHelper.getColor(76, 7, 23);
     private static final String ATTACK_S_ART = getModID() + "Resources/images/512/card.png";
     private static final String SKILL_S_ART = getModID() + "Resources/images/512/card.png";
@@ -146,7 +154,7 @@ public class RuinaMod implements
     private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
 
     // Angela stuff
-    public static Color ANGELA_COLOR = new Color(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1);
+    public static Color ANGELA_COLOR = CardHelper.getColor(77, 8, 24);
     public static final String SHOULDER1 = getModID() + "Resources/images/char/mainChar/shoulder.png";
     public static final String SHOULDER2 = getModID() + "Resources/images/char/mainChar/shoulder2.png";
     public static final String CORPSE = getModID() + "Resources/images/char/mainChar/corpse.png";
@@ -161,6 +169,11 @@ public class RuinaMod implements
     private static final String ANGELA_CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
     private static final String CHARSELECT_BUTTON = getModID() + "Resources/images/charSelect/charButton.png";
     private static final String CHARSELECT_PORTRAIT = getModID() + "Resources/images/charSelect/charBG.png";
+
+    // Draftable Abnormalities
+    public static Color ABNO_COLOR = CardHelper.getColor(78, 9, 25);
+    private static final String ABNO_ART = getModID() + "Resources/images/512/abnormality.png";
+    private static final String ABNO_L_ART = getModID() + "Resources/images/1024/abnormality.png";
 
     public static CardGroup egoPile;
     private static EGOButton egoPileButton;
@@ -187,6 +200,18 @@ public class RuinaMod implements
 
         BaseMod.addColor(Enums.EGO, EGO_COLOR, EGO_COLOR, EGO_COLOR,
                 EGO_COLOR, EGO_COLOR, EGO_COLOR, EGO_COLOR,
+                ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
+                ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
+                CARD_ENERGY_L, TEXT_ENERGY);
+
+        BaseMod.addColor(AbnoEnums.ANGELA_LOR_ABNO, ABNO_COLOR, ABNO_COLOR, ABNO_COLOR,
+                ABNO_COLOR, ABNO_COLOR, ABNO_COLOR, ABNO_COLOR,
+                ABNO_ART, ABNO_ART, ABNO_ART, CARD_ENERGY_S,
+                ABNO_L_ART, ABNO_L_ART, ABNO_L_ART,
+                CARD_ENERGY_L, TEXT_ENERGY);
+
+        BaseMod.addColor(chr_aya.Enums.ANGELA_LOR_COLOUR, ANGELA_COLOR, ANGELA_COLOR, ANGELA_COLOR,
+                ANGELA_COLOR, ANGELA_COLOR, ANGELA_COLOR, ANGELA_COLOR,
                 ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
                 ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
                 CARD_ENERGY_L, TEXT_ENERGY);
