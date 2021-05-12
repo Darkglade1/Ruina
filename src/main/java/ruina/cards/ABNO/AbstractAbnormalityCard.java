@@ -26,5 +26,6 @@ import static ruina.util.Wiz.adp;
 public abstract class AbstractAbnormalityCard extends AbstractRuinaCard {
 
     public AbstractAbnormalityCard(final String cardID, final int cost, final CardType type, final CardTarget target) { super(cardID, cost, type, CardRarity.RARE, target, RuinaMod.AbnoEnums.ANGELA_LOR_ABNO , makeImagePath("cards/" + CHRALLY_GUN.class.getSimpleName() + ".png")); }
+    public AbstractAbnormalityCard(final String cardID, final int cost, final CardType type, final CardTarget target, String img) { super(cardID, cost, type, CardRarity.RARE, target, RuinaMod.AbnoEnums.ANGELA_LOR_ABNO , img); }
 
 }
