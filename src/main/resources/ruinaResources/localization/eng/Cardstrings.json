@@ -805,5 +805,28 @@
   "${ModID}:TestFetcher": {
     "NAME": "",
     "DESCRIPTION": ""
+  },
+
+
+
+  "${ModID}:ShynessD49": {
+    "NAME": "Shyness",
+    "DESCRIPTION": "Gain !B! Block. Gain !ruina:SecondMagic! [E] Next Turn."
+  },
+  "${ModID}:BloodyWingsD49": {
+    "NAME": "Lean, Bloody Wings",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Bleed. NL Gain [E] . NL Draw !ruina:SecondMagic! card."
+  },
+  "${ModID}:TokenOfFriendshipD49": {
+    "NAME": "Token Of Friendship",
+    "DESCRIPTION": "Gain !B! Block. NL Heal !M! HP."
+  },
+  "${ModID}:DisplayOfAffectionD49": {
+    "NAME": "Display Of Affection ",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL For each hit, gain Block equal to unblocked damage dealt."
+  },
+  "${ModID}:CoffinD49": {
+    "NAME": "Coffin",
+    "DESCRIPTION": "Deal !D! damage. NL If the target has 2 or more intents, Seal intents until only !M! intent remains."
   }
 }

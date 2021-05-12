@@ -536,5 +536,17 @@
     ],
     "OPTIONS": [
     ]
+  },
+  "${ModID}:Day49": {
+    "NAME": "The Seed Of Light",
+    "DESCRIPTIONS": [
+      "Upon continuing this act, you will fight a series of combats. NL You will lose #rALL #ygold, #gcards, #brelics and #ppotions, alongside being #runable to use any #pcharacter-specific #pmechanics, and be unable to use any external methods of help. NL NL Do you wish to continue?",
+      "The light that has swaddled the city will permeate the people's hearts... allowing them to finally face the emotions they had long forgotten. However, those seeds won't bear fruit immediately. They won't sprout at the same time. They will slowly poke through the soil... And they will shroud the city in a wave of change... that everyone will notice in time. ...Sadly, I won't be able to see that myself. Now I understand what you lot meant when you wished you could be there to see the fruit of your labors."
+    ],
+    "OPTIONS": [
+      "[Continue] #gTraverse #gthe #punknown",
+      "[It is not my calling] #gReturn #gto #bAct #b3",
+      "[Prepare yourself]"
+    ]
   }
 }
