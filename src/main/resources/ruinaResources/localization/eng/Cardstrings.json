@@ -789,5 +789,21 @@
   "${ModID}:ZenaShockwave": {
     "NAME": "Shockwave",
     "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  },
+  "${ModID}:TestCardOne": {
+    "NAME": "",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:TestCardTwo": {
+    "NAME": "",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:TestCardThree": {
+    "NAME": "",
+    "DESCRIPTION": ""
+  },
+  "${ModID}:TestFetcher": {
+    "NAME": "",
+    "DESCRIPTION": ""
   }
 }

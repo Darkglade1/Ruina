@@ -37,6 +37,7 @@ import ruina.CustomIntent.MassAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
+import ruina.cards.cardvars.angelaMagic;
 import ruina.chr.chr_aya;
 import ruina.dungeons.*;
 import ruina.events.act2.*;
@@ -588,6 +589,8 @@ public class RuinaMod implements
     public void receiveEditCards() {
         BaseMod.addDynamicVariable(new SecondMagicNumber());
         BaseMod.addDynamicVariable(new SecondDamage());
+        BaseMod.addDynamicVariable(new angelaMagic());
+
         new AutoAdd(modID)
                 .packageFilter(AbstractRuinaCard.class)
                 .setDefaultSeen(false)
