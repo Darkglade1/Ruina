@@ -815,7 +815,7 @@
   },
   "${ModID}:BloodyWingsD49": {
     "NAME": "Lean, Bloody Wings",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Bleed. NL Gain [E] . NL Draw !ruina:SecondMagic! card."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Apply !M! Bleed. NL Gain [E] . NL Draw !ruina:SecondMagic! card."
   },
   "${ModID}:TokenOfFriendshipD49": {
     "NAME": "Token Of Friendship",
@@ -827,6 +827,6 @@
   },
   "${ModID}:CoffinD49": {
     "NAME": "Coffin",
-    "DESCRIPTION": "Deal !D! damage. NL If the target has 2 or more intents, Seal intents until only !M! intent remains."
+    "DESCRIPTION": "Remove ALL Block from the enemy. Deal !D! damage. NL Deal damage equal to the Block removed."
   }
 }
