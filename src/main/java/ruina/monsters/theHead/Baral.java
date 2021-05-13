@@ -222,7 +222,7 @@ public class Baral extends AbstractCardMonster
             playerMaxHp = adp().maxHealth;
             playerCurrentHp = adp().currentHealth;
             adp().maxHealth = roland.maxHealth;
-            adp().currentHealth = (int) (roland.maxHealth * 0.60f);
+            adp().currentHealth = (int) (roland.maxHealth * 0.70f);
             adp().healthBarUpdatedEvent();
             playerRelics.addAll(adp().relics);
             adp().relics.clear();

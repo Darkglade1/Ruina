@@ -174,9 +174,9 @@ public class BlackSilence4 extends AbstractCardMonster {
         cardList.add(new Blue(this));
 
         if (AbstractDungeon.ascensionLevel >= 19) {
-            INVINCIBLE = 150;
+            INVINCIBLE = 200;
         } else {
-            INVINCIBLE = 250;
+            INVINCIBLE = 300;
         }
     }
 

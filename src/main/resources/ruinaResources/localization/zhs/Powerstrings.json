@@ -161,7 +161,7 @@
   },
   "ruina:ParadiseLostPower": {
     "NAME": "失乐园",
-    "DESCRIPTIONS": ["在你的回合开始时, #y消耗 最多 #b", " 张牌。", " 张牌。", " 每当 #y消耗 #b", " 张牌，所有敌人失去 #b", " 点生命。"]
+    "DESCRIPTIONS": ["在你的回合开始时, #y消耗 最多 #b", " 张牌。", " 张牌。", " 每当 #y消耗 #b", " 张牌，所有敌人失去 #b", " 点生命。", " NL NL You have #yexhausted #b", " card(s)."]
   },
   "ruina:Heaven": {
     "NAME": "天堂",

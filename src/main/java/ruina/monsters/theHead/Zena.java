@@ -47,6 +47,7 @@ import ruina.monsters.theHead.zenaCards.ZenaShockwave;
 import ruina.powers.AnArbiter;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.PlayerBackAttack;
+import ruina.powers.PlayerBlackSilence;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -349,12 +350,18 @@ public class Zena extends AbstractCardMonster
                             }
                             baral.roland.currentHealth = adp().currentHealth;
                             baral.roland.healthBarUpdatedEvent();
+                            int furiosoCounter = 9;
+                            AbstractPower playerBlackSilence = adp().getPower(PlayerBlackSilence.POWER_ID);
+                            if (playerBlackSilence != null) {
+                                furiosoCounter = 9 - playerBlackSilence.amount;
+                            }
+                            baral.roland.setFuriosoCounter(furiosoCounter);
                             adp().maxHealth = baral.playerMaxHp;
                             if (AbstractDungeon.ascensionLevel >= 19) {
                                 adp().currentHealth = baral.playerCurrentHp;
                             } else {
                                 adp().currentHealth = baral.playerCurrentHp;
-                                adp().heal(adp().maxHealth);
+                                adp().heal(adp().maxHealth, false);
                             }
                             adp().healthBarUpdatedEvent();
                             adp().loseBlock();
@@ -395,10 +402,10 @@ public class Zena extends AbstractCardMonster
                             if (adp().hasRelic(SlaversCollar.ID)) {
                                 ((SlaversCollar)adp().getRelic(SlaversCollar.ID)).beforeEnergyPrep();
                             }
+                            baral.roland.rollMove();
                             adp().applyPreCombatLogic();
                             adp().applyStartOfCombatLogic();
                             adp().applyStartOfCombatPreDrawLogic();
-                            baral.roland.rollMove();
                             CustomDungeon.playTempMusicInstantly("TheHead");
                             this.isDone = true;
                         }

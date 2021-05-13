@@ -45,6 +45,7 @@ public class ParadiseLostPower extends AbstractEasyPower {
         } else {
             flashWithoutSound();
         }
+        updateDescription();
     }
 
     @Override
@@ -57,9 +58,9 @@ public class ParadiseLostPower extends AbstractEasyPower {
     @Override
     public void updateDescription() {
         if (exhaustNum == 1) {
-            this.description = DESCRIPTIONS[0] + exhaustNum + DESCRIPTIONS[1] + DESCRIPTIONS[3] + threshold + DESCRIPTIONS[4] + amount + DESCRIPTIONS[5];
+            this.description = DESCRIPTIONS[0] + exhaustNum + DESCRIPTIONS[1] + DESCRIPTIONS[3] + threshold + DESCRIPTIONS[4] + amount + DESCRIPTIONS[5] + DESCRIPTIONS[6] + amount2 + DESCRIPTIONS[7];
         } else {
-            this.description = DESCRIPTIONS[0] + exhaustNum + DESCRIPTIONS[2] + DESCRIPTIONS[3] + threshold + DESCRIPTIONS[4] + amount + DESCRIPTIONS[5];
+            this.description = DESCRIPTIONS[0] + exhaustNum + DESCRIPTIONS[2] + DESCRIPTIONS[3] + threshold + DESCRIPTIONS[4] + amount + DESCRIPTIONS[5] + DESCRIPTIONS[6] + amount2 + DESCRIPTIONS[7];
         }
     }
 }
