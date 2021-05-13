@@ -1,7 +1,10 @@
 package ruina.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import javassist.CannotCompileException;
@@ -10,6 +13,8 @@ import javassist.expr.MethodCall;
 import ruina.monsters.AbstractAllyMonster;
 
 import java.util.ArrayList;
+
+import static ruina.util.Wiz.atb;
 
 public class StopAoEAttackEffects {
     //stops AoE attack effects from showing on allies
@@ -41,4 +46,21 @@ public class StopAoEAttackEffects {
             return true;
         }
    }
+
+    @SpirePatch(
+            clz = RelicAboveCreatureAction.class,
+            method = "update"
+    )
+    public static class StopRelicAboveAllies {
+        public static SpireReturn<Void> Prefix(RelicAboveCreatureAction __instance) {
+            if (__instance.source instanceof AbstractAllyMonster) {
+                AbstractAllyMonster ally = (AbstractAllyMonster)__instance.source;
+                if (ally.isAlly && !ally.isTargetableByPlayer) {
+                    __instance.isDone = true;
+                    return SpireReturn.Return(null);
+                }
+            }
+            return SpireReturn.Continue();
+        }
+    }
 }
