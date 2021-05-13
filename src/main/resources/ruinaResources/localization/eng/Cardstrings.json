@@ -819,7 +819,7 @@
   },
   "${ModID}:TokenOfFriendshipD49": {
     "NAME": "Token Of Friendship",
-    "DESCRIPTION": "Gain !B! Block. NL Heal !M! HP."
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL  Heal !M! HP."
   },
   "${ModID}:DisplayOfAffectionD49": {
     "NAME": "Display Of Affection ",

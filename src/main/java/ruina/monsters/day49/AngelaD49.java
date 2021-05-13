@@ -61,8 +61,100 @@ public class AngelaD49 extends AbstractCardMonster
     }
     public PHASE currentPhase = PHASE.WRISTCUTTER;
 
+    // Phase Transition / Pause Mechanics
+    private static final byte NONE = 0;
+    // BloodBath Stage
+    // MoveBytes
+    private static final byte NUMBNESS = 0;
+    private static final byte PROFOUND_SORROW = 1;
+    private static final byte PALE_HANDS = 1;
+    private static final byte SINKING = 3;
+    private static final byte PHASE_SHIFT_ASPIRATION = 1;
+    // Move Properties
+    private static final int numbnessBlock = 20;
+    private static final int numbnessParalysis = 3;
 
+    private static final int paleHandsDamage = 9;
+    private static final int paralysisAmount = 1;
+
+    private static final int profoundSorrowDamage = 6;
+    private static final int profoundSorrowHits = 2;
+    private static final int profoundSorrowLoseTempStrength = -3;
+
+    private static final int sinkingDamage = 40;
+    private static final int sinkingDepression = 1;
+
+    // Numbness -> Pale Hands -> Sorrow -> Numbness -> wristCutter
+
+    // Aspiration Stage
+    private static final byte ASPIRATION = 0;
+    private static final byte PULSATION = 1;
+    private static final byte SPAWN_LUNGS = 1;
+    private static final byte PHASE_SHIFT_PINOCCHIO = 2;
+
+    private static final int pulsationDamage = 40;
+    private static final int aspirationDamage = 4;
+    private static final int aspirationHits = 3;
+
+    // null -> null -> null -> unknown intent (Lungs die here) -> offensive turn -> stun -> spawn guys repeat cycle
+
+    //  Pinocchio Stage
+    private static final byte SHYNESS = 0;
+    private static final byte INVERTED_SHYNESS = 1;
+    private static final byte BLOODY_WINGS = 2;
+    private static final byte INVERTED_BLOODY_WINGS = 3;
+    private static final byte TOKEN_OF_FRIENDSHIP = 4;
+    private static final byte INVERTED_TOKEN_OF_FRIENDSHIP = 4;
+    private static final byte DISPLAY_OF_AFFECTION = 4;
+    private static final byte INVERTED_DISPLAY_OF_AFFECTION = 5;
+    private static final byte COFFIN = 4;
+    private static final byte INVERTED_COFFIN = 5;
+    private static final byte MARIONETTE = 5;
+
+    private static final int shynessBlock = 5;
+    private static final int invertedShynessDamage = 5;
+
+    private static final int bloodyWingsDamage = 12;
+    private static final int bloodyWingsBleed = 3;
+    private static final int invertedBloodyWingsBlock = 12;
+
+    private static final int tokenOfFriendshipBlock = 8;
+    private static final int tokenOfFriendshipDamage = 5;
+    private static final int tokenOfFriendshipHeal = 6;
+    private static final int invertedTokenOfFriendshipDamage = 8;
+    private static final int invertedTokenOfFriendshipBlock = 5;
+
+    // Inverted Deals delayed damage later.
+    private static final int displayOfAffectionDamage = 11;
+    private static final int displayOfAffectionHits = 2;
+
+    // Inverted Gains Block on sap instead.
+    private static final int coffinDamage = 10;
+
+    // enrage mechanic - probably really late on in the fight
+    private static final int marionetteDamage = 60;
+
+    // Faulty Strings - Gains Strength Next Turn equal to unblocked damage.
+    // I don't have it! - Every Other Turn, Completely Negate all Strength on this creature.
+
+
+    // Snow Queen Stage
+    // Prison Of Ice shuffles annoying ice statuses into your hand. They are retain and unplayable, and become
+    // ethereal when the ice is die
     private static final byte DEVOUR = 0;
+    private static final byte BITE = 1;
+    private static final byte HORRID_SCREECH = 2;
+    private static final byte RAM = 3;
+    private static final byte VOMIT = 4;
+    private static final byte REVIVE = 5;
+    // Silent Girl Stage
+
+    // When two card is played, gain 1 Nail.
+    // When Silent Girl Attacks, Deal 5 delayed damage per nail.
+
+    // Player Permanently Gains Vulnerable. (25%)
+
+    private static final byte LEER = 0;
     private static final byte BITE = 1;
     private static final byte HORRID_SCREECH = 2;
     private static final byte RAM = 3;

@@ -4,6 +4,7 @@ import actlikeit.RazIntent.CustomIntent;
 import actlikeit.dungeons.CustomDungeon;
 import basemod.AutoAdd;
 import basemod.BaseMod;
+import basemod.DevConsole;
 import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -27,6 +28,7 @@ import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -168,8 +170,8 @@ public class RuinaMod implements
     private static final String ANGELA_SKILL_L_ART = getModID() + "Resources/images/1024/skill.png";
     private static final String ANGELA_POWER_L_ART = getModID() + "Resources/images/1024/power.png";
     private static final String ANGELA_CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
-    private static final String CHARSELECT_BUTTON = getModID() + "Resources/images/charSelect/charButton.png";
-    private static final String CHARSELECT_PORTRAIT = getModID() + "Resources/images/charSelect/charBG.png";
+    public static final String CHARSELECT_BUTTON = getModID() + "Resources/images/charSelect/charButton.png";
+    public static final String CHARSELECT_PORTRAIT = getModID() + "Resources/images/charSelect/charBG.png";
 
     // Draftable Abnormalities
     public static Color ABNO_COLOR = CardHelper.getColor(78, 9, 25);
@@ -956,5 +958,25 @@ public class RuinaMod implements
     public void receiveStartGame() {
         egoPileButton = new EGOButton();
         egoPile = new CardGroup(CardGroup.CardGroupType.DRAW_PILE);
+    }
+
+    public static void DisableConsole()
+    {
+        if (DevConsole.visible)
+        {
+            InputHelper.regainInputFocus();
+            DevConsole.visible = false;
+        }
+
+        if (Gdx.input.isKeyJustPressed(DevConsole.toggleKey) && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.FTUE)
+        {
+
+        }
+
+        DevConsole.infiniteEnergy = false;
+        DevConsole.enabled = false;
+        DevConsole.commandPos = -1;
+        DevConsole.currentText = "";
+        Settings.isDebug = false;
     }
 }

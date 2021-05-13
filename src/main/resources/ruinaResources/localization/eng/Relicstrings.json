@@ -67,16 +67,16 @@
   },
   "${ModID}:SeedOfLight": {
     "NAME": "Seed Of Light",
-    "FLAVOR": "Some must fight so that all may be free.",
+    "FLAVOR": "These seeds, they will shroud the city in a wave of change... that everyone will notice in time.",
     "DESCRIPTIONS": [
       "Increase your Max Energy by [E] [E] [E] . NL Energy retains between turns, and your energy does not get recharged at the start of each turn."
     ]
   },
-    "${ModID}:Director": {
-      "NAME": "Director Of Her Role's Namesake",
-      "FLAVOR": "Some must fight so that all may be free.",
-      "DESCRIPTIONS": [
-        "Draw #b5 cards at the start of combat. NL After the first turn, draw #b2 cards instead of how many you would draw. NL At the end of your turn, you no longer discard your hand."
-      ]
-    }
+  "${ModID}:Director": {
+    "NAME": "Director Of Her Role's Namesake",
+    "FLAVOR": "May you find your book in this place.",
+    "DESCRIPTIONS": [
+      "Draw #b5 cards at the start of combat. NL After the first turn, draw #b2 cards instead of how many you would draw. NL At the end of your turn, you no longer discard your hand."
+    ]
+  }
 }
