@@ -1,5 +1,6 @@
 package ruina.relics.d49;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import ruina.relics.AbstractEasyRelic;
@@ -7,6 +8,7 @@ import ruina.relics.AbstractEasyRelic;
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 
+@AutoAdd.Ignore
 public class SeedOfLight extends AbstractEasyRelic {
     public static final String ID = makeID(SeedOfLight.class.getSimpleName());
 

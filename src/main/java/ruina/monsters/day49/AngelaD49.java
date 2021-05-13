@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
@@ -20,9 +21,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
@@ -33,7 +32,15 @@ import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.act2.MeltedCorpses;
+import ruina.monsters.act3.seraphim.GuardianApostle;
+import ruina.monsters.day49.Aspiration.LungsOfCravingD49;
+import ruina.monsters.eventboss.redMist.cards.CHRBOSS_GreaterSplitHorizontal;
+import ruina.monsters.eventboss.redMist.cards.CHRBOSS_GreaterSplitVertical;
+import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.Bleed;
+import ruina.powers.NextTurnPowerPower;
+import ruina.powers.Paralysis;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -61,63 +68,59 @@ public class AngelaD49 extends AbstractCardMonster
     }
     public PHASE currentPhase = PHASE.WRISTCUTTER;
 
-    // Phase Transition / Pause Mechanics
-    private static final byte NONE = 0;
+    private int turnCounter = 1;
+
+    // Unknown Intents
+    private static final byte NONE = 99;
+    private static final byte SPAWN_LUNGS = 98;
+    // Phase Shifters
+    private static final byte PHASE_SHIFT_ASPIRATION = 97;
+    private static final byte PHASE_SHIFT_PINOCCHIO = 96;
     // BloodBath Stage
-    // MoveBytes
+    private final int BLOODBATH_PHASE_HP = 400;
     private static final byte NUMBNESS = 0;
-    private static final byte PROFOUND_SORROW = 1;
     private static final byte PALE_HANDS = 1;
+    private static final byte PROFOUND_SORROW = 2;
     private static final byte SINKING = 3;
-    private static final byte PHASE_SHIFT_ASPIRATION = 1;
-    // Move Properties
     private static final int numbnessBlock = 20;
     private static final int numbnessParalysis = 3;
-
-    private static final int paleHandsDamage = 9;
-    private static final int paralysisAmount = 1;
-
-    private static final int profoundSorrowDamage = 6;
+    private static final int paleHandsDamage = 11;
+    private static final int profoundSorrowDamage = 8;
     private static final int profoundSorrowHits = 2;
     private static final int profoundSorrowLoseTempStrength = -3;
-
     private static final int sinkingDamage = 40;
     private static final int sinkingDepression = 1;
-
     // Numbness -> Pale Hands -> Sorrow -> Numbness -> wristCutter
 
     // Aspiration Stage
-    private static final byte ASPIRATION = 0;
-    private static final byte PULSATION = 1;
-    private static final byte SPAWN_LUNGS = 1;
-    private static final byte PHASE_SHIFT_PINOCCHIO = 2;
+    private final int ASPIRATION_PHASE_HP = 600;
+    private final int ASPIRATION_PHASE_MINION_HPLOSS = 250;
+    private static final byte PULSATION = 4;
+    private static final byte ASPIRATION = 5;
 
     private static final int pulsationDamage = 40;
     private static final int aspirationDamage = 4;
     private static final int aspirationHits = 3;
 
-    // null -> null -> null -> unknown intent (Lungs die here) -> offensive turn -> stun -> spawn guys repeat cycle
+    // null -> null -> null -> unknown intent (Lungs die here) -> offensive turn -> stun -> repeat cycle
 
     //  Pinocchio Stage
-    private static final byte SHYNESS = 0;
-    private static final byte INVERTED_SHYNESS = 1;
-    private static final byte BLOODY_WINGS = 2;
-    private static final byte INVERTED_BLOODY_WINGS = 3;
-    private static final byte TOKEN_OF_FRIENDSHIP = 4;
-    private static final byte INVERTED_TOKEN_OF_FRIENDSHIP = 4;
-    private static final byte DISPLAY_OF_AFFECTION = 4;
-    private static final byte INVERTED_DISPLAY_OF_AFFECTION = 5;
-    private static final byte COFFIN = 4;
-    private static final byte INVERTED_COFFIN = 5;
-    private static final byte MARIONETTE = 5;
-
+    private final int PINOCCHIO_PHASE_HP = 400;
+    private static final byte SHYNESS = 9;
+    private static final byte INVERTED_SHYNESS = 10;
+    private static final byte BLOODY_WINGS = 11;
+    private static final byte INVERTED_BLOODY_WINGS = 12;
+    private static final byte TOKEN_OF_FRIENDSHIP = 13;
+    private static final byte INVERTED_TOKEN_OF_FRIENDSHIP = 14;
+    private static final byte DISPLAY_OF_AFFECTION = 15;
+    private static final byte INVERTED_DISPLAY_OF_AFFECTION = 16;
+    private static final byte COFFIN = 17;
+    private static final byte INVERTED_COFFIN = 18;
     private static final int shynessBlock = 5;
     private static final int invertedShynessDamage = 5;
-
     private static final int bloodyWingsDamage = 12;
     private static final int bloodyWingsBleed = 3;
     private static final int invertedBloodyWingsBlock = 12;
-
     private static final int tokenOfFriendshipBlock = 8;
     private static final int tokenOfFriendshipDamage = 5;
     private static final int tokenOfFriendshipHeal = 6;
@@ -131,76 +134,47 @@ public class AngelaD49 extends AbstractCardMonster
     // Inverted Gains Block on sap instead.
     private static final int coffinDamage = 10;
 
-    // enrage mechanic - probably really late on in the fight
-    private static final int marionetteDamage = 60;
-
     // Faulty Strings - Gains Strength Next Turn equal to unblocked damage.
     // I don't have it! - Every Other Turn, Completely Negate all Strength on this creature.
 
 
-    // Snow Queen Stage
-    // Prison Of Ice shuffles annoying ice statuses into your hand. They are retain and unplayable, and become
-    // ethereal when the ice is die
-    private static final byte DEVOUR = 0;
-    private static final byte BITE = 1;
-    private static final byte HORRID_SCREECH = 2;
-    private static final byte RAM = 3;
-    private static final byte VOMIT = 4;
-    private static final byte REVIVE = 5;
-    // Silent Girl Stage
-
-    // When two card is played, gain 1 Nail.
-    // When Silent Girl Attacks, Deal 5 delayed damage per nail.
-
-    // Player Permanently Gains Vulnerable. (25%)
-
-    private static final byte LEER = 0;
-    private static final byte BITE = 1;
-    private static final byte HORRID_SCREECH = 2;
-    private static final byte RAM = 3;
-    private static final byte VOMIT = 4;
-    private static final byte REVIVE = 5;
-
-    private final int NORMAL_DEBUFF_AMT = calcAscensionSpecial(1);
-    private final int ATTACK_DEBUFF_AMT = calcAscensionSpecial(1);
-    private final int DAZES = calcAscensionSpecial(3);
-    private final int SLIMES = calcAscensionSpecial(1);
-
-    private final int STAGE1_HP = calcAscensionTankiness(50);
-    private final int STAGE2_HP = calcAscensionTankiness(100);
-    private final int STAGE3_HP = calcAscensionTankiness(125);
-
-    public static final int STAGE3 = 3;
-    public static final int STAGE2 = 2;
-    public static final int STAGE1 = 1;
-    public int currentStage = STAGE3;
-    private static final float REVIVE_PERCENT = 0.50f;
-    private static final float STARTING_PERCENT = 0.50f;
-    private AbstractLambdaPower stagePower;
-
     public AngelaD49() {
-        this(-100.0f, 0.0f);
+        this(150.0f, 0.0f);
     }
     public AngelaD49(final float x, final float y) {
         super(NAME, ID, 100, -5.0F, 0, 330.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Mountain/Spriter/Mountain.scml"));
-        this.type = EnemyType.ELITE;
+        this.type = EnemyType.BOSS;
         numAdditionalMoves = 2;
-        maxAdditionalMoves = 2;
+        maxAdditionalMoves = 99;
         for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(STAGE3_HP);
-        this.currentHealth = (int)(STAGE3_HP * STARTING_PERCENT);
-        updateHealthBar();
+        setHp(BLOODBATH_PHASE_HP);
         runAnim("Idle3");
-
-        addMove(DEVOUR, Intent.ATTACK_BUFF, calcAscensionDamage(14));
-        addMove(BITE, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));
-        addMove(HORRID_SCREECH, Intent.DEBUFF);
-        addMove(RAM, Intent.ATTACK, calcAscensionDamage(16));
-        addMove(VOMIT, Intent.STRONG_DEBUFF);
-        addMove(REVIVE, Intent.NONE);
+        addMove(NONE, Intent.NONE);
+        addMove(NUMBNESS, Intent.DEFEND_DEBUFF);
+        addMove(PALE_HANDS, Intent.ATTACK_DEBUFF, paleHandsDamage);
+        addMove(PROFOUND_SORROW, Intent.ATTACK_DEBUFF, profoundSorrowDamage, profoundSorrowHits);
+        addMove(SINKING, Intent.ATTACK_DEBUFF, sinkingDamage);
+        addMove(PHASE_SHIFT_ASPIRATION, Intent.UNKNOWN);
+        // Aspiration
+        addMove(PULSATION, Intent.ATTACK, pulsationDamage);
+        addMove(ASPIRATION, Intent.ATTACK, aspirationDamage, aspirationHits);
+        addMove(SPAWN_LUNGS, Intent.UNKNOWN);
+        addMove(PHASE_SHIFT_PINOCCHIO, Intent.UNKNOWN);
+        // PINNOCHIO
+        addMove(SHYNESS, Intent.DEBUFF);
+        addMove(INVERTED_SHYNESS, Intent.ATTACK);
+        addMove(BLOODY_WINGS, Intent.ATTACK_DEBUFF);
+        addMove(INVERTED_BLOODY_WINGS, Intent.DEFEND_DEBUFF);
+        addMove(TOKEN_OF_FRIENDSHIP, Intent.ATTACK_DEFEND, tokenOfFriendshipDamage);
+        addMove(INVERTED_TOKEN_OF_FRIENDSHIP, Intent.ATTACK_DEFEND, tokenOfFriendshipDamage);
+        addMove(DISPLAY_OF_AFFECTION, Intent.ATTACK, displayOfAffectionDamage, displayOfAffectionHits);
+        addMove(INVERTED_DISPLAY_OF_AFFECTION, Intent.ATTACK, displayOfAffectionDamage, displayOfAffectionHits);
+        addMove(INVERTED_TOKEN_OF_FRIENDSHIP, Intent.ATTACK_DEFEND, tokenOfFriendshipDamage);
+        addMove(COFFIN, Intent.ATTACK, tokenOfFriendshipDamage);
+        addMove(INVERTED_COFFIN, Intent.ATTACK, tokenOfFriendshipDamage);
     }
 
     @Override
@@ -211,91 +185,15 @@ public class AngelaD49 extends AbstractCardMonster
 
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("Warning3");
+        CustomDungeon.playTempMusicInstantly("Binah3");
         AbstractDungeon.getCurrRoom().cannotLose = true;
     }
 
-    @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        if (this.halfDead && move.nextMove != REVIVE) {
-            return;
-        }
-        if (this.firstMove) {
-            atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
-        }
-        if (target.isDeadOrEscaped()) {
-            target = adp();
-        }
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
-        switch (move.nextMove) {
-            case DEVOUR: {
-                attackAnimation(target);
-                atb(new VampireDamageActionButItCanFizzle(target, info, AbstractGameAction.AttackEffect.NONE));
-                resetIdle();
-                break;
-            }
-            case BITE: {
-                attackAnimation(target);
-                dmg(target, info);
-                resetIdle();
-                applyToTarget(target, this, new WeakPower(target, ATTACK_DEBUFF_AMT, true));
-                break;
-            }
-            case HORRID_SCREECH: {
-                screechAnimation();
-                intoDiscardMo(new Dazed(), DAZES, this);
-                resetIdle(1.0f);
-                break;
-            }
-            case RAM: {
-                ramAnimation(target);
-                dmg(target, info);
-                resetIdle();
-                break;
-            }
-            case VOMIT: {
-                vomitAnimation();
-                applyToTarget(target, this, new FrailPower(target, NORMAL_DEBUFF_AMT, true));
-                intoDiscardMo(new Slimed(), SLIMES, this);
-                resetIdle(1.0f);
-                break;
-            }
-            case REVIVE: {
-                atb(new HealAction(this, this, (int)(this.maxHealth * REVIVE_PERCENT)));
-                this.halfDead = false;
-                for (AbstractRelic r : AbstractDungeon.player.relics) {
-                    r.onSpawnMonster(this);
-                }
-                break;
-            }
-        }
-    }
-
-    private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack" + currentStage, "Bite", enemy, this);
-    }
-
-    private void screechAnimation() {
-        animationAction("Screech", "Screech", 0.5f, this);
-    }
-
-    private void ramAnimation(AbstractCreature enemy) {
-        animationAction("Ram", "Ram", enemy, this);
-    }
-
-    private void vomitAnimation() {
-        animationAction("Vomit", "Vomit", 0.5f, this);
-    }
 
     @Override
     public void resetIdle(float duration) {
         atb(new VFXActionButItCanFizzle(this, new WaitEffect(), duration));
+        /*
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -303,20 +201,29 @@ public class AngelaD49 extends AbstractCardMonster
                 this.isDone = true;
             }
         });
+         */
+    }
+
+    @Override
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
+        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
+        int multiplier = move.multiplier;
+        if(info.base > -1) { info.applyPowers(this, target); }
+        final int[] threshold = {0};
+        switch (move.nextMove) {
+        }
     }
 
     @Override
     public void takeTurn() {
         super.takeTurn();
-        AbstractMonster mo = this;
+        if (this.firstMove) { firstMove = false; }
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
             AdditionalIntent additionalIntent = additionalIntents.get(i);
-            if (!mo.halfDead) {
-                atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-                atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            }
+            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
+            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
             takeCustomTurn(additionalMove, adp());
             atb(new AbstractGameAction() {
                 @Override
@@ -326,71 +233,75 @@ public class AngelaD49 extends AbstractCardMonster
                 }
             });
         }
-       atb(new RollMoveAction(this));
+        switch (this.nextMove) {
+            case PHASE_SHIFT_ASPIRATION:
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        currentHealth = 1;
+                        halfDead = false;
+                        maxHealth = ASPIRATION_PHASE_HP;
+                        att(new HealAction(AngelaD49.this, AngelaD49.this, maxHealth));
+                        isDone = true;
+                    }
+                });
+                SummonLungs();
+        }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                switch (currentPhase){
+                    case WRISTCUTTER:
+                        turnCounter += 1;
+                        if(turnCounter > 4){ turnCounter = 1; }
+                        break;
+                    case ASPIRATION:
+                        if(turnCounter == 0){  turnCounter = 1; }
+                        else {
+                            turnCounter += 1;
+                            if (turnCounter > 5) {
+                                turnCounter = 1;
+                                firstMove = true;
+                            }
+                        }
+                }
+                this.isDone = true;
+            }
+        });
+        atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (this.halfDead) {
-            setMoveShortcut(REVIVE);
-        } else if (this.currentStage == STAGE1) {
-            setMoveShortcut(DEVOUR, MOVES[DEVOUR]);
-        } else if (this.currentStage == STAGE2) {
-            ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(DEVOUR)) {
-                possibilities.add(DEVOUR);
-            }
-            if (!this.lastMove(BITE)) {
-                possibilities.add(BITE);
-            }
-            if (!this.lastMove(HORRID_SCREECH) && !this.lastMoveBefore(HORRID_SCREECH)) {
-                possibilities.add(HORRID_SCREECH);
-            }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
-        } else {
-            ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastTwoMoves(RAM)) {
-                possibilities.add(RAM);
-            }
-            if (!this.lastTwoMoves(BITE)) {
-                possibilities.add(BITE);
-            }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+        switch (currentPhase){
+            case WRISTCUTTER:
+                if(turnCounter == 1){ setMoveShortcut(NUMBNESS, MOVES[NUMBNESS]); }
+                else if(turnCounter == 2){ setMoveShortcut(PALE_HANDS, MOVES[PALE_HANDS]); }
+                else if(turnCounter == 3){ setMoveShortcut(PROFOUND_SORROW, MOVES[PROFOUND_SORROW]); }
+                else if(turnCounter == 4){ setMoveShortcut(SINKING, MOVES[SINKING]);}
+                break;
+            case ASPIRATION:
+                if(firstMove){ setMoveShortcut(SPAWN_LUNGS); }
+                else if (turnCounter == 5){ setMoveShortcut(PULSATION, MOVES[PULSATION]); }
+                else { setMoveShortcut(NONE); }
+                break;
         }
     }
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
-        if (this.halfDead) {
-            return;
-        }
+        if (this.halfDead) { return; }
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        if (whichMove == 0) {
-            if (this.currentStage == STAGE2) {
-                setAdditionalMoveShortcut(DEVOUR, moveHistory);
-            } else {
-                ArrayList<Byte> possibilities = new ArrayList<>();
-                if (!this.lastTwoMoves(RAM, moveHistory)) {
-                    possibilities.add(RAM);
-                }
-                if (!this.lastTwoMoves(BITE, moveHistory)) {
-                    possibilities.add(BITE);
-                }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                setAdditionalMoveShortcut(move, moveHistory);
-            }
-        } else {
-            if (this.lastMove(DEVOUR, moveHistory) || this.lastMove(RAM, moveHistory)) {
-                setAdditionalMoveShortcut(VOMIT, moveHistory);
-            } else {
-                if (AbstractDungeon.ascensionLevel >= 18) {
-                    setAdditionalMoveShortcut(DEVOUR, moveHistory);
-                } else {
-                    setAdditionalMoveShortcut(RAM, moveHistory);
-                }
-            }
+        switch (currentPhase){
+            case WRISTCUTTER:
+                if(turnCounter == 1 && whichMove == 0){ setAdditionalMoveShortcut(PROFOUND_SORROW, moveHistory); }
+                else if(turnCounter == 2){ setAdditionalMoveShortcut(PALE_HANDS, moveHistory); }
+                else if(turnCounter == 3 && whichMove == 0){ setAdditionalMoveShortcut(NUMBNESS, moveHistory); }
+                else { setAdditionalMoveShortcut(NONE, moveHistory); }
+                break;
+            case ASPIRATION:
+                if(turnCounter == 5){ setAdditionalMoveShortcut(ASPIRATION, moveHistory); }
+                else { setAdditionalMoveShortcut(NONE, moveHistory); }
         }
     }
 
@@ -400,9 +311,12 @@ public class AngelaD49 extends AbstractCardMonster
         for (int i = 0; i < additionalIntents.size(); i++) {
             AdditionalIntent additionalIntent = additionalIntents.get(i);
             EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) { additionalMove = additionalMoves.get(i);
+            if (i < additionalMoves.size()) {
+                additionalMove = additionalMoves.get(i);
             }
-            if (additionalMove != null) { applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null); }
+            if (additionalMove != null) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+            }
         }
     }
 
@@ -411,17 +325,11 @@ public class AngelaD49 extends AbstractCardMonster
         super.damage(info);
         if (this.currentHealth <= 0 && !this.halfDead) {
             this.halfDead = true;
-            for (AbstractPower p : this.powers) {
-                p.onDeath();
-            }
+            for (AbstractPower p : this.powers) { p.onDeath(); }
             for (AbstractRelic r : AbstractDungeon.player.relics) {
                 r.onMonsterDeath(this);
             }
-            if (this.nextMove != REVIVE) {
-                setMoveShortcut(REVIVE);
-                this.createIntent();
-                atb(new SetMoveAction(this, REVIVE, Intent.NONE));
-            }
+            phaseTransition();
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) { powersToRemove.add(power); }
             for (AbstractPower power : powersToRemove) {
@@ -433,9 +341,36 @@ public class AngelaD49 extends AbstractCardMonster
     }
 
     @Override
-    public void die() {
-        if (!AbstractDungeon.getCurrRoom().cannotLose) { super.die(); }
+    public void die() { if (!AbstractDungeon.getCurrRoom().cannotLose) { super.die(); } }
 
+    public void phaseTransition(){
+        switch (currentPhase){
+            case WRISTCUTTER:
+                setMoveShortcut(PHASE_SHIFT_ASPIRATION);
+                break;
+        }
     }
 
+    public void onMinionDeath() {
+        atb(new LoseHPAction(this, this, ASPIRATION_PHASE_MINION_HPLOSS));
+    }
+
+    public void SummonLungs() {
+        float xPos_Middle_L = -450F;
+        float xPos_Short_L = -150F;
+        AbstractMonster lung1 = new LungsOfCravingD49(xPos_Middle_L, 0.0f, this);
+        atb(new SpawnMonsterAction(lung1, true));
+        atb(new UsePreBattleActionAction(lung1));
+        lung1.rollMove();
+        lung1.createIntent();
+        AbstractMonster lung2 = new LungsOfCravingD49(xPos_Short_L, 0.0f, this);
+        atb(new SpawnMonsterAction(lung2, true));
+        atb(new UsePreBattleActionAction(lung2));
+        lung2.rollMove();
+        lung2.createIntent();
+    }
+
+    public void summonIce(){
+
+    }
 }

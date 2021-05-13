@@ -986,6 +986,23 @@
     "DIALOG": [
     ]
   },
+  "${ModID}:AngelaD49": {
+    "MOVES": [
+      "NUMBNESS",
+      "Pale Hands",
+      "Profound Sorrow",
+      "Sinking",
+      "NUMBNESS",
+      "NUMBNESS",
+      "NUMBNESS",
+      "NUMBNESS",
+      "NUMBNESS",
+      "NUMBNESS"
+    ],
+    "NAME": "Regrets Of My Previous Self",
+    "DIALOG": [
+    ]
+  },
   "${ModID}:AngelaBloodbath": {
     "MOVES": [
       ""

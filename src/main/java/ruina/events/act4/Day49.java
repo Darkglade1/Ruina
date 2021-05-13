@@ -47,9 +47,10 @@ public class Day49 extends AbstractImageEvent {
                 switch (buttonPressed) {
                     case 0:
                         screenNum = 1;
-                        adp().title = "Angela";
                         // i hope this works LOL
-                        adp().chosenClass = chr_aya.Enums.ANGELA_LOR;
+                        AbstractDungeon.player = new chr_aya(characterStrings.NAMES[0], chr_aya.Enums.ANGELA_LOR);
+                        adp().initializeStarterDeck();
+                        adp().title = "Angela";
                         // if not, write an awful patch to remove that other guy's render code.
                         adp().maxHealth = 106;
                         adp().currentHealth = adp().maxHealth;
@@ -70,7 +71,6 @@ public class Day49 extends AbstractImageEvent {
                             relic = new Circlet();
                         }
                         AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, relic);
-                        openMap();
                         break;
                 }
                 break;

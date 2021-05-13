@@ -64,6 +64,7 @@ import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
+import ruina.monsters.day49.AngelaD49;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.theHead.Baral;
@@ -828,12 +829,14 @@ public class RuinaMod implements
                 }));
 
         // Day 49
+        BaseMod.addMonster(AngelaD49.ID, (BaseMod.GetMonster) AngelaD49::new);
         day49.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
+
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");
 
-        // Angela
+        // Angela (Abnormalities)
         BaseMod.addMonster(AngelaBloodBath.ID, (BaseMod.GetMonster) AngelaBloodBath::new);
         BaseMod.addMonster(AngelaQueenOfHatred.ID, (BaseMod.GetMonster) AngelaQueenOfHatred::new);
         BaseMod.addMonster(AngelaWhiteNight.ID, (BaseMod.GetMonster) AngelaWhiteNight::new);
