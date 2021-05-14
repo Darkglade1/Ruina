@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
+import static ruina.util.actionShortcuts.doPow;
 
 public class AngelaD49 extends AbstractCardMonster
 {
@@ -62,6 +63,8 @@ public class AngelaD49 extends AbstractCardMonster
     private static final int numbnessBlock = 15;
     private static final int numbnessParalysis = 3;
     private static final int paleHandsDamage = 15;
+    private static final int paleHandsDraw = 1;
+    private static final int paleHandsEnergy = 1;
     private static final int profoundSorrowDamage = 8;
     private static final int profoundSorrowHits = 2;
     private static final int profoundSorrowVulnerable = 1;
@@ -202,6 +205,8 @@ public class AngelaD49 extends AbstractCardMonster
                     public void update() {
                         paleHandsHit[0] = adp().lastDamageTaken;
                         if(paleHandsHit[0] > 0){
+                            doPow(adp(), new DrawReductionPower(adp(), paleHandsDraw), true);
+                            att(new GainEnergyAction(-paleHandsEnergy));
                             // reduce energy next turn by 1.
                             // reduce card draw by 1
                         }
