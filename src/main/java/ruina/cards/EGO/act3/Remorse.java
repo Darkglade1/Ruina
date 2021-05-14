@@ -30,7 +30,6 @@ public class Remorse extends AbstractEgoCard {
         dmg(m, AbstractGameAction.AttackEffect.SMASH);
         applyToTarget(m, p, new WeakPower(m, magicNumber, false));
         applyToTarget(m, p, new VulnerablePower(m, magicNumber, false));
-
     }
 
     @Override
