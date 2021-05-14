@@ -47,11 +47,6 @@ public class Day49 extends AbstractImageEvent {
                 switch (buttonPressed) {
                     case 0:
                         screenNum = 1;
-                        // i hope this works LOL
-                        AbstractDungeon.player = new chr_aya(characterStrings.NAMES[0], chr_aya.Enums.ANGELA_LOR);
-                        adp().initializeStarterDeck();
-                        adp().title = "Angela";
-                        // if not, write an awful patch to remove that other guy's render code.
                         adp().maxHealth = 106;
                         adp().currentHealth = adp().maxHealth;
                         adp().relics.clear();
@@ -64,7 +59,7 @@ public class Day49 extends AbstractImageEvent {
                         }
                         adp().energy.energy = 4;
                         // Draw 2 relic and Draw 5 relics.
-                        adp().gameHandSize = 0;
+                        adp().gameHandSize = 3;
 
                         // add the two gamer relics
                         if (adp().hasRelic(relic.relicId)) {

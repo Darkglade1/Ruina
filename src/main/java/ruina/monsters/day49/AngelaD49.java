@@ -283,7 +283,7 @@ public class AngelaD49 extends AbstractCardMonster
             case ASPIRATION:
                 if(firstMove){ setMoveShortcut(SPAWN_LUNGS); }
                 else if (turnCounter == 5){ setMoveShortcut(PULSATION, MOVES[PULSATION]); }
-                else { setMoveShortcut(NONE); }
+                else { }
                 break;
         }
     }
@@ -297,11 +297,11 @@ public class AngelaD49 extends AbstractCardMonster
                 if(turnCounter == 1 && whichMove == 0){ setAdditionalMoveShortcut(PROFOUND_SORROW, moveHistory); }
                 else if(turnCounter == 2){ setAdditionalMoveShortcut(PALE_HANDS, moveHistory); }
                 else if(turnCounter == 3 && whichMove == 0){ setAdditionalMoveShortcut(NUMBNESS, moveHistory); }
-                else { setAdditionalMoveShortcut(NONE, moveHistory); }
+                else {  }
                 break;
             case ASPIRATION:
                 if(turnCounter == 5){ setAdditionalMoveShortcut(ASPIRATION, moveHistory); }
-                else { setAdditionalMoveShortcut(NONE, moveHistory); }
+                else {  }
         }
     }
 
@@ -329,7 +329,6 @@ public class AngelaD49 extends AbstractCardMonster
             for (AbstractRelic r : AbstractDungeon.player.relics) {
                 r.onMonsterDeath(this);
             }
-            phaseTransition();
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) { powersToRemove.add(power); }
             for (AbstractPower power : powersToRemove) {
@@ -337,6 +336,7 @@ public class AngelaD49 extends AbstractCardMonster
             }
             additionalIntents.clear();
             additionalMoves.clear();
+            phaseTransition();
         }
     }
 
@@ -346,7 +346,9 @@ public class AngelaD49 extends AbstractCardMonster
     public void phaseTransition(){
         switch (currentPhase){
             case WRISTCUTTER:
+                currentPhase = PHASE.ASPIRATION;
                 setMoveShortcut(PHASE_SHIFT_ASPIRATION);
+                this.createIntent();
                 break;
         }
     }
