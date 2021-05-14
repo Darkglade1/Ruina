@@ -6,11 +6,14 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import ruina.cardmods.FrozenMod;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;
@@ -33,7 +36,13 @@ public class FrostSplinter extends AbstractUnremovablePower {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                att(new SelectCardsAction(adp().hand.group, FREEZE_AMOUNT, uiStrings.TEXT[0], (cards) -> {
+                ArrayList<AbstractCard> validCards = new ArrayList<>();
+                for (AbstractCard card : adp().hand.group) {
+                    if (!CardModifierManager.hasModifier(card, FrozenMod.ID)) {
+                        validCards.add(card);
+                    }
+                }
+                att(new SelectCardsAction(validCards, FREEZE_AMOUNT, uiStrings.TEXT[0], (cards) -> {
                     AbstractCard c = cards.get(0);
                     CardModifierManager.addModifier(c, new FrozenMod());
                 }));
