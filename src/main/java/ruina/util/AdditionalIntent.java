@@ -262,7 +262,7 @@ public class AdditionalIntent {
         if (usePrimaryIntentsColor) {
             color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
         } else if (transparent) {
-            color = new Color(1.0F, 1.0F, 1.0F, 0.5f);
+            color = transparentColor;
         } else {
             color = intentColor;
         }
