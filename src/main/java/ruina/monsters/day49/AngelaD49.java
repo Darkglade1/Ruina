@@ -240,6 +240,7 @@ public class AngelaD49 extends AbstractCardMonster
                     public void update() {
                         currentHealth = 1;
                         halfDead = false;
+                        turnCounter = 0;
                         maxHealth = ASPIRATION_PHASE_HP;
                         att(new HealAction(AngelaD49.this, AngelaD49.this, maxHealth));
                         isDone = true;
