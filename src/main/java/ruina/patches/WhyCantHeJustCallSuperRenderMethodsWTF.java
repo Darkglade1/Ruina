@@ -20,7 +20,6 @@ public class WhyCantHeJustCallSuperRenderMethodsWTF {
     public static class USE_SUPER_RENDER_PLEASE {
         public static SpireReturn Prefix(AbstractPlayer __instance, SpriteBatch sb) {
             if (AbstractDungeon.player.hasPower(PlayerBlackSilence.POWER_ID)) {
-                System.out.print("gamers");
                 __instance.renderHealth(sb);
                 if (!__instance.orbs.isEmpty()) {
                     Iterator var2 = __instance.orbs.iterator();
