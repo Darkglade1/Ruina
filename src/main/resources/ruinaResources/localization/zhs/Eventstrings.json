@@ -143,7 +143,7 @@
     "DESCRIPTIONS": [
       "又是一天，又有一些指令被传递给了那些贫穷的， #r毫无希望 的灵魂。 NL NL 把 #r针 放到你朋友的生日蛋糕里。 #r切下 你的右腿然后生吃掉。 向你在街上遇到的第一个路人招手。 NL NL 所有的这些看上去都是毫无意义的指令。 但他有责任将这些指令传递出去。 信使看了一眼他今天要送的最后一条指令。 NL NL \"拿走你最爱的人的心。\"",
       "多么 #p残酷 ， #p悲惨 的指令啊。对他来说，用他编造的更温和的指令去替代似乎是一件很轻松的事。 也很容易让他背叛自身长久以往所属的组织。 NL NL 但今时不同往日。 NL NL 怀着 #p沉重 的心情，他念出了最后的指令。",
-      "多么 #p残酷 ， #p悲惨 的指令啊。他受够了。 他受够了这些 #p荒谬 ， #糟糕 的指令。他不想再强迫别人遵守这些 #p令人发指的 ， #p让人无法接受 的命令了。 NL NL 他会给予这座都市的居民以他能鼓起的小小的 #y仁慈 。 NL NL 他将最后的指令揉成一团，拿出了纸和笔开始书写。"
+      "多么 #p残酷 ， #p悲惨 的指令啊。他受够了。 他受够了这些 #p荒谬 ， #p糟糕 的指令。他不想再强迫别人遵守这些 #p令人发指的 ， #p让人无法接受 的命令了。 NL NL 他会给予这座都市的居民以他能鼓起的小小的 #y仁慈 。 NL NL 他将最后的指令揉成一团，拿出了纸和笔开始书写。"
     ],
     "OPTIONS": [
       "[交付它] ",
@@ -325,7 +325,7 @@
     "NAME": "扭曲的阳",
     "DESCRIPTIONS": [
       "一切都是 #p毫无意义的 。 NL 他认为自己做出了改变。 他认为自己一直在 #y反抗 #y处方，对幕后的阴谋诡计泼了一把冷水。 NL 但即使是他的叛变，也已经有了交代。 就连他的反抗也都是有计划的。 NL 最后，他不过是在另一个轮子里打转的齿轮。 NL 像他这样的人就应该放弃思考，遵从指令。",
-      "他还有另一条 #y路 可以走。当他第一次收到成为 #y信使 的 #y命令 时，他就应该走上这条 #y路 。 NL 他不在乎这是否是另一个指令的一部分。 他不在乎这样的行为是否真的出自自己的意愿。 NL他只是不在乎了。 NL 他举起剑，指向了自己。"
+      "他还有另一条 #y路 可以走。当他第一次收到成为 #y信使 的 #y命令 时，他就应该走上这条 #y路 。 NL 他不在乎这是否是另一个指令的一部分。 他不在乎这样的行为是否真的出自自己的意愿。 NL 他只是不在乎了。 NL 他举起剑，指向了自己。"
     ],
     "OPTIONS": [
       "[放弃] ",
@@ -393,6 +393,148 @@
     "OPTIONS": [
       "[表明立场] #g获得一件特别的遗物 。",
       "[做好准备]"
+    ]
+  },
+  "ruina:Sorrow": {
+    "NAME": "悲伤",
+    "DESCRIPTIONS": [
+      "我的心中只有 #p悲伤 ，没有其他要求了。 NL NL 它一直是，现在仍然是，对我 #g忠诚 之物。",
+      "为何我会羡慕它？因为在这几个小时里... NL NL 当我的 #r灵魂 压碎在我的心灵深处， NL NL 它就坐在我的身旁?",
+      "哦，悲哀啊，你看，我尊敬你，一切都 #p结束 了， NL NL 因为我确信你永远不会离开我。",
+      "啊! 我明白了: NL 你的 #y美 在于你存在的力量。 NL NL 你就像那些从未离开过我可怜的 #p黑色 的伤心 #r壁炉 边角落的人.",
+      "我的 #p忧愁 阿，你比 #g良人 更美: NL NL 因为我知道在我最后 #p痛苦 的那一天， NL 你就在那，靠在我的身旁， #p忧愁 啊， NL NL 这样你就可以再次尝试进入我的心。"
+    ],
+    "OPTIONS": [
+      "[。。。] ",
+      "变化一张牌。",
+      "升级一张牌。",
+      "移除一张牌。",
+      "获得 ",
+      ".",
+      "选择一张牌变化",
+      "选择一张牌升级",
+      "选择一张牌移除"
+    ]
+  },
+  "ruina:BlackSilenceFork": {
+    "NAME": "一个男人的忧愁",
+    "DESCRIPTIONS": [
+      "战斗停止了，这是你从可怕的挑战中解脱出来的一次令人欢迎的 #g机会 。 但是随着 #p寂静 的延伸，空气中弥漫着 #p死一般的寒意 ， #r心跳声 在你耳边越来越响。 NL NL \"安吉拉，你知道我接下来要做什么吧?\""
+    ],
+    "OPTIONS": [
+      "[屈从于心跳] 回归腐化之心",
+      "[见证最终] 面对漆黑噤默"
+    ]
+  },
+  "ruina:TheHead": {
+    "NAME": "结局",
+    "DESCRIPTIONS": [
+      "你看到他瘫倒在地，疲惫不堪，由于不停的战斗而筋疲力尽。 NL NL 你看到他们叹气，吸气，然后 #g放手 。你看到他们释放了他们的 #r仇恨 和 #r恐惧 ，他们的 #r愤怒 和 #r痛苦 。你看到他们放下了他们的 #p创伤 ，放下了驱使他们走向毁灭的挥之不去的黑暗。 NL NL 你看到他们远离 #y过去 ，这样他们才能最终面对 #y未来 。",
+      "图书馆 @不寒而栗，@ 你发现又有一群不速之客 #r入侵 了。 NL NL \"这就是所谓的 #p杂质 ，图书馆。\" 女人冷笑着说。 \"多么温馨的一幕啊，一个男人和一台机器重归于好。可惜这就是你的结局。\" NL NL 你可以看到他把自己推倒在地，那是一个被打得 #r遍体鳞伤 的人，他 #r竭尽全力 地保护着他刚刚找到的和平与幸福."
+    ],
+    "OPTIONS": [
+      "[继续]"
+    ]
+  },
+  "ruina:HeadDialogue": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "你已经累了？我仍尚未正式开始呢。",
+      "处刑者。",
+      "处决他吗。",
+      "现在才露面啊。",
+      "我们在哪儿见过?",
+      "有你在真是松了一口气。",
+      "我也不能确定自己能否坚持到最后。。。",
+      "哎呀。。。我也只是想尽力阻止他们而已。",
+      "你们二人齐心协力也不会带来什么变化。",
+      "但，你们那副模样着实令我有些忍俊不禁。",
+      "只是在此观望战况的确不错，但此地必须被确切地处理掉。",
+      "事情变得更棘手了啊。",
+      "孤立无援。。。真是令人惋惜。",
+      "与我的预期相比你们坚持了更久，但这一切也该结束了。。。",
+      "看来的确是这样，说的话变长了，空隙便也会暴露出来。",
+      "加里翁。。。",
+      "真是好久都没有听到过这个名字了。。。",
+      "虽然它已经不是为了我而存在的了。",
+      "你怎么现在才来?",
+      "我先前也只是在一旁观望了会你们的样子而已。",
+      "不仅没有尽到自己的责任，如今竟然反过来帮助他们。真是愚蠢至极。",
+      "但追究责任的事可以往后再推。",
+      "我很快就会毁掉你的坟墓并将你带出去的。",
+      "我为你现在仍在寻找那已成为空壳的存在而感到遗憾。",
+      "处刑者，做好准备。战斗随时都有可能再次开始。",
+      "你们竟然能够就这样硬撑下来，着实有些惊人。",
+      "加里翁。。。没能收回你那破碎的遗骸也的确有些可惜。。。",
+      "但时间到了。",
+      "这里会按照计划被驱逐出境。",
+      "不要再回来了。",
+      "希望你们能够在自己该待的地方好好呆着。",
+      "。。。",
+      "领地驱逐程序。。。失败?",
+      "同样的，话变长了又会露出破绽。",
+      "不过，这真是出乎意料。",
+      "想想看，图书馆能够邀请来自其他世界的客人。。。",
+      "这种混乱不能合理地解释，也许我们对这个地方太宽容了。",
+      "处刑者，把他们全部干掉。",
+
+
+      "DO NOT TRANSLATE OPTIONS AS IT DETERMINES WHICH CHARACTER APPEARS IN THE CUTSCENE AND WHO SPEAKS IN THE CURRENT LINE. TRANSLATING ANY LINE OF IT CAUSES THE CUTSCENE TO BREAK.",
+      "Please do not touch it. -Squeeny"
+    ],
+    "OPTIONS": [
+      "ZenaBaralRoland_ZenaSpeak",
+      "ZenaBaralRoland_ZenaSpeak",
+      "ZenaBaralRoland_BaralSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralGeburaRoland_GeburaSpeak",
+      "ZenaBaralGeburaRoland_RolandSpeak",
+      "ZenaBaralGeburaRoland_GeburaSpeak",
+      "ZenaBaralGeburaRoland_RolandSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralGeburaRoland_RolandSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_GeburaSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_BinahSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak",
+      "ZenaBaralBinahGeburaRoland_ZenaSpeak"
+    ]
+  },
+  "ruina:HeadEnding": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "我们会没事吗，罗兰? 我怀疑首脑会为两名手下的失败而高兴。",
+      "不管首脑开不开心，我们的故事不会就此结束",
+      "确实。这一切都得益于远方的一点帮助。我们是否应该继续一起书写这个故事?",
+      "当然可以，馆长。毕竟我们还有很多事情要做。",
+      "陌生人，你为什么不加入我们呢? 这个故事有足够的空间让别人来参与。",
+      "别害羞...... ",
+      "陌生人只是你还没见过的朋友。"
+    ],
+    "OPTIONS": [
     ]
   }
 }

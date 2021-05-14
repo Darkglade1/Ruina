@@ -42,7 +42,7 @@
   "ruina:SwordSharpened": {
     "NAME": "泪锋之剑",
     "DESCRIPTION": "给予 !M! 层 虚弱 。 NL 如果你对同一个敌人打出这张牌 !ruina:SecondMagic! 次, 改为 *击晕 敌人并 消耗 这张牌。",
-    "UPGRADE_DESCRIPTION": "给予 !M! 层 虚弱 。 NL 将这张牌放入你的抽牌堆。NL 如果你对同一个敌人打出这张牌 !ruina:SecondMagic! 次, 改为 *击晕 敌人并 消耗 这张牌。"
+    "UPGRADE_DESCRIPTION": "给予 !M! 层 虚弱 。 NL 将这张牌放入你的抽牌堆中。NL 如果你对同一个敌人打出这张牌 !ruina:SecondMagic! 次, 改为 *击晕 敌人并 消耗 这张牌。"
   },
   "ruina:Lumber": {
     "NAME": "滥伐",
@@ -367,7 +367,7 @@
   },
   "ruina:HeatedWeapon": {
     "NAME": "焦热兵装",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 将 !ruina:SecondMagic! 张 *灼伤 放入你的抽牌堆。"
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 将 !ruina:SecondMagic! 张 *灼伤 放入你的抽牌堆中。"
   },
   "ruina:Rampage": {
     "NAME": "狂乱一击",
@@ -399,7 +399,7 @@
   },
   "ruina:Catch": {
     "NAME": "块来抓住我",
-    "DESCRIPTION": "将 !M! 张 *伤口 放入你的抽牌堆。"
+    "DESCRIPTION": "将 !M! 张 *伤口 放入你的抽牌堆中。"
   },
   "ruina:Pow": {
     "NAME": "砰！嘭！",
@@ -451,7 +451,7 @@
   },
   "ruina:Bawk": {
     "NAME": "BAWK BAWK",
-    "DESCRIPTION": "将 !M! 张 *晕眩 放入你的弃牌堆。"
+    "DESCRIPTION": "将 !M! 张 *晕眩 放入你的弃牌堆中。"
   },
   "ruina:Rarf": {
     "NAME": "RARF RARF",
@@ -499,7 +499,7 @@
   },
   "ruina:Eventide": {
     "NAME": "冰冷残阳",
-    "DESCRIPTION": "将 !M! 张 *灼伤 放入你的弃牌堆。"
+    "DESCRIPTION": "将 !M! 张 *灼伤 放入你的弃牌堆中。"
   },
   "ruina:Emotions": {
     "NAME": "情感碰撞",
@@ -511,7 +511,7 @@
   },
   "ruina:Searing": {
     "NAME": "灼烧勇气",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 将 !M! 张 *灼伤 放入你的抽牌堆。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 将 !M! 张 *灼伤 放入你的抽牌堆中。"
   },
   "ruina:Sorrow": {
     "NAME": "痛彻骨髓",
@@ -615,6 +615,179 @@
   },
   "ruina:BindingTerms": {
     "NAME": "约束合约",
-    "DESCRIPTION": "将 !M! 张 *虚空 放入你的弃牌堆。"
+    "DESCRIPTION": "将 !M! 张 *虚空 放入你的弃牌堆中。"
+  },
+  "ruina:Crystal": {
+    "NAME": "卡莉斯塔工作室",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 如果不是玩家的回合，获得 !B! 点 格挡 。"
+  },
+  "ruina:Wheels": {
+    "NAME": "轮盘重工",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果处于玩家的回合，目标在本回合失去 !M! 点 力量 。"
+  },
+  "ruina:Durandal": {
+    "NAME": "杜兰达尔",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 如果处于玩家的回合，则在本回合获得 !ruina:SecondMagic! 点 力量 。"
+  },
+  "ruina:Allas": {
+    "NAME": "阿拉斯工坊",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果处于玩家的回合，目标在本回合失去 !M! 点 力量 。"
+  },
+  "ruina:Gun": {
+    "NAME": "逻辑工作室",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  },
+  "ruina:Mook": {
+    "NAME": "墨工坊",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 移除目标的所有 格挡 。"
+  },
+  "ruina:OldBoys": {
+    "NAME": "老男孩工坊",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果不是玩家的回合，获得 !B! 点 格挡 。"
+  },
+  "ruina:Ranga": {
+    "NAME": "琅琊工坊",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 如果不是玩家的回合，给予 !ruina:SecondMagic! 层 ruina:流血 。"
+  },
+  "ruina:Mace": {
+    "NAME": "桦树工坊",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 如果处于玩家的回合，在本回合获得 !ruina:SecondMagic! 点 力量 。"
+  },
+  "ruina:Furioso": {
+    "NAME": "Furioso",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 给予 !ruina:SecondMagic! 层 虚弱 和 脆弱 。"
+  },
+  "ruina:Yun": {
+    "NAME": "追忆-澜事务所",
+    "DESCRIPTION": "选择:",
+    "EXTENDED_DESCRIPTION": ["将 !M! 张 *晕眩 放入你的抽牌堆中。", " 将 !ruina:SecondMagic! 张 *伤口 放入你的弃牌堆中。"]
+  },
+  "ruina:Zwei": {
+    "NAME": "追忆-Zwe协会",
+    "DESCRIPTION": "选择:",
+    "EXTENDED_DESCRIPTION": ["敌人获得 !M! 层 *金属化 。", "敌人获得 !ruina:SecondMagic! 层 *多层护甲 。"]
+  },
+  "ruina:Dawn": {
+    "NAME": "追忆-黎明事务所",
+    "DESCRIPTION": "选择:",
+    "EXTENDED_DESCRIPTION": ["将 !M! 张 *灼伤 放入你的抽牌堆中。", "敌人获得 !ruina:SecondMagic! 层 *守护 。"]
+  },
+  "ruina:Shi": {
+    "NAME": "追忆-し协会",
+    "DESCRIPTION": "选择:",
+    "EXTENDED_DESCRIPTION": ["你获得 !M! 层 虚弱 。", "你获得 !ruina:SecondMagic! 层 脆弱 。"]
+  },
+  "ruina:Love": {
+    "NAME": "追忆-爱之小镇",
+    "DESCRIPTION": "选择:",
+    "EXTENDED_DESCRIPTION": ["敌人获得 !M! 层 *再生 。", "将 !ruina:SecondMagic! 张 *粘液 放入你的弃牌堆中。"]
+  },
+  "ruina:Liu": {
+    "NAME": "追忆-六协会",
+    "DESCRIPTION": "选择:",
+    "EXTENDED_DESCRIPTION": ["敌人获得 !M! 点 力量 。", "你获得 !ruina:SecondMagic! 层 易伤 。"]
+  },
+  "ruina:Purple": {
+    "NAME": "追忆-堇紫泪滴",
+    "DESCRIPTION": "选择:",
+    "EXTENDED_DESCRIPTION": ["敌人获得 !M! 层 无实体 。", "敌人召唤 !ruina:SecondMagic! 个爪牙。"]
+  },
+  "ruina:Hana": {
+    "NAME": "追忆-Hana协会",
+    "DESCRIPTION": "选择:",
+    "EXTENDED_DESCRIPTION": ["将 !M! 张 *悔恨 加入你的手牌。", "你失去 !ruina:SecondMagic! 点生命。"]
+  },
+  "ruina:Blue": {
+    "NAME": "追忆-苍蓝残响",
+    "DESCRIPTION": "选择:",
+    "EXTENDED_DESCRIPTION": ["敌人获得一个额外的行动意图。", "每当你打出一张牌，将其 消耗 。"]
+  },
+  "ruina:Agony": {
+    "NAME": "愤怒",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "ruina:Scream": {
+    "NAME": "呐喊",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 给予 !ruina:SecondMagic! 层 *麻痹 。"
+  },
+  "ruina:Void": {
+    "NAME": "空虚",
+    "DESCRIPTION": "给予 !ruina:SecondMagic! 层 虚弱 和 脆弱 。 NL 将 !M! 张 *虚空 放入你的弃牌堆中。"
+  },
+  "ruina:ZelkovaWorkshop": {
+    "NAME": "桦树工坊",
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害 !M! 次。"
+  },
+  "ruina:AllasWorkshop": {
+    "NAME": "阿拉斯工坊",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果 *同伴 的意图是攻击，给予 !M! 层 易伤 。"
+  },
+  "ruina:AtelierLogic": {
+    "NAME": "逻辑工作室",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  },
+  "ruina:WaltzInWhite": {
+    "NAME": "纯白圆舞曲",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  },
+  "ruina:AshenBond": {
+    "NAME": "纯白之束",
+    "DESCRIPTION": "所有友方获得 !B! 点 格挡 和 !M! 点 力量 。"
+  },
+  "ruina:UnitedWorkshop": {
+    "NAME": "联合-工坊",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 如果 *同伴 的意图是攻击，获得 !ruina:SecondMagic! 点 力量 。"
+  },
+  "ruina:UnstableLoneliness": {
+    "NAME": "孤独",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果 *同伴 的意图不是攻击，给予 !M! 层 虚弱 和 脆弱 。"
+  },
+  "ruina:BlindFury": {
+    "NAME": "怒火中烧",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 *麻痹 。"
+  },
+  "ruina:DarkBond": {
+    "NAME": "漆黑之束",
+    "DESCRIPTION": "所有友方获得 !B! 点 格挡 。 NL 将 !M! 张 *虚空 放入你的抽牌堆中。"
+  },
+  "ruina:WaltzInBlack": {
+    "NAME": "漆黑华尔兹",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  },
+  "ruina:SerumW": {
+    "NAME": "血清-W",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果拥有至少 !M! 点 力量 ，立刻杀死目标。"
+  },
+  "ruina:SerumR": {
+    "NAME": "血清-R",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 获得 !ruina:SecondMagic! 点 力量 。"
+  },
+  "ruina:Extirpation": {
+    "NAME": "剜除",
+    "DESCRIPTION": "获得 !B! 点格挡. NL 造成 !D! 点伤害。"
+  },
+  "ruina:TriSerum": {
+    "NAME": "三血清齐注",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  },
+  "ruina:SerumK": {
+    "NAME": "血清-K",
+    "DESCRIPTION": "血量最低的友方获得 !B! 点 格挡 并恢复 !M! 点生命。"
+  },
+  "ruina:Line": {
+    "NAME": "线",
+    "DESCRIPTION": "获得 !B! 点格挡. NL 造成 !D! 点伤害。"
+  },
+  "ruina:ThinLine": {
+    "NAME": "细线",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 从目标处偷取 !M! 点 力量 。"
+  },
+  "ruina:ThickLine": {
+    "NAME": "粗线",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 和 易伤 。"
+  },
+  "ruina:ZenaShockwave": {
+    "NAME": "震击",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。"
   }
 }

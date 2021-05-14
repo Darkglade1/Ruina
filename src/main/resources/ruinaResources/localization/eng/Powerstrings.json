@@ -161,7 +161,7 @@
   },
   "${ModID}:ParadiseLostPower": {
     "NAME": "Paradise Lost",
-    "DESCRIPTIONS": ["At the start of your turn, #yexhaust up to #b", " card.", " cards.", " Whenever #b", " cards are #yexhausted, ALL enemies lose #b", " HP."]
+    "DESCRIPTIONS": ["At the start of your turn, #yexhaust up to #b", " card.", " cards.", " Whenever #b", " cards are #yexhausted, ALL enemies lose #b", " HP.", " NL NL You have #yexhausted #b", " card(s)."]
   },
   "${ModID}:Heaven": {
     "NAME": "Heaven",
@@ -431,13 +431,9 @@
     "NAME": "Complete Arbiter",
     "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it steals #b", " #yStrength from its target."]
   },
-  "${ModID}:Mystery": {
-    "NAME": "???",
-    "DESCRIPTIONS": ["This creature is shrouded in #pmystery . . ."]
-  },
   "${ModID}:GeburaProwess": {
     "NAME": "Gebura's Prowess",
-    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks."]
+    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks. Whenever this creature deals unblocked attack damage, increase this bonus by #b", "%."]
   },
   "${ModID}:PlayerBackAttack": {
     "NAME": "Back Attack",

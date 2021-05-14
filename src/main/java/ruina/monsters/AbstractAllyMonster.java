@@ -170,7 +170,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     @Override
     public void damage(DamageInfo info) {
         //failsafe to stop player from damaging allies
-        if (isAlly && !isTargetableByPlayer && info.owner == adp()) {
+        if (isAlly && !isTargetableByPlayer && (info.owner == adp() || info.owner == null)) {
             return;
         }
         super.damage(info);

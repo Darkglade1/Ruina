@@ -114,6 +114,12 @@ public class BlackSilence3 extends AbstractCardMonster {
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
+    @Override
     public void takeTurn() {
         DamageInfo info;
         int multiplier = 0;

@@ -102,7 +102,7 @@ public class Roland extends AbstractAllyCardMonster {
     }
 
     public Roland(final float x, final float y) {
-        super(NAME, ID, 750, 10.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 650, 10.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Roland/Spriter/Roland.scml"));
 
         this.setHp(calcAscensionTankiness(this.maxHealth));
@@ -368,6 +368,11 @@ public class Roland extends AbstractAllyCardMonster {
             }
         });
         atb(new RollMoveAction(this));
+    }
+
+    public void setFuriosoCounter(int newAmount) {
+        furiosoCount = newAmount;
+        updatePower();
     }
 
     @Override

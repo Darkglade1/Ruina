@@ -47,6 +47,7 @@ import ruina.monsters.theHead.zenaCards.ZenaShockwave;
 import ruina.powers.AnArbiter;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.PlayerBackAttack;
+import ruina.powers.PlayerBlackSilence;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -118,10 +119,10 @@ public class Zena extends AbstractCardMonster
         }
         currentPhase = phase;
         this.setHp(calcAscensionTankiness(3000));
-        addMove(LINE, Intent.ATTACK_DEFEND, calcAscensionDamage(28));
-        addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(24));
-        addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
-        addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(40));
+        addMove(LINE, Intent.ATTACK_DEFEND, calcAscensionDamage(24));
+        addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
+        addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
+        addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(35));
         addMove(NONE, Intent.NONE);
         halfDead = currentPhase.equals(PHASE.PHASE1);
 
@@ -137,9 +138,9 @@ public class Zena extends AbstractCardMonster
         }
 
         if (AbstractDungeon.ascensionLevel >= 19) {
-            INVINCIBLE = 400;
+            INVINCIBLE = 450;
         } else {
-            INVINCIBLE = 500;
+            INVINCIBLE = 600;
         }
     }
 
@@ -349,8 +350,19 @@ public class Zena extends AbstractCardMonster
                             }
                             baral.roland.currentHealth = adp().currentHealth;
                             baral.roland.healthBarUpdatedEvent();
+                            int furiosoCounter = 9;
+                            AbstractPower playerBlackSilence = adp().getPower(PlayerBlackSilence.POWER_ID);
+                            if (playerBlackSilence != null) {
+                                furiosoCounter = 9 - playerBlackSilence.amount;
+                            }
+                            baral.roland.setFuriosoCounter(furiosoCounter);
                             adp().maxHealth = baral.playerMaxHp;
-                            adp().currentHealth = baral.playerCurrentHp;
+                            if (AbstractDungeon.ascensionLevel >= 19) {
+                                adp().currentHealth = baral.playerCurrentHp;
+                            } else {
+                                adp().currentHealth = baral.playerCurrentHp;
+                                adp().heal(adp().maxHealth, false);
+                            }
                             adp().healthBarUpdatedEvent();
                             adp().loseBlock();
                             fixOrbPositioning();
@@ -384,15 +396,16 @@ public class Zena extends AbstractCardMonster
                             adp().exhaustPile.clear();
                             adp().relics.addAll(baral.playerRelics);
                             adp().potions.addAll(baral.playerPotions);
+                            adp().powers.addAll(baral.playerPowers);
                             adp().energy.energy = baral.playerEnergy;
                             adp().gameHandSize = baral.playerCardDraw;
                             if (adp().hasRelic(SlaversCollar.ID)) {
                                 ((SlaversCollar)adp().getRelic(SlaversCollar.ID)).beforeEnergyPrep();
                             }
+                            baral.roland.rollMove();
                             adp().applyPreCombatLogic();
                             adp().applyStartOfCombatLogic();
                             adp().applyStartOfCombatPreDrawLogic();
-                            baral.roland.rollMove();
                             CustomDungeon.playTempMusicInstantly("TheHead");
                             this.isDone = true;
                         }

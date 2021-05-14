@@ -2,11 +2,9 @@ package ruina.monsters.theHead;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardModifierManager;
-import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.RemoveAllTemporaryHPAction;
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -19,8 +17,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.EnergyManager;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -32,7 +28,6 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
@@ -58,7 +53,6 @@ import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
-import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
@@ -77,16 +71,16 @@ public class Baral extends AbstractCardMonster
     private static final byte TRI_SERUM_COCKTAIL = 3;
     private static final byte SERUM_K = 4;
 
-    public final int SERUM_W_DAMAGE = calcAscensionDamage(50);
+    public final int SERUM_W_DAMAGE = calcAscensionDamage(45);
 
     public final int serumR_Damage = calcAscensionDamage(12);
     public final int serumR_Hits = 2;
     public final int serumR_Strength = calcAscensionSpecial(5);
 
-    public final int extirpationDamage = calcAscensionDamage(30);
+    public final int extirpationDamage = calcAscensionDamage(26);
     public final int extirpationBlock = calcAscensionTankiness(50);
 
-    public final int triSerumDamage = calcAscensionDamage(11);
+    public final int triSerumDamage = calcAscensionDamage(9);
     public final int triSerumHits = 3;
 
     private static final int SERUM_COOLDOWN = 2;
@@ -107,6 +101,7 @@ public class Baral extends AbstractCardMonster
     public int playerCurrentHp;
     public ArrayList<AbstractRelic> playerRelics = new ArrayList<>();
     public ArrayList<AbstractPotion> playerPotions = new ArrayList<>();
+    public ArrayList<AbstractPower> playerPowers = new ArrayList<>(); //gotta catch stuff like guardian's MODE SHIFT from DOWNFALL
     public int playerEnergy;
     public int playerCardDraw;
     public boolean deathTriggered = false;
@@ -165,9 +160,9 @@ public class Baral extends AbstractCardMonster
         }
 
         if (AbstractDungeon.ascensionLevel >= 19) {
-            INVINCIBLE = 400;
+            INVINCIBLE = 450;
         } else {
-            INVINCIBLE = 500;
+            INVINCIBLE = 600;
         }
     }
 
@@ -198,15 +193,36 @@ public class Baral extends AbstractCardMonster
             }
             applyToTarget(this, this, new InvisibleBarricadePower(this));
 
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            playerPowers.addAll(adp().powers);
+                            adp().powers.clear();
+                            this.isDone = true;
+                        }
+                    });
+                    this.isDone = true;
+                }
+            });
+
             roland = new RolandHead(-1100.0F, 0.0f);
             roland.drawX = AbstractDungeon.player.drawX;
             AbstractPower power = new PlayerBlackSilence(adp(), roland);
-            AbstractDungeon.player.powers.add(power);
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    applyToTarget(adp(), adp(), power);
+                    this.isDone = true;
+                }
+            });
 
             playerMaxHp = adp().maxHealth;
             playerCurrentHp = adp().currentHealth;
             adp().maxHealth = roland.maxHealth;
-            adp().currentHealth = (int) (roland.maxHealth * 0.60f);
+            adp().currentHealth = (int) (roland.maxHealth * 0.70f);
             adp().healthBarUpdatedEvent();
             playerRelics.addAll(adp().relics);
             adp().relics.clear();
@@ -467,18 +483,14 @@ public class Baral extends AbstractCardMonster
             setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
         } else {
             if (currentPhase == PHASE.PHASE1) {
-                ArrayList<Byte> possibilities = new ArrayList<>();
-                if (!this.lastMove(SERUM_R)) {
-                    possibilities.add(SERUM_R);
+                if (!this.lastMove(SERUM_R) && !this.lastMoveBefore(SERUM_R)) {
+                    setMoveShortcut(SERUM_R, MOVES[SERUM_R], cardList.get(SERUM_R).makeStatEquivalentCopy());
+                } else {
+                    setMoveShortcut(EXTIRPATION, MOVES[EXTIRPATION], cardList.get(EXTIRPATION).makeStatEquivalentCopy());
                 }
-                if (!this.lastMove(EXTIRPATION)) {
-                    possibilities.add(EXTIRPATION);
-                }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
             } else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
-                if (!this.lastMove(SERUM_K) && !this.lastMoveBefore(SERUM_K)) {
+                if (!this.lastMove(SERUM_K)) {
                     possibilities.add(SERUM_K);
                 }
                 if (!this.lastMove(EXTIRPATION)) {
