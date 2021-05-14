@@ -789,5 +789,25 @@
   "${ModID}:ZenaShockwave": {
     "NAME": "Shockwave",
     "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  },
+  "${ModID}:Marionette": {
+    "NAME": "Marionette",
+    "DESCRIPTION": "Deal !D! damage. NL Increase the cost of ALL your cards in your hand by !M! for the rest of combat."
+  },
+  "${ModID}:WristCutter": {
+    "NAME": "Wrist Cutter",
+    "DESCRIPTION": "Gain [E] [E] . NL Add !M! Wound to your hand with Retain."
+  },
+  "${ModID}:Remorse": {
+    "NAME": "Remorse",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak and Vulnerable."
+  },
+  "${ModID}:Aspiration": {
+    "NAME": "Aspiration",
+    "DESCRIPTION": "Gain !M! Strength. NL Lose half of your current HP. At the end of combat, heal the HP lost by this card."
+  },
+  "${ModID}:FrostSplinter": {
+    "NAME": "Frost Splinter",
+    "DESCRIPTION": "Gain [E] , draw !M! card and ruina:Freeze a card each turn."
   }
 }

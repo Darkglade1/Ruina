@@ -133,5 +133,10 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(Lamp.ID);
         list.add(Justitia.ID);
         list.add(Twilight.ID);
+        list.add(Aspiration.ID);
+        list.add(WristCutter.ID);
+        list.add(FrostSplinter.ID);
+        list.add(Marionette.ID);
+        list.add(Remorse.ID);
     }
 }

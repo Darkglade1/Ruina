@@ -30,7 +30,7 @@ public class Marionette extends AbstractEgoCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.NONE);
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         atb(new IncreaseCostAction(this, magicNumber));
         atb(new AbstractGameAction() {
             @Override

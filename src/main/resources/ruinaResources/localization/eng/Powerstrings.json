@@ -441,7 +441,7 @@
   },
   "${ModID}:Aspiration": {
     "NAME": "Heart Of Aspiration",
-    "DESCRIPTIONS": ["Heal #b%1$s #yHP at the end of combat."]
+    "DESCRIPTIONS": ["Heal #b%1$s HP at the end of combat."]
   },
   "${ModID}:FrostSplinter": {
     "NAME": "Frost Splinter",
