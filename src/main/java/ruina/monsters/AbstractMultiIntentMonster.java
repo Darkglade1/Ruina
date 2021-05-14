@@ -203,7 +203,9 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             if (tips.size() > 0) {
                 for (int i = 0; i < additionalIntents.size(); i++) {
                     AdditionalIntent additionalIntent = additionalIntents.get(i);
-                    this.tips.add(i + 1, additionalIntent.intentTip);
+                    if (!additionalIntent.transparent) {
+                        this.tips.add(i + 1, additionalIntent.intentTip);
+                    }
                 }
             }
         }

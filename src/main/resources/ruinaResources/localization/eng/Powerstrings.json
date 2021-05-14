@@ -449,5 +449,9 @@
       "Gain [E] , draw #b%1$s card and #yFreeze #b%2$s card at the start of each turn",
       "Gain [E] , draw #b%1$s cards and #yFreeze #b%2$s card at the start of each turn"
     ]
+  },
+  "${ModID}:KillingIntent": {
+    "NAME": "Killing Intent",
+    "DESCRIPTIONS": ["This creature only acts on its #b1st intent. Its #b2nd intent is a preview of its next move."]
   }
 }

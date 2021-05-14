@@ -237,8 +237,14 @@ public class Bremen extends AbstractCardMonster
                 }
             });
         }
-        cooldown--;
-        lastIntentTargetAlly = !lastIntentTargetAlly;
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                cooldown--;
+                lastIntentTargetAlly = !lastIntentTargetAlly;
+                this.isDone = true;
+            }
+        });
         atb(new RollMoveAction(this));
     }
 

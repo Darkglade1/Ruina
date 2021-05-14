@@ -45,6 +45,8 @@ public class AdditionalIntent {
     public PowerTip intentTip;
     public boolean usePrimaryIntentsColor = true;
     public AbstractCard enemyCard = null;
+    public boolean transparent = false;
+    private Color transparentColor;
 
     private ArrayList<AbstractGameEffect> intentVfx;
 
@@ -60,7 +62,7 @@ public class AdditionalIntent {
     public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move, AbstractCard enemyCard) {
         this.source = source;
         intentColor = Color.WHITE.cpy();
-
+        transparentColor = new Color(1.0f, 1.0f, 1.0f, intentColor.a / 2.0f);
         intent = move.intent;
 
         damage = move.baseDamage;
@@ -175,6 +177,8 @@ public class AdditionalIntent {
         Color color;
         if (usePrimaryIntentsColor) {
             color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else if (transparent) {
+            color = transparentColor;
         } else {
             color = intentColor;
         }
@@ -192,6 +196,8 @@ public class AdditionalIntent {
         Color color;
         if (usePrimaryIntentsColor) {
             color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else if (transparent) {
+            color = transparentColor;
         } else {
             color = intentColor;
         }
@@ -221,6 +227,8 @@ public class AdditionalIntent {
         Color color;
         if (usePrimaryIntentsColor) {
             color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else if (transparent) {
+            color = transparentColor;
         } else {
             color = intentColor;
         }
@@ -253,6 +261,8 @@ public class AdditionalIntent {
         Color color;
         if (usePrimaryIntentsColor) {
             color = ReflectionHacks.getPrivate(source, AbstractMonster.class, "intentColor");
+        } else if (transparent) {
+            color = new Color(1.0F, 1.0F, 1.0F, 0.5f);
         } else {
             color = intentColor;
         }
