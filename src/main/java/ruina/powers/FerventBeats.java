@@ -1,20 +1,15 @@
 package ruina.powers;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import ruina.RuinaMod;
-import ruina.monsters.day49.Aspiration.LungsOfCravingD49;
-import ruina.util.TexLoader;
+import ruina.monsters.day49.Aspiration.Lungs.LungsOfCravingD49;
 
-import static ruina.RuinaMod.makePowerPath;
 import static ruina.util.Wiz.atb;
 
 public class FerventBeats extends AbstractUnremovablePower {

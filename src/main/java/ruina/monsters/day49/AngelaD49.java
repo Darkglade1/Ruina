@@ -1,48 +1,25 @@
 package ruina.monsters.day49;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Dazed;
-import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
-import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.act2.MeltedCorpses;
-import ruina.monsters.act3.seraphim.GuardianApostle;
-import ruina.monsters.day49.Aspiration.LungsOfCravingD49;
-import ruina.monsters.eventboss.redMist.cards.CHRBOSS_GreaterSplitHorizontal;
-import ruina.monsters.eventboss.redMist.cards.CHRBOSS_GreaterSplitVertical;
-import ruina.monsters.eventboss.redMist.monster.RedMist;
-import ruina.powers.AbstractLambdaPower;
-import ruina.powers.Bleed;
-import ruina.powers.NextTurnPowerPower;
+import ruina.monsters.day49.Aspiration.Lungs.LungsOfCravingD49;
 import ruina.powers.Paralysis;
 import ruina.util.AdditionalIntent;
-import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
@@ -82,15 +59,15 @@ public class AngelaD49 extends AbstractCardMonster
     private static final byte PALE_HANDS = 1;
     private static final byte PROFOUND_SORROW = 2;
     private static final byte SINKING = 3;
-    private static final int numbnessBlock = 20;
+    private static final int numbnessBlock = 15;
     private static final int numbnessParalysis = 3;
-    private static final int paleHandsDamage = 11;
+    private static final int paleHandsDamage = 15;
     private static final int profoundSorrowDamage = 8;
     private static final int profoundSorrowHits = 2;
-    private static final int profoundSorrowLoseTempStrength = -3;
+    private static final int profoundSorrowVulnerable = 1;
     private static final int sinkingDamage = 40;
     private static final int sinkingDepression = 1;
-    // Numbness -> Pale Hands -> Sorrow -> Numbness -> wristCutter
+    // Numbness (Sorrow) -> Pale Hands -> Sorrow (Numbness) -> wristCutter
 
     // Aspiration Stage
     private final int ASPIRATION_PHASE_HP = 600;
@@ -98,9 +75,9 @@ public class AngelaD49 extends AbstractCardMonster
     private static final byte PULSATION = 4;
     private static final byte ASPIRATION = 5;
 
-    private static final int pulsationDamage = 40;
-    private static final int aspirationDamage = 4;
-    private static final int aspirationHits = 3;
+    public static final int pulsationDamage = 40;
+    public static final int aspirationDamage = 4;
+    public static final int aspirationHits = 3;
 
     // null -> null -> null -> unknown intent (Lungs die here) -> offensive turn -> stun -> repeat cycle
 
@@ -134,7 +111,9 @@ public class AngelaD49 extends AbstractCardMonster
     // Inverted Gains Block on sap instead.
     private static final int coffinDamage = 10;
 
-    // Faulty Strings - Gains Strength Next Turn equal to unblocked damage.
+    // Impersonate - Copies all cards of Angela's deck, including the effects of those cards. If an effect on a card copied by this ability does not benefit Pinnochio or detriment Angela, its effect is changed.
+    // Liar - Alongside the cards added by Impersonate, further "Lie" cards are added to Pinnochio's deck, which have some properties of the base card inverted.
+    // Counterbalance - Gains Strength Next Turn equal to unblocked damage.
     // I don't have it! - Every Other Turn, Completely Negate all Strength on this creature.
 
 
@@ -210,7 +189,68 @@ public class AngelaD49 extends AbstractCardMonster
         int multiplier = move.multiplier;
         if(info.base > -1) { info.applyPowers(this, target); }
         final int[] threshold = {0};
+        final int[] paleHandsHit = {0};
         switch (move.nextMove) {
+            case NUMBNESS:
+                block(this, numbnessBlock);
+                applyToTarget(adp(), this, new Paralysis(adp(), numbnessParalysis));
+                break;
+            case PALE_HANDS:
+                dmg(adp(), info);
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        paleHandsHit[0] = adp().lastDamageTaken;
+                        if(paleHandsHit[0] > 0){
+                            // reduce energy next turn by 1.
+                            // reduce card draw by 1
+                        }
+                        isDone = true;
+                    }
+                });
+                break;
+            case PROFOUND_SORROW:
+                dmg(adp(), info);
+                break;
+            case SINKING:
+                dmg(adp(), info);
+                break;
+            case PHASE_SHIFT_ASPIRATION:
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        currentHealth = 1;
+                        halfDead = false;
+                        turnCounter = 0;
+                        maxHealth = ASPIRATION_PHASE_HP;
+                        att(new HealAction(AngelaD49.this, AngelaD49.this, maxHealth));
+                        isDone = true;
+                    }
+                });
+                SummonLungs();
+                break;
+            case PULSATION:
+                dmg(adp(), info);
+                // next turn stun if has hankering
+                break;
+            case ASPIRATION:
+                for(int i = 0; i < multiplier; i += 1){
+                    dmg(adp(),info);
+                }
+                break;
+            case PHASE_SHIFT_PINOCCHIO:
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        currentHealth = 1;
+                        halfDead = false;
+                        turnCounter = 0;
+                        maxHealth = PINOCCHIO_PHASE_HP;
+                        att(new HealAction(AngelaD49.this, AngelaD49.this, maxHealth));
+                        isDone = true;
+                    }
+                });
+                break;
         }
     }
 
@@ -233,21 +273,6 @@ public class AngelaD49 extends AbstractCardMonster
                 }
             });
         }
-        switch (this.nextMove) {
-            case PHASE_SHIFT_ASPIRATION:
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        currentHealth = 1;
-                        halfDead = false;
-                        turnCounter = 0;
-                        maxHealth = ASPIRATION_PHASE_HP;
-                        att(new HealAction(AngelaD49.this, AngelaD49.this, maxHealth));
-                        isDone = true;
-                    }
-                });
-                SummonLungs();
-        }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -261,7 +286,7 @@ public class AngelaD49 extends AbstractCardMonster
                         else {
                             turnCounter += 1;
                             if (turnCounter > 5) {
-                                turnCounter = 1;
+                                turnCounter = 5;
                                 firstMove = true;
                             }
                         }
@@ -324,7 +349,7 @@ public class AngelaD49 extends AbstractCardMonster
     @Override
     public void damage(DamageInfo info) {
         super.damage(info);
-        if (this.currentHealth <= 0 && !this.halfDead) {
+        if (this.currentHealth <= 0) {
             this.halfDead = true;
             for (AbstractPower p : this.powers) { p.onDeath(); }
             for (AbstractRelic r : AbstractDungeon.player.relics) {

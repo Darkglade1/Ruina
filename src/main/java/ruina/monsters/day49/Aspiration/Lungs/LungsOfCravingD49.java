@@ -1,4 +1,4 @@
-package ruina.monsters.day49.Aspiration;
+package ruina.monsters.day49.Aspiration.Lungs;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -12,7 +12,6 @@ import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.act3.heart.LungsOfCraving;
 import ruina.monsters.day49.AngelaD49;
 import ruina.powers.FerventBeats;
-import ruina.powers.Paralysis;
 
 import java.util.ArrayList;
 
@@ -31,10 +30,9 @@ public class LungsOfCravingD49 extends AbstractRuinaMonster
     private static final byte FERVENT_BEATS = 0;
     private static final byte RETRACTING_BEATS = 1;
 
-    private static final int FERVENTDAMAGE = 7;
-    private static final int FERVENTHITS = 3;
-    private static final int RETRACTINGDAMAGE = 30;
-    private static final int RETRACTINGPARALYSIS = 3;
+    public static final int FERVENTDAMAGE = 7;
+    public static final int FERVENTHITS = 3;
+    public static final int RETRACTINGDAMAGE = 18;
 
     private static final int HANKERING = 7;
     private static final int FERVENTBEATS_STRENGTH = 5;
@@ -50,8 +48,8 @@ public class LungsOfCravingD49 extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Lungs/Spriter/Lungs.scml"));
         this.type = EnemyType.NORMAL;
         setHp(150);
-        addMove(FERVENT_BEATS, Intent.ATTACK, 10, 3, true);
-        addMove(RETRACTING_BEATS, Intent.ATTACK_DEBUFF, 30);
+        addMove(FERVENT_BEATS, Intent.ATTACK, FERVENTDAMAGE, 3, true);
+        addMove(RETRACTING_BEATS, Intent.ATTACK_DEBUFF, RETRACTINGDAMAGE);
         angela = parent;
     }
 
@@ -79,7 +77,6 @@ public class LungsOfCravingD49 extends AbstractRuinaMonster
             }
             case RETRACTING_BEATS: {
                 attackAnimation(adp());
-                applyToTarget(adp(), this, new Paralysis(adp(), RETRACTINGPARALYSIS));
                 dmg(adp(), info);
                 resetIdle();
                 break;
