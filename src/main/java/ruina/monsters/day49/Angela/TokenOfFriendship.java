@@ -17,7 +17,7 @@ import static ruina.util.actionShortcuts.doDmg;
 
 @AutoAdd.Ignore
 public class TokenOfFriendship extends AbstractRuinaCard {
-    public final static String ID = makeID(TokenOfFriendship.class.getSimpleName());
+    public final static String ID = makeID(TokenOfFriendship.class.getSimpleName() + "D49");
 
     private static final int COST = 1;
     public static final int BLOCK = 12;
@@ -25,7 +25,7 @@ public class TokenOfFriendship extends AbstractRuinaCard {
     public static final int HEAL = 6;
 
     public TokenOfFriendship() {
-        super(ID, COST, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.SELF, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRBOSS_yanProtect.class.getSimpleName() + ".png"));
+        super(ID, COST, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRBOSS_yanProtect.class.getSimpleName() + ".png"));
         damage = baseDamage = DAMAGE;
         block = baseBlock = BLOCK;
         magicNumber = baseMagicNumber = HEAL;

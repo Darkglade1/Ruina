@@ -829,8 +829,7 @@ public class RuinaMod implements
                 }));
 
         // Day 49
-        BaseMod.addMonster(AngelaD49.ID, (BaseMod.GetMonster) AngelaD49::new);
-        day49.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
+        day49.addBoss(AngelaD49.ID, (BaseMod.GetMonster) AngelaD49::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");

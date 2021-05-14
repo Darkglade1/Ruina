@@ -1,8 +1,10 @@
 package ruina.monsters.day49;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,13 +14,19 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
+import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.day49.Angela.*;
 import ruina.monsters.day49.Aspiration.Lungs.LungsOfCravingD49;
+import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
+import ruina.powers.InvisiblePermanentDrawReductionPower;
 import ruina.powers.Paralysis;
+import ruina.relics.d49.Director;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
@@ -27,6 +35,7 @@ import java.util.ArrayList;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
+import static ruina.util.actionShortcuts.doDraw;
 import static ruina.util.actionShortcuts.doPow;
 
 public class AngelaD49 extends AbstractCardMonster
@@ -167,8 +176,37 @@ public class AngelaD49 extends AbstractCardMonster
 
     @Override
     public void usePreBattleAction() {
+        int playerEnergy = adp().energy.energy;
+        adp().energy.energy = 5;
+        EnergyPanel.totalCount = 5 - playerEnergy;
+        AbstractDungeon.player.gameHandSize = 2;
         CustomDungeon.playTempMusicInstantly("Binah3");
         AbstractDungeon.getCurrRoom().cannotLose = true;
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                AbstractDungeon.player.drawPile.group.clear();
+                AbstractDungeon.player.discardPile.group.clear();
+                AbstractDungeon.player.exhaustPile.group.clear();
+                AbstractDungeon.player.hand.group.clear();
+                this.isDone = true;
+            }
+        });
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                for(int i = 0; i < 2; i+= 1){
+                    adp().drawPile.addToBottom(new LeanBloodyWings());
+                    adp().drawPile.addToBottom(new TokenOfFriendship());
+                    adp().drawPile.addToBottom(new DisplayOfAffection());
+                    adp().drawPile.addToBottom(new Shyness());
+                    adp().drawPile.addToBottom(new Coffin());
+                }
+                AbstractDungeon.player.drawPile.shuffle();
+                this.isDone = true;
+            }
+        });
+        doDraw(Director.DRAW);
     }
 
 
@@ -205,7 +243,7 @@ public class AngelaD49 extends AbstractCardMonster
                     public void update() {
                         paleHandsHit[0] = adp().lastDamageTaken;
                         if(paleHandsHit[0] > 0){
-                            doPow(adp(), new DrawReductionPower(adp(), paleHandsDraw), true);
+                            //doPow(adp(), new DrawReductionPower(adp(), paleHandsDraw), true);
                             att(new GainEnergyAction(-paleHandsEnergy));
                             // reduce energy next turn by 1.
                             // reduce card draw by 1

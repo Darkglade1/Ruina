@@ -20,12 +20,12 @@ import static ruina.util.actionShortcuts.doDraw;
 
 @AutoAdd.Ignore
 public class LeanBloodyWings extends AbstractRuinaCard {
-    public final static String ID = makeID(LeanBloodyWings.class.getSimpleName());
+    public final static String ID = makeID(LeanBloodyWings.class.getSimpleName() + "D49");
 
     private static final int COST = 2;
     private static final int DAMAGE = 16;
     private static final int BLEED = 3;
-    private static final int DRAW = 1;
+    private static final int DRAW = 2;
     private static final int ENERGY = 1;
 
     public LeanBloodyWings() {

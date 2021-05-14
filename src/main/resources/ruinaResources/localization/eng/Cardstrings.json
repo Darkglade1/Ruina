@@ -811,9 +811,9 @@
 
   "${ModID}:ShynessD49": {
     "NAME": "Shyness",
-    "DESCRIPTION": "Gain !B! Block. Gain !ruina:SecondMagic! [E] Next Turn."
+    "DESCRIPTION": "Gain !B! Block. NL Gain [E] [E] [E] Next Turn."
   },
-  "${ModID}:BloodyWingsD49": {
+  "${ModID}:LeanBloodyWingsD49": {
     "NAME": "Lean, Bloody Wings",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Apply !M! Bleed. NL Gain [E] . NL Draw !ruina:SecondMagic! card."
   },
@@ -827,6 +827,6 @@
   },
   "${ModID}:CoffinD49": {
     "NAME": "Coffin",
-    "DESCRIPTION": "Remove ALL Block from the enemy. Deal !D! damage. NL Deal damage equal to the Block removed."
+    "DESCRIPTION": "Remove ALL Block from the enemy. Deal !D! damage. NL Deal damage equal to the Block removed. NL Draw !M! cards next turn."
   }
 }

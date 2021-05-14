@@ -13,14 +13,17 @@ import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeImagePath;
 import static ruina.util.Wiz.atb;
 import static ruina.util.Wiz.block;
+import static ruina.util.actionShortcuts.doDraw;
 import static ruina.util.actionShortcuts.doPow;
 
 @AutoAdd.Ignore
 public class Shyness extends AbstractRuinaCard {
-    public final static String ID = makeID(Shyness.class.getSimpleName());
+    public final static String ID = makeID(Shyness.class.getSimpleName() + "D49");
 
     private static final int COST = 1;
     private static final int BLOCK = 8;
+    private static final int DRAW = 1;
+
     private static final int ENERGY = 3;
 
     public Shyness() {

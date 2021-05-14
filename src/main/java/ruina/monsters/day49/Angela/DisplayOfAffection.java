@@ -16,14 +16,14 @@ import static ruina.util.Wiz.block;
 
 @AutoAdd.Ignore
 public class DisplayOfAffection extends AbstractRuinaCard {
-    public final static String ID = makeID(DisplayOfAffection.class.getSimpleName());
+    public final static String ID = makeID(DisplayOfAffection.class.getSimpleName() + "D49");
 
     private static final int COST = 3;
     private static final int DAMAGE = 12;
     private static final int HITS = 3;
 
     public DisplayOfAffection() {
-        super(ID, COST, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.SELF, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRBOSS_yanProtect.class.getSimpleName() + ".png"));
+        super(ID, COST, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRBOSS_yanProtect.class.getSimpleName() + ".png"));
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = HITS;
     }

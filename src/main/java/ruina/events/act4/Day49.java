@@ -24,6 +24,7 @@ import ruina.RuinaMod;
 import ruina.chr.chr_aya;
 import ruina.monsters.day49.Angela.*;
 import ruina.relics.Book;
+import ruina.relics.d49.Director;
 
 import static ruina.RuinaMod.*;
 import static ruina.chr.chr_aya.characterStrings;
@@ -55,32 +56,19 @@ public class Day49 extends AbstractImageEvent {
                 switch (buttonPressed) {
                     case 0:
                         screenNum = 1;
-                        adp().chosenClass = AbstractPlayer.PlayerClass.THE_SILENT;
                         adp().maxHealth = 106;
                         adp().currentHealth = adp().maxHealth;
                         adp().relics.clear();
                         adp().potions.clear();
                         adp().masterDeck.clear();
                         // add cards here
-                        for(int i = 0; i < 2; i+= 1){
-                            adp().masterDeck.addToBottom(new LeanBloodyWings());
-                            adp().masterDeck.addToBottom(new TokenOfFriendship());
-                            adp().masterDeck.addToBottom(new DisplayOfAffection());
-                        }
-                        for(int i = 0; i <= 2; i+= 1){ adp().masterDeck.addToBottom(new Shyness()); }
-                        adp().masterDeck.addToBottom(new Coffin());
-                        adp().energy.energy = 5;
                         // Draw 2 relic and Draw 5 relics.
-                        adp().gameHandSize = 3;
-
                         // add the two gamer relics
                         if (adp().hasRelic(relic.relicId)) {
                             relic = new Circlet();
                         }
-                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new IceCream());
-                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new RunicPyramid());
-
-                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, relic);
+                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, new Director());
+                        openMap();
                         break;
                 }
                 break;
