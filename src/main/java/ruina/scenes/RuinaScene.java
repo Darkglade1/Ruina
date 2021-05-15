@@ -184,6 +184,10 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Hokma");
                     this.campfireBg = this.atlas.findRegion("mod/HokmaCamp");
                     break;
+                case ROLAND:
+                    this.bg = this.atlas.findRegion("mod/Keter");
+                    this.campfireBg = this.atlas.findRegion("mod/Entrance");
+                    break;
                 case GUESTS:
                     this.bg = this.atlas.findRegion("mod/Entrance");
                     this.campfireBg = this.atlas.findRegion("mod/Entrance");
