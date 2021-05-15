@@ -1,10 +1,12 @@
 package ruina.monsters.act3.silentGirl;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 
 import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.util.Wiz.atb;
 
 public class DummyHammer extends AbstractRuinaMonster
 {
@@ -30,6 +32,13 @@ public class DummyHammer extends AbstractRuinaMonster
     }
 
     public void deadAnimation() {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                animation.setFlip(true, false);
+                this.isDone = true;
+            }
+        });
         animationAction("Dead", null, this);
     }
 

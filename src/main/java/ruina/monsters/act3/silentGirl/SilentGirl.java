@@ -1,6 +1,7 @@
 package ruina.monsters.act3.silentGirl;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -20,6 +21,8 @@ import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
+import ruina.cardmods.HammerAndNailMod;
+import ruina.cardmods.ManifestMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
@@ -91,6 +94,18 @@ public class SilentGirl extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Story2");
+        for (AbstractCard card : adp().drawPile.group) {
+            CardModifierManager.addModifier(card, new HammerAndNailMod());
+        }
+        for (AbstractCard card : adp().discardPile.group) {
+            CardModifierManager.addModifier(card, new HammerAndNailMod());
+        }
+        for (AbstractCard card : adp().hand.group) {
+            CardModifierManager.addModifier(card, new HammerAndNailMod());
+        }
+        for (AbstractCard card : adp().exhaustPile.group) {
+            CardModifierManager.addModifier(card, new HammerAndNailMod());
+        }
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void onUseCard(AbstractCard card, UseCardAction action) {
@@ -173,6 +188,24 @@ public class SilentGirl extends AbstractRuinaMonster
                 makePowerRemovable(this, POWER_ID);
                 atb(new RemoveSpecificPowerAction(this, this, POWER_ID));
                 applyToTarget(this, this, new BarricadePower(this));
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        for (AbstractCard card : adp().drawPile.group) {
+                            CardModifierManager.removeModifiersById(card, HammerAndNailMod.ID, false);
+                        }
+                        for (AbstractCard card : adp().discardPile.group) {
+                            CardModifierManager.removeModifiersById(card, HammerAndNailMod.ID, false);
+                        }
+                        for (AbstractCard card : adp().hand.group) {
+                            CardModifierManager.removeModifiersById(card, HammerAndNailMod.ID, false);
+                        }
+                        for (AbstractCard card : adp().exhaustPile.group) {
+                            CardModifierManager.removeModifiersById(card, HammerAndNailMod.ID, false);
+                        }
+                        this.isDone = true;
+                    }
+                });
                 block(this, BLOCK);
                 enraged = 2;
                 resetIdle(1.0f);

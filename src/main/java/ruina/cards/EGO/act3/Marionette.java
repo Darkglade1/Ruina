@@ -29,11 +29,13 @@ public class Marionette extends AbstractEgoCard {
             @Override
             public void update() {
                 for (AbstractCard c : p.hand.group) {
-                    if (c.costForTurn != magicNumber) {
-                        c.isCostModified = true;
+                    if (c.costForTurn >= 0) {
+                        if (c.costForTurn != magicNumber) {
+                            c.isCostModified = true;
+                        }
+                        c.cost = magicNumber;
+                        c.costForTurn = magicNumber;
                     }
-                    c.cost = magicNumber;
-                    c.costForTurn = magicNumber;
                 }
                 isDone = true;
             }
