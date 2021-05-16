@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -38,6 +39,8 @@ import ruina.powers.LongEgg;
 import ruina.powers.Paralysis;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
+
+import java.util.Iterator;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -426,6 +429,13 @@ public class Twilight extends AbstractRuinaMonster
             bigEgg.renderSprite(sb, (float) Settings.WIDTH / 2 - (100.0f * Settings.scale), hb.y);
             smallEgg.renderSprite(sb, (float) Settings.WIDTH / 2, hb.y);
             longEgg.renderSprite(sb, (float) Settings.WIDTH / 2 + (100.0f * Settings.scale), hb.y);
+
+            //renders the orbs here again so the giant bird doesn't cover them up
+            if (!adp().orbs.isEmpty()) {
+                for (AbstractOrb orb : adp().orbs) {
+                    orb.render(sb);
+                }
+            }
         }
         super.render(sb);
     }
