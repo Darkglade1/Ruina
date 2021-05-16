@@ -32,7 +32,7 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
-import ruina.actions.HeadDialogueAction;
+import ruina.actions.dialogueActions.HeadDialogueAction;
 import ruina.actions.SerumWAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.actions.YeetPlayerAction;

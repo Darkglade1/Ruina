@@ -15,7 +15,7 @@ public class AbnormalityUnit extends AbstractRuinaMonster
     public static final String NAME = monsterStrings.NAME;
     private static final byte NONE = 0;
     public AbnormalityUnit() {
-        this(0.0f, 0.0f, "BloodBath");
+        this(0.0f, 0.0f, "ts_BloodBath");
     }
     public AbnormalityUnit(String ABNOID) { this(0.0f, 0.0f, ABNOID); }
     public AbnormalityUnit(final float x, final float y, String ABNOID) {

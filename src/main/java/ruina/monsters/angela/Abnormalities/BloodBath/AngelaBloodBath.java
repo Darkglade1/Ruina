@@ -14,7 +14,7 @@ import static ruina.util.Wiz.makeInHand;
 
 public class AngelaBloodBath extends AbnormalityContainer
 {
-    public static final String ABNOID = "BloodBath";
+    public static final String ABNOID = "ts_BloodBath";
     public static final String WARNING = "TETH";
     public static final String ID = makeID(AngelaBloodBath.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);

@@ -95,8 +95,7 @@ public class RuinaMenu {
     public static class MusicHijack {
         @SpirePostfixPatch
         public static Music Postfix(Music __result, MainMusic __instance, String key) {
-            if (RuinaMod.overrideHijackMenu()) { if (key.equals("MENU")) { return MainMusic.newMusic("audio/music/m2.ogg"); } }
-            else if (RuinaMod.hijackMenu()) { if (key.equals("MENU")) { return MainMusic.newMusic("audio/music/m1.ogg"); } }
+            if (RuinaMod.hijackMenu()) { if (key.equals("MENU")) { return MainMusic.newMusic("audio/music/m1.ogg"); } }
             return __result;
         }
     }

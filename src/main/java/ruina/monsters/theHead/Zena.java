@@ -37,7 +37,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
-import ruina.actions.HeadDialogueAction;
+import ruina.actions.dialogueActions.HeadDialogueAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.zenaCards.Line;

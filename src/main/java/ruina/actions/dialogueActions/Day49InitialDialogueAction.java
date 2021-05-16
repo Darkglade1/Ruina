@@ -1,16 +1,17 @@
-package ruina.actions;
+package ruina.actions.dialogueActions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import ruina.dialogue.day49.Day49InitialDialogue;
 import ruina.dialogue.theHead.HeadDialogue;
 
-public class HeadDialogueAction extends AbstractGameAction {
+public class Day49InitialDialogueAction extends AbstractGameAction {
     boolean started = false;
-    HeadDialogue dialogue;
+    Day49InitialDialogue dialogue;
 
-    public HeadDialogueAction(int start, int end) {
+    public Day49InitialDialogueAction(int start, int end) {
         this.actionType = ActionType.SPECIAL;
-        dialogue = new HeadDialogue(start, end);
+        dialogue = new Day49InitialDialogue(start, end);
     }
 
     @Override

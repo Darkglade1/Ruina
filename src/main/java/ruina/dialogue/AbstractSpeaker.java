@@ -9,8 +9,8 @@ public abstract class AbstractSpeaker {
 
     public Texture speakingSprite;
     public Texture idleSprite;
-    private TextureRegion activeSprite;
-    private boolean speaking;
+    protected TextureRegion activeSprite;
+    protected boolean speaking;
     public String internalSpeakerKey;
     public String internalSpeakerName;
 

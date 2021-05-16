@@ -1,10 +1,8 @@
 package ruina.monsters.day49;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -19,12 +17,11 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
-import ruina.cardmods.BlackSilenceRenderMod;
+import ruina.actions.dialogueActions.Day49InitialDialogueAction;
+import ruina.dialogue.day49.Day49InitialDialogue;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.day49.Angela.*;
 import ruina.monsters.day49.Aspiration.Lungs.LungsOfCravingD49;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
-import ruina.powers.InvisiblePermanentDrawReductionPower;
 import ruina.powers.Paralysis;
 import ruina.relics.d49.Director;
 import ruina.util.AdditionalIntent;
@@ -63,7 +60,7 @@ public class AngelaD49 extends AbstractCardMonster
     // Phase Shifters
     private static final byte PHASE_SHIFT_ASPIRATION = 97;
     private static final byte PHASE_SHIFT_PINOCCHIO = 96;
-    // BloodBath Stage
+    // ts_BloodBath Stage
     private final int BLOODBATH_PHASE_HP = 400;
     private static final byte NUMBNESS = 0;
     private static final byte PALE_HANDS = 1;
@@ -176,6 +173,7 @@ public class AngelaD49 extends AbstractCardMonster
 
     @Override
     public void usePreBattleAction() {
+        atb(new Day49InitialDialogueAction(0, 29));
         int playerEnergy = adp().energy.energy;
         adp().energy.energy = 5;
         EnergyPanel.totalCount = 5 - playerEnergy;
