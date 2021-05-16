@@ -133,9 +133,9 @@ public class Seraphim extends AbstractMultiIntentMonster {
         addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(45));
         addMove(SALVATION, Intent.UNKNOWN);
         addMove(PRAYER, Intent.DEFEND_BUFF);
-        addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(17));
+        addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(19));
         addMove(FEAR_NOT, Intent.BUFF);
-        addMove(BEHOLD_MY_POWER, Intent.ATTACK, calcAscensionDamage(4), 3, true);
+        addMove(BEHOLD_MY_POWER, Intent.ATTACK, calcAscensionDamage(5), 3, true);
         addMove(REVELATION, Intent.BUFF);
     }
 
@@ -276,6 +276,9 @@ public class Seraphim extends AbstractMultiIntentMonster {
             public void update() {
                 for (AbstractMonster m : monsterList()) {
                     if (m instanceof GuardianApostle && m.halfDead) {
+                        if (AbstractDungeon.ascensionLevel >= 19) {
+                            applyToTargetTop(m, m, new WingsOfGrace(m, calcAscensionSpecial(1)));
+                        }
                         att(new RollMoveAction(m));
                         att(new HealAction(m, m, m.maxHealth));
                         m.halfDead = false;
@@ -294,6 +297,9 @@ public class Seraphim extends AbstractMultiIntentMonster {
             public void update() {
                 for (AbstractMonster m : monsterList()) {
                     if (m instanceof GuardianApostle && m.halfDead) {
+                        if (AbstractDungeon.ascensionLevel >= 19) {
+                            applyToTargetTop(m, m, new WingsOfGrace(m, calcAscensionSpecial(1)));
+                        }
                         att(new RollMoveAction(m));
                         att(new GainBlockAction(m, prayerBlock));
                         att(new HealAction(m, m, (int)(m.maxHealth * prayerHeal)));

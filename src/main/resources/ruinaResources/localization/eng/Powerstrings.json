@@ -457,5 +457,9 @@
   "${ModID}:HammerAndNail": {
     "NAME": "Hammer and Nail",
     "DESCRIPTIONS": ["On #yodd turns, whenever you play a card with #yodd cost, gains #b", " #yStrength. NL On #yeven turns, whenever you play a card with #yeven cost, gains #b", " #yMetallicize."]
+  },
+  "${ModID}:Judas": {
+    "NAME": "Judas",
+    "DESCRIPTIONS": ["Whenever a creature dies, gains #b", " #yStrength next turn."]
   }
 }

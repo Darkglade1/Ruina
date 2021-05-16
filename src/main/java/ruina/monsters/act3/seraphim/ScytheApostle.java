@@ -7,8 +7,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.AbstractLambdaPower;
 import ruina.powers.WingsOfGrace;
 
 import java.util.ArrayList;
@@ -25,6 +29,13 @@ public class ScytheApostle extends AbstractRuinaMonster {
 
     private static final byte FOLLOW_THEE = 0;
     private static final byte THY_WILL_BE_DONE = 1;
+
+    private final int POWER_STRENGTH = calcAscensionSpecial(5);
+
+    public static final String POWER_ID = makeID("Judas");
+    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    public static final String POWER_NAME = powerStrings.NAME;
+    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private final Prophet prophet;
 
@@ -69,12 +80,13 @@ public class ScytheApostle extends AbstractRuinaMonster {
     @Override
     protected void getMove(final int num) {
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastTwoMoves(FOLLOW_THEE)) {
-            possibilities.add(FOLLOW_THEE);
-        }
-        if (!this.lastTwoMoves(THY_WILL_BE_DONE)) {
-            possibilities.add(THY_WILL_BE_DONE);
-        }
+//        if (!this.lastTwoMoves(FOLLOW_THEE)) {
+//            possibilities.add(FOLLOW_THEE);
+//        }
+//        if (!this.lastTwoMoves(THY_WILL_BE_DONE)) {
+//
+//        }
+        possibilities.add(THY_WILL_BE_DONE);
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
         setMoveShortcut(move, MOVES[move]);
     }
@@ -94,7 +106,18 @@ public class ScytheApostle extends AbstractRuinaMonster {
 
     @Override
     public void usePreBattleAction() {
-        atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, 1)));
+        atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, calcAscensionSpecial(1))));
+        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, POWER_STRENGTH) {
+            @Override
+            public void onSpecificTrigger() {
+                applyToTargetNextTurn(owner, new StrengthPower(owner, amount));
+            }
+
+            @Override
+            public void updateDescription() {
+                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
+            }
+        });
         createIntent();
     }
 

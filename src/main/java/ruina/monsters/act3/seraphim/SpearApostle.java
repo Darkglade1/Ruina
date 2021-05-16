@@ -1,5 +1,6 @@
 package ruina.monsters.act3.seraphim;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -7,10 +8,9 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.Bleed;
 import ruina.powers.WingsOfGrace;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class SpearApostle extends AbstractRuinaMonster {
     private static final byte FOR_HE_IS_HOLY = 0;
     private static final byte THE_WILL_OF_THE_LORD_BE_DONE = 1;
 
-    private final int debuff = calcAscensionSpecial(1);
+    private final int debuff = calcAscensionSpecial(3);
 
     private final Prophet prophet;
 
@@ -36,9 +36,9 @@ public class SpearApostle extends AbstractRuinaMonster {
         super(NAME, ID, 50, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SpearApostle/Spriter/SpearApostle.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(46), calcAscensionTankiness(52));
-        addMove(FOR_HE_IS_HOLY, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
-        addMove(THE_WILL_OF_THE_LORD_BE_DONE, Intent.ATTACK_DEBUFF, calcAscensionDamage(4), 2, true);
+        setHp(calcAscensionTankiness(38), calcAscensionTankiness(44));
+        addMove(FOR_HE_IS_HOLY, Intent.ATTACK, calcAscensionDamage(22));
+        addMove(THE_WILL_OF_THE_LORD_BE_DONE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
         prophet = parent;
     }
 
@@ -53,16 +53,20 @@ public class SpearApostle extends AbstractRuinaMonster {
             case FOR_HE_IS_HOLY:
                 spearAnimation(adp());
                 dmg(adp(), info);
-                applyToTarget(adp(), this, new WeakPower(adp(), debuff, true));
                 resetIdle();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        addMove(FOR_HE_IS_HOLY, Intent.ATTACK, calcAscensionDamage(10)); //lowers its subsequent damage
+                        this.isDone = true;
+                    }
+                });
                 break;
             case THE_WILL_OF_THE_LORD_BE_DONE:
-                for (int i = 0; i < multiplier; i++) {
-                    spearAnimation(adp());
-                    dmg(adp(), info);
-                    resetIdle();
-                }
-                applyToTarget(adp(), this, new FrailPower(adp(), debuff, true));
+                spearAnimation(adp());
+                dmg(adp(), info);
+                resetIdle();
+                applyToTarget(adp(), this, new Bleed(adp(), debuff));
                 break;
         }
         atb(new RollMoveAction(this));
@@ -70,15 +74,11 @@ public class SpearApostle extends AbstractRuinaMonster {
 
     @Override
     protected void getMove(final int num) {
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastTwoMoves(FOR_HE_IS_HOLY)) {
-            possibilities.add(FOR_HE_IS_HOLY);
+        if (lastMove(FOR_HE_IS_HOLY)) {
+            setMoveShortcut(THE_WILL_OF_THE_LORD_BE_DONE, MOVES[THE_WILL_OF_THE_LORD_BE_DONE]);
+        } else {
+            setMoveShortcut(FOR_HE_IS_HOLY, MOVES[FOR_HE_IS_HOLY]);
         }
-        if (!this.lastTwoMoves(THE_WILL_OF_THE_LORD_BE_DONE)) {
-            possibilities.add(THE_WILL_OF_THE_LORD_BE_DONE);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
     }
 
     private void spearAnimation(AbstractCreature enemy) {

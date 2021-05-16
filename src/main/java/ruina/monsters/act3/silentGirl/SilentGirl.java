@@ -55,7 +55,7 @@ public class SilentGirl extends AbstractRuinaMonster
     private final int BLOCK = calcAscensionTankiness(12);
     private final int PARALYSIS = calcAscensionSpecial(2);
     private final int POWER_STRENGTH = calcAscensionSpecial(1);
-    private final int POWER_METALLICIZE = calcAscensionSpecial(2);
+    private final int POWER_METALLICIZE = calcAscensionSpecial(3);
     private final float HP_THRESHOLD = 0.5f;
     private int enraged = 1; //1 is false, 2 is true
 
@@ -76,9 +76,9 @@ public class SilentGirl extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SilentGirl/Spriter/SilentGirl.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
-        addMove(DIGGING_NAIL, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
-        addMove(SLAM, Intent.ATTACK_DEFEND, calcAscensionDamage(18));
-        addMove(A_CRACKED_HEART, Intent.ATTACK_DEBUFF, calcAscensionDamage(13));
+        addMove(DIGGING_NAIL, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
+        addMove(SLAM, Intent.ATTACK_DEFEND, calcAscensionDamage(19));
+        addMove(A_CRACKED_HEART, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
         addMove(COLLAPSING_HEART, Intent.ATTACK, calcAscensionDamage(21));
         addMove(BROKEN, Intent.ATTACK, calcAscensionDamage(11), 2, true);
         addMove(LEER, Intent.DEBUFF);
