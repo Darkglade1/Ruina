@@ -2,7 +2,7 @@ package ruina.rooms;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import ruina.monsters.theHead.dialogue.HeadEnding;
+import ruina.dialogue.theHead.HeadEnding;
 
 public class RuinaVictoryRoom extends AbstractRoom {
 

@@ -2,7 +2,7 @@ package ruina.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import ruina.monsters.theHead.dialogue.HeadDialogue;
+import ruina.dialogue.theHead.HeadDialogue;
 
 public class HeadDialogueAction extends AbstractGameAction {
     boolean started = false;

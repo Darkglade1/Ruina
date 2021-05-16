@@ -198,6 +198,7 @@ public class RuinaMod implements
     public static Boolean reverbClear;
     public static Boolean blacksilenceClear;
     public static Boolean headClear;
+    public static Boolean day49Clear;
 
     public RuinaMod() {
         BaseMod.subscribe(this);
@@ -226,6 +227,7 @@ public class RuinaMod implements
             ruinaDefaults.put("reverbClear", false);
             ruinaDefaults.put("blacksilenceClear", false);
             ruinaDefaults.put("headClear", false);
+            ruinaDefaults.put("day49Clear", false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -834,6 +836,7 @@ public class RuinaMod implements
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");
+        day49Clear = ruinaConfig.getBool("day49Clear");
 
         // Angela (Abnormalities)
         BaseMod.addMonster(AngelaBloodBath.ID, (BaseMod.GetMonster) AngelaBloodBath::new);
@@ -914,6 +917,7 @@ public class RuinaMod implements
             ruinaConfig.setBool("reverbClear", reverbClear);
             ruinaConfig.setBool("blacksilenceClear", blacksilenceClear);
             ruinaConfig.setBool("headClear", headClear);
+            ruinaConfig.setBool("day49Clear", day49Clear);
             ruinaConfig.save();
         } catch (IOException e) {
             e.printStackTrace();
@@ -924,11 +928,11 @@ public class RuinaMod implements
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");
+        day49Clear = ruinaConfig.getBool("day49Clear");
     }
 
-    public static boolean hijackMenu() {
-        return headClear;
-    }
+    public static boolean hijackMenu() { return headClear; }
+    public static boolean overrideHijackMenu() { return day49Clear; }
 
     public static void renderCombatUiElements(SpriteBatch sb) {
         if (
