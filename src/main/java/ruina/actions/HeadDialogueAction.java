@@ -1,6 +1,7 @@
 package ruina.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import ruina.monsters.theHead.dialogue.HeadDialogue;
 
@@ -16,6 +17,7 @@ public class HeadDialogueAction extends AbstractGameAction {
     @Override
     public void update() {
         if (!started) {
+            CardCrawlGame.fadeIn(1.5f);
             AbstractDungeon.topLevelEffectsQueue.add(dialogue);
             started = true;
         }
