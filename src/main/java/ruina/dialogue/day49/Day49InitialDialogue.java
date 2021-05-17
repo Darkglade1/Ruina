@@ -1,5 +1,6 @@
 package ruina.dialogue.day49;
 
+import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,7 +19,6 @@ import ruina.dialogue.speaker.day49.ts_Angela_LOB;
 import ruina.dialogue.speaker.day49.ts_Angela_LOR;
 import ruina.dialogue.speaker.day49.ts_BloodBath;
 import ruina.dialogue.speaker.day49.ts_RolandD49;
-import ruina.dialogue.speaker.theHead.*;
 import ruina.util.TexLoader;
 
 import java.util.ArrayList;
@@ -29,7 +29,9 @@ public class Day49InitialDialogue extends AbstractGameEffect {
     public static final String NAME = eventStrings.NAME;
     public static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     public static final String[] OPTIONS = eventStrings.OPTIONS;
-    private final TextureRegion KETER;
+    private final TextureRegion THE_LIGHT;
+    private final TextureRegion BLOODBATH_BG;
+
     private final TextureRegion TEXTBOX;
     private final TextPanel roomEventText = new TextPanel();
     private int dialogue;
@@ -40,8 +42,10 @@ public class Day49InitialDialogue extends AbstractGameEffect {
     private int charsOnScreen;
 
     public Day49InitialDialogue(int start, int end) {
-        Texture KETER_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("day49Panel1.png"));
-        KETER = new TextureRegion(KETER_TEXTURE);
+        Texture LIGHT_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("day49Panel1.png"));
+        THE_LIGHT = new TextureRegion(LIGHT_TEXTURE);
+        Texture BLOODBATH_TEXTURE = TexLoader.getTexture(RuinaMod.makeScenePath("Bloodbath.png"));
+        BLOODBATH_BG = new TextureRegion(BLOODBATH_TEXTURE);
         Texture TEXTBOX_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("Textbox.png"));
         TEXTBOX = new TextureRegion(TEXTBOX_TEXTURE);
         this.dialogue = start;
@@ -78,6 +82,10 @@ public class Day49InitialDialogue extends AbstractGameEffect {
     private void nextDialogue() {
         if (this.dialogue < end) {
             this.dialogue++;
+            if(dialogue == 22) {
+                CardCrawlGame.fadeIn(2f);
+                CustomDungeon.playTempMusicInstantly("Trumpet1");
+            }
             calculateSpeakers();
             this.roomEventText.updateBodyText(DESCRIPTIONS[this.dialogue]);
         } else {
@@ -88,7 +96,8 @@ public class Day49InitialDialogue extends AbstractGameEffect {
 
     public void render(SpriteBatch sb) {
         sb.setColor(Color.WHITE.cpy());
-        sb.draw(KETER, 0.0F, 0.0F, 0.0f, 0.0f, KETER.getRegionWidth(), KETER.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
+        if(dialogue >= 22){ sb.draw(BLOODBATH_BG, 0.0F, 0.0F, 0.0f, 0.0f, BLOODBATH_BG.getRegionWidth(), BLOODBATH_BG.getRegionHeight(), Settings.scale, Settings.scale, 0.0f); }
+        else { sb.draw(THE_LIGHT, 0.0F, 0.0F, 0.0f, 0.0f, THE_LIGHT.getRegionWidth(), THE_LIGHT.getRegionHeight(), Settings.scale, Settings.scale, 0.0f); }
         for(AbstractSpeaker s : characters){ s.render(sb, charsOnScreen); }
         sb.draw(TEXTBOX, TextPanel.DIALOG_MSG_X - (100.0f * Settings.scale), (-170.0f * Settings.scale), 0.0f, 0.0f, TEXTBOX.getRegionWidth(), TEXTBOX.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
         this.roomEventText.render(sb);

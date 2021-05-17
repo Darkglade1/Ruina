@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
+import ruina.actions.dialogueActions.Day49EndingDialogueAction;
 import ruina.actions.dialogueActions.Day49InitialDialogueAction;
 import ruina.dialogue.day49.Day49InitialDialogue;
 import ruina.monsters.AbstractCardMonster;
@@ -174,11 +175,12 @@ public class AngelaD49 extends AbstractCardMonster
     @Override
     public void usePreBattleAction() {
         atb(new Day49InitialDialogueAction(0, 29));
+        //atb(new Day49EndingDialogueAction(0, 35));
         int playerEnergy = adp().energy.energy;
         adp().energy.energy = 5;
         EnergyPanel.totalCount = 5 - playerEnergy;
         AbstractDungeon.player.gameHandSize = 2;
-        CustomDungeon.playTempMusicInstantly("Binah3");
+        //CustomDungeon.playTempMusicInstantly("Binah3");
         AbstractDungeon.getCurrRoom().cannotLose = true;
         addToBot(new AbstractGameAction() {
             @Override
