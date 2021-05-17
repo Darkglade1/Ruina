@@ -175,7 +175,7 @@ public class AngelaD49 extends AbstractCardMonster
     @Override
     public void usePreBattleAction() {
         atb(new Day49InitialDialogueAction(0, 29));
-        //atb(new Day49EndingDialogueAction(0, 35));
+        atb(new Day49EndingDialogueAction(0, 35));
         int playerEnergy = adp().energy.energy;
         adp().energy.energy = 5;
         EnergyPanel.totalCount = 5 - playerEnergy;

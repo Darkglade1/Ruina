@@ -1,5 +1,6 @@
 package ruina.dialogue.day49;
 
+import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,6 +19,7 @@ import ruina.dialogue.speaker.day49.*;
 import ruina.util.TexLoader;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 
 public class Day49EndingDialogue extends AbstractGameEffect {
     public static final String ID = Day49EndingDialogue.class.getSimpleName();
@@ -25,7 +27,10 @@ public class Day49EndingDialogue extends AbstractGameEffect {
     public static final String NAME = eventStrings.NAME;
     public static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     public static final String[] OPTIONS = eventStrings.OPTIONS;
-    private final TextureRegion KETER;
+    private final TextureRegion THE_LIGHT;
+    private final TextureRegion THE_CITY;
+    private final TextureRegion THE_LIBRARY;
+    private final TextureRegion THE_ENDING;
     private final TextureRegion TEXTBOX;
     private final TextPanel roomEventText = new TextPanel();
     private int dialogue;
@@ -36,8 +41,14 @@ public class Day49EndingDialogue extends AbstractGameEffect {
     private int charsOnScreen;
 
     public Day49EndingDialogue(int start, int end) {
-        Texture KETER_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("day49Panel1.png"));
-        KETER = new TextureRegion(KETER_TEXTURE);
+        Texture LIGHT_TEXTURE = TexLoader.getTexture(RuinaMod.makeScenePath("Light.png"));
+        THE_LIGHT = new TextureRegion(LIGHT_TEXTURE);
+        Texture CITY_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("day49Panel6.png"));
+        THE_CITY = new TextureRegion(CITY_TEXTURE);
+        Texture LIBRARY_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("LibraryPostDay49.png"));
+        THE_LIBRARY = new TextureRegion(LIBRARY_TEXTURE);
+        Texture ENDING_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("day49Panel7.png"));
+        THE_ENDING = new TextureRegion(ENDING_TEXTURE);
         Texture TEXTBOX_TEXTURE = TexLoader.getTexture(RuinaMod.makeUIPath("Textbox.png"));
         TEXTBOX = new TextureRegion(TEXTBOX_TEXTURE);
         this.dialogue = start;
@@ -75,6 +86,17 @@ public class Day49EndingDialogue extends AbstractGameEffect {
     private void nextDialogue() {
         if (this.dialogue < end) {
             this.dialogue++;
+            if(dialogue == 9) {
+                CardCrawlGame.fadeIn(2f);
+                CustomDungeon.playTempMusicInstantly("Sanctuary");
+            }
+            else if (dialogue == 19) {
+                CardCrawlGame.fadeIn(2f);
+                CustomDungeon.playTempMusicInstantly("Inspiration");
+            }
+            else if(dialogue == 32){
+                CardCrawlGame.fadeIn(2f);
+            }
             calculateSpeakers();
             this.roomEventText.updateBodyText(DESCRIPTIONS[this.dialogue]);
         } else {
@@ -85,7 +107,18 @@ public class Day49EndingDialogue extends AbstractGameEffect {
 
     public void render(SpriteBatch sb) {
         sb.setColor(Color.WHITE.cpy());
-        sb.draw(KETER, 0.0F, 0.0F, 0.0f, 0.0f, KETER.getRegionWidth(), KETER.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
+        if(dialogue <= 8) {
+            sb.draw(THE_LIGHT, 0.0F, 0.0F, 0.0f, 0.0f, THE_LIGHT.getRegionWidth(), THE_LIGHT.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
+        }
+        else if(dialogue <= 18 ){
+            sb.draw(THE_CITY, 0.0F, 0.0F, 0.0f, 0.0f, THE_LIGHT.getRegionWidth(), THE_LIGHT.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
+        }
+        else if(dialogue <= 31 ){
+            sb.draw(THE_LIBRARY, 0.0F, 0.0F, 0.0f, 0.0f, THE_LIGHT.getRegionWidth(), THE_LIGHT.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
+        }
+        else {
+            sb.draw(THE_ENDING, 0.0F, 0.0F, 0.0f, 0.0f, THE_LIGHT.getRegionWidth(), THE_LIGHT.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
+        }
         for(AbstractSpeaker s : characters){ s.render(sb, charsOnScreen); }
         sb.draw(TEXTBOX, TextPanel.DIALOG_MSG_X - (100.0f * Settings.scale), (-170.0f * Settings.scale), 0.0f, 0.0f, TEXTBOX.getRegionWidth(), TEXTBOX.getRegionHeight(), Settings.scale, Settings.scale, 0.0f);
         this.roomEventText.render(sb);
