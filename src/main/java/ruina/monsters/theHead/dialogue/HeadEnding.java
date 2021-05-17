@@ -66,6 +66,7 @@ public class HeadEnding extends AbstractGameEffect {
     private void nextDialogue() {
         if (this.dialogue < end) {
             this.dialogue++;
+            if(dialogue == 3){ CardCrawlGame.fadeIn(1.5f); }
             this.roomEventText.updateBodyText(DESCRIPTIONS[this.dialogue]);
         } else {
             AbstractDungeon.isScreenUp = false;
