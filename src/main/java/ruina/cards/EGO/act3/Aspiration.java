@@ -6,14 +6,14 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import ruina.cards.EGO.AbstractEgoCard;
 
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.atb;
-import static ruina.util.Wiz.att;
+import static ruina.util.Wiz.*;
 
 public class Aspiration extends AbstractEgoCard {
     public final static String ID = makeID(Aspiration.class.getSimpleName());
@@ -30,18 +30,23 @@ public class Aspiration extends AbstractEgoCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (Settings.FAST_MODE) {
-            this.addToBot(new VFXAction(new OfferingEffect(), 0.1F));
-        } else {
-            this.addToBot(new VFXAction(new OfferingEffect(), 0.5F));
-        }
         atb(new ApplyPowerAction(p, p, new StrengthPower(p, magicNumber)));
+        if (Settings.FAST_MODE) {
+            atb(new VFXAction(new OfferingEffect(), 0.1F));
+        } else {
+            atb(new VFXAction(new OfferingEffect(), 0.5F));
+        }
+        atb(new LoseHPAction(p, p, p.currentHealth / 2));
+        int initialHP = adp().currentHealth;
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                att(new LoseHPAction(p, p, p.currentHealth / 2));
-                att(new ApplyPowerAction(p, p, new ruina.powers.Aspiration(p, p.currentHealth / 2)));
-                isDone = true;
+                int afterwardHP = AbstractDungeon.player.currentHealth;
+                int difference = initialHP - afterwardHP;
+                if (difference > 0) {
+                    att(new ApplyPowerAction(p, p, new ruina.powers.Aspiration(p, difference)));
+                }
+                this.isDone = true;
             }
         });
     }

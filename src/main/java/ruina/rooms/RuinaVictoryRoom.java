@@ -16,7 +16,7 @@ public class RuinaVictoryRoom extends AbstractRoom {
     public void onPlayerEntry() {
         AbstractDungeon.isScreenUp = true;
         AbstractDungeon.overlayMenu.proceedButton.hide();
-        CardCrawlGame.fadeIn(1.5f);
+        CardCrawlGame.fadeIn(1F);
         AbstractDungeon.topLevelEffectsQueue.add(new HeadEnding(0, 6));
     }
 

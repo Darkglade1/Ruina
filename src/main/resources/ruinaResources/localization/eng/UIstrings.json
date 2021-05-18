@@ -86,7 +86,7 @@
   },
   "${ModID}:FrostSplinter": {
     "TEXT": [
-      "Choose A Card To Freeze."
+      "Freeze."
     ]
   }
 }

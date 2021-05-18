@@ -17,7 +17,7 @@ public class HeadDialogueAction extends AbstractGameAction {
     @Override
     public void update() {
         if (!started) {
-            CardCrawlGame.fadeIn(1.5f);
+            CardCrawlGame.fadeIn(1.0f);
             AbstractDungeon.topLevelEffectsQueue.add(dialogue);
             started = true;
         }

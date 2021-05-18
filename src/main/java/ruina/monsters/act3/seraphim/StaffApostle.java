@@ -31,7 +31,7 @@ public class StaffApostle extends AbstractRuinaMonster {
 
     private final int STRENGTH = calcAscensionSpecial(1);
     private final int BLOCK = calcAscensionTankiness(7);
-    private final int BLOCK_STRENGTH = calcAscensionSpecial(1);
+    private final int BLOCK_STRENGTH = calcAscensionSpecial(2);
 
     private final Prophet prophet;
 
@@ -39,8 +39,8 @@ public class StaffApostle extends AbstractRuinaMonster {
         super(NAME, ID, 50, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("StaffApostle/Spriter/StaffApostle.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(44), calcAscensionTankiness(50));
-        addMove(THY_WORDS, Intent.ATTACK_BUFF, calcAscensionDamage(6));
+        setHp(calcAscensionTankiness(44), calcAscensionTankiness(48));
+        addMove(THY_WORDS, Intent.ATTACK_BUFF, calcAscensionDamage(7));
         addMove(GIVE_US_REST, Intent.DEFEND_BUFF);
         prophet = parent;
     }
