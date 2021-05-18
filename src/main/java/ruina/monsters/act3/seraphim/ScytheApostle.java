@@ -30,7 +30,7 @@ public class ScytheApostle extends AbstractRuinaMonster {
     private static final byte FOLLOW_THEE = 0;
     private static final byte THY_WILL_BE_DONE = 1;
 
-    private final int POWER_STRENGTH = calcAscensionSpecial(5);
+    private final int POWER_STRENGTH = calcAscensionSpecial(6);
 
     public static final String POWER_ID = makeID("Judas");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -43,9 +43,9 @@ public class ScytheApostle extends AbstractRuinaMonster {
         super(NAME, ID, 75, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScytheApostle/Spriter/ScytheApostle.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(50), calcAscensionTankiness(56));
+        setHp(calcAscensionTankiness(52), calcAscensionTankiness(56));
         addMove(FOLLOW_THEE, Intent.ATTACK, calcAscensionDamage(14));
-        addMove(THY_WILL_BE_DONE, Intent.ATTACK, calcAscensionDamage(6), 2, true);
+        addMove(THY_WILL_BE_DONE, Intent.ATTACK, calcAscensionDamage(5), 2, true);
         prophet = parent;
     }
 
@@ -106,7 +106,7 @@ public class ScytheApostle extends AbstractRuinaMonster {
 
     @Override
     public void usePreBattleAction() {
-        atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, calcAscensionSpecial(1))));
+        atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, calcAscensionSpecial(2))));
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, POWER_STRENGTH) {
             @Override
             public void onSpecificTrigger() {
