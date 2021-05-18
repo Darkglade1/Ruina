@@ -396,7 +396,7 @@ public class Mountain extends AbstractMultiIntentMonster
     @Override
     public void damage(DamageInfo info) {
         super.damage(info);
-        if (this.currentHealth <= 0 && !this.halfDead) {
+        if (this.currentHealth <= 0 && !this.halfDead && AbstractDungeon.getCurrRoom().cannotLose) {
             this.halfDead = true;
             for (AbstractPower p : this.powers) {
                 p.onDeath();

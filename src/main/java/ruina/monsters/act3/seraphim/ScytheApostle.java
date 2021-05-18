@@ -30,7 +30,7 @@ public class ScytheApostle extends AbstractRuinaMonster {
     private static final byte FOLLOW_THEE = 0;
     private static final byte THY_WILL_BE_DONE = 1;
 
-    private final int POWER_STRENGTH = calcAscensionSpecial(6);
+    private final int POWER_STRENGTH = calcAscensionSpecial(7);
 
     public static final String POWER_ID = makeID("Judas");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
