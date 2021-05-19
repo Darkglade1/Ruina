@@ -1,27 +1,25 @@
 package ruina.monsters.act3.silentGirl;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.helpers.CardModifierManager;
+import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
-import ruina.cardmods.HammerAndNailMod;
+import ruina.cards.Guilt;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
@@ -53,15 +51,15 @@ public class SilentGirl extends AbstractRuinaMonster
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int BLOCK = calcAscensionTankiness(12);
     private final int PARALYSIS = calcAscensionSpecial(2);
-    private final int POWER_STRENGTH = calcAscensionSpecial(1);
-    private final int POWER_METALLICIZE = calcAscensionSpecial(3);
+    private final int CURSE_AMT = 1;
     private final float HP_THRESHOLD = 0.5f;
     private int enraged = 1; //1 is false, 2 is true
 
     private DummyHammer hammer = new DummyHammer(100.0f, 0.0f);
     private DummyNail nail = new DummyNail(-300.0f, 0.0f);
+    AbstractCard curse = new Guilt();
 
-    public static final String POWER_ID = makeID("HammerAndNail");
+    public static final String POWER_ID = makeID("Remorse");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -82,6 +80,10 @@ public class SilentGirl extends AbstractRuinaMonster
         addMove(BROKEN, Intent.ATTACK, calcAscensionDamage(11), 2, true);
         addMove(LEER, Intent.DEBUFF);
         addMove(SUPPRESS, Intent.DEFEND_BUFF);
+
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            curse.upgrade();
+        }
     }
 
     @Override
@@ -93,34 +95,15 @@ public class SilentGirl extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Story2");
-        for (AbstractCard card : adp().drawPile.group) {
-            CardModifierManager.addModifier(card, new HammerAndNailMod());
-        }
-        for (AbstractCard card : adp().discardPile.group) {
-            CardModifierManager.addModifier(card, new HammerAndNailMod());
-        }
-        for (AbstractCard card : adp().hand.group) {
-            CardModifierManager.addModifier(card, new HammerAndNailMod());
-        }
-        for (AbstractCard card : adp().exhaustPile.group) {
-            CardModifierManager.addModifier(card, new HammerAndNailMod());
-        }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, CURSE_AMT) {
             @Override
-            public void onUseCard(AbstractCard card, UseCardAction action) {
-                if (GameActionManager.turn % 2 == 0 && card.costForTurn >= 0 && card.costForTurn % 2 == 0) {
-                    this.flash();
-                    applyToTarget(owner, owner, new MetallicizePower(owner, POWER_METALLICIZE));
-                }
-                if (GameActionManager.turn % 2 == 1 && card.costForTurn >= 0 && card.costForTurn % 2 == 1) {
-                    this.flash();
-                    applyToTarget(owner, owner, new StrengthPower(owner, POWER_STRENGTH));
-                }
+            public void atEndOfRound() {
+                atb(new MakeTempCardInDrawPileAction(curse.makeStatEquivalentCopy(), amount, false, true));
             }
 
             @Override
             public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + POWER_STRENGTH + POWER_DESCRIPTIONS[1] + POWER_METALLICIZE + POWER_DESCRIPTIONS[2];
+                description = POWER_DESCRIPTIONS[0] + CURSE_AMT + POWER_DESCRIPTIONS[1] + FontHelper.colorString(curse.name, "y") + POWER_DESCRIPTIONS[2];
             }
         });
     }
@@ -184,28 +167,8 @@ public class SilentGirl extends AbstractRuinaMonster
                 phaseChangeAnimation();
                 hammer.deadAnimation();
                 nail.deadAnimation();
-                makePowerRemovable(this, POWER_ID);
-                atb(new RemoveSpecificPowerAction(this, this, POWER_ID));
-                applyToTarget(this, this, new BarricadePower(this));
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        for (AbstractCard card : adp().drawPile.group) {
-                            CardModifierManager.removeModifiersById(card, HammerAndNailMod.ID, false);
-                        }
-                        for (AbstractCard card : adp().discardPile.group) {
-                            CardModifierManager.removeModifiersById(card, HammerAndNailMod.ID, false);
-                        }
-                        for (AbstractCard card : adp().hand.group) {
-                            CardModifierManager.removeModifiersById(card, HammerAndNailMod.ID, false);
-                        }
-                        for (AbstractCard card : adp().exhaustPile.group) {
-                            CardModifierManager.removeModifiersById(card, HammerAndNailMod.ID, false);
-                        }
-                        this.isDone = true;
-                    }
-                });
                 block(this, BLOCK);
+                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 enraged = 2;
                 resetIdle(1.0f);
                 break;
@@ -256,6 +219,12 @@ public class SilentGirl extends AbstractRuinaMonster
             hammer.render(sb);
             nail.render(sb);
         }
+    }
+
+    @Override
+    public void renderTip(SpriteBatch sb) {
+        super.renderTip(sb);
+        tips.add(new CardPowerTip(curse.makeStatEquivalentCopy()));
     }
 
     private void rangedAnimation(AbstractCreature enemy) {

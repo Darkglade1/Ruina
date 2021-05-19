@@ -130,10 +130,10 @@ public class Seraphim extends AbstractMultiIntentMonster {
         addMove(SUMMON_APOSTLES, Intent.UNKNOWN);
         addMove(BAPTISM, Intent.BUFF);
         addMove(WINGS_OF_GRACE, Intent.BUFF);
-        addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(45));
+        addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(50));
         addMove(SALVATION, Intent.UNKNOWN);
         addMove(PRAYER, Intent.DEFEND_BUFF);
-        addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(19));
+        addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(21));
         addMove(FEAR_NOT, Intent.BUFF);
         addMove(BEHOLD_MY_POWER, Intent.ATTACK, calcAscensionDamage(5), 3, true);
         addMove(REVELATION, Intent.BUFF);

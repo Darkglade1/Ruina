@@ -454,9 +454,9 @@
     "NAME": "Killing Intent",
     "DESCRIPTIONS": ["This creature only acts on its #b1st intent. Its #b2nd intent is a preview of its next move."]
   },
-  "${ModID}:HammerAndNail": {
-    "NAME": "Hammer and Nail",
-    "DESCRIPTIONS": ["On #yodd turns, whenever you play a card with #yodd cost, gains #b", " #yStrength. NL On #yeven turns, whenever you play a card with #yeven cost, gains #b", " #yMetallicize."]
+  "${ModID}:Remorse": {
+    "NAME": "Remorse",
+    "DESCRIPTIONS": ["At end of round, put #b", " ", " on top of your draw pile."]
   },
   "${ModID}:Judas": {
     "NAME": "Judas",

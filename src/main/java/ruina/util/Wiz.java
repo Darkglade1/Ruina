@@ -213,6 +213,10 @@ public class Wiz {
         atb(new ApplyPowerAction(target, target, new NextTurnPowerPower(target, po)));
     }
 
+    public static void applyToTargetNextTurnTop(AbstractCreature target, AbstractPower po) {
+        att(new ApplyPowerAction(target, target, new NextTurnPowerPower(target, po)));
+    }
+
     public static void dmg(AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect) {
         atb(new DamageAction(target, info, effect));
     }
