@@ -808,7 +808,7 @@
   },
   "${ModID}:FrostSplinter": {
     "NAME": "Frost Splinter",
-    "DESCRIPTION": "At the start of your turn, gain [E] , draw !M! card, and ruina:Freeze a card."
+    "DESCRIPTION": "At the start of your turn, gain [E] , draw !M! card, and ruina:Freeze !ruina:SecondMagic! card."
   },
   "${ModID}:Guilt": {
     "NAME": "Guilt",

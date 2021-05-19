@@ -15,6 +15,7 @@ public class Guilt extends AbstractRuinaCard {
     private static final int STRENGTH = 2;
     private static final int UP_STRENGTH = 1;
     private static final int COST = 4;
+    private static final int UP_COST = 5;
 
     public Guilt() {
         super(ID, COST, CardType.CURSE, CardRarity.SPECIAL, CardTarget.NONE, CardColor.CURSE);
@@ -33,5 +34,6 @@ public class Guilt extends AbstractRuinaCard {
 
     public void upp() {
         upgradeMagicNumber(UP_STRENGTH);
+        upgradeBaseCost(UP_COST);
     }
 }
