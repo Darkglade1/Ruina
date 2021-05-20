@@ -15,7 +15,7 @@ public class WingsOfGrace extends AbstractEasyPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final float DAMAGE_REDUCTION = 0.5f;
+    private static final float DAMAGE_REDUCTION = 0.9f;
     private static final int REDUCTION = 1;
 
     public WingsOfGrace(AbstractCreature owner, int amount) {
