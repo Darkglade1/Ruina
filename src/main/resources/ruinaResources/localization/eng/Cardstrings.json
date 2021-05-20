@@ -812,6 +812,6 @@
   },
   "${ModID}:Guilt": {
     "NAME": "Guilt",
-    "DESCRIPTION": "At the end of your turn, a random enemy gains !M! Strength next turn."
+    "DESCRIPTION": "At the end of your turn, a random enemy gains !M! Strength next turn. NL If this is Exhausted without being played, add a copy of it into your discard pile."
   }
 }

@@ -9,6 +9,7 @@ import ruina.cardmods.ManifestMod;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.applyToTargetNextTurnTop;
+import static ruina.util.Wiz.intoDiscard;
 
 public class Guilt extends AbstractRuinaCard {
     public final static String ID = makeID(Guilt.class.getSimpleName());
@@ -16,6 +17,8 @@ public class Guilt extends AbstractRuinaCard {
     private static final int UP_STRENGTH = 1;
     private static final int COST = 4;
     private static final int UP_COST = 5;
+
+    private boolean exhaustedByPlay = false;
 
     public Guilt() {
         super(ID, COST, CardType.CURSE, CardRarity.SPECIAL, CardTarget.NONE, CardColor.CURSE);
@@ -25,11 +28,18 @@ public class Guilt extends AbstractRuinaCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        exhaustedByPlay = true;
     }
 
     public void triggerOnEndOfTurnForPlayingCard() {
         AbstractMonster target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
         applyToTargetNextTurnTop(target, new StrengthPower(target, magicNumber));
+    }
+
+    public void triggerOnExhaust() {
+        if (!exhaustedByPlay) {
+            intoDiscard(this.makeStatEquivalentCopy(), 1);
+        }
     }
 
     public void upp() {
