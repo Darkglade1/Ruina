@@ -28,5 +28,12 @@
       "контракт"
     ],
     "DESCRIPTION": "Если вам недостаточно [E] для разыгрывания этой карты, вы можете разыграть её, потеряв #b3 ОЗ за каждую недостающую [E] ."
+  },
+  {
+    "PROPER_NAME": "Freeze",
+    "NAMES": [
+      "freeze"
+    ],
+    "DESCRIPTION": "Frozen cards are #yUnplayable and #yRetain."
   }
 ]

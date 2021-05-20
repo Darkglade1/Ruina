@@ -986,5 +986,19 @@
     "NAME": "Baral",
     "DIALOG": [
     ]
+  },
+  "${ModID}:SilentGirl": {
+    "MOVES": [
+      "Digging Nail",
+      "Slam",
+      "A Cracked Heart",
+      "Collapsing Heart",
+      "Broken to Pieces",
+      "Leer of Fright",
+      "Don't Suppress Your Heart"
+    ],
+    "NAME": "Silent Girl",
+    "DIALOG": [
+    ]
   }
 }
