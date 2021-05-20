@@ -6,6 +6,7 @@ import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -52,6 +53,11 @@ public class Seraphim extends AbstractMultiIntentMonster {
 
     public static final String GLOWING_CIRCLE = RuinaMod.makeMonsterPath("Seraphim/GlowingCircle.png");
     private static final Texture GLOWING_CIRCLE_TEXTURE = new Texture(GLOWING_CIRCLE);
+
+    private static final TextureAtlas atlas = new TextureAtlas(makeMonsterPath("Seraphim/backEffect.atlas"));
+    public static final TextureAtlas.AtlasRegion Ring = atlas.findRegion("0407");
+    public static final TextureAtlas.AtlasRegion LightAura = atlas.findRegion("0408");
+    public static final TextureAtlas.AtlasRegion AuraPin = atlas.findRegion("0400");
 
     private static final byte EMPTY = 0;
     private static final byte PHASE_TRANSITION = 1;
@@ -152,6 +158,8 @@ public class Seraphim extends AbstractMultiIntentMonster {
         playSound("WhiteNightAppear");
         AbstractDungeon.getCurrRoom().cannotLose = true;
         applyToTarget(this, this, new WingsOfGrace(this, calcAscensionSpecial(3)));
+        AbstractDungeon.effectsQueue.add(new WhiteNightAura(hb.cX + (10.0f * Settings.scale), hb.cY));
+        AbstractDungeon.effectsQueue.add(new WhiteNightAura((float) Settings.WIDTH / 2, whiteNightY + (190.0f * Settings.scale)));
     }
 
     @Override
@@ -442,13 +450,13 @@ public class Seraphim extends AbstractMultiIntentMonster {
     @Override
     public void render(SpriteBatch sb) {
         if (!isDead) {
-            sb.setColor(Color.WHITE);
-            sb.draw(SELF_CIRCLE_REGION, this.hb.cX - (((float)this.SELF_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale), this.hb.cY - (((float)this.SELF_CIRCLE_REGION.getRegionHeight() / 2) * Settings.scale), 0.0F, 0.0F, this.SELF_CIRCLE_REGION.getRegionWidth(), this.SELF_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
+            //sb.setColor(Color.WHITE);
+            //sb.draw(SELF_CIRCLE_REGION, this.hb.cX - (((float)this.SELF_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale), this.hb.cY - (((float)this.SELF_CIRCLE_REGION.getRegionHeight() / 2) * Settings.scale), 0.0F, 0.0F, this.SELF_CIRCLE_REGION.getRegionWidth(), this.SELF_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
         }
         super.render(sb);
         if (!isDead) {
-            sb.setColor(Color.WHITE);
-            sb.draw(WHITENIGHT_CIRCLE_REGION, (float)Settings.WIDTH / 2 - (((float)this.WHITENIGHT_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale) - 15.0f * Settings.scale, (float) Settings.HEIGHT / 2, 0.0F, 0.0F, this.WHITENIGHT_CIRCLE_REGION.getRegionWidth(), this.WHITENIGHT_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
+            //sb.setColor(Color.WHITE);
+            //sb.draw(WHITENIGHT_CIRCLE_REGION, (float)Settings.WIDTH / 2 - (((float)this.WHITENIGHT_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale) - 15.0f * Settings.scale, (float) Settings.HEIGHT / 2, 0.0F, 0.0F, this.WHITENIGHT_CIRCLE_REGION.getRegionWidth(), this.WHITENIGHT_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
             whiteNight.renderSprite(sb, (float) Settings.WIDTH / 2, whiteNightY);
         }
     }
