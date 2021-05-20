@@ -45,10 +45,6 @@ public class Seraphim extends AbstractMultiIntentMonster {
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    private static final Texture CIRCLE = new Texture(makeMonsterPath("Seraphim/Circle.png"));
-    private final TextureRegion WHITENIGHT_CIRCLE_REGION;
-    private final TextureRegion SELF_CIRCLE_REGION;
-
     private static final float whiteNightY = (float) Settings.HEIGHT / 2 + (75.0f * Settings.scale);
 
     public static final String GLOWING_CIRCLE = RuinaMod.makeMonsterPath("Seraphim/GlowingCircle.png");
@@ -120,8 +116,6 @@ public class Seraphim extends AbstractMultiIntentMonster {
         super(NAME, ID, 666, -5.0F, 0, 280.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Seraphim/Spriter/Seraphim.scml"));
         this.whiteNight = new BetterSpriterAnimation(makeMonsterPath("Seraphim/WhiteNight/WhiteNight.scml"));
-        WHITENIGHT_CIRCLE_REGION = new TextureRegion(CIRCLE);
-        SELF_CIRCLE_REGION = new TextureRegion(CIRCLE);
         runAnim("Idle");
         this.setHp(maxHealth);
         this.type = EnemyType.BOSS;
@@ -449,14 +443,8 @@ public class Seraphim extends AbstractMultiIntentMonster {
 
     @Override
     public void render(SpriteBatch sb) {
-        if (!isDead) {
-            //sb.setColor(Color.WHITE);
-            //sb.draw(SELF_CIRCLE_REGION, this.hb.cX - (((float)this.SELF_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale), this.hb.cY - (((float)this.SELF_CIRCLE_REGION.getRegionHeight() / 2) * Settings.scale), 0.0F, 0.0F, this.SELF_CIRCLE_REGION.getRegionWidth(), this.SELF_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
-        }
         super.render(sb);
         if (!isDead) {
-            //sb.setColor(Color.WHITE);
-            //sb.draw(WHITENIGHT_CIRCLE_REGION, (float)Settings.WIDTH / 2 - (((float)this.WHITENIGHT_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale) - 15.0f * Settings.scale, (float) Settings.HEIGHT / 2, 0.0F, 0.0F, this.WHITENIGHT_CIRCLE_REGION.getRegionWidth(), this.WHITENIGHT_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
             whiteNight.renderSprite(sb, (float) Settings.WIDTH / 2, whiteNightY);
         }
     }
