@@ -999,5 +999,14 @@
     "NAME": "Silent Girl",
     "DIALOG": [
     ]
+  },
+  "${ModID}:AllAroundHelper": {
+    "MOVES": [
+      "Charge",
+      "Clean"
+    ],
+    "NAME": "All-Around Helper",
+    "DIALOG": [
+    ]
   }
 }

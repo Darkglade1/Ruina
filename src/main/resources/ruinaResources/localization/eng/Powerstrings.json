@@ -461,5 +461,9 @@
   "${ModID}:Judas": {
     "NAME": "Judas",
     "DESCRIPTIONS": ["Whenever a creature dies, gains #b", " #yStrength next turn."]
+  },
+  "${ModID}:Pattern": {
+    "NAME": "Pattern Recognition",
+    "DESCRIPTIONS": ["Whenever this creature deals #b", " unblocked attack damage in a single turn, it removes all #pdebuffs from itself."]
   }
 }

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
 import ruina.dungeons.AbstractRuinaDungeon;
+import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -150,6 +151,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Crater");
                 } else if (mo instanceof SilentGirl) {
                     this.bg = this.atlas.findRegion("mod/SilentGirl");
+                } else if (mo instanceof AllAroundHelper) {
+                    this.bg = this.atlas.findRegion("mod/Helper");
                 } else {
                     setBgs();
                 }

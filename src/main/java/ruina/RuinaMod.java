@@ -37,6 +37,7 @@ import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.*;
 import ruina.events.act2.*;
 import ruina.events.act3.*;
+import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -505,6 +506,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("SilentHammer"), makeSFXPath("Silentgirl_Hammer.wav"));
         BaseMod.addAudio(makeID("SilentPhaseChange"), makeSFXPath("Silentgirl_PhaseChange.wav"));
         BaseMod.addAudio(makeID("SilentNail"), makeSFXPath("Silentgirl_Volt.wav"));
+
+        BaseMod.addAudio(makeID("HelperOn"), makeSFXPath("Helper_On.wav"));
+        BaseMod.addAudio(makeID("HelperCharge"), makeSFXPath("Helper_FullCharge.wav"));
     }
 
     @Override
@@ -560,6 +564,13 @@ public class RuinaMod implements
         CustomDungeon.addAct(5, silence);
 
         CustomIntent.add(new MassAttackIntent());
+
+        //Act 1
+        BaseMod.addMonster(AllAroundHelper.ID, "All_Around_Helper", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new AllAroundHelper(-300.0F, 0.0F, true),
+                        new AllAroundHelper(0.0F, 0.0F, false),
+                }));
 
         //Act 2
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
