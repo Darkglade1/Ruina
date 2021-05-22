@@ -74,7 +74,7 @@ public class yanHand extends AbstractDeckMonster
     private final yanDistortion parent;
 
     public yanHand(final float x, final float y, BEHAVIOUR mode, yanDistortion parent) {
-        super(NAME, ID, 60, -5.0F, 0, 250.0f, 225.0f, null, x, y);
+        super(NAME, ID, 70, -5.0F, 0, 250.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("YanHand/Spriter/YanHand.scml"));
         currentMode = mode;
         this.type = EnemyType.BOSS;
