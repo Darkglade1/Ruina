@@ -465,5 +465,9 @@
   "${ModID}:Pattern": {
     "NAME": "Pattern Recognition",
     "DESCRIPTIONS": ["Whenever this creature deals #b", " unblocked attack damage in a single turn, it removes all #pdebuffs from itself."]
+  },
+  "${ModID}:Fear": {
+    "NAME": "Fear",
+    "DESCRIPTIONS": ["Whenever you play an #yAttack, this creature loses #b", " #yStrength this turn."]
   }
 }

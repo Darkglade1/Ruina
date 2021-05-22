@@ -38,6 +38,7 @@ import ruina.dungeons.*;
 import ruina.events.act2.*;
 import ruina.events.act3.*;
 import ruina.monsters.act1.AllAroundHelper;
+import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -571,6 +572,7 @@ public class RuinaMod implements
                         new AllAroundHelper(-300.0F, 0.0F, true),
                         new AllAroundHelper(0.0F, 0.0F, false),
                 }));
+        BaseMod.addMonster(ForsakenMurderer.ID, (BaseMod.GetMonster) ForsakenMurderer::new);
 
         //Act 2
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);

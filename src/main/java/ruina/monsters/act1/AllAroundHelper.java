@@ -31,7 +31,7 @@ public class AllAroundHelper extends AbstractRuinaMonster
     private static final byte CLEAN = 1;
 
     private final int DAMAGE_THRESHOLD = 10;
-    private final int STRENGTH = calcAscensionSpecial(3);
+    private final int STRENGTH = calcAscensionSpecial(4);
     private final boolean attackFirst;
 
     public static final String POWER_ID = makeID("Pattern");

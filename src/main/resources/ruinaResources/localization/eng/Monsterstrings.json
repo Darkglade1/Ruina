@@ -1008,5 +1008,14 @@
     "NAME": "All-Around Helper",
     "DIALOG": [
     ]
+  },
+  "${ModID}:ForsakenMurderer": {
+    "MOVES": [
+      "Chained Wrath",
+      "Metallic Ringing"
+    ],
+    "NAME": "Forsaken Murderer",
+    "DIALOG": [
+    ]
   }
 }

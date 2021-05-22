@@ -1,4 +1,12 @@
 {
+  "${ModID}:Asiyah": {
+    "TEXT": [
+      "Asiyah",
+      "Act 1",
+      "In your hand is an elaborate invitation, promising #ywealth and #yknowledge beyond your wildest dreams.",
+      "Accept the invitation."
+    ]
+  },
   "${ModID}:Briah": {
     "TEXT": [
       "Briah",
