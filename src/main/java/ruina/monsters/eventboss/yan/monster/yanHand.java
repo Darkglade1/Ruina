@@ -45,19 +45,19 @@ public class yanHand extends AbstractDeckMonster
     private static final byte LOCK = 4;
     private static final byte EMPTY = 5;
 
-    public final int fistDMG = calcAscensionDamage(9);
+    public final int fistDMG = calcAscensionDamage(12);
     public final int fistPara = calcAscensionSpecial(2);
 
-    public final int compressBlock = calcAscensionTankiness(15);
+    public final int compressBlock = calcAscensionTankiness(18);
 
-    public final int flurryDamage = calcAscensionDamage(4);
+    public final int flurryDamage = calcAscensionDamage(6);
     public final int flurryStr = calcAscensionSpecial(2);
     public final int flurryHits = 3;
 
-    public final int lockDmg = calcAscensionDamage(12);
+    public final int lockDmg = calcAscensionDamage(15);
     public final int drawReduction = 1;
 
-    public final int brandDmg = calcAscensionDamage(14);
+    public final int brandDmg = calcAscensionDamage(15);
     public final int brandErosion = calcAscensionSpecial(1);
 
     public static final String FAULTYHARDWARE_POWER_ID = makeID("FaultyHardware");
@@ -74,7 +74,7 @@ public class yanHand extends AbstractDeckMonster
     private final yanDistortion parent;
 
     public yanHand(final float x, final float y, BEHAVIOUR mode, yanDistortion parent) {
-        super(NAME, ID, 40, -5.0F, 0, 250.0f, 225.0f, null, x, y);
+        super(NAME, ID, 60, -5.0F, 0, 250.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("YanHand/Spriter/YanHand.scml"));
         currentMode = mode;
         this.type = EnemyType.BOSS;
