@@ -83,8 +83,8 @@ public class yanDistortion extends AbstractDeckMonster
     public final int brandDmg = calcAscensionDamage(15);
     public final int brandErosion = calcAscensionSpecial(1);
 
-    public final int bladeDMG = calcAscensionDamage(35);
-    public final int bladeErosion = calcAscensionSpecial(2);
+    public final int bladeDMG = calcAscensionDamage(40);
+    public final int bladeErosion = calcAscensionSpecial(3);
 
     public final int attackStr = calcAscensionSpecial(2);
     public final int defendEnd = calcAscensionSpecial(2);
@@ -106,10 +106,13 @@ public class yanDistortion extends AbstractDeckMonster
         this(150.0f, 0.0f);
     }
     public yanDistortion(final float x, final float y) {
-        super(NAME, ID, 500, -5.0F, 0, 250.0f, 355.0f, null, x, y);
+        super(NAME, ID, 455, -5.0F, 0, 250.0f, 355.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Yan/Spriter/Yan.scml"));
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(maxHealth));
+        // round numbers please
+        if(AbstractDungeon.ascensionLevel >= 9){ setHp(maxHealth - 1); }
+
         numAdditionalMoves = 1;
         for (int i = 0; i < numAdditionalMoves; i++) { additionalMovesHistory.add(new ArrayList<>()); }
 

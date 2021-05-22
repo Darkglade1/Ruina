@@ -12,11 +12,9 @@ import static ruina.RuinaMod.makeID;
 public class CHRBOSS_GreaterSplitVertical extends AbstractEgoCard {
     public final static String ID = makeID(CHRBOSS_GreaterSplitVertical.class.getSimpleName());
 
-    public static final int DAMAGE = 35;
-
     public CHRBOSS_GreaterSplitVertical(RedMist parent) {
         super(ID, 5, CardType.ATTACK, CardTarget.ENEMY);
-        damage = baseDamage = DAMAGE;
+        damage = baseDamage = parent.greaterSplitVerticalDamage;
         magicNumber = baseMagicNumber = parent.GSVBleed;
     }
 
