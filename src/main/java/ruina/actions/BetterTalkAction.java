@@ -37,7 +37,11 @@ public class BetterTalkAction extends AbstractGameAction {
 
     public void update() {
         if (!this.used) {// 40
-            AbstractDungeon.effectList.add(new SpeechBubble(this.source.hb.cX + this.source.dialogX, this.source.hb.cY + this.source.dialogY, this.bubbleDuration, this.msg, faceRight));
+            if (faceRight) {
+                AbstractDungeon.effectList.add(new SpeechBubble(this.source.hb.cX + this.source.dialogX + (50.0f * Settings.scale), this.source.hb.cY + this.source.dialogY, this.bubbleDuration, this.msg, faceRight));
+            } else {
+                AbstractDungeon.effectList.add(new SpeechBubble(this.source.hb.cX + this.source.dialogX, this.source.hb.cY + this.source.dialogY, this.bubbleDuration, this.msg, faceRight));
+            }
             this.used = true;// 58
         }
         this.tickDuration();// 61
