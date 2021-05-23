@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
+import ruina.actions.BetterTalkAction;
 import ruina.monsters.uninvitedGuests.normal.elena.Binah;
 import ruina.powers.AnArbiter;
 import ruina.vfx.WaitEffect;
@@ -104,7 +105,7 @@ public class BinahHead extends Binah {
 
     public void onBossDeath() {
         if (!isDead && !isDying) {
-            atb(new TalkAction(this, DIALOG[2]));
+            atb(new BetterTalkAction(this, DIALOG[2], true));
             atb(new VFXAction(new WaitEffect(), 1.0F));
             addToBot(new AbstractGameAction() {
                 @Override
