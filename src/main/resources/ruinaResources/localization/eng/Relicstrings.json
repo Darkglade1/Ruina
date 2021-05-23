@@ -64,5 +64,12 @@
     "DESCRIPTIONS": [
       "At the end of combat, heal #b", "% of your HP."
     ]
+  },
+  "${ModID}:Overexertion": {
+    "NAME": "Overexertion",
+    "FLAVOR": "Placeholder",
+    "DESCRIPTIONS": [
+      "Start each combat with an additional [E] [E] . NL Gain #b%1$s Weak and Frail at the start of your #bsecond turn."
+    ]
   }
 }

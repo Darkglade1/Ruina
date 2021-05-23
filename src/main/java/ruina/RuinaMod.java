@@ -35,6 +35,7 @@ import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.*;
+import ruina.events.act1.ShiAssociation;
 import ruina.events.act2.*;
 import ruina.events.act3.*;
 import ruina.monsters.act1.AllAroundHelper;
@@ -573,6 +574,9 @@ public class RuinaMod implements
                         new AllAroundHelper(0.0F, 0.0F, false),
                 }));
         BaseMod.addMonster(ForsakenMurderer.ID, (BaseMod.GetMonster) ForsakenMurderer::new);
+
+        BaseMod.addEvent(ShiAssociation.ID, ShiAssociation.class, Asiyah.ID);
+
 
         //Act 2
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
