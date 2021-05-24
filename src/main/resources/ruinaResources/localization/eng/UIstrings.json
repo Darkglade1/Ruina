@@ -83,5 +83,10 @@
     "TEXT": [
       "The Black Silence"
     ]
+  },
+  "${ModID}:FrostSplinter": {
+    "TEXT": [
+      "Freeze."
+    ]
   }
 }

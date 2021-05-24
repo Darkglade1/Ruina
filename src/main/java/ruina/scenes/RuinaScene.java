@@ -24,6 +24,7 @@ import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.seraphim.Seraphim;
+import ruina.monsters.act3.silentGirl.SilentGirl;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
@@ -147,6 +148,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/BlackSilence3");
                 } else if (mo instanceof Zena && ((Zena) mo).usedShockwave) {
                     this.bg = this.atlas.findRegion("mod/Crater");
+                } else if (mo instanceof SilentGirl) {
+                    this.bg = this.atlas.findRegion("mod/SilentGirl");
                 } else {
                     setBgs();
                 }
@@ -180,6 +183,10 @@ public class RuinaScene extends AbstractScene {
                 case HOKMA:
                     this.bg = this.atlas.findRegion("mod/Hokma");
                     this.campfireBg = this.atlas.findRegion("mod/HokmaCamp");
+                    break;
+                case ROLAND:
+                    this.bg = this.atlas.findRegion("mod/Keter");
+                    this.campfireBg = this.atlas.findRegion("mod/Entrance");
                     break;
                 case GUESTS:
                     this.bg = this.atlas.findRegion("mod/Entrance");

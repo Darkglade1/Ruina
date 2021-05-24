@@ -139,6 +139,7 @@ public class PatronLibrarian extends AbstractImageEvent {
                 this.imageEventText.loadImage(makeEventPath("PatronHokma.png"));
                 return 8;
             case ROLAND:
+                this.imageEventText.loadImage(makeEventPath("PatronRoland.png"));
                 return 9;
             default:
                 this.imageEventText.loadImage(makeEventPath("Angela.png"));

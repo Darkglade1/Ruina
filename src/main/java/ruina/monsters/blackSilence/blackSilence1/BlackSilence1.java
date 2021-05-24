@@ -22,6 +22,7 @@ import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence1.cards.*;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
+import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -85,11 +86,17 @@ public class BlackSilence1 extends AbstractCardMonster {
     public int CARDS_PER_TURN;
 
     private final ArrayList<Byte> movepool = new ArrayList<>();
+    private byte previewIntent = -1;
 
     public static final String POWER_ID = makeID("Orlando");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
+    public static final String KILLING_POWER_ID = makeID("KillingIntent");
+    public static final PowerStrings KillingpowerStrings = CardCrawlGame.languagePack.getPowerStrings(KILLING_POWER_ID);
+    public static final String KILLING_POWER_NAME = KillingpowerStrings.NAME;
+    public static final String[] KILLING_POWER_DESCRIPTIONS = KillingpowerStrings.DESCRIPTIONS;
 
     public BlackSilence1() {
         this(0.0f, 0.0f);
@@ -149,6 +156,12 @@ public class BlackSilence1 extends AbstractCardMonster {
             @Override
             public void updateDescription() {
                 description = POWER_DESCRIPTIONS[0] + CARDS_PER_TURN + POWER_DESCRIPTIONS[1];
+            }
+        });
+        applyToTarget(this, this, new AbstractLambdaPower(KILLING_POWER_NAME, KILLING_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            @Override
+            public void updateDescription() {
+                description = KILLING_POWER_DESCRIPTIONS[0];
             }
         });
     }
@@ -400,12 +413,41 @@ public class BlackSilence1 extends AbstractCardMonster {
 
     @Override
     protected void getMove(final int num) {
+        boolean rollAgain = false;
+        if (previewIntent >= 0) {
+            setMoveShortcut(previewIntent, MOVES[previewIntent], cardList.get(previewIntent));
+        } else {
+            rollAgain = true;
+        }
         if (movepool.isEmpty()) {
-            setMoveShortcut(FURIOSO, MOVES[FURIOSO], cardList.get(FURIOSO));
+            previewIntent = FURIOSO;
             populateMovepool();
         } else {
-            byte move = movepool.remove(0);
-            setMoveShortcut(move, MOVES[move], cardList.get(move));
+            previewIntent = movepool.remove(0);
+        }
+        setAdditionalMoveShortcut(previewIntent, moveHistory, cardList.get(previewIntent));
+        for (AdditionalIntent additionalIntent : additionalIntents) {
+            additionalIntent.transparent = true;
+            additionalIntent.usePrimaryIntentsColor = false;
+        }
+        //if previewIntent wasn't a valid intent, roll again (should only happen at the start of combat)
+        if (rollAgain) {
+            rollMove();
+        }
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        for (int i = 0; i < additionalIntents.size(); i++) {
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
+            EnemyMoveInfo additionalMove = null;
+            if (i < additionalMoves.size()) {
+                additionalMove = additionalMoves.get(i);
+            }
+            if (additionalMove != null) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+            }
         }
     }
 

@@ -5,15 +5,11 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.Bleed;
 import ruina.powers.WingsOfGrace;
-
-import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -28,7 +24,7 @@ public class SpearApostle extends AbstractRuinaMonster {
     private static final byte FOR_HE_IS_HOLY = 0;
     private static final byte THE_WILL_OF_THE_LORD_BE_DONE = 1;
 
-    private final int debuff = calcAscensionSpecial(1);
+    private final int debuff = calcAscensionSpecial(3);
 
     private final Prophet prophet;
 
@@ -36,9 +32,9 @@ public class SpearApostle extends AbstractRuinaMonster {
         super(NAME, ID, 50, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SpearApostle/Spriter/SpearApostle.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(46), calcAscensionTankiness(52));
-        addMove(FOR_HE_IS_HOLY, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
-        addMove(THE_WILL_OF_THE_LORD_BE_DONE, Intent.ATTACK_DEBUFF, calcAscensionDamage(4), 2, true);
+        setHp(calcAscensionTankiness(35), calcAscensionTankiness(40));
+        addMove(THE_WILL_OF_THE_LORD_BE_DONE, Intent.ATTACK, calcAscensionDamage(24));
+        addMove(FOR_HE_IS_HOLY, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
         prophet = parent;
     }
 
@@ -50,19 +46,16 @@ public class SpearApostle extends AbstractRuinaMonster {
             info.applyPowers(this, adp());
         }
         switch (nextMove) {
+            case THE_WILL_OF_THE_LORD_BE_DONE:
+                spearAnimation(adp());
+                dmg(adp(), info);
+                resetIdle();
+                break;
             case FOR_HE_IS_HOLY:
                 spearAnimation(adp());
                 dmg(adp(), info);
-                applyToTarget(adp(), this, new WeakPower(adp(), debuff, true));
                 resetIdle();
-                break;
-            case THE_WILL_OF_THE_LORD_BE_DONE:
-                for (int i = 0; i < multiplier; i++) {
-                    spearAnimation(adp());
-                    dmg(adp(), info);
-                    resetIdle();
-                }
-                applyToTarget(adp(), this, new FrailPower(adp(), debuff, true));
+                applyToTarget(adp(), this, new Bleed(adp(), debuff));
                 break;
         }
         atb(new RollMoveAction(this));
@@ -70,15 +63,11 @@ public class SpearApostle extends AbstractRuinaMonster {
 
     @Override
     protected void getMove(final int num) {
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastTwoMoves(FOR_HE_IS_HOLY)) {
-            possibilities.add(FOR_HE_IS_HOLY);
+        if (lastMove(THE_WILL_OF_THE_LORD_BE_DONE)) {
+            setMoveShortcut(FOR_HE_IS_HOLY, MOVES[FOR_HE_IS_HOLY]);
+        } else {
+            setMoveShortcut(THE_WILL_OF_THE_LORD_BE_DONE, MOVES[THE_WILL_OF_THE_LORD_BE_DONE]);
         }
-        if (!this.lastTwoMoves(THE_WILL_OF_THE_LORD_BE_DONE)) {
-            possibilities.add(THE_WILL_OF_THE_LORD_BE_DONE);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
     }
 
     private void spearAnimation(AbstractCreature enemy) {
@@ -104,7 +93,7 @@ public class SpearApostle extends AbstractRuinaMonster {
 
     @Override
     public void usePreBattleAction() {
-        atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, calcAscensionSpecial(1))));
+        atb(new ApplyPowerAction(this, this, new WingsOfGrace(this, 1)));
         createIntent();
     }
 }

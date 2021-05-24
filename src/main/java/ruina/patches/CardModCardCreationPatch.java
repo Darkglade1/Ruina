@@ -12,8 +12,7 @@ import ruina.relics.YesterdayPromiseRelic;
 
 import static ruina.util.Wiz.adp;
 
-
-public class YesterdayPromisePatch {
+public class CardModCardCreationPatch {
     @SpirePatch(clz = ShowCardAndAddToDiscardEffect.class, method = "update")
     @SpirePatch(clz = ShowCardAndAddToHandEffect.class, method = "update")
     @SpirePatch(clz = ShowCardAndAddToDrawPileEffect.class, method = "update")

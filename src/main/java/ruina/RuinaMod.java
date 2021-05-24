@@ -50,6 +50,7 @@ import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
+import ruina.monsters.act3.silentGirl.SilentGirl;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
@@ -499,6 +500,11 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("Shaking"), makeSFXPath("Shake_End.wav"));
         BaseMod.addAudio(makeID("BinahArrive"), makeSFXPath("Binah_On.wav"));
         BaseMod.addAudio(makeID("GeburaArrive"), makeSFXPath("Gebura_On.wav"));
+
+        BaseMod.addAudio(makeID("SilentEye"), makeSFXPath("Silentgirl_Eye.wav"));
+        BaseMod.addAudio(makeID("SilentHammer"), makeSFXPath("Silentgirl_Hammer.wav"));
+        BaseMod.addAudio(makeID("SilentPhaseChange"), makeSFXPath("Silentgirl_PhaseChange.wav"));
+        BaseMod.addAudio(makeID("SilentNail"), makeSFXPath("Silentgirl_Volt.wav"));
     }
 
     @Override
@@ -617,6 +623,7 @@ public class RuinaMod implements
         // Act 3
         atziluth.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
         atziluth.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
+        atziluth.addBoss(SilentGirl.ID, (BaseMod.GetMonster) SilentGirl::new, makeMonsterPath("SilentGirl/MapIcon.png"), makeMonsterPath("SilentGirl/MapIcon.png"));
 
         BaseMod.addMonster(BigBird.ID, "Big Bird", () -> new MonsterGroup(
                 new AbstractMonster[]{

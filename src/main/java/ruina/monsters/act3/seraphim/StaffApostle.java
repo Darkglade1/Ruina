@@ -29,9 +29,9 @@ public class StaffApostle extends AbstractRuinaMonster {
     private static final byte THY_WORDS = 0;
     private static final byte GIVE_US_REST = 1;
 
-    private final int STRENGTH = calcAscensionSpecial(2);
+    private final int STRENGTH = calcAscensionSpecial(1);
     private final int BLOCK = calcAscensionTankiness(7);
-    private final int BLOCK_STRENGTH = calcAscensionSpecial(1);
+    private final int BLOCK_STRENGTH = calcAscensionSpecial(2);
 
     private final Prophet prophet;
 
@@ -39,8 +39,8 @@ public class StaffApostle extends AbstractRuinaMonster {
         super(NAME, ID, 50, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("StaffApostle/Spriter/StaffApostle.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(42), calcAscensionTankiness(48));
-        addMove(THY_WORDS, Intent.ATTACK_BUFF, calcAscensionDamage(6));
+        setHp(calcAscensionTankiness(44), calcAscensionTankiness(48));
+        addMove(THY_WORDS, Intent.ATTACK_BUFF, calcAscensionDamage(7));
         addMove(GIVE_US_REST, Intent.DEFEND_BUFF);
         prophet = parent;
     }
@@ -79,15 +79,11 @@ public class StaffApostle extends AbstractRuinaMonster {
 
     @Override
     protected void getMove(final int num) {
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastTwoMoves(THY_WORDS)) {
-            possibilities.add(THY_WORDS);
+        if (lastMove(GIVE_US_REST)) {
+            setMoveShortcut(THY_WORDS, MOVES[THY_WORDS]);
+        } else {
+            setMoveShortcut(GIVE_US_REST, MOVES[GIVE_US_REST]);
         }
-        if (!this.lastTwoMoves(GIVE_US_REST)) {
-            possibilities.add(GIVE_US_REST);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
     }
 
     private void attackAnimation(AbstractCreature enemy) {

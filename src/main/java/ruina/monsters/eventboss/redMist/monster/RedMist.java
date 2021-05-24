@@ -62,6 +62,9 @@ public class RedMist extends AbstractDeckMonster
     public final int level_damage = calcAscensionDamage(5);
     public final int level_threshold = level_damage;
 
+    public final int greaterSplitVerticalDamage = calcAscensionDamage(30);
+    public final int greaterSplitHorizontalDamage = calcAscensionDamage(40);
+
     private static final int KALI_PHASE = 1;
     private static final int EGO_PHASE = 2;
     private int phase = KALI_PHASE;
@@ -96,8 +99,8 @@ public class RedMist extends AbstractDeckMonster
         addMove(UPSTANDING_SLASH, Intent.ATTACK_DEBUFF, upstanding_damage, 2, true);
         addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, level_damage, 2, true);
         addMove(SPEAR, Intent.ATTACK, 5, 3, true);
-        addMove(GSV, Intent.ATTACK_DEBUFF, calcAscensionDamage(30));
-        addMove(GSH, Intent.ATTACK_DEBUFF, calcAscensionDamage(40));
+        addMove(GSV, Intent.ATTACK_DEBUFF, greaterSplitVerticalDamage);
+        addMove(GSH, Intent.ATTACK_DEBUFF, greaterSplitHorizontalDamage);
 
         HP_THRESHOLD = maxHealth / 2;
         initializeDeck();

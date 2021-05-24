@@ -3,13 +3,17 @@ package ruina.monsters.act3.seraphim;
 import actlikeit.dungeons.CustomDungeon;
 import basemod.animations.AbstractAnimation;
 import basemod.helpers.VfxBuilder;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -44,14 +48,15 @@ public class Seraphim extends AbstractMultiIntentMonster {
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    private static final Texture CIRCLE = new Texture(makeMonsterPath("Seraphim/Circle.png"));
-    private final TextureRegion WHITENIGHT_CIRCLE_REGION;
-    private final TextureRegion SELF_CIRCLE_REGION;
-
     private static final float whiteNightY = (float) Settings.HEIGHT / 2 + (75.0f * Settings.scale);
 
     public static final String GLOWING_CIRCLE = RuinaMod.makeMonsterPath("Seraphim/GlowingCircle.png");
     private static final Texture GLOWING_CIRCLE_TEXTURE = new Texture(GLOWING_CIRCLE);
+
+    private static final TextureAtlas atlas = new TextureAtlas(makeMonsterPath("Seraphim/backEffect.atlas"));
+    public static final TextureAtlas.AtlasRegion Ring = atlas.findRegion("0407");
+    public static final TextureAtlas.AtlasRegion LightAura = atlas.findRegion("0408");
+    public static final TextureAtlas.AtlasRegion AuraPin = atlas.findRegion("0400");
 
     private static final byte EMPTY = 0;
     private static final byte PHASE_TRANSITION = 1;
@@ -114,8 +119,6 @@ public class Seraphim extends AbstractMultiIntentMonster {
         super(NAME, ID, 666, -5.0F, 0, 280.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Seraphim/Spriter/Seraphim.scml"));
         this.whiteNight = new BetterSpriterAnimation(makeMonsterPath("Seraphim/WhiteNight/WhiteNight.scml"));
-        WHITENIGHT_CIRCLE_REGION = new TextureRegion(CIRCLE);
-        SELF_CIRCLE_REGION = new TextureRegion(CIRCLE);
         runAnim("Idle");
         this.setHp(maxHealth);
         this.type = EnemyType.BOSS;
@@ -130,12 +133,12 @@ public class Seraphim extends AbstractMultiIntentMonster {
         addMove(SUMMON_APOSTLES, Intent.UNKNOWN);
         addMove(BAPTISM, Intent.BUFF);
         addMove(WINGS_OF_GRACE, Intent.BUFF);
-        addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(45));
+        addMove(RISE_AND_SERVE, Intent.ATTACK, calcAscensionDamage(50));
         addMove(SALVATION, Intent.UNKNOWN);
         addMove(PRAYER, Intent.DEFEND_BUFF);
-        addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(17));
+        addMove(DO_NOT_DENY, Intent.ATTACK, calcAscensionDamage(21));
         addMove(FEAR_NOT, Intent.BUFF);
-        addMove(BEHOLD_MY_POWER, Intent.ATTACK, calcAscensionDamage(4), 3, true);
+        addMove(BEHOLD_MY_POWER, Intent.ATTACK, calcAscensionDamage(5), 3, true);
         addMove(REVELATION, Intent.BUFF);
     }
 
@@ -152,6 +155,8 @@ public class Seraphim extends AbstractMultiIntentMonster {
         playSound("WhiteNightAppear");
         AbstractDungeon.getCurrRoom().cannotLose = true;
         applyToTarget(this, this, new WingsOfGrace(this, calcAscensionSpecial(3)));
+        AbstractDungeon.effectsQueue.add(new WhiteNightAura(hb.cX + (10.0f * Settings.scale), hb.cY));
+        AbstractDungeon.effectsQueue.add(new WhiteNightAura((float) Settings.WIDTH / 2, whiteNightY + (190.0f * Settings.scale)));
     }
 
     @Override
@@ -276,6 +281,9 @@ public class Seraphim extends AbstractMultiIntentMonster {
             public void update() {
                 for (AbstractMonster m : monsterList()) {
                     if (m instanceof GuardianApostle && m.halfDead) {
+                        if (AbstractDungeon.ascensionLevel >= 19) {
+                            applyToTargetTop(m, m, new WingsOfGrace(m, calcAscensionSpecial(1)));
+                        }
                         att(new RollMoveAction(m));
                         att(new HealAction(m, m, m.maxHealth));
                         m.halfDead = false;
@@ -294,6 +302,9 @@ public class Seraphim extends AbstractMultiIntentMonster {
             public void update() {
                 for (AbstractMonster m : monsterList()) {
                     if (m instanceof GuardianApostle && m.halfDead) {
+                        if (AbstractDungeon.ascensionLevel >= 19) {
+                            applyToTargetTop(m, m, new WingsOfGrace(m, calcAscensionSpecial(1)));
+                        }
                         att(new RollMoveAction(m));
                         att(new GainBlockAction(m, prayerBlock));
                         att(new HealAction(m, m, (int)(m.maxHealth * prayerHeal)));
@@ -435,14 +446,8 @@ public class Seraphim extends AbstractMultiIntentMonster {
 
     @Override
     public void render(SpriteBatch sb) {
-        if (!isDead) {
-            sb.setColor(Color.WHITE);
-            sb.draw(SELF_CIRCLE_REGION, this.hb.cX - (((float)this.SELF_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale), this.hb.cY - (((float)this.SELF_CIRCLE_REGION.getRegionHeight() / 2) * Settings.scale), 0.0F, 0.0F, this.SELF_CIRCLE_REGION.getRegionWidth(), this.SELF_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
-        }
         super.render(sb);
         if (!isDead) {
-            sb.setColor(Color.WHITE);
-            sb.draw(WHITENIGHT_CIRCLE_REGION, (float)Settings.WIDTH / 2 - (((float)this.WHITENIGHT_CIRCLE_REGION.getRegionWidth() / 2) * Settings.scale) - 15.0f * Settings.scale, (float) Settings.HEIGHT / 2, 0.0F, 0.0F, this.WHITENIGHT_CIRCLE_REGION.getRegionWidth(), this.WHITENIGHT_CIRCLE_REGION.getRegionHeight(), Settings.scale, Settings.scale, 0.0F);
             whiteNight.renderSprite(sb, (float) Settings.WIDTH / 2, whiteNightY);
         }
     }

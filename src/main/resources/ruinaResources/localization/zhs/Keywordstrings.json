@@ -19,5 +19,12 @@
       "契约"
     ],
     "DESCRIPTION": "当你缺乏足够的 [E] 时，可以打出并根据缺少的每点 [E] 失去 #b3 点生命。"
+  },
+  {
+    "PROPER_NAME": "Freeze",
+    "NAMES": [
+      "freeze"
+    ],
+    "DESCRIPTION": "Frozen cards are #yUnplayable and #yRetain."
   }
 ]

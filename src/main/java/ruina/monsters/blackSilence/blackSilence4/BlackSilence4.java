@@ -27,6 +27,7 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
+import ruina.actions.ChooseOneActionButItCanFizzle;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence4.cards.Agony;
@@ -270,63 +271,63 @@ public class BlackSilence4 extends AbstractCardMonster {
                 ArrayList<AbstractCard> options = new ArrayList<>();
                 options.add(new Yun1(this));
                 options.add(new Yun2(this));
-                atb(new ChooseOneAction(options));
+                atb(new ChooseOneActionButItCanFizzle(options, this));
                 break;
             }
             case ZWEI: {
                 ArrayList<AbstractCard> options = new ArrayList<>();
                 options.add(new Zwei1(this));
                 options.add(new Zwei2(this));
-                atb(new ChooseOneAction(options));
+                atb(new ChooseOneActionButItCanFizzle(options, this));
                 break;
             }
             case DAWN: {
                 ArrayList<AbstractCard> options = new ArrayList<>();
                 options.add(new Dawn1(this));
                 options.add(new Dawn2(this));
-                atb(new ChooseOneAction(options));
+                atb(new ChooseOneActionButItCanFizzle(options, this));
                 break;
             }
             case SHI: {
                 ArrayList<AbstractCard> options = new ArrayList<>();
                 options.add(new Shi1(this));
                 options.add(new Shi2(this));
-                atb(new ChooseOneAction(options));
+                atb(new ChooseOneActionButItCanFizzle(options, this));
                 break;
             }
             case LOVE: {
                 ArrayList<AbstractCard> options = new ArrayList<>();
                 options.add(new Love1(this));
                 options.add(new Love2(this));
-                atb(new ChooseOneAction(options));
+                atb(new ChooseOneActionButItCanFizzle(options, this));
                 break;
             }
             case LIU: {
                 ArrayList<AbstractCard> options = new ArrayList<>();
                 options.add(new Liu1(this));
                 options.add(new Liu2(this));
-                atb(new ChooseOneAction(options));
+                atb(new ChooseOneActionButItCanFizzle(options, this));
                 break;
             }
             case PURPLE_TEAR: {
                 ArrayList<AbstractCard> options = new ArrayList<>();
                 options.add(new Purple1(this));
                 options.add(new Purple2(this));
-                atb(new ChooseOneAction(options));
+                atb(new ChooseOneActionButItCanFizzle(options, this));
                 break;
             }
             case HANA: {
                 ArrayList<AbstractCard> options = new ArrayList<>();
                 options.add(new Hana1(this));
                 options.add(new Hana2(this));
-                atb(new ChooseOneAction(options));
+                atb(new ChooseOneActionButItCanFizzle(options, this));
                 break;
             }
             case BLUE_REVERB: {
                 ArrayList<AbstractCard> options = new ArrayList<>();
                 options.add(new Blue1(this));
                 options.add(new Blue2(this));
-                atb(new ChooseOneAction(options));
+                atb(new ChooseOneActionButItCanFizzle(options, this));
                 break;
             }
         }

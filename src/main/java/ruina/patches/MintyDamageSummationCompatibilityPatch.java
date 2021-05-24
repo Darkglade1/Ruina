@@ -27,7 +27,7 @@ public class MintyDamageSummationCompatibilityPatch {
             if (m instanceof AbstractMultiIntentMonster) {
                 AbstractMultiIntentMonster multiIntentMonster = (AbstractMultiIntentMonster) m;
                 for (AdditionalIntent additionalIntent : multiIntentMonster.additionalIntents) {
-                    if (additionalIntent.targetTexture == null && additionalIntent.damage > 0) {
+                    if (additionalIntent.targetTexture == null && additionalIntent.damage > 0 && !additionalIntent.transparent) {
                         int damageSum;
                         if (additionalIntent.numHits > 0) {
                             damageSum = additionalIntent.damage * additionalIntent.numHits;

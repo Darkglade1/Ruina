@@ -19,5 +19,12 @@
       "contract"
     ],
     "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead pay #b3 HP for every missing [E] ."
+  },
+  {
+    "PROPER_NAME": "Freeze",
+    "NAMES": [
+      "freeze"
+    ],
+    "DESCRIPTION": "Frozen cards are #yUnplayable and #yRetain."
   }
 ]
