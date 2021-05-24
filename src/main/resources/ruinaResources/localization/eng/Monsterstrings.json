@@ -1017,5 +1017,14 @@
     "NAME": "Forsaken Murderer",
     "DIALOG": [
     ]
+  },
+  "${ModID}:ScorchedGirl": {
+    "MOVES": [
+      "Ember",
+      "Extinguish"
+    ],
+    "NAME": "Scorched Girl",
+    "DIALOG": [
+    ]
   }
 }

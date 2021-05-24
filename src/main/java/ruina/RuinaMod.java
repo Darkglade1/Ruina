@@ -40,6 +40,7 @@ import ruina.events.act2.*;
 import ruina.events.act3.*;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.ForsakenMurderer;
+import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -511,6 +512,9 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("HelperOn"), makeSFXPath("Helper_On.wav"));
         BaseMod.addAudio(makeID("HelperCharge"), makeSFXPath("Helper_FullCharge.wav"));
+
+        BaseMod.addAudio(makeID("MatchExplode"), makeSFXPath("MatchGirl_Explosion.wav"));
+        BaseMod.addAudio(makeID("MatchSizzle"), makeSFXPath("MatchGirl_Barrier.wav"));
     }
 
     @Override
@@ -574,6 +578,7 @@ public class RuinaMod implements
                         new AllAroundHelper(0.0F, 0.0F, false),
                 }));
         BaseMod.addMonster(ForsakenMurderer.ID, (BaseMod.GetMonster) ForsakenMurderer::new);
+        BaseMod.addMonster(ScorchedGirl.ID, (BaseMod.GetMonster) ScorchedGirl::new);
 
         BaseMod.addEvent(ShiAssociation.ID, ShiAssociation.class, Asiyah.ID);
 

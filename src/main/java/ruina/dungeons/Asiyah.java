@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.ForsakenMurderer;
+import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.KingOfGreed;
 import ruina.monsters.act2.KnightOfDespair;
@@ -95,7 +96,7 @@ public class Asiyah extends AbstractRuinaDungeon {
         monsters.add(new MonsterInfo("Lots of Slimes", 1.0F));
         monsters.add(new MonsterInfo("Exordium Thugs", 1.5F));
         monsters.add(new MonsterInfo("Exordium Wildlife", 1.5F));
-        monsters.add(new MonsterInfo("Red Slaver", 1.0F));
+        monsters.add(new MonsterInfo(ScorchedGirl.ID, 1.0F));
         monsters.add(new MonsterInfo("3 Louse", 2.0F));
         monsters.add(new MonsterInfo("2 Fungi Beasts", 2.0F));
         MonsterInfo.normalizeWeights(monsters);
