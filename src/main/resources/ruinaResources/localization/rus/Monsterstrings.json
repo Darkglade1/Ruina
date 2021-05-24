@@ -481,7 +481,7 @@
       "Страстные удары",
       "Втягивающий удар"
     ],
-    "NAME": "Пристрастное лёгкое",
+    "NAME": "Пристрастные легкие",
     "DIALOG": [
     ]
   },
@@ -564,337 +564,337 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:Chesed": {
+  "ruina:Chesed": {
     "MOVES": [
-      "Battle Command",
-      "Energy Shield",
-      "Concentration",
-      "Disposal"
+      "Ведение боя",
+      "Силовой щит",
+      "Концентрация",
+      "Устранение"
     ],
-    "NAME": "Chesed",
+    "NAME": "Хесед",
     "DIALOG": [
-      "That's a rather cynical way of looking at things.",
-      "Thanks for the help, stranger.",
-      "Time for a finishing blow."
+      "Это весьма циничный взгляд на вещи.",
+      "Благодарю за помощь, незнакомец.",
+      "Пришло время для завершающего удара."
     ]
   },
-  "${ModID}:Puppeteer": {
+  "ruina:Puppeteer": {
     "MOVES": [
-      "Pulling the Strings Taut",
-      "Tugging Strings",
-      "Assailing Pulls",
-      "Thin Strings",
-      "Puppetry"
+      "Напряжённо растянуть нити",
+      "Подёргивать нитями",
+      "Тяга к атаке",
+      "Тонкая нить",
+      "Театр кукол"
     ],
-    "NAME": "Jae-heon",
+    "NAME": "Джэ-хон",
     "DIALOG": [
-      "We are all bound by the strings of others."
+      "Каждый из нас переплетён нитями других."
     ]
   },
-  "${ModID}:Puppet": {
+  "ruina:Puppet": {
     "MOVES": [
-      "Forceful Gesture",
-      "Repressed Flesh",
-      "Ghghghghgh",
-      "Ghghghghgh"
+      "Мощный замах",
+      "Усмирённая плоть",
+      "Гхыгхыгхыгхы",
+      "Гхыгхыгхыгхы"
     ],
-    "NAME": "Puppet",
-    "DIALOG": [
-    ]
-  },
-  "${ModID}:Argalia": {
-    "MOVES": [
-      "Largo",
-      "Allegro",
-      "Resonant Scythe",
-      "Trails Of Blue",
-      "Tempestuous Danza"
-    ],
-    "NAME": "Argalia",
-    "DIALOG": [
-      "You won't talk to me, Roland? What a shame."
-    ]
-  },
-  "${ModID}:Roland": {
-    "MOVES": [
-      "Crystal Atelier",
-      "Wheels Industry",
-      "Durandal",
-      "Allas Workshop",
-      "Atelier Logic",
-      "Mook Workshop",
-      "Old Boy's Workshop",
-      "Ranga Workshop",
-      "Zelkova Workshop",
-      "Furioso"
-    ],
-    "NAME": "Roland",
-    "DIALOG": [
-      "...",
-      "Rot in hell.",
-      "It's finally over."
-    ]
-  },
-  "${ModID}:Pluto": {
-    "MOVES": [
-      "Magical Safeguard",
-      "Magic Missle",
-      "Magic Onslaught",
-      "Contract",
-      "Binding Terms"
-    ],
-    "NAME": "Pluto",
-    "DIALOG": [
-      "Empty words and hollow faith are meaningless."
-    ]
-  },
-  "${ModID}:Hokma": {
-    "MOVES": [
-      "Silence",
-      "Time"
-    ],
-    "NAME": "Hokma",
-    "DIALOG": [
-      "A faith is only as strong as the one who carries it.",
-      "I had faith that we would prevail."
-    ]
-  },
-  "${ModID}:Shade": {
-    "MOVES": [
-      ""
-    ],
-    "NAME": "Shade",
+    "NAME": "Марионетка",
     "DIALOG": [
     ]
   },
-  "${ModID}:Tanya": {
+  "ruina:Argalia": {
     "MOVES": [
-      "Overspeed",
-      "Beatdown",
-      "Intimidate",
-      "Lupine Assault",
-      "Kicks and Stomps",
-      "Fisticuffs"
+      "С дороги",
+      "Аллегро",
+      "Коса резонанса",
+      "Синие шлейфы",
+      "Буйный танец"
     ],
-    "NAME": "Tanya",
+    "NAME": "Аргалия",
     "DIALOG": [
-      "It's the right of the strong to rule over the weak."
+      "Роланд, ты не хочешь говорить со мной? Какой же срам."
     ]
   },
-  "${ModID}:Gebura": {
+  "ruina:Roland": {
     "MOVES": [
-      "Upstanding Slash",
-      "Level Slash",
-      "Spear",
-      "Greater Split: Vertical",
-      "Greater Split: Horizontal"
+      "Ателье Кристалл",
+      "Индустрия Колёс",
+      "Дюрандаль",
+      "Мастерская Аллас",
+      "Ателье Логика",
+      "Мастерская Мук",
+      "Мастерская Старины",
+      "Мастерская Ранга",
+      "Мастерская Зельква",
+      "Свирепость"
     ],
-    "NAME": "Gebura",
+    "NAME": "Роланд",
     "DIALOG": [
-      "What a load of rubbish.",
-      "Look where all that strength got you.",
-      "I've always wanted to give the Head a bloody nose."
+      ". . .",
+      "Сгори в аду.",
+      "Наконец-то всё кончено."						  
     ]
   },
-  "${ModID}:VermilionCross": {
+  "ruina:Pluto": {
     "MOVES": [
-      "Obstruct",
-      "Shockwave",
-      "Heated Weapon",
-      "Rampageous Strike",
-      "Heat Up"
+      "Защита магией",
+      "Волшебная ракета",
+      "Штурм магией",
+      "Контракт",
+      "Важные условия"
     ],
-    "NAME": "Vermilion Cross",
+    "NAME": "Плуто",
     "DIALOG": [
+      "Бессмысленны пустые слова и полая вера."
     ]
   },
-  "${ModID}:Elena": {
+  "ruina:Hokma": {
     "MOVES": [
-      "Circulation",
-      "Sanguine Nails",
-      "Siphon",
-      "Bloodspreading",
-      "Inject"
+      "Тишина",
+      "Время"
     ],
-    "NAME": "Elena",
+    "NAME": "Хохма",
     "DIALOG": [
-      "A feast awaits us in the Light!",
-      "It was but a hollow, empty husk."
+      "Вера сильна настолько же, насколько носящий её.",
+      "Я верил в нашу победу."
     ]
   },
-  "${ModID}:Binah": {
-    "MOVES": [
-      "Degraded Pillar",
-      "Degraded Chain",
-      "Degraded Fairy"
-    ],
-    "NAME": "Binah",
-    "DIALOG": [
-      "No feast would be served to the likes of you.",
-      "That was quite bothersome.",
-      "We defied the Head and lived . . . for now."
-    ]
-  },
-  "${ModID}:Oswald": {
-    "MOVES": [
-      "Rising Climax",
-      "Let's Have Some Fun",
-      "Here, Catch",
-      "Pow! Kablammo!",
-      "We Need You, You Know"
-    ],
-    "NAME": "Oswald",
-    "DIALOG": [
-      "Fancy some clown-to-clown communication?"
-    ]
-  },
-  "${ModID}:Tiph": {
-    "MOVES": [
-      "Augury Kick",
-      "Confrontation"
-    ],
-    "NAME": "Tiphereth",
-    "DIALOG": [
-      "The only clown here is you.",
-      "What a nuisance."
-    ]
-  },
-  "${ModID}:Bremen": {
-    "MOVES": [
-      "Everlasting Melody",
-      "NEIGHHH",
-      "BAWK BAWK",
-      "RARF RARF",
-      "Powerful Tendon Chords",
-      "Trio"
-    ],
-    "NAME": "Musicians of Bremen",
-    "DIALOG": [
-      "RARF! BAWK! NEIGHHH!"
-    ]
-  },
-  "${ModID}:Netzach": {
-    "MOVES": [
-      "Will of the City",
-      "Baleful Brand",
-      "Blind Faith"
-    ],
-    "NAME": "Netzach",
-    "DIALOG": [
-      ". . . Shut up.",
-      "At least that's over now. Care for a drink?"
-    ]
-  },
-  "${ModID}:Philip": {
-    "MOVES": [
-      "Waned Eventide",
-      "Conflicting Emotions",
-      "Despairingly Stigmatize",
-      "Searing Resolution",
-      "Wound of Sorrow"
-    ],
-    "NAME": "Philip",
-    "DIALOG": [
-      "Passion is a deception that will only lead to despair."
-    ]
-  },
-  "${ModID}:Malkuth": {
-    "MOVES": [
-      "Coordinated Assault",
-      "Emotional Turbulence",
-      "Fervid Emotions",
-      "Raging Storm: Love",
-      "Inferno"
-    ],
-    "NAME": "Malkuth",
-    "DIALOG": [
-      "What a sad way to live.",
-      "I hope he can finally rest now."
-    ]
-  },
-  "${ModID}:CryingChild": {
-    "MOVES": [
-      "Wing Stroke",
-      "Murmur"
-    ],
-    "NAME": "Crying Child",
-    "DIALOG": [
-    ]
-  },
-  "${ModID}:Greta": {
-    "MOVES": [
-      "Break an Egg",
-      "Slap and Fold",
-      "Mince",
-      "Season the Meat",
-      "Trial Smack",
-      "Into the Sack You Go!"
-    ],
-    "NAME": "Greta",
-    "DIALOG": [
-      "All the ingredients here are so filthy! It makes my stomach churn."
-    ]
-  },
-  "${ModID}:Hod": {
-    "MOVES": [
-      "Snake Slit",
-      "Violet Blade",
-      "Laceration",
-      "Venomous Fangs",
-      "Serpentine Barrier",
-      "Duel"
-    ],
-    "NAME": "Hod",
-    "DIALOG": [
-      "No one here is untainted. But that doesn't mean we can't be beautiful too.",
-      "Thank you kindly, stranger.",
-      "Stance Change",
-      "#yClick to switch this #gally to #ySlash stance, which focuses on dealing damage.",
-      "#yClick to switch this #gally to #yPierce stance, which focuses on applying #rdebuffs.",
-      "#yClick to switch this #gally to #yGuard stance, which focuses on #yBlocking and #yNegating #rdebuffs.",
-      "I am already in that stance."
-    ]
-  },
-  "${ModID}:FreshMeat": {
+  "ruina:Shade": {
     "MOVES": [
       ""
     ],
-    "NAME": "Fresh Meat",
+    "NAME": "Тень",
     "DIALOG": [
-    ]
-  },
-  "${ModID}:Eileen": {
+     ]
+   },
+  "ruina:Tanya": {
     "MOVES": [
-      "Thought Gear: Preach",
-      "Thought Gear: Accelerate",
-      "Thought Gear: Propagate",
-      "Thought Gear: Brainwash"
+      "Сверхскорость",
+      "Разгром земли",
+      "Запугать",
+      "Волчья атака",
+      "Пинки и топанье",
+      "Битва на кулаках"
     ],
-    "NAME": "Eileen",
+    "NAME": "Таня",
     "DIALOG": [
-      "A gear is most beautiful when it spins with another."
+      "Это право сильного властвовать над слабым."
     ]
   },
-  "${ModID}:GearsWorshipper": {
+  "ruina:Gebura": {
     "MOVES": [
-      "Vapor"
+      "Здоровый разрез",
+      "Ровный разрез",
+      "Копьё",
+      "Большой разрез вниз",
+      "Большой разрез напрямую"
     ],
-    "NAME": "Gears Worshipper",
+    "NAME": "Гебура",
     "DIALOG": [
+      "Это полнейшая чушь.",
+      "Посмотри, к чему вся эта сила привела тебя.",
+      "Я всегда хотела разбить Голову до крови."														  
     ]
   },
-  "${ModID}:Yesod": {
+  "ruina:VermilionCross": {
     "MOVES": [
-      "Reload",
-      "Flooding Bullets"
+      "Заслониться",
+      "Ударная волна",
+      "Нагретое оружие",
+      "Неистовый удар",
+      "Разогреться"
     ],
-    "NAME": "Yesod",
+    "NAME": "Алый крест",
     "DIALOG": [
-      "People are more than just gears in a machine.",
-      "Your assistance was most welcome."
     ]
   },
-  "${ModID}:BlackSilence1": {
+  "ruina:Elena": {
+    "MOVES": [
+      "Циркуляция",
+      "Кровожадные когти",
+      "Откачать",
+      "Кровопускание",
+      "Впрыснуть"
+    ],
+    "NAME": "Елена",
+    "DIALOG": [
+      "Нас ждёт банкет в лучах Света!",
+      "Это была всего лишь пустая, полая оболочка."
+    ]
+  },
+  "ruina:Binah": {
+    "MOVES": [
+      "Поблёкший столб",
+      "Поблёкшая цепь",
+      "Поблёкшая фея"
+    ],
+    "NAME": "Бина",
+    "DIALOG": [
+      "Такие, как ты, не достойны банкетов.",
+      "Это было довольно хлопотно.",
+      "Мы одолели Голову и до сих пор живи . . . пока что."												   
+    ]
+  },
+  "ruina:Oswald": {
+    "MOVES": [
+      "Близится финал",
+      "Давай слегка повеселимся",
+      "Вот, получай",
+      "Пуф! Заварушка!",
+      "Ты нужен нам, понимаешь"
+    ],
+    "NAME": "Освальд",
+    "DIALOG": [
+      "Клоуны, не желаете немного поболтать вместе с клоуном?"
+    ]
+  },
+  "ruina:Tiph": {
+    "MOVES": [
+      "Загаданный пинок",
+      "Конфронтация"
+    ],
+    "NAME": "Тиферет",
+    "DIALOG": [
+      "Клоун здесь только ты.",
+      "Какая досада."
+    ]
+  },
+  "ruina:Bremen": {
+    "MOVES": [
+      "Нескончаемая мелодия",
+      "ИИИГО-ГО",
+      "КУ-ДАК, КУ-ДАК",
+      "И-ААА, И-ААА",
+      "Мощные сухожильные ноты",
+      "Трио"
+    ],
+    "NAME": "Бременские музыканты",
+    "DIALOG": [
+      "И-ААА! КУ-ДАК! ИИИГО-ГО!"
+    ]
+  },
+  "ruina:Netzach": {
+    "MOVES": [
+      "Воля Города",
+      "Зловещие клеймо",
+      "Слепое доверие"
+    ],
+    "NAME": "Нецах",
+    "DIALOG": [
+      ". . . Захлопнись.",
+      "Наконец-то это закончилось. Что насчёт выпивки?"
+    ]
+  },
+  "ruina:Philip": {
+    "MOVES": [
+      "Угасающий вечер",
+      "Противоречивые эмоции",
+      "Отчаянно позорить",
+      "Жгучая решительность",
+      "Травма грусти"
+    ],
+    "NAME": "Филипп",
+    "DIALOG": [
+      "Страсть - это ложь, что приводить лишь к отчаянию."
+    ]
+  },
+  "ruina:Malkuth": {
+    "MOVES": [
+      "Согласованная атака",
+      "Взволнованность",
+      "Пылкие эмоции",
+      "Неистовая буря любви",
+      "Инферно"
+    ],
+    "NAME": "Малхут",
+    "DIALOG": [
+      "Какой же печальный образ жизни.",
+      "Надеюсь, теперь он наконец успокоится."
+    ]
+  },
+  "ruina:CryingChild": {
+    "MOVES": [
+      "Взмах крылом",
+      "Шептать"
+    ],
+    "NAME": "Плачущее дитя",
+    "DIALOG": [
+    ]
+  },
+  "ruina:Greta": {
+    "MOVES": [
+      "Разбить яйцо",
+      "Вымесить плоть",
+      "Измельчить",
+      "Приправить мясо",
+      "Проба",
+      "Отправляйся в мешок!"
+    ],
+    "NAME": "Грета",
+    "DIALOG": [
+      "Все ингредиенты здесь такие омерзительные! От такого у меня сводит живот."
+    ]
+  },
+  "ruina:Hod": {
+    "MOVES": [
+      "Укус змеи",
+      "Фиалковое лезвие",
+      "Разрыв живота",
+      "Ядовитые клыки",
+      "Змеиный барьер",
+      "Дуэль"
+    ],
+    "NAME": "Ход",
+    "DIALOG": [
+      "Здесь каждый уже протух. Но это всё равно не мешает нам быть прекрасными.",
+      "Благодарю вас, незнакомец.",
+      "Смена стойки",
+      "#yНажмите, чтобы поставить этого #gсоратника в #yРубящую стойку, которая нацелена на нанесение урона.",
+      "#yНажмите, чтобы поставить этого #gсоратника в #yПронзающую стойку, которая нацелена на накладывание #rотриц. #rэффектов.",
+      "#yНажмите, чтобы поставить этого #gсоратника в #yЗащитную стойку, которая нацелена на #yЗащиту и #yОтвержение #rотриц. #rэффектов.",
+      "Я уже в этой стойке."
+    ]
+  },
+  "ruina:FreshMeat": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Свежее мясо",
+    "DIALOG": [
+    ]
+  },
+  "ruina:Eileen": {
+    "MOVES": [
+      "Механизм ЦП: Проповедовать",
+      "Механизм ЦП: Разогнаться",
+      "Механизм ЦП: Распространяться",
+      "Механизм ЦП: Промывка мозгов"
+    ],
+    "NAME": "Эйлин",
+    "DIALOG": [
+      "Шестерёнка прекраснее всего, когда вращается вместе с другой."
+    ]
+  },
+  "ruina:GearsWorshipper": {
+    "MOVES": [
+      "Пар"
+    ],
+    "NAME": "Обожатель шестерён",
+    "DIALOG": [
+    ]
+  },
+  "ruina:Yesod": {
+    "MOVES": [
+      "Перезарядка",
+      "Обилие пуль"
+    ],
+    "NAME": "Йесод",
+    "DIALOG": [
+      "Люди больше, чем просто шестерёнки в машине.",
+      "Ваша помощь была очень кстати."
+    ]
+  },
+  "ruina:BlackSilence1": {
     "MOVES": [
       "Crystal Atelier",
       "Wheels Industry",
@@ -911,7 +911,7 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:BlackSilence4": {
+  "ruina:BlackSilence4": {
     "MOVES": [
       "Agony",
       "Scream",
@@ -930,7 +930,7 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:ImageOfBygones": {
+  "ruina:ImageOfBygones": {
     "MOVES": [
       "Agony",
       "Scream",
@@ -940,7 +940,7 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:BlackSilence3": {
+  "ruina:BlackSilence3": {
     "MOVES": [
       "United Workshop",
       "Unstable Loneliness",
@@ -952,7 +952,7 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:Angelica": {
+  "ruina:Angelica": {
     "MOVES": [
       "Zelkova Workshop",
       "Allas Workshop",
@@ -964,7 +964,7 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:Zena": {
+  "ruina:Zena": {
     "MOVES": [
       "Line",
       "Thin Line",
@@ -975,7 +975,7 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:Baral": {
+  "ruina:Baral": {
     "MOVES": [
       "Serum W",
       "Serum R",
@@ -999,6 +999,6 @@
     ],
     "NAME": "Silent Girl",
     "DIALOG": [
-    ]
+     ]
   }
 }

@@ -28,6 +28,7 @@ import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
+import ruina.actions.BetterTalkAction;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractMultiIntentMonster;

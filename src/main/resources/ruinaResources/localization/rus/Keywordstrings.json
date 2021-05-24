@@ -36,4 +36,10 @@
     ],
     "DESCRIPTION": "Frozen cards are #yUnplayable and #yRetain."
   }
+    "PROPER_NAME": "Неиграбельные Карты",
+    "NAMES": [
+      "неиграбельной"
+    ],
+    "DESCRIPTION": "Их нельзя разыграть из руки."
+  }
 ]

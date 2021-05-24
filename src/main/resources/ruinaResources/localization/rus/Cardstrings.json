@@ -5,7 +5,7 @@
   },
   "ruina:FragmentOfBliss": {
     "NAME": "Кусок блаженства",
-    "DESCRIPTION": "Даёт !M! Защиты. NL Не зависит от модификаторов на Защиту."
+    "DESCRIPTION": "Даёт !M! Защиты. NL Не зависит от эффектов на Защиту."
   },
   "ruina:FalseThrone": {
     "NAME": "Ложные шипы",
@@ -41,8 +41,8 @@
   },
   "ruina:SwordSharpened": {
     "NAME": "Меч, заточенный слезами",
-    "DESCRIPTION": "Накладывает !M! Слабости. NL Когда вы разыгрываете эту карту и её копии !ruina:SecondMagic! раза на одного и того же врага, вместо этого накладывает 1 *Оглушения и Сжигается.",
-    "UPGRADE_DESCRIPTION": "Накладывает !M! Слабости. NL Вы кладёте эту карту в стопку добора. NL Когда вы разыгрываете эту карту и её копии !ruina:SecondMagic! раза на одного и того же врага, вместо этого накладывает 1 *Оглушения и Сжигается."
+    "DESCRIPTION": "Накладывает !M! Слабости. Когда вы разыгрываете эту карту и её копии !ruina:SecondMagic! раза на одного и того же врага, вместо этого накладывает 1 *Оглушения и Сжигается.",
+    "UPGRADE_DESCRIPTION": "Накладывает !M! Слабости. NL Сбрасывается в стопку добора. NL Когда вы разыгрываете эту карту и её копии !ruina:SecondMagic! раза на одного и того же врага, вместо этого накладывает 1 *Оглушения и Сжигается."
   },
   "ruina:Lumber": {
     "NAME": "Хлам",
@@ -71,8 +71,8 @@
   },
   "ruina:ParadiseLost": {
     "NAME": "Потерянный рай",
-    "DESCRIPTION": "Сжигает до !M! выбранной в руке карты в начале каждого вашего хода. NL ВСЕ враги теряют !ruina:SecondMagic! ОЗ, когда Сжигаются 12 карт.",
-    "UPGRADE_DESCRIPTION": "Сжигает до !M! выбранных в руке карт в начале каждого вашего хода. NL ВСЕ враги теряют !ruina:SecondMagic! ОЗ, когда Сжигаются 12 карт."
+    "DESCRIPTION": "Сжигает до !M! выбранной в руке карты в начале каждого вашего хода. NL ВСЕ враги теряют !ruina:SecondMagic! ОЗ, когда *Сжигаются 12 карт.",
+    "UPGRADE_DESCRIPTION": "Сжигает до !M! выбранных в руке карт в начале каждого вашего хода. NL ВСЕ враги теряют !ruina:SecondMagic! ОЗ, когда *Сжигаются 12 карт."
   },
   "ruina:DeadSilence": {
     "NAME": "Мёртвая тишина",
@@ -108,8 +108,8 @@
   },
   "ruina:Justitia": {
     "NAME": "Правосудие",
-    "DESCRIPTION": "Если запас ОЗ врага не более 30%, снижает его ОЗ до 0. NL Враг теряет !M! ОЗ.",
-    "EXTENDED_DESCRIPTION": ["Если запас ОЗ врага не более ", ", снижает его ОЗ до 0. NL Враг теряет !M! ОЗ."]
+    "DESCRIPTION": "Если запас ОЗ выбранного врага не более 30%, снижает его ОЗ до 0. NL Враг теряет !M! ОЗ.",
+    "EXTENDED_DESCRIPTION": ["Если запас ОЗ врага выбранного не более ", ", снижает его ОЗ до 0. NL Враг теряет !M! ОЗ."]
   },
   "ruina:Dazzled": {
     "NAME": "Ослепление",
@@ -117,7 +117,7 @@
   },
   "ruina:ForestKeeperLock": {
     "NAME": "Замок лесного хранителя",
-    "DESCRIPTION": "Враг теряет !M! Силы до конца своего хода."
+    "DESCRIPTION": "Враг теряет !M! Силы NL до конца своего хода."
   },
   "ruina:StolenTime": {
     "NAME": "Пропавшее время",
@@ -140,7 +140,7 @@
     "DESCRIPTION": "Наносит !D! урона. NL Если нанесен урон по ОЗ врага, накладывает !M! ruina:Кровотечения."
   },
   "ruina:CHRBOSS_GreaterSplitVertical": {
-    "NAME": "Разрез вверх",
+    "NAME": "Разрез вниз",
     "DESCRIPTION": "Наносит !D! урона. NL Если нанесен урон по ОЗ врага, накладывает !M! ruina:Кровотечения."
   },
   "ruina:CHRBOSS_FocusSpirit": {
@@ -181,612 +181,612 @@
     "NAME": "Неверное лезвие",
     "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! *Эрозии."
   },
-  "${ModID}:CHRBOSS_Largo": {
-    "NAME": "Largo",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Apply 1 *Vibration. If the target already has *Vibration, instead remove it and gain !B! Block again."
+  "ruina:CHRBOSS_Largo": {
+    "NAME": "С дороги",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона. NL Накладывает 1 *Вибрации. Если выбранный враг имеет *Вибрацию, вместо этого отнимает её и даёт ещё !B! Защиты."
   },
-  "${ModID}:CHRBOSS_Allegro": {
-    "NAME": "Allegro",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply 1 *Vibration. If the target already has *Vibration, instead remove it and gain !ruina:SecondMagic! Strength next turn."
+  "ruina:CHRBOSS_Allegro": {
+    "NAME": "Аллегро",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Накладывает 1 *Вибрации. Если выбранный враг имеет *Вибрацию, вместо этого отнимает её и даёт !ruina:SecondMagic! Силы в след. ходу."
   },
-  "${ModID}:CHRBOSS_ResonantScythe": {
-    "NAME": "Resonant Scythe",
-    "DESCRIPTION": "Deal !D! damage. NL Deals triple damage if this is on the 2nd intent."
+  "ruina:CHRBOSS_ResonantScythe": {
+    "NAME": "Коса резонанса",
+    "DESCRIPTION": "Наносит !D! урона. NL Урон, наносимый этой картой, утраивается, если является 2-ым намерением."
   },
-  "${ModID}:CHRBOSS_TrailsOfBlue": {
-    "NAME": "Trails Of Blue",
-    "DESCRIPTION": "Deal !D! damage. NL Target loses !M! Strength."
+  "ruina:CHRBOSS_TrailsOfBlue": {
+    "NAME": "Синие шлейфы",
+    "DESCRIPTION": "Наносит !D! урона. NL Враг теряет !M! Силы."
   },
-  "${ModID}:CHRBOSS_TempestuousDanza": {
-    "NAME": "Tempestuous Danza",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies !M! times."
+  "ruina:CHRBOSS_TempestuousDanza": {
+    "NAME": "Буйный танец",
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ врагам !M! раз."
   },
-  "${ModID}:CHRALLY_Crystal": {
-    "NAME": "Crystal Atelier",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
+  "ruina:CHRALLY_Crystal": {
+    "NAME": "Ателье Кристалл",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона !M! раза."
   },
-  "${ModID}:CHRALLY_Wheels": {
-    "NAME": "Wheels Industry",
-    "DESCRIPTION": "Deal !D! damage. NL Target loses !M! Strength."
+  "ruina:CHRALLY_Wheels": {
+    "NAME": "Индустрия Колёс",
+    "DESCRIPTION": "Наносит !D! урона. NL Враг теряет !M! Силы."
   },
-  "${ModID}:CHRALLY_Durandal": {
-    "NAME": "Durandal",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  "ruina:CHRALLY_Durandal": {
+    "NAME": "Дюрандаль",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Даёт !ruina:SecondMagic! Силы."
   },
-  "${ModID}:CHRALLY_ALLAS": {
-    "NAME": "Allas Workshop",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  "ruina:CHRALLY_ALLAS": {
+    "NAME": "Мастерская Аллас",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости."
   },
-  "${ModID}:CHRALLY_GUN": {
-    "NAME": "Atelier Logic",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:CHRALLY_GUN": {
+    "NAME": "Ателье Логика",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:CHRALLY_MOOK": {
-    "NAME": "Mook Workshop",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  "ruina:CHRALLY_MOOK": {
+    "NAME": "Мастерская Мук",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Уязвимости."
   },
-  "${ModID}:CHRALLY_OLDBOYS": {
-    "NAME": "Old Boy's Workshop",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  "ruina:CHRALLY_OLDBOYS": {
+    "NAME": "Мастерская Старины",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона."
   },
-  "${ModID}:CHRALLY_RANGA": {
-    "NAME": "Ranga Workshop",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! ruina:Bleed."
+  "ruina:CHRALLY_RANGA": {
+    "NAME": "Мастерская Ранга",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Накладывает !ruina:SecondMagic! ruina:Кровотечения."
   },
-  "${ModID}:CHRALLY_MACE": {
-    "NAME": "Zelkova Workshop",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:CHRALLY_MACE": {
+    "NAME": "Мастерская Зельква",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:CHRALLY_FURIOSO": {
-    "NAME": "Furioso",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:CHRALLY_FURIOSO": {
+    "NAME": "Свирепость",
+    "DESCRIPTION": "Наносит !D! урона !M! раз."
   },
-  "${ModID}:Concentration": {
-    "NAME": "Concentration",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
+  "ruina:Concentration": {
+    "NAME": "Концентрация",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона !M! раза."
   },
-  "${ModID}:EnergyShield": {
-    "NAME": "Energy Shield",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Deal !D! damage."
+  "ruina:EnergyShield": {
+    "NAME": "Силовой щит",
+    "DESCRIPTION": "Даёт !B! Защиты ВСЕМ соратникам. NL Наносит !D! урона."
   },
-  "${ModID}:BattleCommand": {
-    "NAME": "Battle Command",
-    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! Strength."
+  "ruina:BattleCommand": {
+    "NAME": "Ведение боя",
+    "DESCRIPTION": "Наносит !D! урона. NL Даёт !M! Силы ВСЕМ соратникам."
   },
-  "${ModID}:Disposal": {
-    "NAME": "Disposal",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage if the target is *Marked. NL Deals double damage if the target is at or below 25% HP."
+  "ruina:Disposal": {
+    "NAME": "Устранение",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Урон, наносимый этой картой, удваивается, если выбранный враг *Помечен. NL Урон, наносимый этой картой, удваивается, если запас ОЗ выбранного врага не более 25%."
   },
-  "${ModID}:PullingStrings": {
-    "NAME": "Pulling the Strings Taut",
-    "DESCRIPTION": "Deal !D! damage to ALL other characters."
+  "ruina:PullingStrings": {
+    "NAME": "Напряжённо растянуть нити",
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ другим существам."
   },
-  "${ModID}:TuggingStrings": {
-    "NAME": "Tugging Strings",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:TuggingStrings": {
+    "NAME": "Подёргивать нитями",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:AssailingPulls": {
-    "NAME": "Assailing Pulls",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  "ruina:AssailingPulls": {
+    "NAME": "Тяга к атаке",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Уязвимости."
   },
-  "${ModID}:ThinStrings": {
-    "NAME": "Thin Strings",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Apply !M! Weak."
+  "ruina:ThinStrings": {
+    "NAME": "Тонкая нить",
+    "DESCRIPTION": "Даёт !B! Защиты ВСЕМ соратникам. NL Накладывает !M! Слабости."
   },
-  "${ModID}:Puppetry": {
-    "NAME": "Puppetry",
-    "DESCRIPTION": "ALL allies gain !M! Strength."
+  "ruina:Puppetry": {
+    "NAME": "Театр кукол",
+    "DESCRIPTION": "Даёт !M! Силы ВСЕМ соратникам."
   },
-  "${ModID}:ContractOfMight": {
-    "NAME": "Contract Of Might",
-    "DESCRIPTION": "Gain !M! Strength. NL At the end of your turn, take !ruina:SecondMagic! damage and increase the damage you will take from this power by !ruina:SecondMagic!."
+  "ruina:ContractOfMight": {
+    "NAME": "Контракт могущества",
+    "DESCRIPTION": "Даёт !M! Силы. NL В конце каждого вашего хода наносит !ruina:SecondMagic! урона вам и повышает получаемый урон от этого эффекта на !ruina:SecondMagic!."
   },
-  "${ModID}:ContractOfLight": {
-    "NAME": "Contract Of Light",
-    "DESCRIPTION": "Gain [E] [E] each turn. NL You cannot draw cards besides your starting hand each turn."
+  "ruina:ContractOfLight": {
+    "NAME": "Контракт света",
+    "DESCRIPTION": "Даёт [E] [E] в начале каждого вашего хода. NL Вы не можете добирать карты."
   },
-  "${ModID}:ConfusingContract": {
-    "NAME": "Confusing Contract",
-    "DESCRIPTION": "Become Confused."
+  "ruina:ConfusingContract": {
+    "NAME": "Непонятный контракт",
+    "DESCRIPTION": "Накладывает на вас Замешательство"
   },
-  "${ModID}:NoContract": {
-    "NAME": "No Contract",
-    "DESCRIPTION": "All enemies gain !M! Strength."
+  "ruina:NoContract": {
+    "NAME": "Без контракта",
+    "DESCRIPTION": "Даёт !M! Силы ВСЕМ врагам."
   },
-  "${ModID}:Ally_UpstandingSlash": {
-    "NAME": "Upstanding Slash",
-    "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Vulnerable."
+  "ruina:Ally_UpstandingSlash": {
+    "NAME": "Здоровый разрез",
+    "DESCRIPTION": "Наносит !D! урона 2 раза. NL Если нанесено не менее !ruina:SecondMagic! урона по ОЗ врага, накладывает !M! Уязвимости."
   },
-  "${ModID}:Ally_LevelSlash": {
-    "NAME": "Level Slash",
-    "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gains !M! Strength."
+  "ruina:Ally_LevelSlash": {
+    "NAME": "Ровный разрез",
+    "DESCRIPTION": "Наносит !D! урона 2 раза. NL Если нанесено не менее !ruina:SecondMagic! урона по ОЗ врага, даёт !M! Силы."
   },
-  "${ModID}:Ally_Spear": {
-    "NAME": "Spear",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage against targets without Block."
+  "ruina:Ally_Spear": {
+    "NAME": "Копьё",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Урон, наносимый этой картой, удваивается, если выбранный враг не имеет Защиту."
   },
-  "${ModID}:Ally_GreaterSplitHorizontal": {
-    "NAME": "Greater Split: Horizontal",
-    "DESCRIPTION": "Deal !D! damage. NL Target loses Strength this turn equal to unblocked damage."
+  "ruina:Ally_GreaterSplitHorizontal": {
+    "NAME": "Большой разрез напрямую",
+    "DESCRIPTION": "Наносит !D! урона. NL До конца своего хода враг теряет Силу за весь урон по его ОЗ."
   },
-  "${ModID}:Ally_GreaterSplitVertical": {
-    "NAME": "Greater Split: Vertical",
-    "DESCRIPTION": "Deal !D! damage. NL Target loses Strength this turn equal to unblocked damage."
+  "ruina:Ally_GreaterSplitVertical": {
+    "NAME": "Большой разрез вниз",
+    "DESCRIPTION": "Наносит !D! урона. NL До конца своего хода враг теряет Силу за весь урон по его ОЗ."
   },
-  "${ModID}:Overspeed": {
-    "NAME": "Overspeed",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Overspeed": {
+    "NAME": "Сверхскорость",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:Beatdown": {
-    "NAME": "Beatdown",
-    "DESCRIPTION": "Deal !D! damage to ALL other characters. NL Gain !M! *Metallicize."
+  "ruina:Beatdown": {
+    "NAME": "Разгром земли",
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ другим существам. NL Даёт !M! *Металлизации."
   },
-  "${ModID}:Intimidate": {
-    "NAME": "Intimidate",
-    "DESCRIPTION": "Convert all *Plated *Armor into *Metallicize. NL Gain !M! *Plated *Armor."
+  "ruina:Intimidate": {
+    "NAME": "Запугать",
+    "DESCRIPTION": "Преобразует весь *Панцирь в *Металлизацию. NL Даёт !M! *Панциря."
   },
-  "${ModID}:LupineAssault": {
-    "NAME": "Lupine Onslaught",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  "ruina:LupineAssault": {
+    "NAME": "Волчья атака",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона."
   },
-  "${ModID}:KicksAndStomps": {
-    "NAME": "Kicks and Stomps",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  "ruina:KicksAndStomps": {
+    "NAME": "Пинки и топанье",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Даёт !ruina:SecondMagic! Силы."
   },
-  "${ModID}:Fisticuffs": {
-    "NAME": "Fisticuffs",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  "ruina:Fisticuffs": {
+    "NAME": "Битва на кулаках",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости."
   },
-  "${ModID}:Circulation": {
-    "NAME": "Circulation",
-    "DESCRIPTION": "An ally gains !M! Strength and !ruina:SecondMagic! *Protection."
+  "ruina:Circulation": {
+    "NAME": "Циркуляция",
+    "DESCRIPTION": "Даёт !M! Силы и !ruina:SecondMagic! *Прикрытия соратнику."
   },
-  "${ModID}:Nails": {
-    "NAME": "Sanguine Nails",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Nails": {
+    "NAME": "Кровожадные когти",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:Siphon": {
-    "NAME": "Siphon",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Frail."
+  "ruina:Siphon": {
+    "NAME": "Откачать",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Хрупкости."
   },
-  "${ModID}:Bloodspreading": {
-    "NAME": "Bloodspreading",
-    "DESCRIPTION": "Deal !D! damage."
+  "ruina:Bloodspreading": {
+    "NAME": "Кровопускание",
+    "DESCRIPTION": "Наносит !D! урона."
   },
-  "${ModID}:Inject": {
-    "NAME": "Inject",
-    "DESCRIPTION": "Apply !M! *Bleed. NL Gain !ruina:SecondMagic! Strength."
+  "ruina:Inject": {
+    "NAME": "Впрыснуть",
+    "DESCRIPTION": "Накладывает !M! *Кровотечения. NL Даёт !ruina:SecondMagic! Силы."
   },
-  "${ModID}:Obstruct": {
-    "NAME": "Obstruct",
-    "DESCRIPTION": "Gain !B! Block."
+  "ruina:Obstruct": {
+    "NAME": "Заслониться",
+    "DESCRIPTION": "Даёт !B! Защиты."
   },
-  "${ModID}:Shockwave": {
-    "NAME": "Shockwave",
-    "DESCRIPTION": "Deal !D! damage. NL If this creature has any Block remaining, an ally gains !M! Intangible."
+  "ruina:Shockwave": {
+    "NAME": "Ударная волна",
+    "DESCRIPTION": "Наносит !D! урона. NL Даёт !M! Неосязаемости соратнику, если у вас есть Защита."
   },
-  "${ModID}:HeatedWeapon": {
-    "NAME": "Heated Weapon",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Shuffle !ruina:SecondMagic! *Burn(s) into your draw pile."
+  "ruina:HeatedWeapon": {
+    "NAME": "Нагретое оружие",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Добавляет !ruina:SecondMagic! *Ожога в стопку добора."
   },
-  "${ModID}:Rampage": {
-    "NAME": "Rampageous Strike",
-    "DESCRIPTION": "Deal !D! damage."
+  "ruina:Rampage": {
+    "NAME": "Неистовый удар",
+    "DESCRIPTION": "Наносит !D! урона."
   },
-  "${ModID}:HeatUp": {
-    "NAME": "Heat Up",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Strength."
+  "ruina:HeatUp": {
+    "NAME": "Разогреться",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Даёт !M! Силы."
   },
-  "${ModID}:Pillar": {
-    "NAME": "Degraded Pillar",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+  "ruina:Pillar": {
+    "NAME": "Поблёкший столб",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона."
   },
-  "${ModID}:Fairy": {
-    "NAME": "Degraded Fairy",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Fairy": {
+    "NAME": "Поблёкшая фея",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:Chain": {
-    "NAME": "Degraded Chain",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  "ruina:Chain": {
+    "NAME": "Поблёкшая цепь",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости."
   },
-  "${ModID}:Climax": {
-    "NAME": "Rising Climax",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Increase the number of hits this combat by !ruina:SecondMagic!."
+  "ruina:Climax": {
+    "NAME": "Близится финал",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Количество ударов этой карты повышается на !ruina:SecondMagic! в этом бою."
   },
-  "${ModID}:Fun": {
-    "NAME": "Let's Have Some Fun",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Fun": {
+    "NAME": "Давай слегка повеселимся",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:Catch": {
-    "NAME": "Here, Catch",
-    "DESCRIPTION": "Shuffle !M! *Wounds into your draw pile."
+  "ruina:Catch": {
+    "NAME": "Вот, получай",
+    "DESCRIPTION": "Добавляет !M! *Раны в стопку добора."
   },
-  "${ModID}:Pow": {
-    "NAME": "Pow! Kablammo!",
-    "DESCRIPTION": "Apply !M! Weak. NL Gain !ruina:SecondMagic! Strength."
+  "ruina:Pow": {
+    "NAME": "Пуф! Заварушка!",
+    "DESCRIPTION": "Накладывает !M! Слабости. NL Даёт !ruina:SecondMagic! Силы."
   },
-  "${ModID}:Brainwash": {
-    "NAME": "We Need You, You Know",
-    "DESCRIPTION": "Apply !M! *Brainwash."
+  "ruina:Brainwash": {
+    "NAME": "Ты нужен нам, понимаешь",
+    "DESCRIPTION": "Накладывает !M! *Промывки *мозгов."
   },
-  "${ModID}:Kick": {
-    "NAME": "Augury Kick",
-    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! Strength."
+  "ruina:Kick": {
+    "NAME": "Загаданный пинок",
+    "DESCRIPTION": "Наносит !D! урона. NL Даёт !M! Силы ВСЕМ соратникам."
   },
-  "${ModID}:Confrontation": {
-    "NAME": "Confrontation",
-    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! *Protection."
+  "ruina:Confrontation": {
+    "NAME": "Конфронтация",
+    "DESCRIPTION": "Наносит !D! урона. NL Даёт !M! *Прикрытия ВСЕМ соратникам."
   },
-  "${ModID}:Melody": {
-    "NAME": "Melody",
+  "ruina:Melody": {
+    "NAME": "Мелодия",
     "DESCRIPTION": "",
-    "EXTENDED_DESCRIPTION": ["Play these cards in order: NL ",
-      "Attack ",
-      "Skill ",
-      "Power ",
-      "(Completed)",
-      "[#00ff00]Attack[] ",
-      "[#00ff00]Skill[] ",
-      "[#00ff00]Power[] "]
+    "EXTENDED_DESCRIPTION": ["Разыграйте карты в порядке: NL ",
+      "Атака ",
+      "Навык ",
+      "Талант ",
+      "(завершено)",
+      "[#00ff00]Атака[] ",
+      "[#00ff00]Навык[] ",
+      "[#00ff00]Талант[] "]
   },
-  "${ModID}:AttackPrescript": {
-    "NAME": "Attack Prescript",
-    "DESCRIPTION": "Deal !D! damage."
+  "ruina:AttackPrescript": {
+    "NAME": "Предписание Атаки",
+    "DESCRIPTION": "Наносит !D! урона."
   },
-  "${ModID}:SkillPrescript": {
-    "NAME": "Skill Prescript",
-    "DESCRIPTION": "Gain !B! Block."
+  "ruina:SkillPrescript": {
+    "NAME": "Предписание Навыка",
+    "DESCRIPTION": "Даёт !B! Защиты."
   },
-  "${ModID}:PowerPrescript": {
-    "NAME": "Power Prescript",
-    "DESCRIPTION": "Gain !M! Strength."
+  "ruina:PowerPrescript": {
+    "NAME": "Предписание Таланта",
+    "DESCRIPTION": "Даёт !M! Силы."
   },
-  "${ModID}:EverlastingMelody": {
-    "NAME": "Everlasting Melody",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength."
+  "ruina:EverlastingMelody": {
+    "NAME": "Нескончаемая мелодия",
+    "DESCRIPTION": "Наносит !D! урона. NL Даёт !M! Силы."
   },
-  "${ModID}:Neigh": {
-    "NAME": "NEIGHHH",
-    "DESCRIPTION": "Deal !D! damage."
+  "ruina:Neigh": {
+    "NAME": "ИИИГО-ГО",
+    "DESCRIPTION": "Наносит !D! урона."
   },
-  "${ModID}:Bawk": {
-    "NAME": "BAWK BAWK",
-    "DESCRIPTION": "Shuffle !M! *Dazed into your discard pile."
+  "ruina:Bawk": {
+    "NAME": "КУ-ДАК, КУ-ДАК",
+    "DESCRIPTION": "Добавляет !M! *Головокружения в стопку сброса."
   },
-  "${ModID}:Rarf": {
-    "NAME": "RARF RARF",
-    "DESCRIPTION": "Gain !B! Block. NL Apply !M! *Paralysis."
+  "ruina:Rarf": {
+    "NAME": "И-ААА, И-ААА",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Накладывает !M! *Паралича."
   },
-  "${ModID}:Tendon": {
-    "NAME": "Powerful Tendon Chords",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Tendon": {
+    "NAME": "Мощные сухожильные ноты",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:Trio": {
-    "NAME": "Trio",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Increase the length of the *Melody by !ruina:SecondMagic!."
+  "ruina:Trio": {
+    "NAME": "Трио",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Повышает длину *Мелодии на !ruina:SecondMagic!."
   },
-  "${ModID}:Faith": {
-    "NAME": "Blind Faith",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Faith": {
+    "NAME": "Слепое доверие",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:BalefulBrand": {
-    "NAME": "Baleful Brand",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion."
+  "ruina:BalefulBrand": {
+    "NAME": "Зловещие клеймо",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! *Эрозии."
   },
-  "${ModID}:Will": {
-    "NAME": "Will of the City",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL An ally draws !M! cards next turn."
+  "ruina:Will": {
+    "NAME": "Воля Города",
+    "DESCRIPTION": "Даёт !B! Защиты ВСЕМ соратникам. NL Соратник берёт на !M! карты больше в след. ходу."
   },
-  "${ModID}:FervidEmotions": {
-    "NAME": "Fervid Emotions",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! *Emotion."
+  "ruina:FervidEmotions": {
+    "NAME": "Пылкие эмоции",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Даёт !ruina:SecondMagic! *Эмоции."
   },
-  "${ModID}:Emotional": {
-    "NAME": "Emotional Turbulence",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Gain !M! *Emotion."
+  "ruina:Emotional": {
+    "NAME": "Взволнованность",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона. NL Даёт !M! *Эмоции."
   },
-  "${ModID}:Coordinated": {
-    "NAME": "Coordinated Assault",
-    "DESCRIPTION": "An ally gains !M! Strength, !B! Block, and draws !ruina:SecondMagic! card next turn."
+  "ruina:Coordinated": {
+    "NAME": "Согласованная атака",
+    "DESCRIPTION": "Соратник получает !M! Силы и !B! Защиты в этом ходу и берёт на !ruina:SecondMagic! карту больше в след. ходу."
   },
-  "${ModID}:RagingStorm": {
-    "NAME": "Raging Storm: Love",
-    "DESCRIPTION": "Deal !D! damage and apply !ruina:SecondMagic! Vulnerable to ALL enemies !M! times."
+  "ruina:RagingStorm": {
+    "NAME": "Неистовая буря любви",
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ врагам !M! раза. NL Накладывает !ruina:SecondMagic! Уязвимости на ВСЕХ врагов !M! раза."
   },
-  "${ModID}:Inferno": {
-    "NAME": "Inferno",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  "ruina:Inferno": {
+    "NAME": "Инферно",
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ врагам."
   },
-  "${ModID}:Eventide": {
-    "NAME": "Waned Eventide",
-    "DESCRIPTION": "Shuffle !M! *Burns into your discard pile."
+  "ruina:Eventide": {
+    "NAME": "Угасающий вечер",
+    "DESCRIPTION": "Добавляет !M! *Ожога в стопку сброса."
   },
-  "${ModID}:Emotions": {
-    "NAME": "Conflicting Emotions",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Strength."
+  "ruina:Emotions": {
+    "NAME": "Противоречивые эмоции",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Даёт !M! Силы."
   },
-  "${ModID}:Stigmatize": {
-    "NAME": "Despairingly Stigmatize",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Stigmatize": {
+    "NAME": "Отчаянно позорить",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:Searing": {
-    "NAME": "Searing Resolution",
-    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Burn(s) into your draw pile."
+  "ruina:Searing": {
+    "NAME": "Жгучая решительность",
+    "DESCRIPTION": "Наносит !D! урона. NL Добавляет !M! *Ожога в стопку добора."
   },
-  "${ModID}:Sorrow": {
-    "NAME": "Wound of Sorrow",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Sorrow": {
+    "NAME": "Травма грусти",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:SnakeSlit": {
-    "NAME": "Snake Slit",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+  "ruina:SnakeSlit": {
+    "NAME": "Укус змеи",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Даёт !ruina:SecondMagic! Силы."
   },
-  "${ModID}:VioletBlade": {
-    "NAME": "Violet Blade",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:VioletBlade": {
+    "NAME": "Фиалковое лезвие",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:Laceration": {
-    "NAME": "Laceration",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  "ruina:Laceration": {
+    "NAME": "Разрыв живота",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Уязвимости."
   },
-  "${ModID}:VenomousFangs": {
-    "NAME": "Venomous Fang",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+  "ruina:VenomousFangs": {
+    "NAME": "Ядовитые клыки",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости."
   },
-  "${ModID}:SerpentineBarrier": {
-    "NAME": "Serpentine Barrier",
-    "DESCRIPTION": "ALL allies gain !B! Block."
+  "ruina:SerpentineBarrier": {
+    "NAME": "Змеиный барьер",
+    "DESCRIPTION": "Даёт !B! Защиты ВСЕМ соратникам."
   },
-  "${ModID}:Duel": {
-    "NAME": "Duel",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Deal !D! damage."
+  "ruina:Duel": {
+    "NAME": "Дуэль",
+    "DESCRIPTION": "Даёт !B! Защиты ВСЕМ соратникам. NL Наносит !D! урона."
   },
-  "${ModID}:BreakEgg": {
-    "NAME": "Break an Egg",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
+  "ruina:BreakEgg": {
+    "NAME": "Разбить яйцо",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! *Паралича."
   },
-  "${ModID}:Slap": {
-    "NAME": "Slap and Fold",
-    "DESCRIPTION": "Gain !B! Block. NL Apply !M! *Bleed."
+  "ruina:Slap": {
+    "NAME": "Вымесить плоть",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Накладывает !M! *Кровотечения."
   },
-  "${ModID}:Mince": {
-    "NAME": "Mince",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Mince": {
+    "NAME": "Измельчить",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:Season": {
-    "NAME": "Season the Meat",
-    "DESCRIPTION": "Apply !M! Weak and Vulnerable."
+  "ruina:Season": {
+    "NAME": "Приправить мясо",
+    "DESCRIPTION": "Накладывает !M! Слабости. NL Накладывает !M! Уязвимости."
   },
-  "${ModID}:Trial": {
-    "NAME": "Trial Smack",
-    "DESCRIPTION": "Deal !D! damage. NL Heal HP equal to unblocked damage."
+  "ruina:Trial": {
+    "NAME": "Проба",
+    "DESCRIPTION": "Наносит !D! урона. NL Восполняет ОЗ за весь урон по ОЗ цели."
   },
-  "${ModID}:Sack": {
-    "NAME": "Into the Sack You Go!",
-    "DESCRIPTION": "Turn a random card in your deck into *Fresh *Meat. NL Gain !M! Strength."
+  "ruina:Sack": {
+    "NAME": "Отправляйся в мешок!",
+    "DESCRIPTION": "Превращает случ. карту в колоде в *Свежее *мясо. NL Даёт !M! Силы."
   },
-  "${ModID}:FloodingBullets": {
-    "NAME": "Flooding Bullets",
-    "DESCRIPTION": "Deal !D! damage to ALL other characters !M! times."
+  "ruina:FloodingBullets": {
+    "NAME": "Обилие пуль",
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ другим существам !M! раза."
   },
-  "${ModID}:Reload": {
-    "NAME": "Reload",
-    "DESCRIPTION": "Gain !B! Block. NL An ally gains [E] and draws !M! card next turn."
+  "ruina:Reload": {
+    "NAME": "Перезарядка",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Соратник получает [E] и берёт на !M! карту больше в след. ходу."
   },
-  "${ModID}:Preach": {
-    "NAME": "Thought Gear: Preach",
-    "DESCRIPTION": "ALL allies gain !M! Strength next turn."
+  "ruina:Preach": {
+    "NAME": "Механизм ЦП: Проповедовать",
+    "DESCRIPTION": "Даёт !M! Силы ВСЕМ соратникам в след. ходу."
   },
-  "${ModID}:Accelerate": {
-    "NAME": "Thought Gear: Accelerate",
-    "DESCRIPTION": "ALL allies gain !B! Block."
+  "ruina:Accelerate": {
+    "NAME": "Механизм ЦП: Разогнаться",
+    "DESCRIPTION": "Даёт !B! Защиты ВСЕМ соратникам."
   },
-  "${ModID}:Propagate": {
-    "NAME": "Thought Gear: Propagate",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  "ruina:Propagate": {
+    "NAME": "Механизм ЦП: Распространяться",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Уязвимости."
   },
-  "${ModID}:ThoughtGearBrainwash": {
-    "NAME": "Thought Gear: Brainwash",
-    "DESCRIPTION": "Deal !D! damage."
+  "ruina:ThoughtGearBrainwash": {
+    "NAME": "Механизм ЦП: Промывка мозгов",
+    "DESCRIPTION": "Наносит !D! урона."
   },
-  "${ModID}:Silence": {
-    "NAME": "Silence",
-    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat."
+  "ruina:Silence": {
+    "NAME": "Тишина",
+    "DESCRIPTION": "Наносит !D! урона. NL Урон, наносимый этой картой, повышается на !M! в этом бою."
   },
-  "${ModID}:Time": {
-    "NAME": "Time",
-    "DESCRIPTION": "You take an extra turn after this one. NL End your turn."
+  "ruina:Time": {
+    "NAME": "Время",
+    "DESCRIPTION": "Соратник получает дополнительный ход. NL Завершает ход соратника."
   },
-  "${ModID}:Safeguard": {
-    "NAME": "Magical Safeguard",
-    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength."
+  "ruina:Safeguard": {
+    "NAME": "Защита магией",
+    "DESCRIPTION": "Даёт !B! Защиты и !M! Силы ВСЕМ соратникам."
   },
-  "${ModID}:Missile": {
-    "NAME": "Magic Missile",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:Missile": {
+    "NAME": "Волшебная ракета",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:Onslaught": {
-    "NAME": "Magic Onslaught",
-    "DESCRIPTION": "Deal !D! damage. NL Increase this card's damage by !M! this combat."
+  "ruina:Onslaught": {
+    "NAME": "Штурм магией",
+    "DESCRIPTION": "Наносит !D! урона. NL Урон, наносимый этой картой, повышается на !M! в этом бою."
   },
-  "${ModID}:Contract": {
-    "NAME": "Contract",
-    "DESCRIPTION": "Present a list of *Contracts."
+  "ruina:Contract": {
+    "NAME": "Контракт",
+    "DESCRIPTION": "Демонстрирует перечень *Контрактов."
   },
-  "${ModID}:BindingTerms": {
-    "NAME": "Binding Terms",
-    "DESCRIPTION": "Shuffle !M! *Voids into your discard pile."
+  "ruina:BindingTerms": {
+    "NAME": "Важные условия",
+    "DESCRIPTION": "Добавляет !M! *Бездны в стопку сброса."
   },
-  "${ModID}:Crystal": {
+  "ruina:Crystal": {
     "NAME": "Crystal Atelier",
     "DESCRIPTION": "Deal !D! damage !M! times. NL If it's NOT the player's turn, gain !B! Block."
   },
-  "${ModID}:Wheels": {
+  "ruina:Wheels": {
     "NAME": "Wheels Industry",
     "DESCRIPTION": "Deal !D! damage. NL If it's the player's turn, target loses !M! Strength this turn."
   },
-  "${ModID}:Durandal": {
-    "NAME": "Durandal",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's the player's turn, gain !ruina:SecondMagic! Strength this turn."
+  "ruina:Durandal": {
+    "NAME": "Дюрандаль",
+    "DESCRIPTION": "Наносит !D! урона !M! раз(а). NL If it's the player's turn, gain !ruina:SecondMagic! Strength this turn."
   },
-  "${ModID}:Allas": {
+  "ruina:Allas": {
     "NAME": "Allas Workshop",
     "DESCRIPTION": "Deal !D! damage. NL If it's the player's turn, target loses !M! Strength this turn."
   },
-  "${ModID}:Gun": {
+  "ruina:Gun": {
     "NAME": "Atelier Logic",
     "DESCRIPTION": "Deal !D! damage !M! times."
   },
-  "${ModID}:Mook": {
+  "ruina:Mook": {
     "NAME": "Mook Workshop",
     "DESCRIPTION": "Deal !D! damage. NL Remove all Block from the target."
   },
-  "${ModID}:OldBoys": {
+  "ruina:OldBoys": {
     "NAME": "Old Boy's Workshop",
     "DESCRIPTION": "Deal !D! damage. NL If it's NOT the player's turn, gain !B! Block."
   },
-  "${ModID}:Ranga": {
+  "ruina:Ranga": {
     "NAME": "Ranga Workshop",
     "DESCRIPTION": "Deal !D! damage !M! times. NL If it's NOT the player's turn, apply !ruina:SecondMagic! ruina:Bleed."
   },
-  "${ModID}:Mace": {
+  "ruina:Mace": {
     "NAME": "Zelkova Workshop",
     "DESCRIPTION": "Deal !D! damage !M! times. NL If it's the player's turn, gain !ruina:SecondMagic! Strength this turn."
   },
-  "${ModID}:Furioso": {
+  "ruina:Furioso": {
     "NAME": "Furioso",
     "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak and Frail."
   },
-  "${ModID}:Yun": {
+  "ruina:Yun": {
     "NAME": "Memory - Yun's Office",
     "DESCRIPTION": "Choose one:",
     "EXTENDED_DESCRIPTION": ["Shuffle !M! *Dazed into your draw pile.", "Shuffle !ruina:SecondMagic! *Wounds into your discard pile."]
   },
-  "${ModID}:Zwei": {
+  "ruina:Zwei": {
     "NAME": "Memory - Zwei Association",
     "DESCRIPTION": "Choose one:",
     "EXTENDED_DESCRIPTION": ["The enemy gains !M! *Metallicize.", "The enemy gains !ruina:SecondMagic! *Plated *Armor."]
   },
-  "${ModID}:Dawn": {
+  "ruina:Dawn": {
     "NAME": "Memory - Dawn Office",
     "DESCRIPTION": "Choose one:",
     "EXTENDED_DESCRIPTION": ["Shuffle !M! *Burns into your draw pile.", "The enemy gains !ruina:SecondMagic! *Protection."]
   },
-  "${ModID}:Shi": {
+  "ruina:Shi": {
     "NAME": "Memory - Shi Association",
     "DESCRIPTION": "Choose one:",
     "EXTENDED_DESCRIPTION": ["You gain !M! Weak.", "You gain !ruina:SecondMagic! Frail."]
   },
-  "${ModID}:Love": {
+  "ruina:Love": {
     "NAME": "Memory - Love Town",
     "DESCRIPTION": "Choose one:",
     "EXTENDED_DESCRIPTION": ["The enemy gains !M! *Regen.", "Shuffle !ruina:SecondMagic! *Slimed into your discard pile."]
   },
-  "${ModID}:Liu": {
+  "ruina:Liu": {
     "NAME": "Memory - Liu Association",
     "DESCRIPTION": "Choose one:",
     "EXTENDED_DESCRIPTION": ["The enemy gains !M! Strength.", "You gain !ruina:SecondMagic! Vulnerable."]
   },
-  "${ModID}:Purple": {
+  "ruina:Purple": {
     "NAME": "Memory - The Purple Tear",
     "DESCRIPTION": "Choose one:",
     "EXTENDED_DESCRIPTION": ["The enemy gains !M! Intangible.", "The enemy summons !ruina:SecondMagic! minion."]
   },
-  "${ModID}:Hana": {
+  "ruina:Hana": {
     "NAME": "Memory - Hana Association",
     "DESCRIPTION": "Choose one:",
     "EXTENDED_DESCRIPTION": ["Put !M! *Regret into your hand.", "You lose !ruina:SecondMagic! HP."]
   },
-  "${ModID}:Blue": {
+  "ruina:Blue": {
     "NAME": "Memory - The Blue Reverberation",
     "DESCRIPTION": "Choose one:",
     "EXTENDED_DESCRIPTION": ["The enemy gains an additional intent.", "Whenever you play a card, Exhaust it."]
   },
-  "${ModID}:Agony": {
+  "ruina:Agony": {
     "NAME": "Agony",
     "DESCRIPTION": "Deal !D! damage."
   },
-  "${ModID}:Scream": {
+  "ruina:Scream": {
     "NAME": "Scream",
     "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
   },
-  "${ModID}:Void": {
+  "ruina:Void": {
     "NAME": "Void",
     "DESCRIPTION": "Apply !ruina:SecondMagic! Weak and Frail. NL Shuffle !M! *Void into your discard pile."
   },
-  "${ModID}:ZelkovaWorkshop": {
+  "ruina:ZelkovaWorkshop": {
     "NAME": "Zelkova Workshop",
     "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
   },
-  "${ModID}:AllasWorkshop": {
+  "ruina:AllasWorkshop": {
     "NAME": "Allas Workshop",
-    "DESCRIPTION": "Deal !D! damage. NL If its *Partner intends to attack, apply! !M! Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL If its *Partner intends to attack, apply !M! Vulnerable."
   },
-  "${ModID}:AtelierLogic": {
+  "ruina:AtelierLogic": {
     "NAME": "Atelier Logic",
     "DESCRIPTION": "Deal !D! damage !M! times."
   },
-  "${ModID}:WaltzInWhite": {
+  "ruina:WaltzInWhite": {
     "NAME": "Waltz in White",
     "DESCRIPTION": "Deal !D! damage !M! times."
   },
-  "${ModID}:AshenBond": {
+  "ruina:AshenBond": {
     "NAME": "Ashen Bond",
     "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength."
   },
-  "${ModID}:UnitedWorkshop": {
+  "ruina:UnitedWorkshop": {
     "NAME": "United Assault",
     "DESCRIPTION": "Deal !D! damage !M! times. NL If its *Partner intends to attack, gain !ruina:SecondMagic! Strength."
   },
-  "${ModID}:UnstableLoneliness": {
+  "ruina:UnstableLoneliness": {
     "NAME": "Unstable Loneliness",
     "DESCRIPTION": "Deal !D! damage. NL If its *Partner does NOT intend to attack, apply !M! Weak and Frail."
   },
-  "${ModID}:BlindFury": {
+  "ruina:BlindFury": {
     "NAME": "Blind Fury",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
   },
-  "${ModID}:DarkBond": {
+  "ruina:DarkBond": {
     "NAME": "Dark Bond",
     "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile."
   },
-  "${ModID}:WaltzInBlack": {
+  "ruina:WaltzInBlack": {
     "NAME": "Waltz in Black",
     "DESCRIPTION": "Deal !D! damage !M! times."
   },
-  "${ModID}:SerumW": {
+  "ruina:SerumW": {
     "NAME": "Serum W",
     "DESCRIPTION": "Deal !D! damage. NL If this creature has at least !M! Strength, instantly kill the target."
   },
-  "${ModID}:SerumR": {
+  "ruina:SerumR": {
     "NAME": "Serum R",
     "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
   },
-  "${ModID}:Extirpation": {
+  "ruina:Extirpation": {
     "NAME": "Extirpation",
     "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
   },
-  "${ModID}:TriSerum": {
+  "ruina:TriSerum": {
     "NAME": "Tri Serum Cocktail",
     "DESCRIPTION": "Deal !D! damage !M! times."
   },
-  "${ModID}:SerumK": {
+  "ruina:SerumK": {
     "NAME": "Serum K",
     "DESCRIPTION": "The lowest HP ally gains !B! Block and heals !M! HP."
   },
-  "${ModID}:Line": {
+  "ruina:Line": {
     "NAME": "Line",
     "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
   },
-  "${ModID}:ThinLine": {
+  "ruina:ThinLine": {
     "NAME": "Thin Line",
     "DESCRIPTION": "Deal !D! damage. NL Steal !M! Strength from the target."
   },
-  "${ModID}:ThickLine": {
+  "ruina:ThickLine": {
     "NAME": "Thick Line",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak and Vulnerable."
   },
-  "${ModID}:ZenaShockwave": {
+  "ruina:ZenaShockwave": {
     "NAME": "Shockwave",
     "DESCRIPTION": "Deal !D! damage to ALL enemies."
   },
