@@ -552,5 +552,22 @@
       "[Wake Up]",
       "Upgrade A Card."
     ]
+  },
+  "${ModID}:WarpTrain": {
+    "NAME": "Warp Train",
+    "DESCRIPTIONS": [
+      "You open your eyes to a depiction of a train station. It's very crowded, with commuters rushing from platform to platform, hurrying to get to work on time. On your right, you see various employees walking in groups of #b3, preparing to board a train before the passengers can get on. After the employees board the train, you notice one of them dropped a strange looking cube. It glows with a #bfluorescent radiance, and on further observation, it contains a coin slot which you could insert your #ygold into. Next to the dropped cube, you also notice various stacks of wooden crates, hastily fashioned next to the platform.",
+      "You insert some of your #ygold into the cube, and it glows #bbrighter than before. It begins to pulsate in your hand, faster and faster, as your vision becomes obscured by the radiance of the cube. You feel time slow down as you watch the scurrying commuters pace slower and slower, until time crawls to a halt, and you begin to shudder with the possibilities of what can be done with this power.",
+      "You easily break the locks of the wooden crates, and it seems that the employees were too busy with their packed shifts that they forgot to ensure the protection of the goods being transported. Inside the crates, gold pours forth again and again, and you try to pocket as much as you can carry. You leave, significantly wealthier than you once were.",
+      "You decide to leave both possibilities untouched. After all, this station seems too crowded to try something risky."
+    ],
+    "OPTIONS": [
+      "[Open The Crates] Gain #g%d #yGold.",
+      "[Interact With The Box] Lose #r%d #yGold. #gTransform #ga #gcard.",
+      "[Locked] Requires #r%d #yGold.",
+      "[Leave It]",
+      "[Wake Up]",
+      "Transform A Card."
+    ]
   }
 }

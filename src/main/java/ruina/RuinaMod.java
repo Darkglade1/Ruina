@@ -36,6 +36,7 @@ import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.*;
 import ruina.events.act1.ShiAssociation;
+import ruina.events.act1.WarpTrain;
 import ruina.events.act2.*;
 import ruina.events.act3.*;
 import ruina.monsters.act1.AllAroundHelper;
@@ -581,6 +582,8 @@ public class RuinaMod implements
         BaseMod.addMonster(ScorchedGirl.ID, (BaseMod.GetMonster) ScorchedGirl::new);
 
         BaseMod.addEvent(ShiAssociation.ID, ShiAssociation.class, Asiyah.ID);
+        BaseMod.addEvent(WarpTrain.ID, WarpTrain.class, Asiyah.ID);
+        BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
 
 
         //Act 2
