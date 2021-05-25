@@ -23,7 +23,7 @@ public class WingsOfGrace extends AbstractEasyPower {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
         this.priority = 50;
         if (AbstractDungeon.ascensionLevel >= 19) {
-            DAMAGE_REDUCTION = 0.8f;
+            DAMAGE_REDUCTION = 0.75f;
         } else {
             DAMAGE_REDUCTION = 0.5f;
         }

@@ -57,7 +57,7 @@
   },
   "${ModID}:SenselessWrath": {
     "NAME": "Senseless Wrath",
-    "DESCRIPTIONS": ["Every other #ydebuff applied to this creature is #ynegated."]
+    "DESCRIPTIONS": ["Every other #pdebuff applied to this creature is #ynegated."]
   },
   "${ModID}:MagicalGirl": {
     "NAME": "A Real Magical Girl!",
@@ -77,7 +77,7 @@
   },
   "${ModID}:Road": {
     "NAME": "Road of the King",
-    "DESCRIPTIONS": ["Uses a #rpowerful attack in #b", " turns.", " turn.", "Using a #rpowerful attack this turn!"]
+    "DESCRIPTIONS": ["Uses a #rpowerful attack in #b", " turns.", " turn.", "Using a #rpowerful attack."]
   },
   "${ModID}:Bliss": {
     "NAME": "Moment of Bliss",
@@ -117,7 +117,7 @@
   },
   "${ModID}:SwordCounter": {
     "NAME": "Tears",
-    "DESCRIPTIONS": [" has been played on this enemy #b", " times.", " time."]
+    "DESCRIPTIONS": [" has been played on this #renemy #b", " times.", " time."]
   },
   "${ModID}:HomingInstinct": {
     "NAME": "Homing Instinct",
@@ -133,7 +133,7 @@
   },
   "${ModID}:Thirst": {
     "NAME": "Thirst",
-    "DESCRIPTIONS": ["This turn, whenever you attack an enemy with #yBleed, gain #b" , " #yStrength."]
+    "DESCRIPTIONS": ["This turn, whenever you attack an #renemy with #yBleed, gain #b" , " #yStrength."]
   },
   "${ModID}:GoodbyePower": {
     "NAME": "Goodbye",
@@ -157,7 +157,7 @@
   },
   "${ModID}:Unkillable": {
     "NAME": "By Grace Through Faith",
-    "DESCRIPTIONS": ["Whenever this creature dies, it is #yrevived next turn by the enemy."]
+    "DESCRIPTIONS": ["Whenever this creature dies, it is #yrevived next turn by the #renemy."]
   },
   "${ModID}:ParadiseLostPower": {
     "NAME": "Paradise Lost",
@@ -292,11 +292,11 @@
   },
   "${ModID}:BlackSilence": {
     "NAME": "The Black Silence",
-    "DESCRIPTIONS": ["Gains #b", " #yStrength each turn.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
+    "DESCRIPTIONS": ["Gains #b", " #yStrength at end of round.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
   },
   "${ModID}:BlueReverberation": {
     "NAME": "The Blue Reverberation",
-    "DESCRIPTIONS": ["Gains #b%1$s #yStrength each turn."]
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength at end of round."]
   },
   "${ModID}:ContractOfMight": {
     "NAME": "Contract Of Might",
@@ -364,11 +364,11 @@
   },
   "${ModID}:Sharkskin": {
     "NAME": "Sharkskin",
-    "DESCRIPTIONS": ["Receives #b", "% less damage from attacks unless this creature has a #ydebuff. NL Every #b", " turns, this creature removes ALL #ydebuffs from itself."]
+    "DESCRIPTIONS": ["Receives #b", "% less damage from attacks unless this creature has a #pdebuff. NL Every #b", " turns, this creature removes all #pdebuffs from itself."]
   },
   "${ModID}:FreshMeat": {
     "NAME": "Fresh Meat",
-    "DESCRIPTIONS": ["On death, if the #renemy killed it, the #renemy heals #b", " HP and ", " is #rPurged and #rremoved from your master deck. Otherwise, ", " is put into your hand. NL NL If this creature dies while the #renemy is targeting it, the #renemy will target #yyou instead."]
+    "DESCRIPTIONS": ["On death, if the #renemy killed it, the #renemy heals #b", " HP and ", " is #rPurged and #rremoved from your master deck. Otherwise, ", " is put into your hand. NL NL If this creature dies while the #renemy is targeting it, the #renemy will target you instead."]
   },
   "${ModID}:PurpleTearStance": {
     "NAME": "",
@@ -378,9 +378,9 @@
       "% more damage with attacks.",
       "Pierce Stance",
       "Every #b",
-      "nd attack from this creature #ydoubles ALL of its target's #rdebuffs.",
+      "nd attack from this creature #ydoubles ALL of its target's #pdebuffs.",
       "Guard Stance",
-      "#yNegate ALL #rdebuffs applied to this creature.",
+      "#yNegate ALL #pdebuffs applied to this creature.",
       " NL NL You can change this creature's #yStance by clicking on the #yStance #yChange buttons next to this creature's intent."]
   },
   "${ModID}:Gears": {
