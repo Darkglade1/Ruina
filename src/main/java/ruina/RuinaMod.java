@@ -42,6 +42,7 @@ import ruina.events.act3.*;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.ScorchedGirl;
+import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -516,6 +517,10 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("MatchExplode"), makeSFXPath("MatchGirl_Explosion.wav"));
         BaseMod.addAudio(makeID("MatchSizzle"), makeSFXPath("MatchGirl_Barrier.wav"));
+
+        BaseMod.addAudio(makeID("TeddyOn"), makeSFXPath("Teddy_On.wav"));
+        BaseMod.addAudio(makeID("TeddyBlock"), makeSFXPath("Teddy_Guard.wav"));
+        BaseMod.addAudio(makeID("TeddyAtk"), makeSFXPath("Teddy_NormalAtk.wav"));
     }
 
     @Override
@@ -580,6 +585,7 @@ public class RuinaMod implements
                 }));
         BaseMod.addMonster(ForsakenMurderer.ID, (BaseMod.GetMonster) ForsakenMurderer::new);
         BaseMod.addMonster(ScorchedGirl.ID, (BaseMod.GetMonster) ScorchedGirl::new);
+        BaseMod.addMonster(TeddyBear.ID, (BaseMod.GetMonster) TeddyBear::new);
 
         BaseMod.addEvent(ShiAssociation.ID, ShiAssociation.class, Asiyah.ID);
         BaseMod.addEvent(WarpTrain.ID, WarpTrain.class, Asiyah.ID);

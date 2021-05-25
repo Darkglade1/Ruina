@@ -1026,5 +1026,14 @@
     "NAME": "Scorched Girl",
     "DIALOG": [
     ]
+  },
+  "${ModID}:TeddyBear": {
+    "MOVES": [
+      "Timid Endearment",
+      "Display of Affection"
+    ],
+    "NAME": "Happy Teddy Bear",
+    "DIALOG": [
+    ]
   }
 }

@@ -469,5 +469,9 @@
   "${ModID}:Fear": {
     "NAME": "Fear",
     "DESCRIPTIONS": ["Whenever you play an #yAttack, this creature loses #b", " #yStrength this turn."]
+  },
+  "${ModID}:Affection": {
+    "NAME": "Affection",
+    "DESCRIPTIONS": ["Whenever this creature fully or partially #yBlocks attack damage, it gains #b", " #yStrength."]
   }
 }

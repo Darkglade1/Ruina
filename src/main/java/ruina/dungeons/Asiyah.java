@@ -11,6 +11,7 @@ import ruina.RuinaMod;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.ScorchedGirl;
+import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.KingOfGreed;
 import ruina.monsters.act2.KnightOfDespair;
@@ -89,7 +90,7 @@ public class Asiyah extends AbstractRuinaDungeon {
     @Override
     protected void generateStrongEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo("Blue Slaver", 2.0F));
+        monsters.add(new MonsterInfo(TeddyBear.ID, 2.0F));
         monsters.add(new MonsterInfo("Gremlin Gang", 1.0F));
         monsters.add(new MonsterInfo("Looter", 2.0F));
         monsters.add(new MonsterInfo("Large Slime", 2.0F));

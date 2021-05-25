@@ -13,6 +13,7 @@ import ruina.dungeons.AbstractRuinaDungeon;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.ScorchedGirl;
+import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -159,6 +160,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Murderer");
                 } else if (mo instanceof ScorchedGirl) {
                     this.bg = this.atlas.findRegion("mod/ScorchedGirl");
+                } else if (mo instanceof TeddyBear) {
+                    this.bg = this.atlas.findRegion("mod/TeddyBear");
                 } else {
                     setBgs();
                 }
