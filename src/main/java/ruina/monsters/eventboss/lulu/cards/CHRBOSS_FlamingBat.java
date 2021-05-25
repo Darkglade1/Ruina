@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
-import ruina.monsters.blackSilence.blackSilence3.rolandCards.DarkBond;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 
 import static ruina.RuinaMod.makeID;

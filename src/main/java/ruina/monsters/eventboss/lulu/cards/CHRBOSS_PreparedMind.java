@@ -21,12 +21,6 @@ public class CHRBOSS_PreparedMind extends AbstractEgoCard {
     }
 
     @Override
-    public float getTitleFontSize()
-    {
-        return 14;
-    }
-
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
     @Override

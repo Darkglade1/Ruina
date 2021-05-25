@@ -37,8 +37,8 @@ public class Lulu extends AbstractCardMonster {
     public final int PREPARED_MIND_STRENGTH = calcAscensionSpecial(2);
     public final int FLAMING_BAT_DAMAGE = calcAscensionDamage(7);
     public final int FLAMING_BAT_VULNERABLE = calcAscensionSpecial(1);
-    public final int SET_ABLAZE_DAMAGE = calcAscensionDamage(4);
-    public final int SET_ABLAZE_HITS = 3;
+    public final int SET_ABLAZE_DAMAGE = calcAscensionDamage(6);
+    public final int SET_ABLAZE_HITS = 2;
     private final int FLAMING_BAT_BURN_AMOUNT = calcAscensionSpecial(2);
 
     public static final String POWER_ID = makeID("FlamingBat");
@@ -51,7 +51,7 @@ public class Lulu extends AbstractCardMonster {
     }
 
     public Lulu(final float x, final float y) {
-        super(NAME, ID, 95, -15.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 95, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Lulu/Spriter/Lulu.scml"));
 
         this.setHp(calcAscensionTankiness(this.maxHealth));
@@ -111,7 +111,7 @@ public class Lulu extends AbstractCardMonster {
                 break;
             }
             case FLAMING_BAT: {
-                bluntAnimation(adp());
+                pierceAnimation(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new VulnerablePower(adp(), FLAMING_BAT_VULNERABLE, true));
                 resetIdle();
