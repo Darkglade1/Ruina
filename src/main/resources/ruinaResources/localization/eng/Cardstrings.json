@@ -813,5 +813,17 @@
   "${ModID}:Guilt": {
     "NAME": "Guilt",
     "DESCRIPTION": "At the end of your turn, a random enemy gains !M! Strength next turn. NL If this is Exhausted without being played, add a copy of it into your discard pile."
+  },
+  "${ModID}:CHRBOSS_PreparedMind": {
+    "NAME": "Prepared Mind",
+    "DESCRIPTION": "Gain !M! Strength."
+  },
+  "${ModID}:CHRBOSS_FlamingBat": {
+    "NAME": "Flaming Bat",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  },
+  "${ModID}:CHRBOSS_SetAblaze": {
+    "NAME": "Set Ablaze",
+    "DESCRIPTION": "Deal !D! damage !M! times."
   }
 }

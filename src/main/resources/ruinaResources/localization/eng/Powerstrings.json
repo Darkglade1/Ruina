@@ -473,5 +473,13 @@
   "${ModID}:Affection": {
     "NAME": "Affection",
     "DESCRIPTIONS": ["Whenever this creature fully or partially #yBlocks attack damage, it gains #b", " #yStrength."]
+  },
+  "${ModID}:FlamingBat": {
+    "NAME": "Flaming Bat",
+    "DESCRIPTIONS": ["When this creature deals unblocked damage, apply #b%d #yBurn."]
+  },
+  "${ModID}:Burn": {
+    "NAME": "Burn",
+    "DESCRIPTIONS": ["Take #b%d damage at the end of your turn, and then remove all stacks of #yBurn."]
   }
 }

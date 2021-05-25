@@ -569,5 +569,19 @@
       "[Wake Up]",
       "Transform A Card."
     ]
+  },
+  "${ModID}:StreetlightOffice": {
+    "NAME": "Streetlight Office",
+    "DESCRIPTIONS": [
+      "You turn a street corner to find yourself in a dimly-lit alleyway. The streetlights flicker with uncertainty, and you see the shadow of a weeping girl, her tears falling alongside the heavy rain. NL NL \"You stupid idiot... NL It's not like you at all to buy cakes for others... NL You said your mother's an amazing Fixer too, and you loved to show off that stupidly huge sword, saying it was a gift from her... NL You even bragged so much that you wanted to be just like her someday. NL Why, why did you have to fall out of any of us? NL I won't let them toy with you... I'll never let them...",
+      "You appear back in the Library's lobby, with the knowledge that the girl you just witnessed intends to return to the Library once-more. NL All of the Patron Librarians appear increasingly busy with their work, and you question if you should intervene in their stead.",
+      "You decide not to intervene in the affairs of others."
+    ],
+    "OPTIONS": [
+      "[Continue]",
+      "[Intervene] Fight a #rSpecial #rEnemy. Obtain a #gSpecial #gRelic.",
+      "[Don't Intervene]",
+      "[Leave]"
+    ]
   }
 }

@@ -1035,5 +1035,15 @@
     "NAME": "Happy Teddy Bear",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Lulu": {
+    "MOVES": [
+      "Prepared Mind",
+      "Flaming Bat",
+      "Set Ablaze"
+    ],
+    "NAME": "Lulu",
+    "DIALOG": [
+    ]
   }
 }

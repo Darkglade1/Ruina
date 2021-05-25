@@ -36,6 +36,7 @@ import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.*;
 import ruina.events.act1.ShiAssociation;
+import ruina.events.act1.StreetlightOffice;
 import ruina.events.act1.WarpTrain;
 import ruina.events.act2.*;
 import ruina.events.act3.*;
@@ -61,6 +62,7 @@ import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
+import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.theHead.Baral;
@@ -587,8 +589,11 @@ public class RuinaMod implements
         BaseMod.addMonster(ScorchedGirl.ID, (BaseMod.GetMonster) ScorchedGirl::new);
         BaseMod.addMonster(TeddyBear.ID, (BaseMod.GetMonster) TeddyBear::new);
 
+        BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
+
         BaseMod.addEvent(ShiAssociation.ID, ShiAssociation.class, Asiyah.ID);
         BaseMod.addEvent(WarpTrain.ID, WarpTrain.class, Asiyah.ID);
+        BaseMod.addEvent(StreetlightOffice.ID, StreetlightOffice.class, Asiyah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
 
 
