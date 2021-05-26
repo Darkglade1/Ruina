@@ -97,6 +97,8 @@ import ruina.util.TexLoader;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Properties;
 
 import static ruina.util.Wiz.adp;
@@ -160,6 +162,8 @@ public class RuinaMod implements
     public static Boolean reverbClear;
     public static Boolean blacksilenceClear;
     public static Boolean headClear;
+    public static Boolean clown;
+
 
     public RuinaMod() {
         BaseMod.subscribe(this);
@@ -176,6 +180,7 @@ public class RuinaMod implements
             ruinaDefaults.put("reverbClear", false);
             ruinaDefaults.put("blacksilenceClear", false);
             ruinaDefaults.put("headClear", false);
+            ruinaDefaults.put("clown", false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -183,6 +188,8 @@ public class RuinaMod implements
         }
         logger.info("RUINA CONFIG OPTIONS LOADED:");
         logger.info("Ally tutorial seen: " + ruinaConfig.getString("Ally Tutorial Seen") + ".");
+        LocalDate clownCheck = LocalDate.now();
+        clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
         loadConfig();
     }
 
@@ -559,6 +566,7 @@ public class RuinaMod implements
     @Override
     public void receivePostInitialize() {
 
+
         silenceImg = new Texture(makeUIPath("silenceImg.png"));
         UIAtlas.addRegion("silenceImg", silenceImg, 0, 0, silenceImg.getWidth(), silenceImg.getHeight());
 
@@ -878,6 +886,8 @@ public class RuinaMod implements
             ruinaConfig.setBool("reverbClear", reverbClear);
             ruinaConfig.setBool("blacksilenceClear", blacksilenceClear);
             ruinaConfig.setBool("headClear", headClear);
+            LocalDate clownCheck = LocalDate.now();
+            clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
             ruinaConfig.save();
         } catch (IOException e) {
             e.printStackTrace();
@@ -888,9 +898,10 @@ public class RuinaMod implements
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");
+        LocalDate clownCheck = LocalDate.now();
+        clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
     }
 
-    public static boolean hijackMenu() {
-        return headClear;
-    }
+    public static boolean hijackMenu() { return headClear; }
+    public static boolean clownTime() { return clown; }
 }
