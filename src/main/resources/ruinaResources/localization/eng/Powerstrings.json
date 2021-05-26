@@ -489,5 +489,13 @@
   "${ModID}:WintersInception": {
     "NAME": "Winter's Inception",
     "DESCRIPTIONS": ["The first #yAttack you play each turn gains #yLaurel #yWreath. This creature receives #b", "% less damage from #yAttacks without #yLaurel #yWreath."]
+  },
+  "${ModID}:Performance": {
+    "NAME": "Never-ending Performance",
+    "DESCRIPTIONS": ["At end of round, shuffle a #yPerformer card into your discard pile.", "Whenever a #yPerformer card is #yExhausted, add a copy of it into your discard pile."]
+  },
+  "${ModID}:FerventAdoration": {
+    "NAME": "Fervent Adoration",
+    "DESCRIPTIONS": ["At the start of your turn, draw #b", " card.", " cards.", " At the end of your turn, take #b", " damage."]
   }
 }

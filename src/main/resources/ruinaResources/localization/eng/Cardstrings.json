@@ -825,5 +825,25 @@
   "${ModID}:CHRBOSS_SetAblaze": {
     "NAME": "Set Ablaze",
     "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:FirstChair": {
+    "NAME": "First Chair",
+    "DESCRIPTION": "When Retained, take !M! damage."
+  },
+  "${ModID}:SecondChair": {
+    "NAME": "Second Chair",
+    "DESCRIPTION": "When Retained, a random enemy gains !M! Strength next turn."
+  },
+  "${ModID}:ThirdChair": {
+    "NAME": "Third Chair",
+    "DESCRIPTION": "When Retained, gain !M! Weak or Frail, alternating each turn."
+  },
+  "${ModID}:FourthChair": {
+    "NAME": "Fourth Chair",
+    "DESCRIPTION": "When Retained, lose !M! Strength or Dexterity, alternating each turn."
+  },
+  "${ModID}:Conductor": {
+    "NAME": "Conductor",
+    "DESCRIPTION": "When Retained, increase the cost of all other *Performer cards in your hand by !M! this combat. If all !ruina:SecondMagic! other Performer cards are in your hand, trigger their effects again."
   }
 }

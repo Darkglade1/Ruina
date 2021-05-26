@@ -1063,5 +1063,18 @@
     "NAME": "Alriune",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Orchestra": {
+    "MOVES": [
+      "The First Movement",
+      "The Second Movement",
+      "The Third Movement",
+      "The Fourth Movement",
+      "Finale",
+      "Curtain Call"
+    ],
+    "NAME": "Silent Orchestra",
+    "DIALOG": [
+    ]
   }
 }

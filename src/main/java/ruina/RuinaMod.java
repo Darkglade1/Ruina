@@ -565,8 +565,6 @@ public class RuinaMod implements
 
     @Override
     public void receivePostInitialize() {
-
-
         silenceImg = new Texture(makeUIPath("silenceImg.png"));
         UIAtlas.addRegion("silenceImg", silenceImg, 0, 0, silenceImg.getWidth(), silenceImg.getHeight());
 
