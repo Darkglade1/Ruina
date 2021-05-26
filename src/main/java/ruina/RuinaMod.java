@@ -42,6 +42,7 @@ import ruina.events.act1.WarpTrain;
 import ruina.events.act2.*;
 import ruina.events.act3.*;
 import ruina.monsters.act1.AllAroundHelper;
+import ruina.monsters.act1.Alriune;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
@@ -527,6 +528,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("TeddyAtk"), makeSFXPath("Teddy_NormalAtk.wav"));
 
         BaseMod.addAudio(makeID("ShyAtk"), makeSFXPath("Shy_Atk.wav"));
+
+        BaseMod.addAudio(makeID("AlriuneHori"), makeSFXPath("Ali_Boss_Hori.wav"));
+        BaseMod.addAudio(makeID("AlriuneGuard"), makeSFXPath("Ali_Guard.wav"));
     }
 
     @Override
@@ -589,6 +593,8 @@ public class RuinaMod implements
                         new AllAroundHelper(-300.0F, 0.0F, true),
                         new AllAroundHelper(0.0F, 0.0F, false),
                 }));
+        BaseMod.addMonster(Alriune.ID, (BaseMod.GetMonster) Alriune::new);
+
         BaseMod.addMonster(ForsakenMurderer.ID, (BaseMod.GetMonster) ForsakenMurderer::new);
         BaseMod.addMonster(ScorchedGirl.ID, (BaseMod.GetMonster) ScorchedGirl::new);
         BaseMod.addMonster(TeddyBear.ID, (BaseMod.GetMonster) TeddyBear::new);

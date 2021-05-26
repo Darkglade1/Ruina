@@ -485,5 +485,9 @@
   "${ModID}:Expression": {
     "NAME": "Expression",
     "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature changes its intent."]
+  },
+  "${ModID}:WintersInception": {
+    "NAME": "Winter's Inception",
+    "DESCRIPTIONS": ["The first #yAttack you play each turn gains #yLaurel #yWreath. This creature receives #b", "% less damage from #yAttacks without #yLaurel #yWreath."]
   }
 }

@@ -1053,5 +1053,15 @@
     "NAME": "Today's Shy Look",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Alriune": {
+    "MOVES": [
+      "Spring's Genesis",
+      "Full Bloom",
+      "Magnificent End"
+    ],
+    "NAME": "Alriune",
+    "DIALOG": [
+    ]
   }
 }

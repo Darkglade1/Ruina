@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
 import ruina.monsters.act1.AllAroundHelper;
+import ruina.monsters.act1.Alriune;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
@@ -110,7 +111,7 @@ public class Asiyah extends AbstractRuinaDungeon {
     protected void generateElites(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo("Gremlin Nob", 1.0F));
-        monsters.add(new MonsterInfo("Lagavulin", 1.0F));
+        monsters.add(new MonsterInfo(Alriune.ID, 1.0F));
         monsters.add(new MonsterInfo(AllAroundHelper.ID, 1.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateMonsterList(monsters, count, true);

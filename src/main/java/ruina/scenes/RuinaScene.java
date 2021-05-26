@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
 import ruina.dungeons.AbstractRuinaDungeon;
 import ruina.monsters.act1.AllAroundHelper;
+import ruina.monsters.act1.Alriune;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
@@ -165,6 +166,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/TeddyBear");
                 } else if (mo instanceof ShyLook) {
                     this.bg = this.atlas.findRegion("mod/ShyLook");
+                } else if (mo instanceof Alriune) {
+                    this.bg = this.atlas.findRegion("mod/Alriune");
                 } else {
                     setBgs();
                 }
