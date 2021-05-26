@@ -1,28 +1,18 @@
 package ruina.events.act1;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import ruina.RuinaMod;
 import ruina.cards.EGO.AbstractEgoCard;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
-import ruina.monsters.eventboss.redMist.monster.RedMist;
-import ruina.monsters.eventboss.yan.monster.yanDistortion;
-import ruina.relics.Overexertion;
-import ruina.relics.Strongest;
 
 import static ruina.RuinaMod.makeEventPath;
-import static ruina.util.Wiz.adp;
 
 public class StreetlightOffice extends AbstractImageEvent {
 
@@ -39,6 +29,7 @@ public class StreetlightOffice extends AbstractImageEvent {
 
     public StreetlightOffice() {
         super(NAME, DESCRIPTIONS[0], IMG);
+        noCardsInRewards = true;
         imageEventText.setDialogOption(OPTIONS[0]);
     }
 
@@ -64,7 +55,6 @@ public class StreetlightOffice extends AbstractImageEvent {
                         reward.cards = AbstractEgoCard.getRandomEgoCards(reward.cards.size());
                         for (AbstractCard c : reward.cards) {
                             UnlockTracker.markCardAsSeen(c.cardID);
-                            c.upgrade();
                         }
                         AbstractDungeon.getCurrRoom().rewards.clear();
                         AbstractDungeon.getCurrRoom().addCardReward(reward);
