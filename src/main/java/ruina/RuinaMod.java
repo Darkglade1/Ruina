@@ -35,6 +35,7 @@ import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.*;
+import ruina.events.act1.NightInTheBackstreets;
 import ruina.events.act1.ShiAssociation;
 import ruina.events.act1.StreetlightOffice;
 import ruina.events.act1.WarpTrain;
@@ -598,6 +599,8 @@ public class RuinaMod implements
         BaseMod.addEvent(ShiAssociation.ID, ShiAssociation.class, Asiyah.ID);
         BaseMod.addEvent(WarpTrain.ID, WarpTrain.class, Asiyah.ID);
         BaseMod.addEvent(StreetlightOffice.ID, StreetlightOffice.class, Asiyah.ID);
+        BaseMod.addEvent(NightInTheBackstreets.ID, NightInTheBackstreets.class, Asiyah.ID);
+
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
 
 
