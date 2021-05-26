@@ -71,5 +71,12 @@
     "DESCRIPTIONS": [
       "Start each combat with an additional [E] [E] . NL Gain #b%1$s Weak and Frail at the start of your #bsecond turn."
     ]
+  },
+  "${ModID}:LifeFiber": {
+    "NAME": "Life Fibers",
+    "FLAVOR": "When night falls in the Backstreets, they will come.",
+    "DESCRIPTIONS": [
+      "On Pickup, lose 50% of your max HP and store it in this relic. NL When you would die, fully heal to your current Max HP instead, and then increase your max HP by the amount stored by this relic. (works once)"
+    ]
   }
 }

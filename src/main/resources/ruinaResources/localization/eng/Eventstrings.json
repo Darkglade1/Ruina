@@ -583,5 +583,18 @@
       "[Don't Intervene]",
       "[Leave]"
     ]
+  },
+  "${ModID}:NightInTheBackstreets": {
+    "NAME": "Night In The Backstreets",
+    "DESCRIPTIONS": [
+      "When night falls in the Backstreets, a different world unfolds, and @they@ @will@ @come.@ NL You observe as a #btorrential #bwave of sweepers march onward, unflinching in their approach. NL Various sweepers lay on the ground, left behind from the marching pack, their corpses motionless from fights with stray fixers. You notice small canisters of red fluids, the life-force of the sweepers which is still intact, and you begin to wonder if you could extract them and harness their power yourself.",
+      "You wait for the stream of sweepers to dissipate, before making your move. It doesn't take much effort to reach the streets where the lifeless corpses lay, and you manage to easily unfasten the canister from its host.",
+      "Unsure if the canisters would even work to help yourself, you decide to retain vigilant and keep observing the marching sweepers. After 80 minutes of marching, the sweepers dissipate once-more, and the only presence alongside you is the pitch black darkness."
+    ],
+    "OPTIONS": [
+      "[Extract] Gain a #gSpecial #gRelic",
+      "[Observe]",
+      "[Leave]"
+    ]
   }
 }
