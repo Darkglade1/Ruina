@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle1.png" width="89" height="262" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Idle2.png" width="89" height="262" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Idle3.png" width="89" height="262" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Idle4.png" width="89" height="262" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Idle5.png" width="89" height="262" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Attack1.png" width="431" height="335" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Attack2.png" width="422" height="335" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="Attack3.png" width="422" height="335" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="Attack4.png" width="419" height="335" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="Attack5.png" width="422" height="341" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="Block1.png" width="146" height="243" pivot_x="0" pivot_y="1"/>
+        <file id="11" name="Block2.png" width="146" height="243" pivot_x="0" pivot_y="1"/>
+        <file id="12" name="Block3.png" width="146" height="243" pivot_x="0" pivot_y="1"/>
+        <file id="13" name="Block4.png" width="146" height="243" pivot_x="0" pivot_y="1"/>
+        <file id="14" name="Block5.png" width="146" height="243" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="ShyLook">
+        <animation id="0" name="Idle1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle1">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-39" y="262"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Idle2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle2">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-39" y="262"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Idle3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle3">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-39" y="262"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Idle4" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle4">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-39" y="262"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Idle5" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle5">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-39" y="262"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Attack1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Attack1">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-334" y="333"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="Attack2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Attack2">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-334" y="333"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="7" name="Attack3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Attack3">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-334" y="333"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="8" name="Attack4" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Attack4">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-331" y="333"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="9" name="Attack5" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Attack5">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-334" y="333"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="10" name="Block1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Block1">
+                <key id="0" spin="0">
+                    <object folder="0" file="10" x="-66" y="245"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="11" name="Block2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Block2">
+                <key id="0" spin="0">
+                    <object folder="0" file="11" x="-66" y="245"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="12" name="Block3" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Block3">
+                <key id="0" spin="0">
+                    <object folder="0" file="12" x="-66" y="245"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="13" name="Block4" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Block4">
+                <key id="0" spin="0">
+                    <object folder="0" file="13" x="-66" y="245"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="14" name="Block5" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Block5">
+                <key id="0" spin="0">
+                    <object folder="0" file="14" x="-66" y="245"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

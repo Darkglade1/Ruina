@@ -11,6 +11,7 @@ import ruina.RuinaMod;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.ScorchedGirl;
+import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.KingOfGreed;
@@ -93,7 +94,7 @@ public class Asiyah extends AbstractRuinaDungeon {
         monsters.add(new MonsterInfo(TeddyBear.ID, 2.0F));
         monsters.add(new MonsterInfo("Gremlin Gang", 1.0F));
         monsters.add(new MonsterInfo("Looter", 2.0F));
-        monsters.add(new MonsterInfo("Large Slime", 2.0F));
+        monsters.add(new MonsterInfo(ShyLook.ID, 2.0F));
         monsters.add(new MonsterInfo("Lots of Slimes", 1.0F));
         monsters.add(new MonsterInfo("Exordium Thugs", 1.5F));
         monsters.add(new MonsterInfo("Exordium Wildlife", 1.5F));

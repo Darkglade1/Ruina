@@ -1045,5 +1045,13 @@
     "NAME": "Lulu",
     "DIALOG": [
     ]
+  },
+  "${ModID}:ShyLook": {
+    "MOVES": [
+      "Today's Expression"
+    ],
+    "NAME": "Today's Shy Look",
+    "DIALOG": [
+    ]
   }
 }
