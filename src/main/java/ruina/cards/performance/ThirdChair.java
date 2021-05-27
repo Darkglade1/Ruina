@@ -30,6 +30,7 @@ public class ThirdChair extends AbstractPerformanceCard {
 
     @Override
     public void onRetained() {
+        flash();
         if (triggerFirstEffect) {
             applyToTarget(adp(), adp(), new WeakPower(adp(), magicNumber, true));
         } else {

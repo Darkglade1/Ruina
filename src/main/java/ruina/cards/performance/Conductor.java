@@ -1,6 +1,7 @@
 package ruina.cards.performance;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.atb;
 
 @AutoAdd.Ignore
 public class Conductor extends AbstractPerformanceCard {
@@ -31,22 +33,30 @@ public class Conductor extends AbstractPerformanceCard {
 
     @Override
     public void onRetained() {
-        int numPerformerCards = 0;
-        ArrayList<AbstractCard> performerCards = new ArrayList<>();
-        for (AbstractCard card : adp().hand.group) {
-            if (card instanceof AbstractPerformanceCard && card.costForTurn >= 0) {
-                card.modifyCostForCombat(magicNumber);
-                card.flash();
-                numPerformerCards++;
-                performerCards.add(card);
-                System.out.println(card);
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                int numPerformerCards = 0;
+                ArrayList<AbstractCard> performerCards = new ArrayList<>();
+                System.out.println(adp().hand.group);
+                for (AbstractCard card : adp().hand.group) {
+                    if (card instanceof AbstractPerformanceCard && card.costForTurn >= 0) {
+                        card.modifyCostForCombat(magicNumber);
+                        card.flash();
+                        numPerformerCards++;
+                        performerCards.add(card);
+                        System.out.println(card);
+                    }
+                }
+                if (numPerformerCards >= secondMagicNumber) {
+                    flash();
+                    for (AbstractCard performerCard : performerCards) {
+                        performerCard.onRetained();
+                    }
+                }
+                this.isDone = true;
             }
-        }
-        if (numPerformerCards >= secondMagicNumber) {
-            for (AbstractCard performerCard : performerCards) {
-                performerCard.onRetained();
-            }
-        }
+        });
     }
 
     @Override

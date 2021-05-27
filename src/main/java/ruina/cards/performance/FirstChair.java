@@ -30,6 +30,7 @@ public class FirstChair extends AbstractPerformanceCard {
 
     @Override
     public void onRetained() {
+        flash();
         atb(new DamageAction(adp(), new DamageInfo(adp(), magicNumber, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
     }
 

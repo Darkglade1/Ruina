@@ -30,6 +30,7 @@ public class FourthChair extends AbstractPerformanceCard {
 
     @Override
     public void onRetained() {
+        flash();
         if (triggerFirstEffect) {
             applyToTarget(adp(), adp(), new StrengthPower(adp(), -magicNumber));
         } else {

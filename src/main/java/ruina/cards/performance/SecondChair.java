@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.applyToTargetNextTurnTop;
+import static ruina.util.Wiz.applyToTargetNextTurn;
 
 @AutoAdd.Ignore
 public class SecondChair extends AbstractPerformanceCard {
@@ -28,8 +28,9 @@ public class SecondChair extends AbstractPerformanceCard {
 
     @Override
     public void onRetained() {
+        flash();
         AbstractMonster target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-        applyToTargetNextTurnTop(target, new StrengthPower(target, magicNumber));
+        applyToTargetNextTurn(target, new StrengthPower(target, magicNumber));
     }
 
     @Override
