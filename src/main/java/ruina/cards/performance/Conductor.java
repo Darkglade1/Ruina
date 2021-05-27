@@ -13,7 +13,7 @@ import static ruina.util.Wiz.adp;
 @AutoAdd.Ignore
 public class Conductor extends AbstractPerformanceCard {
     public final static String ID = makeID(Conductor.class.getSimpleName());
-    private static final int COST = 1;
+    private static final int COST = -2;
     private static final int COST_UP = 1;
     private static final int UP_COST_UP = 1;
     private static final int NUM_PERFORMER_CARDS = 4;
@@ -34,11 +34,12 @@ public class Conductor extends AbstractPerformanceCard {
         int numPerformerCards = 0;
         ArrayList<AbstractCard> performerCards = new ArrayList<>();
         for (AbstractCard card : adp().hand.group) {
-            if (card instanceof AbstractPerformanceCard) {
+            if (card instanceof AbstractPerformanceCard && card.costForTurn >= 0) {
                 card.modifyCostForCombat(magicNumber);
                 card.flash();
                 numPerformerCards++;
                 performerCards.add(card);
+                System.out.println(card);
             }
         }
         if (numPerformerCards >= secondMagicNumber) {

@@ -44,6 +44,7 @@ import ruina.events.act3.*;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.Alriune;
 import ruina.monsters.act1.ForsakenMurderer;
+import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
@@ -538,6 +539,11 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("AlriuneHori"), makeSFXPath("Ali_Boss_Hori.wav"));
         BaseMod.addAudio(makeID("AlriuneGuard"), makeSFXPath("Ali_Guard.wav"));
+
+        BaseMod.addAudio(makeID("OrchestraFinale"), makeSFXPath("Sym_movement_5_finale.wav"));
+        BaseMod.addAudio(makeID("OrchestraMovement1"), makeSFXPath("Sym_Chor_Atk.wav"));
+        BaseMod.addAudio(makeID("OrchestraMovement2"), makeSFXPath("Sym_movement_5.wav"));
+        BaseMod.addAudio(makeID("OrchestraClap"), makeSFXPath("Sym_movement_0_clap.wav"));
     }
 
     @Override
@@ -594,6 +600,7 @@ public class RuinaMod implements
         CustomIntent.add(new MassAttackIntent());
 
         //Act 1
+        BaseMod.addMonster(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new);
         BaseMod.addMonster(AllAroundHelper.ID, "All_Around_Helper", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new AllAroundHelper(-300.0F, 0.0F, true),

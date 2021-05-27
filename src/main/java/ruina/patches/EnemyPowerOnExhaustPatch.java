@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CtBehavior;
+import ruina.monsters.act1.Orchestra;
 import ruina.powers.Emotion;
 
 @SpirePatch(
@@ -24,6 +25,9 @@ public class EnemyPowerOnExhaustPatch {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             for (AbstractPower p : mo.powers) {
                 if (p.ID.equals(Emotion.POWER_ID)) {
+                    p.onExhaust(c);
+                }
+                if (p.ID.equals(Orchestra.POWER_ID)) {
                     p.onExhaust(c);
                 }
             }

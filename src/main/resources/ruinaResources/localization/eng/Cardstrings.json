@@ -844,6 +844,6 @@
   },
   "${ModID}:Conductor": {
     "NAME": "Conductor",
-    "DESCRIPTION": "When Retained, increase the cost of all other *Performer cards in your hand by !M! this combat. If all !ruina:SecondMagic! other Performer cards are in your hand, trigger their effects again."
+    "DESCRIPTION": "Unplayable. NL When Retained, increase the cost of all other *Performer cards in your hand by !M! this combat. If all !ruina:SecondMagic! other *Performer cards are in your hand, trigger their effects again."
   }
 }

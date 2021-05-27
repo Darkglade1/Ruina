@@ -54,6 +54,8 @@ public class Orchestra extends AbstractRuinaMonster
     private final int BLOCK = calcAscensionTankiness(10);
     private final int HEAL = calcAscensionTankiness(20);
 
+    private final ArrayList<AbstractCard> performerCards = new ArrayList<>();
+
     public static final String POWER_ID = makeID("Performance");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
@@ -84,24 +86,18 @@ public class Orchestra extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
+        performerCards.add(new FirstChair());
+        performerCards.add(new SecondChair());
+        performerCards.add(new ThirdChair());
+        performerCards.add(new FourthChair());
+        performerCards.add(new Conductor());
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            for (AbstractCard card : performerCards) {
+                card.upgrade();
+            }
+        }
         CustomDungeon.playTempMusicInstantly("Angela3");
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-
-            final ArrayList<AbstractCard> performerCards = new ArrayList<>();
-
-            @Override
-            public void onInitialApplication() {
-                performerCards.add(new FirstChair());
-                performerCards.add(new SecondChair());
-                performerCards.add(new ThirdChair());
-                performerCards.add(new FourthChair());
-                performerCards.add(new Conductor());
-                if (AbstractDungeon.ascensionLevel >= 19) {
-                    for (AbstractCard card : performerCards) {
-                        card.upgrade();
-                    }
-                }
-            }
 
             @Override
             public void atEndOfRound() {
@@ -109,6 +105,7 @@ public class Orchestra extends AbstractRuinaMonster
                     flash();
                     intoDiscard(performerCards.remove(0), 1);
                 }
+                updateDescription();
             }
 
             @Override
@@ -121,7 +118,11 @@ public class Orchestra extends AbstractRuinaMonster
 
             @Override
             public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
+                if (!performerCards.isEmpty()) {
+                    description = POWER_DESCRIPTIONS[0] + " " + POWER_DESCRIPTIONS[1];
+                } else {
+                    description = POWER_DESCRIPTIONS[1];
+                }
             }
         });
     }
@@ -137,41 +138,41 @@ public class Orchestra extends AbstractRuinaMonster
 
         switch (this.nextMove) {
             case FIRST: {
-                attackAnimation(adp());
+                attackAnimation1(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new WeakPower(adp(), WEAK, true));
                 resetIdle();
                 break;
             }
             case SECOND: {
-                attackAnimation(adp());
+                attackAnimation2(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new FerventAdoration(adp(), FERVENT_DAMAGE, FERVENT_DRAW));
                 resetIdle();
                 break;
             }
             case THIRD: {
-                attackAnimation(adp());
+                attackAnimation1(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new DrawCardNextTurnPower(adp(), PLAYER_DRAW));
                 resetIdle();
                 break;
             }
             case FOURTH: {
-                attackAnimation(adp());
+                attackAnimation2(adp());
                 intoDiscardMo(new VoidCard(), STATUS, this);
                 resetIdle();
                 break;
             }
             case FINALE: {
-                attackAnimation(adp());
+                finaleAnimation(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new FerventAdoration(adp(), FERVENT_DAMAGE, FERVENT_DRAW));
                 resetIdle();
                 break;
             }
             case CURTAIN: {
-                attackAnimation(adp());
+                curtainAnimation();
                 block(this, BLOCK);
                 atb(new HealAction(this, this, HEAL));
                 resetIdle();
@@ -198,12 +199,20 @@ public class Orchestra extends AbstractRuinaMonster
         }
     }
 
-    private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack", "AlriuneHori", enemy, this);
+    private void attackAnimation1(AbstractCreature enemy) {
+        animationAction("Special", "OrchestraMovement1", enemy, this);
     }
 
-    private void blockAnimation() {
-        animationAction("Special", "AlriuneGuard", this);
+    private void attackAnimation2(AbstractCreature enemy) {
+        animationAction("Special", "OrchestraMovement2", enemy, this);
+    }
+
+    private void finaleAnimation(AbstractCreature enemy) {
+        animationAction("Special", "OrchestraFinale", enemy, this);
+    }
+
+    private void curtainAnimation() {
+        animationAction("Special", "OrchestraClap", this);
     }
 
 }
