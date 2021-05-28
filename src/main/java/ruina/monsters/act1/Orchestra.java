@@ -1,6 +1,9 @@
 package ruina.monsters.act1;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -8,13 +11,16 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.cards.performance.AbstractPerformanceCard;
 import ruina.cards.performance.Conductor;
 import ruina.cards.performance.FirstChair;
@@ -24,8 +30,10 @@ import ruina.cards.performance.ThirdChair;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.FerventAdoration;
+import ruina.vfx.OrchestraCurtainEffect;
 
 import java.util.ArrayList;
+import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -173,6 +181,8 @@ public class Orchestra extends AbstractRuinaMonster
             }
             case CURTAIN: {
                 curtainAnimation();
+                float duration = 5.0f;
+                atb(new VFXAction(new OrchestraCurtainEffect(duration), duration));
                 block(this, BLOCK);
                 atb(new HealAction(this, this, HEAL));
                 resetIdle();
