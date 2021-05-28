@@ -3,6 +3,7 @@ package ruina.monsters.act1;
 import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -30,7 +31,9 @@ import ruina.cards.performance.ThirdChair;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.FerventAdoration;
+import ruina.util.TexLoader;
 import ruina.vfx.OrchestraCurtainEffect;
+import ruina.vfx.OrchestraMusicEffect;
 
 import java.util.ArrayList;
 import java.util.function.BiFunction;
@@ -63,6 +66,23 @@ public class Orchestra extends AbstractRuinaMonster
     private final int HEAL = calcAscensionTankiness(20);
 
     private final ArrayList<AbstractCard> performerCards = new ArrayList<>();
+
+    public static final String MOVEMENT1 = RuinaMod.makeMonsterPath("Orchestra/1st.png");
+    private final Texture MOVEMENT1_TEXTURE = TexLoader.getTexture(MOVEMENT1);
+
+    public static final String MOVEMENT2 = RuinaMod.makeMonsterPath("Orchestra/2nd.png");
+    private final Texture MOVEMENT2_TEXTURE = TexLoader.getTexture(MOVEMENT2);
+
+    public static final String MOVEMENT3 = RuinaMod.makeMonsterPath("Orchestra/3rd.png");
+    private final Texture MOVEMENT3_TEXTURE = TexLoader.getTexture(MOVEMENT3);
+
+    public static final String MOVEMENT4 = RuinaMod.makeMonsterPath("Orchestra/4th.png");
+    private final Texture MOVEMENT4_TEXTURE = TexLoader.getTexture(MOVEMENT4);
+
+    private OrchestraMusicEffect movement1;
+    private OrchestraMusicEffect movement2;
+    private OrchestraMusicEffect movement3;
+    private OrchestraMusicEffect movement4;
 
     public static final String POWER_ID = makeID("Performance");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -147,36 +167,78 @@ public class Orchestra extends AbstractRuinaMonster
         switch (this.nextMove) {
             case FIRST: {
                 attackAnimation1(adp());
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        movement1 = new OrchestraMusicEffect(hb.cX + (10.0f * Settings.scale), hb.cY, MOVEMENT1_TEXTURE, false, 0.75f);
+                        AbstractDungeon.effectsQueue.add(movement1);
+                        this.isDone = true;
+                    }
+                });
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new WeakPower(adp(), WEAK, true));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case SECOND: {
                 attackAnimation2(adp());
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        movement2 = new OrchestraMusicEffect(hb.cX + (10.0f * Settings.scale), hb.cY, MOVEMENT2_TEXTURE, true, 1.25f);
+                        AbstractDungeon.effectsQueue.add(movement2);
+                        this.isDone = true;
+                    }
+                });
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new FerventAdoration(adp(), FERVENT_DAMAGE, FERVENT_DRAW));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case THIRD: {
                 attackAnimation1(adp());
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        movement3 = new OrchestraMusicEffect(hb.cX + (10.0f * Settings.scale), hb.cY, MOVEMENT3_TEXTURE, false, 1.75f);
+                        AbstractDungeon.effectsQueue.add(movement3);
+                        this.isDone = true;
+                    }
+                });
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new DrawCardNextTurnPower(adp(), PLAYER_DRAW));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case FOURTH: {
                 attackAnimation2(adp());
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        movement4 = new OrchestraMusicEffect(hb.cX + (10.0f * Settings.scale), hb.cY, MOVEMENT4_TEXTURE, true, 2.25f);
+                        AbstractDungeon.effectsQueue.add(movement4);
+                        this.isDone = true;
+                    }
+                });
                 intoDiscardMo(new VoidCard(), STATUS, this);
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case FINALE: {
                 finaleAnimation(adp());
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        movement1.end();
+                        movement2.end();
+                        movement3.end();
+                        movement4.end();
+                        this.isDone = true;
+                    }
+                });
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new FerventAdoration(adp(), FERVENT_DAMAGE, FERVENT_DRAW));
-                resetIdle();
+                resetIdle(1.5f);
                 break;
             }
             case CURTAIN: {
