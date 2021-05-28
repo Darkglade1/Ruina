@@ -137,7 +137,6 @@ public class BlackSilence1 extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
-        AbstractDungeon.lastCombatMetricKey = ID;
         CustomDungeon.playTempMusicInstantly("Roland1");
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
             @Override

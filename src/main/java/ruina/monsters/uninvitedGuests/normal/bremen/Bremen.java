@@ -105,7 +105,6 @@ public class Bremen extends AbstractCardMonster
 
     @Override
     public void usePreBattleAction() {
-        AbstractDungeon.lastCombatMetricKey = ID;
         CustomDungeon.playTempMusicInstantly("Ensemble1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Netzach) {

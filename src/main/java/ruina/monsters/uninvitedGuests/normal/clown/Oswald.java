@@ -100,7 +100,6 @@ public class Oswald extends AbstractCardMonster
 
     @Override
     public void usePreBattleAction() {
-        AbstractDungeon.lastCombatMetricKey = ID;
         CustomDungeon.playTempMusicInstantly("Ensemble2");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Tiph) {
