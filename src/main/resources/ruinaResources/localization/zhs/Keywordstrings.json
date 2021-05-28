@@ -21,10 +21,10 @@
     "DESCRIPTION": "当你缺乏足够的 [E] 时，可以打出并根据缺少的每点 [E] 失去 #b3 点生命。"
   },
   {
-    "PROPER_NAME": "Freeze",
+    "PROPER_NAME": "冰冻",
     "NAMES": [
-      "freeze"
+      "冰冻"
     ],
-    "DESCRIPTION": "Frozen cards are #yUnplayable and #yRetain."
+    "DESCRIPTION": "被冰冻的牌获得 #y无法被打出 和 #y保留 。"
   }
 ]
