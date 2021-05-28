@@ -60,6 +60,7 @@ import static ruina.util.Wiz.*;
 public class Baral extends AbstractCardMonster
 {
     public static final String ID = makeID(Baral.class.getSimpleName());
+    public static final String METRICS_ID = makeID("TheHead");
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
@@ -184,6 +185,7 @@ public class Baral extends AbstractCardMonster
     @Override
     public void usePreBattleAction() {
         if (!usedPreBattleAction) {
+            AbstractDungeon.lastCombatMetricKey = METRICS_ID;
             usedPreBattleAction = true;
             CustomDungeon.playTempMusicInstantly("TheHead");
             for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {

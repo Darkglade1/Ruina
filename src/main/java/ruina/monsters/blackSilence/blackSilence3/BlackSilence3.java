@@ -99,6 +99,7 @@ public class BlackSilence3 extends AbstractCardMonster {
     }
 
     public void usePreBattleAction() {
+        AbstractDungeon.lastCombatMetricKey = ID;
         CustomDungeon.playTempMusicInstantly("Roland3");
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         applyToTarget(this, this, new ruina.powers.BlackSilence3(this));

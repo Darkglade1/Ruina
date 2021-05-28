@@ -103,6 +103,7 @@ public class Pluto extends AbstractCardMonster {
     @Override
     public void usePreBattleAction()
     {
+        AbstractDungeon.lastCombatMetricKey = ID;
         CustomDungeon.playTempMusicInstantly("Ensemble3");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Hokma) {

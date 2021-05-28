@@ -121,6 +121,7 @@ public class Tanya extends AbstractCardMonster
 
     @Override
     public void usePreBattleAction() {
+        AbstractDungeon.lastCombatMetricKey = ID;
         CustomDungeon.playTempMusicInstantly("Ensemble2");
         AbstractDungeon.getCurrRoom().cannotLose = true;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
