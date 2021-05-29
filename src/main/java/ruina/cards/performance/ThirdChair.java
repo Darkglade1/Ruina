@@ -22,6 +22,7 @@ public class ThirdChair extends AbstractPerformanceCard {
         super(ID, COST);
         magicNumber = baseMagicNumber = DEBUFF;
         selfRetain = true;
+        updateDescription();
     }
 
     @Override
@@ -37,6 +38,16 @@ public class ThirdChair extends AbstractPerformanceCard {
             applyToTarget(adp(), adp(), new FrailPower(adp(), magicNumber, true));
         }
         triggerFirstEffect = !triggerFirstEffect;
+        updateDescription();
+    }
+
+    private void updateDescription() {
+        if (triggerFirstEffect) {
+            this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
+        } else {
+            this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[1];
+        }
+        this.initializeDescription();
     }
 
     @Override

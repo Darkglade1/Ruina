@@ -836,11 +836,13 @@
   },
   "${ModID}:ThirdChair": {
     "NAME": "Third Chair",
-    "DESCRIPTION": "When Retained, gain !M! Weak or Frail, alternating each turn."
+    "DESCRIPTION": "When Retained, gain !M! Weak or Frail, alternating each time.",
+    "EXTENDED_DESCRIPTION": [" (Weak)", " (Frail)"]
   },
   "${ModID}:FourthChair": {
     "NAME": "Fourth Chair",
-    "DESCRIPTION": "When Retained, lose !M! Strength or Dexterity, alternating each turn."
+    "DESCRIPTION": "When Retained, lose !M! Strength or Dexterity, alternating each time.",
+    "EXTENDED_DESCRIPTION": [" (Strength)", " (Dexterity)"]
   },
   "${ModID}:Conductor": {
     "NAME": "Conductor",
