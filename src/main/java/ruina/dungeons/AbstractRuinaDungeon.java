@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
+import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.Ozma;
 import ruina.monsters.act3.Twilight;
@@ -49,7 +50,9 @@ public class AbstractRuinaDungeon extends CustomDungeon {
 
     public void setFloor() {
         if (bossKey != null) {
-            if (bossKey.equals(JesterOfNihil.ID)) {
+            if (bossKey.equals(Orchestra.ID)) {
+                floor = Floor.NETZACH;
+            } else if (bossKey.equals(JesterOfNihil.ID)) {
                 floor = Floor.TIPHERETH;
             } else if (bossKey.equals(EncounterIDs.RED_AND_WOLF)) {
                 floor = Floor.GEBURA;
@@ -78,6 +81,18 @@ public class AbstractRuinaDungeon extends CustomDungeon {
     public void setMusic() {
         if (floor != null) {
             switch (floor) {
+                case MALKUTH:
+                    this.setMainMusic(RuinaMod.makeMusicPath("Malkuth2.ogg"));
+                    break;
+                case YESOD:
+                    this.setMainMusic(RuinaMod.makeMusicPath("Yesod2.ogg"));
+                    break;
+                case HOD:
+                    this.setMainMusic(RuinaMod.makeMusicPath("Hod2.ogg"));
+                    break;
+                case NETZACH:
+                    this.setMainMusic(RuinaMod.makeMusicPath("Netzach2.ogg"));
+                    break;
                 case TIPHERETH:
                     this.setMainMusic(RuinaMod.makeMusicPath("Tiphereth2.ogg"));
                     break;

@@ -19,6 +19,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
@@ -582,6 +583,9 @@ public class RuinaMod implements
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
+        Asiyah asiyah = new Asiyah();
+        asiyah.addAct(Exordium.ID);
+
         Briah briah = new Briah();
         briah.addAct(TheCity.ID);
 
@@ -600,7 +604,6 @@ public class RuinaMod implements
         CustomIntent.add(new MassAttackIntent());
 
         //Act 1
-        BaseMod.addMonster(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new);
         BaseMod.addMonster(AllAroundHelper.ID, "All_Around_Helper", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new AllAroundHelper(-300.0F, 0.0F, true),
@@ -614,6 +617,9 @@ public class RuinaMod implements
         BaseMod.addMonster(ShyLook.ID, (BaseMod.GetMonster) ShyLook::new);
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
+
+        asiyah.addBoss(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new, makeMonsterPath("Orchestra/OrchestraMap.png"), makeMonsterPath("Orchestra/OrchestraMap.png"));
+
 
         BaseMod.addEvent(ShiAssociation.ID, ShiAssociation.class, Asiyah.ID);
         BaseMod.addEvent(WarpTrain.ID, WarpTrain.class, Asiyah.ID);

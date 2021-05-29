@@ -491,7 +491,7 @@
     "DESCRIPTIONS": ["The first #yAttack you play each turn gains #yLaurel #yWreath. This creature receives #b", "% less damage from #yAttacks without #yLaurel #yWreath."]
   },
   "${ModID}:Performance": {
-    "NAME": "Eternal Performance",
+    "NAME": "Endless Performance",
     "DESCRIPTIONS": ["At end of round, shuffle a #yPerformer card into your discard pile.", "Whenever a #yPerformer card is #yExhausted, add a copy of it into your discard pile."]
   },
   "${ModID}:FerventAdoration": {

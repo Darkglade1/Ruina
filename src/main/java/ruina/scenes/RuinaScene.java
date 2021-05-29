@@ -185,6 +185,22 @@ public class RuinaScene extends AbstractScene {
         if (CardCrawlGame.dungeon  instanceof AbstractRuinaDungeon) {
             AbstractRuinaDungeon.Floor floor = ((AbstractRuinaDungeon) CardCrawlGame.dungeon).floor;
             switch (floor) {
+                case MALKUTH:
+                    this.bg = this.atlas.findRegion("mod/Malkuth");
+                    this.campfireBg = this.atlas.findRegion("mod/MalkuthCamp");
+                    break;
+                case YESOD:
+                    this.bg = this.atlas.findRegion("mod/Yesod");
+                    this.campfireBg = this.atlas.findRegion("mod/YesodCamp");
+                    break;
+                case HOD:
+                    this.bg = this.atlas.findRegion("mod/Hod");
+                    this.campfireBg = this.atlas.findRegion("mod/HodCamp");
+                    break;
+                case NETZACH:
+                    this.bg = this.atlas.findRegion("mod/Netzach");
+                    this.campfireBg = this.atlas.findRegion("mod/NetzachCamp");
+                    break;
                 case TIPHERETH:
                     this.bg = this.atlas.findRegion("mod/Tiph");
                     this.campfireBg = this.atlas.findRegion("mod/TiphCamp");
