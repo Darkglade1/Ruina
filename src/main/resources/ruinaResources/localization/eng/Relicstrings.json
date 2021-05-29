@@ -78,5 +78,12 @@
     "DESCRIPTIONS": [
       "On Pickup, lose 50% of your max HP and store it in this relic. NL When you would die, fully heal to your current Max HP instead, and then increase your max HP by the amount stored by this relic. (works once)"
     ]
+  },
+  "${ModID}:Malice": {
+    "NAME": "Malice",
+    "FLAVOR": "The inherent malice caused all life to crumble as soon as it bloomed.",
+    "DESCRIPTIONS": [
+      "At the start of your turn, deal #b" , " damage to ALL enemies. If your HP is at or below #b", "%, deal #b", " damage to ALL enemies instead."
+    ]
   }
 }

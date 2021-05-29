@@ -596,5 +596,24 @@
       "[Observe]",
       "[Leave]"
     ]
+  },
+  "${ModID}:SnowWhiteApple": {
+    "NAME": "Snow White's Apple",
+    "DESCRIPTIONS": [
+      "You find yourself in a #pstrange #gforest, dreary and damp. You find a bizarre creature, made of branch and root, waiting for you in the middle of a clearing. NL NL It offers you an #yapple.",
+      "You bite into the #yapple. It tastes #gsweet, but as you peer into the apple's core, you realize it had been #protten all along.",
+      "The creature #pfrowns, and it screeches at you in an overwhelming display of #pmalice. You turn and run, but even after you’ve long left the forest, you still feel as though that creature’s #pmalicious intent lingered with you."
+    ],
+    "OPTIONS": [
+      "[Accept it] ",
+      "[Reject it] ",
+      "Obtain a special Relic.",
+      "Become Cursed - ",
+      ".",
+      "Gain ",
+      "Lose ",
+      " Max HP.",
+      "[Leave]"
+    ]
   }
 }
