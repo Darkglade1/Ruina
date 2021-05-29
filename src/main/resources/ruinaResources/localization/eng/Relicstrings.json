@@ -85,5 +85,12 @@
     "DESCRIPTIONS": [
       "At the start of your turn, deal #b" , " damage to ALL enemies. If your HP is at or below #b", "%, deal #b", " damage to ALL enemies instead."
     ]
+  },
+  "${ModID}:SeventhBullet": {
+    "NAME": "The Seventh Bullet",
+    "FLAVOR": "One day, the marksman realized the Devil no longer followed him. He pondered why, then realized that his soul had already fallen to Hell from the beginning.",
+    "DESCRIPTIONS": [
+      "Gain #b" , " #yStrength at the start of combat. Whenever you play #b", " #yAttacks, take #b", " damage."
+    ]
   }
 }

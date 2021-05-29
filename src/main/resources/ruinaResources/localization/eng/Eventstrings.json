@@ -615,5 +615,23 @@
       " Max HP.",
       "[Leave]"
     ]
+  },
+  "${ModID}:DerFreischutz": {
+    "NAME": "Der Freischütz",
+    "DESCRIPTIONS": [
+      "You see a cloaked figure shrouded in #pdarkness. #rBloody bodies litter the ground around the figure, the remnants of a gruesome #rmassacre. NL \"The #pDevil proposed a childish contract to me. My last bullet would puncture the head of my beloved. But I have swindled the #pDevil, for you see, I have already killed all the people I love!\" NL The figure @laughed,@ and you could tell that he had already gone #rmad with power. NL \"How about it, stranger? How would you like to partake of this contract of mine as well?\"",
+      "You felt something #rsear itself into your soul as the power of the #pDevil flowed through you. You felt giddy, unrestrained, uncontrollable. NL NL The figure grinned. \"Excellent. Now, let us fall into the depths of #rHell together!\"",
+      "\"How #punfortunate. It seems you will simply be another one of my targets, then.\" NL NL The figure fired at you, but a quick dodge from you turned the bullet into merely a grazing shot. As you ran away from the crazed gunman, you couldn't help but feel relieved that you had avoided whatever #pcurse turned the man from a professional hunter into a #rbloodthirsty killer."
+    ],
+    "OPTIONS": [
+      "[Accept] ",
+      "[Reject] ",
+      "Obtain a special Relic.",
+      "Lose ",
+      " HP.",
+      "Remove a card.",
+      "Choose a Card to Remove.",
+      "[Leave]"
+    ]
   }
 }
