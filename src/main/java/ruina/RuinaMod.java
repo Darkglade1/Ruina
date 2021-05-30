@@ -625,7 +625,7 @@ public class RuinaMod implements
         BaseMod.addEvent(SnowWhiteApple.ID, SnowWhiteApple.class, Asiyah.ID);
         BaseMod.addEvent(DerFreischutz.ID, DerFreischutz.class, Asiyah.ID);
         BaseMod.addEvent(UnknownPath.ID, UnknownPath.class, Asiyah.ID);
-
+        BaseMod.addEvent(SingingMachine.ID, SingingMachine.class, Asiyah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
 
 

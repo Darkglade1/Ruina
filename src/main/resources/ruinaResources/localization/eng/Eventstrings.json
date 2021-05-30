@@ -644,5 +644,33 @@
       "[Ascend the Jagged Pathway] Encounter a random #rmonster.",
       "[Ascend the Smooth Pathway] Encounter a random #gevent."
     ]
+  },
+  "${ModID}:SingingMachine": {
+    "NAME": "Singing Machine",
+    "DESCRIPTIONS": [
+      "You hear something #rgrinding in the distance, #rcrunching and #rmunching on something distinctly #rfleshy. You approach closer and find a #rbloody machine, moving in rhythm to its own #phideous beat. NL NL A person with a looser grip on their sanity might even think this sound was musical. NL NL The machine pauses and opens up, giving you an opportunity to throw something in.",
+      "The machine churns, lets off a #ghappy little jingle, then  . . . ",
+      ". . . spits the offering back out. You pick it back up, and although it’s #rbloodstained now, you sense that it has become . . . #yimproved, somehow.",
+      ". . . spits out a #ybauble covered in #rblood. You pick it up, and while you do not recognize the trinket, you sense that it’ll be helpful down the road.",
+      ". . . spits out several #rblood-covered flasks. You pick up the flasks, and while your common sense argues against imbibing something produced by this machine, your instincts tell you that these flasks do contain #ypower.",
+      "The machine churns, lets out an #rangry rumbling, then . . . ",
+      ". . . spits your offering back out. It seems it didn't appreciate what you had given it.",
+      ". . . spits out a stream of #rblood, colliding with your face and knocking you over. It seems it didn't appreciate what you had given it.",
+      "You didn't feel like interacting with this #psinister machine."
+    ],
+    "OPTIONS": [
+      "[Throw something in] Offer a card.",
+      "Obtain ",
+      ".",
+      " Common Potions.",
+      " Uncommon Potions.",
+      " Rare Potions.",
+      "Lose ",
+      " HP.",
+      " Max HP.",
+      "[Leave]",
+      "[Locked] Requires non-Starter card",
+      "Choose a Card to offer"
+    ]
   }
 }
