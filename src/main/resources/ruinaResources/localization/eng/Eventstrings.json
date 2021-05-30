@@ -633,5 +633,16 @@
       "Choose a Card to Remove.",
       "[Leave]"
     ]
+  },
+  "${ModID}:UnknownPath": {
+    "NAME": "Paths To The Unknown",
+    "DESCRIPTIONS": [
+      "Before you, stands a series of twisting, winding paths. Seeming infinite, ever expanding towards the unknown. You notice a series of smaller, cascading paths below you, filling the space in the empty void. However, the paths appear too narrow, and too unstable to even consider them as a possibility. Your attention shifts to three pathways, which tower above the rest: NL - A #rsteep central pathway, which towers above all. NL - A curved pathway to the #gleft, with jagged edges. NL - A curved pathway to the #gright, with a smooth, refined shape."
+    ],
+    "OPTIONS": [
+      "[Ascend The Steep Pathway] Encounter a random #pelite.",
+      "[Ascend the Jagged Pathway] Encounter a random #rmonster.",
+      "[Ascend the Smooth Pathway] Encounter a random #gevent."
+    ]
   }
 }
