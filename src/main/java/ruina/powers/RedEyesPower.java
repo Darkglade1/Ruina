@@ -1,16 +1,19 @@
 package ruina.powers;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnReceivePowerPower;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import ruina.RuinaMod;
 
-import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.att;
 
-public class RedEyesPower extends AbstractEasyPower implements OnReceivePowerPower {
+public class RedEyesPower extends AbstractEasyPower implements OnReceivePowerPower, NonStackablePower {
 
     public static final String POWER_ID = RuinaMod.makeID("RedEyesPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -24,9 +27,10 @@ public class RedEyesPower extends AbstractEasyPower implements OnReceivePowerPow
 
     @Override
     public boolean onReceivePower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        if (power.type == PowerType.DEBUFF && power.amount > 0) {
+        if (source == adp() && power.type == PowerType.DEBUFF && power.amount > 0 && !power.ID.equals(GainStrengthPower.POWER_ID)) {
             power.amount *= 2;
-            atb(new RemoveSpecificPowerAction(owner, owner, this));
+            power.updateDescription();
+            att(new RemoveSpecificPowerAction(owner, owner, this));
         }
         return true;
     }

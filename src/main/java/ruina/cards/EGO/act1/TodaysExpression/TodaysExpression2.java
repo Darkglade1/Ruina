@@ -19,12 +19,7 @@ public class TodaysExpression2 extends TodaysExpression {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
-    @Override
-    public void upp() { }
-
     public void onChoseThisOption(){
-        System.out.println(target);
-        System.out.println(baseDamage);
         if (target != null) {
             dmg(target, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         }

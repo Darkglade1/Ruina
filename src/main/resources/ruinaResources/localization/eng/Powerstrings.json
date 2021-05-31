@@ -500,7 +500,7 @@
   },
   "${ModID}:RedEyesPower": {
     "NAME": "Red Eyes",
-    "DESCRIPTIONS": ["Double the next #pdebuff applied to this #renemy."]
+    "DESCRIPTIONS": ["Double the next #pdebuff you apply to this #renemy."]
   },
   "${ModID}:LaetitiaPower": {
     "NAME": "Laetitia",

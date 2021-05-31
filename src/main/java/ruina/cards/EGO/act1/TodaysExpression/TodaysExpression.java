@@ -19,7 +19,7 @@ public class TodaysExpression extends AbstractEgoCard {
     private static final int BLOCK = 17;
     private static final int UP_BLOCK = 5;
 
-    protected AbstractMonster target;
+    protected static AbstractMonster target;
 
     public TodaysExpression() {
         super(ID, 2, CardType.SKILL, CardTarget.ENEMY);
@@ -33,8 +33,18 @@ public class TodaysExpression extends AbstractEgoCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         target = m;
         ArrayList<AbstractCard> options = new ArrayList<>();
-        options.add(new TodaysExpression1());
-        options.add(new TodaysExpression2());
+        AbstractCard card1 = new TodaysExpression1();
+        AbstractCard card2 = new TodaysExpression2();
+        if (this.upgraded) {
+            card1.upgrade();
+            card2.upgrade();
+        }
+        card1.applyPowers();
+        card1.calculateCardDamage(m);
+        card2.applyPowers();
+        card2.calculateCardDamage(m);
+        options.add(card1);
+        options.add(card2);
         atb(new ChooseOneAction(options));
     }
 

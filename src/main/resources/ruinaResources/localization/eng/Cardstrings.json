@@ -859,7 +859,7 @@
   },
   "${ModID}:RedEyes": {
     "NAME": "Red Eyes",
-    "DESCRIPTION": "Deal !D! damage. NL Double the next debuff applied to the enemy."
+    "DESCRIPTION": "Deal !D! damage. NL Double the next debuff you apply to the enemy."
   },
   "${ModID}:Laetitia": {
     "NAME": "Laetitia",

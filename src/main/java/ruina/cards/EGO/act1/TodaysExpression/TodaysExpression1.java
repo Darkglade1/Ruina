@@ -20,11 +20,7 @@ public class TodaysExpression1 extends TodaysExpression {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
-    @Override
-    public void upp() { }
-
     public void onChoseThisOption(){
-        System.out.println(block);
         block(adp(), block);
     }
 }
