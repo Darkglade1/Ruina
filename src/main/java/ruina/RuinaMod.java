@@ -883,6 +883,7 @@ public class RuinaMod implements
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         PlayerSpireFields.totalBlockGained.set(adp(), 0);
+        PlayerSpireFields.appliedDebuffThisTurn.set(adp(), false);
     }
 
     @Override
