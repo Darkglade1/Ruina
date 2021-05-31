@@ -847,5 +847,25 @@
   "${ModID}:Conductor": {
     "NAME": "Conductor",
     "DESCRIPTION": "Unplayable. NL When Retained, increase the cost of all other *Performer cards in your hand by !M! this combat. If all !ruina:SecondMagic! other *Performer cards are in your hand, trigger their effects again."
+  },
+  "${ModID}:FirstMovement": {
+    "NAME": "The First Movement",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Second *Movement"
+  },
+  "${ModID}:SecondMovement": {
+    "NAME": "The Second Movement",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Third *Movement"
+  },
+  "${ModID}:ThirdMovement": {
+    "NAME": "The Third Movement",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Fourth *Movement"
+  },
+  "${ModID}:FourthMovement": {
+    "NAME": "The Fourth Movement",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Fourth *Movement"
+  },
+  "${ModID}:Finale": {
+    "NAME": "Finale",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies ."
   }
 }
