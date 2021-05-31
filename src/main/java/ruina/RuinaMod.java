@@ -8,7 +8,6 @@ import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -18,7 +17,9 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
@@ -28,6 +29,10 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -90,7 +95,7 @@ import ruina.monsters.uninvitedGuests.normal.puppeteer.Chesed;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
-import ruina.patches.TotalBlockGainedSpireField;
+import ruina.patches.PlayerSpireFields;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
 
@@ -112,7 +117,8 @@ public class RuinaMod implements
         PostInitializeSubscriber,
         AddAudioSubscriber,
         PostBattleSubscriber,
-        PreMonsterTurnSubscriber {
+        PreMonsterTurnSubscriber,
+        PostPowerApplySubscriber {
 
     private static final String modID = "ruina";
     public static final TextureAtlas UIAtlas = new TextureAtlas();
@@ -876,13 +882,23 @@ public class RuinaMod implements
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
-        TotalBlockGainedSpireField.totalBlockGained.set(adp(), 0);
+        PlayerSpireFields.totalBlockGained.set(adp(), 0);
+        PlayerSpireFields.appliedDebuffThisTurn.set(adp(), false);
     }
 
     @Override
     public boolean receivePreMonsterTurn(AbstractMonster abstractMonster) {
+        PlayerSpireFields.appliedDebuffThisTurn.set(adp(), false);
         return !abstractMonster.hasPower(Hokma.POWER_ID);
+    }
 
+    @Override
+    public void receivePostPowerApplySubscriber(AbstractPower p, AbstractCreature target, AbstractCreature source) {
+        if (source == AbstractDungeon.player && target != AbstractDungeon.player && !target.hasPower(ArtifactPower.POWER_ID)) {
+            if (p.type == AbstractPower.PowerType.DEBUFF) {
+                PlayerSpireFields.appliedDebuffThisTurn.set(adp(), true);
+            }
+        }
     }
 
     public void receiveEditKeywords() {

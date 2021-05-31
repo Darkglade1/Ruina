@@ -11,6 +11,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
+import ruina.cards.EGO.act1.BlackSwan;
+import ruina.cards.EGO.act1.Laetitia;
+import ruina.cards.EGO.act1.RedEyes;
+import ruina.cards.EGO.act1.SanguineDesire;
+import ruina.cards.EGO.act1.TodaysExpression.TodaysExpression;
 import ruina.cards.EGO.act2.*;
 import ruina.cards.EGO.act3.*;
 import ruina.util.TexLoader;
@@ -78,11 +83,14 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
 
     public static ArrayList<AbstractCard> getRandomEgoCards(int amount, int actNum) {
         ArrayList<String> list = new ArrayList<>();
-        if (actNum == 2) {
+        if (actNum == 1) {
+            addAct1EgoCards(list);
+        } else if (actNum == 2) {
             addAct2EgoCards(list);
         } else if (actNum == 3) {
             addAct3EgoCards(list);
         } else {
+            addAct1EgoCards(list);
             addAct2EgoCards(list);
             addAct3EgoCards(list);
         }
@@ -99,6 +107,14 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
 
     public static ArrayList<AbstractCard> getRandomEgoCards(int amount) {
         return getRandomEgoCards(amount, AbstractDungeon.actNum);
+    }
+
+    public static void addAct1EgoCards(ArrayList<String> list) {
+        list.add(TodaysExpression.ID);
+        list.add(SanguineDesire.ID);
+        list.add(RedEyes.ID);
+        list.add(Laetitia.ID);
+        list.add(BlackSwan.ID);
     }
 
     public static void addAct2EgoCards(ArrayList<String> list) {

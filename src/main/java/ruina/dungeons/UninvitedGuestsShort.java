@@ -29,7 +29,7 @@ import ruina.monsters.uninvitedGuests.normal.philip.Philip;
 import ruina.monsters.uninvitedGuests.normal.pluto.monster.Pluto;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
-import ruina.rooms.ReverbMonsterRoom;
+import ruina.rooms.RuinaMonsterRoom;
 
 import java.util.ArrayList;
 
@@ -297,7 +297,7 @@ public class UninvitedGuestsShort extends AbstractRuinaDungeon {
             this.encounterID = encounterID;
         }
 
-        public MonsterRoom get() { return new ReverbMonsterRoom(encounterID, image, outline); }
+        public MonsterRoom get() { return new RuinaMonsterRoom(encounterID, image, outline); }
     }
 
 }

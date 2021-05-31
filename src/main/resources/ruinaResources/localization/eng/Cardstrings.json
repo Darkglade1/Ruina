@@ -848,24 +848,25 @@
     "NAME": "Conductor",
     "DESCRIPTION": "Unplayable. NL When Retained, increase the cost of all other *Performer cards in your hand by !M! this combat. If all !ruina:SecondMagic! other *Performer cards are in your hand, trigger their effects again."
   },
-  "${ModID}:FirstMovement": {
-    "NAME": "The First Movement",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Second *Movement"
+  "${ModID}:TodaysExpression": {
+    "NAME": "Today's Expression",
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["Gain !B! Block.", "Deal !D! damage."]
   },
-  "${ModID}:SecondMovement": {
-    "NAME": "The Second Movement",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Third *Movement"
+  "${ModID}:SanguineDesire": {
+    "NAME": "Sanguine Desire",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! ruina:Bleed for every [E] paid for by ruina:Manifest."
   },
-  "${ModID}:ThirdMovement": {
-    "NAME": "The Third Movement",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Fourth *Movement"
+  "${ModID}:RedEyes": {
+    "NAME": "Red Eyes",
+    "DESCRIPTION": "Deal !D! damage. NL Double the next debuff you apply to the enemy."
   },
-  "${ModID}:FourthMovement": {
-    "NAME": "The Fourth Movement",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Fourth *Movement"
+  "${ModID}:Laetitia": {
+    "NAME": "Laetitia",
+    "DESCRIPTION": "The first !M! or !ruina:SecondMagic! cost card you play each turn is played twice."
   },
-  "${ModID}:Finale": {
-    "NAME": "Finale",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies ."
+  "${ModID}:BlackSwan": {
+    "NAME": "Black Swan",
+    "DESCRIPTION": "Apply !M! ruina:Erosion. NL If you applied a debuff this turn, this card costs 0."
   }
 }
