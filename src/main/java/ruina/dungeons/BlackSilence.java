@@ -11,14 +11,11 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
-import ruina.events.act4.BlackSilenceFork;
 import ruina.events.act4.Sorrow;
 import ruina.events.act4.TheHead;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
-import ruina.monsters.uninvitedGuests.normal.eileen.Eileen;
-import ruina.monsters.uninvitedGuests.normal.greta.Greta;
-import ruina.rooms.ReverbMonsterRoom;
+import ruina.rooms.RuinaMonsterRoom;
 import ruina.rooms.RuinaVictoryRoom;
 
 import java.util.ArrayList;
@@ -283,7 +280,7 @@ public class BlackSilence extends AbstractRuinaDungeon {
             this.encounterID = encounterID;
         }
 
-        public MonsterRoom get() { return new ReverbMonsterRoom(encounterID, image, outline); }
+        public MonsterRoom get() { return new RuinaMonsterRoom(encounterID, image, outline); }
     }
 
 }

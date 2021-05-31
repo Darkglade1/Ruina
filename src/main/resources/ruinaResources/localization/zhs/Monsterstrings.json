@@ -987,17 +987,17 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:SilentGirl": {
+  "ruina:SilentGirl": {
     "MOVES": [
-      "Digging Nail",
-      "Slam",
-      "A Cracked Heart",
-      "Collapsing Heart",
-      "Broken to Pieces",
-      "Leer of Fright",
-      "Don't Suppress Your Heart"
+      "钉与锤",
+      "冲击",
+      "破碎之心",
+      "割裂之心",
+      "分裂",
+      "恐惧",
+      "不要压抑内心"
     ],
-    "NAME": "Silent Girl",
+    "NAME": "噤默处子",
     "DIALOG": [
     ]
   }

@@ -104,7 +104,7 @@
   },
   "ruina:Lamp": {
     "NAME": "目灯",
-    "DESCRIPTION": "这个回合敌人失去 !M! 点 力量 。 NL 这个回合每当你被攻击，对攻击者造成 !ruina:SecondMagic! 点伤害。"
+    "DESCRIPTION": "这个回合敌人失去 !M! 点 力量 。 NL 这个回合每当你被 NL 攻击时，对攻击者 NL 造成 !ruina:SecondMagic! 点伤害。"
   },
   "ruina:Justitia": {
     "NAME": "正义裁决",
@@ -790,28 +790,28 @@
     "NAME": "震击",
     "DESCRIPTION": "对所有敌人造成 !D! 点伤害。"
   },
-  "${ModID}:Marionette": {
-    "NAME": "Marionette",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! cards. NL Increase this card's cost by !ruina:SecondMagic! this combat."
+  "ruina:Marionette": {
+    "NAME": "提线木偶",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 抽 !M! 张牌。 NL 在本场战斗中这张牌的耗能增加 !ruina:SecondMagic! 。"
   },
-  "${ModID}:WristCutter": {
-    "NAME": "Wrist Cutter",
-    "DESCRIPTION": "Gain [E] [E] . NL Add !M! Wound to your hand with Retain."
+  "ruina:WristCutter": {
+    "NAME": "割腕",
+    "DESCRIPTION": "获得 [E] [E] 。 NL 将 !M! 张拥有 保留 的 伤口 放入你的手牌。"
   },
-  "${ModID}:Remorse": {
-    "NAME": "Remorse",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak and Vulnerable."
+  "ruina:Remorse": {
+    "NAME": "罪恶感",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 和 易伤 。"
   },
-  "${ModID}:Aspiration": {
-    "NAME": "Aspiration",
-    "DESCRIPTION": "Gain !M! Strength. NL Lose half of your current HP. At the end of combat, heal the HP lost by this card."
+  "ruina:Aspiration": {
+    "NAME": "热望",
+    "DESCRIPTION": "获得 !M! 点 力量 。 NL 失去当前一半的生命值。 在战斗结束时，恢复同等的生命值。"
   },
-  "${ModID}:FrostSplinter": {
-    "NAME": "Frost Splinter",
-    "DESCRIPTION": "At the start of your turn, gain [E] , draw !M! card, and ruina:Freeze !ruina:SecondMagic! card."
+  "ruina:FrostSplinter": {
+    "NAME": "霜雕",
+    "DESCRIPTION": "在你的回合开始时，获得 [E] ，抽 !M! 张牌，然后 ruina:冰冻 !ruina:SecondMagic! 张牌。"
   },
-  "${ModID}:Guilt": {
-    "NAME": "Guilt",
-    "DESCRIPTION": "At the end of your turn, a random enemy gains !M! Strength next turn. NL If this is Exhausted without being played, add a copy of it into your discard pile."
+  "ruina:Guilt": {
+    "NAME": "罪恶感",
+    "DESCRIPTION": "在你的回合结束时，随机敌人在下一回合获得 !M! 点 力量 。 NL 如果不是通过打出消耗，则将一张复制放入你的弃牌堆。"
   }
 }
