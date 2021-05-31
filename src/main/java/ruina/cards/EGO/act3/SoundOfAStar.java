@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.cards.EGO.AbstractEgoCard;
-import ruina.patches.TotalBlockGainedSpireField;
+import ruina.patches.PlayerSpireFields;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
@@ -33,7 +33,7 @@ public class SoundOfAStar extends AbstractEgoCard {
     @Override
     public void calculateCardDamage(AbstractMonster mo) {
         int realBaseDamage = this.baseDamage;
-        this.baseDamage += TotalBlockGainedSpireField.totalBlockGained.get(adp());
+        this.baseDamage += PlayerSpireFields.totalBlockGained.get(adp());
         super.calculateCardDamage(mo);
         this.baseDamage = realBaseDamage;
         this.isDamageModified = this.damage != this.baseDamage;
@@ -42,7 +42,7 @@ public class SoundOfAStar extends AbstractEgoCard {
     @Override
     public void applyPowers() {
         int realBaseDamage = this.baseDamage;
-        this.baseDamage += TotalBlockGainedSpireField.totalBlockGained.get(adp());
+        this.baseDamage += PlayerSpireFields.totalBlockGained.get(adp());
         super.applyPowers();
         this.baseDamage = realBaseDamage;
         this.isDamageModified = this.damage != this.baseDamage;

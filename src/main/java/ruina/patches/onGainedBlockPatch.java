@@ -20,8 +20,8 @@ public class onGainedBlockPatch {
     public static void TriggerOnGainedBlock(AbstractCreature instance, int blockAmount, @ByRef float[] tmp) {
         if (instance.isPlayer) {
             if (tmp[0] > 0.0F) {
-                int totalBlockGained = TotalBlockGainedSpireField.totalBlockGained.get(adp());
-                TotalBlockGainedSpireField.totalBlockGained.set(adp(), totalBlockGained + blockAmount);
+                int totalBlockGained = PlayerSpireFields.totalBlockGained.get(adp());
+                PlayerSpireFields.totalBlockGained.set(adp(), totalBlockGained + blockAmount);
             }
         }
     }

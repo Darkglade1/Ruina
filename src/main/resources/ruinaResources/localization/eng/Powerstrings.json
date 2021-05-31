@@ -497,5 +497,13 @@
   "${ModID}:FerventAdoration": {
     "NAME": "Fervent Adoration",
     "DESCRIPTIONS": ["At the start of your turn, draw #b", " card.", " cards.", " At the end of your turn, take #b", " damage."]
+  },
+  "${ModID}:RedEyesPower": {
+    "NAME": "Red Eyes",
+    "DESCRIPTIONS": ["Double the next #pdebuff applied to this #renemy."]
+  },
+  "${ModID}:LaetitiaPower": {
+    "NAME": "Laetitia",
+    "DESCRIPTIONS": ["The first #b", " or ", " cost card(s) played each turn are played twice."]
   }
 }
