@@ -53,7 +53,7 @@ public class FairyQueen extends AbstractRuinaMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public FairyQueen() {
-        this(50.0f, 0.0f);
+        this(100.0f, 0.0f);
     }
 
     public FairyQueen(final float x, final float y) {

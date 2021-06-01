@@ -227,6 +227,12 @@ public class SilentGirl extends AbstractRuinaMonster
         tips.add(new CardPowerTip(curse.makeStatEquivalentCopy()));
     }
 
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        onBossVictoryLogic();
+    }
+
     private void rangedAnimation(AbstractCreature enemy) {
         animationAction("Ranged", "SilentEye", enemy, this);
     }
