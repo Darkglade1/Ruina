@@ -51,6 +51,7 @@ import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
+import ruina.monsters.act1.fairyFestival.FairyQueen;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -548,6 +549,12 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("OrchestraMovement1"), makeSFXPath("Sym_Chor_Atk.wav"));
         BaseMod.addAudio(makeID("OrchestraMovement2"), makeSFXPath("Sym_movement_5.wav"));
         BaseMod.addAudio(makeID("OrchestraClap"), makeSFXPath("Sym_movement_0_clap.wav"));
+
+        BaseMod.addAudio(makeID("FairySpecial"), makeSFXPath("Fairy_Special.wav"));
+        BaseMod.addAudio(makeID("FairyMinionAtk"), makeSFXPath("Fairy_MiniAtk.wav"));
+        BaseMod.addAudio(makeID("FairyQueenAtk"), makeSFXPath("Fairy_QueenAtk.wav"));
+        BaseMod.addAudio(makeID("FairyQueenChange"), makeSFXPath("Fairy_QueenChange.wav"));
+        BaseMod.addAudio(makeID("FairyQueenEat"), makeSFXPath("Fairy_QueenEat.wav"));
     }
 
     @Override
@@ -621,6 +628,7 @@ public class RuinaMod implements
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
+        BaseMod.addMonster(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new);
         asiyah.addBoss(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new, makeMonsterPath("Orchestra/OrchestraMap.png"), makeMonsterPath("Orchestra/OrchestraMap.png"));
 
 

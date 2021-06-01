@@ -17,6 +17,7 @@ import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
+import ruina.monsters.act1.fairyFestival.FairyQueen;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -171,6 +172,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Alriune");
                 } else if (mo instanceof Orchestra) {
                     this.bg = this.atlas.findRegion("mod/Orchestra");
+                } else if (mo instanceof FairyQueen) {
+                    this.bg = this.atlas.findRegion("mod/Fairy");
                 } else {
                     setBgs();
                 }

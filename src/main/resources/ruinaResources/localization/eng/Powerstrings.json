@@ -505,5 +505,13 @@
   "${ModID}:LaetitiaPower": {
     "NAME": "Laetitia",
     "DESCRIPTIONS": ["The first #b", " or ", " cost card(s) played each turn are played twice."]
+  },
+  "${ModID}:Satiation": {
+    "NAME": "Momentary Satiation",
+    "DESCRIPTIONS": ["Whenever this creature #yconsumes a minion, it gains #b", " #yWeak and #yVulnerable."]
+  },
+  "${ModID}:Meal": {
+    "NAME": "Prepared Meal",
+    "DESCRIPTIONS": ["At end of round, if this creature's HP is at or below #b", ", the enemy #yconsumes it."]
   }
 }

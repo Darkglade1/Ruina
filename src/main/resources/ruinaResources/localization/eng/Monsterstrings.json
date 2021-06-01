@@ -1076,5 +1076,24 @@
     "NAME": "Silent Orchestra",
     "DIALOG": [
     ]
+  },
+  "${ModID}:FairyQueen": {
+    "MOVES": [
+      "Queen's Decree",
+      "Predation",
+      "Ravenousness"
+    ],
+    "NAME": "Fairy Queen",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:FairyMass": {
+    "MOVES": [
+      "Wingbeats",
+      "Gluttony"
+    ],
+    "NAME": "Fairy Mass",
+    "DIALOG": [
+    ]
   }
 }

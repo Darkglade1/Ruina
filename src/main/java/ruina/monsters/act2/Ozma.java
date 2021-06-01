@@ -199,6 +199,7 @@ public class Ozma extends AbstractRuinaMonster
                 atb(new SuicideAction(mo));
             }
         }
+        onBossVictoryLogic();
     }
 
     private void attackAnimation(AbstractCreature enemy) {
