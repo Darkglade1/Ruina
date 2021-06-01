@@ -52,7 +52,7 @@ public class SnowQueen extends AbstractRuinaMonster
     private final int DEBUFF = calcAscensionSpecial(3);
     private final int BLOCK = calcAscensionTankiness(16);
     private final int STRENGTH = calcAscensionSpecial(3);
-    private final int METALLICIZE = calcAscensionTankiness(5);
+    private final int METALLICIZE = calcAscensionSpecial(5);
 
     public static final String POWER_ID = makeID("PromiseOfWinter");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -70,13 +70,13 @@ public class SnowQueen extends AbstractRuinaMonster
     }
 
     public SnowQueen(final float x, final float y) {
-        super(NAME, ID, 230, 0.0F, 0, 280.0f, 325.0f, null, x, y);
+        super(NAME, ID, 250, 0.0F, 0, 280.0f, 325.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SnowQueen/Spriter/SnowQueen.scml"));
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(maxHealth));
         addMove(BLIZZARD, Intent.STRONG_DEBUFF);
-        addMove(FRIGID_GAZE, Intent.ATTACK_DEFEND, calcAscensionDamage(17));
-        addMove(ICE_SPLINTERS, Intent.ATTACK, calcAscensionDamage(24));
+        addMove(FRIGID_GAZE, Intent.ATTACK_DEFEND, calcAscensionDamage(19));
+        addMove(ICE_SPLINTERS, Intent.ATTACK, calcAscensionDamage(26));
         addMove(FROZEN_THRONE, Intent.DEFEND_BUFF);
     }
 
@@ -156,6 +156,7 @@ public class SnowQueen extends AbstractRuinaMonster
             }
             case FROZEN_THRONE: {
                 specialAnimation(adp());
+                block(this, BLOCK);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 applyToTarget(this, this, new MetallicizePower(this, METALLICIZE));
                 resetIdle(1.0f);
