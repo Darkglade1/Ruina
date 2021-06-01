@@ -628,7 +628,7 @@ public class RuinaMod implements
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
-        BaseMod.addMonster(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new);
+        asiyah.addBoss(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new, makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
         asiyah.addBoss(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new, makeMonsterPath("Orchestra/OrchestraMap.png"), makeMonsterPath("Orchestra/OrchestraMap.png"));
 
 
