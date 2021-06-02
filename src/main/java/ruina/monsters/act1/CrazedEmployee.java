@@ -51,7 +51,7 @@ public class CrazedEmployee extends AbstractRuinaMonster
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(24), calcAscensionTankiness(27));
         addMove(TREMBLING_MOTION, Intent.DEBUFF);
-        addMove(SHAKING_BLOW, Intent.ATTACK, calcAscensionDamage(6));
+        addMove(SHAKING_BLOW, Intent.ATTACK, calcAscensionDamage(5));
         this.debuff = debuff;
     }
 

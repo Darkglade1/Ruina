@@ -645,19 +645,20 @@ public class RuinaMod implements
                         new CrazedEmployee(-200.0F, 0.0F, 1),
                         new CrazedEmployee(50.0F, 0.0F, 2)
                 }));
+        float butterflyY = 100.0f;
         BaseMod.addMonster(EncounterIDs.BUTTERFLIES_3, "3_Butterflies", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new Butterflies(-450.0F, 0.0F),
-                        new Butterflies(-200.0F, 0.0F),
-                        new Butterflies(50.0F, 0.0F)
+                        new Butterflies(-450.0F, butterflyY),
+                        new Butterflies(-200.0F, butterflyY),
+                        new Butterflies(50.0F, butterflyY)
                 }));
         BaseMod.addMonster(EncounterIDs.BUTTERFLIES_5, "5_Butterflies", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new Butterflies(-450.0F, 0.0F),
-                        new Butterflies(-300.0F, 0.0F),
-                        new Butterflies(-150.0F, 0.0F),
-                        new Butterflies(0.0F, 0.0F),
-                        new Butterflies(150.0F, 0.0F)
+                        new Butterflies(-450.0F, butterflyY),
+                        new Butterflies(-300.0F, butterflyY),
+                        new Butterflies(-150.0F, butterflyY),
+                        new Butterflies(0.0f, butterflyY),
+                        new Butterflies(150.0F, butterflyY)
                 }));
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);

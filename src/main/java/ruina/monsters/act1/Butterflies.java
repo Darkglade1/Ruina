@@ -36,7 +36,7 @@ public class Butterflies extends AbstractRuinaMonster
     }
 
     public Butterflies(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 50, 100.0f, 205.0f, null, x, y);
+        super(NAME, ID, 140, 0.0F, 0, 100.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Butterflies/Spriter/Butterflies.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(11), calcAscensionTankiness(14));

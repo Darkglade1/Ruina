@@ -84,15 +84,15 @@ public class Asiyah extends AbstractRuinaDungeon {
     protected void generateStrongEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo(TeddyBear.ID, 2.0F));
-        monsters.add(new MonsterInfo("Gremlin Gang", 1.0F));
-        monsters.add(new MonsterInfo("Looter", 2.0F));
+        //monsters.add(new MonsterInfo("Gremlin Gang", 1.0F));
+        //monsters.add(new MonsterInfo("Looter", 2.0F));
         monsters.add(new MonsterInfo(ShyLook.ID, 2.0F));
         monsters.add(new MonsterInfo(EncounterIDs.BUTTERFLIES_5, 1.0F));
-        monsters.add(new MonsterInfo("Exordium Thugs", 1.5F));
-        monsters.add(new MonsterInfo("Exordium Wildlife", 1.5F));
+        //monsters.add(new MonsterInfo("Exordium Thugs", 1.5F));
+        //monsters.add(new MonsterInfo("Exordium Wildlife", 1.5F));
         monsters.add(new MonsterInfo(ScorchedGirl.ID, 2.0F));
         monsters.add(new MonsterInfo(EncounterIDs.EMPLOYEES_3, 1.0F));
-        monsters.add(new MonsterInfo("2 Fungi Beasts", 2.0F));
+        //monsters.add(new MonsterInfo("2 Fungi Beasts", 2.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateFirstStrongEnemy(monsters, this.generateExclusions());
         this.populateMonsterList(monsters, count, false);
@@ -101,7 +101,7 @@ public class Asiyah extends AbstractRuinaDungeon {
     @Override
     protected void generateElites(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo("Gremlin Nob", 1.0F));
+        //monsters.add(new MonsterInfo("Gremlin Nob", 1.0F));
         monsters.add(new MonsterInfo(Alriune.ID, 1.0F));
         monsters.add(new MonsterInfo(AllAroundHelper.ID, 1.0F));
         MonsterInfo.normalizeWeights(monsters);
@@ -114,6 +114,9 @@ public class Asiyah extends AbstractRuinaDungeon {
         String previous = monsterList.get(monsterList.size() - 1);
         if (previous.equals(EncounterIDs.EMPLOYEES_2)) {
             retVal.add(EncounterIDs.EMPLOYEES_3);
+        }
+        if (previous.equals(EncounterIDs.BUTTERFLIES_3)) {
+            retVal.add(EncounterIDs.BUTTERFLIES_5);
         }
         return retVal;
     }
