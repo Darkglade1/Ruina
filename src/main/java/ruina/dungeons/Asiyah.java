@@ -11,6 +11,7 @@ import ruina.RuinaMod;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.Alriune;
 import ruina.monsters.act1.ForsakenMurderer;
+import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
@@ -81,7 +82,7 @@ public class Asiyah extends AbstractRuinaDungeon {
     @Override
     protected void generateWeakEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo("Cultist", 2.0F));
+        monsters.add(new MonsterInfo(Fragment.ID, 2.0F));
         monsters.add(new MonsterInfo(ForsakenMurderer.ID, 2.0F));
         monsters.add(new MonsterInfo("2 Louse", 2.0F));
         monsters.add(new MonsterInfo("Small Slimes", 2.0F));
@@ -120,13 +121,7 @@ public class Asiyah extends AbstractRuinaDungeon {
     @Override
     protected ArrayList<String> generateExclusions() {
         ArrayList<String> retVal = new ArrayList<>();
-        String previous = monsterList.get(monsterList.size() - 1);
-        if (previous.equals(Nosferatu.ID) || previous.equals(EncounterIDs.BATS_3)) {
-            retVal.add(EncounterIDs.NOS_AND_BAT);
-        }
-        if (previous.equals(EncounterIDs.SCARECROWS_2)) {
-            retVal.add(EncounterIDs.SCARECROWS_3);
-        }
+
         return retVal;
     }
 }

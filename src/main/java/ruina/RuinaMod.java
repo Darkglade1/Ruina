@@ -47,6 +47,7 @@ import ruina.events.act3.*;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.Alriune;
 import ruina.monsters.act1.ForsakenMurderer;
+import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
@@ -555,6 +556,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("FairyQueenAtk"), makeSFXPath("Fairy_QueenAtk.wav"));
         BaseMod.addAudio(makeID("FairyQueenChange"), makeSFXPath("Fairy_QueenChange.wav"));
         BaseMod.addAudio(makeID("FairyQueenEat"), makeSFXPath("Fairy_QueenEat.wav"));
+
+        BaseMod.addAudio(makeID("FragmentStab"), makeSFXPath("Cosmos_Stab_Down.wav"));
+        BaseMod.addAudio(makeID("FragmentSing"), makeSFXPath("Cosmos_Sing.wav"));
     }
 
     @Override
@@ -625,6 +629,7 @@ public class RuinaMod implements
         BaseMod.addMonster(ScorchedGirl.ID, (BaseMod.GetMonster) ScorchedGirl::new);
         BaseMod.addMonster(TeddyBear.ID, (BaseMod.GetMonster) TeddyBear::new);
         BaseMod.addMonster(ShyLook.ID, (BaseMod.GetMonster) ShyLook::new);
+        BaseMod.addMonster(Fragment.ID, (BaseMod.GetMonster) Fragment::new);
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 

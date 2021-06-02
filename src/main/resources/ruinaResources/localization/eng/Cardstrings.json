@@ -888,5 +888,9 @@
   "${ModID}:Finale": {
     "NAME": "Finale",
     "DESCRIPTION": "Deal !D! damage to ALL enemies ."
+  },
+  "${ModID}:Enlightenment": {
+    "NAME": "Enlightenment",
+    "DESCRIPTION": "Lose !M! HP. NL Gain !B! Block. NL Draw !ruina:SecondMagic! card."
   }
 }

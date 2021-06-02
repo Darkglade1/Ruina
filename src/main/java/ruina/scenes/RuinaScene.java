@@ -13,6 +13,7 @@ import ruina.dungeons.AbstractRuinaDungeon;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.Alriune;
 import ruina.monsters.act1.ForsakenMurderer;
+import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
@@ -174,6 +175,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Orchestra");
                 } else if (mo instanceof FairyQueen) {
                     this.bg = this.atlas.findRegion("mod/Fairy");
+                } else if (mo instanceof Fragment) {
+                    this.bg = this.atlas.findRegion("mod/Fragment");
                 } else {
                     setBgs();
                 }

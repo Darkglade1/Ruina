@@ -1095,5 +1095,14 @@
     "NAME": "Fairy Mass",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Fragment": {
+    "MOVES": [
+      "Penetrate",
+      "Echoes from the Beyond"
+    ],
+    "NAME": "Fragment of the Universe",
+    "DIALOG": [
+    ]
   }
 }
