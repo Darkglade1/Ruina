@@ -1104,5 +1104,14 @@
     "NAME": "Fragment of the Universe",
     "DIALOG": [
     ]
+  },
+  "${ModID}:CrazedEmployee": {
+    "MOVES": [
+      "Trembling Motion",
+      "Shaking Blow"
+    ],
+    "NAME": "Crazed Employee",
+    "DIALOG": [
+    ]
   }
 }

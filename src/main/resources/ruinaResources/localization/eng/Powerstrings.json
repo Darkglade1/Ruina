@@ -513,5 +513,9 @@
   "${ModID}:Meal": {
     "NAME": "Prepared Meal",
     "DESCRIPTIONS": ["At end of round, if this creature's HP is at or below #b", ", the enemy #yconsumes it."]
+  },
+  "${ModID}:Song": {
+    "NAME": "Pine for the Song",
+    "DESCRIPTIONS": ["At end of round, gains #b", " #yStrength and #b", " #yVulnerable."]
   }
 }

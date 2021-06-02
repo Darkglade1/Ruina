@@ -46,6 +46,7 @@ import ruina.events.act2.*;
 import ruina.events.act3.*;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.Alriune;
+import ruina.monsters.act1.CrazedEmployee;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.Orchestra;
@@ -630,6 +631,17 @@ public class RuinaMod implements
         BaseMod.addMonster(TeddyBear.ID, (BaseMod.GetMonster) TeddyBear::new);
         BaseMod.addMonster(ShyLook.ID, (BaseMod.GetMonster) ShyLook::new);
         BaseMod.addMonster(Fragment.ID, (BaseMod.GetMonster) Fragment::new);
+        BaseMod.addMonster(EncounterIDs.EMPLOYEES_2, "2_Employees", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new CrazedEmployee(-200.0F, 0.0F, 0),
+                        new CrazedEmployee(50.0F, 0.0F, 1),
+                }));
+        BaseMod.addMonster(EncounterIDs.EMPLOYEES_3, "3_Employees", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new CrazedEmployee(-450.0F, 0.0F, 0),
+                        new CrazedEmployee(-200.0F, 0.0F, 1),
+                        new CrazedEmployee(50.0F, 0.0F, 2)
+                }));
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
