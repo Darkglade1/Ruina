@@ -46,6 +46,7 @@ import ruina.events.act2.*;
 import ruina.events.act3.*;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.Alriune;
+import ruina.monsters.act1.Butterflies;
 import ruina.monsters.act1.CrazedEmployee;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
@@ -560,6 +561,8 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("FragmentStab"), makeSFXPath("Cosmos_Stab_Down.wav"));
         BaseMod.addAudio(makeID("FragmentSing"), makeSFXPath("Cosmos_Sing.wav"));
+
+        BaseMod.addAudio(makeID("ButterflyAtk"), makeSFXPath("ButterFlyMan_ButterflyAtk.wav"));
     }
 
     @Override
@@ -641,6 +644,20 @@ public class RuinaMod implements
                         new CrazedEmployee(-450.0F, 0.0F, 0),
                         new CrazedEmployee(-200.0F, 0.0F, 1),
                         new CrazedEmployee(50.0F, 0.0F, 2)
+                }));
+        BaseMod.addMonster(EncounterIDs.BUTTERFLIES_3, "3_Butterflies", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Butterflies(-450.0F, 0.0F),
+                        new Butterflies(-200.0F, 0.0F),
+                        new Butterflies(50.0F, 0.0F)
+                }));
+        BaseMod.addMonster(EncounterIDs.BUTTERFLIES_5, "5_Butterflies", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Butterflies(-450.0F, 0.0F),
+                        new Butterflies(-300.0F, 0.0F),
+                        new Butterflies(-150.0F, 0.0F),
+                        new Butterflies(0.0F, 0.0F),
+                        new Butterflies(150.0F, 0.0F)
                 }));
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);

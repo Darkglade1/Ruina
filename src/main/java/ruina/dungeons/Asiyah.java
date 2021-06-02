@@ -75,7 +75,7 @@ public class Asiyah extends AbstractRuinaDungeon {
         monsters.add(new MonsterInfo(Fragment.ID, 2.0F));
         monsters.add(new MonsterInfo(ForsakenMurderer.ID, 2.0F));
         monsters.add(new MonsterInfo(EncounterIDs.EMPLOYEES_2, 2.0F));
-        monsters.add(new MonsterInfo("Small Slimes", 2.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.BUTTERFLIES_3, 2.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateMonsterList(monsters, count, false);
     }
@@ -87,7 +87,7 @@ public class Asiyah extends AbstractRuinaDungeon {
         monsters.add(new MonsterInfo("Gremlin Gang", 1.0F));
         monsters.add(new MonsterInfo("Looter", 2.0F));
         monsters.add(new MonsterInfo(ShyLook.ID, 2.0F));
-        monsters.add(new MonsterInfo("Lots of Slimes", 1.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.BUTTERFLIES_5, 1.0F));
         monsters.add(new MonsterInfo("Exordium Thugs", 1.5F));
         monsters.add(new MonsterInfo("Exordium Wildlife", 1.5F));
         monsters.add(new MonsterInfo(ScorchedGirl.ID, 2.0F));

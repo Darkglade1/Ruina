@@ -12,5 +12,7 @@ public class EncounterIDs {
     public static final String BIRDS_4 = RuinaMod.makeID("4_Birds");
     public static final String EMPLOYEES_2 = RuinaMod.makeID("2_Employees");
     public static final String EMPLOYEES_3 = RuinaMod.makeID("3_Employees");
+    public static final String BUTTERFLIES_3 = RuinaMod.makeID("3_BUTTERFLIES");
+    public static final String BUTTERFLIES_5 = RuinaMod.makeID("5_BUTTERFLIES");
 
 }
