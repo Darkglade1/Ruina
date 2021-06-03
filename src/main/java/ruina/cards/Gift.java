@@ -20,11 +20,11 @@ import static ruina.util.Wiz.*;
 
 @AutoAdd.Ignore
 public class Gift extends AbstractRuinaCard {
-    public final static String ID = makeID(Guilt.class.getSimpleName());
+    public final static String ID = makeID(Gift.class.getSimpleName());
     private static final int DAMAGE = 10;
     private static final int UPG_DAMAGE = 5;
     private static final int COST = 2;
-    private static final int COST_DOWN = -1;
+    private static final int COST_DOWN = 1;
 
 
     public Gift() {
