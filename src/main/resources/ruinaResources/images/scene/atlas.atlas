@@ -89,6 +89,19 @@ mod/Alriune
   offset: 0, 0
   index: -1
 
+Laetitia.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Laetitia
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+  
 ShyLook.png
 size: 2048,2048
 format: RGBA8888
