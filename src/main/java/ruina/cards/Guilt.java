@@ -1,5 +1,6 @@
 package ruina.cards;
 
+import basemod.AutoAdd;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,6 +12,7 @@ import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.applyToTargetNextTurnTop;
 import static ruina.util.Wiz.intoDiscard;
 
+@AutoAdd.Ignore
 public class Guilt extends AbstractRuinaCard {
     public final static String ID = makeID(Guilt.class.getSimpleName());
     private static final int STRENGTH = 2;

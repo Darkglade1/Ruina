@@ -1,49 +1,34 @@
 package ruina.monsters.act1.laetitia;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
-import ruina.cardmods.LaurelWreathMod;
 import ruina.cards.Gift;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.monsters.act3.seraphim.GuardianApostle;
-import ruina.monsters.uninvitedGuests.normal.eileen.GearsWorshipper;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.LonelyIsSad;
-import ruina.powers.Paralysis;
-
-import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
-public class Laetitia extends AbstractRuinaMonster
-{
+public class Laetitia extends AbstractRuinaMonster {
     public static final String ID = makeID(Laetitia.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
-
-    private static final byte SPRINGS_GENESIS = 0;
-    private static final byte FULL_BLOOM = 1;
-    private static final byte MAGNIFICENT_END = 2;
 
     private static final byte GIFT = 0;
     private static final byte FUN = 1;
@@ -59,8 +44,8 @@ public class Laetitia extends AbstractRuinaMonster
     }
 
     public Laetitia(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 280.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("Alriune/Spriter/Alriune.scml"));
+        super(NAME, ID, 140, 0.0F, 0, 200.0f, 250.0f, null, x, y);
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Laetitia/Spriter/Laetitia.scml"));
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(110));
         addMove(GIFT, Intent.ATTACK_DEBUFF, giftDamage);
@@ -84,19 +69,24 @@ public class Laetitia extends AbstractRuinaMonster
     public void takeTurn() {
         DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = this.moves.get(nextMove).multiplier;
-        if(info.base > -1) {
+        if (info.base > -1) {
             info.applyPowers(this, adp());
         }
 
         switch (this.nextMove) {
             case GIFT: {
+                attackAnimation(adp());
                 dmg(adp(), info);
                 atb(new MakeTempCardInHandAction(new Gift(), giftGifts));
+                resetIdle();
                 break;
             }
             case FUN: {
                 for (int i = 0; i < multiplier; i++) {
+                    attackAnimation(adp());
                     dmg(adp(), info);
+                    resetIdle(0.25f);
+                    waitAnimation(0.25f);
                 }
                 break;
             }
@@ -106,8 +96,11 @@ public class Laetitia extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if(lastTwoMoves(GIFT)){ setMoveShortcut(GIFT, MOVES[GIFT]); }
-        else { setMoveShortcut(FUN, MOVES[FUN]); }
+        if (lastTwoMoves(GIFT)) {
+            setMoveShortcut(FUN, MOVES[FUN]);
+        } else {
+            setMoveShortcut(GIFT, MOVES[GIFT]);
+        }
     }
 
 
@@ -126,12 +119,12 @@ public class Laetitia extends AbstractRuinaMonster
         giftFriend2.createIntent();
     }
 
-    public void onMonsterDeath(){
+    public void onMonsterDeath() {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
                 AbstractPower p = getPower(LonelyIsSad.POWER_ID);
-                if(p != null && monsterList().size() == 1){
+                if (p != null && monsterList().size() == 1) {
                     p.flash();
                     ((LonelyIsSad) p).doubleDamage = true;
                     p.updateDescription();
@@ -149,6 +142,10 @@ public class Laetitia extends AbstractRuinaMonster
                 atb(new SuicideAction(mo));
             }
         }
+    }
+
+    private void attackAnimation(AbstractCreature enemy) {
+        animationAction("Attack", "LaetitiaAtk", enemy, this);
     }
 
 }

@@ -3,20 +3,16 @@ package ruina.cards;
 import basemod.AutoAdd;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import ruina.cardmods.ManifestMod;
 import ruina.cardmods.RetainMod;
 import ruina.cardmods.UnplayableMod;
-import ruina.cards.cardvars.SecondMagicNumber;
 
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.*;
+import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.atb;
 
 @AutoAdd.Ignore
 public class Gift extends AbstractRuinaCard {
@@ -41,7 +37,7 @@ public class Gift extends AbstractRuinaCard {
 
     @Override
     public void onRetained() {
-        this.modifyCostForCombat(secondMagicNumber);
+        this.modifyCostForCombat(-secondMagicNumber);
         if (this.costForTurn == 0) {
             // damage
             atb(new DamageAction(adp(), new DamageInfo(adp(), magicNumber, DamageInfo.DamageType.NORMAL)));

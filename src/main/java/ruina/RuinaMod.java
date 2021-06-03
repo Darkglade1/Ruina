@@ -564,6 +564,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("FragmentSing"), makeSFXPath("Cosmos_Sing.wav"));
 
         BaseMod.addAudio(makeID("ButterflyAtk"), makeSFXPath("ButterFlyMan_ButterflyAtk.wav"));
+
+        BaseMod.addAudio(makeID("LaetitiaAtk"), makeSFXPath("Laetitia_Atk.wav"));
+        BaseMod.addAudio(makeID("LaetitiaFriendAtk"), makeSFXPath("Laetitia_Friend_Stab.wav"));
     }
 
     @Override
@@ -630,6 +633,7 @@ public class RuinaMod implements
                 }));
         BaseMod.addMonster(Alriune.ID, (BaseMod.GetMonster) Alriune::new);
         BaseMod.addMonster(Laetitia.ID, (BaseMod.GetMonster) Laetitia::new);
+
         BaseMod.addMonster(ForsakenMurderer.ID, (BaseMod.GetMonster) ForsakenMurderer::new);
         BaseMod.addMonster(ScorchedGirl.ID, (BaseMod.GetMonster) ScorchedGirl::new);
         BaseMod.addMonster(TeddyBear.ID, (BaseMod.GetMonster) TeddyBear::new);

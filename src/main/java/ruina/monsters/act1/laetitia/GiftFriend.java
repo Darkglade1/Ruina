@@ -1,12 +1,13 @@
 package ruina.monsters.act1.laetitia;
 
-import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.StSLib;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
@@ -17,16 +18,13 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.cards.Gift;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.monsters.uninvitedGuests.normal.greta.Greta;
 import ruina.powers.SurprisePresent;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.atb;
 
-public class GiftFriend extends AbstractRuinaMonster
-{
+public class GiftFriend extends AbstractRuinaMonster {
     public static final String ID = makeID(GiftFriend.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
@@ -42,16 +40,11 @@ public class GiftFriend extends AbstractRuinaMonster
 
     private final int takeItDamage = calcAscensionDamage(6);
 
-    public static final String POWER_ID = makeID("LonelyIsSad");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     public Laetitia parent;
 
     public GiftFriend(final float x, final float y, Laetitia elite) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 280.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("Alriune/Spriter/Alriune.scml"));
+        super(NAME, ID, 140, 0.0F, 0, 200.0f, 200.0f, null, x, y);
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Friend/Spriter/Friend.scml"));
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(20));
         addMove(TAKE_IT, Intent.ATTACK, takeItDamage);
@@ -75,12 +68,14 @@ public class GiftFriend extends AbstractRuinaMonster
     public void takeTurn() {
         DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = this.moves.get(nextMove).multiplier;
-        if(info.base > -1) {
+        if (info.base > -1) {
             info.applyPowers(this, adp());
         }
         switch (this.nextMove) {
             case TAKE_IT: {
+                attackAnimation(adp());
                 dmg(adp(), info);
+                resetIdle();
                 break;
             }
         }
@@ -89,11 +84,12 @@ public class GiftFriend extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        AbstractPower p = this.getPower("kaboom");
-        if(p != null && p.amount == 1){
+        AbstractPower p = this.getPower(SurprisePresent.POWER_ID);
+        if (p != null && p.amount == 1) {
             setMoveShortcut(UNKNOWN, MOVES[UNKNOWN]);
+        } else {
+            setMoveShortcut(TAKE_IT, MOVES[TAKE_IT]);
         }
-        else { setMoveShortcut(TAKE_IT, MOVES[TAKE_IT]); }
     }
 
     @Override
@@ -111,5 +107,9 @@ public class GiftFriend extends AbstractRuinaMonster
     public void renderTip(SpriteBatch sb) {
         super.renderTip(sb);
         tips.add(new CardPowerTip(card.makeStatEquivalentCopy()));
+    }
+
+    private void attackAnimation(AbstractCreature enemy) {
+        animationAction("Attack", "BluntVert", enemy, this);
     }
 }
