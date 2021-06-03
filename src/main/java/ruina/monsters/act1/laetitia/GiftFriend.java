@@ -48,11 +48,14 @@ public class GiftFriend extends AbstractRuinaMonster {
         addMove(UNKNOWN, Intent.UNKNOWN);
         parent = elite;
         storedX = x;
+        if (AbstractDungeon.ascensionLevel >= 18) {
+            card.upgrade();
+        }
     }
 
     @Override
     public void usePreBattleAction() {
-        atb(new ApplyPowerAction(this, this, new SurprisePresent(this, 3, calcAscensionSpecial(10))));
+        atb(new ApplyPowerAction(this, this, new SurprisePresent(this, 3, calcAscensionSpecial(10), card)));
     }
 
     @Override

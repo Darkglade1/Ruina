@@ -10,13 +10,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
-import ruina.cards.Gift;
 import ruina.monsters.act1.laetitia.GiftFriend;
 import ruina.monsters.act1.laetitia.WitchFriend;
 
@@ -28,9 +26,12 @@ public class SurprisePresent extends AbstractUnremovablePower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public SurprisePresent(AbstractCreature owner, int amount, int kaboomDamage) {
+    AbstractCard gift;
+
+    public SurprisePresent(AbstractCreature owner, int amount, int kaboomDamage, AbstractCard gift) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
         amount2 = kaboomDamage;
+        this.gift = gift;
         updateDescription();
     }
 
@@ -40,11 +41,7 @@ public class SurprisePresent extends AbstractUnremovablePower {
             atb(new SuicideAction((AbstractMonster) this.owner));
             DamageInfo damageInfo = new DamageInfo(this.owner, amount2, DamageInfo.DamageType.THORNS);
             dmg(adp(), damageInfo, AbstractGameAction.AttackEffect.FIRE);
-            AbstractCard gift = new Gift();
-            if (AbstractDungeon.ascensionLevel >= 18) {
-                gift.upgrade();
-            }
-            atb(new MakeTempCardInHandAction(new Gift(), 1));
+            atb(new MakeTempCardInHandAction(gift, 1));
             if(owner instanceof GiftFriend){
                 AbstractMonster giftFriend1 = new WitchFriend(((GiftFriend) owner).storedX, 0.0f, ((GiftFriend) owner).parent);
                 atb(new SpawnMonsterAction(giftFriend1, true));
@@ -52,10 +49,15 @@ public class SurprisePresent extends AbstractUnremovablePower {
             }
         } else {
             atb(new ReducePowerAction(owner, owner, this, 1));
-            updateDescription();
             if (owner instanceof GiftFriend) {
-                ((GiftFriend) owner).rollMove();
-                ((GiftFriend) owner).createIntent();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        ((GiftFriend) owner).rollMove();
+                        ((GiftFriend) owner).createIntent();
+                        this.isDone = true;
+                    }
+                });
             }
         }
     }
