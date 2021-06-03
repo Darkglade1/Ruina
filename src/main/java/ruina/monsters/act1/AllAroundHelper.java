@@ -53,7 +53,7 @@ public class AllAroundHelper extends AbstractRuinaMonster
         addMove(CLEAN, Intent.ATTACK, calcAscensionDamage(6), 2, true);
         this.attackFirst = attackFirst;
 
-        if (AbstractDungeon.ascensionLevel >= 13) {
+        if (AbstractDungeon.ascensionLevel >= 3) {
             DAMAGE_THRESHOLD += 1;
         }
         if (AbstractDungeon.ascensionLevel >= 18) {
