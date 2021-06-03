@@ -51,8 +51,8 @@ public class Laetitia extends AbstractRuinaMonster
     private final int giftDamage = calcAscensionDamage(4);
     private final int giftGifts = 1;
 
-    private final int funDamage = 3;
-    private final int funHits = 3;
+    private final int funDamage = calcAscensionDamage(2);
+    private final int funHits = 2;
 
     public Laetitia() {
         this(140.0f, 0.0f);
@@ -106,7 +106,7 @@ public class Laetitia extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if(!lastTwoMoves(GIFT)){ setMoveShortcut(GIFT, MOVES[GIFT]); }
+        if(lastTwoMoves(GIFT)){ setMoveShortcut(GIFT, MOVES[GIFT]); }
         else { setMoveShortcut(FUN, MOVES[FUN]); }
     }
 
