@@ -513,5 +513,19 @@
   "${ModID}:Meal": {
     "NAME": "Prepared Meal",
     "DESCRIPTIONS": ["At end of round, if this creature's HP is at or below #b", ", the enemy #yconsumes it."]
+  },
+  "${ModID}:LonelyIsSad": {
+    "NAME": "Being Lonely is Sad",
+    "DESCRIPTIONS": [
+      "Takes #bdouble #bdamage from attacks when there are no other enemies, and takes #b50% less damage from attacks when there are allies remaining.",
+      "Takes #bdouble #bdamage from attacks."
+    ]
+  },
+  "${ModID}:SurprisePresent": {
+    "NAME": "Surprise Present",
+    "DESCRIPTIONS": [
+      "In #b%1$s turns, this creature dies, dealing #b%2$s damage. If this creature dies this way, add a #yGift to your hand. NL If this creature dies #rby #rany #rmeans, spawn a #bWee #bWitch's #bFriend which acts next turn.",
+      "In #b%1$s turn, this creature dies, dealing #b%2$s damage. If this creature dies this way, add a #yGift to your hand. NL If this creature dies #rby #rany #rmeans, spawn a #bWee #bWitch's #bFriend which acts next turn."
+    ]
   }
 }

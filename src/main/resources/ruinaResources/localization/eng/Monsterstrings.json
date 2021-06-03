@@ -1095,5 +1095,31 @@
     "NAME": "Fairy Mass",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Laetitia": {
+    "MOVES": [
+      "Here's a Gift!",
+      "Let’s Have Fun!"
+    ],
+    "NAME": "Laetitia",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:GiftFriend": {
+    "MOVES": [
+      "G..i..f..t",
+      "B..lo..w..Up.."
+    ],
+    "NAME": "Gift-wrapped Friend",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:WitchFriend": {
+    "MOVES": [
+      "#$@!#*#$@"
+    ],
+    "NAME": "Wee Witch's Friend",
+    "DIALOG": [
+    ]
   }
 }
