@@ -14,6 +14,7 @@ import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
+import ruina.monsters.act1.laetitia.Laetitia;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act2.KingOfGreed;
 import ruina.monsters.act2.KnightOfDespair;
@@ -110,7 +111,7 @@ public class Asiyah extends AbstractRuinaDungeon {
     @Override
     protected void generateElites(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo("Gremlin Nob", 1.0F));
+        monsters.add(new MonsterInfo(Laetitia.ID, 1.0F));
         monsters.add(new MonsterInfo(Alriune.ID, 1.0F));
         monsters.add(new MonsterInfo(AllAroundHelper.ID, 1.0F));
         MonsterInfo.normalizeWeights(monsters);
