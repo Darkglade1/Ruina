@@ -27,7 +27,7 @@ public class FairyMass extends AbstractRuinaMonster {
     private static final byte WINGBEATS = 0;
     private static final byte GLUTTONY = 1;
 
-    private final int BLEED = calcAscensionSpecial(1);
+    private final int BLEED = 1;
     private final float CONSUME_THRESHOLD = 0.25f;
 
     public static final String POWER_ID = makeID("Meal");
@@ -43,7 +43,11 @@ public class FairyMass extends AbstractRuinaMonster {
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FairyMass/Spriter/FairyMass.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(20), calcAscensionTankiness(22));
-        addMove(WINGBEATS, Intent.ATTACK_DEBUFF, calcAscensionDamage(3));
+        int wingBeatsDamage = 3;
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            wingBeatsDamage = 4;
+        }
+        addMove(WINGBEATS, Intent.ATTACK_DEBUFF, wingBeatsDamage);
         addMove(GLUTTONY, Intent.ATTACK, calcAscensionDamage(5));
         this.queen = queen;
         consumeThreshold = (int)(this.maxHealth * CONSUME_THRESHOLD);

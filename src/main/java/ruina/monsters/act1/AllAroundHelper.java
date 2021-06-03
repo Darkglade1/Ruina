@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -30,8 +31,8 @@ public class AllAroundHelper extends AbstractRuinaMonster
     private static final byte CHARGE = 0;
     private static final byte CLEAN = 1;
 
-    private final int DAMAGE_THRESHOLD = 10;
-    private final int STRENGTH = calcAscensionSpecial(4);
+    private int DAMAGE_THRESHOLD = 9;
+    private final int STRENGTH = calcAscensionSpecial(3);
     private final boolean attackFirst;
 
     public static final String POWER_ID = makeID("Pattern");
@@ -51,6 +52,13 @@ public class AllAroundHelper extends AbstractRuinaMonster
         addMove(CHARGE, Intent.BUFF);
         addMove(CLEAN, Intent.ATTACK, calcAscensionDamage(6), 2, true);
         this.attackFirst = attackFirst;
+
+        if (AbstractDungeon.ascensionLevel >= 13) {
+            DAMAGE_THRESHOLD += 1;
+        }
+        if (AbstractDungeon.ascensionLevel >= 18) {
+            DAMAGE_THRESHOLD += 2;
+        }
     }
 
     @Override
