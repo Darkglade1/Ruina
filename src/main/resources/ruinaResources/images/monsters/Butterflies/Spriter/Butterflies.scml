@@ -2,6 +2,8 @@
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0">
         <file id="0" name="Idle.png" width="99" height="121" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Attack.png" width="178" height="166" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Special.png" width="152" height="125" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="Butterflies">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -12,7 +14,7 @@
             </mainline>
             <timeline id="0" name="Idle">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-49" y="132"/>
+                    <object folder="0" file="0" x="-49" y="132" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -22,9 +24,9 @@
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="Idle_000">
+            <timeline id="0" name="Attack">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-47" y="135"/>
+                    <object folder="0" file="1" x="-101" y="150"/>
                 </key>
             </timeline>
         </animation>
@@ -34,9 +36,9 @@
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="Idle_001">
+            <timeline id="0" name="Special">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-51" y="135"/>
+                    <object folder="0" file="2" x="-69" y="132"/>
                 </key>
             </timeline>
         </animation>
