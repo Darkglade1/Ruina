@@ -527,5 +527,9 @@
       "In #b%1$s turns, this creature dies, dealing #b%2$s damage. If this creature dies this way, add a #yGift to your hand. NL If this creature dies #rby #rany #rmeans, spawn a #bWee #bWitch's #bFriend which acts next turn.",
       "In #b%1$s turn, this creature dies, dealing #b%2$s damage. If this creature dies this way, add a #yGift to your hand. NL If this creature dies #rby #rany #rmeans, spawn a #bWee #bWitch's #bFriend which acts next turn."
     ]
+  },
+  "${ModID}:Song": {
+    "NAME": "Pine for the Song",
+    "DESCRIPTIONS": ["At end of round, gains #b", " #yStrength and #b", " #yVulnerable."]
   }
 }

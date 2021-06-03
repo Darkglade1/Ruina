@@ -12,7 +12,10 @@ import ruina.RuinaMod;
 import ruina.dungeons.AbstractRuinaDungeon;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.Alriune;
+import ruina.monsters.act1.Butterflies;
+import ruina.monsters.act1.CrazedEmployee;
 import ruina.monsters.act1.ForsakenMurderer;
+import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
@@ -178,6 +181,12 @@ public class RuinaScene extends AbstractScene {
                 }
                 else if(mo instanceof Laetitia){
                     this.bg = this.atlas.findRegion("mod/Laetitia");
+                } else if (mo instanceof Fragment) {
+                    this.bg = this.atlas.findRegion("mod/Fragment");
+                } else if (mo instanceof CrazedEmployee) {
+                    this.bg = this.atlas.findRegion("mod/Singing");
+                } else if (mo instanceof Butterflies) {
+                    this.bg = this.atlas.findRegion("mod/Butterfly");
                 } else {
                     setBgs();
                 }

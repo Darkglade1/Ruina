@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
@@ -81,7 +82,7 @@ public class BigBird extends AbstractMultiIntentMonster
         }
         this.setHp(calcAscensionTankiness(maxHealth));
 
-        addMove(SALVATION, Intent.ATTACK, calcAscensionDamage(16));
+        addMove(SALVATION, Intent.ATTACK, calcAscensionDamage(17));
         addMove(DAZZLE_ENEMY, Intent.STRONG_DEBUFF);
         addMove(DAZZLE_PLAYER, Intent.DEBUFF);
         addMove(ILLUMINATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));
@@ -170,14 +171,23 @@ public class BigBird extends AbstractMultiIntentMonster
             case ILLUMINATE: {
                 dazzleAnimation(target);
                 dmg(target, info);
-                applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                if (AbstractDungeon.ascensionLevel >= 18) {
+                    applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                    applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
+                } else {
+                    applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                }
                 resetIdle(1.0f);
                 break;
             }
             case ILLUMINATE_2: {
                 dazzleAnimation(target);
                 dmg(target, info);
-                applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
+                if (AbstractDungeon.ascensionLevel >= 18) {
+                    applyToTarget(target, this, new VulnerablePower(target, DEBUFF, true));
+                } else {
+                    applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
+                }
                 resetIdle(1.0f);
                 break;
             }
@@ -262,15 +272,11 @@ public class BigBird extends AbstractMultiIntentMonster
                 setAdditionalMoveShortcut(DAZZLE_PLAYER, moveHistory);
             } else {
                 if (sage1 != null && (sage1.isDead || sage1.isDying)) {
-                    ArrayList<Byte> possibilities = new ArrayList<>();
-                    if (!this.lastTwoMoves(SALVATION, moveHistory)) {
-                        possibilities.add(SALVATION);
+                    if (this.lastMove(ILLUMINATE, moveHistory)) {
+                        setAdditionalMoveShortcut(SALVATION, moveHistory);
+                    } else {
+                        setAdditionalMoveShortcut(ILLUMINATE, moveHistory);
                     }
-                    if (!this.lastTwoMoves(ILLUMINATE, moveHistory)) {
-                        possibilities.add(ILLUMINATE);
-                    }
-                    byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                    setAdditionalMoveShortcut(move, moveHistory);
                 } else {
                     if (!this.lastMove(DAZZLE_ENEMY, moveHistory)) {
                         setAdditionalMoveShortcut(DAZZLE_ENEMY, moveHistory);
@@ -283,15 +289,11 @@ public class BigBird extends AbstractMultiIntentMonster
 
         if (whichMove == 1) {
             if (sage2 != null && (sage2.isDead || sage2.isDying)) {
-                ArrayList<Byte> possibilities = new ArrayList<>();
-                if (!this.lastTwoMoves(SALVATION, moveHistory)) {
-                    possibilities.add(SALVATION);
+                if (this.lastMove(ILLUMINATE_2, moveHistory)) {
+                    setAdditionalMoveShortcut(SALVATION, moveHistory);
+                } else {
+                    setAdditionalMoveShortcut(ILLUMINATE_2, moveHistory);
                 }
-                if (!this.lastTwoMoves(ILLUMINATE_2, moveHistory)) {
-                    possibilities.add(ILLUMINATE_2);
-                }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                setAdditionalMoveShortcut(move, moveHistory);
             } else {
                 if (!this.lastMove(DAZZLE_ENEMY, moveHistory)) {
                     setAdditionalMoveShortcut(DAZZLE_ENEMY, moveHistory);

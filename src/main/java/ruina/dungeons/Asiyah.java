@@ -3,7 +3,6 @@ package ruina.dungeons;
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
@@ -11,20 +10,11 @@ import ruina.RuinaMod;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.Alriune;
 import ruina.monsters.act1.ForsakenMurderer;
+import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act1.laetitia.Laetitia;
-import ruina.monsters.act2.BadWolf;
-import ruina.monsters.act2.KingOfGreed;
-import ruina.monsters.act2.KnightOfDespair;
-import ruina.monsters.act2.Mountain;
-import ruina.monsters.act2.Nosferatu;
-import ruina.monsters.act2.QueenOfHate;
-import ruina.monsters.act2.RoadHome;
-import ruina.monsters.act2.ServantOfWrath;
-import ruina.monsters.act2.Woodsman;
-
 import java.util.ArrayList;
 
 public class Asiyah extends AbstractRuinaDungeon {
@@ -82,10 +72,10 @@ public class Asiyah extends AbstractRuinaDungeon {
     @Override
     protected void generateWeakEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo("Cultist", 2.0F));
+        monsters.add(new MonsterInfo(Fragment.ID, 2.0F));
         monsters.add(new MonsterInfo(ForsakenMurderer.ID, 2.0F));
-        monsters.add(new MonsterInfo("2 Louse", 2.0F));
-        monsters.add(new MonsterInfo("Small Slimes", 2.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.EMPLOYEES_2, 2.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.BUTTERFLIES_3, 2.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateMonsterList(monsters, count, false);
     }
@@ -94,15 +84,15 @@ public class Asiyah extends AbstractRuinaDungeon {
     protected void generateStrongEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo(TeddyBear.ID, 2.0F));
-        monsters.add(new MonsterInfo("Gremlin Gang", 1.0F));
-        monsters.add(new MonsterInfo("Looter", 2.0F));
+        //monsters.add(new MonsterInfo("Gremlin Gang", 1.0F));
+        //monsters.add(new MonsterInfo("Looter", 2.0F));
         monsters.add(new MonsterInfo(ShyLook.ID, 2.0F));
-        monsters.add(new MonsterInfo("Lots of Slimes", 1.0F));
-        monsters.add(new MonsterInfo("Exordium Thugs", 1.5F));
-        monsters.add(new MonsterInfo("Exordium Wildlife", 1.5F));
-        monsters.add(new MonsterInfo(ScorchedGirl.ID, 1.0F));
-        monsters.add(new MonsterInfo("3 Louse", 2.0F));
-        monsters.add(new MonsterInfo("2 Fungi Beasts", 2.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.BUTTERFLIES_5, 1.0F));
+        //monsters.add(new MonsterInfo("Exordium Thugs", 1.5F));
+        //monsters.add(new MonsterInfo("Exordium Wildlife", 1.5F));
+        monsters.add(new MonsterInfo(ScorchedGirl.ID, 2.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.EMPLOYEES_3, 1.0F));
+        //monsters.add(new MonsterInfo("2 Fungi Beasts", 2.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateFirstStrongEnemy(monsters, this.generateExclusions());
         this.populateMonsterList(monsters, count, false);
@@ -122,11 +112,11 @@ public class Asiyah extends AbstractRuinaDungeon {
     protected ArrayList<String> generateExclusions() {
         ArrayList<String> retVal = new ArrayList<>();
         String previous = monsterList.get(monsterList.size() - 1);
-        if (previous.equals(Nosferatu.ID) || previous.equals(EncounterIDs.BATS_3)) {
-            retVal.add(EncounterIDs.NOS_AND_BAT);
+        if (previous.equals(EncounterIDs.EMPLOYEES_2)) {
+            retVal.add(EncounterIDs.EMPLOYEES_3);
         }
-        if (previous.equals(EncounterIDs.SCARECROWS_2)) {
-            retVal.add(EncounterIDs.SCARECROWS_3);
+        if (previous.equals(EncounterIDs.BUTTERFLIES_3)) {
+            retVal.add(EncounterIDs.BUTTERFLIES_5);
         }
         return retVal;
     }

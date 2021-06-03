@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
 import ruina.monsters.act1.Orchestra;
+import ruina.monsters.act1.fairyFestival.FairyQueen;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.Ozma;
 import ruina.monsters.act3.Twilight;
@@ -50,7 +51,9 @@ public class AbstractRuinaDungeon extends CustomDungeon {
 
     public void setFloor() {
         if (bossKey != null) {
-            if (bossKey.equals(Orchestra.ID)) {
+            if (bossKey.equals(FairyQueen.ID)) {
+                floor = Floor.MALKUTH;
+            } else if (bossKey.equals(Orchestra.ID)) {
                 floor = Floor.NETZACH;
             } else if (bossKey.equals(JesterOfNihil.ID)) {
                 floor = Floor.TIPHERETH;

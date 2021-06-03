@@ -892,5 +892,9 @@
   "${ModID}:Gift": {
     "NAME": "Gift",
     "DESCRIPTION": "When Retained, reduce this card's cost by !ruina:SecondMagic!. NL When this card's cost becomes *0, take !M! damage, and then Exhaust this card."
+  },
+  "${ModID}:Enlightenment": {
+    "NAME": "Enlightenment",
+    "DESCRIPTION": "Lose !M! HP. NL Gain !B! Block. NL Draw !ruina:SecondMagic! card."
   }
 }

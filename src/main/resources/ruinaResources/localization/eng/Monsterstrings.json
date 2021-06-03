@@ -1121,5 +1121,32 @@
     "NAME": "Wee Witch's Friend",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Fragment": {
+    "MOVES": [
+      "Penetrate",
+      "Echoes from the Beyond"
+    ],
+    "NAME": "Fragment of the Universe",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:CrazedEmployee": {
+    "MOVES": [
+      "Trembling Motion",
+      "Shaking Blow"
+    ],
+    "NAME": "Crazed Employee",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Butterflies": {
+    "MOVES": [
+      "Tranquility",
+      "Liberation"
+    ],
+    "NAME": "Butterflies",
+    "DIALOG": [
+    ]
   }
 }

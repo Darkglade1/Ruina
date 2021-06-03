@@ -46,7 +46,10 @@ import ruina.events.act2.*;
 import ruina.events.act3.*;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.Alriune;
+import ruina.monsters.act1.Butterflies;
+import ruina.monsters.act1.CrazedEmployee;
 import ruina.monsters.act1.ForsakenMurderer;
+import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
@@ -556,6 +559,11 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("FairyQueenAtk"), makeSFXPath("Fairy_QueenAtk.wav"));
         BaseMod.addAudio(makeID("FairyQueenChange"), makeSFXPath("Fairy_QueenChange.wav"));
         BaseMod.addAudio(makeID("FairyQueenEat"), makeSFXPath("Fairy_QueenEat.wav"));
+
+        BaseMod.addAudio(makeID("FragmentStab"), makeSFXPath("Cosmos_Stab_Down.wav"));
+        BaseMod.addAudio(makeID("FragmentSing"), makeSFXPath("Cosmos_Sing.wav"));
+
+        BaseMod.addAudio(makeID("ButterflyAtk"), makeSFXPath("ButterFlyMan_ButterflyAtk.wav"));
     }
 
     @Override
@@ -626,10 +634,37 @@ public class RuinaMod implements
         BaseMod.addMonster(ScorchedGirl.ID, (BaseMod.GetMonster) ScorchedGirl::new);
         BaseMod.addMonster(TeddyBear.ID, (BaseMod.GetMonster) TeddyBear::new);
         BaseMod.addMonster(ShyLook.ID, (BaseMod.GetMonster) ShyLook::new);
+        BaseMod.addMonster(Fragment.ID, (BaseMod.GetMonster) Fragment::new);
+        BaseMod.addMonster(EncounterIDs.EMPLOYEES_2, "2_Employees", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new CrazedEmployee(-200.0F, 0.0F, 0),
+                        new CrazedEmployee(50.0F, 0.0F, 1),
+                }));
+        BaseMod.addMonster(EncounterIDs.EMPLOYEES_3, "3_Employees", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new CrazedEmployee(-450.0F, 0.0F, 0),
+                        new CrazedEmployee(-200.0F, 0.0F, 1),
+                        new CrazedEmployee(50.0F, 0.0F, 2)
+                }));
+        float butterflyY = 100.0f;
+        BaseMod.addMonster(EncounterIDs.BUTTERFLIES_3, "3_Butterflies", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Butterflies(-450.0F, butterflyY),
+                        new Butterflies(-200.0F, butterflyY),
+                        new Butterflies(50.0F, butterflyY)
+                }));
+        BaseMod.addMonster(EncounterIDs.BUTTERFLIES_5, "5_Butterflies", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Butterflies(-450.0F, butterflyY),
+                        new Butterflies(-300.0F, butterflyY),
+                        new Butterflies(-150.0F, butterflyY),
+                        new Butterflies(0.0f, butterflyY),
+                        new Butterflies(150.0F, butterflyY)
+                }));
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
-        BaseMod.addMonster(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new);
+        asiyah.addBoss(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new, makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
         asiyah.addBoss(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new, makeMonsterPath("Orchestra/OrchestraMap.png"), makeMonsterPath("Orchestra/OrchestraMap.png"));
 
 
