@@ -24,7 +24,7 @@ import java.util.HashMap;
 import static com.megacrit.cardcrawl.helpers.TipTracker.pref;
 
 public class RuinaMetrics extends Metrics {
-    public static String url = "http://ruinametrics.atwebpages.com";
+    public static String url = "http://betaruinametrics.atwebpages.com";
 
     public static ArrayList<String> acts = new ArrayList<>();
 
