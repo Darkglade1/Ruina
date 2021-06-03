@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
@@ -38,30 +37,22 @@ public class GiftFriend extends AbstractRuinaMonster {
     private static final byte TAKE_IT = 0;
     private static final byte UNKNOWN = 1;
 
-    private final int takeItDamage = calcAscensionDamage(6);
-
     public Laetitia parent;
 
     public GiftFriend(final float x, final float y, Laetitia elite) {
-        super(NAME, ID, 140, 0.0F, 0, 200.0f, 200.0f, null, x, y);
+        super(NAME, ID, 20, 0.0F, 0, 200.0f, 200.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Friend/Spriter/Friend.scml"));
-        this.type = EnemyType.ELITE;
-        setHp(calcAscensionTankiness(20));
-        addMove(TAKE_IT, Intent.ATTACK, takeItDamage);
+        this.type = EnemyType.NORMAL;
+        setHp(calcAscensionTankiness(maxHealth));
+        addMove(TAKE_IT, Intent.ATTACK, calcAscensionDamage(6));
         addMove(UNKNOWN, Intent.UNKNOWN);
         parent = elite;
         storedX = x;
     }
 
     @Override
-    protected void setUpMisc() {
-        super.setUpMisc();
-        this.type = EnemyType.ELITE;
-    }
-
-    @Override
     public void usePreBattleAction() {
-        atb(new ApplyPowerAction(this, this, new SurprisePresent(this, 3, calcAscensionDamage(10))));
+        atb(new ApplyPowerAction(this, this, new SurprisePresent(this, 3, calcAscensionSpecial(10))));
     }
 
     @Override

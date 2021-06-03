@@ -7,9 +7,11 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -33,11 +35,9 @@ public class Laetitia extends AbstractRuinaMonster {
     private static final byte GIFT = 0;
     private static final byte FUN = 1;
 
-    private final int giftDamage = calcAscensionDamage(4);
     private final int giftGifts = 1;
 
-    private final int funDamage = calcAscensionDamage(2);
-    private final int funHits = 2;
+    private final AbstractCard gift = new Gift();
 
     public Laetitia() {
         this(140.0f, 0.0f);
@@ -47,9 +47,13 @@ public class Laetitia extends AbstractRuinaMonster {
         super(NAME, ID, 140, 0.0F, 0, 200.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Laetitia/Spriter/Laetitia.scml"));
         this.type = EnemyType.ELITE;
-        setHp(calcAscensionTankiness(110));
-        addMove(GIFT, Intent.ATTACK_DEBUFF, giftDamage);
-        addMove(FUN, Intent.ATTACK, funDamage, funHits, true);
+        setHp(calcAscensionTankiness(100));
+        addMove(GIFT, Intent.ATTACK_DEBUFF, calcAscensionDamage(4));
+        addMove(FUN, Intent.ATTACK, calcAscensionDamage(2), 2, true);
+
+        if (AbstractDungeon.ascensionLevel >= 18) {
+            gift.upgrade();
+        }
     }
 
     @Override
@@ -77,7 +81,7 @@ public class Laetitia extends AbstractRuinaMonster {
             case GIFT: {
                 attackAnimation(adp());
                 dmg(adp(), info);
-                atb(new MakeTempCardInHandAction(new Gift(), giftGifts));
+                atb(new MakeTempCardInHandAction(gift.makeStatEquivalentCopy(), giftGifts));
                 resetIdle();
                 break;
             }
@@ -117,21 +121,6 @@ public class Laetitia extends AbstractRuinaMonster {
         atb(new UsePreBattleActionAction(giftFriend2));
         giftFriend2.rollMove();
         giftFriend2.createIntent();
-    }
-
-    public void onMonsterDeath() {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                AbstractPower p = getPower(LonelyIsSad.POWER_ID);
-                if (p != null && monsterList().size() == 1) {
-                    p.flash();
-                    ((LonelyIsSad) p).doubleDamage = true;
-                    p.updateDescription();
-                }
-                isDone = true;
-            }
-        });
     }
 
     @Override

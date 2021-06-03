@@ -5,29 +5,26 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 
-import static ruina.util.Wiz.*;
+import static ruina.util.Wiz.monsterList;
 
 public class LonelyIsSad extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(LonelyIsSad.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public boolean doubleDamage = false;
+
+    private static final int DAMAGE_INCREASE = 100;
 
     public LonelyIsSad(AbstractCreature owner) {
-        super(NAME, POWER_ID, PowerType.BUFF, false, owner, -1);
+        super(NAME, POWER_ID, PowerType.BUFF, false, owner, DAMAGE_INCREASE);
     }
 
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType type, AbstractCard card) {
-        if (type == DamageInfo.DamageType.NORMAL && doubleDamage) {
-            return damage * 2;
-        }
-        else if(type == DamageInfo.DamageType.NORMAL){
-            return damage * (1.0f - ((float) 50 / 100));
+        if (type == DamageInfo.DamageType.NORMAL && monsterList().size() == 1) {
+            return damage * (1 + (float)DAMAGE_INCREASE / 100);
         } else {
             return damage;
         }
@@ -35,6 +32,6 @@ public class LonelyIsSad extends AbstractUnremovablePower {
 
     @Override
     public void updateDescription() {
-        description = doubleDamage ? DESCRIPTIONS[1] : DESCRIPTIONS[0];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 }

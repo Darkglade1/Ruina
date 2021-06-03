@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import ruina.cardmods.RetainMod;
 import ruina.cardmods.UnplayableMod;
 
 import static ruina.RuinaMod.makeID;
@@ -19,16 +18,15 @@ public class Gift extends AbstractRuinaCard {
     public final static String ID = makeID(Gift.class.getSimpleName());
     private static final int DAMAGE = 10;
     private static final int UPG_DAMAGE = 5;
-    private static final int COST = 2;
+    private static final int COST = 3;
     private static final int COST_DOWN = 1;
 
-
     public Gift() {
-        super(ID, COST, CardType.CURSE, CardRarity.SPECIAL, CardTarget.NONE, CardColor.CURSE);
+        super(ID, COST, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
         magicNumber = baseMagicNumber = DAMAGE;
         secondMagicNumber = baseSecondMagicNumber = COST_DOWN;
+        selfRetain = true;
         CardModifierManager.addModifier(this, new UnplayableMod());
-        CardModifierManager.addModifier(this, new RetainMod());
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

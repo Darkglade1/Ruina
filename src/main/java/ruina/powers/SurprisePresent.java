@@ -10,9 +10,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
@@ -40,6 +40,10 @@ public class SurprisePresent extends AbstractUnremovablePower {
             atb(new SuicideAction((AbstractMonster) this.owner));
             DamageInfo damageInfo = new DamageInfo(this.owner, amount2, DamageInfo.DamageType.THORNS);
             dmg(adp(), damageInfo, AbstractGameAction.AttackEffect.FIRE);
+            AbstractCard gift = new Gift();
+            if (AbstractDungeon.ascensionLevel >= 18) {
+                gift.upgrade();
+            }
             atb(new MakeTempCardInHandAction(new Gift(), 1));
             if(owner instanceof GiftFriend){
                 AbstractMonster giftFriend1 = new WitchFriend(((GiftFriend) owner).storedX, 0.0f, ((GiftFriend) owner).parent);
@@ -49,6 +53,10 @@ public class SurprisePresent extends AbstractUnremovablePower {
         } else {
             atb(new ReducePowerAction(owner, owner, this, 1));
             updateDescription();
+            if (owner instanceof GiftFriend) {
+                ((GiftFriend) owner).rollMove();
+                ((GiftFriend) owner).createIntent();
+            }
         }
     }
 
