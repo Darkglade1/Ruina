@@ -9,11 +9,11 @@
   },
   "ruina:FalseThrone": {
     "NAME": "Ложные шипы",
-    "DESCRIPTION": "В след. ходу вы кладёте в руку все Сожжённые карты, кроме Статусов и Проклятий. NL Они становятся Эфирными."
+    "DESCRIPTION": "В след. ходу вы кладёте в руку все *Сожжённые карты, кроме *Статусов и Проклятий. NL Они становятся Эфирными."
   },
   "ruina:Smile": {
     "NAME": "Улыбка",
-    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости и Уязвимости на ВСЕХ врагов."
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости и !M! Уязвимости на ВСЕХ врагов."
   },
   "ruina:Mimicry": {
     "NAME": "Подражание",
@@ -37,7 +37,7 @@
   },
   "ruina:BlindRage": {
     "NAME": "Слепая ярость",
-    "DESCRIPTION": "Наносит !D! урона ВСЕМ врагам. NL Вы получаете !M! урона. NL Стоит 0, если ваш запас ОЗ не более 50%."
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ врагам. NL Наносит !M! урона вам. NL Стоит 0, если ваш запас ОЗ не более 50%."
   },
   "ruina:SwordSharpened": {
     "NAME": "Меч, заточенный слезами",
@@ -46,7 +46,7 @@
   },
   "ruina:Lumber": {
     "NAME": "Хлам",
-    "DESCRIPTION": "Наносит !D! урона. NL Сжигает до !M! выбранных в руке карт. NL Урон, наносимый этой картой, повышается в этом бою на урон каждой сожжённой Атаки."
+    "DESCRIPTION": "Наносит !D! урона. NL Сжигает до !M! выбранных в руке карт. NL Урон, наносимый этой картой, повышается в этом бою на урон каждой *Сожжённой Атаки."
   },
   "ruina:Harvest": {
     "NAME": "Жатва",
@@ -55,7 +55,7 @@
   },
   "ruina:HomingInstinct": {
     "NAME": "Ориентирование",
-    "DESCRIPTION": "Сжигает до !M! выбранной в руке карты. NL Даёт [E] , равную цене сожжённой карты, в начале каждого вашего хода."
+    "DESCRIPTION": "Сжигает до !M! выбранной в руке карты. NL Даёт [E] , равную цене *Сожжённой карты, в начале каждого вашего хода."
   },
   "ruina:CobaltScar": {
     "NAME": "Стальной шрам",
@@ -100,7 +100,7 @@
   },
   "ruina:Beak": {
     "NAME": "Клюв",
-    "DESCRIPTION": "В начале каждого вашего хода снижает стоимость самой дорогой карты в руке до 0 и делает её Сжигаемой до конца боя."
+    "DESCRIPTION": "В начале каждого вашего хода снижает стоимость самой дорогой карты в руке до 0 и делает её *Сжигаемой до конца боя."
   },
   "ruina:Lamp": {
     "NAME": "Лампа",
@@ -113,7 +113,7 @@
   },
   "ruina:Dazzled": {
     "NAME": "Ослепление",
-    "DESCRIPTION": "Повышает свою стоимость в этом бою на !M!, когда Оставляется. NL Если цена этой карты не менее !ruina:SecondMagic!, становится Неиграбельной."
+    "DESCRIPTION": "Повышает свою стоимость в этом бою на !M!, когда Оставляется. NL Если цена этой карты не менее !ruina:SecondMagic!, становится *Неиграбельной."
   },
   "ruina:ForestKeeperLock": {
     "NAME": "Замок лесного хранителя",
@@ -137,11 +137,11 @@
   },
   "ruina:CHRBOSS_GreaterSplitHorizontal": {
     "NAME": "Разрез напрямую",
-    "DESCRIPTION": "Наносит !D! урона. NL Если нанесен урон по ОЗ врага, накладывает !M! ruina:Кровотечения."
+    "DESCRIPTION": "Наносит !D! урона. NL Если нанесён урон по ОЗ врага, накладывает !M! ruina:Кровотечения."
   },
   "ruina:CHRBOSS_GreaterSplitVertical": {
     "NAME": "Разрез вниз",
-    "DESCRIPTION": "Наносит !D! урона. NL Если нанесен урон по ОЗ врага, накладывает !M! ruina:Кровотечения."
+    "DESCRIPTION": "Наносит !D! урона. NL Если нанесён урон по ОЗ врага, накладывает !M! ruina:Кровотечения."
   },
   "ruina:CHRBOSS_FocusSpirit": {
     "NAME": "Подготовка духа",
@@ -167,15 +167,15 @@
   },
   "ruina:CHRBOSS_Lock": {
     "NAME": "Зафиксировать",
-    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! *Сокращения *Добора."
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! *Сокращения *добора."
   },
   "ruina:CHRBOSS_yanAttack": {
     "NAME": "Меч воли",
-    "DESCRIPTION": "*Рука получает !M! Силы."
+    "DESCRIPTION": "Даёт !M! Силы *Руке."
   },
   "ruina:CHRBOSS_yanProtect": {
     "NAME": "Прикрыть",
-    "DESCRIPTION": "*Рука получает !M! *Прикрытия."
+    "DESCRIPTION": "Даёт !M! *Прикрытия *Руке."
   },
   "ruina:CHRBOSS_DistortedBlade": {
     "NAME": "Неверное лезвие",
@@ -618,200 +618,200 @@
     "DESCRIPTION": "Добавляет !M! *Бездны в стопку сброса."
   },
   "ruina:Crystal": {
-    "NAME": "Crystal Atelier",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's NOT the player's turn, gain !B! Block."
+    "NAME": "Ателье Кристалл",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Если разыграно НЕ в ходу игрока, даёт !B! Защиты."
   },
   "ruina:Wheels": {
-    "NAME": "Wheels Industry",
-    "DESCRIPTION": "Deal !D! damage. NL If it's the player's turn, target loses !M! Strength this turn."
+    "NAME": "Индустрия Колёс",
+    "DESCRIPTION": "Наносит !D! урона. NL Если разыграно в ходу игрока, враг теряет !M! Силы до конца своего хода."
   },
   "ruina:Durandal": {
     "NAME": "Дюрандаль",
-    "DESCRIPTION": "Наносит !D! урона !M! раз(а). NL If it's the player's turn, gain !ruina:SecondMagic! Strength this turn."
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Если разыграно в ходу игрока, даёт !ruina:SecondMagic! Силы до конца вашего хода."
   },
   "ruina:Allas": {
-    "NAME": "Allas Workshop",
-    "DESCRIPTION": "Deal !D! damage. NL If it's the player's turn, target loses !M! Strength this turn."
+    "NAME": "Мастерская Аллас",
+    "DESCRIPTION": "Наносит !D! урона. NL Если разыграно в ходу игрока, враг теряет !M! Силы до конца своего хода."
   },
   "ruina:Gun": {
-    "NAME": "Atelier Logic",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "NAME": "Ателье Логика",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
   "ruina:Mook": {
-    "NAME": "Mook Workshop",
-    "DESCRIPTION": "Deal !D! damage. NL Remove all Block from the target."
+    "NAME": "Мастерская Мук",
+    "DESCRIPTION": "Наносит !D! урона. NL Сбивает всю Защиту врага."
   },
   "ruina:OldBoys": {
-    "NAME": "Old Boy's Workshop",
-    "DESCRIPTION": "Deal !D! damage. NL If it's NOT the player's turn, gain !B! Block."
+    "NAME": "Мастерская Старины",
+    "DESCRIPTION": "Наносит !D! урона. NL Если разыграно НЕ в ходу игрока, даёт !B! Защиты."
   },
   "ruina:Ranga": {
-    "NAME": "Ranga Workshop",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's NOT the player's turn, apply !ruina:SecondMagic! ruina:Bleed."
+    "NAME": "Мастерская Ранга",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Если разыграно НЕ в ходу игрока, накладывает !ruina:SecondMagic! ruina:Кровотечения."
   },
   "ruina:Mace": {
-    "NAME": "Zelkova Workshop",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL If it's the player's turn, gain !ruina:SecondMagic! Strength this turn."
+    "NAME": "Мастерская Зельква",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Если разыграно в ходу игрока, даёт !ruina:SecondMagic! Силы до конца вашего хода."
   },
   "ruina:Furioso": {
-    "NAME": "Furioso",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak and Frail."
+    "NAME": "Свирепость",
+    "DESCRIPTION": "Наносит !D! урона !M! раз. NL Накладывает !ruina:SecondMagic! Слабости и !ruina:SecondMagic! Хрупкости."
   },
   "ruina:Yun": {
-    "NAME": "Memory - Yun's Office",
-    "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["Shuffle !M! *Dazed into your draw pile.", "Shuffle !ruina:SecondMagic! *Wounds into your discard pile."]
+    "NAME": "Воспоминание - Офис Юна",
+    "DESCRIPTION": "Выберите одно:",
+    "EXTENDED_DESCRIPTION": ["Добавляет !M! *Головокружения в стопку добора.", "Добавляет !ruina:SecondMagic! *Раны в стопку сброса."]
   },
   "ruina:Zwei": {
-    "NAME": "Memory - Zwei Association",
-    "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["The enemy gains !M! *Metallicize.", "The enemy gains !ruina:SecondMagic! *Plated *Armor."]
+    "NAME": "Воспоминание - Ассоциация Цвай",
+    "DESCRIPTION": "Выберите одно:",
+    "EXTENDED_DESCRIPTION": ["Даёт !M! *Металлизации врагу.", "Даёт !ruina:SecondMagic! *Панциря врагу."]
   },
   "ruina:Dawn": {
-    "NAME": "Memory - Dawn Office",
-    "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["Shuffle !M! *Burns into your draw pile.", "The enemy gains !ruina:SecondMagic! *Protection."]
+    "NAME": "Воспоминание - Офис Восход",
+    "DESCRIPTION": "Выберите одно:",
+    "EXTENDED_DESCRIPTION": ["Добавляет !M! *Ожога в стопку добора.", "Даёт !ruina:SecondMagic! *Прикрытия врагу."]
   },
   "ruina:Shi": {
-    "NAME": "Memory - Shi Association",
-    "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["You gain !M! Weak.", "You gain !ruina:SecondMagic! Frail."]
+    "NAME": "Воспоминание - Ассоциация Ши",
+    "DESCRIPTION": "Выберите одно:",
+    "EXTENDED_DESCRIPTION": ["Накладывает !M! Слабости на вас.", "Накладывает !ruina:SecondMagic! Хрупкости на вас."]
   },
   "ruina:Love": {
-    "NAME": "Memory - Love Town",
-    "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["The enemy gains !M! *Regen.", "Shuffle !ruina:SecondMagic! *Slimed into your discard pile."]
+    "NAME": "Воспоминание - Город Любви",
+    "DESCRIPTION": "Выберите одно:",
+    "EXTENDED_DESCRIPTION": ["Даёт !M! *Регенерации врагу.", "Добавляет !ruina:SecondMagic! *В *слизи в стопку сброса."]
   },
   "ruina:Liu": {
-    "NAME": "Memory - Liu Association",
-    "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["The enemy gains !M! Strength.", "You gain !ruina:SecondMagic! Vulnerable."]
+    "NAME": "Воспоминание - Ассоциация Лю",
+    "DESCRIPTION": "Выберите одно:",
+    "EXTENDED_DESCRIPTION": ["Даёт !M! Силы врагу.", "Накладывает !ruina:SecondMagic! Уязвимости на вас."]
   },
   "ruina:Purple": {
-    "NAME": "Memory - The Purple Tear",
-    "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["The enemy gains !M! Intangible.", "The enemy summons !ruina:SecondMagic! minion."]
+    "NAME": "Воспоминание - Фиолетовая Слеза",
+    "DESCRIPTION": "Выберите одно:",
+    "EXTENDED_DESCRIPTION": ["Даёт !M! Неосязаемости врагу.", "Призывает !ruina:SecondMagic! *Прислужника на стороне врага."]
   },
   "ruina:Hana": {
-    "NAME": "Memory - Hana Association",
-    "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["Put !M! *Regret into your hand.", "You lose !ruina:SecondMagic! HP."]
+    "NAME": "Воспоминание - Ассоциация Хана",
+    "DESCRIPTION": "Выберите одно:",
+    "EXTENDED_DESCRIPTION": ["Добавляет в руку !M! *Сожаления.", "Отнимает !ruina:SecondMagic! ОЗ у вас."]
   },
   "ruina:Blue": {
-    "NAME": "Memory - The Blue Reverberation",
-    "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["The enemy gains an additional intent.", "Whenever you play a card, Exhaust it."]
+    "NAME": "Воспоминание - Синяя Реверберация",
+    "DESCRIPTION": "Выберите одно:",
+    "EXTENDED_DESCRIPTION": ["Даёт доп. намерение врагу.", "Каждая разыгрываемая вами карта Сжигается."]
   },
   "ruina:Agony": {
-    "NAME": "Agony",
-    "DESCRIPTION": "Deal !D! damage."
+    "NAME": "Агония",
+    "DESCRIPTION": "Наносит !D! урона."
   },
   "ruina:Scream": {
-    "NAME": "Scream",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
+    "NAME": "Крик",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Накладывает !ruina:SecondMagic! *Паралича."
   },
   "ruina:Void": {
-    "NAME": "Void",
-    "DESCRIPTION": "Apply !ruina:SecondMagic! Weak and Frail. NL Shuffle !M! *Void into your discard pile."
+    "NAME": "Пустота",
+    "DESCRIPTION": "Накладывает !ruina:SecondMagic! Слабости. NL Накладывает !ruina:SecondMagic! Хрупкости. NL Добавляет !M! *Бездны в стопку сброса."
   },
   "ruina:ZelkovaWorkshop": {
-    "NAME": "Zelkova Workshop",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage !M! times."
+    "NAME": "Мастерская Зельква",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона !M! раза."
   },
   "ruina:AllasWorkshop": {
-    "NAME": "Allas Workshop",
-    "DESCRIPTION": "Deal !D! damage. NL If its *Partner intends to attack, apply !M! Vulnerable."
+    "NAME": "Мастерская Аллас",
+    "DESCRIPTION": "Наносит !D! урона. NL Если *Партнёр намеревается атаковать, накладывает !M! Уязвимости."
   },
   "ruina:AtelierLogic": {
-    "NAME": "Atelier Logic",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "NAME": "Ателье Логика",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
   "ruina:WaltzInWhite": {
-    "NAME": "Waltz in White",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "NAME": "Вальс в Белом",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
   "ruina:AshenBond": {
-    "NAME": "Ashen Bond",
-    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength."
+    "NAME": "Бледная связь",
+    "DESCRIPTION": "Даёт !B! Защиты и !M! Силы ВСЕМ соратникам."
   },
   "ruina:UnitedWorkshop": {
-    "NAME": "United Assault",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL If its *Partner intends to attack, gain !ruina:SecondMagic! Strength."
+    "NAME": "Дружная атака",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Если *Партнёр намеревается атаковать, даёт !ruina:SecondMagic! Силы."
   },
   "ruina:UnstableLoneliness": {
-    "NAME": "Unstable Loneliness",
-    "DESCRIPTION": "Deal !D! damage. NL If its *Partner does NOT intend to attack, apply !M! Weak and Frail."
+    "NAME": "Нестабильная одинокость",
+    "DESCRIPTION": "Наносит !D! урона. NL Если *Партнёр НЕ намеревается атаковать, накладывает !M! Слабости и !M! Хрупкости."
   },
   "ruina:BlindFury": {
-    "NAME": "Blind Fury",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
+    "NAME": "Слепая ярость",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! *Паралича."
   },
   "ruina:DarkBond": {
-    "NAME": "Dark Bond",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile."
+    "NAME": "Тёмная связь",
+    "DESCRIPTION": "Даёт !B! Защиты ВСЕМ соратникам. NL Добавляет !M! *Бездны в стопку добора."
   },
   "ruina:WaltzInBlack": {
-    "NAME": "Waltz in Black",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "NAME": "Вальс в Чёрном",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
   "ruina:SerumW": {
-    "NAME": "Serum W",
-    "DESCRIPTION": "Deal !D! damage. NL If this creature has at least !M! Strength, instantly kill the target."
+    "NAME": "Сыворотка W",
+    "DESCRIPTION": "Наносит !D! урона. NL Немедленно убивает врага, если у вас есть не менее !M! Силы."
   },
   "ruina:SerumR": {
-    "NAME": "Serum R",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength."
+    "NAME": "Сыворотка R",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Даёт !ruina:SecondMagic! Силы."
   },
   "ruina:Extirpation": {
-    "NAME": "Extirpation",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+    "NAME": "Экстирпация",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона."
   },
   "ruina:TriSerum": {
-    "NAME": "Tri Serum Cocktail",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "NAME": "Трёхсывороточное смузи",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
   "ruina:SerumK": {
-    "NAME": "Serum K",
-    "DESCRIPTION": "The lowest HP ally gains !B! Block and heals !M! HP."
+    "NAME": "Сыворотка K",
+    "DESCRIPTION": "Даёт !B! Защиты и восполняет !M! ОЗ соратнику с наименьшим запасом ОЗ."
   },
   "ruina:Line": {
-    "NAME": "Line",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+    "NAME": "Линия",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона."
   },
   "ruina:ThinLine": {
-    "NAME": "Thin Line",
-    "DESCRIPTION": "Deal !D! damage. NL Steal !M! Strength from the target."
+    "NAME": "Тонкая линия",
+    "DESCRIPTION": "Наносит !D! урона. NL Забирает !M! Силы у врага."
   },
   "ruina:ThickLine": {
-    "NAME": "Thick Line",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak and Vulnerable."
+    "NAME": "Толстая линия",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости и !M! Уязвимости."
   },
   "ruina:ZenaShockwave": {
-    "NAME": "Shockwave",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+    "NAME": "Ударная волна",
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ врагам."
   },
-  "${ModID}:Marionette": {
-    "NAME": "Marionette",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! cards. NL Increase this card's cost by !ruina:SecondMagic! this combat."
+  "ruina:Marionette": {
+    "NAME": "Марионетка",
+    "DESCRIPTION": "Наносит !D! урона. NL Вы берёте !M! карты. NL Повышает свою стоимость на !ruina:SecondMagic! в этом бою."
   },
-  "${ModID}:WristCutter": {
-    "NAME": "Wrist Cutter",
-    "DESCRIPTION": "Gain [E] [E] . NL Add !M! Wound to your hand with Retain."
+  "ruina:WristCutter": {
+    "NAME": "Резак запястья",
+    "DESCRIPTION": "Даёт [E] [E] . NL Добавляет в руку !M! Рану с Оставляемостью."
   },
-  "${ModID}:Remorse": {
-    "NAME": "Remorse",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak and Vulnerable."
+  "ruina:Remorse": {
+    "NAME": "Раскаяние",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости. NL Накладывает !M! Уязвимости."
   },
-  "${ModID}:Aspiration": {
-    "NAME": "Aspiration",
-    "DESCRIPTION": "Gain !M! Strength. NL Lose half of your current HP. At the end of combat, heal the HP lost by this card."
+  "ruina:Aspiration": {
+    "NAME": "Стремление",
+    "DESCRIPTION": "Даёт !M! Силы. NL Отнимает половину ваших текущих ОЗ. Восполняет ОЗ, отнятые этой картой, в конце боя."
   },
-  "${ModID}:FrostSplinter": {
-    "NAME": "Frost Splinter",
-    "DESCRIPTION": "At the start of your turn, gain [E] , draw !M! card, and ruina:Freeze !ruina:SecondMagic! card."
+  "ruina:FrostSplinter": {
+    "NAME": "Ледяной осколок",
+    "DESCRIPTION": "Вы получаете [E] , берёте !M! доп. карту и ruina:Замораживаете !ruina:SecondMagic! карту в начале каждого вашего хода."
   },
-  "${ModID}:Guilt": {
-    "NAME": "Guilt",
-    "DESCRIPTION": "At the end of your turn, a random enemy gains !M! Strength next turn. NL If this is Exhausted without being played, add a copy of it into your discard pile."
+  "ruina:Guilt": {
+    "NAME": "Вина",
+    "DESCRIPTION": "В начале вашего хода даёт !M! Силы случ. врагу в след. ходу. NL Если Сжигается без разыгрывания, добавляет свою копию в стопку сброса."
   }
 }

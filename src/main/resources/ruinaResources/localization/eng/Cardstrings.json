@@ -767,7 +767,7 @@
     "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
   },
   "${ModID}:TriSerum": {
-    "NAME": "Tri Serum Cocktail",
+    "NAME": "Tri-Serum Cocktail",
     "DESCRIPTION": "Deal !D! damage !M! times."
   },
   "${ModID}:SerumK": {

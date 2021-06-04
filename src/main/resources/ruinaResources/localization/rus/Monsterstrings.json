@@ -896,108 +896,108 @@
   },
   "ruina:BlackSilence1": {
     "MOVES": [
-      "Crystal Atelier",
-      "Wheels Industry",
-      "Durandal",
-      "Allas Workshop",
-      "Atelier Logic",
-      "Mook Workshop",
-      "Old Boy's Workshop",
-      "Ranga Workshop",
-      "Zelkova Workshop",
-      "Furioso"
+      "Ателье Кристалл",
+      "Индустрия Колёс",
+      "Дюрандаль",
+      "Мастерская Аллас",
+      "Ателье Логика",
+      "Мастерская Мук",
+      "Мастерская Старины",
+      "Мастерская Ранга",
+      "Мастерская Зельква",
+      "Свирепость"
     ],
-    "NAME": "The Black Silence",
+    "NAME": "Чёрная Тишина",
     "DIALOG": [
     ]
   },
   "ruina:BlackSilence4": {
     "MOVES": [
-      "Agony",
-      "Scream",
-      "Void",
-      "Memory - Yun's Office",
-      "Memory - Zwei Association",
-      "Memory - Dawn Office",
-      "Memory - Shi Association",
-      "Memory - Love Town",
-      "Memory - Liu Association",
-      "Memory - The Purple Tear",
-      "Memory - Hana Association",
-      "Memory - The Blue Reverberation"
+      "Агония",
+      "Крик",
+      "Пустота",
+      "Воспоминание - Офис Юна",
+      "Воспоминание - Ассоциация Цвай",
+      "Воспоминание - Офис Восход",
+      "Воспоминание - Ассоциация Ши",
+      "Воспоминание - Город Любви",
+      "Воспоминание - Ассоциация Лю",
+      "Воспоминание - Фиолетовая Слеза",
+      "Воспоминание - Ассоциация Хана",
+      "Воспоминание - Синяя Реверберация"
     ],
-    "NAME": "The Black Silence",
+    "NAME": "Чёрная Тишина",
     "DIALOG": [
     ]
   },
   "ruina:ImageOfBygones": {
     "MOVES": [
-      "Agony",
-      "Scream",
-      "Pulsation"
+      "Агония",
+      "Крик",
+      "Пульсация"
     ],
-    "NAME": "Image of Bygones",
+    "NAME": "Образ прошлого",
     "DIALOG": [
     ]
   },
   "ruina:BlackSilence3": {
     "MOVES": [
-      "United Workshop",
-      "Unstable Loneliness",
-      "Blind Fury",
-      "Waltz in Black",
-      "Dark Bond"
+      "Дружная атака",
+      "Нестабильная одинокость",
+      "Слепая ярость",
+      "Вальс в Чёрном",
+      "Тёмная связь"
     ],
-    "NAME": "Roland",
+    "NAME": "Роланд",
     "DIALOG": [
     ]
   },
   "ruina:Angelica": {
     "MOVES": [
-      "Zelkova Workshop",
-      "Allas Workshop",
-      "Atelier Logic",
-      "Waltz in White",
-      "Ashen Bond"
+      "Мастерская Зельква",
+      "Мастерская Аллас",
+      "Ателье Логика",
+      "Вальс в Белом",
+      "Бледная связь"
     ],
-    "NAME": "Angelica",
+    "NAME": "Анжелика",
     "DIALOG": [
     ]
   },
   "ruina:Zena": {
     "MOVES": [
-      "Line",
-      "Thin Line",
-      "Thick Line",
-      "Shockwave"
+      "Линия",
+      "Тонкая линия",
+      "Толстая линия",
+      "Ударная волна"
     ],
-    "NAME": "Zena",
+    "NAME": "Зина",
     "DIALOG": [
     ]
   },
   "ruina:Baral": {
     "MOVES": [
-      "Serum W",
-      "Serum R",
-      "Extirpation",
-      "Tri-Serum Cocktail",
-      "Serum K"
+      "Сыворотка W",
+      "Сыворотка R",
+      "Экстирпация",
+      "Трёхсывороточное смузи",
+      "Сыворотка K"
     ],
-    "NAME": "Baral",
+    "NAME": "Барал",
     "DIALOG": [
     ]
   },
-  "${ModID}:SilentGirl": {
+  "ruina:SilentGirl": {
     "MOVES": [
-      "Digging Nail",
-      "Slam",
-      "A Cracked Heart",
-      "Collapsing Heart",
-      "Broken to Pieces",
-      "Leer of Fright",
-      "Don't Suppress Your Heart"
+      "Вонзающийся гвоздь",
+      "Расплющить",
+      "Разбитое сердце",
+      "Бьющееся сердце",
+      "Разбитый на кусочки",
+      "Пугающая ухмылка",
+      "Не прячь своё сердце"
     ],
-    "NAME": "Silent Girl",
+    "NAME": "Молчаливая девушка",
     "DIALOG": [
      ]
   }
