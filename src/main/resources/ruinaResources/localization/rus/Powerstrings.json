@@ -1,7 +1,7 @@
 {
   "ruina:NextTurnPower": {
     "NAME": "В след. ходу ",
-    "DESCRIPTIONS": ["Даёт #b", " ", " в вашем след. ходу."]
+    "DESCRIPTIONS": ["Даёт #b", " #y", " в вашем след. ходу."]
   },
   "ruina:StrikeWithoutHesitation": {
     "NAME": "Уверенный выстрел",
@@ -57,7 +57,7 @@
   },
   "ruina:SenselessWrath": {
     "NAME": "Безрассудная ярость",
-    "DESCRIPTIONS": ["Каждый второй накладываемые #pотриц. эффект #yотвергается этим #rврагом."]
+    "DESCRIPTIONS": ["Каждый второй накладываемые #pотриц. #pэффект #yотвергается этим #rврагом."]
   },
   "ruina:MagicalGirl": {
     "NAME": "Настоящая Магическая девочка!",
@@ -81,7 +81,7 @@
   },
   "ruina:Bliss": {
     "NAME": "Момент блаженства",
-    "DESCRIPTIONS": ["Погибая, добавляет ", " в руку с #yЭфирностью и #yСжигаемостью."]
+    "DESCRIPTIONS": ["Погибая, добавляет в руку ", " с #yЭфирностью и #yСжигаемостью."]
   },
   "ruina:Hunter": {
     "NAME": "Охотник в темноте",
@@ -144,12 +144,12 @@
     "DESCRIPTIONS": ["Получает на #b", "% меньше урона. NL Понижается на #b", " при получении урона."]
   },
   "ruina:Unkillable": {
-    "NAME": "Благодать благодаря вере",
+    "NAME": "Благодать веры",
     "DESCRIPTIONS": ["#yВоскрешается намерением #rврага в след. ходу, когда погибает."]
   },
   "ruina:CobaltScarPower": {
     "NAME": "Стальной шрам",
-    "DESCRIPTIONS": ["Разыграв #b", " #yАтак, наносит #b", " урона ВСЕМ #rврагам."]
+    "DESCRIPTIONS": ["Разыграв #b", " #yАтак, вы нанесёте #b", " урона ВСЕМ #rврагам."]
   },
   "ruina:Thirst": {
     "NAME": "Жажда",
@@ -192,7 +192,7 @@
   },
   "ruina:Lock": {
     "NAME": "Замок лесного хранителя",
-    "DESCRIPTIONS": ["Погибая, добавляет #yЗамок #yлесного #yхранителя в руку с #yОставляемостью и #yСжигаемостью."]
+    "DESCRIPTIONS": ["Погибая, добавляет в руку #yЗамок #yлесного #yхранителя с #yОставляемостью и #yСжигаемостью."]
   },
   "ruina:Unruffled": {
     "NAME": "Невозмутимый",
@@ -224,7 +224,7 @@
   },
   "ruina:PromiseOfWinter": {
     "NAME": "Обещание зимы",
-    "DESCRIPTIONS": ["Каждая #b3 разыгрываемая карта #yЗамораживается и кладётся в стопку добора. NL #yЗамороженные карты #yНеиграбельные и #yОставляемые."]
+    "DESCRIPTIONS": ["Каждая #b3-ая разыгрываемая карта #yЗамораживается и кладётся в стопку добора. NL #yЗамороженные карты #yНеиграбельные и #yОставляемые."]
   },
   "ruina:KaiAndGerda": {
     "NAME": "Кай и Герда",
@@ -268,10 +268,10 @@
   },
   "ruina:FinishingTouch": {
     "NAME": "Добивающие касание",
-    "DESCRIPTIONS": ["Когда #yАтакует, накладывает #yМетку на выбранного #rврага на #b", " ход. #yПомеченные #rвраги получают на #b", "% больше урона."]
+    "DESCRIPTIONS": ["Когда #yАтакует, делает выбранного #rврага #yПомеченным на #b", " ход. #yПомеченные #rвраги получают на #b", "% больше урона."]
   },
   "ruina:Mark": {
-    "NAME": "Метка",
+    "NAME": "Помеченный",
     "DESCRIPTIONS": ["Получает на #b", "% больше урона в течении #b" , " хода."]
   },
   "ruina:Mastermind": {
@@ -291,7 +291,7 @@
     "DESCRIPTIONS": ["Когда вы разыграете карту, сдвигает намерения этого существа на #b", " вправо (Первое намерение нацелено на вас, а остальные - на вашего #gсоратника)."]
   },
   "ruina:BlackSilence": {
-    "NAME": "Чёрная тишина",
+    "NAME": "Чёрная Тишина",
     "DESCRIPTIONS": ["Даёт #b", " #yСилы в конце хода этого существа.", " NL Воспользуется #yмощной атакой через #b", " хода.", " ход.", " NL Использует #yмощную атаку."]
   },
   "ruina:BlueReverberation": {
@@ -311,7 +311,7 @@
     "DESCRIPTIONS": ["Когда #rпогибнет, #yнемедленно #gвоскреснет с полным запасом ОЗ и получит #b", " #yСилы и #b", " #yМеталлизации."]
   },
   "ruina:GeburaRedMist": {
-    "NAME": "Красный туман",
+    "NAME": "Красный Туман",
     "DESCRIPTIONS": ["Когда наносит урон по ОЗ, получает #b", " #yСилы.", " NL #yВоспользуется #yЭ.П.О.С. и удвоит свою текущую #yСилу через #b", " ход(а)."]
   },
   "ruina:Relentless": {
@@ -323,7 +323,7 @@
     "DESCRIPTIONS": ["Когда наносит урон по ОЗ, восполняет ОЗ за весь урон."]
   },
   "ruina:Arbiter": {
-    "NAME": "Правосудие Арбитры",
+    "NAME": "Правосудие Арбитра",
     "DESCRIPTIONS": ["Ваш #gсоратник нацеливается на последнего нацеленного вами #rврага в этом бою. NL Когда #yАтакует, #yотменяет второе намерение выбранного #rврага."]
   },
   "ruina:Brainwash": {
@@ -364,7 +364,7 @@
   },
   "ruina:Sharkskin": {
     "NAME": "Акулья кожа",
-    "DESCRIPTIONS": ["Получает на #b", "% меньше урона от #yАтак, только если это существо не имеет #pотриц. #yэффекты. NL Каждый #b", " ход снимает с себя все #pотриц. #yэффекты."]
+    "DESCRIPTIONS": ["Получает на #b", "% меньше урона от #yАтак, только если это существо не имеет #pотриц. #pэффекты. NL Каждый #b", " ход снимает с себя все #pотриц. #pэффекты."]
   },
   "ruina:FreshMeat": {
     "NAME": "Свежее мясо",
@@ -378,9 +378,9 @@
       "% больше урона #yАтаками.",
       "Пронзающая стойка",
       "Каждая #b",
-      " атака этого существа #yудваивает ВСЕ #pотриц. #rэффекты выбранного #rврага.",
+      "-ая атака этого существа #yудваивает ВСЕ #pотриц. #pэффекты выбранного #rврага.",
       "Защитная стойка",
-      "ВСЕ накладываемые #pотриц. #rэффекты #yотвергаются этим существом.",
+      "ВСЕ накладываемые #pотриц. #pэффекты #yотвергаются этим существом.",
       " NL NL Вы можете изменить #yСтойку этого существа нажатием на кнопку #yСмены #yСтойки рядом с его намерением."]																																	
   },
   "ruina:Gears": {
@@ -396,70 +396,70 @@
     "DESCRIPTIONS": ["Когда вы разыграете #b", " карт, получает ход. NL Стандартный ход этого существа пропускается."]
   },
   "ruina:Orlando": {
-    "NAME": "Orlando",
-    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards."]
+    "NAME": "Орландо",
+    "DESCRIPTIONS": ["Когда вы разыграете #b", " карт, получает ход дополнительно к своёму стандартном ходу."]
   },
   "ruina:Scars": {
-    "NAME": "Scars",
-    "DESCRIPTIONS": ["Every #b","th #yAttack you play instead #gheals this creature for #b", "% of the unblocked damage it would have done."]
+    "NAME": "Шрамы",
+    "DESCRIPTIONS": ["Каждая #b","-ая разыгрываемая вами #yАтака вместо нанесения урона #gвосполняет этому существу ОЗ, равные #b", "% урона по ОЗ этого существа."]
   },
   "ruina:Sorrow": {
-    "NAME": "Sorrow",
-    "DESCRIPTIONS": ["Whenever you play a card, #yExhaust it."]
+    "NAME": "Печаль",
+    "DESCRIPTIONS": ["Каждая разыгрываемая вами карта #yСжигается."]
   },
   "ruina:BlackSilence3": {
-    "NAME": "Black Silence",
-    "DESCRIPTIONS": ["The first time you play #b", " #yAttacks each turn, this creature changes its intent to ", "."]
+    "NAME": "Чёрная Тишина",
+    "DESCRIPTIONS": ["Когда вы впервые разыграете #b", " #yАтаки в каждом ходу, это существо изменяет своё намерение на ", "."]
   },
   "ruina:WhiteNoise": {
-    "NAME": "White Noise",
-    "DESCRIPTIONS": ["The first time you play #b", " #ySkills each turn, this creature changes its intent to ", "."]
+    "NAME": "Белый Шум",
+    "DESCRIPTIONS": ["Когда вы впервые разыграете #b", " #yНавыка в каждом ходу, это существо изменяет своё намерение на ", "."]
   },
   "ruina:SoulLink": {
-    "NAME": "Soul Link",
-    "DESCRIPTIONS": ["Creatures with #ySoul #yLink are #yPartners. Whenever this creature #rdies, it revives at #b", "% HP this turn if its #yPartner is still alive."]
+    "NAME": "Парные души",
+    "DESCRIPTIONS": ["Существа с #yПарной #yДушой - #yПартнёры. #rПогибая, воскрешается с #b", "% ОЗ в этом ходу, если другой #yПартнёр жив."]
   },
   "ruina:PlayerBlackSilence": {
-    "NAME": "The Black Silence",
-    "DESCRIPTIONS": ["Whenever you play #b", " unique cards, add #yFurioso to your hand."]
+    "NAME": "Чёрная Тишина",
+    "DESCRIPTIONS": ["Когда вы разыграете #b", " уникальных карт, добавляет в руку #yСвирепость."]
   },
   "ruina:AClaw": {
-    "NAME": "Executioner",
-    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL If this creature would receive #b", " or more unblocked attack damage, reduce the damage by #b", "%. NL Whenever a creature dies, gains #b", " #yStrength."]
+    "NAME": "Палач",
+    "DESCRIPTIONS": ["Не может потерять #yСилу. NL Если получит не менее #b", " урона по ОЗ, снижает этот урон на #b", "%. NL Получает #b", " #yСилы, когда умирает существо."]
   },
   "ruina:AnArbiter": {
-    "NAME": "Complete Arbiter",
-    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it steals #b", " #yStrength from its target."]
+    "NAME": "Завершённый Арбитр",
+    "DESCRIPTIONS": ["Когда наносит урон по ОЗ #rврага, забирает у него #b", " #yСилы."]
   },
   "ruina:GeburaProwess": {
-    "NAME": "Gebura's Prowess",
-    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks. Whenever this creature deals unblocked attack damage, increase this bonus by #b", "%."]
+    "NAME": "Отвага Гебуры",
+    "DESCRIPTIONS": ["Наносит на #b", "% больше урона #yАтаками. Повышает этот бонус на #b", "%, когда наносит урон по ОЗ."]
   },
   "ruina:PlayerBackAttack": {
-    "NAME": "Back Attack",
-    "DESCRIPTIONS": ["Deals #b", "% more damage with attacks."]
+    "NAME": "Удар в спину",
+    "DESCRIPTIONS": ["Наносит на #b", "% больше урона #yАтаками."]
   },
-  "${ModID}:Aspiration": {
-    "NAME": "Heart Of Aspiration",
-    "DESCRIPTIONS": ["Heal #b%1$s HP at the end of combat."]
+  "ruina:Aspiration": {
+    "NAME": "Сердце стремления",
+    "DESCRIPTIONS": ["Восполняет #b%1$s ОЗ в конце боя."]
   },
-  "${ModID}:FrostSplinter": {
-    "NAME": "Frost Splinter",
+  "ruina:FrostSplinter": {
+    "NAME": "Ледяной осколок",
     "DESCRIPTIONS": [
-      "Gain [E] , draw #b%1$s card and #yFreeze #b%2$s card at the start of each turn",
-      "Gain [E] , draw #b%1$s cards and #yFreeze #b%2$s card at the start of each turn"
+      "Вы получаете [E] , берёте на #b%1$s карту больше и #yЗамораживаете #b%2$s карту в начале вашего хода.",
+      "Вы получаете [E] , берёте на #b%1$s карты больше и #yЗамораживаете #b%2$s карту в начале вашего хода."
     ]
   },
-  "${ModID}:KillingIntent": {
-    "NAME": "Killing Intent",
-    "DESCRIPTIONS": ["This creature only acts on its #b1st intent. Its #b2nd intent is a preview of its next move."]
+  "ruina:KillingIntent": {
+    "NAME": "Намерение смерти",
+    "DESCRIPTIONS": ["Этот #rвраг активирует только #b1-ое намерение. #b2-ое намерение будет активно в его след. ходу."]
   },
-  "${ModID}:Remorse": {
-    "NAME": "Remorse",
-    "DESCRIPTIONS": ["At end of round, put #b", " ", " on top of your draw pile."]
+  "ruina:Remorse": {
+    "NAME": "Раскаяние",
+    "DESCRIPTIONS": ["В конце хода добавляет #b", " ", " на верх стопки добора."]
   },
-  "${ModID}:Judas": {
-    "NAME": "Judas",
-    "DESCRIPTIONS": ["Whenever a creature dies, gains #b", " #yStrength next turn."]
+  "ruina:Judas": {
+    "NAME": "Иуда",
+    "DESCRIPTIONS": ["Получает #b", " #yСилы в след. ходу, когда умирает существо."]
   }
 }

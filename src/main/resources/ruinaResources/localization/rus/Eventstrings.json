@@ -254,7 +254,7 @@
       "Потерять ",
       " золота.",
       "Получить особую реливквию.",
-      "Улучшить карту.",
+      "Улучшить карту в колоде.",
       "[Очнуться]",
       "[Закрыто] Требуется: золото.",
       "Выберите карту, которую хотите улучшить."
@@ -305,7 +305,7 @@
   "ruina:CryingChildren": {
     "NAME": "Плачущие Дети",
     "DESCRIPTIONS": [
-      "Всё #rсгорело: твой дом, твоя семья, твои друзья . . . все они были охвачены сильным #rпожаром, который проявился в мгновение ока. NL Кто-то плакал. Но это были не вы, а #pжертва трагедии. Нет, это был #pпреступник, который плакал. #pНарушитель, который рыдал с каждой вспышкой #rогня, вспыхивающей из их пальцев. NL Какая ужасная шутка: столь же огненная ярость горела внутри вас, только и ждущая, чтобы её выпустили. Вы -",
+      "Всё #rсгорело: твой дом, твоя семья, твои друзья . . . все они были охвачены сильным #rпожаром, который проявился в мгновение ока. NL Кто-то плакал. Но это были не вы, а #pжертва трагедии. Нет, это был #pпреступник. #pНарушитель, который рыдал с каждой вспышкой #rогня, вспыхивающей из их пальцев. NL Какая ужасная шутка: столь же огненная ярость горела внутри вас, только и ждущая, чтобы её выпустили. Вы -",
       "Мир меняется, становится #pразмытым и #pискажённым. Вы не знаете, кто вы. Вы не знаете, где вы. Всё, что вы знаете, это то, что перед вами #pплачущий #pребёнок . . . NL  И вы отчаянно хотите #rубить его.",
       "#rЯрость утихает, оставляя ощущение глубокой опустошённости. #pПустота наполняет вас, такая острая и тихая, будто слёзы этого ребёнка. NL Здесь для вас больше ничего неважно."
     ],
@@ -348,7 +348,7 @@
       "«Приветствую. Я Бина, Библиотекарь-Покровитель Этажа Философии. Мне говорили, что это место чувствуется властолюбивым в отличие от других этажей. Мне интересно: как бы вы описали Библиотеку из того, что видели ранее? Но прежде я должна успокоить свой разум с помощью чая, так что, пожалуйста, приходите позже. Я, по крайней мере, помогу вам с тем, что вы ищете прямо сейчас».",
       "«Так вы пришли. Мне интересно: есть ли у вас абсолютная вера в то, что ищемое вами находится в этом месте? Я, по крайней мере, могу свидетельствовать, что оно существует здесь. Прошу меня простить. Я Хохма, Библиотекарь-Покровитель Этажа Религии. Пожалуйста, не торопитесь».",
       "«Я Роланд, помощник Анджелы. Мой этаж не является специализированным, так как преимущественно я отвечаю за доставку книг на другие этажи. Впрочем, возможно, здесь есть что-то, что может быть полезным для вас».",
-      "«Приветствую, дорогой гость. Я Анджела, моя роль - библиотекарь - моё второе имя. Здесь вы можете найти всё, что пожелаете, но вам нужно искать знания, в которых вы нуждаетесь». NL NL «Может быть, вы сможете найти свою книгу в этом месте».",
+      "«Приветствую, дорогой гость. Я Анжела, моя роль - библиотекарь - моё второе имя. Здесь вы можете найти всё, что пожелаете, но вам нужно искать знания, в которых вы нуждаетесь». NL NL «Может быть, вы сможете найти свою книгу в этом месте».",
       "Вы попрощались, уходя с коллекцией книг в руках. NL Они странно ~тяжёлые~, но вам всё равно, ведь эти книги обеспечивают вас мудростью, богатством, честью и силой, что вы так искали.",
       "Уходя, вы попрощались, просто наблюдая, так как считаете, что у вас уже есть всё для дальнейшего путешествия."
     ],
@@ -396,87 +396,87 @@
     ]
   },
   "ruina:Sorrow": {
-    "NAME": "Sorrow",
+    "NAME": "Печаль",
     "DESCRIPTIONS": [
-      "I have nothing but my #psorrow. And I want nothing more. NL NL It has been, it still is, #gfaithful to me.",
-      "Why should I begrudge it, since during the hours . . . NL NL When my soul #rcrushed the depths of my heart, NL NL It was seated there beside me?",
-      "O sorrow, I have #pended, you see, by respecting you, NL NL Because I am certain you will never leave me.",
-      "Ah! I realize it: NL Your #ybeauty lies in the force of your being. NL NL You are like those who never left NL The sad #rfireside corner of my poor #pblack heart.",
-      "O my #psorrow, you are better than a #gwell-beloved: NL NL Because I know that on the day of my final #pagony, NL You will be there, lying in my sheets, O #psorrow, NL NL So that you might once again attempt to enter my heart."
+      "Я не чувствую ничего, кроме своей #pпечали. Мне больше ничего не нужно. NL NL Она была, и будет #gверна мне.",
+      "Почему я должен противиться ей, если в те часы . . . NL NL Когда моя душа #rразрушила глубины моего сердца, NL NL она находилась прямо рядом со мной?",
+      "О печаль, пойми, я #pв #pитоге принял тебя, NL NL потому что понимаю: ты не оставишь меня.",
+      "Ах! Я понял: NL твоя #yкрасота лежит в силе твоего существа. NL NL Ты как те, кто никогда не покидал NL тоскливый уголок у #rкамина моего бедного #pчёрного сердца.",
+      "О моя #pпечаль, ты лучше, чем #gвозлюбленная. NL NL Потому что я знаю, что в день моей последней #pагонии, NL ты будешь там, лежать на моих простынях. О #pпечаль, NL NL так что ты можешь ещё раз попытаться поглотить моё сердце."
     ],
     "OPTIONS": [
       "[. . .] ",
-      "Transform a card.",
-      "Upgrade a card.",
-      "Remove a card.",
-      "Obtain ",
+      "Преобразовать карту в колоде.",
+      "Улучшить карту в колоде.",
+      "Убрать карту из колоды.",
+      "Получить ",
       ".",
-      "Choose a Card to Transform",
-      "Choose a Card to Upgrade",
-      "Choose a Card to Remove"
+      "Выберите карту, которую хотите преобразовать.",
+      "Выберите карту, которую хотите улучшить.",
+      "Выберите карту, которую хотите убрать."
     ]
   },
   "ruina:BlackSilenceFork": {
-    "NAME": "One Man's Sorrow",
+    "NAME": "Печаль одного человека",
     "DESCRIPTIONS": [
-      "The fighting stops, a welcome #greprieve from the gruesome gauntlet you've been subjected to. But as the #psilence stretches onward, a #pdeathly #pchill fills the air as a #rheartbeat begins to pound louder and louder in your ear. NL NL \"Angela. You know what I'm about to do now, right?\""
+      "Битва заканчивается, желанное #gизбавление от ужасающей перчатки, что пришлось надеть. Но воздух заполняется #pсмертельным #pхолодом, как только #pтишина увеличивает своё давление и как только ваше #rсердце #rначинает #rбиться всё громче и громче в ваших ушах. NL NL «Анжела. Ты ведь знаешь, что я сейчас сделаю, верно?»"
     ],
     "OPTIONS": [
-      "[Succumb to the heartbeat] Return to the Corrupt Heart",
-      "[See things to the end] Confront the Black Silence"
+      "[Поддаться сердцебиению] Вернуться к Порочному сердцу",
+      "[Довести дело до конца] Столкнуться с Чёрной Тишиной"
     ]
   },
   "ruina:TheHead": {
-    "NAME": "The End",
+    "NAME": "Конец",
     "DESCRIPTIONS": [
-      "You see him slump to his knees, tired and drained from the non-stop fighting. NL NL You see them sigh, breath in, and #glet #ggo. You see them let go of their #rhatred and #rfear, their #ranger and #rpain. You see them let go of their #ptrauma, of their lingering darkness that had nearly drove them to ruin. NL NL You see them turn away from the #ypast so that they might finally face the #yfuture.",
-      "The library @shudders,@ and you find that yet another group of uninvited guests had #rinvaded. NL NL \"So this is the #pImpurity known as the Library.\" The woman sneered. \"What a heartwarming scene of a man reconciling with a machine. Too bad this is where it ends for you.\" NL NL You see him push himself to his feet, the #rbattered and #rbruised body of a man doing his best to protect the peace and #ghappiness he had only just found."
+      "Вы видите, как он падает на колени, уставший и истощённый непрерывным сражением. NL NL Вы видите, как они вздыхают, вдыхают и #gотпускают. Вы видите, как они отпускают свою #rненависть и #rболь, свой #rгнев и #rстрах. Вы видите, как они отпускают свою #pтравму, свою длительную тьму, которая чуть не погубила их. NL NL Вы видите, как они отворачиваются от #yпрошлого, чтобы наконец взглянуть в #yбудущее.",
+      "Библиотека @задрожала,@ и вы обнаруживаете, что в неё #rвторглась ещё одна группа незваных гостей. NL NL «Так это и есть #pНечистота, называемая Библиотекой». Женщина усмехнулась. «Какая же трогательная сцена примирения человека с машиной. Как жаль, что это ваше последнее мгновение». NL NL Вы видите, как он поднимается с колен, #rизбитое и покрытое #rсиняками тело человека, делающего всё возможное, чтобы защитить покой и #gсчастье, которое только что обрёл."
     ],
     "OPTIONS": [
-      "[Continue]"
+      "[Продолжить]"
     ]
   },
   "ruina:HeadDialogue": {
     "NAME": "",
     "DESCRIPTIONS": [
-      "Exhausted already? We have yet to even expend any real effort.",
-      "Executioner.",
-      "I'll finish them.",
-      "You have shown up at last.",
-      "Have we met before?",
-      "It's a relief to have you.",
-      "I can't guarantee that I'll power through this either . . .",
-      "Well . . . we'll have to try and stop them for as long as we can.",
-      "Be aware that joining forces cannot change your fate.",
-      "Nevertheless, it is enjoyable to witness your struggle.",
-      "While it has been a pleasure to spectate, We must see this place dealt with.",
-      "And this just got even more troublesome.",
-      "Isolated, without a way out . . . what a pitiful situation.",
-      "Though, you managed to hold out longer than anticipated. What a shame it must end this way . . .",
-      "It is indeed true that verbosity leaves you vulnerable.",
-      "Garion . . .",
-      "That is a name I have not heard in a long while . . .",
-      "But such a name is not for me anymore.",
-      "What took you so long?",
-      "I was simply watching from afar.",
-      "You failed your responsibility and turned your back on us. How imprudent of you.",
-      "Though I suppose, your accountability can be called upon later.",
-      "We will tear down your grave and extract you before long.",
-      "I can only pity your vain endeavor to seek an entity whose husk is all that remains.",
-      "Executioner. Be prepared. It will take place any minute now.",
-      "It is truly amazing that you managed to withstand for such a long time.",
-      "Garion . . . as much as it is a shame that we've failed to retrieve you . . .",
-      "The end is nigh.",
-      "This place will be expelled as planned.",
-      "I only ask that you do not return.",
-      "So mark my words well and stay where you rightfully belong.",
+      "Выдохся уже? Мы только начали разогреваться.",
+      "Палач.",
+      "Я прикончу их.",
+      "Наконец-то ты появилась.",
+      "Мы знаем друг друга?",
+      "Какое же облегчение, что ты рядом.",
+      "Да я сама не уверена, что справлюсь с этим . . .",
+      "Ну . . . мы должны постараться и сдерживать их как можно дольше.",
+      "Знайте, ваши совместные усилия не изменят вашу судьбу.",
+      "Тем не менее приятно наблюдать за вашей упрямостью.",
+      "Хоть это и было приятно, мы должно увидеть, как с этим местом будет покончено.",
+      "Ну, это стало ещё большей проблемой.",
+      "Изолированные, без выхода . . . какая жалкая ситуация.",
+      "Однако вам удалось продержаться дольше, чем ожидалось. Как досадно, что это так NL закончится . . .",
+      "Это действительно так, что многословие делает вас уязвимыми.",
+      "Гарион . . .",
+      "Давно я не слышала это имя . . .",
+      "Но оно больше не принадлежит мне.",
+      "Ты чего так долго?",
+      "Я просто наблюдала издалека.",
+      "Ты не справилась со своими обязанностями и предала нас. Как неблагоразумно с твоей NL стороны.",
+      "Хотя, я полагаю, о твоей ответственности будет разговор позже.",
+      "Мы вскроем твою могилу и извлечём тебя в скором времени.",
+      "Я могу только посочувствовать вашим тщетным попыткам найти существо, чья NL оболочка - это всё, что осталось.",
+      "Палач. Будь готов. Это произойдет в любую минуту.",
+      "Это действительно удивительно, что вам удалось продержаться так долго.",
+      "Гарион . . . как же жаль, что мы не смогли вернуть тебя . . .",
+      "Конец близок.",
+      "Это место будет изгнано, как и планировалось.",
+      "Я только попрошу, чтобы вы не возвращались.",
+      "Так что зарубите себе на носу и оставайтесь там, где вам по праву принадлежит место.",
       " . . .",
-      "The territory expulsion procedure failed . . . ?",
-      "The same verbosity left you vulnerable again.",
-      "Though, this was truly unexpected.",
-      "To think the Library could invite guests from other worlds . . .",
-      "Such disorder cannot be reasonably accounted for. Perhaps we were too lenient with this place.",
-      "Executioner. Eliminate every single one of them.",
+      "Процедура изгнания территории провалилась . . . ?",
+      "Вот и снова многословность подставила тебя.",
+      "Хотя это было действительно неожиданно.",
+      "Подумать только, Библиотека может приглашать гостей из других миров . . .",
+      "Такая особенность не может быть разумно объяснена. Возможно, мы были слишком NL мягкими с этим местом.",
+      "Палач. Ликвидируй каждого из них.",
 
 
       "DO NOT TRANSLATE OPTIONS AS IT DETERMINES WHICH CHARACTER APPEARS IN THE CUTSCENE AND WHO SPEAKS IN THE CURRENT LINE. TRANSLATING ANY LINE OF IT CAUSES THE CUTSCENE TO BREAK.",
@@ -526,13 +526,13 @@
   "ruina:HeadEnding": {
     "NAME": "",
     "DESCRIPTIONS": [
-      "Will we be alright, Roland? I doubt the Head will be pleased with the defeat of two of its agents.",
-      "The Head can be as displeased as it likes. But our story won’t end here.",
-      "I suppose not. All with a little help from far away. Shall we continue writing this story together?",
-      "Of course, Miss Director. There are still so many things both of us want to do, after all.",
-      "And why don’t you join us, stranger? This story has enough room for someone else to be written in.",
-      "Don't be shy. After all . . . ",
-      "Strangers are just friends you haven't met yet."
+      "Будем ли мы в порядке, Роланд? Я сомневаюсь, что Голова будет рада поражению двух NL своих агентов.",
+      "Голова может быть недовольна, как ей захочется. Но наша история на этом не окончится.",
+      "Полагаю, что нет. И всё это с небольшой помощью издалека. Будем ли мы продолжать NL писать эту историю вместе?",
+      "Конечно, мисс Директор. Всё-таки есть ещё так много вещей, которые мы оба хотим NL сделать.",
+      "И почему бы тебе не присоединиться, незнакомец? В этой истории достаточно места, NL чтобы вписать ещё кого-нибудь.",
+      "Не стесняйся. Чего ты, в конце концов . . . ",
+      "Незнакомцы - просто друзья, которых вы ещё не встретили."
     ],
     "OPTIONS": [
     ]
