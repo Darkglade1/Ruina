@@ -114,13 +114,9 @@ public class Laetitia extends AbstractRuinaMonster {
         AbstractMonster giftFriend1 = new GiftFriend(xPos_Middle_L, 0.0f, this);
         atb(new SpawnMonsterAction(giftFriend1, true));
         atb(new UsePreBattleActionAction(giftFriend1));
-        giftFriend1.rollMove();
-        giftFriend1.createIntent();
         AbstractMonster giftFriend2 = new GiftFriend(xPos_Short_L, 0.0f, this);
         atb(new SpawnMonsterAction(giftFriend2, true));
         atb(new UsePreBattleActionAction(giftFriend2));
-        giftFriend2.rollMove();
-        giftFriend2.createIntent();
     }
 
     @Override

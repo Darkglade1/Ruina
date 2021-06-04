@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -50,14 +51,7 @@ public class SurprisePresent extends AbstractUnremovablePower {
         } else {
             atb(new ReducePowerAction(owner, owner, this, 1));
             if (owner instanceof GiftFriend) {
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        ((GiftFriend) owner).rollMove();
-                        ((GiftFriend) owner).createIntent();
-                        this.isDone = true;
-                    }
-                });
+                atb(new RollMoveAction((AbstractMonster)owner));
             }
         }
     }
