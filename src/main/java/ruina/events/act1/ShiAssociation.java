@@ -95,7 +95,7 @@ public class ShiAssociation extends AbstractImageEvent {
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
         }
         upgradeCard = true;
-        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck.getUpgradableCards(), 1,true, OPTIONS[4]);
+        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck.getUpgradableCards(), 1, OPTIONS[4], true, false, false, false);
     }
 
 }

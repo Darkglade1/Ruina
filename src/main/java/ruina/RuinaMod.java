@@ -5,6 +5,7 @@ import actlikeit.dungeons.CustomDungeon;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModPanel;
+import basemod.eventUtil.AddEventParams;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
@@ -674,12 +675,17 @@ public class RuinaMod implements
 
         BaseMod.addEvent(ShiAssociation.ID, ShiAssociation.class, Asiyah.ID);
         BaseMod.addEvent(WarpTrain.ID, WarpTrain.class, Asiyah.ID);
-        BaseMod.addEvent(StreetlightOffice.ID, StreetlightOffice.class, Asiyah.ID);
-        BaseMod.addEvent(NightInTheBackstreets.ID, NightInTheBackstreets.class, Asiyah.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(StreetlightOffice.ID, StreetlightOffice.class)
+                //Prevent from appearing too early//
+                .bonusCondition(() -> (AbstractDungeon.floorNum > 6))
+                .create());
+        //BaseMod.addEvent(NightInTheBackstreets.ID, NightInTheBackstreets.class, Asiyah.ID);
         BaseMod.addEvent(SnowWhiteApple.ID, SnowWhiteApple.class, Asiyah.ID);
         BaseMod.addEvent(DerFreischutz.ID, DerFreischutz.class, Asiyah.ID);
         BaseMod.addEvent(UnknownPath.ID, UnknownPath.class, Asiyah.ID);
-        BaseMod.addEvent(SingingMachine.ID, SingingMachine.class, Asiyah.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(SingingMachine.ID, SingingMachine.class)
+                .bonusCondition(SingingMachine::hasValidCards)
+                .create());
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
 
 

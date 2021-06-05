@@ -67,9 +67,9 @@
   },
   "${ModID}:Overexertion": {
     "NAME": "Overexertion",
-    "FLAVOR": "Placeholder",
+    "FLAVOR": "She just had to keep pushing forward. Keep on pushing until the way was clear. Keep on pushing until she could push no more.",
     "DESCRIPTIONS": [
-      "Start each combat with an additional [E] [E] . NL Gain #b%1$s Weak and Frail at the start of your #bsecond turn."
+      "Start each combat with an additional [E] [E] . NL Gain #b%1$s #yWeak and #yFrail at the start of your second turn."
     ]
   },
   "${ModID}:LifeFiber": {

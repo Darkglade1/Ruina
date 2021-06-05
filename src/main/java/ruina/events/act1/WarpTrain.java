@@ -78,7 +78,7 @@ public class WarpTrain extends AbstractImageEvent {
                 this.transformCard = false;
                 for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
                     AbstractDungeon.player.masterDeck.removeCard(c);
-                    AbstractDungeon.transformCard(c, false, AbstractDungeon.miscRng);
+                    AbstractDungeon.transformCard(c, true, AbstractDungeon.miscRng);
                     AbstractCard transformedCard = AbstractDungeon.getTransformedCard();
                     AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(transformedCard, c.current_x, c.current_y));
                 }
@@ -94,7 +94,7 @@ public class WarpTrain extends AbstractImageEvent {
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
         }
         transformCard = true;
-        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck, 1,true, OPTIONS[5]);
+        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck, 1, OPTIONS[5], false, true, false, false);
     }
 
 }

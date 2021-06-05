@@ -25,11 +25,10 @@ public class StreetlightOffice extends AbstractImageEvent {
     public static final String IMG = makeEventPath("Lulu.png");
 
     private int screenNum = 0;
-    private static final int GOLD_REWARD = 50;
+    private static final int GOLD_REWARD = 200;
 
     public StreetlightOffice() {
         super(NAME, DESCRIPTIONS[0], IMG);
-        noCardsInRewards = true;
         imageEventText.setDialogOption(OPTIONS[0]);
     }
 
@@ -42,7 +41,7 @@ public class StreetlightOffice extends AbstractImageEvent {
                         this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
                         screenNum = 1;
                         this.imageEventText.clearAllDialogs();
-                        imageEventText.setDialogOption(OPTIONS[1]);
+                        imageEventText.setDialogOption(String.format(OPTIONS[1], GOLD_REWARD));
                         imageEventText.setDialogOption(OPTIONS[2]);
                         break;
                 }
@@ -51,13 +50,6 @@ public class StreetlightOffice extends AbstractImageEvent {
                 switch (buttonPressed) {
                     case 0:
                         AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new Lulu());
-                        RewardItem reward = new RewardItem();
-                        reward.cards = AbstractEgoCard.getRandomEgoCards(reward.cards.size());
-                        for (AbstractCard c : reward.cards) {
-                            UnlockTracker.markCardAsSeen(c.cardID);
-                        }
-                        AbstractDungeon.getCurrRoom().rewards.clear();
-                        AbstractDungeon.getCurrRoom().addCardReward(reward);
                         AbstractDungeon.getCurrRoom().addGoldToRewards(GOLD_REWARD);
                         AbstractDungeon.getCurrRoom().eliteTrigger = true;
                         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg

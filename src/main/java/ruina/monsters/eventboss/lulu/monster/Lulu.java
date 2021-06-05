@@ -51,7 +51,7 @@ public class Lulu extends AbstractCardMonster {
     }
 
     public Lulu(final float x, final float y) {
-        super(NAME, ID, 95, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 110, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Lulu/Spriter/Lulu.scml"));
 
         this.setHp(calcAscensionTankiness(this.maxHealth));

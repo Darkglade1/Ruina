@@ -540,47 +540,47 @@
   "${ModID}:ShiAssociation": {
     "NAME": "Shi Association",
     "DESCRIPTIONS": [
-      "The boardroom's doors open with a @slam,@ and two uniformed subordinates enter, fatigued from a previous request. NL NL \"Director... We've been dealing with Urban Nightmare-class cases for #rten #rconsecutive #rdays. We normally shouldn't be handling more than one such case per week.\" NL NL \"We're on the brink of a breakdown, both physically and mentally.\" NL NL \"And most of all, your condition is looking worse than any of us, Director Yujin...\"",
-      "Her words rang #ptrue. All of our injuries were too #rsevere to be #ghealed up in a manner of days, yet the requests kept #ppiling up. NL NL \"We'll handle the Library request like any other. We aren't heading there to just to obey our superiors' orders. The books there are also what we need to uncover the #bBlue #bReverberation's plots.\" NL NL But there isn't much time before the head of the South Section grow suspicious on why we haven't acted. NL Should we:",
-      "\"Can we actually trust this, director? Can you promise us that you aren't going to harm yourself for the sake of Section 2? You've always been so self-sacrificing.\" NL NL \"This is the only chance we have, and the only time we might be able to gain an advantage out of their request. Gather up the ones who can still move and fight. We don't want to bring anyone who will only prove to be a burden there.\" NL NL \"Understood.\"",
-      "\"We tried to prepare as much as we can, but the pressure from the head of the South Section kept piling up. In the end, we were forced to leave prematurely. NL NL I am waiting and enduring until I can seize the chance to bring the Shi back to glory. NL NL I pledge to change this association with my hands... No matter what.\""
+      "The boardroom's doors open with a @slam,@ and two uniformed subordinates enter, fatigued from a previous request. NL NL \"Director . . . we've been dealing with #pUrban #pNightmare-class cases for #rten #rconsecutive #rdays. We normally shouldn't be handling more than one such case per week.\" NL NL \"We're on the brink of a breakdown, both physically and mentally.\" NL NL \"And most of all, your condition is looking #rworse than any of us, Director Yujin . . .\"",
+      "Her words rang #ptrue. All of our injuries were too #rsevere to be #ghealed up in a manner of days, yet the requests kept #ppiling up. NL NL \"We'll handle the Library request like any other. We aren't heading there to just to obey our superiors' orders. The books there are also what we need to uncover the #bBlue #bReverberation's plots.\" NL NL But there isn't much time before the head of the South Section grew suspicious on why we haven't acted.",
+      "\"Can we actually trust this, #ydirector? Can you promise us that you aren't going to #rharm yourself for the sake of Section 2? You've always been so #pself-sacrificing.\" NL NL \"This is the only chance we have, and the only time we might be able to gain an #yadvantage out of their request. Gather up the ones who can still move and fight. We don't want to bring anyone who will only prove to be a #pburden there.\" NL NL \"Understood.\"",
+      "We tried to prepare as much as we can, but the pressure from the head of the South Section kept piling up. In the end, we were forced to leave prematurely. NL NL I am waiting and enduring until I can seize the chance to bring the Shi back to glory. NL NL I pledge to change this association with my own hands . . . no matter what.\""
     ],
     "OPTIONS": [
       "[Continue]",
-      "[Avoid Suspicion and Rush In] Gain a Special Relic.",
-      "[Try To Prepare] #gUpgrade #ga #gcard.",
+      "[Avoid suspicion and rush in] #gObtain #ga #gspecial #gRelic.",
+      "[Try to prepare] #gUpgrade #ga #gcard.",
       "[Wake Up]",
-      "Upgrade A Card."
+      "Upgrade a Card."
     ]
   },
   "${ModID}:WarpTrain": {
     "NAME": "Warp Train",
     "DESCRIPTIONS": [
       "You open your eyes to a depiction of a train station. It's very crowded, with commuters rushing from platform to platform, hurrying to get to work on time. On your right, you see various employees walking in groups of #b3, preparing to board a train before the passengers can get on. After the employees board the train, you notice one of them dropped a strange looking cube. It glows with a #bfluorescent radiance, and on further observation, it contains a coin slot which you could insert your #ygold into. Next to the dropped cube, you also notice various stacks of wooden crates, hastily fashioned next to the platform.",
-      "You insert some of your #ygold into the cube, and it glows #bbrighter than before. It begins to pulsate in your hand, faster and faster, as your vision becomes obscured by the radiance of the cube. You feel time slow down as you watch the scurrying commuters pace slower and slower, until time crawls to a halt, and you begin to shudder with the possibilities of what can be done with this power.",
-      "You easily break the locks of the wooden crates, and it seems that the employees were too busy with their packed shifts that they forgot to ensure the protection of the goods being transported. Inside the crates, gold pours forth again and again, and you try to pocket as much as you can carry. You leave, significantly wealthier than you once were.",
+      "You insert some of your #ygold into the cube, and it glows #bbrighter than before. It begins to pulsate in your hand, faster and faster, as your vision becomes obscured by the radiance of the cube. NL NL You feel time slow down as you watch the scurrying commuters pace slower and slower, until time crawls to a halt, and you begin to @shudder@ with the possibilities of what can be done with this power.",
+      "You easily #rbreak the locks of the wooden crates, and it seems that the employees were so busy with their packed shifts that they forgot to ensure the #gprotection of the #ygoods being transported. NL NL Inside the crates, #ygold pours forth again and again, and you try to pocket as much as you can carry. NL NL Finally, you leave, significantly #ywealthier than you once were.",
       "You decide to leave both possibilities untouched. After all, this station seems too crowded to try something risky."
     ],
     "OPTIONS": [
-      "[Open The Crates] Gain #g%d #yGold.",
-      "[Interact With The Box] Lose #r%d #yGold. #gTransform #ga #gcard.",
-      "[Locked] Requires #r%d #yGold.",
-      "[Leave It]",
+      "[Open the crates] #gGain #g%d #gGold.",
+      "[Interact with the box] #rLose #r%d #rGold. #gTransform #ga #gcard, #gthen #gUpgrade #git.",
+      "[Locked] Requires %d Gold.",
+      "[Leave them alone]",
       "[Wake Up]",
-      "Transform A Card."
+      "Transform a Card."
     ]
   },
   "${ModID}:StreetlightOffice": {
     "NAME": "Streetlight Office",
     "DESCRIPTIONS": [
-      "You turn a street corner to find yourself in a dimly-lit alleyway. The streetlights flicker with uncertainty, and you see the shadow of a weeping girl, her tears falling alongside the heavy rain. NL NL \"You stupid idiot... NL It's not like you at all to buy cakes for others... NL You said your mother's an amazing Fixer too, and you loved to show off that stupidly huge sword, saying it was a gift from her... NL You even bragged so much that you wanted to be just like her someday. NL Why, why did you have to fall out of any of us? NL I won't let them toy with you... I'll never let them...",
-      "You appear back in the Library's lobby, with the knowledge that the girl you just witnessed intends to return to the Library once-more. NL All of the Patron Librarians appear increasingly busy with their work, and you question if you should intervene in their stead.",
-      "You decide not to intervene in the affairs of others."
+      "She thought she #phated him. NL He was #rannoying, arrogant, and an #rasshole who stole her #ysweets from the fridge. He was always bragging about how his mother was an amazing #yFixer, and how he would one day surpass her with that fancy sword he had received from her. NL But now he was gone. He would never #rannoy her again. He would never talk down to her, #rsteal her food, or brag about his #yachievements to her ever again. NL She thought she’d be glad that he was gone, but the #phollowness in her heart proved her wrong.",
+      "\"It's not like you to buy #ycake for others . . .\" NL Even if he had been a #pterrible person at times, he was still the person who had watched her back in battle, who had #gsaved her on numerous occasions. And she had saved him in turn. NL But she had #pfailed him this time, and now he was gone. NL Perhaps she should go back and try to reclaim his remains, as reckless as that might be.",
+      "No. He wouldn't want her to do that. As #ptroublesome as he might’ve been, he wouldn't have wanted her to throw her life away. NL NL She would keep on living. And she would live a life that they could both be #yproud of."
     ],
     "OPTIONS": [
       "[Continue]",
-      "[Intervene] #rFight #ra #rspecial #renemy. #gObtain #gan #gEGO #gcard.",
-      "[Don't Intervene]",
+      "[Go back] #rFight #ra #rspecial #renemy. #gGain #g%d #gGold.",
+      "[Live to fight another day]",
       "[Leave]"
     ]
   },
@@ -592,7 +592,7 @@
       "Unsure if the canisters would even work to help yourself, you decide to retain vigilant and keep observing the marching sweepers. After 80 minutes of marching, the sweepers dissipate once-more, and the only presence alongside you is the pitch black darkness."
     ],
     "OPTIONS": [
-      "[Extract] Gain a #gSpecial #gRelic",
+      "[Extract] #gObtain #ga #gspecial #gRelic",
       "[Observe]",
       "[Leave]"
     ]
