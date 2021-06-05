@@ -56,7 +56,7 @@ public class Alriune extends AbstractRuinaMonster
         super(NAME, ID, 140, 0.0F, 0, 250.0f, 280.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Alriune/Spriter/Alriune.scml"));
         this.type = EnemyType.ELITE;
-        setHp(calcAscensionTankiness(72), calcAscensionTankiness(76));
+        setHp(calcAscensionTankiness(77), calcAscensionTankiness(81));
         addMove(SPRINGS_GENESIS, Intent.DEBUFF);
         addMove(FULL_BLOOM, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));
         addMove(MAGNIFICENT_END, Intent.ATTACK, calcAscensionDamage(16));

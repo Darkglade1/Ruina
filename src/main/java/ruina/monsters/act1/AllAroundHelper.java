@@ -32,7 +32,7 @@ public class AllAroundHelper extends AbstractRuinaMonster
     private static final byte CLEAN = 1;
 
     private int DAMAGE_THRESHOLD = 9;
-    private final int STRENGTH = calcAscensionSpecial(3);
+    private final int STRENGTH = calcAscensionSpecial(2);
     private final boolean attackFirst;
 
     public static final String POWER_ID = makeID("Pattern");
@@ -50,14 +50,14 @@ public class AllAroundHelper extends AbstractRuinaMonster
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(50), calcAscensionTankiness(54));
         addMove(CHARGE, Intent.BUFF);
-        addMove(CLEAN, Intent.ATTACK, calcAscensionDamage(6), 2, true);
+        addMove(CLEAN, Intent.ATTACK, calcAscensionDamage(7), 2, true);
         this.attackFirst = attackFirst;
 
         if (AbstractDungeon.ascensionLevel >= 3) {
             DAMAGE_THRESHOLD += 1;
         }
         if (AbstractDungeon.ascensionLevel >= 18) {
-            DAMAGE_THRESHOLD += 2;
+            DAMAGE_THRESHOLD += 1;
         }
     }
 

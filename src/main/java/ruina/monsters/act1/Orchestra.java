@@ -1,7 +1,6 @@
 package ruina.monsters.act1;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -19,7 +18,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.cards.performance.AbstractPerformanceCard;
@@ -36,7 +34,6 @@ import ruina.vfx.OrchestraCurtainEffect;
 import ruina.vfx.OrchestraMusicEffect;
 
 import java.util.ArrayList;
-import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -269,6 +266,12 @@ public class Orchestra extends AbstractRuinaMonster
         } else {
             setMoveShortcut(FIRST, MOVES[FIRST]);
         }
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        onBossVictoryLogic();
     }
 
     private void attackAnimation1(AbstractCreature enemy) {

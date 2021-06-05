@@ -40,7 +40,7 @@ public class FairyQueen extends AbstractRuinaMonster
     private static final byte RAVENOUSNESS = 2;
 
     private final int STRENGTH = calcAscensionSpecial(1);
-    private final int RAVENOUSNESS_STR = calcAscensionSpecial(5);
+    private final int RAVENOUSNESS_STR = calcAscensionSpecial(4);
     private final float ENRAGE_THRESHOLD = 0.5f;
     private final int SELF_DEBUFF = 1;
 
