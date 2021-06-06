@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.EGO.act1.BlackSwan;
+import ruina.cards.EGO.act1.DaCapo;
 import ruina.cards.EGO.act1.Laetitia;
 import ruina.cards.EGO.act1.RedEyes;
 import ruina.cards.EGO.act1.SanguineDesire;
@@ -115,6 +116,7 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(RedEyes.ID);
         list.add(Laetitia.ID);
         list.add(BlackSwan.ID);
+        list.add(DaCapo.ID);
     }
 
     public static void addAct2EgoCards(ArrayList<String> list) {

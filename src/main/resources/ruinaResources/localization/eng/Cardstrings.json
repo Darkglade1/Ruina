@@ -869,26 +869,6 @@
     "NAME": "Black Swan",
     "DESCRIPTION": "Apply !M! ruina:Erosion. NL If you applied a debuff this turn, this card costs 0."
   },
-  "${ModID}:FirstMovement": {
-    "NAME": "The First Movement",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Second *Movement"
-  },
-  "${ModID}:SecondMovement": {
-    "NAME": "The Second Movement",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Third *Movement"
-  },
-  "${ModID}:ThirdMovement": {
-    "NAME": "The Third Movement",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Fourth *Movement"
-  },
-  "${ModID}:FourthMovement": {
-    "NAME": "The Fourth Movement",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Replace this card in your Deck with *The *Fourth *Movement"
-  },
-  "${ModID}:Finale": {
-    "NAME": "Finale",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies ."
-  },
   "${ModID}:Gift": {
     "NAME": "Gift",
     "DESCRIPTION": "When Retained, reduce this card's cost by !ruina:SecondMagic!. NL When this card's cost becomes 0, take !M! damage and Exhaust this card."
@@ -896,5 +876,11 @@
   "${ModID}:Enlightenment": {
     "NAME": "Enlightenment",
     "DESCRIPTION": "Lose !M! HP. NL Gain !B! Block. NL Draw !ruina:SecondMagic! card."
+  },
+  "${ModID}:DaCapo": {
+    "NAME": "Da Capo",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Upgrade this card permanently. NL Can be Upgraded !ruina:SecondMagic! times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage and apply !M! Vulnerable to ALL enemies",
+    "EXTENDED_DESCRIPTION": ["First Movement", "Second Movement", "Third Movement", "Fourth Movement", "Finale"]
   }
 }
