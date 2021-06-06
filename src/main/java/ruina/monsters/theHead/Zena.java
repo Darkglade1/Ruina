@@ -338,11 +338,12 @@ public class Zena extends AbstractCardMonster
                         }
                     });
                     waitAnimation(1.5f);
-                    float playerX = 1700.0f * Settings.scale;
+                    float playerX = 1650.0f * Settings.scale;
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
                             adp().drawX = playerX;
+                            adp().dialogX = (adp().drawX + 20.0F) * Settings.scale;
                             adp().flipHorizontal = true;
                             AbstractPower strength = adp().getPower(StrengthPower.POWER_ID);
                             if (strength != null) {

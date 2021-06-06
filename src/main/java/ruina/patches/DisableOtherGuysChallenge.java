@@ -11,4 +11,11 @@ public class DisableOtherGuysChallenge {
 			return SpireReturn.Continue();
 		}
 	}
+
+	@SpirePatch(cls = "lobotomyMod.event.BossRushEvent$goToVictoryRoomOrTheDoor", method = "prefix", optional = true)
+	public static class WhyCouldntHeJustUseActLikeItLikeANormalPersonREEEE {
+		public static Object Replace(ProceedButton instance) {
+			return SpireReturn.Continue();
+		}
+	}
 }
