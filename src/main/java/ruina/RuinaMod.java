@@ -879,8 +879,8 @@ public class RuinaMod implements
         //The Head
         BaseMod.addMonster(Baral.ID, "The Head", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new Baral(-200.0F, 0.0F),
-                        new Zena(0.0F, 0.0F),
+                        new Baral(-250.0F, 0.0F),
+                        new Zena(-50.0F, 0.0F),
                 }));
 
         reverbClear = ruinaConfig.getBool("reverbClear");
