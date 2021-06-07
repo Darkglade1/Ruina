@@ -1,6 +1,7 @@
 package ruina.monsters.act2;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
@@ -16,6 +17,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
@@ -24,6 +26,7 @@ import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
 import ruina.util.TexLoader;
+import ruina.vfx.ErosionSplatter;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeMonsterPath;
@@ -79,6 +82,7 @@ public class ServantOfWrath extends AbstractAllyMonster
         addMove(RAGE, Intent.ATTACK_DEBUFF, 8, 2, true);
 
         this.allyIcon = makeUIPath("WrathIcon.png");
+
     }
 
     @Override
@@ -176,6 +180,14 @@ public class ServantOfWrath extends AbstractAllyMonster
                     } else {
                         big3Animation(target);
                     }
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            AbstractDungeon.topLevelEffectsQueue.add(new BorderFlashEffect(Color.GREEN));
+                            for (int j = 0; j < 6; j++)  {AbstractDungeon.effectsQueue.add(new ErosionSplatter(0.5F)); }
+                            isDone = true;
+                        }
+                    });
                     atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                     resetIdle(1.0f);
                 }
