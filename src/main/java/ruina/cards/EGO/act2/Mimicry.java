@@ -4,8 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.unique.VampireDamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.cards.EGO.AbstractEgoCard;
+import ruina.vfx.ErosionSplatter;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.atb;
@@ -25,6 +27,13 @@ public class Mimicry extends AbstractEgoCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                AbstractDungeon.effectsQueue.add(new ruina.vfx.Mimicry());
+                isDone = true;
+            }
+        });
         atb(new VampireDamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
     }
 
