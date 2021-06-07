@@ -3,11 +3,14 @@ package ruina.vfx;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+
+import static ruina.RuinaMod.makeID;
 
 public class Mimicry extends AbstractGameEffect {
     public Mimicry() {
@@ -25,6 +28,7 @@ public class Mimicry extends AbstractGameEffect {
             }
             AbstractDungeon.player.tint.color.set(Color.BLACK.cpy());
             AbstractDungeon.player.tint.changeColor(Color.BLACK.cpy());
+            CardCrawlGame.sound.play("ruina:Goodbye", 0f);
         }
         this.duration -= Gdx.graphics.getDeltaTime();
         if (this.duration < 0.0F) {

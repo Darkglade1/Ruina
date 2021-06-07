@@ -508,6 +508,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("SilentHammer"), makeSFXPath("Silentgirl_Hammer.wav"));
         BaseMod.addAudio(makeID("SilentPhaseChange"), makeSFXPath("Silentgirl_PhaseChange.wav"));
         BaseMod.addAudio(makeID("SilentNail"), makeSFXPath("Silentgirl_Volt.wav"));
+
+        BaseMod.addAudio(makeID("Goodbye"), makeSFXPath("NothingThere_Goodbye.wav"));
+
     }
 
     @Override
