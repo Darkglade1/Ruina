@@ -1,12 +1,16 @@
 package ruina.cards.EGO.act2;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import ruina.cards.EGO.AbstractEgoCard;
+import ruina.vfx.ErosionSplatter;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
@@ -31,6 +35,14 @@ public class BlindRage extends AbstractEgoCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                AbstractDungeon.topLevelEffectsQueue.add(new BorderFlashEffect(Color.GREEN));
+                for (int j = 0; j < 6; j++)  {AbstractDungeon.effectsQueue.add(new ErosionSplatter(0.5F)); }
+                isDone = true;
+            }
+        });
         allDmg(AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         atb(new DamageAction(p, new DamageInfo(p, this.magicNumber, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
     }
