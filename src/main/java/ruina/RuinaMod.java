@@ -194,9 +194,6 @@ public class RuinaMod implements
     public static String makeCardPath(String resourcePath) {
         return modID + "Resources/images/cards/" + resourcePath;
     }
-    public static String makeVfxPath(String resourcePath) {
-        return modID + "Resources/images/vfx/" + resourcePath;
-    }
 
     public static String makeSFXPath(String resourcePath) {
         return modID + "Resources/audio/sfx/" + resourcePath;
