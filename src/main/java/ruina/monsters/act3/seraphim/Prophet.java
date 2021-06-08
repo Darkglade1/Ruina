@@ -120,20 +120,29 @@ public class Prophet extends AbstractAllyMonster
                 IdlePose();
                 updateDescription();
                 if (this.amount <= 0) {
-                    for (AbstractMonster mo : monsterList()) {
-                        if (mo instanceof ScytheApostle || mo instanceof SpearApostle || mo instanceof StaffApostle) {
-                            mo.currentHealth = 0;
-                            mo.loseBlock();
-                            mo.isDead = true;
-                            mo.isDying = true;
-                            mo.healthBarUpdatedEvent();
-                        }
-                    }
                     AbstractMonster seraphim = new Seraphim();
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            CardCrawlGame.fadeIn(2.5f);
+                            for (AbstractMonster mo : monsterList()) {
+                                if (mo instanceof ScytheApostle || mo instanceof SpearApostle || mo instanceof StaffApostle) {
+                                    mo.hideHealthBar();
+                                    mo.currentHealth = 0;
+                                    mo.loseBlock();
+                                    mo.isDead = true;
+                                    mo.isDying = true;
+                                    mo.healthBarUpdatedEvent();
+                                }
+                            }
+                            isDone = true;
+                        }
+                    });
                     atb(new SpawnMonsterAction(seraphim, false));
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
+                            owner.hideHealthBar();
                             owner.currentHealth = 0;
                             owner.loseBlock();
                             owner.isDead = true;
