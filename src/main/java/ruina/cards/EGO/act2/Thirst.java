@@ -48,6 +48,7 @@ public class Thirst extends AbstractEgoCard {
                 if(vfx[0] == null){
                     vfx[0] = new ThirstEffect();
                     AbstractDungeon.effectsQueue.add(vfx[0]);
+                    CardCrawlGame.sound.play("ruina:NosSpecial", 0f);
                 }
                 else {
                     isDone = vfx[0].isDone;
