@@ -203,6 +203,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     }
 
     public void disappear() {
+        hideHealthBar();
         this.currentHealth = 0;
         this.loseBlock();
         this.isDead = true;
