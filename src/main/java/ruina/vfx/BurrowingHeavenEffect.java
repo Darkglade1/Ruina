@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import ruina.monsters.AbstractRuinaMonster;
+import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makeVfxPath;
 
@@ -22,8 +24,11 @@ public class BurrowingHeavenEffect extends AbstractGameEffect {
 
     private int stage;
 
+    private boolean playedInitialSound = false;
+    private boolean playedFinishSound = false;
+
     public BurrowingHeavenEffect() {
-        img = ImageMaster.loadImage(makeVfxPath("BurrowingHeavenEffect.png"));
+        img = TexLoader.getTexture(makeVfxPath("BurrowingHeavenEffect.png"));
         this.color = Color.RED.cpy();
         this.color.a = 0.0F;
         for (int i = 0; i < 5; i++) {
@@ -38,22 +43,23 @@ public class BurrowingHeavenEffect extends AbstractGameEffect {
     }
 
     public void update() {
+        if (!playedInitialSound) {
+            AbstractRuinaMonster.playSound("HeavenNosee1");
+            playedInitialSound = true;
+        }
         this.startingDuration -= Gdx.graphics.getDeltaTime();
         if (this.startingDuration > 0.5F) {
             this.color.a = 1.0F - this.startingDuration;
         } else if (this.startingDuration > 0.0F) {
             this.color.a = this.startingDuration;
         } else if (this.duration > 0.0F) {
+            if (!playedFinishSound) {
+                AbstractRuinaMonster.playSound("HeavenWakeStrong");
+                playedFinishSound = true;
+            }
             this.duration -= Gdx.graphics.getDeltaTime();
             if (this.stage > 1) {
-                if (this.animTimer == 0.1F)
-                    for (int i = 0; i < 10; i++)
-                        //AbstractDungeon.effectsQueue.add(new BloodSplatter());
                 this.animTimer -= Gdx.graphics.getDeltaTime();
-                if (this.animTimer < 0.0F) {
-                    this.animTimer += 0.1F;
-                    //AbstractDungeon.effectsQueue.add(new BloodSplatter());
-                }
             }
             if (this.stage <= 5) {
                 (this.color2[this.stage - 1]).a += Gdx.graphics.getDeltaTime() * 2.5F;

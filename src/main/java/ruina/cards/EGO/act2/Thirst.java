@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.cards.EGO.AbstractEgoCard;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
-import ruina.vfx.BloodSplatter;
 import ruina.vfx.ThirstEffect;
 
 import static ruina.RuinaMod.makeID;
@@ -48,7 +47,6 @@ public class Thirst extends AbstractEgoCard {
                 if(vfx[0] == null){
                     vfx[0] = new ThirstEffect();
                     AbstractDungeon.effectsQueue.add(vfx[0]);
-                    CardCrawlGame.sound.play("ruina:NosSpecial", 0f);
                 }
                 else {
                     isDone = vfx[0].isDone;

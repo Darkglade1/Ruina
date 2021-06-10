@@ -109,6 +109,7 @@ public class BurrowingHeaven extends AbstractRuinaMonster
                 break;
             }
             case GAZE_OF_OTHERS: {
+                specialAnimation(adp());
                 final AbstractGameEffect[] vfx = {null};
                 atb(new AbstractGameAction() {
                     @Override
@@ -122,7 +123,6 @@ public class BurrowingHeaven extends AbstractRuinaMonster
                         }
                     }
                 });
-                specialAnimation(adp());
                 applyToTarget(adp(), this, new StrengthPower(adp(), -STR_DOWN));
                 applyToTarget(adp(), this, new VulnerablePower(adp(), VULNERABLE, true));
                 resetIdle(1.0f);

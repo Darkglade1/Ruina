@@ -17,7 +17,6 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.cards.EGO.AbstractEgoCard;
 import ruina.powers.AbstractLambdaPower;
 import ruina.vfx.BurrowingHeavenEffect;
-import ruina.vfx.ThirstEffect;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;

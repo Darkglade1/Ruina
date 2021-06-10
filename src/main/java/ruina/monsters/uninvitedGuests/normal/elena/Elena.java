@@ -2,6 +2,7 @@ package ruina.monsters.uninvitedGuests.normal.elena;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -17,6 +18,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -28,6 +30,7 @@ import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Protection;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
+import ruina.vfx.ThirstEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
@@ -168,6 +171,20 @@ public class Elena extends AbstractCardMonster
                 break;
             }
             case BLOODSPREADING: {
+                specialAnimationNoSound();
+                final AbstractGameEffect[] vfx = {null};
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if(vfx[0] == null){
+                            vfx[0] = new ThirstEffect();
+                            AbstractDungeon.effectsQueue.add(vfx[0]);
+                        }
+                        else {
+                            isDone = vfx[0].isDone;
+                        }
+                    }
+                });
                 specialAttackAnimation(target);
                 dmg(target, info);
                 resetIdle(1.0f);
@@ -193,6 +210,10 @@ public class Elena extends AbstractCardMonster
 
     private void specialAttackAnimation(AbstractCreature enemy) {
         animationAction("Special", "ElenaStrongAtk", enemy, this);
+    }
+
+    private void specialAnimationNoSound() {
+        animationAction("Special", null, this);
     }
 
     private void specialAnimation() {

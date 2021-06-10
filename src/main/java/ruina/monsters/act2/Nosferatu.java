@@ -71,20 +71,6 @@ public class Nosferatu extends AbstractRuinaMonster
 
         switch (this.nextMove) {
             case UNBEARABLE_DROUGHT: {
-                final AbstractGameEffect[] vfx = {null};
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        if(vfx[0] == null){
-                            vfx[0] = new ThirstEffect();
-                            AbstractDungeon.effectsQueue.add(vfx[0]);
-                            CardCrawlGame.sound.play("ruina:NosSpecial", 0f);
-                        }
-                        else {
-                            isDone = vfx[0].isDone;
-                        }
-                    }
-                });
                 attack1Animation(adp());
                 atb(new VampireDamageActionButItCanFizzle(adp(), info, AbstractGameAction.AttackEffect.NONE));
                 resetIdle();
