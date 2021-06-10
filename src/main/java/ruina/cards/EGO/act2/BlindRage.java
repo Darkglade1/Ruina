@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import ruina.cards.EGO.AbstractEgoCard;
+import ruina.monsters.AbstractRuinaMonster;
 import ruina.vfx.ErosionSplatter;
 
 import static ruina.RuinaMod.makeID;
@@ -38,12 +39,13 @@ public class BlindRage extends AbstractEgoCard {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
+                AbstractRuinaMonster.playSound("WrathStrong3");
                 AbstractDungeon.topLevelEffectsQueue.add(new BorderFlashEffect(Color.GREEN));
                 for (int j = 0; j < 6; j++)  {AbstractDungeon.effectsQueue.add(new ErosionSplatter(0.5F)); }
                 isDone = true;
             }
         });
-        allDmg(AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        allDmg(AbstractGameAction.AttackEffect.NONE);
         atb(new DamageAction(p, new DamageInfo(p, this.magicNumber, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
     }
 

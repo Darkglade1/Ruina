@@ -167,11 +167,11 @@ public class Woodsman extends AbstractRuinaMonster
     }
 
     private void strikeAnimation(AbstractCreature enemy) {
-        animationAction("Strike", "WoodStrike", enemy, this);
+        animationAction("Strike", "WoodFinish", enemy, this);
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "Slash", enemy, this);
+        animationAction("Slash", "WoodStrike", enemy, this);
     }
 
     private void finishAnimation(AbstractCreature enemy) {
