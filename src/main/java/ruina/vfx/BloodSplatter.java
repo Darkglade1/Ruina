@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makeVfxPath;
 
@@ -21,7 +21,7 @@ public class BloodSplatter extends AbstractGameEffect {
     private float rotation;
 
     public BloodSplatter() {
-        this.img = ImageMaster.loadImage(makeVfxPath("splatter.png"));
+        this.img = TexLoader.getTexture(makeVfxPath("splatter.png"));
         this.color = Color.WHITE.cpy();
         this.color.a = 0.6F;
         this.x = MathUtils.random(Settings.WIDTH);
@@ -33,7 +33,7 @@ public class BloodSplatter extends AbstractGameEffect {
     }
 
     public BloodSplatter(float duration) {
-        this.img = ImageMaster.loadImage(makeVfxPath("splatter.png"));
+        this.img = TexLoader.getTexture(makeVfxPath("splatter.png"));
         this.color = Color.WHITE.cpy();
         this.color.a = 0.6F;
         this.x = MathUtils.random(Settings.WIDTH);

@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makeVfxPath;
 
@@ -23,13 +23,13 @@ public class ErosionSplatter extends AbstractGameEffect {
     public ErosionSplatter() {
         switch (MathUtils.random(0, 2)){
             case 0:
-                this.img = ImageMaster.loadImage(makeVfxPath("servant_splatter.png"));
+                this.img = TexLoader.getTexture(makeVfxPath("servant_splatter.png"));
                 break;
             case 1:
-                this.img = ImageMaster.loadImage(makeVfxPath("servant_splatter2.png"));
+                this.img = TexLoader.getTexture(makeVfxPath("servant_splatter2.png"));
                 break;
             case 2:
-                this.img = ImageMaster.loadImage(makeVfxPath("servant_splatter3.png"));
+                this.img = TexLoader.getTexture(makeVfxPath("servant_splatter3.png"));
                 break;
         }
         this.color = Color.WHITE.cpy();
@@ -45,13 +45,13 @@ public class ErosionSplatter extends AbstractGameEffect {
     public ErosionSplatter(float duration) {
         switch (MathUtils.random(0, 2)){
             case 0:
-                this.img = ImageMaster.loadImage(makeVfxPath("servant_splatter.png"));
+                this.img = TexLoader.getTexture(makeVfxPath("servant_splatter.png"));
                 break;
             case 1:
-                this.img = ImageMaster.loadImage(makeVfxPath("servant_splatter2.png"));
+                this.img = TexLoader.getTexture(makeVfxPath("servant_splatter2.png"));
                 break;
             case 2:
-                this.img = ImageMaster.loadImage(makeVfxPath("servant_splatter3.png"));
+                this.img = TexLoader.getTexture(makeVfxPath("servant_splatter3.png"));
                 break;
         }
         this.color = Color.WHITE.cpy();
