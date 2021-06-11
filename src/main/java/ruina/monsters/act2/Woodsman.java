@@ -1,5 +1,6 @@
 package ruina.monsters.act2;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -18,6 +19,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleEnergyPower;
+import ruina.vfx.BloodSplatter;
 
 import java.util.ArrayList;
 
@@ -132,6 +134,13 @@ public class Woodsman extends AbstractRuinaMonster
             }
             case PULSE: {
                 strikeAnimation(adp());
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        for (int j = 0; j < 6; j++)  {AbstractDungeon.effectsQueue.add(new BloodSplatter(0.5F)); }
+                        isDone = true;
+                    }
+                });
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new FrailPower(adp(), DEBUFF, true));
                 resetIdle();
@@ -158,11 +167,11 @@ public class Woodsman extends AbstractRuinaMonster
     }
 
     private void strikeAnimation(AbstractCreature enemy) {
-        animationAction("Strike", "WoodStrike", enemy, this);
+        animationAction("Strike", "WoodFinish", enemy, this);
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "Slash", enemy, this);
+        animationAction("Slash", "WoodStrike", enemy, this);
     }
 
     private void finishAnimation(AbstractCreature enemy) {

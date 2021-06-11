@@ -50,6 +50,7 @@ import ruina.powers.PlayerBackAttack;
 import ruina.powers.PlayerBlackSilence;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
+import ruina.vfx.CustomCeilingDust;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
@@ -231,6 +232,8 @@ public class Zena extends AbstractCardMonster
                     @Override
                     public void update() {
                         usedShockwave = true;
+                        CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.LONG, false);
+                        for (int i = 0; i < 10; i++) { AbstractDungeon.effectsQueue.add(new CustomCeilingDust()); }
                         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
                         this.isDone = true;
                     }

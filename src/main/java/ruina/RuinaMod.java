@@ -223,6 +223,9 @@ public class RuinaMod implements
     public static String makeCardPath(String resourcePath) {
         return modID + "Resources/images/cards/" + resourcePath;
     }
+    public static String makeVfxPath(String resourcePath) {
+        return modID + "Resources/images/vfx/" + resourcePath;
+    }
 
     public static String makeSFXPath(String resourcePath) {
         return modID + "Resources/audio/sfx/" + resourcePath;
@@ -301,6 +304,7 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("NosBloodEat"), makeSFXPath("Nosferatu_Changed_BloodEat.wav"));
         BaseMod.addAudio(makeID("NosGrab"), makeSFXPath("Nosferatu_Changed_Grab.wav"));
         BaseMod.addAudio(makeID("NosSpecial"), makeSFXPath("Nosferatu_Changed_StrongAtk_Start.wav"));
+        BaseMod.addAudio(makeID("NosSpecialEye"), makeSFXPath("Nosferatu_Changed_StrongAtk_Eye.wav"));
 
         BaseMod.addAudio(makeID("HouseBoom"), makeSFXPath("House_HouseBoom.wav"));
         BaseMod.addAudio(makeID("LionPoison"), makeSFXPath("House_Lion_Poison.wav"));
@@ -568,6 +572,11 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("LaetitiaAtk"), makeSFXPath("Laetitia_Atk.wav"));
         BaseMod.addAudio(makeID("LaetitiaFriendAtk"), makeSFXPath("Laetitia_Friend_Stab.wav"));
+        BaseMod.addAudio(makeID("Goodbye"), makeSFXPath("NothingThere_Goodbye.wav"));
+
+        BaseMod.addAudio(makeID("HeavenWakeStrong"), makeSFXPath("MustSee_Wake_Strong.wav"));
+        BaseMod.addAudio(makeID("HeavenNosee1"), makeSFXPath("MustSee_Nosee1.wav"));
+
     }
 
     @Override

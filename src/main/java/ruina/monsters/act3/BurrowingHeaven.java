@@ -1,5 +1,6 @@
 package ruina.monsters.act3;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -12,9 +13,11 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.vfx.BurrowingHeavenEffect;
 
 import java.util.ArrayList;
 
@@ -107,6 +110,19 @@ public class BurrowingHeaven extends AbstractRuinaMonster
             }
             case GAZE_OF_OTHERS: {
                 specialAnimation(adp());
+                final AbstractGameEffect[] vfx = {null};
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if(vfx[0] == null){
+                            vfx[0] = new BurrowingHeavenEffect();
+                            AbstractDungeon.effectsQueue.add(vfx[0]);
+                        }
+                        else {
+                            isDone = vfx[0].isDone;
+                        }
+                    }
+                });
                 applyToTarget(adp(), this, new StrengthPower(adp(), -STR_DOWN));
                 applyToTarget(adp(), this, new VulnerablePower(adp(), VULNERABLE, true));
                 resetIdle(1.0f);
