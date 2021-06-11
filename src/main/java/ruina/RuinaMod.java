@@ -687,6 +687,7 @@ public class RuinaMod implements
         BaseMod.addEvent(new AddEventParams.Builder(StreetlightOffice.ID, StreetlightOffice.class)
                 //Prevent from appearing too early//
                 .bonusCondition(() -> (AbstractDungeon.floorNum > 6))
+                .dungeonID(Asiyah.ID)
                 .create());
         //BaseMod.addEvent(NightInTheBackstreets.ID, NightInTheBackstreets.class, Asiyah.ID);
         BaseMod.addEvent(SnowWhiteApple.ID, SnowWhiteApple.class, Asiyah.ID);
@@ -694,6 +695,7 @@ public class RuinaMod implements
         BaseMod.addEvent(UnknownPath.ID, UnknownPath.class, Asiyah.ID);
         BaseMod.addEvent(new AddEventParams.Builder(SingingMachine.ID, SingingMachine.class)
                 .bonusCondition(SingingMachine::hasValidCards)
+                .dungeonID(Asiyah.ID)
                 .create());
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
 

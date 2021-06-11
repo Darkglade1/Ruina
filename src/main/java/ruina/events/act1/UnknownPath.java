@@ -106,8 +106,9 @@ public class UnknownPath extends AbstractImageEvent {
         AbstractDungeon.player.preBattlePrep();
         AbstractDungeon.scene.nextRoom(node2.room);
         AbstractDungeon.rs = AbstractDungeon.RenderScene.NORMAL;
+        System.out.println(AbstractDungeon.eliteMonsterList);
         AbstractDungeon.eliteMonsterList.remove(0);
-
+        System.out.println(AbstractDungeon.eliteMonsterList);
         cur2.taken = true;
     }
 

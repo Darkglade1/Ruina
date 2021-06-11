@@ -851,7 +851,7 @@
   "${ModID}:TodaysExpression": {
     "NAME": "Today's Expression",
     "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["Gain !B! Block.", "Deal !D! damage."]
+    "EXTENDED_DESCRIPTION": ["Gain !B! Block.", "Gain !B! Block next turn."]
   },
   "${ModID}:SanguineDesire": {
     "NAME": "Sanguine Desire",

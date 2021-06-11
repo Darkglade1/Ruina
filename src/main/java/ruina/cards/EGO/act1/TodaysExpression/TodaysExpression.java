@@ -14,18 +14,15 @@ import static ruina.util.Wiz.atb;
 public class TodaysExpression extends AbstractEgoCard {
     public final static String ID = makeID(TodaysExpression.class.getSimpleName());
 
-    private static final int DAMAGE = 20;
-    private static final int UP_DAMAGE = 5;
-    private static final int BLOCK = 17;
+    private static final int BLOCK = 18;
     private static final int UP_BLOCK = 5;
 
     protected static AbstractMonster target;
 
     public TodaysExpression() {
-        super(ID, 2, CardType.SKILL, CardTarget.ENEMY);
+        super(ID, 2, CardType.SKILL, CardTarget.SELF);
         this.rawDescription = cardStrings.DESCRIPTION + " NL " + cardStrings.EXTENDED_DESCRIPTION[0] + " NL " + cardStrings.EXTENDED_DESCRIPTION[1];
         this.initializeDescription();
-        baseDamage = DAMAGE;
         baseBlock = BLOCK;
     }
 
@@ -56,7 +53,6 @@ public class TodaysExpression extends AbstractEgoCard {
 
     @Override
     public void upp() {
-        upgradeDamage(UP_DAMAGE);
         upgradeBlock(UP_BLOCK);
     }
 }

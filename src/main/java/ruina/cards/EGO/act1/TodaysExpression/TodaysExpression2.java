@@ -1,11 +1,13 @@
 package ruina.cards.EGO.act1.TodaysExpression;
 
 import basemod.AutoAdd;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 
 import static ruina.RuinaMod.makeID;
+import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.applyToTarget;
 
 @AutoAdd.Ignore
 public class TodaysExpression2 extends TodaysExpression {
@@ -20,8 +22,6 @@ public class TodaysExpression2 extends TodaysExpression {
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
     public void onChoseThisOption(){
-        if (target != null) {
-            dmg(target, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        }
+       applyToTarget(adp(), adp(), new NextTurnBlockPower(adp(), block));
     }
 }

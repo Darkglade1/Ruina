@@ -13,7 +13,7 @@
             </mainline>
             <timeline id="0" name="Idle">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-46" y="224"/>
+                    <object folder="0" file="0" x="-50" y="219" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -25,7 +25,7 @@
             </mainline>
             <timeline id="0" name="Attack">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-152" y="332"/>
+                    <object folder="0" file="1" x="-115" y="326" angle="0"/>
                 </key>
             </timeline>
         </animation>
