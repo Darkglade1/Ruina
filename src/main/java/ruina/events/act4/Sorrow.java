@@ -8,11 +8,26 @@ import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.CeramicFish;
+import com.megacrit.cardcrawl.relics.Courier;
+import com.megacrit.cardcrawl.relics.DarkstonePeriapt;
+import com.megacrit.cardcrawl.relics.JuzuBracelet;
+import com.megacrit.cardcrawl.relics.Matryoshka;
+import com.megacrit.cardcrawl.relics.MawBank;
+import com.megacrit.cardcrawl.relics.MealTicket;
+import com.megacrit.cardcrawl.relics.OldCoin;
+import com.megacrit.cardcrawl.relics.Omamori;
+import com.megacrit.cardcrawl.relics.PreservedInsect;
+import com.megacrit.cardcrawl.relics.SmilingMask;
+import com.megacrit.cardcrawl.relics.TinyChest;
+import com.megacrit.cardcrawl.relics.WingBoots;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import ruina.RuinaMod;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeEventPath;
 import static ruina.util.Wiz.adp;
@@ -36,10 +51,26 @@ public class Sorrow extends AbstractImageEvent {
     private AbstractRelic relic1;
     private AbstractRelic relic2;
 
+    private final ArrayList<String> blacklistedRelics = new ArrayList<>();
+
     public Sorrow() {
         super(NAME, DESCRIPTIONS[0], IMG);
         imageEventText.setDialogOption(OPTIONS[0] + FontHelper.colorString(OPTIONS[2], "g"));
         imageEventText.setDialogOption(OPTIONS[0]);
+
+        blacklistedRelics.add(WingBoots.ID);
+        blacklistedRelics.add(PreservedInsect.ID);
+        blacklistedRelics.add(DarkstonePeriapt.ID);
+        blacklistedRelics.add(MealTicket.ID);
+        blacklistedRelics.add(Courier.ID);
+        blacklistedRelics.add(TinyChest.ID);
+        blacklistedRelics.add(SmilingMask.ID);
+        blacklistedRelics.add(JuzuBracelet.ID);
+        blacklistedRelics.add(Omamori.ID);
+        blacklistedRelics.add(Matryoshka.ID);
+        blacklistedRelics.add(CeramicFish.ID);
+        blacklistedRelics.add(MawBank.ID);
+        blacklistedRelics.add(OldCoin.ID);
     }
 
     @Override
@@ -106,22 +137,22 @@ public class Sorrow extends AbstractImageEvent {
                 imageEventText.setDialogOption(OPTIONS[0]);
                 break;
             case 3:
-                relic1 = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.COMMON);
-                relic2 = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.COMMON);
+                relic1 = getValidRelic(AbstractRelic.RelicTier.COMMON);
+                relic2 = getValidRelic(AbstractRelic.RelicTier.COMMON);
                 this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
                 imageEventText.setDialogOption(OPTIONS[0] + FontHelper.colorString(OPTIONS[4] + relic1.name + OPTIONS[5], "g"), relic1);
                 imageEventText.setDialogOption(OPTIONS[0] + FontHelper.colorString(OPTIONS[4] + relic2.name + OPTIONS[5], "g"), relic2);
                 break;
             case 4:
-                relic1 = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.UNCOMMON);
-                relic2 = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.UNCOMMON);
+                relic1 = getValidRelic(AbstractRelic.RelicTier.UNCOMMON);
+                relic2 = getValidRelic(AbstractRelic.RelicTier.UNCOMMON);
                 this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
                 imageEventText.setDialogOption(OPTIONS[0] + FontHelper.colorString(OPTIONS[4] + relic1.name + OPTIONS[5], "g"), relic1);
                 imageEventText.setDialogOption(OPTIONS[0] + FontHelper.colorString(OPTIONS[4] + relic2.name + OPTIONS[5], "g"), relic2);
                 break;
             case 5:
-                relic1 = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.RARE);
-                relic2 = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.RARE);
+                relic1 = getValidRelic(AbstractRelic.RelicTier.RARE);
+                relic2 = getValidRelic(AbstractRelic.RelicTier.RARE);
                 this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
                 imageEventText.setDialogOption(OPTIONS[0] + FontHelper.colorString(OPTIONS[4] + relic1.name + OPTIONS[5], "g"), relic1);
                 imageEventText.setDialogOption(OPTIONS[0] + FontHelper.colorString(OPTIONS[4] + relic2.name + OPTIONS[5], "g"), relic2);
@@ -130,7 +161,15 @@ public class Sorrow extends AbstractImageEvent {
                 imageEventText.setDialogOption(OPTIONS[0]);
                 break;
         }
+    }
 
+    private AbstractRelic getValidRelic(AbstractRelic.RelicTier relicTier) {
+        AbstractRelic relic = AbstractDungeon.returnRandomScreenlessRelic(relicTier);
+        while (blacklistedRelics.contains(relic.relicId)) {
+            System.out.println("Rerolled " + relic.relicId);
+            relic = AbstractDungeon.returnRandomScreenlessRelic(relicTier);
+        }
+        return relic;
     }
 
     public void update() {
