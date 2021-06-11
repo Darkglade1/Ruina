@@ -46,7 +46,7 @@ public class Thirst extends AbstractEgoCard {
             public void update() {
                 if(vfx[0] == null){
                     vfx[0] = new ThirstEffect();
-                    AbstractDungeon.effectsQueue.add(vfx[0]);
+                    AbstractDungeon.topLevelEffectsQueue.add(vfx[0]);
                 }
                 else {
                     isDone = vfx[0].isDone;
