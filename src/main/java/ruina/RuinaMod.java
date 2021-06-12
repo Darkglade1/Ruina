@@ -693,7 +693,7 @@ public class RuinaMod implements
                 .bonusCondition(() -> (AbstractDungeon.floorNum > 6))
                 .dungeonID(Asiyah.ID)
                 .create());
-        //BaseMod.addEvent(NightInTheBackstreets.ID, NightInTheBackstreets.class, Asiyah.ID);
+        BaseMod.addEvent(NightInTheBackstreets.ID, NightInTheBackstreets.class, Asiyah.ID);
         BaseMod.addEvent(SnowWhiteApple.ID, SnowWhiteApple.class, Asiyah.ID);
         BaseMod.addEvent(DerFreischutz.ID, DerFreischutz.class, Asiyah.ID);
         BaseMod.addEvent(UnknownPath.ID, UnknownPath.class, Asiyah.ID);
