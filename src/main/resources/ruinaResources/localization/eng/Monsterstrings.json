@@ -1148,5 +1148,14 @@
     "NAME": "Butterflies",
     "DIALOG": [
     ]
+  },
+  "${ModID}:MatchFlame": {
+    "MOVES": [
+      "Broken Hope",
+      "Kindle"
+    ],
+    "NAME": "Match Flame",
+    "DIALOG": [
+    ]
   }
 }

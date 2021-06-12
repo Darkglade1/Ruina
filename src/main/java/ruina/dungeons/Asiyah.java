@@ -11,7 +11,7 @@ import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.Alriune;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
-import ruina.monsters.act1.ScorchedGirl;
+import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act1.laetitia.Laetitia;

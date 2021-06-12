@@ -32,8 +32,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,7 +50,8 @@ import ruina.monsters.act1.CrazedEmployee;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.Orchestra;
-import ruina.monsters.act1.ScorchedGirl;
+import ruina.monsters.act1.scorchedGirl.MatchFlame;
+import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act1.fairyFestival.FairyQueen;
@@ -645,7 +644,12 @@ public class RuinaMod implements
         BaseMod.addMonster(Laetitia.ID, (BaseMod.GetMonster) Laetitia::new);
 
         BaseMod.addMonster(ForsakenMurderer.ID, (BaseMod.GetMonster) ForsakenMurderer::new);
-        BaseMod.addMonster(ScorchedGirl.ID, (BaseMod.GetMonster) ScorchedGirl::new);
+        BaseMod.addMonster(ScorchedGirl.ID, "ScorchedGirl", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new MatchFlame(-450.0F, 0.0F),
+                        new MatchFlame(-200.0F, 0.0F),
+                        new ScorchedGirl(50.0F, 0.0F)
+                }));
         BaseMod.addMonster(TeddyBear.ID, (BaseMod.GetMonster) TeddyBear::new);
         BaseMod.addMonster(ShyLook.ID, (BaseMod.GetMonster) ShyLook::new);
         BaseMod.addMonster(Fragment.ID, (BaseMod.GetMonster) Fragment::new);

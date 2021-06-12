@@ -1,8 +1,10 @@
-package ruina.monsters.act1;
+package ruina.monsters.act1.scorchedGirl;
 
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
+import com.megacrit.cardcrawl.actions.utility.LoseBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -34,12 +36,12 @@ public class ScorchedGirl extends AbstractRuinaMonster
     }
 
     public ScorchedGirl(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 235.0f, null, x, y);
+        super(NAME, ID, 140, 0.0F, 0, 230.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Scorched/Spriter/Scorched.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(45), calcAscensionTankiness(49));
+        setHp(calcAscensionTankiness(35), calcAscensionTankiness(39));
         addMove(EMBER, Intent.DEBUFF);
-        addMove(EXTINGUISH, Intent.ATTACK, calcAscensionDamage(25));
+        addMove(EXTINGUISH, Intent.ATTACK, calcAscensionDamage(22));
     }
 
     @Override
