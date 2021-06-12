@@ -536,5 +536,9 @@
   "${ModID}:Song": {
     "NAME": "Pine for the Song",
     "DESCRIPTIONS": ["At end of round, gains #b", " #yStrength and #b", " #yVulnerable."]
+  },
+  "${ModID}:Pleasure": {
+    "NAME": "Pleasure",
+    "DESCRIPTIONS": ["At the start of your turn, gain ", " At the end of your turn, take #b", " damage."]
   }
 }

@@ -50,6 +50,7 @@ import ruina.monsters.act1.CrazedEmployee;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.Orchestra;
+import ruina.monsters.act1.Porccubus;
 import ruina.monsters.act1.scorchedGirl.MatchFlame;
 import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
@@ -576,6 +577,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("HeavenWakeStrong"), makeSFXPath("MustSee_Wake_Strong.wav"));
         BaseMod.addAudio(makeID("HeavenNosee1"), makeSFXPath("MustSee_Nosee1.wav"));
 
+        BaseMod.addAudio(makeID("PorccuStrongStab2"), makeSFXPath("Porccu_Strong_Stab2.wav"));
+        BaseMod.addAudio(makeID("PorccuPenetrate"), makeSFXPath("Porccu_Penetrate.wav"));
+
     }
 
     @Override
@@ -679,6 +683,7 @@ public class RuinaMod implements
                         new Butterflies(0.0f, butterflyY),
                         new Butterflies(150.0F, butterflyY)
                 }));
+        BaseMod.addMonster(Porccubus.ID, (BaseMod.GetMonster) Porccubus::new);
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 

@@ -1157,5 +1157,14 @@
     "NAME": "Match Flame",
     "DIALOG": [
     ]
+  },
+  "${ModID}:Porccubus": {
+    "MOVES": [
+      "Unbearable Pleasure",
+      "Bristle"
+    ],
+    "NAME": "Porccubus",
+    "DIALOG": [
+    ]
   }
 }

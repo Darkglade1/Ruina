@@ -17,6 +17,7 @@ import ruina.monsters.act1.CrazedEmployee;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.Orchestra;
+import ruina.monsters.act1.Porccubus;
 import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
@@ -187,6 +188,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Singing");
                 } else if (mo instanceof Butterflies) {
                     this.bg = this.atlas.findRegion("mod/Butterfly");
+                } else if (mo instanceof Porccubus) {
+                    this.bg = this.atlas.findRegion("mod/Porccubus");
                 } else {
                     setBgs();
                 }
