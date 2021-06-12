@@ -62,7 +62,7 @@ public class FairyQueen extends AbstractRuinaMonster
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
         addMove(QUEENS_DECREE, Intent.UNKNOWN);
-        addMove(PREDATION, Intent.ATTACK, calcAscensionDamage(6), 2, true);
+        addMove(PREDATION, Intent.ATTACK, calcAscensionDamage(5), 2, true);
         addMove(RAVENOUSNESS, Intent.BUFF);
     }
 

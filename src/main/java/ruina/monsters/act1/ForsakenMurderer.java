@@ -36,7 +36,7 @@ public class ForsakenMurderer extends AbstractRuinaMonster
     private static final byte METALLIC_RINGING = 1;
 
     private final int STRENGTH_LOSS = 1;
-    private final int STRENGTH = calcAscensionSpecial(1);
+    private final int STRENGTH = 1;
 
     public static final String POWER_ID = makeID("Fear");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

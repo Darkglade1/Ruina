@@ -42,7 +42,7 @@ public class FairyMass extends AbstractRuinaMonster {
         super(NAME, ID, 75, 0.0F, 0, 160.0f, 200.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FairyMass/Spriter/FairyMass.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(20), calcAscensionTankiness(22));
+        setHp(calcAscensionTankiness(18), calcAscensionTankiness(20));
         int wingBeatsDamage = 3;
         if (AbstractDungeon.ascensionLevel >= 19) {
             wingBeatsDamage = 4;

@@ -37,6 +37,8 @@ public class Laetitia extends AbstractRuinaMonster {
 
     private final int giftGifts = 1;
 
+    private final int DAMAGE_INCREASE;
+
     private final AbstractCard gift = new Gift();
 
     public Laetitia() {
@@ -53,6 +55,9 @@ public class Laetitia extends AbstractRuinaMonster {
 
         if (AbstractDungeon.ascensionLevel >= 18) {
             gift.upgrade();
+            DAMAGE_INCREASE = 75;
+        } else {
+            DAMAGE_INCREASE = 100;
         }
     }
 
@@ -65,7 +70,7 @@ public class Laetitia extends AbstractRuinaMonster {
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning1");
-        atb(new ApplyPowerAction(this, this, new LonelyIsSad(this)));
+        atb(new ApplyPowerAction(this, this, new LonelyIsSad(this, DAMAGE_INCREASE)));
         Summon();
     }
 

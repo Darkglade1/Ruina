@@ -43,7 +43,7 @@ public class GiftFriend extends AbstractRuinaMonster {
         super(NAME, ID, 20, 0.0F, 0, 200.0f, 200.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Friend/Spriter/Friend.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(17), calcAscensionTankiness(19));
         addMove(TAKE_IT, Intent.ATTACK, calcAscensionDamage(6));
         addMove(UNKNOWN, Intent.UNKNOWN);
         parent = elite;

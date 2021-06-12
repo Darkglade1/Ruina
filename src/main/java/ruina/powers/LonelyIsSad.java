@@ -15,16 +15,14 @@ public class LonelyIsSad extends AbstractUnremovablePower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private static final int DAMAGE_INCREASE = 100;
-
-    public LonelyIsSad(AbstractCreature owner) {
-        super(NAME, POWER_ID, PowerType.BUFF, false, owner, DAMAGE_INCREASE);
+    public LonelyIsSad(AbstractCreature owner, int amount) {
+        super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
     }
 
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType type, AbstractCard card) {
         if (type == DamageInfo.DamageType.NORMAL && monsterList().size() == 1) {
-            return damage * (1 + (float)DAMAGE_INCREASE / 100);
+            return damage * (1 + (float)amount / 100);
         } else {
             return damage;
         }

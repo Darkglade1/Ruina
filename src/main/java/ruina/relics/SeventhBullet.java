@@ -15,7 +15,7 @@ import static ruina.util.Wiz.*;
 public class SeventhBullet extends AbstractEasyRelic {
     public static final String ID = makeID(SeventhBullet.class.getSimpleName());
 
-    private static final int DAMAGE = 5;
+    private static final int DAMAGE = 4;
     private static final int STRENGTH = 2;
     private static final int CARDS_THRESHOLD = 7;
 
