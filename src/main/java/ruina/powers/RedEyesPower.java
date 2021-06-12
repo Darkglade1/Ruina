@@ -2,9 +2,11 @@ package ruina.powers;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.NonStackablePower;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnReceivePowerPower;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
@@ -27,8 +29,11 @@ public class RedEyesPower extends AbstractEasyPower implements OnReceivePowerPow
 
     @Override
     public boolean onReceivePower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        if (source == adp() && power.type == PowerType.DEBUFF && power.amount > 0 && !power.ID.equals(GainStrengthPower.POWER_ID)) {
+        if (source == adp() && power.type == PowerType.DEBUFF && (power.amount > 0 || (power.amount < 0 && power.canGoNegative)) && !power.ID.equals(GainStrengthPower.POWER_ID)) {
             power.amount *= 2;
+            if (AbstractDungeon.actionManager.currentAction instanceof ApplyPowerAction) {
+                AbstractDungeon.actionManager.currentAction.amount *= 2;
+            }
             power.updateDescription();
             att(new RemoveSpecificPowerAction(owner, owner, this));
         }
