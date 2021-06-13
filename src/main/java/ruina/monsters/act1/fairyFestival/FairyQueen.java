@@ -22,6 +22,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.Meal;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -119,6 +120,11 @@ public class FairyQueen extends AbstractRuinaMonster
                 enrageAnimation();
                 for (AbstractMonster minion : minions) {
                     if (minion != null) {
+                        AbstractPower meal = minion.getPower(Meal.POWER_ID);
+                        if (meal != null && minion.currentHealth <= meal.amount) {
+                            applyToTarget(this, this, new WeakPower(this, SELF_DEBUFF, true));
+                            applyToTarget(this, this, new VulnerablePower(this, SELF_DEBUFF, true));
+                        }
                         atb(new AbstractGameAction() {
                             @Override
                             public void update() {
