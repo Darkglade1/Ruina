@@ -880,7 +880,7 @@
   "${ModID}:DaCapo": {
     "NAME": "Da Capo",
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Upgrade this card permanently. NL Can be Upgraded !ruina:SecondMagic! times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage and apply !M! Vulnerable to ALL enemies",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage and apply !M! Vulnerable to ALL enemies.",
     "EXTENDED_DESCRIPTION": ["First Movement", "Second Movement", "Third Movement", "Fourth Movement", "Finale"]
   },
   "${ModID}:Fragments": {

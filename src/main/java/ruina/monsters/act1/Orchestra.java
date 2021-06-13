@@ -58,9 +58,9 @@ public class Orchestra extends AbstractRuinaMonster
     private final int FERVENT_DAMAGE = calcAscensionSpecial(2);
     private final int FERVENT_DRAW = 1;
     private final int PLAYER_DRAW = 2;
-    private final int STATUS = calcAscensionSpecial(1);
+    private final int STATUS = 1;
     private final int BLOCK = calcAscensionTankiness(10);
-    private final int HEAL = calcAscensionTankiness(20);
+    private final int HEAL = calcAscensionTankiness(10);
 
     private final ArrayList<AbstractCard> performerCards = new ArrayList<>();
 

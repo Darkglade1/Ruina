@@ -63,17 +63,23 @@ public class Laetitia extends AbstractEgoCard {
 
                     tmp.purgeOnUse = true;
                     AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
+                    updateDescription();
                 }
             }
 
             @Override
             public void atStartOfTurn() {
                 this.cardsDoubledThisTurn = 0;
+                updateDescription();
             }
 
             @Override
             public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + " " + magicNumber + POWER_DESCRIPTIONS[1] + secondMagicNumber + POWER_DESCRIPTIONS[2];
+                int amountLeft = amount - cardsDoubledThisTurn;
+                if (amountLeft < 0) {
+                    amountLeft = 0;
+                }
+                description = POWER_DESCRIPTIONS[0] + amount + " " + magicNumber + POWER_DESCRIPTIONS[1] + secondMagicNumber + POWER_DESCRIPTIONS[2] + amountLeft + POWER_DESCRIPTIONS[3];
             }
         });
     }

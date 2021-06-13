@@ -504,7 +504,7 @@
   },
   "${ModID}:LaetitiaPower": {
     "NAME": "Laetitia",
-    "DESCRIPTIONS": ["The first #b", " or ", " cost card(s) played each turn are played twice."]
+    "DESCRIPTIONS": ["The first #b", " or ", " cost card(s) played each turn are played twice. (", " left)"]
   },
   "${ModID}:Satiation": {
     "NAME": "Momentary Satiation",
