@@ -13,7 +13,12 @@ import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.EGO.act1.BlackSwan;
 import ruina.cards.EGO.act1.DaCapo;
+import ruina.cards.EGO.act1.FaintAroma;
+import ruina.cards.EGO.act1.Fragments;
+import ruina.cards.EGO.act1.Grinder;
 import ruina.cards.EGO.act1.Laetitia;
+import ruina.cards.EGO.act1.OurGalaxy;
+import ruina.cards.EGO.act1.Pleasure;
 import ruina.cards.EGO.act1.RedEyes;
 import ruina.cards.EGO.act1.SanguineDesire;
 import ruina.cards.EGO.act1.TodaysExpression.TodaysExpression;
@@ -117,6 +122,11 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(Laetitia.ID);
         list.add(BlackSwan.ID);
         list.add(DaCapo.ID);
+        list.add(Fragments.ID);
+        list.add(OurGalaxy.ID);
+        list.add(Pleasure.ID);
+        list.add(FaintAroma.ID);
+        list.add(Grinder.ID);
     }
 
     public static void addAct2EgoCards(ArrayList<String> list) {

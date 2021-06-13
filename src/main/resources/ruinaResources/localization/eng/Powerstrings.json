@@ -540,5 +540,13 @@
   "${ModID}:Pleasure": {
     "NAME": "Pleasure",
     "DESCRIPTIONS": ["At the start of your turn, gain ", " At the end of your turn, take #b", " damage."]
+  },
+  "${ModID}:FaintAroma": {
+    "NAME": "Faint Aroma",
+    "DESCRIPTIONS": ["Whenever you deal unblocked attack damage to an enemy, it loses HP equal to #b","x that amount."]
+  },
+  "${ModID}:Grinder": {
+    "NAME": "Grinder Mk. 5-2",
+    "DESCRIPTIONS": ["The first time you deal #b", " unblocked attack damage each turn, gain ", "next turn."]
   }
 }

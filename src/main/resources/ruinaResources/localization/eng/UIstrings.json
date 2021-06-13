@@ -96,5 +96,10 @@
     "TEXT": [
       "Freeze."
     ]
+  },
+  "${ModID}:OurGalaxyAction": {
+    "TEXT": [
+      "Choose a Card to Play."
+    ]
   }
 }

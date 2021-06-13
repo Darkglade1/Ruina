@@ -882,5 +882,25 @@
     "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Upgrade this card permanently. NL Can be Upgraded !ruina:SecondMagic! times.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage and apply !M! Vulnerable to ALL enemies",
     "EXTENDED_DESCRIPTION": ["First Movement", "Second Movement", "Third Movement", "Fourth Movement", "Finale"]
+  },
+  "${ModID}:Fragments": {
+    "NAME": "Fragments from Somewhere",
+    "DESCRIPTION": "Steal the enemy's Block. NL Deal !D! damage."
+  },
+  "${ModID}:OurGalaxy": {
+    "NAME": "Our Galaxy",
+    "DESCRIPTION": "Choose a card in your draw pile that costs X or less and play a copy of it."
+  },
+  "${ModID}:Pleasure": {
+    "NAME": "Pleasure",
+    "DESCRIPTION": "Autoplay. NL Gain [E] and !M! Thorns. NL If this card is Exhausted, lose !ruina:SecondMagic! HP. NL Exhaustive !stslib:ex!."
+  },
+  "${ModID}:FaintAroma": {
+    "NAME": "Faint Aroma",
+    "DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy, it loses that much HP."
+  },
+  "${ModID}:Grinder": {
+    "NAME": "Grinder Mk. 5-2",
+    "DESCRIPTION": "The first time you deal !M! unblocked attack damage each turn, gain [E] next turn."
   }
 }
