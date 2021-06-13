@@ -41,6 +41,7 @@ public class OurGalaxyAction extends AbstractGameAction {
             } else if (cardGroup.size() == 1) {
                 card = cardGroup.getTopCard();
                 playCard(card);
+                this.isDone = true;
             } else {
                 AbstractDungeon.gridSelectScreen.open(cardGroup, 1, TEXT[0], false);
                 this.tickDuration();
