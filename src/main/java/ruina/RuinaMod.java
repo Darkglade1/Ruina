@@ -51,6 +51,8 @@ import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
+import ruina.monsters.act1.redShoes.LeftShoe;
+import ruina.monsters.act1.redShoes.RightShoe;
 import ruina.monsters.act1.scorchedGirl.MatchFlame;
 import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
@@ -580,6 +582,8 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("PorccuStrongStab2"), makeSFXPath("Porccu_Strong_Stab2.wav"));
         BaseMod.addAudio(makeID("PorccuPenetrate"), makeSFXPath("Porccu_Penetrate.wav"));
 
+        BaseMod.addAudio(makeID("ShoesOn"), makeSFXPath("RedShoes_On3.wav"));
+        BaseMod.addAudio(makeID("ShoesAtk"), makeSFXPath("RedShoes_Atk.wav"));
     }
 
     @Override
@@ -684,6 +688,11 @@ public class RuinaMod implements
                         new Butterflies(150.0F, butterflyY)
                 }));
         BaseMod.addMonster(Porccubus.ID, (BaseMod.GetMonster) Porccubus::new);
+        BaseMod.addMonster(EncounterIDs.RED_SHOES, "Red_Shoes", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new LeftShoe(-250.0F, 0.0F),
+                        new RightShoe(0.0F, 0.0F),
+                }));
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 

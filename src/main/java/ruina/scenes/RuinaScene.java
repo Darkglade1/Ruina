@@ -18,6 +18,8 @@ import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
+import ruina.monsters.act1.redShoes.LeftShoe;
+import ruina.monsters.act1.redShoes.RightShoe;
 import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
@@ -179,8 +181,7 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Orchestra");
                 } else if (mo instanceof FairyQueen) {
                     this.bg = this.atlas.findRegion("mod/Fairy");
-                }
-                else if(mo instanceof Laetitia){
+                } else if(mo instanceof Laetitia){
                     this.bg = this.atlas.findRegion("mod/Laetitia");
                 } else if (mo instanceof Fragment) {
                     this.bg = this.atlas.findRegion("mod/Fragment");
@@ -190,6 +191,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Butterfly");
                 } else if (mo instanceof Porccubus) {
                     this.bg = this.atlas.findRegion("mod/Porccubus");
+                } else if (mo instanceof LeftShoe || mo instanceof RightShoe) {
+                    this.bg = this.atlas.findRegion("mod/RedShoes");
                 } else {
                     setBgs();
                 }

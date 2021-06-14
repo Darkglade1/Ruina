@@ -43,7 +43,7 @@ public class Laetitia extends AbstractEgoCard {
             private int cardsDoubledThisTurn = 0;
 
             public void onUseCard(AbstractCard card, UseCardAction action) {
-                if (!card.purgeOnUse && (card.costForTurn == magicNumber || card.costForTurn == secondMagicNumber) && this.cardsDoubledThisTurn < this.amount) {
+                if (!card.purgeOnUse && (card.costForTurn == magicNumber || card.costForTurn == secondMagicNumber || card.freeToPlay()) && this.cardsDoubledThisTurn < this.amount) {
                     ++this.cardsDoubledThisTurn;
                     this.flash();
                     AbstractMonster m = null;

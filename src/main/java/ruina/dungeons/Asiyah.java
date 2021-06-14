@@ -93,7 +93,7 @@ public class Asiyah extends AbstractRuinaDungeon {
         //monsters.add(new MonsterInfo("Exordium Wildlife", 1.5F));
         monsters.add(new MonsterInfo(ScorchedGirl.ID, 2.0F));
         monsters.add(new MonsterInfo(EncounterIDs.EMPLOYEES_3, 1.0F));
-        //monsters.add(new MonsterInfo("2 Fungi Beasts", 2.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.RED_SHOES, 2.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateFirstStrongEnemy(monsters, this.generateExclusions());
         this.populateMonsterList(monsters, count, false);

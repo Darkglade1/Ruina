@@ -1166,5 +1166,22 @@
     "NAME": "Porccubus",
     "DIALOG": [
     ]
+  },
+  "${ModID}:LeftShoe": {
+    "MOVES": [
+      "Sanguine Desire"
+    ],
+    "NAME": "Left Shoe",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:RightShoe": {
+    "MOVES": [
+      "Obsession",
+      "Bursting Desire"
+    ],
+    "NAME": "Right Shoe",
+    "DIALOG": [
+    ]
   }
 }
