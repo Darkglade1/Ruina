@@ -690,7 +690,7 @@ public class RuinaMod implements
         BaseMod.addMonster(Porccubus.ID, (BaseMod.GetMonster) Porccubus::new);
         BaseMod.addMonster(EncounterIDs.RED_SHOES, "Red_Shoes", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new LeftShoe(-250.0F, 0.0F),
+                        new LeftShoe(-350.0F, 0.0F),
                         new RightShoe(0.0F, 0.0F),
                 }));
 

@@ -43,6 +43,9 @@ public class Alriune extends AbstractRuinaMonster
     private final int PARALYSIS = calcAscensionSpecial(1);
     private final int DAMAGE_REDUCTION = calcAscensionSpecial(50);
 
+    private static final int DEBUFF_COOLDOWN = 2;
+    private int cooldown = DEBUFF_COOLDOWN;
+
     public static final String POWER_ID = makeID("WintersInception");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
@@ -122,6 +125,7 @@ public class Alriune extends AbstractRuinaMonster
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 applyToTarget(adp(), this, new DexterityPower(adp(), -DEX_DOWN));
                 resetIdle(1.0f);
+                cooldown = DEBUFF_COOLDOWN + 1;
                 break;
             }
             case FULL_BLOOM: {
@@ -138,23 +142,25 @@ public class Alriune extends AbstractRuinaMonster
                 break;
             }
         }
+        cooldown--;
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(SPRINGS_GENESIS) && !this.lastMoveBefore(SPRINGS_GENESIS)) {
-            possibilities.add(SPRINGS_GENESIS);
+        if (cooldown <= 0) {
+            setMoveShortcut(SPRINGS_GENESIS, MOVES[SPRINGS_GENESIS]);
+        } else {
+            ArrayList<Byte> possibilities = new ArrayList<>();
+            if (!this.lastMove(FULL_BLOOM)) {
+                possibilities.add(FULL_BLOOM);
+            }
+            if (!this.lastMove(MAGNIFICENT_END)) {
+                possibilities.add(MAGNIFICENT_END);
+            }
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            setMoveShortcut(move, MOVES[move]);
         }
-        if (!this.lastMove(FULL_BLOOM)) {
-            possibilities.add(FULL_BLOOM);
-        }
-        if (!this.lastMove(MAGNIFICENT_END)) {
-            possibilities.add(MAGNIFICENT_END);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
     }
 
     private void attackAnimation(AbstractCreature enemy) {
