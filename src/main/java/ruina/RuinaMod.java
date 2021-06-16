@@ -49,6 +49,7 @@ import ruina.monsters.act1.Butterflies;
 import ruina.monsters.act1.CrazedEmployee;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
+import ruina.monsters.act1.GalaxyFriend;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
 import ruina.monsters.act1.redShoes.LeftShoe;
@@ -584,6 +585,9 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("ShoesOn"), makeSFXPath("RedShoes_On3.wav"));
         BaseMod.addAudio(makeID("ShoesAtk"), makeSFXPath("RedShoes_Atk.wav"));
+
+        BaseMod.addAudio(makeID("GalaxyDef"), makeSFXPath("GalaxyBoy_FriendDef.wav"));
+        BaseMod.addAudio(makeID("GalaxyAtk"), makeSFXPath("GalaxyBoy_FriendAtk.wav"));
     }
 
     @Override
@@ -692,6 +696,11 @@ public class RuinaMod implements
                 new AbstractMonster[]{
                         new LeftShoe(-350.0F, 0.0F),
                         new RightShoe(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(GalaxyFriend.ID, "Galaxy_Friend", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new GalaxyFriend(-350.0F, 0.0F),
+                        new GalaxyFriend(0.0F, 0.0F),
                 }));
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);

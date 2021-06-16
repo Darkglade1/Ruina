@@ -543,10 +543,14 @@
   },
   "${ModID}:FaintAroma": {
     "NAME": "Faint Aroma",
-    "DESCRIPTIONS": ["Whenever you deal unblocked attack damage to an enemy, it loses HP equal to #b","x that amount."]
+    "DESCRIPTIONS": ["Whenever you deal unblocked attack damage to an #renemy, it loses HP equal to #b","x that amount."]
   },
   "${ModID}:Grinder": {
     "NAME": "Grinder Mk. 5-2",
     "DESCRIPTIONS": ["The first time you deal #b", " unblocked attack damage each turn, gain ", "next turn."]
+  },
+  "${ModID}:DontLeave": {
+    "NAME": "Don't Leave Me",
+    "DESCRIPTIONS": ["When this creature #rdies, it #grevives this turn with the HP of another #renemy."]
   }
 }

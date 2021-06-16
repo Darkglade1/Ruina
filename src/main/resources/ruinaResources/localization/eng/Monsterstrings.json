@@ -1183,5 +1183,15 @@
     "NAME": "Right Shoe",
     "DIALOG": [
     ]
+  },
+  "${ModID}:GalaxyFriend": {
+    "MOVES": [
+      "Waiting",
+      "Star Shower",
+      "Glimmer"
+    ],
+    "NAME": "Friend to the Galaxy",
+    "DIALOG": [
+    ]
   }
 }

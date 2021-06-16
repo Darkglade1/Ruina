@@ -16,6 +16,7 @@ import ruina.monsters.act1.Butterflies;
 import ruina.monsters.act1.CrazedEmployee;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
+import ruina.monsters.act1.GalaxyFriend;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
 import ruina.monsters.act1.redShoes.LeftShoe;
@@ -193,6 +194,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Porccubus");
                 } else if (mo instanceof LeftShoe || mo instanceof RightShoe) {
                     this.bg = this.atlas.findRegion("mod/RedShoes");
+                } else if (mo instanceof GalaxyFriend) {
+                    this.bg = this.atlas.findRegion("mod/Galaxy");
                 } else {
                     setBgs();
                 }
