@@ -677,5 +677,22 @@
       "[Locked] Requires non-Starter card",
       "Choose a Card to offer"
     ]
+  },
+  "${ModID}:GalaxyChild": {
+    "NAME": "Child of the Galaxy",
+    "DESCRIPTIONS": [
+      "You spot a small figure, a boy draped in the shining #pnebula and starry sky of the infinite #pgalaxy. The boy approaches you, holding out a small #ybauble: NL NL \"Won't you be my friend?\"",
+      "You accept the gift, and the boy #ybeams at you. NL NL \"It's my #ggift to celebrate our #gfriendship. Please treasure it.\"",
+      "The boy #pfrowns, and a small #pteardrop falls to the ground. NL NL \"If you won't keep me company, then I don't need you!\" NL NL The #pgalaxy #rrips and #rdistorts, and you feel your vision blur as your head pounds in #pagony. Eventually, the sensation ends, and you feel . . . different. Changed. #pDistorted."
+    ],
+    "OPTIONS": [
+      "[Accept the gift] ",
+      "[Reject the gift] ",
+      "Obtain a random common Relic.",
+      "Obtain an EGO card.",
+      "Become Cursed - ",
+      ".",
+      "[Leave]"
+    ]
   }
 }

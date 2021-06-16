@@ -724,6 +724,7 @@ public class RuinaMod implements
                 .bonusCondition(SingingMachine::hasValidCards)
                 .dungeonID(Asiyah.ID)
                 .create());
+        BaseMod.addEvent(GalaxyChild.ID, GalaxyChild.class, Asiyah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
 
 
