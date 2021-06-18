@@ -19,6 +19,8 @@ import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.GalaxyFriend;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
+import ruina.monsters.act1.queenBee.QueenBee;
+import ruina.monsters.act1.queenBee.WorkerBee;
 import ruina.monsters.act1.redShoes.LeftShoe;
 import ruina.monsters.act1.redShoes.RightShoe;
 import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
@@ -200,6 +202,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Galaxy");
                 } else if (mo instanceof SpiderBud || mo instanceof Spiderling) {
                     this.bg = this.atlas.findRegion("mod/Spider");
+                } else if (mo instanceof QueenBee || mo instanceof WorkerBee) {
+                    this.bg = this.atlas.findRegion("mod/QueenBee");
                 } else {
                     setBgs();
                 }

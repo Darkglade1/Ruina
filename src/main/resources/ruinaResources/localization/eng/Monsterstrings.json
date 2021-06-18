@@ -1212,5 +1212,24 @@
     "NAME": "Spiderling",
     "DIALOG": [
     ]
+  },
+  "${ModID}:QueenBee": {
+    "MOVES": [
+      "Boost Aggression",
+      "Boost Loyalty",
+      "Hornet Strike"
+    ],
+    "NAME": "Queen Bee",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:WorkerBee": {
+    "MOVES": [
+      "Carry Larvae",
+      "Gardu du Corps"
+    ],
+    "NAME": "Worker Bee",
+    "DIALOG": [
+    ]
   }
 }

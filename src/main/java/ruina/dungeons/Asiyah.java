@@ -13,6 +13,7 @@ import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.GalaxyFriend;
 import ruina.monsters.act1.Porccubus;
+import ruina.monsters.act1.queenBee.QueenBee;
 import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
@@ -92,7 +93,7 @@ public class Asiyah extends AbstractRuinaDungeon {
         monsters.add(new MonsterInfo(Porccubus.ID, 2.0F));
         monsters.add(new MonsterInfo(ShyLook.ID, 2.0F));
         monsters.add(new MonsterInfo(EncounterIDs.BUTTERFLIES_5, 1.0F));
-        //monsters.add(new MonsterInfo("Exordium Thugs", 1.5F));
+        monsters.add(new MonsterInfo(QueenBee.ID, 2.0F));
         monsters.add(new MonsterInfo(GalaxyFriend.ID, 2.0F));
         monsters.add(new MonsterInfo(ScorchedGirl.ID, 2.0F));
         monsters.add(new MonsterInfo(EncounterIDs.EMPLOYEES_3, 1.0F));

@@ -52,6 +52,8 @@ import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.GalaxyFriend;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
+import ruina.monsters.act1.queenBee.QueenBee;
+import ruina.monsters.act1.queenBee.WorkerBee;
 import ruina.monsters.act1.redShoes.LeftShoe;
 import ruina.monsters.act1.redShoes.RightShoe;
 import ruina.monsters.act1.scorchedGirl.MatchFlame;
@@ -595,6 +597,10 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("SpiderBabyAtk"), makeSFXPath("Spidermom_Babyatk.wav"));
         BaseMod.addAudio(makeID("SpiderDown"), makeSFXPath("Spidermom_Down.wav"));
         BaseMod.addAudio(makeID("SpiderProtect"), makeSFXPath("Spidermom_Protect.wav"));
+
+        BaseMod.addAudio(makeID("QueenBeeStab"), makeSFXPath("QueenBee_Queen_Stab.wav"));
+        BaseMod.addAudio(makeID("QueenBeeBuff"), makeSFXPath("QueenBee_AtkBuff.wav"));
+        BaseMod.addAudio(makeID("QueenBeeLegAtk"), makeSFXPath("QueenBee_BeeAtk_leg.wav"));
     }
 
     @Override
@@ -715,6 +721,11 @@ public class RuinaMod implements
                         new Spiderling(-200.0F, 0.0f),
                         new Spiderling(50.0f, 0.0f),
                         new SpiderBud(300.0F, 0.0f)
+                }));
+        BaseMod.addMonster(QueenBee.ID, "Queen_Bee", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new WorkerBee(-350.0F, 0.0F),
+                        new QueenBee(0.0F, 0.0F),
                 }));
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
