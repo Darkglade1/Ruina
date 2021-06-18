@@ -863,11 +863,13 @@
   },
   "${ModID}:Laetitia": {
     "NAME": "Laetitia",
-    "DESCRIPTION": "The first !M! or !ruina:SecondMagic! cost card you play each turn is played twice."
+    "DESCRIPTION": "The first !M! or !ruina:SecondMagic! cost card you play each turn is played twice.",
+    "UPGRADE_DESCRIPTION": "The first !M! or !ruina:SecondMagic! cost card you play each turn is played twice. NL Refund !stslib:refund!."
   },
   "${ModID}:BlackSwan": {
     "NAME": "Black Swan",
-    "DESCRIPTION": "Apply !M! ruina:Erosion. NL If you applied a debuff this turn, this card costs 0."
+    "DESCRIPTION": "Apply !M! ruina:Erosion. NL If you applied a debuff this turn, this card costs 0.",
+    "UPGRADE_DESCRIPTION": "Apply !M! ruina:Erosion. NL If you applied a debuff this turn, this card costs 0. NL Shuffle this card back into your draw pile."
   },
   "${ModID}:Gift": {
     "NAME": "Gift",

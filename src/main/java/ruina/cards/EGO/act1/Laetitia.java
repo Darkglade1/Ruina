@@ -1,5 +1,6 @@
 package ruina.cards.EGO.act1;
 
+import com.evacipated.cardcrawl.mod.stslib.variables.RefundVariable;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
@@ -21,7 +22,7 @@ public class Laetitia extends AbstractEgoCard {
     public final static String ID = makeID(Laetitia.class.getSimpleName());
 
     private static final int COST = 2;
-    private static final int UP_COST = 1;
+    private static final int REFUND = 1;
     private static final int VALID_COST_1 = 0;
     private static final int VALID_COST_2 = 1;
 
@@ -86,6 +87,7 @@ public class Laetitia extends AbstractEgoCard {
 
     @Override
     public void upp() {
-        upgradeBaseCost(UP_COST);
+        RefundVariable.setBaseValue(this, REFUND);
+        uDesc();
     }
 }

@@ -14,7 +14,7 @@ import static ruina.util.Wiz.applyToTarget;
 public class BlackSwan extends AbstractEgoCard {
     public final static String ID = makeID(BlackSwan.class.getSimpleName());
 
-    public static final int EROSION = 3;
+    public static final int EROSION = 4;
     public static final int UP_EROSION = 1;
     private boolean costReducedByEffect = false;
 
@@ -54,5 +54,7 @@ public class BlackSwan extends AbstractEgoCard {
     @Override
     public void upp() {
         upgradeMagicNumber(UP_EROSION);
+        shuffleBackIntoDrawPile = true;
+        uDesc();
     }
 }
