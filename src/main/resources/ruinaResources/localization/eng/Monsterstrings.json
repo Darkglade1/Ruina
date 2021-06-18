@@ -1193,5 +1193,24 @@
     "NAME": "Friend to the Galaxy",
     "DIALOG": [
     ]
+  },
+  "${ModID}:SpiderBud": {
+    "MOVES": [
+      "Protective Instincts",
+      "Cocoon",
+      "Catching Food"
+    ],
+    "NAME": "Spider Bud",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Spiderling": {
+    "MOVES": [
+      "Thin Webbing",
+      "Stingy Fangs"
+    ],
+    "NAME": "Spiderling",
+    "DIALOG": [
+    ]
   }
 }

@@ -552,5 +552,9 @@
   "${ModID}:DontLeave": {
     "NAME": "Don't Leave Me",
     "DESCRIPTIONS": ["When this creature #rdies, it #grevives this turn with the HP of another #renemy."]
+  },
+  "${ModID}:Hunt": {
+    "NAME": "The Hunt is On",
+    "DESCRIPTIONS": ["Whenever another creature #rdies or if this creature is alone, uses a #rstrong attack next turn."]
   }
 }

@@ -17,6 +17,8 @@ import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act1.laetitia.Laetitia;
+import ruina.monsters.act1.spiderBud.SpiderBud;
+
 import java.util.ArrayList;
 
 public class Asiyah extends AbstractRuinaDungeon {
@@ -86,7 +88,7 @@ public class Asiyah extends AbstractRuinaDungeon {
     protected void generateStrongEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo(TeddyBear.ID, 2.0F));
-        //monsters.add(new MonsterInfo("Gremlin Gang", 1.0F));
+        monsters.add(new MonsterInfo(SpiderBud.ID, 2.0F));
         monsters.add(new MonsterInfo(Porccubus.ID, 2.0F));
         monsters.add(new MonsterInfo(ShyLook.ID, 2.0F));
         monsters.add(new MonsterInfo(EncounterIDs.BUTTERFLIES_5, 1.0F));

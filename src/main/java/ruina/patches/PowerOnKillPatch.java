@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import ruina.monsters.act1.spiderBud.SpiderBud;
 import ruina.monsters.act3.seraphim.ScytheApostle;
 import ruina.powers.AClaw;
 
@@ -25,6 +26,9 @@ public class PowerOnKillPatch {
                     power.onSpecificTrigger();
                 }
                 if (power.ID.equals(ScytheApostle.POWER_ID)) {
+                    power.onSpecificTrigger();
+                }
+                if (power.ID.equals(SpiderBud.POWER_ID)) {
                     power.onSpecificTrigger();
                 }
             }

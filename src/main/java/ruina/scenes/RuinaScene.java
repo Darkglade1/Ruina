@@ -26,6 +26,8 @@ import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act1.fairyFestival.FairyQueen;
 import ruina.monsters.act1.laetitia.Laetitia;
+import ruina.monsters.act1.spiderBud.SpiderBud;
+import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -196,6 +198,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/RedShoes");
                 } else if (mo instanceof GalaxyFriend) {
                     this.bg = this.atlas.findRegion("mod/Galaxy");
+                } else if (mo instanceof SpiderBud || mo instanceof Spiderling) {
+                    this.bg = this.atlas.findRegion("mod/Spider");
                 } else {
                     setBgs();
                 }

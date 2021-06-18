@@ -60,6 +60,8 @@ import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act1.fairyFestival.FairyQueen;
 import ruina.monsters.act1.laetitia.Laetitia;
+import ruina.monsters.act1.spiderBud.SpiderBud;
+import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -588,6 +590,11 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("GalaxyDef"), makeSFXPath("GalaxyBoy_FriendDef.wav"));
         BaseMod.addAudio(makeID("GalaxyAtk"), makeSFXPath("GalaxyBoy_FriendAtk.wav"));
+
+        BaseMod.addAudio(makeID("SpiderStrongAtk"), makeSFXPath("Spidermom_Strong_Hori.wav"));
+        BaseMod.addAudio(makeID("SpiderBabyAtk"), makeSFXPath("Spidermom_Babyatk.wav"));
+        BaseMod.addAudio(makeID("SpiderDown"), makeSFXPath("Spidermom_Down.wav"));
+        BaseMod.addAudio(makeID("SpiderProtect"), makeSFXPath("Spidermom_Protect.wav"));
     }
 
     @Override
@@ -701,6 +708,13 @@ public class RuinaMod implements
                 new AbstractMonster[]{
                         new GalaxyFriend(-350.0F, 0.0F),
                         new GalaxyFriend(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(SpiderBud.ID, "Spider_Bud", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Spiderling(-450.0F, 0.0f),
+                        new Spiderling(-200.0F, 0.0f),
+                        new Spiderling(50.0f, 0.0f),
+                        new SpiderBud(300.0F, 0.0f)
                 }));
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
