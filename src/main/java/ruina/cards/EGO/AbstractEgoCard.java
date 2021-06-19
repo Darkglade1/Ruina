@@ -16,6 +16,7 @@ import ruina.cards.EGO.act1.DaCapo;
 import ruina.cards.EGO.act1.FaintAroma;
 import ruina.cards.EGO.act1.Fragments;
 import ruina.cards.EGO.act1.Grinder;
+import ruina.cards.EGO.act1.Hornet;
 import ruina.cards.EGO.act1.Laetitia;
 import ruina.cards.EGO.act1.OurGalaxy;
 import ruina.cards.EGO.act1.Pleasure;
@@ -127,6 +128,7 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(Pleasure.ID);
         list.add(FaintAroma.ID);
         list.add(Grinder.ID);
+        list.add(Hornet.ID);
     }
 
     public static void addAct2EgoCards(ArrayList<String> list) {

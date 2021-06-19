@@ -904,5 +904,9 @@
   "${ModID}:Grinder": {
     "NAME": "Grinder Mk. 5-2",
     "DESCRIPTION": "The first time you deal !M! unblocked attack damage each turn, gain [E] next turn."
+  },
+  "${ModID}:Hornet": {
+    "NAME": "Hornet",
+    "DESCRIPTION": "Deal !D! damage. NL The next Attack you play costs 0 and deals double damage."
   }
 }

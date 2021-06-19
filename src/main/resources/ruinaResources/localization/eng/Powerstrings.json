@@ -570,5 +570,9 @@
       "shuffle #b%1$s #yDazed into your discard pile.",
       "you gain #b%1$s #yVulnerable."
     ]
+  },
+  "${ModID}:HornetPower": {
+    "NAME": "Hornet",
+    "DESCRIPTIONS": ["The next #yAttack you play deals double damage."]
   }
 }
