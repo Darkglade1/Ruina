@@ -401,7 +401,7 @@
   },
   "${ModID}:Scars": {
     "NAME": "Scars",
-    "DESCRIPTIONS": ["Every #b","th #yAttack you play instead #gheals this creature for #b", "% of the unblocked damage it would have done."]
+    "DESCRIPTIONS": ["Every #b","th #yAttack you play instead #gheals this creature for #b", "% of the unblocked damage it would have done to this creature."]
   },
   "${ModID}:Sorrow": {
     "NAME": "Sorrow",
@@ -556,5 +556,21 @@
   "${ModID}:Hunt": {
     "NAME": "The Hunt is On",
     "DESCRIPTIONS": ["Whenever another creature #rdies or if this creature is alone, uses a #rstrong attack next turn."]
+  },
+  "${ModID}:Dream": {
+    "NAME": "Broken Dream",
+    "DESCRIPTIONS": ["At end of round, another #yBrother is #grevived. NL If #b", " or more #yBrothers have #rdied, uses a #rpowerful attack next turn. NL NL Random targeting effects always target this creature."]
+  },
+  "${ModID}:BrotherPower": {
+    "NAME": "Faithful Brother",
+    "DESCRIPTIONS": [
+      "At end of round, ",
+      "the boss gains #b%1$s #yPlated #yArmor.",
+      "shuffle #b%1$s #ySlimed into your discard pile.",
+      "the boss gains #b%1$s #yArtifact if it has no #yArtifact.",
+      "you gain #b%1$s #yWeak.",
+      "the boss #gheals #b%1$s HP.",
+      "you gain #b%1$s #yVulnerable."
+    ]
   }
 }

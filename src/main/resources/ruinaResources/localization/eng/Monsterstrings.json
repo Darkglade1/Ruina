@@ -913,7 +913,7 @@
   "${ModID}:BlackSilence4": {
     "MOVES": [
       "Agony",
-      "Scream",
+      "Rage",
       "Void",
       "Memory - Yun's Office",
       "Memory - Zwei Association",
@@ -1230,6 +1230,31 @@
     ],
     "NAME": "Worker Bee",
     "DIALOG": [
+    ]
+  },
+  "${ModID}:BlackSwan": {
+    "MOVES": [
+      "Writhe",
+      "Well-worn Parasol",
+      "Nauseating Reality",
+      "Shriek of Broken Dreams"
+    ],
+    "NAME": "Dream of a Black Swan",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Brother": {
+    "MOVES": [
+      "Green Waste"
+    ],
+    "NAME": "Brother",
+    "DIALOG": [
+      "First Brother",
+      "Second Brother",
+      "Third Brother",
+      "Fourth Brother",
+      "Fifth Brother",
+      "Sixth Brother"
     ]
   }
 }

@@ -670,7 +670,7 @@
   "${ModID}:Dawn": {
     "NAME": "Memory - Dawn Office",
     "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["Shuffle !M! *Burns into your draw pile.", "The enemy gains !ruina:SecondMagic! *Protection."]
+    "EXTENDED_DESCRIPTION": ["Shuffle !M! *Burns into your draw pile.", "The enemy gains !ruina:SecondMagic! ruina:Protection."]
   },
   "${ModID}:Shi": {
     "NAME": "Memory - Shi Association",
@@ -707,7 +707,7 @@
     "DESCRIPTION": "Deal !D! damage."
   },
   "${ModID}:Scream": {
-    "NAME": "Scream",
+    "NAME": "Rage",
     "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
   },
   "${ModID}:Void": {
