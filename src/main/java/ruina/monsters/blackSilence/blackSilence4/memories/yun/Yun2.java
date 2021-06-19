@@ -17,6 +17,7 @@ public class Yun2 extends Yun {
         super(parent);
         this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
         this.initializeDescription();
+        cardsToPreview = new Wound();
     }
 
     @Override

@@ -12,12 +12,11 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
-
-import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -36,10 +35,11 @@ public class BlackSwan extends AbstractRuinaMonster
     private static final byte REALITY = 2;
     private static final byte SHRIEK = 3;
 
-    private final int BLOCK = calcAscensionTankiness(9);
+    private final int BLOCK = calcAscensionTankiness(7);
     private final int DEBUFF = calcAscensionSpecial(1);
-    private final int EROSION = calcAscensionSpecial(5);
-    private static final int DEAD_BROTHERS_THRESHOLD = 4;
+    private final int EROSION = calcAscensionSpecial(3);
+    private final int STRENGTH = calcAscensionSpecial(1);
+    private static final int DEAD_BROTHERS_THRESHOLD = 3;
     public int numDeadBrothers = 0;
 
     public static final String POWER_ID = makeID("Dream");
@@ -56,10 +56,10 @@ public class BlackSwan extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSwan/Spriter/BlackSwan.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
-        addMove(WRITHE, Intent.ATTACK, calcAscensionDamage(13));
-        addMove(PARASOL, Intent.DEFEND);
+        addMove(WRITHE, Intent.ATTACK, calcAscensionDamage(6), 2, true);
+        addMove(PARASOL, Intent.DEFEND_BUFF);
         addMove(REALITY, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
-        addMove(SHRIEK, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
+        addMove(SHRIEK, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
     }
 
     @Override
@@ -81,10 +81,6 @@ public class BlackSwan extends AbstractRuinaMonster
                         break;
                     }
                 }
-                if (numDeadBrothers >= DEAD_BROTHERS_THRESHOLD) {
-                    rollMove();
-                    createIntent();
-                }
             }
 
             @Override
@@ -105,9 +101,15 @@ public class BlackSwan extends AbstractRuinaMonster
 
         switch (this.nextMove) {
             case WRITHE: {
-                slashAnimation(adp());
-                dmg(adp(), info);
-                resetIdle();
+                for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        pierceAnimation(adp());
+                    } else {
+                        slashAnimation(adp());
+                    }
+                    dmg(adp(), info);
+                    resetIdle();
+                }
                 break;
             }
             case PARASOL: {
@@ -115,6 +117,7 @@ public class BlackSwan extends AbstractRuinaMonster
                 for (AbstractMonster mo : monsterList()) {
                     if (!mo.isDeadOrEscaped()) {
                         block(mo, BLOCK);
+                        applyToTargetNextTurn(mo, this, new StrengthPower(mo, STRENGTH));
                     }
                 }
                 resetIdle();
@@ -130,7 +133,7 @@ public class BlackSwan extends AbstractRuinaMonster
             case SHRIEK: {
                 specialAnimation(adp());
                 dmg(adp(), info);
-                applyToTarget(adp(), this, new Erosion(adp(), EROSION));
+                applyToTargetNextTurn(adp(), this, new Erosion(adp(), EROSION));
                 resetIdle(1.5f);
                 break;
             }
@@ -141,20 +144,19 @@ public class BlackSwan extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (numDeadBrothers >= DEAD_BROTHERS_THRESHOLD) {
-            setMoveShortcut(SHRIEK, MOVES[SHRIEK]);
+            if (lastMove(SHRIEK)) {
+                setMoveShortcut(WRITHE, MOVES[WRITHE]);
+            } else {
+                setMoveShortcut(SHRIEK, MOVES[SHRIEK]);
+            }
         } else {
-            ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(WRITHE)) {
-                possibilities.add(WRITHE);
+            if (lastMove(REALITY)) {
+                setMoveShortcut(WRITHE, MOVES[WRITHE]);
+            } else if (lastMove(WRITHE)) {
+                setMoveShortcut(PARASOL, MOVES[PARASOL]);
+            } else {
+                setMoveShortcut(REALITY, MOVES[REALITY]);
             }
-            if (!this.lastMove(PARASOL)) {
-                possibilities.add(PARASOL);
-            }
-            if (!this.lastMove(REALITY)) {
-                possibilities.add(REALITY);
-            }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
         }
     }
 

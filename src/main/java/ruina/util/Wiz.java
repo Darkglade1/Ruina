@@ -213,6 +213,10 @@ public class Wiz {
         atb(new ApplyPowerAction(target, target, new NextTurnPowerPower(target, po)));
     }
 
+    public static void applyToTargetNextTurn(AbstractCreature target, AbstractCreature source, AbstractPower po) {
+        atb(new ApplyPowerAction(target, source, new NextTurnPowerPower(target, po)));
+    }
+
     public static void applyToTargetNextTurnTop(AbstractCreature target, AbstractPower po) {
         att(new ApplyPowerAction(target, target, new NextTurnPowerPower(target, po)));
     }

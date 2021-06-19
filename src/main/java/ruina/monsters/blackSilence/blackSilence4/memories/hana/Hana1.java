@@ -17,6 +17,7 @@ public class Hana1 extends Hana {
         super(parent);
         this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
         this.initializeDescription();
+        cardsToPreview = new Regret();
     }
 
     @Override

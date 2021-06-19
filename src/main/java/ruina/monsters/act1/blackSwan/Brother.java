@@ -31,9 +31,7 @@ public class Brother extends AbstractRuinaMonster
     private final int PLATED_ARMOR = calcAscensionSpecial(2);
     private final int STATUS = calcAscensionSpecial(1);
     private final int ARTIFACT = calcAscensionSpecial(1);
-    private final int WEAK = calcAscensionSpecial(1);
-    private final int HEAL = calcAscensionTankiness(7);
-    private final int VULNERABLE = calcAscensionSpecial(1);
+    private final int VULNERABLE = 1;
 
     private final int brotherNum;
     private BlackSwan parent;
@@ -77,22 +75,14 @@ public class Brother extends AbstractRuinaMonster
                 break;
             }
             case 2: {
-                brotherPowerAmount = STATUS;
-                break;
-            }
-            case 3: {
                 brotherPowerAmount = ARTIFACT;
                 break;
             }
+            case 3: {
+                brotherPowerAmount = STATUS;
+                break;
+            }
             case 4: {
-                brotherPowerAmount = WEAK;
-                break;
-            }
-            case 5: {
-                brotherPowerAmount = HEAL;
-                break;
-            }
-            case 6: {
                 brotherPowerAmount = VULNERABLE;
                 break;
             }

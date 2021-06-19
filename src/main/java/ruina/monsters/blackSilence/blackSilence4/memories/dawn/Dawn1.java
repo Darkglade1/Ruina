@@ -17,6 +17,7 @@ public class Dawn1 extends Dawn {
         super(parent);
         this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
         this.initializeDescription();
+        this.cardsToPreview = new Burn();
     }
 
     @Override

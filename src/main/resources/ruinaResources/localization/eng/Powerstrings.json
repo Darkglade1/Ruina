@@ -559,17 +559,15 @@
   },
   "${ModID}:Dream": {
     "NAME": "Broken Dream",
-    "DESCRIPTIONS": ["At end of round, another #yBrother becomes #yactive. NL If #b", " or more #yBrothers have #rdied, uses a #rpowerful attack next turn. NL NL Random targeting effects always target this creature."]
+    "DESCRIPTIONS": ["At end of round, another #yBrother becomes #yactive. NL If #b", " or more #yBrothers have #rdied, begins to use a #rpowerful attack. NL NL Random targeting effects always target this creature."]
   },
   "${ModID}:BrotherPower": {
     "NAME": "Faithful Brother",
     "DESCRIPTIONS": [
-      "At end of round, if this creature is alive, ",
+      "At end of round, if this creature is #yactive, ",
       "the boss gains #b%1$s #yPlated #yArmor.",
-      "shuffle #b%1$s #ySlimed into your discard pile.",
       "the boss gains #b%1$s #yArtifact if it has no #yArtifact.",
-      "you gain #b%1$s #yWeak.",
-      "the boss #gheals #b%1$s HP.",
+      "shuffle #b%1$s #yDazed into your discard pile.",
       "you gain #b%1$s #yVulnerable."
     ]
   }

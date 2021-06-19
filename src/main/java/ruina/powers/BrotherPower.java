@@ -1,6 +1,7 @@
 package ruina.powers;
 
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -40,24 +41,16 @@ public class BrotherPower extends AbstractEasyPower {
                     break;
                 }
                 case 2: {
-                    intoDiscard(new Slimed(), amount);
-                    break;
-                }
-                case 3: {
                     if (!target.hasPower(ArtifactPower.POWER_ID)) {
                         applyToTarget(target, owner, new ArtifactPower(target, amount));
                     }
                     break;
                 }
+                case 3: {
+                    intoDiscard(new Dazed(), amount);
+                    break;
+                }
                 case 4: {
-                    applyToTarget(adp(), owner, new WeakPower(adp(), amount, false));
-                    break;
-                }
-                case 5: {
-                    atb(new HealAction(target, owner, amount));
-                    break;
-                }
-                case 6: {
                     applyToTarget(adp(), owner, new VulnerablePower(adp(), amount, false));
                     break;
                 }

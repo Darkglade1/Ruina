@@ -742,12 +742,10 @@ public class RuinaMod implements
         asiyah.addBoss(BlackSwan.ID, () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Brother(-450.0F, 0.0F, 1),
-                        new Brother(-330.0F, 0.0F, 2),
-                        new Brother(-210.0F, 0.0F, 3),
+                        new Brother(-250.0F, 0.0F, 2),
                         new BlackSwan(-50.0F, 0.0F),
-                        new Brother(110.0F, 0.0F, 4),
-                        new Brother(230.0F, 0.0F, 5),
-                        new Brother(350.0F, 0.0F, 6)
+                        new Brother(150.0F, 0.0F, 3),
+                        new Brother(350.0F, 0.0F, 4),
                 }), makeMonsterPath("BlackSwan/SwanMap.png"), makeMonsterPath("BlackSwan/SwanMapOutline.png"));
         asiyah.addBoss(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new, makeMonsterPath("Orchestra/OrchestraMap.png"), makeMonsterPath("Orchestra/OrchestraMap.png"));
 
