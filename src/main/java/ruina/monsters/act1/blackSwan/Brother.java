@@ -43,7 +43,7 @@ public class Brother extends AbstractRuinaMonster
     }
 
     public Brother(final float x, final float y, int brotherNum) {
-        super(NAME, ID, 25, 0.0F, 0, 100.0f, 215.0f, null, x, y);
+        super(NAME, ID, 22, 0.0F, 0, 80.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Brother/Spriter/Brother.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
@@ -95,6 +95,7 @@ public class Brother extends AbstractRuinaMonster
             }
         }
         this.powers.add(new BrotherPower(this, brotherPowerAmount, brotherNum, parent));
+        firstMove = false;
         if (brotherNum > 1) {
             halfDead = true;
             currentHealth = 0;
@@ -124,7 +125,7 @@ public class Brother extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (halfDead) {
+        if (halfDead || firstMove) {
             setMoveShortcut(NONE);
         } else {
             setMoveShortcut(GREEN_WASTE, MOVES[GREEN_WASTE]);
@@ -132,11 +133,19 @@ public class Brother extends AbstractRuinaMonster
     }
 
     public void revive() {
-        playSound("SwanRevive");
         atb(new HealAction(this, this, maxHealth));
-        halfDead = false;
-        rollMove();
-        createIntent();
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound("SwanRevive");
+                halfDead = false;
+                firstMove = false;
+                rollMove();
+                createIntent();
+                this.isDone = true;
+            }
+        });
+
     }
 
     @Override

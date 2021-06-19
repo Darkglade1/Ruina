@@ -35,34 +35,28 @@ public class BrotherPower extends AbstractEasyPower {
         if (!owner.halfDead) {
             switch (brotherNum) {
                 case 1: {
-                    flash();
                     applyToTarget(target, owner, new PlatedArmorPower(target, amount));
                     break;
                 }
                 case 2: {
-                    flash();
                     intoDiscard(new Slimed(), amount);
                     break;
                 }
                 case 3: {
                     if (!target.hasPower(ArtifactPower.POWER_ID)) {
-                        flash();
                         applyToTarget(target, owner, new ArtifactPower(target, amount));
                     }
                     break;
                 }
                 case 4: {
-                    flash();
                     applyToTarget(adp(), owner, new WeakPower(adp(), amount, false));
                     break;
                 }
                 case 5: {
-                    flash();
                     atb(new HealAction(target, owner, amount));
                     break;
                 }
                 case 6: {
-                    flash();
                     applyToTarget(adp(), owner, new VulnerablePower(adp(), amount, false));
                     break;
                 }

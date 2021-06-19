@@ -52,7 +52,7 @@ public class BlackSwan extends AbstractRuinaMonster
     }
 
     public BlackSwan(final float x, final float y) {
-        super(NAME, ID, 160, 0.0F, 0, 200.0f, 275.0f, null, x, y);
+        super(NAME, ID, 160, 0.0F, 0, 170.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSwan/Spriter/BlackSwan.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
@@ -113,7 +113,9 @@ public class BlackSwan extends AbstractRuinaMonster
             case PARASOL: {
                 blockAnimation();
                 for (AbstractMonster mo : monsterList()) {
-                    block(mo, BLOCK);
+                    if (!mo.isDeadOrEscaped()) {
+                        block(mo, BLOCK);
+                    }
                 }
                 resetIdle();
                 break;

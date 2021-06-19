@@ -559,7 +559,7 @@
   },
   "${ModID}:Dream": {
     "NAME": "Broken Dream",
-    "DESCRIPTIONS": ["At end of round, another #yBrother is #grevived. NL If #b", " or more #yBrothers have #rdied, uses a #rpowerful attack next turn. NL NL Random targeting effects always target this creature."]
+    "DESCRIPTIONS": ["At end of round, another #yBrother becomes #yactive. NL If #b", " or more #yBrothers have #rdied, uses a #rpowerful attack next turn. NL NL Random targeting effects always target this creature."]
   },
   "${ModID}:BrotherPower": {
     "NAME": "Faithful Brother",
