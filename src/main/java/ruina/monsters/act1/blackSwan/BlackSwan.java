@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.monsters.act1.fairyFestival.FairyMass;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
 
@@ -53,7 +52,7 @@ public class BlackSwan extends AbstractRuinaMonster
     }
 
     public BlackSwan(final float x, final float y) {
-        super(NAME, ID, 160, 0.0F, 0, 250.0f, 245.0f, null, x, y);
+        super(NAME, ID, 160, 0.0F, 0, 200.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSwan/Spriter/BlackSwan.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
@@ -79,6 +78,7 @@ public class BlackSwan extends AbstractRuinaMonster
                 for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                     if (mo instanceof Brother && mo.halfDead) {
                         ((Brother) mo).revive();
+                        break;
                     }
                 }
                 if (numDeadBrothers >= DEAD_BROTHERS_THRESHOLD) {
@@ -105,11 +105,9 @@ public class BlackSwan extends AbstractRuinaMonster
 
         switch (this.nextMove) {
             case WRITHE: {
-                for (int i = 0; i < multiplier; i++) {
-                    attackAnimation(adp());
-                    dmg(adp(), info);
-                    resetIdle();
-                }
+                slashAnimation(adp());
+                dmg(adp(), info);
+                resetIdle();
                 break;
             }
             case PARASOL: {
@@ -121,17 +119,17 @@ public class BlackSwan extends AbstractRuinaMonster
                 break;
             }
             case REALITY: {
-                attackAnimation(adp());
+                pierceAnimation(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new FrailPower(adp(), DEBUFF, true));
                 resetIdle();
                 break;
             }
             case SHRIEK: {
-                attackAnimation(adp());
+                specialAnimation(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new Erosion(adp(), EROSION));
-                resetIdle();
+                resetIdle(1.5f);
                 break;
             }
         }
@@ -177,12 +175,20 @@ public class BlackSwan extends AbstractRuinaMonster
         onBossVictoryLogic();
     }
 
-    private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack", "TeddyAtk", enemy, this);
+    private void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "SwanVertDown", enemy, this);
+    }
+
+    private void pierceAnimation(AbstractCreature enemy) {
+        animationAction("Pierce", "SwanPierce", enemy, this);
+    }
+
+    private void specialAnimation(AbstractCreature enemy) {
+        animationAction("Special", "SwanShout", enemy, this);
     }
 
     private void blockAnimation() {
-        animationAction("Block", "TeddyBlock", this);
+        animationAction("Block", "SwanGuard", this);
     }
 
 }

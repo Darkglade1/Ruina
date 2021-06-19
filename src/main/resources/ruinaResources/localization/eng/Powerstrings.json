@@ -564,7 +564,7 @@
   "${ModID}:BrotherPower": {
     "NAME": "Faithful Brother",
     "DESCRIPTIONS": [
-      "At end of round, ",
+      "At end of round, if this creature is alive, ",
       "the boss gains #b%1$s #yPlated #yArmor.",
       "shuffle #b%1$s #ySlimed into your discard pile.",
       "the boss gains #b%1$s #yArtifact if it has no #yArtifact.",

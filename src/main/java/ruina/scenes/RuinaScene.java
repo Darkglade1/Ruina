@@ -19,6 +19,8 @@ import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.GalaxyFriend;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
+import ruina.monsters.act1.blackSwan.BlackSwan;
+import ruina.monsters.act1.blackSwan.Brother;
 import ruina.monsters.act1.queenBee.QueenBee;
 import ruina.monsters.act1.queenBee.WorkerBee;
 import ruina.monsters.act1.redShoes.LeftShoe;
@@ -204,6 +206,8 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Spider");
                 } else if (mo instanceof QueenBee || mo instanceof WorkerBee) {
                     this.bg = this.atlas.findRegion("mod/QueenBee");
+                } else if (mo instanceof BlackSwan || mo instanceof Brother) {
+                    this.bg = this.atlas.findRegion("mod/Swan");
                 } else {
                     setBgs();
                 }

@@ -8,10 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.BrotherPower;
@@ -38,7 +35,7 @@ public class Brother extends AbstractRuinaMonster
     private final int HEAL = calcAscensionTankiness(7);
     private final int VULNERABLE = calcAscensionSpecial(1);
 
-    private int brotherNum;
+    private final int brotherNum;
     private BlackSwan parent;
 
     public Brother() {
@@ -46,13 +43,13 @@ public class Brother extends AbstractRuinaMonster
     }
 
     public Brother(final float x, final float y, int brotherNum) {
-        super(NAME, ID, 25, 0.0F, 0, 200.0f, 165.0f, null, x, y);
+        super(NAME, ID, 25, 0.0F, 0, 100.0f, 215.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Brother/Spriter/Brother.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
         addMove(GREEN_WASTE, Intent.ATTACK, calcAscensionSpecial(2));
         addMove(NONE, Intent.NONE);
-
+        this.brotherNum = brotherNum;
         this.name = DIALOG[brotherNum - 1];
     }
 
@@ -97,17 +94,11 @@ public class Brother extends AbstractRuinaMonster
                 break;
             }
         }
-        applyToTarget(this, this, new BrotherPower(this, brotherPowerAmount, brotherNum, parent));
+        this.powers.add(new BrotherPower(this, brotherPowerAmount, brotherNum, parent));
         if (brotherNum > 1) {
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    halfDead = true;
-                    currentHealth = 0;
-                    healthBarUpdatedEvent();
-                    this.isDone = true;
-                }
-            });
+            halfDead = true;
+            currentHealth = 0;
+            healthBarUpdatedEvent();
         }
     }
 
@@ -141,6 +132,7 @@ public class Brother extends AbstractRuinaMonster
     }
 
     public void revive() {
+        playSound("SwanRevive");
         atb(new HealAction(this, this, maxHealth));
         halfDead = false;
         rollMove();
@@ -156,7 +148,7 @@ public class Brother extends AbstractRuinaMonster
     }
 
     private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack", "SpiderBabyAtk", enemy, this);
+        animationAction("Attack", "BluntHori", enemy, this);
     }
 
 }

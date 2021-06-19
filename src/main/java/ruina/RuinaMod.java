@@ -52,6 +52,8 @@ import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.GalaxyFriend;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
+import ruina.monsters.act1.blackSwan.BlackSwan;
+import ruina.monsters.act1.blackSwan.Brother;
 import ruina.monsters.act1.queenBee.QueenBee;
 import ruina.monsters.act1.queenBee.WorkerBee;
 import ruina.monsters.act1.redShoes.LeftShoe;
@@ -601,6 +603,12 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("QueenBeeStab"), makeSFXPath("QueenBee_Queen_Stab.wav"));
         BaseMod.addAudio(makeID("QueenBeeBuff"), makeSFXPath("QueenBee_AtkBuff.wav"));
         BaseMod.addAudio(makeID("QueenBeeLegAtk"), makeSFXPath("QueenBee_BeeAtk_leg.wav"));
+
+        BaseMod.addAudio(makeID("SwanVertDown"), makeSFXPath("BlackSwan_VertDown.wav"));
+        BaseMod.addAudio(makeID("SwanGuard"), makeSFXPath("BlackSwan_Guard.wav"));
+        BaseMod.addAudio(makeID("SwanPierce"), makeSFXPath("BlackSwan_Pierce.wav"));
+        BaseMod.addAudio(makeID("SwanRevive"), makeSFXPath("BlackSwan_Revive.wav"));
+        BaseMod.addAudio(makeID("SwanShout"), makeSFXPath("BlackSwan_Shout.wav"));
     }
 
     @Override
@@ -726,6 +734,16 @@ public class RuinaMod implements
                 new AbstractMonster[]{
                         new WorkerBee(-350.0F, 0.0F),
                         new QueenBee(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(BlackSwan.ID, "Black_Swan", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Brother(-450.0F, 0.0F, 1),
+                        new Brother(-330.0F, 0.0F, 2),
+                        new Brother(-210.0F, 0.0F, 3),
+                        new BlackSwan(-50.0F, 0.0F),
+                        new Brother(110.0F, 0.0F, 4),
+                        new Brother(230.0F, 0.0F, 5),
+                        new Brother(350.0F, 0.0F, 6)
                 }));
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
