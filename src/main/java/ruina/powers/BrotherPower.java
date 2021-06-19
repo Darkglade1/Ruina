@@ -36,6 +36,7 @@ public class BrotherPower extends AbstractEasyPower {
             switch (brotherNum) {
                 case 1: {
                     applyToTarget(target, owner, new PlatedArmorPower(target, amount));
+                    block(target, amount);
                     break;
                 }
                 case 2: {

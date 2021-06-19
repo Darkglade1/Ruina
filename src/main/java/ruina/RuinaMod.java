@@ -735,7 +735,11 @@ public class RuinaMod implements
                         new WorkerBee(-350.0F, 0.0F),
                         new QueenBee(0.0F, 0.0F),
                 }));
-        BaseMod.addMonster(BlackSwan.ID, "Black_Swan", () -> new MonsterGroup(
+
+        BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
+
+        asiyah.addBoss(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new, makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
+        asiyah.addBoss(BlackSwan.ID, () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Brother(-450.0F, 0.0F, 1),
                         new Brother(-330.0F, 0.0F, 2),
@@ -744,11 +748,7 @@ public class RuinaMod implements
                         new Brother(110.0F, 0.0F, 4),
                         new Brother(230.0F, 0.0F, 5),
                         new Brother(350.0F, 0.0F, 6)
-                }));
-
-        BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
-
-        asiyah.addBoss(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new, makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
+                }), makeMonsterPath("BlackSwan/SwanMap.png"), makeMonsterPath("BlackSwan/SwanMapOutline.png"));
         asiyah.addBoss(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new, makeMonsterPath("Orchestra/OrchestraMap.png"), makeMonsterPath("Orchestra/OrchestraMap.png"));
 
 

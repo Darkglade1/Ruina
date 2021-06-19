@@ -51,6 +51,9 @@ public class Brother extends AbstractRuinaMonster
         addMove(NONE, Intent.NONE);
         this.brotherNum = brotherNum;
         this.name = DIALOG[brotherNum - 1];
+        if (brotherNum == 1) {
+            firstMove = false;
+        }
     }
 
     @Override
@@ -95,7 +98,6 @@ public class Brother extends AbstractRuinaMonster
             }
         }
         this.powers.add(new BrotherPower(this, brotherPowerAmount, brotherNum, parent));
-        firstMove = false;
         if (brotherNum > 1) {
             halfDead = true;
             currentHealth = 0;
