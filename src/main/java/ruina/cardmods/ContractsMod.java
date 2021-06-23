@@ -36,7 +36,7 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
     @Override
     public int getAlternateResource(AbstractCard card) {
         if (card.costForTurn >= 0 && card.cost >= 0) { //a failsafe because apparently bottled snecko can make cards x cost when dual wielded???
-            return HP_TO_ENERGY_RATIO;
+            return 999;
         } else {
             return 0;
         }
@@ -56,14 +56,8 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
     @Override
     public int spendAlternateCost(AbstractCard card, int costToSpend) {
         if (card.costForTurn >= 0 && card.cost >= 0) {
-            int resource = HP_TO_ENERGY_RATIO;
-            if (resource > costToSpend) {
-                atb(new LoseHPAction(adp(), adp(), costToSpend * HP_TO_ENERGY_RATIO));
-                costToSpend = 0;
-            } else {
-                atb(new LoseHPAction(adp(), adp(), resource * HP_TO_ENERGY_RATIO));
-                costToSpend -= resource;
-            }
+            atb(new LoseHPAction(adp(), adp(), costToSpend * HP_TO_ENERGY_RATIO));
+            costToSpend = 0;
         }
         return costToSpend;
     }

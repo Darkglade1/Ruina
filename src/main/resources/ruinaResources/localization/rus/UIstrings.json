@@ -1,10 +1,18 @@
 {
+  "ruina:Asiyah": {
+    "TEXT": [
+      "Asiyah",
+      "Акт 1",
+      "В вашей руке подробное приглашение, гарантирующее #yбогатство и #yзнания, о которых вы даже не мечтали.",
+      "Принять приглашение."
+    ]
+  },
   "ruina:Briah": {
     "TEXT": [
       "Брия",
       "Акт 2",
-      "В вашей руке подробное приглашение, гарантирующее #yбогатство и #yзнания, о которых вы даже не мечтали.",
-      "Принять приглашение."
+      "A lesser individual would have faltered against the #phorrors that inhabited this space. But you #gpersevere, guided by the #ymemories of those who came before you.",
+      "Продолжить восхождение."
     ]
   },
   "ruina:Atziluth": {

@@ -85,6 +85,7 @@ public class BlackSwan extends AbstractRuinaMonster
 
             @Override
             public void updateDescription() {
+                amount2 = DEAD_BROTHERS_THRESHOLD;
                 description = POWER_DESCRIPTIONS[0] + DEAD_BROTHERS_THRESHOLD + POWER_DESCRIPTIONS[1];
             }
         });

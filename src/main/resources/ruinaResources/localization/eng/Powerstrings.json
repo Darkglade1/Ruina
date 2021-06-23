@@ -324,7 +324,7 @@
   },
   "${ModID}:Arbiter": {
     "NAME": "Arbiter's Judgement",
-    "DESCRIPTIONS": ["Your #gally targets the last #renemy you targeted this combat. NL Whenever this creature attacks, it #ycancels the 2nd intent of its target."]
+    "DESCRIPTIONS": ["Your #gally targets the last #renemy you targeted with a card this combat. NL Whenever this creature attacks, it #ycancels the 2nd intent of its target."]
   },
   "${ModID}:Brainwash": {
     "NAME": "Brainwash",

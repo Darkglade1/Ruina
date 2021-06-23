@@ -74,7 +74,7 @@ public class Atziluth extends AbstractRuinaDungeon {
         if (CardCrawlGame.dungeon instanceof Briah) {
             return TEXT[2];
         } else {
-            String[] oldStrings = CardCrawlGame.languagePack.getUIString(Briah.ID).TEXT;
+            String[] oldStrings = CardCrawlGame.languagePack.getUIString(Asiyah.ID).TEXT;
             return oldStrings[2];
         }
 
@@ -85,7 +85,7 @@ public class Atziluth extends AbstractRuinaDungeon {
         if (CardCrawlGame.dungeon instanceof Briah) {
             return TEXT[3];
         } else {
-            String[] oldStrings = CardCrawlGame.languagePack.getUIString(Briah.ID).TEXT;
+            String[] oldStrings = CardCrawlGame.languagePack.getUIString(Asiyah.ID).TEXT;
             return oldStrings[3];
         }
     }

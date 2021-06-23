@@ -89,6 +89,7 @@ public class Brother extends AbstractRuinaMonster
         }
         this.powers.add(new BrotherPower(this, brotherPowerAmount, brotherNum, parent));
         if (brotherNum > 1) {
+            hideHealthBar();
             halfDead = true;
             currentHealth = 0;
             healthBarUpdatedEvent();
@@ -125,6 +126,7 @@ public class Brother extends AbstractRuinaMonster
     }
 
     public void revive() {
+        showHealthBar();
         atb(new HealAction(this, this, maxHealth));
         atb(new AbstractGameAction() {
             @Override
