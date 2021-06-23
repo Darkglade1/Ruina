@@ -1,7 +1,6 @@
 package ruina.cards.EGO.act1;
 
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
@@ -11,7 +10,7 @@ import ruina.cards.ManifestCallbackInterface;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.applyToTarget;
-import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.intoDiscard;
 
 public class SolemnLament extends AbstractEgoCard implements ManifestCallbackInterface {
     public final static String ID = makeID(SolemnLament.class.getSimpleName());
@@ -39,14 +38,7 @@ public class SolemnLament extends AbstractEgoCard implements ManifestCallbackInt
     @Override
     public void numCardsUsedToManifest(int num) {
         if (num >= costForTurn) {
-            exhaust = false;
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    exhaust = true;
-                    this.isDone = true;
-                }
-            });
+            intoDiscard(makeStatEquivalentCopy(), 1);
         }
     }
 }

@@ -931,6 +931,6 @@
   },
   "${ModID}:SolemnLament": {
     "NAME": "Solemn Lament",
-    "DESCRIPTION": "Gain !M! Intangible. NL If ths card's cost was only paid by ruina:Manifest, it doesn't Exhaust."
+    "DESCRIPTION": "Gain !M! Intangible. NL If ths card's cost was only paid by ruina:Manifest, add a copy of it into your discard pile."
   }
 }
