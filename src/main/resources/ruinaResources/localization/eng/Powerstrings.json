@@ -574,5 +574,9 @@
   "${ModID}:HornetPower": {
     "NAME": "Hornet",
     "DESCRIPTIONS": ["The next #yAttack you play deals double damage."]
+  },
+  "${ModID}:FourthMatchFlame": {
+    "NAME": "Fourth Match Flame",
+    "DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to ALL enemies."]
   }
 }

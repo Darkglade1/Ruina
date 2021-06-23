@@ -908,5 +908,29 @@
   "${ModID}:Hornet": {
     "NAME": "Hornet",
     "DESCRIPTION": "Deal !D! damage. NL The next Attack you play costs 0 and deals double damage."
+  },
+  "${ModID}:Forgotten": {
+    "NAME": "The Forgotten",
+    "DESCRIPTION": "Deal !D! damage. NL Enemy loses Strength this turn equal to unblocked damage dealt."
+  },
+  "${ModID}:GreenStem": {
+    "NAME": "Green Stem",
+    "DESCRIPTION": "Apply !M! Poison. NL If this card is Exhausted, double ALL enemies' Poison. NL Exhaustive !stslib:ex!."
+  },
+  "${ModID}:MagicBullet": {
+    "NAME": "Magic Bullet",
+    "DESCRIPTION": "Draw !M! cards and give them Retain this combat."
+  },
+  "${ModID}:FourthMatchFlame": {
+    "NAME": "Fourth Match Flame",
+    "DESCRIPTION": "Add !ruina:SecondMagic! *Burns into your discard pile. NL At the end of your turn, deal !M! damage to ALL enemies."
+  },
+  "${ModID}:Harmony": {
+    "NAME": "Harmony",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength. NL If Fatal, permanantly increase this card's Strength gain by !ruina:SecondMagic!."
+  },
+  "${ModID}:SolemnLament": {
+    "NAME": "Solemn Lament",
+    "DESCRIPTION": "Gain !M! Intangible. NL If ths card's cost was only paid by ruina:Manifest, it doesn't Exhaust."
   }
 }

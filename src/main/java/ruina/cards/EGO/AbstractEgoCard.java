@@ -14,14 +14,20 @@ import ruina.cards.AbstractRuinaCard;
 import ruina.cards.EGO.act1.BlackSwan;
 import ruina.cards.EGO.act1.DaCapo;
 import ruina.cards.EGO.act1.FaintAroma;
+import ruina.cards.EGO.act1.Forgotten;
+import ruina.cards.EGO.act1.FourthMatchFlame;
 import ruina.cards.EGO.act1.Fragments;
+import ruina.cards.EGO.act1.GreenStem;
 import ruina.cards.EGO.act1.Grinder;
+import ruina.cards.EGO.act1.Harmony;
 import ruina.cards.EGO.act1.Hornet;
 import ruina.cards.EGO.act1.Laetitia;
+import ruina.cards.EGO.act1.MagicBullet;
 import ruina.cards.EGO.act1.OurGalaxy;
 import ruina.cards.EGO.act1.Pleasure;
 import ruina.cards.EGO.act1.RedEyes;
 import ruina.cards.EGO.act1.SanguineDesire;
+import ruina.cards.EGO.act1.SolemnLament;
 import ruina.cards.EGO.act1.TodaysExpression.TodaysExpression;
 import ruina.cards.EGO.act2.*;
 import ruina.cards.EGO.act3.*;
@@ -117,18 +123,27 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
     }
 
     public static void addAct1EgoCards(ArrayList<String> list) {
+        if (AbstractDungeon.actNum < 4) {
+            //stop the meta scaling cards from appearing in Act 4 shop
+            list.add(DaCapo.ID);
+            list.add(Harmony.ID);
+        }
         list.add(TodaysExpression.ID);
         list.add(SanguineDesire.ID);
         list.add(RedEyes.ID);
         list.add(Laetitia.ID);
         list.add(BlackSwan.ID);
-        list.add(DaCapo.ID);
         list.add(Fragments.ID);
         list.add(OurGalaxy.ID);
         list.add(Pleasure.ID);
         list.add(FaintAroma.ID);
         list.add(Grinder.ID);
         list.add(Hornet.ID);
+        list.add(Forgotten.ID);
+        list.add(GreenStem.ID);
+        list.add(MagicBullet.ID);
+        list.add(FourthMatchFlame.ID);
+        list.add(SolemnLament.ID);
     }
 
     public static void addAct2EgoCards(ArrayList<String> list) {
