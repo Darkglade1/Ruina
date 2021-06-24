@@ -94,6 +94,38 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         return new TextureAtlas.AtlasRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
     }
 
+    public static AbstractCard getNeowRandomEGOCard() {
+        ArrayList<String> list = new ArrayList<>();
+        addAct1EgoCards(list);
+        addAct2EgoCards(list);
+        addAct3EgoCards(list);
+
+        Collections.shuffle(list, AbstractDungeon.cardRandomRng.random);
+        return CardLibrary.getCard(list.get(0)).makeCopy();
+    }
+
+    public static ArrayList<AbstractCard> getNeowChooseEGOCard() {
+        ArrayList<String> list1 = new ArrayList<>();
+        ArrayList<String> list2 = new ArrayList<>();
+        ArrayList<String> list3 = new ArrayList<>();
+        addAct1EgoCards(list1);
+        addAct2EgoCards(list2);
+        addAct3EgoCards(list3);
+        Collections.shuffle(list1, AbstractDungeon.cardRandomRng.random);
+        Collections.shuffle(list2, AbstractDungeon.cardRandomRng.random);
+        Collections.shuffle(list3, AbstractDungeon.cardRandomRng.random);
+        ArrayList<String> finalList = new ArrayList<>();
+        finalList.add(list1.get(0));
+        finalList.add(list2.get(0));
+        finalList.add(list3.get(0));
+        ArrayList<AbstractCard> egoCards = new ArrayList<>();
+        for (String egoID : finalList) {
+            AbstractCard egoCard = CardLibrary.getCard(egoID).makeCopy();
+            egoCards.add(egoCard);
+        }
+        return egoCards;
+    }
+
     public static ArrayList<AbstractCard> getRandomEgoCards(int amount, int actNum) {
         ArrayList<String> list = new ArrayList<>();
         if (actNum == 1) {

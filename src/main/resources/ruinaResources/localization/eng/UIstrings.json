@@ -101,5 +101,12 @@
     "TEXT": [
       "Choose a Card to Play."
     ]
+  },
+  "${ModID}:NeowOptions": {
+    "TEXT": [
+      "[ #gObtain #ga #grandom #gEGO #gcard ]",
+      " #gChoose #gan #gEGO #gcard #gto #gobtain ]",
+      "Choose an EGO card"
+    ]
   }
 }

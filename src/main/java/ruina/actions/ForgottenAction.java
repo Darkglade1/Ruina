@@ -32,6 +32,7 @@ public class ForgottenAction extends AbstractGameAction {
         } else {
             this.tickDuration();
             if (this.isDone) {
+                AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.BLUNT_HEAVY, false));
                 this.target.damage(this.info);
                 addToTop(new VFXAction(new WallopEffect(this.target.lastDamageTaken, this.target.hb.cX, this.target.hb.cY)));
                 if (this.target.lastDamageTaken > 0) {

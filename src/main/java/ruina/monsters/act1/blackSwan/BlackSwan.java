@@ -132,7 +132,7 @@ public class BlackSwan extends AbstractRuinaMonster
                 break;
             }
             case SHRIEK: {
-                specialAnimation(adp());
+                specialAnimation();
                 dmg(adp(), info);
                 applyToTargetNextTurn(adp(), this, new Erosion(adp(), EROSION));
                 resetIdle(1.5f);
@@ -188,8 +188,8 @@ public class BlackSwan extends AbstractRuinaMonster
         animationAction("Pierce", "SwanPierce", enemy, this);
     }
 
-    private void specialAnimation(AbstractCreature enemy) {
-        animationAction("Special", "SwanShout", enemy, this);
+    private void specialAnimation() {
+        animationAction("Special", "SwanShout", 0.8f, this);
     }
 
     private void blockAnimation() {
