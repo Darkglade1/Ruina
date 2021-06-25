@@ -40,6 +40,7 @@ public class SingingMachine extends AbstractImageEvent {
     private static final int NUM_POTIONS = 2;
     private AbstractCard offeredCard;
     private boolean isMad;
+    private boolean alreadyUpgraded;
     private AbstractPotion.PotionRarity potionRewardRarity;
 
     private int screenNum = 0;
@@ -89,6 +90,9 @@ public class SingingMachine extends AbstractImageEvent {
                             this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
                         }
                         AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(offeredCard, (float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2)));
+                        if (alreadyUpgraded) {
+                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect(offeredCard.makeStatEquivalentCopy(), (float)(Settings.WIDTH / 2), (float)(Settings.HEIGHT / 2)));
+                        }
                         break;
                     case 1:
                         if (isMad) {
@@ -146,8 +150,12 @@ public class SingingMachine extends AbstractImageEvent {
             imageEventText.setDialogOption(FontHelper.colorString(OPTIONS[6] + MAX_HP_LOSS + OPTIONS[8], "r"));
         } else {
             this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
-            offeredCard.upgrade();
-            imageEventText.setDialogOption(FontHelper.colorString(OPTIONS[1] + offeredCard.name + OPTIONS[2], "g"), offeredCard.makeStatEquivalentCopy());
+            if (alreadyUpgraded) {
+                imageEventText.setDialogOption(FontHelper.colorString(OPTIONS[1] + offeredCard.name + OPTIONS[12], "g"), offeredCard.makeStatEquivalentCopy());
+            } else {
+                offeredCard.upgrade();
+                imageEventText.setDialogOption(FontHelper.colorString(OPTIONS[1] + offeredCard.name + OPTIONS[2], "g"), offeredCard.makeStatEquivalentCopy());
+            }
             String potionRarity;
             if (offeredCard.rarity == AbstractCard.CardRarity.RARE) {
                 relic = AbstractDungeon.returnRandomScreenlessRelic(AbstractRelic.RelicTier.RARE);
@@ -178,6 +186,9 @@ public class SingingMachine extends AbstractImageEvent {
                 offeredCard = c.makeStatEquivalentCopy();
                 if (c.color == AbstractCard.CardColor.CURSE || c.type == AbstractCard.CardType.STATUS) {
                     isMad = true;
+                }
+                if (c.upgraded) {
+                    alreadyUpgraded = true;
                 }
                 setDialog();
             }

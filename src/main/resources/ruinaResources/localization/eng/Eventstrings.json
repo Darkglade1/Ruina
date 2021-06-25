@@ -675,7 +675,8 @@
       " Max HP.",
       "[Leave]",
       "[Locked] Requires non-Starter card",
-      "Choose a Card to offer"
+      "Choose a Card to offer",
+      " twice."
     ]
   },
   "${ModID}:GalaxyChild": {
