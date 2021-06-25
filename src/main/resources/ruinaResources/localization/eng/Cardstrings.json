@@ -796,7 +796,7 @@
   },
   "${ModID}:WristCutter": {
     "NAME": "Wrist Cutter",
-    "DESCRIPTION": "Gain [E] [E] . NL Add !M! Wound to your hand with Retain."
+    "DESCRIPTION": "Gain [E] [E] . NL Add !M! Wound with Retain to your hand."
   },
   "${ModID}:Remorse": {
     "NAME": "Remorse",
@@ -919,7 +919,7 @@
   },
   "${ModID}:MagicBullet": {
     "NAME": "Magic Bullet",
-    "DESCRIPTION": "Draw !M! cards and give them Retain this combat."
+    "DESCRIPTION": "Draw !M! cards and give them Retain."
   },
   "${ModID}:FourthMatchFlame": {
     "NAME": "Fourth Match Flame",
