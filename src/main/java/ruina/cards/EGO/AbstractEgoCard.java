@@ -26,9 +26,11 @@ import ruina.cards.EGO.act1.MagicBullet;
 import ruina.cards.EGO.act1.OurGalaxy;
 import ruina.cards.EGO.act1.Pleasure;
 import ruina.cards.EGO.act1.RedEyes;
+import ruina.cards.EGO.act1.Regret;
 import ruina.cards.EGO.act1.SanguineDesire;
 import ruina.cards.EGO.act1.SolemnLament;
 import ruina.cards.EGO.act1.TodaysExpression.TodaysExpression;
+import ruina.cards.EGO.act1.Wingbeat;
 import ruina.cards.EGO.act2.*;
 import ruina.cards.EGO.act3.*;
 import ruina.util.TexLoader;
@@ -176,6 +178,8 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(MagicBullet.ID);
         list.add(FourthMatchFlame.ID);
         list.add(SolemnLament.ID);
+        list.add(Wingbeat.ID);
+        list.add(Regret.ID);
     }
 
     public static void addAct2EgoCards(ArrayList<String> list) {

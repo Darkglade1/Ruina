@@ -23,10 +23,11 @@ public class FaintAroma extends AbstractEgoCard {
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private static final int COST = 3;
-    private static final int UP_COST = 2;
+    //private static final int UP_COST = 2;
 
     public FaintAroma() {
         super(ID, COST, CardType.POWER, CardTarget.SELF);
+        isEthereal = true;
     }
 
     @Override
@@ -49,6 +50,6 @@ public class FaintAroma extends AbstractEgoCard {
 
     @Override
     public void upp() {
-        upgradeBaseCost(UP_COST);
+        isEthereal = false;
     }
 }

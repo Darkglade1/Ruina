@@ -932,5 +932,13 @@
   "${ModID}:SolemnLament": {
     "NAME": "Solemn Lament",
     "DESCRIPTION": "Gain !M! Intangible. NL If ths card's cost was only paid by ruina:Manifest, add a copy of it into your discard pile."
+  },
+  "${ModID}:Wingbeat": {
+    "NAME": "Wingbeat",
+    "DESCRIPTION": "Discard !ruina:SecondMagic! cards. NL Gain !M! Dexterity. NL Exhaustive !stslib:ex!."
+  },
+  "${ModID}:Regret": {
+    "NAME": "Regret",
+    "DESCRIPTION": "Deal !D! damage. NL Deal !D! damage again for each Status and Curse in your hand."
   }
 }
