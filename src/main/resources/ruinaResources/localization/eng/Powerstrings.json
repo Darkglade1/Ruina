@@ -582,5 +582,9 @@
   "${ModID}:FourthMatchFlame": {
     "NAME": "Fourth Match Flame",
     "DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to ALL enemies."]
+  },
+  "${ModID}:Lamentation": {
+    "NAME": "Lamentation",
+    "DESCRIPTIONS": ["After this creature deals #b", " more unblocked attack damage to you, uses a #rpowerful attack next turn."]
   }
 }

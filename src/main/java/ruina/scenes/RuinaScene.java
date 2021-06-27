@@ -16,6 +16,7 @@ import ruina.monsters.act1.Butterflies;
 import ruina.monsters.act1.CrazedEmployee;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
+import ruina.monsters.act1.Funeral;
 import ruina.monsters.act1.GalaxyFriend;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
@@ -194,7 +195,7 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Fragment");
                 } else if (mo instanceof CrazedEmployee) {
                     this.bg = this.atlas.findRegion("mod/Singing");
-                } else if (mo instanceof Butterflies) {
+                } else if (mo instanceof Butterflies || mo instanceof Funeral) {
                     this.bg = this.atlas.findRegion("mod/Butterfly");
                 } else if (mo instanceof Porccubus) {
                     this.bg = this.atlas.findRegion("mod/Porccubus");

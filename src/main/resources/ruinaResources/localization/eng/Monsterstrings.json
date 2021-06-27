@@ -1254,5 +1254,16 @@
       "Third Brother",
       "Fourth Brother"
     ]
+  },
+  "${ModID}:Funeral": {
+    "MOVES": [
+      "The Quiet",
+      "Into Comfort",
+      "Guiding Hand",
+      "Lament"
+    ],
+    "NAME": "Funeral of the Dead Butterflies",
+    "DIALOG": [
+    ]
   }
 }

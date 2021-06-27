@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
+import ruina.monsters.act1.Funeral;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.blackSwan.BlackSwan;
 import ruina.monsters.act1.fairyFestival.FairyQueen;
@@ -54,6 +55,8 @@ public class AbstractRuinaDungeon extends CustomDungeon {
         if (bossKey != null) {
             if (bossKey.equals(FairyQueen.ID)) {
                 floor = Floor.MALKUTH;
+            } else if (bossKey.equals(Funeral.ID)) {
+                floor = Floor.YESOD;
             } else if (bossKey.equals(BlackSwan.ID)) {
                 floor = Floor.HOD;
             } else if (bossKey.equals(Orchestra.ID)) {
