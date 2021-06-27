@@ -24,13 +24,11 @@ public class BurrowingHeavenEffect extends AbstractGameEffect {
 
     private int stage;
 
-    private boolean playedInitialSound = false;
     private boolean playedFinishSound = false;
 
     public BurrowingHeavenEffect() {
         img = TexLoader.getTexture(makeVfxPath("BurrowingHeavenEffect.png"));
-        this.color = Color.RED.cpy();
-        this.color.a = 0.0F;
+
         for (int i = 0; i < 5; i++) {
             this.color2[i] = Color.WHITE.cpy();
             (this.color2[i]).a = 0.0F;
@@ -43,16 +41,8 @@ public class BurrowingHeavenEffect extends AbstractGameEffect {
     }
 
     public void update() {
-        if (!playedInitialSound) {
-            AbstractRuinaMonster.playSound("HeavenNosee1");
-            playedInitialSound = true;
-        }
         this.startingDuration -= Gdx.graphics.getDeltaTime();
-        if (this.startingDuration > 0.5F) {
-            this.color.a = 1.0F - this.startingDuration;
-        } else if (this.startingDuration > 0.0F) {
-            this.color.a = this.startingDuration;
-        } else if (this.duration > 0.0F) {
+        if (this.duration > 0.0F) {
             if (!playedFinishSound) {
                 AbstractRuinaMonster.playSound("HeavenWakeStrong");
                 playedFinishSound = true;
@@ -80,8 +70,6 @@ public class BurrowingHeavenEffect extends AbstractGameEffect {
     }
 
     public void render(SpriteBatch sb) {
-        sb.setColor(this.color);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0.0F, 0.0F, Settings.WIDTH, Settings.HEIGHT);
         for (int i = 0; i < 5; i++) {
             sb.setColor(this.color2[i]);
             sb.draw(this.img, 0.0F, 0.0F, Settings.WIDTH, Settings.HEIGHT);
