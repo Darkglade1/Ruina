@@ -28,6 +28,7 @@ public class BrotherPower extends AbstractEasyPower {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
         this.brotherNum = brotherNum;
         this.target = target;
+        this.name = DESCRIPTIONS[brotherNum + 4];
         updateDescription();
     }
 

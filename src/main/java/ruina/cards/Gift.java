@@ -2,6 +2,7 @@ package ruina.cards;
 
 import basemod.AutoAdd;
 import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -20,12 +21,14 @@ public class Gift extends AbstractRuinaCard {
     private static final int UPG_DAMAGE = 5;
     private static final int COST = 3;
     private static final int COST_DOWN = 1;
+    private int counter;
 
     public Gift() {
         super(ID, COST, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);
         magicNumber = baseMagicNumber = DAMAGE;
         secondMagicNumber = baseSecondMagicNumber = COST_DOWN;
         selfRetain = true;
+        counter = COST;
         CardModifierManager.addModifier(this, new UnplayableMod());
     }
 
@@ -35,12 +38,19 @@ public class Gift extends AbstractRuinaCard {
 
     @Override
     public void onRetained() {
-        this.modifyCostForCombat(-secondMagicNumber);
-        if (this.costForTurn == 0) {
-            // damage
-            atb(new DamageAction(adp(), new DamageInfo(adp(), magicNumber, DamageInfo.DamageType.NORMAL)));
+        counter--;
+        isCostModified = true;
+        if (counter == 0) {
+            atb(new DamageAction(adp(), new DamageInfo(adp(), magicNumber, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.POISON));
             atb(new ExhaustSpecificCardAction(this, adp().hand));
         }
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        costForTurn = counter;
+        freeToPlayOnce = false;
     }
 
     public void upp() {

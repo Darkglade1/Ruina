@@ -562,13 +562,17 @@
     "DESCRIPTIONS": ["At end of round, another #yBrother becomes #yactive. NL If #b", " or more #yBrothers have #rdied, begins to use a #rpowerful attack. NL NL Random targeting effects always target this creature."]
   },
   "${ModID}:BrotherPower": {
-    "NAME": "Faithful Brother",
+    "NAME": "Brother",
     "DESCRIPTIONS": [
       "At end of round, if this creature is #yactive, ",
       "the boss gains #b%1$s #yPlated #yArmor.",
       "the boss gains #b%1$s #yArtifact if it has no #yArtifact.",
       "shuffle #b%1$s #yDazed into your discard pile.",
-      "you gain #b%1$s #yVulnerable."
+      "you gain #b%1$s #yVulnerable.",
+      "Faithful Brother",
+      "Dauntless Brother",
+      "Stalwart Brother",
+      "Valiant Brother"
     ]
   },
   "${ModID}:HornetPower": {
