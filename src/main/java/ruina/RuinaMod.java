@@ -49,7 +49,6 @@ import ruina.monsters.act1.Butterflies;
 import ruina.monsters.act1.CrazedEmployee;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
-import ruina.monsters.act1.Funeral;
 import ruina.monsters.act1.GalaxyFriend;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
@@ -614,6 +613,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("FuneralSpecial"), makeSFXPath("ButterFlyMan_Special1.wav"));
         BaseMod.addAudio(makeID("FuneralAtkBlack"), makeSFXPath("ButterFlyMan_Atk_Black.wav"));
         BaseMod.addAudio(makeID("FuneralAtkWhite"), makeSFXPath("ButterFlyMan_Atk_White.wav"));
+
+        BaseMod.addAudio(makeID("SingingEat"), makeSFXPath("SingingMachine_Eat.wav"));
+        BaseMod.addAudio(makeID("SingingRhythm"), makeSFXPath("Singing_Rhythm.wav"));
     }
 
     @Override
@@ -744,7 +746,7 @@ public class RuinaMod implements
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
         asiyah.addBoss(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new, makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
-        asiyah.addBoss(ruina.monsters.act1.singingMachine.SingingMachine.ID, (BaseMod.GetMonster) ruina.monsters.act1.singingMachine.SingingMachine::new, makeMonsterPath("Funeral/FuneralMap.png"), makeMonsterPath("Funeral/FuneralMapOutline.png"));
+        asiyah.addBoss(ruina.monsters.act1.singingMachine.SingingMachine.ID, (BaseMod.GetMonster) ruina.monsters.act1.singingMachine.SingingMachine::new, makeMonsterPath("SingingMachine/SingingMachineMap.png"), makeMonsterPath("SingingMachine/SingingMachineMapIcon.png"));
         asiyah.addBoss(BlackSwan.ID, () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Brother(-450.0F, 0.0F, 1),

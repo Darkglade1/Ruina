@@ -1,5 +1,6 @@
 package ruina.monsters.act1.singingMachine;
 
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -20,6 +21,7 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
+import ruina.cardmods.SingingMachineMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 
@@ -97,17 +99,34 @@ public class ManicEmployee extends AbstractRuinaMonster
                 attackAnimation(adp());
                 dmg(adp(), info);
                 resetIdle();
-                nextMoveByte = TREMBLING_MOTION;
+                if (forcedAttack) {
+                    if (nextMoveByte == PINE_FOR_THE_SONG) {
+                        nextMoveByte = TREMBLING_MOTION;
+                    }
+                } else {
+                    nextMoveByte = TREMBLING_MOTION;
+                }
                 forcedAttack = false;
                 break;
             }
         }
-        atb(new RollMoveAction(this));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                atb(new RollMoveAction(ManicEmployee.this));
+                this.isDone = true;
+            }
+        });
     }
 
     @Override
     protected void getMove(final int num) {
+        if (targetCard != null) {
+            CardModifierManager.removeModifiersById(targetCard, SingingMachineMod.ID, true);
+        }
         targetCard = null;
+        makePowerRemovable(this, POWER_ID);
+        atb(new RemoveSpecificPowerAction(this, this, POWER_ID));
         if (forcedAttack) {
             setAttack();
         } else {
@@ -164,6 +183,7 @@ public class ManicEmployee extends AbstractRuinaMonster
             targetCard = validCards.get(AbstractDungeon.monsterRng.random(validCards.size() - 1));
         }
         if (targetCard != null) {
+            CardModifierManager.addModifier(targetCard, new SingingMachineMod());
             applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
 
                 @Override
@@ -171,25 +191,17 @@ public class ManicEmployee extends AbstractRuinaMonster
                     if (damageAmount > 0 && info.owner == owner && target == adp()) {
                         CardGroup group = findCardGroupOfCard(targetCard);
                         if (group != null) {
-                            atb(new ExhaustSpecificCardAction(targetCard, group, true));
+                            atb(new ExhaustSpecificCardAction(targetCard, group));
                             atb(new AbstractGameAction() {
                                 @Override
                                 public void update() {
-                                    if (adp().exhaustPile.contains(targetCard)) {
-                                        adp().exhaustPile.removeCard(targetCard);
-                                        parent.machineCards.add(targetCard);
-                                    }
+                                    adp().exhaustPile.removeCard(targetCard);
+                                    parent.machineCards.add(targetCard.makeStatEquivalentCopy());
                                     this.isDone = true;
                                 }
                             });
                         }
                     }
-                    atb(new RemoveSpecificPowerAction(owner, owner, this));
-                }
-
-                @Override
-                public void atEndOfRound() {
-                    atb(new RemoveSpecificPowerAction(owner, owner, this));
                 }
 
                 @Override

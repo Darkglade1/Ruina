@@ -2,6 +2,7 @@ package ruina.cards;
 
 import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.actions.GrindingGearsAction;
@@ -32,6 +33,11 @@ public class GrindingGears extends AbstractRuinaCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new LoseHPAction(p, p, magicNumber));
         atb(new GrindingGearsAction(secondMagicNumber, machine));
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new GrindingGears(machine);
     }
 
     @Override

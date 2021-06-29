@@ -2,6 +2,7 @@ package ruina.monsters.act1.singingMachine;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
@@ -10,6 +11,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -22,6 +24,7 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.cards.GrindingGears;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.vfx.BloodSplatter;
 
 import java.util.ArrayList;
 
@@ -66,7 +69,7 @@ public class SingingMachine extends AbstractRuinaMonster
     }
 
     public SingingMachine(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 280.0f, null, x, y);
+        super(NAME, ID, 140, 0.0F, 0, 250.0f, 240.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SingingMachine/Spriter/SingingMachine.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
@@ -148,8 +151,7 @@ public class SingingMachine extends AbstractRuinaMonster
                 for (ManicEmployee mo : minions) {
                     if (mo != null) {
                         mo.forcedAttack = true;
-                        mo.rollMove();
-                        mo.createIntent();
+                        atb(new RollMoveAction(mo));
                     }
                 }
                 break;
@@ -219,11 +221,18 @@ public class SingingMachine extends AbstractRuinaMonster
         float drawScale = 0.20F;
         float offsetX1 = 100.0F * Settings.scale;
         float offsetY = 100.0F * Settings.scale;
+        int xCol = 0;
+        int yRow = 0;
         for (int i = 0; i < machineCards.size(); i++) {
             AbstractCard card = machineCards.get(i);
             card.drawScale = drawScale;
-            card.current_x = this.hb.x + offsetX1;
-            card.current_y = this.hb.y + offsetY * (i + 2);
+            card.current_x = this.hb.x + offsetX1 * xCol;
+            card.current_y = this.hb.y + offsetY * (yRow + 3);
+            yRow++;
+            if (i % 4 == 0 && i != 0) {
+                xCol++;
+                yRow = 0;
+            }
             card.render(sb);
         }
     }
@@ -240,11 +249,19 @@ public class SingingMachine extends AbstractRuinaMonster
     }
 
     private void openAnimation() {
-        animationAction("Open", "FairySpecial", this);
+        animationAction("Open", "SingingRhythm", this);
     }
 
     private void specialAnimation() {
-        animationAction("Special", "FairySpecial", this);
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                for (int j = 0; j < 6; j++)  {
+                    AbstractDungeon.effectsQueue.add(new BloodSplatter(1.0F)); }
+                isDone = true;
+            }
+        });
+        animationAction("Special", "SingingEat", this);
     }
 
 }
