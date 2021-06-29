@@ -744,7 +744,7 @@ public class RuinaMod implements
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
         asiyah.addBoss(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new, makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
-        asiyah.addBoss(Funeral.ID, (BaseMod.GetMonster) Funeral::new, makeMonsterPath("Funeral/FuneralMap.png"), makeMonsterPath("Funeral/FuneralMapOutline.png"));
+        asiyah.addBoss(ruina.monsters.act1.singingMachine.SingingMachine.ID, (BaseMod.GetMonster) ruina.monsters.act1.singingMachine.SingingMachine::new, makeMonsterPath("Funeral/FuneralMap.png"), makeMonsterPath("Funeral/FuneralMapOutline.png"));
         asiyah.addBoss(BlackSwan.ID, () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Brother(-450.0F, 0.0F, 1),

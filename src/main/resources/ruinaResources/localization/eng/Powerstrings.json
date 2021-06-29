@@ -583,8 +583,12 @@
     "NAME": "Fourth Match Flame",
     "DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to ALL enemies."]
   },
-  "${ModID}:Lamentation": {
-    "NAME": "Lamentation",
-    "DESCRIPTIONS": ["After this creature deals #b", " more unblocked attack damage to you, uses a #rpowerful attack next turn."]
+  "${ModID}:Machine": {
+    "NAME": "Machine that Sings",
+    "DESCRIPTIONS": ["For every #yAttack in the #ySinging #yMachine, minions spawn with #b", " #yStrength. NL For every #ySkill in the #ySinging #yMachine, minions spawn with #b", " #yMetallicize."]
+  },
+  "${ModID}:BeautifulSound": {
+    "NAME": "A Beautiful Sound",
+    "DESCRIPTIONS": ["If this creature deals unblocked attack damage to you this turn, ", " is #yExhausted and put into the #ySinging #yMachine."]
   }
 }

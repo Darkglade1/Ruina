@@ -940,5 +940,9 @@
   "${ModID}:Regret": {
     "NAME": "Regret",
     "DESCRIPTION": "Deal !D! damage. NL Deal !D! damage again for each Status and Curse in your hand."
+  },
+  "${ModID}:GrindingGears": {
+    "NAME": "Grinding Gears",
+    "DESCRIPTION": "Lose !M! HP. NL Remove !ruina:SecondMagic! card from the *Singing *Machine and add it to your hand."
   }
 }

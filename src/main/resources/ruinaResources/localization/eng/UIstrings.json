@@ -102,6 +102,11 @@
       "Choose a Card to Play."
     ]
   },
+  "${ModID}:GrindingGearsAction": {
+    "TEXT": [
+      "Choose a Card to Put Into Your Hand."
+    ]
+  },
   "${ModID}:NeowOptions": {
     "TEXT": [
       "[ #gObtain #ga #grandom #gEGO #gcard ]",

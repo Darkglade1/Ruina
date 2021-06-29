@@ -1255,14 +1255,23 @@
       "Fourth Brother"
     ]
   },
-  "${ModID}:Funeral": {
+  "${ModID}:SingingMachine": {
     "MOVES": [
-      "The Quiet",
-      "Into Comfort",
-      "Guiding Hand",
-      "Lament"
+      "Bloody Tune",
+      "Grinding Gears",
+      "Unforgettable Performance",
+      "Manic Performers"
     ],
-    "NAME": "Funeral of the Dead Butterflies",
+    "NAME": "Singing Machine",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:ManicEmployee": {
+    "MOVES": [
+      "Trembling Motion",
+      "Pine for the Song"
+    ],
+    "NAME": "Manic Employee",
     "DIALOG": [
     ]
   }
