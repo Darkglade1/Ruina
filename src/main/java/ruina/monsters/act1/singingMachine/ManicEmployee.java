@@ -66,7 +66,7 @@ public class ManicEmployee extends AbstractRuinaMonster
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(22), calcAscensionTankiness(25));
         addMove(TREMBLING_MOTION, Intent.DEBUFF);
-        addMove(PINE_FOR_THE_SONG, Intent.ATTACK, calcAscensionDamage(7));
+        addMove(PINE_FOR_THE_SONG, Intent.ATTACK, calcAscensionDamage(8));
         this.debuff = debuff;
         this.nextMoveByte = firstMove;
         this.parent = parent;
