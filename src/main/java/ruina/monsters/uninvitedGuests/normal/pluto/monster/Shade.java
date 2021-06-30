@@ -15,10 +15,13 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
+import com.megacrit.cardcrawl.cards.red.Defend_Red;
+import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -177,17 +180,25 @@ public class Shade extends AbstractDeckMonster
 
     @Override
     protected void createDeck() {
+        CardStrings damageString = CardCrawlGame.languagePack.getCardStrings(Strike_Red.ID);
+        CardStrings blockString = CardCrawlGame.languagePack.getCardStrings(Defend_Red.ID);
         for (AbstractCard card : adp().masterDeck.group) {
             if ((card.baseDamage > 0 || card.baseBlock > 0) && !(card.rarity == AbstractCard.CardRarity.BASIC) && card.baseDamage <= MAX_DAMAGE) {
-                masterDeck.addToBottom(card.makeStatEquivalentCopy());
+                AbstractCard cardCopy = card.makeStatEquivalentCopy();
                 Intent intent;
                 if (card.baseDamage > 0 && card.baseBlock > 0) {
                     intent = Intent.ATTACK_DEFEND;
+                    cardCopy.rawDescription = blockString.DESCRIPTION + " NL " + damageString.DESCRIPTION;
                 } else if (card.baseBlock > 0) {
                     intent = Intent.DEFEND;
+                    cardCopy.rawDescription = blockString.DESCRIPTION;
                 } else {
                     intent = Intent.ATTACK;
+                    cardCopy.rawDescription = damageString.DESCRIPTION;
                 }
+                cardCopy.name += "?";
+                cardCopy.initializeDescription();
+                masterDeck.addToBottom(cardCopy);
                 addMove((byte) card.cardID.hashCode(), intent, card.baseDamage);
             }
         }

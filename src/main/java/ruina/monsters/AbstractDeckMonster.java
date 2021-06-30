@@ -33,7 +33,6 @@ public abstract class AbstractDeckMonster extends AbstractCardMonster {
         discard.clear();
         purge.clear();
         createDeck();
-        System.out.println(masterDeck);
         masterDeck.shuffle();
         for(AbstractCard c: masterDeck.group){
             draw.addToBottom(c);
@@ -44,7 +43,6 @@ public abstract class AbstractDeckMonster extends AbstractCardMonster {
 
     public AbstractCard topDeckCardForMoveAction() {
         if (draw.isEmpty() && discard.isEmpty()) {
-            System.out.println("oops");
             return new Madness();
         } else if (draw.isEmpty()) {
             shuffle();
@@ -53,9 +51,6 @@ public abstract class AbstractDeckMonster extends AbstractCardMonster {
         if (c != null) {
             moveToHand(c);
         }
-//        System.out.println("Hand: " + hand);
-//        System.out.println("Draw: " + draw);
-//        System.out.println("Discard: " + discard);
         return c != null ? c : new Madness();
     }
 
