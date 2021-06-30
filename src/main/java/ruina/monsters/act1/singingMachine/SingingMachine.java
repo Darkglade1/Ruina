@@ -69,7 +69,7 @@ public class SingingMachine extends AbstractRuinaMonster
     }
 
     public SingingMachine(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 240.0f, null, x, y);
+        super(NAME, ID, 140, 0.0F, 0, 250.0f, 210.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SingingMachine/Spriter/SingingMachine.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
@@ -229,7 +229,7 @@ public class SingingMachine extends AbstractRuinaMonster
             card.current_x = this.hb.x + offsetX1 * xCol;
             card.current_y = this.hb.y + offsetY * (yRow + 3);
             yRow++;
-            if (i % 4 == 0 && i != 0) {
+            if (i % 3 == 0 && i != 0) {
                 xCol++;
                 yRow = 0;
             }

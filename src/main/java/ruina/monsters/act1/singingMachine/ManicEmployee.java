@@ -100,8 +100,10 @@ public class ManicEmployee extends AbstractRuinaMonster
                 dmg(adp(), info);
                 resetIdle();
                 if (forcedAttack) {
-                    if (nextMoveByte == PINE_FOR_THE_SONG) {
+                    if (debuff == 0) {
                         nextMoveByte = TREMBLING_MOTION;
+                    } else {
+                        nextMoveByte = PINE_FOR_THE_SONG;
                     }
                 } else {
                     nextMoveByte = TREMBLING_MOTION;
@@ -165,17 +167,17 @@ public class ManicEmployee extends AbstractRuinaMonster
     private void setAttack() {
         ArrayList<AbstractCard> validCards = new ArrayList<>();
         for (AbstractCard c : adp().drawPile.group) {
-            if ((c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && !c.exhaust) {
+            if ((c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && !c.exhaust && !CardModifierManager.hasModifier(c, SingingMachineMod.ID)) {
                 validCards.add(c);
             }
         }
         for (AbstractCard c : adp().discardPile.group) {
-            if ((c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && !c.exhaust) {
+            if ((c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && !c.exhaust && !CardModifierManager.hasModifier(c, SingingMachineMod.ID)) {
                 validCards.add(c);
             }
         }
         for (AbstractCard c : adp().hand.group) {
-            if ((c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && !c.exhaust) {
+            if ((c.type == AbstractCard.CardType.ATTACK || c.type == AbstractCard.CardType.SKILL) && !c.exhaust && !CardModifierManager.hasModifier(c, SingingMachineMod.ID)) {
                 validCards.add(c);
             }
         }
@@ -196,6 +198,7 @@ public class ManicEmployee extends AbstractRuinaMonster
                                 @Override
                                 public void update() {
                                     adp().exhaustPile.removeCard(targetCard);
+                                    CardModifierManager.removeModifiersById(targetCard, SingingMachineMod.ID, true);
                                     parent.machineCards.add(targetCard.makeStatEquivalentCopy());
                                     this.isDone = true;
                                 }
