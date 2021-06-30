@@ -39,7 +39,7 @@ public class BlindRage extends AbstractEgoCard {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                AbstractRuinaMonster.playSound("WrathStrong3");
+                AbstractRuinaMonster.playSound("WrathStrong3", 0.8f);
                 AbstractDungeon.topLevelEffectsQueue.add(new BorderFlashEffect(Color.GREEN));
                 for (int j = 0; j < 6; j++)  {AbstractDungeon.effectsQueue.add(new ErosionSplatter(0.5F)); }
                 isDone = true;

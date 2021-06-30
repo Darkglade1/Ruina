@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
@@ -43,6 +44,7 @@ public class ManicEmployee extends AbstractRuinaMonster
     private static final byte PINE_FOR_THE_SONG = 1;
 
     private final int DEBUFF = calcAscensionSpecial(1);
+    private final int STR = calcAscensionSpecial(2);
 
     private final int debuff;
     public boolean forcedAttack;
@@ -66,7 +68,7 @@ public class ManicEmployee extends AbstractRuinaMonster
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(22), calcAscensionTankiness(25));
         addMove(TREMBLING_MOTION, Intent.DEBUFF);
-        addMove(PINE_FOR_THE_SONG, Intent.ATTACK, calcAscensionDamage(8));
+        addMove(PINE_FOR_THE_SONG, Intent.ATTACK, calcAscensionDamage(7));
         this.debuff = debuff;
         this.nextMoveByte = firstMove;
         this.parent = parent;
@@ -186,7 +188,7 @@ public class ManicEmployee extends AbstractRuinaMonster
         }
         if (targetCard != null) {
             CardModifierManager.addModifier(targetCard, new SingingMachineMod());
-            applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STR) {
 
                 @Override
                 public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
@@ -204,12 +206,13 @@ public class ManicEmployee extends AbstractRuinaMonster
                                 }
                             });
                         }
+                        applyToTarget(owner, owner, new StrengthPower(owner, amount));
                     }
                 }
 
                 @Override
                 public void updateDescription() {
-                    description = POWER_DESCRIPTIONS[0] + FontHelper.colorString(targetCard.name, "y") + POWER_DESCRIPTIONS[1];
+                    description = POWER_DESCRIPTIONS[0] + FontHelper.colorString(targetCard.name, "y") + POWER_DESCRIPTIONS[1] + amount + POWER_DESCRIPTIONS[2];
                 }
             });
         }

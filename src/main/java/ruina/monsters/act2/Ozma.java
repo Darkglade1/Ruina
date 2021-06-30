@@ -68,8 +68,8 @@ public class Ozma extends AbstractRuinaMonster
         setHp(calcAscensionTankiness(maxHealth));
         addMove(FADING_MEMORIES, Intent.STRONG_DEBUFF);
         addMove(POWDER_OF_LIFE, Intent.DEFEND_BUFF);
-        addMove(HINDER, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
-        addMove(SQUASH, Intent.ATTACK, calcAscensionDamage(21));
+        addMove(HINDER, Intent.ATTACK_DEBUFF, calcAscensionDamage(17));
+        addMove(SQUASH, Intent.ATTACK, calcAscensionDamage(22));
         addMove(AWAKEN, Intent.UNKNOWN);
     }
 

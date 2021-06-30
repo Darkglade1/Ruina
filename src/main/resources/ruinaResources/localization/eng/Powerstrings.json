@@ -589,6 +589,6 @@
   },
   "${ModID}:BeautifulSound": {
     "NAME": "A Beautiful Sound",
-    "DESCRIPTIONS": ["If this creature deals unblocked attack damage to you this turn, ", " is #yExhausted and put into the #ySinging #yMachine."]
+    "DESCRIPTIONS": ["If this creature deals unblocked attack damage to you this turn, ", " is #yExhausted and put into the #ySinging #yMachine, and this creature gains #b", " #yStrength."]
   }
 }

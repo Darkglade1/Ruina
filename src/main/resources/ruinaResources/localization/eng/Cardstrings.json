@@ -873,7 +873,7 @@
   },
   "${ModID}:Gift": {
     "NAME": "Gift",
-    "DESCRIPTION": "When Retained, reduce this card's cost by !ruina:SecondMagic!. NL When this card's cost becomes 0, take !M! damage and Exhaust this card."
+    "DESCRIPTION": "When Retained, reduce this card's cost by !ruina:SecondMagic!. NL When this card's cost becomes 0, take !M! damage and Exhaust this card. NL This card's cost cannot be modified by external effects."
   },
   "${ModID}:Enlightenment": {
     "NAME": "Enlightenment",
