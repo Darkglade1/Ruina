@@ -5,6 +5,7 @@ import actlikeit.dungeons.CustomDungeon;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModPanel;
+import basemod.ReflectionHacks;
 import basemod.eventUtil.AddEventParams;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -19,6 +20,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
@@ -30,6 +32,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.neow.NeowEvent;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -40,6 +43,7 @@ import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.*;
+import ruina.events.NeowAngela;
 import ruina.events.act1.*;
 import ruina.events.act2.*;
 import ruina.events.act3.*;
@@ -133,7 +137,8 @@ public class RuinaMod implements
         AddAudioSubscriber,
         PostBattleSubscriber,
         PreMonsterTurnSubscriber,
-        PostPowerApplySubscriber {
+        PostPowerApplySubscriber,
+        StartActSubscriber {
 
     private static final String modID = "ruina";
     public static final TextureAtlas UIAtlas = new TextureAtlas();
@@ -616,6 +621,8 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("SingingEat"), makeSFXPath("SingingMachine_Eat.wav"));
         BaseMod.addAudio(makeID("SingingRhythm"), makeSFXPath("Singing_Rhythm.wav"));
+
+        BaseMod.addAudio(makeID("FingerSnap"), makeSFXPath("Finger_Snapping.wav"));
     }
 
     @Override
@@ -1040,6 +1047,20 @@ public class RuinaMod implements
             if (p.type == AbstractPower.PowerType.DEBUFF) {
                 PlayerSpireFields.appliedDebuffThisTurn.set(adp(), true);
             }
+        }
+    }
+
+    @Override
+    public void receiveStartAct() {
+        //Set Neow strings based on the act
+        if (CardCrawlGame.dungeon instanceof AbstractRuinaDungeon) {
+            EventStrings neowAngelaStrings = CardCrawlGame.languagePack.getEventString(NeowAngela.ID);
+            ReflectionHacks.setPrivateStaticFinal(NeowEvent.class, "TEXT", neowAngelaStrings.DESCRIPTIONS);
+            ReflectionHacks.setPrivateStaticFinal(NeowEvent.class, "DIALOG_X", 1200.0F * Settings.xScale);
+        } else {
+            CharacterStrings neowNormalStrings = CardCrawlGame.languagePack.getCharacterString("Neow Event");
+            ReflectionHacks.setPrivateStaticFinal(NeowEvent.class, "TEXT", neowNormalStrings.TEXT);
+            ReflectionHacks.setPrivateStaticFinal(NeowEvent.class, "DIALOG_X", 1100.0F * Settings.xScale);
         }
     }
 

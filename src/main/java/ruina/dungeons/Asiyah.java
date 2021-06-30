@@ -7,17 +7,18 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import ruina.RuinaMod;
+import ruina.events.NeowAngela;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act1.Alriune;
 import ruina.monsters.act1.ForsakenMurderer;
 import ruina.monsters.act1.Fragment;
 import ruina.monsters.act1.GalaxyFriend;
 import ruina.monsters.act1.Porccubus;
-import ruina.monsters.act1.queenBee.QueenBee;
-import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act1.laetitia.Laetitia;
+import ruina.monsters.act1.queenBee.QueenBee;
+import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.spiderBud.SpiderBud;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class Asiyah extends AbstractRuinaDungeon {
 
     public Asiyah() {
         super(NAME, ID, "images/ui/event/panel.png", false, 3, 12, 10);
+        this.onEnterEvent(NeowAngela.class);
     }
 
     public Asiyah(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {

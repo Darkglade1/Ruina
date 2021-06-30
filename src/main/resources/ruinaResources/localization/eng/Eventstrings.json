@@ -695,5 +695,30 @@
       ".",
       "[Leave]"
     ]
+  },
+  "${ModID}:NeowAngela": {
+    "NAME": "Angela",
+    "DESCRIPTIONS": [
+      "Greetings. NL I am Angela, the director and librarian of my role's namesake.",
+      "Welcome back.",
+      "Greetings, dear guest.",
+      "The clock turns back once again.",
+      "Prove yourself, and perhaps I will aid you.",
+      "At least reach the top of Asiyah.",
+      "The librarians aren't the only people I can bring back.",
+      "Would you like a boon?",
+      "May you find your book in this place.",
+      "May you find your book in this place.",
+      "Will you persevere in the face of this challenge?",
+      "Rewards",
+      "Let us continue.",
+      "These ordeals will only grow more difficult.",
+      "I am impressed you're holding out for so long.",
+      "Cursed!",
+      "Scatterbrain!",
+      "Transformation!"
+    ],
+    "OPTIONS": [
+    ]
   }
 }
