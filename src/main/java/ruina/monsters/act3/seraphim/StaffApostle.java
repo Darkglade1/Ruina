@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractRuinaMonster;
@@ -60,6 +61,9 @@ public class StaffApostle extends AbstractRuinaMonster {
                     if (!(mo instanceof AbstractAllyMonster)) {
                         applyToTarget(mo, this, new StrengthPower(mo, STRENGTH));
                     }
+                }
+                if (AbstractDungeon.ascensionLevel >= 19) {
+                    applyToTarget(adp(), this, new VulnerablePower(adp(), 1, true));
                 }
                 resetIdle();
                 break;

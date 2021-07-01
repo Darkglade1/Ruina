@@ -24,7 +24,7 @@ public class SpearApostle extends AbstractRuinaMonster {
     private static final byte FOR_HE_IS_HOLY = 0;
     private static final byte THE_WILL_OF_THE_LORD_BE_DONE = 1;
 
-    private final int debuff = calcAscensionSpecial(3);
+    private final int debuff = calcAscensionSpecial(calcAscensionSpecial(3));
 
     private final Prophet prophet;
 
