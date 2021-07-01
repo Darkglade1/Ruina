@@ -787,6 +787,7 @@ public class RuinaMod implements
                 .dungeonID(Asiyah.ID)
                 .create());
         BaseMod.addEvent(GalaxyChild.ID, GalaxyChild.class, Asiyah.ID);
+        BaseMod.addEvent(Funeral.ID, Funeral.class, Asiyah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
 
 
