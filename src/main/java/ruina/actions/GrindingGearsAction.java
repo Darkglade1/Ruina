@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import ruina.monsters.act1.singingMachine.SingingMachine;
+import ruina.monsters.act1.singingMachine.SingingMachineMonster;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.makeInHand;
@@ -18,9 +18,9 @@ public class GrindingGearsAction extends AbstractGameAction {
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
     private AbstractPlayer p;
-    private SingingMachine machine;
+    private SingingMachineMonster machine;
 
-    public GrindingGearsAction(int amount, SingingMachine machine) {
+    public GrindingGearsAction(int amount, SingingMachineMonster machine) {
         this.p = AbstractDungeon.player;
         this.setValues(this.p, AbstractDungeon.player, amount);
         this.actionType = ActionType.CARD_MANIPULATION;

@@ -31,7 +31,7 @@ import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act1.fairyFestival.FairyQueen;
 import ruina.monsters.act1.laetitia.Laetitia;
 import ruina.monsters.act1.singingMachine.ManicEmployee;
-import ruina.monsters.act1.singingMachine.SingingMachine;
+import ruina.monsters.act1.singingMachine.SingingMachineMonster;
 import ruina.monsters.act1.spiderBud.SpiderBud;
 import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
@@ -194,7 +194,7 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Laetitia");
                 } else if (mo instanceof Fragment) {
                     this.bg = this.atlas.findRegion("mod/Fragment");
-                } else if (mo instanceof CrazedEmployee || mo instanceof SingingMachine || mo instanceof ManicEmployee) {
+                } else if (mo instanceof CrazedEmployee || mo instanceof SingingMachineMonster || mo instanceof ManicEmployee) {
                     this.bg = this.atlas.findRegion("mod/Singing");
                 } else if (mo instanceof Butterflies) {
                     this.bg = this.atlas.findRegion("mod/Butterfly");

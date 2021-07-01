@@ -16,10 +16,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.cardmods.SingingMachineMod;
@@ -43,14 +42,12 @@ public class ManicEmployee extends AbstractRuinaMonster
     private static final byte TREMBLING_MOTION = 0;
     private static final byte PINE_FOR_THE_SONG = 1;
 
-    private final int DEBUFF = calcAscensionSpecial(1);
-    private final int STR = calcAscensionSpecial(2);
+    private final int DEBUFF = calcAscensionSpecial(2);
 
-    private final int debuff;
     public boolean forcedAttack;
-    private byte nextMoveByte;
+    private boolean dealtDamage = false;
 
-    private SingingMachine parent;
+    private SingingMachineMonster parent;
     private AbstractCard targetCard;
 
     public static final String POWER_ID = makeID("BeautifulSound");
@@ -59,19 +56,25 @@ public class ManicEmployee extends AbstractRuinaMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public ManicEmployee() {
-        this(0.0f, 0.0f, null, 0, (byte) 0);
+        this(0.0f, 0.0f);
     }
 
-    public ManicEmployee(final float x, final float y, SingingMachine parent, int debuff, byte firstMove) {
-        super(NAME, ID, 140, 0.0F, 0, 220.0f, 245.0f, null, x, y);
+    public ManicEmployee(final float x, final float y) {
+        super(NAME, ID, 100, 0.0F, 0, 220.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("CrazedEmployee/Spriter/CrazedEmployee.scml"));
-        this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(22), calcAscensionTankiness(25));
+        this.type = EnemyType.BOSS;
+        setHp(calcAscensionTankiness(maxHealth));
         addMove(TREMBLING_MOTION, Intent.DEBUFF);
-        addMove(PINE_FOR_THE_SONG, Intent.ATTACK, calcAscensionDamage(7));
-        this.debuff = debuff;
-        this.nextMoveByte = firstMove;
-        this.parent = parent;
+        addMove(PINE_FOR_THE_SONG, Intent.ATTACK, calcAscensionDamage(9));
+    }
+
+    @Override
+    public void usePreBattleAction() {
+        for (AbstractMonster mo : monsterList()) {
+            if (mo instanceof SingingMachineMonster) {
+                parent = (SingingMachineMonster) mo;
+            }
+        }
     }
 
     @Override
@@ -83,33 +86,25 @@ public class ManicEmployee extends AbstractRuinaMonster
             info.applyPowers(this, adp());
         }
 
+        if (firstMove) {
+            firstMove = false;
+        }
+
         switch (this.nextMove) {
             case TREMBLING_MOTION: {
                 blockAnimation();
-                if (debuff == 0) {
-                    applyToTarget(adp(), this, new WeakPower(adp(), DEBUFF, true));
-                } else if (debuff == 1) {
+                if (adp().hasPower(WeakPower.POWER_ID)) {
                     applyToTarget(adp(), this, new FrailPower(adp(), DEBUFF, true));
                 } else {
-                    applyToTarget(adp(), this, new VulnerablePower(adp(), DEBUFF, true));
+                    applyToTarget(adp(), this, new WeakPower(adp(), DEBUFF, true));
                 }
                 resetIdle();
-                nextMoveByte = PINE_FOR_THE_SONG;
                 break;
             }
             case PINE_FOR_THE_SONG: {
                 attackAnimation(adp());
                 dmg(adp(), info);
                 resetIdle();
-                if (forcedAttack) {
-                    if (debuff == 0) {
-                        nextMoveByte = TREMBLING_MOTION;
-                    } else {
-                        nextMoveByte = PINE_FOR_THE_SONG;
-                    }
-                } else {
-                    nextMoveByte = TREMBLING_MOTION;
-                }
                 forcedAttack = false;
                 break;
             }
@@ -134,8 +129,9 @@ public class ManicEmployee extends AbstractRuinaMonster
         if (forcedAttack) {
             setAttack();
         } else {
-            if (nextMoveByte == TREMBLING_MOTION) {
+            if (dealtDamage || firstMove) {
                 setMoveShortcut(TREMBLING_MOTION, MOVES[TREMBLING_MOTION]);
+                dealtDamage = false;
             } else {
                 setAttack();
             }
@@ -186,9 +182,9 @@ public class ManicEmployee extends AbstractRuinaMonster
         if (!validCards.isEmpty()) {
             targetCard = validCards.get(AbstractDungeon.monsterRng.random(validCards.size() - 1));
         }
-        if (targetCard != null) {
+        if (targetCard != null && (firstMove || !parent.isDeadOrEscaped())) {
             CardModifierManager.addModifier(targetCard, new SingingMachineMod());
-            applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STR) {
+            applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
 
                 @Override
                 public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
@@ -206,13 +202,13 @@ public class ManicEmployee extends AbstractRuinaMonster
                                 }
                             });
                         }
-                        applyToTarget(owner, owner, new StrengthPower(owner, amount));
+                        dealtDamage = true;
                     }
                 }
 
                 @Override
                 public void updateDescription() {
-                    description = POWER_DESCRIPTIONS[0] + FontHelper.colorString(targetCard.name, "y") + POWER_DESCRIPTIONS[1] + amount + POWER_DESCRIPTIONS[2];
+                    description = POWER_DESCRIPTIONS[0] + FontHelper.colorString(targetCard.name, "y") + POWER_DESCRIPTIONS[1];
                 }
             });
         }
@@ -222,18 +218,16 @@ public class ManicEmployee extends AbstractRuinaMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        for (int i = 0; i < parent.minions.length; i++) {
-            if (parent.minions[i] == this) {
-                parent.minions[i] = null;
-                break;
-            }
+        CardModifierManager.removeModifiersById(targetCard, SingingMachineMod.ID, true);
+        if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+            onBossVictoryLogic();
         }
     }
 
     @Override
     public void renderTip(SpriteBatch sb) {
         super.renderTip(sb);
-        if (targetCard != null) {
+        if (targetCard != null && hasPower(POWER_ID)) {
             tips.add(new CardPowerTip(targetCard.makeStatEquivalentCopy()));
         }
     }

@@ -9,7 +9,7 @@ import ruina.RuinaMod;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.blackSwan.BlackSwan;
 import ruina.monsters.act1.fairyFestival.FairyQueen;
-import ruina.monsters.act1.singingMachine.SingingMachine;
+import ruina.monsters.act1.singingMachine.SingingMachineMonster;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.Ozma;
 import ruina.monsters.act3.Twilight;
@@ -55,7 +55,7 @@ public class AbstractRuinaDungeon extends CustomDungeon {
         if (bossKey != null) {
             if (bossKey.equals(FairyQueen.ID)) {
                 floor = Floor.MALKUTH;
-            } else if (bossKey.equals(SingingMachine.ID)) {
+            } else if (bossKey.equals(SingingMachineMonster.ID)) {
                 floor = Floor.YESOD;
             } else if (bossKey.equals(BlackSwan.ID)) {
                 floor = Floor.HOD;

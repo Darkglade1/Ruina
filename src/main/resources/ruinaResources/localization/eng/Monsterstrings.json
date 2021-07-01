@@ -1255,12 +1255,12 @@
       "Fourth Brother"
     ]
   },
-  "${ModID}:SingingMachine": {
+  "${ModID}:SingingMachineMonster": {
     "MOVES": [
       "Bloody Tune",
       "Grinding Gears",
       "Unforgettable Performance",
-      "Manic Performers"
+      "Crushing Beats"
     ],
     "NAME": "Singing Machine",
     "DIALOG": [

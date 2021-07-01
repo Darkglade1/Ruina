@@ -585,10 +585,10 @@
   },
   "${ModID}:Machine": {
     "NAME": "Machine that Sings",
-    "DESCRIPTIONS": ["For every #yAttack in the #ySinging #yMachine, minions spawn with #b", " #yStrength. NL For every #ySkill in the #ySinging #yMachine, minions spawn with #b", " #yMetallicize."]
+    "DESCRIPTIONS": ["At end of round, ALL enemies gain #b", " #yStrength for every card in the #ySinging #yMachine."]
   },
   "${ModID}:BeautifulSound": {
     "NAME": "A Beautiful Sound",
-    "DESCRIPTIONS": ["If this creature deals unblocked attack damage to you this turn, ", " is #yExhausted and put into the #ySinging #yMachine, and this creature gains #b", " #yStrength."]
+    "DESCRIPTIONS": ["If this creature deals unblocked attack damage to you this turn, ", " is #yExhausted and put into the #ySinging #yMachine."]
   }
 }

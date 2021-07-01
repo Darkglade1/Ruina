@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.actions.GrindingGearsAction;
-import ruina.monsters.act1.singingMachine.SingingMachine;
+import ruina.monsters.act1.singingMachine.SingingMachineMonster;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.atb;
@@ -18,9 +18,9 @@ public class GrindingGears extends AbstractRuinaCard {
     private static final int HP_LOSS = 5;
     private static final int NUM_CARD = 1;
 
-    private SingingMachine machine;
+    private SingingMachineMonster machine;
 
-    public GrindingGears(SingingMachine machine) {
+    public GrindingGears(SingingMachineMonster machine) {
         super(ID, COST, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE);
         magicNumber = baseMagicNumber = HP_LOSS;
         secondMagicNumber = baseSecondMagicNumber = NUM_CARD;

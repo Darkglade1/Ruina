@@ -68,6 +68,8 @@ import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act1.fairyFestival.FairyQueen;
 import ruina.monsters.act1.laetitia.Laetitia;
+import ruina.monsters.act1.singingMachine.ManicEmployee;
+import ruina.monsters.act1.singingMachine.SingingMachineMonster;
 import ruina.monsters.act1.spiderBud.SpiderBud;
 import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
@@ -753,7 +755,11 @@ public class RuinaMod implements
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
         asiyah.addBoss(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new, makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
-        asiyah.addBoss(ruina.monsters.act1.singingMachine.SingingMachine.ID, (BaseMod.GetMonster) ruina.monsters.act1.singingMachine.SingingMachine::new, makeMonsterPath("SingingMachine/SingingMachineMap.png"), makeMonsterPath("SingingMachine/SingingMachineMapIcon.png"));
+        asiyah.addBoss(SingingMachineMonster.ID, () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new ManicEmployee(-200.0F, 0.0F),
+                        new SingingMachineMonster(100.0F, 0.0F),
+                }), makeMonsterPath("SingingMachine/SingingMachineMap.png"), makeMonsterPath("SingingMachine/SingingMachineMapIcon.png"));
         asiyah.addBoss(BlackSwan.ID, () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Brother(-450.0F, 0.0F, 1),
