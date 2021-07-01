@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DrawReductionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
@@ -117,6 +118,9 @@ public class Ozma extends AbstractRuinaMonster
             case FADING_MEMORIES: {
                 debuffAnimation();
                 applyToTarget(adp(), this, new Oblivion(adp(), DRAW_DEBUFF));
+                if (AbstractDungeon.ascensionLevel >= 19) {
+                    applyToTarget(adp(), this, new DrawReductionPower(adp(), 1));
+                }
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override

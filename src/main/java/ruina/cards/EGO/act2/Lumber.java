@@ -1,17 +1,14 @@
 package ruina.cards.EGO.act2;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ModifyDamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import ruina.actions.CallbackExhaustAction;
 import ruina.cards.EGO.AbstractEgoCard;
 import ruina.vfx.BloodSplatter;
-import ruina.vfx.ErosionSplatter;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -29,6 +26,7 @@ public class Lumber extends AbstractEgoCard {
         super(ID, 1, CardType.ATTACK, CardTarget.ENEMY);
         baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = EXHAUST;
+        shuffleBackIntoDrawPile = true;
     }
 
     @Override

@@ -46,7 +46,7 @@
   },
   "${ModID}:Lumber": {
     "NAME": "Lumber",
-    "DESCRIPTION": "Deal !D! damage. NL Exhaust up to !M! cards. For each Attack exhausted, add its base damage to this card's damage."
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust up to !M! cards. For each Attack exhausted, add its base damage to this card's damage. NL Shuffle this card into your draw pile."
   },
   "${ModID}:Harvest": {
     "NAME": "Harvest",
