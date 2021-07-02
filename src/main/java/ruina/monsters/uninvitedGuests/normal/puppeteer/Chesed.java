@@ -49,7 +49,7 @@ public class Chesed extends AbstractAllyCardMonster
 
     public final int STRENGTH = 2;
     public final int ENERGY_SHIELD_BLOCK = 15;
-    public final int CONCENTRATE_BLOCK = 11;
+    public final int CONCENTRATE_BLOCK = 18;
     public final int CONCENTRATE_HITS = 2;
     public final int DISPOSAL_HITS = 2;
     
@@ -77,17 +77,17 @@ public class Chesed extends AbstractAllyCardMonster
     }
 
     public Chesed(final float x, final float y) {
-        super(NAME, ID, 130, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(NAME, ID, 150, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Chesed/Spriter/Chesed.scml"));
         this.animation.setFlip(true, false);
 
         this.setHp(calcAscensionTankiness(this.maxHealth));
         this.type = EnemyType.BOSS;
 
-        addMove(BATTLEFIELD_COMMAND, Intent.ATTACK_BUFF, 16);
-        addMove(ENERGY_SHIELD, Intent.ATTACK_DEFEND, 6);
-        addMove(CONCENTRATE, Intent.ATTACK_DEFEND, 10, CONCENTRATE_HITS, true);
-        addMove(DISPOSAL, Intent.ATTACK, 11, DISPOSAL_HITS, true);
+        addMove(BATTLEFIELD_COMMAND, Intent.ATTACK_BUFF, 18);
+        addMove(ENERGY_SHIELD, Intent.ATTACK_DEFEND, 7);
+        addMove(CONCENTRATE, Intent.ATTACK_DEFEND, 11, CONCENTRATE_HITS, true);
+        addMove(DISPOSAL, Intent.ATTACK, 12, DISPOSAL_HITS, true);
 
         cardList.add(new BattleCommand(this));
         cardList.add(new EnergyShield(this));

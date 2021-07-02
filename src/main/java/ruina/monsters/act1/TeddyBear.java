@@ -27,7 +27,7 @@ public class TeddyBear extends AbstractRuinaMonster
     private static final byte TIMID_ENDEARMENT = 0;
     private static final byte DISPLAY_AFFECTION = 1;
 
-    private final int BLOCK = calcAscensionTankiness(10);
+    private final int BLOCK = calcAscensionTankiness(11);
     private final int STRENGTH = calcAscensionSpecial(1);
 
     public static final String POWER_ID = makeID("Affection");
@@ -43,9 +43,9 @@ public class TeddyBear extends AbstractRuinaMonster
         super(NAME, ID, 140, 0.0F, 0, 250.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("TeddyBear/Spriter/TeddyBear.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(50), calcAscensionTankiness(54));
+        setHp(calcAscensionTankiness(55), calcAscensionTankiness(59));
         addMove(TIMID_ENDEARMENT, Intent.DEFEND);
-        addMove(DISPLAY_AFFECTION, Intent.ATTACK, calcAscensionDamage(11));
+        addMove(DISPLAY_AFFECTION, Intent.ATTACK, calcAscensionDamage(12));
     }
 
     @Override
