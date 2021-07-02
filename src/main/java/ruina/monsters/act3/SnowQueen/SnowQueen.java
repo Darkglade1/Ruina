@@ -142,8 +142,8 @@ public class SnowQueen extends AbstractRuinaMonster
                 break;
             }
             case FRIGID_GAZE: {
-                attack2Animation(adp());
                 block(this, BLOCK);
+                attack2Animation(adp());
                 dmg(adp(), info);
                 resetIdle();
                 break;

@@ -177,13 +177,10 @@ public class Roland extends AbstractAllyCardMonster {
             case CRYSTAL: {
                 block(this, crystalBlock);
                 for (int i = 0; i < multiplier; i++) {
-                    if (i == 0) {
-                        slashAnimation(target);
-                    } else {
-                        sword1Animation(target);
-                    }
+                    slashAnimation(target);
                     dmg(target, info);
-                    resetIdle();
+                    resetIdle(0.25f);
+                    waitAnimation(0.25f);
                 }
                 break;
             }

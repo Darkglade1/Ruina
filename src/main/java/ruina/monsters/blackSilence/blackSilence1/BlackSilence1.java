@@ -190,7 +190,7 @@ public class BlackSilence1 extends AbstractCardMonster {
                 for (int i = 0; i < multiplier; i++) {
                     slashAnimation(target);
                     dmg(target, info);
-                    resetIdle();
+                    resetIdle(0.25f);
                     waitAnimation(0.25f);
                 }
                 if (!isPlayerTurn()) {

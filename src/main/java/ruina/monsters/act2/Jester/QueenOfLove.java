@@ -114,7 +114,8 @@ public class QueenOfLove extends AbstractMagicalGirl
                         }
                     });
                     dmg(target, info);
-                    resetIdle();
+                    resetIdle(0.25f);
+                    waitAnimation(0.25f);
                 }
                 break;
             }

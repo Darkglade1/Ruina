@@ -65,7 +65,8 @@ public class SanguineBat extends AbstractRuinaMonster
                 for (int i = 0; i < multiplier; i++) {
                     attackAnimation(adp());
                     atb(new VampireDamageActionButItCanFizzle(adp(), info, AbstractGameAction.AttackEffect.NONE));
-                    resetIdle();
+                    resetIdle(0.25f);
+                    waitAnimation(0.25f);
                 }
                 break;
             }

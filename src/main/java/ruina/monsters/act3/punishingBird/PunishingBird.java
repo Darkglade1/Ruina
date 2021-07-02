@@ -71,6 +71,7 @@ public class PunishingBird extends AbstractRuinaMonster {
                     peckAnimation(adp());
                     dmg(adp(), info);
                     recoilAnimation();
+                    waitAnimation(0.25f);
                 }
                 resetIdle(0.0f);
                 intoDrawMo(new Wound(), STATUS, this);
@@ -150,7 +151,7 @@ public class PunishingBird extends AbstractRuinaMonster {
     }
 
     private void recoilAnimation() {
-        atb(new VFXActionButItCanFizzle(this, new WaitEffect(), 0.5f));
+        atb(new VFXActionButItCanFizzle(this, new WaitEffect(), 0.25f));
         animationAction("Recoil", null, this);
     }
 

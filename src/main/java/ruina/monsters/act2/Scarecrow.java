@@ -96,7 +96,8 @@ public class Scarecrow extends AbstractRuinaMonster
                 for (int i = 0; i < multiplier; i++) {
                     harvestAnimation(adp());
                     dmg(adp(), info);
-                    resetIdle();
+                    resetIdle(0.25f);
+                    waitAnimation(0.25f);
                 }
                 break;
             }

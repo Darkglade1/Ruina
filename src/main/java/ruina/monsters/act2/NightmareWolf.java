@@ -116,7 +116,8 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                 for (int i = 0; i < multiplier; i++) {
                     biteAnimation(target);
                     dmg(target, info);
-                    resetIdle();
+                    resetIdle(0.25f);
+                    waitAnimation(0.25f);
                 }
                 if (target == adp()) {
                     applyToTarget(target, this, new Bleed(target, BLEED));
