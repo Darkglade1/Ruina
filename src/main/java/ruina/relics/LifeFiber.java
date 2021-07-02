@@ -35,6 +35,8 @@ public class LifeFiber extends AbstractEasyRelic implements OnPlayerDeathRelic {
     }
 
     public void setCounter(int setCounter) {
+        super.setCounter(setCounter);
+        fixDescription();
         if (setCounter == -2) {
             this.usedUp();
             this.counter = -2;
