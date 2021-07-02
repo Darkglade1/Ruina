@@ -218,7 +218,9 @@ public class ManicEmployee extends AbstractRuinaMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        CardModifierManager.removeModifiersById(targetCard, SingingMachineMod.ID, true);
+        if (targetCard != null) {
+            CardModifierManager.removeModifiersById(targetCard, SingingMachineMod.ID, true);
+        }
         if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             onBossVictoryLogic();
         }
