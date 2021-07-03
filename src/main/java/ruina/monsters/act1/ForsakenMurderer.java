@@ -36,7 +36,7 @@ public class ForsakenMurderer extends AbstractRuinaMonster
     private static final byte METALLIC_RINGING = 1;
 
     private final int STRENGTH_LOSS = 1;
-    private final int STRENGTH = 1;
+    private final int STRENGTH = calcAscensionSpecial(1);
 
     public static final String POWER_ID = makeID("Fear");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -85,6 +85,10 @@ public class ForsakenMurderer extends AbstractRuinaMonster
             info.applyPowers(this, adp());
         }
 
+        if (firstMove) {
+            firstMove = false;
+        }
+
         switch (this.nextMove) {
             case CHAINED_WRATH: {
                 attackAnimation(adp());
@@ -108,15 +112,19 @@ public class ForsakenMurderer extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(CHAINED_WRATH)) {
-            possibilities.add(CHAINED_WRATH);
+        if (firstMove) {
+            setMoveShortcut(METALLIC_RINGING, MOVES[METALLIC_RINGING]);
+        } else {
+            ArrayList<Byte> possibilities = new ArrayList<>();
+            if (!this.lastMove(CHAINED_WRATH)) {
+                possibilities.add(CHAINED_WRATH);
+            }
+            if (!this.lastTwoMoves(METALLIC_RINGING)) {
+                possibilities.add(METALLIC_RINGING);
+            }
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            setMoveShortcut(move, MOVES[move]);
         }
-        if (!this.lastTwoMoves(METALLIC_RINGING)) {
-            possibilities.add(METALLIC_RINGING);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
     }
 
     private void attackAnimation(AbstractCreature enemy) {
