@@ -935,7 +935,7 @@
   },
   "${ModID}:Wingbeat": {
     "NAME": "Wingbeat",
-    "DESCRIPTION": "Discard !ruina:SecondMagic! cards. NL Gain !M! Dexterity. NL Exhaustive !stslib:ex!."
+    "DESCRIPTION": "Exhaust up to X cards. NL Heal HP and gain Dexterity equal to their combined costs."
   },
   "${ModID}:Regret": {
     "NAME": "Regret",
