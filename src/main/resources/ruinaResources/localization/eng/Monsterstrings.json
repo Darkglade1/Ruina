@@ -1258,7 +1258,6 @@
   "${ModID}:SingingMachineMonster": {
     "MOVES": [
       "Bloody Tune",
-      "Grinding Gears",
       "Unforgettable Performance",
       "Crushing Beats"
     ],

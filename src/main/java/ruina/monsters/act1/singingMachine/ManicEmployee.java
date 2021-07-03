@@ -45,7 +45,6 @@ public class ManicEmployee extends AbstractRuinaMonster
     private final int DEBUFF = calcAscensionSpecial(2);
 
     public boolean forcedAttack;
-    private boolean dealtDamage = false;
 
     private SingingMachineMonster parent;
     private AbstractCard targetCard;
@@ -60,12 +59,12 @@ public class ManicEmployee extends AbstractRuinaMonster
     }
 
     public ManicEmployee(final float x, final float y) {
-        super(NAME, ID, 100, 0.0F, 0, 220.0f, 245.0f, null, x, y);
+        super(NAME, ID, 110, 0.0F, 0, 220.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("CrazedEmployee/Spriter/CrazedEmployee.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
         addMove(TREMBLING_MOTION, Intent.DEBUFF);
-        addMove(PINE_FOR_THE_SONG, Intent.ATTACK, calcAscensionDamage(9));
+        addMove(PINE_FOR_THE_SONG, Intent.ATTACK, calcAscensionDamage(8));
     }
 
     @Override
@@ -129,9 +128,8 @@ public class ManicEmployee extends AbstractRuinaMonster
         if (forcedAttack) {
             setAttack();
         } else {
-            if (dealtDamage || firstMove) {
+            if (lastMove(PINE_FOR_THE_SONG) || firstMove) {
                 setMoveShortcut(TREMBLING_MOTION, MOVES[TREMBLING_MOTION]);
-                dealtDamage = false;
             } else {
                 setAttack();
             }
@@ -182,13 +180,13 @@ public class ManicEmployee extends AbstractRuinaMonster
         if (!validCards.isEmpty()) {
             targetCard = validCards.get(AbstractDungeon.monsterRng.random(validCards.size() - 1));
         }
-        if (targetCard != null && (firstMove || !parent.isDeadOrEscaped())) {
+        if (targetCard != null && !parent.isDeadOrEscaped()) {
             CardModifierManager.addModifier(targetCard, new SingingMachineMod());
             applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
 
                 @Override
                 public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                    if (damageAmount > 0 && info.owner == owner && target == adp()) {
+                    if (info.owner == owner) {
                         CardGroup group = findCardGroupOfCard(targetCard);
                         if (group != null) {
                             atb(new ExhaustSpecificCardAction(targetCard, group));
@@ -202,7 +200,6 @@ public class ManicEmployee extends AbstractRuinaMonster
                                 }
                             });
                         }
-                        dealtDamage = true;
                     }
                 }
 

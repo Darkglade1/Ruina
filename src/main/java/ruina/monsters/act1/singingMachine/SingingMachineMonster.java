@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
@@ -37,21 +38,19 @@ public class SingingMachineMonster extends AbstractRuinaMonster
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte BLOODY_TUNE = 0;
-    private static final byte GRINDING_GEARS = 1;
-    private static final byte PERFORMANCE = 2;
-    private static final byte CRUSHING_BEATS = 3;
+    private static final byte PERFORMANCE = 1;
+    private static final byte CRUSHING_BEATS = 2;
 
     private final int STRENGTH = calcAscensionSpecial(2);
-    private final int SPECIAL_STATUS = calcAscensionSpecial(3);
+    private final int SPECIAL_STATUS = 1;
     private final int WOUNDS = calcAscensionSpecial(1);
     private final int VULNERABLE = 1;
 
-    private final int POWER_STRENGTH = calcAscensionSpecial(1);
-
-    private byte nextMoveByte = 0;
+    private final int POWER_STRENGTH = calcAscensionSpecial(2);
 
     public ManicEmployee employee;
     public ArrayList<AbstractCard> machineCards = new ArrayList<>();
+    public AbstractCard specialStatus = new GrindingGears(this);
 
     public static final String POWER_ID = makeID("Machine");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -68,9 +67,12 @@ public class SingingMachineMonster extends AbstractRuinaMonster
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
         addMove(BLOODY_TUNE, Intent.BUFF);
-        addMove(GRINDING_GEARS, Intent.DEBUFF);
         addMove(PERFORMANCE, Intent.STRONG_DEBUFF);
-        addMove(CRUSHING_BEATS, Intent.ATTACK, calcAscensionDamage(12));
+        addMove(CRUSHING_BEATS, Intent.ATTACK, calcAscensionDamage(11));
+
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            specialStatus.upgrade();
+        }
     }
 
     @Override
@@ -95,6 +97,7 @@ public class SingingMachineMonster extends AbstractRuinaMonster
                     if (machineCards.size() > 0) {
                         flash();
                         applyToTarget(mo, mo, new StrengthPower(mo, amount * machineCards.size()));
+                        applyToTarget(mo, mo, new LoseStrengthPower(mo, amount * machineCards.size()));
                     }
                 }
             }
@@ -125,15 +128,9 @@ public class SingingMachineMonster extends AbstractRuinaMonster
                 for (AbstractMonster mo : monsterList()) {
                     applyToTarget(mo, this, new StrengthPower(mo, STRENGTH));
                 }
-                nextMoveByte = GRINDING_GEARS;
+                intoDrawMo(specialStatus.makeStatEquivalentCopy(), SPECIAL_STATUS, this);
+                intoDiscardMo(specialStatus.makeStatEquivalentCopy(), SPECIAL_STATUS, this);
                 resetIdle(1.0f);
-                break;
-            }
-            case GRINDING_GEARS: {
-                openAnimation();
-                intoDiscardMo(new GrindingGears(this), SPECIAL_STATUS, this);
-                resetIdle(1.0f);
-                nextMoveByte = PERFORMANCE;
                 break;
             }
             case PERFORMANCE: {
@@ -146,7 +143,6 @@ public class SingingMachineMonster extends AbstractRuinaMonster
                 }
                 intoDiscardMo(new Wound(), WOUNDS, this);
                 resetIdle(1.0f);
-                nextMoveByte = BLOODY_TUNE;
                 if (employee != null) {
                     employee.forcedAttack = true;
                     atb(new RollMoveAction(employee));
@@ -172,12 +168,12 @@ public class SingingMachineMonster extends AbstractRuinaMonster
                 setMoveShortcut(CRUSHING_BEATS, MOVES[CRUSHING_BEATS]);
             }
         } else {
-            if (nextMoveByte == BLOODY_TUNE) {
-                setMoveShortcut(BLOODY_TUNE, MOVES[BLOODY_TUNE]);
-            } else if (nextMoveByte == GRINDING_GEARS) {
-                setMoveShortcut(GRINDING_GEARS, MOVES[GRINDING_GEARS]);
-            } else if (nextMoveByte == PERFORMANCE) {
+            if (lastMove(BLOODY_TUNE)) {
                 setMoveShortcut(PERFORMANCE, MOVES[PERFORMANCE]);
+            } else if (lastMove(PERFORMANCE)) {
+                setMoveShortcut(CRUSHING_BEATS, MOVES[CRUSHING_BEATS]);
+            } else {
+                setMoveShortcut(BLOODY_TUNE, MOVES[BLOODY_TUNE]);
             }
         }
     }

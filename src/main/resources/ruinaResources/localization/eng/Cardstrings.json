@@ -943,6 +943,6 @@
   },
   "${ModID}:GrindingGears": {
     "NAME": "Grinding Gears",
-    "DESCRIPTION": "Lose !M! HP. NL Remove !ruina:SecondMagic! card from the *Singing *Machine and add it to your hand."
+    "DESCRIPTION": "Take !M! damage. NL Remove !ruina:SecondMagic! card from the *Singing *Machine and add it to your hand. NL *Stun the *Singing *Machine for 1 turn."
   }
 }

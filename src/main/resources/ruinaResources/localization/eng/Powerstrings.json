@@ -585,10 +585,10 @@
   },
   "${ModID}:Machine": {
     "NAME": "Machine that Sings",
-    "DESCRIPTIONS": ["At end of round, ALL enemies gain #b", " #yStrength for every card in the #ySinging #yMachine."]
+    "DESCRIPTIONS": ["At end of round, ALL enemies gain #b", " #yTemporary #yStrength for every card in the #ySinging #yMachine."]
   },
   "${ModID}:BeautifulSound": {
     "NAME": "A Beautiful Sound",
-    "DESCRIPTIONS": ["If this creature deals unblocked attack damage to you this turn, ", " is #yExhausted and put into the #ySinging #yMachine."]
+    "DESCRIPTIONS": ["After this creature attacks this turn, ", " is #yExhausted and put into the #ySinging #yMachine."]
   }
 }
