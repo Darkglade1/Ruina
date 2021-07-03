@@ -26,7 +26,7 @@ public class FourthMatchFlame extends AbstractEgoCard {
 
     private static final int POWER_DAMAGE = 7;
     private static final int UP_POWER_DAMAGE = 2;
-    private static final int BURNS = 2;
+    private static final int BURNS = 1;
 
     public FourthMatchFlame() {
         super(ID, 1, CardType.POWER, CardTarget.SELF);

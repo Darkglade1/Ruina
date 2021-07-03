@@ -41,7 +41,7 @@ public class RightShoe extends AbstractRuinaMonster
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(26), calcAscensionTankiness(28));
         addMove(OBSESSION, Intent.BUFF);
-        addMove(BURSTING_DESIRE, Intent.ATTACK_BUFF, calcAscensionDamage(6));
+        addMove(BURSTING_DESIRE, Intent.ATTACK_BUFF, calcAscensionDamage(7));
     }
 
     @Override

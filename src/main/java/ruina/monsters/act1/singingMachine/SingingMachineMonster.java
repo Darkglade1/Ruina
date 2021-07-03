@@ -42,7 +42,7 @@ public class SingingMachineMonster extends AbstractRuinaMonster
     private static final byte CRUSHING_BEATS = 3;
 
     private final int STRENGTH = calcAscensionSpecial(2);
-    private final int SPECIAL_STATUS = calcAscensionSpecial(2);
+    private final int SPECIAL_STATUS = calcAscensionSpecial(3);
     private final int WOUNDS = calcAscensionSpecial(1);
     private final int VULNERABLE = 1;
 
@@ -63,7 +63,7 @@ public class SingingMachineMonster extends AbstractRuinaMonster
     }
 
     public SingingMachineMonster(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 210.0f, null, x, y);
+        super(NAME, ID, 150, 0.0F, 0, 250.0f, 210.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SingingMachine/Spriter/SingingMachine.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
