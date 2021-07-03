@@ -37,7 +37,7 @@ public class Fragment extends AbstractRuinaMonster
         super(NAME, ID, 140, 0.0F, 0, 250.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Fragment/Spriter/Fragment.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(50), calcAscensionTankiness(56));
+        setHp(calcAscensionTankiness(46), calcAscensionTankiness(52));
         addMove(PENETRATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
         addMove(ECHOES, Intent.ATTACK, calcAscensionDamage(12));
 

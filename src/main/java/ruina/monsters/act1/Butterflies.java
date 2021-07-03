@@ -39,12 +39,8 @@ public class Butterflies extends AbstractRuinaMonster
         super(NAME, ID, 140, 0.0F, 0, 100.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Butterflies/Spriter/Butterflies.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(11), calcAscensionTankiness(14));
-        int damage = 4;
-        if (AbstractDungeon.ascensionLevel >= 2) {
-           damage = 5;
-        }
-        addMove(TRANQUILITY, Intent.ATTACK, damage);
+        setHp(calcAscensionTankiness(12), calcAscensionTankiness(15));
+        addMove(TRANQUILITY, Intent.ATTACK, 5);
         addMove(LIBERATION, Intent.DEBUFF);
     }
 

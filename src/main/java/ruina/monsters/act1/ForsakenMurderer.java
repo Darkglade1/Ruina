@@ -52,8 +52,8 @@ public class ForsakenMurderer extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Murderer/Spriter/Murderer.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(43), calcAscensionTankiness(47));
-        addMove(CHAINED_WRATH, Intent.ATTACK_BUFF, calcAscensionDamage(5));
-        addMove(METALLIC_RINGING, Intent.ATTACK, calcAscensionDamage(7), 2, true);
+        addMove(CHAINED_WRATH, Intent.ATTACK_BUFF, calcAscensionDamage(6));
+        addMove(METALLIC_RINGING, Intent.ATTACK, calcAscensionDamage(6), 2, true);
     }
 
     @Override
