@@ -461,5 +461,134 @@
   "ruina:Judas": {
     "NAME": "Judas",
     "DESCRIPTIONS": ["每当一个生物死亡，在下个回合获得 #b", " 点 #y力量 。"]
+  },
+  "${ModID}:Pattern": {
+    "NAME": "Pattern Recognition",
+    "DESCRIPTIONS": ["Whenever this creature deals #b", " unblocked attack damage in a single turn, it removes all #pdebuffs from itself."]
+  },
+  "${ModID}:Fear": {
+    "NAME": "Fear",
+    "DESCRIPTIONS": ["Whenever you play an #yAttack, this creature loses #b", " #yStrength this turn."]
+  },
+  "${ModID}:Affection": {
+    "NAME": "Affection",
+    "DESCRIPTIONS": ["Whenever this creature fully or partially #yBlocks attack damage, it gains #b", " #yStrength."]
+  },
+  "${ModID}:FlamingBat": {
+    "NAME": "Flaming Bat",
+    "DESCRIPTIONS": ["When this creature deals unblocked damage, apply #b%d #yBurn."]
+  },
+  "${ModID}:Burn": {
+    "NAME": "Burn",
+    "DESCRIPTIONS": ["Take #b%d damage at the end of your turn and then remove all #yBurn."]
+  },
+  "${ModID}:Expression": {
+    "NAME": "Expression",
+    "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature changes its intent."]
+  },
+  "${ModID}:WintersInception": {
+    "NAME": "Winter's Inception",
+    "DESCRIPTIONS": ["The first #yAttack you play each turn gains #yLaurel #yWreath. This creature receives #b", "% less damage from #yAttacks without #yLaurel #yWreath."]
+  },
+  "${ModID}:Performance": {
+    "NAME": "Endless Performance",
+    "DESCRIPTIONS": ["At end of round, shuffle a #yPerformer card into your discard pile.", "Whenever a #yPerformer card is #yExhausted, add a copy of it into your discard pile."]
+  },
+  "${ModID}:FerventAdoration": {
+    "NAME": "Fervent Adoration",
+    "DESCRIPTIONS": ["At the start of your turn, draw #b", " card.", " cards.", " At the end of your turn, take #b", " damage."]
+  },
+  "${ModID}:RedEyesPower": {
+    "NAME": "Red Eyes",
+    "DESCRIPTIONS": ["Double the next #pdebuff you apply to this #renemy."]
+  },
+  "${ModID}:LaetitiaPower": {
+    "NAME": "Laetitia",
+    "DESCRIPTIONS": ["The first #b", " or ", " cost card(s) played each turn are played twice. (", " left)"]
+  },
+  "${ModID}:Satiation": {
+    "NAME": "Momentary Satiation",
+    "DESCRIPTIONS": ["Whenever this creature #yconsumes a minion, it gains #b", " #yWeak and #yVulnerable."]
+  },
+  "${ModID}:Meal": {
+    "NAME": "Prepared Meal",
+    "DESCRIPTIONS": ["At end of round, if this creature's HP is at or below #b", ", the enemy #yconsumes it."]
+  },
+  "${ModID}:LonelyIsSad": {
+    "NAME": "Being Lonely is Sad",
+    "DESCRIPTIONS": [
+      "Receives #b", "% more damage from attacks if there are no other enemies alive."
+    ]
+  },
+  "${ModID}:Gimme": {
+    "NAME": "Gimme that Gift!",
+    "DESCRIPTIONS": [
+      "Whenever you receive unblocked attack damage from this creature, #yExhaust all #yGifts in your hand."
+    ]
+  },
+  "${ModID}:SurprisePresent": {
+    "NAME": "Surprise Present",
+    "DESCRIPTIONS": [
+      "In #b%1$s turns, this creature #rexplodes, dealing #b%2$s damage to you and adding a #yGift to your hand. NL NL On death, spawns a #bWee #bWitch's #bFriend.",
+      "In #b%1$s turn, this creature #rexplodes, dealing #b%2$s damage to you and adding a #yGift to your hand. NL NL On death, spawns a #bWee #bWitch's #bFriend."
+    ]
+  },
+  "${ModID}:Song": {
+    "NAME": "Pine for the Song",
+    "DESCRIPTIONS": ["At end of round, gains #b", " #yStrength and #b", " #yVulnerable."]
+  },
+  "${ModID}:Pleasure": {
+    "NAME": "Pleasure",
+    "DESCRIPTIONS": ["At the start of your turn, gain ", " At the end of your turn, take #b", " damage."]
+  },
+  "${ModID}:FaintAroma": {
+    "NAME": "Faint Aroma",
+    "DESCRIPTIONS": ["Whenever you deal unblocked attack damage to an #renemy, it loses HP equal to #b","x that amount."]
+  },
+  "${ModID}:Grinder": {
+    "NAME": "Grinder Mk. 5-2",
+    "DESCRIPTIONS": ["The first time you deal #b", " unblocked attack damage each turn, gain ", "next turn."]
+  },
+  "${ModID}:DontLeave": {
+    "NAME": "Don't Leave Me",
+    "DESCRIPTIONS": ["When this creature #rdies, it #grevives this turn with the HP of another #renemy."]
+  },
+  "${ModID}:Hunt": {
+    "NAME": "The Hunt is On",
+    "DESCRIPTIONS": ["Whenever another creature #rdies or if this creature is alone, uses a #rstrong attack next turn."]
+  },
+  "${ModID}:Dream": {
+    "NAME": "Broken Dream",
+    "DESCRIPTIONS": ["At end of round, another #yBrother becomes #yactive. NL If #b", " or more #yBrothers have #rdied, begins to use a #rpowerful attack. NL NL Random targeting effects always target this creature."]
+  },
+  "${ModID}:BrotherPower": {
+    "NAME": "Brother",
+    "DESCRIPTIONS": [
+      "At end of round, if this creature is #yactive, ",
+      "the boss gains #b%1$s #yPlated #yArmor.",
+      "the boss gains #b%1$s #yArtifact if it has no #yArtifact.",
+      "shuffle #b%1$s #yDazed into your discard pile.",
+      "you gain #b%1$s #yVulnerable.",
+      "Faithful Brother",
+      "Dauntless Brother",
+      "Stalwart Brother",
+      "Valiant Brother"
+    ]
+  },
+  "${ModID}:HornetPower": {
+    "NAME": "Hornet",
+    "DESCRIPTIONS": ["The next #yAttack you play deals double damage."]
+  },
+  "${ModID}:FourthMatchFlame": {
+    "NAME": "Fourth Match Flame",
+    "DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to ALL enemies."]
+  },
+  "${ModID}:Machine": {
+    "NAME": "Machine that Sings",
+    "DESCRIPTIONS": ["At end of round, ALL enemies gain #b", " #yTemporary #yStrength for every card in the #ySinging #yMachine."]
+  },
+  "${ModID}:BeautifulSound": {
+    "NAME": "A Beautiful Sound",
+    "DESCRIPTIONS": ["After this creature attacks this turn, ", " is #yExhausted and put into the #ySinging #yMachine."]
   }
 }
