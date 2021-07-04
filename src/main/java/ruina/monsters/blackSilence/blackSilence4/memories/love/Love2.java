@@ -17,6 +17,7 @@ public class Love2 extends Love {
         super(parent);
         this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
         this.initializeDescription();
+        cardsToPreview = new Slimed();
     }
 
     @Override

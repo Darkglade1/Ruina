@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static ruina.RuinaMod.getModID;
 import static ruina.util.TexLoader.getCardTextureString;
 import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.att;
 
 public abstract class AbstractRuinaCard extends CustomCard {
 
@@ -143,6 +144,10 @@ public abstract class AbstractRuinaCard extends CustomCard {
     // These shortcuts are specifically for cards. All other shortcuts that aren't specifically for cards can go in Wiz.
     protected void dmg(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
         atb(new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
+    }
+
+    protected void dmgTop(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
+        att(new DamageAction(m, new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn), fx));
     }
 
     protected void allDmg(AbstractGameAction.AttackEffect fx) {

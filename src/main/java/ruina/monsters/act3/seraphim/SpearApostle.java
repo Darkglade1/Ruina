@@ -24,7 +24,7 @@ public class SpearApostle extends AbstractRuinaMonster {
     private static final byte FOR_HE_IS_HOLY = 0;
     private static final byte THE_WILL_OF_THE_LORD_BE_DONE = 1;
 
-    private final int debuff = calcAscensionSpecial(3);
+    private final int debuff = calcAscensionSpecial(calcAscensionSpecial(3));
 
     private final Prophet prophet;
 
@@ -32,7 +32,7 @@ public class SpearApostle extends AbstractRuinaMonster {
         super(NAME, ID, 50, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SpearApostle/Spriter/SpearApostle.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(35), calcAscensionTankiness(40));
+        setHp(calcAscensionTankiness(39), calcAscensionTankiness(44));
         addMove(THE_WILL_OF_THE_LORD_BE_DONE, Intent.ATTACK, calcAscensionDamage(24));
         addMove(FOR_HE_IS_HOLY, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
         prophet = parent;

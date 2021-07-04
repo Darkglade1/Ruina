@@ -1,10 +1,18 @@
 {
+  "ruina:Asiyah": {
+    "TEXT": [
+      "Asiyah",
+      "Act 1",
+      "你的手中有一张精致的邀请函, 上面许诺了远超你最疯狂的想象的 #y财富 与 #y知识 。",
+      "接受邀请。"
+    ]
+  },
   "ruina:Briah": {
     "TEXT": [
       "Briah",
       "Act 2",
-      "你的手中有一张精致的邀请函, 上面许诺了远超你最疯狂的想象的 #y财富 与 #y知识 。",
-      "接受邀请。"
+      "A lesser individual would have faltered against the #phorrors that inhabited this space. But you #gpersevere, guided by the #ymemories of those who came before you.",
+      "继续攀升。"
     ]
   },
   "ruina:Atziluth": {
@@ -82,6 +90,28 @@
   "ruina:BlackSilence": {
     "TEXT": [
       "漆黑噤默"
+    ]
+  },
+  "${ModID}:FrostSplinter": {
+    "TEXT": [
+      "Freeze."
+    ]
+  },
+  "${ModID}:OurGalaxyAction": {
+    "TEXT": [
+      "Choose a Card to Play."
+    ]
+  },
+  "${ModID}:GrindingGearsAction": {
+    "TEXT": [
+      "Choose a Card to Put Into Your Hand."
+    ]
+  },
+  "${ModID}:NeowOptions": {
+    "TEXT": [
+      "[ #gObtain #ga #grandom #gEGO #gcard ]",
+      " #gChoose #gan #gEGO #gcard #gto #gobtain ]",
+      "Choose an EGO card"
     ]
   }
 }

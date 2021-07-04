@@ -1,11 +1,13 @@
 package ruina.cards;
 
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.util.Wiz;
 
 import static ruina.RuinaMod.makeID;
 
+@AutoAdd.Ignore
 public class FragmentOfBliss extends AbstractRuinaCard {
     public final static String ID = makeID(FragmentOfBliss.class.getSimpleName());
     private static final int BLOCK = 30;

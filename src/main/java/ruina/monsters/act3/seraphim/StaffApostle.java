@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractRuinaMonster;
@@ -39,7 +40,7 @@ public class StaffApostle extends AbstractRuinaMonster {
         super(NAME, ID, 50, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("StaffApostle/Spriter/StaffApostle.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(44), calcAscensionTankiness(48));
+        setHp(calcAscensionTankiness(49), calcAscensionTankiness(53));
         addMove(THY_WORDS, Intent.ATTACK_BUFF, calcAscensionDamage(7));
         addMove(GIVE_US_REST, Intent.DEFEND_BUFF);
         prophet = parent;
@@ -60,6 +61,9 @@ public class StaffApostle extends AbstractRuinaMonster {
                     if (!(mo instanceof AbstractAllyMonster)) {
                         applyToTarget(mo, this, new StrengthPower(mo, STRENGTH));
                     }
+                }
+                if (AbstractDungeon.ascensionLevel >= 19) {
+                    applyToTarget(adp(), this, new VulnerablePower(adp(), 1, true));
                 }
                 resetIdle();
                 break;

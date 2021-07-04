@@ -59,12 +59,23 @@ public class Briah extends AbstractRuinaDungeon {
 
     @Override
     public String getBodyText() {
-        return TEXT[2];
+        if (CardCrawlGame.dungeon instanceof Asiyah) {
+            return TEXT[2];
+        } else {
+            String[] oldStrings = CardCrawlGame.languagePack.getUIString(Asiyah.ID).TEXT;
+            return oldStrings[2];
+        }
+
     }
 
     @Override
     public String getOptionText() {
-        return TEXT[3];
+        if (CardCrawlGame.dungeon instanceof Asiyah) {
+            return TEXT[3];
+        } else {
+            String[] oldStrings = CardCrawlGame.languagePack.getUIString(Asiyah.ID).TEXT;
+            return oldStrings[3];
+        }
     }
 
     @Override

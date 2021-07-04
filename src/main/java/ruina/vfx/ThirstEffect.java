@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.util.TexLoader;
@@ -23,7 +22,6 @@ public class ThirstEffect extends AbstractGameEffect {
     private final Color[] color2 = new Color[5];
 
     private int stage;
-    private boolean playedInitialSound = false;
     private boolean playedBloodSound = false;
 
     public ThirstEffect() {
@@ -31,8 +29,6 @@ public class ThirstEffect extends AbstractGameEffect {
             this.img[i] = TexLoader.getTexture(makeVfxPath("NosferatuThirstEffect" + i + ".png"));
         }
 
-        this.color = Color.RED.cpy();
-        this.color.a = 0.0F;
         for (int i = 0; i < 5; i++) {
             this.color2[i] = Color.WHITE.cpy();
             (this.color2[i]).a = 0.0F;
@@ -45,16 +41,8 @@ public class ThirstEffect extends AbstractGameEffect {
     }
 
     public void update() {
-        if (!playedInitialSound) {
-            AbstractRuinaMonster.playSound("NosSpecial");
-            playedInitialSound = true;
-        }
         this.startingDuration -= Gdx.graphics.getDeltaTime();
-        if (this.startingDuration > 0.5F) {
-            this.color.a = 1.0F - this.startingDuration;
-        } else if (this.startingDuration > 0.0F) {
-            this.color.a = this.startingDuration;
-        } else if (this.duration > 0.0F) {
+        if (this.duration > 0.0F) {
             this.duration -= Gdx.graphics.getDeltaTime();
             if (this.stage > 1) {
                 if (this.animTimer == 0.1F) {
@@ -91,8 +79,6 @@ public class ThirstEffect extends AbstractGameEffect {
     }
 
     public void render(SpriteBatch sb) {
-        sb.setColor(this.color);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0.0F, 0.0F, Settings.WIDTH, Settings.HEIGHT);
         for (int i = 0; i < 5; i++) {
             sb.setColor(this.color2[i]);
             sb.draw(this.img[i], 0.0F, 0.0F, Settings.WIDTH, Settings.HEIGHT);

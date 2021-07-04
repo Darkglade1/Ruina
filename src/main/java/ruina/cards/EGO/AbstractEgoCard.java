@@ -11,6 +11,26 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
+import ruina.cards.EGO.act1.BlackSwan;
+import ruina.cards.EGO.act1.DaCapo;
+import ruina.cards.EGO.act1.FaintAroma;
+import ruina.cards.EGO.act1.Forgotten;
+import ruina.cards.EGO.act1.FourthMatchFlame;
+import ruina.cards.EGO.act1.Fragments;
+import ruina.cards.EGO.act1.GreenStem;
+import ruina.cards.EGO.act1.Grinder;
+import ruina.cards.EGO.act1.Harmony;
+import ruina.cards.EGO.act1.Hornet;
+import ruina.cards.EGO.act1.Laetitia;
+import ruina.cards.EGO.act1.MagicBullet;
+import ruina.cards.EGO.act1.OurGalaxy;
+import ruina.cards.EGO.act1.Pleasure;
+import ruina.cards.EGO.act1.RedEyes;
+import ruina.cards.EGO.act1.Regret;
+import ruina.cards.EGO.act1.SanguineDesire;
+import ruina.cards.EGO.act1.SolemnLament;
+import ruina.cards.EGO.act1.TodaysExpression.TodaysExpression;
+import ruina.cards.EGO.act1.Wingbeat;
 import ruina.cards.EGO.act2.*;
 import ruina.cards.EGO.act3.*;
 import ruina.util.TexLoader;
@@ -76,13 +96,48 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         return new TextureAtlas.AtlasRegion(texture, 0, 0, texture.getWidth(), texture.getHeight());
     }
 
+    public static AbstractCard getNeowRandomEGOCard() {
+        ArrayList<String> list = new ArrayList<>();
+        addAct1EgoCards(list);
+        addAct2EgoCards(list);
+        addAct3EgoCards(list);
+
+        Collections.shuffle(list, AbstractDungeon.cardRandomRng.random);
+        return CardLibrary.getCard(list.get(0)).makeCopy();
+    }
+
+    public static ArrayList<AbstractCard> getNeowChooseEGOCard() {
+        ArrayList<String> list1 = new ArrayList<>();
+        ArrayList<String> list2 = new ArrayList<>();
+        ArrayList<String> list3 = new ArrayList<>();
+        addAct1EgoCards(list1);
+        addAct2EgoCards(list2);
+        addAct3EgoCards(list3);
+        Collections.shuffle(list1, AbstractDungeon.cardRandomRng.random);
+        Collections.shuffle(list2, AbstractDungeon.cardRandomRng.random);
+        Collections.shuffle(list3, AbstractDungeon.cardRandomRng.random);
+        ArrayList<String> finalList = new ArrayList<>();
+        finalList.add(list1.get(0));
+        finalList.add(list2.get(0));
+        finalList.add(list3.get(0));
+        ArrayList<AbstractCard> egoCards = new ArrayList<>();
+        for (String egoID : finalList) {
+            AbstractCard egoCard = CardLibrary.getCard(egoID).makeCopy();
+            egoCards.add(egoCard);
+        }
+        return egoCards;
+    }
+
     public static ArrayList<AbstractCard> getRandomEgoCards(int amount, int actNum) {
         ArrayList<String> list = new ArrayList<>();
-        if (actNum == 2) {
+        if (actNum == 1) {
+            addAct1EgoCards(list);
+        } else if (actNum == 2) {
             addAct2EgoCards(list);
         } else if (actNum == 3) {
             addAct3EgoCards(list);
         } else {
+            addAct1EgoCards(list);
             addAct2EgoCards(list);
             addAct3EgoCards(list);
         }
@@ -99,6 +154,32 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
 
     public static ArrayList<AbstractCard> getRandomEgoCards(int amount) {
         return getRandomEgoCards(amount, AbstractDungeon.actNum);
+    }
+
+    public static void addAct1EgoCards(ArrayList<String> list) {
+        if (AbstractDungeon.actNum < 4) {
+            //stop the meta scaling cards from appearing in Act 4 shop
+            list.add(DaCapo.ID);
+            list.add(Harmony.ID);
+        }
+        list.add(TodaysExpression.ID);
+        list.add(SanguineDesire.ID);
+        list.add(RedEyes.ID);
+        list.add(Laetitia.ID);
+        list.add(BlackSwan.ID);
+        list.add(Fragments.ID);
+        list.add(OurGalaxy.ID);
+        list.add(Pleasure.ID);
+        list.add(FaintAroma.ID);
+        list.add(Grinder.ID);
+        list.add(Hornet.ID);
+        list.add(Forgotten.ID);
+        list.add(GreenStem.ID);
+        list.add(MagicBullet.ID);
+        list.add(FourthMatchFlame.ID);
+        list.add(SolemnLament.ID);
+        list.add(Wingbeat.ID);
+        list.add(Regret.ID);
     }
 
     public static void addAct2EgoCards(ArrayList<String> list) {

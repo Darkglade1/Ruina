@@ -47,8 +47,8 @@ public class SilentGirl extends AbstractRuinaMonster
     private static final byte SUPPRESS = 6;
 
     private final int FRAIL = calcAscensionSpecial(2);
-    private final int VULNERABLE = calcAscensionSpecial(1);
-    private final int STRENGTH = calcAscensionSpecial(2);
+    private final int VULNERABLE = calcAscensionSpecial(2);
+    private final int STRENGTH = calcAscensionSpecial(3);
     private final int BLOCK = calcAscensionTankiness(12);
     private final int PARALYSIS = calcAscensionSpecial(2);
     private final int CURSE_AMT = 1;
@@ -73,11 +73,11 @@ public class SilentGirl extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SilentGirl/Spriter/SilentGirl.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
-        addMove(DIGGING_NAIL, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
-        addMove(SLAM, Intent.ATTACK_DEFEND, calcAscensionDamage(19));
-        addMove(A_CRACKED_HEART, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
-        addMove(COLLAPSING_HEART, Intent.ATTACK, calcAscensionDamage(21));
-        addMove(BROKEN, Intent.ATTACK, calcAscensionDamage(11), 2, true);
+        addMove(DIGGING_NAIL, Intent.ATTACK_DEBUFF, calcAscensionDamage(16));
+        addMove(SLAM, Intent.ATTACK_DEFEND, calcAscensionDamage(20));
+        addMove(A_CRACKED_HEART, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
+        addMove(COLLAPSING_HEART, Intent.ATTACK, calcAscensionDamage(22));
+        addMove(BROKEN, Intent.ATTACK, calcAscensionDamage(12), 2, true);
         addMove(LEER, Intent.DEBUFF);
         addMove(SUPPRESS, Intent.DEFEND_BUFF);
 
@@ -225,6 +225,12 @@ public class SilentGirl extends AbstractRuinaMonster
     public void renderTip(SpriteBatch sb) {
         super.renderTip(sb);
         tips.add(new CardPowerTip(curse.makeStatEquivalentCopy()));
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        onBossVictoryLogic();
     }
 
     private void rangedAnimation(AbstractCreature enemy) {

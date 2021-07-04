@@ -46,7 +46,7 @@ public class JudgementBird extends AbstractRuinaMonster
     private int cooldownCounter = COOLDOWN;
 
     private final int DEBUFF = calcAscensionSpecial(1);
-    private final int STRENGTH = calcAscensionSpecial(3);
+    private final int STRENGTH = calcAscensionSpecial(4);
     private final int BLOCK = calcAscensionTankiness(8);
     private final int PARALYSIS = calcAscensionSpecial(2);
     private final int COST_THRESHOLD = calcAscensionSpecial(1);
@@ -62,13 +62,13 @@ public class JudgementBird extends AbstractRuinaMonster
     }
 
     public JudgementBird(final float x, final float y) {
-        super(NAME, ID, 250, 0.0F, 0, 280.0f, 360.0f, null, x, y);
+        super(NAME, ID, 280, 0.0F, 0, 280.0f, 360.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("JudgementBird/Spriter/JudgementBird.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(maxHealth));
         addMove(STARE, Intent.STRONG_DEBUFF);
-        addMove(JUDGEMENT, Intent.ATTACK, calcAscensionDamage(20));
-        addMove(HEAVY_GUILT, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
+        addMove(JUDGEMENT, Intent.ATTACK, calcAscensionDamage(22));
+        addMove(HEAVY_GUILT, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
         addMove(CEASELESS_DUTY, Intent.DEFEND_BUFF);
     }
 

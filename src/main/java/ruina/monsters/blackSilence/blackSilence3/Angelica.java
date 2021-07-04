@@ -163,7 +163,8 @@ public class Angelica extends AbstractCardMonster {
                 for (int i = 0; i < multiplier; i++) {
                     gunAnimation(target);
                     dmg(target, info);
-                    resetIdle();
+                    resetIdle(0.25f);
+                    waitAnimation(0.25f);
                 }
                 break;
             case WALTZ: {
@@ -240,6 +241,8 @@ public class Angelica extends AbstractCardMonster {
     public void damage(DamageInfo info) {
         super.damage(info);
         if (this.currentHealth <= 0 && !this.halfDead) {
+            cardsToRender.clear();
+            AbstractCardMonster.hoveredCard = null;
             this.halfDead = true;
             for (AbstractPower p : this.powers) {
                 p.onDeath();

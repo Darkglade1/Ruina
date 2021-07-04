@@ -5,10 +5,11 @@ import actlikeit.dungeons.CustomDungeon;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModPanel;
+import basemod.ReflectionHacks;
+import basemod.eventUtil.AddEventParams;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -18,7 +19,11 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
@@ -27,6 +32,9 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.neow.NeowEvent;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,8 +43,35 @@ import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
 import ruina.dungeons.*;
+import ruina.events.NeowAngela;
+import ruina.events.act1.*;
 import ruina.events.act2.*;
 import ruina.events.act3.*;
+import ruina.monsters.act1.AllAroundHelper;
+import ruina.monsters.act1.Alriune;
+import ruina.monsters.act1.Butterflies;
+import ruina.monsters.act1.CrazedEmployee;
+import ruina.monsters.act1.ForsakenMurderer;
+import ruina.monsters.act1.Fragment;
+import ruina.monsters.act1.GalaxyFriend;
+import ruina.monsters.act1.Orchestra;
+import ruina.monsters.act1.Porccubus;
+import ruina.monsters.act1.blackSwan.BlackSwan;
+import ruina.monsters.act1.blackSwan.Brother;
+import ruina.monsters.act1.queenBee.QueenBee;
+import ruina.monsters.act1.queenBee.WorkerBee;
+import ruina.monsters.act1.redShoes.LeftShoe;
+import ruina.monsters.act1.redShoes.RightShoe;
+import ruina.monsters.act1.scorchedGirl.MatchFlame;
+import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
+import ruina.monsters.act1.ShyLook;
+import ruina.monsters.act1.TeddyBear;
+import ruina.monsters.act1.fairyFestival.FairyQueen;
+import ruina.monsters.act1.laetitia.Laetitia;
+import ruina.monsters.act1.singingMachine.ManicEmployee;
+import ruina.monsters.act1.singingMachine.SingingMachineMonster;
+import ruina.monsters.act1.spiderBud.SpiderBud;
+import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -55,6 +90,7 @@ import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
+import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.theHead.Baral;
@@ -80,12 +116,14 @@ import ruina.monsters.uninvitedGuests.normal.puppeteer.Chesed;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
-import ruina.patches.TotalBlockGainedSpireField;
+import ruina.patches.PlayerSpireFields;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Properties;
 
 import static ruina.util.Wiz.adp;
@@ -100,7 +138,9 @@ public class RuinaMod implements
         PostInitializeSubscriber,
         AddAudioSubscriber,
         PostBattleSubscriber,
-        PreMonsterTurnSubscriber {
+        PreMonsterTurnSubscriber,
+        PostPowerApplySubscriber,
+        StartActSubscriber {
 
     private static final String modID = "ruina";
     public static final TextureAtlas UIAtlas = new TextureAtlas();
@@ -149,6 +189,8 @@ public class RuinaMod implements
     public static Boolean reverbClear;
     public static Boolean blacksilenceClear;
     public static Boolean headClear;
+    public static Boolean clown;
+
 
     public RuinaMod() {
         BaseMod.subscribe(this);
@@ -165,6 +207,7 @@ public class RuinaMod implements
             ruinaDefaults.put("reverbClear", false);
             ruinaDefaults.put("blacksilenceClear", false);
             ruinaDefaults.put("headClear", false);
+            ruinaDefaults.put("clown", false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -172,6 +215,8 @@ public class RuinaMod implements
         }
         logger.info("RUINA CONFIG OPTIONS LOADED:");
         logger.info("Ally tutorial seen: " + ruinaConfig.getString("Ally Tutorial Seen") + ".");
+        LocalDate clownCheck = LocalDate.now();
+        clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
         loadConfig();
     }
 
@@ -510,11 +555,76 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("SilentPhaseChange"), makeSFXPath("Silentgirl_PhaseChange.wav"));
         BaseMod.addAudio(makeID("SilentNail"), makeSFXPath("Silentgirl_Volt.wav"));
 
+        BaseMod.addAudio(makeID("HelperOn"), makeSFXPath("Helper_On.wav"));
+        BaseMod.addAudio(makeID("HelperCharge"), makeSFXPath("Helper_FullCharge.wav"));
+
+        BaseMod.addAudio(makeID("MatchExplode"), makeSFXPath("MatchGirl_Explosion.wav"));
+        BaseMod.addAudio(makeID("MatchSizzle"), makeSFXPath("MatchGirl_Barrier.wav"));
+
+        BaseMod.addAudio(makeID("TeddyOn"), makeSFXPath("Teddy_On.wav"));
+        BaseMod.addAudio(makeID("TeddyBlock"), makeSFXPath("Teddy_Guard.wav"));
+        BaseMod.addAudio(makeID("TeddyAtk"), makeSFXPath("Teddy_NormalAtk.wav"));
+
+        BaseMod.addAudio(makeID("ShyAtk"), makeSFXPath("Shy_Atk.wav"));
+
+        BaseMod.addAudio(makeID("AlriuneHori"), makeSFXPath("Ali_Boss_Hori.wav"));
+        BaseMod.addAudio(makeID("AlriuneGuard"), makeSFXPath("Ali_Guard.wav"));
+
+        BaseMod.addAudio(makeID("OrchestraFinale"), makeSFXPath("Sym_movement_5_finale.wav"));
+        BaseMod.addAudio(makeID("OrchestraMovement1"), makeSFXPath("Sym_Chor_Atk.wav"));
+        BaseMod.addAudio(makeID("OrchestraMovement2"), makeSFXPath("Sym_movement_5.wav"));
+        BaseMod.addAudio(makeID("OrchestraClap"), makeSFXPath("Sym_movement_0_clap.wav"));
+
+        BaseMod.addAudio(makeID("FairySpecial"), makeSFXPath("Fairy_Special.wav"));
+        BaseMod.addAudio(makeID("FairyMinionAtk"), makeSFXPath("Fairy_MiniAtk.wav"));
+        BaseMod.addAudio(makeID("FairyQueenAtk"), makeSFXPath("Fairy_QueenAtk.wav"));
+        BaseMod.addAudio(makeID("FairyQueenChange"), makeSFXPath("Fairy_QueenChange.wav"));
+        BaseMod.addAudio(makeID("FairyQueenEat"), makeSFXPath("Fairy_QueenEat.wav"));
+
+        BaseMod.addAudio(makeID("FragmentStab"), makeSFXPath("Cosmos_Stab_Down.wav"));
+        BaseMod.addAudio(makeID("FragmentSing"), makeSFXPath("Cosmos_Sing.wav"));
+
+        BaseMod.addAudio(makeID("ButterflyAtk"), makeSFXPath("ButterFlyMan_ButterflyAtk.wav"));
+
+        BaseMod.addAudio(makeID("LaetitiaAtk"), makeSFXPath("Laetitia_Atk.wav"));
+        BaseMod.addAudio(makeID("LaetitiaFriendAtk"), makeSFXPath("Laetitia_Friend_Stab.wav"));
         BaseMod.addAudio(makeID("Goodbye"), makeSFXPath("NothingThere_Goodbye.wav"));
 
         BaseMod.addAudio(makeID("HeavenWakeStrong"), makeSFXPath("MustSee_Wake_Strong.wav"));
         BaseMod.addAudio(makeID("HeavenNosee1"), makeSFXPath("MustSee_Nosee1.wav"));
 
+        BaseMod.addAudio(makeID("PorccuStrongStab2"), makeSFXPath("Porccu_Strong_Stab2.wav"));
+        BaseMod.addAudio(makeID("PorccuPenetrate"), makeSFXPath("Porccu_Penetrate.wav"));
+
+        BaseMod.addAudio(makeID("ShoesOn"), makeSFXPath("RedShoes_On3.wav"));
+        BaseMod.addAudio(makeID("ShoesAtk"), makeSFXPath("RedShoes_Atk.wav"));
+
+        BaseMod.addAudio(makeID("GalaxyDef"), makeSFXPath("GalaxyBoy_FriendDef.wav"));
+        BaseMod.addAudio(makeID("GalaxyAtk"), makeSFXPath("GalaxyBoy_FriendAtk.wav"));
+
+        BaseMod.addAudio(makeID("SpiderStrongAtk"), makeSFXPath("Spidermom_Strong_Hori.wav"));
+        BaseMod.addAudio(makeID("SpiderBabyAtk"), makeSFXPath("Spidermom_Babyatk.wav"));
+        BaseMod.addAudio(makeID("SpiderDown"), makeSFXPath("Spidermom_Down.wav"));
+        BaseMod.addAudio(makeID("SpiderProtect"), makeSFXPath("Spidermom_Protect.wav"));
+
+        BaseMod.addAudio(makeID("QueenBeeStab"), makeSFXPath("QueenBee_Queen_Stab.wav"));
+        BaseMod.addAudio(makeID("QueenBeeBuff"), makeSFXPath("QueenBee_AtkBuff.wav"));
+        BaseMod.addAudio(makeID("QueenBeeLegAtk"), makeSFXPath("QueenBee_BeeAtk_leg.wav"));
+
+        BaseMod.addAudio(makeID("SwanVertDown"), makeSFXPath("BlackSwan_VertDown.wav"));
+        BaseMod.addAudio(makeID("SwanGuard"), makeSFXPath("BlackSwan_Guard.wav"));
+        BaseMod.addAudio(makeID("SwanPierce"), makeSFXPath("BlackSwan_Pierce.wav"));
+        BaseMod.addAudio(makeID("SwanRevive"), makeSFXPath("BlackSwan_Revive.wav"));
+        BaseMod.addAudio(makeID("SwanShout"), makeSFXPath("BlackSwan_Shout.wav"));
+
+        BaseMod.addAudio(makeID("FuneralSpecial"), makeSFXPath("ButterFlyMan_Special1.wav"));
+        BaseMod.addAudio(makeID("FuneralAtkBlack"), makeSFXPath("ButterFlyMan_Atk_Black.wav"));
+        BaseMod.addAudio(makeID("FuneralAtkWhite"), makeSFXPath("ButterFlyMan_Atk_White.wav"));
+
+        BaseMod.addAudio(makeID("SingingEat"), makeSFXPath("SingingMachine_Eat.wav"));
+        BaseMod.addAudio(makeID("SingingRhythm"), makeSFXPath("Singing_Rhythm.wav"));
+
+        BaseMod.addAudio(makeID("FingerSnap"), makeSFXPath("Finger_Snapping.wav"));
     }
 
     @Override
@@ -542,7 +652,6 @@ public class RuinaMod implements
 
     @Override
     public void receivePostInitialize() {
-
         silenceImg = new Texture(makeUIPath("silenceImg.png"));
         UIAtlas.addRegion("silenceImg", silenceImg, 0, 0, silenceImg.getWidth(), silenceImg.getHeight());
 
@@ -553,6 +662,9 @@ public class RuinaMod implements
         ModPanel settingsPanel = new ModPanel();
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
+
+        Asiyah asiyah = new Asiyah();
+        asiyah.addAct(Exordium.ID);
 
         Briah briah = new Briah();
         briah.addAct(TheCity.ID);
@@ -570,6 +682,114 @@ public class RuinaMod implements
         CustomDungeon.addAct(5, silence);
 
         CustomIntent.add(new MassAttackIntent());
+
+        //Act 1
+        BaseMod.addMonster(AllAroundHelper.ID, "All_Around_Helper", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new AllAroundHelper(-300.0F, 0.0F, true),
+                        new AllAroundHelper(0.0F, 0.0F, false),
+                }));
+        BaseMod.addMonster(Alriune.ID, (BaseMod.GetMonster) Alriune::new);
+        BaseMod.addMonster(Laetitia.ID, (BaseMod.GetMonster) Laetitia::new);
+
+        BaseMod.addMonster(ForsakenMurderer.ID, (BaseMod.GetMonster) ForsakenMurderer::new);
+        BaseMod.addMonster(ScorchedGirl.ID, "ScorchedGirl", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new MatchFlame(-450.0F, 0.0F),
+                        new MatchFlame(-200.0F, 0.0F),
+                        new ScorchedGirl(50.0F, 0.0F)
+                }));
+        BaseMod.addMonster(TeddyBear.ID, (BaseMod.GetMonster) TeddyBear::new);
+        BaseMod.addMonster(ShyLook.ID, (BaseMod.GetMonster) ShyLook::new);
+        BaseMod.addMonster(Fragment.ID, (BaseMod.GetMonster) Fragment::new);
+        BaseMod.addMonster(EncounterIDs.EMPLOYEES_2, "2_Employees", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new CrazedEmployee(-200.0F, 0.0F, 0),
+                        new CrazedEmployee(50.0F, 0.0F, 1),
+                }));
+        BaseMod.addMonster(EncounterIDs.EMPLOYEES_3, "3_Employees", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new CrazedEmployee(-450.0F, 0.0F, 0),
+                        new CrazedEmployee(-200.0F, 0.0F, 1),
+                        new CrazedEmployee(50.0F, 0.0F, 2)
+                }));
+        float butterflyY = 100.0f;
+        BaseMod.addMonster(EncounterIDs.BUTTERFLIES_3, "3_Butterflies", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Butterflies(-450.0F, butterflyY),
+                        new Butterflies(-200.0F, butterflyY),
+                        new Butterflies(50.0F, butterflyY)
+                }));
+        BaseMod.addMonster(EncounterIDs.BUTTERFLIES_5, "5_Butterflies", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Butterflies(-450.0F, butterflyY),
+                        new Butterflies(-300.0F, butterflyY),
+                        new Butterflies(-150.0F, butterflyY),
+                        new Butterflies(0.0f, butterflyY),
+                        new Butterflies(150.0F, butterflyY)
+                }));
+        BaseMod.addMonster(Porccubus.ID, (BaseMod.GetMonster) Porccubus::new);
+        BaseMod.addMonster(EncounterIDs.RED_SHOES, "Red_Shoes", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new LeftShoe(-350.0F, 0.0F),
+                        new RightShoe(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(GalaxyFriend.ID, "Galaxy_Friend", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new GalaxyFriend(-350.0F, 0.0F),
+                        new GalaxyFriend(0.0F, 0.0F),
+                }));
+        BaseMod.addMonster(SpiderBud.ID, "Spider_Bud", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Spiderling(-450.0F, 0.0f),
+                        new Spiderling(-200.0F, 0.0f),
+                        new Spiderling(50.0f, 0.0f),
+                        new SpiderBud(300.0F, 0.0f)
+                }));
+        BaseMod.addMonster(QueenBee.ID, "Queen_Bee", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new WorkerBee(-350.0F, 0.0F),
+                        new QueenBee(0.0F, 0.0F),
+                }));
+
+        BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
+
+        asiyah.addBoss(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new, makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
+        asiyah.addBoss(SingingMachineMonster.ID, () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new ManicEmployee(-200.0F, 0.0F),
+                        new SingingMachineMonster(100.0F, 0.0F),
+                }), makeMonsterPath("SingingMachine/SingingMachineMap.png"), makeMonsterPath("SingingMachine/SingingMachineMapIcon.png"));
+        asiyah.addBoss(BlackSwan.ID, () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Brother(-450.0F, 0.0F, 1),
+                        new Brother(-250.0F, 0.0F, 2),
+                        new BlackSwan(-50.0F, 0.0F),
+                        new Brother(150.0F, 0.0F, 3),
+                        new Brother(350.0F, 0.0F, 4),
+                }), makeMonsterPath("BlackSwan/SwanMap.png"), makeMonsterPath("BlackSwan/SwanMapOutline.png"));
+        asiyah.addBoss(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new, makeMonsterPath("Orchestra/OrchestraMap.png"), makeMonsterPath("Orchestra/OrchestraMap.png"));
+
+
+        BaseMod.addEvent(ShiAssociation.ID, ShiAssociation.class, Asiyah.ID);
+        BaseMod.addEvent(WarpTrain.ID, WarpTrain.class, Asiyah.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(StreetlightOffice.ID, StreetlightOffice.class)
+                //Prevent from appearing too early//
+                .bonusCondition(() -> (AbstractDungeon.floorNum > 6))
+                .dungeonID(Asiyah.ID)
+                .create());
+        BaseMod.addEvent(NightInTheBackstreets.ID, NightInTheBackstreets.class, Asiyah.ID);
+        BaseMod.addEvent(SnowWhiteApple.ID, SnowWhiteApple.class, Asiyah.ID);
+        BaseMod.addEvent(DerFreischutz.ID, DerFreischutz.class, Asiyah.ID);
+        BaseMod.addEvent(UnknownPath.ID, UnknownPath.class, Asiyah.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(SingingMachine.ID, SingingMachine.class)
+                .bonusCondition(SingingMachine::hasValidCards)
+                .dungeonID(Asiyah.ID)
+                .create());
+        BaseMod.addEvent(GalaxyChild.ID, GalaxyChild.class, Asiyah.ID);
+        BaseMod.addEvent(Funeral.ID, Funeral.class, Asiyah.ID);
+        BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
+
 
         //Act 2
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
@@ -818,13 +1038,37 @@ public class RuinaMod implements
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
-        TotalBlockGainedSpireField.totalBlockGained.set(adp(), 0);
+        PlayerSpireFields.totalBlockGained.set(adp(), 0);
+        PlayerSpireFields.appliedDebuffThisTurn.set(adp(), false);
     }
 
     @Override
     public boolean receivePreMonsterTurn(AbstractMonster abstractMonster) {
+        PlayerSpireFields.appliedDebuffThisTurn.set(adp(), false);
         return !abstractMonster.hasPower(Hokma.POWER_ID);
+    }
 
+    @Override
+    public void receivePostPowerApplySubscriber(AbstractPower p, AbstractCreature target, AbstractCreature source) {
+        if (source == AbstractDungeon.player && target != AbstractDungeon.player && !target.hasPower(ArtifactPower.POWER_ID)) {
+            if (p.type == AbstractPower.PowerType.DEBUFF) {
+                PlayerSpireFields.appliedDebuffThisTurn.set(adp(), true);
+            }
+        }
+    }
+
+    @Override
+    public void receiveStartAct() {
+        //Set Neow strings based on the act
+        if (CardCrawlGame.dungeon instanceof AbstractRuinaDungeon) {
+            EventStrings neowAngelaStrings = CardCrawlGame.languagePack.getEventString(NeowAngela.ID);
+            ReflectionHacks.setPrivateStaticFinal(NeowEvent.class, "TEXT", neowAngelaStrings.DESCRIPTIONS);
+            ReflectionHacks.setPrivateStaticFinal(NeowEvent.class, "DIALOG_X", 1200.0F * Settings.xScale);
+        } else {
+            CharacterStrings neowNormalStrings = CardCrawlGame.languagePack.getCharacterString("Neow Event");
+            ReflectionHacks.setPrivateStaticFinal(NeowEvent.class, "TEXT", neowNormalStrings.TEXT);
+            ReflectionHacks.setPrivateStaticFinal(NeowEvent.class, "DIALOG_X", 1100.0F * Settings.xScale);
+        }
     }
 
     public void receiveEditKeywords() {
@@ -839,6 +1083,8 @@ public class RuinaMod implements
             ruinaConfig.setBool("reverbClear", reverbClear);
             ruinaConfig.setBool("blacksilenceClear", blacksilenceClear);
             ruinaConfig.setBool("headClear", headClear);
+            LocalDate clownCheck = LocalDate.now();
+            clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
             ruinaConfig.save();
         } catch (IOException e) {
             e.printStackTrace();
@@ -849,9 +1095,10 @@ public class RuinaMod implements
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");
+        LocalDate clownCheck = LocalDate.now();
+        clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
     }
 
-    public static boolean hijackMenu() {
-        return headClear;
-    }
+    public static boolean hijackMenu() { return headClear; }
+    public static boolean clownTime() { return clown; }
 }

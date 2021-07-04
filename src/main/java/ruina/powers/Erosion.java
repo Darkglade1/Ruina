@@ -22,6 +22,11 @@ public class Erosion extends AbstractEasyPower {
         this.priority = 0; //make it apply before vulnerable
     }
 
+    public Erosion(AbstractCreature owner, int amount, boolean justApplied) {
+        this(owner, amount);
+        this.justApplied = justApplied;
+    }
+
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType type) {
         return type == DamageInfo.DamageType.NORMAL ? damage + (float)this.amount : damage;

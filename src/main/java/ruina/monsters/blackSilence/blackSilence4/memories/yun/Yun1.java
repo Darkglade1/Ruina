@@ -17,6 +17,7 @@ public class Yun1 extends Yun {
         super(parent);
         this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
         this.initializeDescription();
+        cardsToPreview = new Dazed();
     }
 
     @Override

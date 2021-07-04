@@ -57,12 +57,12 @@ public class Oswald extends AbstractCardMonster
     public int climaxHits = 4;
     public final int climaxHitIncrease = calcAscensionSpecial(1);
 
-    public final int STATUS = calcAscensionSpecial(2);
+    public final int STATUS = calcAscensionSpecial(3);
     public final int STRENGTH = calcAscensionSpecial(1);
     public final int WEAK = calcAscensionSpecial(2);
     public final int BRAINWASH_LENGTH = 2;
     public final int BRAINWASH_DAMAGE = calcAscensionTankiness(40);
-    public final int BRAINWASH_DAMAGE_INCREASE = calcAscensionTankiness(10);
+    public final int BRAINWASH_DAMAGE_INCREASE = calcAscensionTankiness(20);
     public int brainwashDamage = BRAINWASH_DAMAGE;
     public Tiph tiph;
 

@@ -4,6 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -65,6 +66,8 @@ public class Philip extends AbstractCardMonster
     private int phase = 1;
     private boolean attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
 
+    AbstractCard status = new Burn();
+
     public AbstractMonster[] minions = new AbstractMonster[2];
 
     public static final String POWER_ID = makeID("Passion");
@@ -103,6 +106,10 @@ public class Philip extends AbstractCardMonster
         cardList.add(new Stigmatize(this));
         cardList.add(new Searing(this));
         cardList.add(new Sorrow(this));
+
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            status.upgrade();
+        }
     }
 
     @Override
@@ -163,7 +170,7 @@ public class Philip extends AbstractCardMonster
         switch (move.nextMove) {
             case EVENTIDE: {
                 buffAnimation();
-                intoDiscardMo(new Burn(), EVENTIDE_BURNS, this);
+                intoDiscardMo(status.makeStatEquivalentCopy(), EVENTIDE_BURNS, this);
                 resetIdle();
                 break;
             }
@@ -189,7 +196,7 @@ public class Philip extends AbstractCardMonster
             case SEARING: {
                 slashAnimation(target);
                 dmg(target, info);
-                intoDrawMo(new Burn(), SEARING_BURNS, this);
+                intoDrawMo(status.makeStatEquivalentCopy(), SEARING_BURNS, this);
                 resetIdle();
                 break;
             }

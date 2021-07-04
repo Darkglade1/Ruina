@@ -913,7 +913,7 @@
   "${ModID}:BlackSilence4": {
     "MOVES": [
       "Agony",
-      "Scream",
+      "Rage",
       "Void",
       "Memory - Yun's Office",
       "Memory - Zwei Association",
@@ -997,6 +997,280 @@
       "Don't Suppress Your Heart"
     ],
     "NAME": "Silent Girl",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:AllAroundHelper": {
+    "MOVES": [
+      "Charge",
+      "Clean"
+    ],
+    "NAME": "All-Around Helper",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:ForsakenMurderer": {
+    "MOVES": [
+      "Chained Wrath",
+      "Metallic Ringing"
+    ],
+    "NAME": "Forsaken Murderer",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:ScorchedGirl": {
+    "MOVES": [
+      "Ember",
+      "Extinguish"
+    ],
+    "NAME": "Scorched Girl",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:TeddyBear": {
+    "MOVES": [
+      "Timid Endearment",
+      "Display of Affection"
+    ],
+    "NAME": "Happy Teddy Bear",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Lulu": {
+    "MOVES": [
+      "Prepared Mind",
+      "Flaming Bat",
+      "Set Ablaze"
+    ],
+    "NAME": "Lulu",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:ShyLook": {
+    "MOVES": [
+      "Today's Expression"
+    ],
+    "NAME": "Today's Shy Look",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Alriune": {
+    "MOVES": [
+      "Spring's Genesis",
+      "Full Bloom",
+      "Magnificent End"
+    ],
+    "NAME": "Alriune",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Orchestra": {
+    "MOVES": [
+      "The First Movement",
+      "The Second Movement",
+      "The Third Movement",
+      "The Fourth Movement",
+      "Finale",
+      "Curtain Call"
+    ],
+    "NAME": "Silent Orchestra",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:FairyQueen": {
+    "MOVES": [
+      "Queen's Decree",
+      "Predation",
+      "Ravenousness"
+    ],
+    "NAME": "Fairy Queen",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:FairyMass": {
+    "MOVES": [
+      "Wingbeats",
+      "Gluttony"
+    ],
+    "NAME": "Fairy Mass",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Laetitia": {
+    "MOVES": [
+      "Here's a Gift!",
+      "Let’s Have Fun!"
+    ],
+    "NAME": "Laetitia",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:GiftFriend": {
+    "MOVES": [
+      "G..i..f..t",
+      "B..lo..w..Up.."
+    ],
+    "NAME": "Gift-wrapped Friend",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:WitchFriend": {
+    "MOVES": [
+      "#$@!#*#$@"
+    ],
+    "NAME": "Wee Witch's Friend",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Fragment": {
+    "MOVES": [
+      "Penetrate",
+      "Echoes from the Beyond"
+    ],
+    "NAME": "Fragment of the Universe",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:CrazedEmployee": {
+    "MOVES": [
+      "Trembling Motion",
+      "Shaking Blow"
+    ],
+    "NAME": "Crazed Employee",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Butterflies": {
+    "MOVES": [
+      "Tranquility",
+      "Liberation"
+    ],
+    "NAME": "Butterflies",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:MatchFlame": {
+    "MOVES": [
+      "Broken Hope",
+      "Kindle"
+    ],
+    "NAME": "Match Flame",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Porccubus": {
+    "MOVES": [
+      "Unbearable Pleasure",
+      "Bristle"
+    ],
+    "NAME": "Porccubus",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:LeftShoe": {
+    "MOVES": [
+      "Sanguine Desire"
+    ],
+    "NAME": "Left Shoe",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:RightShoe": {
+    "MOVES": [
+      "Obsession",
+      "Bursting Desire"
+    ],
+    "NAME": "Right Shoe",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:GalaxyFriend": {
+    "MOVES": [
+      "Waiting",
+      "Star Shower",
+      "Glimmer"
+    ],
+    "NAME": "Friend to the Galaxy",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:SpiderBud": {
+    "MOVES": [
+      "Protective Instincts",
+      "Cocoon",
+      "Catching Food"
+    ],
+    "NAME": "Spider Bud",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Spiderling": {
+    "MOVES": [
+      "Thin Webbing",
+      "Stingy Fangs"
+    ],
+    "NAME": "Spiderling",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:QueenBee": {
+    "MOVES": [
+      "Boost Aggression",
+      "Boost Loyalty",
+      "Hornet Strike"
+    ],
+    "NAME": "Queen Bee",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:WorkerBee": {
+    "MOVES": [
+      "Carry Larvae",
+      "Gardu du Corps"
+    ],
+    "NAME": "Worker Bee",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:BlackSwan": {
+    "MOVES": [
+      "Writhe",
+      "Well-worn Parasol",
+      "Nauseating Reality",
+      "Shriek of Broken Dreams"
+    ],
+    "NAME": "Dream of a Black Swan",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Brother": {
+    "MOVES": [
+      "Green Waste"
+    ],
+    "NAME": "Brother",
+    "DIALOG": [
+      "First Brother",
+      "Second Brother",
+      "Third Brother",
+      "Fourth Brother"
+    ]
+  },
+  "${ModID}:SingingMachineMonster": {
+    "MOVES": [
+      "Bloody Tune",
+      "Unforgettable Performance",
+      "Crushing Beats"
+    ],
+    "NAME": "Singing Machine",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:ManicEmployee": {
+    "MOVES": [
+      "Trembling Motion",
+      "Pine for the Song"
+    ],
+    "NAME": "Manic Employee",
     "DIALOG": [
     ]
   }

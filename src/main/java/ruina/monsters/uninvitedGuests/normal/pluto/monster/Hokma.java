@@ -65,7 +65,7 @@ public class Hokma extends AbstractAllyCardMonster
         this.type = EnemyType.BOSS;
 
         addMove(SILENCE, Intent.ATTACK, 10);
-        addMove(TIME, Intent.UNKNOWN);
+        addMove(TIME, Intent.BUFF);
 
         cardList.add(new Silence(this));
         cardList.add(new Time(this));

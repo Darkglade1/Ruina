@@ -55,7 +55,7 @@
     "NAME": "Yesterday's Promise",
     "FLAVOR": "Let me lend you my eyeglass, so you can have a closer look at what you just signed.",
     "DESCRIPTIONS": [
-      "When you have insufficient [E] to play a card, you may instead pay #b3 HP for every missing [E] ."
+      "When you have insufficient [E] to play a card, you may instead pay #b5 HP for every missing [E] ."
     ]
   },
   "${ModID}:Book": {
@@ -63,6 +63,34 @@
     "FLAVOR": "Some must fight so that all may be free.",
     "DESCRIPTIONS": [
       "At the end of combat, heal #b", "% of your HP."
+    ]
+  },
+  "${ModID}:Overexertion": {
+    "NAME": "Overexertion",
+    "FLAVOR": "She just had to keep pushing forward. Keep on pushing until the way was clear. Keep on pushing until she could push no more.",
+    "DESCRIPTIONS": [
+      "Start each combat with an additional [E] [E] . NL Gain #b%1$s #yWeak and #yFrail at the start of your second turn."
+    ]
+  },
+  "${ModID}:LifeFiber": {
+    "NAME": "Life Fibers",
+    "FLAVOR": "When night falls in the Backstreets, they will come.",
+    "DESCRIPTIONS": [
+      "The next time you die, heal #b", " HP instead. At the end of combat, increase the amount healed by #b", "."
+    ]
+  },
+  "${ModID}:Malice": {
+    "NAME": "Malice",
+    "FLAVOR": "The inherent malice caused all life to crumble as soon as it bloomed.",
+    "DESCRIPTIONS": [
+      "At the start of your turn, deal #b" , " damage to ALL enemies. If your HP is at or below #b", "%, deal #b", " damage to ALL enemies instead."
+    ]
+  },
+  "${ModID}:SeventhBullet": {
+    "NAME": "The Seventh Bullet",
+    "FLAVOR": "One day, the marksman realized the Devil no longer followed him. He pondered why, then realized that his soul had already fallen to Hell from the beginning.",
+    "DESCRIPTIONS": [
+      "Gain #b" , " #yStrength at the start of combat. Whenever you play #b", " #yAttacks, take #b", " damage."
     ]
   }
 }

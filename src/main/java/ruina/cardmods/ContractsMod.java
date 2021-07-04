@@ -16,7 +16,7 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
     public static final String ID = makeID(ContractsMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
-    private static final int HP_TO_ENERGY_RATIO = 3;
+    private static final int HP_TO_ENERGY_RATIO = 5;
 
     @Override
     public AbstractCardModifier makeCopy() {
@@ -36,7 +36,7 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
     @Override
     public int getAlternateResource(AbstractCard card) {
         if (card.costForTurn >= 0 && card.cost >= 0) { //a failsafe because apparently bottled snecko can make cards x cost when dual wielded???
-            return (adp().currentHealth - 1) / HP_TO_ENERGY_RATIO;
+            return 999;
         } else {
             return 0;
         }
@@ -56,14 +56,8 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
     @Override
     public int spendAlternateCost(AbstractCard card, int costToSpend) {
         if (card.costForTurn >= 0 && card.cost >= 0) {
-            int resource = (adp().currentHealth - 1) / HP_TO_ENERGY_RATIO;
-            if (resource > costToSpend) {
-                atb(new LoseHPAction(adp(), adp(), costToSpend * HP_TO_ENERGY_RATIO));
-                costToSpend = 0;
-            } else if (resource > 0) {
-                atb(new LoseHPAction(adp(), adp(), resource * HP_TO_ENERGY_RATIO));
-                costToSpend -= resource;
-            }
+            atb(new LoseHPAction(adp(), adp(), costToSpend * HP_TO_ENERGY_RATIO));
+            costToSpend = 0;
         }
         return costToSpend;
     }

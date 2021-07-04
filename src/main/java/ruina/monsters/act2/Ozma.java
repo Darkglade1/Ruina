@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DrawReductionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
@@ -68,8 +69,8 @@ public class Ozma extends AbstractRuinaMonster
         setHp(calcAscensionTankiness(maxHealth));
         addMove(FADING_MEMORIES, Intent.STRONG_DEBUFF);
         addMove(POWDER_OF_LIFE, Intent.DEFEND_BUFF);
-        addMove(HINDER, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
-        addMove(SQUASH, Intent.ATTACK, calcAscensionDamage(21));
+        addMove(HINDER, Intent.ATTACK_DEBUFF, calcAscensionDamage(17));
+        addMove(SQUASH, Intent.ATTACK, calcAscensionDamage(22));
         addMove(AWAKEN, Intent.UNKNOWN);
     }
 
@@ -117,6 +118,9 @@ public class Ozma extends AbstractRuinaMonster
             case FADING_MEMORIES: {
                 debuffAnimation();
                 applyToTarget(adp(), this, new Oblivion(adp(), DRAW_DEBUFF));
+                if (AbstractDungeon.ascensionLevel >= 19) {
+                    applyToTarget(adp(), this, new DrawReductionPower(adp(), 1));
+                }
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
@@ -183,7 +187,7 @@ public class Ozma extends AbstractRuinaMonster
             if (!this.lastMove(HINDER)) {
                 possibilities.add(HINDER);
             }
-            if (!this.lastMove(POWDER_OF_LIFE) && !this.lastMove(POWDER_OF_LIFE)) {
+            if (!this.lastMove(POWDER_OF_LIFE) && !this.lastMoveBefore(POWDER_OF_LIFE)) {
                 possibilities.add(POWDER_OF_LIFE);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
@@ -199,6 +203,7 @@ public class Ozma extends AbstractRuinaMonster
                 atb(new SuicideAction(mo));
             }
         }
+        onBossVictoryLogic();
     }
 
     private void attackAnimation(AbstractCreature enemy) {

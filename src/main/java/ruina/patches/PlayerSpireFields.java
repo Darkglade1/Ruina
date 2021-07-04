@@ -8,7 +8,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
         clz=AbstractPlayer.class,
         method=SpirePatch.CLASS
 )
-public class TotalBlockGainedSpireField
+public class PlayerSpireFields
 {
     public static SpireField<Integer> totalBlockGained = new SpireField<Integer>(() -> 0);
+    public static SpireField<Boolean> appliedDebuffThisTurn = new SpireField<>(() -> false);
 }

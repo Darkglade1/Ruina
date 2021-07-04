@@ -1,10 +1,18 @@
 {
+  "${ModID}:Asiyah": {
+    "TEXT": [
+      "Asiyah",
+      "Act 1",
+      "In your hand is an elaborate invitation, promising #ywealth and #yknowledge beyond your wildest dreams.",
+      "Accept the invitation."
+    ]
+  },
   "${ModID}:Briah": {
     "TEXT": [
       "Briah",
       "Act 2",
-      "In your hand is an elaborate invitation, promising #ywealth and #yknowledge beyond your wildest dreams.",
-      "Accept the invitation."
+      "A lesser individual would have faltered against the #phorrors that inhabited this space. But you #gpersevere, guided by the #ymemories of those who came before you.",
+      "Continue your ascent."
     ]
   },
   "${ModID}:Atziluth": {
@@ -87,6 +95,23 @@
   "${ModID}:FrostSplinter": {
     "TEXT": [
       "Freeze."
+    ]
+  },
+  "${ModID}:OurGalaxyAction": {
+    "TEXT": [
+      "Choose a Card to Play."
+    ]
+  },
+  "${ModID}:GrindingGearsAction": {
+    "TEXT": [
+      "Choose a Card to Put Into Your Hand."
+    ]
+  },
+  "${ModID}:NeowOptions": {
+    "TEXT": [
+      "[ #gObtain #ga #grandom #gEGO #gcard ]",
+      " #gChoose #gan #gEGO #gcard #gto #gobtain ]",
+      "Choose an EGO card"
     ]
   }
 }

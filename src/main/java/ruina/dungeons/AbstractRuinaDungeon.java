@@ -6,6 +6,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
+import ruina.monsters.act1.Orchestra;
+import ruina.monsters.act1.blackSwan.BlackSwan;
+import ruina.monsters.act1.fairyFestival.FairyQueen;
+import ruina.monsters.act1.singingMachine.SingingMachineMonster;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act2.Ozma;
 import ruina.monsters.act3.Twilight;
@@ -22,14 +26,17 @@ public class AbstractRuinaDungeon extends CustomDungeon {
 
     public AbstractRuinaDungeon(String NAME, String ID, String event, boolean genericEvents, int weak, int strong, int elite) {
         super(NAME, ID, event, genericEvents, weak, strong, elite);
+        AbstractDungeon.shrineList.clear(); //No shrines from other mods please
     }
 
     public AbstractRuinaDungeon(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {
         super(cd, p, emptyList);
+        AbstractDungeon.shrineList.clear();
     }
 
     public AbstractRuinaDungeon(CustomDungeon cd, AbstractPlayer p, SaveFile saveFile) {
         super(cd, p, saveFile);
+        AbstractDungeon.shrineList.clear();
     }
 
     public enum Floor {
@@ -49,7 +56,15 @@ public class AbstractRuinaDungeon extends CustomDungeon {
 
     public void setFloor() {
         if (bossKey != null) {
-            if (bossKey.equals(JesterOfNihil.ID)) {
+            if (bossKey.equals(FairyQueen.ID)) {
+                floor = Floor.MALKUTH;
+            } else if (bossKey.equals(SingingMachineMonster.ID)) {
+                floor = Floor.YESOD;
+            } else if (bossKey.equals(BlackSwan.ID)) {
+                floor = Floor.HOD;
+            } else if (bossKey.equals(Orchestra.ID)) {
+                floor = Floor.NETZACH;
+            } else if (bossKey.equals(JesterOfNihil.ID)) {
                 floor = Floor.TIPHERETH;
             } else if (bossKey.equals(EncounterIDs.RED_AND_WOLF)) {
                 floor = Floor.GEBURA;
@@ -78,6 +93,18 @@ public class AbstractRuinaDungeon extends CustomDungeon {
     public void setMusic() {
         if (floor != null) {
             switch (floor) {
+                case MALKUTH:
+                    this.setMainMusic(RuinaMod.makeMusicPath("Malkuth2.ogg"));
+                    break;
+                case YESOD:
+                    this.setMainMusic(RuinaMod.makeMusicPath("Yesod2.ogg"));
+                    break;
+                case HOD:
+                    this.setMainMusic(RuinaMod.makeMusicPath("Hod2.ogg"));
+                    break;
+                case NETZACH:
+                    this.setMainMusic(RuinaMod.makeMusicPath("Netzach2.ogg"));
+                    break;
                 case TIPHERETH:
                     this.setMainMusic(RuinaMod.makeMusicPath("Tiphereth2.ogg"));
                     break;

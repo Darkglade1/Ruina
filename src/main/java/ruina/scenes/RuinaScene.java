@@ -10,6 +10,30 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
 import ruina.dungeons.AbstractRuinaDungeon;
+import ruina.monsters.act1.AllAroundHelper;
+import ruina.monsters.act1.Alriune;
+import ruina.monsters.act1.Butterflies;
+import ruina.monsters.act1.CrazedEmployee;
+import ruina.monsters.act1.ForsakenMurderer;
+import ruina.monsters.act1.Fragment;
+import ruina.monsters.act1.GalaxyFriend;
+import ruina.monsters.act1.Orchestra;
+import ruina.monsters.act1.Porccubus;
+import ruina.monsters.act1.blackSwan.BlackSwan;
+import ruina.monsters.act1.blackSwan.Brother;
+import ruina.monsters.act1.queenBee.QueenBee;
+import ruina.monsters.act1.queenBee.WorkerBee;
+import ruina.monsters.act1.redShoes.LeftShoe;
+import ruina.monsters.act1.redShoes.RightShoe;
+import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
+import ruina.monsters.act1.ShyLook;
+import ruina.monsters.act1.TeddyBear;
+import ruina.monsters.act1.fairyFestival.FairyQueen;
+import ruina.monsters.act1.laetitia.Laetitia;
+import ruina.monsters.act1.singingMachine.ManicEmployee;
+import ruina.monsters.act1.singingMachine.SingingMachineMonster;
+import ruina.monsters.act1.spiderBud.SpiderBud;
+import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
 import ruina.monsters.act3.*;
@@ -150,6 +174,42 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Crater");
                 } else if (mo instanceof SilentGirl) {
                     this.bg = this.atlas.findRegion("mod/SilentGirl");
+                } else if (mo instanceof AllAroundHelper) {
+                    this.bg = this.atlas.findRegion("mod/Helper");
+                } else if (mo instanceof ForsakenMurderer) {
+                    this.bg = this.atlas.findRegion("mod/Murderer");
+                } else if (mo instanceof ScorchedGirl) {
+                    this.bg = this.atlas.findRegion("mod/ScorchedGirl");
+                } else if (mo instanceof TeddyBear) {
+                    this.bg = this.atlas.findRegion("mod/TeddyBear");
+                } else if (mo instanceof ShyLook) {
+                    this.bg = this.atlas.findRegion("mod/ShyLook");
+                } else if (mo instanceof Alriune) {
+                    this.bg = this.atlas.findRegion("mod/Alriune");
+                } else if (mo instanceof Orchestra) {
+                    this.bg = this.atlas.findRegion("mod/Orchestra");
+                } else if (mo instanceof FairyQueen) {
+                    this.bg = this.atlas.findRegion("mod/Fairy");
+                } else if(mo instanceof Laetitia){
+                    this.bg = this.atlas.findRegion("mod/Laetitia");
+                } else if (mo instanceof Fragment) {
+                    this.bg = this.atlas.findRegion("mod/Fragment");
+                } else if (mo instanceof CrazedEmployee || mo instanceof SingingMachineMonster || mo instanceof ManicEmployee) {
+                    this.bg = this.atlas.findRegion("mod/Singing");
+                } else if (mo instanceof Butterflies) {
+                    this.bg = this.atlas.findRegion("mod/Butterfly");
+                } else if (mo instanceof Porccubus) {
+                    this.bg = this.atlas.findRegion("mod/Porccubus");
+                } else if (mo instanceof LeftShoe || mo instanceof RightShoe) {
+                    this.bg = this.atlas.findRegion("mod/RedShoes");
+                } else if (mo instanceof GalaxyFriend) {
+                    this.bg = this.atlas.findRegion("mod/Galaxy");
+                } else if (mo instanceof SpiderBud || mo instanceof Spiderling) {
+                    this.bg = this.atlas.findRegion("mod/Spider");
+                } else if (mo instanceof QueenBee || mo instanceof WorkerBee) {
+                    this.bg = this.atlas.findRegion("mod/QueenBee");
+                } else if (mo instanceof BlackSwan || mo instanceof Brother) {
+                    this.bg = this.atlas.findRegion("mod/Swan");
                 } else {
                     setBgs();
                 }
@@ -164,6 +224,22 @@ public class RuinaScene extends AbstractScene {
         if (CardCrawlGame.dungeon  instanceof AbstractRuinaDungeon) {
             AbstractRuinaDungeon.Floor floor = ((AbstractRuinaDungeon) CardCrawlGame.dungeon).floor;
             switch (floor) {
+                case MALKUTH:
+                    this.bg = this.atlas.findRegion("mod/Malkuth");
+                    this.campfireBg = this.atlas.findRegion("mod/MalkuthCamp");
+                    break;
+                case YESOD:
+                    this.bg = this.atlas.findRegion("mod/Yesod");
+                    this.campfireBg = this.atlas.findRegion("mod/YesodCamp");
+                    break;
+                case HOD:
+                    this.bg = this.atlas.findRegion("mod/Hod");
+                    this.campfireBg = this.atlas.findRegion("mod/HodCamp");
+                    break;
+                case NETZACH:
+                    this.bg = this.atlas.findRegion("mod/Netzach");
+                    this.campfireBg = this.atlas.findRegion("mod/NetzachCamp");
+                    break;
                 case TIPHERETH:
                     this.bg = this.atlas.findRegion("mod/Tiph");
                     this.campfireBg = this.atlas.findRegion("mod/TiphCamp");

@@ -116,12 +116,16 @@ public class PatronLibrarian extends AbstractImageEvent {
         }
         switch (floor) {
             case MALKUTH:
+                this.imageEventText.loadImage(makeEventPath("PatronMalkuth.png"));
                 return 0;
             case YESOD:
+                this.imageEventText.loadImage(makeEventPath("PatronYesod.png"));
                 return 1;
             case HOD:
+                this.imageEventText.loadImage(makeEventPath("PatronHod.png"));
                 return 2;
             case NETZACH:
+                this.imageEventText.loadImage(makeEventPath("PatronNetzach.png"));
                 return 3;
             case TIPHERETH:
                 this.imageEventText.loadImage(makeEventPath("PatronTiphereth.png"));

@@ -18,10 +18,9 @@ public class RedMistPower extends AbstractUnremovablePower {
 
     public int onAttacked(DamageInfo info, int damageAmount) {
         if(owner.currentHealth - damageAmount <= amount){
-            owner.currentHealth = amount;
-            owner.healthBarUpdatedEvent();
+            damageAmount =  owner.currentHealth - amount;
             updateDescription();
-            return 0;
+            return damageAmount;
         }
         return damageAmount;
     }

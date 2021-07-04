@@ -28,13 +28,10 @@ public class CHRALLY_Crystal extends AbstractRuinaCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
         for (int i = 0; i < magicNumber; i++) {
-            if (i == 0) {
-                parent.slashAnimation(m);
-            } else {
-                parent.sword1Animation(m);
-            }
+            parent.slashAnimation(m);
             dmg(m, AbstractGameAction.AttackEffect.NONE);
-            parent.resetIdle();
+            parent.resetIdle(0.25f);
+            parent.waitAnimation(0.25f);
         }
     }
 
