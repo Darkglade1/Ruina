@@ -16,7 +16,7 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
     public static final String ID = makeID(ContractsMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
-    private static final int HP_TO_ENERGY_RATIO = 3;
+    private static final int HP_TO_ENERGY_RATIO = 5;
 
     @Override
     public AbstractCardModifier makeCopy() {

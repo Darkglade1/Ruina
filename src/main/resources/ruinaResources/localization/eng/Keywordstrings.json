@@ -18,7 +18,7 @@
     "NAMES": [
       "contract"
     ],
-    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead pay #b3 HP for every missing [E] ."
+    "DESCRIPTION": "When you have insufficient [E] to play this card, you may instead pay #b5 HP for every missing [E] ."
   },
   {
     "PROPER_NAME": "Freeze",

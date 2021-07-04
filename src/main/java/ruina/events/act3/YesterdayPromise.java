@@ -23,11 +23,11 @@ public class YesterdayPromise extends AbstractImageEvent {
     public static final String IMG = makeEventPath("Pluto.png");
 
     private int screenNum = 0;
-    private AbstractRelic reward = new YesterdayPromiseRelic();
-    private int damage;
+    private final AbstractRelic reward = new YesterdayPromiseRelic();
+    private final int damage;
     public YesterdayPromise() {
         super(NAME, DESCRIPTIONS[0], IMG);
-        damage = (int) (AbstractDungeon.player.maxHealth * 0.35F);
+        damage = (int) (AbstractDungeon.player.maxHealth * 0.25F);
         imageEventText.setDialogOption(String.format(OPTIONS[0], damage), reward);
         imageEventText.setDialogOption(OPTIONS[1]);
     }
