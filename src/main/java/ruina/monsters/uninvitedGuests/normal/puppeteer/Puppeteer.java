@@ -373,16 +373,10 @@ public class Puppeteer extends AbstractCardMonster
     }
 
     private void Summon() {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                float xPosition = -100.0F;
-                puppet = new Puppet(xPosition, 0.0f, Puppeteer.this);
-                att(new UsePreBattleActionAction(puppet));
-                att(new SpawnMonsterAction(puppet, true));
-                this.isDone = true;
-            }
-        });
+        float xPosition = -100.0F;
+        puppet = new Puppet(xPosition, 0.0f, Puppeteer.this);
+        atb(new SpawnMonsterAction(puppet, true));
+        atb(new UsePreBattleActionAction(puppet));
     }
 
     private void massAttackEffect() {

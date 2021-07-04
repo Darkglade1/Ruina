@@ -26,14 +26,17 @@ public class AbstractRuinaDungeon extends CustomDungeon {
 
     public AbstractRuinaDungeon(String NAME, String ID, String event, boolean genericEvents, int weak, int strong, int elite) {
         super(NAME, ID, event, genericEvents, weak, strong, elite);
+        AbstractDungeon.shrineList.clear(); //No shrines from other mods please
     }
 
     public AbstractRuinaDungeon(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {
         super(cd, p, emptyList);
+        AbstractDungeon.shrineList.clear();
     }
 
     public AbstractRuinaDungeon(CustomDungeon cd, AbstractPlayer p, SaveFile saveFile) {
         super(cd, p, saveFile);
+        AbstractDungeon.shrineList.clear();
     }
 
     public enum Floor {
