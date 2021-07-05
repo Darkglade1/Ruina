@@ -11,7 +11,7 @@
     "TEXT": [
       "Briah",
       "Act 2",
-      "A lesser individual would have faltered against the #phorrors that inhabited this space. But you #gpersevere, guided by the #ymemories of those who came before you.",
+      "一些人生存在这个地方，长期抵抗着 #p恐惧 。 但是你在先行者的 #y记忆 的帮助下 #g坚持 下来。",
       "继续攀升。"
     ]
   },
@@ -92,26 +92,26 @@
       "漆黑噤默"
     ]
   },
-  "${ModID}:FrostSplinter": {
+  "ruina:FrostSplinter": {
     "TEXT": [
-      "Freeze."
+      "冰冻。"
     ]
   },
-  "${ModID}:OurGalaxyAction": {
+  "ruina:OurGalaxyAction": {
     "TEXT": [
-      "Choose a Card to Play."
+      "选择一张牌打出。"
     ]
   },
-  "${ModID}:GrindingGearsAction": {
+  "ruina:GrindingGearsAction": {
     "TEXT": [
-      "Choose a Card to Put Into Your Hand."
+      "选择一张牌放入你的手牌中。"
     ]
   },
-  "${ModID}:NeowOptions": {
+  "ruina:NeowOptions": {
     "TEXT": [
-      "[ #gObtain #ga #grandom #gEGO #gcard ]",
-      " #gChoose #gan #gEGO #gcard #gto #gobtain ]",
-      "Choose an EGO card"
+      "[ #g获得一张随机的EGO卡牌 ]",
+      " #g选择一张EGO卡牌获得 ]",
+      "选择一张EGO卡牌"
     ]
   }
 }

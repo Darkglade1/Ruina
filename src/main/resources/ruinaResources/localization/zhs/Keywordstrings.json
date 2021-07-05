@@ -30,15 +30,15 @@
   {
     "PROPER_NAME": "Erosion",
     "NAMES": [
-      "erosion"
+      "腐蚀"
     ],
-    "DESCRIPTION": "Creatures with #yErosion receive more damage from attacks. Reduced by #b1 at end of round."
+    "DESCRIPTION": "拥有 #y腐蚀 的生物受到的攻击伤害增加。 回合结束时减少 #b1 层。"
   },
   {
     "PROPER_NAME": "Protection",
     "NAMES": [
-      "protection"
+      "守护"
     ],
-    "DESCRIPTION": "Creatures with #yProtection receive less damage from attacks. Reduced by #b1 at end of round."
+    "DESCRIPTION": "拥有 #y守护 的生物受到的攻击伤害减少。 回合结束时减少 #b1 层。"
   }
 ]

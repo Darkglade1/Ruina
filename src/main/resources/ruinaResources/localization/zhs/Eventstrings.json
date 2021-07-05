@@ -396,13 +396,13 @@
     ]
   },
   "ruina:Sorrow": {
-    "NAME": "悲伤",
+    "NAME": "悲矣",
     "DESCRIPTIONS": [
-      "我的心中只有 #p悲伤 ，没有其他要求了。 NL NL 它一直是，现在仍然是，对我 #g忠诚 之物。",
-      "为何我会羡慕它？因为在这几个小时里... NL NL 当我的 #r灵魂 压碎在我的心灵深处， NL NL 它就坐在我的身旁?",
-      "哦，悲哀啊，你看，我尊敬你，一切都 #p结束 了， NL NL 因为我确信你永远不会离开我。",
-      "啊! 我明白了: NL 你的 #y美 在于你存在的力量。 NL NL 你就像那些从未离开过我可怜的 #p黑色 的伤心 #r壁炉 边角落的人.",
-      "我的 #p忧愁 阿，你比 #g良人 更美: NL NL 因为我知道在我最后 #p痛苦 的那一天， NL 你就在那，靠在我的身旁， #p忧愁 啊， NL NL 这样你就可以再次尝试进入我的心。"
+      "吾身空余 #p苦痛 ，除此别无所求。 NL NL 苦痛于我 #g甚忠 ，始终不渝。",
+      "彷徉奈落之底者， #p吾魂 兮。 NL NL 坐而相随苦痛者，至忠矣。又何怨焉？",
+      "呜呼，苦痛者兮， #p终识矣 。 NL NL 惟余永无弃离尔。",
+      "嗟夫， NL 愚之益敬，汝其 #p美 。 NL NL 苦痛也，汝若是未去我那 #p贫 之心之 #r炉 侧者也。",
+      "比我那身为爱之于 #g有情 。 NL NL 吾知在我迈向 #p死 之日。 NL #p汝 当入我之心。"
     ],
     "OPTIONS": [
       "[。。。] ",
@@ -537,205 +537,205 @@
     "OPTIONS": [
     ]
   },
-  "${ModID}:ShiAssociation": {
-    "NAME": "Shi Association",
+  "ruina:ShiAssociation": {
+    "NAME": "し协会",
     "DESCRIPTIONS": [
-      "The boardroom's doors open with a @slam,@ and two uniformed subordinates enter, fatigued from a previous request. NL NL \"Director . . . we've been dealing with #pUrban #pNightmare-class cases for #rten #rconsecutive #rdays. We normally shouldn't be handling more than one such case per week.\" NL NL \"We're on the brink of a breakdown, both physically and mentally.\" NL NL \"And most of all, your condition is looking #rworse than any of us, Director Yujin . . .\"",
-      "Her words rang #ptrue. All of our injuries were too #rsevere to be #ghealed up in a manner of days, yet the requests kept #ppiling up. NL NL \"We'll handle the Library request like any other. We aren't heading there to just to obey our superiors' orders. The books there are also what we need to uncover the #bBlue #bReverberation's plots.\" NL NL But there isn't much time before the head of the South Section grew suspicious on why we haven't acted.",
-      "\"Can we actually trust this, #ydirector? Can you promise us that you aren't going to #rharm yourself for the sake of Section 2? You've always been so #pself-sacrificing.\" NL NL \"This is the only chance we have, and the only time we might be able to gain an #yadvantage out of their request. Gather up the ones who can still move and fight. We don't want to bring anyone who will only prove to be a #pburden there.\" NL NL \"Understood.\"",
-      "We tried to prepare as much as we can, but the pressure from the head of the South Section kept piling up. In the end, we were forced to leave prematurely. NL NL I am waiting and enduring until I can seize the chance to bring the Shi back to glory. NL NL I pledge to change this association with my own hands . . . no matter what."
+      "会议室的大门 @砰@ 的一声打开了，两个穿着制服的部属走了进来。 NL NL \"科长 . . . 我们已经 #r连续十天 都在处理 #p都市梦魇 级别的案件了。原本每周只需处理一件 . . .\" NL NL \"大伙的身心就快崩溃了 . . .\" NL NL \"最重要的是，柳真科长您的身体状况比大家都要 #r糟糕 . . .\"",
+      "她说的 #p对 。我们的伤势都太过 #r严重 ，难以在短期内 #g恢复 。而委托还是 #p源源不绝 地塞进来。 NL NL \"我们会像往常一样处理好图书馆的威托。这次前往图书馆不只是为了服从高层的命令。要想揭露 #b苍蓝残响 的阴谋，那本书至关重要。\" NL NL 再过不久南区负责人就会开始怀疑我们为什么还没有采取行动。",
+      "\"#y科长 ，我们真的能相信您吗？您能向我们承诺，这次您不会为了2科再 #r伤害 自己的身体吗？您总是这样 #p舍己为人 . . .\" NL NL \"这是我们唯一一次可以从委托中获取 #y优势 的机会。召集所有还能战斗的人员。我不想带上使不出力气的 #p累赘 。\" NL NL \"遵命。\"",
+      "我们尽量做好准备，但南区负责人的压力不断累积。最后，我们会被迫离开。 NL NL 我在等待和忍耐，直到有机会让し协会重回巅峰。 NL NL 我会用自己这双手做出改变 . . . 无论如何。"
     ],
     "OPTIONS": [
-      "[Continue]",
-      "[Avoid suspicion and rush in] #gObtain #ga #gspecial #gRelic.",
-      "[Try to prepare] #gUpgrade #ga #gcard.",
-      "[Wake Up]",
-      "Upgrade a Card."
+      "[继续]",
+      "[无视怀疑冲进去] #g获得一件特别的遗物。",
+      "[试作准备] #g升级一张牌。",
+      "[醒来]",
+      "升级一张卡牌"
     ]
   },
-  "${ModID}:WarpTrain": {
-    "NAME": "Warp Train",
+  "ruina:WarpTrain": {
+    "NAME": "Warp列车",
     "DESCRIPTIONS": [
-      "You open your eyes to a depiction of a train station. It's very crowded, with commuters rushing from platform to platform, hurrying to get to work on time. On your right, you see various employees walking in groups of #b3, preparing to board a train before the passengers can get on. After the employees board the train, you notice one of them dropped a strange looking cube. It glows with a #bfluorescent radiance, and on further observation, it contains a coin slot which you could insert your #ygold into. Next to the dropped cube, you also notice various stacks of wooden crates, hastily fashioned next to the platform.",
-      "You insert some of your #ygold into the cube, and it glows #bbrighter than before. It begins to pulsate in your hand, faster and faster, as your vision becomes obscured by the radiance of the cube. NL NL You feel time slow down as you watch the scurrying commuters pace slower and slower, until time crawls to a halt, and you begin to @shudder@ with the possibilities of what can be done with this power.",
-      "You easily #rbreak the locks of the wooden crates, and it seems that the employees were so busy with their packed shifts that they forgot to ensure the #gprotection of the #ygoods being transported. NL NL Inside the crates, #ygold pours forth again and again, and you try to pocket as much as you can carry. NL NL Finally, you leave, significantly #ywealthier than you once were.",
-      "You decide to leave both possibilities untouched. After all, this station seems too crowded to try something risky."
+      "你睁开眼睛看到火车站的图标。这里非常拥挤，通勤的人从一个月台冲到另一个月台，赶着按时上班。在你的右边，你可以看到不同的员工 #b3 人一组走着，准备在乘客上车之前登上火车。员工上了火车后，你注意到其中一个掉了一个看起来很奇怪的立方体。它发出 #b荧光 光芒，进一步观察，它包含一个硬币槽，你可以丢进你的 #y金币 。在掉落的立方体旁边，你还可以看到各种各样的木箱，它们是在平台旁边匆忙落下的。",
+      "你往立方体里放了一些 #y金币 ，它看起来比之前更亮了。它开始在你的手中跳动，越来越快，你的视野逐渐被立方体的光芒所遮蔽。 NL NL 当你看着匆匆忙忙的上班族步履越来越慢时，你意识到时间变慢了，直到时间慢慢停止，你开始为用这种力量能做什么的可能性而 @颤抖@ 。",
+      "你很轻易地 #r破坏 了木箱上的锁，看起来员工们忙于轮班而忘了 #g保护 #y货物 的安全。 NL NL 在板条箱里， #y金币 不断地冒出来，你将它们装到口袋里，能装多少装多少。 NL NL 最后你离开了，比之前 #y富裕 得多。",
+      "你决定不去碰这样东西。毕竟，这个车站人太多了，不能冒险。"
     ],
     "OPTIONS": [
-      "[Open the crates] #gGain #g%d #gGold.",
-      "[Interact with the box] #rLose #r%d #rGold. #gTransform #ga #gcard, #gthen #gUpgrade #git.",
-      "[Locked] Requires %d Gold.",
-      "[Leave them alone]",
-      "[Wake Up]",
-      "Transform a Card."
+      "[打开箱子] #g获得 #g%d #g金币 。",
+      "[和立方体互动] #r失去 #r%d #r金币。 #g变化一张牌，然后升级它。",
+      "[锁定] 需要 %d 金币。",
+      "[将它们扔到一边]",
+      "[醒来]",
+      "变化一张牌"
     ]
   },
-  "${ModID}:StreetlightOffice": {
-    "NAME": "Streetlight Office",
+  "ruina:StreetlightOffice": {
+    "NAME": "街灯事务所",
     "DESCRIPTIONS": [
-      "She thought she #phated him. NL He was #rannoying, arrogant, and an #rasshole who stole her #ysweets from the fridge. He was always bragging about how his mother was an amazing #yFixer, and how he would one day surpass her with that fancy sword he had received from her. NL But now he was gone. He would never #rannoy her again. He would never talk down to her, #rsteal her food, or brag about his #yachievements to her ever again. NL She thought she’d be glad that he was gone, but the #phollowness in her heart proved her wrong.",
-      "\"It's not like you to buy #ycake for others . . .\" NL Even if he had been a #pterrible person at times, he was still the person who had watched her back in battle, who had #gsaved her on numerous occasions. And she had saved him in turn. NL But she had #pfailed him this time, and now he was gone. NL Perhaps she should go back and try to reclaim his remains, as reckless as that might be.",
-      "No. He wouldn't want her to do that. As #ptroublesome as he might’ve been, he wouldn't have wanted her to throw her life away. NL NL She would keep on living. And she would live a life that they could both be #yproud of."
+      "她认为她 #p恨 他。 NL 他就是一个 #r自大 的，烦人的，从冰箱里偷走了她的 #y蛋糕 的 #r大笨蛋 。他总是吹嘘自己的母亲是一个多么了不起的 #y收尾人 ，并且迟到一天会从她那里得到那把漂亮的剑然后超越她。 NL 但他现在已经不在了。他再也没机会 #r惹恼 她了。他再也没法跟她说话， #r偷偷 拿走她的蛋糕，或者跟她吹嘘他的那些 #y成就 了。 NL 她以为他走了自己会很开心，可是内心的 #p空洞 告诉她，她错了。",
+      "\"太不像话了 . . . 给女孩子买蛋糕可不是你的作风啊 . . .\" NL 或许他有时候是一个 #p糟透了 的家伙，但他仍然在战斗中和她守望相助，不止一次 #g救了 她的命。同样，她也救了很多次他的命。 NL 但是这一次她 #p失败 了，他回不来了。 NL 或许她应该回去把他的书拿回来，尽管这样很鲁莽。",
+      "不。他不会想看到她这么做的。 他或许 #p身陷囫囵 ，但他并不希望她放弃自己的生命。 NL NL 她要活着，一直活下去，带着他的那一份一起。"
     ],
     "OPTIONS": [
-      "[Continue]",
-      "[Go back] #rFight #ra #rspecial #renemy. #gGain #g%d #gGold.",
-      "[Live to fight another day]",
-      "[Leave]"
+      "[继续]",
+      "[回去] #r和一名特别的敌人战斗。 #g获得 #g%d #g金币 。",
+      "[来日再战]",
+      "[离开]"
     ]
   },
-  "${ModID}:NightInTheBackstreets": {
-    "NAME": "Night In The Backstreets",
+  "ruina:NightInTheBackstreets": {
+    "NAME": "后巷的夜晚",
     "DESCRIPTIONS": [
-      "When night falls in the Backstreets, a different world unfolds, and @they@ @will@ @come.@ NL You observe as a #btorrential #bwave of sweepers march onward, unflinching in their approach. NL Various sweepers lay on the ground, left behind from the marching pack, their corpses motionless from fights with stray fixers. You notice small canisters of red fluids, the life-force of the sweepers which is still intact, and you begin to wonder if you could extract them and harness their power yourself.",
-      "You wait for the stream of sweepers to dissipate, before making your move. It doesn't take much effort to reach the streets where the lifeless corpses lay, and you manage to easily unfasten the canister from its host. NL But as you fasten the canister to yourself, you stumble and fall, #rinjuring yourself in the process.",
-      "Unsure if the canisters would even work to help yourself, you decide to retain vigilant and keep observing the marching sweepers. NL You watch how they scavenge for #gsustenance, how they sustain themselves in these #pdreary backstreets. NL After 80 minutes of marching, the sweepers dissipate once-more, and you take the opportunity to use your new-found knowledge to do some #yscavenging of your own."
+      "当夜幕降临在后巷，一个不同的世界展开， @他们来了@ 。 NL 你看到 #b潮水般 的清道夫正不屈不挠地向前前进。 NL 各种各样的清道夫躺在地上，他们是行进队伍留下的，他们的尸体因为和流浪的收尾人打架而一动不动。你注意到小罐的红色液体，那是仍然完好无损的清洁工的生命力罐，你开始思考自己是否可以提取并利用它们的力量。",
+      "你等待清扫队伍消失，然后行动。不需要太多的努力就可以到达街道上，无生命的尸体躺在那里，你轻松地从它的主人身上拿下罐子。 NL 当你把罐子绑到自己身上时，不小心 #r摔了一跤 。",
+      "不知道这些罐子能否能帮助你自己，你决定保持警惕，继续观察前进的清扫队。 NL 你可以看到他们如何 #g觅食 ，如何在这些阴暗的街道上 #p维持生计 。 NL 80分钟后，清道夫消失了，你利用这个机会用你新学到的知识自己 #y清理 了一下。"
     ],
     "OPTIONS": [
-      "[Extract] ",
-      "[Observe] ",
-      "Obtain a special Relic.",
-      "Become Cursed - ",
+      "[提取] ",
+      "[观察] ",
+      "获得一件特别的遗物。",
+      "被诅咒 - ",
       ".",
-      "Gain ",
-      " HP.",
-      "[Leave]"
+      "恢复 ",
+      " 点生命值。",
+      "[离开]"
     ]
   },
-  "${ModID}:SnowWhiteApple": {
-    "NAME": "Snow White's Apple",
+  "ruina:SnowWhiteApple": {
+    "NAME": "白雪公主的苹果",
     "DESCRIPTIONS": [
-      "You find yourself in a #pstrange #gforest, dreary and damp. You find a bizarre creature, made of branch and root, waiting for you in the middle of a clearing. NL NL It offers you an #yapple.",
-      "You bite into the #yapple. It tastes #gsweet, but as you peer into the apple's core, you realize it had been #protten all along.",
-      "The creature #pfrowns, and it screeches at you in an overwhelming display of #pmalice. You turn and run, but even after you’ve long left the forest, you still feel as though that creature’s #pmalicious intent lingered with you."
+      "你发现自己身处一个 #p陌生 的 #g森林 ，阴郁而潮湿。你发现一个奇怪的生物，由树枝和树根组成，在一片空地的中央等着你。 NL NL 它递给你一个 #y苹果 。",
+      "你咬了一口 #y苹果 。它尝起来 #g很甜 ，但当你看到了苹果的核心，才意识到它已经 #p腐烂 已久。",
+      "那个生物 #p皱着眉头 ，尖叫着对你充满 #p敌意 。你转身就跑，但是即使你已经离开森林很久了，你仍然觉得那个生物的 #p恶意 还在你身上徘徊。"
     ],
     "OPTIONS": [
-      "[Accept it] ",
-      "[Reject it] ",
-      "Obtain a special Relic.",
-      "Become Cursed - ",
+      "[接受] ",
+      "[拒绝] ",
+      "获得一件特别的遗物。",
+      "被诅咒 - ",
       ".",
-      "Gain ",
-      "Lose ",
-      " Max HP.",
-      "[Leave]"
+      "获得 ",
+      "失去 ",
+      " 最大生命值。",
+      "[离开]"
     ]
   },
-  "${ModID}:DerFreischutz": {
-    "NAME": "Der Freischütz",
+  "ruina:DerFreischutz": {
+    "NAME": "魔弹射手",
     "DESCRIPTIONS": [
-      "You see a cloaked figure shrouded in #pdarkness. #rBloody bodies litter the ground around the figure, the remnants of a gruesome #rmassacre. NL \"The #pDevil proposed a childish contract to me. My last bullet would puncture the head of my beloved. But I have swindled the #pDevil, for you see, I have already killed all the people I love!\" NL The figure @laughed,@ and you could tell that he had already gone #rmad with power. NL \"How about it, stranger? How would you like to partake of this contract of mine as well?\"",
-      "You felt something #rsear itself into your soul as the power of the #pDevil flowed through you. You felt giddy, unrestrained, uncontrollable. NL NL The figure grinned. \"Excellent. Now, let us fall into the depths of #rHell together!\"",
-      "\"How #punfortunate. It seems you will simply be another one of my targets, then.\" NL NL The figure fired at you, but a quick dodge from you turned the bullet into merely a grazing shot. As you ran away from the crazed gunman, you couldn't help but feel relieved that you had avoided whatever #pcurse turned the man from a professional hunter into a #rbloodthirsty killer."
+      "你看到一个披着斗篷的人笼罩在 #p黑暗 之中。 #r血腥 的肢体散乱在他周围的空地上，很显然这场 #r屠杀 已经告一段落。 NL \"#p魔鬼 跟我签订了一个可笑的契约：我的最后一发魔弹会贯穿我心爱的人的头。但我成功欺骗了 #p魔鬼 ，你看，我已经提前杀死了我所有心爱的人!\" NL 那道人影 @大笑着，@ 你很轻易地判断出他已经深陷于力量而变得 #r疯狂 。 NL \"你觉得如何，陌生人?要不要和我一起共享这份契约的力量?\"",
+      "#p魔鬼 的力量在你的身体里流淌，你能感觉到灵魂里有某种东西在 #r燃烧 。 你感到头晕目眩，无拘无束，身体不受控制。 NL NL 人影笑了。 \"太棒了。现在，让我们一起堕入 #r地狱 深处吧!\"",
+      "\"多么 #p不幸 。看来你是我的下一个目标了，那么。\" NL NL 人影向你开火，但是你快速的闪避令子弹擦身而过。你成功逃离那个疯狂的枪手后不禁松了口气，因为你避开了令那个男人从职业猎人变成 #r嗜血 杀手的 #p诅咒 。"
     ],
     "OPTIONS": [
-      "[Accept] ",
-      "[Reject] ",
-      "Obtain a special Relic.",
-      "Lose ",
-      " HP.",
-      "Remove a card.",
-      "Choose a Card to Remove.",
-      "[Leave]"
+      "[接受] ",
+      "[拒绝] ",
+      "获得一件特别的遗物。",
+      "失去 ",
+      " 生命。",
+      "移除一张牌。",
+      "选择一张牌移除",
+      "[离开]"
     ]
   },
-  "${ModID}:UnknownPath": {
-    "NAME": "Paths To The Unknown",
+  "ruina:UnknownPath": {
+    "NAME": "通往未知之路",
     "DESCRIPTIONS": [
-      "Before you, stands a series of twisting, winding paths. Seeming infinite, ever expanding towards the unknown. You notice a series of smaller, cascading paths below you, filling the space in the empty void. However, the paths appear too narrow, and too unstable to even consider them as a possibility. Your attention shifts to three pathways, which tower above the rest: NL - A #rsteep central pathway, which towers above all. NL - A curved pathway to the #gleft, with jagged edges. NL - A curved pathway to the #gright, with a smooth, refined shape."
+      "在你面前，是一条条蜿蜒曲折的小路，看不到尽头，通向未知。你注意到在你下面有一条更小的，层叠的路径，填满了空虚的空间。然而，道路似乎太狭窄，太不安全，让人无法考虑会走这条路。你的注意力转移到三条路上，这三条路高出其他路: NL - #r陡峭 的中央通道，高高在上。 NL - 一条向 #g左 弯曲的小路，有锯齿状的边缘。 NL - 一条向 #g右 弯曲的小路，平坦光滑。"
     ],
     "OPTIONS": [
-      "[Ascend The Steep Pathway] Encounter a random #pelite.",
-      "[Ascend the Jagged Pathway] Encounter a random #rmonster.",
-      "[Ascend the Smooth Pathway] Encounter a random #gevent."
+      "[攀登陡峭的路]遭遇一个随机的 #p精英 敌人。",
+      "[走在崎岖不平的路]遭遇一个随机的 #r生物 。",
+      "[走过平坦的道路]遭遇随机 #g事件 。"
     ]
   },
-  "${ModID}:SingingMachine": {
-    "NAME": "Singing Machine",
+  "ruina:SingingMachine": {
+    "NAME": "歌唱机",
     "DESCRIPTIONS": [
-      "You hear something #rgrinding in the distance, #rcrunching and #rmunching on something distinctly #rfleshy. You approach closer and find a #rbloody machine, moving in rhythm to its own #phideous beat. NL NL A person with a looser grip on their sanity might even think this sound was musical. NL NL The machine pauses and opens up, giving you an opportunity to throw something in.",
-      "The machine churns, lets off a #ghappy little jingle, then  . . . ",
-      ". . . spits the offering back out. You pick it back up, and although it’s #rbloodstained now, you sense that it has become . . . #yimproved, somehow.",
-      ". . . spits out a #ybauble covered in #rblood. You pick it up, and while you do not recognize the trinket, you sense that it’ll be helpful down the road.",
-      ". . . spits out several #rblood-covered flasks. You pick up the flasks, and while your common sense argues against imbibing something produced by this machine, your instincts tell you that these flasks do contain #ypower.",
-      "The machine churns, lets out an #rangry rumbling, then . . . ",
-      ". . . spits your offering back out. It seems it didn't appreciate what you had given it.",
-      ". . . spits out a stream of #rblood, colliding with your face and knocking you over. It seems it didn't appreciate what you had given it.",
-      "You didn't feel like interacting with this #psinister machine."
+      "你听到远处有什么东西在 #r摩擦 ，#r嘎吱嘎吱 地咀嚼着某种明显是 #r肉质 的东西。你走近了，发现一台 #r血淋淋 的机器，跟着它自己 #p可怕 的节奏移动着。 NL NL 一个离职涣散的人甚至可能会认为这声音是音乐。 NL NL 机器暂停并打开，给你一个扔东西的机会。",
+      "机器轰鸣，发出 #g快乐 的叮当声，然后 . . . ",
+      ". . . 吐出祭品。你重新拾起它，尽管它现在已经沾满了 #r血迹 ，但你感觉到它在某种程度上有所 #y改善 。",
+      ". . . 吐出一个沾满 #r鲜血 的 #y小玩意儿 。你拿起它，虽然你不认识这个饰品，但你感觉到它将来会有帮助。",
+      ". . . 吐出几个 #r血迹斑斑 的瓶子。你拿起烧瓶，你的常识告诉你不要喝这台机器生产的东西，但你的直觉告诉你，这些烧瓶的确含有某些 #y能量 。",
+      "机器轰鸣，发出 #r愤怒 的隆隆声，然后 . . . ",
+      ". . . 把你的祭品吐了出来。它似乎并不想要你所给予的。",
+      ". . . 喷出一股 #r血流 ，与你的脸相撞，把你撞倒。它似乎并不想要你所给予的。",
+      "你不想和这个 #p邪恶 的机器互动。"
     ],
     "OPTIONS": [
-      "[Throw something in] Offer a card.",
-      "Obtain ",
+      "[扔一些东西进去]给予一张非基础牌。",
+      "获得 ",
       ".",
-      " Common Potions.",
-      " Uncommon Potions.",
-      " Rare Potions.",
-      "Lose ",
-      " HP.",
-      " Max HP.",
-      "[Leave]",
-      "[Locked] Requires non-Starter card",
-      "Choose a Card to offer",
-      " twice."
+      " 普通药水。",
+      " 罕见药水。",
+      " 稀有药水",
+      "失去 ",
+      " 生命。",
+      " 最大生命。",
+      "[离开]",
+      "[锁定]需要非基础牌。",
+      "选择一张牌给予",
+      " 两次。"
     ]
   },
-  "${ModID}:GalaxyChild": {
-    "NAME": "Child of the Galaxy",
+  "ruina:GalaxyChild": {
+    "NAME": "银河之子",
     "DESCRIPTIONS": [
-      "You spot a small figure, a boy draped in the shining #pnebula and starry sky of the infinite #pgalaxy. The boy approaches you, holding out a small #ybauble: NL NL \"Won't you be my friend?\"",
-      "You accept the gift, and the boy #ybeams at you. NL NL \"It's my #ggift to celebrate our #gfriendship. Please treasure it.\"",
-      "The boy #pfrowns, and a small #pteardrop falls to the ground. NL NL \"If you won't keep me company, then I don't need you!\" NL NL The #pgalaxy #rrips and #rdistorts, and you feel your vision blur as your head pounds in #pagony. Eventually, the sensation ends, and you feel . . . different. Changed. #pDistorted."
+      "你看到了一个小身影，一个男孩披着闪亮的 #p星云 和无尽的 #p星空 。男孩走近你，手里拿着一个 #y小饰物 ： NL NL \"你不愿意做我的朋友吗？\"",
+      "你接受了礼物，男孩向你露出了 #y笑容 。 NL NL \"这是我们 #g友谊 的 #g证明 。请珍惜它。\"",
+      "男孩 #p皱起了眉头 ，小小的 #p泪滴 落在了地上。 NL NL \"如果你不陪我，我就不需要你了！\" NL NL #p银河 开始 #r扭曲 ， #r撕裂 ，你感到视线模糊，头部 #p剧痛 。一切结束后，你感到 . . . 有什么变得与众不同，改变， #p扭曲 。"
     ],
     "OPTIONS": [
-      "[Accept the gift] ",
-      "[Reject the gift] ",
-      "Obtain a random common Relic.",
-      "Obtain an EGO card.",
-      "Become Cursed - ",
+      "[接受礼物] ",
+      "[拒绝礼物] ",
+      "获得一件随机的普通遗物。",
+      "获得一张随机的EGO卡牌。",
+      "被诅咒 - ",
       ".",
-      "[Leave]"
+      "[离开]"
     ]
   },
-  "${ModID}:Funeral": {
-    "NAME": "Funeral of the Dead Butterflies",
+  "ruina:Funeral": {
+    "NAME": "亡蝶葬仪",
     "DESCRIPTIONS": [
-      "It sits there amidst a field of butterflies, a silent guardian for those who have #pfallen. It stands up and offers you its #ycoffin, offers you a place to #grest in this strange, chaotic place. NL NL You lie down in the coffin, and the lid closes over you. And as the outside world vanishes, you find yourself #ydreaming of a place of -",
-      "#pViolent #pdeath. It sought out those who did not expect it the most. It surprised them from the #pshadows and smothered them in #pdarkness. NL NL In the dream, you were both predator and prey. And as you awaken with a shout and shaking hands, you feel that a part of you had changed #yforever.",
-      "#pQuiet #pdeath. It came to those lying in their beds, weak from age or #psickness. It took away their pain, their troubles, their worries - it freed them from the #pstruggles that came with their mortal coil. NL NL Slowly, you awaken from the place of unnatural #ytranquility. But as your eyes open and your hands push open the lid, you can't help but feel that you had left something behind in that place."
+      "它坐落在蝴蝶的田野中，是那些 #p堕落者 的无声守护者。它站起来，给你它的 #y棺材 ，给你一个在这个奇怪，混乱的地方 #g休息 的东西。 NL NL 你躺在棺材里，棺材盖盖上了。当外面的世界消失的时候，你发现自己 #y梦到 一个充满活力的地方 -",
+      "#p死于非命 。它寻找着那些最不期待它的人。它从 #p阴影 中惊醒了他们，把他们闷死在 #p黑暗 中。 NL NL 在梦里，你既是捕食者又是猎物。当你被一声喊叫和握手惊醒时，你感觉到你的一部分已经永远改变了。",
+      "#p自然死亡 。它降临到那些躺在床上的人身上，因为 #p年老体衰 而虚弱不堪。它带走了他们的痛苦，他们的烦恼，他们的忧虑 -它让他们从尘世的 #p挣扎 中解脱出来。 NL NL 慢慢地，你从非自然的宁静中醒来。但当你睁开眼睛，双手推开盖子时，你情不自禁地感到自己在那个地方留下了什么东西。"
     ],
     "OPTIONS": [
-      "[Pitch-black darkness] ",
-      "[Pure-white innocence] ",
-      "Lose ",
-      " HP.",
-      " Max HP.",
-      "Obtain a random upgraded EGO card.",
-      "Remove ",
-      " cards.",
-      "[Leave]",
-      "Choose Cards to Remove"
+      "[漆黑的黑暗] ",
+      "[洁白的纯真] ",
+      "失去 ",
+      " 点生命。",
+      " 最大生命值。",
+      "获得一张随机的已升级的EGO卡牌。",
+      "移除 ",
+      " 张牌。",
+      "[离开]",
+      "选择卡牌移除"
     ]
   },
-  "${ModID}:NeowAngela": {
-    "NAME": "Angela",
+  "ruina:NeowAngela": {
+    "NAME": "安吉拉",
     "DESCRIPTIONS": [
-      "Greetings. NL I am Angela, the director and librarian of my role's namesake.",
-      "And so the script continues, never-ending.",
-      "Greetings, dear guest.",
-      "The cycle of death and rebirth continues.",
-      "Prove yourself, and perhaps I will aid you further.",
-      "At least reach the top of Asiyah.",
-      "The librarians aren't the only people I can bring back.",
-      "Would you like a boon?",
-      "May you find your book in this place.",
-      "May you find your book in this place.",
-      "Will you persevere in the face of this challenge?",
-      "Rewards",
-      "Let us continue.",
-      "These ordeals will only grow more difficult.",
-      "I am impressed you're holding out for so long.",
-      "Cursed!",
-      "Scatterbrain!",
+      "欢迎光临。 NL 我叫安吉拉，是这座图书馆的馆长兼司书。",
+      "那么，剧本继续，永无止境。",
+      "欢迎，这位来宾。",
+      "死亡与重生的循环仍在继续。",
+      "证明你自己，也许我会进一步帮助你。",
+      "至少到 Asiyah 的顶部吧。",
+      "我并不是只能复活司书。",
+      "你想要恩惠吗？",
+      "希望你能在这里找到你想要的书。",
+      "希望你能在这里找到你想要的书。",
+      "面对这个挑战，你还会继续坚持吗？",
+      "奖励",
+      "让我们继续。",
+      "这些磨难只会变得更加困难。",
+      "你坚持了这么久，让我印象深刻。",
+      "诅咒",
+      "心不在焉",
       "Transformation!"
     ],
     "OPTIONS": [

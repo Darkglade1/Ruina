@@ -462,133 +462,133 @@
     "NAME": "Judas",
     "DESCRIPTIONS": ["每当一个生物死亡，在下个回合获得 #b", " 点 #y力量 。"]
   },
-  "${ModID}:Pattern": {
-    "NAME": "Pattern Recognition",
-    "DESCRIPTIONS": ["Whenever this creature deals #b", " unblocked attack damage in a single turn, it removes all #pdebuffs from itself."]
+  "ruina:Pattern": {
+    "NAME": "反复识别模式",
+    "DESCRIPTIONS": ["每当在一个回合内造成 #b", " 点未被格挡的伤害，则移除自身所有的 #p负面状态 。"]
   },
-  "${ModID}:Fear": {
-    "NAME": "Fear",
-    "DESCRIPTIONS": ["Whenever you play an #yAttack, this creature loses #b", " #yStrength this turn."]
+  "ruina:Fear": {
+    "NAME": "恐惧",
+    "DESCRIPTIONS": ["每当你打出一张 #y攻击牌 ，本回合失去 #b", " 点 #y力量 。"]
   },
-  "${ModID}:Affection": {
-    "NAME": "Affection",
-    "DESCRIPTIONS": ["Whenever this creature fully or partially #yBlocks attack damage, it gains #b", " #yStrength."]
+  "ruina:Affection": {
+    "NAME": "爱意",
+    "DESCRIPTIONS": ["每当部分或完全 #y格挡 攻击伤害时，获得 #b", " 点 #y力量 。"]
   },
-  "${ModID}:FlamingBat": {
+  "ruina:FlamingBat": {
     "NAME": "Flaming Bat",
-    "DESCRIPTIONS": ["When this creature deals unblocked damage, apply #b%d #yBurn."]
+    "DESCRIPTIONS": ["每当造成未被格挡的伤害时，给予 #b%d 层 #y烧伤 。"]
   },
-  "${ModID}:Burn": {
-    "NAME": "Burn",
-    "DESCRIPTIONS": ["Take #b%d damage at the end of your turn and then remove all #yBurn."]
+  "ruina:Burn": {
+    "NAME": "烧伤",
+    "DESCRIPTIONS": ["在你的回合结束时受到 #b%d 点伤害然后移除所有的 #y烧伤 。"]
   },
-  "${ModID}:Expression": {
-    "NAME": "Expression",
-    "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature changes its intent."]
+  "ruina:Expression": {
+    "NAME": "神情",
+    "DESCRIPTIONS": ["每当你打出 #b", " 张牌，这个生物会更改自己的行动意图。"]
   },
-  "${ModID}:WintersInception": {
-    "NAME": "Winter's Inception",
-    "DESCRIPTIONS": ["The first #yAttack you play each turn gains #yLaurel #yWreath. This creature receives #b", "% less damage from #yAttacks without #yLaurel #yWreath."]
+  "ruina:WintersInception": {
+    "NAME": "冬日的开端",
+    "DESCRIPTIONS": ["每回合你打出的第一张 #y攻击牌 获得 #y赎罪之冠 。受到没有 #y赎罪之冠 的 #y攻击牌 的伤害减少 #b", "% 。"]
   },
-  "${ModID}:Performance": {
-    "NAME": "Endless Performance",
-    "DESCRIPTIONS": ["At end of round, shuffle a #yPerformer card into your discard pile.", "Whenever a #yPerformer card is #yExhausted, add a copy of it into your discard pile."]
+  "ruina:Performance": {
+    "NAME": "永无止境的乐章",
+    "DESCRIPTIONS": ["在回合结束时，将一张 #y演奏者 牌放入你的弃牌堆。", "每当一张 #y演奏者 牌被 #y消耗 ，将一张复制放入你的弃牌堆。"]
   },
-  "${ModID}:FerventAdoration": {
-    "NAME": "Fervent Adoration",
-    "DESCRIPTIONS": ["At the start of your turn, draw #b", " card.", " cards.", " At the end of your turn, take #b", " damage."]
+  "ruina:FerventAdoration": {
+    "NAME": "狂热崇拜",
+    "DESCRIPTIONS": ["在你的回合开始时，抽 #b", " 张牌。", " 张牌。", " 在你的回合结束时，受到 #b", " 点伤害。"]
   },
-  "${ModID}:RedEyesPower": {
-    "NAME": "Red Eyes",
-    "DESCRIPTIONS": ["Double the next #pdebuff you apply to this #renemy."]
+  "ruina:RedEyesPower": {
+    "NAME": "赤瞳",
+    "DESCRIPTIONS": ["翻倍你下次给予这个 #r敌人 的 #p负面状态 层数。"]
   },
-  "${ModID}:LaetitiaPower": {
+  "ruina:LaetitiaPower": {
     "NAME": "Laetitia",
-    "DESCRIPTIONS": ["The first #b", " or ", " cost card(s) played each turn are played twice. (", " left)"]
+    "DESCRIPTIONS": ["每回合打出的第一张耗能为 #b", " 或 ", " 的卡牌将打出两次。 (", " left)"]
   },
-  "${ModID}:Satiation": {
-    "NAME": "Momentary Satiation",
-    "DESCRIPTIONS": ["Whenever this creature #yconsumes a minion, it gains #b", " #yWeak and #yVulnerable."]
+  "ruina:Satiation": {
+    "NAME": "片刻的饕足",
+    "DESCRIPTIONS": ["每当这个生物 #y吃掉 一位爪牙，获得 #b", " 层 #y虚弱 和 #y易伤 。"]
   },
-  "${ModID}:Meal": {
-    "NAME": "Prepared Meal",
-    "DESCRIPTIONS": ["At end of round, if this creature's HP is at or below #b", ", the enemy #yconsumes it."]
+  "ruina:Meal": {
+    "NAME": "预备餐点",
+    "DESCRIPTIONS": ["在回合结束时如果生命值低于 #b", " ，会被敌人当成 #y餐点 。"]
   },
-  "${ModID}:LonelyIsSad": {
-    "NAME": "Being Lonely is Sad",
+  "ruina:LonelyIsSad": {
+    "NAME": "一个人好寂寞",
     "DESCRIPTIONS": [
-      "Receives #b", "% more damage from attacks if there are no other enemies alive."
+      "如果没有其他敌人存活，额外受到 #b", "% 的攻击伤害。"
     ]
   },
-  "${ModID}:Gimme": {
-    "NAME": "Gimme that Gift!",
+  "ruina:Gimme": {
+    "NAME": "交出来！",
     "DESCRIPTIONS": [
-      "Whenever you receive unblocked attack damage from this creature, #yExhaust all #yGifts in your hand."
+      "每当你受到这个生物造成的未被格挡的伤害， #y消耗 你手牌中所有的 #y礼物 。"
     ]
   },
-  "${ModID}:SurprisePresent": {
-    "NAME": "Surprise Present",
+  "ruina:SurprisePresent": {
+    "NAME": "惊喜登场！",
     "DESCRIPTIONS": [
-      "In #b%1$s turns, this creature #rexplodes, dealing #b%2$s damage to you and adding a #yGift to your hand. NL NL On death, spawns a #bWee #bWitch's #bFriend.",
-      "In #b%1$s turn, this creature #rexplodes, dealing #b%2$s damage to you and adding a #yGift to your hand. NL NL On death, spawns a #bWee #bWitch's #bFriend."
+      "在 #b%1$s 回合后，这个生物会 #r自爆 ，并对你造成 #b%2$s 点伤害然后将一张 #y礼物 放入你的手牌中。 NL NL 死亡时，召唤一只 #b小魔女的朋友 。",
+      "在 #b%1$s 回合后，这个生物会 #r自爆 ，并对你造成 #b%2$s 点伤害然后将一张 #y礼物 放入你的手牌中。 NL NL 死亡时，召唤一只 #b小魔女的朋友 。"
     ]
   },
-  "${ModID}:Song": {
-    "NAME": "Pine for the Song",
-    "DESCRIPTIONS": ["At end of round, gains #b", " #yStrength and #b", " #yVulnerable."]
+  "ruina:Song": {
+    "NAME": "我渴望那段旋律！",
+    "DESCRIPTIONS": ["在回合结束时，获得 #b", " 点 #y力量 和 #b", " 层 #y易伤 。"]
   },
-  "${ModID}:Pleasure": {
-    "NAME": "Pleasure",
-    "DESCRIPTIONS": ["At the start of your turn, gain ", " At the end of your turn, take #b", " damage."]
+  "ruina:Pleasure": {
+    "NAME": "快感",
+    "DESCRIPTIONS": ["在你的回合开始时，获得 ", " 在你的回合结束时，受到 #b", " 点伤害。"]
   },
-  "${ModID}:FaintAroma": {
-    "NAME": "Faint Aroma",
-    "DESCRIPTIONS": ["Whenever you deal unblocked attack damage to an #renemy, it loses HP equal to #b","x that amount."]
+  "ruina:FaintAroma": {
+    "NAME": "余香",
+    "DESCRIPTIONS": ["每当你对一个 #r敌人 造成未被格挡的伤害，敌人失去等同 #b"," 倍伤害的生命值。"]
   },
-  "${ModID}:Grinder": {
-    "NAME": "Grinder Mk. 5-2",
-    "DESCRIPTIONS": ["The first time you deal #b", " unblocked attack damage each turn, gain ", "next turn."]
+  "ruina:Grinder": {
+    "NAME": "研削机Mk5-2",
+    "DESCRIPTIONS": ["在一个回合内，你总共造成 #b", " 点或以上未被格挡的伤害后，在下一回合获得 ", " 。"]
   },
-  "${ModID}:DontLeave": {
-    "NAME": "Don't Leave Me",
-    "DESCRIPTIONS": ["When this creature #rdies, it #grevives this turn with the HP of another #renemy."]
+  "ruina:DontLeave": {
+    "NAME": "不要离开我",
+    "DESCRIPTIONS": ["#r死亡 后，在这个回合会 #g复活 并将生命恢复到与另一个 #r敌人 等同。"]
   },
-  "${ModID}:Hunt": {
-    "NAME": "The Hunt is On",
-    "DESCRIPTIONS": ["Whenever another creature #rdies or if this creature is alone, uses a #rstrong attack next turn."]
+  "ruina:Hunt": {
+    "NAME": "开始狩猎",
+    "DESCRIPTIONS": ["如果其他生物全部 #r死亡 或只有这个生物单独存活，将会在下一回合发动一次 #r强力 攻击。"]
   },
-  "${ModID}:Dream": {
-    "NAME": "Broken Dream",
-    "DESCRIPTIONS": ["At end of round, another #yBrother becomes #yactive. NL If #b", " or more #yBrothers have #rdied, begins to use a #rpowerful attack. NL NL Random targeting effects always target this creature."]
+  "ruina:Dream": {
+    "NAME": "绝唱",
+    "DESCRIPTIONS": ["在回合结束后，另一位 #y哥哥 会 #y苏醒 。 NL 如果 #b", " 位或更多的 #y哥哥 已经 #r死亡 ，开始发动 #r强力 攻击。 NL NL 随机攻击目标总会以这个生物为目标。"]
   },
-  "${ModID}:BrotherPower": {
-    "NAME": "Brother",
+  "ruina:BrotherPower": {
+    "NAME": "哥哥",
     "DESCRIPTIONS": [
-      "At end of round, if this creature is #yactive, ",
-      "the boss gains #b%1$s #yPlated #yArmor.",
-      "the boss gains #b%1$s #yArtifact if it has no #yArtifact.",
-      "shuffle #b%1$s #yDazed into your discard pile.",
-      "you gain #b%1$s #yVulnerable.",
-      "Faithful Brother",
-      "Dauntless Brother",
-      "Stalwart Brother",
-      "Valiant Brother"
+      "在回合结束时，如果仍然 #y存活 ，",
+      "令Boss获得 #b%1$s 层 #y多层护甲 。",
+      "如果Boss没有则令其获得 #b%1$s 层 #y人工制品 。",
+      "将 #b%1$s 张 #y晕眩 放入你的弃牌堆。",
+      "令你获得 #b%1$s 层 #y易伤 。",
+      "忠诚的哥哥",
+      "无畏的哥哥",
+      "坚强的哥哥",
+      "勇敢的哥哥"
     ]
   },
-  "${ModID}:HornetPower": {
-    "NAME": "Hornet",
-    "DESCRIPTIONS": ["The next #yAttack you play deals double damage."]
+  "ruina:HornetPower": {
+    "NAME": "黄蜂",
+    "DESCRIPTIONS": ["你打出的下一张 #y攻击牌 将造成双倍伤害。"]
   },
-  "${ModID}:FourthMatchFlame": {
-    "NAME": "Fourth Match Flame",
-    "DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to ALL enemies."]
+  "ruina:FourthMatchFlame": {
+    "NAME": "终末之光",
+    "DESCRIPTIONS": ["在你的回合结束时，对所有敌人造成 #b", " 点伤害。"]
   },
-  "${ModID}:Machine": {
-    "NAME": "Machine that Sings",
-    "DESCRIPTIONS": ["At end of round, ALL enemies gain #b", " #yTemporary #yStrength for every card in the #ySinging #yMachine."]
+  "ruina:Machine": {
+    "NAME": "会唱歌的机器",
+    "DESCRIPTIONS": ["在回合结束时， #y歌唱机 内每有一张卡牌所有敌人获得 #b", " #y临时力量 。"]
   },
-  "${ModID}:BeautifulSound": {
-    "NAME": "A Beautiful Sound",
-    "DESCRIPTIONS": ["After this creature attacks this turn, ", " is #yExhausted and put into the #ySinging #yMachine."]
+  "ruina:BeautifulSound": {
+    "NAME": "绝美的旋律",
+    "DESCRIPTIONS": ["这个回合在这个生物攻击后， ", " 会被 #y消耗 并放进 #y歌唱机 中。"]
   }
 }

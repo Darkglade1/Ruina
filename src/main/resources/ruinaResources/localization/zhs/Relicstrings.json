@@ -65,32 +65,32 @@
       "在每场战斗结束时，恢复你 #b", "% 的生命。"
     ]
   },
-  "${ModID}:Overexertion": {
-    "NAME": "Overexertion",
-    "FLAVOR": "She just had to keep pushing forward. Keep on pushing until the way was clear. Keep on pushing until she could push no more.",
+  "ruina:Overexertion": {
+    "NAME": "过度用力",
+    "FLAVOR": "她必须要一直前进，一直到道路通畅为止，一直到她无法再继续前进为止。",
     "DESCRIPTIONS": [
-      "Start each combat with an additional [E] [E] . NL Gain #b%1$s #yWeak and #yFrail at the start of your second turn."
+      "在每场战斗开始时额外获得 [E] [E] 。 NL 但是在第二个回合会获得 #b%1$s 层 #y虚弱 和 #y脆弱 。"
     ]
   },
-  "${ModID}:LifeFiber": {
-    "NAME": "Life Fibers",
-    "FLAVOR": "When night falls in the Backstreets, they will come.",
+  "ruina:LifeFiber": {
+    "NAME": "生命精华",
+    "FLAVOR": "后巷的夜幕降临时，他们就来了。",
     "DESCRIPTIONS": [
-      "The next time you die, heal #b", " HP instead. At the end of combat, increase the amount healed by #b", "."
+      "你下一次死亡时，改为恢复 #b", " 点生命。在每场战斗结束后，计数增加 #b", " 。"
     ]
   },
-  "${ModID}:Malice": {
-    "NAME": "Malice",
-    "FLAVOR": "The inherent malice caused all life to crumble as soon as it bloomed.",
+  "ruina:Malice": {
+    "NAME": "恶意",
+    "FLAVOR": "与生俱来的恶意，让所有生命一盛开便会瓦解。",
     "DESCRIPTIONS": [
-      "At the start of your turn, deal #b" , " damage to ALL enemies. If your HP is at or below #b", "%, deal #b", " damage to ALL enemies instead."
+      "在你的回合开始时，对所有敌人造成 #b" , " 点伤害。如果你的生命不高于 #b", "% ，改为造成 #b", " 点伤害。"
     ]
   },
-  "${ModID}:SeventhBullet": {
-    "NAME": "The Seventh Bullet",
-    "FLAVOR": "One day, the marksman realized the Devil no longer followed him. He pondered why, then realized that his soul had already fallen to Hell from the beginning.",
+  "ruina:SeventhBullet": {
+    "NAME": "第七发魔弹",
+    "FLAVOR": "有一天，神射手发现魔鬼已经不再伴随着他。他思索原因，终于意识到他的灵魂早已堕入了地狱。",
     "DESCRIPTIONS": [
-      "Gain #b" , " #yStrength at the start of combat. Whenever you play #b", " #yAttacks, take #b", " damage."
+      "在战斗开始时获得 #b" , " 点 #y力量 。 每当你打出 #b", " 张 #y攻击牌 ，受到 #b", " 点伤害。"
     ]
   }
 }

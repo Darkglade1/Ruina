@@ -1001,277 +1001,277 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:AllAroundHelper": {
+  "ruina:AllAroundHelper": {
     "MOVES": [
-      "Charge",
-      "Clean"
+      "充能",
+      "清洁"
     ],
-    "NAME": "All-Around Helper",
+    "NAME": "小帮手",
     "DIALOG": [
     ]
   },
-  "${ModID}:ForsakenMurderer": {
+  "ruina:ForsakenMurderer": {
     "MOVES": [
-      "Chained Wrath",
-      "Metallic Ringing"
+      "受缚的愤怒",
+      "铁块的回声"
     ],
-    "NAME": "Forsaken Murderer",
+    "NAME": "被遗弃的杀人魔",
     "DIALOG": [
     ]
   },
-  "${ModID}:ScorchedGirl": {
+  "ruina:ScorchedGirl": {
     "MOVES": [
-      "Ember",
-      "Extinguish"
+      "灼烧",
+      "燃尽"
     ],
-    "NAME": "Scorched Girl",
+    "NAME": "焦化少女",
     "DIALOG": [
     ]
   },
-  "${ModID}:TeddyBear": {
+  "ruina:TeddyBear": {
     "MOVES": [
-      "Timid Endearment",
-      "Display of Affection"
+      "谨慎示爱",
+      "表达爱意"
     ],
-    "NAME": "Happy Teddy Bear",
+    "NAME": "快乐泰迪",
     "DIALOG": [
     ]
   },
-  "${ModID}:Lulu": {
+  "ruina:Lulu": {
     "MOVES": [
-      "Prepared Mind",
-      "Flaming Bat",
-      "Set Ablaze"
+      "水止镜明",
+      "火棍强袭",
+      "灼热打击"
     ],
-    "NAME": "Lulu",
+    "NAME": "璐璐",
     "DIALOG": [
     ]
   },
-  "${ModID}:ShyLook": {
+  "ruina:ShyLook": {
     "MOVES": [
-      "Today's Expression"
+      "此刻的神情"
     ],
-    "NAME": "Today's Shy Look",
+    "NAME": "今天也很害羞",
     "DIALOG": [
     ]
   },
-  "${ModID}:Alriune": {
+  "ruina:Alriune": {
     "MOVES": [
-      "Spring's Genesis",
-      "Full Bloom",
-      "Magnificent End"
+      "春日的起源",
+      "花绽于身",
+      "恍惚的终局"
     ],
-    "NAME": "Alriune",
+    "NAME": "爱温娜",
     "DIALOG": [
     ]
   },
-  "${ModID}:Orchestra": {
+  "ruina:Orchestra": {
     "MOVES": [
-      "The First Movement",
-      "The Second Movement",
-      "The Third Movement",
-      "The Fourth Movement",
-      "Finale",
-      "Curtain Call"
+      "第一乐章",
+      "第二乐章",
+      "第三乐章",
+      "第四乐章",
+      "终章",
+      "谢幕"
     ],
-    "NAME": "Silent Orchestra",
+    "NAME": "沉默乐团",
     "DIALOG": [
     ]
   },
-  "${ModID}:FairyQueen": {
+  "ruina:FairyQueen": {
     "MOVES": [
-      "Queen's Decree",
-      "Predation",
-      "Ravenousness"
+      "女王之令",
+      "饥饿之翼",
+      "用膳"
     ],
-    "NAME": "Fairy Queen",
+    "NAME": "精灵女王",
     "DIALOG": [
     ]
   },
-  "${ModID}:FairyMass": {
+  "ruina:FairyMass": {
     "MOVES": [
-      "Wingbeats",
-      "Gluttony"
+      "翅振",
+      "饕餮"
     ],
-    "NAME": "Fairy Mass",
+    "NAME": "精灵畸块",
     "DIALOG": [
     ]
   },
-  "${ModID}:Laetitia": {
+  "ruina:Laetitia": {
     "MOVES": [
-      "Here's a Gift!",
-      "Let’s Have Fun!"
+      "是礼物哦~",
+      "玩得开心！"
     ],
-    "NAME": "Laetitia",
+    "NAME": "蕾蒂西娅",
     "DIALOG": [
     ]
   },
-  "${ModID}:GiftFriend": {
+  "ruina:GiftFriend": {
     "MOVES": [
-      "G..i..f..t",
-      "B..lo..w..Up.."
+      "噫…呦…哩…呜…",
+      "卟…嗷…吱…啊…"
     ],
-    "NAME": "Gift-wrapped Friend",
+    "NAME": "惊喜礼盒",
     "DIALOG": [
     ]
   },
-  "${ModID}:WitchFriend": {
+  "ruina:WitchFriend": {
     "MOVES": [
       "#$@!#*#$@"
     ],
-    "NAME": "Wee Witch's Friend",
+    "NAME": "小魔女的朋友",
     "DIALOG": [
     ]
   },
-  "${ModID}:Fragment": {
+  "ruina:Fragment": {
     "MOVES": [
-      "Penetrate",
-      "Echoes from the Beyond"
+      "穿透",
+      "异界的回响"
     ],
-    "NAME": "Fragment of the Universe",
+    "NAME": "宇宙碎片",
     "DIALOG": [
     ]
   },
-  "${ModID}:CrazedEmployee": {
+  "ruina:CrazedEmployee": {
     "MOVES": [
-      "Trembling Motion",
-      "Shaking Blow"
+      "哆哆嗦嗦",
+      "颤抖一击"
     ],
-    "NAME": "Crazed Employee",
+    "NAME": "着魔的职员",
     "DIALOG": [
     ]
   },
-  "${ModID}:Butterflies": {
+  "ruina:Butterflies": {
     "MOVES": [
-      "Tranquility",
-      "Liberation"
+      "安宁祥和",
+      "精神解脱"
     ],
-    "NAME": "Butterflies",
+    "NAME": "亡蝶",
     "DIALOG": [
     ]
   },
-  "${ModID}:MatchFlame": {
+  "ruina:MatchFlame": {
     "MOVES": [
-      "Broken Hope",
-      "Kindle"
+      "破灭的希望",
+      "余烬"
     ],
-    "NAME": "Match Flame",
+    "NAME": "最后的火柴",
     "DIALOG": [
     ]
   },
-  "${ModID}:Porccubus": {
+  "ruina:Porccubus": {
     "MOVES": [
-      "Unbearable Pleasure",
-      "Bristle"
+      "难以忍受的快感",
+      "欢愉之刺"
     ],
-    "NAME": "Porccubus",
+    "NAME": "荆棘公交",
     "DIALOG": [
     ]
   },
-  "${ModID}:LeftShoe": {
+  "ruina:LeftShoe": {
     "MOVES": [
-      "Sanguine Desire"
+      "血之渴望"
     ],
-    "NAME": "Left Shoe",
+    "NAME": "左鞋",
     "DIALOG": [
     ]
   },
-  "${ModID}:RightShoe": {
+  "ruina:RightShoe": {
     "MOVES": [
-      "Obsession",
-      "Bursting Desire"
+      "执念",
+      "欲望迸发"
     ],
-    "NAME": "Right Shoe",
+    "NAME": "右鞋",
     "DIALOG": [
     ]
   },
-  "${ModID}:GalaxyFriend": {
+  "ruina:GalaxyFriend": {
     "MOVES": [
-      "Waiting",
-      "Star Shower",
-      "Glimmer"
+      "等候",
+      "星辉洒落",
+      "闪烁"
     ],
-    "NAME": "Friend to the Galaxy",
+    "NAME": "银河之友",
     "DIALOG": [
     ]
   },
-  "${ModID}:SpiderBud": {
+  "ruina:SpiderBud": {
     "MOVES": [
-      "Protective Instincts",
-      "Cocoon",
-      "Catching Food"
+      "本能保护",
+      "茧缚",
+      "猎食"
     ],
-    "NAME": "Spider Bud",
+    "NAME": "蜘蛛巢",
     "DIALOG": [
     ]
   },
-  "${ModID}:Spiderling": {
+  "ruina:Spiderling": {
     "MOVES": [
-      "Thin Webbing",
-      "Stingy Fangs"
+      "纤细蛛网",
+      "尖锐毒牙"
     ],
-    "NAME": "Spiderling",
+    "NAME": "小蜘蛛",
     "DIALOG": [
     ]
   },
-  "${ModID}:QueenBee": {
+  "ruina:QueenBee": {
     "MOVES": [
-      "Boost Aggression",
-      "Boost Loyalty",
-      "Hornet Strike"
+      "好战性强化",
+      "忠诚度强化",
+      "蜂群警戒"
     ],
-    "NAME": "Queen Bee",
+    "NAME": "蜂后",
     "DIALOG": [
     ]
   },
-  "${ModID}:WorkerBee": {
+  "ruina:WorkerBee": {
     "MOVES": [
-      "Carry Larvae",
-      "Gardu du Corps"
+      "搬运幼虫",
+      "保卫女皇"
     ],
-    "NAME": "Worker Bee",
+    "NAME": "工蜂",
     "DIALOG": [
     ]
   },
-  "${ModID}:BlackSwan": {
+  "ruina:BlackSwan": {
     "MOVES": [
-      "Writhe",
-      "Well-worn Parasol",
-      "Nauseating Reality",
-      "Shriek of Broken Dreams"
+      "挣扎",
+      "旧伞",
+      "蜷缩",
+      "天鹅绝唱"
     ],
-    "NAME": "Dream of a Black Swan",
+    "NAME": "黑天鹅之梦",
     "DIALOG": [
     ]
   },
-  "${ModID}:Brother": {
+  "ruina:Brother": {
     "MOVES": [
-      "Green Waste"
+      "绿色污秽"
     ],
-    "NAME": "Brother",
+    "NAME": "哥哥",
     "DIALOG": [
-      "First Brother",
-      "Second Brother",
-      "Third Brother",
-      "Fourth Brother"
+      "大哥",
+      "二哥",
+      "三哥",
+      "四哥"
     ]
   },
-  "${ModID}:SingingMachineMonster": {
+  "ruina:SingingMachineMonster": {
     "MOVES": [
-      "Bloody Tune",
-      "Unforgettable Performance",
-      "Crushing Beats"
+      "血腥演奏",
+      "忘不掉的旋律",
+      "粉碎节拍"
     ],
-    "NAME": "Singing Machine",
+    "NAME": "歌唱机",
     "DIALOG": [
     ]
   },
-  "${ModID}:ManicEmployee": {
+  "ruina:ManicEmployee": {
     "MOVES": [
-      "Trembling Motion",
-      "Pine for the Song"
+      "颤抖一击",
+      "感受着绝美的旋律！"
     ],
-    "NAME": "Manic Employee",
+    "NAME": "着魔的职员",
     "DIALOG": [
     ]
   }
