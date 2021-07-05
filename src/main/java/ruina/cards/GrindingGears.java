@@ -25,10 +25,10 @@ public class GrindingGears extends AbstractRuinaCard {
     private static final int UP_SELF_DAMAGE = 3;
     private static final int NUM_CARD = 1;
 
-    private SingingMachineMonster machine;
+    private final SingingMachineMonster machine;
 
     public GrindingGears(SingingMachineMonster machine) {
-        super(ID, COST, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE);
+        super(ID, COST, CardType.SKILL, CardRarity.SPECIAL, CardTarget.NONE);
         magicNumber = baseMagicNumber = SELF_DAMAGE;
         secondMagicNumber = baseSecondMagicNumber = NUM_CARD;
         this.machine = machine;

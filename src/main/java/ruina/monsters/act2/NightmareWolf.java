@@ -217,7 +217,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     }
 
     public void onRedDeath() {
-        playSound("Fog", 2.0f);
+        playSound("Fog", 1.5f);
         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg
         atb(new HealAction(this, this, HEAL));
     }

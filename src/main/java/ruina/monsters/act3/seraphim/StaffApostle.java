@@ -15,8 +15,6 @@ import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.WingsOfGrace;
 
-import java.util.ArrayList;
-
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
@@ -41,7 +39,13 @@ public class StaffApostle extends AbstractRuinaMonster {
         this.animation = new BetterSpriterAnimation(makeMonsterPath("StaffApostle/Spriter/StaffApostle.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(49), calcAscensionTankiness(53));
-        addMove(THY_WORDS, Intent.ATTACK_BUFF, calcAscensionDamage(7));
+        Intent intentIcon;
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            intentIcon = Intent.ATTACK_DEBUFF;
+        } else {
+            intentIcon = Intent.ATTACK_BUFF;
+        }
+        addMove(THY_WORDS, intentIcon, calcAscensionDamage(7));
         addMove(GIVE_US_REST, Intent.DEFEND_BUFF);
         prophet = parent;
     }
