@@ -54,7 +54,7 @@ public class PunishingBird extends AbstractRuinaMonster {
         this.animation = new BetterSpriterAnimation(makeMonsterPath("PunishingBird/Spriter/SmallBird.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(maxHealth));
-        addMove(PECK, Intent.ATTACK_DEBUFF, calcAscensionDamage(2), 3, true);
+        addMove(PECK, Intent.ATTACK_DEBUFF, calcAscensionSpecial(2), 3, true);
         addMove(PUNISHMENT, Intent.ATTACK, calcAscensionSpecial(calcAscensionDamage(50)));
     }
 

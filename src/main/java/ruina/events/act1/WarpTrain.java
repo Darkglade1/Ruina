@@ -34,8 +34,6 @@ public class WarpTrain extends AbstractImageEvent {
         }
         imageEventText.setDialogOption(String.format(OPTIONS[0], GOLD_GAIN_AMOUNT));
         imageEventText.setDialogOption(AbstractDungeon.player.gold < GOLD_THRESHOLD ? String.format(OPTIONS[2],GOLD_THRESHOLD) : String.format(OPTIONS[1], GOLD_THRESHOLD), AbstractDungeon.player.gold < GOLD_THRESHOLD);
-        imageEventText.setDialogOption(OPTIONS[3]);
-
     }
 
     @Override
@@ -57,12 +55,6 @@ public class WarpTrain extends AbstractImageEvent {
                         this.imageEventText.clearAllDialogs();
                         imageEventText.setDialogOption(OPTIONS[4]);
                         transform();
-                        break;
-                    case 2:
-                        this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
-                        screenNum = 1;
-                        this.imageEventText.clearAllDialogs();
-                        imageEventText.setDialogOption(OPTIONS[4]);
                         break;
                 }
                 break;

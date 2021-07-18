@@ -85,8 +85,8 @@ public class BigBird extends AbstractMultiIntentMonster
         addMove(SALVATION, Intent.ATTACK, calcAscensionDamage(17));
         addMove(DAZZLE_ENEMY, Intent.STRONG_DEBUFF);
         addMove(DAZZLE_PLAYER, Intent.DEBUFF);
-        addMove(ILLUMINATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));
-        addMove(ILLUMINATE_2, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
+        addMove(ILLUMINATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
+        addMove(ILLUMINATE_2, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));
     }
 
     @Override

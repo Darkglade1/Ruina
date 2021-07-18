@@ -45,8 +45,8 @@ public class Keeper extends AbstractRuinaMonster {
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(40), calcAscensionTankiness(48));
         addMove(CUCKOO, Intent.DEFEND);
-        addMove(RING, Intent.ATTACK, calcAscensionDamage(4), 3, true);
-        addMove(SMACK, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
+        addMove(RING, Intent.ATTACK, calcAscensionDamage(6), 2, true);
+        addMove(SMACK, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
     }
 
     @Override

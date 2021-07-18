@@ -29,7 +29,7 @@
   },
   "${ModID}:Corpse": {
     "NAME": "Corpse",
-    "DESCRIPTIONS": ["When this creature dies, if the #renemy killed it, the #renemy heals #b", " HP."]
+    "DESCRIPTIONS": ["When this creature #rdies, if the #renemy killed it, the #renemy heals #b", " HP."]
   },
   "${ModID}:Search": {
     "NAME": "Searching for Wisdom",
@@ -417,7 +417,7 @@
   },
   "${ModID}:SoulLink": {
     "NAME": "Soul Link",
-    "DESCRIPTIONS": ["Creatures with #ySoul #yLink are #yPartners. Whenever this creature #rdies, it revives at #b", "% HP this turn if its #yPartner is still alive."]
+    "DESCRIPTIONS": ["Creatures with #ySoul #yLink are #yPartners. Whenever this creature #rdies, it #grevives at #b", "% HP this turn if its #yPartner is still alive."]
   },
   "${ModID}:PlayerBlackSilence": {
     "NAME": "The Black Silence",
@@ -425,7 +425,7 @@
   },
   "${ModID}:AClaw": {
     "NAME": "Executioner",
-    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL If this creature would receive #b", " or more unblocked attack damage, reduce the damage by #b", "%. NL Whenever a creature dies, gains #b", " #yStrength."]
+    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL If this creature would receive #b", " or more unblocked attack damage, reduce the damage by #b", "%. NL Whenever a creature #rdies, gains #b", " #yStrength."]
   },
   "${ModID}:AnArbiter": {
     "NAME": "Complete Arbiter",
@@ -512,12 +512,12 @@
   },
   "${ModID}:Meal": {
     "NAME": "Prepared Meal",
-    "DESCRIPTIONS": ["At end of round, if this creature's HP is at or below #b", ", the enemy #yconsumes it."]
+    "DESCRIPTIONS": ["At end of round, if this creature's HP is at or below #b", ", the #rboss #yconsumes it."]
   },
   "${ModID}:LonelyIsSad": {
     "NAME": "Being Lonely is Sad",
     "DESCRIPTIONS": [
-      "Receives #b", "% more damage from attacks if there are no other enemies alive."
+      "Receives #b", "% more damage from attacks if there are no other #renemies alive."
     ]
   },
   "${ModID}:Gimme": {
@@ -585,7 +585,7 @@
   },
   "${ModID}:Machine": {
     "NAME": "Machine that Sings",
-    "DESCRIPTIONS": ["At end of round, ALL enemies gain #b", " #yTemporary #yStrength for every card in the #ySinging #yMachine."]
+    "DESCRIPTIONS": ["At end of round, ALL #renemies gain #b", " #yTemporary #yStrength for every card in the #ySinging #yMachine."]
   },
   "${ModID}:BeautifulSound": {
     "NAME": "A Beautiful Sound",

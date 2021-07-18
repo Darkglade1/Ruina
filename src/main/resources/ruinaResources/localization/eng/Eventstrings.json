@@ -226,7 +226,7 @@
   "${ModID}:HanaAssociation": {
     "NAME": "Hana Association",
     "DESCRIPTIONS": [
-      "She glanced at the report, sighing. \"Another office has fallen to this #pUrban #pNightmare. We'll need to classify it as a #yStar #yof #ythe #yCity now.\" NL Her colleague grimaced. \"More needless #rdeaths. If we had investigated and classified this #phazard properly from the start, offices like these would not fall prey to threats beyond their league!\" NL \"I've told you before, but we do not have the time, resources, or manpower to investigate every hazard in the City ourselves.\" NL She could see him hesitate, waver. Finally, he spoke up with a scowl -",
+      "She glanced at the report, sighing. \"Another office has fallen to this #pUrban #pNightmare. We'll need to classify it as a #yStar #yof #ythe #yCity now.\" NL Her colleague grimaced. \"More needless #rdeaths. If we had investigated and classified this #phazard properly from the start, offices like these would not fall prey to threats beyond their league!\" NL \"I've told you before, but we do not have the time, resources, or manpower to investigate every hazard in the City ourselves.\" NL She could see him hesitate. Finally, he spoke up with a scowl -",
       "\"The hazard is a #yStar #yof #ya #yCity now, right? That means it's worthy of our attention. I'll go and handle it, so no one else falls victim to it!\" NL He storms out of the room, and she doesn't try to stop him.",
       "\"Fine. It's too late to save those offices now, so I'll leave it to you to make sure no one else takes on a threat they can't handle.\" NL He storms out of the room, and she doesn't try to stop him."
     ],
@@ -541,7 +541,7 @@
     "NAME": "Shi Association",
     "DESCRIPTIONS": [
       "The boardroom's doors open with a @slam,@ and two uniformed subordinates enter, fatigued from a previous request. NL NL \"Director . . . we've been dealing with #pUrban #pNightmare-class cases for #rten #rconsecutive #rdays. We normally shouldn't be handling more than one such case per week.\" NL NL \"We're on the brink of a breakdown, both physically and mentally.\" NL NL \"And most of all, your condition is looking #rworse than any of us, Director Yujin . . .\"",
-      "Her words rang #ptrue. All of our injuries were too #rsevere to be #ghealed up in a manner of days, yet the requests kept #ppiling up. NL NL \"We'll handle the Library request like any other. We aren't heading there to just to obey our superiors' orders. The books there are also what we need to uncover the #bBlue #bReverberation's plots.\" NL NL But there isn't much time before the head of the South Section grew suspicious on why we haven't acted.",
+      "Her words rang #ptrue. All of our injuries were too #rsevere to be #ghealed up in a manner of days, yet the requests kept #ppiling up. NL NL \"We'll handle the Library request like any other. We aren't heading there to just to obey our superiors' orders. The books there are also what we need to uncover the #bBlue #bReverberation's plots.\" NL NL But there isn't much time before the head of the South Section grows suspicious on why we haven't acted.",
       "\"Can we actually trust this, #ydirector? Can you promise us that you aren't going to #rharm yourself for the sake of Section 2? You've always been so #pself-sacrificing.\" NL NL \"This is the only chance we have, and the only time we might be able to gain an #yadvantage out of their request. Gather up the ones who can still move and fight. We don't want to bring anyone who will only prove to be a #pburden there.\" NL NL \"Understood.\"",
       "We tried to prepare as much as we can, but the pressure from the head of the South Section kept piling up. In the end, we were forced to leave prematurely. NL NL I am waiting and enduring until I can seize the chance to bring the Shi back to glory. NL NL I pledge to change this association with my own hands . . . no matter what."
     ],
@@ -556,7 +556,7 @@
   "${ModID}:WarpTrain": {
     "NAME": "Warp Train",
     "DESCRIPTIONS": [
-      "You open your eyes to a depiction of a train station. It's very crowded, with commuters rushing from platform to platform, hurrying to get to work on time. On your right, you see various employees walking in groups of #b3, preparing to board a train before the passengers can get on. After the employees board the train, you notice one of them dropped a strange looking cube. It glows with a #bfluorescent radiance, and on further observation, it contains a coin slot which you could insert your #ygold into. Next to the dropped cube, you also notice various stacks of wooden crates, hastily fashioned next to the platform.",
+      "The train station is crowded as usual, commuters @rushing@ from platform to platform, hurrying to get to work on time. As one of the passengers boards the train, you notice a strange looking cube drop from their pocket. NL It glows with a #bfluorescent radiance, and on further observation, you spot a coin slot on it. NL Next to the dropped cube, you also notice various stacks of wooden crates, hastily fashioned next to the platform.",
       "You insert some of your #ygold into the cube, and it glows #bbrighter than before. It begins to pulsate in your hand, faster and faster, as your vision becomes obscured by the radiance of the cube. NL NL You feel time slow down as you watch the scurrying commuters pace slower and slower, until time crawls to a halt, and you begin to @shudder@ with the possibilities of what can be done with this power.",
       "You easily #rbreak the locks of the wooden crates, and it seems that the employees were so busy with their packed shifts that they forgot to ensure the #gprotection of the #ygoods being transported. NL NL Inside the crates, #ygold pours forth again and again, and you try to pocket as much as you can carry. NL NL Finally, you leave, significantly #ywealthier than you once were.",
       "You decide to leave both possibilities untouched. After all, this station seems too crowded to try something risky."
@@ -642,7 +642,7 @@
   "${ModID}:UnknownPath": {
     "NAME": "Paths To The Unknown",
     "DESCRIPTIONS": [
-      "Before you, stands a series of twisting, winding paths. Seeming infinite, ever expanding towards the unknown. You notice a series of smaller, cascading paths below you, filling the space in the empty void. However, the paths appear too narrow, and too unstable to even consider them as a possibility. Your attention shifts to three pathways, which tower above the rest: NL - A #rsteep central pathway, which towers above all. NL - A curved pathway to the #gleft, with jagged edges. NL - A curved pathway to the #gright, with a smooth, refined shape."
+      "Before you stands a series of twisting, winding paths - seemingly infinite, ever expanding towards the unknown. Your attention shifts to three pathways which tower above the rest: NL - A #rsteep central pathway, which towers above all. NL - A curved pathway to the #gleft, with jagged edges. NL - A curved pathway to the #gright, with a smooth, refined shape."
     ],
     "OPTIONS": [
       "[Ascend The Steep Pathway] Encounter a random #pelite.",
@@ -654,8 +654,8 @@
     "NAME": "Singing Machine",
     "DESCRIPTIONS": [
       "You hear something #rgrinding in the distance, #rcrunching and #rmunching on something distinctly #rfleshy. You approach closer and find a #rbloody machine, moving in rhythm to its own #phideous beat. NL NL A person with a looser grip on their sanity might even think this sound was musical. NL NL The machine pauses and opens up, giving you an opportunity to throw something in.",
-      "The machine churns, lets off a #ghappy little jingle, then  . . . ",
-      ". . . spits the offering back out. You pick it back up, and although it’s #rbloodstained now, you sense that it has become . . . #yimproved, somehow.",
+      "The machine churns, lets off a #ghappy little jingle, then . . . ",
+      ". . . spits the offering back out. You pick it back up, and although it’s #rbloodstained now, you sense that it has become #yimproved, somehow.",
       ". . . spits out a #ybauble covered in #rblood. You pick it up, and while you do not recognize the trinket, you sense that it’ll be helpful down the road.",
       ". . . spits out several #rblood-covered flasks. You pick up the flasks, and while your common sense argues against imbibing something produced by this machine, your instincts tell you that these flasks do contain #ypower.",
       "The machine churns, lets out an #rangry rumbling, then . . . ",

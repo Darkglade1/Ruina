@@ -1089,7 +1089,7 @@
   },
   "${ModID}:FairyMass": {
     "MOVES": [
-      "Wingbeats",
+      "Wingbeat",
       "Gluttony"
     ],
     "NAME": "Fairy Mass",

@@ -43,7 +43,7 @@ public class ShiAssociation extends AbstractImageEvent {
                         this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
                         screenNum = 1;
                         this.imageEventText.clearAllDialogs();
-                        this.img = new Texture(makeEventPath("Shi2.png"));
+                        this.imageEventText.loadImage(makeEventPath("Shi2.png"));
                         imageEventText.setDialogOption(OPTIONS[1], relic);
                         imageEventText.setDialogOption(OPTIONS[2]);
                         break;
