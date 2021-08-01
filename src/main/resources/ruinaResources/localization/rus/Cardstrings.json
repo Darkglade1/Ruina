@@ -8,8 +8,8 @@
     "DESCRIPTION": "Даёт !M! Защиты. NL Не зависит от эффектов на Защиту."
   },
   "ruina:FalseThrone": {
-    "NAME": "Ложные шипы",
-    "DESCRIPTION": "В след. ходу вы кладёте в руку все *Сожжённые карты, кроме *Статусов и Проклятий. NL Они становятся Эфирными."
+    "NAME": "Шипы лжи",
+    "DESCRIPTION": "В след. ходу вы кладёте в руку все Сожжённые карты, кроме Статусов и Проклятий. NL Они становятся Эфирными."
   },
   "ruina:Smile": {
     "NAME": "Улыбка",
@@ -45,7 +45,7 @@
     "UPGRADE_DESCRIPTION": "Накладывает !M! Слабости. NL Сбрасывается в стопку добора. NL Когда вы разыгрываете эту карту и её копии !ruina:SecondMagic! раза на одного и того же врага, вместо этого накладывает 1 *Оглушения и Сжигается."
   },
   "ruina:Lumber": {
-    "NAME": "Хлам",
+    "NAME": "Лесоматериал",
     "DESCRIPTION": "Наносит !D! урона. NL Сжигает до !M! выбранных в руке карт. NL Урон, наносимый этой картой, повышается в этом бою на урон каждой *Сожжённой Атаки. NL Сбрасывается в стопку добора."
   },
   "ruina:Harvest": {
@@ -63,7 +63,7 @@
   },
   "ruina:Thirst": {
     "NAME": "Жажда",
-    "DESCRIPTION": "Накладывает !M! ruina:Кровотечения. NL Даёт !ruina:SecondMagic! Силы до конца вашего хода, когда вы атакуете врага с ruina:Кровотечением."
+    "DESCRIPTION": "Накладывает !M! ruina:Кровотечения. NL В этом ходу даёт !ruina:SecondMagic! Силы, когда вы атакуете врага с ruina:Кровотечением."
   },
   "ruina:CrimsonScar": {
     "NAME": "Багровый шрам",
@@ -92,7 +92,7 @@
   },
   "ruina:Twilight": {
     "NAME": "Сумерки",
-    "DESCRIPTION": "Наносит !D! урона. NL Накладывает Слабости, равной [E] полученной с помощью ruina:Манифеста, на ВСЕХ врагов."
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает Слабости, равной полученной [E] с помощью ruina:Манифеста, на ВСЕХ врагов."
   },
   "ruina:Apocalypse": {
     "NAME": "Апокалипсис",
@@ -100,7 +100,7 @@
   },
   "ruina:Beak": {
     "NAME": "Клюв",
-    "DESCRIPTION": "В начале каждого вашего хода снижает стоимость самой дорогой карты в руке до 0 и делает её *Сжигаемой до конца боя."
+    "DESCRIPTION": "В начале каждого вашего хода снижает стоимость самой дорогой карты в руке до 0 и делает её ruina:Сжигаемой до конца боя."
   },
   "ruina:Lamp": {
     "NAME": "Лампа",
@@ -113,7 +113,7 @@
   },
   "ruina:Dazzled": {
     "NAME": "Ослепление",
-    "DESCRIPTION": "Повышает свою стоимость в этом бою на !M!, когда Оставляется. NL Если цена этой карты не менее !ruina:SecondMagic!, становится *Неиграбельной."
+    "DESCRIPTION": "Повышает свою стоимость в этом бою на !M!, когда Оставляется. NL Если стоимость этой карты не менее !ruina:SecondMagic!, становится ruina:Неиграбельной."
   },
   "ruina:ForestKeeperLock": {
     "NAME": "Замок лесного хранителя",
@@ -171,11 +171,11 @@
   },
   "ruina:CHRBOSS_yanAttack": {
     "NAME": "Меч воли",
-    "DESCRIPTION": "Даёт !M! Силы *Руке."
+    "DESCRIPTION": "*Рука получает !M! Силы."
   },
   "ruina:CHRBOSS_yanProtect": {
     "NAME": "Прикрыть",
-    "DESCRIPTION": "Даёт !M! *Прикрытия *Руке."
+    "DESCRIPTION": "*Рука получает !M! *Прикрытия."
   },
   "ruina:CHRBOSS_DistortedBlade": {
     "NAME": "Неверное лезвие",
@@ -307,11 +307,11 @@
   },
   "ruina:Ally_GreaterSplitHorizontal": {
     "NAME": "Большой разрез напрямую",
-    "DESCRIPTION": "Наносит !D! урона. NL До конца своего хода враг теряет Силу за весь урон по его ОЗ."
+    "DESCRIPTION": "Наносит !D! урона. NL Враг теряет Силу за весь урон по его ОЗ до конца своего хода."
   },
   "ruina:Ally_GreaterSplitVertical": {
     "NAME": "Большой разрез вниз",
-    "DESCRIPTION": "Наносит !D! урона. NL До конца своего хода враг теряет Силу за весь урон по его ОЗ."
+    "DESCRIPTION": "Наносит !D! урона. NL Враг теряет Силу за весь урон по его ОЗ до конца своего хода."
   },
   "ruina:Overspeed": {
     "NAME": "Сверхскорость",
@@ -430,15 +430,15 @@
       "[#00ff00]Талант[] "]
   },
   "ruina:AttackPrescript": {
-    "NAME": "Предписание Атаки",
+    "NAME": "Предпис. Атаки",
     "DESCRIPTION": "Наносит !D! урона."
   },
   "ruina:SkillPrescript": {
-    "NAME": "Предписание Навыка",
+    "NAME": "Предпис. Навыка",
     "DESCRIPTION": "Даёт !B! Защиты."
   },
   "ruina:PowerPrescript": {
-    "NAME": "Предписание Таланта",
+    "NAME": "Предпис. Таланта",
     "DESCRIPTION": "Даёт !M! Силы."
   },
   "ruina:EverlastingMelody": {
@@ -796,11 +796,11 @@
   },
   "ruina:WristCutter": {
     "NAME": "Резак запястья",
-    "DESCRIPTION": "Даёт [E] [E] . NL Добавляет в руку !M! Рану с Оставляемостью."
+    "DESCRIPTION": "Даёт [E] [E] . NL Добавляет в руку !M! Рану с ruina:Оставляемостью."
   },
   "ruina:Remorse": {
     "NAME": "Раскаяние",
-    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости. NL Накладывает !M! Уязвимости."
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости и !M! Уязвимости."
   },
   "ruina:Aspiration": {
     "NAME": "Стремление",
@@ -814,135 +814,135 @@
     "NAME": "Вина",
     "DESCRIPTION": "В начале вашего хода даёт !M! Силы случ. врагу в след. ходу. NL Если Сжигается без разыгрывания, добавляет свою копию в стопку сброса."
   },
-  "${ModID}:CHRBOSS_PreparedMind": {
-    "NAME": "Prepared Mind",
-    "DESCRIPTION": "Gain !M! Strength."
+  "ruina:CHRBOSS_PreparedMind": {
+    "NAME": "Я готова!",
+    "DESCRIPTION": "Даёт !M! Силы."
   },
-  "${ModID}:CHRBOSS_FlamingBat": {
-    "NAME": "Flaming Bat",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable."
+  "ruina:CHRBOSS_FlamingBat": {
+    "NAME": "Пылающая бита",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Уязвимости."
   },
-  "${ModID}:CHRBOSS_SetAblaze": {
-    "NAME": "Set Ablaze",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+  "ruina:CHRBOSS_SetAblaze": {
+    "NAME": "Зажжём!",
+    "DESCRIPTION": "Наносит !D! урона !M! раза."
   },
-  "${ModID}:FirstChair": {
-    "NAME": "First Chair",
-    "DESCRIPTION": "When Retained, take !M! damage."
+  "ruina:FirstChair": {
+    "NAME": "Исполнитель №1",
+    "DESCRIPTION": "Наносит !M! урона вам, когда Оставляется."
   },
-  "${ModID}:SecondChair": {
-    "NAME": "Second Chair",
-    "DESCRIPTION": "When Retained, a random enemy gains !M! Strength next turn."
+  "ruina:SecondChair": {
+    "NAME": "Исполнитель №2",
+    "DESCRIPTION": "Даёт !M! Силы случ. врагу в след. ходу, когда Оставляется."
   },
-  "${ModID}:ThirdChair": {
-    "NAME": "Third Chair",
-    "DESCRIPTION": "When Retained, gain !M! Weak or Frail, alternating each time.",
-    "EXTENDED_DESCRIPTION": [" (Weak)", " (Frail)"]
+  "ruina:ThirdChair": {
+    "NAME": "Исполнитель №3",
+    "DESCRIPTION": "Чередуя, накладывает !M! Слабости или !M! Хрупкости на вас, когда Оставляется. NL",
+    "EXTENDED_DESCRIPTION": [" (Слабость)", " (Хрупкость)"]
   },
-  "${ModID}:FourthChair": {
-    "NAME": "Fourth Chair",
-    "DESCRIPTION": "When Retained, lose !M! Strength or Dexterity, alternating each time.",
-    "EXTENDED_DESCRIPTION": [" (Strength)", " (Dexterity)"]
+  "ruina:FourthChair": {
+    "NAME": "Исполнитель №4",
+    "DESCRIPTION": "Чередуя, отнимает !M! Силы или !M! Ловкости, когда Оставляется. NL",
+    "EXTENDED_DESCRIPTION": [" (Сила)", " (Ловкость)"]
   },
-  "${ModID}:Conductor": {
-    "NAME": "Conductor",
-    "DESCRIPTION": "Unplayable. NL When Retained, increase the cost of all other *Performer cards in your hand by !M! this combat. If all !ruina:SecondMagic! other *Performer cards are in your hand, trigger their effects again."
+  "ruina:Conductor": {
+    "NAME": "Дирижёр",
+    "DESCRIPTION": "Неиграбельная. NL Повышает стоимость всех других *Исполнителей в руке на !M! в этом бою, когда Оставляется. Если все !ruina:SecondMagic! других *Исполнителя в руке, их эффект активируется дважды."
   },
-  "${ModID}:TodaysExpression": {
-    "NAME": "Today's Expression",
-    "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["Gain !B! Block.", "Gain !B! Block next turn."]
+  "ruina:TodaysExpression": {
+    "NAME": "Сегодняшнее выражение",
+    "DESCRIPTION": "Выберите одно:",
+    "EXTENDED_DESCRIPTION": ["Даёт !B! Защиты.", "Даёт !B! Защиты в начале вашего след. хода."]
   },
-  "${ModID}:SanguineDesire": {
-    "NAME": "Sanguine Desire",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! ruina:Bleed for every [E] paid for by ruina:Manifest."
+  "ruina:SanguineDesire": {
+    "NAME": "Желание крови",
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! ruina:Кровотечения за каждую потраченную [E] с помощью ruina:Манифеста."
   },
-  "${ModID}:RedEyes": {
-    "NAME": "Red Eyes",
-    "DESCRIPTION": "Deal !D! damage. NL Double the next debuff you apply to the enemy."
+  "ruina:RedEyes": {
+    "NAME": "Красные глаза",
+    "DESCRIPTION": "Наносит !D! урона. NL Удваивает след. накладываемый вами отриц. эффект на врага."
   },
-  "${ModID}:Laetitia": {
-    "NAME": "Laetitia",
-    "DESCRIPTION": "The first !M! or !ruina:SecondMagic! cost card you play each turn is played twice.",
-    "UPGRADE_DESCRIPTION": "The first !M! or !ruina:SecondMagic! cost card you play each turn is played twice. NL Refund !stslib:refund!."
+  "ruina:Laetitia": {
+    "NAME": "Летиция",
+    "DESCRIPTION": "Первая разыгранная в каждом ходу карта стоимостью !M! или !ruina:SecondMagic! разыгрывается дважды.",
+    "UPGRADE_DESCRIPTION": "Первая разыгранная в каждом ходу карта стоимостью !M! или !ruina:SecondMagic! разыгрывается дважды. NL Возврат !stslib:refund!."
   },
-  "${ModID}:BlackSwan": {
-    "NAME": "Black Swan",
-    "DESCRIPTION": "Apply !M! ruina:Erosion. NL If you applied a debuff this turn, this card costs 0.",
-    "UPGRADE_DESCRIPTION": "Apply !M! ruina:Erosion. NL If you applied a debuff this turn, this card costs 0. NL Shuffle this card back into your draw pile."
+  "ruina:BlackSwan": {
+    "NAME": "Чёрный лебедь",
+    "DESCRIPTION": "Накладывает !M! ruina:Эрозии. NL Стоит 0, если вы накладывали отриц. эффекты в этом ходу.",
+    "UPGRADE_DESCRIPTION": "Накладывает !M! ruina:Эрозии. NL Стоит 0, если вы накладывали отриц. эффекты в этом ходу. NL Сбрасывается в стопку добора."
   },
-  "${ModID}:Gift": {
-    "NAME": "Gift",
-    "DESCRIPTION": "When Retained, reduce this card's cost by !ruina:SecondMagic!. NL When this card's cost becomes 0, take !M! damage and Exhaust this card. NL This card's cost cannot be modified by external effects."
+  "ruina:Gift": {
+    "NAME": "Подарочек",
+    "DESCRIPTION": "Снижает свою стоимость в этом бою на !ruina:SecondMagic!, когда Оставляется. NL Если стоимость этой карты равна 0, наносит !M! урона вам и Сжигается. NL Стоимость этой карты не может быть изменена внешними эффектами."
   },
-  "${ModID}:Enlightenment": {
-    "NAME": "Enlightenment",
-    "DESCRIPTION": "Lose !M! HP. NL Gain !B! Block. NL Draw !ruina:SecondMagic! card."
+  "ruina:Enlightenment": {
+    "NAME": "Просвещение",
+    "DESCRIPTION": "Отнимает !M! ОЗ. NL Даёт !B! Защиты. NL Вы берёте !ruina:SecondMagic! карту."
   },
-  "${ModID}:DaCapo": {
+  "ruina:DaCapo": {
     "NAME": "Da Capo",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Upgrade this card permanently. NL Can be Upgraded !ruina:SecondMagic! times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage and apply !M! Vulnerable to ALL enemies.",
-    "EXTENDED_DESCRIPTION": ["First Movement", "Second Movement", "Third Movement", "Fourth Movement", "Finale"]
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ врагам. NL Вы навсегда ruina:Улучшаете эту карту. NL Можно *Улучшить !ruina:SecondMagic! раз.",
+    "UPGRADE_DESCRIPTION": "Наносит !D! урона ВСЕМ врагам. NL Накладывает !M! Уязвимости на ВСЕХ врагов.",
+    "EXTENDED_DESCRIPTION": ["Акт первый", "Акт второй", "Акт третий", "Акт четвёртый", "Финал"]
   },
-  "${ModID}:Fragments": {
-    "NAME": "Fragments from Somewhere",
-    "DESCRIPTION": "Steal the enemy's Block. NL Deal !D! damage."
+  "ruina:Fragments": {
+    "NAME": "Откуда-то взявшиеся Фрагменты",
+    "DESCRIPTION": "Забирает всю Защиту у врага. NL Наносит !D! урона."
   },
-  "${ModID}:OurGalaxy": {
-    "NAME": "Our Galaxy",
-    "DESCRIPTION": "Choose a card in your draw pile that costs X or less and play a copy of it."
+  "ruina:OurGalaxy": {
+    "NAME": "Наша галактика",
+    "DESCRIPTION": "Выберите карту стоимостью X или меньше в стопке добора и разыграйте её копию."
   },
-  "${ModID}:Pleasure": {
-    "NAME": "Pleasure",
-    "DESCRIPTION": "Autoplay. NL Gain [E] and !M! Thorns. NL If this card is Exhausted, lose !ruina:SecondMagic! HP. NL Exhaustive !stslib:ex!."
+  "ruina:Pleasure": {
+    "NAME": "Наслаждение",
+    "DESCRIPTION": "Самовольная. NL Даёт [E] и !M! Шипов. NL Отнимает !ruina:SecondMagic! ОЗ, если Сжигается. NL Сгорающая !stslib:ex!."
   },
-  "${ModID}:FaintAroma": {
-    "NAME": "Faint Aroma",
-    "DESCRIPTION": "Whenever you deal unblocked attack damage to an enemy, it loses that much HP."
+  "ruina:FaintAroma": {
+    "NAME": "Слабый аромат",
+    "DESCRIPTION": "Враг теряет ОЗ за весь урон по его ОЗ от разыгрываемых вами Атак."
   },
-  "${ModID}:Grinder": {
-    "NAME": "Grinder Mk. 5-2",
-    "DESCRIPTION": "The first time you deal !M! unblocked attack damage each turn, gain [E] next turn."
+  "ruina:Grinder": {
+    "NAME": "Дробитель Mk. 5-2",
+    "DESCRIPTION": "Впервые в каждом ходу нанеся !M! урона Атаками по ОЗ врага, вы получите [E] в след. ходу."
   },
-  "${ModID}:Hornet": {
-    "NAME": "Hornet",
-    "DESCRIPTION": "Deal !D! damage. NL The next Attack you play costs 0 and deals double damage."
+  "ruina:Hornet": {
+    "NAME": "Шершень",
+    "DESCRIPTION": "Наносит !D! урона. NL След. разыгранная Атака стоит 0 и наносит двойной урон."
   },
-  "${ModID}:Forgotten": {
-    "NAME": "The Forgotten",
-    "DESCRIPTION": "Deal !D! damage. NL Enemy loses Strength this turn equal to unblocked damage dealt."
+  "ruina:Forgotten": {
+    "NAME": "Забытый",
+    "DESCRIPTION": "Наносит !D! урона. NL Враг теряет Силу за весь урон по его ОЗ до конца своего хода."
   },
-  "${ModID}:GreenStem": {
-    "NAME": "Green Stem",
-    "DESCRIPTION": "Apply !M! Poison. NL If this card is Exhausted, double ALL enemies' Poison. NL Exhaustive !stslib:ex!."
+  "ruina:GreenStem": {
+    "NAME": "Зелёный побег",
+    "DESCRIPTION": "Накладывает !M! Яда. NL Удваивает наложенный на ВСЕХ врагах Яд, если Сжигается. NL Сгорающая !stslib:ex!."
   },
-  "${ModID}:MagicBullet": {
-    "NAME": "Magic Bullet",
-    "DESCRIPTION": "Draw !M! cards and give them Retain."
+  "ruina:MagicBullet": {
+    "NAME": "Магическая пуля",
+    "DESCRIPTION": "Вы берёте !M! карты и делаете их ruina:Оставляемыми."
   },
-  "${ModID}:FourthMatchFlame": {
-    "NAME": "Fourth Match Flame",
-    "DESCRIPTION": "Add !ruina:SecondMagic! *Burn into your discard pile. NL At the end of your turn, deal !M! damage to ALL enemies."
+  "ruina:FourthMatchFlame": {
+    "NAME": "Пламя четвёртой спички",
+    "DESCRIPTION": "Добавляет !ruina:SecondMagic! Ожог в стопку сброса. NL Наносит !M! урона ВСЕМ врагам в конце каждого вашего хода."
   },
-  "${ModID}:Harmony": {
-    "NAME": "Harmony",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength. NL If Fatal, permanantly increase this card's Strength gain by !ruina:SecondMagic!."
+  "ruina:Harmony": {
+    "NAME": "Гармония",
+    "DESCRIPTION": "Наносит !D! урона. NL Даёт !M! Силы. NL Навсегда повышает даваемую этой картой Силу на !ruina:SecondMagic!, если Казнит врага."
   },
-  "${ModID}:SolemnLament": {
-    "NAME": "Solemn Lament",
-    "DESCRIPTION": "Gain !M! Intangible. NL If ths card's cost was only paid by ruina:Manifest, add a copy of it into your discard pile."
+  "ruina:SolemnLament": {
+    "NAME": "Траур бабочек",
+    "DESCRIPTION": "Даёт !M! Неосязаемости. NL Если эта карта разыграна только с помощью ruina:Манифеста, добавляет свою копию в стопку сброса."
   },
-  "${ModID}:Wingbeat": {
-    "NAME": "Wingbeat",
-    "DESCRIPTION": "Exhaust up to X cards. NL Heal HP and gain Dexterity equal to their combined costs."
+  "ruina:Wingbeat": {
+    "NAME": "Махач крыльями",
+    "DESCRIPTION": "Сжигает до X выбранных в руке карт. NL Их суммарная стоимость восполняет и даёт вам столько же ОЗ и Ловкости."
   },
-  "${ModID}:Regret": {
-    "NAME": "Regret",
-    "DESCRIPTION": "Deal !D! damage. NL Deal !D! damage again for each Status and Curse in your hand."
+  "ruina:Regret": {
+    "NAME": "Скорбь",
+    "DESCRIPTION": "Наносит !D! урона. NL Наносит ещё !D! урона за каждую карту Статуса и Проклятия в руке."
   },
-  "${ModID}:GrindingGears": {
-    "NAME": "Grinding Gears",
-    "DESCRIPTION": "Take !M! damage. NL Remove !ruina:SecondMagic! card from the *Singing *Machine and add it to your hand. NL *Stun the *Singing *Machine for 1 turn."
+  "ruina:GrindingGears": {
+    "NAME": "Дробящий механизм",
+    "DESCRIPTION": "Наносит !M! урона вам. NL Вы забираете !ruina:SecondMagic! карту из *Поющей *Машины и кладёте её в руку. NL Накладывает 1 *Оглушения на *Поющую *Машину."
   }
 }

@@ -6,7 +6,7 @@
       "Опустошение магазина",
       "Обстрел"
     ],
-    "NAME": "Наёмница в красной шапочке",
+    "NAME": "Наёмница в Красной Шапочке",
     "DIALOG": [
       "Я закончу этот кошмар своими руками!",
       "ТЫ ПОСМЕЛ УКРАСТЬ МОЮ ЖЕРТВУ?",
@@ -21,7 +21,7 @@
       "Кровавая охота",
       "Вой"
     ],
-    "NAME": "Волк в её кошмарах",
+    "NAME": "Волк в её Кошмарах",
     "DIALOG": [
     ]
   },
@@ -58,23 +58,23 @@
   "ruina:Woodsman": {
     "MOVES": [
       "Удар топором",
-      "Хлам",
+      "Лесоматериал",
       "Тёплый пульс"
     ],
-    "NAME": "Добрый дровосек",
+    "NAME": "Добрый Дровосек",
     "DIALOG": [
       "Отдай же . . . мне своё сердце . . ."
     ]
   },
   "ruina:JesterOfNihil": {
     "MOVES": [
-      "Воля небытия",
+      "Воля Небытия",
       "Всепоглощающее желание",
       "Во имя Любви и Ненависти",
       "Меч, заточенный слезами",
       "Буйство"
     ],
-    "NAME": "Шут небытия",
+    "NAME": "Шут Небытия",
     "DIALOG": [
       "Всё должно вернуться в небытие . . ."
     ]
@@ -82,9 +82,9 @@
   "ruina:Statue": {
     "MOVES": [
       "Каменная Ненависть",
-      "Каменный Гнев",
-      "Каменное Отчаяние",
-      "Каменная Жадность"
+      "Окаменелый Гнев",
+      "Окостеневшее Отчаяние",
+      "Каменистая Жадность"
     ],
     "NAME": "Статуя",
     "DIALOG": [
@@ -95,10 +95,10 @@
       "Во имя Любви и Справедливости!",
       "Таинственная сила"
     ],
-    "NAME": "Королева любви",
+    "NAME": "Королева Любви",
     "DIALOG": [
       "Твои злодеяния не останутся безнаказанными!",
-      "Любовь и Справедливость снова восторжествовала!",
+      "Любовь и Справедливость снова восторжествовали!",
       "Моя сила покидает меня . . ."
     ]
   },
@@ -107,7 +107,7 @@
       "Разгромить",
       "Покрыть кислотой"
     ],
-    "NAME": "Слуга смелости",
+    "NAME": "Слуга Смелости",
     "DIALOG": [
       "Ради Справедливости и Мира на Земле.",
       "Несоблюдение закона неприемлемо.",
@@ -140,9 +140,9 @@
       "Игра в салочки!",
       "Ориентирование"
     ],
-    "NAME": "Дорога домой",
+    "NAME": "Дорога Домой",
     "DIALOG": [
-      "Пойдем домой, вместе!",
+      "Пойдём домой вместе!",
       "Ах, ты убил моего друга!"
     ]
   },
@@ -152,14 +152,14 @@
       "Рык",
       "Храбрость"
     ],
-    "NAME": "Трусливый лев",
+    "NAME": "Трусливый Лев",
     "DIALOG": [
     ]
   },
   "ruina:KnightOfDespair": {
     "MOVES": [
     ],
-    "NAME": "Рыцарь отчаяния",
+    "NAME": "Рыцарь Отчаяния",
     "DIALOG": [
       "Я не смогла защитить их . . ."
     ]
@@ -178,7 +178,7 @@
       "Подготовка",
       "Жадность"
     ],
-    "NAME": "Король жадности",
+    "NAME": "Король Жадности",
     "DIALOG": [
       "Больше . . . Мне нужно БОЛЬШЕ!"
     ]
@@ -196,7 +196,7 @@
       "Укус",
       "Охота"
     ],
-    "NAME": "Большой и, точно, злой волк",
+    "NAME": "Большой и, точно, Злой Волк",
     "DIALOG": [
     ]
   },
@@ -206,7 +206,7 @@
       "Во имя Ненависти",
       "Свет из ненависти"
     ],
-    "NAME": "Королева ненависти",
+    "NAME": "Королева Ненависти",
     "DIALOG": [
     ]
   },
@@ -235,7 +235,7 @@
       "ВОПЛОЩЕНИЕ ЗЛА!",
       "Ярость"
     ],
-    "NAME": "Слуга гнева",
+    "NAME": "Слуга Гнева",
     "DIALOG": [
       "ВОПЛОЩЕНИЕ ЗЛА!",
       "Закон и порядок . . . восторжествовали."
@@ -256,7 +256,7 @@
   "ruina:HermitStaff": {
     "MOVES": [
     ],
-    "NAME": "Помощник отшельника",
+    "NAME": "Помощник Отшельника",
     "DIALOG": [
     ]
   },
@@ -350,7 +350,7 @@
       "Поклевать",
       "Кара"
     ],
-    "NAME": "Карающая птица",
+    "NAME": "Карающая Птица",
     "DIALOG": [
     ]
   },
@@ -385,7 +385,7 @@
       "Осветить",
       "Осветить"
     ],
-    "NAME": "Большая птица",
+    "NAME": "Большая Птица",
     "DIALOG": [
     ]
   },
@@ -417,7 +417,7 @@
       "Кровавые крылья",
       "Посторонний взгляд"
     ],
-    "NAME": "Пронзающий небеса",
+    "NAME": "Пронзающий Небеса",
     "DIALOG": [
     ]
   },
@@ -426,7 +426,7 @@
       "Вспомни своё прошлое",
       "Поток часов"
     ],
-    "NAME": "Остаток времени",
+    "NAME": "Остаток Времени",
     "DIALOG": [
     ]
   },
@@ -435,7 +435,7 @@
       "Пропавшее время",
       "Тихий час"
     ],
-    "NAME": "Цена тишины",
+    "NAME": "Цена Тишины",
     "DIALOG": [
     ]
   },
@@ -444,7 +444,7 @@
       "Бледные руки",
       "Депрессия"
     ],
-    "NAME": "Кровавая ванна",
+    "NAME": "Кровавая Ванна",
     "DIALOG": [
     ]
   },
@@ -455,7 +455,7 @@
       "Осколки льда",
       "Замороженный трон"
     ],
-    "NAME": "Снежная королева",
+    "NAME": "Снежная Королева",
     "DIALOG": [
     ]
   },
@@ -472,7 +472,7 @@
       "Биение сердца",
       "Удар стремления"
     ],
-    "NAME": "Сердце стремления",
+    "NAME": "Сердце Стремления",
     "DIALOG": [
     ]
   },
@@ -481,7 +481,7 @@
       "Страстные удары",
       "Втягивающий удар"
     ],
-    "NAME": "Пристрастные легкие",
+    "NAME": "Пристрастные Лёгкие",
     "DIALOG": [
     ]
   },
@@ -509,7 +509,7 @@
       "Здоровый разрез",
       "Ровный разрез",
       "Копьё",
-      "Разрез вверх",
+      "Разрез вниз",
       "Разрез напрямую"
     ],
     "NAME": "Красный Туман",
@@ -523,7 +523,7 @@
       "Тяжкое чувство вины",
       "Неустанный долг"
     ],
-    "NAME": "Птица правосудия",
+    "NAME": "Птица Правосудия",
     "DIALOG": [
     ]
   },
@@ -704,7 +704,7 @@
       "Неистовый удар",
       "Разогреться"
     ],
-    "NAME": "Алый крест",
+    "NAME": "Алый Крест",
     "DIALOG": [
     ]
   },
@@ -745,7 +745,7 @@
     ],
     "NAME": "Освальд",
     "DIALOG": [
-      "Клоуны, не желаете немного поболтать вместе с клоуном?"
+      "Не желаете ли, так сказать, «клоунадно» побеседовать?"
     ]
   },
   "ruina:Tiph": {
@@ -755,7 +755,7 @@
     ],
     "NAME": "Тиферет",
     "DIALOG": [
-      "Клоун здесь только ты.",
+      "Прости, но клоун здесь только ты.",
       "Какая досада."
     ]
   },
@@ -768,7 +768,7 @@
       "Мощные сухожильные ноты",
       "Трио"
     ],
-    "NAME": "Бременские музыканты",
+    "NAME": "Бременские Музыканты",
     "DIALOG": [
       "И-ААА! КУ-ДАК! ИИИГО-ГО!"
     ]
@@ -817,7 +817,7 @@
       "Взмах крылом",
       "Шептать"
     ],
-    "NAME": "Плачущее дитя",
+    "NAME": "Плачущее Дитя",
     "DIALOG": [
     ]
   },
@@ -997,281 +997,281 @@
       "Пугающая ухмылка",
       "Не прячь своё сердце"
     ],
-    "NAME": "Молчаливая девушка",
+    "NAME": "Молчаливая Девушка",
     "DIALOG": [
      ]
   },
-  "${ModID}:AllAroundHelper": {
+  "ruina:AllAroundHelper": {
     "MOVES": [
-      "Charge",
-      "Clean"
+      "Подготовка",
+      "Уборка"
     ],
-    "NAME": "All-Around Helper",
+    "NAME": "Помощник везде и во всём",
     "DIALOG": [
     ]
   },
-  "${ModID}:ForsakenMurderer": {
+  "ruina:ForsakenMurderer": {
     "MOVES": [
-      "Chained Wrath",
-      "Metallic Ringing"
+      "Закованная ярость",
+      "Металлический звон"
     ],
-    "NAME": "Forsaken Murderer",
+    "NAME": "Брошенный Убийца",
     "DIALOG": [
     ]
   },
-  "${ModID}:ScorchedGirl": {
+  "ruina:ScorchedGirl": {
     "MOVES": [
-      "Ember",
-      "Extinguish"
+      "Тлеющие угли",
+      "Затушить"
     ],
-    "NAME": "Scorched Girl",
+    "NAME": "Сожжённая Девочка",
     "DIALOG": [
     ]
   },
-  "${ModID}:TeddyBear": {
+  "ruina:TeddyBear": {
     "MOVES": [
-      "Timid Endearment",
-      "Display of Affection"
+      "Робкая нежность",
+      "Проявление привязанности"
     ],
-    "NAME": "Happy Teddy Bear",
+    "NAME": "Счастливый мишка Тедди",
     "DIALOG": [
     ]
   },
-  "${ModID}:Lulu": {
+  "ruina:Lulu": {
     "MOVES": [
-      "Prepared Mind",
-      "Flaming Bat",
-      "Set Ablaze"
+      "Я не боюсь!",
+      "Пылающая бита",
+      "Зажжём!"
     ],
-    "NAME": "Lulu",
+    "NAME": "Лулу",
     "DIALOG": [
     ]
   },
-  "${ModID}:ShyLook": {
+  "ruina:ShyLook": {
     "MOVES": [
-      "Today's Expression"
+      "Сегодняшнее выражение"
     ],
-    "NAME": "Today's Shy Look",
+    "NAME": "Сегодня Стесняется",
     "DIALOG": [
     ]
   },
-  "${ModID}:Alriune": {
+  "ruina:Alriune": {
     "MOVES": [
-      "Spring's Genesis",
-      "Full Bloom",
-      "Magnificent End"
+      "Зарождение весны",
+      "Полное цветение",
+      "Конец, которого я ждала"
     ],
-    "NAME": "Alriune",
+    "NAME": "Альриуна",
     "DIALOG": [
     ]
   },
-  "${ModID}:Orchestra": {
+  "ruina:Orchestra": {
     "MOVES": [
-      "The First Movement",
-      "The Second Movement",
-      "The Third Movement",
-      "The Fourth Movement",
-      "Finale",
-      "Curtain Call"
+      "Акт первый",
+      "Акт второй",
+      "Акт третий",
+      "Акт четвёртый",
+      "Финал",
+      "Закрыть занавес!"
     ],
-    "NAME": "Silent Orchestra",
+    "NAME": "Безмолвный Оркестр",
     "DIALOG": [
     ]
   },
-  "${ModID}:FairyQueen": {
+  "ruina:FairyQueen": {
     "MOVES": [
-      "Queen's Decree",
-      "Predation",
-      "Ravenousness"
+      "Указание королевы",
+      "Хищничество",
+      "Ненасытность"
     ],
-    "NAME": "Fairy Queen",
+    "NAME": "Королева Фей",
     "DIALOG": [
     ]
   },
-  "${ModID}:FairyMass": {
+  "ruina:FairyMass": {
     "MOVES": [
-      "Wingbeats",
-      "Gluttony"
+      "Махач крыльями",
+      "Обжорство"
     ],
-    "NAME": "Fairy Mass",
+    "NAME": "Масса из фей",
     "DIALOG": [
     ]
   },
-  "${ModID}:Laetitia": {
+  "ruina:Laetitia": {
     "MOVES": [
-      "Here's a Gift!",
-      "Let’s Have Fun!"
+      "Держи, дарю!",
+      "Давай веселиться!"
     ],
-    "NAME": "Laetitia",
+    "NAME": "Летиция",
     "DIALOG": [
     ]
   },
-  "${ModID}:GiftFriend": {
+  "ruina:GiftFriend": {
     "MOVES": [
-      "G..i..f..t",
-      "B..lo..w..Up.."
+      "По..да..р..ок",
+      "По..ра..Взры..ва..ться"
     ],
-    "NAME": "Gift-wrapped Friend",
+    "NAME": "Друг в обёртке",
     "DIALOG": [
     ]
   },
-  "${ModID}:WitchFriend": {
+  "ruina:WitchFriend": {
     "MOVES": [
       "#$@!#*#$@"
     ],
-    "NAME": "Wee Witch's Friend",
+    "NAME": "Друг Мелкой Ведьмы",
     "DIALOG": [
     ]
   },
-  "${ModID}:Fragment": {
+  "ruina:Fragment": {
     "MOVES": [
-      "Penetrate",
-      "Echoes from the Beyond"
+      "Пронзить",
+      "Эхо из ниоткуда"
     ],
-    "NAME": "Fragment of the Universe",
+    "NAME": "Фрагмент Вселенной",
     "DIALOG": [
     ]
   },
-  "${ModID}:CrazedEmployee": {
+  "ruina:CrazedEmployee": {
     "MOVES": [
-      "Trembling Motion",
-      "Shaking Blow"
+      "Дрожащие движение",
+      "Сотрясающий удар"
     ],
-    "NAME": "Crazed Employee",
+    "NAME": "Безумный сотрудник",
     "DIALOG": [
     ]
   },
-  "${ModID}:Butterflies": {
+  "ruina:Butterflies": {
     "MOVES": [
-      "Tranquility",
-      "Liberation"
+      "Упокоение",
+      "Высвобождение"
     ],
-    "NAME": "Butterflies",
+    "NAME": "Бабочки",
     "DIALOG": [
     ]
   },
-  "${ModID}:MatchFlame": {
+  "ruina:MatchFlame": {
     "MOVES": [
-      "Broken Hope",
-      "Kindle"
+      "Сгоревшая надежда",
+      "Зажжём"
     ],
-    "NAME": "Match Flame",
+    "NAME": "Тлеющая Спичка",
     "DIALOG": [
     ]
   },
-  "${ModID}:Porccubus": {
+  "ruina:Porccubus": {
     "MOVES": [
-      "Unbearable Pleasure",
-      "Bristle"
+      "Непереносимое наслаждение",
+      "Ощути мои колючки"
     ],
-    "NAME": "Porccubus",
+    "NAME": "Суккубраз",
     "DIALOG": [
     ]
   },
-  "${ModID}:LeftShoe": {
+  "ruina:LeftShoe": {
     "MOVES": [
-      "Sanguine Desire"
+      "Жажда крови"
     ],
-    "NAME": "Left Shoe",
+    "NAME": "Левая туфелька",
     "DIALOG": [
     ]
   },
-  "${ModID}:RightShoe": {
+  "ruina:RightShoe": {
     "MOVES": [
-      "Obsession",
-      "Bursting Desire"
+      "Одержимость",
+      "Жажда разорвать"
     ],
-    "NAME": "Right Shoe",
+    "NAME": "Правая туфелька",
     "DIALOG": [
     ]
   },
-  "${ModID}:GalaxyFriend": {
+  "ruina:GalaxyFriend": {
     "MOVES": [
-      "Waiting",
-      "Star Shower",
-      "Glimmer"
+      "Выжидание",
+      "Звёздопад",
+      "Мерцание"
     ],
-    "NAME": "Friend to the Galaxy",
+    "NAME": "Друг галактики",
     "DIALOG": [
     ]
   },
-  "${ModID}:SpiderBud": {
+  "ruina:SpiderBud": {
     "MOVES": [
-      "Protective Instincts",
-      "Cocoon",
-      "Catching Food"
+      "Защитные инстинкты",
+      "Кокон",
+      "Ты - корм"
     ],
-    "NAME": "Spider Bud",
+    "NAME": "Паучья матка",
     "DIALOG": [
     ]
   },
-  "${ModID}:Spiderling": {
+  "ruina:Spiderling": {
     "MOVES": [
-      "Thin Webbing",
-      "Stingy Fangs"
+      "Тонкая паутина",
+      "Скупые клыки"
     ],
-    "NAME": "Spiderling",
+    "NAME": "Паучок",
     "DIALOG": [
     ]
   },
-  "${ModID}:QueenBee": {
+  "ruina:QueenBee": {
     "MOVES": [
-      "Boost Aggression",
-      "Boost Loyalty",
-      "Hornet Strike"
+      "Умри ради меня",
+      "Будь преданной мне",
+      "Удар шершня"
     ],
-    "NAME": "Queen Bee",
+    "NAME": "Королева Пчёл",
     "DIALOG": [
     ]
   },
-  "${ModID}:WorkerBee": {
+  "ruina:WorkerBee": {
     "MOVES": [
-      "Carry Larvae",
-      "Gardu du Corps"
+      "Отложить личинок",
+      "Телохранитель"
     ],
-    "NAME": "Worker Bee",
+    "NAME": "Рабочая пчела",
     "DIALOG": [
     ]
   },
-  "${ModID}:BlackSwan": {
+  "ruina:BlackSwan": {
     "MOVES": [
-      "Writhe",
-      "Well-worn Parasol",
-      "Nauseating Reality",
-      "Shriek of Broken Dreams"
+      "Страдание",
+      "Затасканный зонтик",
+      "Тошнотворное окружение",
+      "Вопль разбитых мечтаний"
     ],
-    "NAME": "Dream of a Black Swan",
+    "NAME": "Мечта чёрного Лебедя",
     "DIALOG": [
     ]
   },
-  "${ModID}:Brother": {
+  "ruina:Brother": {
     "MOVES": [
-      "Green Waste"
+      "Зелёные отходы"
     ],
-    "NAME": "Brother",
+    "NAME": "Брат",
     "DIALOG": [
-      "First Brother",
-      "Second Brother",
-      "Third Brother",
-      "Fourth Brother"
+      "Первый брат",
+      "Второй брат",
+      "Третий брат",
+      "Четвёртый брат"
     ]
   },
-  "${ModID}:SingingMachineMonster": {
+  "ruina:SingingMachineMonster": {
     "MOVES": [
-      "Bloody Tune",
-      "Unforgettable Performance",
-      "Crushing Beats"
+      "Кровавая мелодия",
+      "Незабываемое представление",
+      "Перемолоть"
     ],
-    "NAME": "Singing Machine",
+    "NAME": "Поющая Машина",
     "DIALOG": [
     ]
   },
-  "${ModID}:ManicEmployee": {
+  "ruina:ManicEmployee": {
     "MOVES": [
-      "Trembling Motion",
-      "Pine for the Song"
+      "Дрожащие движение",
+      "Тоскуй по той песне"
     ],
-    "NAME": "Manic Employee",
+    "NAME": "Одержимый сотрудник",
     "DIALOG": [
     ]
   }

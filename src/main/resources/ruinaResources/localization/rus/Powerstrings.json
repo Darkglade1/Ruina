@@ -21,11 +21,11 @@
   },
   "ruina:Absorption": {
     "NAME": "Поглощение",
-    "DESCRIPTIONS": ["Переходит на #y", " #yСтадию, когда погибает.", "В конце хода переходит на #y", " #yСтадию, если имеет полный запас ОЗ."]
+    "DESCRIPTIONS": ["Переходит на #y", " #yСтадию, когда погибает.", "В конце своего хода переходит на #y", " #yСтадию, если имеет полный запас ОЗ."]
   },
   "ruina:Bodies": {
     "NAME": "Гора трупов",
-    "DESCRIPTIONS": ["В конце хода, если #yРасплавленный #yтруп мёртв, призывает #yРасплавленный #yтруп. NL Если #yРасплавленный #yтруп погибает, когда #rвраг атакует его, тогда этот #rвраг станет атаковать вас."]
+    "DESCRIPTIONS": ["Если #yРасплавленный #yтруп мёртв, призывает #yРасплавленный #yтруп в конце своего хода. NL Если #yРасплавленный #yтруп погибает, когда #rвраг атакует его, тогда этот #rвраг станет атаковать вас."]
   },
   "ruina:Corpse": {
     "NAME": "Труп",
@@ -41,27 +41,27 @@
   },
   "ruina:Heart": {
     "NAME": "Доброе сердце",
-    "DESCRIPTIONS": ["Даёт", " в начале каждого вашего хода. Получает #b", " #yСилы в конце хода за каждую неизрасходованную [E] ."]
+    "DESCRIPTIONS": ["Даёт", " в начале вашего хода. Получает #b", " #yСилы в конце своего хода за каждую неизрасходованную [E] ."]
   },
   "ruina:Justice": {
     "NAME": "Во имя Справедливости!",
     "DESCRIPTIONS": ["Наносит тройной урон #rврагам без #yЗащиты."]
   },
   "ruina:PointlessHate": {
-    "NAME": "Бессмысленная ненависть",
-    "DESCRIPTIONS": ["Даёт #b", " #yЗащиты в конце хода."]
+    "NAME": "Бесцельная ненависть",
+    "DESCRIPTIONS": ["Получает #b", " #yЗащиты в конце своего хода."]
   },
   "ruina:Erosion": {
     "NAME": "Эрозия",
-    "DESCRIPTIONS": ["Получает на #b", " больше урона от #yАтак. Уменьшается на #b", " в конце хода."]
+    "DESCRIPTIONS": ["Получает на #b", " больше урона от #yАтак. Уменьшается на #b", " в конце вражеского хода."]
   },
   "ruina:SenselessWrath": {
     "NAME": "Безрассудная ярость",
     "DESCRIPTIONS": ["Каждый второй накладываемые #pотриц. #pэффект #yотвергается этим #rврагом."]
   },
   "ruina:MagicalGirl": {
-    "NAME": "Настоящая Магическая девочка!",
-    "DESCRIPTIONS": ["Погибая, призывает ", " в бой за вашу сторону."]
+    "NAME": "Я - Магическая девочка!",
+    "DESCRIPTIONS": ["Погибая, призывает ", " в бой на вашей стороне."]
   },
   "ruina:Paralysis": {
     "NAME": "Паралич",
@@ -85,7 +85,7 @@
   },
   "ruina:Hunter": {
     "NAME": "Охотник в темноте",
-    "DESCRIPTIONS": ["Когда этот #rвраг впервые теряет больше #b", "% ОЗ, в конце хода он получает #b", " #yСилы и становится #yНевыбираемым и #yНеуязвимым к урону на #b", " ходов.", " ход."]
+    "DESCRIPTIONS": ["Когда этот #rвраг впервые теряет больше #b", "% ОЗ, в конце своего хода он получает #b", " #yСилы и становится #yНевыбираемым и #yНеуязвимым к урону на #b", " ходов.", " ход."]
   },
   "ruina:Skulk": {
     "NAME": "Скрытность",
@@ -97,14 +97,14 @@
   },
   "ruina:Hysteria": {
     "NAME": "Истерия",
-    "DESCRIPTIONS": ["Разыгрывая #b", " #yАтаки за ход, вы получаете #b", " #yСлабости. NL Разыгрывая #b", " #yНавыка за ход, вы получаете #b", " #yХрупкости."]
+    "DESCRIPTIONS": ["Разыгрывая #b", " #yАтаки в одном ходу, вы получаете #b", " #yСлабости. NL Разыгрывая #b", " #yНавыка в одном ходу, вы получаете #b", " #yХрупкости."]
   },
   "ruina:Oblivion": {
     "NAME": "Забвение",
     "DESCRIPTIONS": ["Вы берёте на #b", " карту меньше", " карты меньше", " каждый ход."]
   },
   "ruina:Steal": {
-    "NAME": "Своруй или будь обворованным",
+    "NAME": "Я обворую тебя первее!",
     "DESCRIPTIONS": ["#yКрадёт карту с верха стопки добора, когда вы теряете ОЗ от атак этого врага. NL Кладёт в руку самую позднюю #yукраденную карту, когда теряет ОЗ."]
   },
   "ruina:Agony": {
@@ -129,7 +129,7 @@
   },
   "ruina:Apostles": {
     "NAME": "Апостолы",
-    "DESCRIPTIONS": ["За #yубийство #rАпостола вы получите #yполож. #yэффект: NL 1, 5, 9 убито: даёт #b", " #yСилы; NL 2, 6, 10 убито: даёт #b", " #yЛовкости; NL 3, 7, 11 убито: в начале каждого вашего хода вы берёте на #b", " карту больше; NL 4, 8, 12 убито: в начале каждого вашего хода даёт [E] . NL #yЭффекты выдаются, когда это существо #gвосполняет ваши ОЗ. NL Когда #yАпостол погибает, появляется ещё один в конце хода."]
+    "DESCRIPTIONS": ["За #yубийство #rАпостола вы получите #yполож. #yэффект: NL 1, 5, 9 убито: даёт #b", " #yСилы; NL 2, 6, 10 убито: даёт #b", " #yЛовкости; NL 3, 7, 11 убито: в начале каждого вашего хода вы берёте на #b", " карту больше; NL 4, 8, 12 убито: в начале каждого вашего хода даёт [E] . NL #yЭффекты выдаются, когда это существо #gвосполняет ваши ОЗ. NL Когда #yАпостол погибает, появляется ещё один в конце вражеского хода."]
   },
   "ruina:Advent": {
     "NAME": "Пришествие",
@@ -191,7 +191,7 @@
     ]
   },
   "ruina:Lock": {
-    "NAME": "Замок лесного хранителя",
+    "NAME": "Замок хранителя",
     "DESCRIPTIONS": ["Погибая, добавляет в руку #yЗамок #yлесного #yхранителя с #yОставляемостью и #yСжигаемостью."]
   },
   "ruina:Unruffled": {
@@ -212,14 +212,14 @@
   },
   "ruina:MeetAgain": {
     "NAME": "Увидимся в виде звёзд",
-    "DESCRIPTIONS": ["Если ОЗ этого #rврага не более #b", ", #rумрёт в этом ходу, не активировав эффект #yМученик."]
+    "DESCRIPTIONS": ["Если ОЗ этого #rврага не более #b", ", #rумрёт в этом ходу, не активировав эффект #y«Мученик»."]
   },
   "ruina:Unnerving": {
     "NAME": "Пугающий",
     "DESCRIPTIONS": ["Получает на #b", "% меньше урона от #yАтак. NL Когда вы получаете #yЗащиту, получает урон, равный количеству полученной #yЗащиты."]
   },
   "ruina:TickingTime": {
-    "NAME": "Тик-так",
+    "NAME": "Время тик-так",
     "DESCRIPTIONS": ["Когда вы разыграете #b", " карт в одном ходу, завершает ваш ход."]
   },
   "ruina:PromiseOfWinter": {
@@ -233,13 +233,13 @@
   "ruina:RedMistPower": {
     "NAME": "Декларация Э.П.О.С.",
     "DESCRIPTIONS": [
-      "ОЗ не может быть опуститься ниже #b%1$s. NL Когда ОЗ равно #b%2$s в конце хода, переходит на след. фазу, воспользуется #rмощной атакой в след. ходу и навсегда получит доп. #yнамерение.",
+      "ОЗ не могут опуститься ниже #b%1$s. NL Когда ОЗ этого #rврага равны #b%2$s в конце его хода, переходит на след. фазу, воспользуется #rмощной атакой в след. ходу и навсегда получит доп. #yнамерение.",
       "Декларация #rЭ.П.О.С. в конце этого хода."
     ]
   },
   "ruina:Sin": {
     "NAME": "Тяжесть греха",
-    "DESCRIPTIONS": ["Когда вы разыгрываете карту с ценой не более #b", ", её стоимость повышается на #b", " в этом бою."]
+    "DESCRIPTIONS": ["Когда вы разыгрываете карту со стоимостью не более #b", ", её стоимость повышается на #b", " в этом бою."]
   },
   "ruina:Imposter": {
     "NAME": "Самозванец",
@@ -251,11 +251,11 @@
   },
   "ruina:OminousPower": {
     "NAME": "Грозная сила",
-    "DESCRIPTIONS": ["Когда обе #yРуки бездействуют в конце хода или ОЗ этого #rврага не более #b%1$s, сливается вместе с #yРуками и получает новую колоду."]
+    "DESCRIPTIONS": ["Когда обе #yРуки бездействуют в конце вражеского хода или когда ОЗ этого #rврага не более #b%1$s, сливается вместе с #yРуками и получает новую колоду."]
   },
   "ruina:Protection": {
     "NAME": "Прикрытие",
-    "DESCRIPTIONS": ["Получает на #b", " меньше урона от #yАтак. Уменьшается на #b", " в конце хода."]
+    "DESCRIPTIONS": ["Получает на #b", " меньше урона от #yАтак. Уменьшается на #b", " в конце вражеского хода."]
   },
   "ruina:Beak": {
     "NAME": "Клюв",
@@ -288,15 +288,15 @@
   },
   "ruina:Resonance": {
     "NAME": "Резонанс",
-    "DESCRIPTIONS": ["Когда вы разыграете карту, сдвигает намерения этого существа на #b", " вправо (Первое намерение нацелено на вас, а остальные - на вашего #gсоратника)."]
+    "DESCRIPTIONS": ["Когда вы разыграете карту, сдвигает намерения этого существа на #b", " вправо (первое намерение нацелено на вас, а остальные - на вашего #gсоратника)."]
   },
   "ruina:BlackSilence": {
     "NAME": "Чёрная Тишина",
-    "DESCRIPTIONS": ["Даёт #b", " #yСилы в конце хода этого существа.", " NL Воспользуется #yмощной атакой через #b", " хода.", " ход.", " NL Использует #yмощную атаку."]
+    "DESCRIPTIONS": ["Получает #b", " #yСилы в конце своего хода.", " NL Воспользуется #yмощной атакой через #b", " хода.", " ход.", " NL Использует #yмощную атаку."]
   },
   "ruina:BlueReverberation": {
     "NAME": "Синяя Реверберация",
-    "DESCRIPTIONS": ["Даёт #b%1$s #yСилы в конце хода этого существа."]
+    "DESCRIPTIONS": ["Получает #b%1$s #yСилы в конце своего хода."]
   },
   "ruina:ContractOfMight": {
     "NAME": "Контракт могущества",
@@ -304,7 +304,7 @@
   },
   "ruina:ContractOfLight": {
     "NAME": "Контракт света",
-    "DESCRIPTIONS": ["Даёт ", " в начале хода. Вы не можете добирать карты."]
+    "DESCRIPTIONS": ["Даёт ", " в начале вашего хода. Вы не можете добирать карты."]
   },
   "ruina:Guts": {
     "NAME": "Сила воли",
@@ -316,7 +316,7 @@
   },
   "ruina:Relentless": {
     "NAME": "Безжалостный",
-    "DESCRIPTIONS": ["Если до конца хода #rвраг потерял менее #b", " ОЗ, это существо теряет половину своей текущей #yСилы."]
+    "DESCRIPTIONS": ["Если до конца вражеского хода #rвраг потерял менее #b", " ОЗ, это существо теряет половину своей текущей #yСилы."]
   },
   "ruina:BloodRed": {
     "NAME": "Кроваво-красная ночь",
@@ -332,11 +332,11 @@
   },
   "ruina:Messenger": {
     "NAME": "Посланник",
-    "DESCRIPTIONS": ["Добавляет в руку случайное #yПредписание в начале хода этого существа."]
+    "DESCRIPTIONS": ["Добавляет в руку случайное #yПредписание в начале своего хода."]
   },
   "ruina:MelodyPower": {
     "NAME": "Мелодия",
-    "DESCRIPTIONS": ["Каждый ход случайно задаётся порядок #yМелодии. Если вы завершаете #yМелодию к концу хода, получаете #b", " #yСилы. Если вы не завершаете, это существо получает #b", " #yСилы."]
+    "DESCRIPTIONS": ["Каждый ход случайно задаётся порядок #yМелодии. Если вы завершаете #yМелодию к концу вражеского хода, получаете #b", " #yСилы. Если вы не завершаете, это существо получает #b", " #yСилы."]
   },
   "ruina:Passion": {
     "NAME": "Сдержанная страсть",
@@ -356,7 +356,7 @@
   },
   "ruina:Wildfire": {
     "NAME": "Пламенная сила",
-    "DESCRIPTIONS": ["Накладывает #b" , " #yУязвимости на ВСЕХ #rврагов в конце хода."]
+    "DESCRIPTIONS": ["Накладывает #b" , " #yУязвимости на ВСЕХ #rврагов в начале своего хода."]
   },
   "ruina:TorchedHeart": {
     "NAME": "Сожжённое сердце",
@@ -378,14 +378,14 @@
       "% больше урона #yАтаками.",
       "Пронзающая стойка",
       "Каждая #b",
-      "-ая атака этого существа #yудваивает ВСЕ #pотриц. #pэффекты выбранного #rврага.",
+      "-ая #yАтака этого существа #yудваивает ВСЕ #pотриц. #pэффекты выбранного #rврага.",
       "Защитная стойка",
       "ВСЕ накладываемые #pотриц. #pэффекты #yотвергаются этим существом.",
-      " NL NL Вы можете изменить #yСтойку этого существа нажатием на кнопку #yСмены #yСтойки рядом с его намерением."]																																	
+      " NL NL Вы можете изменить #yСтойку этого существа нажатием на кнопку #yСмены #yстойки рядом с его намерением."]																																	
   },
   "ruina:Gears": {
     "NAME": "Храм Механизмов",
-    "DESCRIPTIONS": ["Теряет #b", " ОЗ, когда погибает прислужник. Убитые прислужники заменяются другими такими же в конце хода."]
+    "DESCRIPTIONS": ["Теряет #b", " ОЗ, когда погибает прислужник. Убитые прислужники заменяются другими такими же в конце вражеского хода."]
   },
   "ruina:DarkBargain": {
     "NAME": "Тёмная сделка",
@@ -446,8 +446,8 @@
   "ruina:FrostSplinter": {
     "NAME": "Ледяной осколок",
     "DESCRIPTIONS": [
-      "Вы получаете [E] , берёте на #b%1$s карту больше и #yЗамораживаете #b%2$s карту в начале вашего хода.",
-      "Вы получаете [E] , берёте на #b%1$s карты больше и #yЗамораживаете #b%2$s карту в начале вашего хода."
+      "Вы получаете [E] , берёте на #b%1$s карту больше и #yЗамораживаете #b%2$s карту в начале своего хода.",
+      "Вы получаете [E] , берёте на #b%1$s карты больше и #yЗамораживаете #b%2$s карту в начале своего хода."
     ]
   },
   "ruina:KillingIntent": {
@@ -456,139 +456,139 @@
   },
   "ruina:Remorse": {
     "NAME": "Раскаяние",
-    "DESCRIPTIONS": ["В конце хода добавляет #b", " ", " на верх стопки добора."]
+    "DESCRIPTIONS": ["В конце своего хода добавляет #b", " ", " на верх стопки добора."]
   },
   "ruina:Judas": {
     "NAME": "Иуда",
     "DESCRIPTIONS": ["Получает #b", " #yСилы в след. ходу, когда умирает существо."]
   },
-  "${ModID}:Pattern": {
-    "NAME": "Pattern Recognition",
-    "DESCRIPTIONS": ["Whenever this creature deals #b", " unblocked attack damage in a single turn, it removes all #pdebuffs from itself."]
+  "ruina:Pattern": {
+    "NAME": "Опознавание образов",
+    "DESCRIPTIONS": ["Когда наносит #b", " урона по ОЗ в одном ходу, снимает с себя все #pотриц. #pэффекты."]
   },
-  "${ModID}:Fear": {
-    "NAME": "Fear",
-    "DESCRIPTIONS": ["Whenever you play an #yAttack, this creature loses #b", " #yStrength this turn."]
+  "ruina:Fear": {
+    "NAME": "Страх",
+    "DESCRIPTIONS": ["Когда вы разыгрываете #yАтаки, теряет #b", " #yСилы до конца хода."]
   },
-  "${ModID}:Affection": {
-    "NAME": "Affection",
-    "DESCRIPTIONS": ["Whenever this creature fully or partially #yBlocks attack damage, it gains #b", " #yStrength."]
+  "ruina:Affection": {
+    "NAME": "Привязанность",
+    "DESCRIPTIONS": ["Когда полностью или частично #yЗащищается от #yАтаки, получает #b", " #yСилы."]
   },
-  "${ModID}:FlamingBat": {
-    "NAME": "Flaming Bat",
-    "DESCRIPTIONS": ["When this creature deals unblocked damage, apply #b%d #yBurn."]
+  "ruina:FlamingBat": {
+    "NAME": "Пылающая бита",
+    "DESCRIPTIONS": ["Накладывает на вас #b%d #yГорения, когда вы теряете ОЗ от атак этого врага."]
   },
-  "${ModID}:Burn": {
-    "NAME": "Burn",
-    "DESCRIPTIONS": ["Take #b%d damage at the end of your turn and then remove all #yBurn."]
+  "ruina:Burn": {
+    "NAME": "Горение",
+    "DESCRIPTIONS": ["Вы получаете #b%d урона в конце своего хода, после чего снимаете всё #yГорение."]
   },
-  "${ModID}:Expression": {
-    "NAME": "Expression",
-    "DESCRIPTIONS": ["Whenever you play #b", " cards, this creature changes its intent."]
+  "ruina:Expression": {
+    "NAME": "Выражение",
+    "DESCRIPTIONS": ["Когда вы разыгрываете #b", " карты, это существо изменяет своё намерение."]
   },
-  "${ModID}:WintersInception": {
-    "NAME": "Winter's Inception",
-    "DESCRIPTIONS": ["The first #yAttack you play each turn gains #yLaurel #yWreath. This creature receives #b", "% less damage from #yAttacks without #yLaurel #yWreath."]
+  "ruina:WintersInception": {
+    "NAME": "Начало зимы",
+    "DESCRIPTIONS": ["Первая разыгранная в каждом ходу #yАтака получает #yЛавровый #yВенок. Это существо получает на #b", "% меньше урона от #yАтак без #yЛаврового #yВенка."]
   },
-  "${ModID}:Performance": {
-    "NAME": "Endless Performance",
-    "DESCRIPTIONS": ["At end of round, shuffle a #yPerformer card into your discard pile.", "Whenever a #yPerformer card is #yExhausted, add a copy of it into your discard pile."]
+  "ruina:Performance": {
+    "NAME": "Вечное выступление",
+    "DESCRIPTIONS": ["Добавляет #yИсполнителя в стопку сброса в конце своего хода.", "Если #yИсполнитель #yСжигается, добавляет его копию в стопку сброса."]
   },
-  "${ModID}:FerventAdoration": {
-    "NAME": "Fervent Adoration",
-    "DESCRIPTIONS": ["At the start of your turn, draw #b", " card.", " cards.", " At the end of your turn, take #b", " damage."]
+  "ruina:FerventAdoration": {
+    "NAME": "Пылкое обожание",
+    "DESCRIPTIONS": ["В начале вашего хода вы берёте на #b", " карту больше.", " карты больше.", " Вы получаете #b", " урона в конце своего хода."]
   },
-  "${ModID}:RedEyesPower": {
-    "NAME": "Red Eyes",
-    "DESCRIPTIONS": ["Double the next #pdebuff you apply to this #renemy."]
+  "ruina:RedEyesPower": {
+    "NAME": "Красные глаза",
+    "DESCRIPTIONS": ["След. накладываемый вами #pотриц. #pэффект на этого #rврага удваивается."]
   },
-  "${ModID}:LaetitiaPower": {
-    "NAME": "Laetitia",
-    "DESCRIPTIONS": ["The first #b", " or ", " cost card(s) played each turn are played twice. (", " left)"]
+  "ruina:LaetitiaPower": {
+    "NAME": "Летиция",
+    "DESCRIPTIONS": ["Каждый ваш ход первая карта стоимостью #b", " или ", " разыгрывается дважды. (", " карты осталось)"]
   },
-  "${ModID}:Satiation": {
-    "NAME": "Momentary Satiation",
-    "DESCRIPTIONS": ["Whenever this creature #yconsumes a minion, it gains #b", " #yWeak and #yVulnerable."]
+  "ruina:Satiation": {
+    "NAME": "Набитое брюхо",
+    "DESCRIPTIONS": ["Когда это существо #yпоглощает прислужника, получает #b", " #yСлабости и #b1 #yУязвимости."]
   },
-  "${ModID}:Meal": {
-    "NAME": "Prepared Meal",
-    "DESCRIPTIONS": ["At end of round, if this creature's HP is at or below #b", ", the enemy #yconsumes it."]
+  "ruina:Meal": {
+    "NAME": "Готовы к трапезе",
+    "DESCRIPTIONS": ["Если ОЗ этого #rврага не более #b", " в конце вражеского хода, его #yпоглощает #rбосс."]
   },
-  "${ModID}:LonelyIsSad": {
-    "NAME": "Being Lonely is Sad",
+  "ruina:LonelyIsSad": {
+    "NAME": "Грустно быть одной",
     "DESCRIPTIONS": [
-      "Receives #b", "% more damage from attacks if there are no other enemies alive."
+      "Получает на #b", "% больше урона от #yАтак, если это существо - единственный #rвраг."
     ]
   },
-  "${ModID}:Gimme": {
-    "NAME": "Gimme that Gift!",
+  "ruina:Gimme": {
+    "NAME": "Это мои подарки!",
     "DESCRIPTIONS": [
-      "Whenever you receive unblocked attack damage from this creature, #yExhaust all #yGifts in your hand."
+      "#yСжигает все #yПодарочки в руке, когда вы теряете ОЗ от атак этого врага."
     ]
   },
-  "${ModID}:SurprisePresent": {
-    "NAME": "Surprise Present",
+  "ruina:SurprisePresent": {
+    "NAME": "Нежданный подарок",
     "DESCRIPTIONS": [
-      "In #b%1$s turns, this creature #rexplodes, dealing #b%2$s damage to you and adding a #yGift to your hand. NL NL On death, spawns a #bWee #bWitch's #bFriend.",
-      "In #b%1$s turn, this creature #rexplodes, dealing #b%2$s damage to you and adding a #yGift to your hand. NL NL On death, spawns a #bWee #bWitch's #bFriend."
+      "#rВзорвётся через #b%1$s хода, нанеся вам #b%2$s урона и добавив #yПодарочек в руку. NL NL #rПогибая, призывает #bДруга #bМелкой #bВедьмы.",
+      "#rВзорвётся через #b%1$s ход, нанеся вам #b%2$s урона и добавив #yПодарочек в руку. NL NL #rПогибая, призывает #bДруга #bМелкой #bВедьмы."
     ]
   },
-  "${ModID}:Song": {
-    "NAME": "Pine for the Song",
-    "DESCRIPTIONS": ["At end of round, gains #b", " #yStrength and #b", " #yVulnerable."]
+  "ruina:Song": {
+    "NAME": "Тоска по той песне",
+    "DESCRIPTIONS": ["Получает #b", " #yСилы и #b", " #yУязвимости в конце своего хода."]
   },
-  "${ModID}:Pleasure": {
-    "NAME": "Pleasure",
-    "DESCRIPTIONS": ["At the start of your turn, gain ", " At the end of your turn, take #b", " damage."]
+  "ruina:Pleasure": {
+    "NAME": "Наслаждение",
+    "DESCRIPTIONS": ["В начале вашего хода даёт ", " Вы получаете #b", " урона в конце своего хода."]
   },
-  "${ModID}:FaintAroma": {
-    "NAME": "Faint Aroma",
-    "DESCRIPTIONS": ["Whenever you deal unblocked attack damage to an #renemy, it loses HP equal to #b","x that amount."]
+  "ruina:FaintAroma": {
+    "NAME": "Слабый аромат",
+    "DESCRIPTIONS": ["#rВраг теряет ОЗ, равные #b","x количеству урону по его ОЗ от разыгрываемых вами Атак."]
   },
-  "${ModID}:Grinder": {
-    "NAME": "Grinder Mk. 5-2",
-    "DESCRIPTIONS": ["The first time you deal #b", " unblocked attack damage each turn, gain ", "next turn."]
+  "ruina:Grinder": {
+    "NAME": "Дробитель Mk. 5-2",
+    "DESCRIPTIONS": ["Впервые в каждом ходу нанеся #b", " урона #yАтаками по ОЗ врага, вы получите ", "в след. ходу."]
   },
-  "${ModID}:DontLeave": {
-    "NAME": "Don't Leave Me",
-    "DESCRIPTIONS": ["When this creature #rdies, it #grevives this turn with the HP of another #renemy."]
+  "ruina:DontLeave": {
+    "NAME": "Не покидай меня",
+    "DESCRIPTIONS": ["#rПогибая, #gвоскрешается в этом ходу с запасом ОЗ другого #rврага."]
   },
-  "${ModID}:Hunt": {
-    "NAME": "The Hunt is On",
-    "DESCRIPTIONS": ["Whenever another creature #rdies or if this creature is alone, uses a #rstrong attack next turn."]
+  "ruina:Hunt": {
+    "NAME": "Охота не прекратится",
+    "DESCRIPTIONS": ["Воспользуется #rмощной атакой в след. ходу, когда #rумирает другое существо или когда это существо - единственный #rвраг."]
   },
-  "${ModID}:Dream": {
-    "NAME": "Broken Dream",
-    "DESCRIPTIONS": ["At end of round, another #yBrother becomes #yactive. NL If #b", " or more #yBrothers have #rdied, begins to use a #rpowerful attack. NL NL Random targeting effects always target this creature."]
+  "ruina:Dream": {
+    "NAME": "Разбитая мечта",
+    "DESCRIPTIONS": ["Другой #yБрат становится #yактивным в конце вражеского хода. NL Если #b", " или больше #yБратьев #rмертвы, начинает пользоваться #rмощными атаками. NL NL Эффекты, случайно выбирающие свою цель, всегда выбирают это существо."]
   },
-  "${ModID}:BrotherPower": {
-    "NAME": "Brother",
+  "ruina:BrotherPower": {
+    "NAME": "Брат",
     "DESCRIPTIONS": [
-      "At end of round, if this creature is #yactive, ",
-      "the boss gains #b%1$s #yPlated #yArmor.",
-      "the boss gains #b%1$s #yArtifact if it has no #yArtifact.",
-      "shuffle #b%1$s #yDazed into your discard pile.",
-      "you gain #b%1$s #yVulnerable.",
-      "Faithful Brother",
-      "Dauntless Brother",
-      "Stalwart Brother",
-      "Valiant Brother"
+      "Если это существо #yактивно в конце вражеского хода, ",
+      "босс получает #b%1$s #yПанциря.",
+      "босс получает #b%1$s #yАртефакта, если у него нет #yАртефакта.",
+      "добавляет #b%1$s #yГоловокружение в стопку сброса.",
+      "вы получаете #b%1$s #yУязвимости.",
+      "Верный брат",
+      "Бесстрашный брат",
+      "Крепкий брат",
+      "Отважный брат"
     ]
   },
-  "${ModID}:HornetPower": {
-    "NAME": "Hornet",
-    "DESCRIPTIONS": ["The next #yAttack you play deals double damage."]
+  "ruina:HornetPower": {
+    "NAME": "Шершень",
+    "DESCRIPTIONS": ["След. разыгранная #yАтака будет разыграна дважды."]
   },
-  "${ModID}:FourthMatchFlame": {
-    "NAME": "Fourth Match Flame",
-    "DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to ALL enemies."]
+  "ruina:FourthMatchFlame": {
+    "NAME": "Пламя четвёртой спички",
+    "DESCRIPTIONS": ["Наносит #b", " урона ВСЕМ врагам в конце вашего хода."]
   },
-  "${ModID}:Machine": {
-    "NAME": "Machine that Sings",
-    "DESCRIPTIONS": ["At end of round, ALL enemies gain #b", " #yTemporary #yStrength for every card in the #ySinging #yMachine."]
+  "ruina:Machine": {
+    "NAME": "Машина, которая поёт",
+    "DESCRIPTIONS": ["В конце вражеского хода ВСЕ #rвраги получают #b", " #yВременной #yСилы за каждую карту в #yПоющей #yМашине."]
   },
-  "${ModID}:BeautifulSound": {
-    "NAME": "A Beautiful Sound",
-    "DESCRIPTIONS": ["After this creature attacks this turn, ", " is #yExhausted and put into the #ySinging #yMachine."]
+  "ruina:BeautifulSound": {
+    "NAME": "Великолепный звук",
+    "DESCRIPTIONS": ["После атаки этого существа в этом ходу ", " #yСожжётся и положится внутрь #yПоющей #yМашины."]
   }
 }

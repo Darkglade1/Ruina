@@ -7,7 +7,7 @@
     ]
   },
   "ruina:Prescript": {
-    "NAME": "Предписание",
+    "NAME": "Список Предписаний",
     "FLAVOR": "Список странных инструкций. Кто в здравом уме мог придумать такое?",
     "DESCRIPTIONS": [
       "#yПредписания: NL 1. Встретьте #b", " обычных", " #rэлитного", " врага. ", " врага. ", " #pсобытие. ", " #pсобытия. ", "/",
@@ -32,14 +32,14 @@
   },
   "ruina:Strongest": {
     "NAME": "Сильнейший",
-    "FLAVOR": "Иметь храбрость защищать других. Вот что отличает могучих от покорных.",
+    "FLAVOR": "Иметь храбрость защищать других - вот что отличает могучих от покорных.",
     "DESCRIPTIONS": [
-      "Нанеся #b", " урона по ОЗ врага за ход, вы получаете #b", " #yСилы. Срабатывает только один раз за ход."
+      "Нанеся #b", " урона #yАтаками по ОЗ врага за ход, вы получаете #b", " #yСилы. Срабатывает только один раз за ход."
     ]
   },
   "ruina:FourTrigrams": {
     "NAME": "Четыре триграммы",
-    "FLAVOR": "Баланс Города должен быть поддержанным.",
+    "FLAVOR": "Баланс Города должен быть сохранён.",
     "DESCRIPTIONS": [
       "В начале вашего хода случайно активируется эффект, который ещё не был активирован в этом бою: NL даёт #b", " #yСилы; NL даёт #b", " #yЛовкости; NL даёт [E] ; NL вы берёте #b", " карту."
     ]
@@ -48,7 +48,7 @@
     "NAME": "Подарок Лоуэлла",
     "FLAVOR": "Ради тебя я бы украл звёзды.",
     "DESCRIPTIONS": [
-      "Даёт #b", " #yСилы и #b", " #yЛовкости в начале вашего #b3 хода."
+      "Даёт #b", " #yСилы и #b", " #yЛовкости в начале вашего #b3-ого хода."
     ]
   },
   "ruina:YesterdayPromiseRelic": {
@@ -65,32 +65,32 @@
       "Восполняет #b", "% ОЗ в конце боя."
     ]
   },
-  "${ModID}:Overexertion": {
-    "NAME": "Overexertion",
-    "FLAVOR": "She just had to keep pushing forward. Keep on pushing until the way was clear. Keep on pushing until she could push no more.",
+  "ruina:Overexertion": {
+    "NAME": "Перенапряжение",
+    "FLAVOR": "Она просто должна была идти вперёд. Идите, пока путь не будет чист. Идите, пока она не перестанет.",
     "DESCRIPTIONS": [
-      "Start each combat with an additional [E] [E] . NL Gain #b%1$s #yWeak and #yFrail at the start of your second turn."
+      "Даёт [E] [E] в начале боя. NL Даёт #b%1$s #yСлабости и #b1 #yУязвимости в начале вашего второго хода."
     ]
   },
-  "${ModID}:LifeFiber": {
-    "NAME": "Life Fibers",
-    "FLAVOR": "When night falls in the Backstreets, they will come.",
+  "ruina:LifeFiber": {
+    "NAME": "Жизненные волокна",
+    "FLAVOR": "Как только ночь опустится на Переулки, они выйдут за своими жертвами. Будьте бдительны . . .",
     "DESCRIPTIONS": [
-      "The next time you die, heal #b", " HP instead. At the end of combat, increase the amount healed by #b", "."
+      "В вашу след. смерть, вместо того чтобы умереть, вы восполняете #b", " ОЗ. Повышает количество восполняемого ОЗ на #b", " в конце боя."
     ]
   },
-  "${ModID}:Malice": {
-    "NAME": "Malice",
-    "FLAVOR": "The inherent malice caused all life to crumble as soon as it bloomed.",
+  "ruina:Malice": {
+    "NAME": "Злость",
+    "FLAVOR": "Стоило ей расцвести, как врождённая злость губила всю её жизнь.",
     "DESCRIPTIONS": [
-      "At the start of your turn, deal #b" , " damage to ALL enemies. If your HP is at or below #b", "%, deal #b", " damage to ALL enemies instead."
+      "Наносит #b" , " урона ВСЕМ врагам в начале вашего хода. Если ваш запас ОЗ не более #b", "%, вместо этого наносит #b", " урона ВСЕМ врагам в начале вашего хода."
     ]
   },
-  "${ModID}:SeventhBullet": {
-    "NAME": "The Seventh Bullet",
-    "FLAVOR": "One day, the marksman realized the Devil no longer followed him. He pondered why, then realized that his soul had already fallen to Hell from the beginning.",
+  "ruina:SeventhBullet": {
+    "NAME": "Седьмая пуля",
+    "FLAVOR": "В один момент стрелок осознал, что Дьявол более не наблюдает за ним. Он долго думал над этим, и в итоге понял, что его душа уже с самого начала попала в Ад.",
     "DESCRIPTIONS": [
-      "Gain #b" , " #yStrength at the start of combat. Whenever you play #b", " #yAttacks, take #b", " damage."
+      "Даёт #b" , " #yСилы в начале боя. Когда вы разыгрываете #b", " #yАтак, вы получаете #b", " урона."
     ]
   }
 }

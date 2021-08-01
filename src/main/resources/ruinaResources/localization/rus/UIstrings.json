@@ -1,7 +1,7 @@
 {
   "ruina:Asiyah": {
     "TEXT": [
-      "Asiyah",
+      "Асия",
       "Акт 1",
       "В вашей руке подробное приглашение, гарантирующее #yбогатство и #yзнания, о которых вы даже не мечтали.",
       "Принять приглашение."
@@ -11,7 +11,7 @@
     "TEXT": [
       "Брия",
       "Акт 2",
-      "A lesser individual would have faltered against the #phorrors that inhabited this space. But you #gpersevere, guided by the #ymemories of those who came before you.",
+      "Простой человек убежал бы в ужасе от #pатмосферы, что заполнила это пространство. Но вы продолжаете #gбороться, руководствуясь #yвоспоминаниями тех, кто был здесь до вас.",
       "Продолжить восхождение."
     ]
   },
@@ -92,26 +92,26 @@
       "Чёрная Тишина"
     ]
   },
-  "${ModID}:FrostSplinter": {
+  "ruina:FrostSplinter": {
     "TEXT": [
-      "Freeze."
+      "заморозить."
     ]
   },
-  "${ModID}:OurGalaxyAction": {
+  "ruina:OurGalaxyAction": {
     "TEXT": [
-      "Choose a Card to Play."
+      "Выберите карту, которую хотите разыграть."
     ]
   },
-  "${ModID}:GrindingGearsAction": {
+  "ruina:GrindingGearsAction": {
     "TEXT": [
-      "Choose a Card to Put Into Your Hand."
+      "Выберите карту, которую хотите положить в руку."
     ]
   },
-  "${ModID}:NeowOptions": {
+  "ruina:NeowOptions": {
     "TEXT": [
-      "[ #gObtain #ga #grandom #gEGO #gcard ]",
-      " #gChoose #gan #gEGO #gcard #gto #gobtain ]",
-      "Choose an EGO card"
+      "[ #gПолучить #gслучайную #gЭ.П.О.С. #gкарту ]",
+      " #gВыбрать #gи #gполучить #gЭ.П.О.С. #gкарту ]",
+      "Выберите Э.П.О.С. карту."
     ]
   }
 }

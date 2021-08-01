@@ -1,5 +1,5 @@
 {
-  "${ModID}:WizardOfOz": {
+  "ruina:WizardOfOz": {
     "NAME": "Wizard of Oz",
     "DESCRIPTIONS": [
       "As you navigate the twists and turns of the labyrinthic  library, you come across a #ycurious book with a #ycurious cover. NL It flies open before you, beckoning you to peer within its pages.",
@@ -40,7 +40,7 @@
       "Choose a card."
     ]
   },
-  "${ModID}:ChurchOfGears": {
+  "ruina:ChurchOfGears": {
     "NAME": "Church of Gears",
     "DESCRIPTIONS": [
       "@WHIRRRRRRRRRRRRRRRR@ NL You hear bones #rcracking, blood #rsplattering, and joints #rbreaking. And through it all, an intense whirring noise fills the air. NL The hooded figure next to the noisy machine turns to face you. \"Join us, stranger. Join us and be free of your #pheavy thoughts and worldly burdens!\"",
@@ -53,12 +53,12 @@
       " HP.",
       "Upgrade a card, then Duplicate it.",
       "Transform a card, then Upgrade it.",
-      "Choose a Card to Upgrade then Duplicate",
-      "Choose a Card to Transform then Upgrade",
+      "Choose a Card to Upgrade then Duplicate.",
+      "Choose a Card to Transform then Upgrade.",
       "[Leave]"
     ]
   },
-  "${ModID}:ZweiAssociation": {
+  "ruina:ZweiAssociation": {
     "NAME": "Zwei Association",
     "DESCRIPTIONS": [
       "\"Our #rcasualty rates have @skyrocketed@ over the past few months. This rate of attrition is unsustainable; at this rate, our #yAssociation will cease to be #yrelevant!\" NL The woman pounds her fist on the table. \"Something needs to be done. Either we make efforts to #yimprove our training and equipment, or we make efforts to scout out these #pmonstrosities before facing them.\"",
@@ -77,10 +77,10 @@
       "Obtain an EGO card.",
       "[Compromise]",
       "[Wake Up]",
-      "[Locked] Requires: Gold"
+      "[Locked] Requires: Gold."
     ]
   },
-  "${ModID}:RCorp": {
+  "ruina:RCorp": {
     "NAME": "R Corp",
     "DESCRIPTIONS": [
       "Gunfire @ripped@ across the field. The commander watched on in silence as her subordinate's clones killed each other for #ydominance. NL \"Hey, how much do you want to bet that the little rabbit over there is going to win?\" NL \"That one seems a little too cowardly to grasp victory. The one on a #rkilling #rspree seems much more likely to be the victor.\" NL There were only a few clones left. And with a flash of steel, it was over. The #ywinner was -",
@@ -95,12 +95,12 @@
       "Lose ",
       " HP for every card upgraded.",
       "Remove a card.",
-      "Choose any number of Cards to Upgrade",
-      "Choose a Card to Remove",
+      "Choose any number of Cards to Upgrade.",
+      "Choose a Card to Remove.",
       "[Wake Up]"
     ]
   },
-  "${ModID}:SocialSciences": {
+  "ruina:SocialSciences": {
     "NAME": "Floor of Social Sciences",
     "DESCRIPTIONS": [
       "You see a #bblue-haired man pouring a drink. Despite his apparently #ynormal look, you can't help but wonder if this is a trick of one of the #rmonsters. NL \"Ah, a guest! You don't look like one of the librarians here, but that's no reason to be a rude host! Come, allow me to pour you a drink.\" NL His calm demeanor and #gpleasant attitude win you over. You sit yourself down at the table.",
@@ -116,10 +116,10 @@
       "Gain ",
       " Max HP.",
       "[Leave]",
-      "[Locked] Requires: Potion"
+      "[Locked] Requires: Potion."
     ]
   },
-  "${ModID}:ThePianist": {
+  "ruina:ThePianist": {
     "NAME": "The Pianist",
     "DESCRIPTIONS": [
       "The city #r@shudders,@ vibrating like a plucked string. The grand #yperformance stretches ever outward, curling around the minds of its victims like a slowly tightening noose. NL You try to fight it. You try to beat back those notes ringing in your skull, those beats pounding away at your mind. And in the end, you -",
@@ -138,7 +138,7 @@
       "Choose a card to give Innate and Autoplay."
     ]
   },
-  "${ModID}:Messenger": {
+  "ruina:Messenger": {
     "NAME": "Messenger of the Index",
     "DESCRIPTIONS": [
       "Another day, another Prescript delivered to some poor, #phapless soul. NL Sneak #rneedles into your friend’s birthday cake. #rCut off your right leg and eat it raw. Wave to the first pedestrian you meet on the street. NL All of them seemed like such pointless, meaningless Prescripts. But it was his duty to deliver them nonetheless. The Messenger glanced at the final Prescript he was to deliver for the day. NL \"Take the heart of the one you love.\"",
@@ -152,11 +152,11 @@
       "Lose ",
       " Max HP.",
       "Remove a card.",
-      "Choose a Card to Remove",
+      "Choose a Card to Remove.",
       "[Wake Up]"
     ]
   },
-  "${ModID}:ChildrenOfTheCity": {
+  "ruina:ChildrenOfTheCity": {
     "NAME": "Children of the City",
     "DESCRIPTIONS": [
       "The machine @thrummed@ in rhythm with the heartbeat of the #yCity. Every footstep caused the machine to @shudder,@ every off-hand comment caused it to ~rotate,~ every wayward deed displaced its pen a little. NL The Weaver thought it was #gbeautiful. The City was creating #yPrescripts for its people to follow, like a parent giving instructions to their children. NL But she was not a part of that. As a #yWeaver, it was her duty to prepare Prescripts, not to receive them. Yet she desperately wished to be part of the City's #ylight.",
@@ -175,7 +175,7 @@
       "Choose a card to give Retain and Exhaust."
     ]
   },
-  "${ModID}:NothingThere": {
+  "ruina:NothingThere": {
     "NAME": "Nothing There",
     "DESCRIPTIONS": [
       "You hear joints #rtwisting and #rbreaking up ahead, like someone was trying to contort their body into an #punnatural position. NL Peeking around the corner, you see a #pgrotesque figure toying with the bodies of several fallen figures. More bodies littered the ground nearby, victims of this horrid #pmonstrosity. NL As tragic as this scene was, you wouldn't pass up the chance to take some of the spoils of this battle for yourself.",
@@ -193,10 +193,10 @@
       "[Leave]"
     ]
   },
-  "${ModID}:Language": {
+  "ruina:Language": {
     "NAME": "Floor of Language",
     "DESCRIPTIONS": [
-      "\"Are you really a lowly Grade 9 Fixer?\" NL The man in front of her coughed, waving away the #psmoke from her cigar. \"It's the truth, I swear! Why are you so skeptical?\" NL \"Gut feeling. But if you really are bottom of the barrel, that means you'd be grateful to be trained by me, a former #yColor of the City, right?\" NL \". . . I just remembered I have an appointment with Netzach - \" NL \"No, you don't.\" She grabs him before he can run off.",
+      "\"Are you really a lowly Grade 9 Fixer?\" NL The man in front of her coughed, waving away the #psmoke from her cigar. \"It's the truth, I swear! Why are you so skeptical?\" NL \"Gut feeling. But if you really are bottom of the barrel, that means you'd be grateful to be trained by me, a former #yColor of the City, right?\" NL \". . . I just remembered I have an appointment with Netzach -\" NL \"No, you don't.\" She grabs him before he can run off.",
       "He eyes her greatsword, the #peyeballs embedded in the grotesque blade staring back at him in turn. \"Are you really going to use that monster of a thing on me?\" NL She hefts her weapon, relishing in the #gfamiliar feeling. \"Don't worry, it's not like you're going to die. Not permanently, anyway.\" NL \"That doesn't make me feel any better!\"",
       "A familiar #rburning feeling fills her body, and once it abated, she was once again clad in the #pterrifying visage that earned her Color. NL \"Hey, wait, I thought you were going to show me how to do that!\" NL \"I just did, didn't I? Now, hurry up and manifest yours before I split you in half.\" NL That day, she learned that Roland had a very colorful vocabulary. She would have to add some of the lesser-known words to the language books later."
     ],
@@ -207,10 +207,10 @@
       " damage.",
       "Obtain a random EGO card.",
       "[Wake Up]",
-      "Choose a card"
+      "Choose a card."
     ]
   },
-  "${ModID}:RedMistRecollection": {
+  "ruina:RedMistRecollection": {
     "NAME": "Kali's Recollection",
     "DESCRIPTIONS": [
       "I woke up in the Laboratory again, a few days after receiving the sword from Carmen. When I first held the sword in my grip, nothing seemed out of the ordinary. It felt normal, despite the truly #pcreepy appearance of the blade. It wasn't unbearable to look at, and all I could do was heed Carmen's advice and get used to it. NL After all, it was by #ysheer #yluck that the extraction even worked.",
@@ -223,7 +223,7 @@
       "[Leave]"
     ]
   },
-  "${ModID}:HanaAssociation": {
+  "ruina:HanaAssociation": {
     "NAME": "Hana Association",
     "DESCRIPTIONS": [
       "She glanced at the report, sighing. \"Another office has fallen to this #pUrban #pNightmare. We'll need to classify it as a #yStar #yof #ythe #yCity now.\" NL Her colleague grimaced. \"More needless #rdeaths. If we had investigated and classified this #phazard properly from the start, offices like these would not fall prey to threats beyond their league!\" NL \"I've told you before, but we do not have the time, resources, or manpower to investigate every hazard in the City ourselves.\" NL She could see him hesitate. Finally, he spoke up with a scowl -",
@@ -241,7 +241,7 @@
       "Choose a Card to Remove."
     ]
   },
-  "${ModID}:ForThoseWeCherish": {
+  "ruina:ForThoseWeCherish": {
     "NAME": "For Those We Cherish",
     "DESCRIPTIONS": [
       "\"I have a problem.\" NL She gulped. That didn't sound good. NL \"My #yanniversary with #yXiao is coming up soon, and I still can't decide on what to do for it.\" NL Never mind. The Director was just being a #pworrywart as usual. NL \"Surely you have some ideas in mind?\" NL \"I thought about buying something #gcute for her. Or maybe I should improve her armaments for her. We are a combat-based Association, after all. What do you think?\"",
@@ -256,11 +256,11 @@
       "Obtain a Special Relic.",
       "Upgrade a card.",
       "[Wake Up]",
-      "[Locked] Requires: Gold",
-      "Choose a Card to Upgrade"
+      "[Locked] Requires: Gold.",
+      "Choose a Card to Upgrade."
     ]
   },
-  "${ModID}:Philosophy": {
+  "ruina:Philosophy": {
     "NAME": "Floor of Philosophy",
     "DESCRIPTIONS": [
       "\"You're not supposed to be here.\" NL The stern-looking woman takes a sip of #ytea and sighs as she places it back down. \"If I were interested in doing my job properly, I'd #rchase you out. But luckily for you, I can't be bothered to do so at the moment. So why don't you join me for a cup of #ytea?\"",
@@ -278,11 +278,11 @@
       " Block and ",
       "Ethereal.",
       "[Leave]",
-      "Choose a card to give bonus Block and Ethereal",
-      "[Locked] Requires: Valid Card"
+      "Choose a card to give bonus Block and Ethereal.",
+      "[Locked] Requires: Valid Card."
     ]
   },
-  "${ModID}:TheThumb": {
+  "ruina:TheThumb": {
     "NAME": "The Thumb",
     "DESCRIPTIONS": [
       "He glanced at the #pmiscreant who had just walked in: a common Fixer from the common Backstreets. NL \"You da #yboss here? I got a great offer -\" NL A set of steel knuckles @caves@ the man's face in, leaving him rolling on the floor, howling in #ragony. NL \"Tell your boss that if he wishes to negotiate with me, he should come himself or not at all.\" NL As the #prat is tossed out, his assistant steps forward. NL \"Sir. Our supplies are running low. Shall we purchase more, or would you like us to raid that rat's Office instead?\"",
@@ -298,11 +298,11 @@
       " cost and ",
       "Exhaust.",
       "[Wake Up]",
-      "Choose a card to give reduced cost and Exhaust",
+      "Choose a card to give reduced cost and Exhaust.",
       "Choose a card to add to your deck."
     ]
   },
-  "${ModID}:CryingChildren": {
+  "ruina:CryingChildren": {
     "NAME": "The Crying Children",
     "DESCRIPTIONS": [
       "Everything #rburned. Your home, your family, your friends . . . they had all been caught in a mighty #rconflagration that had manifested in the blink of an eye. NL Someone was crying. But it was not you, the tragic #pvictim. No, it was the #pcriminal who wept, the #pperpetrator who sobbed with every stroke of #rfire that leapt forward from their fingers. NL What a twisted joke. An equally fiery #rrage burned within you, just waiting to be released. You -",
@@ -321,7 +321,7 @@
       "Choose a card to Transform."
     ]
   },
-  "${ModID}:DistortedYan": {
+  "ruina:DistortedYan": {
     "NAME": "Distorted Yan",
     "DESCRIPTIONS": [
       "It was #ppointless all along. NL He thought he had been making a difference. He thought he had been #yrebelling against the #yPrescripts, throwing a wrench in the machinations churning behind the scenes. NL But even his rebellion had been accounted for. Even his defiance had been planned for. NL In the end, he had been nothing more than another gear spinning within the wheels. NL Someone like him should just give up and do as he's told.",
@@ -335,7 +335,7 @@
       "[Wake Up]"
     ]
   },
-  "${ModID}:PatronLibrarian": {
+  "ruina:PatronLibrarian": {
     "NAME": "",
     "DESCRIPTIONS": [
       "\"Hello there. I'm Malkuth, the Patron Librarian in charge of the Floor of History. Since I'm in charge of this floor, I sort through all the books that are related to History! Is there anything I can help you with?\"",
@@ -368,10 +368,10 @@
       "Choose 1 of ",
       " Upgraded cards to add to your deck.",
       "[Leave]",
-      "Choose a card to add to your deck"
+      "Choose a card to add to your deck."
     ]
   },
-  "${ModID}:YesterdayPromise": {
+  "ruina:YesterdayPromise": {
     "NAME": "Yesterday's Promise",
     "DESCRIPTIONS": [
       "@Hohohohoho!@ Through the shadows, you can make out an upright figure. As they pace towards you, the sound of their steps echoing as they move across a marble floor, your vision enhances and you can identify the figure fully. A #bblue top hat. A gray skull, fashioned with a #gdapper monocle. A black suit, fashioned with a #bblue tie and #bblue insignia on the right sleeve, though you have no idea what it represents. The distortion, known as \"Yesterday's Promise\" stands before you, a contract grasped in his skeletal fingertips. NL \"I can give you the power and help you desire, provided you sign this contract. How about it?\"",
@@ -384,7 +384,7 @@
       "[Leave]"
     ]
   },
-  "${ModID}:Ensemble": {
+  "ruina:Ensemble": {
     "NAME": "Reverberation Ensemble",
     "DESCRIPTIONS": [
       "\"Ohohohoho! Knock, and the door shall open!\" NL \"The entrance to this place was super strong, even after many blows we barely got inside.\" NL \"It's a test of endurance, after all! There's no use giving up after a couple of knocks!\" NL \"Now friends, if you're any rowdier we might scare away the residents of this place. It would be wise that we show the utmost respect so they don't go hiding behind bookshelves, no?\"",
@@ -395,7 +395,7 @@
       "[Prepare yourself]"
     ]
   },
-  "${ModID}:Sorrow": {
+  "ruina:Sorrow": {
     "NAME": "Sorrow",
     "DESCRIPTIONS": [
       "I have nothing but my #psorrow. And I want nothing more. NL NL It has been, it still is, #gfaithful to me.",
@@ -411,22 +411,22 @@
       "Remove a card.",
       "Obtain ",
       ".",
-      "Choose a Card to Transform",
-      "Choose a Card to Upgrade",
-      "Choose a Card to Remove"
+      "Choose a Card to Transform.",
+      "Choose a Card to Upgrade.",
+      "Choose a Card to Remove."
     ]
   },
-  "${ModID}:BlackSilenceFork": {
+  "ruina:BlackSilenceFork": {
     "NAME": "One Man's Sorrow",
     "DESCRIPTIONS": [
       "The fighting stops, a welcome #greprieve from the gruesome gauntlet you've been subjected to. But as the #psilence stretches onward, a #pdeathly #pchill fills the air as a #rheartbeat begins to pound louder and louder in your ear. NL NL \"Angela. You know what I'm about to do now, right?\""
     ],
     "OPTIONS": [
-      "[Succumb to the heartbeat] Return to the Corrupt Heart",
-      "[See things to the end] Confront the Black Silence"
+      "[Succumb to the heartbeat] Return to the Corrupt Heart.",
+      "[See things to the end] Confront the Black Silence."
     ]
   },
-  "${ModID}:TheHead": {
+  "ruina:TheHead": {
     "NAME": "The End",
     "DESCRIPTIONS": [
       "You see him slump to his knees, tired and drained from the non-stop fighting. NL NL You see them sigh, breathe in, and #glet #ggo. You see them let go of their #rhatred and #rfear, their #ranger and #rpain. You see them let go of their #ptrauma, of their lingering darkness that had nearly drove them to ruin. NL NL You see them turn away from the #ypast so that they might finally face the #yfuture.",
@@ -436,7 +436,7 @@
       "[Continue]"
     ]
   },
-  "${ModID}:HeadDialogue": {
+  "ruina:HeadDialogue": {
     "NAME": "",
     "DESCRIPTIONS": [
       "Exhausted already? We have yet to even expend any real effort.",
@@ -523,7 +523,7 @@
       "ZenaBaralBinahGeburaRoland_ZenaSpeak"
     ]
   },
-  "${ModID}:HeadEnding": {
+  "ruina:HeadEnding": {
     "NAME": "",
     "DESCRIPTIONS": [
       "Will we be alright, Roland? I doubt the Head will be pleased with the defeat of two of its agents.",
@@ -537,7 +537,7 @@
     "OPTIONS": [
     ]
   },
-  "${ModID}:ShiAssociation": {
+  "ruina:ShiAssociation": {
     "NAME": "Shi Association",
     "DESCRIPTIONS": [
       "The boardroom's doors open with a @slam,@ and two uniformed subordinates enter, fatigued from a previous request. NL NL \"Director . . . we've been dealing with #pUrban #pNightmare-class cases for #rten #rconsecutive #rdays. We normally shouldn't be handling more than one such case per week.\" NL NL \"We're on the brink of a breakdown, both physically and mentally.\" NL NL \"And most of all, your condition is looking #rworse than any of us, Director Yujin . . .\"",
@@ -550,10 +550,10 @@
       "[Avoid suspicion and rush in] #gObtain #ga #gspecial #gRelic.",
       "[Try to prepare] #gUpgrade #ga #gcard.",
       "[Wake Up]",
-      "Upgrade a Card."
+      "Choose a Card to Upgrade."
     ]
   },
-  "${ModID}:WarpTrain": {
+  "ruina:WarpTrain": {
     "NAME": "Warp Train",
     "DESCRIPTIONS": [
       "The train station is crowded as usual, commuters @rushing@ from platform to platform, hurrying to get to work on time. As one of the passengers boards the train, you notice a strange looking cube drop from their pocket. NL It glows with a #bfluorescent radiance, and on further observation, you spot a coin slot on it. NL Next to the dropped cube, you also notice various stacks of wooden crates, hastily fashioned next to the platform.",
@@ -567,10 +567,10 @@
       "[Locked] Requires %d Gold.",
       "[Leave them alone]",
       "[Wake Up]",
-      "Transform a Card."
+      "Choose a Card to Transform then Upgrade."
     ]
   },
-  "${ModID}:StreetlightOffice": {
+  "ruina:StreetlightOffice": {
     "NAME": "Streetlight Office",
     "DESCRIPTIONS": [
       "She thought she #phated him. NL He was #rannoying, arrogant, and an #rasshole who stole her #ysweets from the fridge. He was always bragging about how his mother was an amazing #yFixer, and how he would one day surpass her with that fancy sword he had received from her. NL But now he was gone. He would never #rannoy her again. He would never talk down to her, #rsteal her food, or brag about his #yachievements to her ever again. NL She thought she’d be glad that he was gone, but the #phollowness in her heart proved her wrong.",
@@ -584,10 +584,10 @@
       "[Leave]"
     ]
   },
-  "${ModID}:NightInTheBackstreets": {
+  "ruina:NightInTheBackstreets": {
     "NAME": "Night In The Backstreets",
     "DESCRIPTIONS": [
-      "When night falls in the Backstreets, a different world unfolds, and @they@ @will@ @come.@ NL You observe as a #btorrential #bwave of sweepers march onward, unflinching in their approach. NL Various sweepers lay on the ground, left behind from the marching pack, their corpses motionless from fights with stray fixers. You notice small canisters of red fluids, the life-force of the sweepers which is still intact, and you begin to wonder if you could extract them and harness their power yourself.",
+      "When night falls in the Backstreets, a different world unfolds, and @they@ @will@ @come.@ NL You observe as a #btorrential #bwave of sweepers march onward, unflinching in their approach. NL Various sweepers lay on the ground, left behind from the marching pack, their corpses motionless from fights with stray Fixers. You notice small canisters of red fluids, the life-force of the sweepers which is still intact, and you begin to wonder if you could extract them and harness their power yourself.",
       "You wait for the stream of sweepers to dissipate, before making your move. It doesn't take much effort to reach the streets where the lifeless corpses lay, and you manage to easily unfasten the canister from its host. NL But as you fasten the canister to yourself, you stumble and fall, #rinjuring yourself in the process.",
       "Unsure if the canisters would even work to help yourself, you decide to retain vigilant and keep observing the marching sweepers. NL You watch how they scavenge for #gsustenance, how they sustain themselves in these #pdreary backstreets. NL After 80 minutes of marching, the sweepers dissipate once-more, and you take the opportunity to use your new-found knowledge to do some #yscavenging of your own."
     ],
@@ -602,7 +602,7 @@
       "[Leave]"
     ]
   },
-  "${ModID}:SnowWhiteApple": {
+  "ruina:SnowWhiteApple": {
     "NAME": "Snow White's Apple",
     "DESCRIPTIONS": [
       "You find yourself in a #pstrange #gforest, dreary and damp. You find a bizarre creature, made of branch and root, waiting for you in the middle of a clearing. NL NL It offers you an #yapple.",
@@ -621,7 +621,7 @@
       "[Leave]"
     ]
   },
-  "${ModID}:DerFreischutz": {
+  "ruina:DerFreischutz": {
     "NAME": "Der Freischütz",
     "DESCRIPTIONS": [
       "You see a cloaked figure shrouded in #pdarkness. #rBloody bodies litter the ground around the figure, the remnants of a gruesome #rmassacre. NL \"The #pDevil proposed a childish contract to me. My last bullet would puncture the head of my beloved. But I have swindled the #pDevil, for you see, I have already killed all the people I love!\" NL The figure @laughed,@ and you could tell that he had already gone #rmad with power. NL \"How about it, stranger? How would you like to partake of this contract of mine as well?\"",
@@ -639,7 +639,7 @@
       "[Leave]"
     ]
   },
-  "${ModID}:UnknownPath": {
+  "ruina:UnknownPath": {
     "NAME": "Paths To The Unknown",
     "DESCRIPTIONS": [
       "Before you stands a series of twisting, winding paths - seemingly infinite, ever expanding towards the unknown. Your attention shifts to three pathways which tower above the rest: NL - A #rsteep central pathway, which towers above all. NL - A curved pathway to the #gleft, with jagged edges. NL - A curved pathway to the #gright, with a smooth, refined shape."
@@ -650,7 +650,7 @@
       "[Ascend the Smooth Pathway] Encounter a random #gevent."
     ]
   },
-  "${ModID}:SingingMachine": {
+  "ruina:SingingMachine": {
     "NAME": "Singing Machine",
     "DESCRIPTIONS": [
       "You hear something #rgrinding in the distance, #rcrunching and #rmunching on something distinctly #rfleshy. You approach closer and find a #rbloody machine, moving in rhythm to its own #phideous beat. NL NL A person with a looser grip on their sanity might even think this sound was musical. NL NL The machine pauses and opens up, giving you an opportunity to throw something in.",
@@ -674,12 +674,12 @@
       " HP.",
       " Max HP.",
       "[Leave]",
-      "[Locked] Requires non-Starter card",
+      "[Locked] Requires non-Starter card.",
       "Choose a Card to offer",
       " twice."
     ]
   },
-  "${ModID}:GalaxyChild": {
+  "ruina:GalaxyChild": {
     "NAME": "Child of the Galaxy",
     "DESCRIPTIONS": [
       "You spot a small figure, a boy draped in the shining #pnebula and starry sky of the infinite #pgalaxy. The boy approaches you, holding out a small #ybauble: NL NL \"Won't you be my friend?\"",
@@ -696,7 +696,7 @@
       "[Leave]"
     ]
   },
-  "${ModID}:Funeral": {
+  "ruina:Funeral": {
     "NAME": "Funeral of the Dead Butterflies",
     "DESCRIPTIONS": [
       "It sits there amidst a field of butterflies, a silent guardian for those who have #pfallen. It stands up and offers you its #ycoffin, offers you a place to #grest in this strange, chaotic place. NL NL You lie down in the coffin, and the lid closes over you. And as the outside world vanishes, you find yourself #ydreaming of a place of -",
@@ -713,10 +713,10 @@
       "Remove ",
       " cards.",
       "[Leave]",
-      "Choose Cards to Remove"
+      "Choose Cards to Remove."
     ]
   },
-  "${ModID}:NeowAngela": {
+  "ruina:NeowAngela": {
     "NAME": "Angela",
     "DESCRIPTIONS": [
       "Greetings. NL I am Angela, the director and librarian of my role's namesake.",
