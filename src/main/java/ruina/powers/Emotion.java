@@ -62,6 +62,6 @@ public class Emotion extends AbstractEasyPower {
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + amount2 + DESCRIPTIONS[1] + threshold + DESCRIPTIONS[2] + Malkuth.firstEmotionThreshold + DESCRIPTIONS[3] + Malkuth.secondEmotionThreshold + DESCRIPTIONS[4] + Malkuth.EMOTION_CAP + DESCRIPTIONS[5];
+        this.description = DESCRIPTIONS[0] + threshold + DESCRIPTIONS[1] + Malkuth.EMOTION_CAP + DESCRIPTIONS[2];
     }
 }

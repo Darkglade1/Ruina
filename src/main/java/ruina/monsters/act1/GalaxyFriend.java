@@ -37,7 +37,7 @@ public class GalaxyFriend extends AbstractRuinaMonster
     private static final byte GLIMMER = 2;
     private static final byte REVIVE = 3;
 
-    private final int REGEN = calcAscensionSpecial(2);
+    private final int REGEN = 2;
     private final int DEBUFF = calcAscensionSpecial(1);
     private final int BLOCK = calcAscensionTankiness(7);
 
@@ -54,7 +54,7 @@ public class GalaxyFriend extends AbstractRuinaMonster
         super(NAME, ID, 140, 0.0F, 0, 250.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("GalaxyFriend/Spriter/GalaxyFriend.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(30), calcAscensionTankiness(33));
+        setHp(calcAscensionTankiness(28), calcAscensionTankiness(31));
         addMove(WAITING, Intent.DEFEND);
         addMove(STAR_SHOWER, Intent.ATTACK, calcAscensionDamage(9));
         addMove(GLIMMER, Intent.ATTACK_DEBUFF, calcAscensionDamage(5));

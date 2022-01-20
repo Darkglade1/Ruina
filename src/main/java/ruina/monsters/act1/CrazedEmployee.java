@@ -92,8 +92,6 @@ public class CrazedEmployee extends AbstractRuinaMonster
                     applyToTarget(adp(), this, new WeakPower(adp(), DEBUFF, true));
                 } else if (debuff == 1) {
                     applyToTarget(adp(), this, new FrailPower(adp(), DEBUFF, true));
-                } else {
-                    applyToTarget(adp(), this, new VulnerablePower(adp(), DEBUFF, true));
                 }
                 resetIdle();
                 break;
@@ -110,7 +108,9 @@ public class CrazedEmployee extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (firstMove) {
+        if (debuff == 2) {
+            setMoveShortcut(SHAKING_BLOW, MOVES[SHAKING_BLOW]);
+        } else if (firstMove) {
             setMoveShortcut(TREMBLING_MOTION, MOVES[TREMBLING_MOTION]);
         } else {
             setMoveShortcut(SHAKING_BLOW, MOVES[SHAKING_BLOW]);
