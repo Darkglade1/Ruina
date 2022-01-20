@@ -828,20 +828,20 @@
   },
   "${ModID}:FirstChair": {
     "NAME": "First Chair",
-    "DESCRIPTION": "When Retained, take !M! damage."
+    "DESCRIPTION": "At the end of your turn, take !M! damage."
   },
   "${ModID}:SecondChair": {
     "NAME": "Second Chair",
-    "DESCRIPTION": "When Retained, a random enemy gains !M! Strength next turn."
+    "DESCRIPTION": "At the end of your turn, a random enemy gains !M! Strength next turn."
   },
   "${ModID}:ThirdChair": {
     "NAME": "Third Chair",
-    "DESCRIPTION": "When Retained, gain !M! Weak or Frail, alternating each time.",
+    "DESCRIPTION": "At the end of your turn, gain !M! Weak or Frail, alternating each time.",
     "EXTENDED_DESCRIPTION": [" (Weak)", " (Frail)"]
   },
   "${ModID}:FourthChair": {
     "NAME": "Fourth Chair",
-    "DESCRIPTION": "When Retained, lose !M! Strength or Dexterity, alternating each time.",
+    "DESCRIPTION": "At the end of your turn, lose !M! Strength or Dexterity, alternating each time.",
     "EXTENDED_DESCRIPTION": [" (Strength)", " (Dexterity)"]
   },
   "${ModID}:Conductor": {

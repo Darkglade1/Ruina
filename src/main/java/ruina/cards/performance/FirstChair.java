@@ -3,13 +3,14 @@ package ruina.cards.performance;
 import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.adp;
-import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.*;
 
 @AutoAdd.Ignore
 public class FirstChair extends AbstractPerformanceCard {
@@ -21,18 +22,21 @@ public class FirstChair extends AbstractPerformanceCard {
     public FirstChair() {
         super(ID, COST);
         magicNumber = baseMagicNumber = DAMAGE;
-        selfRetain = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        if (this.dontTriggerOnUseCard) {
+            att(new DamageAction(adp(), new DamageInfo(adp(), magicNumber, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+        }
     }
 
     @Override
-    public void onRetained() {
-        flash();
-        atb(new DamageAction(adp(), new DamageInfo(adp(), magicNumber, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+    public void triggerOnEndOfTurnForPlayingCard() {
+        this.dontTriggerOnUseCard = true;
+        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
     }
+
 
     @Override
     public void upp() {

@@ -115,7 +115,7 @@ public class Orchestra extends AbstractRuinaMonster
         performerCards.add(new SecondChair());
         performerCards.add(new ThirdChair());
         performerCards.add(new FourthChair());
-        performerCards.add(new Conductor());
+        // performerCards.add(new Conductor());
         if (AbstractDungeon.ascensionLevel >= 19) {
             for (AbstractCard card : performerCards) {
                 card.upgrade();

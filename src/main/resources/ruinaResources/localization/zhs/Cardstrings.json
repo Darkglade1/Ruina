@@ -828,20 +828,20 @@
   },
   "ruina:FirstChair": {
     "NAME": "第一位演奏者",
-    "DESCRIPTION": "每当 保留 时，受到 !M! 点伤害。"
+    "DESCRIPTION": "在你的回合结束时，受到 !M! 点伤害。"
   },
   "ruina:SecondChair": {
     "NAME": "第二位演奏者",
-    "DESCRIPTION": "每当 保留 时，下一回合一名随机敌人获得 !M! 点 力量 。"
+    "DESCRIPTION": "在你的回合结束时，下一回合一名随机敌人获得 !M! 点 力量 。"
   },
   "ruina:ThirdChair": {
     "NAME": "第三位演奏者",
-    "DESCRIPTION": "每当 保留 时，轮流获得 !M! 层 虚弱 或 脆弱 。",
+    "DESCRIPTION": "在你的回合结束时，轮流获得 !M! 层 虚弱 或 脆弱 。",
     "EXTENDED_DESCRIPTION": [" (虚弱)", " (脆弱)"]
   },
   "ruina:FourthChair": {
     "NAME": "第四位演奏者",
-    "DESCRIPTION": "每当 保留 时，轮流失去 !M! 点 力量 或 敏捷 。",
+    "DESCRIPTION": "在你的回合结束时，轮流失去 !M! 点 力量 或 敏捷 。",
     "EXTENDED_DESCRIPTION": [" (力量)", " (敏捷)"]
   },
   "ruina:Conductor": {
