@@ -147,13 +147,14 @@ public class SilentGirl extends AbstractRuinaMonster
             }
             case BROKEN: {
                 for (int i = 0; i < multiplier; i++) {
-                    specialUpAnimation(adp());
-                    waitAnimation(0.25f);
-                    specialDownAnimation(adp());
+                    if (i % 2 == 0) {
+                        specialUpAnimation(adp());
+                    } else {
+                        specialDownAnimation(adp());
+                    }
                     dmg(adp(), info);
-                    waitAnimation();
+                    resetIdle();
                 }
-                resetIdle(0.0f);
                 break;
             }
             case LEER: {
@@ -242,7 +243,7 @@ public class SilentGirl extends AbstractRuinaMonster
     }
 
     private void specialUpAnimation(AbstractCreature enemy) {
-        animationAction("SpecialUp", null, enemy, this);
+        animationAction("SpecialUp", "SilentHammer", enemy, this);
     }
 
     private void specialDownAnimation(AbstractCreature enemy) {
