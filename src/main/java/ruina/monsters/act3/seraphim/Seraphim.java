@@ -234,6 +234,9 @@ public class Seraphim extends AbstractMultiIntentMonster {
                         this.isDone = true;
                     }
                 });
+                if (AbstractDungeon.ascensionLevel >= 19) {
+                    phase = 3;
+                }
                 break;
             case SALVATION:
                 int apostlesToRevive = 0;
