@@ -1,10 +1,6 @@
 package ruina.cards.performance;
 
 import basemod.AutoAdd;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
@@ -27,22 +23,14 @@ public class ThirdChair extends AbstractPerformanceCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        if (this.dontTriggerOnUseCard) {
-            if (triggerFirstEffect) {
-                applyToTargetTop(adp(), adp(), new WeakPower(adp(), magicNumber, true));
-            } else {
-                applyToTargetTop(adp(), adp(), new FrailPower(adp(), magicNumber, true));
-            }
-            triggerFirstEffect = !triggerFirstEffect;
-            updateDescription();
+    public void EndOfTurnEffect() {
+        if (triggerFirstEffect) {
+            applyToTargetTop(adp(), adp(), new WeakPower(adp(), magicNumber, true));
+        } else {
+            applyToTargetTop(adp(), adp(), new FrailPower(adp(), magicNumber, true));
         }
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard() {
-        this.dontTriggerOnUseCard = true;
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
+        triggerFirstEffect = !triggerFirstEffect;
+        updateDescription();
     }
 
     private void updateDescription() {

@@ -492,7 +492,7 @@
   },
   "ruina:Performance": {
     "NAME": "永无止境的乐章",
-    "DESCRIPTIONS": ["在回合结束时，将一张 #y演奏者 牌放入你的弃牌堆。", "每当一张 #y演奏者 牌被 #y消耗 ，将一张复制放入你的弃牌堆。"]
+    "DESCRIPTIONS": ["在回合结束时，将一张 #y演奏者 牌放入你的弃牌堆。", "每当一张 #y演奏者 牌被 #y消耗 ，将一张复制放入你的弃牌堆。", " #yPerformer cards #yRetain for #b1 turn when drawn."]
   },
   "ruina:FerventAdoration": {
     "NAME": "狂热崇拜",

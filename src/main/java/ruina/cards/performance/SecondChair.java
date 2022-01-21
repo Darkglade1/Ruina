@@ -1,8 +1,6 @@
 package ruina.cards.performance;
 
 import basemod.AutoAdd;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -23,17 +21,9 @@ public class SecondChair extends AbstractPerformanceCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        if (this.dontTriggerOnUseCard) {
-            AbstractMonster target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-            applyToTargetNextTurnTop(target, new StrengthPower(target, magicNumber));
-        }
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard() {
-        this.dontTriggerOnUseCard = true;
-        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
+    public void EndOfTurnEffect() {
+        AbstractMonster target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+        applyToTargetNextTurnTop(target, new StrengthPower(target, magicNumber));
     }
 
     @Override

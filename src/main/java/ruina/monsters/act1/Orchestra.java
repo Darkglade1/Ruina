@@ -91,7 +91,7 @@ public class Orchestra extends AbstractRuinaMonster
     }
 
     public Orchestra(final float x, final float y) {
-        super(NAME, ID, 245, 0.0F, 0, 250.0f, 280.0f, null, x, y);
+        super(NAME, ID, 230, 0.0F, 0, 250.0f, 280.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Orchestra/Spriter/Orchestra.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(maxHealth));
@@ -147,6 +147,9 @@ public class Orchestra extends AbstractRuinaMonster
                     description = POWER_DESCRIPTIONS[0] + " " + POWER_DESCRIPTIONS[1];
                 } else {
                     description = POWER_DESCRIPTIONS[1];
+                }
+                if (AbstractDungeon.ascensionLevel >= 19) {
+                    description += POWER_DESCRIPTIONS[2];
                 }
             }
         });

@@ -492,7 +492,7 @@
   },
   "${ModID}:Performance": {
     "NAME": "Endless Performance",
-    "DESCRIPTIONS": ["At end of round, shuffle a #yPerformer card into your discard pile.", "Whenever a #yPerformer card is #yExhausted, add a copy of it into your discard pile."]
+    "DESCRIPTIONS": ["At end of round, shuffle a #yPerformer card into your discard pile.", "Whenever a #yPerformer card is #yExhausted, add a copy of it into your discard pile.", " #yPerformer cards #yRetain for #b1 turn when drawn."]
   },
   "${ModID}:FerventAdoration": {
     "NAME": "Fervent Adoration",
