@@ -11,6 +11,7 @@ import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.act2.HermitStaff;
 import ruina.monsters.act2.Mountain;
+import ruina.monsters.act2.RoadHome;
 import ruina.monsters.act3.bigBird.Sage;
 import ruina.monsters.theHead.Zena;
 import ruina.monsters.uninvitedGuests.normal.eileen.GearsWorshipper;
@@ -93,6 +94,12 @@ public class MintyDamageSummationCompatibilityPatch {
                         damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
                     }
                     dmg[0] -= damage;
+                    c[0]--;
+                }
+            }
+            if (m instanceof RoadHome) {
+                if (!((RoadHome) m).isHomeDead) {
+                    dmg[0] -= m.getIntentDmg();
                     c[0]--;
                 }
             }

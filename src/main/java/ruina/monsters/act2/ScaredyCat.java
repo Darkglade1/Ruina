@@ -1,22 +1,25 @@
 package ruina.monsters.act2;
 
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAndDeckAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.Bleed;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -36,8 +39,8 @@ public class ScaredyCat extends AbstractRuinaMonster
 
     private RoadHome road;
 
-    private final int BLEED = calcAscensionSpecial(2);
-    private final int STRENGTH = 1;
+    private final int WOUND = 1;
+    private final int STRENGTH = calcAscensionSpecial(2);
 
     public static final String POWER_ID = makeID("Courage");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -45,17 +48,16 @@ public class ScaredyCat extends AbstractRuinaMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public ScaredyCat() {
-        this(0.0f, 0.0f, null);
+        this(0.0f, 0.0f);
     }
 
-    public ScaredyCat(final float x, final float y, RoadHome road) {
+    public ScaredyCat(final float x, final float y) {
         super(NAME, ID, 120, -5.0F, 0, 270.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScaredyCat/Spriter/ScaredyCat.scml"));
         this.type = EnemyType.ELITE;
-        this.road = road;
         setHp(calcAscensionTankiness(maxHealth));
-        addMove(RAWR, Intent.ATTACK, calcAscensionDamage(10), 2, true);
-        addMove(GROWL, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
+        addMove(RAWR, Intent.ATTACK, calcAscensionDamage(7), 2, true);
+        addMove(GROWL, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
         addMove(COURAGE, Intent.BUFF);
         addMove(FLEE, Intent.ESCAPE);
     }
@@ -64,6 +66,28 @@ public class ScaredyCat extends AbstractRuinaMonster
     protected void setUpMisc() {
         super.setUpMisc();
         this.type = EnemyType.ELITE;
+    }
+
+    @Override
+    public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof RoadHome) {
+                road = (RoadHome)mo;
+            }
+        }
+        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
+            @Override
+            public void onSpecificTrigger() {
+                flash();
+                applyToTarget(owner, owner, new StrengthPower(owner, STRENGTH));
+                applyToTarget(owner, owner, new LoseStrengthPower(owner, STRENGTH));
+            }
+
+            @Override
+            public void updateDescription() {
+                description = POWER_DESCRIPTIONS[0] + FontHelper.colorString(road.name, "y") + POWER_DESCRIPTIONS[1] + amount + POWER_DESCRIPTIONS[2];
+            }
+        });
     }
 
     @Override
@@ -95,24 +119,12 @@ public class ScaredyCat extends AbstractRuinaMonster
             case GROWL: {
                 poisonAnimation(adp());
                 dmg(adp(), info);
-                applyToTarget(adp(), this, new Bleed(adp(), BLEED));
+                if (AbstractDungeon.ascensionLevel >= 18) {
+                    addToBot(new MakeTempCardInDiscardAndDeckAction(new Wound()));
+                } else {
+                    intoDiscardMo(new Wound(), WOUND, this);
+                }
                 resetIdle();
-                break;
-            }
-            case COURAGE: {
-                applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
-                    @Override
-                    public void onSpecificTrigger() {
-                        flash();
-                        applyToTarget(owner, owner, new StrengthPower(owner, STRENGTH));
-                        applyToTarget(owner, owner, new LoseStrengthPower(owner, STRENGTH));
-                    }
-
-                    @Override
-                    public void updateDescription() {
-                        description = POWER_DESCRIPTIONS[0] + FontHelper.colorString(road.name, "y") + POWER_DESCRIPTIONS[1] + amount + POWER_DESCRIPTIONS[2];
-                    }
-                });
                 break;
             }
             case FLEE: {
@@ -126,17 +138,13 @@ public class ScaredyCat extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (road.isDeadOrEscaped()) {
+        if (road != null && road.isDeadOrEscaped()) {
             setMoveShortcut(FLEE);
         } else {
-            if (this.firstMove) {
-                setMoveShortcut(COURAGE, MOVES[COURAGE]);
+            if (this.lastMove(RAWR)) {
+                setMoveShortcut(GROWL, MOVES[GROWL]);
             } else {
-                if (this.lastMove(RAWR)) {
-                    setMoveShortcut(GROWL, MOVES[GROWL]);
-                } else {
-                    setMoveShortcut(RAWR, MOVES[RAWR]);
-                }
+                setMoveShortcut(RAWR, MOVES[RAWR]);
             }
         }
     }
@@ -171,7 +179,7 @@ public class ScaredyCat extends AbstractRuinaMonster
     }
 
     private void poisonAnimation(AbstractCreature enemy) {
-        animationAction("Poison", "LionPoison", this);
+        animationAction("Poison", "LionPoison", enemy, this);
     }
 
 }

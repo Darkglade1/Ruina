@@ -793,7 +793,12 @@ public class RuinaMod implements
 
         //Act 2
         BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
-        BaseMod.addMonster(RoadHome.ID, (BaseMod.GetMonster) RoadHome::new);
+        BaseMod.addMonster(RoadHome.ID, "Road_Home", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new HomeAlly(-500.0F, 0.0F),
+                        new ScaredyCat(-100.0F, 0.0F),
+                        new RoadHome(200.0F, 0.0F),
+                }));
         BaseMod.addMonster(ServantOfWrath.ID, "Servant_of_Wrath", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new ServantOfWrath(-500.0F, 0.0F),

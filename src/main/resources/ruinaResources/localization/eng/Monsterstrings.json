@@ -1273,5 +1273,12 @@
     "NAME": "Manic Employee",
     "DIALOG": [
     ]
+  },
+  "${ModID}:HomeAlly": {
+    "MOVES": [
+    ],
+    "NAME": "Home",
+    "DIALOG": [
+    ]
   }
 }

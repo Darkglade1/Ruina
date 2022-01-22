@@ -156,7 +156,9 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     @Override
     public void die(boolean triggerRelics) {
         this.useShakeAnimation(5.0F);
-        ((BetterSpriterAnimation)this.animation).startDying();
+        if (this.animation instanceof BetterSpriterAnimation) {
+            ((BetterSpriterAnimation)this.animation).startDying();
+        }
         super.die(triggerRelics);
     }
 
