@@ -76,7 +76,7 @@ public class RoadHome extends AbstractMultiIntentMonster
     }
 
     public RoadHome(final float x, final float y) {
-        super(NAME, ID, 100, -5.0F, 0, 200.0f, 235.0f, null, x, y);
+        super(NAME, ID, 120, -5.0F, 0, 200.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("RoadHome/Spriter/RoadHome.scml"));
         this.type = EnemyType.ELITE;
         numAdditionalMoves = 2;

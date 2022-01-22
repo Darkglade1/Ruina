@@ -52,7 +52,7 @@ public class ScaredyCat extends AbstractRuinaMonster
     }
 
     public ScaredyCat(final float x, final float y) {
-        super(NAME, ID, 120, -5.0F, 0, 270.0f, 255.0f, null, x, y);
+        super(NAME, ID, 100, -5.0F, 0, 270.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScaredyCat/Spriter/ScaredyCat.scml"));
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(maxHealth));

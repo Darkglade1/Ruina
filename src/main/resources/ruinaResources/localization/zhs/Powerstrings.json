@@ -93,7 +93,7 @@
   },
   "ruina:Courage": {
     "NAME": "胆量",
-    "DESCRIPTIONS": ["每当 ", " 受到攻击，这回合获得 #b", " 点 #y力量 。"]
+    "DESCRIPTIONS": ["每当 ", " 受到攻击，这回合获得 #b", " 点 #y力量 。 NL NL If the #yRoad #yHome dies, this creature will intend to #yflee."]
   },
   "ruina:Hysteria": {
     "NAME": "歇斯底里",
@@ -590,5 +590,13 @@
   "ruina:BeautifulSound": {
     "NAME": "绝美的旋律",
     "DESCRIPTIONS": ["这个回合在这个生物攻击后， ", " 会被 #y消耗 并放进 #y歌唱机 中。"]
+  },
+  "${ModID}:WayHome": {
+    "NAME": "On the Way Home",
+    "DESCRIPTIONS": ["On death, you take #b", " damage and the #yRoad #yHome will begin using a #rpowerful attack."]
+  },
+  "${ModID}:EasilyDistracted": {
+    "NAME": "Easily Distracted",
+    "DESCRIPTIONS": ["When attacked, this creature #rcancels one of its intents for the turn."]
   }
 }

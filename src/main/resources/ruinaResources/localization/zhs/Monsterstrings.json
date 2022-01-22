@@ -1274,5 +1274,12 @@
     "NAME": "着魔的职员",
     "DIALOG": [
     ]
+  },
+  "${ModID}:HomeAlly": {
+    "MOVES": [
+    ],
+    "NAME": "Home",
+    "DIALOG": [
+    ]
   }
 }

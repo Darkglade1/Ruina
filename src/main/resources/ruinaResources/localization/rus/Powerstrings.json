@@ -93,7 +93,7 @@
   },
   "ruina:Courage": {
     "NAME": "Храбрость",
-    "DESCRIPTIONS": ["Когда вы #yАтакуете ", ", получает #b", " #yСилы до конца этого хода."]
+    "DESCRIPTIONS": ["Когда вы #yАтакуете ", ", получает #b", " #yСилы до конца этого хода. NL NL If the #yRoad #yHome dies, this creature will intend to #yflee."]
   },
   "ruina:Hysteria": {
     "NAME": "Истерия",
@@ -590,5 +590,13 @@
   "ruina:BeautifulSound": {
     "NAME": "Великолепный звук",
     "DESCRIPTIONS": ["После атаки этого существа в этом ходу ", " #yСожжётся и положится внутрь #yПоющей #yМашины."]
+  },
+  "${ModID}:WayHome": {
+    "NAME": "On the Way Home",
+    "DESCRIPTIONS": ["On death, you take #b", " damage and the #yRoad #yHome will begin using a #rpowerful attack."]
+  },
+  "${ModID}:EasilyDistracted": {
+    "NAME": "Easily Distracted",
+    "DESCRIPTIONS": ["When attacked, this creature #rcancels one of its intents for the turn."]
   }
 }

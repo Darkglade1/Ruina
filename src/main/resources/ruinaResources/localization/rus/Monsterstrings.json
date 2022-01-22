@@ -1274,5 +1274,12 @@
     "NAME": "Одержимый сотрудник",
     "DIALOG": [
     ]
+  },
+  "${ModID}:HomeAlly": {
+    "MOVES": [
+    ],
+    "NAME": "Home",
+    "DIALOG": [
+    ]
   }
 }
