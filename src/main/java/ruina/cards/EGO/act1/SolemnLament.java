@@ -16,9 +16,11 @@ public class SolemnLament extends AbstractEgoCard implements ManifestCallbackInt
     public final static String ID = makeID(SolemnLament.class.getSimpleName());
 
     private static final int INTANGIBLE = 1;
+    private static final int COST = 3;
+    private static final int UP_COST = 2;
 
     public SolemnLament() {
-        super(ID, 2, CardType.SKILL, CardTarget.SELF);
+        super(ID, COST, CardType.SKILL, CardTarget.SELF);
         magicNumber = baseMagicNumber = INTANGIBLE;
         isEthereal = true;
         exhaust = true;
@@ -32,7 +34,7 @@ public class SolemnLament extends AbstractEgoCard implements ManifestCallbackInt
 
     @Override
     public void upp() {
-        isEthereal = false;
+        upgradeBaseCost(UP_COST);
     }
 
     @Override

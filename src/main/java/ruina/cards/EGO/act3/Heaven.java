@@ -23,7 +23,7 @@ import static ruina.util.Wiz.*;
 
 public class Heaven extends AbstractEgoCard {
     public final static String ID = makeID(Heaven.class.getSimpleName());
-    public static final int BLOCK = 8;
+    public static final int BLOCK = 7;
     public static final int UP_BLOCK = 2;
 
     public static final String POWER_ID = makeID("Heaven");
