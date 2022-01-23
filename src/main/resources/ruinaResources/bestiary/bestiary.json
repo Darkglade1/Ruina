@@ -7,7 +7,7 @@
         {
           "min_asc": 0,
           "desc": "Begins with a move pool of every move except Furioso. Can use any move in the move pool with equal probability, but once a move is used, it is removed from the move pool. Once the move pool is empty, will use Furioso and then reset the move pool. Durandal and Zelkova Workshop cannot be used right before Furioso.",
-          "hp": "1000 HP",
+          "hp": "(1000 HP)",
           "notes": "Many of this creature's moves have additional effects depending on if it is currently the player's turn or the enemy's turn. Its second intent is a preview of its next move, which can be useful for planning ahead.",
           "moves": [
             {
@@ -31,7 +31,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Player Temp Str Down 8",
+                  "name": "Player Temp Str -8",
                   "color": "DEBUFF"
                 }
               ]
@@ -44,7 +44,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Enemy Temp Str Up 6",
+                  "name": "Enemy Temp Str 6",
                   "color": "BUFF"
                 }
               ]
@@ -57,7 +57,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Player Temp Str Down 10",
+                  "name": "Player Temp Str -10",
                   "color": "DEBUFF"
                 }
               ]
@@ -118,7 +118,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Enemy Temp Str Up 4",
+                  "name": "Enemy Temp Str 4",
                   "color": "BUFF"
                 }
               ]
@@ -131,8 +131,816 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Weak and Frail 3",
+                  "name": "Player Weak and Frail 3",
                   "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "All-Around Helper",
+      "id": "ruina:AllAroundHelper",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
+          "hp": "(50 - 54 HP)",
+          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Str into permanent Str!",
+          "moves": [
+            {
+              "name": "Charge",
+              "effects": [
+                {
+                  "name": "Enemy Temp Str Next Turn 2",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Clean",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
+          "hp": "(50 - 54 HP)",
+          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Str into permanent Str!",
+          "moves": [
+            {
+              "name": "Charge",
+              "effects": [
+                {
+                  "name": "Enemy Temp Str Next Turn 2",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Clean",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
+          "hp": "(55 - 59 HP)",
+          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Str into permanent Str!",
+          "moves": [
+            {
+              "name": "Charge",
+              "effects": [
+                {
+                  "name": "Enemy Temp Str Next Turn 2",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Clean",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
+          "hp": "(55 - 59 HP)",
+          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Str into permanent Str!",
+          "moves": [
+            {
+              "name": "Charge",
+              "effects": [
+                {
+                  "name": "Enemy Temp Str Next Turn 3",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Clean",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Alriune",
+      "id": "ruina:Alriune",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Spring's Genesis every 3 turns. Otherwise, has equal chances of using Full Bloom or Magnificent End, but cannot use either move twice in a row.",
+          "hp": "(77 - 81 HP)",
+          "notes": "The first Attack you play each turn will deal full damage for the rest of the combat, but all other Attacks are weakened. Make sure to play your strongest Attacks first each turn!",
+          "moves": [
+            {
+              "name": "Spring's Genesis",
+              "effects": [
+                {
+                  "name": "Enemy Str 2",
+                  "color": "Buff"
+                },
+                {
+                  "name": "Player Dex -1",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Full Bloom",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Paralysis 1",
+                  "color": "Debuff"
+                }
+              ]
+            },
+            {
+              "name": "Magnificent End",
+              "effects": [
+                {
+                  "name": "16",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Uses Spring's Genesis every 3 turns. Otherwise, has equal chances of using Full Bloom or Magnificent End, but cannot use either move twice in a row.",
+          "hp": "(77 - 81 HP)",
+          "notes": "The first Attack you play each turn will deal full damage for the rest of the combat, but all other Attacks are weakened. Make sure to play your strongest Attacks first each turn!",
+          "moves": [
+            {
+              "name": "Spring's Genesis",
+              "effects": [
+                {
+                  "name": "Enemy Str 2",
+                  "color": "Buff"
+                },
+                {
+                  "name": "Player Dex -1",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Full Bloom",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Paralysis 1",
+                  "color": "Debuff"
+                }
+              ]
+            },
+            {
+              "name": "Magnificent End",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Uses Spring's Genesis every 3 turns. Otherwise, has equal chances of using Full Bloom or Magnificent End, but cannot use either move twice in a row.",
+          "hp": "(85 - 89 HP)",
+          "notes": "The first Attack you play each turn will deal full damage for the rest of the combat, but all other Attacks are weakened. Make sure to play your strongest Attacks first each turn!",
+          "moves": [
+            {
+              "name": "Spring's Genesis",
+              "effects": [
+                {
+                  "name": "Enemy Str 2",
+                  "color": "Buff"
+                },
+                {
+                  "name": "Player Dex -1",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Full Bloom",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Paralysis 1",
+                  "color": "Debuff"
+                }
+              ]
+            },
+            {
+              "name": "Magnificent End",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Uses Spring's Genesis every 3 turns. Otherwise, has equal chances of using Full Bloom or Magnificent End, but cannot use either move twice in a row.",
+          "hp": "(85 - 89 HP)",
+          "notes": "The first Attack you play each turn will deal full damage for the rest of the combat, but all other Attacks are weakened. Make sure to play your strongest Attacks first each turn!",
+          "moves": [
+            {
+              "name": "Spring's Genesis",
+              "effects": [
+                {
+                  "name": "Enemy Str 3",
+                  "color": "Buff"
+                },
+                {
+                  "name": "Player Dex -2",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Full Bloom",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Paralysis 2",
+                  "color": "Debuff"
+                }
+              ]
+            },
+            {
+              "name": "Magnificent End",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Butterflies",
+      "id": "ruina:Butterflies",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Tranquility or Liberation, but cannot use either 3 times in a row.",
+          "hp": "(12 - 15 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Tranquility",
+              "effects": [
+                {
+                  "name": "5",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Liberation",
+              "effects": [
+                {
+                  "name": "Paralysis 1",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Dazed 1 into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Has equal chances of using Tranquility or Liberation, but cannot use either 3 times in a row.",
+          "hp": "(12 - 15 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Tranquility",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Liberation",
+              "effects": [
+                {
+                  "name": "Paralysis 1",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Dazed 1 into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Has equal chances of using Tranquility or Liberation, but cannot use either 3 times in a row.",
+          "hp": "(13 - 17 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Tranquility",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Liberation",
+              "effects": [
+                {
+                  "name": "Paralysis 1",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Dazed 1 into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Has equal chances of using Tranquility or Liberation, but cannot use either 3 times in a row.",
+          "hp": "(13 - 17 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Tranquility",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Liberation",
+              "effects": [
+                {
+                  "name": "Paralysis 2",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Dazed 2 into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Crazed Employee",
+      "id": "ruina:CrazedEmployee",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with either Trembling Motion or Shaking Blow on the first turn, then always uses Shaking Blow from then on. In the 2 Crazed Employees Act 1 normal encounter, both will use Trembling Motion first. In the 3 Crazed Employees Act 1 normal encounter, the first two will use Trembling Motion first, and the last one will use Shaking Blow first. The first one's debuff will apply Weak, and the second one's debuff will apply Frail.",
+          "hp": "(24 - 27 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Trembling Motion",
+              "effects": [
+                {
+                  "name": "Weak 1 or Frail 1",
+                  "color": "Debuff"
+                }
+              ]
+            },
+            {
+              "name": "Shaking Blow",
+              "effects": [
+                {
+                  "name": "5",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Begins with either Trembling Motion or Shaking Blow on the first turn, then always uses Shaking Blow from then on. In the 2 Crazed Employees Act 1 normal encounter, both will use Trembling Motion first. In the 3 Crazed Employees Act 1 normal encounter, the first two will use Trembling Motion first, and the last one will use Shaking Blow first. The first one's debuff will apply Weak, and the second one's debuff will apply Frail.",
+          "hp": "(24 - 27 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Trembling Motion",
+              "effects": [
+                {
+                  "name": "Weak 1 or Frail 1",
+                  "color": "Debuff"
+                }
+              ]
+            },
+            {
+              "name": "Shaking Blow",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Begins with either Trembling Motion or Shaking Blow on the first turn, then always uses Shaking Blow from then on. In the 2 Crazed Employees Act 1 normal encounter, both will use Trembling Motion first. In the 3 Crazed Employees Act 1 normal encounter, the first two will use Trembling Motion first, and the last one will use Shaking Blow first. The first one's debuff will apply Weak, and the second one's debuff will apply Frail.",
+          "hp": "(26 - 30 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Trembling Motion",
+              "effects": [
+                {
+                  "name": "Weak 1 or Frail 1",
+                  "color": "Debuff"
+                }
+              ]
+            },
+            {
+              "name": "Shaking Blow",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Begins with either Trembling Motion or Shaking Blow on the first turn, then always uses Shaking Blow from then on. In the 2 Crazed Employees Act 1 normal encounter, both will use Trembling Motion first. In the 3 Crazed Employees Act 1 normal encounter, the first two will use Trembling Motion first, and the last one will use Shaking Blow first. The first one's debuff will apply Weak, and the second one's debuff will apply Frail.",
+          "hp": "(26 - 30 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Trembling Motion",
+              "effects": [
+                {
+                  "name": "Weak 2 or Frail 2",
+                  "color": "Debuff"
+                }
+              ]
+            },
+            {
+              "name": "Shaking Blow",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Forsaken Murderer",
+      "id": "ruina:ForsakenMurderer",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Always begins with Metallic Ringing. Afterwards, uses Metallic Ringing or Chained Wrath with equal probability, but cannot use Chained Wrath twice in a row, and cannot use Metallic Ringing three times in a row",
+          "hp": "(43 - 47 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Chained Wrath",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Enemy Str 1",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Metallic Ringing",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Always begins with Metallic Ringing. Afterwards, uses Metallic Ringing or Chained Wrath with equal probability, but cannot use Chained Wrath twice in a row, and cannot use Metallic Ringing three times in a row",
+          "hp": "(43 - 47 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Chained Wrath",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Enemy Str 1",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Metallic Ringing",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Always begins with Metallic Ringing. Afterwards, uses Metallic Ringing or Chained Wrath with equal probability, but cannot use Chained Wrath twice in a row, and cannot use Metallic Ringing three times in a row",
+          "hp": "(47 - 52 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Chained Wrath",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Enemy Str 1",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Metallic Ringing",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Always begins with Metallic Ringing. Afterwards, uses Metallic Ringing or Chained Wrath with equal probability, but cannot use Chained Wrath twice in a row, and cannot use Metallic Ringing three times in a row",
+          "hp": "(47 - 52 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Chained Wrath",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Enemy Str 2",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Metallic Ringing",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fragment of the Universe",
+      "id": "ruina:Fragment",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Penetrate, then alternates between Echoes from the Beyond and Penetrate.",
+          "hp": "(46 - 52 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Penetrate",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Enlightenment 2 in discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Echoes from the Beyond",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Begins with Penetrate, then alternates between Echoes from the Beyond and Penetrate.",
+          "hp": "(46 - 52 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Penetrate",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Enlightenment 2 in discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Echoes from the Beyond",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Begins with Penetrate, then alternates between Echoes from the Beyond and Penetrate.",
+          "hp": "(51 - 57 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Penetrate",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Enlightenment 2 in discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Echoes from the Beyond",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Begins with Penetrate, then alternates between Echoes from the Beyond and Penetrate.",
+          "hp": "(51 - 57 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Penetrate",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Upgraded Enlightenment 2 in discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Echoes from the Beyond",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "template",
+      "id": "ruina:template",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "(50 - 54 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Charge",
+              "effects": [
+                {
+                  "name": "Enemy Temp Str Next Turn 2",
+                  "color": "Buff"
+                }
+              ]
+            },
+            {
+              "name": "Clean",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
                 }
               ]
             }
