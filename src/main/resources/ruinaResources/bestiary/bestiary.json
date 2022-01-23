@@ -155,7 +155,7 @@
               "effects": [
                 {
                   "name": "Enemy Temp Str Next Turn 2",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -181,7 +181,7 @@
               "effects": [
                 {
                   "name": "Enemy Temp Str Next Turn 2",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -207,7 +207,7 @@
               "effects": [
                 {
                   "name": "Enemy Temp Str Next Turn 2",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -233,7 +233,7 @@
               "effects": [
                 {
                   "name": "Enemy Temp Str Next Turn 3",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -265,11 +265,11 @@
               "effects": [
                 {
                   "name": "Enemy Str 2",
-                  "color": "Buff"
+                  "color": "BUFF"
                 },
                 {
                   "name": "Player Dex -1",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -282,7 +282,7 @@
                 },
                 {
                   "name": "Paralysis 1",
-                  "color": "Debuff"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -308,11 +308,11 @@
               "effects": [
                 {
                   "name": "Enemy Str 2",
-                  "color": "Buff"
+                  "color": "BUFF"
                 },
                 {
                   "name": "Player Dex -1",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -325,7 +325,7 @@
                 },
                 {
                   "name": "Paralysis 1",
-                  "color": "Debuff"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -351,11 +351,11 @@
               "effects": [
                 {
                   "name": "Enemy Str 2",
-                  "color": "Buff"
+                  "color": "BUFF"
                 },
                 {
                   "name": "Player Dex -1",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -368,7 +368,7 @@
                 },
                 {
                   "name": "Paralysis 1",
-                  "color": "Debuff"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -394,11 +394,11 @@
               "effects": [
                 {
                   "name": "Enemy Str 3",
-                  "color": "Buff"
+                  "color": "BUFF"
                 },
                 {
                   "name": "Player Dex -2",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -411,7 +411,7 @@
                 },
                 {
                   "name": "Paralysis 2",
-                  "color": "Debuff"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -569,7 +569,7 @@
               "effects": [
                 {
                   "name": "Weak 1 or Frail 1",
-                  "color": "Debuff"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -595,7 +595,7 @@
               "effects": [
                 {
                   "name": "Weak 1 or Frail 1",
-                  "color": "Debuff"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -621,7 +621,7 @@
               "effects": [
                 {
                   "name": "Weak 1 or Frail 1",
-                  "color": "Debuff"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -647,7 +647,7 @@
               "effects": [
                 {
                   "name": "Weak 2 or Frail 2",
-                  "color": "Debuff"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -683,7 +683,7 @@
                 },
                 {
                   "name": "Enemy Str 1",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -713,7 +713,7 @@
                 },
                 {
                   "name": "Enemy Str 1",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -743,7 +743,7 @@
                 },
                 {
                   "name": "Enemy Str 1",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -773,7 +773,7 @@
                 },
                 {
                   "name": "Enemy Str 2",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
@@ -917,6 +917,29 @@
       ]
     },
     {
+      "name": "Home",
+      "id": "ruina:HomeAlly",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Sit Here and Do Nothing",
+          "hp": "(50 HP)",
+          "notes": "It's a house, did you expect it to get up and do something?",
+          "moves": [
+            {
+              "name": "Sit Here and Do Nothing",
+              "effects": [
+                {
+                  "name": "Sits There and Does Nothing",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "template",
       "id": "ruina:template",
       "ai": [
@@ -931,7 +954,7 @@
               "effects": [
                 {
                   "name": "Enemy Temp Str Next Turn 2",
-                  "color": "Buff"
+                  "color": "BUFF"
                 }
               ]
             },
