@@ -1,0 +1,144 @@
+{
+  "monsters": [
+    {
+      "name": "The Black Silence",
+      "id": "ruina:BlackSilence1",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with a move pool of every move except Furioso. Can use any move in the move pool with equal probability, but once a move is used, it is removed from the move pool. Once the move pool is empty, will use Furioso and then reset the move pool. Durandal and Zelkova Workshop cannot be used right before Furioso.",
+          "hp": "1000 HP",
+          "notes": "Many of this creature's moves have additional effects depending on if it is currently the player's turn or the enemy's turn. Its second intent is a preview of its next move, which can be useful for planning ahead.",
+          "moves": [
+            {
+              "name": "Crystal Atelier",
+              "effects": [
+                {
+                  "name": "12x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "30",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Wheels Industry",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Player Temp Str Down 8",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Durandal",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Enemy Temp Str Up 6",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Allas Workshop",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Player Temp Str Down 10",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Atelier Logic",
+              "effects": [
+                {
+                  "name": "8x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Mook Workshop",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Remove Player Block",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Old Boy's Workshop",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "50",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ranga Workshop",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Bleed 4",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Zelkova Workshop",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Enemy Temp Str Up 4",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Furioso",
+              "effects": [
+                {
+                  "name": "4x16",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Weak and Frail 3",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
