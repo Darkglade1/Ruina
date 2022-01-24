@@ -1280,5 +1280,33 @@
     "NAME": "Home",
     "DIALOG": [
     ]
+  },
+  "${ModID}:NothingThere": {
+    "MOVES": [
+      "Dense Flesh",
+      "Eye Contact",
+      "Reaching Hand",
+      "Evolve"
+    ],
+    "NAME": "Nothing There",
+    "DIALOG": [
+      "h e L l O",
+      "g o O d B y E"
+    ]
+  },
+  "${ModID}:Gunman": {
+    "MOVES": [
+      "Ruthless Bullets",
+      "Inevitable Bullet",
+      "Silent Scope",
+      "Magic Bullet",
+      "Death Mark"
+    ],
+    "NAME": "Der Freischütz",
+    "DIALOG": [
+      "How wonderful it is to have such fine prey appear before me!",
+      "Cease your ramblings, mutt! I shall put both of you down!",
+      "One down, one to go."
+    ]
   }
 }

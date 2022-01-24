@@ -1,0 +1,320 @@
+package ruina.monsters.act1.gunAndDog;
+
+import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
+import ruina.BetterSpriterAnimation;
+import ruina.CustomIntent.IntentEnums;
+import ruina.RuinaMod;
+import ruina.actions.BetterIntentFlashAction;
+import ruina.actions.DamageAllOtherCharactersAction;
+import ruina.monsters.AbstractMultiIntentMonster;
+import ruina.powers.AbstractLambdaPower;
+import ruina.powers.InvisibleBarricadePower;
+import ruina.util.AdditionalIntent;
+import ruina.util.TexLoader;
+import ruina.vfx.VFXActionButItCanFizzle;
+
+import java.util.ArrayList;
+
+import static ruina.RuinaMod.*;
+import static ruina.util.Wiz.*;
+
+public class Gunman extends AbstractMultiIntentMonster
+{
+    public static final String ID = makeID(Gunman.class.getSimpleName());
+    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
+    public static final String NAME = monsterStrings.NAME;
+    public static final String[] MOVES = monsterStrings.MOVES;
+    public static final String[] DIALOG = monsterStrings.DIALOG;
+
+    public static final String LASER = RuinaMod.makeMonsterPath("Yesod/Laser.png");
+    private static final Texture LASER_TEXTURE = TexLoader.getTexture(LASER);
+
+    private static final byte RUTHLESS_BULLETS = 0;
+    private static final byte INEVITABLE_BULLET = 1;
+    private static final byte SILENT_SCOPE = 2;
+    private static final byte MAGIC_BULLET = 3;
+    private static final byte DEATH_MARK = 4;
+
+    private static final int MASS_ATTACK_COOLDOWN = 2;
+    private int counter = MASS_ATTACK_COOLDOWN;
+
+    private final int BLOCK = calcAscensionTankiness(10);
+    private final int STRENGTH = calcAscensionSpecial(3);
+    private final int DEBUFF = calcAscensionSpecial(1);
+    private final int VULNERABLE = 1;
+    private final int SEVENGTH_BULLET = 7;
+    private boolean powerTriggered = false;
+    public NothingThere nothingThere;
+
+    public static final String POWER_ID = makeID("SeventhBullet");
+    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    public static final String POWER_NAME = powerStrings.NAME;
+    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
+    public String enemyIcon = makeUIPath("GunIcon.png");
+
+    public Gunman() {
+        this(100.0f, 0.0f);
+    }
+
+    public Gunman(final float x, final float y) {
+        super(NAME, ID, 200, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Gunman/Spriter/Gunman.scml"));
+        this.type = EnemyType.BOSS;
+        numAdditionalMoves = 1;
+        for (int i = 0; i < numAdditionalMoves; i++) {
+            additionalMovesHistory.add(new ArrayList<>());
+        }
+        this.setHp(calcAscensionTankiness(maxHealth));
+
+        addMove(RUTHLESS_BULLETS, IntentEnums.MASS_ATTACK, calcAscensionDamage(20));
+        addMove(INEVITABLE_BULLET, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
+        addMove(SILENT_SCOPE, Intent.DEFEND_DEBUFF);
+        addMove(MAGIC_BULLET, Intent.ATTACK, calcAscensionDamage(15));
+        addMove(DEATH_MARK, Intent.DEBUFF);
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
+    }
+
+    @Override
+    public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof NothingThere) {
+                nothingThere = (NothingThere)mo;
+            }
+        }
+        atb(new TalkAction(this, DIALOG[0]));
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
+        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
+            @Override
+            public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+                if (card.type == AbstractCard.CardType.ATTACK) {
+                    flashWithoutSound();
+                    amount++;
+                    if (amount % SEVENGTH_BULLET == 0) {
+                        flash();
+                        powerTriggered = true;
+                        amount = 0;
+                        updateDescription();
+                    }
+                }
+            }
+
+            @Override
+            public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
+                if (info.type == DamageInfo.DamageType.NORMAL && info.owner == owner && damageAmount > 0 && powerTriggered) {
+                    flash();
+                    att(new LoseHPAction(target, Gunman.this, damageAmount));
+                }
+            }
+
+            @Override
+            public void atEndOfRound() {
+                if (powerTriggered) {
+                    powerTriggered = false;
+                    updateDescription();
+                }
+            }
+
+            @Override
+            public void updateDescription() {
+                description = POWER_DESCRIPTIONS[0] + SEVENGTH_BULLET + POWER_DESCRIPTIONS[1];
+                if (powerTriggered) {
+                    description += POWER_DESCRIPTIONS[2];
+                }
+            }
+        });
+    }
+
+    @Override
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
+        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
+        int multiplier = move.multiplier;
+
+        if(info.base > -1) {
+            info.applyPowers(this, target);
+        }
+        switch (move.nextMove) {
+            case RUTHLESS_BULLETS: {
+                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
+                info.applyPowers(this, adp());
+                damageArray[damageArray.length - 1] = info.output;
+                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
+                    info.applyPowers(this, mo);
+                    damageArray[i] = info.output;
+                }
+                attackAnimation(target);
+                waitAnimation();
+                massAttackEffect();
+                atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                resetIdle();
+                waitAnimation();
+                counter = MASS_ATTACK_COOLDOWN + 1;
+                break;
+            }
+            case INEVITABLE_BULLET: {
+                blockAnimation(target);
+                dmg(target, info);
+                applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
+                resetIdle();
+                break;
+            }
+            case SILENT_SCOPE: {
+                specialAnimation();
+                block(this, BLOCK);
+                applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                resetIdle(1.0f);
+                break;
+            }
+            case MAGIC_BULLET: {
+                blockAnimation(target);
+                dmg(target, info);
+                resetIdle();
+                break;
+            }
+            case DEATH_MARK: {
+                specialAnimation();
+                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                applyToTarget(target, this, new VulnerablePower(target, VULNERABLE, true));
+                resetIdle(1.0f);
+                break;
+            }
+        }
+    }
+
+    private void massAttackAnimation(AbstractCreature enemy) {
+        animationAction("Attack", "BulletFinalShot", enemy, this);
+    }
+
+    private void attackAnimation(AbstractCreature enemy) {
+        animationAction("Attack", "HermitAtk", enemy, this);
+    }
+
+    private void blockAnimation() {
+        animationAction("Dodge", "HermitStrongAtk", this);
+    }
+
+    private void specialAnimation() {
+        animationAction("Block", "HermitWand", this);
+    }
+
+    @Override
+    public void takeTurn() {
+        super.takeTurn();
+        if (this.firstMove) {
+            atb(new TalkAction(this, DIALOG[1]));
+            firstMove = false;
+        }
+        atb(new RemoveAllBlockAction(this, this));
+        takeCustomTurn(this.moves.get(nextMove), adp());
+        for (int i = 0; i < additionalMoves.size(); i++) {
+            EnemyMoveInfo additionalMove = additionalMoves.get(i);
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
+            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
+            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
+            if (nothingThere.isDeadOrEscaped()) {
+                takeCustomTurn(additionalMove, adp());
+            } else {
+                takeCustomTurn(additionalMove, nothingThere);
+            }
+        }
+        counter--;
+        atb(new RollMoveAction(this));
+    }
+
+    @Override
+    protected void getMove(final int num) {
+        if (counter <= 0) {
+            setMoveShortcut(RUTHLESS_BULLETS, MOVES[RUTHLESS_BULLETS]);
+        } else {
+            ArrayList<Byte> possibilities = new ArrayList<>();
+            if (!this.lastTwoMoves(INEVITABLE_BULLET)) {
+                possibilities.add(INEVITABLE_BULLET);
+            }
+            if (!this.lastMove(SILENT_SCOPE)) {
+                possibilities.add(SILENT_SCOPE);
+            }
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            setMoveShortcut(move, MOVES[move]);
+        }
+    }
+
+    @Override
+    public void getAdditionalMoves(int num, int whichMove) {
+        ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
+        if (counter == 1) {
+            setAdditionalMoveShortcut(DEATH_MARK, moveHistory);
+        } else {
+            setAdditionalMoveShortcut(MAGIC_BULLET, moveHistory);
+        }
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        for (int i = 0; i < additionalIntents.size(); i++) {
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
+            EnemyMoveInfo additionalMove = null;
+            if (i < additionalMoves.size()) {
+                additionalMove = additionalMoves.get(i);
+            }
+            if (additionalMove != null) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, nothingThere, nothingThere.enemyIcon);
+            }
+        }
+    }
+
+    @Override
+    public void die(boolean triggerRelics) {
+        super.die(triggerRelics);
+        if (!nothingThere.isDeadOrEscaped()) {
+            nothingThere.onGunManDeath();
+        }
+        if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+            onBossVictoryLogic();
+        }
+    }
+
+    public void onNothingDeath() {
+        atb(new TalkAction(this, DIALOG[2]));
+    }
+
+    private void massAttackEffect() {
+        float duration = 0.7f;
+        AbstractGameEffect effect = new VfxBuilder(LASER_TEXTURE, -(float) Settings.WIDTH / 2, this.hb.cY, duration)
+                .moveX(-(float)Settings.WIDTH / 2, (float)Settings.WIDTH * 1.5f)
+                .build();
+        atb(new VFXAction(effect, duration));
+    }
+
+}

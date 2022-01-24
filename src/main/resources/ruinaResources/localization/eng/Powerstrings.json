@@ -598,5 +598,13 @@
   "${ModID}:EasilyDistracted": {
     "NAME": "Easily Distracted",
     "DESCRIPTIONS": ["When attacked, this creature #rcancels one of its intents for the turn."]
+  },
+  "${ModID}:Mimicry": {
+    "NAME": "Mimicry",
+    "DESCRIPTIONS": ["Deals additional attack damage equal to the most recent amount of unblocked attack damage received. NL Current: #b", "."]
+  },
+  "${ModID}:SeventhBullet": {
+    "NAME": "The Seventh Bullet",
+    "DESCRIPTIONS": ["Whenever you play #b", " #yAttacks, this creature’s attacks will cause its targets to lose HP equal to unblocked damage dealt for #b1 turn.", " NL NL This turn, whenever this creature deals unblocked attack damage to a target, the target also loses that much HP."]
   }
 }

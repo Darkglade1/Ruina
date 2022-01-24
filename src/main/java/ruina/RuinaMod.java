@@ -625,6 +625,11 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("SingingRhythm"), makeSFXPath("Singing_Rhythm.wav"));
 
         BaseMod.addAudio(makeID("FingerSnap"), makeSFXPath("Finger_Snapping.wav"));
+
+        BaseMod.addAudio(makeID("NothingStrong"), makeSFXPath("NothingThere_Strong_Flesh.wav"));
+        BaseMod.addAudio(makeID("NothingChange"), makeSFXPath("NothingThere_Change.wav"));
+        BaseMod.addAudio(makeID("NothingHello"), makeSFXPath("NothingThere_Hello.wav"));
+        BaseMod.addAudio(makeID("NothingNormal"), makeSFXPath("NothingThere_Normal_Flesh.wav"));
     }
 
     @Override

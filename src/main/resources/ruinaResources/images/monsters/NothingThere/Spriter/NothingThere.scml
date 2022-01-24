@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Default.png" width="262" height="193" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Evade.png" width="162" height="303" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Penetrate.png" width="356" height="188" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Slash.png" width="318" height="377" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Nothing There">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Default">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-172" y="196"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Special" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Evade">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-63" y="322"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Pierce" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Penetrate">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-250" y="188"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Slash" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Slash">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-212" y="375"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
