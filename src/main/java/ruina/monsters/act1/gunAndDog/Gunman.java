@@ -102,7 +102,7 @@ public class Gunman extends AbstractMultiIntentMonster
         this.setHp(calcAscensionTankiness(maxHealth));
 
         addMove(RUTHLESS_BULLETS, IntentEnums.MASS_ATTACK, calcAscensionDamage(20));
-        addMove(INEVITABLE_BULLET, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
+        addMove(INEVITABLE_BULLET, Intent.ATTACK, calcAscensionDamage(9));
         addMove(SILENT_SCOPE, Intent.DEFEND_DEBUFF);
         addMove(MAGIC_BULLET, Intent.ATTACK, 15);
         addMove(DEATH_MARK, Intent.DEBUFF);
@@ -194,7 +194,6 @@ public class Gunman extends AbstractMultiIntentMonster
             case INEVITABLE_BULLET: {
                 attackAnimation(target);
                 dmg(target, info);
-                applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
                 resetIdle(1.0f);
                 break;
             }

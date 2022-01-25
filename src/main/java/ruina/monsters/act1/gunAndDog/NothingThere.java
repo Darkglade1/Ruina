@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -77,7 +78,7 @@ public class NothingThere extends AbstractMultiIntentMonster
         if (AbstractDungeon.ascensionLevel >= 4) {
             attackDamage = 3;
         }
-        addMove(DENSE_FLESH, Intent.DEFEND_DEBUFF);
+        addMove(DENSE_FLESH, Intent.DEFEND);
         addMove(EYE_CONTACT, Intent.ATTACK_DEBUFF, attackDamage);
         addMove(REACHING_HAND, Intent.ATTACK, 5, 2, true);
         addMove(EVOLVE, Intent.BUFF);
@@ -136,14 +137,13 @@ public class NothingThere extends AbstractMultiIntentMonster
             case DENSE_FLESH: {
                 blockAnimation();
                 block(this, BLOCK);
-                intoDiscardMo(new Wound(), STATUS, this);
                 resetIdle();
                 break;
             }
             case EYE_CONTACT: {
                 pierceAnimation(target);
                 dmg(target, info);
-                intoDiscardMo(new Wound(), STATUS, this);
+                intoDiscardMo(new Dazed(), STATUS, this);
                 resetIdle();
                 break;
             }

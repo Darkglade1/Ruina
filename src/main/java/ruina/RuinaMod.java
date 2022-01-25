@@ -766,7 +766,7 @@ public class RuinaMod implements
                 new AbstractMonster[]{
                         new ruina.monsters.act1.gunAndDog.NothingThere(-1000.0F, 0.0F),
                         new Gunman(70.0F, 0.0F),
-                }), makeMonsterPath("SingingMachine/SingingMachineMap.png"), makeMonsterPath("SingingMachine/SingingMachineMapIcon.png"));
+                }), makeMonsterPath("Gunman/GunMap.png"), makeMonsterPath("Gunman/GunIcon.png"));
         asiyah.addBoss(BlackSwan.ID, () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Brother(-450.0F, 0.0F, 1),
