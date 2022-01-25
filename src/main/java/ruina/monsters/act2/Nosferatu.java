@@ -33,7 +33,7 @@ public class Nosferatu extends AbstractRuinaMonster
 
     private final int STRENGTH = calcAscensionSpecial(3);
     private final int PARALYSIS = calcAscensionSpecial(2);
-    private final int VULNERABLE = calcAscensionSpecial(1);
+    private final int VULNERABLE = 1;
 
     public Nosferatu() {
         this(0.0f, 0.0f);
@@ -43,9 +43,9 @@ public class Nosferatu extends AbstractRuinaMonster
         super(NAME, ID, 40, -5.0F, 0, 250.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Nosferatu/Spriter/Nosferatu.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(90), calcAscensionTankiness(95));
-        addMove(UNBEARABLE_DROUGHT, Intent.ATTACK_BUFF, calcAscensionDamage(15));
-        addMove(MERCILESS_GESTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));
+        setHp(calcAscensionTankiness(85), calcAscensionTankiness(90));
+        addMove(UNBEARABLE_DROUGHT, Intent.ATTACK_BUFF, calcAscensionDamage(14));
+        addMove(MERCILESS_GESTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
         addMove(LOOMING_PRESENCE, Intent.DEBUFF);
     }
 

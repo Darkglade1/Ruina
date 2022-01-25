@@ -41,9 +41,9 @@ public class SanguineBat extends AbstractRuinaMonster
         super(NAME, ID, 40, -5.0F, 50.0f, 230.0f, 155.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Bat/Spriter/Bat.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(34), calcAscensionTankiness(40));
+        setHp(calcAscensionTankiness(31), calcAscensionTankiness(37));
         addMove(BLOODSUCKING, Intent.ATTACK_BUFF, calcAscensionDamage(5), 2, true);
-        addMove(DIGGING_TEETH, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
+        addMove(DIGGING_TEETH, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
         addMove(AVID_THIRST, Intent.BUFF);
     }
 

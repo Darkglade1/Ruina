@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
-import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -49,6 +48,7 @@ public class NothingThere extends AbstractMultiIntentMonster
     private final int BLOCK = calcAscensionTankiness(12);
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int STATUS = calcAscensionSpecial(1);
+    private final int POWER_CAP = calcAscensionSpecial(20);
     public Gunman gunman;
 
     public static final String POWER_ID = makeID("Mimicry");
@@ -107,6 +107,9 @@ public class NothingThere extends AbstractMultiIntentMonster
                 if (info.type == DamageInfo.DamageType.NORMAL && info.owner != null && damageAmount > 0) {
                     this.flash();
                     this.amount = damageAmount;
+                    if (this.amount > POWER_CAP) {
+                        this.amount = POWER_CAP;
+                    }
                     updateDescription();
                     AbstractDungeon.onModifyPower();
                 }
@@ -120,7 +123,7 @@ public class NothingThere extends AbstractMultiIntentMonster
 
             @Override
             public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
+                description = POWER_DESCRIPTIONS[0] + POWER_CAP + POWER_DESCRIPTIONS[1];
             }
         });
     }

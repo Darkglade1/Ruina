@@ -23,7 +23,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -70,7 +69,7 @@ public class Gunman extends AbstractMultiIntentMonster
     private int counter = MASS_ATTACK_COOLDOWN;
 
     private final int BLOCK = calcAscensionTankiness(10);
-    private final int STRENGTH = calcAscensionSpecial(3);
+    private final int STRENGTH = calcAscensionSpecial(2);
     private final int DEBUFF = calcAscensionSpecial(1);
     private final int VULNERABLE = 1;
     private final int SEVENGTH_BULLET = 7;
@@ -101,8 +100,8 @@ public class Gunman extends AbstractMultiIntentMonster
         }
         this.setHp(calcAscensionTankiness(maxHealth));
 
-        addMove(RUTHLESS_BULLETS, IntentEnums.MASS_ATTACK, calcAscensionDamage(20));
-        addMove(INEVITABLE_BULLET, Intent.ATTACK, calcAscensionDamage(9));
+        addMove(RUTHLESS_BULLETS, IntentEnums.MASS_ATTACK, calcAscensionDamage(17));
+        addMove(INEVITABLE_BULLET, Intent.ATTACK, calcAscensionDamage(7));
         addMove(SILENT_SCOPE, Intent.DEFEND_DEBUFF);
         addMove(MAGIC_BULLET, Intent.ATTACK, 15);
         addMove(DEATH_MARK, Intent.DEBUFF);

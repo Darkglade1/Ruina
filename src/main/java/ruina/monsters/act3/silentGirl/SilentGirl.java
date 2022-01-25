@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -168,7 +169,8 @@ public class SilentGirl extends AbstractRuinaMonster
                 phaseChangeAnimation();
                 hammer.deadAnimation();
                 nail.deadAnimation();
-                block(this, BLOCK);
+                block(this, BLOCK * 3);
+                atb(new RemoveDebuffsAction(this));
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 enraged = 2;
                 resetIdle(1.0f);
