@@ -1079,6 +1079,340 @@
       ]
     },
     {
+      "name": "Silent Orchestra",
+      "id": "ruina:Orchestra",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Cycles The First Movement -> The Second Movement -> The Third Movement -> The Fourth Movement -> Finale -> Curtain Call.",
+          "hp": "(230 HP)",
+          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. \nIn addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
+          "moves": [
+            {
+              "name": "The First Movement",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Second Movement",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Fervent Adoration",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Third Movement",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Next Turn Draw",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Fourth Movement",
+              "effects": [
+                {
+                  "name": "Shuffle 1 Void into discard pile",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Finale",
+              "effects": [
+                {
+                  "name": "25",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Fervent Adoration",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Curtain Call",
+              "effects": [
+                {
+                  "name": "8 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Heal 10",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Cycles The First Movement -> The Second Movement -> The Third Movement -> The Fourth Movement -> Finale -> Curtain Call.",
+          "hp": "(230 HP)",
+          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. \nIn addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
+          "moves": [
+            {
+              "name": "The First Movement",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Second Movement",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Fervent Adoration",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Third Movement",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Next Turn Draw",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Fourth Movement",
+              "effects": [
+                {
+                  "name": "Shuffle 1 Void into discard pile",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Finale",
+              "effects": [
+                {
+                  "name": "28",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Fervent Adoration",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Curtain Call",
+              "effects": [
+                {
+                  "name": "8 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Heal 10",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Cycles The First Movement -> The Second Movement -> The Third Movement -> The Fourth Movement -> Finale -> Curtain Call.",
+          "hp": "(253 HP)",
+          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. \nIn addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
+          "moves": [
+            {
+              "name": "The First Movement",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Second Movement",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Fervent Adoration",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Third Movement",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Next Turn Draw",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Fourth Movement",
+              "effects": [
+                {
+                  "name": "Shuffle 1 Void into discard pile",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Finale",
+              "effects": [
+                {
+                  "name": "28",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Fervent Adoration",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Curtain Call",
+              "effects": [
+                {
+                  "name": "9 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Heal 11",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Cycles The First Movement -> The Second Movement -> The Third Movement -> The Fourth Movement -> Finale -> Curtain Call.",
+          "hp": "(253 HP)",
+          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. \nIn addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
+          "moves": [
+            {
+              "name": "The First Movement",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Second Movement",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Fervent Adoration",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Third Movement",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Next Turn Draw",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "The Fourth Movement",
+              "effects": [
+                {
+                  "name": "Shuffle 1 Void into discard pile",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Finale",
+              "effects": [
+                {
+                  "name": "28",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Fervent Adoration",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Curtain Call",
+              "effects": [
+                {
+                  "name": "9 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Heal 11",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Home",
       "id": "ruina:HomeAlly",
       "ai": [
