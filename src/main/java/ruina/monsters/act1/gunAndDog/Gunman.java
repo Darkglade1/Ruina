@@ -51,7 +51,7 @@ public class Gunman extends AbstractMultiIntentMonster
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    public static final String LASER = RuinaMod.makeMonsterPath("Yesod/Laser.png");
+    public static final String LASER = RuinaMod.makeMonsterPath("Gunman/Laser.png");
     private static final Texture LASER_TEXTURE = TexLoader.getTexture(LASER);
 
     private static final byte RUTHLESS_BULLETS = 0;
@@ -95,7 +95,7 @@ public class Gunman extends AbstractMultiIntentMonster
         addMove(RUTHLESS_BULLETS, IntentEnums.MASS_ATTACK, calcAscensionDamage(20));
         addMove(INEVITABLE_BULLET, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
         addMove(SILENT_SCOPE, Intent.DEFEND_DEBUFF);
-        addMove(MAGIC_BULLET, Intent.ATTACK, calcAscensionDamage(15));
+        addMove(MAGIC_BULLET, Intent.ATTACK, 15);
         addMove(DEATH_MARK, Intent.DEBUFF);
     }
 
@@ -173,7 +173,7 @@ public class Gunman extends AbstractMultiIntentMonster
                     info.applyPowers(this, mo);
                     damageArray[i] = info.output;
                 }
-                attackAnimation(target);
+                massAttackAnimation(target);
                 waitAnimation();
                 massAttackEffect();
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
@@ -183,23 +183,23 @@ public class Gunman extends AbstractMultiIntentMonster
                 break;
             }
             case INEVITABLE_BULLET: {
-                blockAnimation(target);
+                attackAnimation(target);
                 dmg(target, info);
                 applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case SILENT_SCOPE: {
-                specialAnimation();
+                blockAnimation();
                 block(this, BLOCK);
                 applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
                 resetIdle(1.0f);
                 break;
             }
             case MAGIC_BULLET: {
-                blockAnimation(target);
+                attackAnimation(target);
                 dmg(target, info);
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case DEATH_MARK: {
@@ -217,15 +217,15 @@ public class Gunman extends AbstractMultiIntentMonster
     }
 
     private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack", "HermitAtk", enemy, this);
+        animationAction("Attack", "BulletShot", enemy, this);
     }
 
     private void blockAnimation() {
-        animationAction("Dodge", "HermitStrongAtk", this);
+        animationAction("Dodge", null, this);
     }
 
     private void specialAnimation() {
-        animationAction("Block", "HermitWand", this);
+        animationAction("Block", "BulletFlame", this);
     }
 
     @Override
@@ -311,8 +311,8 @@ public class Gunman extends AbstractMultiIntentMonster
 
     private void massAttackEffect() {
         float duration = 0.7f;
-        AbstractGameEffect effect = new VfxBuilder(LASER_TEXTURE, -(float) Settings.WIDTH / 2, this.hb.cY, duration)
-                .moveX(-(float)Settings.WIDTH / 2, (float)Settings.WIDTH * 1.5f)
+        AbstractGameEffect effect = new VfxBuilder(LASER_TEXTURE, (float)Settings.WIDTH * 1.5f, this.hb.cY, duration)
+                .moveX((float)Settings.WIDTH * 1.5f, -(float)Settings.WIDTH / 2)
                 .build();
         atb(new VFXAction(effect, duration));
     }

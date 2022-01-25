@@ -58,6 +58,7 @@ import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
 import ruina.monsters.act1.blackSwan.BlackSwan;
 import ruina.monsters.act1.blackSwan.Brother;
+import ruina.monsters.act1.gunAndDog.Gunman;
 import ruina.monsters.act1.queenBee.QueenBee;
 import ruina.monsters.act1.queenBee.WorkerBee;
 import ruina.monsters.act1.redShoes.LeftShoe;
@@ -630,6 +631,7 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("NothingChange"), makeSFXPath("NothingThere_Change.wav"));
         BaseMod.addAudio(makeID("NothingHello"), makeSFXPath("NothingThere_Hello.wav"));
         BaseMod.addAudio(makeID("NothingNormal"), makeSFXPath("NothingThere_Normal_Flesh.wav"));
+        BaseMod.addAudio(makeID("BulletShot"), makeSFXPath("Matan_NormalShot.wav"));
     }
 
     @Override
@@ -760,10 +762,10 @@ public class RuinaMod implements
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
         asiyah.addBoss(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new, makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
-        asiyah.addBoss(SingingMachineMonster.ID, () -> new MonsterGroup(
+        asiyah.addBoss(EncounterIDs.GUN_AND_DOG, () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new ManicEmployee(-200.0F, 0.0F),
-                        new SingingMachineMonster(100.0F, 0.0F),
+                        new ruina.monsters.act1.gunAndDog.NothingThere(-1000.0F, 0.0F),
+                        new Gunman(70.0F, 0.0F),
                 }), makeMonsterPath("SingingMachine/SingingMachineMap.png"), makeMonsterPath("SingingMachine/SingingMachineMapIcon.png"));
         asiyah.addBoss(BlackSwan.ID, () -> new MonsterGroup(
                 new AbstractMonster[]{

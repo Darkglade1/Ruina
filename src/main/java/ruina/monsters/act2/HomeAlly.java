@@ -46,7 +46,7 @@ public class HomeAlly extends AbstractAllyMonster
 
     public HomeAlly(final float x, final float y) {
         super(NAME, ID, 50, -5.0F, 0, 300.0f, 300.0f, makeMonsterPath("RoadHome/HouseSmall.png"), x, y);
-        this.setHp(maxHealth);
+        this.setHp(calcAscensionTankiness(maxHealth));
 
         addMove(NONE, Intent.NONE);
 

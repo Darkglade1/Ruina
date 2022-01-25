@@ -1,5 +1,6 @@
 package ruina.monsters.act1.gunAndDog;
 
+import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -8,6 +9,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -60,8 +62,9 @@ public class NothingThere extends AbstractMultiIntentMonster
     }
 
     public NothingThere(final float x, final float y) {
-        super(NAME, ID, 250, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 250, -5.0F, 0, 250.0f, 205.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("NothingThere/Spriter/NothingThere.scml"));
+        this.animation.setFlip(true, false);
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
         for (int i = 0; i < numAdditionalMoves; i++) {
@@ -87,6 +90,9 @@ public class NothingThere extends AbstractMultiIntentMonster
 
     @Override
     public void usePreBattleAction() {
+        CustomDungeon.playTempMusicInstantly("Warning3");
+        AbstractDungeon.player.drawX += 480.0F * Settings.scale;
+        AbstractDungeon.player.dialogX += 480.0F * Settings.scale;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Gunman) {
                 gunman = (Gunman)mo;
@@ -96,7 +102,7 @@ public class NothingThere extends AbstractMultiIntentMonster
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
             @Override
             public int onAttacked(DamageInfo info, int damageAmount) {
-                if (info.type == DamageInfo.DamageType.NORMAL && info.owner != null) {
+                if (info.type == DamageInfo.DamageType.NORMAL && info.owner != null && damageAmount > 0) {
                     this.flash();
                     this.amount = damageAmount;
                     updateDescription();

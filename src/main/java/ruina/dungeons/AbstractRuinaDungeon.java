@@ -58,7 +58,7 @@ public class AbstractRuinaDungeon extends CustomDungeon {
         if (bossKey != null) {
             if (bossKey.equals(FairyQueen.ID)) {
                 floor = Floor.MALKUTH;
-            } else if (bossKey.equals(SingingMachineMonster.ID)) {
+            } else if (bossKey.equals(EncounterIDs.GUN_AND_DOG)) {
                 floor = Floor.YESOD;
             } else if (bossKey.equals(BlackSwan.ID)) {
                 floor = Floor.HOD;
