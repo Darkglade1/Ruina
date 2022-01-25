@@ -18,7 +18,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "30",
+                  "name": "30 Block",
                   "color": "BLOCK"
                 }
               ]
@@ -31,7 +31,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Player Temp Str -8",
+                  "name": "Apply -8 Temp Strength",
                   "color": "DEBUFF"
                 }
               ]
@@ -44,7 +44,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Enemy Temp Str 6",
+                  "name": "Gain 6 Temp Strength",
                   "color": "BUFF"
                 }
               ]
@@ -57,7 +57,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Player Temp Str -10",
+                  "name": "Apply -10 Temp Strength",
                   "color": "DEBUFF"
                 }
               ]
@@ -92,7 +92,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "50",
+                  "name": "50 Block",
                   "color": "BLOCK"
                 }
               ]
@@ -105,7 +105,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Bleed 4",
+                  "name": "Apply 4 Bleed",
                   "color": "DEBUFF"
                 }
               ]
@@ -118,7 +118,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Enemy Temp Str 4",
+                  "name": "Gain 4 Temp Strength",
                   "color": "BUFF"
                 }
               ]
@@ -131,7 +131,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Player Weak and Frail 3",
+                  "name": "Apply 3 Weak and Frail",
                   "color": "DEBUFF"
                 }
               ]
@@ -148,13 +148,13 @@
           "min_asc": 0,
           "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
           "hp": "(50 - 54 HP)",
-          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Str into permanent Str!",
+          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Strength into permanent Strength!",
           "moves": [
             {
               "name": "Charge",
               "effects": [
                 {
-                  "name": "Enemy Temp Str Next Turn 2",
+                  "name": "Gain 2 Temp Strength Next Turn",
                   "color": "BUFF"
                 }
               ]
@@ -174,13 +174,13 @@
           "min_asc": 3,
           "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
           "hp": "(50 - 54 HP)",
-          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Str into permanent Str!",
+          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Strength into permanent Strength!",
           "moves": [
             {
               "name": "Charge",
               "effects": [
                 {
-                  "name": "Enemy Temp Str Next Turn 2",
+                  "name": "Gain 2 Temp Strength Next Turn",
                   "color": "BUFF"
                 }
               ]
@@ -200,13 +200,13 @@
           "min_asc": 8,
           "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
           "hp": "(55 - 59 HP)",
-          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Str into permanent Str!",
+          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Strength into permanent Strength!",
           "moves": [
             {
               "name": "Charge",
               "effects": [
                 {
-                  "name": "Enemy Temp Str Next Turn 2",
+                  "name": "Gain 2 Temp Strength Next Turn",
                   "color": "BUFF"
                 }
               ]
@@ -226,13 +226,13 @@
           "min_asc": 18,
           "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
           "hp": "(55 - 59 HP)",
-          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Str into permanent Str!",
+          "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Strength into permanent Strength!",
           "moves": [
             {
               "name": "Charge",
               "effects": [
                 {
-                  "name": "Enemy Temp Str Next Turn 3",
+                  "name": "Gain 3 Temp Strength Next Turn",
                   "color": "BUFF"
                 }
               ]
@@ -264,11 +264,11 @@
               "name": "Spring's Genesis",
               "effects": [
                 {
-                  "name": "Enemy Str 2",
+                  "name": "Gain 2 Strength",
                   "color": "BUFF"
                 },
                 {
-                  "name": "Player Dex -1",
+                  "name": "Apply -1 Dexterity",
                   "color": "BUFF"
                 }
               ]
@@ -281,7 +281,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Paralysis 1",
+                  "name": "Apply 1 Paralysis",
                   "color": "DEBUFF"
                 }
               ]
@@ -307,11 +307,11 @@
               "name": "Spring's Genesis",
               "effects": [
                 {
-                  "name": "Enemy Str 2",
+                  "name": "Gain 2 Strength",
                   "color": "BUFF"
                 },
                 {
-                  "name": "Player Dex -1",
+                  "name": "Apply -1 Dexterity",
                   "color": "BUFF"
                 }
               ]
@@ -324,7 +324,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Paralysis 1",
+                  "name": "Apply 1 Paralysis",
                   "color": "DEBUFF"
                 }
               ]
@@ -350,11 +350,11 @@
               "name": "Spring's Genesis",
               "effects": [
                 {
-                  "name": "Enemy Str 2",
+                  "name": "Gain 2 Strength",
                   "color": "BUFF"
                 },
                 {
-                  "name": "Player Dex -1",
+                  "name": "Apply -1 Dexterity",
                   "color": "BUFF"
                 }
               ]
@@ -367,7 +367,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Paralysis 1",
+                  "name": "Apply 1 Paralysis",
                   "color": "DEBUFF"
                 }
               ]
@@ -393,11 +393,11 @@
               "name": "Spring's Genesis",
               "effects": [
                 {
-                  "name": "Enemy Str 3",
+                  "name": "Gain 3 Strength",
                   "color": "BUFF"
                 },
                 {
-                  "name": "Player Dex -2",
+                  "name": "Apply -2 Dexterity",
                   "color": "BUFF"
                 }
               ]
@@ -410,7 +410,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Paralysis 2",
+                  "name": "Apply 2 Paralysis",
                   "color": "DEBUFF"
                 }
               ]
@@ -451,11 +451,11 @@
               "name": "Liberation",
               "effects": [
                 {
-                  "name": "Paralysis 1",
+                  "name": "Apply 1 Paralysis",
                   "color": "DEBUFF"
                 },
                 {
-                  "name": "Dazed 1 into discard pile",
+                  "name": "Shuffle 1 Dazed into discard pile",
                   "color": "DEBUFF"
                 }
               ]
@@ -481,11 +481,11 @@
               "name": "Liberation",
               "effects": [
                 {
-                  "name": "Paralysis 1",
+                  "name": "Apply 1 Paralysis",
                   "color": "DEBUFF"
                 },
                 {
-                  "name": "Dazed 1 into discard pile",
+                  "name": "Shuffle 1 Dazed into discard pile",
                   "color": "DEBUFF"
                 }
               ]
@@ -511,11 +511,11 @@
               "name": "Liberation",
               "effects": [
                 {
-                  "name": "Paralysis 1",
+                  "name": "Apply 1 Paralysis",
                   "color": "DEBUFF"
                 },
                 {
-                  "name": "Dazed 1 into discard pile",
+                  "name": "Shuffle 1 Dazed into discard pile",
                   "color": "DEBUFF"
                 }
               ]
@@ -541,11 +541,11 @@
               "name": "Liberation",
               "effects": [
                 {
-                  "name": "Paralysis 2",
+                  "name": "Apply 2 Paralysis",
                   "color": "DEBUFF"
                 },
                 {
-                  "name": "Dazed 2 into discard pile",
+                  "name": "Shuffle 2 Dazed into discard pile",
                   "color": "DEBUFF"
                 }
               ]
@@ -568,7 +568,7 @@
               "name": "Trembling Motion",
               "effects": [
                 {
-                  "name": "Weak 1 or Frail 1",
+                  "name": "Apply 1 Weak or Frail",
                   "color": "DEBUFF"
                 }
               ]
@@ -594,7 +594,7 @@
               "name": "Trembling Motion",
               "effects": [
                 {
-                  "name": "Weak 1 or Frail 1",
+                  "name": "Apply 1 Weak or Frail",
                   "color": "DEBUFF"
                 }
               ]
@@ -620,7 +620,7 @@
               "name": "Trembling Motion",
               "effects": [
                 {
-                  "name": "Weak 1 or Frail 1",
+                  "name": "Apply 1 Weak or Frail",
                   "color": "DEBUFF"
                 }
               ]
@@ -646,7 +646,7 @@
               "name": "Trembling Motion",
               "effects": [
                 {
-                  "name": "Weak 2 or Frail 2",
+                  "name": "Apply 2 Weak or Frail",
                   "color": "DEBUFF"
                 }
               ]
@@ -682,7 +682,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Enemy Str 1",
+                  "name": "Gain 1 Strength",
                   "color": "BUFF"
                 }
               ]
@@ -712,7 +712,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Enemy Str 1",
+                  "name": "Gain 1 Strength",
                   "color": "BUFF"
                 }
               ]
@@ -742,7 +742,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Enemy Str 1",
+                  "name": "Gain 1 Strength",
                   "color": "BUFF"
                 }
               ]
@@ -772,7 +772,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Enemy Str 2",
+                  "name": "Gain 2 Strength",
                   "color": "BUFF"
                 }
               ]
@@ -808,7 +808,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Enlightenment 2 in discard pile",
+                  "name": "Shuffle 2 Enlightenment into discard pile",
                   "color": "DEBUFF"
                 }
               ]
@@ -838,7 +838,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Enlightenment 2 in discard pile",
+                  "name": "Shuffle 2 Enlightenment into discard pile",
                   "color": "DEBUFF"
                 }
               ]
@@ -868,7 +868,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Enlightenment 2 in discard pile",
+                  "name": "Shuffle 2 Enlightenment into discard pile",
                   "color": "DEBUFF"
                 }
               ]
@@ -898,7 +898,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Upgraded Enlightenment 2 in discard pile",
+                  "name": "Shuffle 2 Upgraded Enlightenment into discard pile",
                   "color": "DEBUFF"
                 }
               ]
@@ -909,6 +909,168 @@
                 {
                   "name": "13",
                   "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Friend to the Galaxy",
+      "id": "ruina:GalaxyFriend",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Waiting, Star Shower, or Glimmer. Cannot use the same move twice in a row. On death, will intend to revive unless the other enemies are also killed.",
+          "hp": "(28 - 31 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Waiting",
+              "effects": [
+                {
+                  "name": "7 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Star Shower",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Glimmer",
+              "effects": [
+                {
+                  "name": "5",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Has equal chances of using Waiting, Star Shower, or Glimmer. Cannot use the same move twice in a row. On death, will intend to revive unless the other enemies are also killed.",
+          "hp": "(28 - 31 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Waiting",
+              "effects": [
+                {
+                  "name": "7 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Star Shower",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Glimmer",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Has equal chances of using Waiting, Star Shower, or Glimmer. Cannot use the same move twice in a row. On death, will intend to revive unless the other enemies are also killed.",
+          "hp": "(31 - 34 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Waiting",
+              "effects": [
+                {
+                  "name": "8 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Star Shower",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Glimmer",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Has equal chances of using Waiting, Star Shower, or Glimmer. Cannot use the same move twice in a row. On death, will intend to revive unless the other enemies are also killed.",
+          "hp": "(31 - 34 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Waiting",
+              "effects": [
+                {
+                  "name": "8 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Star Shower",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Glimmer",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
                 }
               ]
             }
@@ -953,7 +1115,7 @@
               "name": "Charge",
               "effects": [
                 {
-                  "name": "Enemy Temp Str Next Turn 2",
+                  "name": "Gain 2 Temp Strength Next Turn",
                   "color": "BUFF"
                 }
               ]
