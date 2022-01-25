@@ -54,13 +54,16 @@ public class AdditionalIntent {
 
     float scaleWidth = 1.0F * Settings.scale;
     float scaleHeight = Settings.scale;
-    private static final float X_OFFSET = 106.0f;
+    private float X_OFFSET = 106.0f;
 
     public static final int ENEMY_CARD_HOVERED_WIDTH = 350;
     public static final int ENEMY_CARD_HOVERED_HEIGHT = 400;
 
     public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move, AbstractCard enemyCard) {
         this.source = source;
+        if (source.flipHorizontal) {
+            X_OFFSET = -X_OFFSET;
+        }
         intentColor = Color.WHITE.cpy();
         transparentColor = new Color(1.0f, 1.0f, 1.0f, intentColor.a / 2.0f);
         intent = move.intent;

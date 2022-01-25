@@ -65,6 +65,7 @@ public class NothingThere extends AbstractMultiIntentMonster
         super(NAME, ID, 250, -5.0F, 0, 250.0f, 205.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("NothingThere/Spriter/NothingThere.scml"));
         this.animation.setFlip(true, false);
+        this.flipHorizontal = true; //additionalIntent class checks for this boolean to know when to flip additional intent positioning
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
         for (int i = 0; i < numAdditionalMoves; i++) {
