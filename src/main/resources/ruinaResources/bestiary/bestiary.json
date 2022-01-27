@@ -2265,7 +2265,7 @@
               "name": "Broken Hope",
               "effects": [
                 {
-                  "name": "6 Block to Scorched Girl if possible. Otherwise, gives it to self.",
+                  "name": "6 Block to Scorched Girl if possible. Otherwise, 6 Block to self.",
                   "color": "BLOCK"
                 }
               ]
@@ -2291,7 +2291,7 @@
               "name": "Broken Hope",
               "effects": [
                 {
-                  "name": "6 Block to Scorched Girl if possible. Otherwise, gives it to self.",
+                  "name": "6 Block to Scorched Girl if possible. Otherwise, 6 Block to self.",
                   "color": "BLOCK"
                 }
               ]
@@ -2317,7 +2317,7 @@
               "name": "Broken Hope",
               "effects": [
                 {
-                  "name": "7 Block to Scorched Girl if possible. Otherwise, gives it to self.",
+                  "name": "7 Block to Scorched Girl if possible. Otherwise, 7 Block to self.",
                   "color": "BLOCK"
                 }
               ]
@@ -2327,6 +2327,721 @@
               "effects": [
                 {
                   "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Left Shoe",
+      "id": "ruina:LeftShoe",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Sanguine Desire every turn.",
+          "hp": "(22 - 24 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Sanguine Desire",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Uses Sanguine Desire every turn.",
+          "hp": "(22 - 24 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Sanguine Desire",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Uses Sanguine Desire every turn.",
+          "hp": "(24 - 26 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Sanguine Desire",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Uses Sanguine Desire every turn.",
+          "hp": "(24 - 26 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Sanguine Desire",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Right Shoe",
+      "id": "ruina:RightShoe",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Obsession or Bursting Desire. Cannot use Obsession twice in a row and cannot use Bursting Desire 3 times in a row.",
+          "hp": "(26 - 28 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Obsession",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bursting Desire",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Has equal chances of using Obsession or Bursting Desire. Cannot use Obsession twice in a row and cannot use Bursting Desire 3 times in a row.",
+          "hp": "(26 - 28 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Obsession",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bursting Desire",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Has equal chances of using Obsession or Bursting Desire. Cannot use Obsession twice in a row and cannot use Bursting Desire 3 times in a row.",
+          "hp": "(29 - 31 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Obsession",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bursting Desire",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Has equal chances of using Obsession or Bursting Desire. Cannot use Obsession twice in a row and cannot use Bursting Desire 3 times in a row.",
+          "hp": "(29 - 31 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Obsession",
+              "effects": [
+                {
+                  "name": "Gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bursting Desire",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Queen Bee",
+      "id": "ruina:QueenBee",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Boost Aggression, then alternates between Boost Aggression and Boost Loyalty. If the Worker Drone is dead, instead uses Hornet Strike every turn.",
+          "hp": "(32 - 36 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Boost Aggression",
+              "effects": [
+                {
+                  "name": "2 Strength to ally if possible. Otherwise, gives to self.",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Boost Loyalty",
+              "effects": [
+                {
+                  "name": "9 Block to ally if possible. Otherwise, gives to self.",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Hornet Strike",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Begins with Boost Aggression, then alternates between Boost Aggression and Boost Loyalty. If the Worker Drone is dead, instead uses Hornet Strike every turn.",
+          "hp": "(32 - 36 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Boost Aggression",
+              "effects": [
+                {
+                  "name": "2 Strength to ally if possible. Otherwise, gives to self.",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Boost Loyalty",
+              "effects": [
+                {
+                  "name": "9 Block to ally if possible. Otherwise, gives to self.",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Hornet Strike",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Begins with Boost Aggression, then alternates between Boost Aggression and Boost Loyalty. If the Worker Drone is dead, instead uses Hornet Strike every turn.",
+          "hp": "(35 - 39 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Boost Aggression",
+              "effects": [
+                {
+                  "name": "2 Strength to ally if possible. Otherwise, gives to self.",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Boost Loyalty",
+              "effects": [
+                {
+                  "name": "10 Block to ally if possible. Otherwise, gives to self.",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Hornet Strike",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Begins with Boost Aggression, then alternates between Boost Aggression and Boost Loyalty. If the Worker Drone is dead, instead uses Hornet Strike every turn.",
+          "hp": "(35 - 39 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Boost Aggression",
+              "effects": [
+                {
+                  "name": "3 Strength to ally if possible. Otherwise, gives to self.",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Boost Loyalty",
+              "effects": [
+                {
+                  "name": "10 Block to ally if possible. Otherwise, gives to self.",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Hornet Strike",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Worker Bee",
+      "id": "ruina:WorkerBee",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Carry Laevae, then alternates between Carry Larvae and Gardu du Corps.",
+          "hp": "(42 - 46 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Carry Larvae",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "5 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Gardu du Corps",
+              "effects": [
+                {
+                  "name": "5x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Begins with Carry Laevae, then alternates between Carry Larvae and Gardu du Corps.",
+          "hp": "(42 - 46 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Carry Larvae",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "5 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Gardu du Corps",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Begins with Carry Laevae, then alternates between Carry Larvae and Gardu du Corps.",
+          "hp": "(46 - 50 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Carry Larvae",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "6 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Gardu du Corps",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Laetitia",
+      "id": "ruina:Laetitia",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Cycles Here's a Gift! -> Here's a Gift! -> Let's Have Fun!",
+          "hp": "(100 HP)",
+          "notes": "If you have a lot of Gift statuses in hand, it may be worthwhile to leave one of the Wee Witch's Friends alive so you can take a hit from them and exhaust the Gifts.",
+          "moves": [
+            {
+              "name": "Here's a Gift!",
+              "effects": [
+                {
+                  "name": "4",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Let’s Have Fun!",
+              "effects": [
+                {
+                  "name": "2x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Cycles Here's a Gift! -> Here's a Gift! -> Let's Have Fun!",
+          "hp": "(110 HP)",
+          "notes": "If you have a lot of Gift statuses in hand, it may be worthwhile to leave one of the Wee Witch's Friends alive so you can take a hit from them and exhaust the Gifts.",
+          "moves": [
+            {
+              "name": "Here's a Gift!",
+              "effects": [
+                {
+                  "name": "4",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Let’s Have Fun!",
+              "effects": [
+                {
+                  "name": "2x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gift-wrapped Friend",
+      "id": "ruina:GiftFriend",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses G..i..f..t twice, then uses B..lo..w..Up...",
+          "hp": "(17 - 19 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "G..i..f..t",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "B..lo..w..Up..",
+              "effects": [
+                {
+                  "name": "Deals 10 non-attack damage to you",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Suicides",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Spawns a Wee Witch's Friend",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Uses G..i..f..t twice, then uses B..lo..w..Up...",
+          "hp": "(17 - 19 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "G..i..f..t",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "B..lo..w..Up..",
+              "effects": [
+                {
+                  "name": "Deals 10 non-attack damage to you",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Suicides",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Spawns a Wee Witch's Friend",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Uses G..i..f..t twice, then uses B..lo..w..Up...",
+          "hp": "(19 - 21 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "G..i..f..t",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "B..lo..w..Up..",
+              "effects": [
+                {
+                  "name": "Deals 10 non-attack damage to you",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Suicides",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Spawns a Wee Witch's Friend",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Uses G..i..f..t twice, then uses B..lo..w..Up...",
+          "hp": "(19 - 21 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "G..i..f..t",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "B..lo..w..Up..",
+              "effects": [
+                {
+                  "name": "Deals 15 non-attack damage to you",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Suicides",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Spawns a Wee Witch's Friend",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wee Witch's Friend",
+      "id": "ruina:WitchFriend",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses #$@!#*#$@ every turn.",
+          "hp": "(12 - 14 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "#$@!#*#$@",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Uses #$@!#*#$@ every turn.",
+          "hp": "(12 - 14 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "#$@!#*#$@",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Uses #$@!#*#$@ every turn.",
+          "hp": "(13 - 15 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "#$@!#*#$@",
+              "effects": [
+                {
+                  "name": "12",
                   "color": "DAMAGE"
                 }
               ]
