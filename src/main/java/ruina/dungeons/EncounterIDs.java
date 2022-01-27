@@ -15,6 +15,6 @@ public class EncounterIDs {
     public static final String BUTTERFLIES_3 = RuinaMod.makeID("3_Butterflies");
     public static final String BUTTERFLIES_5 = RuinaMod.makeID("5_Butterflies");
     public static final String RED_SHOES = RuinaMod.makeID("Red_Shoes");
-    public static final String GUN_AND_DOG = RuinaMod.makeID("Gun_and_Dog");
+    public static final String NOTHING_DER = RuinaMod.makeID("Nothing_Der");
 
 }

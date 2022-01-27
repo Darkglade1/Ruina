@@ -146,7 +146,7 @@
       "ai": [
         {
           "min_asc": 0,
-          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
+          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the right Helper will always start with Charge, and the left Helper will always start with Clean.",
           "hp": "(50 - 54 HP)",
           "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Strength into permanent Strength!",
           "moves": [
@@ -172,7 +172,7 @@
         },
         {
           "min_asc": 3,
-          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
+          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the right Helper will always start with Charge, and the left Helper will always start with Clean.",
           "hp": "(50 - 54 HP)",
           "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Strength into permanent Strength!",
           "moves": [
@@ -198,7 +198,7 @@
         },
         {
           "min_asc": 8,
-          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
+          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the right Helper will always start with Charge, and the left Helper will always start with Clean.",
           "hp": "(55 - 59 HP)",
           "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Strength into permanent Strength!",
           "moves": [
@@ -224,7 +224,7 @@
         },
         {
           "min_asc": 18,
-          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the left Helper will always start with Charge, and the right Helper will always start with Clean.",
+          "desc": "Begins with either Charge or Clean, then alternates between the two moves. In the 2 Helpers Act 1 elite encounter, the right Helper will always start with Charge, and the left Helper will always start with Clean.",
           "hp": "(55 - 59 HP)",
           "notes": "Be careful about letting this enemy trigger Pattern Recognition after it uses Charge - the debuff cleanse will turn its Temp Strength into permanent Strength!",
           "moves": [
@@ -269,7 +269,7 @@
                 },
                 {
                   "name": "Apply -1 Dexterity",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -312,7 +312,7 @@
                 },
                 {
                   "name": "Apply -1 Dexterity",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -355,7 +355,7 @@
                 },
                 {
                   "name": "Apply -1 Dexterity",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -398,7 +398,7 @@
                 },
                 {
                   "name": "Apply -2 Dexterity",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -2575,7 +2575,7 @@
               "effects": [
                 {
                   "name": "9 Block to ally if possible. Otherwise, gives to self.",
-                  "color": "DAMAGE"
+                  "color": "BLOCK"
                 }
               ]
             },
@@ -2610,7 +2610,7 @@
               "effects": [
                 {
                   "name": "9 Block to ally if possible. Otherwise, gives to self.",
-                  "color": "DAMAGE"
+                  "color": "BLOCK"
                 }
               ]
             },
@@ -2645,7 +2645,7 @@
               "effects": [
                 {
                   "name": "10 Block to ally if possible. Otherwise, gives to self.",
-                  "color": "DAMAGE"
+                  "color": "BLOCK"
                 }
               ]
             },
@@ -2680,7 +2680,7 @@
               "effects": [
                 {
                   "name": "10 Block to ally if possible. Otherwise, gives to self.",
-                  "color": "DAMAGE"
+                  "color": "BLOCK"
                 }
               ]
             },
@@ -3042,6 +3042,1207 @@
               "effects": [
                 {
                   "name": "12",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Der Freischutz",
+      "id": "ruina:Gunman",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well.",
+          "hp": "(200 HP)",
+          "notes": "Be careful about when you trigger the Seventh Bullet power - it will essentially double the amount of unblocked damage this creature deals for the turn. Triggering the power on the Mass Attack turn will result in a massive amount of damage done to Nothing There, but it can also do a lot of damage to you as well if you can't adequately block the Mass Attack. A lower risk but lower reward play would be to trigger the power when this creature is only attacking Nothing There with its second intent.",
+          "moves": [
+            {
+              "name": "Ruthless Bullets",
+              "effects": [
+                {
+                  "name": "17 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Inevitable Bullet",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Silent Scope",
+              "effects": [
+                {
+                  "name": "10 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Magic Bullet",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Death Mark",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well.",
+          "hp": "(200 HP)",
+          "notes": "Be careful about when you trigger the Seventh Bullet power - it will essentially double the amount of unblocked damage this creature deals for the turn. Triggering the power on the Mass Attack turn will result in a massive amount of damage done to Nothing There, but it can also do a lot of damage to you as well if you can't adequately block the Mass Attack. A lower risk but lower reward play would be to trigger the power when this creature is only attacking Nothing There with its second intent.",
+          "moves": [
+            {
+              "name": "Ruthless Bullets",
+              "effects": [
+                {
+                  "name": "19 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Inevitable Bullet",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Silent Scope",
+              "effects": [
+                {
+                  "name": "10 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Magic Bullet",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Death Mark",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well.",
+          "hp": "(220 HP)",
+          "notes": "Be careful about when you trigger the Seventh Bullet power - it will essentially double the amount of unblocked damage this creature deals for the turn. Triggering the power on the Mass Attack turn will result in a massive amount of damage done to Nothing There, but it can also do a lot of damage to you as well if you can't adequately block the Mass Attack. A lower risk but lower reward play would be to trigger the power when this creature is only attacking Nothing There with its second intent.",
+          "moves": [
+            {
+              "name": "Ruthless Bullets",
+              "effects": [
+                {
+                  "name": "19 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Inevitable Bullet",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Silent Scope",
+              "effects": [
+                {
+                  "name": "11 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Magic Bullet",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Death Mark",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well.",
+          "hp": "(220 HP)",
+          "notes": "Be careful about when you trigger the Seventh Bullet power - it will essentially double the amount of unblocked damage this creature deals for the turn. Triggering the power on the Mass Attack turn will result in a massive amount of damage done to Nothing There, but it can also do a lot of damage to you as well if you can't adequately block the Mass Attack. A lower risk but lower reward play would be to trigger the power when this creature is only attacking Nothing There with its second intent.",
+          "moves": [
+            {
+              "name": "Ruthless Bullets",
+              "effects": [
+                {
+                  "name": "19 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Inevitable Bullet",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Silent Scope",
+              "effects": [
+                {
+                  "name": "11 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Magic Bullet",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Death Mark",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Nothing There",
+      "id": "ruina:NothingThere",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischütz unless he's dead, in which case it will also target you.",
+          "hp": "(250 HP)",
+          "notes": "You can manipulate this creature's Mimicry power to your advantage - play weak Attacks on this creature when it's attacking you to take less damage, and play strong Attacks on it when it's attacking the other enemy to make the other enemy take more damage!",
+          "moves": [
+            {
+              "name": "Dense Flesh",
+              "effects": [
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Eye Contact",
+              "effects": [
+                {
+                  "name": "2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Reaching Hand",
+              "effects": [
+                {
+                  "name": "5x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Evolve",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischütz unless he's dead, in which case it will also target you.",
+          "hp": "(250 HP)",
+          "notes": "You can manipulate this creature's Mimicry power to your advantage - play weak Attacks on this creature when it's attacking you to take less damage, and play strong Attacks on it when it's attacking the other enemy to make the other enemy take more damage!",
+          "moves": [
+            {
+              "name": "Dense Flesh",
+              "effects": [
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Eye Contact",
+              "effects": [
+                {
+                  "name": "3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Reaching Hand",
+              "effects": [
+                {
+                  "name": "5x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Evolve",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischütz unless he's dead, in which case it will also target you.",
+          "hp": "(275 HP)",
+          "notes": "You can manipulate this creature's Mimicry power to your advantage - play weak Attacks on this creature when it's attacking you to take less damage, and play strong Attacks on it when it's attacking the other enemy to make the other enemy take more damage!",
+          "moves": [
+            {
+              "name": "Dense Flesh",
+              "effects": [
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Eye Contact",
+              "effects": [
+                {
+                  "name": "3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Reaching Hand",
+              "effects": [
+                {
+                  "name": "5x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Evolve",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischütz unless he's dead, in which case it will also target you.",
+          "hp": "(275 HP)",
+          "notes": "You can manipulate this creature's Mimicry power to your advantage - play weak Attacks on this creature when it's attacking you to take less damage, and play strong Attacks on it when it's attacking the other enemy to make the other enemy take more damage!",
+          "moves": [
+            {
+              "name": "Dense Flesh",
+              "effects": [
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Eye Contact",
+              "effects": [
+                {
+                  "name": "3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 2 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Reaching Hand",
+              "effects": [
+                {
+                  "name": "5x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Evolve",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fairy Queen",
+      "id": "ruina:FairyQueen",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Above 50% HP, will use Queen's Decree if both minions are dead. Otherwise, uses Predation. Once it drops to or below 50% HP, will use Ravenousness then use Predation every turn.",
+          "hp": "(180 HP)",
+          "notes": "Bringing the minions to low HP without killing them so this creature consumes them can be a good way of maintaining Weak and Vulnerable debuffs on the boss.",
+          "moves": [
+            {
+              "name": "Queen's Decree",
+              "effects": [
+                {
+                  "name": "Summon 2 Fairy Masses",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Predation",
+              "effects": [
+                {
+                  "name": "5x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Ravenousness",
+              "effects": [
+                {
+                  "name": "Gain 4 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Kills all minions",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Above 50% HP, will use Queen's Decree if both minions are dead. Otherwise, uses Predation. Once it drops to or below 50% HP, will use Ravenousness then use Predation every turn.",
+          "hp": "(180 HP)",
+          "notes": "Bringing the minions to low HP without killing them so this creature consumes them can be a good way of maintaining Weak and Vulnerable debuffs on the boss.",
+          "moves": [
+            {
+              "name": "Queen's Decree",
+              "effects": [
+                {
+                  "name": "Summon 2 Fairy Masses",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Predation",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Ravenousness",
+              "effects": [
+                {
+                  "name": "Gain 4 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Kills all minions",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Above 50% HP, will use Queen's Decree if both minions are dead. Otherwise, uses Predation. Once it drops to or below 50% HP, will use Ravenousness then use Predation every turn.",
+          "hp": "(198 HP)",
+          "notes": "Bringing the minions to low HP without killing them so this creature consumes them can be a good way of maintaining Weak and Vulnerable debuffs on the boss.",
+          "moves": [
+            {
+              "name": "Queen's Decree",
+              "effects": [
+                {
+                  "name": "Summon 2 Fairy Masses",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Predation",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Ravenousness",
+              "effects": [
+                {
+                  "name": "Gain 4 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Kills all minions",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Above 50% HP, will use Queen's Decree if both minions are dead. Otherwise, uses Predation. Once it drops to or below 50% HP, will use Ravenousness then use Predation every turn.",
+          "hp": "(198 HP)",
+          "notes": "Bringing the minions to low HP without killing them so this creature consumes them can be a good way of maintaining Weak and Vulnerable debuffs on the boss.",
+          "moves": [
+            {
+              "name": "Queen's Decree",
+              "effects": [
+                {
+                  "name": "Summon 2 Fairy Masses",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Predation",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Ravenousness",
+              "effects": [
+                {
+                  "name": "Gain 6 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Kills all minions",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fairy Mass",
+      "id": "ruina:FairyMass",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Wingbeat or Gluttony. Can't use either move 3 times in a row.",
+          "hp": "(18 - 20 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Wingbeat",
+              "effects": [
+                {
+                  "name": "3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Gluttony",
+              "effects": [
+                {
+                  "name": "5",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Has equal chances of using Wingbeat or Gluttony. Can't use either move 3 times in a row.",
+          "hp": "(18 - 20 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Wingbeat",
+              "effects": [
+                {
+                  "name": "3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Gluttony",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Has equal chances of using Wingbeat or Gluttony. Can't use either move 3 times in a row.",
+          "hp": "(20 - 22 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Wingbeat",
+              "effects": [
+                {
+                  "name": "3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Gluttony",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Has equal chances of using Wingbeat or Gluttony. Can't use either move 3 times in a row.",
+          "hp": "(20 - 22 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Wingbeat",
+              "effects": [
+                {
+                  "name": "4",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Gluttony",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dream of a Black Swan",
+      "id": "ruina:BlackSwan",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "If less than 3 Brothers have died, cycles Nauseating Reality -> Writhe -> Well-worn Parasol. If 3 or more Brothers have died, instead alternates between Shriek of Broken Dreams and Writhe.",
+          "hp": "(160 HP)",
+          "notes": "Enraging the boss too early is generally a bad idea - take note of each Brother's passive and burst down the 2 Brothers that are most detrimental to you early on, then finish off the rest once you are ready to quickly end the fight.",
+          "moves": [
+            {
+              "name": "Writhe",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Well-worn Parasol",
+              "effects": [
+                {
+                  "name": "All allies gain 7 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 1 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Nauseating Reality",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Shriek of Broken Dreams",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Erosion next turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "If less than 3 Brothers have died, cycles Nauseating Reality -> Writhe -> Well-worn Parasol. If 3 or more Brothers have died, instead alternates between Shriek of Broken Dreams and Writhe.",
+          "hp": "(160 HP)",
+          "notes": "Enraging the boss too early is generally a bad idea - take note of each Brother's passive and burst down the 2 Brothers that are most detrimental to you early on, then finish off the rest once you are ready to quickly end the fight.",
+          "moves": [
+            {
+              "name": "Writhe",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Well-worn Parasol",
+              "effects": [
+                {
+                  "name": "All allies gain 7 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 1 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Nauseating Reality",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Shriek of Broken Dreams",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Erosion next turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "If less than 3 Brothers have died, cycles Nauseating Reality -> Writhe -> Well-worn Parasol. If 3 or more Brothers have died, instead alternates between Shriek of Broken Dreams and Writhe.",
+          "hp": "(176 HP)",
+          "notes": "Enraging the boss too early is generally a bad idea - take note of each Brother's passive and burst down the 2 Brothers that are most detrimental to you early on, then finish off the rest once you are ready to quickly end the fight.",
+          "moves": [
+            {
+              "name": "Writhe",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Well-worn Parasol",
+              "effects": [
+                {
+                  "name": "All allies gain 8 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 1 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Nauseating Reality",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Shriek of Broken Dreams",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Erosion next turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "If less than 3 Brothers have died, cycles Nauseating Reality -> Writhe -> Well-worn Parasol. If 3 or more Brothers have died, instead alternates between Shriek of Broken Dreams and Writhe.",
+          "hp": "(176 HP)",
+          "notes": "Enraging the boss too early is generally a bad idea - take note of each Brother's passive and burst down the 2 Brothers that are most detrimental to you early on, then finish off the rest once you are ready to quickly end the fight.",
+          "moves": [
+            {
+              "name": "Writhe",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Well-worn Parasol",
+              "effects": [
+                {
+                  "name": "All allies gain 8 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Nauseating Reality",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Shriek of Broken Dreams",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 5 Erosion next turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Brother",
+      "id": "ruina:Brother",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "After becoming active, uses Green Waste every turn.",
+          "hp": "(22 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Green Waste",
+              "effects": [
+                {
+                  "name": "2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "After becoming active, uses Green Waste every turn.",
+          "hp": "(24 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Green Waste",
+              "effects": [
+                {
+                  "name": "2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "After becoming active, uses Green Waste every turn.",
+          "hp": "(24 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Green Waste",
+              "effects": [
+                {
+                  "name": "3",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lulu",
+      "id": "ruina:Lulu",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Cycles Prepared Mind -> Flaming Bat -> Set Ablaze.",
+          "hp": "(105 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Prepared Mind",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Flaming Bat",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Set Ablaze",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Cycles Prepared Mind -> Flaming Bat -> Set Ablaze.",
+          "hp": "(105 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Prepared Mind",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Flaming Bat",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Set Ablaze",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Cycles Prepared Mind -> Flaming Bat -> Set Ablaze.",
+          "hp": "(116 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Prepared Mind",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Flaming Bat",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Set Ablaze",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Cycles Prepared Mind -> Flaming Bat -> Set Ablaze.",
+          "hp": "(116 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Prepared Mind",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Flaming Bat",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Set Ablaze",
+              "effects": [
+                {
+                  "name": "7x2",
                   "color": "DAMAGE"
                 }
               ]

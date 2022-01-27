@@ -58,7 +58,7 @@ import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.Porccubus;
 import ruina.monsters.act1.blackSwan.BlackSwan;
 import ruina.monsters.act1.blackSwan.Brother;
-import ruina.monsters.act1.gunAndDog.Gunman;
+import ruina.monsters.act1.nothingDer.Gunman;
 import ruina.monsters.act1.queenBee.QueenBee;
 import ruina.monsters.act1.queenBee.WorkerBee;
 import ruina.monsters.act1.redShoes.LeftShoe;
@@ -69,8 +69,6 @@ import ruina.monsters.act1.ShyLook;
 import ruina.monsters.act1.TeddyBear;
 import ruina.monsters.act1.fairyFestival.FairyQueen;
 import ruina.monsters.act1.laetitia.Laetitia;
-import ruina.monsters.act1.singingMachine.ManicEmployee;
-import ruina.monsters.act1.singingMachine.SingingMachineMonster;
 import ruina.monsters.act1.spiderBud.SpiderBud;
 import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
@@ -762,9 +760,9 @@ public class RuinaMod implements
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
         asiyah.addBoss(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new, makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
-        asiyah.addBoss(EncounterIDs.GUN_AND_DOG, () -> new MonsterGroup(
+        asiyah.addBoss(EncounterIDs.NOTHING_DER, () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new ruina.monsters.act1.gunAndDog.NothingThere(-1000.0F, 0.0F),
+                        new ruina.monsters.act1.nothingDer.NothingThere(-1000.0F, 0.0F),
                         new Gunman(70.0F, 0.0F),
                 }), makeMonsterPath("Gunman/GunMap.png"), makeMonsterPath("Gunman/GunIcon.png"));
         asiyah.addBoss(BlackSwan.ID, () -> new MonsterGroup(

@@ -1,4 +1,4 @@
-package ruina.monsters.act1.gunAndDog;
+package ruina.monsters.act1.nothingDer;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

@@ -1,4 +1,4 @@
-package ruina.monsters.act1.gunAndDog;
+package ruina.monsters.act1.nothingDer;
 
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.Gdx;
