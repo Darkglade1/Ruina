@@ -1086,7 +1086,7 @@
           "min_asc": 0,
           "desc": "Cycles The First Movement -> The Second Movement -> The Third Movement -> The Fourth Movement -> Finale -> Curtain Call.",
           "hp": "(230 HP)",
-          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. \nIn addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
+          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. In addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
           "moves": [
             {
               "name": "The First Movement",
@@ -1132,7 +1132,7 @@
               "effects": [
                 {
                   "name": "Shuffle 1 Void into discard pile",
-                  "color": "DAMAGE"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -1168,7 +1168,7 @@
           "min_asc": 4,
           "desc": "Cycles The First Movement -> The Second Movement -> The Third Movement -> The Fourth Movement -> Finale -> Curtain Call.",
           "hp": "(230 HP)",
-          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. \nIn addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
+          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. In addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
           "moves": [
             {
               "name": "The First Movement",
@@ -1214,7 +1214,7 @@
               "effects": [
                 {
                   "name": "Shuffle 1 Void into discard pile",
-                  "color": "DAMAGE"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -1250,7 +1250,7 @@
           "min_asc": 9,
           "desc": "Cycles The First Movement -> The Second Movement -> The Third Movement -> The Fourth Movement -> Finale -> Curtain Call.",
           "hp": "(253 HP)",
-          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. \nIn addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
+          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. In addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
           "moves": [
             {
               "name": "The First Movement",
@@ -1296,7 +1296,7 @@
               "effects": [
                 {
                   "name": "Shuffle 1 Void into discard pile",
-                  "color": "DAMAGE"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -1332,7 +1332,7 @@
           "min_asc": 19,
           "desc": "Cycles The First Movement -> The Second Movement -> The Third Movement -> The Fourth Movement -> Finale -> Curtain Call.",
           "hp": "(253 HP)",
-          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. \nIn addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
+          "notes": "This boss supplies you with a lot of additional card draw - cards that gain energy, cards that combo with other cards, and low-cost cards are all more effective here. In addition, you can play the Performer Status cards the boss gives you to avoid their negative end-of-turn effects.",
           "moves": [
             {
               "name": "The First Movement",
@@ -1378,7 +1378,7 @@
               "effects": [
                 {
                   "name": "Shuffle 1 Void into discard pile",
-                  "color": "DAMAGE"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -1405,6 +1405,929 @@
                 {
                   "name": "Heal 11",
                   "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Porccubus",
+      "id": "ruina:Porccubus",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Unbearable Pleasure, then alternates between Unbearable Pleasure and Bristle.",
+          "hp": "(45 - 48 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Unbearable Pleasure",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Pleasure",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bristle",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 1 Thorns",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Begins with Unbearable Pleasure, then alternates between Unbearable Pleasure and Bristle.",
+          "hp": "(45 - 48 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Unbearable Pleasure",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Pleasure",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bristle",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 1 Thorns",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Begins with Unbearable Pleasure, then alternates between Unbearable Pleasure and Bristle.",
+          "hp": "(49 - 52 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Unbearable Pleasure",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Pleasure",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bristle",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 1 Thorns",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Begins with Unbearable Pleasure, then alternates between Unbearable Pleasure and Bristle.",
+          "hp": "(49 - 52 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Unbearable Pleasure",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 5 Pleasure",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bristle",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Thorns",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Today's Shy Look",
+      "id": "ruina:ShyLook",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of rolling any move, but cannot roll the same move twice in a row.",
+          "hp": "(67 - 72 HP)",
+          "notes": "It can be helpful to end the turn with the Expression power at 2 of 3 cards played. That way, playing 1 card next turn will change the intent, then you can play 2 more cards to react to the new intent and set up this tactic for the turn after that as well.",
+          "moves": [
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "6 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "16",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Has equal chances of rolling any move, but cannot roll the same move twice in a row.",
+          "hp": "(67 - 72 HP)",
+          "notes": "It can be helpful to end the turn with the Expression power at 2 of 3 cards played. That way, playing 1 card next turn will change the intent, then you can play 2 more cards to react to the new intent and set up this tactic for the turn after that as well.",
+          "moves": [
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "6 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Has equal chances of rolling any move, but cannot roll the same move twice in a row.",
+          "hp": "(74 - 79 HP)",
+          "notes": "It can be helpful to end the turn with the Expression power at 2 of 3 cards played. That way, playing 1 card next turn will change the intent, then you can play 2 more cards to react to the new intent and set up this tactic for the turn after that as well.",
+          "moves": [
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "14 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "7 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Has equal chances of rolling any move, but cannot roll the same move twice in a row.",
+          "hp": "(74 - 79 HP)",
+          "notes": "It can be helpful to end the turn with the Expression power at 2 of 3 cards played. That way, playing 1 card next turn will change the intent, then you can play 2 more cards to react to the new intent and set up this tactic for the turn after that as well.",
+          "moves": [
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "14 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "Gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "7 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Today's Expression",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Happy Teddy Bear",
+      "id": "ruina:TeddyBear",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Timid Endearment, then alternates between Timid Endearment and Display of Affection.",
+          "hp": "(55 - 59 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Timid Endearment",
+              "effects": [
+                {
+                  "name": "11 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Display of Affection",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Begins with Timid Endearment, then alternates between Timid Endearment and Display of Affection.",
+          "hp": "(55 - 59 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Timid Endearment",
+              "effects": [
+                {
+                  "name": "11 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Display of Affection",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Begins with Timid Endearment, then alternates between Timid Endearment and Display of Affection.",
+          "hp": "(61 - 65 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Timid Endearment",
+              "effects": [
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Display of Affection",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spider Bud",
+      "id": "ruina:SpiderBud",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Protective Instincts, then alternates between Protective Instincts and Cocoon. If another monster died on the previous turn or if this creature is alone, will use Catching Food instead.",
+          "hp": "(35 - 38 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Protective Instincts",
+              "effects": [
+                {
+                  "name": "All allies gain 4 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Cocoon",
+              "effects": [
+                {
+                  "name": "Apply 1 Entangle",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Catching Food",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Begins with Protective Instincts, then alternates between Protective Instincts and Cocoon. If another monster died on the previous turn or if this creature is alone, will use Catching Food instead.",
+          "hp": "(35 - 38 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Protective Instincts",
+              "effects": [
+                {
+                  "name": "All allies gain 4 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Cocoon",
+              "effects": [
+                {
+                  "name": "Apply 1 Entangle",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Catching Food",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Begins with Protective Instincts, then alternates between Protective Instincts and Cocoon. If another monster died on the previous turn or if this creature is alone, will use Catching Food instead.",
+          "hp": "(39 - 42 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Protective Instincts",
+              "effects": [
+                {
+                  "name": "All allies gain 4 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Cocoon",
+              "effects": [
+                {
+                  "name": "Apply 1 Entangle",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Catching Food",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spiderling",
+      "id": "ruina:Spiderling",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Thin Webbing or Stingy Fangs. Cannot use either move 3 times in a row.",
+          "hp": "(10 - 12 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Thin Webbing",
+              "effects": [
+                {
+                  "name": "2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Slimed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Stingy Fangs",
+              "effects": [
+                {
+                  "name": "5",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Has equal chances of using Thin Webbing or Stingy Fangs. Cannot use either move 3 times in a row.",
+          "hp": "(10 - 12 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Thin Webbing",
+              "effects": [
+                {
+                  "name": "2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Slimed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Stingy Fangs",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Has equal chances of using Thin Webbing or Stingy Fangs. Cannot use either move 3 times in a row.",
+          "hp": "(11 - 13 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Thin Webbing",
+              "effects": [
+                {
+                  "name": "2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Slimed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Stingy Fangs",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Has equal chances of using Thin Webbing or Stingy Fangs. Cannot use either move 3 times in a row.",
+          "hp": "(11 - 13 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Thin Webbing",
+              "effects": [
+                {
+                  "name": "3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Slimed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Stingy Fangs",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Scorched Girl",
+      "id": "ruina:ScorchedGirl",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Ember twice followed by Extinguish.",
+          "hp": "(35 - 39 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Ember",
+              "effects": [
+                {
+                  "name": "Shuffle 1 Burn into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Extinguish",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Suicide",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Uses Ember twice followed by Extinguish.",
+          "hp": "(35 - 39 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Ember",
+              "effects": [
+                {
+                  "name": "Shuffle 1 Burn into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Extinguish",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Suicide",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Uses Ember twice followed by Extinguish.",
+          "hp": "(39 - 43 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Ember",
+              "effects": [
+                {
+                  "name": "Shuffle 1 Burn into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Extinguish",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Suicide",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Uses Ember twice followed by Extinguish.",
+          "hp": "(39 - 43 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Ember",
+              "effects": [
+                {
+                  "name": "Shuffle 2 Burns into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Extinguish",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Suicide",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Match Flame",
+      "id": "ruina:MatchFlame",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Broken Hope or Kindle. Cannot use Broken Hope twice in a row, and cannot use Kindle 3 times in a row.",
+          "hp": "(12 - 15 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Broken Hope",
+              "effects": [
+                {
+                  "name": "6 Block to Scorched Girl if possible. Otherwise, gives it to self.",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Kindle",
+              "effects": [
+                {
+                  "name": "5",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Has equal chances of using Broken Hope or Kindle. Cannot use Broken Hope twice in a row, and cannot use Kindle 3 times in a row.",
+          "hp": "(12 - 15 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Broken Hope",
+              "effects": [
+                {
+                  "name": "6 Block to Scorched Girl if possible. Otherwise, gives it to self.",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Kindle",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Has equal chances of using Broken Hope or Kindle. Cannot use Broken Hope twice in a row, and cannot use Kindle 3 times in a row.",
+          "hp": "(13 - 17 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Broken Hope",
+              "effects": [
+                {
+                  "name": "7 Block to Scorched Girl if possible. Otherwise, gives it to self.",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Kindle",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
                 }
               ]
             }
