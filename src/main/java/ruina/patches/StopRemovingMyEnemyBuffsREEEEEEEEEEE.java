@@ -14,6 +14,10 @@ public class StopRemovingMyEnemyBuffsREEEEEEEEEEE {
 	@SpirePrefixPatch()
 	public static SpireReturn<Void> EveryTimeAnEnemyBuffsGetsRemovedIDieALittleInside(RemoveSpecificPowerAction instance) {
 		AbstractPower powerBeingRemoved = ReflectionHacks.getPrivate(instance, RemoveSpecificPowerAction.class, "powerInstance");
+		String powerToRemove = ReflectionHacks.getPrivate(instance, RemoveSpecificPowerAction.class, "powerToRemove");
+		if (powerBeingRemoved == null) {
+			powerBeingRemoved = instance.target.getPower(powerToRemove);
+		}
 		if (powerBeingRemoved instanceof AbstractUnremovablePower && instance.target instanceof AbstractMonster) {
 			if (((AbstractUnremovablePower)powerBeingRemoved).isUnremovable && powerBeingRemoved.type == AbstractPower.PowerType.BUFF) {
 				instance.isDone = true;
