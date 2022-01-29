@@ -4,6 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
@@ -169,8 +170,11 @@ public class SilentGirl extends AbstractRuinaMonster
                 phaseChangeAnimation();
                 hammer.deadAnimation();
                 nail.deadAnimation();
-                block(this, BLOCK * 3);
                 atb(new RemoveDebuffsAction(this));
+                block(this, BLOCK * 3);
+                if (AbstractDungeon.ascensionLevel >= 19) {
+                    atb(new HealAction(this, this, (int)(maxHealth * 0.25f)));
+                }
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 enraged = 2;
                 resetIdle(1.0f);

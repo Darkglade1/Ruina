@@ -3056,7 +3056,7 @@
       "ai": [
         {
           "min_asc": 0,
-          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well.",
+          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well. When the Seventh Bullet power has triggered for the turn or if the power is at 6/7 Attacks played, this creature will display Divinity particles.",
           "hp": "(200 HP)",
           "notes": "Be careful about when you trigger the Seventh Bullet power - it will essentially double the amount of unblocked damage this creature deals for the turn. Triggering the power on the Mass Attack turn will result in a massive amount of damage done to Nothing There, but it can also do a lot of damage to you as well if you can't adequately block the Mass Attack. A lower risk but lower reward play would be to trigger the power when this creature is only attacking Nothing There with its second intent.",
           "moves": [
@@ -3117,7 +3117,7 @@
         },
         {
           "min_asc": 4,
-          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well.",
+          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well. When the Seventh Bullet power has triggered for the turn or if the power is at 6/7 Attacks played, this creature will display Divinity particles.",
           "hp": "(200 HP)",
           "notes": "Be careful about when you trigger the Seventh Bullet power - it will essentially double the amount of unblocked damage this creature deals for the turn. Triggering the power on the Mass Attack turn will result in a massive amount of damage done to Nothing There, but it can also do a lot of damage to you as well if you can't adequately block the Mass Attack. A lower risk but lower reward play would be to trigger the power when this creature is only attacking Nothing There with its second intent.",
           "moves": [
@@ -3178,7 +3178,7 @@
         },
         {
           "min_asc": 9,
-          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well.",
+          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well. When the Seventh Bullet power has triggered for the turn or if the power is at 6/7 Attacks played, this creature will display Divinity particles.",
           "hp": "(220 HP)",
           "notes": "Be careful about when you trigger the Seventh Bullet power - it will essentially double the amount of unblocked damage this creature deals for the turn. Triggering the power on the Mass Attack turn will result in a massive amount of damage done to Nothing There, but it can also do a lot of damage to you as well if you can't adequately block the Mass Attack. A lower risk but lower reward play would be to trigger the power when this creature is only attacking Nothing There with its second intent.",
           "moves": [
@@ -3239,7 +3239,7 @@
         },
         {
           "min_asc": 19,
-          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well.",
+          "desc": "On the first intent, will use Ruthless Bullets every 3 turns. On other turns, has equal chances of using Inevitable Bullet or Silent Scope, but cannot use Silent Scope twice in a row. For the 2nd intent, will use Death Mark the turn before using Ruthless Bullets. Otherwise, uses Magic Bullet. The first intent will always target you, and the 2nd intent will target Nothing There unless it's dead, in which case it will target you as well. When the Seventh Bullet power has triggered for the turn or if the power is at 6/7 Attacks played, this creature will display Divinity particles.",
           "hp": "(220 HP)",
           "notes": "Be careful about when you trigger the Seventh Bullet power - it will essentially double the amount of unblocked damage this creature deals for the turn. Triggering the power on the Mass Attack turn will result in a massive amount of damage done to Nothing There, but it can also do a lot of damage to you as well if you can't adequately block the Mass Attack. A lower risk but lower reward play would be to trigger the power when this creature is only attacking Nothing There with its second intent.",
           "moves": [
@@ -3306,7 +3306,7 @@
       "ai": [
         {
           "min_asc": 0,
-          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischütz unless he's dead, in which case it will also target you.",
+          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischutz unless he's dead, in which case it will also target you.",
           "hp": "(250 HP)",
           "notes": "You can manipulate this creature's Mimicry power to your advantage - play weak Attacks on this creature when it's attacking you to take less damage, and play strong Attacks on it when it's attacking the other enemy to make the other enemy take more damage!",
           "moves": [
@@ -3354,7 +3354,7 @@
         },
         {
           "min_asc": 4,
-          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischütz unless he's dead, in which case it will also target you.",
+          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischutz unless he's dead, in which case it will also target you.",
           "hp": "(250 HP)",
           "notes": "You can manipulate this creature's Mimicry power to your advantage - play weak Attacks on this creature when it's attacking you to take less damage, and play strong Attacks on it when it's attacking the other enemy to make the other enemy take more damage!",
           "moves": [
@@ -3402,7 +3402,7 @@
         },
         {
           "min_asc": 9,
-          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischütz unless he's dead, in which case it will also target you.",
+          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischutz unless he's dead, in which case it will also target you.",
           "hp": "(275 HP)",
           "notes": "You can manipulate this creature's Mimicry power to your advantage - play weak Attacks on this creature when it's attacking you to take less damage, and play strong Attacks on it when it's attacking the other enemy to make the other enemy take more damage!",
           "moves": [
@@ -3450,7 +3450,7 @@
         },
         {
           "min_asc": 19,
-          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischütz unless he's dead, in which case it will also target you.",
+          "desc": "On the first intent, uses Dense Flesh first then alternates with Eye Contact. On the 2nd intent, uses Reaching Hand first then alternates with Evolve. The first intent will always target you, and the second intent will target Der Freischutz unless he's dead, in which case it will also target you.",
           "hp": "(275 HP)",
           "notes": "You can manipulate this creature's Mimicry power to your advantage - play weak Attacks on this creature when it's attacking you to take less damage, and play strong Attacks on it when it's attacking the other enemy to make the other enemy take more damage!",
           "moves": [

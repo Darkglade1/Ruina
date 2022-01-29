@@ -28,7 +28,7 @@ public class HomeAlly extends AbstractAllyMonster
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    private final int DEATH_DAMAGE = calcAscensionSpecial(20);
+    private final int DEATH_DAMAGE = calcAscensionSpecial(15);
     private static final byte NONE = 0;
 
     public RoadHome roadHome;

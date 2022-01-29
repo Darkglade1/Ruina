@@ -99,7 +99,7 @@ public class AbstractRuinaDungeon extends CustomDungeon {
                     this.setMainMusic(RuinaMod.makeMusicPath("Yesod2.ogg"));
                     break;
                 case HOD:
-                    this.setMainMusic(RuinaMod.makeMusicPath("Hod2.ogg"));
+                    this.setMainMusic(RuinaMod.makeMusicPath("Hod1.ogg"));
                     break;
                 case NETZACH:
                     this.setMainMusic(RuinaMod.makeMusicPath("Netzach2.ogg"));
@@ -120,7 +120,7 @@ public class AbstractRuinaDungeon extends CustomDungeon {
                     this.setMainMusic(RuinaMod.makeMusicPath("Hokma2.ogg"));
                     break;
                 case ROLAND:
-                    this.setMainMusic(RuinaMod.makeMusicPath("Keter2.ogg"));
+                    this.setMainMusic(RuinaMod.makeMusicPath("Keter1.ogg"));
                     break;
                 case GUESTS:
                     this.setMainMusic(RuinaMod.makeMusicPath("Lobby.ogg"));
