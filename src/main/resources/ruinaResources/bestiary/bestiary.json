@@ -4252,6 +4252,1331 @@
       ]
     },
     {
+      "name": "Big and Will Be Bad Wolf",
+      "id": "ruina:BadWolf",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Can use Claw Bite, and Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
+          "hp": "(80 - 84 HP)",
+          "notes": "The Wolf becomes stronger after Hunter in the Dark triggers, so it may be worthwhile to hold back on damage to keep it above 50% HP in order to set up a stronger burst damage turn later.",
+          "moves": [
+            {
+              "name": "Claw",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bite",
+              "effects": [
+                {
+                  "name": "14",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hunt",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Can use Claw Bite, and Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
+          "hp": "(80 - 84 HP)",
+          "notes": "The Wolf becomes stronger after Hunter in the Dark triggers, so it may be worthwhile to hold back on damage to keep it above 50% HP in order to set up a stronger burst damage turn later.",
+          "moves": [
+            {
+              "name": "Claw",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bite",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hunt",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Can use Claw Bite, and Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
+          "hp": "(88 - 92 HP)",
+          "notes": "The Wolf becomes stronger after Hunter in the Dark triggers, so it may be worthwhile to hold back on damage to keep it above 50% HP in order to set up a stronger burst damage turn later.",
+          "moves": [
+            {
+              "name": "Claw",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bite",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hunt",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Can use Claw Bite, and Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
+          "hp": "(88 - 92 HP)",
+          "notes": "The Wolf becomes stronger after Hunter in the Dark triggers, so it may be worthwhile to hold back on damage to keep it above 50% HP in order to set up a stronger burst damage turn later.",
+          "moves": [
+            {
+              "name": "Claw",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bite",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hunt",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Brilliant Bliss",
+      "id": "ruina:BrilliantBliss",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Sit Here and Do Nothing",
+          "hp": "(20 HP)",
+          "notes": "It's a chunk of crystal, did you expect it to get up and do something?",
+          "moves": [
+            {
+              "name": "Sit Here and Do Nothing",
+              "effects": [
+                {
+                  "name": "Sits There and Does Nothing",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Uses Sit Here and Do Nothing",
+          "hp": "(22 HP)",
+          "notes": "It's a chunk of crystal, did you expect it to get up and do something?",
+          "moves": [
+            {
+              "name": "Sit Here and Do Nothing",
+              "effects": [
+                {
+                  "name": "Sits There and Does Nothing",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "King of Greed",
+      "id": "ruina:KingOfGreed",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Cycles Edacity -> Fixation -> Road of the King.",
+          "hp": "(115 - 122 HP)",
+          "notes": "To avoid taking a large amount of damage from Road of the King, it's a good idea to lower the HP of the Brilliant Bliss and then finish them off on the turn Road of the King is being used.",
+          "moves": [
+            {
+              "name": "Edacity",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Fixation",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Road of the King",
+              "effects": [
+                {
+                  "name": "26",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Cycles Edacity -> Fixation -> Road of the King.",
+          "hp": "(115 - 122 HP)",
+          "notes": "To avoid taking a large amount of damage from Road of the King, it's a good idea to lower the HP of the Brilliant Bliss and then finish them off on the turn Road of the King is being used.",
+          "moves": [
+            {
+              "name": "Edacity",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Fixation",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Road of the King",
+              "effects": [
+                {
+                  "name": "28",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Cycles Edacity -> Fixation -> Road of the King.",
+          "hp": "(127 - 134 HP)",
+          "notes": "To avoid taking a large amount of damage from Road of the King, it's a good idea to lower the HP of the Brilliant Bliss and then finish them off on the turn Road of the King is being used.",
+          "moves": [
+            {
+              "name": "Edacity",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Fixation",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Road of the King",
+              "effects": [
+                {
+                  "name": "28",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Knight of Despair",
+      "id": "ruina:KnightOfDespair",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Despair every turn.",
+          "hp": "(160 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Despair",
+              "effects": [
+                {
+                  "name": "If the Forgotten Sword is alive, give it 5 Strength, otherwise summon it.",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Uses Despair every turn.",
+          "hp": "(176 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Despair",
+              "effects": [
+                {
+                  "name": "If the Forgotten Sword is alive, give it 5 Strength, otherwise summon it.",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Uses Despair every turn.",
+          "hp": "(176 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Despair",
+              "effects": [
+                {
+                  "name": "If the Forgotten Sword is alive, give it 8 Strength, otherwise summon it.",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Forgotten Sword",
+      "id": "ruina:Sword",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Tear Heart every turn.",
+          "hp": "(40 HP)",
+          "notes": "Fully blocking the Sword is the most valuable way to kill it, but its constant Strength scaling from the Knight of Despair means trying to fully block it gets harder and riskier the longer it lives. If you are unable to fully block it early on, it may be better to switch plans to killing it with damage instead.",
+          "moves": [
+            {
+              "name": "Tear Heart",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Uses Tear Heart every turn.",
+          "hp": "(40 HP)",
+          "notes": "Fully blocking the Sword is the most valuable way to kill it, but its constant Strength scaling from the Knight of Despair means trying to fully block it gets harder and riskier the longer it lives. If you are unable to fully block it early on, it may be better to switch plans to killing it with damage instead.",
+          "moves": [
+            {
+              "name": "Tear Heart",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Uses Tear Heart every turn.",
+          "hp": "(44 HP)",
+          "notes": "Fully blocking the Sword is the most valuable way to kill it, but its constant Strength scaling from the Knight of Despair means trying to fully block it gets harder and riskier the longer it lives. If you are unable to fully block it early on, it may be better to switch plans to killing it with damage instead.",
+          "moves": [
+            {
+              "name": "Tear Heart",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Nosferatu",
+      "id": "ruina:Nosferatu",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Unbearable Drought, Merciless Gesture, and Looming Presence. Cannot use Unbearable Drought or Merciless Gesture twice in a row, and Looming Presence cannot be used again until at least 2 turns have passed. Will always use Unbearable Drought after Merciless Gesture.",
+          "hp": "(85 - 90 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Unbearable Drought",
+              "effects": [
+                {
+                  "name": "14",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Merciless Gesture",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Looming Presence",
+              "effects": [
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Has equal chances of using Unbearable Drought, Merciless Gesture, and Looming Presence. Cannot use Unbearable Drought or Merciless Gesture twice in a row, and Looming Presence cannot be used again until at least 2 turns have passed. Will always use Unbearable Drought after Merciless Gesture.",
+          "hp": "(85 - 90 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Unbearable Drought",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Merciless Gesture",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Looming Presence",
+              "effects": [
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Has equal chances of using Unbearable Drought, Merciless Gesture, and Looming Presence. Cannot use Unbearable Drought or Merciless Gesture twice in a row, and Looming Presence cannot be used again until at least 2 turns have passed. Will always use Unbearable Drought after Merciless Gesture.",
+          "hp": "(94 - 99 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Unbearable Drought",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Merciless Gesture",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Looming Presence",
+              "effects": [
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Has equal chances of using Unbearable Drought, Merciless Gesture, and Looming Presence. Cannot use Unbearable Drought or Merciless Gesture twice in a row, and Looming Presence cannot be used again until at least 2 turns have passed. Will always use Unbearable Drought after Merciless Gesture.",
+          "hp": "(94 - 99 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Unbearable Drought",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Merciless Gesture",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Looming Presence",
+              "effects": [
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Queen of Hatred",
+      "id": "ruina:QueenOfHate",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Arcana Beats and In the Name of Hate and cannot use either move 3 times in a row. The first time Hysteria is triggered, will use Light of Hatred next turn.",
+          "hp": "(101 - 108 HP)",
+          "notes": "Since you control when this creature will use Light of Hatred, you can manipulate it to use Light of Hatred when it is low on HP so you can quickly finish it and avoid having to deal with the several turns of Vulnerable.",
+          "moves": [
+            {
+              "name": "Arcana Beats",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "In the Name of Hate",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Light of Hatred",
+              "effects": [
+                {
+                  "name": "Apply 3 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Has equal chances of using Arcana Beats and In the Name of Hate and cannot use either move 3 times in a row. The first time Hysteria is triggered, will use Light of Hatred next turn.",
+          "hp": "(101 - 108 HP)",
+          "notes": "Since you control when this creature will use Light of Hatred, you can manipulate it to use Light of Hatred when it is low on HP so you can quickly finish it and avoid having to deal with the several turns of Vulnerable.",
+          "moves": [
+            {
+              "name": "Arcana Beats",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "In the Name of Hate",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Light of Hatred",
+              "effects": [
+                {
+                  "name": "Apply 3 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Has equal chances of using Arcana Beats and In the Name of Hate and cannot use either move 3 times in a row. The first time Hysteria is triggered, will use Light of Hatred next turn.",
+          "hp": "(111 - 119 HP)",
+          "notes": "Since you control when this creature will use Light of Hatred, you can manipulate it to use Light of Hatred when it is low on HP so you can quickly finish it and avoid having to deal with the several turns of Vulnerable.",
+          "moves": [
+            {
+              "name": "Arcana Beats",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "In the Name of Hate",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Light of Hatred",
+              "effects": [
+                {
+                  "name": "Apply 3 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Has equal chances of using Arcana Beats and In the Name of Hate and cannot use either move 3 times in a row. The first time Hysteria is triggered, will use Light of Hatred next turn.",
+          "hp": "(111 - 119 HP)",
+          "notes": "Since you control when this creature will use Light of Hatred, you can manipulate it to use Light of Hatred when it is low on HP so you can quickly finish it and avoid having to deal with the several turns of Vulnerable.",
+          "moves": [
+            {
+              "name": "Arcana Beats",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 2 Wounds into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "In the Name of Hate",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Light of Hatred",
+              "effects": [
+                {
+                  "name": "Apply 5 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sanguine Bat",
+      "id": "ruina:SanguineBat",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Bloodsucking, Digging Teeth, and Avid Thirst. Cannot use Bloodsucking or Digging Teeth twice in a row. Bloodsucking cannot be used on the first turn, and Avid Thirst cannot be used again until at least 2 turns have passed.",
+          "hp": "(31 - 37 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Bloodsucking",
+              "effects": [
+                {
+                  "name": "5x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Digging Teeth",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Avid Thirst",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Has equal chances of using Bloodsucking, Digging Teeth, and Avid Thirst. Cannot use Bloodsucking or Digging Teeth twice in a row. Bloodsucking cannot be used on the first turn, and Avid Thirst cannot be used again until at least 2 turns have passed.",
+          "hp": "(31 - 37 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Bloodsucking",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Digging Teeth",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Avid Thirst",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Has equal chances of using Bloodsucking, Digging Teeth, and Avid Thirst. Cannot use Bloodsucking or Digging Teeth twice in a row. Bloodsucking cannot be used on the first turn, and Avid Thirst cannot be used again until at least 2 turns have passed.",
+          "hp": "(34 - 41 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Bloodsucking",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Digging Teeth",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Avid Thirst",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Has equal chances of using Bloodsucking, Digging Teeth, and Avid Thirst. Cannot use Bloodsucking or Digging Teeth twice in a row. Bloodsucking cannot be used on the first turn, and Avid Thirst cannot be used again until at least 2 turns have passed.",
+          "hp": "(34 - 41 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Bloodsucking",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Digging Teeth",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Avid Thirst",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Scarecrow",
+      "id": "ruina:Scarecrow",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the leftmost Scarecrow going first.",
+          "hp": "(48 - 54 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rake",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Harvest",
+              "effects": [
+                {
+                  "name": "3x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Struggle for Wisdom",
+              "effects": [
+                {
+                  "name": "Shuffle 2 Wisdom into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the leftmost Scarecrow going first.",
+          "hp": "(48 - 54 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rake",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Harvest",
+              "effects": [
+                {
+                  "name": "3x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Struggle for Wisdom",
+              "effects": [
+                {
+                  "name": "Shuffle 2 Wisdom into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the leftmost Scarecrow going first.",
+          "hp": "(53 - 59 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rake",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Harvest",
+              "effects": [
+                {
+                  "name": "3x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Struggle for Wisdom",
+              "effects": [
+                {
+                  "name": "Shuffle 2 Wisdom into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the leftmost Scarecrow going first.",
+          "hp": "(53 - 59 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rake",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Harvest",
+              "effects": [
+                {
+                  "name": "3x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Struggle for Wisdom",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Wisdom into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Warm-Hearted Woodsman",
+      "id": "ruina:Woodsman",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Strike of the Axe, Lumber, and Warm Pulse with equal chances. Cannot use Strike of the Axe or Lumber twice in a row, and Warm Pulse cannot be used again until at least 2 turns have passed.",
+          "hp": "(140 - 148 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Strike of the Axe",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lumber",
+              "effects": [
+                {
+                  "name": "4x4",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Warm Pulse",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Uses Strike of the Axe, Lumber, and Warm Pulse with equal chances. Cannot use Strike of the Axe or Lumber twice in a row, and Warm Pulse cannot be used again until at least 2 turns have passed.",
+          "hp": "(140 - 148 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Strike of the Axe",
+              "effects": [
+                {
+                  "name": "11x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lumber",
+              "effects": [
+                {
+                  "name": "4x4",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Warm Pulse",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Uses Strike of the Axe, Lumber, and Warm Pulse with equal chances. Cannot use Strike of the Axe or Lumber twice in a row, and Warm Pulse cannot be used again until at least 2 turns have passed.",
+          "hp": "(154 - 163 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Strike of the Axe",
+              "effects": [
+                {
+                  "name": "11x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lumber",
+              "effects": [
+                {
+                  "name": "4x4",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Warm Pulse",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Uses Strike of the Axe, Lumber, and Warm Pulse with equal chances. Cannot use Strike of the Axe or Lumber twice in a row, and Warm Pulse cannot be used again until at least 2 turns have passed.",
+          "hp": "(154 - 163 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Strike of the Axe",
+              "effects": [
+                {
+                  "name": "11x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 2 Wounds into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lumber",
+              "effects": [
+                {
+                  "name": "4x4",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Warm Pulse",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Home",
       "id": "ruina:HomeAlly",
       "ai": [
@@ -4260,6 +5585,942 @@
           "desc": "Uses Sit Here and Do Nothing",
           "hp": "(50 HP)",
           "notes": "It's a house, did you expect it to get up and do something?",
+          "moves": [
+            {
+              "name": "Sit Here and Do Nothing",
+              "effects": [
+                {
+                  "name": "Sits There and Does Nothing",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Uses Sit Here and Do Nothing",
+          "hp": "(43 HP)",
+          "notes": "It's a house, did you expect it to get up and do something?",
+          "moves": [
+            {
+              "name": "Sit Here and Do Nothing",
+              "effects": [
+                {
+                  "name": "Sits There and Does Nothing",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Road Home",
+      "id": "ruina:RoadHome",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "While the Home is alive, will use Let's Go Together! on 3 intents targeting the Home. If the Home is destroyed, will use Homing Instinct on 1 intent targeting you.",
+          "hp": "(120 HP)",
+          "notes": "If your deck has sufficient frontloaded damage, you can try to burst down Scaredy Cat before the Road Home destroys the Home, and after the cat is gone you can freely attack the Road Home and cancel her intents without repercussions.",
+          "moves": [
+            {
+              "name": "Let's Go Together!",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Homing Instinct",
+              "effects": [
+                {
+                  "name": "25",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 2 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "While the Home is alive, will use Let's Go Together! on 3 intents targeting the Home. If the Home is destroyed, will use Homing Instinct on 1 intent targeting you.",
+          "hp": "(120 HP)",
+          "notes": "If your deck has sufficient frontloaded damage, you can try to burst down Scaredy Cat before the Road Home destroys the Home, and after the cat is gone you can freely attack the Road Home and cancel her intents without repercussions.",
+          "moves": [
+            {
+              "name": "Let's Go Together!",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Homing Instinct",
+              "effects": [
+                {
+                  "name": "28",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 2 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "While the Home is alive, will use Let's Go Together! on 3 intents targeting the Home. If the Home is destroyed, will use Homing Instinct on 1 intent targeting you.",
+          "hp": "(132 HP)",
+          "notes": "If your deck has sufficient frontloaded damage, you can try to burst down Scaredy Cat before the Road Home destroys the Home, and after the cat is gone you can freely attack the Road Home and cancel her intents without repercussions.",
+          "moves": [
+            {
+              "name": "Let's Go Together!",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Homing Instinct",
+              "effects": [
+                {
+                  "name": "28",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 2 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "While the Home is alive, will use Let's Go Together! on 3 intents targeting the Home. If the Home is destroyed, will use Homing Instinct on 1 intent targeting you.",
+          "hp": "(132 HP)",
+          "notes": "If your deck has sufficient frontloaded damage, you can try to burst down Scaredy Cat before the Road Home destroys the Home, and after the cat is gone you can freely attack the Road Home and cancel her intents without repercussions.",
+          "moves": [
+            {
+              "name": "Let's Go Together!",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Homing Instinct",
+              "effects": [
+                {
+                  "name": "28",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 3 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Scaredy Cat",
+      "id": "ruina:ScaredyCat",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with RAWR, then alternates between RAWR and Growl. If the Road Home is dead, will transform and intend to flee.",
+          "hp": "(100 HP)",
+          "notes": "If you need to attack the Road Home while the Scaredy Cat is still alive, it is better to play more Attacks on turns when this creature is using Growl instead of RAWR so that the Temporary Strength from Courage doesn't hurt as much.",
+          "moves": [
+            {
+              "name": "RAWR",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Growl",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Begins with RAWR, then alternates between RAWR and Growl. If the Road Home is dead, will transform and intend to flee.",
+          "hp": "(100 HP)",
+          "notes": "If you need to attack the Road Home while the Scaredy Cat is still alive, it is better to play more Attacks on turns when this creature is using Growl instead of RAWR so that the Temporary Strength from Courage doesn't hurt as much.",
+          "moves": [
+            {
+              "name": "RAWR",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Growl",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Begins with RAWR, then alternates between RAWR and Growl. If the Road Home is dead, will transform and intend to flee.",
+          "hp": "(110 HP)",
+          "notes": "If you need to attack the Road Home while the Scaredy Cat is still alive, it is better to play more Attacks on turns when this creature is using Growl instead of RAWR so that the Temporary Strength from Courage doesn't hurt as much.",
+          "moves": [
+            {
+              "name": "RAWR",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Growl",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Begins with RAWR, then alternates between RAWR and Growl. If the Road Home is dead, will transform and intend to flee.",
+          "hp": "(110 HP)",
+          "notes": "If you need to attack the Road Home while the Scaredy Cat is still alive, it is better to play more Attacks on turns when this creature is using Growl instead of RAWR so that the Temporary Strength from Courage doesn't hurt as much.",
+          "moves": [
+            {
+              "name": "RAWR",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Growl",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into draw and discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hermit of the Azure Forest",
+      "id": "ruina:Hermit",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "On the first intent, can use Hold Still, Kindly Make Way, and Crackle with equal chances. Cannot use Hold Still or Kindly Make Way twice in a row. Cannot use Crackle again until at least 2 turns have passed. If the Hermit's Staff is dead, will use Hello, Companion. On the 2nd intent, can use Hold Still and Kindly Make Way with equal chances, but cannot use Hold Still twice in a row and cannot use Kindly Make Way 3 times in a row.",
+          "hp": "(190 - 200 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Hold Still",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable if the target is the Servant of Wrath",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Apply 1 Frail if the target is the player",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Kindly Make Way",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Hello, Companion",
+              "effects": [
+                {
+                  "name": "Summon 1 Hermit's Staff",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Crackle",
+              "effects": [
+                {
+                  "name": "All allies gain 11 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "On the first intent, can use Hold Still, Kindly Make Way, and Crackle with equal chances. Cannot use Hold Still or Kindly Make Way twice in a row. Cannot use Crackle again until at least 2 turns have passed. If the Hermit's Staff is dead, will use Hello, Companion. On the 2nd intent, can use Hold Still and Kindly Make Way with equal chances, but cannot use Hold Still twice in a row and cannot use Kindly Make Way 3 times in a row.",
+          "hp": "(190 - 200 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Hold Still",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable if the target is the Servant of Wrath",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Apply 1 Frail if the target is the player",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Kindly Make Way",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Hello, Companion",
+              "effects": [
+                {
+                  "name": "Summon 1 Hermit's Staff",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Crackle",
+              "effects": [
+                {
+                  "name": "All allies gain 11 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "On the first intent, can use Hold Still, Kindly Make Way, and Crackle with equal chances. Cannot use Hold Still or Kindly Make Way twice in a row. Cannot use Crackle again until at least 2 turns have passed. If the Hermit's Staff is dead, will use Hello, Companion. On the 2nd intent, can use Hold Still and Kindly Make Way with equal chances, but cannot use Hold Still twice in a row and cannot use Kindly Make Way 3 times in a row.",
+          "hp": "(209 - 220 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Hold Still",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable if the target is the Servant of Wrath",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Apply 1 Frail if the target is the player",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Kindly Make Way",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Hello, Companion",
+              "effects": [
+                {
+                  "name": "Summon 1 Hermit's Staff",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Crackle",
+              "effects": [
+                {
+                  "name": "All allies gain 12 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "On the first intent, can use Hold Still, Kindly Make Way, and Crackle with equal chances. Cannot use Hold Still or Kindly Make Way twice in a row. Cannot use Crackle again until at least 2 turns have passed. If the Hermit's Staff is dead, will use Hello, Companion. On the 2nd intent, can use Hold Still and Kindly Make Way with equal chances, but cannot use Hold Still twice in a row and cannot use Kindly Make Way 3 times in a row.",
+          "hp": "(209 - 220 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Hold Still",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable if the target is the Servant of Wrath",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Apply 2 Frail if the target is the player",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Kindly Make Way",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Hello, Companion",
+              "effects": [
+                {
+                  "name": "Summon 1 Hermit's Staff",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Crackle",
+              "effects": [
+                {
+                  "name": "All allies gain 12 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 3 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hermit's Staff",
+      "id": "ruina:HermitStaff",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Smack on the Servant of Wrath every turn.",
+          "hp": "(44 - 48 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Smack",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Uses Smack on the Servant of Wrath every turn.",
+          "hp": "(44 - 48 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Smack",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Uses Smack on the Servant of Wrath every turn.",
+          "hp": "(48 - 53 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Smack",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Servant of Wrath",
+      "id": "ruina:ServantOfWrath",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Rage every turn. Targets the Hermit's Staff if it's alive, otherwise targets the Hermit. If Blind Fury was triggered, uses EMBODIMENTS OF EVIL! instead.",
+          "hp": "(300 HP)",
+          "notes": "This ally's Mass Attack deals a lot of damage to you, so it's important to share your Block so Blind Fury doesn't trigger too often! Additionally, if the Mass Attack kills the Hermit on the first or second hit, the rest of the attacks won't occur.",
+          "moves": [
+            {
+              "name": "EMBODIMENTS OF EVIL!",
+              "effects": [
+                {
+                  "name": "8x3 Mass Attack",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Erosion next turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Rage",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Erosion next turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Uses Rage every turn. Targets the Hermit's Staff if it's alive, otherwise targets the Hermit. If Blind Fury was triggered, uses EMBODIMENTS OF EVIL! instead.",
+          "hp": "(300 HP)",
+          "notes": "This ally's Mass Attack deals a lot of damage to you, so it's important to share your Block so Blind Fury doesn't trigger too often! Additionally, if the Mass Attack kills the Hermit on the first or second hit, the rest of the attacks won't occur.",
+          "moves": [
+            {
+              "name": "EMBODIMENTS OF EVIL!",
+              "effects": [
+                {
+                  "name": "9x3 Mass Attack",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Erosion next turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Rage",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Erosion next turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mountain of Smiling Bodies",
+      "id": "ruina:Mountain",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "In Stage 3, the first 2 intents have equal chances of using Ram or Bite, but cannot use either move 3 times in a row. The 3rd intent will begin with Ram on the Corpse and alternate with Vomit on you. In Stage 2, the first intent has equal chances of using Devour, Bite, or Horrid Screech - Devour and Bite cannot be used twice in a row, and Horrid Screech cannot be used again until 2 turns have passed. The 2nd intent will use Devour on the Corpse. In Stage 1, its single intent will use Devour on the Corpse.",
+          "hp": "(50/100/125 HP)",
+          "notes": "Stage 3 is its most dangerous form, so it's very important to quickly burst this creature down so it shrinks to Stage 2. In addition, be careful about killing the Corpse yourself since that will redirect this creature's attacks on the Corpse to you, which can result in you taking unnecessary damage.",
+          "moves": [
+            {
+              "name": "Devour",
+              "effects": [
+                {
+                  "name": "14",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bite",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Horrid Screech",
+          "effects": [
+            {
+              "name": "Shuffle 3 Dazed into discard pile",
+              "color": "DEBUFF"
+            }
+          ]
+        },
+        {
+          "name": "Ram",
+          "effects": [
+            {
+              "name": "16",
+              "color": "DAMAGE"
+            }
+          ]
+        },
+        {
+          "name": "Vomit",
+          "effects": [
+            {
+              "name": "Apply 1 Frail",
+              "color": "DEBUFF"
+            },
+            {
+              "name": "Shuffle 1 Slimed into discard pile",
+              "color": "DEBUFF"
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "In Stage 3, the first 2 intents have equal chances of using Ram or Bite, but cannot use either move 3 times in a row. The 3rd intent will begin with Ram on the Corpse and alternate with Vomit on you. In Stage 2, the first intent has equal chances of using Devour, Bite, or Horrid Screech - Devour and Bite cannot be used twice in a row, and Horrid Screech cannot be used again until 2 turns have passed. The 2nd intent will use Devour on the Corpse. In Stage 1, its single intent will use Devour on the Corpse.",
+          "hp": "(50/100/125 HP)",
+          "notes": "Stage 3 is its most dangerous form, so it's very important to quickly burst this creature down so it shrinks to Stage 2. In addition, be careful about killing the Corpse yourself since that will redirect this creature's attacks on the Corpse to you, which can result in you taking unnecessary damage.",
+          "moves": [
+            {
+              "name": "Devour",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bite",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Horrid Screech",
+          "effects": [
+            {
+              "name": "Shuffle 3 Dazed into discard pile",
+              "color": "DEBUFF"
+            }
+          ]
+        },
+        {
+          "name": "Ram",
+          "effects": [
+            {
+              "name": "18",
+              "color": "DAMAGE"
+            }
+          ]
+        },
+        {
+          "name": "Vomit",
+          "effects": [
+            {
+              "name": "Apply 1 Frail",
+              "color": "DEBUFF"
+            },
+            {
+              "name": "Shuffle 1 Slimed into discard pile",
+              "color": "DEBUFF"
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "In Stage 3, the first 2 intents have equal chances of using Ram or Bite, but cannot use either move 3 times in a row. The 3rd intent will begin with Ram on the Corpse and alternate with Vomit on you. In Stage 2, the first intent has equal chances of using Devour, Bite, or Horrid Screech - Devour and Bite cannot be used twice in a row, and Horrid Screech cannot be used again until 2 turns have passed. The 2nd intent will use Devour on the Corpse. In Stage 1, its single intent will use Devour on the Corpse.",
+          "hp": "(55/110/138 HP)",
+          "notes": "Stage 3 is its most dangerous form, so it's very important to quickly burst this creature down so it shrinks to Stage 2. In addition, be careful about killing the Corpse yourself since that will redirect this creature's attacks on the Corpse to you, which can result in you taking unnecessary damage.",
+          "moves": [
+            {
+              "name": "Devour",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bite",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Horrid Screech",
+          "effects": [
+            {
+              "name": "Shuffle 3 Dazed into discard pile",
+              "color": "DEBUFF"
+            }
+          ]
+        },
+        {
+          "name": "Ram",
+          "effects": [
+            {
+              "name": "18",
+              "color": "DAMAGE"
+            }
+          ]
+        },
+        {
+          "name": "Vomit",
+          "effects": [
+            {
+              "name": "Apply 1 Frail",
+              "color": "DEBUFF"
+            },
+            {
+              "name": "Shuffle 1 Slimed into discard pile",
+              "color": "DEBUFF"
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "In Stage 3, the first 2 intents have equal chances of using Ram or Bite, but cannot use either move 3 times in a row. The 3rd intent will begin with Devour on the Corpse and alternate with Vomit on you. In Stage 2, the first intent has equal chances of using Devour, Bite, or Horrid Screech - Devour and Bite cannot be used twice in a row, and Horrid Screech cannot be used again until 2 turns have passed. The 2nd intent will use Devour on the Corpse. In Stage 1, its single intent will use Devour on the Corpse.",
+          "hp": "(55/110/138 HP)",
+          "notes": "Stage 3 is its most dangerous form, so it's very important to quickly burst this creature down so it shrinks to Stage 2. In addition, be careful about killing the Corpse yourself since that will redirect this creature's attacks on the Corpse to you, which can result in you taking unnecessary damage.",
+          "moves": [
+            {
+              "name": "Devour",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bite",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Horrid Screech",
+          "effects": [
+            {
+              "name": "Shuffle 5 Dazed into discard pile",
+              "color": "DEBUFF"
+            }
+          ]
+        },
+        {
+          "name": "Ram",
+          "effects": [
+            {
+              "name": "18",
+              "color": "DAMAGE"
+            }
+          ]
+        },
+        {
+          "name": "Vomit",
+          "effects": [
+            {
+              "name": "Apply 2 Frail",
+              "color": "DEBUFF"
+            },
+            {
+              "name": "Shuffle 2 Slimed into discard pile",
+              "color": "DEBUFF"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Melted Corpses",
+      "id": "ruina:MeltedCorpses",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Sit Here and Do Nothing",
+          "hp": "(40 HP)",
+          "notes": "It's a pile of corpses, did you expect them to get up and do something? Well actually, the Mountain of Smiling Bodies is a pile of moving corpses, so I suppose that assumption isn't without merit.",
+          "moves": [
+            {
+              "name": "Sit Here and Do Nothing",
+              "effects": [
+                {
+                  "name": "Sits There and Does Nothing",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Uses Sit Here and Do Nothing",
+          "hp": "(30 HP)",
+          "notes": "It's a pile of corpses, did you expect them to get up and do something? Well actually, the Mountain of Smiling Bodies is a pile of moving corpses, so I suppose that assumption isn't without merit.",
           "moves": [
             {
               "name": "Sit Here and Do Nothing",
