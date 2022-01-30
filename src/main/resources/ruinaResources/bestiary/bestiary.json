@@ -4257,7 +4257,7 @@
       "ai": [
         {
           "min_asc": 0,
-          "desc": "Can use Claw Bite, and Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
+          "desc": "Can use Claw, Bite or Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
           "hp": "(80 - 84 HP)",
           "notes": "The Wolf becomes stronger after Hunter in the Dark triggers, so it may be worthwhile to hold back on damage to keep it above 50% HP in order to set up a stronger burst damage turn later.",
           "moves": [
@@ -4300,7 +4300,7 @@
         },
         {
           "min_asc": 2,
-          "desc": "Can use Claw Bite, and Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
+          "desc": "Can use Claw, Bite or Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
           "hp": "(80 - 84 HP)",
           "notes": "The Wolf becomes stronger after Hunter in the Dark triggers, so it may be worthwhile to hold back on damage to keep it above 50% HP in order to set up a stronger burst damage turn later.",
           "moves": [
@@ -4343,7 +4343,7 @@
         },
         {
           "min_asc": 7,
-          "desc": "Can use Claw Bite, and Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
+          "desc": "Can use Claw, Bite or Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
           "hp": "(88 - 92 HP)",
           "notes": "The Wolf becomes stronger after Hunter in the Dark triggers, so it may be worthwhile to hold back on damage to keep it above 50% HP in order to set up a stronger burst damage turn later.",
           "moves": [
@@ -4386,7 +4386,7 @@
         },
         {
           "min_asc": 17,
-          "desc": "Can use Claw Bite, and Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
+          "desc": "Can use Claw, Bite or Hunt with equal chances, but cannot use any move twice in a row. After Hunter in the Dark has triggered, will only use Hunt from then onwards.",
           "hp": "(88 - 92 HP)",
           "notes": "The Wolf becomes stronger after Hunter in the Dark triggers, so it may be worthwhile to hold back on damage to keep it above 50% HP in order to set up a stronger burst damage turn later.",
           "moves": [
@@ -5258,7 +5258,7 @@
       "ai": [
         {
           "min_asc": 0,
-          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the leftmost Scarecrow going first.",
+          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the rightmost Scarecrow going first.",
           "hp": "(48 - 54 HP)",
           "notes": "",
           "moves": [
@@ -5293,7 +5293,7 @@
         },
         {
           "min_asc": 2,
-          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the leftmost Scarecrow going first.",
+          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the rightmost Scarecrow going first.",
           "hp": "(48 - 54 HP)",
           "notes": "",
           "moves": [
@@ -5328,7 +5328,7 @@
         },
         {
           "min_asc": 7,
-          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the leftmost Scarecrow going first.",
+          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the rightmost Scarecrow going first.",
           "hp": "(53 - 59 HP)",
           "notes": "",
           "moves": [
@@ -5363,7 +5363,7 @@
         },
         {
           "min_asc": 17,
-          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the leftmost Scarecrow going first.",
+          "desc": "Has equal chances of using Rake or Harvest, but cannot use either move twice in a row. The Scarecrows will also take turns using Struggle for Wisdom every 3 turns, with the rightmost Scarecrow going first.",
           "hp": "(53 - 59 HP)",
           "notes": "",
           "moves": [
@@ -5886,11 +5886,20 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 1 Vulnerable if the target is the Servant of Wrath",
+                  "name": "Apply 1 Vulnerable to the Servant of Wrath",
                   "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hold Still",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 1 Frail if the target is the player",
+                  "name": "Apply 1 Frail to the player",
                   "color": "DEBUFF"
                 }
               ]
@@ -5917,11 +5926,7 @@
               "name": "Crackle",
               "effects": [
                 {
-                  "name": "All allies gain 11 Block",
-                  "color": "BLOCK"
-                },
-                {
-                  "name": "All allies gain 2 Strength next turn",
+                  "name": "All allies gain 11 Block and 2 Strength next turn",
                   "color": "BUFF"
                 }
               ]
@@ -5938,15 +5943,24 @@
               "name": "Hold Still",
               "effects": [
                 {
-                  "name": "9",
+                  "name": "8",
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 1 Vulnerable if the target is the Servant of Wrath",
+                  "name": "Apply 1 Vulnerable to the Servant of Wrath",
                   "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hold Still",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 1 Frail if the target is the player",
+                  "name": "Apply 1 Frail to the player",
                   "color": "DEBUFF"
                 }
               ]
@@ -5973,11 +5987,7 @@
               "name": "Crackle",
               "effects": [
                 {
-                  "name": "All allies gain 11 Block",
-                  "color": "BLOCK"
-                },
-                {
-                  "name": "All allies gain 2 Strength next turn",
+                  "name": "All allies gain 11 Block and 2 Strength next turn",
                   "color": "BUFF"
                 }
               ]
@@ -5994,15 +6004,24 @@
               "name": "Hold Still",
               "effects": [
                 {
-                  "name": "9",
+                  "name": "8",
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 1 Vulnerable if the target is the Servant of Wrath",
+                  "name": "Apply 1 Vulnerable to the Servant of Wrath",
                   "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hold Still",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 1 Frail if the target is the player",
+                  "name": "Apply 1 Frail to the player",
                   "color": "DEBUFF"
                 }
               ]
@@ -6029,11 +6048,7 @@
               "name": "Crackle",
               "effects": [
                 {
-                  "name": "All allies gain 12 Block",
-                  "color": "BLOCK"
-                },
-                {
-                  "name": "All allies gain 2 Strength next turn",
+                  "name": "All allies gain 12 Block and 2 Strength next turn",
                   "color": "BUFF"
                 }
               ]
@@ -6050,15 +6065,24 @@
               "name": "Hold Still",
               "effects": [
                 {
-                  "name": "9",
+                  "name": "8",
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 2 Vulnerable if the target is the Servant of Wrath",
+                  "name": "Apply 1 Vulnerable to the Servant of Wrath",
                   "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hold Still",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 2 Frail if the target is the player",
+                  "name": "Apply 1 Frail to the player",
                   "color": "DEBUFF"
                 }
               ]
@@ -6085,11 +6109,7 @@
               "name": "Crackle",
               "effects": [
                 {
-                  "name": "All allies gain 12 Block",
-                  "color": "BLOCK"
-                },
-                {
-                  "name": "All allies gain 3 Strength next turn",
+                  "name": "All allies gain 12 Block and 3 Strength next turn",
                   "color": "BUFF"
                 }
               ]
@@ -6264,37 +6284,37 @@
                   "color": "DEBUFF"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "name": "Horrid Screech",
-          "effects": [
-            {
-              "name": "Shuffle 3 Dazed into discard pile",
-              "color": "DEBUFF"
-            }
-          ]
-        },
-        {
-          "name": "Ram",
-          "effects": [
-            {
-              "name": "16",
-              "color": "DAMAGE"
-            }
-          ]
-        },
-        {
-          "name": "Vomit",
-          "effects": [
-            {
-              "name": "Apply 1 Frail",
-              "color": "DEBUFF"
             },
             {
-              "name": "Shuffle 1 Slimed into discard pile",
-              "color": "DEBUFF"
+              "name": "Horrid Screech",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Ram",
+              "effects": [
+                {
+                  "name": "16",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Vomit",
+              "effects": [
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 1 Slimed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
             }
           ]
         },
@@ -6329,37 +6349,37 @@
                   "color": "DEBUFF"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "name": "Horrid Screech",
-          "effects": [
-            {
-              "name": "Shuffle 3 Dazed into discard pile",
-              "color": "DEBUFF"
-            }
-          ]
-        },
-        {
-          "name": "Ram",
-          "effects": [
-            {
-              "name": "18",
-              "color": "DAMAGE"
-            }
-          ]
-        },
-        {
-          "name": "Vomit",
-          "effects": [
-            {
-              "name": "Apply 1 Frail",
-              "color": "DEBUFF"
             },
             {
-              "name": "Shuffle 1 Slimed into discard pile",
-              "color": "DEBUFF"
+              "name": "Horrid Screech",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Ram",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Vomit",
+              "effects": [
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 1 Slimed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
             }
           ]
         },
@@ -6394,37 +6414,37 @@
                   "color": "DEBUFF"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "name": "Horrid Screech",
-          "effects": [
-            {
-              "name": "Shuffle 3 Dazed into discard pile",
-              "color": "DEBUFF"
-            }
-          ]
-        },
-        {
-          "name": "Ram",
-          "effects": [
-            {
-              "name": "18",
-              "color": "DAMAGE"
-            }
-          ]
-        },
-        {
-          "name": "Vomit",
-          "effects": [
-            {
-              "name": "Apply 1 Frail",
-              "color": "DEBUFF"
             },
             {
-              "name": "Shuffle 1 Slimed into discard pile",
-              "color": "DEBUFF"
+              "name": "Horrid Screech",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Ram",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Vomit",
+              "effects": [
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 1 Slimed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
             }
           ]
         },
@@ -6459,37 +6479,37 @@
                   "color": "DEBUFF"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "name": "Horrid Screech",
-          "effects": [
-            {
-              "name": "Shuffle 5 Dazed into discard pile",
-              "color": "DEBUFF"
-            }
-          ]
-        },
-        {
-          "name": "Ram",
-          "effects": [
-            {
-              "name": "18",
-              "color": "DAMAGE"
-            }
-          ]
-        },
-        {
-          "name": "Vomit",
-          "effects": [
-            {
-              "name": "Apply 2 Frail",
-              "color": "DEBUFF"
             },
             {
-              "name": "Shuffle 2 Slimed into discard pile",
-              "color": "DEBUFF"
+              "name": "Horrid Screech",
+              "effects": [
+                {
+                  "name": "Shuffle 5 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Ram",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Vomit",
+              "effects": [
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 2 Slimed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
             }
           ]
         }
@@ -6528,6 +6548,1071 @@
                 {
                   "name": "Sits There and Does Nothing",
                   "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wolf in Her Nightmares",
+      "id": "ruina:NightmareWolf",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "On the first intent, cycles Ferocious Fangs -> Cruel Claws -> Bloodstained Hunt. On the 2nd intent, cycles Bloodstained Hunt -> Howl -> Ferocious Fangs. The first intent targets you, and the 2nd intent targets Little Red.",
+          "hp": "(450 HP)",
+          "notes": "Try to control your damage output so that Little Red can land the killing blow on the Wolf!",
+          "moves": [
+            {
+              "name": "Cruel Claws",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "20 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ferocious Fangs",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bloodstained Hunt",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Howl",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "On the first intent, cycles Ferocious Fangs -> Cruel Claws -> Bloodstained Hunt. On the 2nd intent, cycles Bloodstained Hunt -> Howl -> Ferocious Fangs. The first intent targets you, and the 2nd intent targets Little Red.",
+          "hp": "(450 HP)",
+          "notes": "Try to control your damage output so that Little Red can land the killing blow on the Wolf!",
+          "moves": [
+            {
+              "name": "Cruel Claws",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "20 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ferocious Fangs",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bloodstained Hunt",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Howl",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "On the first intent, cycles Ferocious Fangs -> Cruel Claws -> Bloodstained Hunt. On the 2nd intent, cycles Bloodstained Hunt -> Howl -> Ferocious Fangs. The first intent targets you, and the 2nd intent targets Little Red.",
+          "hp": "(495 HP)",
+          "notes": "Try to control your damage output so that Little Red can land the killing blow on the Wolf!",
+          "moves": [
+            {
+              "name": "Cruel Claws",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "22 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ferocious Fangs",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bloodstained Hunt",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Howl",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "On the first intent, cycles Ferocious Fangs -> Cruel Claws -> Bloodstained Hunt. On the 2nd intent, cycles Bloodstained Hunt -> Howl -> Ferocious Fangs. The first intent targets you, and the 2nd intent targets Little Red.",
+          "hp": "(495 HP)",
+          "notes": "Try to control your damage output so that Little Red can land the killing blow on the Wolf!",
+          "moves": [
+            {
+              "name": "Cruel Claws",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "22 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ferocious Fangs",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bloodstained Hunt",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Howl",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Little Red Riding Hooded Mercenary",
+      "id": "ruina:LittleRed",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Cycles Hollow Point Shell -> Catch Breath -> Beast Hunt. After enraging, begins with Bullet Shower then alternates with Hollow Point Shell.",
+          "hp": "(150 HP)",
+          "notes": "If you are not confident in your ability to control your damage so Little Red can land the killing blow, you can try to prevent her from gaining Strength with Strike Without Hesitation by not breaking the Wolf's block so she does less damage when she enrages.",
+          "moves": [
+            {
+              "name": "Beast Hunt",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Catch Breath",
+              "effects": [
+                {
+                  "name": "Gain 10 Temporary HP",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Gain Strike Without Hesitation",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hollow Point Shell",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Bullet Shower",
+              "effects": [
+                {
+                  "name": "8x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Cycles Hollow Point Shell -> Catch Breath -> Beast Hunt. After enraging, begins with Bullet Shower then alternates with Hollow Point Shell.",
+          "hp": "(150 HP)",
+          "notes": "If you are not confident in your ability to control your damage so Little Red can land the killing blow, you can try to prevent her from gaining Strength with Strike Without Hesitation by not breaking the Wolf's block so she does less damage when she enrages.",
+          "moves": [
+            {
+              "name": "Beast Hunt",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Catch Breath",
+              "effects": [
+                {
+                  "name": "Gain 10 Temporary HP",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Gain Strike Without Hesitation",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hollow Point Shell",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Bullet Shower",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Cycles Hollow Point Shell -> Catch Breath -> Beast Hunt. After enraging, begins with Bullet Shower then alternates with Hollow Point Shell.",
+          "hp": "(150 HP)",
+          "notes": "If you are not confident in your ability to control your damage so Little Red can land the killing blow, you can try to prevent her from gaining Strength with Strike Without Hesitation by not breaking the Wolf's block so she does less damage when she enrages.",
+          "moves": [
+            {
+              "name": "Beast Hunt",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Catch Breath",
+              "effects": [
+                {
+                  "name": "Gain 11 Temporary HP",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Gain Strike Without Hesitation",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hollow Point Shell",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Bullet Shower",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jester of Nihil",
+      "id": "ruina:JesterOfNihil",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with All Returns to Nihil. Uses Will of Nihil every 4 turns on the first intent. Uses Rampage every 2 turns on 1 of the intents, beginning with the first intent and cycling to the right. Otherwise, all 3 intents have equal chances of using Consuming Desire, In the Name of Love and Hate, and Sword Sharpened With Tears, but cannot use any move twice in a row.",
+          "hp": "(600 HP)",
+          "notes": "This creature displays the Wrath stance particles when Senseless Wrath will negate the next debuff.",
+          "moves": [
+            {
+              "name": "Will of Nihil",
+              "effects": [
+                {
+                  "name": "30 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Consuming Desire",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "6 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "In the Name of Love and Hate",
+              "effects": [
+                {
+                  "name": "14",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sword Sharpened by Tears",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rampage",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "All Returns to Nihil",
+              "effects": [
+                {
+                  "name": "Gain Pointless Hate and Senseless Wrath",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Begins with All Returns to Nihil. Uses Will of Nihil every 4 turns on the first intent. Uses Rampage every 2 turns on 1 of the intents, beginning with the first intent and cycling to the right. Otherwise, all 3 intents have equal chances of using Consuming Desire, In the Name of Love and Hate, and Sword Sharpened With Tears, but cannot use any move twice in a row.",
+          "hp": "(600 HP)",
+          "notes": "This creature displays the Wrath stance particles when Senseless Wrath will negate the next debuff.",
+          "moves": [
+            {
+              "name": "Will of Nihil",
+              "effects": [
+                {
+                  "name": "33 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Consuming Desire",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "6 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "In the Name of Love and Hate",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sword Sharpened by Tears",
+              "effects": [
+                {
+                  "name": "11x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rampage",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "All Returns to Nihil",
+              "effects": [
+                {
+                  "name": "Gain Pointless Hate and Senseless Wrath",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Begins with All Returns to Nihil. Uses Will of Nihil every 4 turns on the first intent. Uses Rampage every 2 turns on 1 of the intents, beginning with the first intent and cycling to the right. Otherwise, all 3 intents have equal chances of using Consuming Desire, In the Name of Love and Hate, and Sword Sharpened With Tears, but cannot use any move twice in a row.",
+          "hp": "(660 HP)",
+          "notes": "This creature displays the Wrath stance particles when Senseless Wrath will negate the next debuff.",
+          "moves": [
+            {
+              "name": "Will of Nihil",
+              "effects": [
+                {
+                  "name": "33 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Consuming Desire",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "7 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "In the Name of Love and Hate",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sword Sharpened by Tears",
+              "effects": [
+                {
+                  "name": "11x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rampage",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "All Returns to Nihil",
+              "effects": [
+                {
+                  "name": "Gain Pointless Hate and Senseless Wrath",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Begins with All Returns to Nihil. Uses Will of Nihil every 4 turns on the first intent. Uses Rampage every 2 turns on 1 of the intents, beginning with the first intent and cycling to the right. Otherwise, all 3 intents have equal chances of using Consuming Desire, In the Name of Love and Hate, and Sword Sharpened With Tears, but cannot use any move twice in a row.",
+          "hp": "(660 HP)",
+          "notes": "This creature displays the Wrath stance particles when Senseless Wrath will negate the next debuff.",
+          "moves": [
+            {
+              "name": "Will of Nihil",
+              "effects": [
+                {
+                  "name": "33 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Consuming Desire",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "7 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "In the Name of Love and Hate",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sword Sharpened by Tears",
+              "effects": [
+                {
+                  "name": "11x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rampage",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "All Returns to Nihil",
+              "effects": [
+                {
+                  "name": "Gain Pointless Hate and Senseless Wrath",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Statue",
+      "id": "ruina:Statue",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Sit Here and Do Nothing",
+          "hp": "(5 HP)",
+          "notes": "It's a statue of a monster, frozen in time! Breaking it totally won't result in catastrophic consequences or anything.",
+          "moves": [
+            {
+              "name": "Sit Here and Do Nothing",
+              "effects": [
+                {
+                  "name": "Sits There and Does Nothing",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Queen of Love",
+      "id": "ruina:QueenOfLove",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with In the Name of Love and Justice! and alternates with Arcana Beats. If HP is at or below 30%, begins to prioritize attacking.",
+          "hp": "(140 HP)",
+          "notes": "This ally can deal a lot of damage, but only if you break the enemy's Block for her!",
+          "moves": [
+            {
+              "name": "In the Name of Love and Justice!",
+              "effects": [
+                {
+                  "name": "3x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Arcana Beats",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Begins with In the Name of Love and Justice! and alternates with Arcana Beats. If HP is at or below 30%, begins to prioritize attacking.",
+          "hp": "(120 HP)",
+          "notes": "This ally can deal a lot of damage, but only if you break the enemy's Block for her!",
+          "moves": [
+            {
+              "name": "In the Name of Love and Justice!",
+              "effects": [
+                {
+                  "name": "3x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Arcana Beats",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Servant of Courage",
+      "id": "ruina:ServantOfCourage",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Rumble, then alternates with Acidic Sludge. If HP is at or below 30%, begins to prioritize attacking.",
+          "hp": "(140 HP)",
+          "notes": "This ally applies a strong debuff that causes both you and your allies to deal more damage, so it may be worthwhile to allow your own debuffs to get negated by Senseless Wrath so this ally's debuff can land.",
+          "moves": [
+            {
+              "name": "Rumble",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Acidic Sludge",
+              "effects": [
+                {
+                  "name": "Apply 3 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Begins with Rumble, then alternates with Acidic Sludge. If HP is at or below 30%, begins to prioritize attacking.",
+          "hp": "(120 HP)",
+          "notes": "This ally applies a strong debuff that causes both you and your allies to deal more damage, so it may be worthwhile to allow your own debuffs to get negated by Senseless Wrath so this ally's debuff can land.",
+          "moves": [
+            {
+              "name": "Rumble",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Acidic Sludge",
+              "effects": [
+                {
+                  "name": "Apply 3 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ozma",
+      "id": "ruina:Ozma",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Fading Memories on the first turn and every 4 turns thereafter. Can use Powder of Life, Hinder, or Squash with equal chances, but cannot use Hinder or Squash twice in a row, and cannot use Powder of Life again until at least 2 turns have passed. Will stop using Fading Memories once Oblivion is at 2 stacks.",
+          "hp": "(500 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Fading Memories",
+              "effects": [
+                {
+                  "name": "Apply 1 Oblivion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Powder of Life",
+              "effects": [
+                {
+                  "name": "All allies gain 12 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 4 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hinder",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Squash",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Uses Fading Memories on the first turn and every 4 turns thereafter. Can use Powder of Life, Hinder, or Squash with equal chances, but cannot use Hinder or Squash twice in a row, and cannot use Powder of Life again until at least 2 turns have passed. Will stop using Fading Memories once Oblivion is at 2 stacks.",
+          "hp": "(500 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Fading Memories",
+              "effects": [
+                {
+                  "name": "Apply 1 Oblivion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Powder of Life",
+              "effects": [
+                {
+                  "name": "All allies gain 12 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 4 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hinder",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Squash",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Uses Fading Memories on the first turn and every 4 turns thereafter. Can use Powder of Life, Hinder, or Squash with equal chances, but cannot use Hinder or Squash twice in a row, and cannot use Powder of Life again until at least 2 turns have passed. Will stop using Fading Memories once Oblivion is at 2 stacks.",
+          "hp": "(550 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Fading Memories",
+              "effects": [
+                {
+                  "name": "Apply 1 Oblivion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Powder of Life",
+              "effects": [
+                {
+                  "name": "All allies gain 13 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 4 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hinder",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Squash",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Uses Fading Memories on the first turn and every 4 turns thereafter. Can use Powder of Life, Hinder, or Squash with equal chances, but cannot use Hinder or Squash twice in a row, and cannot use Powder of Life again until at least 2 turns have passed. Will stop using Fading Memories once Oblivion is at 3 stacks.",
+          "hp": "(550 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Fading Memories",
+              "effects": [
+                {
+                  "name": "Apply 1 Oblivion",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Apply 1 Draw Reduction next turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Powder of Life",
+              "effects": [
+                {
+                  "name": "All allies gain 13 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 6 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hinder",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Squash",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jack",
+      "id": "ruina:Jack",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with either Swipe or Double Swipe, then alternates between the two moves.",
+          "hp": "(100 HP)",
+          "notes": "The cards that this creature steals that you subsequently steal back are meant to provide additional card advantage to help counteract the card draw reduction from the boss. Once this creature dies, the additional source of card advantage will dry up as well, so think carefully on how much damage you want to do to this creature!",
+          "moves": [
+            {
+              "name": "Swipe",
+              "effects": [
+                {
+                  "name": "3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Double Swipe",
+              "effects": [
+                {
+                  "name": "2x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Begins with either Swipe or Double Swipe, then alternates between the two moves.",
+          "hp": "(100 HP)",
+          "notes": "The cards that this creature steals that you subsequently steal back are meant to provide additional card advantage to help counteract the card draw reduction from the boss. Once this creature dies, the additional source of card advantage will dry up as well, so think carefully on how much damage you want to do to this creature!",
+          "moves": [
+            {
+              "name": "Swipe",
+              "effects": [
+                {
+                  "name": "5",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Double Swipe",
+              "effects": [
+                {
+                  "name": "3x2",
+                  "color": "DAMAGE"
                 }
               ]
             }
