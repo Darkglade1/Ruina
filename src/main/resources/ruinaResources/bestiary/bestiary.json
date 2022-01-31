@@ -7621,6 +7621,1893 @@
       ]
     },
     {
+      "name": "Bloodbath",
+      "id": "ruina:Bloodbath",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Pale Hands, then alternates with Depression.",
+          "hp": "(88 - 94 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Pale Hands",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Depression",
+              "effects": [
+                {
+                  "name": "7 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply -1 Strength and Dexterity",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Begins with Pale Hands, then alternates with Depression.",
+          "hp": "(88 - 94 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Pale Hands",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Depression",
+              "effects": [
+                {
+                  "name": "7 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply -1 Strength and Dexterity",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Begins with Pale Hands, then alternates with Depression.",
+          "hp": "(97 - 103 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Pale Hands",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Depression",
+              "effects": [
+                {
+                  "name": "8 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply -1 Strength and Dexterity",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Begins with Pale Hands, then alternates with Depression.",
+          "hp": "(97 - 103 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Pale Hands",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 5 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Depression",
+              "effects": [
+                {
+                  "name": "8 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply -2 Strength and Dexterity",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Burrowing Heaven",
+      "id": "ruina:BurrowingHeaven",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Your Own Heaven, Bloody Wings, or Gaze of Others with equal chances. Cannot use Your Own Heaven or Bloody Wings twice in a row and cannot use Gaze of Others again until at least 2 turns have passed.",
+          "hp": "(140 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Your Own Heaven",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Bloody Wings",
+              "effects": [
+                {
+                  "name": "16",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Gaze of Others",
+              "effects": [
+                {
+                  "name": "Apply -2 Strength and 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Uses Your Own Heaven, Bloody Wings, or Gaze of Others with equal chances. Cannot use Your Own Heaven or Bloody Wings twice in a row and cannot use Gaze of Others again until at least 2 turns have passed.",
+          "hp": "(140 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Your Own Heaven",
+              "effects": [
+                {
+                  "name": "23",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Bloody Wings",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Gaze of Others",
+              "effects": [
+                {
+                  "name": "Apply -2 Strength and 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Uses Your Own Heaven, Bloody Wings, or Gaze of Others with equal chances. Cannot use Your Own Heaven or Bloody Wings twice in a row and cannot use Gaze of Others again until at least 2 turns have passed.",
+          "hp": "(154 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Your Own Heaven",
+              "effects": [
+                {
+                  "name": "23",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Bloody Wings",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Gaze of Others",
+              "effects": [
+                {
+                  "name": "Apply -2 Strength and 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Uses Your Own Heaven, Bloody Wings, or Gaze of Others with equal chances. Cannot use Your Own Heaven or Bloody Wings twice in a row and cannot use Gaze of Others again until at least 2 turns have passed.",
+          "hp": "(154 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Your Own Heaven",
+              "effects": [
+                {
+                  "name": "23",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Bloody Wings",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Gaze of Others",
+              "effects": [
+                {
+                  "name": "Apply -3 Strength and 3 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Eyeball Chick",
+      "id": "ruina:EyeballChick",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Stare or Pierce with equal chances. Cannot use either move 3 times in a row.",
+          "hp": "(40 - 46 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stare",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Pierce",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Uses Stare or Pierce with equal chances. Cannot use either move 3 times in a row.",
+          "hp": "(40 - 46 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stare",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Pierce",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Uses Stare or Pierce with equal chances. Cannot use either move 3 times in a row.",
+          "hp": "(44 - 51 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stare",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Pierce",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Uses Stare or Pierce with equal chances. Cannot use either move 3 times in a row.",
+          "hp": "(44 - 51 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stare",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Pierce",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Runaway Bird",
+      "id": "ruina:RunawayBird",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Sweep or Shriek with equal chances. Cannot use either move 3 times in a row.",
+          "hp": "(36 - 42 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Sweep",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Shriek",
+              "effects": [
+                {
+                  "name": "Shuffle 2 Dazed into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Uses Sweep or Shriek with equal chances. Cannot use either move 3 times in a row.",
+          "hp": "(36 - 42 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Sweep",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Shriek",
+              "effects": [
+                {
+                  "name": "Shuffle 2 Dazed into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Uses Sweep or Shriek with equal chances. Cannot use either move 3 times in a row.",
+          "hp": "(40 - 46 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Sweep",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Shriek",
+              "effects": [
+                {
+                  "name": "Shuffle 2 Dazed into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Uses Sweep or Shriek with equal chances. Cannot use either move 3 times in a row.",
+          "hp": "(40 - 46 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Sweep",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Shriek",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Dazed into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Judgement Bird",
+      "id": "ruina:JudgementBird",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Cycles Heavy Guilt or Ceaseless Duty -> whichever move wasn't used previously -> Stare -> Judgement.",
+          "hp": "(250 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stare",
+              "effects": [
+                {
+                  "name": "Apply 1 Vulnerable and Frail",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Judgement",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Heavy Guilt",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Ceaseless Duty",
+              "effects": [
+                {
+                  "name": "8 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 4 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Cycles Heavy Guilt or Ceaseless Duty -> whichever move wasn't used previously -> Stare -> Judgement.",
+          "hp": "(250 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stare",
+              "effects": [
+                {
+                  "name": "Apply 1 Vulnerable and Frail",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Judgement",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Heavy Guilt",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Ceaseless Duty",
+              "effects": [
+                {
+                  "name": "8 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 4 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Cycles Heavy Guilt or Ceaseless Duty -> whichever move wasn't used previously -> Stare -> Judgement.",
+          "hp": "(275 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stare",
+              "effects": [
+                {
+                  "name": "Apply 1 Vulnerable and Frail",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Judgement",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Heavy Guilt",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Ceaseless Duty",
+              "effects": [
+                {
+                  "name": "9 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 4 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Cycles Heavy Guilt or Ceaseless Duty -> whichever move wasn't used previously -> Stare -> Judgement.",
+          "hp": "(275 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stare",
+              "effects": [
+                {
+                  "name": "Apply 2 Vulnerable and Frail",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Judgement",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Heavy Guilt",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Ceaseless Duty",
+              "effects": [
+                {
+                  "name": "9 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 6 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pinocchio",
+      "id": "ruina:Pinocchio",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Draws 2 cards from the deck it creates and uses them each turn. Can only copy cards with a maximum damage of 28.",
+          "hp": "(170 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Learn",
+              "effects": [
+                {
+                  "name": " Gain 20 Block and 2 Imposter",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Copy the player's deck",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Draws 2 cards from the deck it creates and uses them each turn. Can only copy cards with a maximum damage of 28.",
+          "hp": "(187 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Learn",
+              "effects": [
+                {
+                  "name": "Gain 22 Block and 2 Imposter",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Copy the player's deck",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Draws 2 cards from the deck it creates and uses them each turn. Can only copy cards with a maximum damage of 42.",
+          "hp": "(187 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Learn",
+              "effects": [
+                {
+                  "name": "Gain 22 Block and 3 Imposter",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Copy the player's deck",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Heart of Aspiration",
+      "id": "ruina:HeartOfAspiration",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "If this creature is alone, uses Beats of Aspiration. Otherwise, uses Pulsation.",
+          "hp": "(48 - 55 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Pulsation",
+              "effects": [
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Beats of Aspiration",
+              "effects": [
+                {
+                  "name": "14",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "If this creature is alone, uses Beats of Aspiration. Otherwise, uses Pulsation.",
+          "hp": "(48 - 55 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Pulsation",
+              "effects": [
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Beats of Aspiration",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "If this creature is alone, uses Beats of Aspiration. Otherwise, uses Pulsation.",
+          "hp": "(53 - 61 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Pulsation",
+              "effects": [
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Beats of Aspiration",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "If this creature is alone, uses Beats of Aspiration. Otherwise, uses Pulsation.",
+          "hp": "(53 - 61 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Pulsation",
+              "effects": [
+                {
+                  "name": "All allies gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Beats of Aspiration",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lungs of Craving",
+      "id": "ruina:LungsOfCraving",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Fervent Beats or Retracting Beats with equal chances. Cannot use either move 3 times in a row.",
+          "hp": "(42 - 46 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Fervent Beats",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Retracting Beats",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "5 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Uses Fervent Beats or Retracting Beats with equal chances. Cannot use either move 3 times in a row.",
+          "hp": "(42 - 46 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Fervent Beats",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Retracting Beats",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "5 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Uses Fervent Beats or Retracting Beats with equal chances. Cannot use either move 3 times in a row.",
+          "hp": "(46 - 51 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Fervent Beats",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Retracting Beats",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "6 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Price of Silence",
+      "id": "ruina:PriceOfSilence",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Stolen Time, then alternates with Silent Hour.",
+          "hp": "(82 - 88 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stolen Time",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Stolen Times into draw pile",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Silent Hour",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Begins with Stolen Time, then alternates with Silent Hour.",
+          "hp": "(82 - 88 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stolen Time",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Stolen Times into draw pile",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Silent Hour",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Begins with Stolen Time, then alternates with Silent Hour.",
+          "hp": "(90 - 97 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stolen Time",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Stolen Times into draw pile",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Silent Hour",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Begins with Stolen Time, then alternates with Silent Hour.",
+          "hp": "(90 - 97 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Stolen Time",
+              "effects": [
+                {
+                  "name": "Shuffle 5 Stolen Times into draw pile",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Silent Hour",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Remnant of Time",
+      "id": "ruina:RemnantOfTime",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Backlash of Time, then alternates with Torrent of Hours.",
+          "hp": "(80 - 86 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Backlash of Time",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Torrent of Hours",
+              "effects": [
+                {
+                  "name": "All allies gain 7 Block and 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Begins with Backlash of Time, then alternates with Torrent of Hours.",
+          "hp": "(80 - 86 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Backlash of Time",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Torrent of Hours",
+              "effects": [
+                {
+                  "name": "All allies gain 7 Block and 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Begins with Backlash of Time, then alternates with Torrent of Hours.",
+          "hp": "(88 - 95 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Backlash of Time",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Torrent of Hours",
+              "effects": [
+                {
+                  "name": "All allies gain 8 Block and 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Begins with Backlash of Time, then alternates with Torrent of Hours.",
+          "hp": "(88 - 95 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Backlash of Time",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Torrent of Hours",
+              "effects": [
+                {
+                  "name": "All allies gain 8 Block and 3 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Keeper of the Forest",
+      "id": "ruina:Keeper",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Can use Cuckoo, Ring, or Smash with equal chances, but cannot use any move twice in a row.",
+          "hp": "(40 - 48 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Cuckoo",
+              "effects": [
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ring",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Smash",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Can use Cuckoo, Ring, or Smash with equal chances, but cannot use any move twice in a row.",
+          "hp": "(40 - 48 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Cuckoo",
+              "effects": [
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ring",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Smash",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Can use Cuckoo, Ring, or Smash with equal chances, but cannot use any move twice in a row.",
+          "hp": "(44 - 53 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Cuckoo",
+              "effects": [
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ring",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Smash",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Can use Cuckoo, Ring, or Smash with equal chances, but cannot use any move twice in a row.",
+          "hp": "(44 - 53 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Cuckoo",
+              "effects": [
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ring",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Smash",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Punishing Bird",
+      "id": "ruina:PunishingBird",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Peck every turn. If it was attacked the previous turn, will use Punishment instead.",
+          "hp": "(150 HP)",
+          "notes": "Be careful to not attack this creature until you are ready to burst it down with the help of the Forest Keeper's Locks!",
+          "moves": [
+            {
+              "name": "Peck",
+              "effects": [
+                {
+                  "name": "2x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Punishment",
+              "effects": [
+                {
+                  "name": "50",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 2,
+          "desc": "Uses Peck every turn. If it was attacked the previous turn, will use Punishment instead.",
+          "hp": "(150 HP)",
+          "notes": "Be careful to not attack this creature until you are ready to burst it down with the help of the Forest Keeper's Locks!",
+          "moves": [
+            {
+              "name": "Peck",
+              "effects": [
+                {
+                  "name": "2x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Punishment",
+              "effects": [
+                {
+                  "name": "55",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Uses Peck every turn. If it was attacked the previous turn, will use Punishment instead.",
+          "hp": "(165 HP)",
+          "notes": "Be careful to not attack this creature until you are ready to burst it down with the help of the Forest Keeper's Locks!",
+          "moves": [
+            {
+              "name": "Peck",
+              "effects": [
+                {
+                  "name": "2x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Wound into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Punishment",
+              "effects": [
+                {
+                  "name": "55",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 17,
+          "desc": "Uses Peck every turn. If it was attacked the previous turn, will use Punishment instead.",
+          "hp": "(165 HP)",
+          "notes": "Be careful to not attack this creature until you are ready to burst it down with the help of the Forest Keeper's Locks!",
+          "moves": [
+            {
+              "name": "Peck",
+              "effects": [
+                {
+                  "name": "3x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 2 Wounds into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Punishment",
+              "effects": [
+                {
+                  "name": "83",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Red Mist",
+      "id": "ruina:RedMist",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses a deck of 3 Focus Spirit, 3 Upstanding Slash, 3 Spear, and 3 Level Slash. Draws and uses a card for each intent. Uses a Greater Split every 4 turns (Horizontal if in EGO, Vertical otherwise). Loses extra intents when using a Greater Split. Uses Greater Split Horizontal after manifesting EGO.",
+          "hp": "(300 HP)",
+          "notes": "This creature gets many benefits from dealing unblocked damage to you, so try to block her attacks if you can!",
+          "moves": [
+            {
+              "name": "Focus Spirit",
+              "effects": [
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 1 Temp Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Upstanding Slash",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail if at least 6 unblocked damage was done",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Level Slash",
+              "effects": [
+                {
+                  "name": "5x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 1 extra intent for next turn if at least 5 unblocked damage was done",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Spear",
+              "effects": [
+                {
+                  "name": "5x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Vertical",
+              "effects": [
+                {
+                  "name": "30",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Bleed if any unblocked damage was dealt",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Horizontal",
+              "effects": [
+                {
+                  "name": "40",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 5 Bleed if any unblocked damage was dealt",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Uses a deck of 3 Focus Spirit, 3 Upstanding Slash, 3 Spear, and 3 Level Slash. Draws and uses a card for each intent. Uses a Greater Split every 4 turns (Horizontal if in EGO, Vertical otherwise). Loses extra intents when using a Greater Split. Uses Greater Split Horizontal after manifesting EGO.",
+          "hp": "(300 HP)",
+          "notes": "This creature gets many benefits from dealing unblocked damage to you, so try to block her attacks if you can!",
+          "moves": [
+            {
+              "name": "Focus Spirit",
+              "effects": [
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 1 Temp Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Upstanding Slash",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail if at least 7 unblocked damage was done",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Level Slash",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 1 extra intent for next turn if at least 6 unblocked damage was done",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Spear",
+              "effects": [
+                {
+                  "name": "5x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Vertical",
+              "effects": [
+                {
+                  "name": "33",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Bleed if any unblocked damage was dealt",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Horizontal",
+              "effects": [
+                {
+                  "name": "44",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 5 Bleed if any unblocked damage was dealt",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Uses a deck of 3 Focus Spirit, 3 Upstanding Slash, 3 Spear, and 3 Level Slash. Draws and uses a card for each intent. Uses a Greater Split every 4 turns (Horizontal if in EGO, Vertical otherwise). Loses extra intents when using a Greater Split. Uses Greater Split Horizontal after manifesting EGO.",
+          "hp": "(330 HP)",
+          "notes": "This creature gets many benefits from dealing unblocked damage to you, so try to block her attacks if you can!",
+          "moves": [
+            {
+              "name": "Focus Spirit",
+              "effects": [
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 1 Temp Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Upstanding Slash",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail if at least 7 unblocked damage was done",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Level Slash",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 1 extra intent for next turn if at least 6 unblocked damage was done",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Spear",
+              "effects": [
+                {
+                  "name": "5x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Vertical",
+              "effects": [
+                {
+                  "name": "33",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Bleed if any unblocked damage was dealt",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Horizontal",
+              "effects": [
+                {
+                  "name": "44",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 5 Bleed if any unblocked damage was dealt",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Uses a deck of 3 Focus Spirit, 3 Upstanding Slash, 3 Spear, and 3 Level Slash. Draws and uses a card for each intent. Uses a Greater Split every 4 turns (Horizontal if in EGO, Vertical otherwise). Loses extra intents when using a Greater Split. Uses Greater Split Horizontal after manifesting EGO.",
+          "hp": "(330 HP)",
+          "notes": "This creature gets many benefits from dealing unblocked damage to you, so try to block her attacks if you can!",
+          "moves": [
+            {
+              "name": "Focus Spirit",
+              "effects": [
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 2 Temp Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Upstanding Slash",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail if at least 7 unblocked damage was done",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Level Slash",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 1 extra intent for next turn if at least 6 unblocked damage was done",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Spear",
+              "effects": [
+                {
+                  "name": "5x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Vertical",
+              "effects": [
+                {
+                  "name": "33",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 5 Bleed if any unblocked damage was dealt",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Horizontal",
+              "effects": [
+                {
+                  "name": "44",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 8 Bleed if any unblocked damage was dealt",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "template",
       "id": "ruina:template",
       "ai": [
