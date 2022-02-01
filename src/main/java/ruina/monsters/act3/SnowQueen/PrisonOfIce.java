@@ -38,7 +38,7 @@ public class PrisonOfIce extends AbstractRuinaMonster
     public PrisonOfIce(final float x, final float y, SnowQueen queen) {
         super(NAME, ID, 70, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("PrisonOfIce/Spriter/PrisonOfIce.scml"));
-        this.type = EnemyType.NORMAL;
+        this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(maxHealth));
         this.queen = queen;
     }

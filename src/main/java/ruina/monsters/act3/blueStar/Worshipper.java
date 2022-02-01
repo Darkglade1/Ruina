@@ -72,7 +72,7 @@ public class Worshipper extends AbstractRuinaMonster
     public Worshipper(final float x, final float y, BlueStar star) {
         super(NAME, ID, 40, -5.0F, 0, 220.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Worshipper/Spriter/Worshipper.scml"));
-        this.type = EnemyType.NORMAL;
+        this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(38), calcAscensionTankiness(44));
         addMove(FOR_THE_STAR, Intent.ATTACK, calcAscensionDamage(13));
         addMove(EVERLASTING_FAITH, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
@@ -80,6 +80,12 @@ public class Worshipper extends AbstractRuinaMonster
         addMove(MEET_AGAIN, Intent.UNKNOWN);
         this.star = star;
         meetAgainThreshold = (int)(this.maxHealth * MEET_AGAIN_HP_THRESHOLD);
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.ELITE;
     }
 
     @Override

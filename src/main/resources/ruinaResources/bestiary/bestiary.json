@@ -9508,6 +9508,1044 @@
       ]
     },
     {
+      "name": "Big Bird",
+      "id": "ruina:BigBird",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "On the first intent, begins with Shining Light then alternates with Dazzle. On the 2nd intent, begins with Dazzle, then uses Enchant on the left Sage and alternates with Shining Light. On the 3rd intent, begins with Enchant on the right Sage and alternates with Shining Light. If the left Sage is dead, the 2nd intent will use Illuminate alternating with Shining Light. If the right Sage is dead, the 3rd intent will use Brilliance alternating with Shining Light.",
+          "hp": "(400 HP)",
+          "notes": "Make sure to keep your allies alive by playing Attacks on them when they get Enchanted!",
+          "moves": [
+            {
+              "name": "Shining Light",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Dazzle",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Dazzled into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Enchant",
+              "effects": [
+                {
+                  "name": "Apply Enchanted",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Illuminate",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Brilliance",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "On the first intent, begins with Shining Light then alternates with Dazzle. On the 2nd intent, begins with Dazzle, then uses Enchant on the left Sage and alternates with Shining Light. On the 3rd intent, begins with Enchant on the right Sage and alternates with Shining Light. If the left Sage is dead, the 2nd intent will use Illuminate alternating with Shining Light. If the right Sage is dead, the 3rd intent will use Brilliance alternating with Shining Light.",
+          "hp": "(400 HP)",
+          "notes": "Make sure to keep your allies alive by playing Attacks on them when they get Enchanted!",
+          "moves": [
+            {
+              "name": "Shining Light",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Dazzle",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Dazzled into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Enchant",
+              "effects": [
+                {
+                  "name": "Apply Enchanted",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Illuminate",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Brilliance",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "On the first intent, begins with Shining Light then alternates with Dazzle. On the 2nd intent, begins with Dazzle, then uses Enchant on the left Sage and alternates with Shining Light. On the 3rd intent, begins with Enchant on the right Sage and alternates with Shining Light. If the left Sage is dead, the 2nd intent will use Illuminate alternating with Shining Light. If the right Sage is dead, the 3rd intent will use Brilliance alternating with Shining Light.",
+          "hp": "(440 HP)",
+          "notes": "Make sure to keep your allies alive by playing Attacks on them when they get Enchanted!",
+          "moves": [
+            {
+              "name": "Shining Light",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Dazzle",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Dazzled into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Enchant",
+              "effects": [
+                {
+                  "name": "Apply Enchanted",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Illuminate",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Brilliance",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "On the first intent, begins with Shining Light then alternates with Dazzle. On the 2nd intent, begins with Dazzle, then uses Enchant on the left Sage and alternates with Shining Light. On the 3rd intent, begins with Enchant on the right Sage and alternates with Shining Light. If the left Sage is dead, the 2nd intent will use Illuminate alternating with Shining Light. If the right Sage is dead, the 3rd intent will use Brilliance alternating with Shining Light.",
+          "hp": "(440 HP)",
+          "notes": "Make sure to keep your allies alive by playing Attacks on them when they get Enchanted!",
+          "moves": [
+            {
+              "name": "Shining Light",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Dazzle",
+              "effects": [
+                {
+                  "name": "Shuffle 5 Dazzled into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Enchant",
+              "effects": [
+                {
+                  "name": "Apply Enchanted",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Illuminate",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak and Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Brilliance",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sage of the Forest",
+      "id": "ruina:Sage",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Starts with Ring, then uses Smash every turn.",
+          "hp": "(500 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Ring",
+              "effects": [
+                {
+                  "name": "Gain 1 Ritual",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Smash",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Shrine to the Blue Star",
+      "id": "ruina:BlueStar",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Cycles Rising Star -> Starry Sky -> Sound of a Star. If both Worshippers are dead, will temporarily deviate from the cycle to use Worshippers, then return back to where it was in the cycle.",
+          "hp": "(200 HP)",
+          "notes": "Try to control your damage so the Worshippers will suicide on their turn instead of exploding on you!",
+          "moves": [
+            {
+              "name": "Rising Star",
+              "effects": [
+                {
+                  "name": "All allies gain 13 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Starry Sky",
+              "effects": [
+                {
+                  "name": "All allies gain 4 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sound of a Star",
+              "effects": [
+                {
+                  "name": "28",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Worshippers",
+              "effects": [
+                {
+                  "name": "Summon 2 Worshippers",
+                  "color": "Special"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Cycles Rising Star -> Starry Sky -> Sound of a Star. If both Worshippers are dead, will temporarily deviate from the cycle to use Worshippers, then return back to where it was in the cycle.",
+          "hp": "(200 HP)",
+          "notes": "Try to control your damage so the Worshippers will suicide on their turn instead of exploding on you!",
+          "moves": [
+            {
+              "name": "Rising Star",
+              "effects": [
+                {
+                  "name": "All allies gain 13 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Starry Sky",
+              "effects": [
+                {
+                  "name": "All allies gain 4 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sound of a Star",
+              "effects": [
+                {
+                  "name": "31",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Worshippers",
+              "effects": [
+                {
+                  "name": "Summon 2 Worshippers",
+                  "color": "Special"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Cycles Rising Star -> Starry Sky -> Sound of a Star. If both Worshippers are dead, will temporarily deviate from the cycle to use Worshippers, then return back to where it was in the cycle.",
+          "hp": "(220 HP)",
+          "notes": "Try to control your damage so the Worshippers will suicide on their turn instead of exploding on you!",
+          "moves": [
+            {
+              "name": "Rising Star",
+              "effects": [
+                {
+                  "name": "All allies gain 14 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Starry Sky",
+              "effects": [
+                {
+                  "name": "All allies gain 4 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sound of a Star",
+              "effects": [
+                {
+                  "name": "31",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Worshippers",
+              "effects": [
+                {
+                  "name": "Summon 2 Worshippers",
+                  "color": "Special"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Cycles Rising Star -> Starry Sky -> Sound of a Star. If both Worshippers are dead, will temporarily deviate from the cycle to use Worshippers, then return back to where it was in the cycle.",
+          "hp": "(220 HP)",
+          "notes": "Try to control your damage so the Worshippers will suicide on their turn instead of exploding on you!",
+          "moves": [
+            {
+              "name": "Rising Star",
+              "effects": [
+                {
+                  "name": "All allies gain 14 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Starry Sky",
+              "effects": [
+                {
+                  "name": "All allies gain 6 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sound of a Star",
+              "effects": [
+                {
+                  "name": "31",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Worshippers",
+              "effects": [
+                {
+                  "name": "Summon 2 Worshippers",
+                  "color": "Special"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Worshipper",
+      "id": "ruina:Worshipper",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses For the Star and Everlasting Faith with equal chances, but cannot use either move 3 times in a row. If HP is at or below 50%, will use Hear the Sound of the Star! every turn instead. If HP is at or below 25%, will immediately change intent to use We'll Meet Soon as Stars! instead.",
+          "hp": "(38 - 44 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "For the Star",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Everlasting Faith",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hear the Sound of the Star!",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "We'll Meet Soon as Stars!",
+              "effects": [
+                {
+                  "name": "Suicide",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Uses For the Star and Everlasting Faith with equal chances, but cannot use either move 3 times in a row. If HP is at or below 50%, will use Hear the Sound of the Star! every turn instead. If HP is at or below 25%, will immediately change intent to use We'll Meet Soon as Stars! instead.",
+          "hp": "(38 - 44 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "For the Star",
+              "effects": [
+                {
+                  "name": "14",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Everlasting Faith",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hear the Sound of the Star!",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "We'll Meet Soon as Stars!",
+              "effects": [
+                {
+                  "name": "Suicide",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Uses For the Star and Everlasting Faith with equal chances, but cannot use either move 3 times in a row. If HP is at or below 50%, will use Hear the Sound of the Star! every turn instead. If HP is at or below 25%, will immediately change intent to use We'll Meet Soon as Stars! instead.",
+          "hp": "(42 - 48 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "For the Star",
+              "effects": [
+                {
+                  "name": "14",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Everlasting Faith",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hear the Sound of the Star!",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "We'll Meet Soon as Stars!",
+              "effects": [
+                {
+                  "name": "Suicide",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Uses For the Star and Everlasting Faith with equal chances, but cannot use either move 3 times in a row. If HP is at or below 50%, will use Hear the Sound of the Star! every turn instead. If HP is at or below 25%, will immediately change intent to use We'll Meet Soon as Stars! instead.",
+          "hp": "(42 - 48 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "For the Star",
+              "effects": [
+                {
+                  "name": "14",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Everlasting Faith",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Hear the Sound of the Star!",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "We'll Meet Soon as Stars!",
+              "effects": [
+                {
+                  "name": "Suicide",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Snow Queen",
+      "id": "ruina:SnowQueen",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead.",
+          "hp": "(260 HP)",
+          "notes": "Try to Freeze low-cost cards and combo cards with Promise of Winter so that you can freely play them when you Unfreeze them or use the Freeze effect as a budget Retain effect to set up your combos.",
+          "moves": [
+            {
+              "name": "Blizzard",
+              "effects": [
+                {
+                  "name": "Apply 3 Weak and Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Frigid Gaze",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "16 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ice Splinters",
+              "effects": [
+                {
+                  "name": "26",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Frozen Throne",
+              "effects": [
+                {
+                  "name": "16 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 3 Strength and 5 Metallicize",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead.",
+          "hp": "(260 HP)",
+          "notes": "Try to Freeze low-cost cards and combo cards with Promise of Winter so that you can freely play them when you Unfreeze them or use the Freeze effect as a budget Retain effect to set up your combos.",
+          "moves": [
+            {
+              "name": "Blizzard",
+              "effects": [
+                {
+                  "name": "Apply 3 Weak and Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Frigid Gaze",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "16 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ice Splinters",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Frozen Throne",
+              "effects": [
+                {
+                  "name": "16 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 3 Strength and 5 Metallicize",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead.",
+          "hp": "(286 HP)",
+          "notes": "Try to Freeze low-cost cards and combo cards with Promise of Winter so that you can freely play them when you Unfreeze them or use the Freeze effect as a budget Retain effect to set up your combos.",
+          "moves": [
+            {
+              "name": "Blizzard",
+              "effects": [
+                {
+                  "name": "Apply 3 Weak and Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Frigid Gaze",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ice Splinters",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Frozen Throne",
+              "effects": [
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 3 Strength and 5 Metallicize",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead.",
+          "hp": "(286 HP)",
+          "notes": "Try to Freeze low-cost cards and combo cards with Promise of Winter so that you can freely play them when you Unfreeze them or use the Freeze effect as a budget Retain effect to set up your combos.",
+          "moves": [
+            {
+              "name": "Blizzard",
+              "effects": [
+                {
+                  "name": "Apply 5 Weak and Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Frigid Gaze",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ice Splinters",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Frozen Throne",
+              "effects": [
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 5 Strength and 8 Metallicize",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Prison of Ice",
+      "id": "ruina:PrisonOfIce",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Sit Here and Do Nothing",
+          "hp": "(70 HP)",
+          "notes": "It's a chunk of ice, did you expect it to get up and do something?",
+          "moves": [
+            {
+              "name": "Sit Here and Do Nothing",
+              "effects": [
+                {
+                  "name": "Sits There and Does Nothing",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Uses Sit Here and Do Nothing",
+          "hp": "(77 HP)",
+          "notes": "It's a chunk of ice, did you expect it to get up and do something?",
+          "moves": [
+            {
+              "name": "Sit Here and Do Nothing",
+              "effects": [
+                {
+                  "name": "Sits There and Does Nothing",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Distorted Yan",
+      "id": "ruina:yanDistortion",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with a deck of 3 Protects and 3 Attacks. Draws and uses a card for each intent. After merging with the Hands, gains a new deck of 1 Flurry of Fists, 2 Giant Fist, 2 Compress, 1 Baleful Brand, and 1 Lock. If the left Hand was killed first, add an additional Baleful Brand. Otherwise, add an extra Lock. Uses Distorted Blade every 5 turns.",
+          "hp": "(350 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Protect",
+              "effects": [
+                {
+                  "name": "Give 2 Protection",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "Give 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Giant Fist",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Compress",
+              "effects": [
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Flurry Of Fists",
+              "effects": [
+                {
+                  "name": "5x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Baleful Brand",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lock",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Draw Reduction Next Turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Distorted Blade",
+              "effects": [
+                {
+                  "name": "35",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "template",
       "id": "ruina:template",
       "ai": [
