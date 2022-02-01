@@ -5639,7 +5639,7 @@
               "name": "Homing Instinct",
               "effects": [
                 {
-                  "name": "25",
+                  "name": "35",
                   "color": "DAMAGE"
                 },
                 {
@@ -5669,7 +5669,7 @@
               "name": "Homing Instinct",
               "effects": [
                 {
-                  "name": "28",
+                  "name": "39",
                   "color": "DAMAGE"
                 },
                 {
@@ -5699,7 +5699,7 @@
               "name": "Homing Instinct",
               "effects": [
                 {
-                  "name": "28",
+                  "name": "39",
                   "color": "DAMAGE"
                 },
                 {
@@ -5729,7 +5729,7 @@
               "name": "Homing Instinct",
               "effects": [
                 {
-                  "name": "28",
+                  "name": "39",
                   "color": "DAMAGE"
                 },
                 {

@@ -2,8 +2,6 @@ package ruina.monsters.act2;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
@@ -17,7 +15,6 @@ import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
-import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.applyToTarget;
 
 public class HomeAlly extends AbstractAllyMonster
@@ -28,7 +25,6 @@ public class HomeAlly extends AbstractAllyMonster
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    private final int DEATH_DAMAGE = calcAscensionSpecial(15);
     private static final byte NONE = 0;
 
     public RoadHome roadHome;
@@ -66,10 +62,10 @@ public class HomeAlly extends AbstractAllyMonster
                 roadHome = (RoadHome)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, DEATH_DAMAGE) {
+        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
+                description = POWER_DESCRIPTIONS[0];
             }
         });
         super.usePreBattleAction();
@@ -95,7 +91,6 @@ public class HomeAlly extends AbstractAllyMonster
         super.die(triggerRelics);
         if (!AbstractDungeon.getCurrRoom().isBattleEnding()) {
             roadHome.homeDeath();
-            this.addToTop(new DamageAction(adp(), new DamageInfo(this, DEATH_DAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
         }
     }
 }

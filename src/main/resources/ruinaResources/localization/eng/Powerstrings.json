@@ -593,7 +593,7 @@
   },
   "${ModID}:WayHome": {
     "NAME": "On the Way Home",
-    "DESCRIPTIONS": ["On death, you take #b", " damage and the #yRoad #yHome will begin using a #rpowerful attack."]
+    "DESCRIPTIONS": ["On death, the #yRoad #yHome will begin using a #rpowerful attack."]
   },
   "${ModID}:EasilyDistracted": {
     "NAME": "Easily Distracted",
@@ -601,7 +601,7 @@
   },
   "${ModID}:Mimicry": {
     "NAME": "Mimicry",
-    "DESCRIPTIONS": ["Deals additional attack damage equal to the most recent amount of unblocked attack damage received, up to a maximum of #b", "."]
+    "DESCRIPTIONS": ["Deals additional attack damage equal to the most recent amount of unblocked attack damage received, up to a maximum of #b", ". NL NL If this creature dies during your turn while the other #renemy is targeting it, the other #renemy will target #yyou instead (and vice versa for the other #renemy dying)."]
   },
   "${ModID}:SeventhBullet": {
     "NAME": "The Seventh Bullet",
