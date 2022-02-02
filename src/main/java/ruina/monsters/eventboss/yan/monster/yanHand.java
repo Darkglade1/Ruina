@@ -77,7 +77,7 @@ public class yanHand extends AbstractDeckMonster
         super(NAME, ID, 60, -5.0F, 0, 250.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("YanHand/Spriter/YanHand.scml"));
         currentMode = mode;
-        this.type = EnemyType.BOSS;
+        this.type = EnemyType.ELITE;
         this.setHp(calcAscensionTankiness(maxHealth));
         this.parent = parent;
 
@@ -93,7 +93,7 @@ public class yanHand extends AbstractDeckMonster
     @Override
     protected void setUpMisc() {
         super.setUpMisc();
-        this.type = EnemyType.BOSS;
+        this.type = EnemyType.ELITE;
     }
 
     @Override

@@ -10542,6 +10542,588 @@
               ]
             }
           ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Begins with a deck of 3 Protects and 3 Attacks. Draws and uses a card for each intent. After merging with the Hands, gains a new deck of 1 Flurry of Fists, 2 Giant Fist, 2 Compress, 1 Baleful Brand, and 1 Lock. If the left Hand was killed first, add an additional Baleful Brand. Otherwise, add an extra Lock. Uses Distorted Blade every 5 turns.",
+          "hp": "(350 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Protect",
+              "effects": [
+                {
+                  "name": "Give 2 Protection",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "Give 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Giant Fist",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Compress",
+              "effects": [
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Flurry Of Fists",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Baleful Brand",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lock",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Draw Reduction Next Turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Distorted Blade",
+              "effects": [
+                {
+                  "name": "39",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Begins with a deck of 3 Protects and 3 Attacks. Draws and uses a card for each intent. After merging with the Hands, gains a new deck of 1 Flurry of Fists, 2 Giant Fist, 2 Compress, 1 Baleful Brand, and 1 Lock. If the left Hand was killed first, add an additional Baleful Brand. Otherwise, add an extra Lock. Uses Distorted Blade every 5 turns.",
+          "hp": "(385 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Protect",
+              "effects": [
+                {
+                  "name": "Give 2 Protection",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "Give 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Giant Fist",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Compress",
+              "effects": [
+                {
+                  "name": "20 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Flurry Of Fists",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Baleful Brand",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lock",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Draw Reduction Next Turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Distorted Blade",
+              "effects": [
+                {
+                  "name": "39",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Begins with a deck of 3 Protects and 3 Attacks. Draws and uses a card for each intent. After merging with the Hands, gains a new deck of 1 Flurry of Fists, 2 Giant Fist, 2 Compress, 1 Baleful Brand, and 1 Lock. If the left Hand was killed first, add an additional Baleful Brand. Otherwise, add an extra Lock. Uses Distorted Blade every 5 turns.",
+          "hp": "(385 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Protect",
+              "effects": [
+                {
+                  "name": "Give 3 Protection",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Attack",
+              "effects": [
+                {
+                  "name": "Give 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Giant Fist",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Compress",
+              "effects": [
+                {
+                  "name": "20 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Flurry Of Fists",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 3 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Baleful Brand",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lock",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Draw Reduction Next Turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Distorted Blade",
+              "effects": [
+                {
+                  "name": "39",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Distorted Hand",
+      "id": "ruina:yanHand",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses a deck of 2 Compress, 2 Giant Fist, 2 Flurry of Fists. The left Hand also has 1 Baleful Brand, and the right Hand also has 1 Lock. Draws and uses cards for its intent.",
+          "hp": "(60 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Giant Fist",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Compress",
+              "effects": [
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Flurry Of Fists",
+              "effects": [
+                {
+                  "name": "5x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Baleful Brand",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lock",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Draw Reduction Next Turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 3,
+          "desc": "Uses a deck of 2 Compress, 2 Giant Fist, 2 Flurry of Fists. The left Hand also has 1 Baleful Brand, and the right Hand also has 1 Lock. Draws and uses cards for its intent.",
+          "hp": "(60 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Giant Fist",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Compress",
+              "effects": [
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Flurry Of Fists",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Baleful Brand",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lock",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Draw Reduction Next Turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Uses a deck of 2 Compress, 2 Giant Fist, 2 Flurry of Fists. The left Hand also has 1 Baleful Brand, and the right Hand also has 1 Lock. Draws and uses cards for its intent.",
+          "hp": "(66 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Giant Fist",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Compress",
+              "effects": [
+                {
+                  "name": "20 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Flurry Of Fists",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Baleful Brand",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lock",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Draw Reduction Next Turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 18,
+          "desc": "Uses a deck of 2 Compress, 2 Giant Fist, 2 Flurry of Fists. The left Hand also has 1 Baleful Brand, and the right Hand also has 1 Lock. Draws and uses cards for its intent.",
+          "hp": "(66 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Giant Fist",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Compress",
+              "effects": [
+                {
+                  "name": "20 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Flurry Of Fists",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Baleful Brand",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lock",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Draw Reduction Next Turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
         }
       ]
     },

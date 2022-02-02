@@ -563,7 +563,7 @@
   },
   "${ModID}:Sack": {
     "NAME": "Into the Sack You Go!",
-    "DESCRIPTION": "Turn a random card in your deck into *Fresh *Meat. NL Gain !M! Strength."
+    "DESCRIPTION": "Turn the Rarest card in your deck into *Fresh *Meat. NL Gain !M! Strength."
   },
   "${ModID}:FloodingBullets": {
     "NAME": "Flooding Bullets",
