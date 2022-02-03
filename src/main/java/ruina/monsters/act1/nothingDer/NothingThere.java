@@ -267,6 +267,7 @@ public class NothingThere extends AbstractMultiIntentMonster
         super.die(triggerRelics);
         if (!gunman.isDeadOrEscaped()) {
             gunman.onNothingDeath();
+            AbstractDungeon.onModifyPower();
         }
         if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             onBossVictoryLogic();

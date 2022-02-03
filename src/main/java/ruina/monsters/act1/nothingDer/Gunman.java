@@ -306,6 +306,7 @@ public class Gunman extends AbstractMultiIntentMonster
         super.die(triggerRelics);
         if (!nothingThere.isDeadOrEscaped()) {
             nothingThere.onGunManDeath();
+            AbstractDungeon.onModifyPower();
         }
         if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             onBossVictoryLogic();

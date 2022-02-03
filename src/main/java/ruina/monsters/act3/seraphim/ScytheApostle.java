@@ -42,11 +42,17 @@ public class ScytheApostle extends AbstractRuinaMonster {
     public ScytheApostle(final float x, final float y, Prophet parent) {
         super(NAME, ID, 75, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScytheApostle/Spriter/ScytheApostle.scml"));
-        this.type = EnemyType.NORMAL;
+        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(63), calcAscensionTankiness(67));
         addMove(FOLLOW_THEE, Intent.ATTACK, calcAscensionDamage(15));
         addMove(THY_WILL_BE_DONE, Intent.ATTACK, calcAscensionDamage(7), 2, true);
         prophet = parent;
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
     }
 
     @Override

@@ -8183,7 +8183,7 @@
         {
           "min_asc": 0,
           "desc": "Cycles Heavy Guilt or Ceaseless Duty -> whichever move wasn't used previously -> Stare -> Judgement.",
-          "hp": "(250 HP)",
+          "hp": "(280 HP)",
           "notes": "",
           "moves": [
             {
@@ -8191,7 +8191,7 @@
               "effects": [
                 {
                   "name": "Apply 1 Vulnerable and Frail",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -8235,7 +8235,7 @@
         {
           "min_asc": 2,
           "desc": "Cycles Heavy Guilt or Ceaseless Duty -> whichever move wasn't used previously -> Stare -> Judgement.",
-          "hp": "(250 HP)",
+          "hp": "(280 HP)",
           "notes": "",
           "moves": [
             {
@@ -8243,7 +8243,7 @@
               "effects": [
                 {
                   "name": "Apply 1 Vulnerable and Frail",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -8287,7 +8287,7 @@
         {
           "min_asc": 7,
           "desc": "Cycles Heavy Guilt or Ceaseless Duty -> whichever move wasn't used previously -> Stare -> Judgement.",
-          "hp": "(275 HP)",
+          "hp": "(308 HP)",
           "notes": "",
           "moves": [
             {
@@ -8295,7 +8295,7 @@
               "effects": [
                 {
                   "name": "Apply 1 Vulnerable and Frail",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -8339,7 +8339,7 @@
         {
           "min_asc": 17,
           "desc": "Cycles Heavy Guilt or Ceaseless Duty -> whichever move wasn't used previously -> Stare -> Judgement.",
-          "hp": "(275 HP)",
+          "hp": "(308 HP)",
           "notes": "",
           "moves": [
             {
@@ -8347,7 +8347,7 @@
               "effects": [
                 {
                   "name": "Apply 2 Vulnerable and Frail",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -8680,7 +8680,7 @@
               "effects": [
                 {
                   "name": "Shuffle 3 Stolen Times into draw pile",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -8706,7 +8706,7 @@
               "effects": [
                 {
                   "name": "Shuffle 3 Stolen Times into draw pile",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -8732,7 +8732,7 @@
               "effects": [
                 {
                   "name": "Shuffle 3 Stolen Times into draw pile",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -8758,7 +8758,7 @@
               "effects": [
                 {
                   "name": "Shuffle 5 Stolen Times into draw pile",
-                  "color": "BUFF"
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -9204,8 +9204,8 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 1 Frail if at least 6 unblocked damage was done",
-                  "color": "DAMAGE"
+                  "name": "Apply 1 Frail if 6 unblocked damage was done",
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -9217,7 +9217,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Gain 1 extra intent for next turn if at least 5 unblocked damage was done",
+                  "name": "Gain 1 extra intent next turn if 5 unblocked damage was done",
                   "color": "BUFF"
                 }
               ]
@@ -9239,7 +9239,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 3 Bleed if any unblocked damage was dealt",
+                  "name": "Apply 3 Bleed if unblocked damage was dealt",
                   "color": "DEBUFF"
                 }
               ]
@@ -9252,7 +9252,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 5 Bleed if any unblocked damage was dealt",
+                  "name": "Apply 5 Bleed if unblocked damage was dealt",
                   "color": "DEBUFF"
                 }
               ]
@@ -9286,8 +9286,8 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 1 Frail if at least 7 unblocked damage was done",
-                  "color": "DAMAGE"
+                  "name": "Apply 1 Frail if 7 unblocked damage was done",
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -9299,7 +9299,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Gain 1 extra intent for next turn if at least 6 unblocked damage was done",
+                  "name": "Gain 1 extra intent next turn if 6 unblocked damage was done",
                   "color": "BUFF"
                 }
               ]
@@ -9321,7 +9321,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 3 Bleed if any unblocked damage was dealt",
+                  "name": "Apply 3 Bleed if unblocked damage was dealt",
                   "color": "DEBUFF"
                 }
               ]
@@ -9334,7 +9334,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 5 Bleed if any unblocked damage was dealt",
+                  "name": "Apply 5 Bleed if unblocked damage was dealt",
                   "color": "DEBUFF"
                 }
               ]
@@ -9368,8 +9368,8 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 1 Frail if at least 7 unblocked damage was done",
-                  "color": "DAMAGE"
+                  "name": "Apply 1 Frail if 7 unblocked damage was done",
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -9381,7 +9381,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Gain 1 extra intent for next turn if at least 6 unblocked damage was done",
+                  "name": "Gain 1 extra intent next turn if 6 unblocked damage was done",
                   "color": "BUFF"
                 }
               ]
@@ -9403,7 +9403,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 3 Bleed if any unblocked damage was dealt",
+                  "name": "Apply 3 Bleed if unblocked damage was dealt",
                   "color": "DEBUFF"
                 }
               ]
@@ -9416,7 +9416,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 5 Bleed if any unblocked damage was dealt",
+                  "name": "Apply 5 Bleed if unblocked damage was dealt",
                   "color": "DEBUFF"
                 }
               ]
@@ -9450,8 +9450,8 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 2 Frail if at least 7 unblocked damage was done",
-                  "color": "DAMAGE"
+                  "name": "Apply 2 Frail if 7 unblocked damage was done",
+                  "color": "DEBUFF"
                 }
               ]
             },
@@ -9463,7 +9463,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Gain 1 extra intent for next turn if at least 6 unblocked damage was done",
+                  "name": "Gain 1 extra intent next turn if 6 unblocked damage was done",
                   "color": "BUFF"
                 }
               ]
@@ -9485,7 +9485,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 5 Bleed if any unblocked damage was dealt",
+                  "name": "Apply 5 Bleed if unblocked damage was dealt",
                   "color": "DEBUFF"
                 }
               ]
@@ -9498,7 +9498,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 8 Bleed if any unblocked damage was dealt",
+                  "name": "Apply 8 Bleed if unblocked damage was dealt",
                   "color": "DEBUFF"
                 }
               ]
@@ -9835,7 +9835,7 @@
               "effects": [
                 {
                   "name": "Summon 2 Worshippers",
-                  "color": "Special"
+                  "color": "SPECIAL"
                 }
               ]
             }
@@ -9883,7 +9883,7 @@
               "effects": [
                 {
                   "name": "Summon 2 Worshippers",
-                  "color": "Special"
+                  "color": "SPECIAL"
                 }
               ]
             }
@@ -9931,7 +9931,7 @@
               "effects": [
                 {
                   "name": "Summon 2 Worshippers",
-                  "color": "Special"
+                  "color": "SPECIAL"
                 }
               ]
             }
@@ -9979,7 +9979,7 @@
               "effects": [
                 {
                   "name": "Summon 2 Worshippers",
-                  "color": "Special"
+                  "color": "SPECIAL"
                 }
               ]
             }
@@ -10191,7 +10191,7 @@
       "ai": [
         {
           "min_asc": 0,
-          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead.",
+          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead. Displays Calm stance particle effects when Promise of Winter will Freeze the next card played.",
           "hp": "(260 HP)",
           "notes": "Try to Freeze low-cost cards and combo cards with Promise of Winter so that you can freely play them when you Unfreeze them or use the Freeze effect as a budget Retain effect to set up your combos.",
           "moves": [
@@ -10243,7 +10243,7 @@
         },
         {
           "min_asc": 3,
-          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead.",
+          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead. Displays Calm stance particle effects when Promise of Winter will Freeze the next card played.",
           "hp": "(260 HP)",
           "notes": "Try to Freeze low-cost cards and combo cards with Promise of Winter so that you can freely play them when you Unfreeze them or use the Freeze effect as a budget Retain effect to set up your combos.",
           "moves": [
@@ -10295,7 +10295,7 @@
         },
         {
           "min_asc": 8,
-          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead.",
+          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead. Displays Calm stance particle effects when Promise of Winter will Freeze the next card played.",
           "hp": "(286 HP)",
           "notes": "Try to Freeze low-cost cards and combo cards with Promise of Winter so that you can freely play them when you Unfreeze them or use the Freeze effect as a budget Retain effect to set up your combos.",
           "moves": [
@@ -10347,7 +10347,7 @@
         },
         {
           "min_asc": 18,
-          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead.",
+          "desc": "Begins with Blizzard. Will use Blizzard again after the Prison of Ice dies. Otherwise, has equal chances of using Frigid Gaze, Ice Splinters, or Frozen Throne. Frigid Gaze and Ice Splinters cannot be used twice in a row, and Frozen Throne cannot be used again until at least 2 turns have passed. Can only use Frozen Throne a total of 2 times. After capping Frozen Throne usage, Frigid Gaze and Ice Splinters cannot be used 3 times in a row instead. Displays Calm stance particle effects when Promise of Winter will Freeze the next card played.",
           "hp": "(286 HP)",
           "notes": "Try to Freeze low-cost cards and combo cards with Promise of Winter so that you can freely play them when you Unfreeze them or use the Freeze effect as a budget Retain effect to set up your combos.",
           "moves": [
@@ -11120,6 +11120,1550 @@
                 {
                   "name": "Apply 1 Draw Reduction Next Turn",
                   "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Twilight",
+      "id": "ruina:Twilight",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "If an Egg was disabled the previous turn, will use Peace for All. Otherwise, while an Egg is active, will cycle Egg-specific move -> Talons. Big Egg is Surveillance, Small Egg is Torn Mouth, and Long Egg is Tilted Scale. If no Egg is active, instead cycles Brilliant Eyes -> Talons -> Talons.",
+          "hp": "(550 HP)",
+          "notes": "Take note of each Egg power and try to break the Eggs that trouble your deck the most first!",
+          "moves": [
+            {
+              "name": "Peace for All",
+              "effects": [
+                {
+                  "name": "38",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Surveillance",
+              "effects": [
+                {
+                  "name": "16",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Torn Mouth",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Tilted Scale",
+              "effects": [
+                {
+                  "name": "24 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Talons",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Brilliant Eyes",
+              "effects": [
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 1 Void into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "If an Egg was disabled the previous turn, will use Peace for All. Otherwise, while an Egg is active, will cycle Egg-specific move -> Talons. Big Egg is Surveillance, Small Egg is Torn Mouth, and Long Egg is Tilted Scale. If no Egg is active, instead cycles Brilliant Eyes -> Talons -> Talons.",
+          "hp": "(550 HP)",
+          "notes": "Take note of each Egg power and try to break the Eggs that trouble your deck the most first!",
+          "moves": [
+            {
+              "name": "Peace for All",
+              "effects": [
+                {
+                  "name": "42",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Surveillance",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Torn Mouth",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Tilted Scale",
+              "effects": [
+                {
+                  "name": "24 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Talons",
+              "effects": [
+                {
+                  "name": "14x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Brilliant Eyes",
+              "effects": [
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 1 Void into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "If an Egg was disabled the previous turn, will use Peace for All. Otherwise, while an Egg is active, will cycle Egg-specific move -> Talons. Big Egg is Surveillance, Small Egg is Torn Mouth, and Long Egg is Tilted Scale. If no Egg is active, instead cycles Brilliant Eyes -> Talons -> Talons.",
+          "hp": "(605 HP)",
+          "notes": "Take note of each Egg power and try to break the Eggs that trouble your deck the most first!",
+          "moves": [
+            {
+              "name": "Peace for All",
+              "effects": [
+                {
+                  "name": "42",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Surveillance",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Torn Mouth",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Tilted Scale",
+              "effects": [
+                {
+                  "name": "26 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Talons",
+              "effects": [
+                {
+                  "name": "14x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Brilliant Eyes",
+              "effects": [
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 1 Void into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "If an Egg was disabled the previous turn, will use Peace for All. Otherwise, while an Egg is active, will cycle Egg-specific move -> Talons. Big Egg is Surveillance, Small Egg is Torn Mouth, and Long Egg is Tilted Scale. If no Egg is active, instead cycles Brilliant Eyes -> Talons -> Talons.",
+          "hp": "(605 HP)",
+          "notes": "Take note of each Egg power and try to break the Eggs that trouble your deck the most first!",
+          "moves": [
+            {
+              "name": "Peace for All",
+              "effects": [
+                {
+                  "name": "42",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Surveillance",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Torn Mouth",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Tilted Scale",
+              "effects": [
+                {
+                  "name": "26 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Talons",
+              "effects": [
+                {
+                  "name": "14x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Brilliant Eyes",
+              "effects": [
+                {
+                  "name": "Apply 3 Weak",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 1 Void into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Silent Girl",
+      "id": "ruina:SilentGirl",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Cycles Digging Nail -> Slam -> A Cracked Heart -> Collapsing Heart. After HP drops to or below 50%, will use Don't Suppress Your Heart. After, cycles Broken to Pieces -> Leer of Fright.",
+          "hp": "(480 HP)",
+          "notes": "Try to draft a lot of card draw and energy gain effects in preparation for this fight so you can more easily play and Exhaust the Guilt cards!",
+          "moves": [
+            {
+              "name": "Digging Nail",
+              "effects": [
+                {
+                  "name": "16",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Slam",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "A Cracked Heart",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Collapsing Heart",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Broken to Pieces",
+              "effects": [
+                {
+                  "name": "12x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Leer of Fright",
+              "effects": [
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Don't Suppress Your Heart",
+              "effects": [
+                {
+                  "name": "Cleanse debuffs and gain 3 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "36 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Cycles Digging Nail -> Slam -> A Cracked Heart -> Collapsing Heart. After HP drops to or below 50%, will use Don't Suppress Your Heart. After, cycles Broken to Pieces -> Leer of Fright.",
+          "hp": "(480 HP)",
+          "notes": "Try to draft a lot of card draw and energy gain effects in preparation for this fight so you can more easily play and Exhaust the Guilt cards!",
+          "moves": [
+            {
+              "name": "Digging Nail",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Slam",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "A Cracked Heart",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Collapsing Heart",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Broken to Pieces",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Leer of Fright",
+              "effects": [
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Don't Suppress Your Heart",
+              "effects": [
+                {
+                  "name": "Cleanse debuffs and gain 3 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "36 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Cycles Digging Nail -> Slam -> A Cracked Heart -> Collapsing Heart. After HP drops to or below 50%, will use Don't Suppress Your Heart. After, cycles Broken to Pieces -> Leer of Fright.",
+          "hp": "(528 HP)",
+          "notes": "Try to draft a lot of card draw and energy gain effects in preparation for this fight so you can more easily play and Exhaust the Guilt cards!",
+          "moves": [
+            {
+              "name": "Digging Nail",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Slam",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "A Cracked Heart",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Collapsing Heart",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Broken to Pieces",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Leer of Fright",
+              "effects": [
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Don't Suppress Your Heart",
+              "effects": [
+                {
+                  "name": "Cleanse debuffs and gain 3 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "39 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Cycles Digging Nail -> Slam -> A Cracked Heart -> Collapsing Heart. After HP drops to or below 50%, will use Don't Suppress Your Heart. After, cycles Broken to Pieces -> Leer of Fright.",
+          "hp": "(528 HP)",
+          "notes": "Try to draft a lot of card draw and energy gain effects in preparation for this fight so you can more easily play and Exhaust the Guilt cards!",
+          "moves": [
+            {
+              "name": "Digging Nail",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Slam",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "A Cracked Heart",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Collapsing Heart",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Broken to Pieces",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Leer of Fright",
+              "effects": [
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Don't Suppress Your Heart",
+              "effects": [
+                {
+                  "name": "Cleanse debuffs, gain 5 Strength, and heal 25% HP",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "39 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Prophet",
+      "id": "ruina:ParadiseLost",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Baptism every turn.",
+          "hp": "(100 HP)",
+          "notes": "Try to kill a lot of the enemies before the next phase begins to get more buffs!",
+          "moves": [
+            {
+              "name": "Baptism",
+              "effects": [
+                {
+                  "name": "Heals the player for 5 HP",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Scythe Apostle",
+      "id": "ruina:ScytheApostle",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Thy Will be Done every turn.",
+          "hp": "(63 - 67 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Thy Will be Done",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Uses Thy Will be Done every turn.",
+          "hp": "(63 - 67 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Thy Will be Done",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Uses Thy Will be Done every turn.",
+          "hp": "(69 - 74 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Thy Will be Done",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spear Apostle",
+      "id": "ruina:SpearApostle",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses The Will of the Lord be Done, then alternates with For He is Holy.",
+          "hp": "(39 - 44 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "The Will of the Lord be Done",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "For He is Holy",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Uses The Will of the Lord be Done, then alternates with For He is Holy.",
+          "hp": "(39 - 44 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "The Will of the Lord be Done",
+              "effects": [
+                {
+                  "name": "26",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "For He is Holy",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Uses The Will of the Lord be Done, then alternates with For He is Holy.",
+          "hp": "(43 - 48 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "The Will of the Lord be Done",
+              "effects": [
+                {
+                  "name": "26",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "For He is Holy",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Uses The Will of the Lord be Done, then alternates with For He is Holy.",
+          "hp": "(43 - 48 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "The Will of the Lord be Done",
+              "effects": [
+                {
+                  "name": "26",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "For He is Holy",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 8 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Staff Apostle",
+      "id": "ruina:StaffApostle",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Thy Words Come unto Me every turn",
+          "hp": "(49 - 53 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Thy Words Come unto Me",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Uses Thy Words Come unto Me every turn",
+          "hp": "(49 - 53 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Thy Words Come unto Me",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Uses Thy Words Come unto Me every turn",
+          "hp": "(54 - 58 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Thy Words Come unto Me",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Uses Thy Words Come unto Me every turn",
+          "hp": "(54 - 58 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Thy Words Come unto Me",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Seraphim of a Long Lost Paradise",
+      "id": "ruina:Seraphim",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Rise and Serve. After, has equal chances of using Do Not Deny Me or Behold My Power on the first intent. If either Guardian Apostle is dead, will use Salvation on the 2nd intent. Otherwise, has equal chances of using Be Not Afraid or Behold My Power on the 2nd intent. Only uses Revelation on the 3rd intent, which is unlocked once below 50% HP.",
+          "hp": "(666 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rise And Serve",
+              "effects": [
+                {
+                  "name": "50",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Summon 2 Guardian Apostles",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Salvation",
+              "effects": [
+                {
+                  "name": "Revives fallen Apostles",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Do Not Deny Me",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Be Not Afraid",
+              "effects": [
+                {
+                  "name": "All allies heal 15 HP and gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Behold My Power",
+              "effects": [
+                {
+                  "name": "5x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Revelation",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength and 1 Wings of Grace",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Begins with Rise and Serve. After, has equal chances of using Do Not Deny Me or Behold My Power on the first intent. If either Guardian Apostle is dead, will use Salvation on the 2nd intent. Otherwise, has equal chances of using Be Not Afraid or Behold My Power on the 2nd intent. Only uses Revelation on the 3rd intent, which is unlocked once below 50% HP.",
+          "hp": "(666 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rise And Serve",
+              "effects": [
+                {
+                  "name": "55",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Summon 2 Guardian Apostles",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Salvation",
+              "effects": [
+                {
+                  "name": "Revives fallen Apostles",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Do Not Deny Me",
+              "effects": [
+                {
+                  "name": "23",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Be Not Afraid",
+              "effects": [
+                {
+                  "name": "All allies heal 15 HP and gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Behold My Power",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Revelation",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength and 1 Wings of Grace",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Begins with Rise and Serve. After, has equal chances of using Do Not Deny Me or Behold My Power on the first intent. If either Guardian Apostle is dead, will use Salvation on the 2nd intent. Otherwise, has equal chances of using Be Not Afraid or Behold My Power on the 2nd intent. Only uses Revelation on the 3rd intent, which is unlocked once below 50% HP.",
+          "hp": "(666 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rise And Serve",
+              "effects": [
+                {
+                  "name": "55",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Summon 2 Guardian Apostles",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Salvation",
+              "effects": [
+                {
+                  "name": "Revives fallen Apostles",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Do Not Deny Me",
+              "effects": [
+                {
+                  "name": "23",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Be Not Afraid",
+              "effects": [
+                {
+                  "name": "All allies heal 17 HP and gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Behold My Power",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Revelation",
+              "effects": [
+                {
+                  "name": "Gain 2 Strength and 1 Wings of Grace",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Begins with Rise and Serve. After, has equal chances of using Do Not Deny Me or Behold My Power on the first intent. If either Guardian Apostle is dead, will use Salvation on the 2nd intent. Otherwise, has equal chances of using Be Not Afraid or Behold My Power on the 2nd intent. Only uses Revelation on the 3rd intent.",
+          "hp": "(666 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rise And Serve",
+              "effects": [
+                {
+                  "name": "55",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Summon 2 Guardian Apostles",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Salvation",
+              "effects": [
+                {
+                  "name": "Revives fallen Apostles",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Do Not Deny Me",
+              "effects": [
+                {
+                  "name": "23",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Be Not Afraid",
+              "effects": [
+                {
+                  "name": "All allies heal 17 HP and gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Behold My Power",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Revelation",
+              "effects": [
+                {
+                  "name": "Gain 3 Strength and 2 Wings of Grace",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Guardian Apostle",
+      "id": "ruina:GuardianApostle",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Rise and Serve. After, has equal chances of using any other move, but cannot use the same move twice in a row.",
+          "hp": "(80 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rise And Serve",
+              "effects": [
+                {
+                  "name": "30 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 1 Ritual",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wilt thou that We Command Fire?",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Thou art the King",
+              "effects": [
+                {
+                  "name": "3x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Give Us Rest",
+              "effects": [
+                {
+                  "name": "Give 15 Block to Apostles and 30 to the boss",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Thy Words Come unto Me",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Lord, Shew Us",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Begins with Rise and Serve. After, has equal chances of using any other move, but cannot use the same move twice in a row.",
+          "hp": "(80 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rise And Serve",
+              "effects": [
+                {
+                  "name": "30 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 1 Ritual",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wilt thou that We Command Fire?",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Thou art the King",
+              "effects": [
+                {
+                  "name": "3x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Give Us Rest",
+              "effects": [
+                {
+                  "name": "Give 15 Block to Apostles and 30 to the boss",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Thy Words Come unto Me",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Lord, Shew Us",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Begins with Rise and Serve. After, has equal chances of using any other move, but cannot use the same move twice in a row.",
+          "hp": "(88 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rise And Serve",
+              "effects": [
+                {
+                  "name": "33 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 1 Ritual",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wilt thou that We Command Fire?",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Thou art the King",
+              "effects": [
+                {
+                  "name": "3x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Give Us Rest",
+              "effects": [
+                {
+                  "name": "Give 17 Block to Apostles and 33 to the boss",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Thy Words Come unto Me",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Lord, Shew Us",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Begins with Rise and Serve. After, has equal chances of using any other move, but cannot use the same move twice in a row.",
+          "hp": "(88 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Rise And Serve",
+              "effects": [
+                {
+                  "name": "33 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 2 Ritual",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wilt thou that We Command Fire?",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Thou art the King",
+              "effects": [
+                {
+                  "name": "3x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Give Us Rest",
+              "effects": [
+                {
+                  "name": "Give 17 Block to Apostles and 33 to the boss",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Thy Words Come unto Me",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Lord, Shew Us",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
                 }
               ]
             }

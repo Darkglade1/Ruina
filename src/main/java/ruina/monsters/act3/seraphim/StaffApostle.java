@@ -37,7 +37,7 @@ public class StaffApostle extends AbstractRuinaMonster {
     public StaffApostle(final float x, final float y, Prophet parent) {
         super(NAME, ID, 50, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("StaffApostle/Spriter/StaffApostle.scml"));
-        this.type = EnemyType.NORMAL;
+        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(49), calcAscensionTankiness(53));
         Intent intentIcon;
         if (AbstractDungeon.ascensionLevel >= 19) {
@@ -48,6 +48,12 @@ public class StaffApostle extends AbstractRuinaMonster {
         addMove(THY_WORDS, intentIcon, calcAscensionDamage(7));
         addMove(GIVE_US_REST, Intent.DEFEND_BUFF);
         prophet = parent;
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
     }
 
     @Override

@@ -31,11 +31,17 @@ public class SpearApostle extends AbstractRuinaMonster {
     public SpearApostle(final float x, final float y, Prophet parent) {
         super(NAME, ID, 50, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SpearApostle/Spriter/SpearApostle.scml"));
-        this.type = EnemyType.NORMAL;
+        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(39), calcAscensionTankiness(44));
         addMove(THE_WILL_OF_THE_LORD_BE_DONE, Intent.ATTACK, calcAscensionDamage(24));
         addMove(FOR_HE_IS_HOLY, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
         prophet = parent;
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
     }
 
     @Override
