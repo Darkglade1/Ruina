@@ -12672,6 +12672,885 @@
       ]
     },
     {
+      "name": "Philip",
+      "id": "ruina:Philip",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "On the first intent, has equal chances to use Waned Eventide, Searing Resolution, and Despairingly Stigmatize, but each move has 2 turn cooldown. After each move has been used once, if this creature doesn't have its 3rd intent yet, all their cooldowns are reset to 0. If this creature has its 3rd intent, Wound of Sorrow is also added to the first intent's list of moves. The 2nd and 3rd intents have equal chances of using Searing Resolution, Despairingly Stigmatize, and Conflicting Emotions, following the same cooldowns as the first intent. Only the rightmost intent can use Conflicting Emotions. After 3 turns have passed, gains a 3rd intent and summons minions. After 6 turns have passed, gains a large damage bonus and summons minions again or heals them to full HP if they're still alive.",
+          "hp": "(700 HP)",
+          "notes": "Try to Exhaust as many cards as you can to quickly power up your ally! Be sure to make use of the Manifest on all your cards to help with that.",
+          "moves": [
+            {
+              "name": "Waned Eventide",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Burns into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Conflicting Emotions",
+              "effects": [
+                {
+                  "name": "10 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Despairingly Stigmatize",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Searing Resolution",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Burn into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wound of Sorrow",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "On the first intent, has equal chances to use Waned Eventide, Searing Resolution, and Despairingly Stigmatize, but each move has 2 turn cooldown. After each move has been used once, if this creature doesn't have its 3rd intent yet, all their cooldowns are reset to 0. If this creature has its 3rd intent, Wound of Sorrow is also added to the first intent's list of moves. The 2nd and 3rd intents have equal chances of using Searing Resolution, Despairingly Stigmatize, and Conflicting Emotions, following the same cooldowns as the first intent. Only the rightmost intent can use Conflicting Emotions. After 3 turns have passed, gains a 3rd intent and summons minions. After 6 turns have passed, gains a large damage bonus and summons minions again or heals them to full HP if they're still alive.",
+          "hp": "(700 HP)",
+          "notes": "Try to Exhaust as many cards as you can to quickly power up your ally! Be sure to make use of the Manifest on all your cards to help with that.",
+          "moves": [
+            {
+              "name": "Waned Eventide",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Burns into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Conflicting Emotions",
+              "effects": [
+                {
+                  "name": "10 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Despairingly Stigmatize",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Searing Resolution",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Burn into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wound of Sorrow",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "On the first intent, has equal chances to use Waned Eventide, Searing Resolution, and Despairingly Stigmatize, but each move has 2 turn cooldown. After each move has been used once, if this creature doesn't have its 3rd intent yet, all their cooldowns are reset to 0. If this creature has its 3rd intent, Wound of Sorrow is also added to the first intent's list of moves. The 2nd and 3rd intents have equal chances of using Searing Resolution, Despairingly Stigmatize, and Conflicting Emotions, following the same cooldowns as the first intent. Only the rightmost intent can use Conflicting Emotions. After 3 turns have passed, gains a 3rd intent and summons minions. After 6 turns have passed, gains a large damage bonus and summons minions again or heals them to full HP if they're still alive.",
+          "hp": "(770 HP)",
+          "notes": "Try to Exhaust as many cards as you can to quickly power up your ally! Be sure to make use of the Manifest on all your cards to help with that.",
+          "moves": [
+            {
+              "name": "Waned Eventide",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Burns into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Conflicting Emotions",
+              "effects": [
+                {
+                  "name": "11 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Despairingly Stigmatize",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Searing Resolution",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Burn into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wound of Sorrow",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "On the first intent, has equal chances to use Waned Eventide, Searing Resolution, and Despairingly Stigmatize, but each move has 2 turn cooldown. After each move has been used once, if this creature doesn't have its 3rd intent yet, all their cooldowns are reset to 0. If this creature has its 3rd intent, Wound of Sorrow is also added to the first intent's list of moves. The 2nd and 3rd intents have equal chances of using Searing Resolution, Despairingly Stigmatize, and Conflicting Emotions, following the same cooldowns as the first intent. Only the rightmost intent can use Conflicting Emotions. After 3 turns have passed, gains a 3rd intent and summons minions. After 6 turns have passed, gains a large damage bonus and summons minions again or heals them to full HP if they're still alive.",
+          "hp": "(770 HP)",
+          "notes": "Try to Exhaust as many cards as you can to quickly power up your ally! Be sure to make use of the Manifest on all your cards to help with that.",
+          "moves": [
+            {
+              "name": "Waned Eventide",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Burns+ into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Conflicting Emotions",
+              "effects": [
+                {
+                  "name": "11 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Despairingly Stigmatize",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Searing Resolution",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 2 Burns+ into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Wound of Sorrow",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Malkuth",
+      "id": "ruina:Malkuth",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Coordinated Assault, Fervid Emotions, and Emotional Turbulence. If Emotion is 20 or higher, no longer uses Coordinated Assault and instead uses a Mass Attack whenever the enemy summons minions and every 3 turns as long as a minion is still alive. If Emotion is 40, uses Inferno as the Mass Attack, otherwise uses Raging Storm: Love. After reaching 40 Emotion, gains a power that applies Vulnerable to all enemies every turn.",
+          "hp": "(150 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Coordinated Assault",
+              "effects": [
+                {
+                  "name": "10 Block to player",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Player gains 2 Strength and 1 Draw Next Turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Emotional Turbulence",
+              "effects": [
+                {
+                  "name": "16",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "14 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 4 Emotion",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Fervid Emotions",
+              "effects": [
+                {
+                  "name": "12x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 4 Emotion",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Raging Storm: Love",
+              "effects": [
+                {
+                  "name": "20x2 Mass Attack",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable to all enemies twice",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Inferno",
+              "effects": [
+                {
+                  "name": "50 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Has equal chances of using Coordinated Assault, Fervid Emotions, and Emotional Turbulence. If Emotion is 20 or higher, no longer uses Coordinated Assault and instead uses a Mass Attack whenever the enemy summons minions and every 3 turns as long as a minion is still alive. If Emotion is 40, uses Inferno as the Mass Attack, otherwise uses Raging Storm: Love. After reaching 40 Emotion, gains a power that applies Vulnerable to all enemies every turn.",
+          "hp": "(128 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Coordinated Assault",
+              "effects": [
+                {
+                  "name": "10 Block to player",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Player gains 2 Strength and 1 Draw Next Turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Emotional Turbulence",
+              "effects": [
+                {
+                  "name": "16",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "14 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 4 Emotion",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Fervid Emotions",
+              "effects": [
+                {
+                  "name": "12x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 4 Emotion",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Raging Storm: Love",
+              "effects": [
+                {
+                  "name": "20x2 Mass Attack",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable to all enemies twice",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Inferno",
+              "effects": [
+                {
+                  "name": "50 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Crying Child",
+      "id": "ruina:CryingChild",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Wing Stroke or Mumur, but cannot use either move 3 times in a row. Has a 50% chance of attacking you or your ally.",
+          "hp": "(72 - 78 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Wing Stroke",
+              "effects": [
+                {
+                  "name": "6",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Murmur",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Has equal chances of using Wing Stroke or Mumur, but cannot use either move 3 times in a row. Has a 50% chance of attacking you or your ally.",
+          "hp": "(72 - 78 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Wing Stroke",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Murmur",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Has equal chances of using Wing Stroke or Mumur, but cannot use either move 3 times in a row. Has a 50% chance of attacking you or your ally.",
+          "hp": "(79 - 86 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Wing Stroke",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Murmur",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Has equal chances of using Wing Stroke or Mumur, but cannot use either move 3 times in a row. Has a 50% chance of attacking you or your ally.",
+          "hp": "(79 - 86 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Wing Stroke",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Murmur",
+              "effects": [
+                {
+                  "name": "11",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Eileen",
+      "id": "ruina:Eileen",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "On the first intent, begins with Thought Gear: Preach and alternates with Thought Gear: Accelerate. On the 2nd intent, begins with Thought Gear: Propagate and alternates with Thought Gear: Brainwash. Prioritizes attacking your ally.",
+          "hp": "(1000 HP)",
+          "notes": "Try to block your ally's Mass Attack so their attacks become empowered against the enemy!",
+          "moves": [
+            {
+              "name": "Thought Gear: Preach",
+              "effects": [
+                {
+                  "name": "All allies gain 4 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Accelerate",
+              "effects": [
+                {
+                  "name": "All allies gain 22 Block",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Propagate",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Brainwash",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "On the first intent, begins with Thought Gear: Preach and alternates with Thought Gear: Accelerate. On the 2nd intent, begins with Thought Gear: Propagate and alternates with Thought Gear: Brainwash. Prioritizes attacking your ally.",
+          "hp": "(1000 HP)",
+          "notes": "Try to block your ally's Mass Attack so their attacks become empowered against the enemy!",
+          "moves": [
+            {
+              "name": "Thought Gear: Preach",
+              "effects": [
+                {
+                  "name": "All allies gain 4 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Accelerate",
+              "effects": [
+                {
+                  "name": "All allies gain 22 Block",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Propagate",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Brainwash",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "On the first intent, begins with Thought Gear: Preach and alternates with Thought Gear: Accelerate. On the 2nd intent, begins with Thought Gear: Propagate and alternates with Thought Gear: Brainwash. Prioritizes attacking your ally.",
+          "hp": "(1100 HP)",
+          "notes": "Try to block your ally's Mass Attack so their attacks become empowered against the enemy!",
+          "moves": [
+            {
+              "name": "Thought Gear: Preach",
+              "effects": [
+                {
+                  "name": "All allies gain 4 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Accelerate",
+              "effects": [
+                {
+                  "name": "All allies gain 24 Block",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Propagate",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Brainwash",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "On the first intent, begins with Thought Gear: Preach and alternates with Thought Gear: Accelerate. On the 2nd intent, begins with Thought Gear: Propagate and alternates with Thought Gear: Brainwash. Prioritizes attacking your ally.",
+          "hp": "(1100 HP)",
+          "notes": "Try to block your ally's Mass Attack so their attacks become empowered against the enemy!",
+          "moves": [
+            {
+              "name": "Thought Gear: Preach",
+              "effects": [
+                {
+                  "name": "All allies gain 6 Strength next turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Accelerate",
+              "effects": [
+                {
+                  "name": "All allies gain 24 Block",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Propagate",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thought Gear: Brainwash",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Yesod",
+      "id": "ruina:Yesod",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Flooding Bullets and alternates with Reload.",
+          "hp": "(160 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Reload",
+              "effects": [
+                {
+                  "name": "14 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Player gains 1 Energy and Draw Next Turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Flooding Bullets",
+              "effects": [
+                {
+                  "name": "8x3 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Begins with Flooding Bullets and alternates with Reload.",
+          "hp": "(160 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Reload",
+              "effects": [
+                {
+                  "name": "14 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Player gains 1 Energy and Draw Next Turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Flooding Bullets",
+              "effects": [
+                {
+                  "name": "9x3 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Begins with Flooding Bullets and alternates with Reload.",
+          "hp": "(136 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Reload",
+              "effects": [
+                {
+                  "name": "14 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Player gains 1 Energy and Draw Next Turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Flooding Bullets",
+              "effects": [
+                {
+                  "name": "9x3 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gears Worshipper",
+      "id": "ruina:GearsWorshipper",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Vapor every turn. Prioritizes attacking your ally.",
+          "hp": "(132 - 144 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Vapor",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Uses Vapor every turn. Prioritizes attacking your ally.",
+          "hp": "(132 - 144 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Vapor",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Uses Vapor every turn. Prioritizes attacking your ally.",
+          "hp": "(145 - 158 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Vapor",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "template",
       "id": "ruina:template",
       "ai": [
