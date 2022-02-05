@@ -94,7 +94,7 @@ public class Bremen extends AbstractCardMonster
         addMove(BAWK, Intent.DEBUFF);
         addMove(RARF, Intent.DEFEND_DEBUFF);
         addMove(TENDON, Intent.ATTACK, calcAscensionDamage(8), tendonHits, true);
-        addMove(TRIO, Intent.ATTACK_DEBUFF, calcAscensionDamage(6), trioHits, true);
+        addMove(TRIO, Intent.ATTACK_BUFF, calcAscensionDamage(6), trioHits, true);
     }
 
     @Override

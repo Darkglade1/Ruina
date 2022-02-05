@@ -13551,6 +13551,920 @@
       ]
     },
     {
+      "name": "Greta",
+      "id": "ruina:Greta",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack.",
+          "hp": "(750 HP)",
+          "notes": "She likes her meat Rare.",
+          "moves": [
+            {
+              "name": "Break an Egg",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Slap and Fold",
+              "effects": [
+                {
+                  "name": "20 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 4 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Mince",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Season the Meat",
+              "effects": [
+                {
+                  "name": "Apply 2 Weak and Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Trial Smack",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Into the Sack You Go!",
+              "effects": [
+                {
+                  "name": "Turn a card into Fresh Meat",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack.",
+          "hp": "(750 HP)",
+          "notes": "She likes her meat Rare.",
+          "moves": [
+            {
+              "name": "Break an Egg",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Slap and Fold",
+              "effects": [
+                {
+                  "name": "20 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 4 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Mince",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Season the Meat",
+              "effects": [
+                {
+                  "name": "Apply 2 Weak and Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Trial Smack",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Into the Sack You Go!",
+              "effects": [
+                {
+                  "name": "Turn a card into Fresh Meat",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack.",
+          "hp": "(825 HP)",
+          "notes": "She likes her meat Rare.",
+          "moves": [
+            {
+              "name": "Break an Egg",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Slap and Fold",
+              "effects": [
+                {
+                  "name": "22 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 4 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Mince",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Season the Meat",
+              "effects": [
+                {
+                  "name": "Apply 2 Weak and Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Trial Smack",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Into the Sack You Go!",
+              "effects": [
+                {
+                  "name": "Turn a card into Fresh Meat",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack.",
+          "hp": "(825 HP)",
+          "notes": "She likes her meat Rare.",
+          "moves": [
+            {
+              "name": "Break an Egg",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Slap and Fold",
+              "effects": [
+                {
+                  "name": "22 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 6 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Mince",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Season the Meat",
+              "effects": [
+                {
+                  "name": "Apply 3 Weak and Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Trial Smack",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Heal HP equal to unblocked damage",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Into the Sack You Go!",
+              "effects": [
+                {
+                  "name": "Turn a card into Fresh Meat",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hod",
+      "id": "ruina:Hod",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "In Slash stance, begins with Snake Slit and alternates with Violet Blade. In Pierce stance, begins with Laceration and alternates with Venomous Fangs. In Guard stance, begins with Serpentine Barrier and alternates with Duel. This creature displays Divinity particle effects when Pierce stance's effect will trigger on the next attack.",
+          "hp": "(130 HP)",
+          "notes": "This ally is very versatile with her 3 different specialized stances - be sure to switch her stance when needed to help mitigate damage, apply debuffs, and deal damage!",
+          "moves": [
+            {
+              "name": "Snake Slit",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Violet Blade",
+              "effects": [
+                {
+                  "name": "8x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Laceration",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Venomous Fangs",
+              "effects": [
+                {
+                  "name": "14",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Serpentine Barrier",
+              "effects": [
+                {
+                  "name": "All allies gain 18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Duel",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 10 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "In Slash stance, begins with Snake Slit and alternates with Violet Blade. In Pierce stance, begins with Laceration and alternates with Venomous Fangs. In Guard stance, begins with Serpentine Barrier and alternates with Duel. This creature displays Divinity particle effects when Pierce stance's effect will trigger on the next attack.",
+          "hp": "(111 HP)",
+          "notes": "This ally is very versatile with her 3 different specialized stances - be sure to switch her stance when needed to help mitigate damage, apply debuffs, and deal damage!",
+          "moves": [
+            {
+              "name": "Snake Slit",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Violet Blade",
+              "effects": [
+                {
+                  "name": "8x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Laceration",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Venomous Fangs",
+              "effects": [
+                {
+                  "name": "14",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Serpentine Barrier",
+              "effects": [
+                {
+                  "name": "All allies gain 18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Duel",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 10 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fresh Meat",
+      "id": "ruina:FreshMeat",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Sit Here and Do Nothing",
+          "hp": "(80 HP)",
+          "notes": "It's a sack of meat, did you expect it to get up and do something?",
+          "moves": [
+            {
+              "name": "Sit Here and Do Nothing",
+              "effects": [
+                {
+                  "name": "Sits There and Does Nothing",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 8,
+          "desc": "Uses Sit Here and Do Nothing",
+          "hp": "(60 HP)",
+          "notes": "It's a sack of meat, did you expect it to get up and do something?",
+          "moves": [
+            {
+              "name": "Sit Here and Do Nothing",
+              "effects": [
+                {
+                  "name": "Sits There and Does Nothing",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Musicians of Bremen",
+      "id": "ruina:Bremen",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "For the first intent, has equal chances of using RARF RARF, BAWK BAWK, NEIGHHH, or Powerful Tendon Chords. Each move has a 2 turn cooldown. Every 3 turns, instead uses Trio on the first intent. For the 2nd intent, has equal chances of using NEIGHHH or Powerful Tendon Chords. For the 3rd intent, has equal chances of using NEIGHHH, Powerful Tendon Chords, BAWK BAWK, or Everlasting Melody; each move has a 2 turn cooldown. The 3rd intent alternates between targeting your ally or you.",
+          "hp": "(850 HP)",
+          "notes": "Completing the Melody each turn is important to prevent this creature from gaining too much Strength! The 0-cost Prescript cards your ally gives you will aid in this, especially since they Retain, which means if you are able to complete the Melody without needing to play a Prescript card, you can Retain them for a later turn when they are more necessary to complete the Melody.",
+          "moves": [
+            {
+              "name": "Everlasting Melody",
+              "effects": [
+                {
+                  "name": "8",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "NEIGHHH",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "BAWK BAWK",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "RARF RARF",
+              "effects": [
+                {
+                  "name": "22 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Powerful Tendon Chords",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Trio",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase Melody length by 1",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "For the first intent, has equal chances of using RARF RARF, BAWK BAWK, NEIGHHH, or Powerful Tendon Chords. Each move has a 2 turn cooldown. Every 3 turns, instead uses Trio on the first intent. For the 2nd intent, has equal chances of using NEIGHHH or Powerful Tendon Chords. For the 3rd intent, has equal chances of using NEIGHHH, Powerful Tendon Chords, BAWK BAWK, or Everlasting Melody; each move has a 2 turn cooldown. The 3rd intent alternates between targeting your ally or you.",
+          "hp": "(850 HP)",
+          "notes": "Completing the Melody each turn is important to prevent this creature from gaining too much Strength! The 0-cost Prescript cards your ally gives you will aid in this, especially since they Retain, which means if you are able to complete the Melody without needing to play a Prescript card, you can Retain them for a later turn when they are more necessary to complete the Melody.",
+          "moves": [
+            {
+              "name": "Everlasting Melody",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "NEIGHHH",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "BAWK BAWK",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "RARF RARF",
+              "effects": [
+                {
+                  "name": "22 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Powerful Tendon Chords",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Trio",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase Melody length by 1",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "For the first intent, has equal chances of using RARF RARF, BAWK BAWK, NEIGHHH, or Powerful Tendon Chords. Each move has a 2 turn cooldown. Every 3 turns, instead uses Trio on the first intent. For the 2nd intent, has equal chances of using NEIGHHH or Powerful Tendon Chords. For the 3rd intent, has equal chances of using NEIGHHH, Powerful Tendon Chords, BAWK BAWK, or Everlasting Melody; each move has a 2 turn cooldown. The 3rd intent alternates between targeting your ally or you.",
+          "hp": "(935 HP)",
+          "notes": "Completing the Melody each turn is important to prevent this creature from gaining too much Strength! The 0-cost Prescript cards your ally gives you will aid in this, especially since they Retain, which means if you are able to complete the Melody without needing to play a Prescript card, you can Retain them for a later turn when they are more necessary to complete the Melody.",
+          "moves": [
+            {
+              "name": "Everlasting Melody",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "NEIGHHH",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "BAWK BAWK",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "RARF RARF",
+              "effects": [
+                {
+                  "name": "24 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Powerful Tendon Chords",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Trio",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase Melody length by 1",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "For the first intent, has equal chances of using RARF RARF, BAWK BAWK, NEIGHHH, or Powerful Tendon Chords. Each move has a 2 turn cooldown. Every 3 turns, instead uses Trio on the first intent. For the 2nd intent, has equal chances of using NEIGHHH or Powerful Tendon Chords. For the 3rd intent, has equal chances of using NEIGHHH, Powerful Tendon Chords, BAWK BAWK, or Everlasting Melody; each move has a 2 turn cooldown. The 3rd intent alternates between targeting your ally or you.",
+          "hp": "(935 HP)",
+          "notes": "Completing the Melody each turn is important to prevent this creature from gaining too much Strength! The 0-cost Prescript cards your ally gives you will aid in this, especially since they Retain, which means if you are able to complete the Melody without needing to play a Prescript card, you can Retain them for a later turn when they are more necessary to complete the Melody.",
+          "moves": [
+            {
+              "name": "Everlasting Melody",
+              "effects": [
+                {
+                  "name": "9",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "NEIGHHH",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "BAWK BAWK",
+              "effects": [
+                {
+                  "name": "Shuffle 5 Dazed into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "RARF RARF",
+              "effects": [
+                {
+                  "name": "24 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Powerful Tendon Chords",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Trio",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase Melody length by 1",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Netzach",
+      "id": "ruina:Netzach",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Can use any move with equal chances. Cannot use the same move again until each move has been used once.",
+          "hp": "(160 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Will of the City",
+              "effects": [
+                {
+                  "name": "All allies gain 13 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Player gains 2 Draw Next Turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Baleful Brand",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Blind Faith",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Can use any move with equal chances. Cannot use the same move again until each move has been used once.",
+          "hp": "(136 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Will of the City",
+              "effects": [
+                {
+                  "name": "All allies gain 13 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Player gains 2 Draw Next Turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Baleful Brand",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Erosion",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Blind Faith",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "template",
       "id": "ruina:template",
       "ai": [
