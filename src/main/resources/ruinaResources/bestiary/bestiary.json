@@ -14465,6 +14465,782 @@
       ]
     },
     {
+      "name": "Oswald",
+      "id": "ruina:Oswald",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "For the first intent, cycles Rising Climax -> Let's Have Some Fun -> Here, Catch. For the 2nd intent, cycles We Need You, You Know -> Let's Have Some Fun -> Pow! Kablammo!. If your ally is dead, We Need You, You Know is replaced by Here, Catch.",
+          "hp": "(700 HP)",
+          "notes": "Quickly freeing your ally from the Brainwash effect is important so she doesn't give the boss her beneficial effects!",
+          "moves": [
+            {
+              "name": "Rising Climax",
+              "effects": [
+                {
+                  "name": "5x4",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase number of hits by 1",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Let's Have Some Fun",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Here, Catch",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Wounds into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Pow! Kablammo!",
+              "effects": [
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "We Need You, You Know",
+              "effects": [
+                {
+                  "name": "Apply 2 Brainwash",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "For the first intent, cycles Rising Climax -> Let's Have Some Fun -> Here, Catch. For the 2nd intent, cycles We Need You, You Know -> Let's Have Some Fun -> Pow! Kablammo!. If your ally is dead, We Need You, You Know is replaced by Here, Catch.",
+          "hp": "(700 HP)",
+          "notes": "Quickly freeing your ally from the Brainwash effect is important so she doesn't give the boss her beneficial effects!",
+          "moves": [
+            {
+              "name": "Rising Climax",
+              "effects": [
+                {
+                  "name": "6x4",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase number of hits by 1",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Let's Have Some Fun",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Here, Catch",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Wounds into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Pow! Kablammo!",
+              "effects": [
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "We Need You, You Know",
+              "effects": [
+                {
+                  "name": "Apply 2 Brainwash",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "For the first intent, cycles Rising Climax -> Let's Have Some Fun -> Here, Catch. For the 2nd intent, cycles We Need You, You Know -> Let's Have Some Fun -> Pow! Kablammo!. If your ally is dead, We Need You, You Know is replaced by Here, Catch.",
+          "hp": "(770 HP)",
+          "notes": "Quickly freeing your ally from the Brainwash effect is important so she doesn't give the boss her beneficial effects!",
+          "moves": [
+            {
+              "name": "Rising Climax",
+              "effects": [
+                {
+                  "name": "6x4",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase number of hits by 1",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Let's Have Some Fun",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Here, Catch",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Wounds into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Pow! Kablammo!",
+              "effects": [
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "We Need You, You Know",
+              "effects": [
+                {
+                  "name": "Apply 2 Brainwash",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "For the first intent, cycles Rising Climax -> Let's Have Some Fun -> Here, Catch. For the 2nd intent, cycles We Need You, You Know -> Let's Have Some Fun -> Pow! Kablammo!. If your ally is dead, We Need You, You Know is replaced by Here, Catch.",
+          "hp": "(770 HP)",
+          "notes": "Quickly freeing your ally from the Brainwash effect is important so she doesn't give the boss her beneficial effects!",
+          "moves": [
+            {
+              "name": "Rising Climax",
+              "effects": [
+                {
+                  "name": "6x4",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase number of hits by 2",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Let's Have Some Fun",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Here, Catch",
+              "effects": [
+                {
+                  "name": "Shuffle 5 Wounds into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Pow! Kablammo!",
+              "effects": [
+                {
+                  "name": "Apply 3 Weak",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "We Need You, You Know",
+              "effects": [
+                {
+                  "name": "Apply 2 Brainwash",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tiphereth",
+      "id": "ruina:Tiph",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with Augury Kick and alternates with Confrontation. If Brainwashed last turn, instead uses Confrontation.",
+          "hp": "(300 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Augury Kick",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Confrontation",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 2 Protection",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tanya",
+      "id": "ruina:Tanya",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "For the first intent, has equal chances of using Lupine Assault or Fisticuffs, but cannot use the same move twice in a row. For the 2nd intent, uses Lupine Assault, Fisticuffs, or Kicks and Stomps with equal chances, but cannot use the first 2 moves twice in a row, and cannot use the 3rd move until at least 2 turns have passed. Uses Beatdown on the first intent and Intimidate on the 2nd intent on turn 3 and every 4 turns thereafter. Uses Overspeed on the first and 2nd intents when your ally is using a Greater Split.",
+          "hp": "(450 HP)",
+          "notes": "Your ally is much more effective when she is able to deal unblocked damage, so make sure to try to clear the enemy's block for her!",
+          "moves": [
+            {
+              "name": "Overspeed",
+              "effects": [
+                {
+                  "name": "20x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Beatdown",
+              "effects": [
+                {
+                  "name": "28 Mass Attack",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 5 Metallicize",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Intimidate",
+              "effects": [
+                {
+                  "name": "Convert Plated Armor to Metallicize",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 15 Plated Armor",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lupine Onslaught",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "16 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Kicks and Stomps",
+              "effects": [
+                {
+                  "name": "12x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Fisticuffs",
+              "effects": [
+                {
+                  "name": "26",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "For the first intent, has equal chances of using Lupine Assault or Fisticuffs, but cannot use the same move twice in a row. For the 2nd intent, uses Lupine Assault, Fisticuffs, or Kicks and Stomps with equal chances, but cannot use the first 2 moves twice in a row, and cannot use the 3rd move until at least 2 turns have passed. Uses Beatdown on the first intent and Intimidate on the 2nd intent on turn 3 and every 4 turns thereafter. Uses Overspeed on the first and 2nd intents when your ally is using a Greater Split.",
+          "hp": "(450 HP)",
+          "notes": "Your ally is much more effective when she is able to deal unblocked damage, so make sure to try to clear the enemy's block for her!",
+          "moves": [
+            {
+              "name": "Overspeed",
+              "effects": [
+                {
+                  "name": "22x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Beatdown",
+              "effects": [
+                {
+                  "name": "31 Mass Attack",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 5 Metallicize",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Intimidate",
+              "effects": [
+                {
+                  "name": "Convert Plated Armor to Metallicize",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 15 Plated Armor",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lupine Onslaught",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "16 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Kicks and Stomps",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Fisticuffs",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "For the first intent, has equal chances of using Lupine Assault or Fisticuffs, but cannot use the same move twice in a row. For the 2nd intent, uses Lupine Assault, Fisticuffs, or Kicks and Stomps with equal chances, but cannot use the first 2 moves twice in a row, and cannot use the 3rd move until at least 2 turns have passed. Uses Beatdown on the first intent and Intimidate on the 2nd intent on turn 3 and every 4 turns thereafter. Uses Overspeed on the first and 2nd intents when your ally is using a Greater Split.",
+          "hp": "(495 HP)",
+          "notes": "Your ally is much more effective when she is able to deal unblocked damage, so make sure to try to clear the enemy's block for her!",
+          "moves": [
+            {
+              "name": "Overspeed",
+              "effects": [
+                {
+                  "name": "22x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Beatdown",
+              "effects": [
+                {
+                  "name": "31 Mass Attack",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 5 Metallicize",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Intimidate",
+              "effects": [
+                {
+                  "name": "Convert Plated Armor to Metallicize",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 17 Plated Armor",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lupine Onslaught",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Kicks and Stomps",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Fisticuffs",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "For the first intent, has equal chances of using Lupine Assault or Fisticuffs, but cannot use the same move twice in a row. For the 2nd intent, uses Lupine Assault, Fisticuffs, or Kicks and Stomps with equal chances, but cannot use the first 2 moves twice in a row, and cannot use the 3rd move until at least 2 turns have passed. Uses Beatdown on the first intent and Intimidate on the 2nd intent on turn 3 and every 4 turns thereafter. Uses Overspeed on the first and 2nd intents when your ally is using a Greater Split.",
+          "hp": "(495 HP)",
+          "notes": "Your ally is much more effective when she is able to deal unblocked damage, so make sure to try to clear the enemy's block for her!",
+          "moves": [
+            {
+              "name": "Overspeed",
+              "effects": [
+                {
+                  "name": "22x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Beatdown",
+              "effects": [
+                {
+                  "name": "31 Mass Attack",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 8 Metallicize",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Intimidate",
+              "effects": [
+                {
+                  "name": "Convert Plated Armor to Metallicize",
+                  "color": "SPECIAL"
+                },
+                {
+                  "name": "Gain 17 Plated Armor",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Lupine Onslaught",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Kicks and Stomps",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Fisticuffs",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gebura",
+      "id": "ruina:Gebura",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses Upstanding Slash, Level Slash, or Spear with equal chances. Cannot use the same move again until each move has been used once. Every 4 turns, uses a Greater Split; Horizontal if in EGO, Vertical otherwise.",
+          "hp": "(200 HP)",
+          "notes": "The most primitive, yet universal language, has always been violence.",
+          "moves": [
+            {
+              "name": "Upstanding Slash",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable if 7 unblocked damage was done",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Level Slash",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength if 6 unblocked damage was done",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Spear",
+              "effects": [
+                {
+                  "name": "4x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Deals double damage to enemies without Block",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Vertical",
+              "effects": [
+                {
+                  "name": "30",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Target loses Strength equal to unblocked damage",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Horizontal",
+              "effects": [
+                {
+                  "name": "40",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Target loses Strength equal to unblocked damage",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Uses Upstanding Slash, Level Slash, or Spear with equal chances. Cannot use the same move again until each move has been used once. Every 4 turns, uses a Greater Split; Horizontal if in EGO, Vertical otherwise.",
+          "hp": "(170 HP)",
+          "notes": "The most primitive, yet universal language, has always been violence.",
+          "moves": [
+            {
+              "name": "Upstanding Slash",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable if 7 unblocked damage was done",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Level Slash",
+              "effects": [
+                {
+                  "name": "6x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 2 Strength if 6 unblocked damage was done",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Spear",
+              "effects": [
+                {
+                  "name": "4x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Deals double damage to enemies without Block",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Vertical",
+              "effects": [
+                {
+                  "name": "30",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Target loses Strength equal to unblocked damage",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Greater Split: Horizontal",
+              "effects": [
+                {
+                  "name": "40",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Target loses Strength equal to unblocked damage",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "template",
       "id": "ruina:template",
       "ai": [
