@@ -13223,7 +13223,7 @@
               "effects": [
                 {
                   "name": "All allies gain 22 Block",
-                  "color": "DAMAGE"
+                  "color": "BLOCK"
                 }
               ]
             },
@@ -13271,7 +13271,7 @@
               "effects": [
                 {
                   "name": "All allies gain 22 Block",
-                  "color": "DAMAGE"
+                  "color": "BLOCK"
                 }
               ]
             },
@@ -13319,7 +13319,7 @@
               "effects": [
                 {
                   "name": "All allies gain 24 Block",
-                  "color": "DAMAGE"
+                  "color": "BLOCK"
                 }
               ]
             },
@@ -13367,7 +13367,7 @@
               "effects": [
                 {
                   "name": "All allies gain 24 Block",
-                  "color": "DAMAGE"
+                  "color": "BLOCK"
                 }
               ]
             },
@@ -13556,7 +13556,7 @@
       "ai": [
         {
           "min_asc": 0,
-          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack.",
+          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack. This creature displays Wrath particle effects when it is about to cleanse debuffs at end of round.",
           "hp": "(750 HP)",
           "notes": "She likes her meat Rare.",
           "moves": [
@@ -13634,7 +13634,7 @@
         },
         {
           "min_asc": 4,
-          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack.",
+          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack. This creature displays Wrath particle effects when it is about to cleanse debuffs at end of round.",
           "hp": "(750 HP)",
           "notes": "She likes her meat Rare.",
           "moves": [
@@ -13712,7 +13712,7 @@
         },
         {
           "min_asc": 9,
-          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack.",
+          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack. This creature displays Wrath particle effects when it is about to cleanse debuffs at end of round.",
           "hp": "(825 HP)",
           "notes": "She likes her meat Rare.",
           "moves": [
@@ -13790,7 +13790,7 @@
         },
         {
           "min_asc": 19,
-          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack.",
+          "desc": "For the first intent, has equal chances of using Break an Egg, Slap and Fold, or Mince. Cannot use the same move again until all moves have been used once. For the 2nd intent, has equal chances of using Mince, Slap and Fold, or Season the Meat. Cannot use Mince 3 times in a row, and the other 2 moves have a 2 turn cooldown. For the 3rd intent, uses Into the Sack You Go! if there is no Fresh Meat alive, otherwise uses Trial Smack. This creature displays Wrath particle effects when it is about to cleanse debuffs at end of round.",
           "hp": "(825 HP)",
           "notes": "She likes her meat Rare.",
           "moves": [
@@ -15233,6 +15233,1626 @@
                 {
                   "name": "Target loses Strength equal to unblocked damage",
                   "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jae-heon",
+      "id": "ruina:Puppeteer",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "For the first intent, has equal chances of using Tugging Strings, Assailing Pulls, or Thin Strings, but cannot use any move twice in a row. Always uses Tugging Strings after Assailing Pulls. The 2nd intent follows the same behavior as the first, except Thin Strings is replaced by Puppetry. Uses Pulling the Strings Taut on the first intent every 4 turns.",
+          "hp": "(800 HP)",
+          "notes": "Try to set up your high damage bursts on turns where this creature is Marked by your ally to maximize your damage output!",
+          "moves": [
+            {
+              "name": "Pulling the Strings Taut",
+              "effects": [
+                {
+                  "name": "38 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Tugging Strings",
+              "effects": [
+                {
+                  "name": "12x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Assailing Pulls",
+              "effects": [
+                {
+                  "name": "16",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thin Strings",
+              "effects": [
+                {
+                  "name": "All allies gain 20 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Puppetry",
+              "effects": [
+                {
+                  "name": "All allies gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "For the first intent, has equal chances of using Tugging Strings, Assailing Pulls, or Thin Strings, but cannot use any move twice in a row. Always uses Tugging Strings after Assailing Pulls. The 2nd intent follows the same behavior as the first, except Thin Strings is replaced by Puppetry. Uses Pulling the Strings Taut on the first intent every 4 turns.",
+          "hp": "(800 HP)",
+          "notes": "Try to set up your high damage bursts on turns where this creature is Marked by your ally to maximize your damage output!",
+          "moves": [
+            {
+              "name": "Pulling the Strings Taut",
+              "effects": [
+                {
+                  "name": "42 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Tugging Strings",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Assailing Pulls",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thin Strings",
+              "effects": [
+                {
+                  "name": "All allies gain 20 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Puppetry",
+              "effects": [
+                {
+                  "name": "All allies gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "For the first intent, has equal chances of using Tugging Strings, Assailing Pulls, or Thin Strings, but cannot use any move twice in a row. Always uses Tugging Strings after Assailing Pulls. The 2nd intent follows the same behavior as the first, except Thin Strings is replaced by Puppetry. Uses Pulling the Strings Taut on the first intent every 4 turns.",
+          "hp": "(880 HP)",
+          "notes": "Try to set up your high damage bursts on turns where this creature is Marked by your ally to maximize your damage output!",
+          "moves": [
+            {
+              "name": "Pulling the Strings Taut",
+              "effects": [
+                {
+                  "name": "42 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Tugging Strings",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Assailing Pulls",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thin Strings",
+              "effects": [
+                {
+                  "name": "All allies gain 22 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Puppetry",
+              "effects": [
+                {
+                  "name": "All allies gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "For the first intent, has equal chances of using Tugging Strings, Assailing Pulls, or Thin Strings, but cannot use any move twice in a row. Always uses Tugging Strings after Assailing Pulls. The 2nd intent follows the same behavior as the first, except Thin Strings is replaced by Puppetry. Uses Pulling the Strings Taut on the first intent every 4 turns.",
+          "hp": "(880 HP)",
+          "notes": "Try to set up your high damage bursts on turns where this creature is Marked by your ally to maximize your damage output!",
+          "moves": [
+            {
+              "name": "Pulling the Strings Taut",
+              "effects": [
+                {
+                  "name": "42 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Tugging Strings",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Assailing Pulls",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thin Strings",
+              "effects": [
+                {
+                  "name": "All allies gain 22 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Puppetry",
+              "effects": [
+                {
+                  "name": "All allies gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chesed",
+      "id": "ruina:Chesed",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Battle Command, Energy Shield, or Concentrate. Cannot use the same move again until each move has been used once. Will use Disposal on the boss when the boss is Marked, below 25% HP, and the Puppet is not in the way.",
+          "hp": "(150 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Battle Command",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Energy Shield",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 15 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Concentration",
+              "effects": [
+                {
+                  "name": "11x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Disposal",
+              "effects": [
+                {
+                  "name": "12x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Deals double damage to low HP or Marked targets",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Has equal chances of using Battle Command, Energy Shield, or Concentrate. Cannot use the same move again until each move has been used once. Will use Disposal on the boss when the boss is Marked, below 25% HP, and the Puppet is not in the way.",
+          "hp": "(128 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Battle Command",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Energy Shield",
+              "effects": [
+                {
+                  "name": "7",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "All allies gain 15 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Concentration",
+              "effects": [
+                {
+                  "name": "11x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "18 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Disposal",
+              "effects": [
+                {
+                  "name": "12x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Deals double damage to low HP or Marked targets",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Puppet",
+      "id": "ruina:Puppet",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Forceful Gesture or Repressed Flesh, but cannot use either move 3 times in a row. Alternates between attacking you and your ally - however, if the boss used Assailing Pulls last turn, will prioritize the target of Assailing Pulls.",
+          "hp": "(90 - 98 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Forceful Gesture",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Repressed Flesh",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Has equal chances of using Forceful Gesture or Repressed Flesh, but cannot use either move 3 times in a row. Alternates between attacking you and your ally - however, if the boss used Assailing Pulls last turn, will prioritize the target of Assailing Pulls.",
+          "hp": "(90 - 98 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Forceful Gesture",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "12 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Repressed Flesh",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Has equal chances of using Forceful Gesture or Repressed Flesh, but cannot use either move 3 times in a row. Alternates between attacking you and your ally - however, if the boss used Assailing Pulls last turn, will prioritize the target of Assailing Pulls.",
+          "hp": "(99 - 108 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Forceful Gesture",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "13 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Repressed Flesh",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Elena",
+      "id": "ruina:Elena",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "On the first intent, has equal chances of using Circulation, Siphon, or Sanguine Nails, but cannot use the same move again until each move has been used once. For the 2nd intent, has equal chances of using Bloodspreading, Inject, or Sanguine Nails, but cannot use the same move again until each move has been used once.",
+          "hp": "(500 HP)",
+          "notes": "Pay attention to the enemies' intents and carefully determine which one you want your ally to cancel each turn!",
+          "moves": [
+            {
+              "name": "Circulation",
+              "effects": [
+                {
+                  "name": "An ally gains 3 Strength and Protection",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sanguine Nails",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Siphon",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bloodspreading",
+              "effects": [
+                {
+                  "name": "38",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Inject",
+              "effects": [
+                {
+                  "name": "Apply 10 Bleed",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "On the first intent, has equal chances of using Circulation, Siphon, or Sanguine Nails, but cannot use the same move again until each move has been used once. For the 2nd intent, has equal chances of using Bloodspreading, Inject, or Sanguine Nails, but cannot use the same move again until each move has been used once.",
+          "hp": "(500 HP)",
+          "notes": "Pay attention to the enemies' intents and carefully determine which one you want your ally to cancel each turn!",
+          "moves": [
+            {
+              "name": "Circulation",
+              "effects": [
+                {
+                  "name": "An ally gains 3 Strength and Protection",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sanguine Nails",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Siphon",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bloodspreading",
+              "effects": [
+                {
+                  "name": "42",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Inject",
+              "effects": [
+                {
+                  "name": "Apply 10 Bleed",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "On the first intent, has equal chances of using Circulation, Siphon, or Sanguine Nails, but cannot use the same move again until each move has been used once. For the 2nd intent, has equal chances of using Bloodspreading, Inject, or Sanguine Nails, but cannot use the same move again until each move has been used once.",
+          "hp": "(550 HP)",
+          "notes": "Pay attention to the enemies' intents and carefully determine which one you want your ally to cancel each turn!",
+          "moves": [
+            {
+              "name": "Circulation",
+              "effects": [
+                {
+                  "name": "An ally gains 3 Strength and Protection",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sanguine Nails",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Siphon",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bloodspreading",
+              "effects": [
+                {
+                  "name": "42",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Inject",
+              "effects": [
+                {
+                  "name": "Apply 10 Bleed",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 1 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "On the first intent, has equal chances of using Circulation, Siphon, or Sanguine Nails, but cannot use the same move again until each move has been used once. For the 2nd intent, has equal chances of using Bloodspreading, Inject, or Sanguine Nails, but cannot use the same move again until each move has been used once.",
+          "hp": "(550 HP)",
+          "notes": "Pay attention to the enemies' intents and carefully determine which one you want your ally to cancel each turn!",
+          "moves": [
+            {
+              "name": "Circulation",
+              "effects": [
+                {
+                  "name": "An ally gains 5 Strength and Protection",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Sanguine Nails",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Siphon",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Bloodspreading",
+              "effects": [
+                {
+                  "name": "42",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Inject",
+              "effects": [
+                {
+                  "name": "Apply 15 Bleed",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Vermilion Cross",
+      "id": "ruina:VermilionCross",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "For the first intent, has equal chances of using Obstruct or Heated Weapon. Uses Shockwave after Obstruct. Cannot use the same move again until each move has been used once. For the 2nd intent, has equal chances of using Rampageous Strike, Heat Up, or Heated Weapon, but cannot use the same move again until each move has been used once.",
+          "hp": "(600 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Obstruct",
+              "effects": [
+                {
+                  "name": "50 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Shockwave",
+              "effects": [
+                {
+                  "name": "16",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "If this creature still has Block, an ally gains 1 Intangible.",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Heated Weapon",
+              "effects": [
+                {
+                  "name": "7x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Burn into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Rampageous Strike",
+              "effects": [
+                {
+                  "name": "45",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Heat Up",
+              "effects": [
+                {
+                  "name": "10 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "For the first intent, has equal chances of using Obstruct or Heated Weapon. Uses Shockwave after Obstruct. Cannot use the same move again until each move has been used once. For the 2nd intent, has equal chances of using Rampageous Strike, Heat Up, or Heated Weapon, but cannot use the same move again until each move has been used once.",
+          "hp": "(600 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Obstruct",
+              "effects": [
+                {
+                  "name": "50 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Shockwave",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "If this creature still has Block, an ally gains 1 Intangible.",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Heated Weapon",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Burn into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Rampageous Strike",
+              "effects": [
+                {
+                  "name": "50",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Heat Up",
+              "effects": [
+                {
+                  "name": "10 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "For the first intent, has equal chances of using Obstruct or Heated Weapon. Uses Shockwave after Obstruct. Cannot use the same move again until each move has been used once. For the 2nd intent, has equal chances of using Rampageous Strike, Heat Up, or Heated Weapon, but cannot use the same move again until each move has been used once.",
+          "hp": "(660 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Obstruct",
+              "effects": [
+                {
+                  "name": "55 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Shockwave",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "If this creature still has Block, an ally gains 1 Intangible.",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Heated Weapon",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 1 Burn into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Rampageous Strike",
+              "effects": [
+                {
+                  "name": "50",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Heat Up",
+              "effects": [
+                {
+                  "name": "11 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "For the first intent, has equal chances of using Obstruct or Heated Weapon. Uses Shockwave after Obstruct. Cannot use the same move again until each move has been used once. For the 2nd intent, has equal chances of using Rampageous Strike, Heat Up, or Heated Weapon, but cannot use the same move again until each move has been used once.",
+          "hp": "(660 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Obstruct",
+              "effects": [
+                {
+                  "name": "55 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Shockwave",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "If this creature still has Block, an ally gains 2 Intangible.",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Heated Weapon",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Shuffle 2 Burns into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Rampageous Strike",
+              "effects": [
+                {
+                  "name": "50",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Heat Up",
+              "effects": [
+                {
+                  "name": "11 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Gain 8 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Binah",
+      "id": "ruina:Binah",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using any move, but cannot use the same move again until each move has been used once.",
+          "hp": "(120 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Degraded Pillar",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "14 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Degraded Chain",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Degraded Fairy",
+              "effects": [
+                {
+                  "name": "14x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Has equal chances of using any move, but cannot use the same move again until each move has been used once.",
+          "hp": "(102 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Degraded Pillar",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "14 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Degraded Chain",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 1 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Degraded Fairy",
+              "effects": [
+                {
+                  "name": "14x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Argalia",
+      "id": "ruina:Argalia",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Uses a deck of 2 Largo, 2 Allegro, 1 Resonant Scythe, and 1 Trails of Blue. Draws and uses a card for each intent. Uses Tempestuous Danza instead on the 10th turn.",
+          "hp": "(1500 HP)",
+          "notes": "Try to shift this creature's intents so that Large consumes Vibration for its effect instead of Allegro! The enemy having additional Block is easier to deal with than the enemy having additional Strength. In addition, since this creature has a 6 card deck and uses 3 cards per turn, you can, on some turns, predict which cards this creature will use next turn.",
+          "moves": [
+            {
+              "name": "Largo",
+              "effects": [
+                {
+                  "name": "15",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "30 Block, consume Vibration to repeat",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Allegro",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Consume Vibration to gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Resonant Scythe",
+              "effects": [
+                {
+                  "name": "30",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Deals triple damage on the 2nd intent",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Trails Of Blue",
+              "effects": [
+                {
+                  "name": "26",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -3 Strength",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Tempestuous Danza",
+              "effects": [
+                {
+                  "name": "6x5",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Uses a deck of 2 Largo, 2 Allegro, 1 Resonant Scythe, and 1 Trails of Blue. Draws and uses a card for each intent. Uses Tempestuous Danza instead on the 10th turn.",
+          "hp": "(1500 HP)",
+          "notes": "Try to shift this creature's intents so that Large consumes Vibration for its effect instead of Allegro! The enemy having additional Block is easier to deal with than the enemy having additional Strength. In addition, since this creature has a 6 card deck and uses 3 cards per turn, you can, on some turns, predict which cards this creature will use next turn.",
+          "moves": [
+            {
+              "name": "Largo",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "30 Block, consume Vibration to repeat",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Allegro",
+              "effects": [
+                {
+                  "name": "11x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Consume Vibration to gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Resonant Scythe",
+              "effects": [
+                {
+                  "name": "33",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Deals triple damage on the 2nd intent",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Trails Of Blue",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -3 Strength",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Tempestuous Danza",
+              "effects": [
+                {
+                  "name": "7x5",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Uses a deck of 2 Largo, 2 Allegro, 1 Resonant Scythe, and 1 Trails of Blue. Draws and uses a card for each intent. Uses Tempestuous Danza instead on the 10th turn.",
+          "hp": "(1650 HP)",
+          "notes": "Try to shift this creature's intents so that Large consumes Vibration for its effect instead of Allegro! The enemy having additional Block is easier to deal with than the enemy having additional Strength. In addition, since this creature has a 6 card deck and uses 3 cards per turn, you can, on some turns, predict which cards this creature will use next turn.",
+          "moves": [
+            {
+              "name": "Largo",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "33 Block, consume Vibration to repeat",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Allegro",
+              "effects": [
+                {
+                  "name": "11x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Consume Vibration to gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Resonant Scythe",
+              "effects": [
+                {
+                  "name": "33",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Deals triple damage on the 2nd intent",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Trails Of Blue",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -3 Strength",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Tempestuous Danza",
+              "effects": [
+                {
+                  "name": "7x5",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Uses a deck of 2 Largo, 2 Allegro, 1 Resonant Scythe, and 1 Trails of Blue. Draws and uses a card for each intent. Uses Tempestuous Danza instead on the 10th turn.",
+          "hp": "(1650 HP)",
+          "notes": "Try to shift this creature's intents so that Large consumes Vibration for its effect instead of Allegro! The enemy having additional Block is easier to deal with than the enemy having additional Strength. In addition, since this creature has a 6 card deck and uses 3 cards per turn, you can, on some turns, predict which cards this creature will use next turn.",
+          "moves": [
+            {
+              "name": "Largo",
+              "effects": [
+                {
+                  "name": "17",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "33 Block, consume Vibration to repeat",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Allegro",
+              "effects": [
+                {
+                  "name": "11x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Consume Vibration to gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Resonant Scythe",
+              "effects": [
+                {
+                  "name": "33",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Deals triple damage on the 2nd intent",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Trails Of Blue",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -5 Strength",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Tempestuous Danza",
+              "effects": [
+                {
+                  "name": "7x5",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Roland",
+      "id": "ruina:Roland",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Begins with a move pool of every move except Furioso. Can use any move in the move pool with equal probability, but once a move is used, it is removed from the move pool. Once the move pool is empty, will use Furioso and then reset the move pool.",
+          "hp": "(650 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Crystal Atelier",
+              "effects": [
+                {
+                  "name": "22x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "33 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Wheels Industry",
+              "effects": [
+                {
+                  "name": "45",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -4 Strength",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Durandal",
+              "effects": [
+                {
+                  "name": "15x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 4 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Allas Workshop",
+              "effects": [
+                {
+                  "name": "32",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Atelier Logic",
+              "effects": [
+                {
+                  "name": "16x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Mook Workshop",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Old Boy's Workshop",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "20 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ranga Workshop",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 8 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Zelkova Workshop",
+              "effects": [
+                {
+                  "name": "14x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Furioso",
+              "effects": [
+                {
+                  "name": "25x16",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Begins with a move pool of every move except Furioso. Can use any move in the move pool with equal probability, but once a move is used, it is removed from the move pool. Once the move pool is empty, will use Furioso and then reset the move pool.",
+          "hp": "(553 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Crystal Atelier",
+              "effects": [
+                {
+                  "name": "22x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "33 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Wheels Industry",
+              "effects": [
+                {
+                  "name": "45",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -4 Strength",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Durandal",
+              "effects": [
+                {
+                  "name": "15x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 4 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Allas Workshop",
+              "effects": [
+                {
+                  "name": "32",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Atelier Logic",
+              "effects": [
+                {
+                  "name": "16x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Mook Workshop",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Old Boy's Workshop",
+              "effects": [
+                {
+                  "name": "12",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "20 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ranga Workshop",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 8 Bleed",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Zelkova Workshop",
+              "effects": [
+                {
+                  "name": "14x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Furioso",
+              "effects": [
+                {
+                  "name": "25x16",
+                  "color": "DAMAGE"
                 }
               ]
             }

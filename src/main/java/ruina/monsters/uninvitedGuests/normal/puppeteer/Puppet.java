@@ -67,7 +67,7 @@ public class Puppet extends AbstractRuinaMonster
     public Puppet(final float x, final float y, Puppeteer puppeteer) {
         super(NAME, ID, 40, -5.0F, 0, 250.0f, 395.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppet/Spriter/Puppet.scml"));
-        this.type = EnemyType.NORMAL;
+        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(90), calcAscensionTankiness(98));
         addMove(FORCEFUL_GESTURE, Intent.ATTACK_DEFEND, calcAscensionDamage(15));
         addMove(REPRESSED_FLESH, Intent.ATTACK, calcAscensionDamage(9), 2, true);
@@ -75,6 +75,12 @@ public class Puppet extends AbstractRuinaMonster
         addMove(REVIVE, Intent.BUFF);
         this.puppeteer = puppeteer;
         this.chesed = puppeteer.chesed;
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
     }
 
     @Override
