@@ -1,6 +1,7 @@
 package ruina.actions;
 
 import basemod.ReflectionHacks;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -44,9 +45,21 @@ public class AllyGainBlockAction extends AbstractGameAction {
     public void update() {
         if (!this.target.isDying && !this.target.isDead && this.duration == this.startDuration) {
             AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SHIELD));
+
+            boolean effect = target.currentBlock == 0;
+
             //we're not using addBlock here so that NOTHING can modify this block gain, looking at you Stiletto from Reliquary
             this.target.currentBlock += this.amount;
-            ReflectionHacks.privateMethod(AbstractCreature.class, "gainBlockAnimation").invoke(this.target);
+
+            if (effect && target.currentBlock > 0) {
+                ReflectionHacks.privateMethod(AbstractCreature.class, "gainBlockAnimation").invoke(this.target);
+            } else if (amount > 0) {
+                Color tmpCol = Settings.GOLD_COLOR.cpy();
+                Color blockTextColor = ReflectionHacks.getPrivate(target, AbstractCreature.class, "blockTextColor");
+                tmpCol.a = blockTextColor.a;
+                ReflectionHacks.setPrivate(target, AbstractCreature.class, "blockTextColor", tmpCol);
+                ReflectionHacks.setPrivate(target, AbstractCreature.class, "blockScale", 5.0F);
+            }
 
             for (AbstractCard c : AbstractDungeon.player.hand.group) {
                 c.applyPowers();
