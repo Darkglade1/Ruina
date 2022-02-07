@@ -18,7 +18,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "30 Block",
+                  "name": "30 Block if enemy's turn",
                   "color": "BLOCK"
                 }
               ]
@@ -31,7 +31,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply -8 Temp Strength",
+                  "name": "Apply -8 Temp Strength if player's turn",
                   "color": "DEBUFF"
                 }
               ]
@@ -44,7 +44,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Gain 6 Temp Strength",
+                  "name": "Gain 6 Temp Strength if player's turn",
                   "color": "BUFF"
                 }
               ]
@@ -57,7 +57,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply -10 Temp Strength",
+                  "name": "Apply -10 Temp Strength if player's turn",
                   "color": "DEBUFF"
                 }
               ]
@@ -92,7 +92,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "50 Block",
+                  "name": "50 Block if enemy's turn",
                   "color": "BLOCK"
                 }
               ]
@@ -105,7 +105,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Apply 4 Bleed",
+                  "name": "Apply 4 Bleed if enemy's turn",
                   "color": "DEBUFF"
                 }
               ]
@@ -118,7 +118,7 @@
                   "color": "DAMAGE"
                 },
                 {
-                  "name": "Gain 4 Temp Strength",
+                  "name": "Gain 4 Temp Strength if player's turn",
                   "color": "BUFF"
                 }
               ]
@@ -132,6 +132,408 @@
                 },
                 {
                   "name": "Apply 3 Weak and Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Begins with a move pool of every move except Furioso. Can use any move in the move pool with equal probability, but once a move is used, it is removed from the move pool. Once the move pool is empty, will use Furioso and then reset the move pool. Durandal and Zelkova Workshop cannot be used right before Furioso.",
+          "hp": "(1000 HP)",
+          "notes": "Many of this creature's moves have additional effects depending on if it is currently the player's turn or the enemy's turn. Its second intent is a preview of its next move, which can be useful for planning ahead.",
+          "moves": [
+            {
+              "name": "Crystal Atelier",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "30 Block if enemy's turn",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Wheels Industry",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -8 Temp Strength if player's turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Durandal",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 6 Temp Strength if player's turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Allas Workshop",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -10 Temp Strength if player's turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Atelier Logic",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Mook Workshop",
+              "effects": [
+                {
+                  "name": "23",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Remove Player Block",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Old Boy's Workshop",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "50 Block if enemy's turn",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ranga Workshop",
+              "effects": [
+                {
+                  "name": "8x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 4 Bleed if enemy's turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Zelkova Workshop",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 4 Temp Strength if player's turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Furioso",
+              "effects": [
+                {
+                  "name": "4x16",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Weak and Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Begins with a move pool of every move except Furioso. Can use any move in the move pool with equal probability, but once a move is used, it is removed from the move pool. Once the move pool is empty, will use Furioso and then reset the move pool. Durandal and Zelkova Workshop cannot be used right before Furioso.",
+          "hp": "(1100 HP)",
+          "notes": "Many of this creature's moves have additional effects depending on if it is currently the player's turn or the enemy's turn. Its second intent is a preview of its next move, which can be useful for planning ahead.",
+          "moves": [
+            {
+              "name": "Crystal Atelier",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "33 Block if enemy's turn",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Wheels Industry",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -8 Temp Strength if player's turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Durandal",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 6 Temp Strength if player's turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Allas Workshop",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -10 Temp Strength if player's turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Atelier Logic",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Mook Workshop",
+              "effects": [
+                {
+                  "name": "23",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Remove Player Block",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Old Boy's Workshop",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "55 Block if enemy's turn",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ranga Workshop",
+              "effects": [
+                {
+                  "name": "8x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 4 Bleed if enemy's turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Zelkova Workshop",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 4 Temp Strength if player's turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Furioso",
+              "effects": [
+                {
+                  "name": "4x16",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Weak and Frail",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Begins with a move pool of every move except Furioso. Can use any move in the move pool with equal probability, but once a move is used, it is removed from the move pool. Once the move pool is empty, will use Furioso and then reset the move pool. Durandal and Zelkova Workshop cannot be used right before Furioso.",
+          "hp": "(1100 HP)",
+          "notes": "Many of this creature's moves have additional effects depending on if it is currently the player's turn or the enemy's turn. Its second intent is a preview of its next move, which can be useful for planning ahead.",
+          "moves": [
+            {
+              "name": "Crystal Atelier",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "33 Block if enemy's turn",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Wheels Industry",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -12 Temp Strength if player's turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Durandal",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 9 Temp Strength if player's turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Allas Workshop",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply -15 Temp Strength if player's turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Atelier Logic",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Mook Workshop",
+              "effects": [
+                {
+                  "name": "23",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Remove Player Block",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Old Boy's Workshop",
+              "effects": [
+                {
+                  "name": "13",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "55 Block if enemy's turn",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Ranga Workshop",
+              "effects": [
+                {
+                  "name": "8x3",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 6 Bleed if enemy's turn",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Zelkova Workshop",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 6 Temp Strength if player's turn",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Furioso",
+              "effects": [
+                {
+                  "name": "4x16",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 5 Weak and Frail",
                   "color": "DEBUFF"
                 }
               ]
