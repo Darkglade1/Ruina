@@ -17636,6 +17636,1348 @@
       ]
     },
     {
+      "name": "Roland",
+      "id": "ruina:BlackSilence3",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using United Assault, Unstable Loneliness, or Blind Fury. Cannot use the same move again until each move has been used once. Uses Waltz in Black every 4 turns.",
+          "hp": "(600 HP)",
+          "notes": "Be careful about changing this creature's intent to Dark Bond too often; drawing too many Voids on a bad turn can result in taking a lot of damage!",
+          "moves": [
+            {
+              "name": "United Assault",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 3 Strength if Partner attacking",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Unstable Loneliness",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak and Frail if Partner not attacking",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Blind Fury",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Waltz in Black",
+              "effects": [
+                {
+                  "name": "8x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Dark Bond",
+              "effects": [
+                {
+                  "name": "All allies gain 20 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Shuffle 2 Voids into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Has equal chances of using United Assault, Unstable Loneliness, or Blind Fury. Cannot use the same move again until each move has been used once. Uses Waltz in Black every 4 turns.",
+          "hp": "(600 HP)",
+          "notes": "Be careful about changing this creature's intent to Dark Bond too often; drawing too many Voids on a bad turn can result in taking a lot of damage!",
+          "moves": [
+            {
+              "name": "United Assault",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 3 Strength if Partner attacking",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Unstable Loneliness",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak and Frail if Partner not attacking",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Blind Fury",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Waltz in Black",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Dark Bond",
+              "effects": [
+                {
+                  "name": "All allies gain 20 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Shuffle 2 Voids into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Has equal chances of using United Assault, Unstable Loneliness, or Blind Fury. Cannot use the same move again until each move has been used once. Uses Waltz in Black every 4 turns.",
+          "hp": "(660 HP)",
+          "notes": "Be careful about changing this creature's intent to Dark Bond too often; drawing too many Voids on a bad turn can result in taking a lot of damage!",
+          "moves": [
+            {
+              "name": "United Assault",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 3 Strength if Partner attacking",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Unstable Loneliness",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak and Frail if Partner not attacking",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Blind Fury",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Waltz in Black",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Dark Bond",
+              "effects": [
+                {
+                  "name": "All allies gain 22 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Shuffle 2 Voids into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Has equal chances of using United Assault, Unstable Loneliness, or Blind Fury. Cannot use the same move again until each move has been used once. Uses Waltz in Black every 4 turns.",
+          "hp": "(660 HP)",
+          "notes": "Be careful about changing this creature's intent to Dark Bond too often; drawing too many Voids on a bad turn can result in taking a lot of damage!",
+          "moves": [
+            {
+              "name": "United Assault",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 5 Strength if Partner attacking",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Unstable Loneliness",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Weak and Frail if Partner not attacking",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Blind Fury",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Waltz in Black",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Dark Bond",
+              "effects": [
+                {
+                  "name": "All allies gain 22 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "Shuffle 3 Voids into draw pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Angelica",
+      "id": "ruina:Angelica",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Zelkova Workshop, Allas Workshop, or Atelier Logic. Cannot use the same move again until each move has been used once. Uses Waltz in White every 4 turns.",
+          "hp": "(600 HP)",
+          "notes": "Pay attention to when the enemies are using cards that gain bonus effects based on whether their partner is attacking/not attacking, and try to change the enemies' intents accordingly to minimize the benefits they get!",
+          "moves": [
+            {
+              "name": "Zelkova Workshop",
+              "effects": [
+                {
+                  "name": "8x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "24 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Allas Workshop",
+              "effects": [
+                {
+                  "name": "19",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable if Partner attacking",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Atelier Logic",
+              "effects": [
+                {
+                  "name": "6x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Waltz in White",
+              "effects": [
+                {
+                  "name": "8x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Ashen Bond",
+              "effects": [
+                {
+                  "name": "All allies gain 20 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Has equal chances of using Zelkova Workshop, Allas Workshop, or Atelier Logic. Cannot use the same move again until each move has been used once. Uses Waltz in White every 4 turns.",
+          "hp": "(600 HP)",
+          "notes": "Pay attention to when the enemies are using cards that gain bonus effects based on whether their partner is attacking/not attacking, and try to change the enemies' intents accordingly to minimize the benefits they get!",
+          "moves": [
+            {
+              "name": "Zelkova Workshop",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "24 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Allas Workshop",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable if Partner attacking",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Atelier Logic",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Waltz in White",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Ashen Bond",
+              "effects": [
+                {
+                  "name": "All allies gain 20 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Has equal chances of using Zelkova Workshop, Allas Workshop, or Atelier Logic. Cannot use the same move again until each move has been used once. Uses Waltz in White every 4 turns.",
+          "hp": "(660 HP)",
+          "notes": "Pay attention to when the enemies are using cards that gain bonus effects based on whether their partner is attacking/not attacking, and try to change the enemies' intents accordingly to minimize the benefits they get!",
+          "moves": [
+            {
+              "name": "Zelkova Workshop",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "26 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Allas Workshop",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Vulnerable if Partner attacking",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Atelier Logic",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Waltz in White",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Ashen Bond",
+              "effects": [
+                {
+                  "name": "All allies gain 22 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Has equal chances of using Zelkova Workshop, Allas Workshop, or Atelier Logic. Cannot use the same move again until each move has been used once. Uses Waltz in White every 4 turns.",
+          "hp": "(660 HP)",
+          "notes": "Pay attention to when the enemies are using cards that gain bonus effects based on whether their partner is attacking/not attacking, and try to change the enemies' intents accordingly to minimize the benefits they get!",
+          "moves": [
+            {
+              "name": "Zelkova Workshop",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "26 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Allas Workshop",
+              "effects": [
+                {
+                  "name": "21",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Vulnerable if Partner attacking",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Atelier Logic",
+              "effects": [
+                {
+                  "name": "7x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Waltz in White",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Ashen Bond",
+              "effects": [
+                {
+                  "name": "All allies gain 22 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Black Silence",
+      "id": "ruina:BlackSilence4",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "The rightmost intent cycles through 9 different Memories. All other intents have equal chances of using Agony, Rage, or Void. The first 2 moves cannot be used twice in a row, and the 3rd move has a 2 turn cooldown. This creature displays Wrath particle effects when the Scars power will trigger and heal this creature on the next played Attack.",
+          "hp": "(1300 HP)",
+          "notes": "Evaluate your deck's strengths and weaknesses and try to pick the Memory options that are least detrimental to your deck! In addition, try to line up the Scars power and the Paralysis from this creature's move so that you can play a paralyzed Attack into the Scars trigger and greatly reduce the healing this creature would get.",
+          "moves": [
+            {
+              "name": "Agony",
+              "effects": [
+                {
+                  "name": "40",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rage",
+              "effects": [
+                {
+                  "name": "16x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Void",
+              "effects": [
+                {
+                  "name": "Apply 1 Weak and Frail",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 2 Voids into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Memory",
+              "effects": [
+                {
+                  "name": "Choose 1 of 2 effects",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "The rightmost intent cycles through 9 different Memories. All other intents have equal chances of using Agony, Rage, or Void. The first 2 moves cannot be used twice in a row, and the 3rd move has a 2 turn cooldown. This creature displays Wrath particle effects when the Scars power will trigger and heal this creature on the next played Attack.",
+          "hp": "(1300 HP)",
+          "notes": "Evaluate your deck's strengths and weaknesses and try to pick the Memory options that are least detrimental to your deck! In addition, try to line up the Scars power and the Paralysis from this creature's move so that you can play a paralyzed Attack into the Scars trigger and greatly reduce the healing this creature would get.",
+          "moves": [
+            {
+              "name": "Agony",
+              "effects": [
+                {
+                  "name": "44",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rage",
+              "effects": [
+                {
+                  "name": "18x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Void",
+              "effects": [
+                {
+                  "name": "Apply 1 Weak and Frail",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 2 Voids into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Memory",
+              "effects": [
+                {
+                  "name": "Choose 1 of 2 effects",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "The rightmost intent cycles through 9 different Memories. All other intents have equal chances of using Agony, Rage, or Void. The first 2 moves cannot be used twice in a row, and the 3rd move has a 2 turn cooldown. This creature displays Wrath particle effects when the Scars power will trigger and heal this creature on the next played Attack.",
+          "hp": "(1430 HP)",
+          "notes": "Evaluate your deck's strengths and weaknesses and try to pick the Memory options that are least detrimental to your deck! In addition, try to line up the Scars power and the Paralysis from this creature's move so that you can play a paralyzed Attack into the Scars trigger and greatly reduce the healing this creature would get.",
+          "moves": [
+            {
+              "name": "Agony",
+              "effects": [
+                {
+                  "name": "44",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rage",
+              "effects": [
+                {
+                  "name": "18x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Void",
+              "effects": [
+                {
+                  "name": "Apply 1 Weak and Frail",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 2 Voids into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Memory",
+              "effects": [
+                {
+                  "name": "Choose 1 of 2 effects",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "The rightmost intent cycles through 9 different Memories. All other intents have equal chances of using Agony, Rage, or Void. The first 2 moves cannot be used twice in a row, and the 3rd move has a 2 turn cooldown. This creature displays Wrath particle effects when the Scars power will trigger and heal this creature on the next played Attack.",
+          "hp": "(1430 HP)",
+          "notes": "Evaluate your deck's strengths and weaknesses and try to pick the Memory options that are least detrimental to your deck! In addition, try to line up the Scars power and the Paralysis from this creature's move so that you can play a paralyzed Attack into the Scars trigger and greatly reduce the healing this creature would get.",
+          "moves": [
+            {
+              "name": "Agony",
+              "effects": [
+                {
+                  "name": "44",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Rage",
+              "effects": [
+                {
+                  "name": "18x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 3 Paralysis",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Void",
+              "effects": [
+                {
+                  "name": "Apply 2 Weak and Frail",
+                  "color": "DEBUFF"
+                },
+                {
+                  "name": "Shuffle 3 Voids into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Memory",
+              "effects": [
+                {
+                  "name": "Choose 1 of 2 effects",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Image of Bygones",
+      "id": "ruina:ImageOfBygones",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Has equal chances of using Agony or Scream, but cannot use either move 3 times in a row.",
+          "hp": "(132 - 143 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Agony",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Scream",
+              "effects": [
+                {
+                  "name": "9x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "Has equal chances of using Agony or Scream, but cannot use either move 3 times in a row.",
+          "hp": "(132 - 143 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Agony",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Scream",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Has equal chances of using Agony or Scream, but cannot use either move 3 times in a row.",
+          "hp": "(145 - 157 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Agony",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Scream",
+              "effects": [
+                {
+                  "name": "10x2",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Baral",
+      "id": "ruina:Baral",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "During the pre-event, begins with Serum R and uses it again every 3 turns. On the 2nd turn, uses Serum W and uses it again every 3 turns. On other turns, uses Extirpation. After the pre-event, for the first intent, has equal chances of using Serum K, Extirpation, or Tri-Serum Cocktail, but cannot use any move twice in a row. Uses Serum W on the first intent on the 2nd turn, and again every 3 turns. For the second intent, has equal chances of using Serum R, Serum W, or Extirpation, but cannot use the same move again until each move has been used once.",
+          "hp": "(3000 HP)",
+          "notes": "During the pre-event, try to reduce this enemy's Strength as much as you can with Wheels Industry and Binah's passive before this creature gains the ability to negate Strength loss! After the pre-event, try to prioritize cancelling Serum R whenever this creature tries to use it on the 2nd intent to prevent him from reaching 25 Strength for Serum W's instant kill effect!",
+          "moves": [
+            {
+              "name": "Serum W",
+              "effects": [
+                {
+                  "name": "45",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Instantly kill if this has 25 Strength",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Serum R",
+              "effects": [
+                {
+                  "name": "12x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Extirpation",
+              "effects": [
+                {
+                  "name": "26",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "50 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Tri-Serum Cocktail",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Serum K",
+              "effects": [
+                {
+                  "name": "Lowest HP ally heals 150 HP and gains 60 Block",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "During the pre-event, begins with Serum R and uses it again every 3 turns. On the 2nd turn, uses Serum W and uses it again every 3 turns. On other turns, uses Extirpation. After the pre-event, for the first intent, has equal chances of using Serum K, Extirpation, or Tri-Serum Cocktail, but cannot use any move twice in a row. Uses Serum W on the first intent on the 2nd turn, and again every 3 turns. For the second intent, has equal chances of using Serum R, Serum W, or Extirpation, but cannot use the same move again until each move has been used once.",
+          "hp": "(3000 HP)",
+          "notes": "During the pre-event, try to reduce this enemy's Strength as much as you can with Wheels Industry and Binah's passive before this creature gains the ability to negate Strength loss! After the pre-event, try to prioritize cancelling Serum R whenever this creature tries to use it on the 2nd intent to prevent him from reaching 25 Strength for Serum W's instant kill effect!",
+          "moves": [
+            {
+              "name": "Serum W",
+              "effects": [
+                {
+                  "name": "50",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Instantly kill if this has 25 Strength",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Serum R",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Extirpation",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "50 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Tri-Serum Cocktail",
+              "effects": [
+                {
+                  "name": "10x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Serum K",
+              "effects": [
+                {
+                  "name": "Lowest HP ally heals 150 HP and gains 60 Block",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "During the pre-event, begins with Serum R and uses it again every 3 turns. On the 2nd turn, uses Serum W and uses it again every 3 turns. On other turns, uses Extirpation. After the pre-event, for the first intent, has equal chances of using Serum K, Extirpation, or Tri-Serum Cocktail, but cannot use any move twice in a row. Uses Serum W on the first intent on the 2nd turn, and again every 3 turns. For the second intent, has equal chances of using Serum R, Serum W, or Extirpation, but cannot use the same move again until each move has been used once.",
+          "hp": "(3300 HP)",
+          "notes": "During the pre-event, try to reduce this enemy's Strength as much as you can with Wheels Industry and Binah's passive before this creature gains the ability to negate Strength loss! After the pre-event, try to prioritize cancelling Serum R whenever this creature tries to use it on the 2nd intent to prevent him from reaching 25 Strength for Serum W's instant kill effect!",
+          "moves": [
+            {
+              "name": "Serum W",
+              "effects": [
+                {
+                  "name": "50",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Instantly kill if this has 25 Strength",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Serum R",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 5 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Extirpation",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "55 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Tri-Serum Cocktail",
+              "effects": [
+                {
+                  "name": "10x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Serum K",
+              "effects": [
+                {
+                  "name": "Lowest HP ally heals 165 HP and gains 66 Block",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "During the pre-event, begins with Serum R and uses it again every 3 turns. On the 2nd turn, uses Serum W and uses it again every 3 turns. On other turns, uses Extirpation. After the pre-event, for the first intent, has equal chances of using Serum K, Extirpation, or Tri-Serum Cocktail, but cannot use any move twice in a row. Uses Serum W on the first intent on the 2nd turn, and again every 3 turns. For the second intent, has equal chances of using Serum R, Serum W, or Extirpation, but cannot use the same move again until each move has been used once.",
+          "hp": "(3300 HP)",
+          "notes": "During the pre-event, try to reduce this enemy's Strength as much as you can with Wheels Industry and Binah's passive before this creature gains the ability to negate Strength loss! After the pre-event, try to prioritize cancelling Serum R whenever this creature tries to use it on the 2nd intent to prevent him from reaching 25 Strength for Serum W's instant kill effect!",
+          "moves": [
+            {
+              "name": "Serum W",
+              "effects": [
+                {
+                  "name": "50",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Instantly kill if this has 25 Strength",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Serum R",
+              "effects": [
+                {
+                  "name": "13x2",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Gain 8 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Extirpation",
+              "effects": [
+                {
+                  "name": "29",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "55 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Tri-Serum Cocktail",
+              "effects": [
+                {
+                  "name": "10x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Serum K",
+              "effects": [
+                {
+                  "name": "Lowest HP ally heals 165 HP and gains 66 Block",
+                  "color": "BUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Zena",
+      "id": "ruina:Zena",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "During the pre-event, does not act for the first 2 turns. After, has equal chances of using Line or Thin Line, but cannot use the same move twice in a row. Uses Shockwave every 4 turns. The first intent follows the same pattern after the pre-event as well. For the 2nd intent, has equal chances of using Line, Thin Line, or Thick Line, but cannot use the same move again until each move has been used once.",
+          "hp": "(3000 HP)",
+          "notes": "This creature can deal a lot of damage to your allies with Shockwave. Keep an eye on your allies' HP and make sure they don't die, or else Baral will gain Strength!",
+          "moves": [
+            {
+              "name": "Line",
+              "effects": [
+                {
+                  "name": "24",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "45 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Thin Line",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Steal 2 Strength",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thick Line",
+              "effects": [
+                {
+                  "name": "18",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak and Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Shockwave",
+              "effects": [
+                {
+                  "name": "35 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "During the pre-event, does not act for the first 2 turns. After, has equal chances of using Line or Thin Line, but cannot use the same move twice in a row. Uses Shockwave every 4 turns. The first intent follows the same pattern after the pre-event as well. For the 2nd intent, has equal chances of using Line, Thin Line, or Thick Line, but cannot use the same move again until each move has been used once.",
+          "hp": "(3000 HP)",
+          "notes": "This creature can deal a lot of damage to your allies with Shockwave. Keep an eye on your allies' HP and make sure they don't die, or else Baral will gain Strength!",
+          "moves": [
+            {
+              "name": "Line",
+              "effects": [
+                {
+                  "name": "26",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "45 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Thin Line",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Steal 2 Strength",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thick Line",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak and Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Shockwave",
+              "effects": [
+                {
+                  "name": "39 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "During the pre-event, does not act for the first 2 turns. After, has equal chances of using Line or Thin Line, but cannot use the same move twice in a row. Uses Shockwave every 4 turns. The first intent follows the same pattern after the pre-event as well. For the 2nd intent, has equal chances of using Line, Thin Line, or Thick Line, but cannot use the same move again until each move has been used once.",
+          "hp": "(3300 HP)",
+          "notes": "This creature can deal a lot of damage to your allies with Shockwave. Keep an eye on your allies' HP and make sure they don't die, or else Baral will gain Strength!",
+          "moves": [
+            {
+              "name": "Line",
+              "effects": [
+                {
+                  "name": "26",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "50 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Thin Line",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Steal 2 Strength",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thick Line",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak and Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Shockwave",
+              "effects": [
+                {
+                  "name": "39 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "During the pre-event, does not act for the first 2 turns. After, has equal chances of using Line or Thin Line, but cannot use the same move twice in a row. Uses Shockwave every 4 turns. The first intent follows the same pattern after the pre-event as well, except it will begin with Thick Line and then use it again every 3 turns. For the 2nd intent, has equal chances of using Line, Thin Line, or Thick Line, but cannot use the same move again until each move has been used once.",
+          "hp": "(3300 HP)",
+          "notes": "This creature can deal a lot of damage to your allies with Shockwave. Keep an eye on your allies' HP and make sure they don't die, or else Baral will gain Strength!",
+          "moves": [
+            {
+              "name": "Line",
+              "effects": [
+                {
+                  "name": "26",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "50 Block",
+                  "color": "BLOCK"
+                }
+              ]
+            },
+            {
+              "name": "Thin Line",
+              "effects": [
+                {
+                  "name": "22",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Steal 3 Strength",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Thick Line",
+              "effects": [
+                {
+                  "name": "20",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Apply 2 Weak and Vulnerable",
+                  "color": "DEBUFF"
+                }
+              ]
+            },
+            {
+              "name": "Shockwave",
+              "effects": [
+                {
+                  "name": "39 Mass Attack",
+                  "color": "DAMAGE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "template",
       "id": "ruina:template",
       "ai": [

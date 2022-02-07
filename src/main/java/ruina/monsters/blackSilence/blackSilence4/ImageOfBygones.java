@@ -36,11 +36,17 @@ public class ImageOfBygones extends AbstractRuinaMonster
     public ImageOfBygones(final float x, final float y, BlackSilence4 parent) {
         super(NAME, ID, 100, -15.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence4/Spriter/BlackSilence4.scml"));
-        this.type = EnemyType.NORMAL;
+        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(132), calcAscensionTankiness(143));
         addMove(AGONY, Intent.ATTACK, calcAscensionDamage(20));
         addMove(SCREAM, Intent.ATTACK, calcAscensionDamage(9), 2, true);
         this.parent = parent;
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
     }
 
     @Override
