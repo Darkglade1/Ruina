@@ -16861,6 +16861,379 @@
       ]
     },
     {
+      "name": "Pluto",
+      "id": "ruina:Pluto",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "On the first intent, begins with Contracts. After, has equal chances of using Magic Onslaught, Magic Missle, or Binding Terms. Magic Onslaught and Binding Terms have 2 turn cooldowns while Magic Missle has a 1 turn cooldown. On the 2nd intent, has equal chances of using Magical Safeguard, Magic Onslaught, or Magic Missle. The last 2 cannot be used twice in a row, and the first move has a 2 turn cooldown. After the Shade is dead, will only use Magic Onslaught on the first intent.",
+          "hp": "(900 HP)",
+          "notes": "Try to pick the Contract that will benefit you the most while adversely affecting you the least! In addition, pay attention to when your ally will forcibly give you an extra turn so you can make the most out of it.",
+          "moves": [
+            {
+              "name": "Magical Safeguard",
+              "effects": [
+                {
+                  "name": "All allies gain 30 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Magic Missle",
+              "effects": [
+                {
+                  "name": "8x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Magic Onslaught",
+              "effects": [
+                {
+                  "name": "23",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase this card's damage by 5 this combat",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Contract",
+              "effects": [
+                {
+                  "name": "Present a list of Contracts",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Binding Terms",
+              "effects": [
+                {
+                  "name": "Shuffle 2 Voids into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 4,
+          "desc": "On the first intent, begins with Contracts. After, has equal chances of using Magic Onslaught, Magic Missle, or Binding Terms. Magic Onslaught and Binding Terms have 2 turn cooldowns while Magic Missle has a 1 turn cooldown. On the 2nd intent, has equal chances of using Magical Safeguard, Magic Onslaught, or Magic Missle. The last 2 cannot be used twice in a row, and the first move has a 2 turn cooldown. After the Shade is dead, will only use Magic Onslaught on the first intent.",
+          "hp": "(900 HP)",
+          "notes": "Try to pick the Contract that will benefit you the most while adversely affecting you the least! In addition, pay attention to when your ally will forcibly give you an extra turn so you can make the most out of it.",
+          "moves": [
+            {
+              "name": "Magical Safeguard",
+              "effects": [
+                {
+                  "name": "All allies gain 30 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Magic Missle",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Magic Onslaught",
+              "effects": [
+                {
+                  "name": "25",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase this card's damage by 6 this combat",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Contract",
+              "effects": [
+                {
+                  "name": "Present a list of Contracts",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Binding Terms",
+              "effects": [
+                {
+                  "name": "Shuffle 2 Voids into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "On the first intent, begins with Contracts. After, has equal chances of using Magic Onslaught, Magic Missle, or Binding Terms. Magic Onslaught and Binding Terms have 2 turn cooldowns while Magic Missle has a 1 turn cooldown. On the 2nd intent, has equal chances of using Magical Safeguard, Magic Onslaught, or Magic Missle. The last 2 cannot be used twice in a row, and the first move has a 2 turn cooldown. After the Shade is dead, will only use Magic Onslaught on the first intent.",
+          "hp": "(990 HP)",
+          "notes": "Try to pick the Contract that will benefit you the most while adversely affecting you the least! In addition, pay attention to when your ally will forcibly give you an extra turn so you can make the most out of it.",
+          "moves": [
+            {
+              "name": "Magical Safeguard",
+              "effects": [
+                {
+                  "name": "All allies gain 33 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 2 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Magic Missle",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Magic Onslaught",
+              "effects": [
+                {
+                  "name": "25",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase this card's damage by 6 this combat",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Contract",
+              "effects": [
+                {
+                  "name": "Present a list of Contracts",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Binding Terms",
+              "effects": [
+                {
+                  "name": "Shuffle 2 Voids into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "On the first intent, begins with Contracts. After, has equal chances of using Magic Onslaught, Magic Missle, or Binding Terms. Magic Onslaught and Binding Terms have 2 turn cooldowns while Magic Missle has a 1 turn cooldown. On the 2nd intent, has equal chances of using Magical Safeguard, Magic Onslaught, or Magic Missle. The last 2 cannot be used twice in a row, and the first move has a 2 turn cooldown. After the Shade is dead, will only use Magic Onslaught on the first intent.",
+          "hp": "(990 HP)",
+          "notes": "Try to pick the Contract that will benefit you the most while adversely affecting you the least! In addition, pay attention to when your ally will forcibly give you an extra turn so you can make the most out of it.",
+          "moves": [
+            {
+              "name": "Magical Safeguard",
+              "effects": [
+                {
+                  "name": "All allies gain 33 Block",
+                  "color": "BLOCK"
+                },
+                {
+                  "name": "All allies gain 3 Strength",
+                  "color": "BUFF"
+                }
+              ]
+            },
+            {
+              "name": "Magic Missle",
+              "effects": [
+                {
+                  "name": "9x3",
+                  "color": "DAMAGE"
+                }
+              ]
+            },
+            {
+              "name": "Magic Onslaught",
+              "effects": [
+                {
+                  "name": "25",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase this card's damage by 6 this combat",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Contract",
+              "effects": [
+                {
+                  "name": "Present a list of Contracts",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Binding Terms",
+              "effects": [
+                {
+                  "name": "Shuffle 3 Voids into discard pile",
+                  "color": "DEBUFF"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Shade",
+      "id": "ruina:Shade",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Creates a copy of the player's deck. Draws 2 cards from the deck it creates and uses them each turn. Can only copy cards with a maximum damage of 50.",
+          "hp": "(300 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "???",
+              "effects": [
+                {
+                  "name": " ???",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Creates a copy of the player's deck. Draws 2 cards from the deck it creates and uses them each turn. Can only copy cards with a maximum damage of 50.",
+          "hp": "(330 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "???",
+              "effects": [
+                {
+                  "name": " ???",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 19,
+          "desc": "Creates a copy of the player's deck. Draws 2 cards from the deck it creates and uses them each turn. Can only copy cards with a maximum damage of 75.",
+          "hp": "(330 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "???",
+              "effects": [
+                {
+                  "name": " ???",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hokma",
+      "id": "ruina:Hokma",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Cycles Silence -> Silence -> Time",
+          "hp": "(160 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Silence",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase this card's damage by 10 this combat",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Time",
+              "effects": [
+                {
+                  "name": "The player ends their turn and takes an extra turn",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "min_asc": 9,
+          "desc": "Cycles Silence -> Silence -> Time",
+          "hp": "(136 HP)",
+          "notes": "",
+          "moves": [
+            {
+              "name": "Silence",
+              "effects": [
+                {
+                  "name": "10",
+                  "color": "DAMAGE"
+                },
+                {
+                  "name": "Increase this card's damage by 10 this combat",
+                  "color": "SPECIAL"
+                }
+              ]
+            },
+            {
+              "name": "Time",
+              "effects": [
+                {
+                  "name": "The player ends their turn and takes an extra turn",
+                  "color": "SPECIAL"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "template",
       "id": "ruina:template",
       "ai": [

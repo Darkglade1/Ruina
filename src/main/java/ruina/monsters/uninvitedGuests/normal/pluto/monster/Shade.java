@@ -49,8 +49,6 @@ public class Shade extends AbstractDeckMonster
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     public final int MAX_DAMAGE = calcAscensionSpecial(50);
-    public final int BLOCK = calcAscensionTankiness(20);
-    public final int STRENGTH = calcAscensionSpecial(2);
 
     private Hokma hokma;
 
