@@ -125,7 +125,7 @@ public class Argalia extends AbstractDeckMonster
         applyToTarget(this, this, new AbstractLambdaPower(RESONANCE_POWER_NAME, RESONANCE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, INTENT_SHIFT_AMT) {
             @Override
             public void onUseCard(AbstractCard card, UseCardAction action) {
-                shiftIntents(amount);
+                shiftIntents();
             }
 
             @Override
@@ -358,39 +358,29 @@ public class Argalia extends AbstractDeckMonster
         });
     }
 
-    private void shiftIntents(int times) {
+    private void shiftIntents() {
         if (this.hasPower(StunMonsterPower.POWER_ID)) {
             return;
         }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                ArrayList<Byte> moves = new ArrayList<>();
-                ArrayList<AbstractCard> cards = new ArrayList<>();
-                moves.add(nextMove);
-                cards.add(enemyCard);
-                for (EnemyMoveInfo additionalMove : additionalMoves) {
-                    moves.add(additionalMove.nextMove);
-                }
-                for (AdditionalIntent additionalIntent : additionalIntents) {
-                    cards.add(additionalIntent.enemyCard);
-                }
-                if (moves.size() > 1) {
-                    for (int i = 0; i < times; i++) {
-                        Byte move = moves.remove(moves.size() - 1);
-                        moves.add(0, move);
-                        AbstractCard card = cards.remove(cards.size() - 1);
-                        cards.add(0, card);
-                    }
-                    additionalMoves.clear();
-                    additionalIntents.clear();
-                    setMoveShortcut(moves.get(0), MOVES[moves.get(0)], cards.get(0));
-                    for (int i = 1; i < moves.size(); i++) {
-                        setAdditionalMoveShortcut(moves.get(i), additionalMovesHistory.get(i - 1), cards.get(i));
-                    }
-                    createIntent();
-                    AbstractDungeon.onModifyPower();
-                }
+                byte new1stMove = additionalMoves.get(1).nextMove;
+                AbstractCard new1stCard = additionalIntents.get(1).enemyCard;
+
+                byte new2ndMove = nextMove;
+                AbstractCard new2ndCard = enemyCard;
+
+                byte new3rdMove = additionalMoves.get(0).nextMove;
+                AbstractCard new3rdCard = additionalIntents.get(0).enemyCard;
+
+                additionalMoves.clear();
+                additionalIntents.clear();
+                setMoveShortcut(new1stMove, MOVES[new1stMove], new1stCard);
+                setAdditionalMoveShortcut(new2ndMove, additionalMovesHistory.get(0), new2ndCard);
+                setAdditionalMoveShortcut(new3rdMove, additionalMovesHistory.get(1), new3rdCard);
+                createIntent();
+                AbstractDungeon.onModifyPower();
                 this.isDone = true;
             }
         });
