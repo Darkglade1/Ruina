@@ -96,7 +96,7 @@ public class Argalia extends AbstractDeckMonster
         super(NAME, ID, 1500, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Argalia/Spriter/Argalia.scml"));
         this.type = EnemyType.BOSS;
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(1500));
 
         maxAdditionalMoves = 2;
         for (int i = 0; i < maxAdditionalMoves; i++) {

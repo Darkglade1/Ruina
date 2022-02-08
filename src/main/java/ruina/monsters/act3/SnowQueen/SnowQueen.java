@@ -73,7 +73,7 @@ public class SnowQueen extends AbstractRuinaMonster
         super(NAME, ID, 260, 0.0F, 0, 280.0f, 325.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SnowQueen/Spriter/SnowQueen.scml"));
         this.type = EnemyType.ELITE;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(260));
         addMove(BLIZZARD, Intent.STRONG_DEBUFF);
         addMove(FRIGID_GAZE, Intent.ATTACK_DEFEND, calcAscensionDamage(20));
         addMove(ICE_SPLINTERS, Intent.ATTACK, calcAscensionDamage(26));

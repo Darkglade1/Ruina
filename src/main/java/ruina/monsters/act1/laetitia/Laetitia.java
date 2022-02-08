@@ -46,7 +46,7 @@ public class Laetitia extends AbstractRuinaMonster {
     }
 
     public Laetitia(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 200.0f, 250.0f, null, x, y);
+        super(NAME, ID, 100, 0.0F, 0, 200.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Laetitia/Spriter/Laetitia.scml"));
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(100));

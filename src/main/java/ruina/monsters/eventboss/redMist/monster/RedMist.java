@@ -87,7 +87,7 @@ public class RedMist extends AbstractDeckMonster
         super(NAME, ID, 300, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("RedMist/Spriter/RedMist.scml"));
         this.type = EnemyType.ELITE;
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(300));
 
         maxAdditionalMoves = 3;
         for (int i = 0; i < maxAdditionalMoves; i++) {

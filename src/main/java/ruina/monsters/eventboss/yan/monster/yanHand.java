@@ -78,7 +78,7 @@ public class yanHand extends AbstractDeckMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("YanHand/Spriter/YanHand.scml"));
         currentMode = mode;
         this.type = EnemyType.ELITE;
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(60));
         this.parent = parent;
 
         addMove(GIANT_FIST, Intent.ATTACK_DEBUFF, fistDMG);

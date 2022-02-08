@@ -103,7 +103,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.setHp(calcAscensionTankiness(600));
 
         ArrayList<Integer> possibleGirls = new ArrayList<>();
         possibleGirls.add(0);

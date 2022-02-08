@@ -93,7 +93,7 @@ public class Philip extends AbstractCardMonster
         for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(700));
 
         addMove(EVENTIDE, Intent.DEBUFF);
         addMove(EMOTIONS, Intent.DEFEND_BUFF);

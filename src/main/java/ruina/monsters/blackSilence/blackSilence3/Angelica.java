@@ -80,7 +80,7 @@ public class Angelica extends AbstractCardMonster {
     public Angelica(final float x, final float y) {
         super(NAME, ID, 600, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Angelica/Spriter/Angelica.scml"));
-        this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.setHp(calcAscensionTankiness(600));
         this.type = EnemyType.BOSS;
         addMove(ZELKOVA, Intent.ATTACK_DEFEND, zelkovaDamage, zelkovaHits, true);
         addMove(ALLAS, Intent.ATTACK_DEBUFF, allasDamage);

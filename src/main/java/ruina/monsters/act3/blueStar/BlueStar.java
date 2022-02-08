@@ -55,7 +55,7 @@ public class BlueStar extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlueStar/Spriter/BlueStar.scml"));
         this.star = new BetterSpriterAnimation(makeMonsterPath("BlueStar/Star/Star.scml"));
         this.type = EnemyType.ELITE;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(200));
         addMove(RISING_STAR, Intent.DEFEND_DEBUFF);
         addMove(STARRY_SKY, Intent.BUFF);
         addMove(SOUND_OF_STAR, Intent.ATTACK, calcAscensionDamage(28));

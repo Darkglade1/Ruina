@@ -67,7 +67,7 @@ public class VermilionCross extends AbstractCardMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(600));
 
         addMove(OBSTRUCT, Intent.DEFEND);
         addMove(SHOCKWAVE, Intent.ATTACK_BUFF, calcAscensionDamage(16));

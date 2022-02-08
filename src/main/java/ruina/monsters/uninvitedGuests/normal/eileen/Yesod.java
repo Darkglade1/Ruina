@@ -75,7 +75,7 @@ public class Yesod extends AbstractAllyCardMonster
         this.animation.setFlip(true, false);
         massAttackHitsPlayer = true;
         this.type = EnemyType.BOSS;
-        this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.setHp(calcAscensionTankiness(160));
 
         addMove(RELOAD, Intent.DEFEND_BUFF);
         addMove(FLOODING_BULLETS, IntentEnums.MASS_ATTACK, calcAscensionDamage(8), bulletHits, true);

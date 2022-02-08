@@ -66,7 +66,7 @@ public class Ozma extends AbstractRuinaMonster
         super(NAME, ID, 500, -5.0F, 0, 250.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Ozma/Spriter/Ozma.scml"));
         this.type = EnemyType.BOSS;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(500));
         addMove(FADING_MEMORIES, Intent.STRONG_DEBUFF);
         addMove(POWDER_OF_LIFE, Intent.DEFEND_BUFF);
         addMove(HINDER, Intent.ATTACK_DEBUFF, calcAscensionDamage(17));

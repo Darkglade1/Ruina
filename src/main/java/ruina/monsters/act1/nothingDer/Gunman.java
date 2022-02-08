@@ -98,7 +98,7 @@ public class Gunman extends AbstractMultiIntentMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(200));
 
         addMove(RUTHLESS_BULLETS, IntentEnums.MASS_ATTACK, calcAscensionDamage(17));
         addMove(INEVITABLE_BULLET, Intent.ATTACK, calcAscensionDamage(7));

@@ -60,7 +60,7 @@ public class Pinocchio extends AbstractDeckMonster
         super(NAME, ID, 170, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Pinocchio/Spriter/Pinocchio.scml"));
         this.type = EnemyType.NORMAL;
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(170));
 
         maxAdditionalMoves = 1;
         for (int i = 0; i < maxAdditionalMoves; i++) {

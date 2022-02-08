@@ -83,7 +83,7 @@ public class Oswald extends AbstractCardMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(700));
 
         addMove(CLIMAX, Intent.ATTACK, climaxDamage, climaxHits, true);
         addMove(FUN, Intent.ATTACK, calcAscensionDamage(9), funHits, true);

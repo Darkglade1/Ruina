@@ -81,7 +81,7 @@ public class Chesed extends AbstractAllyCardMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Chesed/Spriter/Chesed.scml"));
         this.animation.setFlip(true, false);
 
-        this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.setHp(calcAscensionTankiness(150));
         this.type = EnemyType.BOSS;
 
         addMove(BATTLEFIELD_COMMAND, Intent.ATTACK_BUFF, 18);

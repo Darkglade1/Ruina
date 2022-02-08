@@ -120,7 +120,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Seraphim/Spriter/Seraphim.scml"));
         this.whiteNight = new BetterSpriterAnimation(makeMonsterPath("Seraphim/WhiteNight/WhiteNight.scml"));
         runAnim("Idle");
-        this.setHp(maxHealth);
+        this.setHp(666);
         this.type = EnemyType.BOSS;
         // Phase 3: Enrage and gain 1 more.
         numAdditionalMoves = 2;

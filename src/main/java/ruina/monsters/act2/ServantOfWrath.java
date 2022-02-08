@@ -69,7 +69,7 @@ public class ServantOfWrath extends AbstractAllyMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ServantOfWrath/Spriter/Wrath.scml"));
         this.animation.setFlip(true, false);
         massAttackHitsPlayer = true;
-        this.setHp(maxHealth);
+        this.setHp(300);
         this.type = EnemyType.ELITE;
 
         if (AbstractDungeon.ascensionLevel >= 18) {

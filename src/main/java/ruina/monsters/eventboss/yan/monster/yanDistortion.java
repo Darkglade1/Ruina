@@ -109,7 +109,7 @@ public class yanDistortion extends AbstractDeckMonster
         super(NAME, ID, 350, -5.0F, 0, 250.0f, 355.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Yan/Spriter/Yan.scml"));
         this.type = EnemyType.ELITE;
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(350));
 
         numAdditionalMoves = 1;
         for (int i = 0; i < numAdditionalMoves; i++) { additionalMovesHistory.add(new ArrayList<>()); }

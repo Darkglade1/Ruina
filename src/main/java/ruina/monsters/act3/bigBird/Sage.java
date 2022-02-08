@@ -55,7 +55,7 @@ public class Sage extends AbstractAllyMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Keeper/Spriter/Keeper.scml"));
         this.animation.setFlip(true, false);
         this.dialogNum = dialogNum;
-        this.setHp(maxHealth);
+        this.setHp(500);
 
         addMove(RING, Intent.BUFF);
         addMove(SMACK, Intent.ATTACK, 6);

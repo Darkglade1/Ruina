@@ -10,11 +10,13 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
+import com.megacrit.cardcrawl.blights.Shield;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -97,7 +99,7 @@ public class BlackSilence4 extends AbstractCardMonster {
     public final int DEBUFF = calcAscensionSpecial(1);
     public final int NUM_VOIDS = calcAscensionSpecial(2);
     public final int scarHeal = calcAscensionSpecial(50);
-    public final int INVINCIBLE;
+    public int INVINCIBLE;
 
     public final int yunDazes = calcAscensionSpecial(3);
     public final int yunWounds = calcAscensionSpecial(2);
@@ -144,7 +146,7 @@ public class BlackSilence4 extends AbstractCardMonster {
             additionalMovesHistory.add(new ArrayList<>());
         }
 
-        this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.setHp(calcAscensionTankiness(1300));
         this.type = EnemyType.BOSS;
 
         addMove(AGONY, Intent.ATTACK, calcAscensionDamage(40));
@@ -178,6 +180,10 @@ public class BlackSilence4 extends AbstractCardMonster {
             INVINCIBLE = 200;
         } else {
             INVINCIBLE = 300;
+        }
+        if (Settings.isEndless && AbstractDungeon.player.hasBlight(Shield.ID)) {
+            float mod = AbstractDungeon.player.getBlight(Shield.ID).effectFloat();
+            INVINCIBLE = (int)((float)INVINCIBLE * mod); //scale the invincible with the endless blight
         }
     }
 

@@ -42,7 +42,7 @@ public class BrilliantBliss extends AbstractRuinaMonster
         super(NAME, ID, 20, -5.0F, 0, 130.0f, 125.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Bliss/Spriter/Bliss.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(this.maxHealth));
+        setHp(calcAscensionTankiness(20));
     }
 
     @Override

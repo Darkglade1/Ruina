@@ -55,7 +55,7 @@ public class BlackSwan extends AbstractRuinaMonster
         super(NAME, ID, 160, 0.0F, 0, 170.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSwan/Spriter/BlackSwan.scml"));
         this.type = EnemyType.BOSS;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(160));
         addMove(WRITHE, Intent.ATTACK, calcAscensionDamage(6), 2, true);
         addMove(PARASOL, Intent.DEFEND_BUFF);
         addMove(REALITY, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));

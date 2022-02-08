@@ -87,7 +87,7 @@ public class Bremen extends AbstractCardMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(850));
 
         addMove(MELODY, Intent.ATTACK_BUFF, calcAscensionDamage(8));
         addMove(NEIGH, Intent.ATTACK, calcAscensionDamage(19));

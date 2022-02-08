@@ -47,7 +47,7 @@ public class GuardianApostle extends AbstractRuinaMonster {
     public GuardianApostle(final float x, final float y, Seraphim parent) {
         super(NAME, ID, 80, -5.0F, 0, 280.0f, 215.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("GuardianApostle/Spriter/GuardianApostle.scml"));
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(80));
         this.type = EnemyType.BOSS;
         addMove(RISE_AND_SERVE, Intent.DEFEND_BUFF);
         addMove(COMMAND_FIRE, Intent.ATTACK, calcAscensionDamage(15));

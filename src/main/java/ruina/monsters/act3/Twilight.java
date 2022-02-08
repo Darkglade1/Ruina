@@ -125,7 +125,7 @@ public class Twilight extends AbstractRuinaMonster
         ((BetterSpriterAnimation)longEgg).myPlayer.setAnimation("LongEgg");
 
         this.type = EnemyType.BOSS;
-        this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.setHp(calcAscensionTankiness(550));
         dmgThreshold = (int)(this.maxHealth * HP_THRESHOLD_PERCENT);
 
         addMove(PEACE_FOR_ALL, Intent.ATTACK, calcAscensionDamage(38));

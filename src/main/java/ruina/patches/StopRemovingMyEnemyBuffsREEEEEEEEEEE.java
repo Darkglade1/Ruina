@@ -7,6 +7,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import ruina.powers.AClaw;
 import ruina.powers.AbstractUnremovablePower;
 
 @SpirePatch(clz = RemoveSpecificPowerAction.class, method = "update")
@@ -23,6 +25,12 @@ public class StopRemovingMyEnemyBuffsREEEEEEEEEEE {
 				instance.isDone = true;
 				return SpireReturn.Return(null);
 			}
+		}
+
+		//stop removing strength from Baral reeeee
+		if (powerBeingRemoved instanceof StrengthPower && instance.target.hasPower(AClaw.POWER_ID)) {
+			instance.isDone = true;
+			return SpireReturn.Return(null);
 		}
 		return SpireReturn.Continue();
 	}

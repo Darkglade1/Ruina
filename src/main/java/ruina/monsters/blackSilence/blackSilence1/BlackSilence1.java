@@ -106,7 +106,7 @@ public class BlackSilence1 extends AbstractCardMonster {
         super(NAME, ID, 1000, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence1/Spriter/BlackSilence1.scml"));
         animation.setFlip(true, false);
-        this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.setHp(calcAscensionTankiness(1000));
         this.type = EnemyType.BOSS;
 
         addMove(CRYSTAL, Intent.ATTACK_DEFEND, crystalDamage, crystalHits, true);

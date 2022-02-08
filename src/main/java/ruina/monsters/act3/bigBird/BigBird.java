@@ -80,7 +80,7 @@ public class BigBird extends AbstractMultiIntentMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(400));
 
         addMove(SALVATION, Intent.ATTACK, calcAscensionDamage(17));
         addMove(DAZZLE_ENEMY, Intent.STRONG_DEBUFF);

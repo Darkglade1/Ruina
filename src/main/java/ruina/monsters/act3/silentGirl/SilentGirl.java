@@ -74,7 +74,7 @@ public class SilentGirl extends AbstractRuinaMonster
         super(NAME, ID, 480, 0.0F, 0, 250.0f, 290.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SilentGirl/Spriter/SilentGirl.scml"));
         this.type = EnemyType.BOSS;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(480));
         addMove(DIGGING_NAIL, Intent.ATTACK_DEBUFF, calcAscensionDamage(16));
         addMove(SLAM, Intent.ATTACK_DEFEND, calcAscensionDamage(20));
         addMove(A_CRACKED_HEART, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));

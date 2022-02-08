@@ -50,7 +50,7 @@ public class Jack extends AbstractRuinaMonster
         super(NAME, ID, 100, -5.0F, 0, 135.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jack/Spriter/Jack.scml"));
         this.type = EnemyType.BOSS;
-        setHp(this.maxHealth);
+        setHp(100);
         addMove(ATTACK, Intent.ATTACK, calcAscensionSpecial(3));
         addMove(MULTI_ATTACK, Intent.ATTACK, calcAscensionSpecial(2), 2, true);
         this.startSingle = startSingle;

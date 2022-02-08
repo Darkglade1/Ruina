@@ -94,7 +94,7 @@ public class Orchestra extends AbstractRuinaMonster
         super(NAME, ID, 230, 0.0F, 0, 250.0f, 280.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Orchestra/Spriter/Orchestra.scml"));
         this.type = EnemyType.BOSS;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(230));
         addMove(FIRST, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
         addMove(SECOND, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
         addMove(THIRD, Intent.ATTACK_BUFF, calcAscensionDamage(17));

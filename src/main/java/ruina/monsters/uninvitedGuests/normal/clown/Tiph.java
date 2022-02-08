@@ -49,7 +49,7 @@ public class Tiph extends AbstractAllyCardMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Tiph/Spriter/Tiph.scml"));
         this.animation.setFlip(true, false);
 
-        this.setHp(maxHealth);
+        this.setHp(300);
         this.type = EnemyType.BOSS;
 
         addMove(AUGURY_KICK, Intent.ATTACK_BUFF, 10);

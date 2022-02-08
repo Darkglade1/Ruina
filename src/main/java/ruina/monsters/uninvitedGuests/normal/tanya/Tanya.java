@@ -96,7 +96,7 @@ public class Tanya extends AbstractCardMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(450));
 
         addMove(OVERSPEED, Intent.ATTACK, calcAscensionDamage(20), overspeedHits, true);
         addMove(BEATDOWN, IntentEnums.MASS_ATTACK, calcAscensionDamage(28));

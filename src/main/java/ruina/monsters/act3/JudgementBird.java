@@ -65,7 +65,7 @@ public class JudgementBird extends AbstractRuinaMonster
         super(NAME, ID, 280, 0.0F, 0, 280.0f, 360.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("JudgementBird/Spriter/JudgementBird.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(280));
         addMove(STARE, Intent.STRONG_DEBUFF);
         addMove(JUDGEMENT, Intent.ATTACK, calcAscensionDamage(22));
         addMove(HEAVY_GUILT, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));

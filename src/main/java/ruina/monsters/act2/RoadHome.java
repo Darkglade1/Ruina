@@ -83,7 +83,7 @@ public class RoadHome extends AbstractMultiIntentMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(120));
         addMove(LETS_GO, Intent.ATTACK, calcAscensionDamage(10));
         addMove(HOMING_INSTINCT, Intent.ATTACK_DEBUFF, calcAscensionDamage(35));
         addMove(NONE, Intent.NONE);

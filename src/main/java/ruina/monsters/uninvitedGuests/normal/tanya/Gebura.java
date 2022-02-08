@@ -87,7 +87,7 @@ public class Gebura extends AbstractAllyCardMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Gebura/Spriter/RedMist.scml"));
         this.animation.setFlip(true, false);
 
-        this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.setHp(200);
         this.type = EnemyType.BOSS;
 
         addMove(UPSTANDING_SLASH, Intent.ATTACK_DEBUFF, upstanding_damage, upstandingHits, true);

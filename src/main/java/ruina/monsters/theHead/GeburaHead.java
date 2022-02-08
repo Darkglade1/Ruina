@@ -24,7 +24,6 @@ import static ruina.util.Wiz.atb;
 
 public class GeburaHead extends Gebura {
 
-    private final float GEBURA_MHP_BUFF = 1.5f;
     private boolean usedPreBattleAction = false;
 
     public GeburaHead() {
@@ -33,7 +32,7 @@ public class GeburaHead extends Gebura {
 
     public GeburaHead(final float x, final float y) {
         super(x, y);
-        this.setHp((int)(maxHealth * GEBURA_MHP_BUFF));
+        this.setHp(300);
     }
 
     @Override

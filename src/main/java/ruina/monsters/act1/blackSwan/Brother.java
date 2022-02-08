@@ -44,7 +44,7 @@ public class Brother extends AbstractRuinaMonster
         super(NAME, ID, 22, 0.0F, 0, 80.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Brother/Spriter/Brother.scml"));
         this.type = EnemyType.BOSS;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(22));
         addMove(GREEN_WASTE, Intent.ATTACK, calcAscensionSpecial(2));
         addMove(NONE, Intent.NONE);
         this.brotherNum = brotherNum;

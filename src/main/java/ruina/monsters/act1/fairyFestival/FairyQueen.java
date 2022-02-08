@@ -61,7 +61,7 @@ public class FairyQueen extends AbstractRuinaMonster
         super(NAME, ID, 180, 0.0F, 0, 250.0f, 280.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FairyQueen/Spriter/FairyQueen.scml"));
         this.type = EnemyType.BOSS;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(180));
         addMove(QUEENS_DECREE, Intent.UNKNOWN);
         addMove(PREDATION, Intent.ATTACK, calcAscensionDamage(5), 2, true);
         addMove(RAVENOUSNESS, Intent.BUFF);

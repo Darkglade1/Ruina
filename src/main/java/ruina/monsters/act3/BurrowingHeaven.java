@@ -55,7 +55,7 @@ public class BurrowingHeaven extends AbstractRuinaMonster
         super(NAME, ID, 140, 0.0F, 0, 280.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BurrowingHeaven/Spriter/BurrowingHeaven.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(140));
         addMove(YOUR_OWN_HEAVEN, Intent.ATTACK, calcAscensionDamage(21));
         addMove(BLOODY_WINGS, Intent.ATTACK_DEBUFF, calcAscensionDamage(16));
         addMove(GAZE_OF_OTHERS, Intent.STRONG_DEBUFF);

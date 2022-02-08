@@ -54,7 +54,7 @@ public class Lulu extends AbstractCardMonster {
         super(NAME, ID, 105, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Lulu/Spriter/Lulu.scml"));
 
-        this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.setHp(calcAscensionTankiness(105));
         this.type = EnemyType.ELITE;
 
         addMove(PREPARED_MIND, Intent.BUFF);

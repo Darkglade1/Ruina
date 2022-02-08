@@ -55,7 +55,7 @@ public class ScaredyCat extends AbstractRuinaMonster
         super(NAME, ID, 100, -5.0F, 0, 270.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScaredyCat/Spriter/ScaredyCat.scml"));
         this.type = EnemyType.ELITE;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(100));
         addMove(RAWR, Intent.ATTACK, calcAscensionDamage(7), 2, true);
         addMove(GROWL, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
         addMove(COURAGE, Intent.BUFF);

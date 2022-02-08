@@ -52,7 +52,7 @@ public class KnightOfDespair extends AbstractRuinaMonster
         super(NAME, ID, 160, -5.0F, 0, 250.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Knight/Spriter/Knight.scml"));
         this.type = EnemyType.NORMAL;
-        setHp(calcAscensionTankiness(maxHealth));
+        setHp(calcAscensionTankiness(160));
         addMove(DESPAIR, Intent.UNKNOWN);
     }
 

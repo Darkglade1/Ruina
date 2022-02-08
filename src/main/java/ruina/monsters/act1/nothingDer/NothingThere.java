@@ -72,7 +72,7 @@ public class NothingThere extends AbstractMultiIntentMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(250));
 
         int attackDamage = 2;
         if (AbstractDungeon.ascensionLevel >= 4) {

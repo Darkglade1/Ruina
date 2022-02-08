@@ -66,7 +66,7 @@ public class Netzach extends AbstractAllyCardMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Netzach/Spriter/Netzach.scml"));
         this.animation.setFlip(true, false);
 
-        this.setHp(calcAscensionTankiness(this.maxHealth));
+        this.setHp(calcAscensionTankiness(160));
         this.type = EnemyType.BOSS;
 
         addMove(WILL, Intent.DEFEND_BUFF);

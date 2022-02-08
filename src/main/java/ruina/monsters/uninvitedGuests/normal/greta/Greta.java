@@ -94,7 +94,7 @@ public class Greta extends AbstractCardMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(maxHealth));
+        this.setHp(calcAscensionTankiness(750));
 
         addMove(BREAK_EGG, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
         addMove(SLAP, Intent.DEFEND_DEBUFF);
