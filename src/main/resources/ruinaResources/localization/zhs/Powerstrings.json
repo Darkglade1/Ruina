@@ -93,7 +93,7 @@
   },
   "ruina:Courage": {
     "NAME": "胆量",
-    "DESCRIPTIONS": ["每当 ", " 受到攻击，这回合获得 #b", " 点 #y力量 。 NL NL If the #yRoad #yHome dies, this creature will intend to #yflee."]
+    "DESCRIPTIONS": ["每当 ", " 受到攻击，这回合获得 #b", " 点 #y力量 。 NL NL 如果归家的路途 死了，这个生物会打算逃跑。"]
   },
   "ruina:Hysteria": {
     "NAME": "歇斯底里",
@@ -492,7 +492,7 @@
   },
   "ruina:Performance": {
     "NAME": "永无止境的乐章",
-    "DESCRIPTIONS": ["在回合结束时，将一张 #y演奏者 牌放入你的弃牌堆。", "每当一张 #y演奏者 牌被 #y消耗 ，将一张复制放入你的弃牌堆。", " #yPerformer cards #yRetain for #b1 turn when drawn."]
+    "DESCRIPTIONS": ["在回合结束时，将一张 #y演奏者 牌放入你的弃牌堆。", "每当一张 #y演奏者 牌被 #y消耗 ，将一张复制放入你的弃牌堆。", " 表演者牌在抽牌时保留 #b1 回合。"]
   },
   "ruina:FerventAdoration": {
     "NAME": "狂热崇拜",
@@ -592,11 +592,19 @@
     "DESCRIPTIONS": ["这个回合在这个生物攻击后， ", " 会被 #y消耗 并放进 #y歌唱机 中。"]
   },
   "${ModID}:WayHome": {
-    "NAME": "On the Way Home",
-    "DESCRIPTIONS": ["On death, you take #b", " damage and the #yRoad #yHome will begin using a #rpowerful attack."]
+    "NAME": "在回家的路上",
+    "DESCRIPTIONS": ["死亡时，归家的路途 将开始使用强大的攻击"]
   },
   "${ModID}:EasilyDistracted": {
-    "NAME": "Easily Distracted",
-    "DESCRIPTIONS": ["When attacked, this creature #rcancels one of its intents for the turn."]
+    "NAME": "容易分心",
+    "DESCRIPTIONS": ["当受到攻击时，此生物会在回合中取消其一项意图。"]
+  },
+  "${ModID}:Mimicry": {
+    "NAME": "模仿",
+    "DESCRIPTIONS": ["造成与最近受到的未格挡攻击伤害相等的额外攻击伤害，最多为 #b", "。 NL NL 如果这个生物在你的回合中死去，而另一个敌人正在瞄准它，那么另一个敌人将瞄准你（反之亦然，另一个敌人正在死去）。"]
+  },
+  "${ModID}:SeventhBullet": {
+    "NAME": "第七颗子弹",
+    "DESCRIPTIONS": ["每当你打出 #b", " 攻击时，此生物的攻击将使其目标损失等同于在 #b1 回合内造成的未阻挡伤害的 HP。", " NL NL 本回合，每当此生物对目标造成未阻挡的攻击伤害时， 目标也损失了那么多HP。"]
   }
 }
