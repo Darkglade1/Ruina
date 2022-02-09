@@ -11,7 +11,7 @@ import ruina.RuinaMod;
 
 import static ruina.util.Wiz.atb;
 
-public class Scars extends AbstractEasyPower {
+public class Scars extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID("Scars");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

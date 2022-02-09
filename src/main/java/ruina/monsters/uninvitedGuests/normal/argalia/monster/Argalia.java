@@ -365,6 +365,11 @@ public class Argalia extends AbstractDeckMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
+                if (additionalMoves.size() < 2) { //if he somehow doesn't have 3 intents do nothing
+                    isDone = true;
+                    return;
+                }
+
                 byte new1stMove = additionalMoves.get(1).nextMove;
                 AbstractCard new1stCard = additionalIntents.get(1).enemyCard;
 
