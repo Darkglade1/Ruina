@@ -42,11 +42,6 @@ public class FadedMemories extends AbstractEgoCard {
     }
 
     @Override
-    public void triggerOnExhaust() {
-        exhaust = false;
-    }
-
-    @Override
     public void upp() {
         isInnate = true;
     }
