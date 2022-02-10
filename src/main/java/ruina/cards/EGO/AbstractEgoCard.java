@@ -32,6 +32,7 @@ import ruina.cards.EGO.act1.SolemnLament;
 import ruina.cards.EGO.act1.TodaysExpression.TodaysExpression;
 import ruina.cards.EGO.act1.Wingbeat;
 import ruina.cards.EGO.act2.*;
+import ruina.cards.EGO.act2.FadedMemories.FadedMemories;
 import ruina.cards.EGO.act3.*;
 import ruina.util.TexLoader;
 
@@ -199,6 +200,7 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(CobaltScar.ID);
         list.add(Thirst.ID);
         list.add(CrimsonScar.ID);
+        list.add(FalseThrone.ID);
     }
 
     public static void addAct3EgoCards(ArrayList<String> list) {

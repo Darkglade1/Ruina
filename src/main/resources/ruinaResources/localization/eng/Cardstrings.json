@@ -25,7 +25,8 @@
   },
   "${ModID}:FadedMemories": {
     "NAME": "Faded Memories",
-    "DESCRIPTION": "Draw !M! card for every enemy in combat."
+    "DESCRIPTION": "Choose one:",
+    "EXTENDED_DESCRIPTION": ["Draw !M! card for every enemy in combat.", "Draw !ruina:SecondMagic! cards and Exhaust."]
   },
   "${ModID}:LoveAndHate": {
     "NAME": "In the Name of Love and Hate",
@@ -41,8 +42,8 @@
   },
   "${ModID}:SwordSharpened": {
     "NAME": "Sword Sharpened With Tears",
-    "DESCRIPTION": "Apply !M! Weak. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and exhaust this card.",
-    "UPGRADE_DESCRIPTION": "Apply !M! Weak. NL Shuffle this card into your draw pile. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and exhaust this card."
+    "DESCRIPTION": "Apply !M! Weak. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and Exhaust this card.",
+    "UPGRADE_DESCRIPTION": "Apply !M! Weak. NL Shuffle this card into your draw pile. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and Exhaust this card."
   },
   "${ModID}:Lumber": {
     "NAME": "Lumber",
@@ -55,7 +56,7 @@
   },
   "${ModID}:HomingInstinct": {
     "NAME": "Homing Instinct",
-    "DESCRIPTION": "Exhaust up to !M! card. NL At the start of your turn, gain [E] equal to the cost of the exhausted card."
+    "DESCRIPTION": "Exhaust up to !M! card. NL At the start of your turn, gain [E] equal to the cost of the Exhausted card."
   },
   "${ModID}:CobaltScar": {
     "NAME": "Cobalt Scar",
