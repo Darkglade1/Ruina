@@ -13,7 +13,7 @@ import static ruina.util.Wiz.block;
 public class Fragments extends AbstractEgoCard {
     public final static String ID = makeID(Fragments.class.getSimpleName());
     public static final int DAMAGE = 17;
-    private static final int UP_DAMAGE = 5;
+    private static final int UP_DAMAGE = 3;
 
     public Fragments() {
         super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
@@ -21,8 +21,7 @@ public class Fragments extends AbstractEgoCard {
     }
 
     @Override
-    public float getTitleFontSize()
-    {
+    public float getTitleFontSize() {
         return 13;
     }
 
@@ -35,5 +34,8 @@ public class Fragments extends AbstractEgoCard {
     }
 
     @Override
-    public void upp() { upgradeDamage(UP_DAMAGE); }
+    public void upp() {
+        upgradeDamage(UP_DAMAGE);
+        selfRetain = true;
+    }
 }

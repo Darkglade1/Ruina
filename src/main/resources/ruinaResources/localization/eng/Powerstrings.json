@@ -606,5 +606,9 @@
   "${ModID}:SeventhBullet": {
     "NAME": "The Seventh Bullet",
     "DESCRIPTIONS": ["Whenever you play #b", " #yAttacks, this creature’s attacks will cause its targets to lose HP equal to unblocked damage dealt for #b1 turn.", " NL NL This turn, whenever this creature deals unblocked attack damage to a target, the target also loses that much HP."]
+  },
+  "${ModID}:MagicBullet": {
+    "NAME": "Magic Bullet",
+    "DESCRIPTIONS": ["Receives #b", "% more damage from #yAttacks this turn."]
   }
 }
