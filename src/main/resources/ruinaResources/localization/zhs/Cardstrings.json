@@ -88,7 +88,7 @@
   },
   "ruina:SoundOfAStar": {
     "NAME": "新星之声",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL 这张牌的伤害根据你在本场战斗中获得的 格挡 而增加。 NL 消耗性 !stslib:ex! 。"
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。 NL 这张牌的伤害根据你在本场战斗中获得的 格挡 而增加。"
   },
   "ruina:Twilight": {
     "NAME": "薄暝",
