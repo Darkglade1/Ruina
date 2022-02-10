@@ -793,7 +793,8 @@
   },
   "${ModID}:Marionette": {
     "NAME": "Marionette",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! cards. NL Increase this card's cost by !ruina:SecondMagic! this combat."
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! cards. NL Increase this card's cost by !ruina:SecondMagic! this combat.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Draw !M! cards. NL Increase this card's cost and draw by !ruina:SecondMagic! this combat."
   },
   "${ModID}:WristCutter": {
     "NAME": "Wrist Cutter",

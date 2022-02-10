@@ -31,11 +31,15 @@ public class Marionette extends AbstractEgoCard {
             @Override
             public void update() {
                 modifyCostForCombat(secondMagicNumber);
+                if (upgraded) {
+                    baseMagicNumber += secondMagicNumber;
+                    magicNumber += secondMagicNumber;
+                }
                 isDone = true;
             }
         });
     }
 
     @Override
-    public void upp() { selfRetain = true; }
+    public void upp() { uDesc(); }
 }
