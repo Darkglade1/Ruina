@@ -14,6 +14,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.mod.widepotions.WidePotionsMod;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
@@ -116,6 +118,7 @@ import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
 import ruina.patches.PlayerSpireFields;
+import ruina.potions.EgoPotion;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.TexLoader;
 
@@ -171,6 +174,9 @@ public class RuinaMod implements
     private static final String SKILL_L_ART = getModID() + "Resources/images/1024/card.png";
     private static final String POWER_L_ART = getModID() + "Resources/images/1024/card.png";
     private static final String CARD_ENERGY_L = getModID() + "Resources/images/1024/energy.png";
+
+    public static final Color EGO_POTION_LIQUID = CardHelper.getColor(76, 7, 23);
+    public static final Color EGO_POTION_HYBRID = CardHelper.getColor(90, 17, 33);
 
     //This is for the in-EnemyEnergyPanel mod settings panel.
     private static final String MODNAME = "Ruina";
@@ -657,6 +663,13 @@ public class RuinaMod implements
 
     @Override
     public void receivePostInitialize() {
+        receiveEditPotions();
+        //Add WidePotion Compatibility
+        if (Loader.isModLoaded("widepotions")) {
+            logger.info("Wide Potions: Detected. Loading WIDE POTIONS.");
+            WidePotionsMod.whitelistSimplePotion(EgoPotion.POTION_ID);
+        }
+
         silenceImg = new Texture(makeUIPath("silenceImg.png"));
         UIAtlas.addRegion("silenceImg", silenceImg, 0, 0, silenceImg.getWidth(), silenceImg.getHeight());
 
@@ -1000,6 +1013,14 @@ public class RuinaMod implements
         headClear = ruinaConfig.getBool("headClear");
     }
 
+    public void receiveEditPotions() {
+        logger.info("Beginning to edit potions");
+
+        BaseMod.addPotion(EgoPotion.class, EGO_POTION_LIQUID, EGO_POTION_HYBRID, null, EgoPotion.POTION_ID);
+
+        logger.info("Done editing potions");
+    }
+
     private static String makeLocPath(Settings.GameLanguage language, String filename) {
         String ret = "localization/";
         switch (language) {
@@ -1024,6 +1045,7 @@ public class RuinaMod implements
         BaseMod.loadCustomStringsFile(PowerStrings.class, makeLocPath(language, "Powerstrings"));
         BaseMod.loadCustomStringsFile(UIStrings.class, makeLocPath(language, "UIstrings"));
         BaseMod.loadCustomStringsFile(TutorialStrings.class, makeLocPath(language, "Tutorialstrings"));
+        BaseMod.loadCustomStringsFile(PotionStrings.class, makeLocPath(language, "Potionstrings"));
     }
 
     @Override
