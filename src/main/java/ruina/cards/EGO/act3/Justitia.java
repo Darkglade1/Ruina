@@ -19,7 +19,6 @@ public class Justitia extends AbstractEgoCard {
 
     public static final int KILL_THRESHOLD = 30;
     public static final int HP_LOSS = 11;
-    public static final int UP_HP_LOSS = 3;
 
     public Justitia() {
         super(ID, 1, CardType.SKILL, CardTarget.ENEMY);
@@ -77,6 +76,6 @@ public class Justitia extends AbstractEgoCard {
 
     @Override
     public void upp() {
-        upgradeMagicNumber(UP_HP_LOSS);
+        isEthereal = false;
     }
 }
