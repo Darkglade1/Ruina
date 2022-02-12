@@ -26,6 +26,14 @@ public class AshenBond extends AbstractRuinaCard {
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
     @Override
+    public void triggerOnGlowCheck() {
+        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        if (!parent.isRolandAttacking()) {
+            this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        }
+    }
+
+    @Override
     public void upp() { }
 
     @Override

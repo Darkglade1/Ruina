@@ -19,6 +19,7 @@ public class Accelerate extends AbstractRuinaCard {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
         baseBlock = parent.BLOCK;
         this.parent = parent;
+        this.magicNumber = baseMagicNumber = parent.VULNERABLE;
     }
 
     @Override
@@ -31,7 +32,7 @@ public class Accelerate extends AbstractRuinaCard {
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
     @Override
-    public void upp() { }
+    public void upp() { uDesc();}
 
     @Override
     public AbstractCard makeCopy() {

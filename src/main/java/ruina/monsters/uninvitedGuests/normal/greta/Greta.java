@@ -63,12 +63,12 @@ public class Greta extends AbstractCardMonster
 
     public final int minceHits = 2;
 
-    public final int STRENGTH = calcAscensionSpecial(2);
+    public final int STRENGTH = calcAscensionSpecial(3);
     public final int PARALYSIS = calcAscensionSpecial(2);
     public final int BLEED = calcAscensionSpecial(4);
-    public final int BLOCK = calcAscensionTankiness(20);
+    public final int BLOCK = calcAscensionSpecial(calcAscensionTankiness(20));
     public final int DEBUFF = calcAscensionSpecial(2);
-    public final int damageReduction = 50;
+    public final int damageReduction = calcAscensionSpecial(50);
     public final int debuffCleanseTurns = 3;
 
     public Hod hod;
@@ -290,8 +290,14 @@ public class Greta extends AbstractCardMonster
         if (!this.lastMove(MINCE) && !this.lastMoveBefore(MINCE)) {
             possibilities.add(MINCE);
         }
-        if (!this.lastMove(SLAP) && !this.lastMoveBefore(SLAP)) {
-            possibilities.add(SLAP);
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            if (!this.lastMove(SEASON) && !this.lastMoveBefore(SEASON)) {
+                possibilities.add(SEASON);
+            }
+        } else {
+            if (!this.lastMove(SLAP) && !this.lastMoveBefore(SLAP)) {
+                possibilities.add(SLAP);
+            }
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
         setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
@@ -350,7 +356,11 @@ public class Greta extends AbstractCardMonster
                         applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
                     }
                 } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, hod, hod.allyIcon);
+                    if (AbstractDungeon.ascensionLevel >= 19 && additionalMove.nextMove == SLAP) {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                    } else {
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, hod, hod.allyIcon);
+                    }
                 }
             }
         }

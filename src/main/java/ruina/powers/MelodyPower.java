@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 import ruina.cards.Melody;
@@ -69,7 +70,16 @@ public class MelodyPower extends AbstractUnremovablePower {
         if (completed) {
             applyToTarget(adp(), adp(), new StrengthPower(adp(), MELODY_PLAYER_STR));
         } else {
-            applyToTarget(owner, owner, new StrengthPower(owner, MELODY_BOSS_STR));
+            AbstractPower str = owner.getPower(StrengthPower.POWER_ID);
+            int currStr = 0;
+            if (str != null) {
+                currStr = str.amount;
+            }
+            if (AbstractDungeon.ascensionLevel >= 19 && currStr >= MELODY_BOSS_STR) {
+                applyToTarget(owner, owner, new StrengthPower(owner, currStr));
+            } else {
+                applyToTarget(owner, owner, new StrengthPower(owner, MELODY_BOSS_STR));
+            }
         }
         generateSequence();
     }
@@ -133,14 +143,11 @@ public class MelodyPower extends AbstractUnremovablePower {
         melodyCard.initializeDescription();
     }
 
-    public void pointToNewCard(Melody card) {
-        this.melodyCard = card;
-        bremen.melodyCard = card;
-        updateMelodyText();
-    }
-
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + MELODY_PLAYER_STR + DESCRIPTIONS[1] + MELODY_BOSS_STR + DESCRIPTIONS[2];
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            description += DESCRIPTIONS[3] + MELODY_BOSS_STR + DESCRIPTIONS[4];
+        }
     }
 }

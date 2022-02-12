@@ -62,20 +62,20 @@ public class Tanya extends AbstractCardMonster
     private static final byte KICKS_AND_STOMPS = 4;
     private static final byte FISTICUFFS = 5;
 
-    public final int overspeedHits = 3;
+    public final int overspeedHits = 2;
     public final int kicksAndStompsHits = 2;
 
     private static final int MASS_ATTACK_COOLDOWN = 3; //cooldown resets to 3
     private int massAttackCooldown = 2; //start cooldown at 2
 
-    public final int BLOCK = calcAscensionTankiness(16);
+    public final int BLOCK = calcAscensionSpecial(calcAscensionTankiness(16));
     public final int INITIAL_PLATED_ARMOR = calcAscensionTankiness(20);
-    public final int PLATED_ARMOR_GAIN = calcAscensionTankiness(15);
-    public final int METALLICIZE_GAIN = calcAscensionSpecial(5);
-    public final int STRENGTH = calcAscensionSpecial(2);
+    public final int PLATED_ARMOR_GAIN = calcAscensionSpecial(calcAscensionTankiness(15));
+    public final int METALLICIZE_GAIN = calcAscensionSpecial(calcAscensionTankiness(7));
+    public final int STRENGTH = calcAscensionSpecial(3);
     public final int WEAK = calcAscensionSpecial(1);
-    public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(5);
-    public final int GUTS_STRENGTH = calcAscensionSpecial(2);
+    public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(calcAscensionTankiness(10));
+    public final int GUTS_STRENGTH = calcAscensionSpecial(5);
     public Gebura gebura;
     private boolean usingMassAttack = false;
 
@@ -98,7 +98,7 @@ public class Tanya extends AbstractCardMonster
         }
         this.setHp(calcAscensionTankiness(450));
 
-        addMove(OVERSPEED, Intent.ATTACK, calcAscensionDamage(20), overspeedHits, true);
+        addMove(OVERSPEED, Intent.ATTACK, calcAscensionSpecial(calcAscensionDamage(30)), overspeedHits, true);
         addMove(BEATDOWN, IntentEnums.MASS_ATTACK, calcAscensionDamage(28));
         addMove(INTIMIDATE, Intent.DEFEND_BUFF);
         addMove(LUPINE_ASSAULT, Intent.ATTACK_DEFEND, calcAscensionDamage(22));

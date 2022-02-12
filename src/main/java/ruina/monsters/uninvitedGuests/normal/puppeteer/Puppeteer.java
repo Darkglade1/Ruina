@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -69,9 +70,9 @@ public class Puppeteer extends AbstractCardMonster
     private static final int MASS_ATTACK_COOLDOWN = 3;
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
-    public final int BLOCK = calcAscensionTankiness(20);
+    public final int BLOCK = calcAscensionSpecial(calcAscensionTankiness(20));
     public final int STRENGTH = calcAscensionSpecial(3);
-    public final int WEAK = calcAscensionSpecial(1);
+    public final int DEBUFF = calcAscensionSpecial(1);
     public final int VULNERABLE = 1;
     public Chesed chesed;
     public Puppet puppet;
@@ -228,7 +229,8 @@ public class Puppeteer extends AbstractCardMonster
                         block(mo, BLOCK);
                     }
                 }
-                applyToTarget(target, this, new WeakPower(target, WEAK, true));
+                applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
                 resetIdle(1.0f);
                 break;
             }

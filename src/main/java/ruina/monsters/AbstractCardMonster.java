@@ -138,6 +138,7 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
             } else {
                 enemyCard.isDamageModified = false;
             }
+            enemyCard.triggerOnGlowCheck();
         }
     }
 }

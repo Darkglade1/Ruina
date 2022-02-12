@@ -192,7 +192,7 @@
   },
   "${ModID}:CHRBOSS_ResonantScythe": {
     "NAME": "Resonant Scythe",
-    "DESCRIPTION": "Deal !D! damage. NL Deals triple damage if this is on the 2nd intent."
+    "DESCRIPTION": "Deal !D! damage. NL Deals !M! times damage if this is on the 2nd intent."
   },
   "${ModID}:CHRBOSS_TrailsOfBlue": {
     "NAME": "Trails Of Blue",
@@ -272,7 +272,7 @@
   },
   "${ModID}:ThinStrings": {
     "NAME": "Thin Strings",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Apply !M! Weak."
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Apply !M! Weak and Frail."
   },
   "${ModID}:Puppetry": {
     "NAME": "Puppetry",
@@ -580,7 +580,8 @@
   },
   "${ModID}:Accelerate": {
     "NAME": "Thought Gear: Accelerate",
-    "DESCRIPTION": "ALL allies gain !B! Block."
+    "DESCRIPTION": "ALL allies gain !B! Block.",
+    "UPGRADE_DESCRIPTION": "ALL allies gain !B! Block. NL Apply !M! Vulnerable."
   },
   "${ModID}:Propagate": {
     "NAME": "Thought Gear: Propagate",
@@ -676,7 +677,7 @@
   "${ModID}:Shi": {
     "NAME": "Memory - Shi Association",
     "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["You gain !M! Weak.", "You gain !ruina:SecondMagic! Frail."]
+    "EXTENDED_DESCRIPTION": ["You lose !M! Strength.", "You lose !ruina:SecondMagic! Dexterity."]
   },
   "${ModID}:Love": {
     "NAME": "Memory - Love Town",
@@ -733,7 +734,7 @@
   },
   "${ModID}:AshenBond": {
     "NAME": "Ashen Bond",
-    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength."
+    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength. NL If its *Partner does NOT intend to attack, repeat these effects."
   },
   "${ModID}:UnitedWorkshop": {
     "NAME": "United Assault",
@@ -749,7 +750,7 @@
   },
   "${ModID}:DarkBond": {
     "NAME": "Dark Bond",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile."
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile. NL If its *Partner does NOT intend to attack, repeat these effects."
   },
   "${ModID}:WaltzInBlack": {
     "NAME": "Waltz in Black",

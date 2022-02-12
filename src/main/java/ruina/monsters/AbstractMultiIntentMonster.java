@@ -95,7 +95,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                 dmg = 0;
             }
             if (this instanceof Argalia && additionalMove.nextMove == Argalia.SCYTHE && whichMove == Argalia.SCYTHE_INTENT_NUM) {
-                dmg = (int)(dmg * Argalia.scytheDamageMultiplier);
+                dmg = (int)(dmg * ((Argalia) this).scytheDamageMultiplier);
             }
             if (target.hasPower(Enchanted.POWER_ID) && this.hasPower(BigBird.Salvation_POWER_ID)) {
                 dmg = BigBird.INSTANT_KILL_NUM;

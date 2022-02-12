@@ -48,8 +48,8 @@ public class Puppet extends AbstractRuinaMonster
     private static final byte REVIVING = 2;
     private static final byte REVIVE = 3;
 
-    private final int BLOCK = calcAscensionTankiness(12);
-    private final int PLATED_ARMOR = calcAscensionSpecial(11);
+    private final int BLOCK = calcAscensionSpecial(calcAscensionTankiness(12));
+    private final int PLATED_ARMOR = calcAscensionSpecial(calcAscensionTankiness(11));
 
     public boolean attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
     private final Puppeteer puppeteer;
