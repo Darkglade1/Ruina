@@ -656,7 +656,8 @@
   },
   "${ModID}:Furioso": {
     "NAME": "Furioso",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak and Frail."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak and Frail.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! Weak and Frail. NL This card's damage cannot be decreased."
   },
   "${ModID}:Yun": {
     "NAME": "Memory - Yun's Office",

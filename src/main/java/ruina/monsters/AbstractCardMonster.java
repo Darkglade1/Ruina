@@ -131,6 +131,11 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
     @Override
     public void applyPowers() {
         super.applyPowers();
+        updateCard();
+
+    }
+
+    public void updateCard() {
         if (enemyCard != null) {
             enemyCard.damage = this.getIntentDmg();
             if (enemyCard.damage != enemyCard.baseDamage) {
