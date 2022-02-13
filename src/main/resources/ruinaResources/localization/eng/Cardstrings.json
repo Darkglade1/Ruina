@@ -42,8 +42,8 @@
   },
   "${ModID}:SwordSharpened": {
     "NAME": "Sword Sharpened With Tears",
-    "DESCRIPTION": "Apply !M! Weak. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and Exhaust this card.",
-    "UPGRADE_DESCRIPTION": "Apply !M! Weak. NL Shuffle this card into your draw pile. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and Exhaust this card."
+    "DESCRIPTION": "Apply !M! Weak and Vulnerable. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and Exhaust this card.",
+    "UPGRADE_DESCRIPTION": "Apply !M! Weak and Vulnerable. NL Shuffle this card into your draw pile. NL When you play this card on the same enemy !ruina:SecondMagic! times, instead apply 1 *Stun and Exhaust this card."
   },
   "${ModID}:Lumber": {
     "NAME": "Lumber",

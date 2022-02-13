@@ -24,7 +24,7 @@ import static ruina.util.Wiz.atb;
 public class Thirst extends AbstractEgoCard {
     public final static String ID = makeID(Thirst.class.getSimpleName());
 
-    public static final int BLEED = 9;
+    public static final int BLEED = 6;
     public static final int STRENGTH = 1;
 
     public static final String POWER_ID = makeID("Thirst");
@@ -33,7 +33,7 @@ public class Thirst extends AbstractEgoCard {
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Thirst() {
-        super(ID, 1, CardType.SKILL, CardTarget.ENEMY);
+        super(ID, 0, CardType.SKILL, CardTarget.ENEMY);
         magicNumber = baseMagicNumber = BLEED;
         secondMagicNumber = baseSecondMagicNumber = STRENGTH;
     }
