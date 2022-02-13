@@ -26,7 +26,7 @@ public class Grinder extends AbstractEgoCard {
     private static final int THRESHOLD = 15;
 
     public Grinder() {
-        super(ID, 1, CardType.POWER, CardTarget.SELF);
+        super(ID, 0, CardType.POWER, CardTarget.SELF);
         magicNumber = baseMagicNumber = THRESHOLD;
     }
 
