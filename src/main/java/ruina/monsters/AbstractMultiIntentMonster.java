@@ -64,7 +64,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         }
         if (additionalMove.baseDamage > -1) {
             int dmg = additionalMove.baseDamage;
-            float tmp = (float)dmg;
+            float tmp = (float) dmg;
             if (Settings.isEndless && AbstractDungeon.player.hasBlight("DeadlyEnemies")) {
                 float mod = AbstractDungeon.player.getBlight("DeadlyEnemies").effectFloat();
                 tmp *= mod;
@@ -72,22 +72,22 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
 
             AbstractPower p;
             Iterator var6;
-            for(var6 = this.powers.iterator(); var6.hasNext(); tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL)) {
-                p = (AbstractPower)var6.next();
+            for (var6 = this.powers.iterator(); var6.hasNext(); tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL)) {
+                p = (AbstractPower) var6.next();
             }
 
-            for(var6 = target.powers.iterator(); var6.hasNext(); tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL)) {
-                p = (AbstractPower)var6.next();
+            for (var6 = target.powers.iterator(); var6.hasNext(); tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL)) {
+                p = (AbstractPower) var6.next();
             }
 
             tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
 
-            for(var6 = this.powers.iterator(); var6.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
-                p = (AbstractPower)var6.next();
+            for (var6 = this.powers.iterator(); var6.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
+                p = (AbstractPower) var6.next();
             }
 
-            for(var6 = target.powers.iterator(); var6.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL)) {
-                p = (AbstractPower)var6.next();
+            for (var6 = target.powers.iterator(); var6.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL)) {
+                p = (AbstractPower) var6.next();
             }
 
             dmg = MathUtils.floor(tmp);
@@ -95,7 +95,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                 dmg = 0;
             }
             if (this instanceof Argalia && additionalMove.nextMove == Argalia.SCYTHE && whichMove == Argalia.SCYTHE_INTENT_NUM) {
-                dmg = (int)(dmg * ((Argalia) this).scytheDamageMultiplier);
+                dmg = (int) (dmg * ((Argalia) this).scytheDamageMultiplier);
             }
             if (target.hasPower(Enchanted.POWER_ID) && this.hasPower(BigBird.Salvation_POWER_ID)) {
                 dmg = BigBird.INSTANT_KILL_NUM;
@@ -133,6 +133,110 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, targetTexturePath, -1);
     }
 
+    public void applyPowersToAdditionalIntentOnlyIncrease(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, String targetTexturePath) {
+        if (additionalMove.nextMove == -1 || target.isDead || target.isDying) {
+            target = adp();
+        }
+        if (additionalMove.baseDamage > -1) {
+            int dmg = additionalMove.baseDamage;
+            float tmp = (float) dmg;
+            float highest = (float) dmg;
+            AbstractPower p;
+            Iterator var6;
+
+            if (Settings.isEndless && AbstractDungeon.player.hasBlight("DeadlyEnemies")) {// 37
+                float mod = AbstractDungeon.player.getBlight("DeadlyEnemies").effectFloat();// 38
+                tmp *= mod;// 39
+            }
+
+            var6 = this.powers.iterator();// 47
+
+            while (var6.hasNext()) {
+                p = (AbstractPower) var6.next();
+                tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL);// 48
+                if (tmp > highest) {
+                    highest = tmp;
+                } else {
+                    tmp = highest;
+                }
+            }
+
+            var6 = target.powers.iterator();// 56
+
+            while (var6.hasNext()) {
+                p = (AbstractPower) var6.next();
+                tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);// 57
+                if (tmp > highest) {
+                    highest = tmp;
+                } else {
+                    tmp = highest;
+                }
+            }
+
+            tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);// 64
+            if (tmp > highest) {
+                highest = tmp;
+            } else {
+                tmp = highest;
+            }
+
+            var6 = this.powers.iterator();// 70
+
+            while (var6.hasNext()) {
+                p = (AbstractPower) var6.next();
+                tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL);// 71
+                if (tmp > highest) {
+                    highest = tmp;
+                } else {
+                    tmp = highest;
+                }
+            }
+
+            var6 = target.powers.iterator();// 78
+
+            while (var6.hasNext()) {
+                p = (AbstractPower) var6.next();
+                tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL);// 79
+                if (tmp > highest) {
+                    highest = tmp;
+                } else {
+                    tmp = highest;
+                }
+            }
+
+            dmg = MathUtils.floor(highest);// 86
+            if (dmg < 0) {// 87
+                dmg = 0;// 88
+            }
+            additionalIntent.updateDamage(dmg);
+            if (target != adp()) {
+                PowerTip intentTip = additionalIntent.intentTip;
+                if (additionalIntent.numHits > 0) {
+                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + additionalIntent.damage + TEXT[3] + additionalIntent.numHits + TEXT[4];
+                } else {
+                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + additionalIntent.damage + TEXT[2];
+                }
+                if (targetTexturePath != null) {
+                    additionalIntent.setTargetTexture(targetTexturePath);
+                }
+            } else {
+                additionalIntent.clearTargetTexture();
+            }
+        } else {
+            if (additionalIntent.intent == Intent.DEBUFF || additionalIntent.intent == Intent.STRONG_DEBUFF || additionalIntent.intent == Intent.DEFEND_DEBUFF) {
+                if (target != adp()) {
+                    PowerTip intentTip = additionalIntent.intentTip;
+                    intentTip.body = TEXT[5] + FontHelper.colorString(target.name, "y") + TEXT[6];
+                    if (targetTexturePath != null) {
+                        additionalIntent.setTargetTexture(targetTexturePath);
+                    }
+                } else {
+                    additionalIntent.clearTargetTexture();
+                }
+            }
+        }
+    }
+
     @Override
     public void rollMove() {
         additionalIntents.clear();
@@ -159,7 +263,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         if (moveHistory.isEmpty()) {
             return false;
         } else {
-            return (Byte)moveHistory.get(moveHistory.size() - 1) == move;
+            return (Byte) moveHistory.get(moveHistory.size() - 1) == move;
         }
     }
 
@@ -169,7 +273,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         } else if (moveHistory.size() < 2) {
             return false;
         } else {
-            return (Byte)moveHistory.get(moveHistory.size() - 2) == move;
+            return (Byte) moveHistory.get(moveHistory.size() - 2) == move;
         }
     }
 
@@ -177,7 +281,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         if (moveHistory.size() < 2) {
             return false;
         } else {
-            return (Byte)moveHistory.get(moveHistory.size() - 1) == move && (Byte)moveHistory.get(moveHistory.size() - 2) == move;
+            return (Byte) moveHistory.get(moveHistory.size() - 1) == move && (Byte) moveHistory.get(moveHistory.size() - 2) == move;
         }
     }
 
