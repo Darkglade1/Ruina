@@ -686,6 +686,9 @@ public class RuinaMod implements
         BlackSilence silence = new BlackSilence();
         CustomDungeon.addAct(5, silence);
 
+        Day49 day49 = new Day49();
+        CustomDungeon.addAct(5, day49);
+
         CustomIntent.add(new MassAttackIntent());
 
         //Act 1
@@ -987,6 +990,8 @@ public class RuinaMod implements
 
                 }));
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
+
+        day49.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 
         //The Head
         BaseMod.addMonster(Baral.ID, "The Head", () -> new MonsterGroup(

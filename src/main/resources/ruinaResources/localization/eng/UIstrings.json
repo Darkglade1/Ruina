@@ -113,5 +113,13 @@
       " #gChoose #gan #gEGO #gcard #gto #gobtain ]",
       "Choose an EGO card."
     ]
+  },
+  "${ModID}:Day49": {
+    "TEXT": [
+      "???",
+      "The Seed Of Light",
+      "\"When I'm done, everything will go back to the way it was, and i'll disappear without a trace. There isn't much time, so I'll get started right away.\"",
+      "???"
+    ]
   }
 }
