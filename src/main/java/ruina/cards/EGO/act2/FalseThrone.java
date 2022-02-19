@@ -39,7 +39,7 @@ public class FalseThrone extends AbstractEgoCard {
                 for (AbstractCard card : cardsToReturn) {
                     adp().exhaustPile.removeCard(card);
                     CardModifierManager.addModifier(card, etherealMod.makeCopy());
-                    makeInHand(card);
+                    makeInHandSameUUID(card);
                 }
                 atb(new RemoveSpecificPowerAction(owner, owner, this));
             }

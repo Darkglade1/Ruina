@@ -91,14 +91,14 @@ public class Gunman extends AbstractMultiIntentMonster
     }
 
     public Gunman(final float x, final float y) {
-        super(NAME, ID, 200, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(NAME, ID, 180, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Gunman/Spriter/Gunman.scml"));
         this.type = EnemyType.BOSS;
         numAdditionalMoves = 1;
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(200));
+        this.setHp(calcAscensionTankiness(180));
 
         addMove(RUTHLESS_BULLETS, IntentEnums.MASS_ATTACK, calcAscensionDamage(17));
         addMove(INEVITABLE_BULLET, Intent.ATTACK, calcAscensionDamage(7));

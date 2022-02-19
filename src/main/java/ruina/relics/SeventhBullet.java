@@ -17,7 +17,7 @@ public class SeventhBullet extends AbstractEasyRelic {
 
     private static final int DAMAGE = 3;
     private static final int STRENGTH = 2;
-    private static final int CARDS_THRESHOLD = 7;
+    public static final int CARDS_THRESHOLD = 7;
 
     public SeventhBullet() {
         super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);

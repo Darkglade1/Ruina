@@ -131,6 +131,10 @@ public class Wiz {
         atb(new MakeTempCardInHandAction(c, i));
     }
 
+    public static void makeInHandSameUUID(AbstractCard c) {
+        atb(new MakeTempCardInHandAction(c, true, true));
+    }
+
     public static void makeInHand(AbstractCard c) {
         makeInHand(c, 1);
     }
