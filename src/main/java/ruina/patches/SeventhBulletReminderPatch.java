@@ -35,7 +35,7 @@ public class SeventhBulletReminderPatch {
     }
 
     private static void renderHelper(SpriteBatch sb, TextureAtlas.AtlasRegion img, float drawX, float drawY, AbstractCard C) {
-        sb.draw(img, drawX + (100.0f * Settings.scale) + img.offsetX - (float) img.originalWidth / 2.0F, drawY + (C.hb.height / 2) + img.offsetY - (float) img.originalHeight / 2.0F, (float) img.originalWidth / 2.0F - img.offsetX, (float) img.originalHeight / 2.0F - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, C.drawScale * Settings.scale, C.drawScale * Settings.scale, C.angle);
+        sb.draw(img, drawX - (60.0f * Settings.scale) + img.offsetX - (float) img.originalWidth / 2.0F, drawY + (C.hb.height / 2) + img.offsetY - (float) img.originalHeight / 2.0F, (float) img.originalWidth / 2.0F - img.offsetX, (float) img.originalHeight / 2.0F - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, C.drawScale * Settings.scale, C.drawScale * Settings.scale, C.angle);
     }
 
 }
