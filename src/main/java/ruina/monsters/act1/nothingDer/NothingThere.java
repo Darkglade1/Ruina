@@ -63,7 +63,7 @@ public class NothingThere extends AbstractMultiIntentMonster
     }
 
     public NothingThere(final float x, final float y) {
-        super(NAME, ID, 250, -5.0F, 0, 250.0f, 205.0f, null, x, y);
+        super(NAME, ID, 220, -5.0F, 0, 250.0f, 205.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("NothingThere/Spriter/NothingThere.scml"));
         this.animation.setFlip(true, false);
         this.flipHorizontal = true; //additionalIntent class checks for this boolean to know when to flip additional intent positioning
@@ -72,7 +72,7 @@ public class NothingThere extends AbstractMultiIntentMonster
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        this.setHp(calcAscensionTankiness(250));
+        this.setHp(calcAscensionTankiness(220));
 
         int attackDamage = 2;
         if (AbstractDungeon.ascensionLevel >= 4) {
