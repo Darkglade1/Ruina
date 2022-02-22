@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import ruina.RuinaMod;
@@ -23,7 +24,7 @@ public class SeventhBulletReminderPatch {
 
     @SpirePostfixPatch
     public static void patch(AbstractCard __instance, SpriteBatch sb) {
-        if (AbstractDungeon.player.hasRelic(SeventhBullet.ID) && AbstractDungeon.player.getRelic(SeventhBullet.ID).counter == SeventhBullet.CARDS_THRESHOLD - 1 && __instance.type == AbstractCard.CardType.ATTACK) {
+        if (CardCrawlGame.isInARun() && AbstractDungeon.player.hasRelic(SeventhBullet.ID) && AbstractDungeon.player.getRelic(SeventhBullet.ID).counter == SeventhBullet.CARDS_THRESHOLD - 1 && __instance.type == AbstractCard.CardType.ATTACK) {
             sb.setColor(Color.WHITE);
             renderHelper(sb, reminderRegion, __instance.current_x, __instance.current_y, __instance);
             sb.setBlendFunction(770, 1);
