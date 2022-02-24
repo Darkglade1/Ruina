@@ -105,6 +105,7 @@ public class AdditionalIntent {
             } else {
                 enemyCard.isDamageModified = false;
             }
+            enemyCard.triggerOnGlowCheck();
         }
         intentTip = createAdditionalIntentTip(this);
         this.intentImg = this.getIntentImg();

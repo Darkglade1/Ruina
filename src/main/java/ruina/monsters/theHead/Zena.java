@@ -361,12 +361,8 @@ public class Zena extends AbstractCardMonster
                             }
                             baral.roland.setFuriosoCounter(furiosoCounter);
                             adp().maxHealth = baral.playerMaxHp;
-                            if (AbstractDungeon.ascensionLevel >= 19) {
-                                adp().currentHealth = baral.playerCurrentHp;
-                            } else {
-                                adp().currentHealth = baral.playerCurrentHp;
-                                adp().heal(adp().maxHealth, false);
-                            }
+                            adp().currentHealth = baral.playerCurrentHp;
+                            adp().heal(adp().maxHealth, false);
                             adp().healthBarUpdatedEvent();
                             adp().loseBlock();
                             fixOrbPositioning();

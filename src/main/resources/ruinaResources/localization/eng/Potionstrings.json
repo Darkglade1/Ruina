@@ -1,0 +1,6 @@
+{
+  "ruina:EgoPotion": {
+    "NAME": "Ego Potion",
+    "DESCRIPTIONS": ["Add ","#b", " copies of ", "#b1 of #b3 random #yEGO cards to your hand.", " It costs #b0 this turn.", " They cost #b0 this turn."]
+  }
+}

@@ -4,6 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -50,7 +51,7 @@ public class Eileen extends AbstractCardMonster
     private static final byte BRAINWASH = 3;
 
     public final int BLOCK = calcAscensionTankiness(22);
-    public final int STRENGTH = calcAscensionSpecial(4);
+    public final int STRENGTH = calcAscensionSpecial(5);
     public final int VULNERABLE = 1;
     public final int HP_LOSS = 100;
 
@@ -76,14 +77,21 @@ public class Eileen extends AbstractCardMonster
             additionalMovesHistory.add(new ArrayList<>());
         }
         this.setHp(calcAscensionTankiness(1000));
-
+        Intent defend = Intent.DEFEND;
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            defend = Intent.DEFEND_DEBUFF;
+        }
         addMove(PREACH, Intent.BUFF);
-        addMove(ACCELERATE, Intent.DEFEND);
+        addMove(ACCELERATE, defend);
         addMove(PROPAGATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
         addMove(BRAINWASH, Intent.ATTACK, calcAscensionDamage(17));
 
         cardList.add(new Preach(this));
-        cardList.add(new Accelerate(this));
+        AbstractCard accelerate = new Accelerate(this);
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            accelerate.upgrade();
+        }
+        cardList.add(accelerate);
         cardList.add(new Propagate(this));
         cardList.add(new ThoughtGearBrainwash(this));
     }
@@ -144,6 +152,9 @@ public class Eileen extends AbstractCardMonster
                     if (!(mo instanceof AbstractAllyMonster)) {
                         block(mo, BLOCK);
                     }
+                }
+                if (AbstractDungeon.ascensionLevel >= 19) {
+                    applyToTarget(target, this, new VulnerablePower(target, VULNERABLE, true));
                 }
                 resetIdle();
                 break;

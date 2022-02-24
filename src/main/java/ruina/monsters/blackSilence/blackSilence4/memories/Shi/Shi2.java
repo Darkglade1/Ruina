@@ -3,6 +3,7 @@ package ruina.monsters.blackSilence.blackSilence4.memories.Shi;
 import basemod.AutoAdd;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 
@@ -27,6 +28,6 @@ public class Shi2 extends Shi {
     public void upp() { }
 
     public void onChoseThisOption(){
-        applyToTarget(adp(), parent, new FrailPower(adp(), magicNumber, true));
+        applyToTarget(adp(), parent, new DexterityPower(adp(), -magicNumber));
     }
 }

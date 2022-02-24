@@ -18,7 +18,7 @@ public class ThinStrings extends AbstractRuinaCard {
     public ThinStrings(Puppeteer parent) {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF, RuinaMod.Enums.EGO);
         baseBlock = parent.BLOCK;
-        magicNumber = baseMagicNumber = parent.WEAK;
+        magicNumber = baseMagicNumber = parent.DEBUFF;
         this.parent = parent;
     }
 

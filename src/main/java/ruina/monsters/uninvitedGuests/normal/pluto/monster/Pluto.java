@@ -51,16 +51,16 @@ public class Pluto extends AbstractCardMonster {
     private static final byte CONTRACT = 3;
     private static final byte BINDING_TERMS = 4;
 
-    public final int magicSafeguardBlock = calcAscensionTankiness(30);
-    public final int magicSafeguardStr = calcAscensionSpecial(2);
+    public final int magicSafeguardBlock = calcAscensionSpecial(calcAscensionTankiness(30));
+    public final int magicSafeguardStr = calcAscensionSpecial(3);
 
     public final int magicMissleDamage = calcAscensionDamage(8);
     public final int magicMissleHits = 3;
 
     public final int magicOnslaughtDamage = calcAscensionDamage(23);
-    public final int magicOnslaughtPerUseScaling = calcAscensionDamage(5);
+    public final int magicOnslaughtPerUseScaling = calcAscensionSpecial(calcAscensionDamage(5));
 
-    public final int STATUS = calcAscensionSpecial(2);
+    public final int STATUS = calcAscensionSpecial(3);
     private int onslaughtTimesUsed;
 
     private Hokma hokma;
@@ -158,7 +158,9 @@ public class Pluto extends AbstractCardMonster {
                         contracts.add(new ConfusingContract());
                         contracts.add(new ContractOfLight());
                         contracts.add(new ContractOfMight());
-                        contracts.add(new NoContract());
+                        if (AbstractDungeon.ascensionLevel < 19) {
+                            contracts.add(new NoContract());
+                        }
                         att(new ChooseOneAction(contracts));
                         isDone = true;
                     }

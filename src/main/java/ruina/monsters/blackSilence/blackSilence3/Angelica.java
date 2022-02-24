@@ -187,10 +187,16 @@ public class Angelica extends AbstractCardMonster {
             }
             case ASHENBOND:
                 guardAnimation();
-                for (AbstractMonster mo : monsterList()) {
-                    if (!mo.isDeadOrEscaped()) {
-                        block(mo, bondBlock);
-                        applyToTarget(mo, this, new StrengthPower(this, bondStrength));
+                int times = 1;
+                if (!isRolandAttacking()) {
+                    times = 2;
+                }
+                for (int i = 0; i < times; i++) {
+                    for (AbstractMonster mo : monsterList()) {
+                        if (!mo.isDeadOrEscaped()) {
+                            block(mo, bondBlock);
+                            applyToTarget(mo, this, new StrengthPower(this, bondStrength));
+                        }
                     }
                 }
                 resetIdle();
@@ -203,7 +209,7 @@ public class Angelica extends AbstractCardMonster {
         atb(new RollMoveAction(this));
     }
 
-    private boolean isRolandAttacking() {
+    public boolean isRolandAttacking() {
         return roland.getIntentBaseDmg() >= 0;
     }
 

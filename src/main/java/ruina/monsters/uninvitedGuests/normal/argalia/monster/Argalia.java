@@ -59,10 +59,10 @@ public class Argalia extends AbstractDeckMonster
 
     public final int allegroDamage = calcAscensionDamage(10);
     public final int allegroHits = 2;
-    public final int allegroStrength = calcAscensionSpecial(3);
+    public final int allegroStrength = calcAscensionSpecial(calcAscensionSpecial(3));
 
     public final int scytheDamage = calcAscensionDamage(30);
-    public static final float scytheDamageMultiplier = 3.0f;
+    public final int scytheDamageMultiplier = calcAscensionSpecial(3);
     public static final int SCYTHE_INTENT_NUM = 0;
 
     public final int trailsDamage = calcAscensionDamage(26);
@@ -96,7 +96,11 @@ public class Argalia extends AbstractDeckMonster
         super(NAME, ID, 1500, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Argalia/Spriter/Argalia.scml"));
         this.type = EnemyType.BOSS;
-        this.setHp(calcAscensionTankiness(1500));
+        int HP = calcAscensionTankiness(1500);
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            HP += 350;
+        }
+        this.setHp(HP);
 
         maxAdditionalMoves = 2;
         for (int i = 0; i < maxAdditionalMoves; i++) {

@@ -26,6 +26,7 @@ public class Aspiration extends AbstractEgoCard {
     public Aspiration() {
         super(ID, COST, CardType.SKILL, CardTarget.SELF);
         magicNumber = baseMagicNumber = STRENGTH;
+        isInnate = true;
         isEthereal = true;
     }
 

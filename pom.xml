@@ -58,6 +58,13 @@
             <scope>system</scope>
             <systemPath>${Steam.path}/workshop/content/646570/1934902042/actlikeit.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.evacipated.cardcrawl.mod</groupId>
+            <artifactId>WidePotions</artifactId>
+            <version>1.1.2</version>
+            <scope>system</scope>
+            <systemPath>${Steam.path}/workshop/content/646570/2368513093/WidePotions.jar</systemPath>
+        </dependency>
     </dependencies>
 
 

@@ -51,13 +51,13 @@ public class Philip extends AbstractCardMonster
     public final int stigmatizeHits = 2;
     public final int sorrowHits = 3;
 
-    public final int BLOCK = calcAscensionTankiness(10);
-    public final int EVENTIDE_BURNS = 3;
-    public final int STRENGTH = calcAscensionSpecial(2);
+    public final int BLOCK = calcAscensionSpecial(calcAscensionTankiness(10));
+    public final int EVENTIDE_BURNS = calcAscensionSpecial(3);
+    public final int STRENGTH = calcAscensionSpecial(3);
     public final int SEARING_BURNS = calcAscensionSpecial(1);
     public final int damageBonus = calcAscensionSpecial(30);
-    public final int damageReduction = 60;
-    public final int damageReductionDecay = 10;
+    public final int damageReduction = calcAscensionSpecial(60);
+    public final int damageReductionDecay = calcAscensionSpecial(10);
     private int TURNS_TILL_BONUS_INTENT = 3;
     public boolean gotBonusIntent = false;
     public int TURNS_TILL_BONUS_DAMAGE = 6;

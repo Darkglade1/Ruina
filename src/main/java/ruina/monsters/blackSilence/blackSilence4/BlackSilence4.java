@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.blights.Shield;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -110,13 +109,13 @@ public class BlackSilence4 extends AbstractCardMonster {
     public final int dawnBurns = calcAscensionSpecial(2);
     public final int dawnProtection = calcAscensionSpecial(5);
 
-    public final int shiWeak = calcAscensionSpecial(3);
-    public final int shiFrail = calcAscensionSpecial(3);
+    public final int shiDebuff1 = calcAscensionSpecial(3);
+    public final int shiDebuff2 = calcAscensionSpecial(3);
 
     public final int loveRegen = calcAscensionSpecial(15);
     public final int loveSlimed = calcAscensionSpecial(4);
 
-    public final int liuStrength = calcAscensionSpecial(4);
+    public final int liuStrength = calcAscensionSpecial(5);
     public final int liuVulnerable = calcAscensionSpecial(2);
 
     public final int purpleIntangible = calcAscensionSpecial(1);

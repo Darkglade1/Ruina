@@ -196,12 +196,18 @@ public class BlackSilence3 extends AbstractCardMonster {
             }
             case DARKBOND:
                 guardAnimation();
-                for (AbstractMonster mo : monsterList()) {
-                    if (!mo.isDeadOrEscaped()) {
-                        block(mo, bondBlock);
-                    }
+                int times = 1;
+                if (!isAngelicaAttacking()) {
+                    times = 2;
                 }
-                intoDrawMo(new VoidCard(), bondVoid, this);
+                for (int i = 0; i < times; i++) {
+                    for (AbstractMonster mo : monsterList()) {
+                        if (!mo.isDeadOrEscaped()) {
+                            block(mo, bondBlock);
+                        }
+                    }
+                    intoDrawMo(new VoidCard(), bondVoid, this);
+                }
                 resetIdle();
                 break;
             case SOUL_LINK_REVIVAL:
@@ -212,7 +218,7 @@ public class BlackSilence3 extends AbstractCardMonster {
         atb(new RollMoveAction(this));
     }
 
-    private boolean isAngelicaAttacking() {
+    public boolean isAngelicaAttacking() {
         return angelica.getIntentBaseDmg() >= 0;
     }
 

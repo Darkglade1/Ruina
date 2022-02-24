@@ -61,7 +61,7 @@ public class Bremen extends AbstractCardMonster
     public final int MELODY_LENGTH = 3;
     public final int MELODY_LENGTH_INCREASE = 1;
     private int currentMelodyLength = MELODY_LENGTH;
-    public final int MELODY_BOSS_STR = calcAscensionSpecial(2);
+    public final int MELODY_BOSS_STR = calcAscensionSpecial(3);
     public final int MELODY_PLAYER_STR = 1;
     public final int TRIO_COOLDOWN = 2;
     private int cooldown = TRIO_COOLDOWN;
