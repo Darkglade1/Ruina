@@ -1,0 +1,610 @@
+{
+  "ruina:NextTurnPower": {
+    "NAME": "次のターン ",
+    "DESCRIPTIONS": ["次のターン、 #b", " ", " を得る。"]
+  },
+  "ruina:StrikeWithoutHesitation": {
+    "NAME": "揺るぎない一撃",
+    "DESCRIPTIONS": ["このターン、この味方がブロックされていないダメージを与えるたびに、 #b", " #y筋力 を得る。"]
+  },
+  "ruina:FuryWithNoOutlet": {
+    "NAME": "行き場を失った怒り",
+    "DESCRIPTIONS": [" #y赤ずきんの傭兵 はあなたの #g味方 。 NL #y赤ずきんの傭兵 が #y狼 に #rとどめ をさしたならあなたは勝利する。 NL もし #y狼 が別の手段で #r倒される と, #y赤ずきんの傭兵 は体力を全回復させ #r激怒 し、 #r敵対 する。"]
+  },
+  "ruina:BloodstainedClaws": {
+    "NAME": "血に染まった爪",
+    "DESCRIPTIONS": [" #y赤ずきんの傭兵 が #r戦闘不能 になると、 HPを #b", " 回復 させ、 全ての攻撃が #rあなた を対象にする。"]
+  },
+  "ruina:Bleed": {
+    "NAME": "出血",
+    "DESCRIPTIONS": ["このターン、このキャラクターが #y攻撃 する度に #b", " ダメージ"]
+  },
+  "ruina:Absorption": {
+    "NAME": "吸収",
+    "DESCRIPTIONS": ["戦闘不能時、第 #y", " #y形態 に退化 ", "ターン終了時、 HPが最大なら第 #y", " #y形態 に進化"]
+  },
+  "ruina:Bodies": {
+    "NAME": "死体の山",
+    "DESCRIPTIONS": ["ターン終了時、 全ての #y溶け落ちた死体 が倒されている時、 #y溶け落ちた死体 を召喚。 NL この敵がターゲットにしていた #y溶け落ちた死体 が戦闘不能時、 その行動はあなたをターゲットにする。"]
+  },
+  "ruina:Corpse": {
+    "NAME": "死体",
+    "DESCRIPTIONS": [" この敵の #r戦闘不能時、 #r敵 がこの敵にとどめを刺したなら #r敵 のHPを #b", " 回復。"]
+  },
+  "ruina:Search": {
+    "NAME": "求める知恵",
+    "DESCRIPTIONS": ["この敵からブロックされていないダメージを受けるたび、山札の一番上のカードを #y廃棄 する。"]
+  },
+  "ruina:Wisdom": {
+    "NAME": "知恵",
+    "DESCRIPTIONS": ["この戦闘中、山札は順番通りに表示される。"]
+  },
+  "ruina:Heart": {
+    "NAME": "暖かい心",
+    "DESCRIPTIONS": ["ターン開始時にあなたは ", " を得る。 ターン終了時、この敵は #b", " の #y筋力 を 使いきれなかった [E] の分だけ得る。"]
+  },
+  "ruina:Justice": {
+    "NAME": "正義の名のもとに!",
+    "DESCRIPTIONS": ["この味方は、 #yブロック を持たない #r敵 に #y3倍 のダメージを与える。"]
+  },
+  "ruina:PointlessHate": {
+    "NAME": "無意味な憎悪",
+    "DESCRIPTIONS": ["ターン終了時 #b", " #yブロック を得る。"]
+  },
+  "ruina:Erosion": {
+    "NAME": "腐食",
+    "DESCRIPTIONS": ["攻撃によって受けるダメージが #b", " 増える 。 NL ターン終了時 #b", " 減少。 "]
+  },
+  "ruina:SenselessWrath": {
+    "NAME": "無意味な憤怒",
+    "DESCRIPTIONS": ["2回毎に与えられる #pデバフ を #y無効化 する。"]
+  },
+  "ruina:MagicalGirl": {
+    "NAME": "本物の魔法少女!",
+    "DESCRIPTIONS": ["戦闘不能時に ", " をあなたの味方として召喚する。"]
+  },
+  "ruina:Paralysis": {
+    "NAME": "麻痺",
+    "DESCRIPTIONS": ["このターン、次にあなたがプレイする #yアタック のダメージは #b", "% 減少。"]
+  },
+  "ruina:Despair": {
+    "NAME": "絶望",
+    "DESCRIPTIONS": ["ミニオンが死んだ時、HP #b", " を失う。"]
+  },
+  "ruina:Worthless": {
+    "NAME": "無価値",
+    "DESCRIPTIONS": ["このミニオンの攻撃時、ダメージが完全にブロックされたならこのミニオンは #r死亡 する。"]
+  },
+  "ruina:Road": {
+    "NAME": "黄金の道",
+    "DESCRIPTIONS": [" #r強力な攻撃 を #b", " ターン後に行う。", " ターン後に行う。", "このターン #r強力な攻撃 を行う。"]
+  },
+  "ruina:Bliss": {
+    "NAME": "幸せの破片",
+    "DESCRIPTIONS": ["戦闘不能時にあなたの手札に ", " を加える。 NL それは #yエセリアル と #y廃棄 を持つ。"]
+  },
+  "ruina:Hunter": {
+    "NAME": "影の中の狩人",
+    "DESCRIPTIONS": [" この敵のHPが初めて #b", "% 以下になると、 ターン終了時に #y筋力 を #b", " 得る。 NL さらに #b", " ターン", " ターン の間、 #yターゲットできなくなり 、全てのダメージを #y無効化 する。 "]
+  },
+  "ruina:Skulk": {
+    "NAME": "影への潜伏",
+    "DESCRIPTIONS": [" #b", " ターン", " ターン の間 #yターゲット できなくなり 、全てのダメージを #y無効化 する。 "]
+  },
+  "ruina:Courage": {
+    "NAME": "勇気",
+    "DESCRIPTIONS": [" ", " がアタックされた時、この敵はこのターン中 #b", " の #y筋力 を得る。 NL NL #y帰り道 の死亡時、 #y逃走 を試みる。"]
+  },
+  "ruina:Hysteria": {
+    "NAME": "ヒステリー",
+    "DESCRIPTIONS": [" 1ターンの間に #b", " 枚の #yアタック をプレイすると あなたは #y脱力 #b", " を得る。 NL 1ターンの間に #b", " 枚の #yスキル をプレイすると あなたは #y脆弱化 #b", " を得る。"]
+  },
+  "ruina:Oblivion": {
+    "NAME": "忘却",
+    "DESCRIPTIONS": ["毎ターン引くカードは #b", " 枚少なくなる。 ", " 枚少なくなる。 ", " "]
+  },
+  "ruina:Steal": {
+    "NAME": "奪ったり奪われたり",
+    "DESCRIPTIONS": ["この敵が攻撃する度、あなたの 山札の一番上のカードを #y奪う 。 NL この敵がHPを失う度、手札にこの敵から #y奪われた カードを加える。"]
+  },
+  "ruina:Agony": {
+    "NAME": "奪われた者の苦悶",
+    "DESCRIPTIONS": ["ミニオン が HPを失う度、この敵は同じ量のHPを失う。"]
+  },
+  "ruina:BlindFury": {
+    "NAME": "目の眩む憤怒",
+    "DESCRIPTIONS": [" この味方がHPを #b", " 以上失うと、次のターンあなたを含めた全てのキャラクターに #r強力な攻撃 を行う。 "]
+  },
+  "ruina:SwordCounter": {
+    "NAME": "涙",
+    "DESCRIPTIONS": [" はこの #r敵 に #b", " 回プレイされた。", " 回プレイされた。"]
+  },
+  "ruina:HomingInstinct": {
+    "NAME": "帰巣本能",
+    "DESCRIPTIONS": ["あなたのターン開始時 ", " を得る。"]
+  },
+  "ruina:Home": {
+    "NAME": "気まぐれな家",
+    "DESCRIPTIONS": ["攻撃によって受けるダメージと与えるダメージが #b", "% #y減少。 ", "% #y増加。 "," NL あなたがカードを #b", " 枚プレイするたび、このカードの効果が #y反転 。 "]
+  },
+  "ruina:CobaltScarPower": {
+    "NAME": "蒼の傷跡",
+    "DESCRIPTIONS": ["あなたが #b", " 枚のアタックをプレイするたび, 全ての敵に #b", " ダメージ。"]
+  },
+  "ruina:Thirst": {
+    "NAME": "渇望",
+    "DESCRIPTIONS": ["このターン、 あなたが #y出血 が付与された #r敵 にアタックするたび、 #y筋力 #b" , " を得る。"]
+  },
+  "ruina:GoodbyePower": {
+    "NAME": "Goodbye",
+    "DESCRIPTIONS": ["次にプレイする #yアタック は #y2倍 のダメージを与える。"]
+  },
+  "ruina:Apostles": {
+    "NAME": "使徒",
+    "DESCRIPTIONS": ["あなたが #y使徒 を #r戦闘不能  にするたび、あなたは #yバフ を得ることができる。 NL 1回目、5回目、9回目 の戦闘不能: #y筋力 #b", " を得る。 NL 2回目、 6回目、 10回目 の戦闘不能: #y敏捷性 #b", " を得る。 NL 3回目、7回目、11回目 の戦闘不能: 各ターンに追加のカードを #b", " 枚引く。 NL 4回目、 8回目、 12回目 の戦闘不能: あなたのターン開始時 [E] を得る。 NL これらの #yバフ はこの敵が あなたを #g回復 させたときに与えられる。 NL #y使徒 が戦闘不能になる度 ターン終了時に新しい #y使徒 が現れる。"]
+  },
+  "ruina:Advent": {
+    "NAME": "降臨",
+    "DESCRIPTIONS": ["この敵は #b", " ターン後に形態変化する。", " ターン後に形態変化する。"]
+  },
+  "ruina:Blessing": {
+    "NAME": "祝福",
+    "DESCRIPTIONS": ["ターン開始時 次を得る。 "]
+  },
+  "ruina:WingsOfGrace": {
+    "NAME": "栄光の翼",
+    "DESCRIPTIONS": ["すべての受ける ダメージを #b", "%減少。 NL ダメージを受けると、スタックが #b", "減少。 "]
+  },
+  "ruina:Unkillable": {
+    "NAME": "信仰への恩寵",
+    "DESCRIPTIONS": ["この敵が戦闘不能になる度、次のターン に #r敵が #y復活。 "]
+  },
+  "ruina:ParadiseLostPower": {
+    "NAME": "失楽園",
+    "DESCRIPTIONS": ["あなたのターン開始時、 #b", " 枚のカードを #y廃棄 してもよい。", " 枚のカードを #y廃棄 してもよい。", " #b", " 枚のカードが #y廃棄 される度、 全ての敵は #b", " HP 失う。", " NL NL あなたは #b", " 枚のカードを #y廃棄 した。"]
+  },
+  "ruina:Heaven": {
+    "NAME": "天国",
+    "DESCRIPTIONS": ["このターン攻撃される度、あなたの 現在の #yブロック に等しいダメージを与える。"]
+  },
+  "ruina:BigEgg": {
+    "NAME": "大きな目の卵",
+    "DESCRIPTIONS": ["この敵からブロックしきれなかったダメージを受ける度、 山札に #b", " を混ぜてシャッフル。"]
+  },
+  "ruina:SmallEgg": {
+    "NAME": "小さなくちばしの卵",
+    "DESCRIPTIONS": ["各ターンで最初に引く #b", " 枚のカードはこのターンコストが #b", " 増える。"]
+  },
+  "ruina:LongEgg": {
+    "NAME": "長い腕の卵",
+    "DESCRIPTIONS": ["この敵に与えられる全ての #pデバフ が #y無効 になる。"]
+  },
+  "ruina:FadingTwilight": {
+    "NAME": "消えゆく終末",
+    "DESCRIPTIONS": ["この敵は、3つの異なる #y卵 の行動パターンから成り立つ。 NL #b", " ターン毎にアクティブな #y卵 が切り替わる。 NL HPを #b", " 以上失うと 現在のアクティブな #y卵 は #r戦闘不能 になり、行動パターンから取り除かれる。 NL #y卵 が #r戦闘不能 になる度、次のターン #y強力なアタック を行う。"]
+  },
+  "ruina:PunishingBirdPunishmentPower": {
+    "NAME": "懲罰",
+    "DESCRIPTIONS": [
+      " この敵がアタックされた時、次のターンに #r強力な攻撃 を行う。",
+      "この敵は次のターン #r強力な攻撃 を行う。"
+    ]
+  },
+  "ruina:Lock": {
+    "NAME": "黒い森の森番",
+    "DESCRIPTIONS": ["死亡時、手札に #y保留 と #y廃棄 を持つ #y黒い森の森番 を加える。"]
+  },
+  "ruina:Unruffled": {
+    "NAME": "正気に戻す",
+    "DESCRIPTIONS": ["あなたのアタックはこの味方に #b", " ダメージを与える。 NL あなたは #pデバフ をこの味方に与えられない。"]
+  },
+  "ruina:Salvation": {
+    "NAME": "救い",
+    "DESCRIPTIONS": ["この敵の攻撃は #y魅了された味方 を #r即死 させる。 NL #y魅了 は #yあなた が #y魅了された味方 にアタックすると #g取り除かれる 。"]
+  },
+  "ruina:Enchanted": {
+    "NAME": "魅了",
+    "DESCRIPTIONS": ["この味方の攻撃は #b", " ダメージを与える。 NL #y魅了 は #yあなた がこの味方にアタックすると #g取り除かれる 。"]
+  },
+  "ruina:Martyr": {
+    "NAME": "殉教",
+    "DESCRIPTIONS": ["戦闘不能時 #r自爆 し、あなたに #b", " ダメージを与える。"]
+  },
+  "ruina:MeetAgain": {
+    "NAME": "星になって会おう",
+    "DESCRIPTIONS": ["この敵の HP が #b", " 以下の時、 #y殉教 を発動することなく #r自滅 する。"]
+  },
+  "ruina:Unnerving": {
+    "NAME": "他人の視線",
+    "DESCRIPTIONS": [" #yアタック によるダメージを #b", "% 減らす。 NL あなたが #yブロック を得る度、この敵はそれに等しい HPを失う。"]
+  },
+  "ruina:TickingTime": {
+    "NAME": "刻まれる時間",
+    "DESCRIPTIONS": ["1ターンに #b", " 枚のカードをプレイするとターンを終了する。"]
+  },
+  "ruina:PromiseOfWinter": {
+    "NAME": "身を切る寒風",
+    "DESCRIPTIONS": [" #b3回 毎にプレイされるカードは #y凍結 し、 山札に混ぜられる。 NL #y凍結 した カードは #y使用不可 かつ #y保留 。"]
+  },
+  "ruina:KaiAndGerda": {
+    "NAME": "カイとゲルダ",
+    "DESCRIPTIONS": ["戦闘不能時、 #y手札 にある全ての #y凍結 した カードを #y解凍 する。"]
+  },
+  "ruina:RedMistPower": {
+    "NAME": " EGO 発現",
+    "DESCRIPTIONS": [
+      "HP が #b%1$s を下回らない NL  HPが #b%2$s なら、ターン終了時変身し、次のターン #r強力な攻撃 を使用し、追加の #y行動予定 を得る。",
+      "ターン終了時に #rEGO を発現させる。"
+    ]
+  },
+  "ruina:Sin": {
+    "NAME": "罪の重さ",
+    "DESCRIPTIONS": ["コスト #b", " 以下のカードをプレイする度、 この戦闘中、そのカードのコストを #b", " 増加させる。"]
+  },
+  "ruina:Imposter": {
+    "NAME": "嘘つき",
+    "DESCRIPTIONS": ["この敵は #yあなたのカード の #y基本ダメージ と #y基本ブロック をコピーして行動する。 NL ターン終了時 #y筋力 を #b", " 得る。"]
+  },
+  "ruina:FaultyHardware": {
+    "NAME": "手",
+    "DESCRIPTIONS": ["不死。 NL  この敵が戦闘不能になった時、残りの戦闘時間中は行動しない。 "]
+  },
+  "ruina:OminousPower": {
+    "NAME": "不吉な力",
+    "DESCRIPTIONS": [" ターン終了時に両方の #yねじれた手 が行動できない時、またはこの敵の HP が #b%1$s 以下の時、 #yねじれた手 と合体し、新しい行動パターンになる。"]
+  },
+  "ruina:Protection": {
+    "NAME": "保護",
+    "DESCRIPTIONS": ["攻撃によって受けるダメージが #b", " 減る。 NL ターン終了時 #b", " 減少する。"]
+  },
+  "ruina:Beak": {
+    "NAME": "くちばし",
+    "DESCRIPTIONS": ["あなたのターン開始時、 手札の中で最もコストが高いカードのコストを #b0 にするが #y廃棄 を追加。",
+                     "あなたのターン開始時、 手札の中で最もコストが高い順に #b", " 枚のカードのコストを #b0 にするが #y廃棄 を追加。"]
+  },
+  "ruina:Lamp": {
+    "NAME": "ランプ",
+    "DESCRIPTIONS": ["あなたがこのターン、攻撃によるダメージを受ける度、敵に #b", " の反撃ダメージを与える。"]
+  },
+  "ruina:FinishingTouch": {
+    "NAME": "始末",
+    "DESCRIPTIONS": [" この味方が攻撃する度、 #b", " ターンの間、 #y標的 を対象に与える。 NL #y標的 を持つ敵は受ける全てのダメージが #b", "% 増える。"]
+  },
+  "ruina:Mark": {
+    "NAME": "標的",
+    "DESCRIPTIONS": ["受ける全てのダメージが #b", "% 増える。 効果終了まであと #b" , " ターン。"]
+  },
+  "ruina:Mastermind": {
+    "NAME": "人形師",
+    "DESCRIPTIONS": ["この敵 が #y標的 を持たない時、受ける全てのダメージを #b", "% 減らす。"]
+  },
+  "ruina:PuppetStrings": {
+    "NAME": "操り糸",
+    "DESCRIPTIONS": [" この敵が #r戦闘不能 になる度、次のターン最大HPで #g復活 する。 NL NL #r敵 の全体攻撃はこの敵を #g回復 させる。"]
+  },
+  "ruina:Vibration": {
+    "NAME": "振動",
+    "DESCRIPTIONS": ["一部の #r敵の攻撃 は対象の #y振動 を消費し追加効果を与える。"]
+  },
+  "ruina:Resonance": {
+    "NAME": "共振",
+    "DESCRIPTIONS": ["あなたがカードをプレイする度、この敵の行動予定を #b", " だけ右にずらす。 NL (一番左の行動予定はあなたが対象、それ以外の行動予定は あなたの #g味方 を対象。)"]
+  },
+  "ruina:BlackSilence": {
+    "NAME": "黒い沈黙",
+    "DESCRIPTIONS": ["ターン終了時 #y筋力 #b", " を得る。", " NL #b", " ターン後 #y強力な攻撃 を使用する。", " ターン後 #y強力な攻撃 を使用する。", "  NL #y強力な攻撃 を使用する。"]
+  },
+  "ruina:BlueReverberation": {
+    "NAME": "青い残響",
+    "DESCRIPTIONS": [" ターン終了時 #y筋力 #b%1$s を得る。"]
+  },
+  "ruina:ContractOfMight": {
+    "NAME": "力の契約",
+    "DESCRIPTIONS": ["あなたのターン終了時, #b", " ダメージを受け、この効果から受けるダメージが #b", " 増える。"]
+  },
+  "ruina:ContractOfLight": {
+    "NAME": "光の契約",
+    "DESCRIPTIONS": ["毎ターン ", " を得る。 NL ターン開始時のドロー以外ではカードを引くことができない。"]
+  },
+  "ruina:Guts": {
+    "NAME": "根性",
+    "DESCRIPTIONS": ["次にこの敵が #r戦闘不能 になった時、 #y即座に #g復活 しHPを全回復。 NL さらに #y筋力 #b", "  と #y金属化 #b", " を得る。"]
+  },
+  "ruina:GeburaRedMist": {
+    "NAME": "赤い霧",
+    "DESCRIPTIONS": ["この味方 がブロックされなかったダメージを与える度、 #y筋力 を #b", " 得る。", " NL #b", " ターン後に #yE.G.O を発現させ、 #y筋力 を #y2倍 にする 。"]
+  },
+  "ruina:Relentless": {
+    "NAME": "絶え間ない攻撃",
+    "DESCRIPTIONS": ["ターン終了時、このターン #r敵 が #b", " 以上のHPを失わなかったなら、この味方 は半分の #y筋力 を失う。"]
+  },
+  "ruina:BloodRed": {
+    "NAME": "血染めの夜",
+    "DESCRIPTIONS": ["この敵がブロックされなかったダメージを与える度、その分だけHPを回復する。"]
+  },
+  "ruina:Arbiter": {
+    "NAME": "調律者の裁定",
+    "DESCRIPTIONS": ["この #g味方 は、あなたがカードのプレイで最後にターゲットにした #r敵 をターゲットにする。 NL この味方が攻撃する度、対象の二回目の行動予定を #yキャンセル 。 "]
+  },
+  "ruina:Brainwash": {
+    "NAME": "洗脳",
+    "DESCRIPTIONS": ["この #g味方 は #r敵 に #y洗脳 された。 NL #y洗脳された味方 は #b", " ターンの間敵対する。 NL #y洗脳 は この味方 がHPを #b", " 以上失うことで回復する。"]
+  },
+  "ruina:Messenger": {
+    "NAME": "伝令",
+    "DESCRIPTIONS": ["この味方のターン開始時、手札にランダムな #y指令 カードを加える。"]
+  },
+  "ruina:MelodyPower": {
+    "NAME": "メロディー",
+    "DESCRIPTIONS": ["各ターン #yメロディー をランダムに書きかえる。 NL あなたがターン終了時までに、最後まで #yメロディー の順番通りにカードをプレイしたなら、あなたは #y筋力 #b", " を得る。 NL そうできなかった場合、この敵は #y筋力 を #b", " 得る。"]
+  },
+  "ruina:Passion": {
+    "NAME": "冷え切った心",
+    "DESCRIPTIONS": ["攻撃によって受けるダメージが #b", "% 減る。 NL ターンごとに効果が #b", "% 減少。"]
+  },
+  "ruina:Embers": {
+    "NAME": "沸き上がる心",
+    "DESCRIPTIONS": ["攻撃によって受けるダメージが #b", "% 増える。"]
+  },
+  "ruina:Dragon": {
+    "NAME": "龍生九子",
+    "DESCRIPTIONS": ["戦闘開始時、あなたのデッキのカードに #y発現 を付与。 NL カードが #y廃棄 されるたび、この味方は #y感情 #b", " を得る。"]
+  },
+  "ruina:Emotion": {
+    "NAME": "感情",
+    "DESCRIPTIONS": ["#y感情 を #b", " 得る度に、この味方の #y筋力 が2倍になる。 ( #b"," 回まで発動する。)"]
+  },
+  "ruina:Wildfire": {
+    "NAME": "燎原之火",
+    "DESCRIPTIONS": ["ターン終了時、全ての敵に #y弱体 #b" , " を与える。"]
+  },
+  "ruina:TorchedHeart": {
+    "NAME": "燃え上がる心",
+    "DESCRIPTIONS": ["この敵が #y弱体 を受けていないなら、攻撃によって受けるダメージを #b", "% 減らす。"]
+  },
+  "ruina:Sharkskin": {
+    "NAME": "鮫肌",
+    "DESCRIPTIONS": ["この敵が #yデバフ を受けていないなら、攻撃によって受けるダメージを #b", "% 減らす。 NL #b", " ターンおきに、この敵から全ての #pデバフ が取り除かれる。"]
+  },
+  "ruina:FreshMeat": {
+    "NAME": "肉",
+    "DESCRIPTIONS": ["死亡時、 #r敵 がとどめをさしたなら #r敵 のHPを #b", " 回復し、 ", " は #r削除 されあなたのデッキから #r恒久的に取り除かれる 。 NL  あなたがとどめをさしたなら ", " を手札に加える。 NL NL この敵の戦闘不能時、 この敵を対象にしていた攻撃は、代わりにあなたを対象にする。"]
+  },
+  "ruina:PurpleTearStance": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "斬撃体勢",
+      "与えるダメージが #b",
+      "% 増加。",
+      "貫通体勢",
+      "この味方による #b",
+      "回毎の攻撃は対象に付与されている #pデバフ の値を #y2倍 にする。",
+      "防御体勢",
+      "この味方に与えられる全ての #pデバフ を #y無効化 。",
+      " NL NL この味方の #y体勢 を変更するには、この味方の行動予定の横にある #y体勢変更ボタン をクリック。"]
+  },
+  "ruina:Gears": {
+    "NAME": "歯車の教祖",
+    "DESCRIPTIONS": ["ミニオンが戦闘不能になる度 HP #b", " を失う。 NL  死んだ ミニオンはターン終了時に復活する。"]
+  },
+  "ruina:DarkBargain": {
+    "NAME": "依頼",
+    "DESCRIPTIONS": ["この味方の #y全体攻撃 は自身以外の、 #rあなたを含む 全てのキャラクターにダメージを与える。 NL この味方の攻撃は敵に #b","倍 のダメージを与える。 あなたがこの味方からの #y全体攻撃 を #y完璧にブロック する度、ターン終了時にこのボーナスが #b", " 増える。"]
+  },
+  "ruina:PriceOfTime": {
+    "NAME": "沈黙の対価",
+    "DESCRIPTIONS": ["あなたがカードを #b", " 枚プレイする度 この味方は行動する。 NL この味方の通常の行動はスキップされる。"]
+  },
+  "ruina:Orlando": {
+    "NAME": "オルランド",
+    "DESCRIPTIONS": ["通常のターンに加えて、このキャラクターはあなたがカードを #b", " 枚プレイするたびに行動する。"]
+  },
+  "ruina:Scars": {
+    "NAME": "傷跡",
+    "DESCRIPTIONS": ["あなたが #b"," 回毎にプレイする #yアタック のダメージを #r無効化 し、代わりに本来与えるはずの、ブロックされなかったダメージの #b", "% 分、この敵を #r回復 させる。"]
+  },
+  "ruina:Sorrow": {
+    "NAME": "苦痛",
+    "DESCRIPTIONS": ["あなたがプレイするカードを、 #y廃棄 する。"]
+  },
+  "ruina:BlackSilence3": {
+    "NAME": "黒い沈黙",
+    "DESCRIPTIONS": ["各ターンあなたが初めて #b", " 枚の #yアタック をプレイした時、 この敵は行動予定を ", " に変える。 "]
+  },
+  "ruina:WhiteNoise": {
+    "NAME": "白い噪音",
+    "DESCRIPTIONS": ["各ターンあなたが初めて #b", " 枚の #yスキル をプレイした時、 この敵は行動予定を ", " に変える。 "]
+  },
+  "ruina:SoulLink": {
+    "NAME": "魂の接続",
+    "DESCRIPTIONS": ["他の #y魂の接続 を持つ敵は #yパートナー である。 NL  この敵の #r戦闘不能 時、 #yパートナー が生存しているならこのターン #b", "% のHPで #g復活 する。"]
+  },
+  "ruina:PlayerBlackSilence": {
+    "NAME": "黒い沈黙",
+    "DESCRIPTIONS": ["あなたが #b", " 種類のカードをプレイすると、手札に強力なアタック #yFurioso を加える。NL (まだプレイされていないカードはマークがつく。)"]
+  },
+  "ruina:AClaw": {
+    "NAME": "処刑人",
+    "DESCRIPTIONS": ["この敵 は #y筋力 を失わない。 NL  この敵が #b", " 以上の ブロックされなかったダメージを受けるなら、ダメージを #b", "% 減らす。 NL 相手が #r戦闘不能 になる度、 #y筋力 を #b", " 得る。"]
+  },
+  "ruina:AnArbiter": {
+    "NAME": "調律者",
+    "DESCRIPTIONS": [" このキャラクター が ブロックされなかったダメージを与える度、対象から #y筋力 #b", " を奪う。"]
+  },
+  "ruina:GeburaProwess": {
+    "NAME": "技量",
+    "DESCRIPTIONS": ["与えるダメージが #b", "% 増加。 NL この味方がブロックされなかったダメージを与える度、この効果のダメージボーナスが #b", "% 増える。"]
+  },
+  "ruina:PlayerBackAttack": {
+    "NAME": "バックアタック",
+    "DESCRIPTIONS": ["攻撃で与えるダメージが #b", "% 増加。"]
+  },
+  "ruina:Aspiration": {
+    "NAME": "熱望",
+    "DESCRIPTIONS": ["戦闘終了時 HPを #b%1$s 回復。"]
+  },
+  "ruina:FrostSplinter": {
+    "NAME": "霜の欠片",
+    "DESCRIPTIONS": [
+      " 各ターン開始時、 [E] を得て、カードを #b%1$s 枚引き、 #b%2$s 枚のカードを #y凍結 。 ",
+      " 各ターン開始時、 [E] を得て、カードを #b%1$s 枚引き、 #b%2$s 枚のカードを #y凍結 。 "
+    ]
+  },
+  "ruina:KillingIntent": {
+    "NAME": "殺意",
+    "DESCRIPTIONS": ["この敵 は #b1回のみ 行動する。 NL  この敵の #b右の行動表示 は次に行う行動を示している。"]
+  },
+  "ruina:Remorse": {
+    "NAME": "罪悪感",
+    "DESCRIPTIONS": ["ターン終了時、山札の一番上に #b", " ", " を置く。"]
+  },
+  "ruina:Judas": {
+    "NAME": "ユダ",
+    "DESCRIPTIONS": ["敵が戦闘不能時、次のターンに #b", " の #y筋力 を得る。"]
+  },
+  "ruina:Pattern": {
+    "NAME": "パターン反復認識",
+    "DESCRIPTIONS": ["この敵がこのターン、ブロックされていない #b", " ダメージを与える時、自身から全ての #pデバフ を取り除く。"]
+  },
+  "ruina:Fear": {
+    "NAME": "恐怖",
+    "DESCRIPTIONS": ["あなたが #yアタック をプレイするたび、この敵はこのターン #y筋力 #b", " を失う。"]
+  },
+  "ruina:Affection": {
+    "NAME": "愛情",
+    "DESCRIPTIONS": [" この敵が、アタックによるダメージを #yブロック で軽減した時、 #y筋力 #b", " を得る。"]
+  },
+  "ruina:FlamingBat": {
+    "NAME": "ファイヤーバット",
+    "DESCRIPTIONS": ["この敵がブロックされていないダメージを与えた時、 #y熱傷 #b%d  を与える。"]
+  },
+  "ruina:Burn": {
+    "NAME": "熱傷",
+    "DESCRIPTIONS": ["ターン終了時 #b%d ダメージを受け、全ての #y熱傷 を取り除く。"]
+  },
+  "ruina:Expression": {
+    "NAME": "表情",
+    "DESCRIPTIONS": ["あなたが #b", " 枚カードをプレイした時、この敵の行動予定が変化する。"]
+  },
+  "ruina:WintersInception": {
+    "NAME": "冬の始まり",
+    "DESCRIPTIONS": ["各ターン初めにプレイされる #yアタック はこの戦闘中 #y月桂冠 を得る。 NL #y月桂冠 を持たない #yアタック から受けるダメージを #b", "% 減らす。"]
+  },
+  "ruina:Performance": {
+    "NAME": "繰り返される演奏",
+    "DESCRIPTIONS": ["ターン終了時、 捨て札に #y演奏者 カードを加える。", " #y演奏者 カードが #y廃棄 される度、捨て札にそのカードのコピーを加える。 "]
+  },
+  "ruina:FerventAdoration": {
+    "NAME": "熱烈な感動",
+    "DESCRIPTIONS": ["あなたのターン開始時、カードを #b", " 枚引く。", " 枚引く。", "  NL あなたのターン終了時、あなたは #b", " ダメージを受ける。"]
+  },
+  "ruina:RedEyesPower": {
+    "NAME": "赤眼",
+    "DESCRIPTIONS": ["次にこの #r敵 に与える #pデバフ が #y2倍 になる。"]
+  },
+  "ruina:LaetitiaPower": {
+    "NAME": "Laetitia",
+    "DESCRIPTIONS": ["各ターン初めにプレイするコストが ", " か ", " のカードを二回プレイする。 (残り", " 回)"]
+  },
+  "ruina:Satiation": {
+    "NAME": "瞬間的な飽食",
+    "DESCRIPTIONS": ["この敵がミニオンを #y消費 する度、 #y脱力 と #y弱体 #b", " を得る。 "]
+  },
+  "ruina:Meal": {
+    "NAME": "食事の準備",
+    "DESCRIPTIONS": ["ターン終了時にこの敵の HP が #b", " 以下の時、 #rボス に #y消費 される。"]
+  },
+  "ruina:LonelyIsSad": {
+    "NAME": "1人は寂しいよ",
+    "DESCRIPTIONS": [
+      " 他の #r敵 が全て倒された時、受けるダメージが #b", "% 増加。"
+    ]
+  },
+  "ruina:Gimme": {
+    "NAME": "プレゼント横取り",
+    "DESCRIPTIONS": [
+      "この敵からブロックできなかったダメージを受ける度、 手札の全ての #yプレゼント を #y廃棄 。"
+    ]
+  },
+  "ruina:SurprisePresent": {
+    "NAME": "サプライズプレゼント",
+    "DESCRIPTIONS": [
+      " #b%1$s ターン後に、この敵は #r自爆 し、 あなたに #b%2$s ダメージ を与え、手札に #yプレゼント を加える。 NL NL 戦闘不能時、 #bちび魔女の友だち を出現させる。",
+      " #b%1$s ターン後に、この敵は #r自爆 し、 あなたに #b%2$s ダメージ を与え、手札に #yプレゼント を加える。 NL NL 戦闘不能時、 #bちび魔女の友だち を出現させる。"
+    ]
+  },
+  "ruina:Song": {
+    "NAME": "歌への欲求",
+    "DESCRIPTIONS": ["ターン終了時、 #y筋力 #b", "  	と #y弱体 #b", " を得る。"]
+  },
+  "ruina:Pleasure": {
+    "NAME": "快楽",
+    "DESCRIPTIONS": ["あなたのターン開始時、  ", " を得る。 NL あなたのターン終了時、 #b", " ダメージを受ける。"]
+  },
+  "ruina:FaintAroma": {
+    "NAME": "残香",
+    "DESCRIPTIONS": ["あなたが #r敵 にブロックされなかった アタック ダメージを与える度、そのダメージの #b","倍 に等しいHPを失わせる。"]
+  },
+  "ruina:Grinder": {
+    "NAME": "グラインダー Mk5-2",
+    "DESCRIPTIONS": ["各ターン、 #b", " のブロックされなかったダメージを与える度、次のターン ", " を得る。"]
+  },
+  "ruina:DontLeave": {
+    "NAME": "行かないで",
+    "DESCRIPTIONS": ["この敵の #r戦闘不能 時、ターン終了時に #g復活 し、HPを他の #r敵 のHPと同じ値まで回復する。"]
+  },
+  "ruina:Hunt": {
+    "NAME": "餌狩り",
+    "DESCRIPTIONS": ["他の敵が #r戦闘不能 になる度、もしくは残った敵がこの敵だけの時、次のターンに #r強力な攻撃 を行う。"]
+  },
+  "ruina:Dream": {
+    "NAME": "壊れた夢",
+    "DESCRIPTIONS": ["ターン終了時、他の #y兄弟 を #y戦闘に参加 させる。 NL #b", " 人以上の #y兄弟 が #r戦闘不能時 次のターン #r強力な攻撃 を行う。 NL NL ランダムな相手を対象にとる効果は、常にこの敵を対象とする。 "]
+  },
+  "ruina:BrotherPower": {
+    "NAME": "兄",
+    "DESCRIPTIONS": [
+      "ターン終了時にこの敵 が #y戦闘に参加 している時、",
+      "ボスが #yプレート #yアーマー #b%1$s を得る。",
+      "ボスが #yアーティファクト を持っていないなら、ボスに #yアーティファクト #b%1$s を与える。",
+      " #b%1$s 枚の #yめまい を 捨て札に加える。",
+      "あなたは #y弱体 #b%1$s を得る。",
+      "誠実な兄",
+      "不屈の兄",
+      "屈強な兄",
+      "勇ましい兄"
+    ]
+  },
+  "ruina:HornetPower": {
+    "NAME": "ホーネット",
+    "DESCRIPTIONS": ["次にプレイする #yアタック は #y2倍 のダメージを与える。"]
+  },
+  "ruina:FourthMatchFlame": {
+    "NAME": "4本目のマッチの火",
+    "DESCRIPTIONS": ["ターン終了時に、全ての敵に #b", "ダメージ。"]
+  },
+  "ruina:Machine": {
+    "NAME": "歌う機械",
+    "DESCRIPTIONS": ["ターン終了時に、全ての #r敵 は #y一時的な #y筋力 #b", "  を #y歌う機械 に奪われたカードの枚数分得る。"]
+  },
+  "ruina:BeautifulSound": {
+    "NAME": "歌が欲しい！！",
+    "DESCRIPTIONS": ["このターン、この敵が攻撃した時に、 ", " は #y廃棄 され #y歌う機械 に奪われる。"]
+  },
+  "ruina:WayHome": {
+    "NAME": "帰る家",
+    "DESCRIPTIONS": ["死亡すると #y帰り道 が #r強力なアタック を使用する。"]
+  },
+  "ruina:EasilyDistracted": {
+    "NAME": "帰れない家",
+    "DESCRIPTIONS": ["攻撃された時、行動予定を一つ #rキャンセル する。"]
+  },
+  "ruina:Mimicry": {
+    "NAME": "ミミクリー",
+    "DESCRIPTIONS": ["直近で受けた、ブロックされてないダメージに等しい数値（最大 #b", " まで）だけ、与えるダメージが増える。 NL NL どちらかの敵が死亡したとき、残された #r敵 の死亡したキャラクターへの攻撃予定は、代わりに #yあなた を対象にする。"]
+  },
+  "ruina:SeventhBullet": {
+    "NAME": "7つの弾丸",
+    "DESCRIPTIONS": ["あなたが #b", " 枚の #yアタック をプレイする度、このキャラクターの攻撃は #b1 ターンの間、ブロックされなかったダメージを与えるとき、さらにそのダメージに等しいHPを追加で失わせる。", " NL NL さらにそのダメージに等しいHPを追加で失わせる。"]
+  }
+}
