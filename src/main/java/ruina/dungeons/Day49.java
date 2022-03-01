@@ -33,11 +33,9 @@ public class Day49 extends AbstractRuinaDungeon {
     public Day49() {
         super(NAME, ID, "images/ui/event/panel.png", false, 2, 12, 10);
         this.onEnterEvent(ruina.events.act4.Day49.class);
-        this.addTempMusic("GoneAngels", RuinaMod.makeMusicPath("Gone Angels.ogg"));
-        this.addTempMusic("TheHead", RuinaMod.makeMusicPath("TheHead.ogg"));
-        this.addTempMusic("Gebura3", RuinaMod.makeMusicPath("Gebura3.ogg"));
-        this.addTempMusic("Binah3", RuinaMod.makeMusicPath("Binah3.ogg"));
-
+        this.addTempMusic("Trumpet1", RuinaMod.makeMusicPath("Trumpet1.ogg"));
+        this.addTempMusic("Trumpet2", RuinaMod.makeMusicPath("Trumpet2.ogg"));
+        this.addTempMusic("Trumpet3", RuinaMod.makeMusicPath("Trumpet3.ogg"));
     }
 
     public Day49(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {

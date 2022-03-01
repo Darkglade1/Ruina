@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
+import ruina.actions.Day49InitialDialogueAction;
 import ruina.actions.MakeTempCardInDiscardActionButItCanFizzle;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence4.ImageOfBygones;
@@ -126,7 +127,7 @@ public class Act1Angela extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("GoneAngels");
+        atb(new Day49InitialDialogueAction(0, 29));
         currentState = State.OPENING;
         atb(new ApplyPowerAction(this, this, new Scars(this, calcAscensionSpecial(50))));
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
