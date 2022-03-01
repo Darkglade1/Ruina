@@ -1,18 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0">
-        <file id="0" name="Idle.png" width="92" height="250" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="Idle1.png" width="185" height="254" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Idle2.png" width="184" height="252" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Ranged.png" width="194" height="235" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="SpecialUp.png" width="234" height="223" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="SpecialDown.png" width="361" height="225" pivot_x="0" pivot_y="1"/>
     </folder>
-    <entity id="0" name="Angela">
-        <animation id="0" name="Idle" length="1000" interval="100">
+    <entity id="0" name="Silent Girl">
+        <animation id="0" name="Idle1" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="Idle">
+            <timeline id="0" name="Idle1">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-45" y="253"/>
+                    <object folder="0" file="0" x="-85" y="257"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Idle2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle2">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-83" y="255"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Ranged" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Ranged">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-84" y="240"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="SpecialUp" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="SpecialUp">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-102" y="212"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="SpecialDown" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="SpecialDown">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-226" y="218"/>
                 </key>
             </timeline>
         </animation>
