@@ -610,5 +610,13 @@
   "${ModID}:MagicBullet": {
     "NAME": "Magic Bullet",
     "DESCRIPTIONS": ["Receives #b", "% more damage from #yAttacks this turn."]
+  },
+  "${ModID}:Refracting": {
+    "NAME": "Refracting",
+    "DESCRIPTIONS": ["Cannot be stunned."," NL After this creature's second turn, it gains #b5 intents."]
+  },
+  "${ModID}:SorrowAngela": {
+    "NAME": "Sorrow",
+    "DESCRIPTIONS": ["Loses #b%1$s HP, and gains that much #yStrength at the end of each turn."]
   }
 }

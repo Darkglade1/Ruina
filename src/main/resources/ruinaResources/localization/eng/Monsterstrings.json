@@ -1308,5 +1308,19 @@
       "Cease your ramblings, mutt! I shall put both of you down!",
       "One down, one to go."
     ]
+  },
+  "${ModID}:Act1Angela": {
+    "MOVES": [
+      "Wrist Cutter",
+      "Numbness",
+      "Sorrow",
+      "Loathing",
+      "Pale Hands",
+      "Sinking",
+      "Stains Of Blood"
+    ],
+    "NAME": "???",
+    "DIALOG": [
+    ]
   }
 }
