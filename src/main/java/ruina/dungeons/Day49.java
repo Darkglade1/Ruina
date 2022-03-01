@@ -103,17 +103,22 @@ public class Day49 extends AbstractRuinaDungeon {
     protected void makeMap() {
         ArrayList<MonsterRoomCreator> row1 = new ArrayList();
         ArrayList<MonsterRoomCreator> row2 = new ArrayList();
+        ArrayList<MonsterRoomCreator> row3 = new ArrayList();
+        ArrayList<MonsterRoomCreator> row4 = new ArrayList();
 
         row1.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), BlackSilence1.ID));
         row2.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), BlackSilence3.ID));
+        row3.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), BlackSilence3.ID));
+        row4.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), BlackSilence3.ID));
 
         map = new ArrayList();
 
         int index = 0;
         map.add(populate(row1, index++));
-        map.add(singleNodeArea(new RestRoom(), index++));
         map.add(populate(row2, index++));
-        map.add(singleNodeArea(new RestRoom(), index++));
+        map.add(populate(row3, index++));
+        map.add(populate(row4, index++));
+
         map.add(singleNodeArea(new MonsterRoomBoss(), index++));
         map.add(singleNodeArea(new TrueVictoryRoom(), index++, false));
 
