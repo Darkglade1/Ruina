@@ -12,6 +12,7 @@ import com.brashmonkey.spriter.Player;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
@@ -35,12 +36,11 @@ import ruina.BetterSpriterAnimation;
 import ruina.cards.Dazzled;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.BlackForest;
 import ruina.powers.LongEgg;
 import ruina.powers.Paralysis;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
-
-import java.util.Iterator;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -106,7 +106,7 @@ public class Twilight extends AbstractRuinaMonster
     private boolean bigEggBroken = false;
     private boolean smallEggBroken = false;
     private boolean longEggBroken = false;
-    private boolean eggBrokenRecently = false;
+    public boolean eggBrokenRecently = false;
 
     public Twilight() {
         this(0.0f, 0.0f);
@@ -181,6 +181,9 @@ public class Twilight extends AbstractRuinaMonster
                 description = FADING_TWILIGHT_POWER_DESCRIPTIONS[0] + EGG_CYCLE_TURN_NUM + FADING_TWILIGHT_POWER_DESCRIPTIONS[1] + amount2 + FADING_TWILIGHT_POWER_DESCRIPTIONS[2];
             }
         });
+        if(AbstractDungeon.ascensionLevel >= 19) {
+            atb(new ApplyPowerAction(this, this, new BlackForest(this)));
+        }
     }
 
     private int getNumEggsLeft() {
@@ -291,6 +294,11 @@ public class Twilight extends AbstractRuinaMonster
                     @Override
                     public void update() {
                         eggBrokenRecently = false;
+                        AbstractPower p = Twilight.this.getPower(BlackForest.POWER_ID);
+                        if(p != null){
+                            p.flash();
+                            p.updateDescription();
+                        }
                         this.isDone = true;
                     }
                 });
@@ -403,6 +411,11 @@ public class Twilight extends AbstractRuinaMonster
                     cycleEgg();
                 }
                 this.eggBrokenRecently = true;
+                AbstractPower p = Twilight.this.getPower(BlackForest.POWER_ID);
+                if(p != null){
+                    p.flash();
+                    p.updateDescription();
+                }
             }
             AbstractPower power = this.getPower(FADING_TWILIGHT_POWER_ID);
             if (power != null) {

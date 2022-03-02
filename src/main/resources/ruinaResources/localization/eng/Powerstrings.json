@@ -609,6 +609,16 @@
   },
   "${ModID}:MagicBullet": {
     "NAME": "Magic Bullet",
-    "DESCRIPTIONS": ["Receives #b", "% more damage from #yAttacks this turn."]
+    "DESCRIPTIONS": [
+      "Receives #b",
+      "% more damage from #yAttacks this turn."
+    ]
+  },
+  "${ModID}:BlackForest": {
+    "NAME": "The Monster in the Black Forest",
+    "DESCRIPTIONS": [
+      "After an #yEgg is #rdisabled, this creature will be invincible until it uses its #ypowerful attack next turn.",
+      "Can no longer be harmed this turn."
+    ]
   }
 }
