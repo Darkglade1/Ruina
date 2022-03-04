@@ -618,5 +618,12 @@
   "${ModID}:SorrowAngela": {
     "NAME": "Sorrow",
     "DESCRIPTIONS": ["Loses #b%1$s HP, and gains that much #yStrength at the end of each turn."]
+  },
+  "${ModID}:BlackForest": {
+    "NAME": "The Monster in the Black Forest",
+    "DESCRIPTIONS": [
+      "After an #yEgg is #rdisabled, this creature will be invincible until it uses its #ypowerful attack next turn.",
+      "Can no longer be harmed this turn."
+    ]
   }
 }
