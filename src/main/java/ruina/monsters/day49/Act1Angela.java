@@ -98,7 +98,7 @@ public class Act1Angela extends AbstractCardMonster {
             additionalMovesHistory.add(new ArrayList<>());
         }
 
-        this.setHp(2000);
+        this.setHp(3000);
         this.type = EnemyType.BOSS;
 
         addMove(WRIST_CUTTER, Intent.UNKNOWN);

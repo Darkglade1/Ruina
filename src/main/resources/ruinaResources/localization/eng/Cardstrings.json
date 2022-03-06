@@ -977,5 +977,37 @@
   "${ModID}:WristCutterAngela": {
     "NAME": "Wrist Cutter",
     "DESCRIPTION": "Lose !M! HP. NL Shuffle !ruina:SecondMagic! Wounds into your discard pile."
+  },
+  "${ModID}:FrigidGaze": {
+    "NAME": "Frigid Gaze",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Temporary Strength next turn."
+  },
+  "${ModID}:BitterCold": {
+    "NAME": "Bitter Cold",
+    "DESCRIPTION": "Deal !D! damage 3 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! *Chill."
+  },
+  "${ModID}:FrostSplinterAngela": {
+    "NAME": "Frost Splinter",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gains an extra intent for the next turn."
+  },
+  "${ModID}:SwordOfFrost": {
+    "NAME": "SwordOfFrost",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Hailstorm": {
+    "NAME": "Hailstorm",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Chill."
+  },
+  "${ModID}:Blizzard": {
+    "NAME": "Blizzard",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Chill."
+  },
+  "${ModID}:DeepFreeze": {
+    "NAME": "Deep Freeze",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Frozen."
+  },
+  "${ModID}:AbsoluteZero": {
+    "NAME": "Absolute Zero",
+    "DESCRIPTION": "If the target has at least !M! *Frozen, instantly kill the target."
   }
 }

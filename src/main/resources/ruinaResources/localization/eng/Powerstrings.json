@@ -625,5 +625,9 @@
       "After an #yEgg is #rdisabled, this creature will be invincible until it uses its #ypowerful attack next turn.",
       "Can no longer be harmed this turn."
     ]
+  },
+  "${ModID}:PlayerAngela": {
+    "NAME": "Director Of Her Role's Namesake",
+    "DESCRIPTIONS": ["???"]
   }
 }

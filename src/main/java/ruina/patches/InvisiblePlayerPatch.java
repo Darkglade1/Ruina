@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import ruina.powers.PlayerAngela;
 import ruina.powers.PlayerBlackSilence;
 
 import java.util.Iterator;
@@ -17,7 +18,7 @@ public class InvisiblePlayerPatch {
     )
     public static class RenderPatch {
         public static SpireReturn Prefix(AbstractPlayer __instance, SpriteBatch sb) {
-            if (AbstractDungeon.player.hasPower(PlayerBlackSilence.POWER_ID)) {
+            if (AbstractDungeon.player.hasPower(PlayerBlackSilence.POWER_ID) || AbstractDungeon.player.hasPower(PlayerAngela.POWER_ID) ) {
                 __instance.renderHealth(sb);
                 if (!__instance.orbs.isEmpty()) {
                     Iterator var2 = __instance.orbs.iterator();

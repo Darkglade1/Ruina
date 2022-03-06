@@ -1322,5 +1322,22 @@
     "NAME": "???",
     "DIALOG": [
     ]
+  },
+
+
+  "${ModID}:Act4Angela": {
+    "MOVES": [
+      "Frigid Gaze",
+      "Bitter Cold",
+      "Frost Splinter",
+      "Sword Of Frost",
+      "Hailstorm",
+      "Blizzard",
+      "Deep Freeze",
+      "Absolute Zero"
+    ],
+    "NAME": "???",
+    "DIALOG": [
+    ]
   }
 }
