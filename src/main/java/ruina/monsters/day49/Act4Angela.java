@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -26,6 +27,7 @@ import com.megacrit.cardcrawl.vfx.combat.IntenseZoomEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
+import ruina.actions.FrostSplinterPhaseTransition;
 import ruina.cardmods.FrozenMod;
 import ruina.cards.EGO.act3.FrostSplinter;
 import ruina.monsters.AbstractCardMonster;
@@ -349,7 +351,7 @@ public class Act4Angela extends AbstractDeckMonster
                 break;
             }
             case PHASE_TRANSITION:
-                AbstractDungeon.actionManager.addToBottom(new VFXAction(this, new IntenseZoomEffect(this.hb.cX, this.hb.cY, true), 1F, true));
+                atb(new FrostSplinterPhaseTransition(this));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -357,10 +359,8 @@ public class Act4Angela extends AbstractDeckMonster
                         halfDead = false;
                         healthBarRevivedEvent();
                         currentState = State.PHASE2;
-                        runAnim("Idle" + 1);
                         CustomDungeon.playTempMusicInstantly("RedMistBGM");
                         recentlyPhaseTransitioned = true;
-
                         isDone = true;
                     }
                 });
