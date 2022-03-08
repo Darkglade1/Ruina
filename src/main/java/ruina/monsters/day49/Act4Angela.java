@@ -2,7 +2,10 @@ package ruina.monsters.day49;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardModifierManager;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -39,8 +42,7 @@ import ruina.monsters.eventboss.redMist.cards.*;
 import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
-import ruina.vfx.VFXActionButItCanFizzle;
-import ruina.vfx.WaitEffect;
+import ruina.vfx.*;
 
 import java.util.ArrayList;
 
@@ -116,6 +118,8 @@ public class Act4Angela extends AbstractDeckMonster
     private int CooldownCounter = BASE_COOLDOWN;
 
     private int HP_THRESHOLD;
+    private float particleTimer;
+
 
     public Act4Angela() {
         this(0.0f, 0.0f);
@@ -355,6 +359,7 @@ public class Act4Angela extends AbstractDeckMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
+                        Act4Angela.this.runAnim("Idle");
                         setHp(PHASE2HP);
                         halfDead = false;
                         healthBarRevivedEvent();
@@ -582,6 +587,18 @@ public class Act4Angela extends AbstractDeckMonster
     public void die() {
         if (!(AbstractDungeon.getCurrRoom()).cannotLose) {
             super.die();
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if(currentState == State.PHASE2) {
+            this.particleTimer -= Gdx.graphics.getDeltaTime();
+            if (this.particleTimer < 0.0F) {
+                this.particleTimer = 0.1F;
+                AbstractDungeon.effectsQueue.add(new SnowflakeEffect());
+            }
         }
     }
 }

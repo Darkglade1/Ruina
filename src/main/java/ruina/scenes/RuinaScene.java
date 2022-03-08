@@ -55,6 +55,7 @@ import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.day49.Act1Angela;
+import ruina.monsters.day49.Act4Angela;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.theHead.Zena;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
@@ -141,7 +142,7 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Silence");
                 } else if (mo instanceof Bloodbath || mo instanceof Act1Angela) {
                     this.bg = this.atlas.findRegion("mod/Bloodbath");
-                } else if (mo instanceof SnowQueen) {
+                } else if (mo instanceof SnowQueen || mo instanceof Act4Angela) {
                     this.bg = this.atlas.findRegion("mod/Snow");
                 } else if (mo instanceof HeartOfAspiration || mo instanceof LungsOfCraving) {
                     this.bg = this.atlas.findRegion("mod/Heart");
