@@ -3,14 +3,10 @@ package ruina.monsters.day49;
 import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,7 +14,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -26,22 +21,18 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.combat.IntenseZoomEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
-import ruina.actions.FrostSplinterPhaseTransition;
+import ruina.actions.FrostSplinterIceEffectAction;
+import ruina.actions.FrostSplinterWeakIceEffectAction;
 import ruina.cardmods.FrozenMod;
-import ruina.cards.EGO.act3.FrostSplinter;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractDeckMonster;
-import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.day49.angelaCards.frostsplinter.*;
 import ruina.monsters.eventboss.redMist.cards.*;
 import ruina.powers.*;
 import ruina.util.AdditionalIntent;
-import ruina.util.TexLoader;
 import ruina.vfx.*;
 
 import java.util.ArrayList;
@@ -272,7 +263,7 @@ public class Act4Angela extends AbstractDeckMonster
                 break;
             }
             case HAILSTORM: {
-                specialAnimation(adp());
+                atb(new FrostSplinterWeakIceEffectAction(this));
                 atb(new VFXAction(new WaitEffect(), 0.25f));
                 dmg(adp(), info);
                 atb(new AbstractGameAction() {
@@ -293,7 +284,7 @@ public class Act4Angela extends AbstractDeckMonster
                 break;
             }
             case BLIZZARD: {
-                specialAnimation(adp());
+                atb(new FrostSplinterIceEffectAction(this));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -321,7 +312,7 @@ public class Act4Angela extends AbstractDeckMonster
                 break;
             }
             case DEEP_FREEZE: {
-                specialAnimation(adp());
+                atb(new FrostSplinterWeakIceEffectAction(this));
                 dmg(adp(), info);
                 atb(new AbstractGameAction() {
                     @Override
@@ -342,6 +333,7 @@ public class Act4Angela extends AbstractDeckMonster
                 break;
             }
             case ABSOLUTE_ZERO: {
+                // WIP
                 specialAnimation(adp());
                 atb(new AbstractGameAction() {
                     @Override
@@ -355,7 +347,7 @@ public class Act4Angela extends AbstractDeckMonster
                 break;
             }
             case PHASE_TRANSITION:
-                atb(new FrostSplinterPhaseTransition(this));
+                atb(new FrostSplinterIceEffectAction(this));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
