@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
 import ruina.monsters.day49.Act1Angela;
+import ruina.monsters.day49.Act4Angela;
 
 public class Refracting extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(Refracting.class.getSimpleName());
@@ -18,5 +19,9 @@ public class Refracting extends AbstractUnremovablePower {
     }
 
     @Override
-    public void updateDescription() { description =  owner instanceof Act1Angela ? DESCRIPTIONS[0] + DESCRIPTIONS[1] : DESCRIPTIONS[0]; }
+    public void updateDescription() {
+        description = DESCRIPTIONS[0];
+        if (owner instanceof Act1Angela) { description += DESCRIPTIONS[1]; }
+        else if (owner instanceof Act4Angela) { description += DESCRIPTIONS[2]; }
+    }
 }

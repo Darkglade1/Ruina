@@ -26,6 +26,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.FrostSplinterIceEffectAction;
 import ruina.actions.FrostSplinterWeakIceEffectAction;
+import ruina.actions.YeetPlayerAction;
 import ruina.cardmods.FrozenMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractDeckMonster;
@@ -269,7 +270,7 @@ public class Act4Angela extends AbstractDeckMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), Act4Angela.this, new Bleed(adp(), hailstormChill)); }
+                        if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), Act4Angela.this, new Chill(adp(), hailstormChill)); }
                         this.isDone = true;
                     }
                 });
@@ -296,7 +297,7 @@ public class Act4Angela extends AbstractDeckMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), Act4Angela.this, new Bleed(adp(), blizzardChill)); }
+                        if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), Act4Angela.this, new Chill(adp(), blizzardChill)); }
                         this.isDone = true;
                     }
                 });
@@ -317,7 +318,7 @@ public class Act4Angela extends AbstractDeckMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), Act4Angela.this, new Bleed(adp(), blizzardChill)); }
+                        if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), Act4Angela.this, new DeepFreezePower(adp(), blizzardChill)); }
                         this.isDone = true;
                     }
                 });
@@ -333,8 +334,17 @@ public class Act4Angela extends AbstractDeckMonster
                 break;
             }
             case ABSOLUTE_ZERO: {
-                // WIP
-                specialAnimation(adp());
+                atb(new FrostSplinterIceEffectAction(this));
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        AbstractPower p = adp().getPower(Chill.POWER_ID);
+                        if(p != null){
+                            if (p.amount > absoluteZeroFreeze){att(new YeetPlayerAction());}
+                        }
+                        isDone = true;
+                    }
+                });
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -356,7 +366,7 @@ public class Act4Angela extends AbstractDeckMonster
                         halfDead = false;
                         healthBarRevivedEvent();
                         currentState = State.PHASE2;
-                        CustomDungeon.playTempMusicInstantly("RedMistBGM");
+                        CustomDungeon.playTempMusic("Warning2");
                         recentlyPhaseTransitioned = true;
                         isDone = true;
                     }

@@ -613,7 +613,11 @@
   },
   "${ModID}:Refracting": {
     "NAME": "Refracting",
-    "DESCRIPTIONS": ["Cannot be stunned."," NL After this creature's second turn, it gains #b5 intents."]
+    "DESCRIPTIONS": [
+      "Cannot be stunned.",
+      " NL After this creature's second turn, it gains #b5 intents.",
+      " NL This creature enters a second phase after it's HP reaches 0 for the first time."
+    ]
   },
   "${ModID}:SorrowAngela": {
     "NAME": "Sorrow",
@@ -629,5 +633,13 @@
   "${ModID}:PlayerAngela": {
     "NAME": "Director Of Her Role's Namesake",
     "DESCRIPTIONS": ["???"]
+  },
+  "${ModID}:DeepFreezePower": {
+    "NAME": "Critically Frozen",
+    "DESCRIPTIONS": ["#yFreeze #b%1$s card at the start of each turn. NL When this reaches #b%2$s the enemy will prepare to use an attack that will #rinstantly #rkill #rthe #target."]
+  },
+  "${ModID}:Chill": {
+    "NAME": "Chill",
+    "DESCRIPTIONS": ["If you have at least #b%1$s #yChill, lose #b%2$s #yStrength and #yDexterity at the start of each turn. NL Additionally, lose [E] at the start of each turn if you have at least #b%3$s #yChill. NL Reduce this power's amount by #b%4$s each turn."]
   }
 }
