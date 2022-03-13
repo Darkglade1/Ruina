@@ -99,7 +99,7 @@ public class Act3Angela extends AbstractCardMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
+        DamageInfo info = new DamageInfo(this, marionetteDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
         if(info.base > -1) { info.applyPowers(this, target); }
         switch (move.nextMove) {
