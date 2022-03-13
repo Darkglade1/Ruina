@@ -1,14 +1,16 @@
 package ruina.events.act4;
 
+import actlikeit.events.GetForked;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import ruina.RuinaMod;
+import ruina.dungeons.BlackSilence;
 import ruina.monsters.theHead.Baral;
 
-import static ruina.RuinaMod.makeEventPath;
+import static ruina.RuinaMod.*;
 
 public class TheHead extends AbstractImageEvent {
 
@@ -21,10 +23,12 @@ public class TheHead extends AbstractImageEvent {
     public static final String IMG = makeEventPath("BlackSilenceDone.png");
 
     private int screenNum = 0;
+    private boolean altRouteTaken = false;
 
     public TheHead() {
         super(NAME, DESCRIPTIONS[0], IMG);
         imageEventText.setDialogOption(OPTIONS[0]);
+        if(headClear){ imageEventText.setDialogOption(OPTIONS[1]); }
     }
 
     @Override
@@ -39,17 +43,34 @@ public class TheHead extends AbstractImageEvent {
                         this.imageEventText.loadImage(makeEventPath("Head.png"));
                         imageEventText.setDialogOption(OPTIONS[0]);
                         break;
+                    case 1:
+                        altRouteTaken = true;
+                        screenNum++;
+                        this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
+                        this.imageEventText.clearAllDialogs();
+                        this.imageEventText.loadImage(makeEventPath("Realization.png"));
+                        imageEventText.setDialogOption(OPTIONS[0]);
+                        break;
                 }
                 break;
             case 1:
-                switch (buttonPressed) {
-                    case 0:
-                        AbstractDungeon.getCurrRoom().monsters = MonsterHelper.getEncounter(Baral.ID);
-                        AbstractDungeon.getCurrRoom().rewards.clear();
-                        AbstractDungeon.getCurrRoom().eliteTrigger = true;
-                        AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
-                        this.enterCombatFromImage();
-                        break;
+                if(altRouteTaken){
+                    switch (buttonPressed) {
+                        case 0:
+                            GetForked.nextDungeon(Day49.ID);
+                            break;
+                    }
+                }
+                else {
+                    switch (buttonPressed) {
+                        case 0:
+                            AbstractDungeon.getCurrRoom().monsters = MonsterHelper.getEncounter(Baral.ID);
+                            AbstractDungeon.getCurrRoom().rewards.clear();
+                            AbstractDungeon.getCurrRoom().eliteTrigger = true;
+                            AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
+                            this.enterCombatFromImage();
+                            break;
+                    }
                 }
                 break;
             default:

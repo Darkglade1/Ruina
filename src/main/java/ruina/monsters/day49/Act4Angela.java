@@ -4,6 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -21,6 +22,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.stances.CalmStance;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
@@ -111,7 +113,8 @@ public class Act4Angela extends AbstractDeckMonster
 
     private int HP_THRESHOLD;
     private float particleTimer;
-
+    private float particleTimer2;
+    private float particleTimer3;
 
     public Act4Angela() {
         this(0.0f, 0.0f);
@@ -602,6 +605,21 @@ public class Act4Angela extends AbstractDeckMonster
             if (this.particleTimer < 0.0F) {
                 this.particleTimer = 0.1F;
                 AbstractDungeon.effectsQueue.add(new SnowflakeEffect());
+            }
+        }
+        if (this.hasPower(POWER_ID)) {
+            if (this.getPower(POWER_ID).amount >= THRESHOLD - 1) {
+                this.particleTimer3 -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer3 < 0.0F) {
+                    this.particleTimer3 = 0.04F;
+                    AbstractDungeon.effectsQueue.add(new FlexibleCalmParticleEffect(this));
+                }
+
+                this.particleTimer2 -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer2 < 0.0F) {
+                    this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
+                    AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(CalmStance.STANCE_ID, this));
+                }
             }
         }
     }

@@ -15,6 +15,9 @@ import ruina.events.act4.Sorrow;
 import ruina.events.act4.TheHead;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
+import ruina.monsters.day49.Act1Angela;
+import ruina.monsters.day49.Act3Angela;
+import ruina.monsters.day49.Act4Angela;
 import ruina.rooms.RuinaMonsterRoom;
 import ruina.rooms.RuinaVictoryRoom;
 
@@ -106,10 +109,10 @@ public class Day49 extends AbstractRuinaDungeon {
         ArrayList<MonsterRoomCreator> row3 = new ArrayList();
         ArrayList<MonsterRoomCreator> row4 = new ArrayList();
 
-        row1.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), BlackSilence1.ID));
+        row1.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), Act1Angela.ID));
         row2.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), BlackSilence3.ID));
-        row3.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), BlackSilence3.ID));
-        row4.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), BlackSilence3.ID));
+        row3.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), Act3Angela.ID));
+        row4.add(new MonsterRoomCreator(makeUIPath("KeterMap.png"), makeUIPath("KeterMapOutline.png"), Act4Angela.ID));
 
         map = new ArrayList();
 
