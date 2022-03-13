@@ -119,7 +119,7 @@ public class Act4Angela extends AbstractDeckMonster
     public Act4Angela(final float x, final float y) {
         super(NAME, ID, 600, -15.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SnowQueen/Spriter/SnowQueen.scml"));
-        this.type = EnemyType.ELITE;
+        this.type = EnemyType.BOSS;
         this.setHp(PHASE1HP);
 
         maxAdditionalMoves = 4;
@@ -146,12 +146,13 @@ public class Act4Angela extends AbstractDeckMonster
     @Override
     protected void setUpMisc() {
         super.setUpMisc();
-        this.type = EnemyType.ELITE;
+        this.type = EnemyType.BOSS;
     }
 
     @Override
     public void usePreBattleAction()
     {
+        atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         CustomDungeon.playTempMusicInstantly("Warning1");
         att(new ApplyPowerAction(adp(), adp(), new PlayerAngela(adp())));
@@ -179,7 +180,8 @@ public class Act4Angela extends AbstractDeckMonster
             public void updateDescription() {
                 description = POWER_DESCRIPTIONS[0];
             }
-        });    }
+        });
+    }
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
@@ -394,7 +396,7 @@ public class Act4Angela extends AbstractDeckMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                runAnim("Idle" + 1);
+                runAnim("Idle");
                 this.isDone = true;
             }
         });

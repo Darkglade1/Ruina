@@ -1009,5 +1009,9 @@
   "${ModID}:AbsoluteZero": {
     "NAME": "Absolute Zero",
     "DESCRIPTION": "If the target has at least !M! *Frozen, instantly kill the target."
+  },
+  "${ModID}:MarionetteAngela": {
+    "NAME": "Marionette",
+    "DESCRIPTION": "Deal !D! damage. NL This card's damage cannot be decreased."
   }
 }

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.red.Defend_Red;
 import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -21,6 +22,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
+import ruina.dungeons.Day49;
 import ruina.monsters.AbstractDeckMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.util.AdditionalIntent;
@@ -46,6 +48,7 @@ public class Pinocchio extends AbstractDeckMonster
     public final int ARTIFACT = calcAscensionSpecial(2);
     public final int BLOCK = calcAscensionTankiness(20);
     public final int STRENGTH = calcAscensionSpecial(2);
+    public final int STRENGTH_D49 = 4;
 
     public static final String POWER_ID = makeID("Imposter");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -62,11 +65,11 @@ public class Pinocchio extends AbstractDeckMonster
         this.type = EnemyType.NORMAL;
         this.setHp(calcAscensionTankiness(170));
 
-        maxAdditionalMoves = 1;
+        maxAdditionalMoves = 2;
         for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
-        numAdditionalMoves = maxAdditionalMoves;
+        numAdditionalMoves = 1;
 
         addMove(LEARN, Intent.UNKNOWN);
         AbstractCard fillerCard = new Madness(); //in case deck somehow has no cards
@@ -76,8 +79,13 @@ public class Pinocchio extends AbstractDeckMonster
     @Override
     public void usePreBattleAction() {
         initializeDeck();
+        if(CardCrawlGame.dungeon instanceof Day49){
+            blockAnimation();
+            block(this, BLOCK);
+            resetIdle();
+        }
+        else {applyToTarget(this, this, new ArtifactPower(this, ARTIFACT)); }
         applyToTarget(this, this, new BarricadePower(this));
-        applyToTarget(this, this, new ArtifactPower(this, ARTIFACT));
     }
 
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, AbstractCard card) {
@@ -89,7 +97,8 @@ public class Pinocchio extends AbstractDeckMonster
         switch (move.nextMove) {
             case LEARN: {
                 blockAnimation();
-                applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
+                if(CardCrawlGame.dungeon instanceof Day49){ numAdditionalMoves = maxAdditionalMoves; }
+                applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, CardCrawlGame.dungeon instanceof Day49 ? STRENGTH_D49 : STRENGTH) {
                     @Override
                     public void atEndOfRound() {
                         this.flash();

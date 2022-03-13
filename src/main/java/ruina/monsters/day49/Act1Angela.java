@@ -343,29 +343,6 @@ public class Act1Angela extends AbstractCardMonster {
     }
 
     @Override
-    public void die(boolean triggerRelics) {
-        halfDead = true;
-        runAnim("Defeat");
-        blacksilenceClear = true;
-        saveConfig();
-        for (AbstractMonster mo : monsterList()) {
-            if (mo instanceof ImageOfBygones) {
-                atb(new SuicideAction(mo));
-            }
-        }
-        waitAnimation(1.0f);
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                Act1Angela.super.die(triggerRelics);
-                onBossVictoryLogic();
-                onFinalBossVictoryLogic();
-                this.isDone = true;
-            }
-        });
-    }
-
-    @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
         if (this.hasPower(Scars.POWER_ID)) {

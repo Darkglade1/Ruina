@@ -641,5 +641,9 @@
   "${ModID}:Chill": {
     "NAME": "Chill",
     "DESCRIPTIONS": ["If you have at least #b%1$s #yChill, lose #b%2$s #yStrength and #yDexterity at the start of each turn. NL Additionally, lose [E] at the start of each turn if you have at least #b%3$s #yChill. NL Reduce this power's amount by #b%4$s each turn."]
+  },
+  "${ModID}:Mirroring": {
+    "NAME": "Mirroring",
+    "DESCRIPTIONS": ["This creature's intent becomes equal to the last amount of damage it took, which resets at the start of each turn. NL At the end of its turn, gains #b", " #yStrength."]
   }
 }

@@ -1323,8 +1323,14 @@
     "DIALOG": [
     ]
   },
-
-
+  "${ModID}:Act3Angela": {
+    "MOVES": [
+      "Marionette"
+    ],
+    "NAME": "???",
+    "DIALOG": [
+    ]
+  },
   "${ModID}:Act4Angela": {
     "MOVES": [
       "Frigid Gaze",
