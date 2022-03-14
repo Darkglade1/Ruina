@@ -272,13 +272,7 @@ public class Act4Angela extends AbstractDeckMonster
                 atb(new FrostSplinterWeakIceEffectAction(this));
                 atb(new VFXAction(new WaitEffect(), 0.25f));
                 dmg(adp(), info);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), Act4Angela.this, new Chill(adp(), hailstormChill)); }
-                        this.isDone = true;
-                    }
-                });
+                applyToTarget(adp(), Act4Angela.this, new Chill(adp(), hailstormChill));
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
@@ -299,13 +293,7 @@ public class Act4Angela extends AbstractDeckMonster
                     }
                 });
                 dmg(adp(), info);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        if(adp().lastDamageTaken > 0){ applyToTargetTop(adp(), Act4Angela.this, new Chill(adp(), blizzardChill)); }
-                        this.isDone = true;
-                    }
-                });
+                applyToTarget(adp(), Act4Angela.this, new Chill(adp(), blizzardChill));
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
