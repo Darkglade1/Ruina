@@ -793,7 +793,8 @@
   },
   "ruina:Marionette": {
     "NAME": "提线木偶",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 抽 !M! 张牌。 NL 在本场战斗中这张牌的耗能增加 !ruina:SecondMagic! 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 抽 !M! 张牌。 NL 在本场战斗中这张牌的耗能增加 !ruina:SecondMagic! 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。 NL 抽 !M! 张牌。 NL 这张卡的消耗和抽牌增加 !ruina:SecondMagic! 在这场战斗中。"
   },
   "ruina:WristCutter": {
     "NAME": "割腕",
@@ -856,7 +857,7 @@
   },
   "ruina:SanguineDesire": {
     "NAME": "血欲",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 每通过 ruina:展现 支付 [E] 就给予 !M! 层 ruina:流血 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 施加等于未格挡伤害一半的 ruina:流血 。"
   },
   "ruina:RedEyes": {
     "NAME": "赤瞳",
@@ -892,7 +893,7 @@
   },
   "ruina:OurGalaxy": {
     "NAME": "我们的小小银河",
-    "DESCRIPTION": "选择并打出抽牌堆中一张耗能不大于 X 的牌的复制。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。NL 获得 !M! 层 再生 。 NL 每通过 ruina:展现 支付 [E] 就给予 获得 层 人工制品 。"
   },
   "ruina:Pleasure": {
     "NAME": "欢愉",
@@ -912,7 +913,7 @@
   },
   "ruina:Forgotten": {
     "NAME": "忘却",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 本回合内敌人失去等同未被 格挡 的伤害 的 力量 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。 NL 如果目标敌人的意图是攻击，则给予其 !M! 层 虚弱 和 易伤  。"
   },
   "ruina:GreenStem": {
     "NAME": "翠枝",
@@ -920,7 +921,8 @@
   },
   "ruina:MagicBullet": {
     "NAME": "魔弹",
-    "DESCRIPTION": "抽 !M! 张牌并给予 保留 。"
+    "DESCRIPTION": "敌人在本回合受到双倍攻击伤害。 ",
+    "UPGRADE_DESCRIPTION": "敌人在本回合受到双倍攻击伤害。 NL 获得 !M! 点 力量 。 NL 你的回合结束时，失去 !M! 点 力量 。"
   },
   "ruina:FourthMatchFlame": {
     "NAME": "终末之光",

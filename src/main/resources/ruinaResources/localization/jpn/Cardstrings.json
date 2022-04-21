@@ -89,7 +89,7 @@
   },
   "ruina:SoundOfAStar": {
     "NAME": "星の音",
-    "DESCRIPTION": "全ての敵に !D! ダメージを与える。 NL あなたがこの戦闘中で得た ブロック の数だけ追加ダメージを与える。 NL ruina:使い捨て !stslib:ex!"
+    "DESCRIPTION": "全ての敵に !D! ダメージを与える。 NL あなたがこの戦闘中で得た ブロック の数だけ追加ダメージを与える。"
   },
   "ruina:Twilight": {
     "NAME": "黄昏",
@@ -793,7 +793,8 @@
   },
   "ruina:Marionette": {
     "NAME": "操り人形",
-    "DESCRIPTION": "!D! ダメージを与えて、カードを !M! 枚引く。この戦闘中このカードのコストが NL !ruina:SecondMagic! 増える。"
+    "DESCRIPTION": "!D! ダメージを与えて、カードを !M! 枚引く。この戦闘中このカードのコストが NL !ruina:SecondMagic! 増える。",
+    "UPGRADE_DESCRIPTION": "!D! ダメージを与えて、カードを !M! 枚引く。この戦闘中、このカードのコストとドローは NL !ruina:SecondMagic! 増加します。"
   },
   "ruina:WristCutter": {
     "NAME": "リストカッター",
@@ -856,7 +857,7 @@
   },
   "ruina:SanguineDesire": {
     "NAME": "血色の欲望",
-    "DESCRIPTION": "!D! ダメージを与える。 NL ruina:発現 によって [E] を支払う度、 ruina:出血 !M! を与える。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL ブロックされていないダメージの半分に等しい ruina:出血 を適用します。"
   },
   "ruina:RedEyes": {
     "NAME": "赤眼",
@@ -892,7 +893,7 @@
   },
   "ruina:OurGalaxy": {
     "NAME": "僕らの銀河",
-    "DESCRIPTION": " 山札 からコストがX以下のカードを選び、そのコピーとしてプレイする。"
+    "DESCRIPTION": " !B! ブロック 得る。 NL 再生 !M! を得る。 NL ruina:発現 によって [E] を支払う度、 人の作りし物 !M! を与える。"
   },
   "ruina:Pleasure": {
     "NAME": "快楽",
@@ -912,7 +913,7 @@
   },
   "ruina:Forgotten": {
     "NAME": "忘却",
-    "DESCRIPTION": "!D! ダメージを与える。 NL ブロック されなかったダメージの分だけ、このターン敵は 筋力 を失う。"
+    "DESCRIPTION": "!B! ブロック 得る。 NL !D! ダメージを与える。 NL 敵がアタックを予定 NL している場合、 弱体 と 脱力 NL !M! を与える。"
   },
   "ruina:GreenStem": {
     "NAME": "緑の枝",
@@ -920,7 +921,8 @@
   },
   "ruina:MagicBullet": {
     "NAME": "魔弾",
-    "DESCRIPTION": "カードを !M! 枚引き、それらのカードを 保留 。"
+    "DESCRIPTION": "このターン、敵は攻撃から2倍のダメージを受ける。",
+    "UPGRADE_DESCRIPTION": "このターン、敵は攻撃から2倍のダメージを受ける。 NL 筋力 !M! を得る。 NL このターン終了時に NL 筋力 !M! を失う。"
   },
   "ruina:FourthMatchFlame": {
     "NAME": "4本目のマッチの火",

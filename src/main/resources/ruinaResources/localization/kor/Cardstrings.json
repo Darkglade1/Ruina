@@ -89,7 +89,7 @@
   },
   "ruina:SoundOfAStar": {
     "NAME": "별의 소리",
-    "DESCRIPTION": "적 전체에 피해를 !D! 줍니다. NL 이번 전투에서 얻은 방어도 수치만큼 이 카드의 피해량이 증가합니다. NL 남은 사용 횟수 !stslib:ex!."
+    "DESCRIPTION": "적 전체에 피해를 !D! 줍니다. NL 이번 전투에서 얻은 방어도 수치만큼 이 카드의 피해량이 증가합니다."
   },
   "ruina:Twilight": {
     "NAME": "황혼",
@@ -793,7 +793,8 @@
   },
   "ruina:Marionette": {
     "NAME": "꼭두각시",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL 카드를 !M! 장 뽑습니다. NL 이번 전투동안 이 카드의 비용이 !ruina:SecondMagic! 증가합니다."
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 카드를 !M! 장 뽑습니다. NL 이번 전투동안 이 카드의 비용이 !ruina:SecondMagic! 증가합니다.",
+    "UPGRADE_DESCRIPTION": "피해를 !D! 줍니다. NL 카드를 !M! 장 뽑습니다. NL 이번 전투동안 이 카드의 비용이그리고 카드 뽑기 !ruina:SecondMagic! 증가합니다."
   },
   "ruina:WristCutter": {
     "NAME": "손목긋개",
@@ -856,7 +857,7 @@
   },
   "ruina:SanguineDesire": {
     "NAME": "핏빛 욕망",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL ruina:발현 으로 소모된 [E] 만큼 ruina:출혈 을 !M! 부여합니다."
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 차단되지 않은 피해의 절반만큼 ruina:출혈 를 적용합니다."
   },
   "ruina:RedEyes": {
     "NAME": "적안",
@@ -892,7 +893,7 @@
   },
   "ruina:OurGalaxy": {
     "NAME": "우리의 은하수",
-    "DESCRIPTION": "뽑을 카드 더미에 있는 비용이 X 또는 그 이하의 카드를 선택하여 사용합니다."
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 재생을 !M! 얻습니다. NL ruina:발현 으로 소모된 [E] 만큼 인공물을 을 부여합니다."
   },
   "ruina:Pleasure": {
     "NAME": "쾌락",
@@ -912,7 +913,7 @@
   },
   "ruina:Forgotten": {
     "NAME": "잊혀짐",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL 막히지 않은 피해를 입힌만큼 적이 임시로 힘을 잃습니다."
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다. NL 적이 공격할 의도가 있다면 약화와 취약을 !M! 부여합니다."
   },
   "ruina:GreenStem": {
     "NAME": "녹색 줄기",
@@ -920,7 +921,8 @@
   },
   "ruina:MagicBullet": {
     "NAME": "마탄",
-    "DESCRIPTION": "카드를 !M! 장 뽑고, 뽑은 카드들에게 보존을 부여합니다."
+    "DESCRIPTION": "적군은 이번 턴에 공격으로부터 2배의 피해를 받습니다. ",
+    "UPGRADE_DESCRIPTION": "적군은 이번 턴에 공격으로부터 2배의 피해를 받습니다. NL 힘을 !M! 얻습니다. NL 이번 턴이 끝날 때 힘을 !M! 잃습니다."
   },
   "ruina:FourthMatchFlame": {
     "NAME": "4번째 성냥불",
