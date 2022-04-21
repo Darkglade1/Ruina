@@ -1035,6 +1035,9 @@ public class RuinaMod implements
             case JPN:
                 ret += "jpn/";
                 break;
+            case KOR:
+                ret += "kor/";
+                break;
             default:
                 ret += "eng/";
                 break;

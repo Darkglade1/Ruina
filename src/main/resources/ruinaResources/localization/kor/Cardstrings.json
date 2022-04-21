@@ -1,0 +1,948 @@
+{
+  "ruina:Wisdom": {
+    "NAME": "지혜",
+    "DESCRIPTION": "카드를 !M! 장 뽑습니다. NL *허수아비가 이 카드를 소멸시키면, 다음 턴까지 *기절 시킵니다."
+  },
+  "ruina:FragmentOfBliss": {
+    "NAME": "행복의 파편",
+    "DESCRIPTION": "방어도를 !M! 얻습니다. NL 이 카드는 방어도 효과와 관련된 영향을 받지 않습니다."
+  },
+  "ruina:FalseThrone": {
+    "NAME": "거짓 왕좌",
+    "DESCRIPTION": "다음 턴, 소멸 카드 더미에 있는 상태이상과 저주 카드를 제외한 모든 카드를 손으로 가져온 후 휘발성을 부여합니다."
+  },
+  "ruina:Smile": {
+    "NAME": "웃음",
+    "DESCRIPTION": "적 전체에게 피해를 !D! 주고, 약화와 취약을 !M! 부여합니다."
+  },
+  "ruina:Mimicry": {
+    "NAME": "미미크리",
+    "DESCRIPTION": "피해를 !D! 줍니다. 막히지 않은 피해만큼 체력을 회복합니다."
+  },
+  "ruina:Nihil": {
+    "NAME": "허무",
+    "DESCRIPTION": "모든 적이 힘을 !M! 잃습니다. NL 손에 카드가 하나도 없다면, 이 효과가 2배 증가합니다."
+  },
+  "ruina:FadedMemories": {
+    "NAME": "빛바랜 기억",
+    "DESCRIPTION": "적 하나당 카드를 !M! 장 뽑습니다."
+  },
+  "ruina:LoveAndHate": {
+    "NAME": "사랑과 증오의 이름으로",
+    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다."
+  },
+  "ruina:GoldRush": {
+    "NAME": "골드 러시",
+    "DESCRIPTION": "힘을 !M! 얻습니다. NL 이전에 마지막으로 사용한 카드가 공격이었다면, 힘을 2배로 증가시킵니다."
+  },
+  "ruina:BlindRage": {
+    "NAME": "눈 먼 분노",
+    "DESCRIPTION": "적 전체에 피해를 !D! 줍니다. NL 피해를 !M! 받습니다. NL 체력이 50% 또는 그 이하일경우, 이 카드의 비용이 0이 됩니다."
+  },
+  "ruina:SwordSharpened": {
+    "NAME": "눈물로 벼려낸 검",
+    "DESCRIPTION": "약화를 !M! 부여합니다. NL 이 카드를 동일한 적에게 !ruina:SecondMagic! 번 사용하면, *기절 효과를 1 부여하고 이 카드를 소멸시킵니다.",
+    "UPGRADE_DESCRIPTION": "약화를 !M! 부여합니다. NL 이 카드를 뽑을 카드 더미에 넣습니다. NL 이 카드를 동일한 적에게 !ruina:SecondMagic! 번 사용하면, *기절 효과를 1 부여하고 이 카드를 소멸시킵니다."
+  },
+  "ruina:Lumber": {
+    "NAME": "벌목",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 카드를 !M! 장까지 선택하여 소멸시킵니다. 공격 카드를 소멸시키면, 소멸시킨 공격 카드의 피해량은 이 카드의 피해량과 합산됩니다. NL 이 카드를 뽑을 카드 더미에 넣습니다."
+  },
+  "ruina:Harvest": {
+    "NAME": "수확",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 당신의 체력이 줄어들때마다 이 카드의 피해량이 감소합니다. (체력이 온전할때 최대 피해를 입힙니다.)",
+    "UPGRADE_DESCRIPTION": "피해를 !D! 줍니다. NL 당신의 체력이 줄어들때마다 이 카드의 피해량이 감소합니다. (체력이 온전할때 최대 피해를 입힙니다.) NL 방어도를 !B! 얻습니다."
+  },
+  "ruina:HomingInstinct": {
+    "NAME": "귀소 본능",
+    "DESCRIPTION": "카드를 !M! 장 소멸시킵니다. NL 매 턴 시작시, 소멸시킨 카드의 비용만큼 [E] 를 얻습니다."
+  },
+  "ruina:CobaltScar": {
+    "NAME": "푸른 흉터",
+    "DESCRIPTION": "공격 카드를 !ruina:SecondMagic! 장 사용할때마다, 적 전체에 피해를 !M! 입힙니다."
+  },
+  "ruina:Thirst": {
+    "NAME": "갈증",
+    "DESCRIPTION": "ruina:출혈 을 !M! 부여합니다. NL 이번 턴에 ruina:출혈 이 부여된 적을 공격하면, 힘을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:CrimsonScar": {
+    "NAME": "붉은 흉터",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 예지 !M!. NL 버린 카드 1장당, 활력을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:ParadiseLost": {
+    "NAME": "실낙원",
+    "DESCRIPTION": "매 턴 시작시, 카드를 !M! 장 소멸시킵니다. NL 카드가 12 장 소멸되면, 모든 적의 체력이 !ruina:SecondMagic! 감소합니다.",
+    "UPGRADE_DESCRIPTION": "매 턴 시작시, 카드를 !M! 장 소멸시킵니다. NL 카드가 12 장 소멸되면, 모든 적의 체력이 !ruina:SecondMagic! 감소합니다."
+  },
+  "ruina:DeadSilence": {
+    "NAME": "정적",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 이번 턴 후에 추가로 내 턴을 진행합니다. NL 이 카드로 적을 처치하면, 다음 턴에 [E] [E] 를 얻습니다."
+  },
+  "ruina:Heaven": {
+    "NAME": "천국",
+    "DESCRIPTION": "방어도를 !B! 만큼 X 번 얻습니다. NL 이번 턴에 적에게 공격 당할때마다, 남아있는 방어도만큼 적에게 피해를 줍니다."
+  },
+  "ruina:Penitence": {
+    "NAME": "참회",
+    "DESCRIPTION": "체력을 !M! 회복합니다. NL 현재 지닌 모든 해로운 효과를 제거합니다."
+  },
+  "ruina:SoundOfAStar": {
+    "NAME": "별의 소리",
+    "DESCRIPTION": "적 전체에 피해를 !D! 줍니다. NL 이번 전투에서 얻은 방어도 수치만큼 이 카드의 피해량이 증가합니다. NL 남은 사용 횟수 !stslib:ex!."
+  },
+  "ruina:Twilight": {
+    "NAME": "황혼",
+    "DESCRIPTION": "적 전체에게 피해를 !D! 주고, ruina:발현 으로 소모된 [E] 만큼 적 전체에 약화를 부여합니다."
+  },
+  "ruina:Apocalypse": {
+    "NAME": "종말",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 체력이 50% 이하라면, 이 카드의 피해량이 50% 증가합니다. NL 대상의 체력이 50% 또는 그 이하라면 이 카드의 피해량이 50% 증가합니다."
+  },
+  "ruina:Beak": {
+    "NAME": "부리",
+    "DESCRIPTION": "매 턴 시작시, 손패에서 가장 비용이 높은 카드의 비용을 이번 전투 동안 0으로 만든뒤 소멸을 부여합니다."
+  },
+  "ruina:Lamp": {
+    "NAME": "램프",
+    "DESCRIPTION": "이번 턴 동안 적이 힘을 !M! 잃습니다. NL 이번 턴에 적에게 공격당할때마다, 대상에게 피해를 !ruina:SecondMagic! 입힙니다."
+  },
+  "ruina:Justitia": {
+    "NAME": "유스티티아",
+    "DESCRIPTION": "대상 적의 체력이 30% 이하일시, 처치합니다. NL 적의 체력을 !M! 감소시킵니다.",
+    "EXTENDED_DESCRIPTION": ["대상 적의 체력이 ", " 또는 그 이하일시, 처치합니다. NL 적의 체력을 !M! 감소시킵니다."]
+  },
+  "ruina:Dazzled": {
+    "NAME": "현혹됨",
+    "DESCRIPTION": "이 카드가 보존되면, 이번 전투동안 이 카드의 비용이 !M! 증가합니다. 이 카드의 비용이 !ruina:SecondMagic! 또는 그 이상이 되면, 사용불가 상태로 변합니다."
+  },
+  "ruina:ForestKeeperLock": {
+    "NAME": "검은 숲의 숲지기",
+    "DESCRIPTION": "이번 턴 동안 적의 힘을 !M! 낮춥니다."
+  },
+  "ruina:StolenTime": {
+    "NAME": "빼앗긴 시간",
+    "DESCRIPTION": "카드를 !M! 장 뽑습니다."
+  },
+  "ruina:CHRBOSS_UpstandingSlash": {
+    "NAME": "종베기",
+    "DESCRIPTION": "!D! 피해를 2번 줍니다. NL 막히지 않은 피해를 !ruina:SecondMagic! 이상 입히면, 손상을 !M! 부여합니다."
+  },
+  "ruina:CHRBOSS_LevelSlash": {
+    "NAME": "횡베기",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 막히지 않은 피해를 !ruina:SecondMagic! 이상 입히면, 다음 턴에 의도가 추가로 1개 더 생깁니다."
+  },
+  "ruina:CHRBOSS_Spear": {
+    "NAME": "찌르기",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:CHRBOSS_GreaterSplitHorizontal": {
+    "NAME": "대절단: 가로",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 막히지 않은 피해를 입히면, ruina:출혈 을 !M! 부여합니다."
+  },
+  "ruina:CHRBOSS_GreaterSplitVertical": {
+    "NAME": "대절단: 세로",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 막히지 않은 피해를 입히면, ruina:출혈 을 !M! 부여합니다."
+  },
+  "ruina:CHRBOSS_FocusSpirit": {
+    "NAME": "기합",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 다음 턴에 임시 힘을 !M! 얻습니다."
+  },
+  "ruina:CHRBOSS_GiantFist": {
+    "NAME": "거대 주먹",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL *마비를 !M! 부여합니다."
+  },
+  "ruina:CHRBOSS_Compress": {
+    "NAME": "압축",
+    "DESCRIPTION": "방어도를 !B! 얻습니다."
+  },
+  "ruina:CHRBOSS_FlurryOfFists": {
+    "NAME": "연속 주먹",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 힘을 !ruina:SecondMagic! 얻습니다.",
+    "EXTENDED_DESCRIPTION": ["!D! 피해를 !M! 번 줍니다. NL 다음 턴에 힘을 !ruina:SecondMagic! 얻습니다."]
+  },
+  "ruina:CHRBOSS_BalefulBrand": {
+    "NAME": "불길한 낙인",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL *부식 을 !M! 부여합니다.",
+    "EXTENDED_DESCRIPTION": ["피해를 !D! 줍니다. NL 다음 턴에 *부식 을 !M! 부여합니다."]
+  },
+  "ruina:CHRBOSS_Lock": {
+    "NAME": "잠금",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL *드로우 *감소 를 !M! 부여합니다."
+  },
+  "ruina:CHRBOSS_yanAttack": {
+    "NAME": "의지의 검",
+    "DESCRIPTION": "*손이 힘을 !M! 얻습니다."
+  },
+  "ruina:CHRBOSS_yanProtect": {
+    "NAME": "보호",
+    "DESCRIPTION": "*손이 *보호를 !M! 얻습니다"
+  },
+  "ruina:CHRBOSS_DistortedBlade": {
+    "NAME": "뒤틀린 검",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL *부식 을 !M! 부여합니다."
+  },
+  "ruina:CHRBOSS_Largo": {
+    "NAME": "전주",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다. NL *진동 을 1 부여합니다. 이미 대상에게 *진동 효과가 부여되어있다면, 진동을 제거하고 방어도를 !B! 얻습니다."
+  },
+  "ruina:CHRBOSS_Allegro": {
+    "NAME": "독주",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL *진동 을 1 부여합니다. 이미 대상에게 *진동 효과가 부여되어있다면, 진동을 제거하고 다음 턴에 힘을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:CHRBOSS_ResonantScythe": {
+    "NAME": "공명의 낫",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 이 공격이 2번째 의도 칸에 위치해있다면 피해량이 3배 증가합니다."
+  },
+  "ruina:CHRBOSS_TrailsOfBlue": {
+    "NAME": "푸른 궤적",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 대상의 힘을 !M! 감소시킵니다."
+  },
+  "ruina:CHRBOSS_TempestuousDanza": {
+    "NAME": "최후의 선율",
+    "DESCRIPTION": "적 전체에 !D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:CHRALLY_Crystal": {
+    "NAME": "크리스탈 아틀리에",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL !D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:CHRALLY_Wheels": {
+    "NAME": "휠스 인더스트리",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 대상의 힘을 !M! 감소시킵니다."
+  },
+  "ruina:CHRALLY_Durandal": {
+    "NAME": "뒤랑달",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 힘을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:CHRALLY_ALLAS": {
+    "NAME": "알라스 공방",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화를 !M! 부여합니다."
+  },
+  "ruina:CHRALLY_GUN": {
+    "NAME": "로직 아틀리에",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:CHRALLY_MOOK": {
+    "NAME": "묵 공방",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 취약을 !M! 부여합니다."
+  },
+  "ruina:CHRALLY_OLDBOYS": {
+    "NAME": "늙은 소년 공방",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다."
+  },
+  "ruina:CHRALLY_RANGA": {
+    "NAME": "랑아 공방",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL ruina:출혈 을 !ruina:SecondMagic! 부여합니다."
+  },
+  "ruina:CHRALLY_MACE": {
+    "NAME": "느티나무 공방",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:CHRALLY_FURIOSO": {
+    "NAME": "Furioso",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Concentration": {
+    "NAME": "집중",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL !D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:EnergyShield": {
+    "NAME": "에너지 방패",
+    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다."
+  },
+  "ruina:BattleCommand": {
+    "NAME": "전투 지령",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 모든 아군이 힘을 !M! 얻습니다."
+  },
+  "ruina:Disposal": {
+    "NAME": "처분",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 대상에게 *표식 효과가 부여되어있다면 피해량이 2배로 증가합니다. NL 대상의 체력이 25% 이하일시 피해량이 2배로 증가합니다."
+  },
+  "ruina:PullingStrings": {
+    "NAME": "구속의 실",
+    "DESCRIPTION": "모든 생물에게 피해를 !D! 입힙니다."
+  },
+  "ruina:TuggingStrings": {
+    "NAME": "인형실",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:AssailingPulls": {
+    "NAME": "공격 명령",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 취약을 !M! 부여합니다."
+  },
+  "ruina:ThinStrings": {
+    "NAME": "질긴 인형실",
+    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻습니다. NL 약화를 !M! 부여합니다."
+  },
+  "ruina:Puppetry": {
+    "NAME": "인형극",
+    "DESCRIPTION": "모든 아군이 힘을 !M! 얻습니다."
+  },
+  "ruina:ContractOfMight": {
+    "NAME": "힘의 계약",
+    "DESCRIPTION": "힘을 !M! 얻습니다. NL 턴 종료시, 피해를 !ruina:SecondMagic! 받고, 이 효과로 받는 피해량이 !ruina:SecondMagic! 만큼 증가합니다."
+  },
+  "ruina:ContractOfLight": {
+    "NAME": "빛의 계약",
+    "DESCRIPTION": "매 턴 시작시 [E] [E] 를 얻습니다. NL 매 턴 처음 뽑히는 카드를 제외하고는 추가로 카드를 뽑을수 없습니다."
+  },
+  "ruina:ConfusingContract": {
+    "NAME": "혼란의 계약",
+    "DESCRIPTION": "혼란 효과에 빠집니다."
+  },
+  "ruina:NoContract": {
+    "NAME": "계약 거절",
+    "DESCRIPTION": "모든 적이 힘을 !M! 얻습니다."
+  },
+  "ruina:Ally_UpstandingSlash": {
+    "NAME": "종베기",
+    "DESCRIPTION": "!D! 피해를 2 번 줍니다. NL 막히지 않은 피해를 !ruina:SecondMagic! 이상 입히면, 취약을 !M! 부여합니다."
+  },
+  "ruina:Ally_LevelSlash": {
+    "NAME": "횡베기",
+    "DESCRIPTION": "!D! 피해를 2 번 줍니다. NL 막히지 않은 피해를 !ruina:SecondMagic! 이상 입히면, 힘을 !M! 얻습니다."
+  },
+  "ruina:Ally_Spear": {
+    "NAME": "찌르기",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 대상의 방어도가 없다면 이 공격의 피해량이 2배가 됩니다."
+  },
+  "ruina:Ally_GreaterSplitHorizontal": {
+    "NAME": "대절단: 가로",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 막히지 않은 피해만큼 이번턴동안 대상이 임시로 힘을 잃습니다."
+  },
+  "ruina:Ally_GreaterSplitVertical": {
+    "NAME": "대절단: 세로",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 막히지 않은 피해만큼 이번턴동안 대상이 임시로 힘을 잃습니다."
+  },
+  "ruina:Overspeed": {
+    "NAME": "과속",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Beatdown": {
+    "NAME": "구타",
+    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다. NL *금속화를 !M! 얻습니다."
+  },
+  "ruina:Intimidate": {
+    "NAME": "위협",
+    "DESCRIPTION": "모든 *판금 *갑옷을 *금속화로 변환시킵니다. NL *판금 *갑옷을 !M! 얻습니다."
+  },
+  "ruina:LupineAssault": {
+    "NAME": "늑대의 맹습",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다."
+  },
+  "ruina:KicksAndStomps": {
+    "NAME": "발길질",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 힘을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:Fisticuffs": {
+    "NAME": "주먹질",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화를 !M! 부여합니다."
+  },
+  "ruina:Circulation": {
+    "NAME": "순환",
+    "DESCRIPTION": "모든 아군이 힘을 !M! 얻고 *보호를 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:Nails": {
+    "NAME": "붉은 손톱",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Siphon": {
+    "NAME": "흡수",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 손상을 !M! 부여합니다."
+  },
+  "ruina:Bloodspreading": {
+    "NAME": "퍼져나가는 혈액",
+    "DESCRIPTION": "피해를 !D! 줍니다."
+  },
+  "ruina:Inject": {
+    "NAME": "주입",
+    "DESCRIPTION": "*출혈 을 !M! 부여합니다. NL 힘을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:Obstruct": {
+    "NAME": "가로막기",
+    "DESCRIPTION": "방어도를 !B! 얻습니다."
+  },
+  "ruina:Shockwave": {
+    "NAME": "충격타",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 방어도가 1이라도 남아있다면, 모든 아군이 불가침을 !M! 얻습니다."
+  },
+  "ruina:HeatedWeapon": {
+    "NAME": "달구어진 무기",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL *화상 !ruina:SecondMagic! 장을 뽑을 카드 더미에 넣습니다."
+  },
+  "ruina:Rampage": {
+    "NAME": "광란의 일격",
+    "DESCRIPTION": "피해를 !D! 줍니다."
+  },
+  "ruina:HeatUp": {
+    "NAME": "열 상승",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 힘을 !M! 얻습니다."
+  },
+  "ruina:Pillar": {
+    "NAME": "열화된 기둥",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다."
+  },
+  "ruina:Fairy": {
+    "NAME": "열화된 요정",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Chain": {
+    "NAME": "열화된 사슬",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화를 !M! 부여합니다."
+  },
+  "ruina:Climax": {
+    "NAME": "클라이막스",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 이번 전투동안 이 공격의 공격 횟수가 !ruina:SecondMagic! 증가합니다."
+  },
+  "ruina:Fun": {
+    "NAME": "즐겁게 놀아봅시다~",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Catch": {
+    "NAME": "받아보세요!",
+    "DESCRIPTION": "*부상 !M! 장을 뽑을 카드 더미에 넣습니다."
+  },
+  "ruina:Pow": {
+    "NAME": "펑! 퍼펑!",
+    "DESCRIPTION": "약화를 !M! 부여합니다. NL 힘을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:Brainwash": {
+    "NAME": "당신이 필요하답니다~",
+    "DESCRIPTION": "*세뇌를 !M! 부여합니다."
+  },
+  "ruina:Kick": {
+    "NAME": "괘각",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 모든 아군이 힘을 !M! 얻습니다."
+  },
+  "ruina:Confrontation": {
+    "NAME": "대치",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 모든 아군이 *보호 를 !M! 얻습니다."
+  },
+  "ruina:Melody": {
+    "NAME": "멜로디",
+    "DESCRIPTION": "",
+    "EXTENDED_DESCRIPTION": ["이 순서로 카드를 사용하세요: NL ",
+      "공격 ",
+      "스킬 ",
+      "파워 ",
+      "(성공)",
+      "[#00ff00]공격[] ",
+      "[#00ff00]스킬[] ",
+      "[#00ff00]파워[] "]
+  },
+  "ruina:AttackPrescript": {
+    "NAME": "공격 지령",
+    "DESCRIPTION": "피해를 !D! 줍니다."
+  },
+  "ruina:SkillPrescript": {
+    "NAME": "스킬 지령",
+    "DESCRIPTION": "방어도를 !B! 얻습니다."
+  },
+  "ruina:PowerPrescript": {
+    "NAME": "파워 지령",
+    "DESCRIPTION": "힘을 !M! 얻습니다."
+  },
+  "ruina:EverlastingMelody": {
+    "NAME": "영원히 잊을수 없는 선율",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 힘을 !M! 얻습니다."
+  },
+  "ruina:Neigh": {
+    "NAME": "히히힝",
+    "DESCRIPTION": "피해를 !D! 줍니다."
+  },
+  "ruina:Bawk": {
+    "NAME": "꼬꼬댁",
+    "DESCRIPTION": "*어지러움 !M! 장을 뽑을 카드 더미에 넣습니다."
+  },
+  "ruina:Rarf": {
+    "NAME": "컹컹",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL *마비를 !M! 부여합니다."
+  },
+  "ruina:Tendon": {
+    "NAME": "강력한 힘줄의 소리",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Trio": {
+    "NAME": "합주",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL *멜로디 의 카드 사용 요구량을 !ruina:SecondMagic! 증가시킵니다."
+  },
+  "ruina:Faith": {
+    "NAME": "맹목적인 신념",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:BalefulBrand": {
+    "NAME": "불길한 낙인",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL *부식 을 !M! 부여합니다."
+  },
+  "ruina:Will": {
+    "NAME": "도시의 의지",
+    "DESCRIPTION": "모든 아군에게 방어도를 !B! 부여합니다. NL 모든 아군이 다음턴 카드를 !M! 장 추가로 더 뽑습니다."
+  },
+  "ruina:FervidEmotions": {
+    "NAME": "타오르는 감정",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL *감정 을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:Emotional": {
+    "NAME": "감정의 격동",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다. NL *감정 을 !M! 얻습니다."
+  },
+  "ruina:Coordinated": {
+    "NAME": "협공",
+    "DESCRIPTION": "모든 아군이 힘을 !M! 얻고, 방어도를 !B! 얻고, 다음턴에 카드 !ruina:SecondMagic! 장을 추가로 더 뽑습니다."
+  },
+  "ruina:RagingStorm": {
+    "NAME": "휘몰아치기: 애",
+    "DESCRIPTION": "적 전체에게 !D! 피해를 !M! 번 주고 취약을 !ruina:SecondMagic! 부여합니다."
+  },
+  "ruina:Inferno": {
+    "NAME": "도철",
+    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다."
+  },
+  "ruina:Eventide": {
+    "NAME": "식어버린 노을",
+    "DESCRIPTION": "*화상 !M! 장을 버린 카드 더미에 넣습니다."
+  },
+  "ruina:Emotions": {
+    "NAME": "부딪히는 감정",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 힘을 !M! 얻습니다."
+  },
+  "ruina:Stigmatize": {
+    "NAME": "절망의 낙인",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Searing": {
+    "NAME": "이글거리는 용기",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL *화상 !M! 장을 뽑을 카드 더미에 넣습니다."
+  },
+  "ruina:Sorrow": {
+    "NAME": "슬픔의 상처",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:SnakeSlit": {
+    "NAME": "뱀 가르기",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 힘을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:VioletBlade": {
+    "NAME": "자색검",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Laceration": {
+    "NAME": "열상",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 취약을 !M! 부여합니다."
+  },
+  "ruina:VenomousFangs": {
+    "NAME": "독니",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화를 !M! 부여합니다."
+  },
+  "ruina:SerpentineBarrier": {
+    "NAME": "뱀의 장벽",
+    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻습니다."
+  },
+  "ruina:Duel": {
+    "NAME": "결투",
+    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻습니다. NL 피해를 !D! 번 줍니다."
+  },
+  "ruina:BreakEgg": {
+    "NAME": "기절시키기",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL *마비를 !M! 부여합니다."
+  },
+  "ruina:Slap": {
+    "NAME": "잘게 다지기",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL *출혈 을 !M! 부여합니다."
+  },
+  "ruina:Mince": {
+    "NAME": "으깨기",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Season": {
+    "NAME": "양념 치기",
+    "DESCRIPTION": "약화와 취약을 !M! 부여합니다."
+  },
+  "ruina:Trial": {
+    "NAME": "시식",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 막히지 않은 피해만큼 체력을 회복합니다."
+  },
+  "ruina:Sack": {
+    "NAME": "포획",
+    "DESCRIPTION": "당신의 덱에서 희귀도가 높은 카드를 *신선한 *고기 하수인으로 만듭니다. NL 힘을 !M! 얻습니다."
+  },
+  "ruina:FloodingBullets": {
+    "NAME": "범람하는 탄환",
+    "DESCRIPTION": "모든 생물에게 !D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Reload": {
+    "NAME": "재장전",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 모든 아군이 [E] 를 얻고 다음 턴에 카드를 !M! 장 추가로 더 뽑습니다."
+  },
+  "ruina:Preach": {
+    "NAME": "생각톱니: 설파",
+    "DESCRIPTION": "모든 아군이 다음 턴에 힘을 !M! 얻습니다."
+  },
+  "ruina:Accelerate": {
+    "NAME": "생각톱니: 가속",
+    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻습니다."
+  },
+  "ruina:Propagate": {
+    "NAME": "생각톱니: 전파",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 취약을 !M! 부여합니다."
+  },
+  "ruina:ThoughtGearBrainwash": {
+    "NAME": "생각톱니: 세뇌",
+    "DESCRIPTION": "피해를 !D! 줍니다."
+  },
+  "ruina:Silence": {
+    "NAME": "정적",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 이번 전투동안 이 카드의 피해량이 !M! 증가합니다."
+  },
+  "ruina:Time": {
+    "NAME": "시간",
+    "DESCRIPTION": "이번 턴 후에 내 턴을 추가로 진행합니다. NL 턴을 종료합니다."
+  },
+  "ruina:Safeguard": {
+    "NAME": "마법: 방어",
+    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻고 힘을 !M! 얻습니다."
+  },
+  "ruina:Missile": {
+    "NAME": "마법: 투사",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Onslaught": {
+    "NAME": "마법: 공격",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 이번 전투동안 이 카드의 피해량이 !M! 증가합니다."
+  },
+  "ruina:Contract": {
+    "NAME": "계약",
+    "DESCRIPTION": "*계약 목록을 제시합니다."
+  },
+  "ruina:BindingTerms": {
+    "NAME": "변동: 봉인",
+    "DESCRIPTION": "*공허 !M! 장을 버린 카드 더미에 넣습니다."
+  },
+  "ruina:Crystal": {
+    "NAME": "크리스탈 아틀리에",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 사용시 플레이어의 턴이 아니었다면, 방어도를 !B! 얻습니다."
+  },
+  "ruina:Wheels": {
+    "NAME": "휠스 인더스트리",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 사용시 플레이어의 턴이었다면, 이번턴동안 대상이 힘을 !M! 잃습니다."
+  },
+  "ruina:Durandal": {
+    "NAME": "뒤랑달",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 사용시 플레이어의 턴이었다면, 이번턴동안 임시 힘을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:Allas": {
+    "NAME": "알라스 공방",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 사용시 플레이어의 턴이었다면, 이번턴동안 대상이 힘을 !M! 잃습니다."
+  },
+  "ruina:Gun": {
+    "NAME": "로직 아틀리에",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:Mook": {
+    "NAME": "묵 공방",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 대상의 모든 방어도를 제거합니다."
+  },
+  "ruina:OldBoys": {
+    "NAME": "늙은 소년 공방",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 사용시 플레이어의 턴이 아니었다면, 방어도를 !B! 얻습니다."
+  },
+  "ruina:Ranga": {
+    "NAME": "랑아 공방",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 사용시 플레이어의 턴이 아니었다면, ruina:출혈 을 !ruina:SecondMagic! 부여합니다."
+  },
+  "ruina:Mace": {
+    "NAME": "느티나무 공방",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 사용시 플레이어의 턴이었다면, 이번턴동안 힘을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:Furioso": {
+    "NAME": "Furioso",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 약화와 손상을 !ruina:SecondMagic! 부여합니다."
+  },
+  "ruina:Yun": {
+    "NAME": "기억 - 윤 사무소",
+    "DESCRIPTION": "선택:",
+    "EXTENDED_DESCRIPTION": ["*어지러움 !M! 장을 뽑을 카드 더미에 넣습니다.", "*부상 !ruina:SecondMagic! 장을 버린 카드 더미에 넣습니다."]
+  },
+  "ruina:Zwei": {
+    "NAME": "기억 - 츠바이 협회",
+    "DESCRIPTION": "선택:",
+    "EXTENDED_DESCRIPTION": ["모든 적이 *금속화를 !M! 얻습니다.", "모든 적이 *판금 *갑옷을 !ruina:SecondMagic! 얻습니다."]
+  },
+  "ruina:Dawn": {
+    "NAME": "기억 - 새벽 사무소",
+    "DESCRIPTION": "선택:",
+    "EXTENDED_DESCRIPTION": ["*화상 !M! 장을 뽑을 카드 더미에 넣습니다.", "모든 적들이 ruina:보호 를 !ruina:SecondMagic! 얻습니다."]
+  },
+  "ruina:Shi": {
+    "NAME": "기억 - 시 협회",
+    "DESCRIPTION": "선택:",
+    "EXTENDED_DESCRIPTION": ["약화를 !M! 얻습니다.", "손상을 !ruina:SecondMagic! 얻습니다."]
+  },
+  "ruina:Love": {
+    "NAME": "기억 - 사랑 마을",
+    "DESCRIPTION": "선택:",
+    "EXTENDED_DESCRIPTION": ["모든 적이 *재생을 !M! 얻습니다.", "*점액덩어리 !ruina:SecondMagic! 장을 버린 카드 더미에 넣습니다."]
+  },
+  "ruina:Liu": {
+    "NAME": "기억 - 리우 협회",
+    "DESCRIPTION": "선택:",
+    "EXTENDED_DESCRIPTION": ["모든 적이 힘을 !M! 얻습니다.", "취약을 !ruina:SecondMagic! 얻습니다."]
+  },
+  "ruina:Purple": {
+    "NAME": "기억 - 보라 눈물",
+    "DESCRIPTION": "선택:",
+    "EXTENDED_DESCRIPTION": ["모든 적이 불가침을 !M! 얻습니다.", "적의 하수인이 !ruina:SecondMagic! 명 소환됩니다."]
+  },
+  "ruina:Hana": {
+    "NAME": "기억 - 하나 협회",
+    "DESCRIPTION": "선택:",
+    "EXTENDED_DESCRIPTION": ["*후회 저주 !M! 장을 손으로 가져옵니다.", "체력을 !ruina:SecondMagic! 잃습니다."]
+  },
+  "ruina:Blue": {
+    "NAME": "기억 - 푸른 잔향",
+    "DESCRIPTION": "선택:",
+    "EXTENDED_DESCRIPTION": ["적의 의도가 1개 늘어납니다.", "카드를 사용할때마다, 카드를 소멸시킵니다."]
+  },
+  "ruina:Agony": {
+    "NAME": "고통",
+    "DESCRIPTION": "피해를 !D! 줍니다."
+  },
+  "ruina:Scream": {
+    "NAME": "분노",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL *마비를 !ruina:SecondMagic! 부여합니다."
+  },
+  "ruina:Void": {
+    "NAME": "공허",
+    "DESCRIPTION": "약화와 손상을 !ruina:SecondMagic! 부여합니다. NL *공허 !M! 장을 버린 카드 더미에 넣습니다."
+  },
+  "ruina:ZelkovaWorkshop": {
+    "NAME": "느티나무 공방",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL !D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:AllasWorkshop": {
+    "NAME": "알라스 공방",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL *파트너의 의도가 공격이었다면, 취약을 !M! 부여합니다."
+  },
+  "ruina:AtelierLogic": {
+    "NAME": "로직 아틀리에",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:WaltzInWhite": {
+    "NAME": "백색 왈츠",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:AshenBond": {
+    "NAME": "하얀 결속",
+    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻고 힘을 !M! 얻습니다."
+  },
+  "ruina:UnitedWorkshop": {
+    "NAME": "연계",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL *파트너의 의도가 공격이었다면, 힘을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:UnstableLoneliness": {
+    "NAME": "불안정한 결속",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL *파트너의 의도가 공격이 아니었다면, 약화와 손상을 !M! 부여합니다."
+  },
+  "ruina:BlindFury": {
+    "NAME": "광분",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL *마비를 !M! 부여합니다."
+  },
+  "ruina:DarkBond": {
+    "NAME": "검은 결속",
+    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻습니다. NL *공허 !M! 장을 뽑을 카드 더미에 넣습니다."
+  },
+  "ruina:WaltzInBlack": {
+    "NAME": "흑색 왈츠",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:SerumW": {
+    "NAME": "혈청 W",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 이 생물의 힘이 !M! 이상이라면, 대상을 즉사시킵니다."
+  },
+  "ruina:SerumR": {
+    "NAME": "혈청 R",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 힘을 !ruina:SecondMagic! 얻습니다."
+  },
+  "ruina:Extirpation": {
+    "NAME": "적출",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다."
+  },
+  "ruina:TriSerum": {
+    "NAME": "3가지 혈청",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:SerumK": {
+    "NAME": "혈청 K",
+    "DESCRIPTION": "가장 체력이 낮은 아군에게 방어도를 !B! 부여하고 체력을 !M! 회복시킵니다."
+  },
+  "ruina:Line": {
+    "NAME": "선",
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다."
+  },
+  "ruina:ThinLine": {
+    "NAME": "가는 선",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 대상의 힘을 !M! 만큼 훔쳐 자신의 것으로 만듭니다."
+  },
+  "ruina:ThickLine": {
+    "NAME": "굵은 선",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화와 취약을 !M! 부여합니다."
+  },
+  "ruina:ZenaShockwave": {
+    "NAME": "충격파",
+    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다."
+  },
+  "ruina:Marionette": {
+    "NAME": "꼭두각시",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 카드를 !M! 장 뽑습니다. NL 이번 전투동안 이 카드의 비용이 !ruina:SecondMagic! 증가합니다."
+  },
+  "ruina:WristCutter": {
+    "NAME": "손목긋개",
+    "DESCRIPTION": " [E] [E] 를 얻습니다. NL 보존이 부여된 부상 !M! 장을 손으로 가져옵니다."
+  },
+  "ruina:Remorse": {
+    "NAME": "죄책감",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화와 취약을 !M! 부여합니다."
+  },
+  "ruina:Aspiration": {
+    "NAME": "열망",
+    "DESCRIPTION": "힘을 !M! 얻습니다. NL 현재 체력의 절반만큼을 잃습니다. 전투 종료시, 이 효과로 잃은 체력을 다시 회복합니다."
+  },
+  "ruina:FrostSplinter": {
+    "NAME": "서리조각",
+    "DESCRIPTION": "매 턴 시작시, [E] 를 추가로 얻고 , 카드를 !M! 장 뽑고, 카드 !ruina:SecondMagic! 장을 ruina:동결 시킵니다."
+  },
+  "ruina:Guilt": {
+    "NAME": "죄악감",
+    "DESCRIPTION": "턴 종료시, 다음 턴에 무작위 적이 힘을 !M! 얻습니다. NL 이 카드가 사용되지 않고 소멸된다면, 이 카드를 1장 복사하여 버린 카드 더미에 넣습니다."
+  },
+  "ruina:CHRBOSS_PreparedMind": {
+    "NAME": "마음가짐",
+    "DESCRIPTION": "힘을 !M! 얻습니다."
+  },
+  "ruina:CHRBOSS_FlamingBat": {
+    "NAME": "불빠따 맛 좀 봐",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 취약을 !M! 부여합니다."
+  },
+  "ruina:CHRBOSS_SetAblaze": {
+    "NAME": "불 태우기",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "ruina:FirstChair": {
+    "NAME": "첫번째 연주자",
+    "DESCRIPTION": "턴 종료시, 피해를 !M! 받습니다."
+  },
+  "ruina:SecondChair": {
+    "NAME": "두번째 연주자",
+    "DESCRIPTION": "턴 종료시, 무작위 적이 다음 턴에 힘을 !M! 얻습니다."
+  },
+  "ruina:ThirdChair": {
+    "NAME": "세번째 연주자",
+    "DESCRIPTION": "턴 종료시, 약화 또는 손상을 !M! 얻습니다. 효과가 발동될때마다 다른 효과로 변경됩니다.",
+    "EXTENDED_DESCRIPTION": [" (약화)", " (손상)"]
+  },
+  "ruina:FourthChair": {
+    "NAME": "네번째 연주자",
+    "DESCRIPTION": "턴 종료시, 힘 또는 민첩을 !M! 잃습니다, 효과가 발동될때마다 다른 효과로 변경됩니다.",
+    "EXTENDED_DESCRIPTION": [" (힘 감소)", " (민첩 감소)"]
+  },
+  "ruina:Conductor": {
+    "NAME": "지휘자",
+    "DESCRIPTION": "사용불가. NL 이 카드가 보존되면, 손 안에 있는 모든 *연주자 카드의 비용이 이번 전투동안 !M! 증가합니다. *연주자 카드의 비용이 !ruina:SecondMagic! 이상이 되면, 효과를 한번 더 발동합니다."
+  },
+  "ruina:TodaysExpression": {
+    "NAME": "오늘의 표정",
+    "DESCRIPTION": "선택:",
+    "EXTENDED_DESCRIPTION": ["방어도를 !B! 얻습니다.", "다음 턴에 방어도를 !B! 얻습니다."]
+  },
+  "ruina:SanguineDesire": {
+    "NAME": "핏빛 욕망",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL ruina:발현 으로 소모된 [E] 만큼 ruina:출혈 을 !M! 부여합니다."
+  },
+  "ruina:RedEyes": {
+    "NAME": "적안",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 적에게 부여하는 다음 해로운 효과 수치가 2배가 됩니다."
+  },
+  "ruina:Laetitia": {
+    "NAME": "래티씨아",
+    "DESCRIPTION": "매 턴 처음 사용하는 비용 !M! 또는 !ruina:SecondMagic! 의 카드가 2번 사용됩니다.",
+    "UPGRADE_DESCRIPTION": "매 턴 처음 사용하는 비용 !M! 또는 !ruina:SecondMagic! 의 카드가 2번 사용됩니다. NL 환급 !stslib:refund!."
+  },
+  "ruina:BlackSwan": {
+    "NAME": "흑조",
+    "DESCRIPTION": "ruina:부식 을 !M! 부여합니다. NL 이번 턴에 적에게 해로운 효과를 부여했다면, 이 카드의 비용이 0이 됩니다.",
+    "UPGRADE_DESCRIPTION": "ruina:부식 을 !M! 부여합니다. NL 이번 턴에 적에게 해로운 효과를 부여했다면, 이 카드의 비용이 0이 됩니다. NL 이 카드를 뽑을 카드 더미에 섞어넣습니다."
+  },
+  "ruina:Gift": {
+    "NAME": "선물",
+    "DESCRIPTION": "이 카드가 보존되면, 이 카드의 비용이 !ruina:SecondMagic! 감소합니다. NL 이 카드의 비용이 0이 된다면, 피해를 !M! 입고 이 카드를 소멸시킵니다. NL 이 카드의 비용은 다른 효과로 인해 변경되지 않습니다."
+  },
+  "ruina:Enlightenment": {
+    "NAME": "깨달음",
+    "DESCRIPTION": "체력을 !M! 잃습니다. NL 방어도를 !B! 얻습니다. NL 카드를 !ruina:SecondMagic! 장 뽑습니다."
+  },
+  "ruina:DaCapo": {
+    "NAME": "다카포",
+    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다. NL 사용시 이 카드를 영구적으로 강화합니다. NL 이 카드는 최대 !ruina:SecondMagic! 번까지 강화가 가능합니다.",
+    "UPGRADE_DESCRIPTION": "적 전체에게 피해를 !D! 주고 취약을 !M! 부여합니다.",
+    "EXTENDED_DESCRIPTION": ["1 악장", "2 악장", "3 악장", "4 악장", "피날레"]
+  },
+  "ruina:Fragments": {
+    "NAME": "어딘가의 조각",
+    "DESCRIPTION": "적의 방어도를 훔쳐 자신의 것으로 만듭니다. NL 피해를 !D! 줍니다."
+  },
+  "ruina:OurGalaxy": {
+    "NAME": "우리의 은하수",
+    "DESCRIPTION": "뽑을 카드 더미에 있는 비용이 X 또는 그 이하의 카드를 선택하여 사용합니다."
+  },
+  "ruina:Pleasure": {
+    "NAME": "쾌락",
+    "DESCRIPTION": "자동 사용 NL [E] 를 얻고 가시를 !M! 얻습니다. NL 이 카드가 소멸되면, 체력을 !ruina:SecondMagic! 잃습니다. NL 남은 사용횟수 !stslib:ex!."
+  },
+  "ruina:FaintAroma": {
+    "NAME": "피어나는 향기",
+    "DESCRIPTION": "적에게 막히지 않은 피해를 입힐시, 그만큼 적의 체력을 감소시킵니다."
+  },
+  "ruina:Grinder": {
+    "NAME": "연삭기 Mk. 5-2",
+    "DESCRIPTION": "매 턴 처음으로 적에게 막히지 않은 피해를 !M! 이상 입힐때마다, 다음 턴에 [E] 를 얻습니다."
+  },
+  "ruina:Hornet": {
+    "NAME": "호넷",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 다음에 사용하는 공격 카드의 비용이 0이 되고 피해량이 2배로 증가합니다."
+  },
+  "ruina:Forgotten": {
+    "NAME": "잊혀짐",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 막히지 않은 피해를 입힌만큼 적이 임시로 힘을 잃습니다."
+  },
+  "ruina:GreenStem": {
+    "NAME": "녹색 줄기",
+    "DESCRIPTION": "중독을 !M! 부여합니다. NL 이 카드가 소멸되면, 모든 적의 중독을 2배로 늘립니다. NL 남은 사용횟수 !stslib:ex!."
+  },
+  "ruina:MagicBullet": {
+    "NAME": "마탄",
+    "DESCRIPTION": "카드를 !M! 장 뽑고, 뽑은 카드들에게 보존을 부여합니다."
+  },
+  "ruina:FourthMatchFlame": {
+    "NAME": "4번째 성냥불",
+    "DESCRIPTION": "*화상 !ruina:SecondMagic! 장을 버린 카드 더미에 넣습니다. NL 매 턴 종료시, 적 전체에 피해를 !M! 줍니다."
+  },
+  "ruina:Harmony": {
+    "NAME": "하모니",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 힘을 !M! 얻습니다. NL 치명타라면, 이 카드의 힘 획득량이 영구적으로 !ruina:SecondMagic! 증가합니다."
+  },
+  "ruina:SolemnLament": {
+    "NAME": "엄숙한 애도",
+    "DESCRIPTION": "불가침을 !M! 얻습니다. NL 이 카드의 비용을 전부 ruina:발현 효과로만 소모했다면, 이 카드를 1장 복사하여 버린 카드 더미에 넣습니다."
+  },
+  "ruina:Wingbeat": {
+    "NAME": "날개짓",
+    "DESCRIPTION": "카드를 X 장 소멸시킵니다. NL 소멸시킨 카드들의 총합 비용만큼 체력을 회복하고 민첩을 얻습니다."
+  },
+  "ruina:Regret": {
+    "NAME": "후회",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 손 안에 있는 상태이상이나 저주 카드 1장당 !D! 피해를 한 번 더 입힙니다."
+  },
+  "ruina:GrindingGears": {
+    "NAME": "갈려나가는 톱니",
+    "DESCRIPTION": "피해를 !M! 받습니다. NL *노래하는 *기계 안에 수납된 !ruina:SecondMagic! 카드를 제거한 후 손으로 가져옵니다. NL *노래하는 *기계를 1턴동안 *기절 시킵니다."
+  }
+}
