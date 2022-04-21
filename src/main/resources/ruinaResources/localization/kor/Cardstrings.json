@@ -25,7 +25,8 @@
   },
   "ruina:FadedMemories": {
     "NAME": "빛바랜 기억",
-    "DESCRIPTION": "적 하나당 카드를 !M! 장 뽑습니다."
+    "DESCRIPTION": "선택:",
+    "EXTENDED_DESCRIPTION": ["적 하나당 카드를 !M! 장 뽑습니다.", "카드를 !ruina:SecondMagic! 장 뽑습니다. NL 소멸."]
   },
   "ruina:LoveAndHate": {
     "NAME": "사랑과 증오의 이름으로",
@@ -41,8 +42,8 @@
   },
   "ruina:SwordSharpened": {
     "NAME": "눈물로 벼려낸 검",
-    "DESCRIPTION": "약화를 !M! 부여합니다. NL 이 카드를 동일한 적에게 !ruina:SecondMagic! 번 사용하면, *기절 효과를 1 부여하고 이 카드를 소멸시킵니다.",
-    "UPGRADE_DESCRIPTION": "약화를 !M! 부여합니다. NL 이 카드를 뽑을 카드 더미에 넣습니다. NL 이 카드를 동일한 적에게 !ruina:SecondMagic! 번 사용하면, *기절 효과를 1 부여하고 이 카드를 소멸시킵니다."
+    "DESCRIPTION": "약화와 취약을 !M! 부여합니다. NL 이 카드를 동일한 적에게 !ruina:SecondMagic! 번 사용하면, *기절 효과를 1 부여하고 이 카드를 소멸시킵니다.",
+    "UPGRADE_DESCRIPTION": "약화와 취약을 !M! 부여합니다. NL 이 카드를 뽑을 카드 더미에 넣습니다. NL 이 카드를 동일한 적에게 !ruina:SecondMagic! 번 사용하면, *기절 효과를 1 부여하고 이 카드를 소멸시킵니다."
   },
   "ruina:Lumber": {
     "NAME": "벌목",

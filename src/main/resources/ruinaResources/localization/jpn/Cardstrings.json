@@ -25,7 +25,8 @@
   },
   "ruina:FadedMemories": {
     "NAME": "色あせた記憶",
-    "DESCRIPTION": "戦闘中の敵一体ごとにカードを !M! 枚引く。"
+    "DESCRIPTION": "一つ選ぶ:",
+    "EXTENDED_DESCRIPTION": ["戦闘中の敵一体ごとにカードを !M! 枚引く。", "カードを !ruina:SecondMagic! 枚引く。 NL 廃棄 される。"]
   },
   "ruina:LoveAndHate": {
     "NAME": "愛と憎悪の名のもとに",
@@ -41,8 +42,8 @@
   },
   "ruina:SwordSharpened": {
     "NAME": "涙で研ぎ澄まされた剣",
-    "DESCRIPTION": " 脱力 !M! を与える。 NL このカードを同じ相手に !ruina:SecondMagic! 回プレイしたとき、代わりに *スタン を与え、このカードを 廃棄 。",
-    "UPGRADE_DESCRIPTION": " 脱力 !M! を与える。このカードを山札に加えシャッフル。 NL このカードを同じ相手に NL !ruina:SecondMagic! 回プレイしたとき、 代わりに *スタン を与え、このカードを 廃棄 。"
+    "DESCRIPTION": "弱体 と 脱力 !M! を与える。 NL このカードを同じ相手に !ruina:SecondMagic! 回プレイしたとき、代わりに *スタン を与え、このカードを 廃棄 。",
+    "UPGRADE_DESCRIPTION": "弱体 と 脱力 !M! を与える。このカードを山札に加えシャッフル。 NL このカードを同じ相手に NL !ruina:SecondMagic! 回プレイしたとき、 代わりに *スタン を与え、このカードを 廃棄 。"
   },
   "ruina:Lumber": {
     "NAME": "伐採",

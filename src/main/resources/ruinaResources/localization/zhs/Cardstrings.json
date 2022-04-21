@@ -25,7 +25,8 @@
   },
   "ruina:FadedMemories": {
     "NAME": "褪色记忆",
-    "DESCRIPTION": "当前每有一名敌人，抽 !M! 张牌。"
+    "DESCRIPTION": "选择:",
+    "EXTENDED_DESCRIPTION": ["当前每有一名敌人，抽 !M! 张牌。", "抽 !ruina:SecondMagic! 张牌。 NL 消耗 。"]
   },
   "ruina:LoveAndHate": {
     "NAME": "以爱与恨的名义",
@@ -41,8 +42,8 @@
   },
   "ruina:SwordSharpened": {
     "NAME": "泪锋之剑",
-    "DESCRIPTION": "给予 !M! 层 虚弱 。 NL 如果你对同一个敌人打出这张牌 !ruina:SecondMagic! 次, 改为 *击晕 敌人并 消耗 这张牌。",
-    "UPGRADE_DESCRIPTION": "给予 !M! 层 虚弱 。 NL 将这张牌放入你的抽牌堆中。NL 如果你对同一个敌人打出这张牌 !ruina:SecondMagic! 次, 改为 *击晕 敌人并 消耗 这张牌。"
+    "DESCRIPTION": "给予 !M! 层 虚弱 和 易伤 。 NL 如果你对同一个敌人打出这张牌 !ruina:SecondMagic! 次, 改为 *击晕 敌人并 消耗 这张牌。",
+    "UPGRADE_DESCRIPTION": "给予 !M! 层 虚弱 和 易伤 。 NL 将这张牌放入你的抽牌堆中。NL 如果你对同一个敌人打出这张牌 !ruina:SecondMagic! 次, 改为 *击晕 敌人并 消耗 这张牌。"
   },
   "ruina:Lumber": {
     "NAME": "滥伐",
