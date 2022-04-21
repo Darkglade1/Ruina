@@ -1,0 +1,6 @@
+{
+  "ruina:EgoPotion": {
+    "NAME": "Ego 药水",
+    "DESCRIPTIONS": ["添加 ","#b", " 的副本 ", "#b1 的 #b3 随机#yEGO卡到你的手上。", " 本回合花费#b0。", " 他们本回合花费#b0。"]
+  }
+}
