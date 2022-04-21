@@ -17,8 +17,7 @@ import ruina.powers.AbstractLambdaPower;
 
 import static com.megacrit.cardcrawl.core.CardCrawlGame.languagePack;
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.applyToTarget;
-import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.*;
 
 public class SwordSharpened extends AbstractEgoCard {
     public final static String ID = makeID(SwordSharpened.class.getSimpleName());
@@ -53,6 +52,8 @@ public class SwordSharpened extends AbstractEgoCard {
                     if (card instanceof SwordSharpened && action.target == owner && amount >= PLAY_THRESHOLD - 1) {
                         this.flash();
                         action.exhaustCard = true;
+                        makePowerRemovable(this);
+                        atb(new RemoveSpecificPowerAction(owner, owner, POWER_ID));
                     }
                 }
 
