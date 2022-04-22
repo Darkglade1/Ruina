@@ -24,7 +24,6 @@ public class NeowAngela extends NeowEvent {
     public NeowAngela() {
         angela = new BetterSpriterAnimation(makeMonsterPath("Angela/Spriter/Angela.scml"));
         this.bossCount = ReflectionHacks.getPrivate(this, NeowEvent.class, "bossCount");
-        System.out.println(bossCount);
     }
 
     @SpireOverride

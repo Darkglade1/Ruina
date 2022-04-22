@@ -1,5 +1,6 @@
 package ruina.cards.EGO.act3;
 
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.BranchingUpgradesCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,12 +10,14 @@ import ruina.cards.EGO.AbstractEgoCard;
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.atb;
 
-public class Marionette extends AbstractEgoCard {
+public class Marionette extends AbstractEgoCard implements BranchingUpgradesCard {
     public final static String ID = makeID(Marionette.class.getSimpleName());
     public static final int COST = 0;
     public static final int DRAW = 2;
     public static final int DAMAGE = 8;
     public static final int COST_INCREASE = 1;
+
+    private boolean branchUpgraded = false;
 
     public Marionette() {
         super(ID, COST, CardType.ATTACK, CardTarget.ENEMY);
@@ -31,11 +34,30 @@ public class Marionette extends AbstractEgoCard {
             @Override
             public void update() {
                 modifyCostForCombat(secondMagicNumber);
+                if (branchUpgraded) {
+                    baseMagicNumber += secondMagicNumber;
+                    magicNumber += secondMagicNumber;
+                }
                 isDone = true;
             }
         });
     }
 
     @Override
-    public void upp() { selfRetain = true; }
+    public void upp() {
+        if (isBranchUpgrade()) {
+            branchUpgrade();
+        } else {
+            baseUpgrade();
+        }
+    }
+
+    public void baseUpgrade() {
+        selfRetain = true;
+    }
+
+    public void branchUpgrade() {
+        branchUpgraded = true;
+        uDesc();
+    }
 }

@@ -266,7 +266,7 @@ public class RoadHome extends AbstractMultiIntentMonster
     @Override
     public void damage(DamageInfo info) {
         super.damage(info);
-        if (info.output > 0 && info.type == DamageInfo.DamageType.NORMAL) {
+        if (info.output > 0 && info.type == DamageInfo.DamageType.NORMAL && info.owner != null) {
             AbstractPower power = cat.getPower(ScaredyCat.POWER_ID);
             if (power != null) {
                 power.onSpecificTrigger();

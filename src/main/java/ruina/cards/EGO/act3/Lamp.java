@@ -22,9 +22,9 @@ import static ruina.util.Wiz.*;
 public class Lamp extends AbstractEgoCard {
     public final static String ID = makeID(Lamp.class.getSimpleName());
 
-    public static final int STRENGTH_LOSS = 4;
+    public static final int STRENGTH_LOSS = 6;
     public static final int UP_STRENGTH_LOSS = 2;
-    public static final int THORNS = 8;
+    public static final int THORNS = 6;
     public static final int UP_THORNS = 2;
 
     public static final String POWER_ID = makeID("Lamp");

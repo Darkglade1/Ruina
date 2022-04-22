@@ -24,7 +24,7 @@ public class SeventhBulletReminderPatch {
 
     @SpirePostfixPatch
     public static void patch(AbstractCard __instance, SpriteBatch sb) {
-        if (CardCrawlGame.isInARun() && AbstractDungeon.player.hasRelic(SeventhBullet.ID) && AbstractDungeon.player.getRelic(SeventhBullet.ID).counter == SeventhBullet.CARDS_THRESHOLD - 1 && __instance.type == AbstractCard.CardType.ATTACK) {
+        if (CardCrawlGame.isInARun() && AbstractDungeon.player.hasRelic(SeventhBullet.ID) && AbstractDungeon.player.getRelic(SeventhBullet.ID).counter == SeventhBullet.CARDS_THRESHOLD - 1 && __instance.type == AbstractCard.CardType.ATTACK && AbstractDungeon.player.hand.contains(__instance)) {
             sb.setColor(Color.WHITE);
             renderHelper(sb, reminderRegion, __instance.current_x, __instance.current_y, __instance);
             sb.setBlendFunction(770, 1);

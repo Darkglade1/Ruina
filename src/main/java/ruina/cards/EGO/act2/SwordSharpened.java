@@ -10,19 +10,19 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.cards.EGO.AbstractEgoCard;
 import ruina.powers.AbstractLambdaPower;
 
 import static com.megacrit.cardcrawl.core.CardCrawlGame.languagePack;
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.applyToTarget;
-import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.*;
 
 public class SwordSharpened extends AbstractEgoCard {
     public final static String ID = makeID(SwordSharpened.class.getSimpleName());
 
-    public static final int WEAK = 2;
+    public static final int DEBUFF = 1;
     public static final int PLAY_THRESHOLD = 3;
 
     public static final String POWER_ID = makeID("SwordCounter");
@@ -32,7 +32,7 @@ public class SwordSharpened extends AbstractEgoCard {
 
     public SwordSharpened() {
         super(ID, 0, CardType.SKILL, CardTarget.ENEMY);
-        magicNumber = baseMagicNumber = WEAK;
+        magicNumber = baseMagicNumber = DEBUFF;
         secondMagicNumber = baseSecondMagicNumber = PLAY_THRESHOLD;
     }
 
@@ -45,12 +45,15 @@ public class SwordSharpened extends AbstractEgoCard {
             atb(new RemoveSpecificPowerAction(m, p, POWER_ID));
         } else {
             applyToTarget(m, p, new WeakPower(m, magicNumber, false));
+            applyToTarget(m, p, new VulnerablePower(m, magicNumber, false));
             applyToTarget(m, p, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, m, 1) {
                 @Override
                 public void onUseCard(AbstractCard card, UseCardAction action) {
                     if (card instanceof SwordSharpened && action.target == owner && amount >= PLAY_THRESHOLD - 1) {
                         this.flash();
                         action.exhaustCard = true;
+                        makePowerRemovable(this);
+                        atb(new RemoveSpecificPowerAction(owner, owner, POWER_ID));
                     }
                 }
 
