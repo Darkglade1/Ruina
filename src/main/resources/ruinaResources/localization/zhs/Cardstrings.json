@@ -870,8 +870,7 @@
   },
   "ruina:BlackSwan": {
     "NAME": "黑天鹅",
-    "DESCRIPTION": "给予 !M! 层 ruina:腐蚀 。 NL 本回合如果你给予过负面状态，耗能变为0。",
-    "UPGRADE_DESCRIPTION": "给予 !M! 层 ruina:腐蚀 。 NL 本回合如果你给予过负面状态，耗能变为0。 NL 将这张牌放入你的抽牌堆中。"
+    "DESCRIPTION": "给予 !M! 层 ruina:腐蚀 。 NL 本回合如果你给予过负面状态，耗能变为0。"
   },
   "ruina:Gift": {
     "NAME": "礼物",

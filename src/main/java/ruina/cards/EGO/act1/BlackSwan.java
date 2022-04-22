@@ -15,7 +15,7 @@ public class BlackSwan extends AbstractEgoCard {
     public final static String ID = makeID(BlackSwan.class.getSimpleName());
 
     public static final int EROSION = 4;
-    public static final int UP_EROSION = 1;
+    public static final int UP_EROSION = 2;
     private boolean costReducedByEffect = false;
 
     public BlackSwan() {
@@ -54,7 +54,5 @@ public class BlackSwan extends AbstractEgoCard {
     @Override
     public void upp() {
         upgradeMagicNumber(UP_EROSION);
-        shuffleBackIntoDrawPile = true;
-        uDesc();
     }
 }

@@ -870,8 +870,7 @@
   },
   "ruina:BlackSwan": {
     "NAME": "黒鳥",
-    "DESCRIPTION": " ruina:腐食 !M! を与える。 NL このターンあなたがデバフを与えたとき、このカードのコストは0。",
-    "UPGRADE_DESCRIPTION": " ruina:腐食 !M! を与える。 NL このターンあなたがデバフを与えたとき、このカードのコストは0。 NL このカードを山札に戻してシャッフルする。"
+    "DESCRIPTION": " ruina:腐食 !M! を与える。 NL このターンあなたがデバフを与えたとき、このカードのコストは0。"
   },
   "ruina:Gift": {
     "NAME": "プレゼント",

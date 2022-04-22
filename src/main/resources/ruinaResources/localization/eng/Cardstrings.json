@@ -757,7 +757,7 @@
   },
   "${ModID}:SerumW": {
     "NAME": "Serum W",
-    "DESCRIPTION": "Deal !D! damage. NL If this creature has at least !M! Strength, instantly kill the target."
+    "DESCRIPTION": "Deal !D! damage. NL If the user has at least !M! Strength, instantly kill the target."
   },
   "${ModID}:SerumR": {
     "NAME": "Serum R",
@@ -870,8 +870,7 @@
   },
   "${ModID}:BlackSwan": {
     "NAME": "Black Swan",
-    "DESCRIPTION": "Apply !M! ruina:Erosion. NL If you applied a debuff this turn, this card costs 0.",
-    "UPGRADE_DESCRIPTION": "Apply !M! ruina:Erosion. NL If you applied a debuff this turn, this card costs 0. NL Shuffle this card back into your draw pile."
+    "DESCRIPTION": "Apply !M! ruina:Erosion. NL If you applied a debuff this turn, this card costs 0."
   },
   "${ModID}:Gift": {
     "NAME": "Gift",

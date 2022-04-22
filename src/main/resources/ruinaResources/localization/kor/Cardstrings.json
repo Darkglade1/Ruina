@@ -870,8 +870,7 @@
   },
   "ruina:BlackSwan": {
     "NAME": "흑조",
-    "DESCRIPTION": "ruina:부식 을 !M! 부여합니다. NL 이번 턴에 적에게 해로운 효과를 부여했다면, 이 카드의 비용이 0이 됩니다.",
-    "UPGRADE_DESCRIPTION": "ruina:부식 을 !M! 부여합니다. NL 이번 턴에 적에게 해로운 효과를 부여했다면, 이 카드의 비용이 0이 됩니다. NL 이 카드를 뽑을 카드 더미에 섞어넣습니다."
+    "DESCRIPTION": "ruina:부식 을 !M! 부여합니다. NL 이번 턴에 적에게 해로운 효과를 부여했다면, 이 카드의 비용이 0이 됩니다."
   },
   "ruina:Gift": {
     "NAME": "선물",
