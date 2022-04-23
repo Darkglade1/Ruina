@@ -9,7 +9,7 @@
   },
   "ruina:FalseThrone": {
     "NAME": "偽りの王座",
-    "DESCRIPTION": "次のターン、呪いや状態異常でない 廃棄 されたカードを手札に加え、このカードをデッキから 削除 。 NL それらのカードは エセリアル を持つ。"
+    "DESCRIPTION": "次のターン、呪いや状態異常以外で 廃棄 された全てのカードを エセリアル を付与して手札に加える。 NL 今回の戦闘中このカードを 削除 。"
   },
   "ruina:Smile": {
     "NAME": "笑い",
@@ -26,7 +26,7 @@
   "ruina:FadedMemories": {
     "NAME": "色あせた記憶",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": ["戦闘中の敵一体ごとにカードを !M! 枚引く。", "カードを !ruina:SecondMagic! 枚引く。 NL 廃棄 される。"]
+    "EXTENDED_DESCRIPTION": ["戦闘中の敵一体毎にカードを !M! 枚引く。", "カードを !ruina:SecondMagic! 枚引いて 廃棄 。"]
   },
   "ruina:LoveAndHate": {
     "NAME": "愛と憎悪の名のもとに",
@@ -199,7 +199,7 @@
     "DESCRIPTION": "!D! ダメージを与える。 NL 筋力 !M! を失わせる。"
   },
   "ruina:CHRBOSS_TempestuousDanza": {
-    "NAME": "乱舞",
+    "NAME": "最後の旋律",
     "DESCRIPTION": "全ての敵に !D! ダメージを !M! 回与える。"
   },
   "ruina:CHRALLY_Crystal": {
@@ -476,7 +476,7 @@
   },
   "ruina:Will": {
     "NAME": "都市の意志",
-    "DESCRIPTION": "全ての味方に !B! ブロック を得る。 NL 次のターンカードを !M! 枚引く。"
+    "DESCRIPTION": "全ての味方は !B! ブロック を得る。 NL 次のターンカードを !M! 枚引く。"
   },
   "ruina:FervidEmotions": {
     "NAME": "燃え上がる感情",
@@ -488,7 +488,7 @@
   },
   "ruina:Coordinated": {
     "NAME": "挟撃",
-    "DESCRIPTION": "すべての味方は筋力 !M! と !B! ブロック を得る。 次のターン、あなたはカードを NL !ruina:SecondMagic! 枚引く。"
+    "DESCRIPTION": "味方は筋力 !M! と !B! ブロック を得る。 次のターン、あなたはカードを NL !ruina:SecondMagic! 枚引く。"
   },
   "ruina:RagingStorm": {
     "NAME": "押し寄せる-愛",
@@ -757,7 +757,7 @@
   },
   "ruina:SerumW": {
     "NAME": "血清W",
-    "DESCRIPTION": "!D! ダメージを与える。 NL このクリーチャー の筋力が !M! 以上の時、相手を即死させる"
+    "DESCRIPTION": "!D! ダメージを与える。 NL この敵 の 筋力 が !M! 以上の時、相手を即死させる"
   },
   "ruina:SerumR": {
     "NAME": "血清R",
@@ -794,7 +794,7 @@
   "ruina:Marionette": {
     "NAME": "操り人形",
     "DESCRIPTION": "!D! ダメージを与えて、カードを !M! 枚引く。この戦闘中このカードのコストが NL !ruina:SecondMagic! 増える。",
-    "UPGRADE_DESCRIPTION": "!D! ダメージを与えて、カードを !M! 枚引く。この戦闘中、このカードのコストとドローは NL !ruina:SecondMagic! 増加します。"
+    "UPGRADE_DESCRIPTION": "!D! ダメージを与えて、カードを !M! 枚引く。この戦闘中、このカードのコストとドローが !ruina:SecondMagic! 増える。"
   },
   "ruina:WristCutter": {
     "NAME": "リストカッター",
@@ -852,12 +852,12 @@
   },
   "ruina:TodaysExpression": {
     "NAME": "今日の表情",
-    "DESCRIPTION": "以下から一つ選ぶ。",
+    "DESCRIPTION": "一つ選ぶ。",
     "EXTENDED_DESCRIPTION": [" !B! ブロック 得る。", "次のターン !B! ブロック 得る。"]
   },
   "ruina:SanguineDesire": {
     "NAME": "血色の欲望",
-    "DESCRIPTION": "!D! ダメージを与える。 NL ブロックされていないダメージの半分に等しい ruina:出血 を適用します。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL ブロックされていないダメージの半分に等しい ruina:出血 を与える。"
   },
   "ruina:RedEyes": {
     "NAME": "赤眼",
@@ -892,7 +892,7 @@
   },
   "ruina:OurGalaxy": {
     "NAME": "僕らの銀河",
-    "DESCRIPTION": " !B! ブロック 得る。 NL 再生 !M! を得る。 NL ruina:発現 によって [E] を支払う度、 人の作りし物 !M! を与える。"
+    "DESCRIPTION": " !B! ブロック 得る。 NL 再生 !M! を得る。 NL ruina:発現 によって [E] を支払う度、 アーティファクト を得る。"
   },
   "ruina:Pleasure": {
     "NAME": "快楽",
@@ -912,7 +912,7 @@
   },
   "ruina:Forgotten": {
     "NAME": "忘却",
-    "DESCRIPTION": "!B! ブロック 得る。 NL !D! ダメージを与える。 NL 敵がアタックを予定 NL している場合、 弱体 と 脱力 NL !M! を与える。"
+    "DESCRIPTION": "!B! ブロック を得る。 NL !D! ダメージを与える。 NL 敵が攻撃予定なら、 弱体 と 脱力 !M! を与える。"
   },
   "ruina:GreenStem": {
     "NAME": "緑の枝",
@@ -920,8 +920,8 @@
   },
   "ruina:MagicBullet": {
     "NAME": "魔弾",
-    "DESCRIPTION": "このターン、敵は攻撃から2倍のダメージを受ける。",
-    "UPGRADE_DESCRIPTION": "このターン、敵は攻撃から2倍のダメージを受ける。 NL 筋力 !M! を得る。 NL このターン終了時に NL 筋力 !M! を失う。"
+    "DESCRIPTION": "このターン、敵はアタックから2倍のダメージを受ける。",
+    "UPGRADE_DESCRIPTION": "このターン、敵はアタックから2倍のダメージを受ける。 NL このターン 筋力 !M! を得る。"
   },
   "ruina:FourthMatchFlame": {
     "NAME": "4本目のマッチの火",
