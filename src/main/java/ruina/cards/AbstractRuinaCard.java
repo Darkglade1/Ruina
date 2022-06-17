@@ -127,7 +127,7 @@ public abstract class AbstractRuinaCard extends CustomCard {
         upgradedSecondDamage = true;
     }
 
-    protected void uDesc() {
+    public void uDesc() {
         rawDescription = cardStrings.UPGRADE_DESCRIPTION;
         initializeDescription();
     }

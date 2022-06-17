@@ -394,20 +394,20 @@ public class Tanya extends AbstractCardMonster
 
     @Override
     public void damage(DamageInfo info) {
-        int previousHealth = currentHealth;
+ //       int previousHealth = currentHealth;
         super.damage(info);
-        int nextHealth = currentHealth;
-        int difference = previousHealth - nextHealth;
-        if (difference > 0) {
-            AbstractPower relentless = gebura.getPower(Gebura.R_POWER_ID);
-            if (relentless != null) {
-                relentless.amount -= difference;
-                if (relentless.amount < 0) {
-                    relentless.amount = 0;
-                }
-                relentless.updateDescription();
-            }
-        }
+ //       int nextHealth = currentHealth;
+//        int difference = previousHealth - nextHealth;
+//        if (difference > 0) {
+//            AbstractPower relentless = gebura.getPower(Gebura.R_POWER_ID);
+//            if (relentless != null) {
+//                relentless.amount -= difference;
+//                if (relentless.amount < 0) {
+//                    relentless.amount = 0;
+//                }
+//                relentless.updateDescription();
+//            }
+//        }
         if (this.currentHealth <= 0 && !this.halfDead) {
             this.halfDead = true;
             Iterator var2 = this.powers.iterator();

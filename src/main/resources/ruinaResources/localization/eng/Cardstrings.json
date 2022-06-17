@@ -946,5 +946,22 @@
   "${ModID}:GrindingGears": {
     "NAME": "Grinding Gears",
     "DESCRIPTION": "Take !M! damage. NL Remove !ruina:SecondMagic! card from the *Singing *Machine and add it to your hand. NL *Stun the *Singing *Machine for 1 turn."
+  },
+  "${ModID}:ClawKali_FocusSpirit": {
+    "NAME": "Focus Spirit",
+    "DESCRIPTION": "Gain !B! Block. NL If this creature still has Block the next time it takes a turn, it gains !M! Strength."
+  },
+  "${ModID}:ClawKali_GreaterSplitHorizontal": {
+    "NAME": "Greater Split: Horizontal",
+    "DESCRIPTION": "Deal !D! damage. NL Apply ruina:Bleed equal to unblocked damage dealt."
+  },
+  "${ModID}:ClawKali_LevelSlash": {
+    "NAME": "Level Slash",
+    "DESCRIPTION": "Deal !D! damage twice. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gain !M! Strength."
+  },
+  "${ModID}:ClawKali_UpstandingSlash": {
+    "NAME": "Upstanding Slash",
+    "DESCRIPTION": "Deal !D! damage twice. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Frail.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage twice. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Vulnerable."
   }
 }

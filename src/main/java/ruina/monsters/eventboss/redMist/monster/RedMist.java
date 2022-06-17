@@ -44,12 +44,12 @@ public class RedMist extends AbstractDeckMonster
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    private static final byte FOCUS_SPIRIT = 0;
-    private static final byte UPSTANDING_SLASH = 1;
-    private static final byte LEVEL_SLASH = 2;
-    private static final byte SPEAR = 3;
-    private static final byte GSV = 4;
-    private static final byte GSH = 5;
+    protected static final byte FOCUS_SPIRIT = 0;
+    protected static final byte UPSTANDING_SLASH = 1;
+    protected static final byte LEVEL_SLASH = 2;
+    protected static final byte SPEAR = 3;
+    protected static final byte GSV = 4;
+    protected static final byte GSH = 5;
 
     public final int focusSpiritBlock = calcAscensionTankiness(12);
     public final int focusSpiritStr = calcAscensionSpecial(1);
@@ -65,12 +65,12 @@ public class RedMist extends AbstractDeckMonster
     public final int greaterSplitVerticalDamage = calcAscensionDamage(30);
     public final int greaterSplitHorizontalDamage = calcAscensionDamage(40);
 
-    private static final int KALI_PHASE = 1;
-    private static final int EGO_PHASE = 2;
-    private int phase = KALI_PHASE;
+    protected static final int KALI_PHASE = 1;
+    protected static final int EGO_PHASE = 2;
+    protected int phase = KALI_PHASE;
 
-    private boolean EGO = false;
-    private boolean EGORECENTTRIGGER = false;
+    protected boolean EGO = false;
+    protected boolean EGORECENTTRIGGER = false;
     private final int baseExtraActions = 1;
     private final int egoExtraActions = 1;
     private int levelSlashExtraActions = 0;
@@ -255,31 +255,31 @@ public class RedMist extends AbstractDeckMonster
         }
     }
 
-    private void upstandingAnimation(AbstractCreature enemy) {
+    protected void upstandingAnimation(AbstractCreature enemy) {
         animationAction("Upstanding" + phase, "RedMistVert" + phase, enemy, this);
     }
 
-    private void spearAnimation(AbstractCreature enemy) {
+    protected void spearAnimation(AbstractCreature enemy) {
         animationAction("Spear" + phase, "RedMistStab" + phase, enemy, this);
     }
 
-    private void levelAnimation(AbstractCreature enemy) {
+    protected void levelAnimation(AbstractCreature enemy) {
         animationAction("Level" + phase, "RedMistHori" + phase, enemy, this);
     }
 
-    private void verticalUpAnimation(AbstractCreature enemy) {
+    protected void verticalUpAnimation(AbstractCreature enemy) {
         animationAction("VerticalUp" + phase, "RedMistVertHit", enemy, this);
     }
 
-    private void verticalDownAnimation(AbstractCreature enemy) {
+    protected void verticalDownAnimation(AbstractCreature enemy) {
         animationAction("VerticalDown" + phase, "RedMistVertFin", enemy, this);
     }
 
-    private void horizontalAnimation(AbstractCreature enemy) {
+    protected void horizontalAnimation(AbstractCreature enemy) {
         animationAction("Horizontal", "RedMistHoriFin", enemy, this);
     }
 
-    private void blockAnimation() {
+    protected void blockAnimation() {
         animationAction("Block" + phase, null, this);
     }
 

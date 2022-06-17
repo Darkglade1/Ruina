@@ -316,7 +316,7 @@
   },
   "${ModID}:Relentless": {
     "NAME": "Relentless",
-    "DESCRIPTIONS": ["At end of round, if the #renemy did not lose at least #b", " HP this turn, this creature loses half its #yStrength."]
+    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play a card."]
   },
   "${ModID}:BloodRed": {
     "NAME": "Blood Red Night",
