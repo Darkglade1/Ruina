@@ -963,5 +963,9 @@
     "NAME": "Upstanding Slash",
     "DESCRIPTION": "Deal !D! damage twice. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Frail.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage twice. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Vulnerable."
+  },
+  "${ModID}:PlayerSerumR": {
+    "NAME": "Serum R",
+    "DESCRIPTION": "Deal !D! damage twice. NL Gain !B! Block."
   }
 }

@@ -1,6 +1,7 @@
 package ruina.monsters.eventboss.clawVsKali;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -12,14 +13,20 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import ruina.RuinaMod;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
+import ruina.monsters.eventboss.clawVsKali.clawCards.PlayerSerumR;
 import ruina.monsters.eventboss.redMist.cards.CHRBOSS_Spear;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
+import ruina.monsters.theHead.Baral;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 import ruina.powers.NextTurnPowerPower;
+import ruina.powers.PlayerClaw;
 import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
@@ -48,6 +55,15 @@ public class ClawKali extends RedMist {
     private final ArrayList<Byte> movepool = new ArrayList<>();
     private byte previewIntent = -1;
 
+    private Baral claw;
+
+    public int playerMaxHp;
+    public int playerCurrentHp;
+    public ArrayList<AbstractRelic> playerRelics = new ArrayList<>();
+    public ArrayList<AbstractPotion> playerPotions = new ArrayList<>();
+    public int playerEnergy;
+    public int playerCardDraw;
+
     public static final String POWER_ID = makeID("Relentless");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
@@ -61,7 +77,7 @@ public class ClawKali extends RedMist {
         super(x, y);
 
         this.setHp(calcAscensionTankiness(300));
-
+        numAdditionalMoves = 1;
         moves.clear();
 
         addMove(FOCUS_SPIRIT, Intent.DEFEND_BUFF);
@@ -80,7 +96,10 @@ public class ClawKali extends RedMist {
         cardList.add(card);
         cardList.add(new ClawKali_LevelSlash(this));
         cardList.add(new CHRBOSS_Spear());
+        cardList.add(new CHRBOSS_Spear()); //filler card so the indices work out
         cardList.add(new ClawKali_GreaterSplitHorizontal(this));
+
+        populateMovepool();
     }
 
     @Override
@@ -91,6 +110,63 @@ public class ClawKali extends RedMist {
 
     @Override
     public void usePreBattleAction() {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        adp().powers.clear();
+                        applyToTargetTop(adp(), adp(), new PlayerClaw(adp()));
+                        this.isDone = true;
+                    }
+                });
+                this.isDone = true;
+            }
+        });
+
+        claw = new Baral(-1100.0F, 0.0f);
+        claw.drawX = AbstractDungeon.player.drawX;
+        claw.setFlipAnimation(true, this);
+
+        playerMaxHp = adp().maxHealth;
+        playerCurrentHp = adp().currentHealth;
+        adp().maxHealth = 100;
+        adp().currentHealth = adp().maxHealth;
+        adp().healthBarUpdatedEvent();
+        playerRelics.addAll(adp().relics);
+        adp().relics.clear();
+        playerPotions.addAll(adp().potions);
+        adp().potions.clear();
+        playerEnergy = adp().energy.energy;
+        playerCardDraw = adp().gameHandSize;
+        adp().energy.energy = 5;
+        EnergyPanel.totalCount = 5 - playerEnergy; //that way when the initial energy is added it adds up to 5
+        adp().gameHandSize = 5;
+
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                AbstractDungeon.player.drawPile.group.clear();
+                AbstractDungeon.player.discardPile.group.clear();
+                AbstractDungeon.player.exhaustPile.group.clear();
+                AbstractDungeon.player.hand.group.clear();
+                this.isDone = true;
+            }
+        });
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                AbstractDungeon.player.drawPile.group.add(new PlayerSerumR(claw));
+                AbstractDungeon.player.drawPile.group.add(new PlayerSerumR(claw));
+                AbstractDungeon.player.drawPile.group.add(new PlayerSerumR(claw));
+                AbstractDungeon.player.drawPile.group.add(new PlayerSerumR(claw));
+                AbstractDungeon.player.drawPile.group.add(new PlayerSerumR(claw));
+                AbstractDungeon.player.drawPile.shuffle();
+                this.isDone = true;
+            }
+        });
+
         playSound("RedMistChange");
         phase = EGO_PHASE;
         runAnim("Idle" + phase);
@@ -101,7 +177,7 @@ public class ClawKali extends RedMist {
             public void onAfterUseCard(AbstractCard card, UseCardAction action) {
                 this.amount++;
                 if (this.amount >= 1) {
-                    flash();
+                    flashWithoutSound();
                     this.amount = 0;
                     if (!owner.hasPower(StunMonsterPower.POWER_ID)) {
                         takeTurn();
@@ -251,6 +327,10 @@ public class ClawKali extends RedMist {
             @Override
             public void update() {
                 createIntent();
+                System.out.println(enemyCard);
+                for (AdditionalIntent intent : additionalIntents) {
+                    System.out.println(intent.enemyCard);
+                }
                 this.isDone = true;
             }
         });
@@ -260,7 +340,7 @@ public class ClawKali extends RedMist {
     protected void getMove(final int num) {
         boolean rollAgain = false;
         if (previewIntent >= 0) {
-            setMoveShortcut(previewIntent, MOVES[previewIntent], cardList.get(previewIntent));
+            setMoveShortcut(previewIntent, MOVES[previewIntent], cardList.get(previewIntent).makeStatEquivalentCopy());
         } else {
             rollAgain = true;
         }
@@ -269,7 +349,7 @@ public class ClawKali extends RedMist {
         } else {
             previewIntent = movepool.remove(0);
         }
-        setAdditionalMoveShortcut(previewIntent, moveHistory, cardList.get(previewIntent));
+        setAdditionalMoveShortcut(previewIntent, moveHistory, cardList.get(previewIntent).makeStatEquivalentCopy());
         for (AdditionalIntent additionalIntent : additionalIntents) {
             additionalIntent.transparent = true;
             additionalIntent.usePrimaryIntentsColor = false;
@@ -280,6 +360,11 @@ public class ClawKali extends RedMist {
         }
     }
 
+    @Override
+    public void getAdditionalMoves(int num, int whichMove) {
+    }
+
+
     private void populateMovepool() {
         movepool.add(FOCUS_SPIRIT);
         movepool.add(UPSTANDING_SLASH);
@@ -287,6 +372,14 @@ public class ClawKali extends RedMist {
         movepool.add(SPEAR);
         movepool.add(GSH);
         Collections.shuffle(movepool, AbstractDungeon.monsterRng.random);
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if (claw != null) {
+            claw.render(sb);
+        }
     }
 
 }

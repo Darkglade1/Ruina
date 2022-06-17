@@ -403,30 +403,61 @@ public class Baral extends AbstractCardMonster
         }
     }
 
-    private void bluntAnimation(AbstractCreature enemy) {
+    public void bluntAnimation(AbstractCreature enemy) {
         animationAction("Blunt", "ClawUp", enemy, this);
     }
 
-    private void pierceAnimation(AbstractCreature enemy) {
+    public void pierceAnimation(AbstractCreature enemy) {
         animationAction("Pierce", "ClawStab", enemy, this);
     }
 
-    private void slashAnimation(AbstractCreature enemy) {
+    public void slashAnimation(AbstractCreature enemy) {
         animationAction("Slash", "ClawDown", enemy, this);
     }
 
-    private void buffAnimation() {
+    public void buffAnimation() {
         animationAction("Heal", "ClawInjection", this);
     }
 
-    private void moveAnimation() {
+    public void moveAnimation() {
         animationAction("Move", "ClawUltiMove", this);
     }
 
-    private void serumWAnimation(AbstractCreature enemy) {
+    public void serumWAnimation(AbstractCreature enemy) {
         animationAction("Slash", "ClawFin", enemy, this);
     }
 
+    public void serumR1(AbstractCreature enemy) {
+        animationAction("SerumR1", "ClawRedReady", enemy, this);
+    }
+
+    public void serumR2(AbstractCreature enemy) {
+        animationAction("SerumR2", "ClawRedEnd", enemy, this);
+    }
+
+    public void moveSpriteAnimation(float x, AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (enemy == null || !enemy.isDeadOrEscaped()) {
+                    drawX = x;
+                }
+                this.isDone = true;
+            }
+        });
+    }
+
+    public void setFlipAnimation(boolean flipHorizontal, AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (enemy == null || !enemy.isDeadOrEscaped()) {
+                    animation.setFlip(flipHorizontal, false);
+                }
+                this.isDone = true;
+            }
+        });
+    }
 
     @Override
     public void takeTurn() {

@@ -92,6 +92,7 @@ import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
+import ruina.monsters.eventboss.clawVsKali.ClawKali;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
@@ -544,8 +545,12 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("ClawDown"), makeSFXPath("Claw_DownAtk.wav"));
         BaseMod.addAudio(makeID("ClawInjection"), makeSFXPath("Claw_Injection.wav"));
         BaseMod.addAudio(makeID("ClawStab"), makeSFXPath("Claw_Stab.wav"));
+        BaseMod.addAudio(makeID("ClawStabBlood"), makeSFXPath("Claw_Stab_Blood.wav"));
         BaseMod.addAudio(makeID("ClawUltiEnd"), makeSFXPath("Claw_Ulti_End.wav"));
         BaseMod.addAudio(makeID("ClawUltiMove"), makeSFXPath("Claw_Ulti_Move.wav"));
+        BaseMod.addAudio(makeID("ClawRedReady"), makeSFXPath("Claw_Red_Ready.wav"));
+        BaseMod.addAudio(makeID("ClawRedEnd"), makeSFXPath("Claw_Red_End.wav"));
+        BaseMod.addAudio(makeID("ClawTeleport"), makeSFXPath("Claw_Teleport.wav"));
 
         BaseMod.addAudio(makeID("ZenaBoldLine"), makeSFXPath("Abiter_BoldLine.wav"));
         BaseMod.addAudio(makeID("ZenaNormalLine"), makeSFXPath("Abiter_NormalLine.wav"));
@@ -921,6 +926,7 @@ public class RuinaMod implements
 
         BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
         BaseMod.addMonster(yanDistortion.ID, (BaseMod.GetMonster) yanDistortion::new);
+        BaseMod.addMonster(ClawKali.ID, (BaseMod.GetMonster) ClawKali::new);
 
 
         BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);

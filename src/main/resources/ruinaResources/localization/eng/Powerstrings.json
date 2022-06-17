@@ -610,5 +610,9 @@
   "${ModID}:MagicBullet": {
     "NAME": "Magic Bullet",
     "DESCRIPTIONS": ["Receives #b", "% more damage from #yAttacks this turn."]
+  },
+  "${ModID}:PlayerClaw": {
+    "NAME": "A Claw Enforcer",
+    "DESCRIPTIONS": ["Whenever you play a card, gain", " and draw #b", " card."]
   }
 }
