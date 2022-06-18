@@ -4,6 +4,8 @@ import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -24,10 +26,7 @@ import ruina.monsters.eventboss.clawVsKali.clawCards.PlayerSerumR;
 import ruina.monsters.eventboss.redMist.cards.CHRBOSS_Spear;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.theHead.Baral;
-import ruina.powers.AbstractLambdaPower;
-import ruina.powers.Bleed;
-import ruina.powers.NextTurnPowerPower;
-import ruina.powers.PlayerClaw;
+import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
@@ -67,6 +66,11 @@ public class ClawKali extends RedMist {
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
+    public static final String FOCUS_POWER_ID = makeID("FocusSpirit");
+    public static final PowerStrings focusPowerStrings = CardCrawlGame.languagePack.getPowerStrings(FOCUS_POWER_ID);
+    public static final String FOCUS_POWER_NAME = focusPowerStrings.NAME;
+    public static final String[] FOCUS_POWER_DESCRIPTIONS = focusPowerStrings.DESCRIPTIONS;
 
     public ClawKali() {
         this(0.0f, 0.0f);
@@ -198,6 +202,7 @@ public class ClawKali extends RedMist {
                 description = BlackSilence1.KILLING_POWER_DESCRIPTIONS[0];
             }
         });
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
     @Override
@@ -216,12 +221,28 @@ public class ClawKali extends RedMist {
             info.applyPowers(this, target);
         }
         final int[] threshold = {0};
+
+        boolean willGainStrength = false;
+        if (this.hasPower(FOCUS_POWER_ID) && this.currentBlock > 0) {
+            willGainStrength = true;
+        }
+        makePowerRemovable(this, FOCUS_POWER_ID);
+        atb(new RemoveSpecificPowerAction(this, this, FOCUS_POWER_ID));
+
+        if (AbstractDungeon.actionManager.turnHasEnded) {
+            atb(new RemoveAllBlockAction(this, this));
+        }
+
         switch (nextMove) {
             case FOCUS_SPIRIT: {
                 blockAnimation();
                 block(this, focusSpiritBlock);
-                applyToTarget(this, this, new NextTurnPowerPower(this, new StrengthPower(this, focusSpiritStr)));
-                applyToTarget(this, this, new NextTurnPowerPower(this, new LoseStrengthPower(this, focusSpiritStr)));
+                applyToTarget(this, this, new AbstractLambdaPower(FOCUS_POWER_NAME, FOCUS_POWER_ID, AbstractPower.PowerType.BUFF, false, this, focusSpiritStr) {
+                    @Override
+                    public void updateDescription() {
+                        description = FOCUS_POWER_DESCRIPTIONS[0] + amount + FOCUS_POWER_DESCRIPTIONS[1];
+                    }
+                });
                 resetIdle();
                 break;
             }
@@ -247,9 +268,9 @@ public class ClawKali extends RedMist {
                     public void update() {
                         if (threshold[0] >= info.output) {
                             if (AbstractDungeon.ascensionLevel >= 18) {
-                                applyToTargetTop(adp(), ClawKali.this, new VulnerablePower(adp(), UPSTANDING_SLASH_DEBUFF, false));
+                                applyToTargetTop(adp(), ClawKali.this, new VulnerablePower(adp(), UPSTANDING_SLASH_DEBUFF, AbstractDungeon.actionManager.turnHasEnded));
                             } else {
-                                applyToTargetTop(adp(), ClawKali.this, new FrailPower(adp(), UPSTANDING_SLASH_DEBUFF, false));
+                                applyToTargetTop(adp(), ClawKali.this, new FrailPower(adp(), UPSTANDING_SLASH_DEBUFF, AbstractDungeon.actionManager.turnHasEnded));
                             }
                         }
                         isDone = true;
@@ -322,6 +343,10 @@ public class ClawKali extends RedMist {
                 break;
             }
         }
+        if (willGainStrength) {
+            applyToTarget(this, this, new StrengthPower(this, focusSpiritStr));
+        }
+
         atb(new RollMoveAction(this));
         atb(new AbstractGameAction() {
             @Override

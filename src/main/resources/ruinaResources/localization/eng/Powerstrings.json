@@ -614,5 +614,9 @@
   "${ModID}:PlayerClaw": {
     "NAME": "A Claw Enforcer",
     "DESCRIPTIONS": ["Whenever you play a card, gain", " and draw #b", " card."]
+  },
+  "${ModID}:FocusSpirit": {
+    "NAME": "Focus Spirit",
+    "DESCRIPTIONS": ["If this creature still has #yBlock on its next turn, it gains #b", " #yStrength."]
   }
 }
