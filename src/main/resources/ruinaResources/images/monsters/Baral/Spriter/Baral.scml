@@ -9,6 +9,7 @@
         <file id="5" name="Special 4.png" width="389" height="223" pivot_x="0" pivot_y="1"/>
         <file id="6" name="Special 3.png" width="168" height="236" pivot_x="0" pivot_y="1"/>
         <file id="7" name="Special 5.png" width="285" height="305" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="Special 2.png" width="282" height="249" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="Baral">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -47,7 +48,19 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="3" name="Blunt" length="1000" interval="100">
+        <animation id="3" name="PierceFin" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special 2">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-203" y="250"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Blunt" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -59,7 +72,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="4" name="Heal" length="1000" interval="100">
+        <animation id="5" name="Heal" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -71,7 +84,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="5" name="Move" length="1000" interval="100">
+        <animation id="6" name="Move" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -83,7 +96,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="6" name="SerumR1" length="1000" interval="100">
+        <animation id="7" name="SerumR1" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -91,11 +104,11 @@
             </mainline>
             <timeline id="0" name="Special 3">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="-84" y="218"/>
+                    <object folder="0" file="6" x="-84" y="218" angle="0"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="7" name="SerumR2" length="1000" interval="100">
+        <animation id="8" name="SerumR2" length="1000" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -103,7 +116,7 @@
             </mainline>
             <timeline id="0" name="Special 5">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="-196" y="274"/>
+                    <object folder="0" file="7" x="-196" y="274" angle="0"/>
                 </key>
             </timeline>
         </animation>

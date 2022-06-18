@@ -14,7 +14,7 @@ import static ruina.RuinaMod.makeImagePath;
 public class ClawKali_GreaterSplitHorizontal extends AbstractRuinaCard {
     public final static String ID = makeID(ClawKali_GreaterSplitHorizontal.class.getSimpleName());
 
-    public ClawKali_GreaterSplitHorizontal(ClawKali parent) {
+    public ClawKali_GreaterSplitHorizontal() {
         super(ID, 6, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRBOSS_GreaterSplitHorizontal.class.getSimpleName() + ".png"));
     }
 

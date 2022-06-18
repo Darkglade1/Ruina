@@ -957,15 +957,23 @@
   },
   "${ModID}:ClawKali_LevelSlash": {
     "NAME": "Level Slash",
-    "DESCRIPTION": "Deal !D! damage twice. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gain !M! Strength."
+    "DESCRIPTION": "Deal !D! damage twice. NL If at least !D! unblocked damage was dealt, gain !M! Strength."
   },
   "${ModID}:ClawKali_UpstandingSlash": {
     "NAME": "Upstanding Slash",
-    "DESCRIPTION": "Deal !D! damage twice. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Frail.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage twice. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! Vulnerable."
+    "DESCRIPTION": "Deal !D! damage twice. NL If at least !D! unblocked damage was dealt, apply !M! Frail.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage twice. NL If at least !D! unblocked damage was dealt, apply !M! Vulnerable."
+  },
+  "${ModID}:ClawKali_Onrush": {
+    "NAME": "Onrush",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
   },
   "${ModID}:PlayerSerumR": {
     "NAME": "Serum R",
     "DESCRIPTION": "Deal !D! damage twice. NL Gain !B! Block."
+  },
+  "${ModID}:PlayerExtirpation": {
+    "NAME": "Extirpation",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
   }
 }

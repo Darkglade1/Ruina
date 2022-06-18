@@ -411,6 +411,10 @@ public class Baral extends AbstractCardMonster
         animationAction("Pierce", "ClawStab", enemy, this);
     }
 
+    public void pierceFinAnimation(AbstractCreature enemy) {
+        animationAction("PierceFin", "ClawStabBlood", enemy, this);
+    }
+
     public void slashAnimation(AbstractCreature enemy) {
         animationAction("Slash", "ClawDown", enemy, this);
     }
@@ -457,6 +461,10 @@ public class Baral extends AbstractCardMonster
                 this.isDone = true;
             }
         });
+    }
+
+    public void setFlipInstant(boolean flipHorizontal) {
+        animation.setFlip(flipHorizontal, false);
     }
 
     @Override

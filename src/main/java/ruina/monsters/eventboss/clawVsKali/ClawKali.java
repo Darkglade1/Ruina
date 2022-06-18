@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import ruina.RuinaMod;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
+import ruina.monsters.eventboss.clawVsKali.clawCards.PlayerExtirpation;
 import ruina.monsters.eventboss.clawVsKali.clawCards.PlayerSerumR;
 import ruina.monsters.eventboss.redMist.cards.CHRBOSS_Spear;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
@@ -45,9 +46,7 @@ public class ClawKali extends RedMist {
     public final int UPSTANDING_SLASH_DEBUFF = 1;
 
     public final int upstanding_damage = calcAscensionDamage(7);
-    public final int upstanding_threshold = upstanding_damage;
     public final int level_damage = calcAscensionDamage(6);
-    public final int level_threshold = level_damage;
     public final int level_strength = calcAscensionSpecial(2);
 
     public final int onrushBlock = calcAscensionTankiness(20);
@@ -97,7 +96,8 @@ public class ClawKali extends RedMist {
         cardList.add(new ClawKali_LevelSlash(this));
         cardList.add(new CHRBOSS_Spear());
         cardList.add(new CHRBOSS_Spear()); //filler card so the indices work out
-        cardList.add(new ClawKali_GreaterSplitHorizontal(this));
+        cardList.add(new ClawKali_GreaterSplitHorizontal());
+        cardList.add(new ClawKali_Onrush(this));
 
         populateMovepool();
     }
@@ -127,7 +127,7 @@ public class ClawKali extends RedMist {
 
         claw = new Baral(-1100.0F, 0.0f);
         claw.drawX = AbstractDungeon.player.drawX;
-        claw.setFlipAnimation(true, this);
+        claw.setFlipInstant(true);
 
         playerMaxHp = adp().maxHealth;
         playerCurrentHp = adp().currentHealth;
@@ -140,8 +140,8 @@ public class ClawKali extends RedMist {
         adp().potions.clear();
         playerEnergy = adp().energy.energy;
         playerCardDraw = adp().gameHandSize;
-        adp().energy.energy = 5;
-        EnergyPanel.totalCount = 5 - playerEnergy; //that way when the initial energy is added it adds up to 5
+        adp().energy.energy = 4;
+        EnergyPanel.totalCount = 4 - playerEnergy; //that way when the initial energy is added it adds up to 5
         adp().gameHandSize = 5;
 
         addToBot(new AbstractGameAction() {
@@ -160,8 +160,8 @@ public class ClawKali extends RedMist {
                 AbstractDungeon.player.drawPile.group.add(new PlayerSerumR(claw));
                 AbstractDungeon.player.drawPile.group.add(new PlayerSerumR(claw));
                 AbstractDungeon.player.drawPile.group.add(new PlayerSerumR(claw));
-                AbstractDungeon.player.drawPile.group.add(new PlayerSerumR(claw));
-                AbstractDungeon.player.drawPile.group.add(new PlayerSerumR(claw));
+                AbstractDungeon.player.drawPile.group.add(new PlayerExtirpation(claw));
+                AbstractDungeon.player.drawPile.group.add(new PlayerExtirpation(claw));
                 AbstractDungeon.player.drawPile.shuffle();
                 this.isDone = true;
             }
@@ -245,7 +245,7 @@ public class ClawKali extends RedMist {
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if (threshold[0] >= upstanding_threshold) {
+                        if (threshold[0] >= info.output) {
                             if (AbstractDungeon.ascensionLevel >= 18) {
                                 applyToTargetTop(adp(), ClawKali.this, new VulnerablePower(adp(), UPSTANDING_SLASH_DEBUFF, false));
                             } else {
@@ -278,7 +278,7 @@ public class ClawKali extends RedMist {
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if (threshold[0] >= level_threshold) {
+                        if (threshold[0] >= info.output) {
                             applyToTargetTop(ClawKali.this, ClawKali.this, new StrengthPower(ClawKali.this, level_strength));
                         }
                         isDone = true;
@@ -327,10 +327,6 @@ public class ClawKali extends RedMist {
             @Override
             public void update() {
                 createIntent();
-                System.out.println(enemyCard);
-                for (AdditionalIntent intent : additionalIntents) {
-                    System.out.println(intent.enemyCard);
-                }
                 this.isDone = true;
             }
         });
@@ -345,6 +341,7 @@ public class ClawKali extends RedMist {
             rollAgain = true;
         }
         if (movepool.isEmpty()) {
+            previewIntent = GSH;
             populateMovepool();
         } else {
             previewIntent = movepool.remove(0);
@@ -370,7 +367,7 @@ public class ClawKali extends RedMist {
         movepool.add(UPSTANDING_SLASH);
         movepool.add(LEVEL_SLASH);
         movepool.add(SPEAR);
-        movepool.add(GSH);
+        movepool.add(ONRUSH);
         Collections.shuffle(movepool, AbstractDungeon.monsterRng.random);
     }
 

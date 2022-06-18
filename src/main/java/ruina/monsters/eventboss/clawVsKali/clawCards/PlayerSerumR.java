@@ -23,7 +23,6 @@ public class PlayerSerumR extends AbstractRuinaCard {
         super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + SerumR.class.getSimpleName() + ".png"));
         damage = baseDamage = 22;
         block = baseBlock = 15;
-        magicNumber = baseMagicNumber = 2;
         this.parent = parent;
     }
 

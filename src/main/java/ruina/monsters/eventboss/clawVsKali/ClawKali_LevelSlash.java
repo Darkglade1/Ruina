@@ -1,6 +1,7 @@
 package ruina.monsters.eventboss.clawVsKali;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
@@ -14,11 +15,13 @@ import static ruina.RuinaMod.makeImagePath;
 public class ClawKali_LevelSlash extends AbstractRuinaCard {
     public final static String ID = makeID(ClawKali_LevelSlash.class.getSimpleName());
 
+    private ClawKali parent;
+
     public ClawKali_LevelSlash(ClawKali parent) {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRBOSS_LevelSlash.class.getSimpleName() + ".png"));
         damage = baseDamage = parent.level_damage;
         magicNumber = baseMagicNumber = parent.level_strength;
-        secondMagicNumber = baseSecondMagicNumber = parent.level_threshold;
+        this.parent = parent;
     }
 
     @Override
@@ -26,4 +29,9 @@ public class ClawKali_LevelSlash extends AbstractRuinaCard {
 
     @Override
     public void upp() { }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new ClawKali_LevelSlash(parent);
+    }
 }

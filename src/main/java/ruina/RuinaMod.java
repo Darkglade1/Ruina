@@ -867,6 +867,8 @@ public class RuinaMod implements
         briah.addBoss(Ozma.ID, (BaseMod.GetMonster) Ozma::new, makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
         briah.addBoss(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
 
+        BaseMod.addMonster(ClawKali.ID, (BaseMod.GetMonster) ClawKali::new);
+
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
         BaseMod.addEvent(ChurchOfGears.ID, ChurchOfGears.class, Briah.ID);
         BaseMod.addEvent(ZweiAssociation.ID, ZweiAssociation.class, Briah.ID);
@@ -926,7 +928,6 @@ public class RuinaMod implements
 
         BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
         BaseMod.addMonster(yanDistortion.ID, (BaseMod.GetMonster) yanDistortion::new);
-        BaseMod.addMonster(ClawKali.ID, (BaseMod.GetMonster) ClawKali::new);
 
 
         BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);
