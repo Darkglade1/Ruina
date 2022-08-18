@@ -20,11 +20,11 @@ public class PlayerAngela extends AbstractEasyPower {
     private static final Texture tex84 = TexLoader.getTexture(makePowerPath("BlackSilence84.png"));
     private static final Texture tex32 = TexLoader.getTexture(makePowerPath("BlackSilence32.png"));
 
-    public static final int THRESHOLD = 9;
+    public static final int DRAW = 1;
     public Roland parent;
 
     public PlayerAngela(AbstractCreature owner) {
-        super(NAME, POWER_ID, PowerType.BUFF, false, owner, 0);
+        super(NAME, POWER_ID, PowerType.BUFF, false, owner, -1);
         this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
     }
@@ -32,6 +32,6 @@ public class PlayerAngela extends AbstractEasyPower {
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0];
+        description = String.format(DESCRIPTIONS[0], DRAW);
     }
 }

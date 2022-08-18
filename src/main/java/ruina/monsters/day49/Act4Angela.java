@@ -101,8 +101,7 @@ public class Act4Angela extends AbstractDeckMonster
         PHASE2,
     }
     private State currentState = State.PHASE1;
-    private final int PHASE1HP = 1500;
-    private final int PHASE2HP = 2250;
+    private final int HP = 4000;
     private boolean recentlyPhaseTransitioned = false;
     private final int baseExtraActions = 1;
     private final int phase2ExtraActions = 1;
@@ -123,7 +122,7 @@ public class Act4Angela extends AbstractDeckMonster
         super(NAME, ID, 600, -15.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SnowQueen/Spriter/SnowQueen.scml"));
         this.type = EnemyType.BOSS;
-        this.setHp(PHASE1HP);
+        this.setHp(HP);
 
         maxAdditionalMoves = 4;
         for (int i = 0; i < maxAdditionalMoves; i++) {
@@ -155,9 +154,24 @@ public class Act4Angela extends AbstractDeckMonster
     @Override
     public void usePreBattleAction()
     {
-        atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
-        CustomDungeon.playTempMusicInstantly("Warning1");
+        atb(new FrostSplinterIceEffectAction(this));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                Act4Angela.this.runAnim("Idle");
+                setHp(HP);
+                halfDead = false;
+                healthBarRevivedEvent();
+                currentState = State.PHASE2;
+                CustomDungeon.playTempMusic("Warning2");
+                recentlyPhaseTransitioned = true;
+                calculateAllocatedMoves();
+                isDone = true;
+            }
+        });
+        atb(new RollMoveAction(this));
+        atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         att(new ApplyPowerAction(adp(), adp(), new PlayerAngela(adp())));
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
             @Override
@@ -355,7 +369,7 @@ public class Act4Angela extends AbstractDeckMonster
                     @Override
                     public void update() {
                         Act4Angela.this.runAnim("Idle");
-                        setHp(PHASE2HP);
+                        setHp(HP);
                         halfDead = false;
                         healthBarRevivedEvent();
                         currentState = State.PHASE2;

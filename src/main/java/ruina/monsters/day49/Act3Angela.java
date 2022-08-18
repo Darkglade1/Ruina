@@ -5,9 +5,7 @@ import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -53,6 +51,16 @@ public class Act3Angela extends AbstractCardMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public final int STRENGTH = 3;
 
+    public static final String ALT_POWER_ID = makeID("FibleFable");
+    public static final PowerStrings altpowerStrings = CardCrawlGame.languagePack.getPowerStrings(ALT_POWER_ID);
+    public static final String ALT_POWER_NAME = altpowerStrings.NAME;
+    public static final String[] ALT_POWER_DESCRIPTIONS = altpowerStrings.DESCRIPTIONS;
+
+    public static final String MAXHP_POWER_ID = makeID("BrokenStrings");
+    public static final PowerStrings maxHPpowerStrings = CardCrawlGame.languagePack.getPowerStrings(MAXHP_POWER_ID);
+    public static final String MAXHP_POWER_NAME = maxHPpowerStrings.NAME;
+    public static final String[] MAXHP_POWER_DESCRIPTIONS = maxHPpowerStrings.DESCRIPTIONS;
+
     private static final byte MARIONETTE = 0;
     public int marionetteDamage = 30;
     public final int marionetteBaseDamage = 30;
@@ -67,7 +75,7 @@ public class Act3Angela extends AbstractCardMonster
         super(NAME, ID, 600, -15.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SnowQueen/Spriter/SnowQueen.scml"));
         this.type = EnemyType.ELITE;
-        this.setHp(3000);
+        this.setHp(4000);
         addMove(MARIONETTE, Intent.ATTACK, marionetteDamage);
         firstMove = true;
     }
@@ -83,6 +91,18 @@ public class Act3Angela extends AbstractCardMonster
     {
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         Summon();
+        applyToTarget(this, this, new AbstractLambdaPower(ALT_POWER_NAME, ALT_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            @Override
+            public void atEndOfRound() {
+                this.flash();
+                atb(new HealAction(Act3Angela.this, Act3Angela.this, Act3Angela.this.maxHealth));
+            }
+
+            @Override
+            public void updateDescription() {
+                description = ALT_POWER_DESCRIPTIONS[0];
+            }
+        });
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
             @Override
             public void atEndOfRound() {
@@ -213,17 +233,39 @@ public class Act3Angela extends AbstractCardMonster
         float xPos_Farthest_L = -550.0F;
         float xPos_Short_L = -200F;
         AbstractMonster puppet1 = new Pinocchio(xPos_Farthest_L, 0.0f);
-        puppet1.maxHealth = 1000;
-        puppet1.currentHealth = 1000;
+        puppet1.maxHealth = 2000;
+        puppet1.currentHealth = 2000;
         atb(new SpawnMonsterAction(puppet1, true));
         atb(new UsePreBattleActionAction(puppet1));
+        applyToTarget(puppet1, puppet1, new AbstractLambdaPower(MAXHP_POWER_NAME, MAXHP_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            @Override
+            public void onDeath() {
+                this.flash();
+                Act3Angela.this.onMinionDeath(puppet1.maxHealth);
+            }
+            @Override
+            public void updateDescription() {
+                description = MAXHP_POWER_DESCRIPTIONS[0];
+            }
+        });
         puppet1.rollMove();
         puppet1.createIntent();
         AbstractMonster puppet2 = new Pinocchio(xPos_Short_L, 0.0f);
-        puppet2.maxHealth = 1000;
-        puppet2.currentHealth = 1000;
+        puppet2.maxHealth = 2000;
+        puppet2.currentHealth = 2000;
         atb(new SpawnMonsterAction(puppet2, true));
         atb(new UsePreBattleActionAction(puppet2));
+        applyToTarget(puppet2, puppet2, new AbstractLambdaPower(MAXHP_POWER_NAME, MAXHP_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
+            @Override
+            public void onDeath() {
+                this.flash();
+                Act3Angela.this.onMinionDeath(puppet2.maxHealth);
+            }
+            @Override
+            public void updateDescription() {
+                description = MAXHP_POWER_DESCRIPTIONS[0];
+            }
+        });
         puppet2.rollMove();
         puppet2.createIntent();
     }
@@ -252,5 +294,16 @@ public class Act3Angela extends AbstractCardMonster
         }
         AbstractGameEffect finalEffect = effect.build();
         atb(new VFXAction(finalEffect, chargeDuration));
+    }
+
+    public void onMinionDeath(int maxHP) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if(Act3Angela.this.maxHealth == maxHP){ att(new LoseHPAction(Act3Angela.this, Act3Angela.this, maxHP)); }
+                else { Act3Angela.this.increaseMaxHp(-maxHP, true); }
+                isDone = true;
+            }
+        });
     }
 }

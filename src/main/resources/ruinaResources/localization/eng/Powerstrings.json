@@ -616,7 +616,7 @@
     "DESCRIPTIONS": [
       "Cannot be stunned.",
       " NL After this creature's second turn, it gains #b5 intents.",
-      " NL This creature enters a second phase after it's HP reaches 0 for the first time."
+      " NL On death, #yUnthaw all #bFrozen cards and remove all #rCritically #rFrozen."
     ]
   },
   "${ModID}:SorrowAngela": {
@@ -631,12 +631,12 @@
     ]
   },
   "${ModID}:PlayerAngela": {
-    "NAME": "Director Of Her Role's Namesake",
-    "DESCRIPTIONS": ["???"]
+    "NAME": "Her Role's Namesake",
+    "DESCRIPTIONS": ["Gain [E] and draw #b%1$s extra card each turn. NL #yBlock is not removed at the start of your turn."]
   },
   "${ModID}:DeepFreezePower": {
     "NAME": "Critically Frozen",
-    "DESCRIPTIONS": ["#yFreeze #b%1$s card at the start of each turn. NL When this reaches #b%2$s the enemy will prepare to use an attack that will #rinstantly #rkill #rthe #target."]
+    "DESCRIPTIONS": ["When this reaches #b%1$s the enemy will prepare to use an attack that will #rinstantly #rkill #rthe #target."]
   },
   "${ModID}:Chill": {
     "NAME": "Chill",
@@ -645,5 +645,13 @@
   "${ModID}:Mirroring": {
     "NAME": "Mirroring",
     "DESCRIPTIONS": ["This creature's intent becomes equal to the last amount of damage it took, which resets at the start of each turn. NL At the end of its turn, gains #b", " #yStrength."]
+  },
+  "${ModID}:BrokenStrings": {
+    "NAME": "Broken Strings",
+    "DESCRIPTIONS": ["On death, #yMarionette loses max HP equal to this creature's max HP."]
+  },
+  "${ModID}:FibleFable": {
+    "NAME": "Joyous Fible-Fable",
+    "DESCRIPTIONS": ["Heals to max HP at the start of each turn."]
   }
 }
