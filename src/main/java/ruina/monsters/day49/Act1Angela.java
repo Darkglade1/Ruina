@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
@@ -22,6 +23,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.Day49InitialDialogueAction;
+import ruina.actions.FrostSplinterIceEffectAction;
 import ruina.actions.MakeTempCardInDiscardActionButItCanFizzle;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence4.ImageOfBygones;
@@ -29,9 +31,7 @@ import ruina.monsters.day49.angelaCards.bloodbath.*;
 import ruina.powers.*;
 import ruina.powers.SorrowAngela;
 import ruina.util.AdditionalIntent;
-import ruina.vfx.FlexibleStanceAuraEffect;
-import ruina.vfx.FlexibleWrathParticleEffect;
-import ruina.vfx.VFXActionButItCanFizzle;
+import ruina.vfx.*;
 
 import java.util.ArrayList;
 
@@ -129,8 +129,9 @@ public class Act1Angela extends AbstractCardMonster {
     public void usePreBattleAction() {
         atb(new Day49InitialDialogueAction(0, 29));
         currentState = State.OPENING;
-        atb(new ApplyPowerAction(this, this, new Scars(this, calcAscensionSpecial(50))));
+        atb(new VFXAction(new ThirstEffect()));
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
+        atb(new ApplyPowerAction(this, this, new Scars(this, calcAscensionSpecial(50))));
 
     }
 

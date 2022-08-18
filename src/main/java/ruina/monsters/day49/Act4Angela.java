@@ -320,7 +320,7 @@ public class Act4Angela extends AbstractDeckMonster
                 break;
             }
             case DEEP_FREEZE: {
-                atb(new FrostSplinterWeakIceEffectAction(this));
+                atb(new FrostSplinterIceEffectAction(this));
                 dmg(adp(), info);
                 atb(new AbstractGameAction() {
                     @Override
@@ -541,7 +541,7 @@ public class Act4Angela extends AbstractDeckMonster
             case FRIGID_GAZE: return new FrigidGaze(this);
             case BITTER_COLD: return new BitterCold(this);
             case FROST_SPLINTER: return new FrostSplinterAngela(this);
-            case SWORD_OF_FROST: return new CHRBOSS_Spear();
+            case SWORD_OF_FROST: return new SwordOfFrost(this);
             default: return new Madness();
         }
     }

@@ -991,7 +991,7 @@
     "DESCRIPTION": "Deal !D! damage !M! times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gains an extra intent for the next turn."
   },
   "${ModID}:SwordOfFrost": {
-    "NAME": "SwordOfFrost",
+    "NAME": "Sword Of Frost",
     "DESCRIPTION": "Deal !D! damage !M! times."
   },
   "${ModID}:Hailstorm": {

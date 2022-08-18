@@ -36,6 +36,9 @@ import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence1.cards.*;
 import ruina.powers.*;
 import ruina.util.AdditionalIntent;
+import ruina.vfx.BloodSplatter;
+import ruina.vfx.BurrowingHeavenEffect;
+import ruina.vfx.ThirstEffect;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -117,6 +120,7 @@ public class Act2Angela extends AbstractCardMonster {
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland1");
+        atb(new VFXAction(new ThirstEffect()));
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new Palpitation(this, palpitationBeatOfDeath)));
         atb(new ApplyPowerAction(this, this, new Pneumonia(this, pneumoniaCardLimit)));

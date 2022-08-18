@@ -89,6 +89,9 @@ public class Act3Angela extends AbstractCardMonster
     @Override
     public void usePreBattleAction()
     {
+        specialAnimation(this);
+        marionetteEffect();
+        resetIdle();
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         Summon();
         applyToTarget(this, this, new AbstractLambdaPower(ALT_POWER_NAME, ALT_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
@@ -250,6 +253,8 @@ public class Act3Angela extends AbstractCardMonster
         });
         puppet1.rollMove();
         puppet1.createIntent();
+        ((Pinocchio) puppet1).blockAnimation();
+        ((Pinocchio) puppet1).resetIdle();
         AbstractMonster puppet2 = new Pinocchio(xPos_Short_L, 0.0f);
         puppet2.maxHealth = 2000;
         puppet2.currentHealth = 2000;
@@ -268,6 +273,8 @@ public class Act3Angela extends AbstractCardMonster
         });
         puppet2.rollMove();
         puppet2.createIntent();
+        ((Pinocchio) puppet2).blockAnimation();
+        ((Pinocchio) puppet2).resetIdle();
     }
 
     private void marionetteEffect() {

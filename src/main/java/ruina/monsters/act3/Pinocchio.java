@@ -137,7 +137,7 @@ public class Pinocchio extends AbstractDeckMonster
         animationAction("Attack", "BluntBlow", enemy, this);
     }
 
-    private void blockAnimation() {
+    public void blockAnimation() {
         animationAction("Block", null, this);
     }
 
