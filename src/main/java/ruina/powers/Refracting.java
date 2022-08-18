@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
 import ruina.monsters.day49.Act1Angela;
+import ruina.monsters.day49.Act2Angela;
 import ruina.monsters.day49.Act4Angela;
 
 public class Refracting extends AbstractUnremovablePower {
@@ -16,12 +17,14 @@ public class Refracting extends AbstractUnremovablePower {
     public Refracting(AbstractCreature owner, int amount) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
         loadRegion("combust");
+        priority = 0;
     }
 
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0];
         if (owner instanceof Act1Angela) { description += DESCRIPTIONS[1]; }
-        else if (owner instanceof Act4Angela) { description += DESCRIPTIONS[2]; }
+        else if (owner instanceof Act2Angela) { description += DESCRIPTIONS[2]; }
+        else if (owner instanceof Act4Angela) { description += DESCRIPTIONS[3]; }
     }
 }

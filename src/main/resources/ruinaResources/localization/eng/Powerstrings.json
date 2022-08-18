@@ -616,6 +616,7 @@
     "DESCRIPTIONS": [
       "Cannot be stunned.",
       " NL After this creature's second turn, it gains #b5 intents.",
+      " NL This creature only acts on its #b1st intent. Its #b2nd intent is a preview of its next move.",
       " NL On death, #yUnthaw all #bFrozen cards and remove all #rCritically #rFrozen."
     ]
   },
@@ -653,5 +654,13 @@
   "${ModID}:FibleFable": {
     "NAME": "Joyous Fible-Fable",
     "DESCRIPTIONS": ["Heals to max HP at the start of each turn."]
+  },
+  "${ModID}:Palpitation": {
+    "NAME": "Palpitation",
+    "DESCRIPTIONS": ["Whenever you play a card, take #b%1$s damage. If this dealt unblocked damage, this creature gains #b%2$s #yStrength."]
+  },
+  "${ModID}:Pneumonia": {
+    "NAME": "Pneumonia",
+    "DESCRIPTIONS": ["Whenever you play #b%1$s cards, this creature gains #b%2$s #yPalpation."]
   }
 }

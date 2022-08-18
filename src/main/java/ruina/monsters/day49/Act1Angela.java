@@ -54,7 +54,7 @@ public class Act1Angela extends AbstractCardMonster {
     public int numbnessParalysis = 2;
 
     private static final byte SORROW = 2;
-    public int sorrowDamage = 14;
+    public int sorrowDamage = 13;
     public int sorrowScaling = 1;
 
     private static final byte LOATHING = 3;
@@ -62,14 +62,14 @@ public class Act1Angela extends AbstractCardMonster {
     public int loathingHPHeal = 15;
 
     private static final byte PALE_HANDS = 4;
-    public int paleHandsDamage = 5;
+    public int paleHandsDamage = 2;
     public int paleHandHits = 3;
 
     private static final byte SINKING = 5;
-    public int sinkingDamage = 65;
+    public int sinkingDamage = 60;
 
     private static final byte STAINS_OF_BLOOD = 6;
-    public int bloodDamage = 18;
+    public int bloodDamage = 17;
     public int bloodBleed = 3;
 
     private float particleTimer;

@@ -1319,7 +1319,19 @@
       "Sinking",
       "Stains Of Blood"
     ],
-    "NAME": "???",
+    "NAME": "Wrist Cutter",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:Act2Angela": {
+    "MOVES": [
+      "Inclination",
+      "Pulsation",
+      "Aspiration Pneumonia",
+      "Turbulent Beats"
+
+    ],
+    "NAME": "Aspiration",
     "DIALOG": [
     ]
   },
@@ -1327,7 +1339,7 @@
     "MOVES": [
       "Marionette"
     ],
-    "NAME": "???",
+    "NAME": "Marionette",
     "DIALOG": [
     ]
   },
@@ -1342,7 +1354,7 @@
       "Deep Freeze",
       "Absolute Zero"
     ],
-    "NAME": "???",
+    "NAME": "Frost Splinter",
     "DIALOG": [
     ]
   }

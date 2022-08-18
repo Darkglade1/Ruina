@@ -92,6 +92,7 @@ import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.day49.Act1Angela;
+import ruina.monsters.day49.Act2Angela;
 import ruina.monsters.day49.Act3Angela;
 import ruina.monsters.day49.Act4Angela;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
@@ -1009,6 +1010,7 @@ public class RuinaMod implements
 
         //Keter Realization
         BaseMod.addMonster(Act1Angela.ID, (BaseMod.GetMonster) Act1Angela::new);
+        BaseMod.addMonster(Act2Angela.ID, (BaseMod.GetMonster) Act2Angela::new);
         BaseMod.addMonster(Act3Angela.ID, (BaseMod.GetMonster) Act3Angela::new);
         BaseMod.addMonster(Act4Angela.ID, (BaseMod.GetMonster) Act4Angela::new);
 
