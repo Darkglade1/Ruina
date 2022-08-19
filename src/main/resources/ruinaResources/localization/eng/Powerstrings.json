@@ -662,5 +662,25 @@
   "${ModID}:Pneumonia": {
     "NAME": "Pneumonia",
     "DESCRIPTIONS": ["Whenever you play #b%1$s cards, this creature gains #b%2$s #yPalpation."]
+  },
+  "${ModID}:RighteousHammerPiercingNail": {
+    "NAME": "Righteous Hammer: Piercing Nail",
+    "DESCRIPTIONS": ["#rRight #rclick #rthis #rcreature #rto #rchange #rits #rweapon."]
+  },
+  "${ModID}:RighteousHammer": {
+    "NAME": "Righteous Hammer",
+    "DESCRIPTIONS": ["Whenever this creature #yattacks, it applies a #yblunt #yvulnerability which is applied at the start of next turn."]
+  },
+  "${ModID}:PiercingNail": {
+    "NAME": "Piercing Nail",
+    "DESCRIPTIONS": ["Whenever this creature #yattacks, it applies a #ypierce #yvulnerability which is applied at the start of next turn."]
+  },
+  "${ModID}:BluntVulnerability": {
+    "NAME": "Blunt Vulnerability",
+    "DESCRIPTIONS": ["Receives #b%1$s percent more damage from attacks from the hammer. NL Decreases by #b%2$s at the start of each turn."]
+  },
+  "${ModID}:PierceVulnerability": {
+    "NAME": "Pierce Vulnerability",
+    "DESCRIPTIONS": ["Receives #b%1$s percent more damage from attacks from the nail. NL Decreases by #b%2$s at the start of each turn."]
   }
 }

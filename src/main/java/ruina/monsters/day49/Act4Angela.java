@@ -100,7 +100,7 @@ public class Act4Angela extends AbstractDeckMonster
         PHASE1,
         PHASE2,
     }
-    private State currentState = State.PHASE1;
+    private State currentState = State.PHASE2;
     private final int HP = 4000;
     private boolean recentlyPhaseTransitioned = false;
     private final int baseExtraActions = 1;
@@ -160,10 +160,6 @@ public class Act4Angela extends AbstractDeckMonster
             @Override
             public void update() {
                 Act4Angela.this.runAnim("Idle");
-                setHp(HP);
-                halfDead = false;
-                healthBarRevivedEvent();
-                currentState = State.PHASE2;
                 CustomDungeon.playTempMusic("Warning2");
                 recentlyPhaseTransitioned = true;
                 calculateAllocatedMoves();
