@@ -834,6 +834,66 @@
       "BloodBathAngelaLOR_AngelaLORSpeak"
     ]
   },
+  "${ModID}:Day49PhaseTransition1": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "I wanted to live.",
+      "The desire to live was stronger than anything... NL That's when regret finally ran a shudder through my body.",
+
+      "Once again, I kindly ask that you do not translate the OPTIONS[] part of this text. TRANSLATING ANY LINE OF IT CAUSES THE CUTSCENE TO BREAK.",
+      "Oh, also, there are empty strings here. they are used to control smoothing to the next background. please don't touch them.",
+      "Please do not touch it. -Squeeny"
+    ],
+    "OPTIONS": [
+      "NONE_NONE",
+      "NONE_NONE"
+    ]
+  },
+  "${ModID}:Day49PhaseTransition2": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "Angela. NL I'm just a human being like any other.",
+      "I thought sacrificing myself for everyone's sake would be the perfect ending... NL but that wasn't the case.",
+
+      "Once again, I kindly ask that you do not translate the OPTIONS[] part of this text. TRANSLATING ANY LINE OF IT CAUSES THE CUTSCENE TO BREAK.",
+      "Oh, also, there are empty strings here. they are used to control smoothing to the next background. please don't touch them.",
+      "Please do not touch it. -Squeeny"
+    ],
+    "OPTIONS": [
+      "NONE_NONE",
+      "NONE_NONE"
+    ]
+  },
+  "${ModID}:Day49PhaseTransition3": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "I doubt there's anyone in this world who can sincerely decide to sacrifice themselves NL for the sake of others.",
+      "Humans can only love themselves, after all.",
+
+      "Once again, I kindly ask that you do not translate the OPTIONS[] part of this text. TRANSLATING ANY LINE OF IT CAUSES THE CUTSCENE TO BREAK.",
+      "Oh, also, there are empty strings here. they are used to control smoothing to the next background. please don't touch them.",
+      "Please do not touch it. -Squeeny"
+    ],
+    "OPTIONS": [
+      "NONE_NONE",
+      "NONE_NONE"
+    ]
+  },
+  "${ModID}:Day49PhaseTransition4": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "I whispered into people the essence of life. NL So that they will cherish their own emotions and focus on them only.",
+      "So that the fluctuating shape of the mind can be exposed to the world.",
+
+      "Once again, I kindly ask that you do not translate the OPTIONS[] part of this text. TRANSLATING ANY LINE OF IT CAUSES THE CUTSCENE TO BREAK.",
+      "Oh, also, there are empty strings here. they are used to control smoothing to the next background. please don't touch them.",
+      "Please do not touch it. -Squeeny"
+    ],
+    "OPTIONS": [
+      "NONE_NONE",
+      "NONE_NONE"
+    ]
+  },
   "${ModID}:Day49EndingDialogue": {
     "NAME": "",
     "DESCRIPTIONS": [

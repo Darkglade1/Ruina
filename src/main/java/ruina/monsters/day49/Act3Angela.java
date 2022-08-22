@@ -4,8 +4,10 @@ import basemod.ReflectionHacks;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.ClearCardQueueAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -18,6 +20,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
@@ -31,6 +34,7 @@ import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
+import java.util.ArrayList;
 import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.makeID;
@@ -65,6 +69,11 @@ public class Act3Angela extends AbstractCardMonster
     public int marionetteDamage = 30;
     public final int marionetteBaseDamage = 30;
 
+    private static final byte PHASE_TRANSITION = 1;
+
+    private static final int HP = 10000;
+    private static int timesHPHalved = 0;
+
     public static final String LINE = RuinaMod.makeMonsterPath("Day49/Marionette/Line.png");
     private static final Texture LINE_TEXTURE = new Texture(LINE);
 
@@ -74,9 +83,10 @@ public class Act3Angela extends AbstractCardMonster
     public Act3Angela(final float x, final float y) {
         super(NAME, ID, 600, -15.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SnowQueen/Spriter/SnowQueen.scml"));
-        this.type = EnemyType.ELITE;
-        this.setHp(4000);
+        this.type = EnemyType.BOSS;
+        this.setHp(HP);
         addMove(MARIONETTE, Intent.ATTACK, marionetteDamage);
+        addMove(PHASE_TRANSITION, Intent.UNKNOWN);
         firstMove = true;
     }
 
@@ -89,6 +99,7 @@ public class Act3Angela extends AbstractCardMonster
     @Override
     public void usePreBattleAction()
     {
+        (AbstractDungeon.getCurrRoom()).cannotLose = true;
         specialAnimation(this);
         marionetteEffect();
         resetIdle();
@@ -133,6 +144,29 @@ public class Act3Angela extends AbstractCardMonster
                 resetIdle();
                 break;
             }
+            case PHASE_TRANSITION:
+                CardCrawlGame.fadeIn(3f);
+                atb(new Day49PhaseTransition3Action(0, 1));
+                Act3Angela.this.gold = 0;
+                Act3Angela.this.currentHealth = 0;
+                Act3Angela.this.dieBypass();
+                AbstractDungeon.getMonsters().monsters.remove(this);
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        AbstractMonster m = new Act4Angela();
+                        att(new AbstractGameAction() {
+                            @Override
+                            public void update() {
+                                m.usePreBattleAction();
+                                isDone = true;
+                            }
+                        });
+                        att(new SpawnMonsterAction(m, false));
+                        isDone = true;
+                    }
+                });
+                break;
         }
     }
 
@@ -230,6 +264,40 @@ public class Act3Angela extends AbstractCardMonster
                 }
             });
         }
+        if (this.currentHealth <= 0 && !this.halfDead) {
+            cardsToRender.clear();
+            AbstractCardMonster.hoveredCard = null;
+            this.halfDead = true;
+            for (AbstractPower p : this.powers) {
+                p.onDeath();
+            }
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                r.onMonsterDeath(this);
+            }
+            att(new ClearCardQueueAction());
+            ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
+            for (AbstractPower power : this.powers) {
+                if (!(power instanceof Refracting)) {
+                    powersToRemove.add(power);
+                }
+            }
+            for (AbstractPower power : powersToRemove) {
+                this.powers.remove(power);
+            }
+
+            cardsToRender.clear();
+            setMove(PHASE_TRANSITION, Intent.UNKNOWN);
+            additionalIntents.clear();
+            additionalMoves.clear();
+            ArrayList<AbstractCard> cards = cardsToRender;
+            if (cards.size() > 1) {
+                cards.remove(cards.size() - 1);
+            }
+            createIntent();
+            for (AbstractMonster m : monsterList()) {
+                if (!m.isDying && m instanceof Pinocchio) { atb(new EscapeAction(m)); }
+            }
+        }
     }
 
     public void Summon() {
@@ -244,7 +312,13 @@ public class Act3Angela extends AbstractCardMonster
             @Override
             public void onDeath() {
                 this.flash();
-                Act3Angela.this.onMinionDeath(puppet1.maxHealth);
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        Act3Angela.this.onMinionDeath(Act3Angela.this.maxHealth / 2);
+                        isDone = true;
+                    }
+                });
             }
             @Override
             public void updateDescription() {
@@ -264,7 +338,13 @@ public class Act3Angela extends AbstractCardMonster
             @Override
             public void onDeath() {
                 this.flash();
-                Act3Angela.this.onMinionDeath(puppet2.maxHealth);
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        Act3Angela.this.onMinionDeath(Act3Angela.this.maxHealth / 2);
+                        isDone = true;
+                    }
+                });
             }
             @Override
             public void updateDescription() {
@@ -307,10 +387,57 @@ public class Act3Angela extends AbstractCardMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                if(Act3Angela.this.maxHealth == maxHP){ att(new LoseHPAction(Act3Angela.this, Act3Angela.this, maxHP)); }
-                else { Act3Angela.this.increaseMaxHp(-maxHP, true); }
+                if(timesHPHalved == 1){
+                    cardsToRender.clear();
+                    AbstractCardMonster.hoveredCard = null;
+                    Act3Angela.this.halfDead = true;
+                    Act3Angela.this.hideHealthBar();
+                    for (AbstractPower p : Act3Angela.this.powers) {
+                        p.onDeath();
+                    }
+                    for (AbstractRelic r : AbstractDungeon.player.relics) {
+                        r.onMonsterDeath(Act3Angela.this);
+                    }
+                    att(new ClearCardQueueAction());
+                    ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
+                    for (AbstractPower power : Act3Angela.this.powers) {
+                        if (!(power instanceof Refracting)) {
+                            powersToRemove.add(power);
+                        }
+                    }
+                    for (AbstractPower power : powersToRemove) {
+                        Act3Angela.this.powers.remove(power);
+                    }
+
+                    cardsToRender.clear();
+                    setMove(PHASE_TRANSITION, Intent.UNKNOWN);
+                    additionalIntents.clear();
+                    additionalMoves.clear();
+                    ArrayList<AbstractCard> cards = cardsToRender;
+                    if (cards.size() > 1) {
+                        cards.remove(cards.size() - 1);
+                    }
+                    createIntent();
+                    for (AbstractMonster m : monsterList()) {
+                        if (!m.isDying && m instanceof Pinocchio) { att(new EscapeAction(m)); }
+                    }
+                }
+                else {
+                    Act3Angela.this.increaseMaxHp(-maxHP, true);
+                    timesHPHalved += 1;
+                }
                 isDone = true;
             }
         });
+    }
+
+    public void die() {
+        if (!(AbstractDungeon.getCurrRoom()).cannotLose) {
+            super.die();
+        }
+    }
+
+    public void dieBypass() {
+        super.die(false);
     }
 }

@@ -44,10 +44,7 @@ import ruina.monsters.theHead.zenaCards.Line;
 import ruina.monsters.theHead.zenaCards.ThickLine;
 import ruina.monsters.theHead.zenaCards.ThinLine;
 import ruina.monsters.theHead.zenaCards.ZenaShockwave;
-import ruina.powers.AnArbiter;
-import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.PlayerBackAttack;
-import ruina.powers.PlayerBlackSilence;
+import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.CustomCeilingDust;
@@ -155,7 +152,7 @@ public class Zena extends AbstractCardMonster
         currentPhase = PHASE.PHASE2;
         numAdditionalMoves++;
         applyToTarget(this, this, new AnArbiter(this, POWER_DEBUFF));
-        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
+        applyToTarget(this, this, new DamageReductionInvincible(this, INVINCIBLE));
     }
 
     @Override

@@ -46,6 +46,7 @@ import ruina.monsters.theHead.baralCards.TriSerum;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.patches.RenderHandPatch;
 import ruina.powers.AClaw;
+import ruina.powers.DamageReductionInvincible;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.PlayerBlackSilence;
 import ruina.util.AdditionalIntent;
@@ -179,7 +180,7 @@ public class Baral extends AbstractCardMonster
         rollMove();
         createIntent();
         applyToTarget(this, this, new AClaw(this, POWER_THRESHOLD, POWER_DAMAGE_REDUCTION, POWER_STRENGTH));
-        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
+        applyToTarget(this, this, new DamageReductionInvincible(this, INVINCIBLE));
     }
 
     @Override

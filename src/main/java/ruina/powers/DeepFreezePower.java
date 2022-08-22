@@ -20,7 +20,6 @@ public class DeepFreezePower extends AbstractUnremovablePower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public static final int FREEZE_AMOUNT = 1;
     public static final int THRESHOLD = 5;
     private static final Texture tex84 = TexLoader.getTexture(makePowerPath("DeepFreeze84.png"));
     private static final Texture tex32 = TexLoader.getTexture(makePowerPath("DeepFreeze32.png"));
@@ -32,13 +31,7 @@ public class DeepFreezePower extends AbstractUnremovablePower {
     }
 
     @Override
-    public void atStartOfTurnPostDraw() {
-        flash();
-        atb(new FreezeCardInHandAction(owner, FREEZE_AMOUNT));
-    }
-
-    @Override
     public void updateDescription() {
-        description = String.format(DESCRIPTIONS[0], FREEZE_AMOUNT, THRESHOLD);
+        description = String.format(DESCRIPTIONS[0], THRESHOLD);
     }
 }

@@ -649,7 +649,7 @@
   },
   "${ModID}:BrokenStrings": {
     "NAME": "Broken Strings",
-    "DESCRIPTIONS": ["On death, #yMarionette loses max HP equal to this creature's max HP."]
+    "DESCRIPTIONS": ["When this creature dies, #yMarionette loses max HP equal to #yhalf of their max HP."]
   },
   "${ModID}:FibleFable": {
     "NAME": "Joyous Fible-Fable",
@@ -663,6 +663,17 @@
     "NAME": "Pneumonia",
     "DESCRIPTIONS": ["Whenever you play #b%1$s cards, this creature gains #b%2$s #yPalpation."]
   },
+
+  "${ModID}:DamageReductionInvincible": {
+    "NAME": "Invincible",
+    "DESCRIPTIONS": [
+      "Can only lose #b%1$s more HP this turn before incoming damage is reduced by #b",
+      "%",
+      "Incoming damage is reduced by #b",
+      "%"
+    ]
+  },
+
   "${ModID}:RighteousHammerPiercingNail": {
     "NAME": "Righteous Hammer: Piercing Nail",
     "DESCRIPTIONS": ["#rRight #rclick #rthis #rcreature #rto #rchange #rits #rweapon."]

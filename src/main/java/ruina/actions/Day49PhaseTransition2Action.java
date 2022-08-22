@@ -1,17 +1,17 @@
 package ruina.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import ruina.monsters.day49.dialogue.Day49InitialDialogue;
+import ruina.monsters.day49.dialogue.Day49PhaseTransition1;
+import ruina.monsters.day49.dialogue.Day49PhaseTransition2;
 
-public class Day49InitialDialogueAction extends AbstractGameAction {
+public class Day49PhaseTransition2Action extends AbstractGameAction {
     boolean started = false;
-    Day49InitialDialogue dialogue;
+    Day49PhaseTransition2 dialogue;
 
-    public Day49InitialDialogueAction(int start, int end) {
+    public Day49PhaseTransition2Action(int start, int end) {
         this.actionType = ActionType.SPECIAL;
-        dialogue = new Day49InitialDialogue(start, end);
+        dialogue = new Day49PhaseTransition2(start, end);
     }
 
     @Override

@@ -5,14 +5,14 @@ import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.ClearCardQueueAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
-import com.megacrit.cardcrawl.cards.colorless.SadisticNature;
 import com.megacrit.cardcrawl.cards.green.DaggerSpray;
 import com.megacrit.cardcrawl.cards.green.Terror;
 import com.megacrit.cardcrawl.cards.red.Bludgeon;
@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
 import com.megacrit.cardcrawl.vfx.combat.BloodShotEffect;
@@ -32,12 +33,11 @@ import com.megacrit.cardcrawl.vfx.combat.HeartMegaDebuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.ViceCrushEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
+import ruina.actions.Day49PhaseTransition1Action;
+import ruina.actions.Day49PhaseTransition2Action;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.blackSilence.blackSilence1.cards.*;
 import ruina.powers.*;
 import ruina.util.AdditionalIntent;
-import ruina.vfx.BloodSplatter;
-import ruina.vfx.BurrowingHeavenEffect;
 import ruina.vfx.ThirstEffect;
 
 import java.util.ArrayList;
@@ -59,9 +59,9 @@ public class Act2Angela extends AbstractCardMonster {
     private static final byte PULSATION = 1;
     private static final byte ASPIRATION_PNEUMONIA = 2;
     private static final byte TURBULENT_BEATS = 3;
+    private static final byte PHASE_TRANSITION = 4;
 
     public final int palpitationBeatOfDeath = 2;
-    public final int palpitationStrength = 1;
 
     public final int pneumoniaCardLimit = 5;
 
@@ -83,6 +83,7 @@ public class Act2Angela extends AbstractCardMonster {
     public final int turbulentBeatsDamage = 6;
     public final int turbulentBeatsHits = 15;
 
+    private static final int HP = 3500;
 
     private final ArrayList<Byte> movepool = new ArrayList<>();
     private byte previewIntent = -1;
@@ -100,13 +101,14 @@ public class Act2Angela extends AbstractCardMonster {
         super(NAME, ID, 1000, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence1/Spriter/BlackSilence1.scml"));
         animation.setFlip(true, false);
-        this.setHp(3500);
+        this.setHp(HP);
         this.type = EnemyType.BOSS;
         firstMove = true;
         addMove(INCLINATION, Intent.STRONG_DEBUFF);
         addMove(PULSATION, Intent.BUFF);
         addMove(ASPIRATION_PNEUMONIA, Intent.ATTACK, aspirationPneumoniaDamage);
         addMove(TURBULENT_BEATS, Intent.ATTACK, turbulentBeatsDamage, turbulentBeatsHits, true);
+        addMove(PHASE_TRANSITION, Intent.UNKNOWN);
         populateCards();
         populateMovepool();
     }
@@ -119,11 +121,19 @@ public class Act2Angela extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("Roland1");
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                CustomDungeon.playTempMusicInstantly("Roland1");
+                isDone = true;
+            }
+        });
+        (AbstractDungeon.getCurrRoom()).cannotLose = true;
         atb(new VFXAction(new ThirstEffect()));
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new Palpitation(this, palpitationBeatOfDeath)));
         atb(new ApplyPowerAction(this, this, new Pneumonia(this, pneumoniaCardLimit)));
+        atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 5)));
     }
 
     private boolean isPlayerTurn() {
@@ -225,6 +235,29 @@ public class Act2Angela extends AbstractCardMonster {
                 dmg(target, info, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
                 break;
             }
+            case PHASE_TRANSITION:
+                CardCrawlGame.fadeIn(3f);
+                atb(new Day49PhaseTransition2Action(0, 1));
+                Act2Angela.this.gold = 0;
+                Act2Angela.this.currentHealth = 0;
+                Act2Angela.this.dieBypass();
+                AbstractDungeon.getMonsters().monsters.remove(this);
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        AbstractMonster m = new Act3Angela();
+                        att(new AbstractGameAction() {
+                            @Override
+                            public void update() {
+                                m.usePreBattleAction();
+                                isDone = true;
+                            }
+                        });
+                        att(new SpawnMonsterAction(m, false));
+                        isDone = true;
+                    }
+                });
+                break;
         }
         atb(new RollMoveAction(this));
         atb(new AbstractGameAction() {
@@ -337,73 +370,48 @@ public class Act2Angela extends AbstractCardMonster {
         cardList.add(new DaggerSpray());
     }
 
-    private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack", "RolandAxe", enemy, this);
+    public void damage(DamageInfo info) {
+        super.damage(info);
+        if (this.currentHealth <= 0 && !this.halfDead) {
+            cardsToRender.clear();
+            AbstractCardMonster.hoveredCard = null;
+            this.halfDead = true;
+            for (AbstractPower p : this.powers) {
+                p.onDeath();
+            }
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                r.onMonsterDeath(this);
+            }
+            att(new ClearCardQueueAction());
+            ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
+            for (AbstractPower power : this.powers) {
+                if (!(power instanceof Refracting)) {
+                    powersToRemove.add(power);
+                }
+            }
+            for (AbstractPower power : powersToRemove) {
+                this.powers.remove(power);
+            }
+
+            cardsToRender.clear();
+            setMove(PHASE_TRANSITION, Intent.UNKNOWN);
+            additionalIntents.clear();
+            additionalMoves.clear();
+            ArrayList<AbstractCard> cards = cardsToRender;
+            if (cards.size() > 1) {
+                cards.remove(cards.size() - 1);
+            }
+            createIntent();
+        }
     }
 
-    private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "RolandAxe", enemy, this);
+    public void die() {
+        if (!(AbstractDungeon.getCurrRoom()).cannotLose) {
+            super.die();
+        }
     }
 
-    private void gun1Animation(AbstractCreature enemy) {
-        animationAction("Gun1", "RolandRevolver", enemy, this);
+    public void dieBypass() {
+        super.die(false);
     }
-
-    private void gun2Animation(AbstractCreature enemy) {
-        animationAction("Gun2", "RolandRevolver", enemy, this);
-    }
-
-    private void gun3Animation(AbstractCreature enemy) {
-        animationAction("Gun3", "RolandShotgun", enemy, this);
-    }
-
-    private void mook1Animation(AbstractCreature enemy) {
-        animationAction("Mook1", "RolandLongSwordStart", enemy, this);
-    }
-
-    private void mook2Animation(AbstractCreature enemy) {
-        animationAction("Mook2", "RolandLongSwordAtk", enemy, this);
-        animationAction("Mook2", "RolandLongSwordFin", enemy, this);
-    }
-
-    private void claw1Animation(AbstractCreature enemy) {
-        animationAction("Claw1", "SwordStab", enemy, this);
-    }
-
-    private void claw2Animation(AbstractCreature enemy) {
-        animationAction("Claw2", "SwordStab", enemy, this);
-    }
-
-    private void knifeAnimation(AbstractCreature enemy) {
-        animationAction("Knife", "RolandShortSword", enemy, this);
-    }
-
-    private void club1Animation(AbstractCreature enemy) {
-        animationAction("Club1", "BluntVert", enemy, this);
-    }
-
-    private void club2Animation(AbstractCreature enemy) {
-        animationAction("Club2", "BluntVert", enemy, this);
-    }
-
-    private void wheelsAnimation(AbstractCreature enemy) {
-        animationAction("Wheels", "RolandGreatSword", enemy, this);
-    }
-
-    private void sword1Animation(AbstractCreature enemy) {
-        animationAction("Sword1", "RolandDuralandalDown", enemy, this);
-    }
-
-    private void sword2Animation(AbstractCreature enemy) {
-        animationAction("Sword2", "RolandDuralandalUp", enemy, this);
-    }
-
-    private void sword3Animation(AbstractCreature enemy) {
-        animationAction("Sword3", "RolandDuralandalStrong", enemy, this);
-    }
-
-    private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash", "RolandDualSword", enemy, this);
-    }
-
 }
