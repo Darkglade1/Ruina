@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
+import ruina.cards.EGO.act3.WristCutter;
 import ruina.monsters.day49.Act1Angela;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_ALLAS;
 
@@ -18,7 +19,7 @@ public class WristCutterAngela extends AbstractRuinaCard {
     private Act1Angela parent;
 
     public WristCutterAngela(Act1Angela parent) {
-        super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRALLY_ALLAS.class.getSimpleName() + ".png"));
+        super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + WristCutter.class.getSimpleName() + ".png"));
         magicNumber = baseMagicNumber = parent.wristCutterHPLoss;
         secondMagicNumber = baseSecondMagicNumber = parent.wristCutterWounds;
         this.parent = parent;

@@ -152,7 +152,7 @@ public class Act1Angela extends AbstractCardMonster {
         switch (move.nextMove) {
             case WRIST_CUTTER:
                 atb(new LoseHPAction(this, this, wristCutterHPLoss));
-                atb(new MakeTempCardInDiscardActionButItCanFizzle(new Wound(), wristCutterWounds, this));
+                atb(new MakeTempCardInHandAction(new AngelaWound(), wristCutterWounds));
                 resetIdle();
                 break;
             case NUMBNESS:

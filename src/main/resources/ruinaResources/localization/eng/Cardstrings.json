@@ -976,7 +976,7 @@
   },
   "${ModID}:WristCutterAngela": {
     "NAME": "Wrist Cutter",
-    "DESCRIPTION": "Lose !M! HP. NL Shuffle !ruina:SecondMagic! Wounds into your discard pile."
+    "DESCRIPTION": "Lose !M! HP. NL Add !ruina:SecondMagic! *Grievous *Wounds into your hand."
   },
   "${ModID}:FrigidGaze": {
     "NAME": "Frigid Gaze",
@@ -1013,5 +1013,9 @@
   "${ModID}:MarionetteAngela": {
     "NAME": "Marionette",
     "DESCRIPTION": "Deal !D! damage. NL This card's damage cannot be decreased."
+  },
+  "${ModID}:AngelaWound": {
+    "NAME": "Grievous Wound",
+    "DESCRIPTION": "Take !M! damage. NL If this card is discarded, Exhaust it. NL When Retained, add a copy of this card into your hand."
   }
 }
