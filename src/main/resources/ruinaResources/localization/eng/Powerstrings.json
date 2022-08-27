@@ -508,7 +508,7 @@
   },
   "${ModID}:Satiation": {
     "NAME": "Momentary Satiation",
-    "DESCRIPTIONS": ["Whenever this creature #yconsumes a minion, it gains #b", " #yWeak and #yVulnerable."]
+    "DESCRIPTIONS": ["Whenever this creature #yconsumes a minion, it gains #b", " #yWeak and #yVulnerable and loses #b", " #yStrength."]
   },
   "${ModID}:Meal": {
     "NAME": "Prepared Meal",

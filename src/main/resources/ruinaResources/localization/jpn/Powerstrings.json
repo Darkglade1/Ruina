@@ -508,7 +508,7 @@
   },
   "ruina:Satiation": {
     "NAME": "瞬間的な飽食",
-    "DESCRIPTIONS": ["この敵がミニオンを #y消費 する度、 #y脱力 と #y弱体 #b", " を得る。 "]
+    "DESCRIPTIONS": ["この敵がミニオンを #y消費 する度、 #y脱力 と #y弱体 #b", " を得る そして #b", " 力を失います。"]
   },
   "ruina:Meal": {
     "NAME": "食事の準備",

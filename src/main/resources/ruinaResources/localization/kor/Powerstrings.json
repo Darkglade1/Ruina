@@ -508,7 +508,7 @@
   },
   "ruina:Satiation": {
     "NAME": "잠깐의 배부름",
-    "DESCRIPTIONS": ["이 생물이 하수인을 #y흡수하면, #y약화와 #y취약을 #b", " 얻습니다."]
+    "DESCRIPTIONS": ["이 생물이 하수인을 #y흡수하면, #y약화와 #y취약을 #b", " 얻습니다 그리고 #b", " 힘을 잃습니다."]
   },
   "ruina:Meal": {
     "NAME": "준비된 고기",

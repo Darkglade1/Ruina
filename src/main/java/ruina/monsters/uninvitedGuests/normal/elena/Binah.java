@@ -199,12 +199,12 @@ public class Binah extends AbstractAllyCardMonster
                 break;
             }
             case DEGRADED_FAIRY: {
-                for (int i = 0; i < multiplier; i++) {
-                    slashAnimation(target);
-                    dmg(target, info);
-                    resetIdle(0.25f);
-                    waitAnimation(0.25f);
-                }
+                bluntAnimation(target);
+                dmg(target, info);
+                resetIdle(0.5f);
+                slashAnimation(target);
+                dmg(target, info);
+                resetIdle(0.5f);
                 break;
             }
         }

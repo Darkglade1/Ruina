@@ -2,7 +2,7 @@
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0">
         <file id="0" name="Idle.png" width="151" height="244" pivot_x="0" pivot_y="1"/>
-        <file id="1" name="Slash.png" width="297" height="270" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Slash.png" width="517" height="344" pivot_x="0" pivot_y="1"/>
         <file id="2" name="Blunt.png" width="400" height="252" pivot_x="0" pivot_y="1"/>
         <file id="3" name="Special 3.png" width="374" height="304" pivot_x="0" pivot_y="1"/>
     </folder>
@@ -15,7 +15,7 @@
             </mainline>
             <timeline id="0" name="Idle">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-76" y="247"/>
+                    <object folder="0" file="0" x="-76" y="247" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -27,7 +27,7 @@
             </mainline>
             <timeline id="0" name="Slash">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-207" y="270"/>
+                    <object folder="0" file="1" x="-324" y="343" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -39,7 +39,7 @@
             </mainline>
             <timeline id="0" name="Blunt">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-205" y="248"/>
+                    <object folder="0" file="2" x="-205" y="241" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -51,7 +51,7 @@
             </mainline>
             <timeline id="0" name="Special 3">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-253" y="294"/>
+                    <object folder="0" file="3" x="-255" y="292" angle="0"/>
                 </key>
             </timeline>
         </animation>
