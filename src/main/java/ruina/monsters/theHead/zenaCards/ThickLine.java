@@ -17,7 +17,7 @@ public class ThickLine extends AbstractRuinaCard {
     private Zena parent;
 
     public ThickLine(Zena parent) {
-        super(ID, -2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + Line.class.getSimpleName() + ".png"));
+        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + Line.class.getSimpleName() + ".png"));
         magicNumber = baseMagicNumber = parent.THICK_LINE_DEBUFF;
         this.parent = parent;
     }

@@ -16,7 +16,7 @@ public class ThinLine extends AbstractRuinaCard {
     private Zena parent;
 
     public ThinLine(Zena parent) {
-        super(ID, -2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         magicNumber = baseMagicNumber = parent.DEBUFF;
         this.parent = parent;
     }

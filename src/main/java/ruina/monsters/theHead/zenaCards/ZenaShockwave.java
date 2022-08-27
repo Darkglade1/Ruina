@@ -16,7 +16,7 @@ public class ZenaShockwave extends AbstractRuinaCard {
     private Zena parent;
 
     public ZenaShockwave(Zena parent) {
-        super(ID, -2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        super(ID, 5, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         this.parent = parent;
     }
 

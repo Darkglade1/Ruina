@@ -16,7 +16,7 @@ public class SerumW extends AbstractRuinaCard {
     private Baral parent;
 
     public SerumW(Baral parent) {
-        super(ID, -2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        super(ID, 4, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.SERUM_W_DAMAGE;
         magicNumber = baseMagicNumber = parent.KILL_THRESHOLD;
         this.parent = parent;

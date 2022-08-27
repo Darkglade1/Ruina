@@ -16,7 +16,7 @@ public class Extirpation extends AbstractRuinaCard {
     private Baral parent;
 
     public Extirpation(Baral parent) {
-        super(ID, -2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.extirpationDamage;
         block = baseBlock = parent.extirpationBlock;
         this.parent = parent;

@@ -213,23 +213,14 @@ public class Binah extends AbstractAllyCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (moveHistory.size() >= 3) {
-            moveHistory.clear(); //resets the cooldowns after all moves have been used once
+        byte move;
+        if (this.lastMove(DEGRADED_PILLAR)) {
+            move = DEGRADED_CHAIN;
+        } else if (this.lastMove(DEGRADED_CHAIN)) {
+            move = DEGRADED_FAIRY;
+        } else {
+            move = DEGRADED_PILLAR;
         }
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(DEGRADED_PILLAR) && !this.lastMoveBefore(DEGRADED_PILLAR)) {
-            possibilities.add(DEGRADED_PILLAR);
-        }
-        if (!this.lastMove(DEGRADED_CHAIN) && !this.lastMoveBefore(DEGRADED_CHAIN)) {
-            possibilities.add(DEGRADED_CHAIN);
-        }
-        if (!this.lastMove(DEGRADED_FAIRY) && !this.lastMoveBefore(DEGRADED_FAIRY)) {
-            possibilities.add(DEGRADED_FAIRY);
-        }
-        if (possibilities.isEmpty()) {
-            possibilities.add(DEGRADED_FAIRY);
-        }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
         setMoveShortcut(move, MOVES[move], cardList.get(move));
     }
 

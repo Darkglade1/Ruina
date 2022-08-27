@@ -16,7 +16,7 @@ public class SerumK extends AbstractRuinaCard {
     private Baral parent;
 
     public SerumK(Baral parent) {
-        super(ID, -2, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         block = baseBlock = parent.SERUM_K_BLOCK;
         magicNumber = baseMagicNumber = parent.SERUM_K_HEAL;
         this.parent = parent;
