@@ -181,9 +181,6 @@ public class RuinaMod implements
     public static Boolean blacksilenceClear;
     public static Boolean headClear;
     public static Boolean clown;
-
-    // Mod-settings settings. This is if you want an on/off savable button
-    public static Properties ruinaDefaultSettings = new Properties();
     public static final String DISABLE_ALT_TITLE_ART = "disableAltTitleArt";
     public static boolean disableAltTitleArt = false;
 
