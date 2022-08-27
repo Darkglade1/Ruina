@@ -2,10 +2,7 @@ package ruina;
 
 import actlikeit.RazIntent.CustomIntent;
 import actlikeit.dungeons.CustomDungeon;
-import basemod.AutoAdd;
-import basemod.BaseMod;
-import basemod.ModPanel;
-import basemod.ReflectionHacks;
+import basemod.*;
 import basemod.eventUtil.AddEventParams;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -28,6 +25,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -184,6 +182,11 @@ public class RuinaMod implements
     public static Boolean headClear;
     public static Boolean clown;
 
+    // Mod-settings settings. This is if you want an on/off savable button
+    public static Properties ruinaDefaultSettings = new Properties();
+    public static final String DISABLE_ALT_TITLE_ART = "disableAltTitleArt";
+    public static boolean disableAltTitleArt = false;
+
 
     public RuinaMod() {
         BaseMod.subscribe(this);
@@ -201,6 +204,7 @@ public class RuinaMod implements
             ruinaDefaults.put("blacksilenceClear", false);
             ruinaDefaults.put("headClear", false);
             ruinaDefaults.put("clown", false);
+            ruinaDefaults.put(DISABLE_ALT_TITLE_ART, false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -673,6 +677,19 @@ public class RuinaMod implements
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
+        // Create the on/off button:
+        ModLabeledToggleButton disableAltTitleButton = new ModLabeledToggleButton("Disable alternate title screen (requires restart, only relevant after beating Act 5).",
+                350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                disableAltTitleArt, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+
+                    disableAltTitleArt = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    saveData();
+                });
+        settingsPanel.addUIElement(disableAltTitleButton); // Add the button to the settings panel. Button is a go.
+
         Asiyah asiyah = new Asiyah();
         asiyah.addAct(Exordium.ID);
 
@@ -1129,6 +1146,14 @@ public class RuinaMod implements
             e.printStackTrace();
         }
     }
+    public static void saveData() {
+        try {
+            ruinaConfig.setBool(DISABLE_ALT_TITLE_ART, disableAltTitleArt);
+            ruinaConfig.save();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void loadConfig(){
         reverbClear = ruinaConfig.getBool("reverbClear");
@@ -1136,8 +1161,11 @@ public class RuinaMod implements
         headClear = ruinaConfig.getBool("headClear");
         LocalDate clownCheck = LocalDate.now();
         clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
+        disableAltTitleArt = ruinaConfig.getBool(DISABLE_ALT_TITLE_ART);
     }
 
-    public static boolean hijackMenu() { return headClear; }
+    public static boolean hijackMenu() {
+        return headClear && !disableAltTitleArt;
+    }
     public static boolean clownTime() { return clown; }
 }
