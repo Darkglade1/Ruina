@@ -112,6 +112,8 @@ public class BlackSilence4 extends AbstractCardMonster {
 
     public final int shiWeak = calcAscensionSpecial(3);
     public final int shiFrail = calcAscensionSpecial(3);
+    public final int shiStrLoss = calcAscensionSpecial(2);
+    public final int shiDexLoss = calcAscensionSpecial(2);
 
     public final int loveRegen = calcAscensionSpecial(15);
     public final int loveSlimed = calcAscensionSpecial(4);
@@ -408,9 +410,11 @@ public class BlackSilence4 extends AbstractCardMonster {
     }
 
     private void populateMemories() {
-        memories.add(YUN);
-        memories.add(ZWEI);
-        memories.add(DAWN);
+        if (!RuinaMod.isHumility()) {
+            memories.add(YUN);
+            memories.add(ZWEI);
+            memories.add(DAWN);
+        }
         memories.add(SHI);
         memories.add(LOVE);
         memories.add(LIU);

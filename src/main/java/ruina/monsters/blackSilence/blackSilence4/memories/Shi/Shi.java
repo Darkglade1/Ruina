@@ -16,11 +16,17 @@ public class Shi extends AbstractRuinaCard {
 
     public Shi(BlackSilence4 parent) {
         super(ID, -2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
-        this.rawDescription = cardStrings.DESCRIPTION + " NL " + cardStrings.EXTENDED_DESCRIPTION[0] + " NL " + cardStrings.EXTENDED_DESCRIPTION[1];
-        this.initializeDescription();
         this.parent = parent;
-        magicNumber = baseMagicNumber = parent.shiWeak;
-        secondMagicNumber = baseSecondMagicNumber = parent.shiFrail;
+        if (RuinaMod.isHumility()) {
+            this.rawDescription = cardStrings.DESCRIPTION + " NL " + cardStrings.EXTENDED_DESCRIPTION[2] + " NL " + cardStrings.EXTENDED_DESCRIPTION[3];
+            magicNumber = baseMagicNumber = parent.shiStrLoss;
+            secondMagicNumber = baseSecondMagicNumber = parent.shiDexLoss;
+        } else {
+            this.rawDescription = cardStrings.DESCRIPTION + " NL " + cardStrings.EXTENDED_DESCRIPTION[0] + " NL " + cardStrings.EXTENDED_DESCRIPTION[1];
+            magicNumber = baseMagicNumber = parent.shiWeak;
+            secondMagicNumber = baseSecondMagicNumber = parent.shiFrail;
+        }
+        this.initializeDescription();
     }
 
     @Override

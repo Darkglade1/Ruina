@@ -3,7 +3,9 @@ package ruina.monsters.blackSilence.blackSilence4.memories.Shi;
 import basemod.AutoAdd;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
+import ruina.RuinaMod;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 
 import static ruina.RuinaMod.makeID;
@@ -16,7 +18,11 @@ public class Shi2 extends Shi {
 
     public Shi2(BlackSilence4 parent) {
         super(parent);
-        this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
+        if (RuinaMod.isHumility()) {
+            this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[3];
+        } else {
+            this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[1];
+        }
         this.initializeDescription();
     }
 
@@ -27,6 +33,10 @@ public class Shi2 extends Shi {
     public void upp() { }
 
     public void onChoseThisOption(){
-        applyToTarget(adp(), parent, new FrailPower(adp(), magicNumber, true));
+        if (RuinaMod.isHumility()) {
+            applyToTarget(adp(), parent, new DexterityPower(adp(), -secondMagicNumber));
+        } else {
+            applyToTarget(adp(), parent, new FrailPower(adp(), secondMagicNumber, true));
+        }
     }
 }
