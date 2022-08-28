@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -35,6 +36,7 @@ import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
+import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.HeadDialogueAction;
@@ -88,6 +90,7 @@ public class Zena extends AbstractCardMonster
     public Baral baral;
     public boolean deathTriggered = false;
     public boolean usedShockwave = false;
+    public boolean enraged = false;
 
     public enum PHASE{
         PHASE1,
@@ -425,7 +428,21 @@ public class Zena extends AbstractCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (currentPhase == PHASE.PHASE1) {
+        if (enraged) {
+            if (!this.lastMove(SHOCKWAVE)) {
+                setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
+            } else {
+                if (AbstractDungeon.ascensionLevel >= 19) {
+                    if (this.lastMoveBefore(THICK_LINE)) {
+                        setMoveShortcut(THIN_LINE, MOVES[THIN_LINE], cardList.get(THIN_LINE).makeStatEquivalentCopy());
+                    } else {
+                        setMoveShortcut(THICK_LINE, MOVES[THICK_LINE], cardList.get(THICK_LINE).makeStatEquivalentCopy());
+                    }
+                } else {
+                    setMoveShortcut(THIN_LINE, MOVES[THIN_LINE], cardList.get(THIN_LINE).makeStatEquivalentCopy());
+                }
+            }
+        } else if (currentPhase == PHASE.PHASE1) {
             if (halfDead) {
                 setMoveShortcut(NONE);
             } else if (massAttackCooldown <= 0) {
@@ -534,6 +551,7 @@ public class Zena extends AbstractCardMonster
         super.die(triggerRelics);
         gebura.enemyBoss = baral;
         binah.targetEnemy = baral;
+        baral.onZenaDeath();
         AbstractDungeon.onModifyPower();
         if (baral.isDeadOrEscaped() && !baral.deathTriggered) {
             deathTriggered = true;
@@ -556,6 +574,14 @@ public class Zena extends AbstractCardMonster
             }
         });
         fullScreenAnimation(shockwave, 0.5f, 1.0f);
+    }
+
+    public void onBaralDeath() {
+        if (RuinaMod.isHumility() && !this.isDeadOrEscaped()) {
+            atb(new TalkAction(this, DIALOG[0]));
+            enraged = true;
+            gebura.canSplit = false;
+        }
     }
 
 }

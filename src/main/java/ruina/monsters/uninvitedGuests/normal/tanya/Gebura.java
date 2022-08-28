@@ -65,6 +65,7 @@ public class Gebura extends AbstractAllyCardMonster
     public final int EGOtimer = 4;
     protected boolean manifestedEGO = false;
     protected int phase = 1;
+    public boolean canSplit = true;
 
     public AbstractMonster enemyBoss;
 
@@ -422,7 +423,7 @@ public class Gebura extends AbstractAllyCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (greaterSplitCooldownCounter <= 0) {
+        if (greaterSplitCooldownCounter <= 0 && canSplit) {
             if (phase == 1) {
                 setMoveShortcut(GSV, MOVES[GSV], cardList.get(GSV));
             } else {
