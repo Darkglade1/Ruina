@@ -610,5 +610,9 @@
   "${ModID}:MagicBullet": {
     "NAME": "Magic Bullet",
     "DESCRIPTIONS": ["Receives #b", "% more damage from #yAttacks this turn."]
+  },
+  "${ModID}:PerceptionBlockingMask": {
+    "NAME": "Perception Blocking Mask",
+    "DESCRIPTIONS": ["Every #b", "th card you play has its effect #rnegated."]
   }
 }

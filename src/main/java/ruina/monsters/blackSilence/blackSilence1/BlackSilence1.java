@@ -1,6 +1,9 @@
 package ruina.monsters.blackSilence.blackSilence1;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -16,13 +19,20 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.stances.DivinityStance;
+import com.megacrit.cardcrawl.stances.WrathStance;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence1.cards.*;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
+import ruina.powers.PerceptionBlockingMask;
+import ruina.powers.Scars;
 import ruina.util.AdditionalIntent;
+import ruina.vfx.FlexibleDivinityParticleEffect;
+import ruina.vfx.FlexibleStanceAuraEffect;
+import ruina.vfx.FlexibleWrathParticleEffect;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -98,6 +108,9 @@ public class BlackSilence1 extends AbstractCardMonster {
     public static final String KILLING_POWER_NAME = KillingpowerStrings.NAME;
     public static final String[] KILLING_POWER_DESCRIPTIONS = KillingpowerStrings.DESCRIPTIONS;
 
+    private float particleTimer;
+    private float particleTimer2;
+
     public BlackSilence1() {
         this(0.0f, 0.0f);
     }
@@ -164,6 +177,9 @@ public class BlackSilence1 extends AbstractCardMonster {
                 description = KILLING_POWER_DESCRIPTIONS[0];
             }
         });
+        if (RuinaMod.isHumility()) {
+            applyToTarget(this, this, new PerceptionBlockingMask(this, CARDS_PER_TURN));
+        }
     }
 
     private boolean isPlayerTurn() {
@@ -476,6 +492,26 @@ public class BlackSilence1 extends AbstractCardMonster {
         cardList.add(new Ranga(this));
         cardList.add(new Mace(this));
         cardList.add(new Furioso(this));
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if (this.hasPower(PerceptionBlockingMask.POWER_ID)) {
+            if (this.getPower(PerceptionBlockingMask.POWER_ID).amount >= CARDS_PER_TURN - 1) {
+                this.particleTimer -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer < 0.0F) {
+                    this.particleTimer = 0.04F;
+                    AbstractDungeon.effectsQueue.add(new FlexibleDivinityParticleEffect(this));
+                }
+
+                this.particleTimer2 -= Gdx.graphics.getDeltaTime();
+                if (this.particleTimer2 < 0.0F) {
+                    this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
+                    AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(DivinityStance.STANCE_ID, this));
+                }
+            }
+        }
     }
 
     private void attackAnimation(AbstractCreature enemy) {
