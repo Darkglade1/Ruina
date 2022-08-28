@@ -60,12 +60,8 @@ public class Paralysis extends AbstractEasyPower {
     }
 
     @Override
-    public void atEndOfRound() {
-        if (justApplied) {
-            justApplied = false;
-        } else {
-            atb(new RemoveSpecificPowerAction(owner, owner, this));
-        }
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
+        atb(new RemoveSpecificPowerAction(owner, owner, this));
     }
 
     @Override

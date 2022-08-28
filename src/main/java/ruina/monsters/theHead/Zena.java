@@ -403,6 +403,7 @@ public class Zena extends AbstractCardMonster
                                 ((SlaversCollar)adp().getRelic(SlaversCollar.ID)).beforeEnergyPrep();
                             }
                             baral.roland.rollMove();
+                            GameActionManager.turn = 0;
                             adp().applyPreCombatLogic();
                             adp().applyStartOfCombatLogic();
                             adp().applyStartOfCombatPreDrawLogic();
