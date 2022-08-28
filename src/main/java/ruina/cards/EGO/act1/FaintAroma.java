@@ -1,5 +1,6 @@
 package ruina.cards.EGO.act1;
 
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -35,7 +36,10 @@ public class FaintAroma extends AbstractEgoCard {
             @Override
             public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
                 if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL && info.owner == owner && info.owner != target) {
-                    atb(new LoseHPAction(target, owner, damageAmount * amount));
+                    if(!target.isDeadOrEscaped()) {
+                        DamageInfo hpLoss = new DamageInfo(owner, damageAmount * amount, DamageInfo.DamageType.HP_LOSS);
+                        atb(new DamageAction(target, hpLoss));
+                    }
                 }
             }
 
