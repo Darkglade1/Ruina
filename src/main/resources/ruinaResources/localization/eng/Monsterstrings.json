@@ -972,6 +972,7 @@
     ],
     "NAME": "Zena",
     "DIALOG": [
+      "What a worthless Enforcer you were . . ."
     ]
   },
   "${ModID}:Baral": {
@@ -984,6 +985,7 @@
     ],
     "NAME": "Baral",
     "DIALOG": [
+      "How disgraceful of me to let an Arbiter fall . . ."
     ]
   },
   "${ModID}:SilentGirl": {

@@ -19,6 +19,7 @@ public class SerumK extends AbstractRuinaCard {
         super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         block = baseBlock = parent.SERUM_K_BLOCK;
         magicNumber = baseMagicNumber = parent.SERUM_K_HEAL;
+        secondMagicNumber = baseSecondMagicNumber = parent.SERUM_K_STR;
         this.parent = parent;
     }
 
@@ -26,7 +27,7 @@ public class SerumK extends AbstractRuinaCard {
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
     @Override
-    public void upp() { }
+    public void upp() { uDesc(); }
 
     @Override
     public AbstractCard makeCopy() { return new SerumK(parent); }

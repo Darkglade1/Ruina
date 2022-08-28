@@ -774,7 +774,8 @@
   },
   "${ModID}:SerumK": {
     "NAME": "Serum K",
-    "DESCRIPTION": "The lowest HP ally gains !B! Block and heals !M! HP."
+    "DESCRIPTION": "The lowest HP ally gains !B! Block and heals !M! HP.",
+    "UPGRADE_DESCRIPTION": "The lowest HP ally gains !B! Block, heals !M! HP, and gains !ruina:SecondMagic! Strength."
   },
   "${ModID}:Line": {
     "NAME": "Line",
