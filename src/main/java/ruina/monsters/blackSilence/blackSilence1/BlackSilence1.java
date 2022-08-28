@@ -1,11 +1,11 @@
 package ruina.monsters.blackSilence.blackSilence1;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -23,7 +23,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.stances.DivinityStance;
-import com.megacrit.cardcrawl.stances.WrathStance;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
@@ -31,11 +30,9 @@ import ruina.monsters.blackSilence.blackSilence1.cards.*;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 import ruina.powers.PerceptionBlockingMask;
-import ruina.powers.Scars;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.FlexibleDivinityParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
-import ruina.vfx.FlexibleWrathParticleEffect;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -141,7 +138,7 @@ public class BlackSilence1 extends AbstractCardMonster {
         if (AbstractDungeon.ascensionLevel >= 19) {
             CARDS_PER_TURN = 4;
         } else {
-            CARDS_PER_TURN = 6;
+            CARDS_PER_TURN = 5;
         }
     }
 
@@ -202,7 +199,7 @@ public class BlackSilence1 extends AbstractCardMonster {
         }
         AbstractCreature target = adp();
         if (info.base > -1) {
-            if (this.nextMove == FURIOSO && AbstractDungeon.ascensionLevel >= 19) {
+            if (this.nextMove == FURIOSO && RuinaMod.isHumility()) {
                 applyPowersOnlyIncrease(adp(), info);
             } else {
                 info.applyPowers(this, target);
@@ -461,7 +458,7 @@ public class BlackSilence1 extends AbstractCardMonster {
 
     @Override
     public void applyPowers() {
-        if (this.nextMove == FURIOSO && AbstractDungeon.ascensionLevel >= 19) {
+        if (this.nextMove == FURIOSO && RuinaMod.isHumility()) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             applyPowersOnlyIncrease(adp(), info);
             ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
@@ -478,7 +475,7 @@ public class BlackSilence1 extends AbstractCardMonster {
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                if (additionalMove.nextMove == FURIOSO && AbstractDungeon.ascensionLevel >= 19) {
+                if (additionalMove.nextMove == FURIOSO && RuinaMod.isHumility()) {
                     applyPowersToAdditionalIntentOnlyIncrease(additionalMove, additionalIntent, adp(), null);
                 } else {
                     applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
@@ -512,7 +509,7 @@ public class BlackSilence1 extends AbstractCardMonster {
         cardList.add(new Ranga(this));
         cardList.add(new Mace(this));
         AbstractCard furioso = new Furioso(this);
-        if (AbstractDungeon.ascensionLevel >= 19) {
+        if (RuinaMod.isHumility()) {
             furioso.upgrade();
         }
         cardList.add(furioso);
