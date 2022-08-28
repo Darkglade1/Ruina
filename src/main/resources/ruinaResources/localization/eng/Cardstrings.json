@@ -730,11 +730,13 @@
   },
   "${ModID}:WaltzInWhite": {
     "NAME": "Waltz in White",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage !M! times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage if its *Partner intends to attack."
   },
   "${ModID}:AshenBond": {
     "NAME": "Ashen Bond",
-    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength."
+    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength.",
+    "UPGRADE_DESCRIPTION": "ALL allies gain !B! Block and !M! Strength. NL If its *Partner does NOT intend to attack, double these effects."
   },
   "${ModID}:UnitedWorkshop": {
     "NAME": "United Assault",
@@ -750,11 +752,13 @@
   },
   "${ModID}:DarkBond": {
     "NAME": "Dark Bond",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile."
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile.",
+    "UPGRADE_DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile. NL If its *Partner does NOT intend to attack, double these effects."
   },
   "${ModID}:WaltzInBlack": {
     "NAME": "Waltz in Black",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage !M! times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage if its *Partner intends to attack."
   },
   "${ModID}:SerumW": {
     "NAME": "Serum W",
