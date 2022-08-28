@@ -1,7 +1,9 @@
 package ruina.monsters.blackSilence.blackSilence3;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.ReflectionHacks;
 import basemod.helpers.CardPowerTip;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
@@ -16,12 +18,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.SurroundedPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -33,6 +30,7 @@ import ruina.monsters.blackSilence.blackSilence3.rolandCards.UnstableLoneliness;
 import ruina.monsters.blackSilence.blackSilence3.rolandCards.WaltzInBlack;
 import ruina.powers.Paralysis;
 import ruina.powers.SoulLink;
+import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
 
@@ -93,9 +91,15 @@ public class BlackSilence3 extends AbstractCardMonster {
         cardList.add(new UnitedWorkshop(this));
         cardList.add(new UnstableLoneliness(this));
         cardList.add(new BlindFury(this));
-        cardList.add(new WaltzInBlack(this));
-        cardList.add(new DarkBond(this));
-        bond = new DarkBond(this);
+        AbstractCard waltz = new WaltzInBlack(this);
+        AbstractCard darkBond = new DarkBond(this);
+        if (RuinaMod.isHumility()) {
+            waltz.upgrade();
+            darkBond.upgrade();
+        }
+        cardList.add(waltz);
+        cardList.add(darkBond);
+        bond = darkBond.makeStatEquivalentCopy();
     }
 
     public void usePreBattleAction() {
@@ -196,12 +200,16 @@ public class BlackSilence3 extends AbstractCardMonster {
             }
             case DARKBOND:
                 guardAnimation();
+                int effectMultiplier = 1;
+                if (RuinaMod.isHumility() && !isAngelicaAttacking()) {
+                    effectMultiplier = 2;
+                }
                 for (AbstractMonster mo : monsterList()) {
                     if (!mo.isDeadOrEscaped()) {
-                        block(mo, bondBlock);
+                        block(mo, bondBlock * effectMultiplier);
                     }
                 }
-                intoDrawMo(new VoidCard(), bondVoid, this);
+                intoDrawMo(new VoidCard(), bondVoid * effectMultiplier, this);
                 resetIdle();
                 break;
             case SOUL_LINK_REVIVAL:
@@ -299,6 +307,25 @@ public class BlackSilence3 extends AbstractCardMonster {
     public void die() {
         if (!(AbstractDungeon.getCurrRoom()).cannotLose) {
             super.die();
+        }
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        if (this.nextMove == WALTZ && RuinaMod.isHumility()) {
+            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
+            info.applyPowers(this, adp());
+            if (isAngelicaAttacking()) {
+                info.output *= 2;
+            }
+            if (this.hasPower(BackAttackPower.POWER_ID)) {
+                info.output = (int)((float)info.output * 1.5F);
+            }
+            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+            Texture attackImg = getAttackIntent(info.output * waltzHits);
+            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
+            updateCard();
         }
     }
 

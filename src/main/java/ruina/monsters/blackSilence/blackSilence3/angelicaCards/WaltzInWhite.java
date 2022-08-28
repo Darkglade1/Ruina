@@ -27,7 +27,7 @@ public class WaltzInWhite extends AbstractRuinaCard {
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
     @Override
-    public void upp() { }
+    public void upp() { uDesc();}
 
     @Override
     public AbstractCard makeCopy() { return new WaltzInWhite(parent); }
