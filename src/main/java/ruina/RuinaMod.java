@@ -184,6 +184,9 @@ public class RuinaMod implements
     public static final String DISABLE_ALT_TITLE_ART = "disableAltTitleArt";
     public static boolean disableAltTitleArt = false;
 
+    public static final String HUMILITY_MODE = "humilityMode";
+    public static boolean enableHumilityMode = false;
+
 
     public RuinaMod() {
         BaseMod.subscribe(this);
@@ -202,6 +205,7 @@ public class RuinaMod implements
             ruinaDefaults.put("headClear", false);
             ruinaDefaults.put("clown", false);
             ruinaDefaults.put(DISABLE_ALT_TITLE_ART, false);
+            ruinaDefaults.put(HUMILITY_MODE, false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -687,6 +691,17 @@ public class RuinaMod implements
                 });
         settingsPanel.addUIElement(disableAltTitleButton); // Add the button to the settings panel. Button is a go.
 
+        ModLabeledToggleButton enableHumilityModeButton = new ModLabeledToggleButton("Enable humility mode (this increases the difficulty of this mod's encounters in a manner separate from Ascension).",
+                350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                enableHumilityMode,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+                    enableHumilityMode = button.enabled;
+                    saveData();
+                });
+        settingsPanel.addUIElement(enableHumilityModeButton);
+
         Asiyah asiyah = new Asiyah();
         asiyah.addAct(Exordium.ID);
 
@@ -1146,6 +1161,7 @@ public class RuinaMod implements
     public static void saveData() {
         try {
             ruinaConfig.setBool(DISABLE_ALT_TITLE_ART, disableAltTitleArt);
+            ruinaConfig.setBool(HUMILITY_MODE, enableHumilityMode);
             ruinaConfig.save();
         } catch (Exception e) {
             e.printStackTrace();
@@ -1159,10 +1175,15 @@ public class RuinaMod implements
         LocalDate clownCheck = LocalDate.now();
         clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
         disableAltTitleArt = ruinaConfig.getBool(DISABLE_ALT_TITLE_ART);
+        enableHumilityMode = ruinaConfig.getBool(HUMILITY_MODE);
     }
 
     public static boolean hijackMenu() {
         return headClear && !disableAltTitleArt;
     }
     public static boolean clownTime() { return clown; }
+
+    public static boolean isHumility() {
+        return enableHumilityMode;
+    }
 }
