@@ -153,7 +153,7 @@
   },
   "${ModID}:WingsOfGrace": {
     "NAME": "Wings Of Grace",
-    "DESCRIPTIONS": ["Reduces ALL damage by #b", "%. NL After receiving damage, reduce this amount by #b", "."]
+    "DESCRIPTIONS": ["Reduces attack damage by #b", "%. NL After receiving damage, reduce this amount by #b", "."]
   },
   "${ModID}:Unkillable": {
     "NAME": "By Grace Through Faith",
@@ -276,7 +276,7 @@
   },
   "${ModID}:Mastermind": {
     "NAME": "Puppeteer",
-    "DESCRIPTIONS": ["Receives #b", "% less damage from ALL sources unless this creature is #yMarked."]
+    "DESCRIPTIONS": ["Receives #b", "% less attack damage unless this creature is #yMarked."]
   },
   "${ModID}:PuppetStrings": {
     "NAME": "Puppet Strings",

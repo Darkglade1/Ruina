@@ -55,16 +55,6 @@ public class WingsOfGrace extends AbstractEasyPower {
     }
 
     @Override
-    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-        //handles non-attack damage
-        if (info.type != DamageInfo.DamageType.NORMAL) {
-            return (int) calculateDamageTakenAmount(damageAmount, info.type);
-        } else {
-            return damageAmount;
-        }
-    }
-
-    @Override
     public void updateDescription() {
         this.description = DESCRIPTIONS[0] + (int) (DAMAGE_REDUCTION * 100) + DESCRIPTIONS[1] + REDUCTION + DESCRIPTIONS[2];
     }

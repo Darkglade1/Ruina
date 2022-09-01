@@ -146,16 +146,6 @@ public class Puppeteer extends AbstractCardMonster
             }
 
             @Override
-            public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-                //handles non-attack damage
-                if (info.type != DamageInfo.DamageType.NORMAL) {
-                    return (int) calculateDamageTakenAmount(damageAmount, info.type);
-                } else {
-                    return damageAmount;
-                }
-            }
-
-            @Override
             public void updateDescription() {
                 description = POWER_DESCRIPTIONS[0] + (int)(MASTERMIND_DAMAGE_REDUCTION * 100) + POWER_DESCRIPTIONS[1];
             }
