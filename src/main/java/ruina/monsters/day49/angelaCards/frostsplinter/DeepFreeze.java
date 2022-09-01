@@ -21,6 +21,7 @@ public class DeepFreeze extends AbstractRuinaCard {
     public DeepFreeze(Act4Angela parent) {
         super(ID, 5, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + FrostSplinterAngela.class.getSimpleName() + ".png"));
         damage = baseDamage = parent.deepFreezeDamage;
+        secondMagicNumber = baseSecondMagicNumber = parent.deepFreezeChill;
         magicNumber = baseMagicNumber = parent.deepFreezeDebuff;
     }
 

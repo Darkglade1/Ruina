@@ -89,6 +89,7 @@ public class Act4Angela extends AbstractDeckMonster
     public final int blizzardChill = 4;
 
     public final int deepFreezeDamage = 75;
+    public final int deepFreezeChill = 4;
     public final int deepFreezeDebuff = 1;
 
     public boolean blizzardUsed = false;
@@ -315,6 +316,7 @@ public class Act4Angela extends AbstractDeckMonster
             case DEEP_FREEZE: {
                 atb(new FrostSplinterIceEffectAction(this));
                 dmg(adp(), info);
+                applyToTarget(adp(), Act4Angela.this, new Chill(adp(), deepFreezeChill));
                 applyToTarget(adp(), Act4Angela.this, new DeepFreezePower(adp(), deepFreezeDebuff));
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {

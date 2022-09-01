@@ -1004,7 +1004,7 @@
   },
   "${ModID}:DeepFreeze": {
     "NAME": "Deep Freeze",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Frozen."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !ruina:SecondMagic! *Chill. NL Apply !M! *Frozen."
   },
   "${ModID}:AbsoluteZero": {
     "NAME": "Absolute Zero",
