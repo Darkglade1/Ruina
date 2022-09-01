@@ -163,6 +163,7 @@ public class GuardianApostle extends AbstractRuinaMonster {
         super.damage(info);
         if (this.currentHealth <= 0 && !this.halfDead) {
             this.halfDead = true;
+            this.loseBlock();
             for (AbstractPower p : this.powers) {
                 p.onDeath();
             }
@@ -176,7 +177,7 @@ public class GuardianApostle extends AbstractRuinaMonster {
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power.ID.equals(Unkillable.POWER_ID)) && !(power.ID.equals(StrengthPower.POWER_ID)) && !(power.ID.equals(GainStrengthPower.POWER_ID)) && !(power.ID.equals(RitualPower.POWER_ID)) && !(power.ID.equals(MinionPower.POWER_ID))) {
+                if (!(power.ID.equals(Unkillable.POWER_ID)) && !(power.ID.equals(StrengthPower.POWER_ID)) && !(power.ID.equals(GainStrengthPower.POWER_ID)) && !(power.ID.equals(MinionPower.POWER_ID))) {
                     powersToRemove.add(power);
                 }
             }
