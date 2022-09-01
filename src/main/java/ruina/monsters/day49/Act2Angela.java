@@ -63,7 +63,7 @@ public class Act2Angela extends AbstractCardMonster {
 
     public final int palpitationBeatOfDeath = 2;
 
-    public final int pneumoniaCardLimit = 5;
+    public final int pneumoniaCardLimit = 9;
 
     public final int inclinationVuln = 2;
     public final int inclinationWeak = 2;
@@ -72,9 +72,9 @@ public class Act2Angela extends AbstractCardMonster {
     public int pulsationBuffCount = 0;
     public final int pulsationStrength = 2;
 
-    public final int pulsationFirstBuffPneumonia = 4;
-    public final int pulsationSecondBuffPneumonia = 3;
-    public final int pulsationThirdBuffPneumonia = 2;
+    public final int pulsationFirstBuffPneumonia = 8;
+    public final int pulsationSecondBuffPneumonia = 7;
+    public final int pulsationThirdBuffPneumonia = 6;
     public final int pulsationFourthBuffStrength = 10;
     public final int pulsationFifthBuffStrength = 50;
 

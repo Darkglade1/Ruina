@@ -55,7 +55,7 @@ public class Act4Angela extends AbstractDeckMonster
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    private static final int THRESHOLD = 3;
+    private static final int THRESHOLD = 9;
 
     private static final byte FRIGID_GAZE = 0;
     private static final byte BITTER_COLD = 1;
