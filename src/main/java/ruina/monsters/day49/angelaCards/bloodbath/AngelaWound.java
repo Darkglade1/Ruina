@@ -25,8 +25,8 @@ import static ruina.util.Wiz.atb;
 public class AngelaWound extends AbstractRuinaCard {
     public final static String ID = makeID(AngelaWound.class.getSimpleName());
 
-    private static final int SELF_DAMAGE = 7;
-    private static final int UP_SELFDAMAGE = 3;
+    private static final int SELF_DAMAGE = 12;
+    private static final int UP_SELFDAMAGE = 6;
     private static final int COST = 1;
 
     public AngelaWound() {
@@ -51,10 +51,6 @@ public class AngelaWound extends AbstractRuinaCard {
         atb(new ExhaustSpecificCardAction(this, adp().discardPile));
     }
 
-    @Override
-    public void onRetained() {
-        atb(new MakeTempCardInHandAction(this.makeStatEquivalentCopy()));
-    }
 
     @Override
     public AbstractCard makeCopy() { return new AngelaWound(); }

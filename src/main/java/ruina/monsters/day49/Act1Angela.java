@@ -61,7 +61,7 @@ public class Act1Angela extends AbstractCardMonster {
     public int loathingHPHeal = 15;
 
     private static final byte PALE_HANDS = 4;
-    public int paleHandsDamage = 2;
+    public int paleHandsDamage = 4;
     public int paleHandHits = 3;
 
     private static final byte SINKING = 5;

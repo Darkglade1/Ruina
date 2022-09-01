@@ -1016,6 +1016,6 @@
   },
   "${ModID}:AngelaWound": {
     "NAME": "Grievous Wound",
-    "DESCRIPTION": "Take !M! damage. NL If this card is discarded, Exhaust it. NL When Retained, add a copy of this card into your hand."
+    "DESCRIPTION": "Take !M! damage. NL If this card is discarded, Exhaust it."
   }
 }
