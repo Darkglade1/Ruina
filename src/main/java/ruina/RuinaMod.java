@@ -76,6 +76,7 @@ import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
+import ruina.monsters.eventboss.kim.Kim;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
@@ -629,6 +630,8 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("NothingHello"), makeSFXPath("NothingThere_Hello.wav"));
         BaseMod.addAudio(makeID("NothingNormal"), makeSFXPath("NothingThere_Normal_Flesh.wav"));
         BaseMod.addAudio(makeID("BulletShot"), makeSFXPath("Matan_NormalShot.wav"));
+
+        BaseMod.addAudio(makeID("Parry"), makeSFXPath("Parry_Atk.wav"));
     }
 
     @Override
@@ -857,6 +860,8 @@ public class RuinaMod implements
         BaseMod.addMonster(KingOfGreed.ID, (BaseMod.GetMonster) KingOfGreed::new);
         BaseMod.addMonster(BadWolf.ID, (BaseMod.GetMonster) BadWolf::new);
         BaseMod.addMonster(QueenOfHate.ID, (BaseMod.GetMonster) QueenOfHate::new);
+
+        BaseMod.addMonster(Kim.ID, (BaseMod.GetMonster) Kim::new);
 
         briah.addBoss(EncounterIDs.RED_AND_WOLF, () -> new MonsterGroup(
                 new AbstractMonster[]{

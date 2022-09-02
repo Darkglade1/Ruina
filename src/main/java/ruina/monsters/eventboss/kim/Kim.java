@@ -21,6 +21,7 @@ import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
+import ruina.util.Wiz;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -59,16 +60,16 @@ public class Kim extends AbstractCardMonster {
     }
 
     public Kim(final float x, final float y) {
-        super(NAME, ID, 180, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 180, 0.0F, 0, 230.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Kim/Spriter/Kim.scml"));
 
         this.setHp(calcAscensionTankiness(180));
         this.type = EnemyType.ELITE;
 
-        addMove(YIELD, Intent.ATTACK_BUFF, calcAscensionDamage(10));
+        addMove(YIELD, Intent.ATTACK_BUFF, calcAscensionDamage(9));
         addMove(CLAIM, Intent.ATTACK, calcAscensionDamage(20));
         addMove(TAKE_ONES_LIFE, Intent.ATTACK_DEBUFF, calcAscensionDamage(30));
-        addMove(ACUPUNCTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6), ACUPUNCTURE_HITS, true);
+        addMove(ACUPUNCTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(5), ACUPUNCTURE_HITS, true);
 
         cardList.add(new Yield(this));
         cardList.add(new Claim(this));
@@ -98,7 +99,7 @@ public class Kim extends AbstractCardMonster {
         }
         switch (nextMove) {
             case YIELD: {
-                guardAnimation();
+                slashAnimation(adp());
                 dmg(adp(), info);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 resetIdle();
@@ -106,7 +107,9 @@ public class Kim extends AbstractCardMonster {
             }
             case TAKE_ONES_LIFE: {
                 final int[] damageDealt = {0};
-                bluntAnimation(adp());
+                specialAnimation();
+                waitAnimation(0.75f);
+                slashAnimation(adp());
                 dmg(adp(), info);
                 atb(new AbstractGameAction() {
                     @Override
@@ -142,9 +145,9 @@ public class Kim extends AbstractCardMonster {
             case ACUPUNCTURE: {
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
-                        guardAnimation();
-                    } else {
                         bluntAnimation(adp());
+                    } else {
+                        slashAnimation(adp());
                     }
                     dmg(adp(), info);
                     resetIdle();
@@ -169,6 +172,8 @@ public class Kim extends AbstractCardMonster {
         if (info.base > -1) {
             info.applyPowers(this, adp());
         }
+        specialAnimation();
+        waitAnimation(0.75f);
         bluntAnimation(adp());
         dmg(adp(), info);
         resetIdle();
@@ -180,12 +185,24 @@ public class Kim extends AbstractCardMonster {
         if (this.lastMove(YIELD)) {
             usedCounter = false;
             applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, NeutralPowertypePatch.NEUTRAL, false, this, 0) {
+
+                boolean justApplied = true;
                 @Override
                 public void onAfterUseCard(AbstractCard card, UseCardAction action) {
                     if (card.type == AbstractCard.CardType.ATTACK && !owner.hasPower(StunMonsterPower.POWER_ID)) {
                         this.flash();
                         CounterAttack();
                         usedCounter = true;
+                    }
+                }
+
+                @Override
+                public void atEndOfTurn(boolean isPlayer) {
+                    if (justApplied) {
+                        justApplied = false;
+                    } else {
+                        Wiz.makePowerRemovable(this);
+                        atb(new RemoveSpecificPowerAction(owner, owner, this));
                     }
                 }
 
@@ -205,16 +222,16 @@ public class Kim extends AbstractCardMonster {
         setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
     }
 
-    public void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce", "FireStab", enemy, this);
+    public void slashAnimation(AbstractCreature enemy) {
+        animationAction("Slash", "SwordVert", enemy, this);
     }
 
     public void bluntAnimation(AbstractCreature enemy) {
-        animationAction("Blunt", "FireHori", enemy, this);
+        animationAction("Blunt", "SwordHori", enemy, this);
     }
 
-    public void guardAnimation() {
-        animationAction("Block", "FireGuard", this);
+    public void specialAnimation() {
+        animationAction("Special", "Parry", this);
     }
 
 }

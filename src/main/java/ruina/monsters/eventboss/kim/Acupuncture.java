@@ -15,7 +15,7 @@ public class Acupuncture extends AbstractRuinaCard {
     private Kim parent;
 
     public Acupuncture(Kim parent) {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         magicNumber = baseMagicNumber = parent.ACUPUNCTURE_HITS;
         secondMagicNumber = baseSecondMagicNumber = parent.PARALYSIS;
         this.parent = parent;
