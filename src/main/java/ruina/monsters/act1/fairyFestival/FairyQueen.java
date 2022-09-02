@@ -63,7 +63,7 @@ public class FairyQueen extends AbstractRuinaMonster
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(180));
         addMove(QUEENS_DECREE, Intent.UNKNOWN);
-        addMove(PREDATION, Intent.ATTACK, calcAscensionDamage(5), 2, true);
+        addMove(PREDATION, Intent.ATTACK, calcAscensionDamage(6), 2, true);
         addMove(RAVENOUSNESS, Intent.BUFF);
     }
 
@@ -81,7 +81,7 @@ public class FairyQueen extends AbstractRuinaMonster
 
             @Override
             public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
+                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1] + amount + POWER_DESCRIPTIONS[2];
             }
         });
     }
@@ -185,6 +185,7 @@ public class FairyQueen extends AbstractRuinaMonster
         atb(new InstantKillAction(minion));
         applyToTarget(this, this, new WeakPower(this, SELF_DEBUFF, false));
         applyToTarget(this, this, new VulnerablePower(this, SELF_DEBUFF, false));
+        applyToTarget(this, this, new StrengthPower(this, -SELF_DEBUFF));
         resetIdle();
         atb(new RollMoveAction(this));
         atb(new AbstractGameAction() {

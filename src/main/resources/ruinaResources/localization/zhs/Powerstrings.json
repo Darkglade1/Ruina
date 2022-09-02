@@ -508,7 +508,7 @@
   },
   "ruina:Satiation": {
     "NAME": "片刻的饕足",
-    "DESCRIPTIONS": ["每当这个生物 #y吃掉 一位爪牙，获得 #b", " 层 #y虚弱 和 #y易伤 。"]
+    "DESCRIPTIONS": ["每当这个生物 #y吃掉 一位爪牙，获得 #b", " 层 #y虚弱 和 #y易伤 并失去 #b", " 力量。"]
   },
   "ruina:Meal": {
     "NAME": "预备餐点",

@@ -2,10 +2,7 @@ package ruina;
 
 import actlikeit.RazIntent.CustomIntent;
 import actlikeit.dungeons.CustomDungeon;
-import basemod.AutoAdd;
-import basemod.BaseMod;
-import basemod.ModPanel;
-import basemod.ReflectionHacks;
+import basemod.*;
 import basemod.eventUtil.AddEventParams;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -25,13 +22,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.dungeons.Exordium;
-import com.megacrit.cardcrawl.dungeons.TheBeyond;
-import com.megacrit.cardcrawl.dungeons.TheCity;
-import com.megacrit.cardcrawl.dungeons.TheEnding;
+import com.megacrit.cardcrawl.dungeons.*;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -50,17 +44,11 @@ import ruina.events.NeowAngela;
 import ruina.events.act1.*;
 import ruina.events.act2.*;
 import ruina.events.act3.*;
-import ruina.monsters.act1.AllAroundHelper;
-import ruina.monsters.act1.Alriune;
-import ruina.monsters.act1.Butterflies;
-import ruina.monsters.act1.CrazedEmployee;
-import ruina.monsters.act1.ForsakenMurderer;
-import ruina.monsters.act1.Fragment;
-import ruina.monsters.act1.GalaxyFriend;
-import ruina.monsters.act1.Orchestra;
-import ruina.monsters.act1.Porccubus;
+import ruina.monsters.act1.*;
 import ruina.monsters.act1.blackSwan.BlackSwan;
 import ruina.monsters.act1.blackSwan.Brother;
+import ruina.monsters.act1.fairyFestival.FairyQueen;
+import ruina.monsters.act1.laetitia.Laetitia;
 import ruina.monsters.act1.nothingDer.Gunman;
 import ruina.monsters.act1.queenBee.QueenBee;
 import ruina.monsters.act1.queenBee.WorkerBee;
@@ -68,10 +56,6 @@ import ruina.monsters.act1.redShoes.LeftShoe;
 import ruina.monsters.act1.redShoes.RightShoe;
 import ruina.monsters.act1.scorchedGirl.MatchFlame;
 import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
-import ruina.monsters.act1.ShyLook;
-import ruina.monsters.act1.TeddyBear;
-import ruina.monsters.act1.fairyFestival.FairyQueen;
-import ruina.monsters.act1.laetitia.Laetitia;
 import ruina.monsters.act1.spiderBud.SpiderBud;
 import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
@@ -197,6 +181,8 @@ public class RuinaMod implements
     public static Boolean blacksilenceClear;
     public static Boolean headClear;
     public static Boolean clown;
+    public static final String DISABLE_ALT_TITLE_ART = "disableAltTitleArt";
+    public static boolean disableAltTitleArt = false;
 
 
     public RuinaMod() {
@@ -215,6 +201,7 @@ public class RuinaMod implements
             ruinaDefaults.put("blacksilenceClear", false);
             ruinaDefaults.put("headClear", false);
             ruinaDefaults.put("clown", false);
+            ruinaDefaults.put(DISABLE_ALT_TITLE_ART, false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -544,8 +531,12 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("ClawDown"), makeSFXPath("Claw_DownAtk.wav"));
         BaseMod.addAudio(makeID("ClawInjection"), makeSFXPath("Claw_Injection.wav"));
         BaseMod.addAudio(makeID("ClawStab"), makeSFXPath("Claw_Stab.wav"));
+        BaseMod.addAudio(makeID("ClawStabBlood"), makeSFXPath("Claw_Stab_Blood.wav"));
         BaseMod.addAudio(makeID("ClawUltiEnd"), makeSFXPath("Claw_Ulti_End.wav"));
         BaseMod.addAudio(makeID("ClawUltiMove"), makeSFXPath("Claw_Ulti_Move.wav"));
+        BaseMod.addAudio(makeID("ClawRedReady"), makeSFXPath("Claw_Red_Ready.wav"));
+        BaseMod.addAudio(makeID("ClawRedEnd"), makeSFXPath("Claw_Red_End.wav"));
+        BaseMod.addAudio(makeID("ClawTeleport"), makeSFXPath("Claw_Teleport.wav"));
 
         BaseMod.addAudio(makeID("ZenaBoldLine"), makeSFXPath("Abiter_BoldLine.wav"));
         BaseMod.addAudio(makeID("ZenaNormalLine"), makeSFXPath("Abiter_NormalLine.wav"));
@@ -682,6 +673,19 @@ public class RuinaMod implements
         ModPanel settingsPanel = new ModPanel();
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
+
+        // Create the on/off button:
+        ModLabeledToggleButton disableAltTitleButton = new ModLabeledToggleButton("Disable alternate title screen (requires restart, only relevant after beating Act 5).",
+                350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                disableAltTitleArt, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+
+                    disableAltTitleArt = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    saveData();
+                });
+        settingsPanel.addUIElement(disableAltTitleButton); // Add the button to the settings panel. Button is a go.
 
         Asiyah asiyah = new Asiyah();
         asiyah.addAct(Exordium.ID);
@@ -1139,6 +1143,14 @@ public class RuinaMod implements
             e.printStackTrace();
         }
     }
+    public static void saveData() {
+        try {
+            ruinaConfig.setBool(DISABLE_ALT_TITLE_ART, disableAltTitleArt);
+            ruinaConfig.save();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void loadConfig(){
         reverbClear = ruinaConfig.getBool("reverbClear");
@@ -1146,8 +1158,11 @@ public class RuinaMod implements
         headClear = ruinaConfig.getBool("headClear");
         LocalDate clownCheck = LocalDate.now();
         clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
+        disableAltTitleArt = ruinaConfig.getBool(DISABLE_ALT_TITLE_ART);
     }
 
-    public static boolean hijackMenu() { return headClear; }
+    public static boolean hijackMenu() {
+        return headClear && !disableAltTitleArt;
+    }
     public static boolean clownTime() { return clown; }
 }

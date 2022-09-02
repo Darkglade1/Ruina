@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -348,35 +349,76 @@ public class Baral extends AbstractCardMonster
                 break;
             }
             case SERUM_R: {
-                for (int i = 0; i < multiplier; i++) {
-                    if (i % 2 == 0) {
-                        bluntAnimation(target);
-                    } else {
-                        slashAnimation(target);
-                    }
-                    dmg(target, info);
-                    resetIdle();
+                float targetOffset;
+                boolean flip1;
+                boolean flip2;
+                if (target instanceof RolandHead || currentPhase == PHASE.PHASE1) {
+                    targetOffset = -150.0f;
+                    flip1 = true;
+                    flip2 = false;
+                } else {
+                    targetOffset = 100.0f;
+                    flip1 = false;
+                    flip2 = true;
                 }
+                float initialX = this.drawX;
+                float targetBehind = target.drawX + targetOffset * Settings.scale;
+                serumR1(target);
+                waitAnimation(0.5f);
+                moveSpriteAnimation(targetBehind, target);
+                serumR2(target);
+                dmg(target, info);
+                waitAnimation(0.75f);
+                setFlipAnimation(flip1, target);
+                serumR1(target);
+                waitAnimation(0.5f);
+                moveSpriteAnimation(initialX, target);
+                serumR2(target);
+                dmg(target, info);
+                resetIdle(0.75f);
+                setFlipAnimation(flip2, target);
                 applyToTarget(this, this, new StrengthPower(this, serumR_Strength));
                 break;
             }
             case EXTIRPATION: {
                 block(this, extirpationBlock);
-                bluntAnimation(target);
+                pierceAnimation(target);
+                waitAnimation(0.5f);
+                pierceFinAnimation(target);
                 dmg(target, info);
-                resetIdle();
+                resetIdle(0.75f);
                 break;
             }
             case TRI_SERUM_COCKTAIL: {
-                for (int i = 0; i < multiplier; i++) {
-                    if (i % 2 == 0) {
-                        pierceAnimation(target);
-                    } else {
-                        slashAnimation(target);
-                    }
-                    dmg(target, info);
-                    resetIdle();
+                float targetOffset;
+                boolean flip1;
+                if (target instanceof RolandHead || currentPhase == PHASE.PHASE1) {
+                    targetOffset = -150.0f;
+                    flip1 = true;
+                } else {
+                    targetOffset = 100.0f;
+                    flip1 = false;
                 }
+                float initialX = this.drawX;
+                float targetBehind = target.drawX + targetOffset * Settings.scale;
+                serumR1(target);
+                waitAnimation(0.5f);
+                moveSpriteAnimation(targetBehind, target);
+                serumR2(target);
+                dmg(target, info);
+                waitAnimation(0.75f);
+                setFlipAnimation(flip1, target);
+                pierceAnimation(target);
+                waitAnimation(0.5f);
+                pierceFinAnimation(target);
+                dmg(target, info);
+                waitAnimation(0.75f);
+                serumR1(target);
+                waitAnimation(0.5f);
+                moveSpriteAnimation(initialX, target);
+                serumR2(target);
+                dmg(target, info);
+                resetIdle(0.75f);
                 break;
             }
             case SERUM_K: {
@@ -403,30 +445,69 @@ public class Baral extends AbstractCardMonster
         }
     }
 
-    private void bluntAnimation(AbstractCreature enemy) {
+    public void bluntAnimation(AbstractCreature enemy) {
         animationAction("Blunt", "ClawUp", enemy, this);
     }
 
-    private void pierceAnimation(AbstractCreature enemy) {
+    public void pierceAnimation(AbstractCreature enemy) {
         animationAction("Pierce", "ClawStab", enemy, this);
     }
 
-    private void slashAnimation(AbstractCreature enemy) {
+    public void pierceFinAnimation(AbstractCreature enemy) {
+        animationAction("PierceFin", "ClawStabBlood", enemy, this);
+    }
+
+    public void slashAnimation(AbstractCreature enemy) {
         animationAction("Slash", "ClawDown", enemy, this);
     }
 
-    private void buffAnimation() {
+    public void buffAnimation() {
         animationAction("Heal", "ClawInjection", this);
     }
 
-    private void moveAnimation() {
+    public void moveAnimation() {
         animationAction("Move", "ClawUltiMove", this);
     }
 
-    private void serumWAnimation(AbstractCreature enemy) {
+    public void serumWAnimation(AbstractCreature enemy) {
         animationAction("Slash", "ClawFin", enemy, this);
     }
 
+    public void serumR1(AbstractCreature enemy) {
+        animationAction("SerumR1", "ClawRedReady", enemy, this);
+    }
+
+    public void serumR2(AbstractCreature enemy) {
+        animationAction("SerumR2", "ClawRedEnd", enemy, this);
+    }
+
+    public void moveSpriteAnimation(float x, AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (enemy == null || !enemy.isDeadOrEscaped()) {
+                    drawX = x;
+                }
+                this.isDone = true;
+            }
+        });
+    }
+
+    public void setFlipAnimation(boolean flipHorizontal, AbstractCreature enemy) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (enemy == null || !enemy.isDeadOrEscaped()) {
+                    animation.setFlip(flipHorizontal, false);
+                }
+                this.isDone = true;
+            }
+        });
+    }
+
+    public void setFlipInstant(boolean flipHorizontal) {
+        animation.setFlip(flipHorizontal, false);
+    }
 
     @Override
     public void takeTurn() {

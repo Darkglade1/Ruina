@@ -794,7 +794,7 @@
   "ruina:Marionette": {
     "NAME": "꼭두각시",
     "DESCRIPTION": "피해를 !D! 줍니다. NL 카드를 !M! 장 뽑습니다. NL 이번 전투동안 이 카드의 비용이 !ruina:SecondMagic! 증가합니다.",
-    "UPGRADE_DESCRIPTION": "피해를 !D! 줍니다. NL 카드를 !M! 장 뽑습니다. NL 이번 전투동안 이 카드의 비용이그리고 카드 뽑기 !ruina:SecondMagic! 증가합니다."
+    "UPGRADE_DESCRIPTION": "피해를 !D! 줍니다. NL 카드를 !M! 장 뽑습니다. NL 이번 전투동안 이 카드의 비용과 드로우 수량이 !ruina:SecondMagic! 증가합니다."
   },
   "ruina:WristCutter": {
     "NAME": "손목긋개",
@@ -857,7 +857,7 @@
   },
   "ruina:SanguineDesire": {
     "NAME": "핏빛 욕망",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL 차단되지 않은 피해의 절반만큼 ruina:출혈 를 적용합니다."
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 막히지 않은 피해의 50%만큼 ruina:출혈 을 부여합니다."
   },
   "ruina:RedEyes": {
     "NAME": "적안",
@@ -892,7 +892,7 @@
   },
   "ruina:OurGalaxy": {
     "NAME": "우리의 은하수",
-    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 재생을 !M! 얻습니다. NL ruina:발현 으로 소모된 [E] 만큼 인공물을 을 부여합니다."
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 재생을 !M! 얻습니다. NL ruina:발현 으로 소모된 [E] 만큼 인공물을 획득합니다."
   },
   "ruina:Pleasure": {
     "NAME": "쾌락",
@@ -920,8 +920,8 @@
   },
   "ruina:MagicBullet": {
     "NAME": "마탄",
-    "DESCRIPTION": "적군은 이번 턴에 공격으로부터 2배의 피해를 받습니다. ",
-    "UPGRADE_DESCRIPTION": "적군은 이번 턴에 공격으로부터 2배의 피해를 받습니다. NL 힘을 !M! 얻습니다. NL 이번 턴이 끝날 때 힘을 !M! 잃습니다."
+    "DESCRIPTION": "이번턴에 공격으로 적들에게 입히는 피해량이 2배가 됩니다. ",
+    "UPGRADE_DESCRIPTION": "이번턴에 공격으로 적들에게 입히는 피해량이 2배가 됩니다. NL 힘을 !M! 얻습니다. NL 턴 종료시 힘을 !M! 잃습니다."
   },
   "ruina:FourthMatchFlame": {
     "NAME": "4번째 성냥불",

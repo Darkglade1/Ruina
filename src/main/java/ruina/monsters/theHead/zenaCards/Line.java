@@ -16,7 +16,7 @@ public class Line extends AbstractRuinaCard {
     private Zena parent;
 
     public Line(Zena parent) {
-        super(ID, -2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         block = baseBlock = parent.BLOCK;
         this.parent = parent;
     }
