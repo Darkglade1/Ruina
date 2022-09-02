@@ -946,5 +946,21 @@
   "${ModID}:GrindingGears": {
     "NAME": "Grinding Gears",
     "DESCRIPTION": "Take !M! damage. NL Remove !ruina:SecondMagic! card from the *Singing *Machine and add it to your hand. NL *Stun the *Singing *Machine for 1 turn."
+  },
+  "${ModID}:Yield": {
+    "NAME": "Yield My Flesh",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength."
+  },
+  "${ModID}:Claim": {
+    "NAME": "To Claim Their Bones",
+    "DESCRIPTION": "While this card is held, the user can *Counter *Attack for !D! damage. User cannot make an attack on their turn."
+  },
+  "${ModID}:TakeOnesLife": {
+    "NAME": "And Take One's Life",
+    "DESCRIPTION": "Deal !D! damage. NL Target takes damage next turn equal to unblocked damage dealt."
+  },
+  "${ModID}:Acupuncture": {
+    "NAME": "Acupuncture",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:secondMagic! Paralysis."
   }
 }

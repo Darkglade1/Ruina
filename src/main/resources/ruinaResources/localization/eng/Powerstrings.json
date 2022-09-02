@@ -610,5 +610,13 @@
   "${ModID}:MagicBullet": {
     "NAME": "Magic Bullet",
     "DESCRIPTIONS": ["Receives #b", "% more damage from #yAttacks this turn."]
+  },
+  "${ModID}:Rupture": {
+    "NAME": "Rupture",
+    "DESCRIPTIONS": ["At the end of your turn, take #b", " damage."]
+  },
+  "${ModID}:CounterAttack": {
+    "NAME": "Counter Attack",
+    "DESCRIPTIONS": ["Whenever you play an #yAttack this turn, this creature will #yCounter #yAttack you. If this effect did not trigger at least once this turn, will use a #rpowerful attack next turn."]
   }
 }
