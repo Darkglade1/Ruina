@@ -1,5 +1,6 @@
 package ruina.monsters.eventboss.kim;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -78,10 +79,10 @@ public class Kim extends AbstractCardMonster {
         this.setHp(calcAscensionTankiness(180));
         this.type = EnemyType.ELITE;
 
-        addMove(YIELD, Intent.ATTACK_BUFF, calcAscensionDamage(9));
+        addMove(YIELD, Intent.ATTACK_BUFF, calcAscensionDamage(10));
         addMove(CLAIM, Intent.ATTACK, calcAscensionDamage(20));
-        addMove(TAKE_ONES_LIFE, Intent.ATTACK_DEBUFF, calcAscensionDamage(30));
-        addMove(ACUPUNCTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(5), ACUPUNCTURE_HITS, true);
+        addMove(TAKE_ONES_LIFE, Intent.ATTACK_DEBUFF, calcAscensionDamage(27));
+        addMove(ACUPUNCTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6), ACUPUNCTURE_HITS, true);
 
         cardList.add(new Yield(this));
         cardList.add(new Claim(this));
@@ -93,6 +94,12 @@ public class Kim extends AbstractCardMonster {
     protected void setUpMisc() {
         super.setUpMisc();
         this.type = EnemyType.ELITE;
+    }
+
+    @Override
+    public void usePreBattleAction()
+    {
+        CustomDungeon.playTempMusicInstantly("Samurai");
     }
 
     @Override
