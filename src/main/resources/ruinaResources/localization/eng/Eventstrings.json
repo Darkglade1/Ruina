@@ -740,5 +740,25 @@
     ],
     "OPTIONS": [
     ]
+  },
+  "ruina:WanderingSamurai": {
+    "NAME": "Wandering Samurai",
+    "DESCRIPTIONS": [
+      "You spot a lone figure in the distance, a #ychance encounter with a wandering swordsman looking for someone to test themselves against. NL You seem them raise their sword, challenging you.",
+      "You turn tail and run. Although you felt that heeding your self-preservation instinct was the best choice, you couldn't help but feel a bit #pshameful about it."
+    ],
+    "OPTIONS": [
+      "[Accept the duel] ",
+      "[Turn tail and flee] ",
+      "Fight an enemy.",
+      "Obtain ",
+      " Uncommon relics.",
+      "Remove ",
+      " cards.",
+      "Become Cursed - ",
+      "[Leave]",
+      "Choose Cards to Remove.",
+      "."
+    ]
   }
 }

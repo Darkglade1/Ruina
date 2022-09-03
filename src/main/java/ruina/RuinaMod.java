@@ -882,6 +882,7 @@ public class RuinaMod implements
         BaseMod.addEvent(NothingThere.ID, NothingThere.class, Briah.ID);
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Briah.ID);
+        BaseMod.addEvent(WanderingSamurai.ID, WanderingSamurai.class, Briah.ID);
 
 
         // Act 3

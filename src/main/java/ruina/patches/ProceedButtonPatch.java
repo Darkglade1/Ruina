@@ -17,7 +17,7 @@ public class ProceedButtonPatch {
             public void edit(Instanceof i) throws CannotCompileException {
                 try {
                     if (i.getType().getName().equals(Mushrooms.class.getName())) {
-                        i.replace("$_ = $proceed($$) || currentRoom.event instanceof ruina.events.act3.RedMistRecollection || currentRoom.event instanceof ruina.events.act3.DistortedYan || currentRoom.event instanceof ruina.events.act1.StreetlightOffice;");
+                        i.replace("$_ = $proceed($$) || currentRoom.event instanceof ruina.events.act3.RedMistRecollection || currentRoom.event instanceof ruina.events.act3.DistortedYan || currentRoom.event instanceof ruina.events.act1.StreetlightOffice || currentRoom.event instanceof ruina.events.act2.WanderingSamurai;");
                     }
                 } catch (NotFoundException e) { }
             }
