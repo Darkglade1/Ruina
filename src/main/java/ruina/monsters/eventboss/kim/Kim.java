@@ -27,7 +27,10 @@ import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
+import ruina.util.TexLoader;
 import ruina.util.Wiz;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -117,8 +120,9 @@ public class Kim extends AbstractCardMonster {
             case TAKE_ONES_LIFE: {
                 final int[] damageDealt = {0};
                 specialAnimation();
-                waitAnimation(0.75f);
-                slashAnimation(adp());
+                waitAnimation(0.5f);
+                takeOnesLifeVfx();
+                specialFin(adp());
                 dmg(adp(), info);
                 atb(new AbstractGameAction() {
                     @Override
@@ -130,7 +134,7 @@ public class Kim extends AbstractCardMonster {
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if(damageDealt[0] >= 0){
+                        if(damageDealt[0] > 0){
                             applyToTarget(adp(), Kim.this, new AbstractLambdaPower(R_POWER_NAME, R_POWER_ID, AbstractPower.PowerType.DEBUFF, false, adp(), damageDealt[0]) {
                                 @Override
                                 public void atEndOfTurn(boolean isPlayer) {
@@ -148,7 +152,7 @@ public class Kim extends AbstractCardMonster {
                         isDone = true;
                     }
                 });
-                resetIdle();
+                resetIdle(1.0f);
                 break;
             }
             case ACUPUNCTURE: {
@@ -271,6 +275,25 @@ public class Kim extends AbstractCardMonster {
 
     public void specialAnimation() {
         animationAction("Special", "Parry", this);
+    }
+
+    public void specialFin(AbstractCreature enemy) {
+        animationAction("Slash", "RedMistVertFin", enemy, this);
+    }
+
+    public static void takeOnesLifeVfx() {
+        ArrayList<Texture> frames = new ArrayList<>();
+        for (int i = 0; i <= 23; i++) {
+            frames.add(TexLoader.getTexture(makeMonsterPath("Kim/Animation/Image-" + i + ".png")));
+        }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound("RedMistHoriEye");
+                this.isDone = true;
+            }
+        });
+        fullScreenAnimation(frames, 0.1f, 2.3f);
     }
 
 }
