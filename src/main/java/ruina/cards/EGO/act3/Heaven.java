@@ -43,7 +43,7 @@ public class Heaven extends AbstractEgoCard {
             @Override
             public void update() {
                 if(vfx[0] == null){
-                    vfx[0] = new BurrowingHeavenEffect();
+                    vfx[0] = new BurrowingHeavenEffect(true);
                     AbstractDungeon.effectsQueue.add(vfx[0]);
                 }
                 else {

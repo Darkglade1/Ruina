@@ -151,7 +151,7 @@ public class Scarecrow extends AbstractRuinaMonster
     }
 
     private void harvestAnimation(AbstractCreature enemy) {
-        animationAction("Attack2", "Harvest", enemy, this);
+        animationAction("Attack2", "Harvest", 0.5f, enemy, this);
     }
 
 }

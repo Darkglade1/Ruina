@@ -27,6 +27,10 @@ public class BurrowingHeavenEffect extends AbstractGameEffect {
     private boolean playedFinishSound = false;
 
     public BurrowingHeavenEffect() {
+        this(false);
+    }
+
+    public BurrowingHeavenEffect(boolean fast) {
         img = TexLoader.getTexture(makeVfxPath("BurrowingHeavenEffect.png"));
 
         for (int i = 0; i < 5; i++) {
@@ -34,7 +38,11 @@ public class BurrowingHeavenEffect extends AbstractGameEffect {
             (this.color2[i]).a = 0.0F;
         }
         this.animTimer = 0.1F;
-        this.duration = 2.0F;
+        if (fast) {
+            this.duration = 1.0f;
+        } else {
+            this.duration = 2.0F;
+        }
         this.startingDuration = 1.0F;
         this.lastTimer = 0.5F;
         this.stage = 1;
