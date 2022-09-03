@@ -102,7 +102,7 @@ public class SanguineBat extends AbstractRuinaMonster
     }
 
     private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack", "BatAttack", enemy, this);
+        animationAction("Attack", "BatAttack", 0.5f, enemy, this);
     }
 
 }

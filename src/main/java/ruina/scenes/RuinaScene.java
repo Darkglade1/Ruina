@@ -10,17 +10,11 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import ruina.RuinaMod;
 import ruina.dungeons.AbstractRuinaDungeon;
-import ruina.monsters.act1.AllAroundHelper;
-import ruina.monsters.act1.Alriune;
-import ruina.monsters.act1.Butterflies;
-import ruina.monsters.act1.CrazedEmployee;
-import ruina.monsters.act1.ForsakenMurderer;
-import ruina.monsters.act1.Fragment;
-import ruina.monsters.act1.GalaxyFriend;
-import ruina.monsters.act1.Orchestra;
-import ruina.monsters.act1.Porccubus;
+import ruina.monsters.act1.*;
 import ruina.monsters.act1.blackSwan.BlackSwan;
 import ruina.monsters.act1.blackSwan.Brother;
+import ruina.monsters.act1.fairyFestival.FairyQueen;
+import ruina.monsters.act1.laetitia.Laetitia;
 import ruina.monsters.act1.nothingDer.Gunman;
 import ruina.monsters.act1.nothingDer.NothingThere;
 import ruina.monsters.act1.queenBee.QueenBee;
@@ -28,12 +22,6 @@ import ruina.monsters.act1.queenBee.WorkerBee;
 import ruina.monsters.act1.redShoes.LeftShoe;
 import ruina.monsters.act1.redShoes.RightShoe;
 import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
-import ruina.monsters.act1.ShyLook;
-import ruina.monsters.act1.TeddyBear;
-import ruina.monsters.act1.fairyFestival.FairyQueen;
-import ruina.monsters.act1.laetitia.Laetitia;
-import ruina.monsters.act1.singingMachine.ManicEmployee;
-import ruina.monsters.act1.singingMachine.SingingMachineMonster;
 import ruina.monsters.act1.spiderBud.SpiderBud;
 import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
@@ -196,7 +184,7 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Laetitia");
                 } else if (mo instanceof Fragment) {
                     this.bg = this.atlas.findRegion("mod/Fragment");
-                } else if (mo instanceof CrazedEmployee || mo instanceof SingingMachineMonster || mo instanceof ManicEmployee) {
+                } else if (mo instanceof CrazedEmployee) {
                     this.bg = this.atlas.findRegion("mod/Singing");
                 } else if (mo instanceof Butterflies) {
                     this.bg = this.atlas.findRegion("mod/Butterfly");

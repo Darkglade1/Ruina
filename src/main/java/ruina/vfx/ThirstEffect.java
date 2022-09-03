@@ -25,6 +25,10 @@ public class ThirstEffect extends AbstractGameEffect {
     private boolean playedBloodSound = false;
 
     public ThirstEffect() {
+        this(false);
+    }
+
+    public ThirstEffect(boolean fast) {
         for (int i = 0; i <= 4; i += 1) {
             this.img[i] = TexLoader.getTexture(makeVfxPath("NosferatuThirstEffect" + i + ".png"));
         }
@@ -34,7 +38,11 @@ public class ThirstEffect extends AbstractGameEffect {
             (this.color2[i]).a = 0.0F;
         }
         this.animTimer = 0.1F;
-        this.duration = 2.0F;
+        if (fast) {
+            this.duration = 1.0F;
+        } else {
+            this.duration = 2.0F;
+        }
         this.startingDuration = 1.0F;
         this.lastTimer = 0.5F;
         this.stage = 1;
