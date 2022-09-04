@@ -607,6 +607,10 @@
     "NAME": "第七颗子弹",
     "DESCRIPTIONS": ["每当你打出 #b", " 攻击时，此生物的攻击将使其目标损失等同于在 #b1 回合内造成的未阻挡伤害的 HP。", " NL NL 本回合，每当此生物对目标造成未阻挡的攻击伤害时， 目标也损失了那么多HP。"]
   },
+  "${ModID}:CenterOfAttention": {
+    "NAME": "关注的焦点",
+    "DESCRIPTIONS": ["随机攻击目标总会以这个生物为目标。"]
+  },
   "${ModID}:MagicBullet": {
     "NAME": "魔法子弹",
     "DESCRIPTIONS": ["本回合受到#yAttacks 的伤害增加#b", "%。"]

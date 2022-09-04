@@ -97,7 +97,7 @@
   },
   "ruina:Apocalypse": {
     "NAME": "終末",
-    "DESCRIPTION": " !D! ダメージを与える。 NL 自分のHPが50％以下なら、1.5倍のダメージ。 NL 敵のHPが50％以下なら、1.5倍のダメージ。"
+    "DESCRIPTION": " !D! ダメージを与える。 NL 自分のHPが50％以下なら、2.0倍のダメージ。 NL 敵のHPが50％以下なら、2.0倍のダメージ。"
   },
   "ruina:Beak": {
     "NAME": "くちばし",

@@ -22,6 +22,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.CenterOfAttention;
 import ruina.powers.Meal;
 
 import static ruina.RuinaMod.makeID;
@@ -84,6 +85,7 @@ public class FairyQueen extends AbstractRuinaMonster
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1] + amount + POWER_DESCRIPTIONS[2];
             }
         });
+        applyToTarget(this, this, new CenterOfAttention(this));
     }
 
     @Override
