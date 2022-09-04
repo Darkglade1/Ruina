@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.CenterOfAttention;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeID;
@@ -71,6 +72,7 @@ public class BlueStar extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning3");
+        applyToTarget(this, this, new CenterOfAttention(this));
         Summon();
     }
 
