@@ -97,7 +97,7 @@
   },
   "${ModID}:Apocalypse": {
     "NAME": "Apocalypse",
-    "DESCRIPTION": "Deal !D! damage. NL Deals 50% more damage if your HP is at or below 50%. NL Deals 50% more damage to enemies with 50% or less HP."
+    "DESCRIPTION": "Deal !D! damage. NL Deals 100% more damage if your HP is at or below 50%. NL Deals 100% more damage to enemies with 50% or less HP."
   },
   "${ModID}:Beak": {
     "NAME": "Beak",

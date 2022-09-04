@@ -14,7 +14,7 @@ public class Apocalypse extends AbstractEgoCard {
 
     public static final int DAMAGE = 22;
     public static final int UP_DAMAGE = 4;
-    public static final int BONUS_DAMAGE = 50;
+    public static final int BONUS_DAMAGE = 100;
     public static final int HP_THRESHOLD = 50;
 
     public Apocalypse() {
@@ -29,20 +29,16 @@ public class Apocalypse extends AbstractEgoCard {
 
     @Override
     public void calculateCardDamage(AbstractMonster mo) {
-        int realBaseDamage = this.baseDamage;
-        this.baseDamage = (int)(baseDamage * playerHPMultiplier());
-        this.baseDamage = (int)(baseDamage * enemyHPMultiplier(mo));
         super.calculateCardDamage(mo);
-        this.baseDamage = realBaseDamage;
+        this.damage = (int)(damage * playerHPMultiplier());
+        this.damage = (int)(damage * enemyHPMultiplier(mo));
         this.isDamageModified = this.damage != this.baseDamage;
     }
 
     @Override
     public void applyPowers() {
-        int realBaseDamage = this.baseDamage;
-        this.baseDamage = (int)(baseDamage * playerHPMultiplier());
         super.applyPowers();
-        this.baseDamage = realBaseDamage;
+        this.damage = (int)(damage * playerHPMultiplier());
         this.isDamageModified = this.damage != this.baseDamage;
     }
 
