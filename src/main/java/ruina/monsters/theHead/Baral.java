@@ -49,6 +49,7 @@ import ruina.patches.RenderHandPatch;
 import ruina.powers.AClaw;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.PlayerBlackSilence;
+import ruina.powers.RuinaInvincible;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -180,7 +181,7 @@ public class Baral extends AbstractCardMonster
         rollMove();
         createIntent();
         applyToTarget(this, this, new AClaw(this, POWER_THRESHOLD, POWER_DAMAGE_REDUCTION, POWER_STRENGTH));
-        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
+        applyToTarget(this, this, new RuinaInvincible(this, INVINCIBLE));
     }
 
     @Override
