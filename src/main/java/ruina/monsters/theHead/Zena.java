@@ -339,6 +339,7 @@ public class Zena extends AbstractCardMonster
                     });
                     waitAnimation(1.5f);
                     float playerX = 1650.0f * Settings.scale;
+                    int rolandCorrectHealth = adp().currentHealth;
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
@@ -349,7 +350,7 @@ public class Zena extends AbstractCardMonster
                             if (strength != null) {
                                 baral.roland.powers.add(new StrengthPower(baral.roland, strength.amount));
                             }
-                            baral.roland.currentHealth = adp().currentHealth;
+                            baral.roland.currentHealth = rolandCorrectHealth;
                             baral.roland.healthBarUpdatedEvent();
                             int furiosoCounter = 9;
                             AbstractPower playerBlackSilence = adp().getPower(PlayerBlackSilence.POWER_ID);
@@ -379,6 +380,15 @@ public class Zena extends AbstractCardMonster
                     });
 
                     atb(new SpawnMonsterAction(baral.roland, false));
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            //set the health again here in case corrupt the spire increases it when roland spawns
+                            baral.roland.currentHealth = rolandCorrectHealth;
+                            baral.roland.healthBarUpdatedEvent();
+                            this.isDone = true;
+                        }
+                    });
                     atb(new UsePreBattleActionAction(baral.roland));
                     atb(new VFXAction(new SmokeBombEffect(playerX, adp().hb.cY), 1.5f));
                     atb(new HeadDialogueAction(31, 37));
