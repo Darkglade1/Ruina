@@ -4,10 +4,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import corruptthespire.Cor;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.util.TexLoader;
@@ -32,6 +34,7 @@ public class PlayerBlackSilence extends AbstractEasyPower {
         this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
         this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
         this.parent = parent;
+        this.priority = 99;
     }
 
     @Override
@@ -50,6 +53,14 @@ public class PlayerBlackSilence extends AbstractEasyPower {
         });
     }
 
+    @Override
+    public float atDamageGive(float damage, DamageInfo.DamageType type) {
+        if (RuinaMod.corruptTheSpireLoaded && type == DamageInfo.DamageType.NORMAL) {
+            return damage * (100 + Cor.getCorruptionDamageMultiplierPercent()) / 100;
+        } else {
+            return damage;
+        }
+    }
 
     @Override
     public void updateDescription() {

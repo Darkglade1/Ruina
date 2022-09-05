@@ -152,7 +152,7 @@ public class Zena extends AbstractCardMonster
         currentPhase = PHASE.PHASE2;
         numAdditionalMoves++;
         applyToTarget(this, this, new AnArbiter(this, POWER_DEBUFF));
-        applyToTarget(this, this, new RuinaInvincible(this, INVINCIBLE));
+        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
     }
 
     @Override
