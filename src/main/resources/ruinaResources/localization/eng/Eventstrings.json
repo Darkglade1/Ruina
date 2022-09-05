@@ -781,5 +781,19 @@
       "[Locked] Requires: Potion.",
       "Obtain an upgraded EGO card."
     ]
+  },
+  "ruina:Realization": {
+    "NAME": "Realization",
+    "DESCRIPTIONS": [
+      "I whispered into people the essence of life. NL So that they will cherish their own emotions and focus on them only. NL So that the fluctuating shape of the mind can be exposed to the world."
+    ],
+    "OPTIONS": [
+      "[Speak to the king who desired everything]",
+      "[Speak to the knight who fell into despair] ",
+      "[Speak to the queen who succumbed to hatred]",
+      "[Speak to the servant enslaved by wrath]",
+      "[Speak to the girl seeking a heart] ",
+      "[Speak to swam with broken dreams] "
+    ]
   }
 }
