@@ -76,7 +76,7 @@ public class Kim extends AbstractCardMonster {
         super(NAME, ID, 180, 0.0F, 0, 230.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Kim/Spriter/Kim.scml"));
 
-        this.setHp(calcAscensionTankiness(180));
+        this.setHp(calcAscensionTankiness(200));
         this.type = EnemyType.ELITE;
 
         addMove(YIELD, Intent.ATTACK_BUFF, calcAscensionDamage(10));

@@ -760,5 +760,26 @@
       "Choose Cards to Remove.",
       "."
     ]
+  },
+  "ruina:Art": {
+    "NAME": "Floor of Art",
+    "DESCRIPTIONS": [
+      "The Floor of Art. It was a magnificent floor, filled with #ygrand paintings, #ypicturesque scenes . . . and the stench of #palcohol. NL Someone yawned loudly, a sleepy figure half-hidden by stacks of books. NL \"Hey, wanna be a bro and bring me that beer from over there?\" NL The figure shamelessly makes this request. In the distance, you see a couple other librarians grappling with a restless #pAbnormality while this one lazed about.",
+      "You walk back with the drink in hand and pass it over. The figure quickly snatches it from your hand and gulps it down. NL \"Ahhh, that hits the spot!\" He grins at you, #ggiddy and #pdrunk. \"Hey, you seem like a nice sort, wanna drink this with me?\" NL The two of you wile the time away in a #pdrunken stupor, ignoring the nearby #rcommotion.",
+      "You walk over to the drink, pick it up, and @throw@ it away in a nearby trash bin. NL \"Hey! Why did you #pwaste a perfectly good drink like that?\" the figure shouts in indignation. NL You tell him that drinking could wait until after the floor didn't have an ongoing #rincident. NL \"That feisty #pAbnormality? It's not even that #rdangerous. And it's not like we'd die for good if we're killed. Those assistants should be able to take care of it,\" he grumbles. NL Regardless, the two of you head over to help suppress the #pAbnormality. NL It ended up being much more #rdangerous than expected."
+    ],
+    "OPTIONS": [
+      "[Bring them the drink] ",
+      "[Cut off his supply] ",
+      "Obtain ",
+      "s.",
+      "Lose ",
+      ".",
+      "Obtain a random EGO card.",
+      "Obtain an EGO card.",
+      "[Wake up]",
+      "[Locked] Requires: Potion.",
+      "Obtain an upgraded EGO card."
+    ]
   }
 }

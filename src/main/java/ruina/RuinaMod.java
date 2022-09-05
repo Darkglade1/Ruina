@@ -816,6 +816,7 @@ public class RuinaMod implements
         BaseMod.addEvent(GalaxyChild.ID, GalaxyChild.class, Asiyah.ID);
         BaseMod.addEvent(Funeral.ID, Funeral.class, Asiyah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
+        BaseMod.addEvent(Art.ID, Art.class, Asiyah.ID);
 
 
         //Act 2
