@@ -64,36 +64,11 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         }
         if (additionalMove.baseDamage > -1) {
             int dmg = additionalMove.baseDamage;
-            float tmp = (float)dmg;
-            if (Settings.isEndless && AbstractDungeon.player.hasBlight("DeadlyEnemies")) {
-                float mod = AbstractDungeon.player.getBlight("DeadlyEnemies").effectFloat();
-                tmp *= mod;
-            }
+            DamageInfo info = new DamageInfo(this, dmg);
+            info.applyPowers(this, target);
 
-            AbstractPower p;
-            Iterator var6;
-            for(var6 = this.powers.iterator(); var6.hasNext(); tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL)) {
-                p = (AbstractPower)var6.next();
-            }
+            dmg = info.output;
 
-            for(var6 = target.powers.iterator(); var6.hasNext(); tmp = p.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL)) {
-                p = (AbstractPower)var6.next();
-            }
-
-            tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
-
-            for(var6 = this.powers.iterator(); var6.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
-                p = (AbstractPower)var6.next();
-            }
-
-            for(var6 = target.powers.iterator(); var6.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL)) {
-                p = (AbstractPower)var6.next();
-            }
-
-            dmg = MathUtils.floor(tmp);
-            if (dmg < 0) {
-                dmg = 0;
-            }
             if (this instanceof Argalia && additionalMove.nextMove == Argalia.SCYTHE && whichMove == Argalia.SCYTHE_INTENT_NUM) {
                 dmg = (int)(dmg * Argalia.scytheDamageMultiplier);
             }
