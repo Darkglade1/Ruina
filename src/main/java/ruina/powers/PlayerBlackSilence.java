@@ -2,9 +2,12 @@ package ruina.powers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import corruptthespire.Cor;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.util.TexLoader;
@@ -30,6 +33,14 @@ public class PlayerBlackSilence extends AbstractEasyPower {
         this.parent = parent;
     }
 
+    @Override
+    public float atDamageGive(float damage, DamageInfo.DamageType type) {
+        if (RuinaMod.corruptTheSpireLoaded && type == DamageInfo.DamageType.NORMAL) {
+            return damage * (100 + Cor.getCorruptionDamageMultiplierPercent()) / 100;
+        } else {
+            return damage;
+        }
+    }
 
     @Override
     public void updateDescription() {

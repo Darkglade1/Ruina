@@ -32,6 +32,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.actions.*;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
@@ -216,8 +217,8 @@ public class Baral extends AbstractCardMonster
 
             playerMaxHp = adp().maxHealth;
             playerCurrentHp = adp().currentHealth;
-            adp().maxHealth = roland.maxHealth;
-            adp().currentHealth = (int) (roland.maxHealth * 0.70f);
+            adp().maxHealth = roland.maxHealth + RuinaMod.corHealthMod(roland.maxHealth);
+            adp().currentHealth = (int) (adp().maxHealth * 0.70f);
             adp().healthBarUpdatedEvent();
             playerRelics.addAll(adp().relics);
             adp().relics.clear();

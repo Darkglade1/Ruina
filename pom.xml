@@ -65,6 +65,13 @@
             <scope>system</scope>
             <systemPath>${Steam.path}/workshop/content/646570/2368513093/WidePotions.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.evacipated.cardcrawl.mod</groupId>
+            <artifactId>CorruptTheSpire</artifactId>
+            <version>1.2.2</version>
+            <scope>system</scope>
+            <systemPath>${Steam.path}/workshop/content/646570/2689018131/CorruptTheSpire.jar</systemPath>
+        </dependency>
     </dependencies>
 
 

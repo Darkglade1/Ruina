@@ -33,6 +33,7 @@ import com.megacrit.cardcrawl.neow.NeowEvent;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import corruptthespire.Cor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ruina.CustomIntent.MassAttackIntent;
@@ -183,6 +184,8 @@ public class RuinaMod implements
     public static Boolean clown;
     public static final String DISABLE_ALT_TITLE_ART = "disableAltTitleArt";
     public static boolean disableAltTitleArt = false;
+
+    public static boolean corruptTheSpireLoaded = false;
 
 
     public RuinaMod() {
@@ -661,6 +664,9 @@ public class RuinaMod implements
         if (Loader.isModLoaded("widepotions")) {
             logger.info("Wide Potions: Detected. Loading WIDE POTIONS.");
             WidePotionsMod.whitelistSimplePotion(EgoPotion.POTION_ID);
+        }
+        if (Loader.isModLoaded("CorruptTheSpire")) {
+            corruptTheSpireLoaded = true;
         }
 
         silenceImg = new Texture(makeUIPath("silenceImg.png"));
@@ -1165,4 +1171,13 @@ public class RuinaMod implements
         return headClear && !disableAltTitleArt;
     }
     public static boolean clownTime() { return clown; }
+
+    public static int corHealthMod(int initialMaxHP) {
+        if (corruptTheSpireLoaded) {
+            return initialMaxHP * Cor.getCorruptionDamageMultiplierPercent() / 100;
+        } else {
+            return 0;
+        }
+
+    }
 }
