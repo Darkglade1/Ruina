@@ -943,7 +943,7 @@ public class RuinaMod implements
         BaseMod.addEvent(DistortedYan.ID, DistortedYan.class, Atziluth.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
         BaseMod.addEvent(YesterdayPromise.ID, YesterdayPromise.class, Atziluth.ID);
-        BaseMod.addEvent(Realization.ID, Realization.class, Atziluth.ID);
+        //BaseMod.addEvent(Realization.ID, Realization.class, Atziluth.ID);
 
         //Uninvited Guests
         BaseMod.addMonster(Puppeteer.ID, "Puppeteer", () -> new MonsterGroup(
