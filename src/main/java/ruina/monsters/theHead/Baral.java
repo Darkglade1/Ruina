@@ -32,24 +32,15 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
-import ruina.actions.HeadDialogueAction;
-import ruina.actions.SerumWAnimation;
-import ruina.actions.UsePreBattleActionAction;
-import ruina.actions.YeetPlayerAction;
+import ruina.actions.*;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.theHead.baralCards.Extirpation;
-import ruina.monsters.theHead.baralCards.SerumK;
-import ruina.monsters.theHead.baralCards.SerumR;
-import ruina.monsters.theHead.baralCards.SerumW;
-import ruina.monsters.theHead.baralCards.TriSerum;
+import ruina.monsters.theHead.baralCards.*;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.patches.RenderHandPatch;
 import ruina.powers.AClaw;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.PlayerBlackSilence;
-import ruina.powers.RuinaInvincible;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -181,7 +172,7 @@ public class Baral extends AbstractCardMonster
         rollMove();
         createIntent();
         applyToTarget(this, this, new AClaw(this, POWER_THRESHOLD, POWER_DAMAGE_REDUCTION, POWER_STRENGTH));
-        applyToTarget(this, this, new RuinaInvincible(this, INVINCIBLE));
+        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
     }
 
     @Override

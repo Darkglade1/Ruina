@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.blights.Shield;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -63,7 +62,6 @@ import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei1;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei2;
 import ruina.powers.Paralysis;
-import ruina.powers.RuinaInvincible;
 import ruina.powers.Scars;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.FlexibleStanceAuraEffect;
@@ -205,7 +203,7 @@ public class BlackSilence4 extends AbstractCardMonster {
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("GoneAngels");
         applyToTarget(this, this, new Scars(this, scarHeal));
-        applyToTarget(this, this, new RuinaInvincible(this, INVINCIBLE));
+        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
     }
 
     @Override
