@@ -4,6 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.curses.Pain;
 import com.megacrit.cardcrawl.cards.curses.Pride;
 import com.megacrit.cardcrawl.cards.curses.Shame;
 import com.megacrit.cardcrawl.cards.curses.Writhe;
@@ -16,16 +17,19 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.Anchor;
-import com.megacrit.cardcrawl.relics.MawBank;
-import com.megacrit.cardcrawl.relics.MercuryHourglass;
+import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import ruina.RuinaMod;
+import ruina.cards.EGO.act1.Laetitia;
 import ruina.cards.EGO.act2.GoldRush;
 import ruina.cards.EGO.act2.LoveAndHate;
 import ruina.cards.EGO.act2.SwordSharpened;
+import ruina.events.FullScreenImgEvent;
+import ruina.relics.BrokenHeart;
+import ruina.relics.Despair;
+import ruina.relics.Greed;
+import ruina.relics.Hate;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,7 +38,7 @@ import java.util.Collections;
 import static ruina.RuinaMod.makeEventPath;
 import static ruina.util.Wiz.adp;
 
-public class Realization extends AbstractEvent {
+public class Realization extends AbstractEvent implements FullScreenImgEvent {
 
     public static final String ID = RuinaMod.makeID(Realization.class.getSimpleName());
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
@@ -45,7 +49,7 @@ public class Realization extends AbstractEvent {
     public static final String IMG = makeEventPath("Realization.png");
 
     private enum AbnoStory {
-        GREED(1), DESPAIR(7), HATE(13);
+        GREED(1), DESPAIR(7), HATE(13), GIRL(19);
 
         private int start;
         ArrayList<String> story1;
@@ -64,9 +68,10 @@ public class Realization extends AbstractEvent {
     }
 
     private enum AbnoOptions {
-        GREED(0, new Pride(), true, 0.06f),
-        DESPAIR(5, new Shame(), true, 0.08f),
-        HATE(10, new Writhe(), false, 0.25f);
+        GREED(0, new Pride(), true, 0.08f),
+        DESPAIR(5, new Shame(), true, 0.10f),
+        HATE(10, new Writhe(), false, 0.25f),
+        GIRL(15, new Pain(), false, 0.35f);
 
         private int start;
         private AbstractCard curse;
@@ -105,10 +110,12 @@ public class Realization extends AbstractEvent {
         AbnoOptions greed = AbnoOptions.GREED;
         AbnoOptions despair = AbnoOptions.DESPAIR;
         AbnoOptions hate = AbnoOptions.HATE;
+        AbnoOptions girl = AbnoOptions.GIRL;
         ArrayList<AbnoOptions> shuffle = new ArrayList<>();
         shuffle.add(greed);
         shuffle.add(despair);
         shuffle.add(hate);
+        shuffle.add(girl);
         Collections.shuffle(shuffle, AbstractDungeon.eventRng.random);
         option1 = shuffle.get(0);
         option2 = shuffle.get(1);
@@ -206,33 +213,36 @@ public class Realization extends AbstractEvent {
     private AbnoStory getStoryFromOption(AbnoOptions option) {
         if (option == AbnoOptions.GREED) {
             return AbnoStory.GREED;
-        }
-        if (option == AbnoOptions.DESPAIR) {
+        } else if (option == AbnoOptions.DESPAIR) {
             return AbnoStory.DESPAIR;
-        } else {
+        } else if (option == AbnoOptions.HATE) {
             return AbnoStory.HATE;
+        } else {
+            return AbnoStory.GIRL;
         }
     }
 
     private AbstractRelic getRelicFromOption(AbnoOptions option) {
         if (option == AbnoOptions.GREED) {
-            return new MawBank();
-        }
-        if (option == AbnoOptions.DESPAIR) {
-            return new MercuryHourglass();
+            return new Greed();
+        } else if (option == AbnoOptions.DESPAIR) {
+            return new Despair();
+        } else if (option == AbnoOptions.HATE) {
+            return new Hate();
         } else {
-            return new Anchor();
+            return new BrokenHeart();
         }
     }
 
     private AbstractCard getCardFromOption(AbnoOptions option) {
         if (option == AbnoOptions.GREED) {
             return new GoldRush();
-        }
-        if (option == AbnoOptions.DESPAIR) {
+        } else if (option == AbnoOptions.DESPAIR) {
             return new SwordSharpened();
-        } else {
+        } else if (option == AbnoOptions.HATE) {
             return new LoveAndHate();
+        } else {
+            return new Laetitia();
         }
     }
 }

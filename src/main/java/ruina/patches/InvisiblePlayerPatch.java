@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import ruina.events.FullScreenImgEvent;
 import ruina.events.act3.Realization;
 import ruina.powers.PlayerBlackSilence;
 
@@ -18,7 +19,7 @@ public class InvisiblePlayerPatch {
     )
     public static class RenderPatch {
         public static SpireReturn Prefix(AbstractPlayer __instance, SpriteBatch sb) {
-            if (AbstractDungeon.player.hasPower(PlayerBlackSilence.POWER_ID) || AbstractDungeon.getCurrRoom().event instanceof Realization) {
+            if (AbstractDungeon.player.hasPower(PlayerBlackSilence.POWER_ID) || AbstractDungeon.getCurrRoom().event instanceof FullScreenImgEvent) {
                 __instance.renderHealth(sb);
                 if (!__instance.orbs.isEmpty()) {
                     Iterator var2 = __instance.orbs.iterator();
