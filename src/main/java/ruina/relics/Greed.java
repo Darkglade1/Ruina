@@ -40,7 +40,7 @@ public class Greed extends AbstractEasyRelic {
             Consumer<ArrayList<AbstractCard>> consumer = abstractCards -> {
                 for (AbstractCard card : abstractCards) {
                     int rarityPrice;
-                    if (card.rarity == AbstractCard.CardRarity.BASIC) {
+                    if (card.rarity == AbstractCard.CardRarity.BASIC || card.rarity == AbstractCard.CardRarity.CURSE || card.color == AbstractCard.CardColor.CURSE || card.type == AbstractCard.CardType.STATUS) {
                         rarityPrice = STARTER_GOLD;
                     } else if (card.rarity == AbstractCard.CardRarity.COMMON) {
                         rarityPrice = COMMON_GOLD;
