@@ -33,12 +33,15 @@ import com.megacrit.cardcrawl.vfx.combat.HeartMegaDebuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.ViceCrushEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
+import ruina.actions.AspirationEffectAction;
 import ruina.actions.Day49PhaseTransition1Action;
 import ruina.actions.Day49PhaseTransition2Action;
 import ruina.monsters.AbstractCardMonster;
 import ruina.powers.*;
 import ruina.util.AdditionalIntent;
+import ruina.vfx.AspirationHeartEffect;
 import ruina.vfx.ThirstEffect;
+import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -129,7 +132,7 @@ public class Act2Angela extends AbstractCardMonster {
             }
         });
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
-        atb(new VFXAction(new ThirstEffect()));
+        atb(new AspirationEffectAction());
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new Palpitation(this, palpitationBeatOfDeath)));
         atb(new ApplyPowerAction(this, this, new Pneumonia(this, pneumoniaCardLimit)));
@@ -231,7 +234,10 @@ public class Act2Angela extends AbstractCardMonster {
                 break;
             }
             case ASPIRATION_PNEUMONIA: {
-                atb(new VFXAction(new ViceCrushEffect(adp().hb.cX, adp().hb.cY), 0.5F));
+                atb(new AspirationEffectAction());
+                ViceCrushEffect ViceCrush = new ViceCrushEffect(adp().hb.cX, adp().hb.cY);
+                ReflectionHacks.setPrivate(ViceCrush, ViceCrushEffect.class, "color", Color.RED.cpy());
+                atb(new VFXAction(ViceCrush, 0.5F));
                 dmg(target, info, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
                 break;
             }

@@ -15,10 +15,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
+import ruina.actions.AlriuneCanopyEffectAction;
 import ruina.cardmods.LaurelWreathMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
+import ruina.vfx.AlriuneCanopyEffect;
 
 import java.util.ArrayList;
 
@@ -122,6 +124,7 @@ public class Alriune extends AbstractRuinaMonster
         switch (this.nextMove) {
             case SPRINGS_GENESIS: {
                 blockAnimation();
+                atb(new AlriuneCanopyEffectAction());
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 applyToTarget(adp(), this, new DexterityPower(adp(), -DEX_DOWN));
                 resetIdle(1.0f);

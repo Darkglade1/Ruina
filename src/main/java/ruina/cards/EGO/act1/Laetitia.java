@@ -11,12 +11,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import ruina.actions.LaetitiaGiftEffectAction;
 import ruina.cards.EGO.AbstractEgoCard;
 import ruina.powers.AbstractLambdaPower;
 
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.adp;
-import static ruina.util.Wiz.applyToTarget;
+import static ruina.util.Wiz.*;
 
 public class Laetitia extends AbstractEgoCard {
     public final static String ID = makeID(Laetitia.class.getSimpleName());
@@ -39,6 +39,7 @@ public class Laetitia extends AbstractEgoCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        atb(new LaetitiaGiftEffectAction(p));
         applyToTarget(adp(), adp(), new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, adp(), 1) {
 
             private int cardsDoubledThisTurn = 0;

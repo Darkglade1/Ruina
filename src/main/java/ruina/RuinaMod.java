@@ -273,6 +273,8 @@ public class RuinaMod implements
         return modID + "Resources/images/scene/" + resourcePath;
     }
 
+    public static String makeShaderPath(String resourcePath) { return modID + "Resources/shaders/" + resourcePath; }
+
     public static String makeEventPath(String resourcePath) {
         return modID + "Resources/images/events/" + resourcePath;
     }

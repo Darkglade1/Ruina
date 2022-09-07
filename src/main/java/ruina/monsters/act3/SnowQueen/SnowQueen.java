@@ -27,6 +27,8 @@ import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.vfx.FlexibleCalmParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
+import ruina.vfx.FrostSplinterNonShaderSnowEffect;
+import ruina.vfx.SnowflakeEffect;
 
 import java.util.ArrayList;
 
@@ -64,6 +66,8 @@ public class SnowQueen extends AbstractRuinaMonster
     private int frozenThroneCounter = 0;
     private float particleTimer;
     private float particleTimer2;
+
+    private float particleTimer3;
 
     public SnowQueen() {
         this(0.0f, 0.0f);
@@ -206,6 +210,11 @@ public class SnowQueen extends AbstractRuinaMonster
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
+        this.particleTimer3 -= Gdx.graphics.getDeltaTime();
+        if (this.particleTimer3 < 0.0F) {
+            this.particleTimer3 = 0.2F;
+            for (int i = 0; i < 50; i++){ AbstractDungeon.effectsQueue.add(new FrostSplinterNonShaderSnowEffect()); }
+        }
         if (this.hasPower(POWER_ID)) {
             if (this.getPower(POWER_ID).amount >= THRESHOLD - 1) {
                 this.particleTimer -= Gdx.graphics.getDeltaTime();

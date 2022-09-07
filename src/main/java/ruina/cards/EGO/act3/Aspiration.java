@@ -1,6 +1,5 @@
 package ruina.cards.EGO.act3;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
@@ -10,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import ruina.actions.AspirationAction;
+import ruina.actions.AspirationEffectAction;
 import ruina.cards.EGO.AbstractEgoCard;
 
 import static ruina.RuinaMod.makeID;
@@ -32,12 +32,13 @@ public class Aspiration extends AbstractEgoCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new ApplyPowerAction(p, p, new StrengthPower(p, magicNumber)));
+        atb(new AspirationEffectAction());
         if (Settings.FAST_MODE) {
             atb(new VFXAction(new OfferingEffect(), 0.1F));
         } else {
             atb(new VFXAction(new OfferingEffect(), 0.5F));
         }
+        atb(new ApplyPowerAction(p, p, new StrengthPower(p, magicNumber)));
         int initialHP = adp().currentHealth;
         atb(new LoseHPAction(p, p, p.currentHealth / 2));
         atb(new AspirationAction(initialHP));

@@ -1,9 +1,11 @@
 package ruina.cards;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import ruina.vfx.AspirationHeartEffect;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.atb;

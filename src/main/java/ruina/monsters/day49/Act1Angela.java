@@ -135,7 +135,7 @@ public class Act1Angela extends AbstractCardMonster {
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         atb(new Day49InitialDialogueAction(0, 29));
         currentState = State.OPENING;
-        atb(new VFXAction(new ThirstEffect()));
+        atb(new BloodbathEffectAction());
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new Scars(this, calcAscensionSpecial(50))));
         atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 4)));
@@ -186,6 +186,7 @@ public class Act1Angela extends AbstractCardMonster {
                 }
                 break;
             case SINKING:
+                atb(new BloodbathWaterEffectAction());
                 dmg(target,info);
                 atb(new AbstractGameAction() {
                     @Override

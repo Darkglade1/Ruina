@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
+import ruina.actions.LaetitiaGiftEffectAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.cards.Gift;
 import ruina.monsters.AbstractRuinaMonster;
@@ -85,6 +86,7 @@ public class Laetitia extends AbstractRuinaMonster {
         switch (this.nextMove) {
             case GIFT: {
                 attackAnimation(adp());
+                atb(new LaetitiaGiftEffectAction(this));
                 dmg(adp(), info);
                 atb(new MakeTempCardInHandAction(gift.makeStatEquivalentCopy(), giftGifts));
                 resetIdle();
