@@ -95,7 +95,7 @@ import ruina.monsters.day49.Act1Angela;
 import ruina.monsters.day49.Act2Angela;
 import ruina.monsters.day49.Act3Angela;
 import ruina.monsters.day49.Act4Angela;
-import ruina.monsters.day49.act5.Act5Angela1;
+import ruina.monsters.day49.Act5Angela;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
@@ -1016,7 +1016,7 @@ public class RuinaMod implements
         BaseMod.addMonster(Act2Angela.ID, (BaseMod.GetMonster) Act2Angela::new);
         BaseMod.addMonster(Act3Angela.ID, (BaseMod.GetMonster) Act3Angela::new);
         BaseMod.addMonster(Act4Angela.ID, (BaseMod.GetMonster) Act4Angela::new);
-        BaseMod.addMonster(Act5Angela1.ID, (BaseMod.GetMonster) Act5Angela1::new);
+        BaseMod.addMonster(Act5Angela.ID, (BaseMod.GetMonster) Act5Angela::new);
 
         day49.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 

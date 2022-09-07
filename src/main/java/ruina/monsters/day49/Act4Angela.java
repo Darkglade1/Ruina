@@ -32,7 +32,6 @@ import ruina.actions.*;
 import ruina.cardmods.FrozenMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractDeckMonster;
-import ruina.monsters.day49.act5.Act5Angela1;
 import ruina.monsters.day49.angelaCards.frostsplinter.*;
 import ruina.patches.PostProcessorPatch;
 import ruina.powers.*;
@@ -375,7 +374,7 @@ public class Act4Angela extends AbstractDeckMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        AbstractMonster m = new Act5Angela1();
+                        AbstractMonster m = new Act5Angela();
                         att(new AbstractGameAction() {
                             @Override
                             public void update() {
