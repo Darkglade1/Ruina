@@ -425,7 +425,7 @@
   },
   "${ModID}:AClaw": {
     "NAME": "Executioner",
-    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL If this creature would receive #b", " or more unblocked attack damage, reduce the damage by #b", "%. NL Whenever a creature #rdies, gains #b", " #yStrength."]
+    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL This creature's incoming #ghealing is increased by #b", "%."]
   },
   "${ModID}:AnArbiter": {
     "NAME": "Complete Arbiter",
@@ -622,5 +622,13 @@
   "${ModID}:CounterAttack": {
     "NAME": "Counter Attack",
     "DESCRIPTIONS": ["Whenever you play an #yAttack this turn, this creature will #yCounter #yAttack you. If this effect did not trigger at least once this turn, will use a #rpowerful attack next turn."]
+  },
+  "${ModID}:SingularityT": {
+    "NAME": "Singularity T",
+    "DESCRIPTIONS": ["Whenever you play #b", " cards in a single turn, this creature takes a turn and decrease the threshold by #b", " for this turn.", "Degraded Singularity T", "Whenever you play a card, this creature takes a turn."]
+  },
+  "${ModID}:SingularityJ": {
+    "NAME": "Singularity J",
+    "DESCRIPTIONS": ["#yNegate ALL #ydebuffs applied to this creature. NL NL Whenever this creature attacks an enemy, steal ALL of its target's positive #yStrength."]
   }
 }

@@ -19,6 +19,7 @@ public class TriSerum extends AbstractRuinaCard {
         super(ID, 4, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.triSerumDamage;
         magicNumber = baseMagicNumber = parent.triSerumHits;
+        secondMagicNumber = baseSecondMagicNumber = parent.STATUS;
         this.parent = parent;
     }
 

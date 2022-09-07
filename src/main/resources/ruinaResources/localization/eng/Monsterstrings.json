@@ -968,11 +968,13 @@
       "Line",
       "Thin Line",
       "Thick Line",
-      "Shockwave"
+      "Shockwave",
+      "Birdcage"
     ],
     "NAME": "Zena",
     "DIALOG": [
-      "What a worthless Enforcer you were . . ."
+      "What a worthless Enforcer you were . . .",
+      "I'll make you regret pushing me to this point."
     ]
   },
   "${ModID}:Baral": {

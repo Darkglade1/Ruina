@@ -770,12 +770,11 @@
   },
   "${ModID}:TriSerum": {
     "NAME": "Tri-Serum Cocktail",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Shuffle !ruina:SecondMagic! *Wound(s) into the discard pile."
   },
   "${ModID}:SerumK": {
     "NAME": "Serum K",
-    "DESCRIPTION": "The lowest HP ally gains !B! Block and heals !M! HP.",
-    "UPGRADE_DESCRIPTION": "The lowest HP ally gains !B! Block, heals !M! HP, and gains !ruina:SecondMagic! Strength."
+    "DESCRIPTION": "The lowest HP ally gains !B! Block, heals !M! HP, and gains !ruina:SecondMagic! Strength next turn."
   },
   "${ModID}:Line": {
     "NAME": "Line",
@@ -792,6 +791,10 @@
   "${ModID}:ZenaShockwave": {
     "NAME": "Shockwave",
     "DESCRIPTION": "Deal !D! damage to ALL enemies."
+  },
+  "${ModID}:Birdcage": {
+    "NAME": "Birdcage",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Double this creature's Strength next turn."
   },
   "${ModID}:Marionette": {
     "NAME": "Marionette",

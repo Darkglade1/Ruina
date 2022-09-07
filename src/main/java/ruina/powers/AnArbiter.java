@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
+import ruina.monsters.theHead.Zena;
 
 import static ruina.util.Wiz.applyToTarget;
 import static ruina.util.Wiz.applyToTargetNextTurn;
@@ -19,6 +19,7 @@ public class AnArbiter extends AbstractUnremovablePower {
 
     public AnArbiter(AbstractCreature owner, int amount) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
+        this.priority = 10;
     }
 
     @Override
@@ -28,6 +29,14 @@ public class AnArbiter extends AbstractUnremovablePower {
             applyToTargetNextTurn(owner, new StrengthPower(owner, amount));
         }
     }
+
+    @Override
+    public void atEndOfRound() {
+        if (owner instanceof Zena) {
+            ((Zena) owner).enrage();
+        }
+    }
+
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
