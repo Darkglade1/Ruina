@@ -77,7 +77,6 @@ public class SingularityT extends AbstractUnremovablePower {
         this.name = NAME;
         updateDescription();
         flash();
-        this.addToBot(new TextAboveCreatureAction(this.owner, NAME));
     }
 
     @Override

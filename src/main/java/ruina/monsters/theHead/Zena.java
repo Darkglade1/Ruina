@@ -266,7 +266,6 @@ public class Zena extends AbstractCardMonster
                         applyToTargetNextTurn(this, this, new StrengthPower(this, strength.amount));
                     }
                 }
-                resetIdle();
                 break;
             }
         }
