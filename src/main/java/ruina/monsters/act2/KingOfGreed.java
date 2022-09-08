@@ -18,6 +18,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.CenterOfAttention;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -76,6 +77,7 @@ public class KingOfGreed extends AbstractRuinaMonster
             }
         };
         applyToTarget(this, this, road);
+        applyToTarget(this, this, new CenterOfAttention(this));
         Summon();
     }
 
