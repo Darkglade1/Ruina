@@ -1020,6 +1020,9 @@ public class RuinaMod implements
 
                 }));
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
+        //For some reason you need two bosses in the list to not crash the game even when providing a boss ID
+        // So, hello second roland.
+        silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 
         //The Head
         BaseMod.addMonster(Baral.ID, "The Head", () -> new MonsterGroup(
