@@ -58,6 +58,7 @@ import ruina.monsters.day49.Act1Angela;
 import ruina.monsters.day49.Act3Angela;
 import ruina.monsters.day49.Act4Angela;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
+import ruina.monsters.theHead.Baral;
 import ruina.monsters.theHead.Zena;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
@@ -153,7 +154,7 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Yan");
                 } else if (mo instanceof Puppeteer) {
                     this.bg = this.atlas.findRegion("mod/Chesed");
-                } else if (mo instanceof Argalia) {
+                } else if (mo instanceof Argalia || mo instanceof Baral) {
                     this.bg = this.atlas.findRegion("mod/Keter");
                 } else if (mo instanceof Tanya) {
                     this.bg = this.atlas.findRegion("mod/Gebura");

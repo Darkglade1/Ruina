@@ -1,6 +1,7 @@
 package ruina.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import ruina.monsters.day49.dialogue.Day49PhaseTransition1;
 import ruina.monsters.day49.dialogue.Day49PhaseTransition4;
@@ -17,7 +18,7 @@ public class Day49PhaseTransition4Action extends AbstractGameAction {
     @Override
     public void update() {
         if (!started) {
-            //CardCrawlGame.fadeIn(0.5f);
+            //CardCrawlGame.fadeIn(2f);
             AbstractDungeon.topLevelEffectsQueue.add(dialogue);
             started = true;
         }

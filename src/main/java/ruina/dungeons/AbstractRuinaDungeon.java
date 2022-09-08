@@ -16,6 +16,8 @@ import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.silentGirl.SilentGirl;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.day49.Act1Angela;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
+import ruina.monsters.theHead.Baral;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.scenes.RuinaScene;
 
@@ -79,9 +81,9 @@ public class AbstractRuinaDungeon extends CustomDungeon {
                 floor = Floor.ROLAND;
             } else if (bossKey.equals(Argalia.ID)){
                 floor = Floor.GUESTS;
-            } else if (bossKey.equals(BlackSilence4.ID)){
+            } else if (bossKey.equals(BlackSilence4.ID) || bossKey.equals(Baral.ID)){
                 floor = Floor.BLACK_SILENCE;
-            } else if (bossKey.equals(Act1Angela.ID)){
+            } else if (bossKey.equals(Act1Angela.ID) || bossKey.equals(TreeOfLifeManager.ID)){
                 floor = Floor.DAY49;
             } else {
                 floor = Floor.GEBURA;

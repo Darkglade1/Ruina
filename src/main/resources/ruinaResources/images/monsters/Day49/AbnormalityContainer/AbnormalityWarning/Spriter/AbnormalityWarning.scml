@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="He.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Aleph.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Waw.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Teth.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Zayin.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="UNK.png" width="1040" height="760" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="AbnormalityWarning">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0"/>
+            </mainline>
+        </animation>
+        <animation id="1" name="UNK" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="UNK">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-262.5" y="370" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="ZAYIN" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Zayin">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="HE" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="He">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="ALEPH" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Aleph">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="WAW" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Waw">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="TETH" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Teth">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-262.5" y="370" angle="0" scale_x="0.5" scale_y="0.5"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

@@ -1,0 +1,111 @@
+
+hod.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 607, 172
+  size: 44, 37
+  orig: 44, 37
+  offset: 0, 0
+  index: -1
+11
+  rotate: false
+  xy: 480, 158
+  size: 125, 131
+  orig: 125, 131
+  offset: 0, 0
+  index: -1
+2
+  rotate: true
+  xy: 684, 221
+  size: 14, 44
+  orig: 14, 44
+  offset: 0, 0
+  index: -1
+22
+  rotate: false
+  xy: 607, 211
+  size: 75, 79
+  orig: 75, 79
+  offset: 0, 0
+  index: -1
+33
+  rotate: false
+  xy: 684, 237
+  size: 75, 79
+  orig: 75, 79
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 561, 75
+  size: 76, 81
+  orig: 76, 81
+  offset: 0, 0
+  index: -1
+44
+  rotate: true
+  xy: 2, 291
+  size: 213, 539
+  orig: 213, 539
+  offset: 0, 0
+  index: -1
+5
+  rotate: true
+  xy: 480, 2
+  size: 59, 63
+  orig: 59, 63
+  offset: 0, 0
+  index: -1
+6666
+  rotate: true
+  xy: 2, 22
+  size: 267, 476
+  orig: 267, 476
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 543, 353
+  size: 311, 151
+  orig: 311, 151
+  offset: 0, 0
+  index: -1
+body 2
+  rotate: false
+  xy: 856, 337
+  size: 156, 167
+  orig: 156, 167
+  offset: 0, 0
+  index: -1
+eye
+  rotate: false
+  xy: 765, 319
+  size: 31, 32
+  orig: 31, 32
+  offset: 0, 0
+  index: -1
+face
+  rotate: false
+  xy: 480, 63
+  size: 79, 93
+  orig: 79, 93
+  offset: 0, 0
+  index: -1
+l reg
+  rotate: true
+  xy: 543, 292
+  size: 59, 103
+  orig: 59, 103
+  offset: 0, 0
+  index: -1
+r reg
+  rotate: false
+  xy: 648, 318
+  size: 115, 33
+  orig: 115, 33
+  offset: 0, 0
+  index: -1

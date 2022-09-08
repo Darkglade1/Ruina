@@ -6,8 +6,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
+import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import ruina.RuinaMod;
 import ruina.dungeons.BlackSilence;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
 import ruina.monsters.theHead.Baral;
 
 import static ruina.RuinaMod.*;
@@ -64,11 +67,14 @@ public class TheHead extends AbstractImageEvent {
                 else {
                     switch (buttonPressed) {
                         case 0:
+                            savedTransitionToHeadFight();
+                            /*
                             AbstractDungeon.getCurrRoom().monsters = MonsterHelper.getEncounter(Baral.ID);
                             AbstractDungeon.getCurrRoom().rewards.clear();
                             AbstractDungeon.getCurrRoom().eliteTrigger = true;
                             AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
                             this.enterCombatFromImage();
+                             */
                             break;
                     }
                 }
@@ -76,5 +82,16 @@ public class TheHead extends AbstractImageEvent {
             default:
                 this.openMap();
         }
+    }
+
+    public void savedTransitionToHeadFight() {
+        AbstractDungeon.bossKey = Baral.ID;
+        CardCrawlGame.music.fadeOutBGM();
+        CardCrawlGame.music.fadeOutTempBGM();
+        MapRoomNode node = new MapRoomNode(-1, 15);
+        node.room = new MonsterRoomBoss();
+        AbstractDungeon.nextRoom = node;
+        AbstractDungeon.closeCurrentScreen();
+        AbstractDungeon.nextRoomTransitionStart();
     }
 }

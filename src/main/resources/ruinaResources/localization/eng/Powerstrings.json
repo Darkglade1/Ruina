@@ -663,7 +663,6 @@
     "NAME": "Pneumonia",
     "DESCRIPTIONS": ["Whenever you play #b%1$s cards, this creature gains #b%2$s #yPalpation."]
   },
-
   "${ModID}:DamageReductionInvincible": {
     "NAME": "Invincible",
     "DESCRIPTIONS": [
@@ -672,6 +671,5 @@
       "Incoming damage is reduced by #b",
       "%"
     ]
-  },
-  
+  }
 }

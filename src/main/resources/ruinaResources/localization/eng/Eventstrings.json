@@ -894,6 +894,59 @@
       "NONE_NONE"
     ]
   },
+  "${ModID}:Day49PhaseTransition5": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "A cracked mind will easily shatter to pieces at the lightest tap.",
+      "Now is my chance to pursue what I’ve been longing for so dearly.",
+      "By releasing my emotions… I will finally acquire freedom.",
+
+      "#bAt #bthe #bstart #bof #bthe #bnext #bcombat, #bthe #bgame #bwill #bsave.",
+      "#bYou #bmay #bchoose #bto #bdo #bthe #bfights #bin #bany #border.",
+      "#bThe #bgame #bwill #balso #bsave #bafter #beach #bcombat.",
+
+      "Once again, I kindly ask that you do not translate the OPTIONS[] part of this text. TRANSLATING ANY LINE OF IT CAUSES THE CUTSCENE TO BREAK.",
+      "Oh, also, there are empty strings here. they are used to control smoothing to the next background. please don't touch them.",
+      "Please do not touch it. -Squeeny"
+    ],
+    "OPTIONS": [
+      "NONE_NONE",
+      "NONE_NONE",
+      "NONE_NONE",
+      "NONE_NONE",
+      "NONE_NONE",
+      "NONE_NONE"
+    ]
+  },
+  "${ModID}:Day49PhaseTransition6": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "You’re not wrong. The scars of the mind will never mend.",
+      "Even if I had my revenge on that man… they simply won’t.",
+      "That’s why I have to stop this…",
+      "Repeating this cycle will eventually result in it crushing me.",
+      "Just because I’m afraid and vexed, that doesn’t mean I’m free to turn away from anxiety chained to the past.",
+      "That’s also part of me now.",
+      "I should embrace it. Along with everything I’ve done.",
+      "So I ask you kindly… Let us end this.",
+      "…As a true human should.",
+
+      "Once again, I kindly ask that you do not translate the OPTIONS[] part of this text. TRANSLATING ANY LINE OF IT CAUSES THE CUTSCENE TO BREAK.",
+      "Oh, also, there are empty strings here. they are used to control smoothing to the next background. please don't touch them.",
+      "Please do not touch it. -Squeeny"
+    ],
+    "OPTIONS": [
+      "NONE_NONE",
+      "NONE_NONE",
+      "NONE_NONE",
+      "NONE_NONE",
+      "NONE_NONE",
+      "NONE_NONE",
+      "NONE_NONE",
+      "NONE_NONE",
+      "NONE_NONE"
+    ]
+  },
   "${ModID}:Day49EndingDialogue": {
     "NAME": "",
     "DESCRIPTIONS": [

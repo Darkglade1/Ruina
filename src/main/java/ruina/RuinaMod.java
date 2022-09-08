@@ -6,6 +6,7 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.ModPanel;
 import basemod.ReflectionHacks;
+import basemod.abstracts.CustomSavable;
 import basemod.eventUtil.AddEventParams;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
@@ -96,6 +97,8 @@ import ruina.monsters.day49.Act2Angela;
 import ruina.monsters.day49.Act3Angela;
 import ruina.monsters.day49.Act4Angela;
 import ruina.monsters.day49.Act5Angela;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.Fields.D49SaveData;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
@@ -200,7 +203,7 @@ public class RuinaMod implements
     public static Boolean blacksilenceClear;
     public static Boolean headClear;
     public static Boolean clown;
-
+    public static Boolean d49Clear;
 
     public RuinaMod() {
         BaseMod.subscribe(this);
@@ -218,6 +221,8 @@ public class RuinaMod implements
             ruinaDefaults.put("blacksilenceClear", false);
             ruinaDefaults.put("headClear", false);
             ruinaDefaults.put("clown", false);
+            ruinaDefaults.put("seenD49Message", false);
+            ruinaDefaults.put("d49Clear", false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -1010,15 +1015,189 @@ public class RuinaMod implements
 
                 }));
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
+        silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 
         //Keter Realization
-        BaseMod.addMonster(Act1Angela.ID, (BaseMod.GetMonster) Act1Angela::new);
+
+        day49.addBoss(Act1Angela.ID, (BaseMod.GetMonster) Act1Angela::new, makeMonsterPath("Day49/Map.png"), makeMonsterPath("Day49/Outline.png"));
+        day49.addBoss(Act1Angela.ID, (BaseMod.GetMonster) Act1Angela::new, makeMonsterPath("Day49/Map.png"), makeMonsterPath("Day49/Outline.png"));
         BaseMod.addMonster(Act2Angela.ID, (BaseMod.GetMonster) Act2Angela::new);
         BaseMod.addMonster(Act3Angela.ID, (BaseMod.GetMonster) Act3Angela::new);
         BaseMod.addMonster(Act4Angela.ID, (BaseMod.GetMonster) Act4Angela::new);
         BaseMod.addMonster(Act5Angela.ID, (BaseMod.GetMonster) Act5Angela::new);
 
-        day49.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
+        // Post Angela5 Fakeout
+        BaseMod.addMonster(TreeOfLifeManager.ID, (BaseMod.GetMonster) TreeOfLifeManager::new);
+        // Add individual Sephirah here
+
+
+        BaseMod.addSaveField("defeatedMalkuth", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.defeatedMalkuth.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.defeatedMalkuth.set(adp(), i); }
+                else { D49SaveData.Fields.defeatedMalkuth.set(adp(), false); }
+            }
+        });
+
+        BaseMod.addSaveField("defeatedYesod", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.defeatedYesod.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.defeatedYesod.set(adp(), i); }
+                else { D49SaveData.Fields.defeatedYesod.set(adp(), false); }
+            }
+        });
+
+        BaseMod.addSaveField("defeatedNetzach", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.defeatedNetzach.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.defeatedNetzach.set(adp(), i); }
+                else { D49SaveData.Fields.defeatedNetzach.set(adp(), false); }
+            }
+        });
+
+        BaseMod.addSaveField("defeatedHod", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.defeatedHod.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.defeatedHod.set(adp(), i); }
+                else { D49SaveData.Fields.defeatedHod.set(adp(), false); }
+            }
+        });
+
+        BaseMod.addSaveField("defeatedTiphereth", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.defeatedTiphereth.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.defeatedTiphereth.set(adp(), i); }
+                else { D49SaveData.Fields.defeatedTiphereth.set(adp(), false); }
+            }
+        });
+
+        BaseMod.addSaveField("defeatedGebura", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.defeatedGebura.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.defeatedGebura.set(adp(), i); }
+                else { D49SaveData.Fields.defeatedGebura.set(adp(), false); }
+            }
+        });
+
+        BaseMod.addSaveField("defeatedChesed", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.defeatedChesed.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.defeatedChesed.set(adp(), i); }
+                else { D49SaveData.Fields.defeatedChesed.set(adp(), false); }
+            }
+        });
+
+        BaseMod.addSaveField("defeatedBinah", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.defeatedBinah.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.defeatedBinah.set(adp(), i); }
+                else { D49SaveData.Fields.defeatedBinah.set(adp(), false); }
+            }
+        });
+
+        BaseMod.addSaveField("defeatedHokma", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.defeatedHokma.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.defeatedHokma.set(adp(), i); }
+                else { D49SaveData.Fields.defeatedHokma.set(adp(), false); }
+            }
+        });
+
+        BaseMod.addSaveField("isBriahOpen", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.isBriahFloorsOpen.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.isBriahFloorsOpen.set(adp(), i); }
+                else { D49SaveData.Fields.isBriahFloorsOpen.set(adp(), false); }
+            }
+        });
+
+        BaseMod.addSaveField("isAtziluthOpen", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.isAtziluthFloorsOpen.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.isAtziluthFloorsOpen.set(adp(), i); }
+                else { D49SaveData.Fields.isAtziluthFloorsOpen.set(adp(), false); }
+            }
+        });
+
+        BaseMod.addSaveField("isKeterOpen", new CustomSavable<Boolean>() {
+            @Override
+            public Boolean onSave() {
+                if(adp() != null){ return D49SaveData.Fields.isKeterOpen.get(adp());}
+                return false;
+            }
+
+            @Override
+            public void onLoad(Boolean i) {
+                if(adp() != null){ D49SaveData.Fields.isKeterOpen.set(adp(), i); }
+                else { D49SaveData.Fields.isKeterOpen.set(adp(), false); }
+            }
+        });
 
         //The Head
         BaseMod.addMonster(Baral.ID, "The Head", () -> new MonsterGroup(
@@ -1137,6 +1316,7 @@ public class RuinaMod implements
             ruinaConfig.setBool("reverbClear", reverbClear);
             ruinaConfig.setBool("blacksilenceClear", blacksilenceClear);
             ruinaConfig.setBool("headClear", headClear);
+            ruinaConfig.setBool("d49Clear", d49Clear);
             LocalDate clownCheck = LocalDate.now();
             clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
             ruinaConfig.save();
@@ -1149,6 +1329,7 @@ public class RuinaMod implements
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");
+        d49Clear = ruinaConfig.getBool("d49Clear");
         LocalDate clownCheck = LocalDate.now();
         clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
     }

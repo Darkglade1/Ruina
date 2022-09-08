@@ -1,0 +1,202 @@
+
+gebura.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 1912, 569
+  size: 65, 145
+  orig: 65, 145
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 1584, 452
+  size: 62, 136
+  orig: 62, 136
+  offset: 0, 0
+  index: -1
+3
+  rotate: true
+  xy: 786, 433
+  size: 73, 92
+  orig: 73, 92
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 2, 16
+  size: 217, 474
+  orig: 217, 474
+  offset: 0, 0
+  index: -1
+5
+  rotate: true
+  xy: 885, 522
+  size: 242, 510
+  orig: 242, 510
+  offset: 0, 0
+  index: -1
+6
+  rotate: false
+  xy: 221, 11
+  size: 181, 479
+  orig: 181, 479
+  offset: 0, 0
+  index: -1
+Example
+  rotate: false
+  xy: 2, 492
+  size: 367, 530
+  orig: 367, 530
+  offset: 0, 0
+  index: -1
+JJANG
+  rotate: false
+  xy: 1522, 716
+  size: 512, 97
+  orig: 512, 97
+  offset: 0, 0
+  index: -1
+L 2
+  rotate: false
+  xy: 786, 2
+  size: 155, 324
+  orig: 155, 324
+  offset: 0, 0
+  index: -1
+L a
+  rotate: true
+  xy: 1648, 468
+  size: 65, 107
+  orig: 65, 107
+  offset: 0, 0
+  index: -1
+L a 3
+  rotate: true
+  xy: 404, 26
+  size: 78, 153
+  orig: 78, 153
+  offset: 0, 0
+  index: -1
+L r
+  rotate: false
+  xy: 1263, 20
+  size: 109, 306
+  orig: 109, 306
+  offset: 0, 0
+  index: -1
+MouthHammer
+  rotate: false
+  xy: 1522, 815
+  size: 513, 207
+  orig: 513, 207
+  offset: 0, 0
+  index: -1
+R r
+  rotate: true
+  xy: 1397, 590
+  size: 124, 305
+  orig: 124, 305
+  offset: 0, 0
+  index: -1
+R r 2
+  rotate: false
+  xy: 943, 5
+  size: 155, 321
+  orig: 155, 321
+  offset: 0, 0
+  index: -1
+Weapon_GreatSword
+  rotate: false
+  xy: 885, 423
+  size: 512, 97
+  orig: 512, 97
+  offset: 0, 0
+  index: -1
+Weapon_Mace2
+  rotate: false
+  xy: 371, 508
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+Weapon_Unique_Greed
+  rotate: false
+  xy: 404, 106
+  size: 256, 400
+  orig: 256, 400
+  offset: 0, 0
+  index: -1
+Weapon_Unique_Silent
+  rotate: false
+  xy: 371, 766
+  size: 635, 256
+  orig: 635, 256
+  offset: 0, 0
+  index: -1
+body 1
+  rotate: false
+  xy: 1100, 31
+  size: 161, 295
+  orig: 161, 295
+  offset: 0, 0
+  index: -1
+body 2
+  rotate: true
+  xy: 1399, 422
+  size: 166, 183
+  orig: 166, 183
+  offset: 0, 0
+  index: -1
+head
+  rotate: true
+  xy: 1704, 535
+  size: 179, 206
+  orig: 179, 206
+  offset: 0, 0
+  index: -1
+l5
+  rotate: true
+  xy: 1397, 720
+  size: 44, 51
+  orig: 44, 51
+  offset: 0, 0
+  index: -1
+la2
+  rotate: false
+  xy: 1979, 606
+  size: 58, 108
+  orig: 58, 108
+  offset: 0, 0
+  index: -1
+nullthing
+  rotate: true
+  xy: 662, 6
+  size: 500, 122
+  orig: 500, 122
+  offset: 0, 0
+  index: -1
+pray
+  rotate: false
+  xy: 1008, 766
+  size: 512, 256
+  orig: 512, 256
+  offset: 0, 0
+  index: -1
+r5
+  rotate: true
+  xy: 1100, 8
+  size: 21, 41
+  orig: 21, 41
+  offset: 0, 0
+  index: -1
+spear
+  rotate: false
+  xy: 786, 328
+  size: 512, 93
+  orig: 512, 93
+  offset: 0, 0
+  index: -1

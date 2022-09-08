@@ -35,7 +35,6 @@ import ruina.monsters.AbstractDeckMonster;
 import ruina.monsters.day49.angelaCards.frostsplinter.*;
 import ruina.patches.PostProcessorPatch;
 import ruina.powers.*;
-import ruina.shaders.FrostSplinter.FrostSplinterPostProcessor;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.*;
 
@@ -116,7 +115,6 @@ public class Act4Angela extends AbstractDeckMonster
     private float particleTimer2;
     private float particleTimer3;
 
-    private ScreenPostProcessor PostProcessor = new FrostSplinterPostProcessor();
 
     public Act4Angela() {
         this(0.0f, 0.0f);
@@ -165,13 +163,6 @@ public class Act4Angela extends AbstractDeckMonster
                 CustomDungeon.playTempMusic("Warning2");
                 recentlyPhaseTransitioned = true;
                 calculateAllocatedMoves();
-                isDone = true;
-            }
-        });
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                PostProcessorPatch.addPostProcessor(PostProcessor);
                 isDone = true;
             }
         });
@@ -366,7 +357,6 @@ public class Act4Angela extends AbstractDeckMonster
             case PHASE_TRANSITION:
                 CardCrawlGame.fadeIn(3f);
                 atb(new Day49PhaseTransition4Action(0, 1));
-                PostProcessorPatch.removePostProcessor(PostProcessor);
                 Act4Angela.this.gold = 0;
                 Act4Angela.this.currentHealth = 0;
                 Act4Angela.this.dieBypass();
@@ -609,7 +599,7 @@ public class Act4Angela extends AbstractDeckMonster
             if (this.particleTimer < 0.0F) {
                 this.particleTimer = 0.2F;
                 AbstractDungeon.effectsQueue.add(new SnowflakeEffect());
-                for (int i = 0; i < 50; i++){ AbstractDungeon.effectsQueue.add(new FrostSplinterNonShaderSnowEffect()); }
+                for (int i = 0; i < 50; i++){ AbstractDungeon.effectsQueue.add(new FrostSplinterSnowEffect()); }
             }
         }
 

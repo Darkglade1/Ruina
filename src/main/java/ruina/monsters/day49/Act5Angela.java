@@ -3,7 +3,9 @@ package ruina.monsters.day49;
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.ClearCardQueueAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.cards.green.DaggerSpray;
@@ -15,15 +17,25 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
+import ruina.actions.Day49PhaseTransition4Action;
+import ruina.actions.Day49PhaseTransition5Action;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.act3.silentGirl.DummyHammer;
 import ruina.monsters.act3.silentGirl.DummyNail;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
 import ruina.monsters.theHead.Baral;
+import ruina.powers.DamageReductionInvincible;
+import ruina.powers.Refracting;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -49,6 +61,9 @@ public class Act5Angela extends AbstractCardMonster {
     private static final byte BROKEN = 3;
     private final int brokenDamage = 50;
 
+    private static final byte PHASE_TRANSITION = 4;
+
+    private final int HP = 5000;
     private int turnCounter = 1; //1 is first turn, 2 is second turn, 3rd is third turn (transition phase)
 
     private DummyHammer hammer = new DummyHammer(100.0f, 0.0f);
@@ -63,10 +78,11 @@ public class Act5Angela extends AbstractCardMonster {
         super(NAME, ID, 480, 0.0F, 0, 250.0f, 290.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Day49/Remorse/Spriter/SilentGirl.scml"));
         this.type = EnemyType.BOSS;
-        setHp(5000);
+        setHp(HP);
         addMove(CRACKED_HEART, Intent.ATTACK_DEBUFF, crackedHeartDamage);
         addMove(COLLAPSING_HEART, Intent.ATTACK_DEBUFF, collapsingHeartDamage);
         addMove(BROKEN, Intent.ATTACK, brokenDamage);
+        addMove(PHASE_TRANSITION, Intent.ATTACK, brokenDamage);
 
         hideHealthBar();
         populateCards();
@@ -81,6 +97,8 @@ public class Act5Angela extends AbstractCardMonster {
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Story2");
+        atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
+        atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 4)));
     }
 
     @Override
@@ -110,17 +128,30 @@ public class Act5Angela extends AbstractCardMonster {
             case BROKEN: {
                 specialDownAnimation(adp());
                 dmg(adp(), info);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        transitionToPhase2Idea();
-                        isDone = true;
-                    }
-                });
                 resetIdle();
                 break;
             }
+            case PHASE_TRANSITION:
+                // Same Animation, No damage.
+                specialDownAnimation(adp());
+                resetIdle();
+                break;
+
         }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if(Act5Angela.this.nextMove == PHASE_TRANSITION || Act5Angela.this.nextMove == BROKEN){
+                    if(!RuinaMod.ruinaConfig.getBool("seenD49Message")){
+                        RuinaMod.ruinaConfig.setBool("seenD49Message", true);
+                        try { RuinaMod.ruinaConfig.save(); } catch (IOException e) { e.printStackTrace(); }
+                        att(new Day49PhaseTransition5Action(0, 5, Act5Angela.this));
+                    }
+                    else { att(new Day49PhaseTransition5Action(0, 2, Act5Angela.this)); }
+                }
+                isDone = true;
+            }
+        });
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -177,6 +208,41 @@ public class Act5Angela extends AbstractCardMonster {
         cardList.add(new Terror());
     }
 
+    public void damage(DamageInfo info) {
+        // Shouldn't be possible - but just in case
+        super.damage(info);
+        if (this.currentHealth <= 0 && !this.halfDead) {
+            cardsToRender.clear();
+            AbstractCardMonster.hoveredCard = null;
+            this.halfDead = true;
+            for (AbstractPower p : this.powers) {
+                p.onDeath();
+            }
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                r.onMonsterDeath(this);
+            }
+            att(new ClearCardQueueAction());
+            ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
+            for (AbstractPower power : this.powers) {
+                if (!(power instanceof Refracting)) {
+                    powersToRemove.add(power);
+                }
+            }
+            for (AbstractPower power : powersToRemove) {
+                this.powers.remove(power);
+            }
+            cardsToRender.clear();
+            setMove(PHASE_TRANSITION, Intent.UNKNOWN);
+            additionalIntents.clear();
+            additionalMoves.clear();
+            ArrayList<AbstractCard> cards = cardsToRender;
+            if (cards.size() > 1) {
+                cards.remove(cards.size() - 1);
+            }
+            createIntent();
+        }
+    }
+
     public void die() {
         if (!(AbstractDungeon.getCurrRoom()).cannotLose) {
             super.die();
@@ -203,12 +269,12 @@ public class Act5Angela extends AbstractCardMonster {
         animationAction("SpecialDown", "SilentHammer", enemy, this);
     }
 
-    private void transitionToPhase2Idea() {
-        AbstractDungeon.bossKey = Baral.ID;
+    public void transitionToSecondPart() {
+        AbstractDungeon.bossKey = TreeOfLifeManager.ID;
         CardCrawlGame.music.fadeOutBGM();
         CardCrawlGame.music.fadeOutTempBGM();
         MapRoomNode node = new MapRoomNode(-1, 15);
-        node.room = (AbstractRoom) new MonsterRoomBoss();
+        node.room = new MonsterRoomBoss();
         AbstractDungeon.nextRoom = node;
         AbstractDungeon.closeCurrentScreen();
         AbstractDungeon.nextRoomTransitionStart();

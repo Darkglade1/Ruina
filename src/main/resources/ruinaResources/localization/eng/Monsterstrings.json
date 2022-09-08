@@ -1358,7 +1358,7 @@
     "DIALOG": [
     ]
   },
-  "${ModID}:Act5Angela1": {
+  "${ModID}:Act5Angela": {
     "MOVES": [
       "Digging Nail",
       "Slam",
@@ -1371,5 +1371,17 @@
     "NAME": "Silent Girl",
     "DIALOG": [
     ]
+  },
+  "${ModID}:WhiteNight": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "WhiteNight"
+  },
+  "${ModID}:TreeOfLifeManager": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Memoirs Of Lobotomy"
   }
 }
