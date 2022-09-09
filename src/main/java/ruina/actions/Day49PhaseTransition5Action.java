@@ -6,6 +6,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import ruina.monsters.day49.Act5Angela;
 import ruina.monsters.day49.dialogue.Day49PhaseTransition4;
 import ruina.monsters.day49.dialogue.Day49PhaseTransition5;
+import ruina.patches.PostProcessorPatch;
+import ruina.shaders.SilentGirl.SilentGirlPostProcessor;
+import ruina.shaders.SilentGirl.SilentGirlShader;
 
 public class Day49PhaseTransition5Action extends AbstractGameAction {
     boolean started = false;

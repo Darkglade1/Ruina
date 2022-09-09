@@ -1,5 +1,6 @@
 package ruina.monsters.day49.dialogue;
 
+import basemod.interfaces.ScreenPostProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,6 +20,7 @@ import ruina.monsters.day49.speaker.ts_BloodBath;
 import ruina.monsters.day49.speaker.ts_RolandD49;
 import ruina.monsters.theHead.dialogue.AbstractSpeaker;
 import ruina.monsters.theHead.dialogue.Dialog;
+import ruina.patches.PostProcessorPatch;
 import ruina.util.TexLoader;
 
 import java.util.ArrayList;
@@ -81,6 +83,17 @@ public class Day49PhaseTransition5 extends AbstractGameEffect {
     private void nextDialogue() {
         if (this.dialogue < end) {
             this.dialogue++;
+            if(dialogue == 1){
+                if(!PostProcessorPatch.postProcessors.isEmpty()){
+                    ArrayList<ScreenPostProcessor> processors = new ArrayList<>();
+                    for(ScreenPostProcessor p : PostProcessorPatch.postProcessors){
+                        processors.add(p);
+                    }
+                    for(ScreenPostProcessor p : processors){
+                        PostProcessorPatch.removePostProcessor(p);
+                    }
+                }
+            }
             calculateSpeakers();
             this.roomEventText.updateBodyText(DESCRIPTIONS[this.dialogue]);
         } else {

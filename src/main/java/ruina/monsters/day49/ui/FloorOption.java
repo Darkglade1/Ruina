@@ -7,10 +7,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.map.MapRoomNode;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import ruina.RuinaMod;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.Fields.D49SaveData;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
+import ruina.monsters.theHead.Baral;
 import ruina.util.TexLoader;
 
 import java.util.Random;
@@ -172,11 +177,19 @@ public class FloorOption {
         if(hb.clicked && !preventClicking){
             preventClicking = true;
             hb.clicked = false;
-            // click logic
+            goToBossRespectiveOfButton(floor);
         }
     }
 
     public void goToBossRespectiveOfButton(FloorENUM floor){
-
+            if(AbstractDungeon.bossList.isEmpty()){ AbstractDungeon.bossList.add("Hexaghost"); }
+            AbstractDungeon.bossKey = TreeOfLifeManager.ID;
+            CardCrawlGame.music.fadeOutBGM();
+            CardCrawlGame.music.fadeOutTempBGM();
+            MapRoomNode node = new MapRoomNode(-1, 15);
+            node.room = new MonsterRoomBoss();
+            AbstractDungeon.nextRoom = node;
+            AbstractDungeon.closeCurrentScreen();
+            AbstractDungeon.nextRoomTransitionStart();
     }
 }

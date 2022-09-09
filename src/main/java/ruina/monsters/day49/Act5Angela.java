@@ -24,6 +24,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.Day49PhaseTransition4Action;
 import ruina.actions.Day49PhaseTransition5Action;
+import ruina.actions.SilentGirlEffectAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.act3.silentGirl.DummyHammer;
 import ruina.monsters.act3.silentGirl.DummyNail;
@@ -78,11 +79,11 @@ public class Act5Angela extends AbstractCardMonster {
         super(NAME, ID, 480, 0.0F, 0, 250.0f, 290.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Day49/Remorse/Spriter/SilentGirl.scml"));
         this.type = EnemyType.BOSS;
-        setHp(HP);
+        setHp(1);
         addMove(CRACKED_HEART, Intent.ATTACK_DEBUFF, crackedHeartDamage);
         addMove(COLLAPSING_HEART, Intent.ATTACK_DEBUFF, collapsingHeartDamage);
         addMove(BROKEN, Intent.ATTACK, brokenDamage);
-        addMove(PHASE_TRANSITION, Intent.ATTACK, brokenDamage);
+        addMove(PHASE_TRANSITION, Intent.UNKNOWN);
 
         hideHealthBar();
         populateCards();
@@ -96,6 +97,7 @@ public class Act5Angela extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
+        (AbstractDungeon.getCurrRoom()).cannotLose = true;
         CustomDungeon.playTempMusicInstantly("Story2");
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 4)));
@@ -127,31 +129,50 @@ public class Act5Angela extends AbstractCardMonster {
             }
             case BROKEN: {
                 specialDownAnimation(adp());
+                atb(new SilentGirlEffectAction(true));
                 dmg(adp(), info);
                 resetIdle();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if(!RuinaMod.ruinaConfig.getBool("seenD49Message")){
+                            RuinaMod.ruinaConfig.setBool("seenD49Message", true);
+                            try { RuinaMod.ruinaConfig.save(); } catch (IOException e) { e.printStackTrace(); }
+                            att(new Day49PhaseTransition5Action(0, 5, Act5Angela.this));
+                        }
+                        else { att(new Day49PhaseTransition5Action(0, 2, Act5Angela.this)); }
+                        isDone = true;
+                    }
+                });
                 break;
             }
             case PHASE_TRANSITION:
-                // Same Animation, No damage.
-                specialDownAnimation(adp());
+                // Same Animation, No damage
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        runAnim("SpecialDown");
+                        playSound("SilentHammer");
+                        isDone = true;
+                    }
+                });
+                atb(new SilentGirlEffectAction(true));
                 resetIdle();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if(!RuinaMod.ruinaConfig.getBool("seenD49Message")){
+                            RuinaMod.ruinaConfig.setBool("seenD49Message", true);
+                            try { RuinaMod.ruinaConfig.save(); } catch (IOException e) { e.printStackTrace(); }
+                            att(new Day49PhaseTransition5Action(0, 5, Act5Angela.this));
+                        }
+                        else { att(new Day49PhaseTransition5Action(0, 2, Act5Angela.this)); }
+                        isDone = true;
+                    }
+                });
                 break;
 
         }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if(Act5Angela.this.nextMove == PHASE_TRANSITION || Act5Angela.this.nextMove == BROKEN){
-                    if(!RuinaMod.ruinaConfig.getBool("seenD49Message")){
-                        RuinaMod.ruinaConfig.setBool("seenD49Message", true);
-                        try { RuinaMod.ruinaConfig.save(); } catch (IOException e) { e.printStackTrace(); }
-                        att(new Day49PhaseTransition5Action(0, 5, Act5Angela.this));
-                    }
-                    else { att(new Day49PhaseTransition5Action(0, 2, Act5Angela.this)); }
-                }
-                isDone = true;
-            }
-        });
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -262,7 +283,7 @@ public class Act5Angela extends AbstractCardMonster {
     }
 
     private void specialUpAnimation(AbstractCreature enemy) {
-        animationAction("SpecialUp", null, enemy, this);
+        animationAction("SpecialUp", "SilentHammer", enemy, this);
     }
 
     private void specialDownAnimation(AbstractCreature enemy) {
