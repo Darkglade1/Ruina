@@ -18,9 +18,9 @@ public class SorrowAngela extends AbstractRuinaCard {
     private Act1Angela parent;
 
     public SorrowAngela(Act1Angela parent) {
-        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRALLY_ALLAS.class.getSimpleName() + ".png"));
+        super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + StainsOfBlood.class.getSimpleName() + ".png"));
         damage = baseDamage = parent.sorrowDamage;
-        magicNumber = baseMagicNumber = parent.sorrowScaling;
+        secondMagicNumber = baseSecondMagicNumber = parent.sorrowHPLoss;
         this.parent = parent;
     }
 

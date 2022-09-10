@@ -1326,10 +1326,9 @@
   "${ModID}:Act2Angela": {
     "MOVES": [
       "Inclination",
-      "Pulsation",
       "Aspiration Pneumonia",
-      "Turbulent Beats"
-
+      "Turbulent Beats",
+      "Pulsation"
     ],
     "NAME": "Aspiration",
     "DIALOG": [

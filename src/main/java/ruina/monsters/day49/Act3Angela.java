@@ -1,5 +1,6 @@
 package ruina.monsters.day49;
 
+import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
@@ -53,7 +54,7 @@ public class Act3Angela extends AbstractCardMonster
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public final int STRENGTH = 3;
+    public final int STRENGTH = 5;
 
     public static final String ALT_POWER_ID = makeID("FibleFable");
     public static final PowerStrings altpowerStrings = CardCrawlGame.languagePack.getPowerStrings(ALT_POWER_ID);
@@ -99,6 +100,9 @@ public class Act3Angela extends AbstractCardMonster
     @Override
     public void usePreBattleAction()
     {
+        AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
+        CustomDungeon.playTempMusicInstantly("Roland1");
+
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         specialAnimation(this);
         marionetteEffect();
@@ -220,7 +224,8 @@ public class Act3Angela extends AbstractCardMonster
 
     @Override
     protected void getMove(final int num) {
-        setMoveShortcut(MARIONETTE, MOVES[MARIONETTE], new MarionetteAngela(this));
+        if(halfDead){ setMoveShortcut(PHASE_TRANSITION); }
+        else { setMoveShortcut(MARIONETTE, MOVES[MARIONETTE], new MarionetteAngela(this)); }
     }
 
     @Override

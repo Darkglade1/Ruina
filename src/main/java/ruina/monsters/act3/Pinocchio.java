@@ -48,12 +48,17 @@ public class Pinocchio extends AbstractDeckMonster
     public final int ARTIFACT = calcAscensionSpecial(2);
     public final int BLOCK = calcAscensionTankiness(20);
     public final int STRENGTH = calcAscensionSpecial(2);
-    public final int STRENGTH_D49 = 4;
+    public final int STRENGTH_D49 = 5;
 
     public static final String POWER_ID = makeID("Imposter");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
+    public static final String ALT_POWER_ID = makeID("Liar");
+    public static final PowerStrings altPowerStrings = CardCrawlGame.languagePack.getPowerStrings(ALT_POWER_ID);
+    public static final String ALT_POWER_NAME = altPowerStrings.NAME;
+    public static final String[] ALT_POWER_DESCRIPTIONS = altPowerStrings.DESCRIPTIONS;
 
     public Pinocchio() {
         this(0.0f, 0.0f);
@@ -82,9 +87,10 @@ public class Pinocchio extends AbstractDeckMonster
         if(CardCrawlGame.dungeon instanceof Day49){
             blockAnimation();
             block(this, BLOCK);
+            applyToTarget(this, this, new ArtifactPower(this, ARTIFACT));
             resetIdle();
         }
-        else {applyToTarget(this, this, new ArtifactPower(this, ARTIFACT)); }
+        else { applyToTarget(this, this, new ArtifactPower(this, ARTIFACT)); }
         applyToTarget(this, this, new BarricadePower(this));
     }
 
@@ -97,7 +103,6 @@ public class Pinocchio extends AbstractDeckMonster
         switch (move.nextMove) {
             case LEARN: {
                 blockAnimation();
-                if(CardCrawlGame.dungeon instanceof Day49){ numAdditionalMoves = maxAdditionalMoves; }
                 applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, CardCrawlGame.dungeon instanceof Day49 ? STRENGTH_D49 : STRENGTH) {
                     @Override
                     public void atEndOfRound() {
@@ -108,6 +113,22 @@ public class Pinocchio extends AbstractDeckMonster
                     @Override
                     public void updateDescription() {
                         description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
+                    }
+                });
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if(CardCrawlGame.dungeon instanceof Day49) {
+                            numAdditionalMoves = maxAdditionalMoves;
+                            applyToTargetTop(Pinocchio.this, Pinocchio.this, new AbstractLambdaPower(ALT_POWER_NAME, ALT_POWER_ID, AbstractPower.PowerType.BUFF, false, Pinocchio.this, -1) {
+
+                                @Override
+                                public void updateDescription() {
+                                    description = ALT_POWER_DESCRIPTIONS[0];
+                                }
+                            });
+                        }
+                        isDone = true;
                     }
                 });
                 block(this, BLOCK);
@@ -171,6 +192,10 @@ public class Pinocchio extends AbstractDeckMonster
             setMoveShortcut(LEARN, MOVES[LEARN]);
         } else {
             AbstractCard c = topDeckCardForMoveAction();
+            if(CardCrawlGame.dungeon instanceof Day49){
+                c.damage = c.baseDamage = c.baseDamage * 2;
+                c.block = c.baseBlock = c.baseBlock * 2;
+            }
             setMoveShortcut((byte) c.cardID.hashCode(), c.name, c);
         }
     }
@@ -178,7 +203,14 @@ public class Pinocchio extends AbstractDeckMonster
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         if (!this.firstMove) {
-            createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove));
+            if(CardCrawlGame.dungeon instanceof Day49){
+                AbstractCard c = topDeckCardForMoveAction();
+                c.damage = c.baseDamage = c.baseDamage * 2;
+                c.block = c.baseBlock = c.baseBlock * 2;
+            }
+            else {
+                createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove));
+            }
         }
     }
 

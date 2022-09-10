@@ -21,7 +21,6 @@ public class FrostSplinterAngela extends AbstractRuinaCard {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + "SnowQueenIce" + ".png"));
         damage = baseDamage = parent.frostSplinter_damage;
         magicNumber = baseMagicNumber = parent.frostSplinter_hits;
-        secondMagicNumber = baseSecondMagicNumber = parent.frostSplinter_threshold;
     }
 
     @Override

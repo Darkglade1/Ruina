@@ -4,6 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -22,9 +24,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractDeckMonster;
 import ruina.monsters.eventboss.redMist.cards.*;
-import ruina.powers.Bleed;
-import ruina.powers.NextTurnPowerPower;
-import ruina.powers.RedMistPower;
+import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -117,6 +117,7 @@ public class RedMist extends AbstractDeckMonster
     {
         CustomDungeon.playTempMusicInstantly("Gebura2");
         applyToTarget(this, this, new RedMistPower(this));
+        atb(new ApplyPowerAction(this, this, new GeburaStrongAttackWarning(this, greaterSplitCooldownCounter)));
     }
 
     @Override
@@ -333,6 +334,18 @@ public class RedMist extends AbstractDeckMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
+                AbstractPower p = RedMist.this.getPower(GeburaStrongAttackWarning.POWER_ID);
+                if(p != null){
+                    p.flash();
+                    p.amount = greaterSplitCooldownCounter;
+                    p.updateDescription();
+                }
+                isDone = true;
+            }
+        });
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
                 calculateAllocatedMoves();
                 this.isDone = true;
             }
@@ -429,7 +442,7 @@ public class RedMist extends AbstractDeckMonster
         CustomDungeon.playTempMusicInstantly("RedMistBGM");
         EGO = true;
         EGORECENTTRIGGER = true;
-        //atb(new RemoveDebuffsAction(this));
+        greaterSplitCooldownCounter = 0;
     }
 
     protected AbstractCard getMoveCardFromByte(Byte move) {

@@ -1,5 +1,6 @@
 package ruina.cards.EGO.act3;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;

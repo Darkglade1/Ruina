@@ -37,6 +37,10 @@ import ruina.actions.AspirationEffectAction;
 import ruina.actions.Day49PhaseTransition1Action;
 import ruina.actions.Day49PhaseTransition2Action;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.day49.angelaCards.aspiration.AspirationPneumonia;
+import ruina.monsters.day49.angelaCards.aspiration.Inclination;
+import ruina.monsters.day49.angelaCards.aspiration.Pulsation;
+import ruina.monsters.day49.angelaCards.aspiration.TurbulentBeats;
 import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.AspirationHeartEffect;
@@ -59,9 +63,9 @@ public class Act2Angela extends AbstractCardMonster {
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte INCLINATION = 0;
-    private static final byte PULSATION = 1;
-    private static final byte ASPIRATION_PNEUMONIA = 2;
-    private static final byte TURBULENT_BEATS = 3;
+    private static final byte ASPIRATION_PNEUMONIA = 1;
+    private static final byte TURBULENT_BEATS = 2;
+    private static final byte PULSATION = 3;
     private static final byte PHASE_TRANSITION = 4;
 
     public final int palpitationBeatOfDeath = 2;
@@ -74,6 +78,8 @@ public class Act2Angela extends AbstractCardMonster {
 
     public int pulsationBuffCount = 0;
     public final int pulsationStrength = 2;
+
+    public final int pulsationPneumoniaDecrease = 1;
 
     public final int pulsationFirstBuffPneumonia = 8;
     public final int pulsationSecondBuffPneumonia = 7;
@@ -90,11 +96,6 @@ public class Act2Angela extends AbstractCardMonster {
 
     private final ArrayList<Byte> movepool = new ArrayList<>();
     private byte previewIntent = -1;
-
-    public static final String KILLING_POWER_ID = makeID("KillingIntent");
-    public static final PowerStrings KillingpowerStrings = CardCrawlGame.languagePack.getPowerStrings(KILLING_POWER_ID);
-    public static final String KILLING_POWER_NAME = KillingpowerStrings.NAME;
-    public static final String[] KILLING_POWER_DESCRIPTIONS = KillingpowerStrings.DESCRIPTIONS;
 
     public Act2Angela() {
         this(0.0f, 0.0f);
@@ -124,23 +125,16 @@ public class Act2Angela extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                CustomDungeon.playTempMusicInstantly("Roland1");
-                isDone = true;
-            }
-        });
+        AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
+        CustomDungeon.playTempMusicInstantly("Roland1");
+        CardCrawlGame.fadeIn(0.5f);
+
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         atb(new AspirationEffectAction());
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new Palpitation(this, palpitationBeatOfDeath)));
         atb(new ApplyPowerAction(this, this, new Pneumonia(this, pneumoniaCardLimit)));
         atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 5)));
-    }
-
-    private boolean isPlayerTurn() {
-        return !AbstractDungeon.actionManager.turnHasEnded;
     }
 
     @Override
@@ -164,13 +158,15 @@ public class Act2Angela extends AbstractCardMonster {
         }
         switch (this.nextMove) {
             case INCLINATION:
+                // change this
                 atb(new VFXAction(new HeartMegaDebuffEffect()));
                 atb(new VFXAction(new CollectorCurseEffect(adp().hb.cX, adp().hb.cY)));
-                atb(new ApplyPowerAction(adp(), this, new VulnerablePower(adp(), inclinationVuln, true)));
                 atb(new ApplyPowerAction(adp(), this, new WeakPower(adp(), inclinationWeak, true)));
+                atb(new ApplyPowerAction(adp(), this, new VulnerablePower(adp(), inclinationVuln, true)));
                 atb(new ApplyPowerAction(adp(), this, new FrailPower(adp(), inclinationFrail, true)));
                 break;
             case PULSATION: {
+                // change this
                 atb(new VFXAction(new BorderFlashEffect(new Color(0.8f, 0.5f, 1.0f, 1.0f))));
                 atb(new VFXAction(new HeartBuffEffect(this.hb.cX, this.hb.cY)));
                 atb(new AbstractGameAction() {
@@ -306,26 +302,37 @@ public class Act2Angela extends AbstractCardMonster {
 
     @Override
     protected void getMove(final int num) {
-        boolean rollAgain = false;
-        if (previewIntent >= 0) {
-            setMoveShortcut(previewIntent, MOVES[previewIntent], cardList.get(previewIntent));
-        } else {
-            rollAgain = true;
-        }
-        if (movepool.isEmpty()) {
-            previewIntent = PULSATION;
-            populateMovepool();
-        } else {
-            previewIntent = movepool.remove(0);
-        }
-        setAdditionalMoveShortcut(previewIntent, moveHistory, cardList.get(previewIntent));
-        for (AdditionalIntent additionalIntent : additionalIntents) {
-            additionalIntent.transparent = true;
-            additionalIntent.usePrimaryIntentsColor = false;
-        }
-        //if previewIntent wasn't a valid intent, roll again (should only happen at the start of combat)
-        if (rollAgain) {
-            rollMove();
+        if(halfDead){ setMoveShortcut(PHASE_TRANSITION); }
+        else {
+            boolean rollAgain = false;
+            if (previewIntent >= 0) {
+                if(previewIntent == PULSATION){
+                    AbstractCard c = new Pulsation(this);
+                    setMoveShortcut(previewIntent, MOVES[previewIntent], c);
+                }
+                else { setMoveShortcut(previewIntent, MOVES[previewIntent], cardList.get(previewIntent)); }
+            } else {
+                rollAgain = true;
+            }
+            if (movepool.isEmpty()) {
+                previewIntent = PULSATION;
+                populateMovepool();
+            } else {
+                previewIntent = movepool.remove(0);
+            }
+            if(previewIntent == PULSATION){
+                AbstractCard c = new Pulsation(this);
+                setAdditionalMoveShortcut(previewIntent, moveHistory, c);
+            }
+            else { setAdditionalMoveShortcut(previewIntent, moveHistory, cardList.get(previewIntent)); }
+            for (AdditionalIntent additionalIntent : additionalIntents) {
+                additionalIntent.transparent = true;
+                additionalIntent.usePrimaryIntentsColor = false;
+            }
+            //if previewIntent wasn't a valid intent, roll again (should only happen at the start of combat)
+            if (rollAgain) {
+                rollMove();
+            }
         }
     }
 
@@ -370,10 +377,9 @@ public class Act2Angela extends AbstractCardMonster {
     }
 
     private void populateCards() {
-        cardList.add(new Terror());
-        cardList.add(new Madness());
-        cardList.add(new Bludgeon());
-        cardList.add(new DaggerSpray());
+        cardList.add(new Inclination(this));
+        cardList.add(new AspirationPneumonia(this));
+        cardList.add(new TurbulentBeats(this));
     }
 
     public void damage(DamageInfo info) {

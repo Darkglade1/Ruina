@@ -18,7 +18,7 @@ public class Sinking extends AbstractRuinaCard {
     private Act1Angela parent;
 
     public Sinking(Act1Angela parent) {
-        super(ID, 5, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRALLY_ALLAS.class.getSimpleName() + ".png"));
+        super(ID, 5, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.sinkingDamage;
         this.parent = parent;
     }

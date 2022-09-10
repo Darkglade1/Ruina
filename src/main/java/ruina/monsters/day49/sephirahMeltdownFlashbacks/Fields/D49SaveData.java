@@ -2,7 +2,10 @@ package ruina.monsters.day49.sephirahMeltdownFlashbacks.Fields;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+
+import java.util.ArrayList;
 
 public class D49SaveData {
     @SpirePatch(clz = AbstractPlayer.class, method = SpirePatch.CLASS)

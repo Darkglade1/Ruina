@@ -2,7 +2,6 @@ package ruina.monsters.day49;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardModifierManager;
-import basemod.interfaces.ScreenPostProcessor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -33,7 +32,7 @@ import ruina.cardmods.FrozenMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractDeckMonster;
 import ruina.monsters.day49.angelaCards.frostsplinter.*;
-import ruina.patches.PostProcessorPatch;
+import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.*;
@@ -68,28 +67,26 @@ public class Act4Angela extends AbstractDeckMonster
     private static final byte ABSOLUTE_ZERO = 7;
     private static final byte PHASE_TRANSITION = 8;
 
-    public final int frigidGazeBlock = 24;
-    public final int frigidGazeStrength = 4;
+    public final int frigidGazeBlock = 28;
+    public final int frigidGazeStrength = 6;
 
-    public final int bitterColdDamage = 15;
+    public final int bitterColdDamage = 18;
     public final int bitterColdHits = 3;
-    public final int bitterColdThreshold = bitterColdDamage;
-    public final int bitterColdChill = 3;
+    public final int bitterColdFrail = 1;
 
-    public final int frostSplinter_damage = 18;
+    public final int frostSplinter_damage = 22;
     public final int frostSplinter_hits = 2;
-    public final int frostSplinter_threshold = frostSplinter_damage;
 
-    public final int swordOfFrost_damage = 21;
+    public final int swordOfFrost_damage = 26;
     public final int swordOfFrost_hits = 3;
 
-    public final int hailstormDamage = 65;
+    public final int hailstormDamage = 70;
     public final int hailstormChill = 2;
 
-    public final int blizzardDamage = 85;
+    public final int blizzardDamage = 70;
     public final int blizzardChill = 4;
 
-    public final int deepFreezeDamage = 75;
+    public final int deepFreezeDamage = 85;
     public final int deepFreezeChill = 4;
     public final int deepFreezeDebuff = 1;
 
@@ -154,13 +151,14 @@ public class Act4Angela extends AbstractDeckMonster
     @Override
     public void usePreBattleAction()
     {
+        AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
+        CustomDungeon.playTempMusicInstantly("Roland1");
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         atb(new FrostSplinterIceEffectAction(this));
         atb(new AbstractGameAction() {
             @Override
             public void update() {
                 Act4Angela.this.runAnim("Idle");
-                CustomDungeon.playTempMusic("Warning2");
                 recentlyPhaseTransitioned = true;
                 calculateAllocatedMoves();
                 isDone = true;
@@ -169,6 +167,9 @@ public class Act4Angela extends AbstractDeckMonster
         atb(new RollMoveAction(this));
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 4)));
+        atb(new ApplyPowerAction(this, this, new FrostSplinterStrongAttackWarning(this, 0)));
+        atb(new ApplyPowerAction(this, this, new ReticentFrigidity(this)));
+
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
             @Override
             public void onUseCard(AbstractCard card, UseCardAction action) {
@@ -201,7 +202,6 @@ public class Act4Angela extends AbstractDeckMonster
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
         if(info.base > -1) { info.applyPowers(this, target); }
-        final int[] threshold = {0};
         switch (move.nextMove) {
             case FRIGID_GAZE: {
                 specialAnimation(adp());
@@ -219,25 +219,10 @@ public class Act4Angela extends AbstractDeckMonster
                         attack2Animation(adp());
                     }
                     dmg(adp(), info);
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            threshold[0] += adp().lastDamageTaken;
-                            isDone = true;
-                        }
-                    });
+
                     resetIdle();
                 }
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        if(threshold[0] >= bitterColdThreshold){
-                            applyToTargetTop(adp(), Act4Angela.this, new FrailPower(adp(), bitterColdChill, true));
-                        }
-                        isDone = true;
-                    }
-                });
-
+                applyToTarget(adp(), this, new FrailPower(adp(), bitterColdFrail, true));
                 break;
             }
             case FROST_SPLINTER: {
@@ -248,19 +233,12 @@ public class Act4Angela extends AbstractDeckMonster
                         attack2Animation(adp());
                     }
                     dmg(adp(), info);
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            threshold[0] += adp().lastDamageTaken;
-                            isDone = true;
-                        }
-                    });
                     resetIdle();
                 }
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if(threshold[0] >= frostSplinter_threshold){ frostSplinterExtraActions += 1; }
+                        frostSplinterExtraActions += 1;
                         isDone = true;
                     }
                 });
@@ -376,6 +354,37 @@ public class Act4Angela extends AbstractDeckMonster
                         isDone = true;
                     }
                 });
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
+                        for (AbstractPower power : adp().powers) {
+                            if (power instanceof ColdHearted || power instanceof DeepFreezePower) {
+                                if(power instanceof AbstractUnremovablePower){
+                                    makePowerRemovable(power);
+                                    powersToRemove.add(power);
+                                }
+                            }
+                        }
+                        for (AbstractPower power : powersToRemove) { adp().powers.remove(power); }
+                        for (AbstractCard card : adp().hand.group) {
+                            if (CardModifierManager.hasModifier(card, FrozenMod.ID)) {
+                                CardModifierManager.removeModifiersById(card, FrozenMod.ID, false);
+                            }
+                        }
+                        for (AbstractCard card : adp().discardPile.group) {
+                            if (CardModifierManager.hasModifier(card, FrozenMod.ID)) {
+                                CardModifierManager.removeModifiersById(card, FrozenMod.ID, false);
+                            }
+                        }
+                        for (AbstractCard card : adp().drawPile.group) {
+                            if (CardModifierManager.hasModifier(card, FrozenMod.ID)) {
+                                CardModifierManager.removeModifiersById(card, FrozenMod.ID, false);
+                            }
+                        }
+                        isDone = true;
+                    }
+                });
                 break;
         }
     }
@@ -436,6 +445,18 @@ public class Act4Angela extends AbstractDeckMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
+                AbstractPower p = Act4Angela.this.getPower(FrostSplinterStrongAttackWarning.POWER_ID);
+                if(p != null){
+                    p.flash();
+                    p.amount = CooldownCounter;
+                    p.updateDescription();
+                }
+                isDone = true;
+            }
+        });
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
                 calculateAllocatedMoves();
                 this.isDone = true;
             }
@@ -445,34 +466,46 @@ public class Act4Angela extends AbstractDeckMonster
 
     @Override
     protected void getMove(final int num) {
-        if(CooldownCounter <= 0){
-            if(currentState == State.PHASE2){
-                if(!blizzardUsed){ setMoveShortcut(BLIZZARD, MOVES[BLIZZARD], new Blizzard(this)); }
-                else if(deepFreezesUsed != absoluteZeroFreeze){ setMoveShortcut(DEEP_FREEZE, MOVES[DEEP_FREEZE], new DeepFreeze(this)); }
-                else { setMoveShortcut(ABSOLUTE_ZERO, MOVES[ABSOLUTE_ZERO], new AbsoluteZero(this));}
-            }
-            else { setMoveShortcut(HAILSTORM, MOVES[HAILSTORM], new Hailstorm(this)); }
-        }
-        else{
-            if(recentlyPhaseTransitioned){ setMoveShortcut(BLIZZARD, MOVES[BLIZZARD], new Blizzard(this)); }
-            else {
-                ArrayList<Byte> possibilities = new ArrayList<>();
-                if(firstMove){
-                    possibilities.add(FRIGID_GAZE);
+        if(halfDead){ setMoveShortcut(PHASE_TRANSITION); }
+        else {
+            if (CooldownCounter <= 0) {
+                if (currentState == State.PHASE2) {
+                    if (!blizzardUsed) {
+                        setMoveShortcut(BLIZZARD, MOVES[BLIZZARD], new Blizzard(this));
+                    } else if (deepFreezesUsed != absoluteZeroFreeze) {
+                        setMoveShortcut(DEEP_FREEZE, MOVES[DEEP_FREEZE], new DeepFreeze(this));
+                    } else {
+                        setMoveShortcut(ABSOLUTE_ZERO, MOVES[ABSOLUTE_ZERO], new AbsoluteZero(this));
+                    }
+                } else {
+                    setMoveShortcut(HAILSTORM, MOVES[HAILSTORM], new Hailstorm(this));
                 }
-                else {
-                    possibilities.add(BITTER_COLD);
-                    if (currentState == State.PHASE1) { possibilities.add(FROST_SPLINTER); }
-                    possibilities.add(SWORD_OF_FROST);
+            } else {
+                if (recentlyPhaseTransitioned) {
+                    setMoveShortcut(BLIZZARD, MOVES[BLIZZARD], new Blizzard(this));
+                } else {
+                    ArrayList<Byte> possibilities = new ArrayList<>();
+                    if (firstMove) {
+                        possibilities.add(FRIGID_GAZE);
+                    } else {
+                        possibilities.add(BITTER_COLD);
+                        if (currentState == State.PHASE1) {
+                            possibilities.add(FROST_SPLINTER);
+                        }
+                        possibilities.add(SWORD_OF_FROST);
+                    }
+                    byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                    setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
                 }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
             }
         }
     }
 
     @Override
-    public void getAdditionalMoves(int num, int whichMove) { createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
+    public void getAdditionalMoves(int num, int whichMove) {
+        if(halfDead){}
+        else { createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
+    }
 
     @Override
     public void applyPowers() {
@@ -491,10 +524,12 @@ public class Act4Angela extends AbstractDeckMonster
 
     @Override
     protected void createDeck() {
-        for(int i = 0; i < 2; i += 1){
+        for(int i = 0; i < 3; i += 1){
             masterDeck.addToBottom(new SwordOfFrost(this));
-            masterDeck.addToBottom(new FrostSplinterAngela(this));
+        }
+        for(int i = 0; i < 2; i += 1){
             masterDeck.addToBottom(new FrigidGaze(this));
+            masterDeck.addToBottom(new FrostSplinterAngela(this));
             masterDeck.addToBottom(new BitterCold(this));
         }
     }
@@ -514,7 +549,11 @@ public class Act4Angela extends AbstractDeckMonster
     public void calculateAllocatedMoves(){
         if(CooldownCounter <= 0){
             numAdditionalMoves = 0;
+            numAdditionalMoves += frostSplinterExtraActions;
             frostSplinterExtraActions = 0;
+            if (numAdditionalMoves > maxAdditionalMoves) {
+                numAdditionalMoves = maxAdditionalMoves;
+            }
         }
         else {
             if(recentlyPhaseTransitioned){

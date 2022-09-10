@@ -7,11 +7,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.ClearCardQueueAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -19,6 +17,8 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
@@ -28,7 +28,7 @@ import ruina.actions.*;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.day49.angelaCards.bloodbath.*;
 import ruina.powers.*;
-import ruina.powers.SorrowAngela;
+import ruina.powers.BloodstainedSorrow;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.*;
 
@@ -50,25 +50,24 @@ public class Act1Angela extends AbstractCardMonster {
 
     private static final byte NUMBNESS = 1;
     public int numbnessHPLoss = 15;
-    public int numbnessParalysis = 2;
+    public int numbnessParalysis = 3;
 
     private static final byte SORROW = 2;
-    public int sorrowDamage = 13;
-    public int sorrowScaling = 1;
+    public int sorrowDamage = 18;
+    public int sorrowHPLoss = 5;
 
     private static final byte LOATHING = 3;
-    public int loathingHPLoss = 10;
-    public int loathingHPHeal = 15;
+    public int loathingHPLoss = 25;
+    public int loathingHPHeal = 75;
 
     private static final byte PALE_HANDS = 4;
-    public int paleHandsDamage = 4;
-    public int paleHandHits = 3;
+    public int paleHandsDamage = 25;
 
     private static final byte SINKING = 5;
-    public int sinkingDamage = 60;
+    public int sinkingDamage = 50;
 
     private static final byte STAINS_OF_BLOOD = 6;
-    public int bloodDamage = 17;
+    public int bloodDamage = 22;
     public int bloodBleed = 3;
 
     private static final byte PHASE_TRANSITION = 7;
@@ -106,7 +105,7 @@ public class Act1Angela extends AbstractCardMonster {
         addMove(NUMBNESS, Intent.STRONG_DEBUFF);
         addMove(SORROW, Intent.ATTACK_BUFF, sorrowDamage);
         addMove(LOATHING, Intent.BUFF);
-        addMove(PALE_HANDS, Intent.ATTACK, paleHandsDamage, paleHandHits,true);
+        addMove(PALE_HANDS, Intent.ATTACK, paleHandsDamage);
         addMove(SINKING, Intent.ATTACK_BUFF, sinkingDamage);
         addMove(STAINS_OF_BLOOD, Intent.ATTACK_DEBUFF, bloodDamage);
         addMove(PHASE_TRANSITION, Intent.UNKNOWN);
@@ -131,14 +130,22 @@ public class Act1Angela extends AbstractCardMonster {
     public void usePreBattleAction() {
         CardCrawlGame.fadeIn(0.5f);
         AbstractDungeon.player.powers.add(new PlayerAngela(adp()));
-        AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
+        AbstractDungeon.player.powers.add(new Memoir(adp()));
+        //AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         atb(new Day49InitialDialogueAction(0, 29));
-        currentState = State.OPENING;
         atb(new BloodbathEffectAction());
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new Scars(this, calcAscensionSpecial(50))));
         atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 4)));
+        atb(new ApplyPowerAction(this, this, new BloodstainedSorrow(this)));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                currentState = State.TURN2;
+                isDone = true;
+            }
+        });
     }
 
     @Override
@@ -161,13 +168,13 @@ public class Act1Angela extends AbstractCardMonster {
                 resetIdle();
                 break;
             case SORROW:
+                atb(new LoseHPAction(this, this, loathingHPLoss));
                 dmg(target, info);
-                atb(new ApplyPowerAction(this, this, new SorrowAngela(this, sorrowScaling)));
                 resetIdle();
                 break;
             case LOATHING:
                 atb(new LoseHPAction(this, this, loathingHPLoss));
-                atb(new LoseHPAction(this, this, loathingHPHeal));
+                atb(new HealAction(this, this, loathingHPHeal));
                 resetIdle();
                 break;
             case PALE_HANDS:
@@ -281,67 +288,73 @@ public class Act1Angela extends AbstractCardMonster {
 
     @Override
     protected void getMove(final int num) {
-        switch (currentState){
-            case OPENING:
-                setMoveShortcut(WRIST_CUTTER, MOVES[WRIST_CUTTER], cardList.get(WRIST_CUTTER).makeStatEquivalentCopy());
-                break;
-            case CYCLE_PATTERN:
-            case TURN2:
-                setMoveShortcut(NUMBNESS, MOVES[NUMBNESS], cardList.get(NUMBNESS).makeStatEquivalentCopy());
-                break;
-            case TURN3:
-            case PALE_HANDS_5X:
-                setMoveShortcut(PALE_HANDS, MOVES[PALE_HANDS], cardList.get(PALE_HANDS).makeStatEquivalentCopy());
-                break;
-            case SINKING:
-                setMoveShortcut(SINKING, MOVES[SINKING], cardList.get(SINKING).makeStatEquivalentCopy());
-                break;
+        if(halfDead){ setMoveShortcut(PHASE_TRANSITION); }
+        else {
+            switch (currentState) {
+                case OPENING:
+                    setMoveShortcut(WRIST_CUTTER, MOVES[WRIST_CUTTER], cardList.get(WRIST_CUTTER).makeStatEquivalentCopy());
+                    break;
+                case CYCLE_PATTERN:
+                case TURN2:
+                    setMoveShortcut(NUMBNESS, MOVES[NUMBNESS], cardList.get(NUMBNESS).makeStatEquivalentCopy());
+                    break;
+                case TURN3:
+                case PALE_HANDS_5X:
+                    setMoveShortcut(PALE_HANDS, MOVES[PALE_HANDS], cardList.get(PALE_HANDS).makeStatEquivalentCopy());
+                    break;
+                case SINKING:
+                    setMoveShortcut(SINKING, MOVES[SINKING], cardList.get(SINKING).makeStatEquivalentCopy());
+                    break;
+            }
         }
     }
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        switch (currentState){
-            case OPENING:
-                setAdditionalMoveShortcut(NUMBNESS, moveHistory, cardList.get(NUMBNESS).makeStatEquivalentCopy());
-                break;
-            case TURN2:
-                setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeStatEquivalentCopy());
-                break;
-            case TURN3:
-                switch (whichMove){
-                    default:
-                        setAdditionalMoveShortcut(PALE_HANDS, moveHistory, cardList.get(PALE_HANDS).makeStatEquivalentCopy());
-                        break;
-                    case 2:
-                        setAdditionalMoveShortcut(WRIST_CUTTER, moveHistory, cardList.get(WRIST_CUTTER).makeStatEquivalentCopy());
-                        break;
-                    case 3:
-                        setAdditionalMoveShortcut(NUMBNESS, moveHistory, cardList.get(NUMBNESS).makeStatEquivalentCopy());
-                        break;
-                }
-                break;
-            case PALE_HANDS_5X:
-                setAdditionalMoveShortcut(PALE_HANDS, moveHistory, cardList.get(PALE_HANDS).makeStatEquivalentCopy());
-                break;
-            case SINKING:
-                break;
-            case CYCLE_PATTERN:
-                switch (whichMove){
-                    case 0:
-                        setAdditionalMoveShortcut(WRIST_CUTTER, moveHistory, cardList.get(WRIST_CUTTER).makeStatEquivalentCopy());
-                        break;
-                    case 1:
-                        setAdditionalMoveShortcut(LOATHING, moveHistory, cardList.get(LOATHING).makeStatEquivalentCopy());
-                        break;
-                    case 2:
-                        setAdditionalMoveShortcut(STAINS_OF_BLOOD, moveHistory, cardList.get(STAINS_OF_BLOOD).makeStatEquivalentCopy());
-                        break;
-                    default:
-                        setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeStatEquivalentCopy());
-                        break;
-                }
+        if(halfDead){}
+        else {
+            switch (currentState) {
+                case OPENING:
+                    setAdditionalMoveShortcut(NUMBNESS, moveHistory, cardList.get(NUMBNESS).makeStatEquivalentCopy());
+                    break;
+                case TURN2:
+                    setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeStatEquivalentCopy());
+                    break;
+                case TURN3:
+                    switch (whichMove) {
+                        default:
+                            setAdditionalMoveShortcut(PALE_HANDS, moveHistory, cardList.get(PALE_HANDS).makeStatEquivalentCopy());
+                            break;
+                        case 2:
+                            setAdditionalMoveShortcut(WRIST_CUTTER, moveHistory, cardList.get(WRIST_CUTTER).makeStatEquivalentCopy());
+                            break;
+                        case 3:
+                            setAdditionalMoveShortcut(NUMBNESS, moveHistory, cardList.get(NUMBNESS).makeStatEquivalentCopy());
+                            break;
+                    }
+                    break;
+                case PALE_HANDS_5X:
+                    setAdditionalMoveShortcut(PALE_HANDS, moveHistory, cardList.get(PALE_HANDS).makeStatEquivalentCopy());
+                    break;
+                case SINKING:
+                    break;
+                case CYCLE_PATTERN:
+                    switch (whichMove) {
+                        case 0:
+                            setAdditionalMoveShortcut(WRIST_CUTTER, moveHistory, cardList.get(WRIST_CUTTER).makeStatEquivalentCopy());
+                            break;
+                        case 1:
+                            setAdditionalMoveShortcut(LOATHING, moveHistory, cardList.get(LOATHING).makeStatEquivalentCopy());
+                            break;
+                        case 2:
+                            setAdditionalMoveShortcut(STAINS_OF_BLOOD, moveHistory, cardList.get(STAINS_OF_BLOOD).makeStatEquivalentCopy());
+                            break;
+                        default:
+                            setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeStatEquivalentCopy());
+                            break;
+                    }
+            }
         }
     }
 

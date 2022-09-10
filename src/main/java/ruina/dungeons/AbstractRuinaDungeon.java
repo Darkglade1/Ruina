@@ -54,7 +54,7 @@ public class AbstractRuinaDungeon extends CustomDungeon {
         ROLAND,
         GUESTS,
         BLACK_SILENCE,
-        DAY49
+        DAY49,
     }
 
     public void setFloor() {

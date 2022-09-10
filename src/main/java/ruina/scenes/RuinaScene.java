@@ -54,9 +54,7 @@ import ruina.monsters.act3.silentGirl.SilentGirl;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
-import ruina.monsters.day49.Act1Angela;
-import ruina.monsters.day49.Act3Angela;
-import ruina.monsters.day49.Act4Angela;
+import ruina.monsters.day49.*;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.theHead.Baral;
 import ruina.monsters.theHead.Zena;
@@ -146,7 +144,7 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Bloodbath");
                 } else if (mo instanceof SnowQueen || mo instanceof Act4Angela) {
                     this.bg = this.atlas.findRegion("mod/Snow");
-                } else if (mo instanceof HeartOfAspiration || mo instanceof LungsOfCraving) {
+                } else if (mo instanceof HeartOfAspiration || mo instanceof LungsOfCraving || mo instanceof Act2Angela) {
                     this.bg = this.atlas.findRegion("mod/Heart");
                 } else if (mo instanceof Pinocchio || mo instanceof Act3Angela) {
                     this.bg = this.atlas.findRegion("mod/Lies");
@@ -178,7 +176,7 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/BlackSilence3");
                 } else if (mo instanceof Zena && ((Zena) mo).usedShockwave) {
                     this.bg = this.atlas.findRegion("mod/Crater");
-                } else if (mo instanceof SilentGirl) {
+                } else if (mo instanceof SilentGirl || mo instanceof Act5Angela) {
                     this.bg = this.atlas.findRegion("mod/SilentGirl");
                 } else if (mo instanceof AllAroundHelper) {
                     this.bg = this.atlas.findRegion("mod/Helper");
@@ -277,6 +275,10 @@ public class RuinaScene extends AbstractScene {
                     this.campfireBg = this.atlas.findRegion("mod/Entrance");
                     break;
                 case BLACK_SILENCE:
+                    this.bg = this.atlas.findRegion("mod/Keter");
+                    this.campfireBg = this.atlas.findRegion("mod/Entrance");
+                    break;
+                case DAY49:
                     this.bg = this.atlas.findRegion("mod/Keter");
                     this.campfireBg = this.atlas.findRegion("mod/Entrance");
                     break;

@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
-import ruina.monsters.day49.Act1Angela;
 import ruina.monsters.day49.Act4Angela;
-import ruina.monsters.day49.angelaCards.bloodbath.Numbness;
-import ruina.monsters.eventboss.redMist.monster.RedMist;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeImagePath;
@@ -22,8 +19,8 @@ public class BitterCold extends AbstractRuinaCard {
     public BitterCold(Act4Angela parent) {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + "SnowQueenIce" + ".png"));
         damage = baseDamage = parent.bitterColdDamage;
-        magicNumber = baseMagicNumber = parent.bitterColdChill;
-        secondMagicNumber = baseSecondMagicNumber = parent.bitterColdThreshold;
+        magicNumber = baseMagicNumber = parent.bitterColdFrail;
+        secondMagicNumber = baseSecondMagicNumber = parent.bitterColdHits;
     }
 
     @Override

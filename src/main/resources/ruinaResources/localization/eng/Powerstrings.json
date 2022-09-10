@@ -243,7 +243,9 @@
   },
   "${ModID}:Imposter": {
     "NAME": "Imposter",
-    "DESCRIPTIONS": ["This creature's moves are copied from the base damage and #yBlock of #yyour #ycards. NL At the end of its turn, gains #b", " #yStrength."]
+    "DESCRIPTIONS": [
+      "This creature's moves are copied from the base damage and #yBlock of #yyour #ycards. NL At the end of its turn, gains #b", " #yStrength."
+    ]
   },
   "${ModID}:FaultyHardware": {
     "NAME": "Faulty Hardware",
@@ -612,17 +614,17 @@
     "DESCRIPTIONS": ["Receives #b", "% more damage from #yAttacks this turn."]
   },
   "${ModID}:Refracting": {
-    "NAME": "Refracting",
+    "NAME": "Shimmering",
     "DESCRIPTIONS": [
       "Cannot be stunned.",
-      " NL After this creature's second turn, it gains #b5 intents.",
+      " NL After this creature's first turn, it gains #b3 more intents.",
       " NL This creature only acts on its #b1st intent. Its #b2nd intent is a preview of its next move.",
-      " NL On death, #yUnthaw all #bFrozen cards and remove all #rCritically #rFrozen."
+      " NL On death, #yUnthaw all #bFrozen cards, remove all #rCritically #rFrozen, and remove all #bColdHearted."
     ]
   },
-  "${ModID}:SorrowAngela": {
-    "NAME": "Sorrow",
-    "DESCRIPTIONS": ["Loses #b%1$s HP, and gains that much #yStrength at the end of each turn."]
+  "${ModID}:BloodstainedSorrow": {
+    "NAME": "Bloodstained Sorrow",
+    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL Whenever you play a card, this creature loses #b%1$s HP. NL Whenever you play #b%2$s cards, this creature gains #b%3$s #yStrength."]
   },
   "${ModID}:BlackForest": {
     "NAME": "The Monster in the Black Forest",
@@ -653,7 +655,11 @@
   },
   "${ModID}:FibleFable": {
     "NAME": "Joyous Fible-Fable",
-    "DESCRIPTIONS": ["Heals to max HP at the start of each turn."]
+    "DESCRIPTIONS": ["This creature heals to its max HP at the start of each turn."]
+  },
+  "${ModID}:Liar": {
+    "NAME": "Liar",
+    "DESCRIPTIONS": ["After copying the damage and #yBlock of #yyour #ycards from the effect of #yImposter, this creature #bdoubles the base #yBlock and damage of its cards."]
   },
   "${ModID}:Palpitation": {
     "NAME": "Palpitation",
@@ -670,6 +676,40 @@
       "%",
       "Incoming damage is reduced by #b",
       "%"
+    ]
+  },
+  "${ModID}:Memoir": {
+    "NAME": "Adventurer's Memoir",
+    "DESCRIPTIONS": ["Holding a memoir of the player's deck."]
+  },
+  "${ModID}:GeburaStrongAttackWarning": {
+    "NAME": "The Strongest",
+    "DESCRIPTIONS": [
+      "When this creature uses a #rpowerful #rattack, it loses all additional intents.",
+      " NL Uses a #rpowerful #rattack in #b%1$s turn.",
+      " NL Uses a #rpowerful #rattack in #b%1$s turns, unless it manifests E.G.O at the end of this round."
+    ]
+  },
+  "${ModID}:FrostSplinterStrongAttackWarning": {
+    "NAME": "Cruelty of Winter",
+    "DESCRIPTIONS": [
+      "When this creature uses a #rpowerful #rattack, it loses all additional intents, #rexcept for intents it gained from the effect of #yIce #ySplinter.",
+      " NL Uses a #rpowerful #rattack in #b%1$s turn.",
+      " NL Uses a #rpowerful #rattack in #b%1$s turns."
+    ]
+  },
+  "${ModID}:ReticentFrigidity": {
+    "NAME": "Reticent Frigidity",
+    "DESCRIPTIONS": [
+      "You may #yFreeze any card, at any time. NL #yFrozen cards are #yUnplayable and #yRetain. NL If you #yFreeze a card through this effect, this creature deals #b50% less damage for #b1 turn."
+    ]
+  },
+  "${ModID}:ColdHearted": {
+    "NAME": "ColdHearted",
+    "DESCRIPTIONS": [
+      "Take #b50% less damage.",
+      " NL (Lasts #b%1$s turn.)",
+      " NL (Lasts #b%1$s turns.)"
     ]
   }
 }

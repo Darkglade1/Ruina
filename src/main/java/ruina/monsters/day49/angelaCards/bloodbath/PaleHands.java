@@ -19,9 +19,8 @@ public class PaleHands extends AbstractRuinaCard {
     private Act1Angela parent;
 
     public PaleHands(Act1Angela parent) {
-        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRALLY_ALLAS.class.getSimpleName() + ".png"));
+        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.paleHandsDamage;
-        magicNumber = baseMagicNumber = parent.paleHandHits;
         this.parent = parent;
     }
 

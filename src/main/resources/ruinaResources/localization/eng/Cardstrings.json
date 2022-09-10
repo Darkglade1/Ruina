@@ -956,15 +956,15 @@
   },
   "${ModID}:PaleHands": {
     "NAME": "Pale Hands",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL For each hit: NL Lose HP equal to double the unblocked damage."
+    "DESCRIPTION": "Deal !D! damage. NL Lose HP equal to double the unblocked damage."
   },
   "${ModID}:SorrowAngela": {
     "NAME": "Sorrow",
-    "DESCRIPTION": "Deal !D! damage. NL At the end of each turn, lose !M! HP and gain that much Strength."
+    "DESCRIPTION": "Lose !ruina:SecondMagic! HP. NL Deal !D! damage."
   },
   "${ModID}:Numbness": {
     "NAME": "Numbness",
-    "DESCRIPTION": "Lose !M! HP. Apply !ruina:SecondMagic! *Paralysis."
+    "DESCRIPTION": "Lose !M! HP. NL Apply !ruina:SecondMagic! *Paralysis."
   },
   "${ModID}:Loathing": {
     "NAME": "Loathing",
@@ -972,7 +972,7 @@
   },
   "${ModID}:StainsOfBlood": {
     "NAME": "Stains of Blood",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! ruina:Bleed."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! ruina:Bleed. NL Apply !ruina:SecondMagic! Vulnerable next turn."
   },
   "${ModID}:WristCutterAngela": {
     "NAME": "Wrist Cutter",
@@ -984,11 +984,11 @@
   },
   "${ModID}:BitterCold": {
     "NAME": "Bitter Cold",
-    "DESCRIPTION": "Deal !D! damage 3 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, apply !M! *Chill."
+    "DESCRIPTION": "Deal !D! damage !ruina:SecondMagic! times. NL Apply !M! *Frail."
   },
   "${ModID}:FrostSplinterAngela": {
-    "NAME": "Frost Splinter",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gains an extra intent for the next turn."
+    "NAME": "Ice Splinter",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain an extra intent for the next turn."
   },
   "${ModID}:SwordOfFrost": {
     "NAME": "Sword Of Frost",
@@ -1017,5 +1017,25 @@
   "${ModID}:AngelaWound": {
     "NAME": "Grievous Wound",
     "DESCRIPTION": "Take !M! damage. NL If this card is discarded, Exhaust it."
+  },
+  "${ModID}:AspirationPneumonia": {
+    "NAME": "Aspiration Pneumonia",
+    "DESCRIPTION": "Deal !D! damage. NL This card's damage cannot be decreased."
+  },
+  "${ModID}:TurbulentBeats": {
+    "NAME": "Turbulent Beats",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Inclination": {
+    "NAME": "Inclination",
+    "DESCRIPTION": "Apply !M! Weak. NL Apply !M! Vulnerable. NL Apply !M! Frail."
+  },
+  "${ModID}:Pulsation": {
+    "NAME": "Pulsation",
+    "DESCRIPTION": "Remove all negative Strength. NL Gain !M! Strength.",
+    "EXTENDED_DESCRIPTION": [
+      "Decrease the threshold for Pneumonia by !ruina:SecondMagic!.",
+      "Gain !ruina:SecondMagic! Strength."
+    ]
   }
 }

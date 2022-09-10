@@ -19,7 +19,7 @@ public class Loathing extends AbstractRuinaCard {
     private Act1Angela parent;
 
     public Loathing(Act1Angela parent) {
-        super(ID, 3, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRALLY_ALLAS.class.getSimpleName() + ".png"));
+        super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + Numbness.class.getSimpleName() + ".png"));
         magicNumber = baseMagicNumber = parent.loathingHPLoss;
         secondMagicNumber = baseSecondMagicNumber = parent.loathingHPHeal;
         this.parent = parent;

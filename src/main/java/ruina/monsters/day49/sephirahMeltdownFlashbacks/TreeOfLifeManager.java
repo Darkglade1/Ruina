@@ -2,7 +2,9 @@ package ruina.monsters.day49.sephirahMeltdownFlashbacks;
 
 import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -12,12 +14,15 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.day49.Act2Angela;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.Fields.D49SaveData;
 import ruina.monsters.day49.ui.TreeOfLife;
 import ruina.powers.AbstractLambdaPower;
 
+import java.util.ArrayList;
+
 import static ruina.RuinaMod.makeMonsterPath;
-import static ruina.util.Wiz.applyToTarget;
-import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.*;
+import static ruina.util.Wiz.adp;
 
 public class TreeOfLifeManager extends AbstractRuinaMonster
 {

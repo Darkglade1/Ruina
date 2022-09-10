@@ -97,6 +97,7 @@ public class Act5Angela extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
+        AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         CustomDungeon.playTempMusicInstantly("Story2");
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
@@ -185,13 +186,16 @@ public class Act5Angela extends AbstractCardMonster {
 
     @Override
     protected void getMove(final int num) {
-        if (turnCounter == 3) {
-            specialUpAnimation(adp());
-            setMoveShortcut(BROKEN, MOVES[BROKEN], cardList.get(BROKEN));
-        } else if (turnCounter == 2) {
-            setMoveShortcut(COLLAPSING_HEART, MOVES[COLLAPSING_HEART], cardList.get(COLLAPSING_HEART));
-        } else {
-            setMoveShortcut(CRACKED_HEART, MOVES[CRACKED_HEART], cardList.get(CRACKED_HEART));
+        if(halfDead){ setMoveShortcut(PHASE_TRANSITION); }
+        else {
+            if (turnCounter == 3) {
+                specialUpAnimation(adp());
+                setMoveShortcut(BROKEN, MOVES[BROKEN], cardList.get(BROKEN));
+            } else if (turnCounter == 2) {
+                setMoveShortcut(COLLAPSING_HEART, MOVES[COLLAPSING_HEART], cardList.get(COLLAPSING_HEART));
+            } else {
+                setMoveShortcut(CRACKED_HEART, MOVES[CRACKED_HEART], cardList.get(CRACKED_HEART));
+            }
         }
     }
 
@@ -211,7 +215,6 @@ public class Act5Angela extends AbstractCardMonster {
     public void render(SpriteBatch sb) {
         super.render(sb);
         if (!this.isDeadOrEscaped()) {
-
             hammer.render(sb);
             nail.render(sb);
         }
