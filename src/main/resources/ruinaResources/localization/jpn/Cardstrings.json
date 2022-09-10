@@ -30,7 +30,8 @@
   },
   "ruina:LoveAndHate": {
     "NAME": "愛と憎悪の名のもとに",
-    "DESCRIPTION": "全ての敵に !D! ダメージを与える。"
+    "DESCRIPTION": "ディール !D! X 敵全体にダメージ。 NL X が !M! の場合 以上の場合、与えるダメージが 50% 増加します。",
+    "UPGRADE_DESCRIPTION": "ディール !D! X 敵全体にダメージ。 NL X が !M! の場合 以上の場合、与えるダメージが 50% 増加します。 NL X が !ruina:SecondMagic! の場合! 以上の場合、さらに 100% の追加ダメージを与えます。"
   },
   "ruina:GoldRush": {
     "NAME": "ゴールドラッシュ",

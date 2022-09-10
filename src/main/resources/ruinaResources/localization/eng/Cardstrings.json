@@ -30,8 +30,8 @@
   },
   "${ModID}:LoveAndHate": {
     "NAME": "In the Name of Love and Hate",
-    "DESCRIPTION": "Deal !D! x X damage to ALL enemies. NL If X is !M! or more, deals 50% more damage.",
-    "UPGRADE_DESCRIPTION": "Deal !D! x X damage to ALL enemies. NL If X is !M! or more, deals 50% more damage. NL If X is !ruina:SecondMagic! or more, also deals 100% more damage."
+    "DESCRIPTION": "Deal !D! X damage to ALL enemies. NL If X is !M! or more, deals 50% more damage.",
+    "UPGRADE_DESCRIPTION": "Deal !D! X damage to ALL enemies. NL If X is !M! or more, deals 50% more damage. NL If X is !ruina:SecondMagic! or more, also deals 100% more damage."
   },
   "${ModID}:GoldRush": {
     "NAME": "Gold Rush",

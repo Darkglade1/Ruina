@@ -13,7 +13,7 @@ public class VampireDamageActionButItCanFizzle extends VampireDamageAction {
     }
 
     public void update() {
-        if (info.owner.isDeadOrEscaped()) {
+        if (info.owner.isDeadOrEscaped() || target.isDeadOrEscaped()) {
             isDone = true;
         } else {
             super.update();

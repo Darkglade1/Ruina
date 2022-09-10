@@ -32,6 +32,7 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.CenterOfAttention;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -163,6 +164,7 @@ public class Mountain extends AbstractMultiIntentMonster
                 }
             }
         });
+        applyToTarget(this, this, new CenterOfAttention(this));
     }
 
     @Override
@@ -411,7 +413,7 @@ public class Mountain extends AbstractMultiIntentMonster
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power.ID.equals(ABSORPTION_POWER_ID)) && !(power.ID.equals(BODIES_POWER_ID))) {
+                if (!(power.ID.equals(ABSORPTION_POWER_ID)) && !(power.ID.equals(BODIES_POWER_ID)) && !power.ID.equals(CenterOfAttention.POWER_ID)) {
                     powersToRemove.add(power);
                 }
             }

@@ -30,7 +30,8 @@
   },
   "ruina:LoveAndHate": {
     "NAME": "사랑과 증오의 이름으로",
-    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다."
+    "DESCRIPTION": "거래 !D! X 모든 적에게 피해를 입힙니다. NL X가 !M! 이면! 이상, 50% 더 많은 피해를 줍니다.",
+    "UPGRADE_DESCRIPTION": "거래 !D! X 모든 적에게 피해를 입힙니다. NL X가 !M! 이면! 이상, 50% 더 많은 피해를 줍니다. NL X라면 !ruina:SecondMagic! 이상, 또한 100% 더 많은 피해를 줍니다."
   },
   "ruina:GoldRush": {
     "NAME": "골드 러시",
