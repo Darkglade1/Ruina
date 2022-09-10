@@ -889,7 +889,7 @@
   },
   "ruina:Fragments": {
     "NAME": "彼方的碎片",
-    "DESCRIPTION": "窃取敌人的 格挡 。 NL 造成 !D! 点伤害。"
+    "DESCRIPTION": "窃取敌人的 格挡 。 NL 造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 。"
   },
   "ruina:OurGalaxy": {
     "NAME": "我们的小小银河",

@@ -429,7 +429,7 @@
   },
   "${ModID}:AnArbiter": {
     "NAME": "Complete Arbiter",
-    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it steals #b", " #yStrength from its target."]
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it steals #b", " positive #yStrength from its target."]
   },
   "${ModID}:GeburaProwess": {
     "NAME": "Gebura's Prowess",
