@@ -782,7 +782,7 @@
   },
   "${ModID}:ThinLine": {
     "NAME": "Thin Line",
-    "DESCRIPTION": "Deal !D! damage. NL Steal !M! Strength from the target."
+    "DESCRIPTION": "Deal !D! damage. NL Steal !M! positive Strength from the target."
   },
   "${ModID}:ThickLine": {
     "NAME": "Thick Line",
@@ -893,7 +893,7 @@
   },
   "${ModID}:Fragments": {
     "NAME": "Fragments from Somewhere",
-    "DESCRIPTION": "Steal the enemy's Block. NL Deal !D! damage."
+    "DESCRIPTION": "Steal the enemy's Block. NL Deal !D! damage. NL Apply !M! Weak."
   },
   "${ModID}:OurGalaxy": {
     "NAME": "Our Galaxy",

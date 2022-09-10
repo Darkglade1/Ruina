@@ -15,6 +15,7 @@ import ruina.events.act4.Sorrow;
 import ruina.events.act4.TheHead;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
+import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.rooms.RuinaMonsterRoom;
 import ruina.rooms.RuinaVictoryRoom;
 
@@ -70,14 +71,25 @@ public class BlackSilence extends AbstractRuinaDungeon {
 
     @Override
     public void Ending() {
-        adp().hand.group.clear(); //stop the card playable crashes LOL
-        AbstractDungeon.currMapNode.room = new ForkEventRoom();
-        AbstractDungeon.getCurrRoom().onPlayerEntry();
-        AbstractDungeon.rs = AbstractDungeon.RenderScene.EVENT;
+        if (AbstractDungeon.bossKey.equals(BlackSilence4.ID)) {
+            // this should run after BS4 to start head fight
+            adp().hand.group.clear(); //stop the card playable crashes LOL
+            AbstractDungeon.currMapNode.room = new ForkEventRoom();
+            AbstractDungeon.getCurrRoom().onPlayerEntry();
+            AbstractDungeon.rs = AbstractDungeon.RenderScene.EVENT;
 
-        AbstractDungeon.combatRewardScreen.clear();
-        AbstractDungeon.previousScreen = null;
-        AbstractDungeon.closeCurrentScreen();
+            AbstractDungeon.combatRewardScreen.clear();
+            AbstractDungeon.previousScreen = null;
+            AbstractDungeon.closeCurrentScreen();
+        } else {
+            // this should run after head fight is over
+            CardCrawlGame.music.fadeOutBGM();
+            MapRoomNode node = new MapRoomNode(3, 4);
+            node.room = new RuinaVictoryRoom();
+            AbstractDungeon.nextRoom = node;
+            AbstractDungeon.closeCurrentScreen();
+            AbstractDungeon.nextRoomTransitionStart();
+        }
     }
 
     public static class ForkEventRoom extends EventRoom {
@@ -86,17 +98,6 @@ public class BlackSilence extends AbstractRuinaDungeon {
             AbstractDungeon.overlayMenu.proceedButton.hide();
             this.event = new TheHead();
             this.event.onEnterRoom();
-        }
-
-        @Override
-        public void endBattle() {
-            super.endBattle();
-            CardCrawlGame.music.fadeOutBGM();
-            MapRoomNode node = new MapRoomNode(3, 4);
-            node.room = new RuinaVictoryRoom();
-            AbstractDungeon.nextRoom = node;
-            AbstractDungeon.closeCurrentScreen();
-            AbstractDungeon.nextRoomTransitionStart();
         }
     }
 

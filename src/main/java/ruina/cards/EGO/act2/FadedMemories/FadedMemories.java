@@ -16,6 +16,7 @@ public class FadedMemories extends AbstractEgoCard {
 
     private static final int DRAW = 1;
     private static final int EXHAUST_DRAW = 2;
+    private static final int UP_EXHAUST_DRAW = 1;
 
     protected static AbstractMonster target;
 
@@ -44,5 +45,6 @@ public class FadedMemories extends AbstractEgoCard {
     @Override
     public void upp() {
         isInnate = true;
+        upgradeSecondMagic(UP_EXHAUST_DRAW);
     }
 }

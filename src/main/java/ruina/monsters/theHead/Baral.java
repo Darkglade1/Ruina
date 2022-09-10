@@ -308,7 +308,7 @@ public class Baral extends AbstractCardMonster
                         this.isDone = true;
                     }
                 });
-                float duration = 3.5f;
+                float duration = 2.5f;
                 if (currentPhase == PHASE.PHASE1) {
                     atb(new VFXAction(new SerumWAnimation(roland, this, false, bgTextures), duration));
                 } else {

@@ -4,26 +4,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
-import ruina.RuinaMod;
-import ruina.dungeons.AbstractRuinaDungeon;
 import ruina.monsters.theHead.Baral;
 import ruina.monsters.theHead.Zena;
-import ruina.powers.PlayerBackAttack;
 
 import java.util.ArrayList;
-
-import static ruina.util.Wiz.adp;
 
 @SpirePatch(
         clz = AbstractCreature.class,
@@ -120,7 +111,7 @@ public class MultiLinePowersPatches {
         return c instanceof Baral || c instanceof Zena;
     }
 
-    @SpirePatch(cls = "mintySpire.patches.powers.MultiLinePowersPatches", method = "isExcludedClass")
+    @SpirePatch(cls = "mintySpire.patches.powers.MultiLinePowersPatches", method = "isExcludedClass", optional = true)
     public static class PreventConflict {
         @SpirePostfixPatch()
         public static boolean yeppers (boolean original, AbstractCreature  c) {

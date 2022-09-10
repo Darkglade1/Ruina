@@ -889,7 +889,7 @@
   },
   "ruina:Fragments": {
     "NAME": "どこかの欠片",
-    "DESCRIPTION": "敵の ブロック を奪う。 NL !D! ダメージを与える。"
+    "DESCRIPTION": "敵の ブロック を奪う。 NL !D! ダメージを与える。NL 脱力 !M! を与える。"
   },
   "ruina:OurGalaxy": {
     "NAME": "僕らの銀河",

@@ -202,7 +202,23 @@ public class Zena extends AbstractCardMonster
             case THIN_LINE: {
                 pierceAnimation(target);
                 dmg(target, info);
-                applyToTarget(target, this, new StrengthPower(target, -DEBUFF));
+                AbstractCreature enemy = target;
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        int debuff = DEBUFF;
+                        AbstractPower str = enemy.getPower(StrengthPower.POWER_ID);
+                        if (str != null) {
+                            if (str.amount > 0) {
+                                if (debuff > str.amount) {
+                                    debuff = str.amount;
+                                }
+                                applyToTargetTop(enemy, Zena.this, new StrengthPower(enemy, -debuff));
+                            }
+                        }
+                        this.isDone = true;
+                    }
+                });
                 applyToTargetNextTurn(this, new StrengthPower(this, DEBUFF));
                 resetIdle();
                 break;

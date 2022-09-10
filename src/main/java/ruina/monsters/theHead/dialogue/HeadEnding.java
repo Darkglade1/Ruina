@@ -46,6 +46,12 @@ public class HeadEnding extends AbstractGameEffect {
     }
 
     public void update() {
+        if (RuinaMod.skipCutscenes) {
+            AbstractDungeon.isScreenUp = false;
+            this.isDone = true;
+            exit();
+            return;
+        }
         if (this.show) {
             this.show = false;
             AbstractDungeon.isScreenUp = true;

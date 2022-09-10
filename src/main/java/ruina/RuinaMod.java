@@ -185,7 +185,9 @@ public class RuinaMod implements
     public static Boolean clown;
     public static final String DISABLE_ALT_TITLE_ART = "disableAltTitleArt";
     public static boolean disableAltTitleArt = false;
+    public static final String SKIP_CUTSCENES = "skipCutscenes";
 
+    public static boolean skipCutscenes = false;
     public static boolean corruptTheSpireLoaded = false;
 
 
@@ -206,6 +208,7 @@ public class RuinaMod implements
             ruinaDefaults.put("headClear", false);
             ruinaDefaults.put("clown", false);
             ruinaDefaults.put(DISABLE_ALT_TITLE_ART, false);
+            ruinaDefaults.put(SKIP_CUTSCENES, false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -694,11 +697,21 @@ public class RuinaMod implements
                 settingsPanel, // The mod panel in which this button will be in
                 (label) -> {}, // thing??????? idk
                 (button) -> { // The actual button:
-
                     disableAltTitleArt = button.enabled; // The boolean true/false will be whether the button is enabled or not
                     saveData();
                 });
         settingsPanel.addUIElement(disableAltTitleButton); // Add the button to the settings panel. Button is a go.
+
+        ModLabeledToggleButton skipCutscenesButton = new ModLabeledToggleButton("Skip cutscenes in the final fight.",
+                350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                skipCutscenes, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+                    skipCutscenes = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    saveData();
+                });
+        settingsPanel.addUIElement(skipCutscenesButton);
 
         Asiyah asiyah = new Asiyah();
         asiyah.addAct(Exordium.ID);
@@ -1176,6 +1189,7 @@ public class RuinaMod implements
     public static void saveData() {
         try {
             ruinaConfig.setBool(DISABLE_ALT_TITLE_ART, disableAltTitleArt);
+            ruinaConfig.setBool(SKIP_CUTSCENES, skipCutscenes);
             ruinaConfig.save();
         } catch (Exception e) {
             e.printStackTrace();
@@ -1189,6 +1203,7 @@ public class RuinaMod implements
         LocalDate clownCheck = LocalDate.now();
         clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
         disableAltTitleArt = ruinaConfig.getBool(DISABLE_ALT_TITLE_ART);
+        skipCutscenes = ruinaConfig.getBool(SKIP_CUTSCENES);
     }
 
     public static boolean hijackMenu() {

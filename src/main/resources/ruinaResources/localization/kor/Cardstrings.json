@@ -889,7 +889,7 @@
   },
   "ruina:Fragments": {
     "NAME": "어딘가의 조각",
-    "DESCRIPTION": "적의 방어도를 훔쳐 자신의 것으로 만듭니다. NL 피해를 !D! 줍니다."
+    "DESCRIPTION": "적의 방어도를 훔쳐 자신의 것으로 만듭니다. NL 피해를 !D! 줍니다. NL 약화를 !M! 부여합니다."
   },
   "ruina:OurGalaxy": {
     "NAME": "우리의 은하수",
