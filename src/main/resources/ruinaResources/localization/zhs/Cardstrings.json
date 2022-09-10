@@ -30,7 +30,8 @@
   },
   "ruina:LoveAndHate": {
     "NAME": "以爱与恨的名义",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。"
+    "DESCRIPTION": "交易 !D！X 对所有敌人造成伤害。 NL 如果 X 是 !M! 或更多，造成 50% 以上的伤害。",
+    "UPGRADE_DESCRIPTION": "交易 !D！X 对所有敌人造成伤害。 NL 如果 X 是 !M! 或更多，造成 50% 以上的伤害。 NL 如果 X 是 !ruina:SecondMagic! 或更多，也会造成 100% 以上的伤害。"
   },
   "ruina:GoldRush": {
     "NAME": "闪金冲锋",

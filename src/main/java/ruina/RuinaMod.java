@@ -660,6 +660,10 @@ public class RuinaMod implements
                 .cards();
     }
 
+    public static boolean englishOnly() {
+        return Settings.language == Settings.GameLanguage.ENG;
+    }
+
     @Override
     public void receivePostInitialize() {
         receiveEditPotions();
@@ -822,7 +826,10 @@ public class RuinaMod implements
         BaseMod.addEvent(GalaxyChild.ID, GalaxyChild.class, Asiyah.ID);
         BaseMod.addEvent(Funeral.ID, Funeral.class, Asiyah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
-        BaseMod.addEvent(Art.ID, Art.class, Asiyah.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(Art.ID, Art.class)
+                .bonusCondition(RuinaMod::englishOnly)
+                .dungeonID(Asiyah.ID)
+                .create());
 
 
         //Act 2
@@ -889,7 +896,10 @@ public class RuinaMod implements
         BaseMod.addEvent(NothingThere.ID, NothingThere.class, Briah.ID);
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Briah.ID);
-        BaseMod.addEvent(WanderingSamurai.ID, WanderingSamurai.class, Briah.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(WanderingSamurai.ID, WanderingSamurai.class)
+                .bonusCondition(RuinaMod::englishOnly)
+                .dungeonID(Briah.ID)
+                .create());
 
 
         // Act 3
@@ -949,7 +959,10 @@ public class RuinaMod implements
         BaseMod.addEvent(DistortedYan.ID, DistortedYan.class, Atziluth.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
         BaseMod.addEvent(YesterdayPromise.ID, YesterdayPromise.class, Atziluth.ID);
-        BaseMod.addEvent(Realization.ID, Realization.class, Atziluth.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(Realization.ID, Realization.class)
+                .bonusCondition(RuinaMod::englishOnly)
+                .dungeonID(Atziluth.ID)
+                .create());
 
         //Uninvited Guests
         BaseMod.addMonster(Puppeteer.ID, "Puppeteer", () -> new MonsterGroup(
