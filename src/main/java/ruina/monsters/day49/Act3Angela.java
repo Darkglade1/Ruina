@@ -149,27 +149,14 @@ public class Act3Angela extends AbstractCardMonster
                 break;
             }
             case PHASE_TRANSITION:
-                CardCrawlGame.fadeIn(3f);
-                atb(new Day49PhaseTransition3Action(0, 1));
-                Act3Angela.this.gold = 0;
-                Act3Angela.this.currentHealth = 0;
-                Act3Angela.this.dieBypass();
-                AbstractDungeon.getMonsters().monsters.remove(this);
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        AbstractMonster m = new Act4Angela();
-                        att(new AbstractGameAction() {
-                            @Override
-                            public void update() {
-                                m.usePreBattleAction();
-                                isDone = true;
-                            }
-                        });
-                        att(new SpawnMonsterAction(m, false));
+                        AbstractDungeon.player.onVictory();
                         isDone = true;
                     }
                 });
+                atb(new Day49PhaseTransition3Action(0, 1));
                 break;
         }
     }

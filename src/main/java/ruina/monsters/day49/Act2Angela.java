@@ -89,7 +89,7 @@ public class Act2Angela extends AbstractCardMonster {
 
     public final int aspirationPneumoniaDamage = 70;
 
-    public final int turbulentBeatsDamage = 6;
+    public final int turbulentBeatsDamage = 10;
     public final int turbulentBeatsHits = 15;
 
     private static final int HP = 3500;
@@ -238,27 +238,14 @@ public class Act2Angela extends AbstractCardMonster {
                 break;
             }
             case PHASE_TRANSITION:
-                CardCrawlGame.fadeIn(3f);
-                atb(new Day49PhaseTransition2Action(0, 1));
-                Act2Angela.this.gold = 0;
-                Act2Angela.this.currentHealth = 0;
-                Act2Angela.this.dieBypass();
-                AbstractDungeon.getMonsters().monsters.remove(this);
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        AbstractMonster m = new Act3Angela();
-                        att(new AbstractGameAction() {
-                            @Override
-                            public void update() {
-                                m.usePreBattleAction();
-                                isDone = true;
-                            }
-                        });
-                        att(new SpawnMonsterAction(m, false));
+                        AbstractDungeon.player.onVictory();
                         isDone = true;
                     }
                 });
+                atb(new Day49PhaseTransition2Action(0, 1));
                 break;
         }
         atb(new RollMoveAction(this));

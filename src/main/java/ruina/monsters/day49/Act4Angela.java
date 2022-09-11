@@ -333,58 +333,14 @@ public class Act4Angela extends AbstractDeckMonster
                 break;
             }
             case PHASE_TRANSITION:
-                CardCrawlGame.fadeIn(3f);
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        AbstractDungeon.player.onVictory();
+                        isDone = true;
+                    }
+                });
                 atb(new Day49PhaseTransition4Action(0, 1));
-                Act4Angela.this.gold = 0;
-                Act4Angela.this.currentHealth = 0;
-                Act4Angela.this.dieBypass();
-                AbstractDungeon.getMonsters().monsters.remove(this);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        AbstractMonster m = new Act5Angela();
-                        att(new AbstractGameAction() {
-                            @Override
-                            public void update() {
-                                m.usePreBattleAction();
-                                isDone = true;
-                            }
-                        });
-                        att(new SpawnMonsterAction(m, false));
-                        isDone = true;
-                    }
-                });
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
-                        for (AbstractPower power : adp().powers) {
-                            if (power instanceof ColdHearted || power instanceof DeepFreezePower) {
-                                if(power instanceof AbstractUnremovablePower){
-                                    makePowerRemovable(power);
-                                    powersToRemove.add(power);
-                                }
-                            }
-                        }
-                        for (AbstractPower power : powersToRemove) { adp().powers.remove(power); }
-                        for (AbstractCard card : adp().hand.group) {
-                            if (CardModifierManager.hasModifier(card, FrozenMod.ID)) {
-                                CardModifierManager.removeModifiersById(card, FrozenMod.ID, false);
-                            }
-                        }
-                        for (AbstractCard card : adp().discardPile.group) {
-                            if (CardModifierManager.hasModifier(card, FrozenMod.ID)) {
-                                CardModifierManager.removeModifiersById(card, FrozenMod.ID, false);
-                            }
-                        }
-                        for (AbstractCard card : adp().drawPile.group) {
-                            if (CardModifierManager.hasModifier(card, FrozenMod.ID)) {
-                                CardModifierManager.removeModifiersById(card, FrozenMod.ID, false);
-                            }
-                        }
-                        isDone = true;
-                    }
-                });
                 break;
         }
     }
