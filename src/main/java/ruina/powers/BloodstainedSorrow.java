@@ -15,44 +15,28 @@ import ruina.RuinaMod;
 
 import static ruina.util.Wiz.atb;
 
-public class BloodstainedSorrow extends AbstractUnremovablePower implements OnReceivePowerPower {
+public class BloodstainedSorrow extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(BloodstainedSorrow.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    private int STRENGTH = 3;
-    private int HP_LOSS = 3;
-    private int THRESHOLD = 12;
 
-    public BloodstainedSorrow(AbstractCreature owner) {
-        super(NAME, POWER_ID, PowerType.BUFF, false, owner, 0);
-        amount2 = THRESHOLD;
+    public BloodstainedSorrow(AbstractCreature owner, int amount) {
+        super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
         updateDescription();
     }
 
     @Override
-    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+    public void atEndOfRound() {
         flash();
-        amount++;
-        atb(new LoseHPAction(owner, owner, HP_LOSS));
-        if(amount >= amount2){
-            atb(new ApplyPowerAction(owner, owner, new StrengthPower(owner, STRENGTH)));
-            amount -= amount;
-        }
-        updateDescription();
+        atb(new LoseHPAction(owner, owner, amount));
+        atb(new ApplyPowerAction(owner, owner, new StrengthPower(owner, amount)));
     }
 
     @Override
     public void updateDescription() {
-        description = String.format(DESCRIPTIONS[0], HP_LOSS, amount2, STRENGTH);
+        description = String.format(DESCRIPTIONS[0], amount, amount);
     }
 
-    @Override
-    public boolean onReceivePower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        if ((power instanceof StrengthPower && power.amount < 0) || (power instanceof GainStrengthPower && power.amount > 0)) {
-            return false;
-        }
-        return true;
-    }
 
 }

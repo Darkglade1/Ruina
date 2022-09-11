@@ -36,11 +36,9 @@ import ruina.RuinaMod;
 import ruina.actions.AspirationEffectAction;
 import ruina.actions.Day49PhaseTransition1Action;
 import ruina.actions.Day49PhaseTransition2Action;
+import ruina.actions.MakeTempCardInDrawPileActionButItCanFizzle;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.day49.angelaCards.aspiration.AspirationPneumonia;
-import ruina.monsters.day49.angelaCards.aspiration.Inclination;
-import ruina.monsters.day49.angelaCards.aspiration.Pulsation;
-import ruina.monsters.day49.angelaCards.aspiration.TurbulentBeats;
+import ruina.monsters.day49.angelaCards.aspiration.*;
 import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.AspirationHeartEffect;
@@ -75,9 +73,10 @@ public class Act2Angela extends AbstractCardMonster {
     public final int inclinationVuln = 2;
     public final int inclinationWeak = 2;
     public final int inclinationFrail = 2;
+    public final int inclinationCards = 5;
 
     public int pulsationBuffCount = 0;
-    public final int pulsationStrength = 2;
+    public final int pulsationStrength = 5;
 
     public final int pulsationPneumoniaDecrease = 1;
 
@@ -126,9 +125,10 @@ public class Act2Angela extends AbstractCardMonster {
     @Override
     public void usePreBattleAction() {
         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
-        CustomDungeon.playTempMusicInstantly("Roland1");
-        CardCrawlGame.fadeIn(0.5f);
-
+        CustomDungeon.playTempMusicInstantly("Story5");
+        AbstractDungeon.player.powers.add(new PlayerAngela(adp()));
+        AbstractDungeon.player.powers.add(new Memoir(adp()));
+        AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         atb(new AspirationEffectAction());
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
@@ -160,10 +160,10 @@ public class Act2Angela extends AbstractCardMonster {
             case INCLINATION:
                 // change this
                 atb(new VFXAction(new HeartMegaDebuffEffect()));
-                atb(new VFXAction(new CollectorCurseEffect(adp().hb.cX, adp().hb.cY)));
                 atb(new ApplyPowerAction(adp(), this, new WeakPower(adp(), inclinationWeak, true)));
                 atb(new ApplyPowerAction(adp(), this, new VulnerablePower(adp(), inclinationVuln, true)));
                 atb(new ApplyPowerAction(adp(), this, new FrailPower(adp(), inclinationFrail, true)));
+                atb(new MakeTempCardInDrawPileActionButItCanFizzle(new Heartbeat(), inclinationCards, true, false, false, this));
                 break;
             case PULSATION: {
                 // change this

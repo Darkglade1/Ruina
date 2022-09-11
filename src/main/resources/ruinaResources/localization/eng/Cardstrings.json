@@ -956,23 +956,23 @@
   },
   "${ModID}:PaleHands": {
     "NAME": "Pale Hands",
-    "DESCRIPTION": "Deal !D! damage. NL Lose HP equal to double the unblocked damage."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Lose HP equal to double the unblocked damage."
   },
   "${ModID}:SorrowAngela": {
     "NAME": "Sorrow",
-    "DESCRIPTION": "Lose !ruina:SecondMagic! HP. NL Deal !D! damage."
+    "DESCRIPTION": "Deal !D! damage. NL Target loses !M! Strength. NL Target loses !M! Dexterity. NL Increase the number of Strength and Dexterity lost this combat by !ruina:SecondMagic!."
   },
   "${ModID}:Numbness": {
     "NAME": "Numbness",
-    "DESCRIPTION": "Lose !M! HP. NL Apply !ruina:SecondMagic! *Paralysis."
+    "DESCRIPTION": "Gain !B! Block. NL Apply !ruina:SecondMagic! *Paralysis."
   },
   "${ModID}:Loathing": {
     "NAME": "Loathing",
-    "DESCRIPTION": "Lose !M! HP. NL Gain !ruina:SecondMagic! HP."
+    "DESCRIPTION": "Lose !M! HP. NL Heal !ruina:SecondMagic! HP."
   },
   "${ModID}:StainsOfBlood": {
     "NAME": "Stains of Blood",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! ruina:Bleed. NL Apply !ruina:SecondMagic! Vulnerable next turn."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! ruina:Bleed."
   },
   "${ModID}:WristCutterAngela": {
     "NAME": "Wrist Cutter",
@@ -1016,7 +1016,7 @@
   },
   "${ModID}:AngelaWound": {
     "NAME": "Grievous Wound",
-    "DESCRIPTION": "Take !M! damage. NL If this card is discarded, Exhaust it."
+    "DESCRIPTION": "Take !M! damage. NL If this card is discarded, Exhaust it. NL If this card is retained, add a copy of it to your hand."
   },
   "${ModID}:AspirationPneumonia": {
     "NAME": "Aspiration Pneumonia",
@@ -1028,7 +1028,7 @@
   },
   "${ModID}:Inclination": {
     "NAME": "Inclination",
-    "DESCRIPTION": "Apply !M! Weak. NL Apply !M! Vulnerable. NL Apply !M! Frail."
+    "DESCRIPTION": "Apply !M! Weak. NL Apply !M! Vulnerable. NL Apply !M! Frail. NL Shuffle !ruina:SecondMagic! *Heartbeats into your draw pile."
   },
   "${ModID}:Pulsation": {
     "NAME": "Pulsation",
@@ -1037,5 +1037,9 @@
       "Decrease the threshold for Pneumonia by !ruina:SecondMagic!.",
       "Gain !ruina:SecondMagic! Strength."
     ]
+  },
+  "${ModID}:Heartbeat": {
+    "NAME": "Heartbeat",
+    "DESCRIPTION": "Draw !M! card. NL Whenever this card is retained, add a copy of this card to your hand."
   }
 }

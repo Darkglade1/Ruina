@@ -101,8 +101,10 @@ public class Act3Angela extends AbstractCardMonster
     public void usePreBattleAction()
     {
         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
-        CustomDungeon.playTempMusicInstantly("Roland1");
-
+        CustomDungeon.playTempMusicInstantly("Story3");
+        AbstractDungeon.player.powers.add(new PlayerAngela(adp()));
+        AbstractDungeon.player.powers.add(new Memoir(adp()));
+        AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         specialAnimation(this);
         marionetteEffect();

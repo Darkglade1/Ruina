@@ -119,7 +119,6 @@ public class Pinocchio extends AbstractDeckMonster
                     @Override
                     public void update() {
                         if(CardCrawlGame.dungeon instanceof Day49) {
-                            numAdditionalMoves = maxAdditionalMoves;
                             applyToTargetTop(Pinocchio.this, Pinocchio.this, new AbstractLambdaPower(ALT_POWER_NAME, ALT_POWER_ID, AbstractPower.PowerType.BUFF, false, Pinocchio.this, -1) {
 
                                 @Override
@@ -207,6 +206,7 @@ public class Pinocchio extends AbstractDeckMonster
                 AbstractCard c = topDeckCardForMoveAction();
                 c.damage = c.baseDamage = c.baseDamage * 2;
                 c.block = c.baseBlock = c.baseBlock * 2;
+                createAdditionalMoveFromCard(c, moveHistory = additionalMovesHistory.get(whichMove));
             }
             else {
                 createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove));

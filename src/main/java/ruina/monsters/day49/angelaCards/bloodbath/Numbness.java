@@ -19,7 +19,7 @@ public class Numbness extends AbstractRuinaCard {
 
     public Numbness(Act1Angela parent) {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
-        magicNumber = baseMagicNumber = parent.numbnessHPLoss;
+        block = baseBlock = parent.numbnessBlock;
         secondMagicNumber = baseSecondMagicNumber = parent.numbnessParalysis;
         this.parent = parent;
     }

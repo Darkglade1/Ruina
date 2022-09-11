@@ -1,5 +1,6 @@
 package ruina.actions;
 
+import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -23,6 +24,7 @@ public class Day49PhaseTransition3Action extends AbstractGameAction {
     public void update() {
         if (!started) {
             CardCrawlGame.fadeIn(2.5f);
+            CustomDungeon.playTempMusicInstantly("WindBGM");
             AbstractDungeon.topLevelEffectsQueue.add(dialogue);
             started = true;
         }

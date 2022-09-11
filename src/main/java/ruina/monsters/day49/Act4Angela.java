@@ -153,6 +153,9 @@ public class Act4Angela extends AbstractDeckMonster
     {
         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
         CustomDungeon.playTempMusicInstantly("Roland1");
+        AbstractDungeon.player.powers.add(new PlayerAngela(adp()));
+        AbstractDungeon.player.powers.add(new Memoir(adp()));
+        AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         atb(new FrostSplinterIceEffectAction(this));
         atb(new AbstractGameAction() {

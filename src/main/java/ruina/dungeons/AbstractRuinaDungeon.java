@@ -135,7 +135,7 @@ public class AbstractRuinaDungeon extends CustomDungeon {
                     this.setMainMusic(RuinaMod.makeMusicPath("Calm.ogg"));
                     break;
                 case DAY49:
-                    this.setMainMusic(RuinaMod.makeMusicPath("Calm.ogg"));
+                    this.setMainMusic(RuinaMod.makeMusicPath("WindBGM.ogg"));
                     break;
                 default:
                     this.setMainMusic(RuinaMod.makeMusicPath("Gebura2.ogg"));

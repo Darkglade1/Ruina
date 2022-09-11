@@ -16,9 +16,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
@@ -45,16 +43,17 @@ public class Act1Angela extends AbstractCardMonster {
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte WRIST_CUTTER = 0;
-    public int wristCutterHPLoss = 9;
+    public int wristCutterHPLoss = 8;
     public int wristCutterWounds = 2;
 
     private static final byte NUMBNESS = 1;
-    public int numbnessHPLoss = 15;
+    public int numbnessBlock = 62;
     public int numbnessParalysis = 3;
 
     private static final byte SORROW = 2;
-    public int sorrowDamage = 18;
-    public int sorrowHPLoss = 5;
+    public int sorrowDamage = 22;
+    public int sorrowStrengthDexDown = 1;
+    public int sorrowStrengthDexDownScaling = 1;
 
     private static final byte LOATHING = 3;
     public int loathingHPLoss = 25;
@@ -62,12 +61,13 @@ public class Act1Angela extends AbstractCardMonster {
 
     private static final byte PALE_HANDS = 4;
     public int paleHandsDamage = 25;
+    public int paleHandsHits = 3;
 
     private static final byte SINKING = 5;
-    public int sinkingDamage = 50;
+    public int sinkingDamage = 65;
 
     private static final byte STAINS_OF_BLOOD = 6;
-    public int bloodDamage = 22;
+    public int bloodDamage = 18;
     public int bloodBleed = 3;
 
     private static final byte PHASE_TRANSITION = 7;
@@ -78,14 +78,17 @@ public class Act1Angela extends AbstractCardMonster {
     private static final int HP = 3000;
 
     private enum State {
-        OPENING,
-        TURN2,
-        TURN3,
+        NUMBNESS_WRISTCUTTER_BLOOD,
         SINKING,
-        PALE_HANDS_5X,
-        CYCLE_PATTERN,
+        NUMBNESS_SORROW_BLOOD,
+        PALE_HANDS,
+        BLOOD_LOATHING_NUMBNESS,
+        SINKING_LOOP,
+        BLOOD_SORROW_BLOOD,
+        PALE_HANDS_LOOP
+
     }
-    private State currentState = State.OPENING;
+    private State currentState = State.NUMBNESS_WRISTCUTTER_BLOOD;
     public Act1Angela() {
         this(0.0f, 0.0f);
     }
@@ -93,8 +96,8 @@ public class Act1Angela extends AbstractCardMonster {
     public Act1Angela(final float x, final float y) {
         super(NAME, ID, 600, -15.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence4/Spriter/BlackSilence4.scml"));
-        numAdditionalMoves = 1;
-        maxAdditionalMoves = 4;
+        numAdditionalMoves = 2;
+        maxAdditionalMoves = 2;
         for (int i = 0; i < maxAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
@@ -103,9 +106,9 @@ public class Act1Angela extends AbstractCardMonster {
 
         addMove(WRIST_CUTTER, Intent.UNKNOWN);
         addMove(NUMBNESS, Intent.STRONG_DEBUFF);
-        addMove(SORROW, Intent.ATTACK_BUFF, sorrowDamage);
+        addMove(SORROW, Intent.ATTACK_DEBUFF, sorrowDamage);
         addMove(LOATHING, Intent.BUFF);
-        addMove(PALE_HANDS, Intent.ATTACK, paleHandsDamage);
+        addMove(PALE_HANDS, Intent.ATTACK, paleHandsDamage, paleHandsHits, true);
         addMove(SINKING, Intent.ATTACK_BUFF, sinkingDamage);
         addMove(STAINS_OF_BLOOD, Intent.ATTACK_DEBUFF, bloodDamage);
         addMove(PHASE_TRANSITION, Intent.UNKNOWN);
@@ -128,24 +131,17 @@ public class Act1Angela extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
-        CardCrawlGame.fadeIn(0.5f);
         AbstractDungeon.player.powers.add(new PlayerAngela(adp()));
         AbstractDungeon.player.powers.add(new Memoir(adp()));
-        //AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
+        AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         atb(new Day49InitialDialogueAction(0, 29));
         atb(new BloodbathEffectAction());
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new Scars(this, calcAscensionSpecial(50))));
         atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 4)));
-        atb(new ApplyPowerAction(this, this, new BloodstainedSorrow(this)));
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                currentState = State.TURN2;
-                isDone = true;
-            }
-        });
+
+        atb(new ApplyPowerAction(this, this, new BloodstainedSorrow(this, 3)));
     }
 
     @Override
@@ -163,13 +159,16 @@ public class Act1Angela extends AbstractCardMonster {
                 resetIdle();
                 break;
             case NUMBNESS:
-                atb(new LoseHPAction(this, this, numbnessHPLoss));
+                atb(new GainBlockAction(this, this, numbnessBlock));
                 atb(new ApplyPowerAction(adp(), this, new Paralysis(adp(), numbnessParalysis)));
                 resetIdle();
                 break;
             case SORROW:
-                atb(new LoseHPAction(this, this, loathingHPLoss));
                 dmg(target, info);
+                applyToTarget(adp(), adp(), new StrengthPower(this, -sorrowStrengthDexDown));
+                applyToTarget(adp(), adp(), new DexterityPower(this, -sorrowStrengthDexDown));
+                sorrowStrengthDexDown += sorrowStrengthDexDownScaling;
+                addMove(SORROW, Intent.ATTACK_DEBUFF, sorrowDamage);
                 resetIdle();
                 break;
             case LOATHING:
@@ -189,8 +188,9 @@ public class Act1Angela extends AbstractCardMonster {
                             isDone = true;
                         }
                     });
-                    resetIdle();
+                    waitAnimation();
                 }
+                resetIdle();
                 break;
             case SINKING:
                 atb(new BloodbathWaterEffectAction());
@@ -198,7 +198,7 @@ public class Act1Angela extends AbstractCardMonster {
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if(adp() != null && adp().lastDamageTaken > 0){
+                        if(adp() != null && adp().lastDamageTaken > 0 && !Act1Angela.this.halfDead){
                             att(new HealAction(Act1Angela.this, Act1Angela.this, adp().lastDamageTaken));
                         }
                         isDone = true;
@@ -212,27 +212,14 @@ public class Act1Angela extends AbstractCardMonster {
                 resetIdle();
                 break;
             case PHASE_TRANSITION:
-                CardCrawlGame.fadeIn(3f);
-                atb(new Day49PhaseTransition1Action(0, 1));
-                Act1Angela.this.gold = 0;
-                Act1Angela.this.currentHealth = 0;
-                Act1Angela.this.dieBypass();
-                AbstractDungeon.getMonsters().monsters.remove(this);
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        AbstractMonster m = new Act2Angela();
-                        att(new AbstractGameAction() {
-                            @Override
-                            public void update() {
-                                m.usePreBattleAction();
-                                isDone = true;
-                            }
-                        });
-                        att(new SpawnMonsterAction(m, false));
+                        AbstractDungeon.player.onVictory();
                         isDone = true;
                     }
                 });
+                atb(new Day49PhaseTransition1Action(0, 1));
                 break;
         }
     }
@@ -262,22 +249,28 @@ public class Act1Angela extends AbstractCardMonster {
             @Override
             public void update() {
                 switch (currentState){
-                    case OPENING:
-                        currentState = State.TURN2;
-                        break;
-                    case TURN2:
-                        currentState = State.TURN3;
-                        numAdditionalMoves = maxAdditionalMoves;
-                        break;
-                    default:
-                    case TURN3:
+                    case NUMBNESS_WRISTCUTTER_BLOOD:
                         currentState = State.SINKING;
                         break;
                     case SINKING:
-                        currentState = State.CYCLE_PATTERN;
+                        currentState = State.NUMBNESS_SORROW_BLOOD;
+                        numAdditionalMoves = maxAdditionalMoves;
                         break;
-                    case CYCLE_PATTERN:
-                        currentState = State.PALE_HANDS_5X;
+                    case NUMBNESS_SORROW_BLOOD:
+                        currentState = State.PALE_HANDS;
+                        break;
+                    case PALE_HANDS:
+                        currentState = State.BLOOD_LOATHING_NUMBNESS;
+                        break;
+                    case PALE_HANDS_LOOP:
+                    case BLOOD_LOATHING_NUMBNESS:
+                        currentState = State.SINKING_LOOP;
+                        break;
+                    case SINKING_LOOP:
+                        currentState = State.BLOOD_SORROW_BLOOD;
+                        break;
+                    case BLOOD_SORROW_BLOOD:
+                        currentState = State.PALE_HANDS_LOOP;
                         break;
                 }
                 isDone = true;
@@ -291,17 +284,19 @@ public class Act1Angela extends AbstractCardMonster {
         if(halfDead){ setMoveShortcut(PHASE_TRANSITION); }
         else {
             switch (currentState) {
-                case OPENING:
-                    setMoveShortcut(WRIST_CUTTER, MOVES[WRIST_CUTTER], cardList.get(WRIST_CUTTER).makeStatEquivalentCopy());
-                    break;
-                case CYCLE_PATTERN:
-                case TURN2:
+                case NUMBNESS_WRISTCUTTER_BLOOD:
+                case NUMBNESS_SORROW_BLOOD:
                     setMoveShortcut(NUMBNESS, MOVES[NUMBNESS], cardList.get(NUMBNESS).makeStatEquivalentCopy());
                     break;
-                case TURN3:
-                case PALE_HANDS_5X:
+                case BLOOD_LOATHING_NUMBNESS:
+                case BLOOD_SORROW_BLOOD:
+                    setMoveShortcut(STAINS_OF_BLOOD, MOVES[STAINS_OF_BLOOD], cardList.get(STAINS_OF_BLOOD).makeStatEquivalentCopy());
+                    break;
+                case PALE_HANDS_LOOP:
+                case PALE_HANDS:
                     setMoveShortcut(PALE_HANDS, MOVES[PALE_HANDS], cardList.get(PALE_HANDS).makeStatEquivalentCopy());
                     break;
+                case SINKING_LOOP:
                 case SINKING:
                     setMoveShortcut(SINKING, MOVES[SINKING], cardList.get(SINKING).makeStatEquivalentCopy());
                     break;
@@ -315,45 +310,33 @@ public class Act1Angela extends AbstractCardMonster {
         if(halfDead){}
         else {
             switch (currentState) {
-                case OPENING:
-                    setAdditionalMoveShortcut(NUMBNESS, moveHistory, cardList.get(NUMBNESS).makeStatEquivalentCopy());
-                    break;
-                case TURN2:
-                    setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeStatEquivalentCopy());
-                    break;
-                case TURN3:
-                    switch (whichMove) {
-                        default:
-                            setAdditionalMoveShortcut(PALE_HANDS, moveHistory, cardList.get(PALE_HANDS).makeStatEquivalentCopy());
-                            break;
-                        case 2:
-                            setAdditionalMoveShortcut(WRIST_CUTTER, moveHistory, cardList.get(WRIST_CUTTER).makeStatEquivalentCopy());
-                            break;
-                        case 3:
-                            setAdditionalMoveShortcut(NUMBNESS, moveHistory, cardList.get(NUMBNESS).makeStatEquivalentCopy());
-                            break;
+                case NUMBNESS_WRISTCUTTER_BLOOD:
+                    if(whichMove == 0){
+                        setAdditionalMoveShortcut(WRIST_CUTTER, moveHistory, cardList.get(WRIST_CUTTER).makeStatEquivalentCopy());
+                    }
+                    else {
+                        setAdditionalMoveShortcut(STAINS_OF_BLOOD, moveHistory, cardList.get(STAINS_OF_BLOOD).makeStatEquivalentCopy());
                     }
                     break;
-                case PALE_HANDS_5X:
-                    setAdditionalMoveShortcut(PALE_HANDS, moveHistory, cardList.get(PALE_HANDS).makeStatEquivalentCopy());
-                    break;
-                case SINKING:
-                    break;
-                case CYCLE_PATTERN:
-                    switch (whichMove) {
-                        case 0:
-                            setAdditionalMoveShortcut(WRIST_CUTTER, moveHistory, cardList.get(WRIST_CUTTER).makeStatEquivalentCopy());
-                            break;
-                        case 1:
-                            setAdditionalMoveShortcut(LOATHING, moveHistory, cardList.get(LOATHING).makeStatEquivalentCopy());
-                            break;
-                        case 2:
-                            setAdditionalMoveShortcut(STAINS_OF_BLOOD, moveHistory, cardList.get(STAINS_OF_BLOOD).makeStatEquivalentCopy());
-                            break;
-                        default:
-                            setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeStatEquivalentCopy());
-                            break;
+                case BLOOD_SORROW_BLOOD:
+                case NUMBNESS_SORROW_BLOOD:
+                    if(whichMove == 0){
+                        setAdditionalMoveShortcut(SORROW, moveHistory, cardList.get(SORROW).makeCopy());
                     }
+                    else {
+                        setAdditionalMoveShortcut(STAINS_OF_BLOOD, moveHistory, cardList.get(STAINS_OF_BLOOD).makeStatEquivalentCopy());
+                    }
+                    break;
+                case BLOOD_LOATHING_NUMBNESS:
+                    if(whichMove == 0){
+                        setAdditionalMoveShortcut(LOATHING, moveHistory, cardList.get(LOATHING).makeStatEquivalentCopy());
+                    }
+                    else {
+                        setAdditionalMoveShortcut(NUMBNESS, moveHistory, cardList.get(NUMBNESS).makeStatEquivalentCopy());
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }

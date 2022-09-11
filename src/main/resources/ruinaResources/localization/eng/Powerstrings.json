@@ -624,7 +624,7 @@
   },
   "${ModID}:BloodstainedSorrow": {
     "NAME": "Bloodstained Sorrow",
-    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL Whenever you play a card, this creature loses #b%1$s HP. NL Whenever you play #b%2$s cards, this creature gains #b%3$s #yStrength."]
+    "DESCRIPTIONS": ["At the start of each turn, this creature loses #b%1$s HP, and gains #b%2$s #yStrength."]
   },
   "${ModID}:BlackForest": {
     "NAME": "The Monster in the Black Forest",

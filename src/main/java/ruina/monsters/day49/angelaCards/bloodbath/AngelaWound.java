@@ -51,6 +51,8 @@ public class AngelaWound extends AbstractRuinaCard {
         atb(new ExhaustSpecificCardAction(this, adp().discardPile));
     }
 
+    @Override
+    public void onRetained() { atb(new MakeTempCardInHandAction(this.makeStatEquivalentCopy())); }
 
     @Override
     public AbstractCard makeCopy() { return new AngelaWound(); }
