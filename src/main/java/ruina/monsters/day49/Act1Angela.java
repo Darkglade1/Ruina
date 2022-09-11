@@ -64,7 +64,7 @@ public class Act1Angela extends AbstractCardMonster {
     public int paleHandsHits = 3;
 
     private static final byte SINKING = 5;
-    public int sinkingDamage = 65;
+    public int sinkingDamage = 50;
 
     private static final byte STAINS_OF_BLOOD = 6;
     public int bloodDamage = 18;

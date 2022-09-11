@@ -42,8 +42,5 @@ public class Heartbeat extends AbstractRuinaCard {
     public boolean canUpgrade() { return false; }
 
     @Override
-    public void onRetained() { atb(new MakeTempCardInHandAction(this.makeStatEquivalentCopy())); }
-
-    @Override
     public AbstractCard makeCopy() { return new Heartbeat(); }
 }

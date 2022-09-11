@@ -1040,6 +1040,6 @@
   },
   "${ModID}:Heartbeat": {
     "NAME": "Heartbeat",
-    "DESCRIPTION": "Draw !M! card. NL Whenever this card is retained, add a copy of this card to your hand."
+    "DESCRIPTION": "Draw !M! card."
   }
 }
