@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.cards.green.Terror;
 import com.megacrit.cardcrawl.cards.red.Bludgeon;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -68,7 +69,7 @@ public class Act2Angela extends AbstractCardMonster {
 
     public final int palpitationBeatOfDeath = 2;
 
-    public final int pneumoniaCardLimit = 12;
+    public final int pneumoniaCardLimit = 18;
 
     public final int inclinationVuln = 2;
     public final int inclinationWeak = 2;
@@ -76,17 +77,17 @@ public class Act2Angela extends AbstractCardMonster {
     public final int inclinationCards = 5;
 
     public int pulsationBuffCount = 0;
-    public final int pulsationStrength = 5;
+    public final int pulsationStrength = 2;
 
     public final int pulsationPneumoniaDecrease = 1;
 
-    public final int pulsationFirstBuffPneumonia = 11;
-    public final int pulsationSecondBuffPneumonia = 10;
-    public final int pulsationThirdBuffPneumonia = 9;
+    public final int pulsationFirstBuffPneumonia = 17;
+    public final int pulsationSecondBuffPneumonia = 16;
+    public final int pulsationThirdBuffPneumonia = 15;
     public final int pulsationFourthBuffStrength = 10;
     public final int pulsationFifthBuffStrength = 50;
 
-    public final int aspirationPneumoniaDamage = 50;
+    public final int aspirationPneumoniaDamage = 75;
 
     public final int turbulentBeatsDamage = 5;
     public final int turbulentBeatsHits = 15;
@@ -163,7 +164,11 @@ public class Act2Angela extends AbstractCardMonster {
                 atb(new ApplyPowerAction(adp(), this, new WeakPower(adp(), inclinationWeak, true)));
                 atb(new ApplyPowerAction(adp(), this, new VulnerablePower(adp(), inclinationVuln, true)));
                 atb(new ApplyPowerAction(adp(), this, new FrailPower(adp(), inclinationFrail, true)));
-                atb(new MakeTempCardInDrawPileActionButItCanFizzle(new Heartbeat(), inclinationCards, true, false, false, this));
+                float renderDistance = 0.2f;
+                for(int i = 0; i < inclinationCards; i += 1){
+                    atb(new MakeTempCardInDrawPileActionButItCanFizzle(new Heartbeat(), 1, true, false, false, Settings.WIDTH * renderDistance, Settings.HEIGHT / 2.0F, this));
+                    renderDistance += 0.15f;
+                }
                 break;
             case PULSATION: {
                 // change this
@@ -325,16 +330,7 @@ public class Act2Angela extends AbstractCardMonster {
 
     @Override
     public void applyPowers() {
-        if (this.nextMove == ASPIRATION_PNEUMONIA && AbstractDungeon.ascensionLevel >= 19) {
-            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-            applyPowersOnlyIncrease(adp(), info);
-            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-            Texture attackImg = getAttackIntent(info.output);
-            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
-            updateCard();
-        } else {
-            super.applyPowers();
-        }
+        super.applyPowers();
         for (int i = 0; i < additionalIntents.size(); i++) {
             AdditionalIntent additionalIntent = additionalIntents.get(i);
             EnemyMoveInfo additionalMove = null;
@@ -342,11 +338,7 @@ public class Act2Angela extends AbstractCardMonster {
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                if (additionalMove.nextMove == ASPIRATION_PNEUMONIA && AbstractDungeon.ascensionLevel >= 19) {
-                    applyPowersToAdditionalIntentOnlyIncrease(additionalMove, additionalIntent, adp(), null);
-                } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-                }
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
             }
         }
     }

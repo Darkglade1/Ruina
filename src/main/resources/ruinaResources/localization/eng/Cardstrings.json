@@ -952,7 +952,7 @@
   },
   "${ModID}:Sinking": {
     "NAME": "Sinking",
-    "DESCRIPTION": "Deal !D! damage. NL Heal HP equal to unblocked damage. NL This card's damage cannot be decreased."
+    "DESCRIPTION": "Deal !D! damage. NL Heal HP equal to unblocked damage."
   },
   "${ModID}:PaleHands": {
     "NAME": "Pale Hands",
@@ -1016,11 +1016,11 @@
   },
   "${ModID}:AngelaWound": {
     "NAME": "Grievous Wound",
-    "DESCRIPTION": "Take !M! damage. NL If this card is discarded, Exhaust it. NL If this card is retained, add a copy of it to your hand."
+    "DESCRIPTION": "Take !M! damage. NL If this card is discarded, Exhaust it."
   },
   "${ModID}:AspirationPneumonia": {
     "NAME": "Aspiration Pneumonia",
-    "DESCRIPTION": "Deal !D! damage. NL This card's damage cannot be decreased."
+    "DESCRIPTION": "Deal !D! damage."
   },
   "${ModID}:TurbulentBeats": {
     "NAME": "Turbulent Beats",

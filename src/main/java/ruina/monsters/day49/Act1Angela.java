@@ -44,7 +44,7 @@ public class Act1Angela extends AbstractCardMonster {
 
     private static final byte WRIST_CUTTER = 0;
     public int wristCutterHPLoss = 8;
-    public int wristCutterWounds = 2;
+    public int wristCutterWounds = 3;
 
     private static final byte NUMBNESS = 1;
     public int numbnessBlock = 62;
@@ -57,14 +57,14 @@ public class Act1Angela extends AbstractCardMonster {
 
     private static final byte LOATHING = 3;
     public int loathingHPLoss = 25;
-    public int loathingHPHeal = 75;
+    public int loathingHPHeal = 55;
 
     private static final byte PALE_HANDS = 4;
     public int paleHandsDamage = 25;
     public int paleHandsHits = 3;
 
     private static final byte SINKING = 5;
-    public int sinkingDamage = 50;
+    public int sinkingDamage = 75;
 
     private static final byte STAINS_OF_BLOOD = 6;
     public int bloodDamage = 18;
@@ -344,16 +344,7 @@ public class Act1Angela extends AbstractCardMonster {
 
     @Override
     public void applyPowers() {
-        if (this.nextMove == SINKING) {
-            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-            applyPowersOnlyIncrease(adp(), info);
-            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-            Texture attackImg = getAttackIntent(info.output * 1);
-            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
-            updateCard();
-        } else {
-            super.applyPowers();
-        }
+        super.applyPowers();
         for (int i = 0; i < additionalIntents.size(); i++) {
             AdditionalIntent additionalIntent = additionalIntents.get(i);
             EnemyMoveInfo additionalMove = null;
