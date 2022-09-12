@@ -960,7 +960,7 @@
   },
   "${ModID}:SorrowAngela": {
     "NAME": "Sorrow",
-    "DESCRIPTION": "Deal !D! damage. NL Target loses !M! Strength. NL Target loses !M! Dexterity. NL Increase the number of Strength and Dexterity lost this combat by !ruina:SecondMagic!."
+    "DESCRIPTION": "Deal !D! damage. NL Target loses !M! Strength. NL Target loses !M! Dexterity."
   },
   "${ModID}:Numbness": {
     "NAME": "Numbness",

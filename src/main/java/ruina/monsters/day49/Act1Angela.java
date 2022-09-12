@@ -52,8 +52,7 @@ public class Act1Angela extends AbstractCardMonster {
 
     private static final byte SORROW = 2;
     public int sorrowDamage = 22;
-    public int sorrowStrengthDexDown = 1;
-    public int sorrowStrengthDexDownScaling = 1;
+    public int sorrowStrengthDexDown = 3;
 
     private static final byte LOATHING = 3;
     public int loathingHPLoss = 25;
@@ -167,8 +166,6 @@ public class Act1Angela extends AbstractCardMonster {
                 dmg(target, info);
                 applyToTarget(adp(), adp(), new StrengthPower(this, -sorrowStrengthDexDown));
                 applyToTarget(adp(), adp(), new DexterityPower(this, -sorrowStrengthDexDown));
-                sorrowStrengthDexDown += sorrowStrengthDexDownScaling;
-                addMove(SORROW, Intent.ATTACK_DEBUFF, sorrowDamage);
                 resetIdle();
                 break;
             case LOATHING:
