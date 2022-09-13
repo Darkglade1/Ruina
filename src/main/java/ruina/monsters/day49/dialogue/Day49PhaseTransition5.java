@@ -97,8 +97,6 @@ public class Day49PhaseTransition5 extends AbstractGameEffect {
             calculateSpeakers();
             this.roomEventText.updateBodyText(DESCRIPTIONS[this.dialogue]);
         } else {
-            CardCrawlGame.fadeIn(1.5f);
-            parent.transitionToSecondPart();
             AbstractDungeon.isScreenUp = false;
             this.isDone = true;
         }

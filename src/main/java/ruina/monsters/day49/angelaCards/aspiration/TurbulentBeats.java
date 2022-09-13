@@ -19,7 +19,7 @@ public class TurbulentBeats extends AbstractRuinaCard {
     private Act2Angela parent;
 
     public TurbulentBeats(Act2Angela parent) {
-        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRALLY_ALLAS.class.getSimpleName() + ".png"));
+        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         damage = baseDamage = parent.turbulentBeatsDamage;
         magicNumber = baseMagicNumber = parent.turbulentBeatsHits;
         this.parent = parent;

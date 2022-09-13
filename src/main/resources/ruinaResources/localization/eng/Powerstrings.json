@@ -617,9 +617,7 @@
     "NAME": "Shimmering",
     "DESCRIPTIONS": [
       "Cannot be stunned.",
-      " NL After this creature's first turn, it gains #b3 more intents.",
-      " NL This creature only acts on its #b1st intent. Its #b2nd intent is a preview of its next move.",
-      " NL On death, #yUnthaw all #bFrozen cards, remove all #rCritically #rFrozen, and remove all #bColdHearted."
+      " NL This creature only acts on its #b1st intent. Its #b2nd intent is a preview of its next move."
     ]
   },
   "${ModID}:BloodstainedSorrow": {
@@ -701,15 +699,21 @@
   "${ModID}:ReticentFrigidity": {
     "NAME": "Reticent Frigidity",
     "DESCRIPTIONS": [
-      "You may #yFreeze any card, at any time. NL #yFrozen cards are #yUnplayable and #yRetain. NL If you #yFreeze a card through this effect, this creature deals #b50% less damage for #b1 turn."
+      "You may #yFreeze any card, during your turn. NL #yFrozen cards are #yUnplayable and #yRetain. NL If you #yFreeze a card through this effect, this creature deals #b75% less damage for #b1 turn."
     ]
   },
   "${ModID}:ColdHearted": {
     "NAME": "ColdHearted",
     "DESCRIPTIONS": [
-      "Take #b50% less damage.",
+      "Take #b75% less damage.",
       " NL (Lasts #b%1$s turn.)",
       " NL (Lasts #b%1$s turns.)"
+    ]
+  },
+  "${ModID}:SilentGirlPower": {
+    "NAME": "Silence",
+    "DESCRIPTIONS": [
+      "HP cannot fall below #b%1$s. NL When HP is at #b%2$s at end of round, #r???"
     ]
   }
 }

@@ -153,7 +153,8 @@ public class Act4Angela extends AbstractDeckMonster
     {
         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
         CustomDungeon.playTempMusicInstantly("Roland1");
-        AbstractDungeon.player.powers.add(new PlayerAngela(adp()));
+        PlayerAngela playerAngela = new PlayerAngela(adp());
+        AbstractDungeon.player.powers.add(playerAngela);
         AbstractDungeon.player.powers.add(new Memoir(adp()));
         AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
@@ -167,37 +168,12 @@ public class Act4Angela extends AbstractDeckMonster
                 isDone = true;
             }
         });
+        playerAngela.atStartOfTurnPostDraw();
         atb(new RollMoveAction(this));
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 4)));
         atb(new ApplyPowerAction(this, this, new FrostSplinterStrongAttackWarning(this, 0)));
         atb(new ApplyPowerAction(this, this, new ReticentFrigidity(this)));
-
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
-            @Override
-            public void onUseCard(AbstractCard card, UseCardAction action) {
-                this.amount++;
-                if (this.amount >= THRESHOLD) {
-                    this.flash();
-                    FrozenMod mod = new FrozenMod();
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            if (!CardModifierManager.hasModifier(card, FrozenMod.ID)) {
-                                CardModifierManager.addModifier(card, mod.makeCopy());
-                            }
-                            this.isDone = true;
-                        }
-                    });
-                    this.amount = 0;
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
     }
 
     @Override

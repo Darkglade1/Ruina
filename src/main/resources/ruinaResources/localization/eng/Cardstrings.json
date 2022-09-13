@@ -1041,5 +1041,33 @@
   "${ModID}:Heartbeat": {
     "NAME": "Heartbeat",
     "DESCRIPTION": "Draw !M! card."
+  },
+  "${ModID}:DiggingNail": {
+    "NAME": "Digging Nail",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Frail next turn."
+  },
+  "${ModID}:Slam": {
+    "NAME": "Slam",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
+  },
+  "${ModID}:CrackedHeart": {
+    "NAME": "A Cracked Heart",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable next turn."
+  },
+  "${ModID}:CollapsingHeart": {
+    "NAME": "Collapsing Heart",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "${ModID}:BrokenToPieces": {
+    "NAME": "Broken To Pieces",
+    "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:Leer": {
+    "NAME": "Leer",
+    "DESCRIPTION": "Apply !M! Paralysis. NL Gain !ruina:SecondMagic! Strength."
+  },
+  "${ModID}:Suppress": {
+    "NAME": "Don't Suppress Your Heart",
+    "DESCRIPTION": "This creature removes ALL of its debuffs. NL Gain !B! Block. NL This creature heals for *25% of its Max HP. NL Gain !M! Strength."
   }
 }

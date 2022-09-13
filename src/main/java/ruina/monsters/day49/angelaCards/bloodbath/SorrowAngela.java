@@ -21,7 +21,6 @@ public class SorrowAngela extends AbstractRuinaCard {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + StainsOfBlood.class.getSimpleName() + ".png"));
         damage = baseDamage = parent.sorrowDamage;
         magicNumber = baseMagicNumber = parent.sorrowStrengthDexDown;
-        secondMagicNumber = baseSecondMagicNumber = parent.sorrowStrengthDexDownScaling;
         this.parent = parent;
     }
 

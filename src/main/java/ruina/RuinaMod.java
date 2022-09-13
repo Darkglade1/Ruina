@@ -92,11 +92,7 @@ import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
-import ruina.monsters.day49.Act1Angela;
-import ruina.monsters.day49.Act2Angela;
-import ruina.monsters.day49.Act3Angela;
-import ruina.monsters.day49.Act4Angela;
-import ruina.monsters.day49.Act5Angela;
+import ruina.monsters.day49.*;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.Fields.D49SaveData;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
@@ -134,7 +130,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.Properties;
 
 import static ruina.util.Wiz.adp;
@@ -1021,7 +1016,7 @@ public class RuinaMod implements
         //Keter Realization
 
         day49.addBoss(Act1Angela.ID, (BaseMod.GetMonster) Act1Angela::new, makeMonsterPath("Day49/Map.png"), makeMonsterPath("Day49/Outline.png"));
-        day49.addBoss(Act1Angela.ID, (BaseMod.GetMonster) Act1Angela::new, makeMonsterPath("Day49/Map.png"), makeMonsterPath("Day49/Outline.png"));
+
         BaseMod.addMonster(Act2Angela.ID, (BaseMod.GetMonster) Act2Angela::new);
         BaseMod.addMonster(Act3Angela.ID, (BaseMod.GetMonster) Act3Angela::new);
         BaseMod.addMonster(Act4Angela.ID, (BaseMod.GetMonster) Act4Angela::new);

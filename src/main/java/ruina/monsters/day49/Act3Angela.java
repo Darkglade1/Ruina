@@ -102,13 +102,15 @@ public class Act3Angela extends AbstractCardMonster
     {
         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
         CustomDungeon.playTempMusicInstantly("Story3");
-        AbstractDungeon.player.powers.add(new PlayerAngela(adp()));
+        PlayerAngela playerAngela = new PlayerAngela(adp());
+        AbstractDungeon.player.powers.add(playerAngela);
         AbstractDungeon.player.powers.add(new Memoir(adp()));
         AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         specialAnimation(this);
         marionetteEffect();
         resetIdle();
+        playerAngela.atStartOfTurnPostDraw();
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         Summon();
         applyToTarget(this, this, new AbstractLambdaPower(ALT_POWER_NAME, ALT_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {

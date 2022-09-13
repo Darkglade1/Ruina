@@ -130,12 +130,15 @@ public class Act1Angela extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
-        AbstractDungeon.player.powers.add(new PlayerAngela(adp()));
+        CardCrawlGame.fadeIn(2.5f);
+        PlayerAngela playerAngela = new PlayerAngela(adp());
+        AbstractDungeon.player.powers.add(playerAngela);
         AbstractDungeon.player.powers.add(new Memoir(adp()));
         AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         atb(new Day49InitialDialogueAction(0, 29));
         atb(new BloodbathEffectAction());
+        playerAngela.atStartOfTurnPostDraw();
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new Scars(this, calcAscensionSpecial(50))));
         atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 4)));
@@ -148,9 +151,7 @@ public class Act1Angela extends AbstractCardMonster {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
 
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        if(info.base > -1) { info.applyPowers(this, adp()); }
         switch (move.nextMove) {
             case WRIST_CUTTER:
                 atb(new LoseHPAction(this, this, wristCutterHPLoss));

@@ -24,7 +24,7 @@ public class Pulsation extends AbstractRuinaCard {
     private Act2Angela parent;
 
     public Pulsation(Act2Angela parent) {
-        super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRALLY_ALLAS.class.getSimpleName() + ".png"));
+        super(ID, 2, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         magicNumber = baseMagicNumber = parent.pulsationStrength;
         this.parent = parent;
         switch (parent.pulsationBuffCount){

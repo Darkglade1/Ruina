@@ -127,11 +127,13 @@ public class Act2Angela extends AbstractCardMonster {
     public void usePreBattleAction() {
         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
         CustomDungeon.playTempMusicInstantly("Story5");
-        AbstractDungeon.player.powers.add(new PlayerAngela(adp()));
+        PlayerAngela playerAngela = new PlayerAngela(adp());
+        AbstractDungeon.player.powers.add(playerAngela);
         AbstractDungeon.player.powers.add(new Memoir(adp()));
         AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         atb(new AspirationEffectAction());
+        playerAngela.atStartOfTurnPostDraw();
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new Palpitation(this, palpitationBeatOfDeath)));
         atb(new ApplyPowerAction(this, this, new Pneumonia(this, pneumoniaCardLimit)));
@@ -150,13 +152,7 @@ public class Act2Angela extends AbstractCardMonster {
             info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
         }
         AbstractCreature target = adp();
-        if (info.base > -1) {
-            if (this.nextMove == ASPIRATION_PNEUMONIA && AbstractDungeon.ascensionLevel >= 19) {
-                applyPowersOnlyIncrease(adp(), info);
-            } else {
-                info.applyPowers(this, target);
-            }
-        }
+        if(info.base > -1) { info.applyPowers(this, adp()); }
         switch (this.nextMove) {
             case INCLINATION:
                 // change this

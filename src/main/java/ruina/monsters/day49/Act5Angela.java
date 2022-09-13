@@ -1,10 +1,11 @@
 package ruina.monsters.day49;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.ClearCardQueueAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
@@ -14,24 +15,27 @@ import com.megacrit.cardcrawl.cards.red.Bludgeon;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.actions.Day49PhaseTransition4Action;
+import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.Day49PhaseTransition5Action;
 import ruina.actions.SilentGirlEffectAction;
+import ruina.cards.Guilt;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.act3.silentGirl.DummyHammer;
 import ruina.monsters.act3.silentGirl.DummyNail;
-import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
-import ruina.monsters.theHead.Baral;
-import ruina.powers.DamageReductionInvincible;
-import ruina.powers.Refracting;
+import ruina.monsters.day49.angelaCards.silentGirlPhase1.*;
+import ruina.powers.*;
+import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
@@ -41,35 +45,59 @@ import java.util.ArrayList;
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.atb;
 
-public class Act5Angela extends AbstractCardMonster {
+public class Act5Angela extends AbstractCardMonster
+{
     public static final String ID = makeID(Act5Angela.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
+    private static final byte DIGGING_NAIL = 0;
+    private static final byte SLAM = 1;
+    private static final byte A_CRACKED_HEART = 2;
+    private static final byte COLLAPSING_HEART = 3;
+    private static final byte BROKEN = 4;
+    private static final byte LEER = 5;
+    private static final byte SUPPRESS = 6;
+    private static final byte PHASE_TRANSITION = 7;
 
-    private static final byte CRACKED_HEART = 0;
-    private final int crackedHeartDamage = 15;
-    private final int crackedHeartFrail = 2;
+    public final int diggingNailDamage = 22;
+    public final int diggingNailFrail = 3;
 
-    private static final byte COLLAPSING_HEART = 1;
-    private final int collapsingHeartDamage = 30;
-    private final int collapsingHeartVulnerable = 1;
+    public final int slamDamage = 24;
+    public final int slamBlock = 24;
 
-    private static final byte BROKEN = 3;
-    private final int brokenDamage = 50;
+    public final int crackedHeartDamage = 26;
+    public final int crackedHeartVulnerable = 3;
 
-    private static final byte PHASE_TRANSITION = 4;
+    public final int collapsingHeartDamage = 28;
 
-    private final int HP = 5000;
-    private int turnCounter = 1; //1 is first turn, 2 is second turn, 3rd is third turn (transition phase)
+    public final int brokenDamage = 20;
+    public final int brokenHits = 3;
+
+    public final int leerStrength = 5;
+    public final int leerParalysis = 3;
+
+    public final int suppressBlock = 72;
+    public final int suppressStrength = 5;
+
+    private final int CURSE_AMT = 1;
+    private final float HP_THRESHOLD = 0.75f;
+    private int TRANSITION_HP_THRESHOLD;
+    private int enraged = 1; //1 is false, 2 is true
 
     private DummyHammer hammer = new DummyHammer(100.0f, 0.0f);
     private DummyNail nail = new DummyNail(-300.0f, 0.0f);
+    AbstractCard curse = new Guilt();
 
+    public static final String POWER_ID = makeID("Remorse");
+    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    public static final String POWER_NAME = powerStrings.NAME;
+    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
+    private final int HP = 5000;
 
     public Act5Angela() {
         this(-100.0f, 0.0f);
@@ -79,14 +107,25 @@ public class Act5Angela extends AbstractCardMonster {
         super(NAME, ID, 480, 0.0F, 0, 250.0f, 290.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Day49/Remorse/Spriter/SilentGirl.scml"));
         this.type = EnemyType.BOSS;
-        setHp(1);
-        addMove(CRACKED_HEART, Intent.ATTACK_DEBUFF, crackedHeartDamage);
-        addMove(COLLAPSING_HEART, Intent.ATTACK_DEBUFF, collapsingHeartDamage);
-        addMove(BROKEN, Intent.ATTACK, brokenDamage);
+        setHp(HP);
+        addMove(DIGGING_NAIL, Intent.ATTACK_DEBUFF, diggingNailDamage);
+        addMove(SLAM, Intent.ATTACK_DEFEND, slamDamage);
+        addMove(A_CRACKED_HEART, Intent.ATTACK_DEBUFF, crackedHeartDamage);
+        addMove(COLLAPSING_HEART, Intent.ATTACK, collapsingHeartDamage);
+        addMove(BROKEN, Intent.ATTACK, brokenDamage, brokenHits, true);
+        addMove(LEER, Intent.DEBUFF);
+        addMove(SUPPRESS, Intent.DEFEND_BUFF);
         addMove(PHASE_TRANSITION, Intent.UNKNOWN);
 
-        hideHealthBar();
-        populateCards();
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            curse.upgrade();
+        }
+        numAdditionalMoves = 1;
+        maxAdditionalMoves = 1;
+        for (int i = 0; i < maxAdditionalMoves; i++) {
+            additionalMovesHistory.add(new ArrayList<>());
+        }
+        TRANSITION_HP_THRESHOLD = maxHealth / 2;
     }
 
     @Override
@@ -98,65 +137,125 @@ public class Act5Angela extends AbstractCardMonster {
     @Override
     public void usePreBattleAction() {
         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom());
-        (AbstractDungeon.getCurrRoom()).cannotLose = true;
         CustomDungeon.playTempMusicInstantly("Story2");
+        PlayerAngela playerAngela = new PlayerAngela(adp());
+        AbstractDungeon.player.powers.add(playerAngela);
+        AbstractDungeon.player.powers.add(new Memoir(adp()));
+        AbstractDungeon.player.powers.add(new InvisibleBarricadePower(adp()));
+        (AbstractDungeon.getCurrRoom()).cannotLose = true;
         atb(new ApplyPowerAction(this, this, new Refracting(this, -1)));
         atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 4)));
+        applyToTarget(this, this, new SilentGirlPower(this));
+        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, CURSE_AMT) {
+            @Override
+            public void atEndOfRound() {
+                atb(new MakeTempCardInDrawPileAction(curse.makeStatEquivalentCopy(), amount, false, true));
+            }
+
+            @Override
+            public void updateDescription() {
+                description = POWER_DESCRIPTIONS[0] + CURSE_AMT + POWER_DESCRIPTIONS[1] + FontHelper.colorString(curse.name, "y") + POWER_DESCRIPTIONS[2];
+            }
+        });
+        playerAngela.atStartOfTurnPostDraw();
     }
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if (info.base > -1) {
-            info.applyPowers(this, adp());
+        super.takeTurn();
+        if (this.firstMove) { firstMove = false; }
+        takeCustomTurn(this.moves.get(nextMove), adp());
+        for (int i = 0; i < additionalMoves.size(); i++) {
+            EnemyMoveInfo additionalMove = additionalMoves.get(i);
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
+            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
+            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
+            takeCustomTurn(additionalMove, adp());
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    additionalIntent.usePrimaryIntentsColor = true;
+                    this.isDone = true;
+                }
+            });
         }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                PhaseCheck();
+                isDone = true;
+            }
+        });
+    }
 
-        switch (this.nextMove) {
-            case CRACKED_HEART: {
+    @Override
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
+        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
+        int multiplier = move.multiplier;
+
+        if(info.base > -1) { info.applyPowers(this, adp()); }
+
+        switch (move.nextMove) {
+            case DIGGING_NAIL: {
+                nail.attackAnimation(adp());
+                dmg(adp(), info);
+                applyToTarget(adp(), this, new NextTurnPowerPower(adp(), new FrailPower(adp(), diggingNailFrail, false)));
+                nail.resetIdle();
+                break;
+            }
+            case SLAM: {
+                block(this, slamBlock);
                 hammer.attackAnimation(adp());
                 dmg(adp(), info);
                 hammer.resetIdle();
-                applyToTarget(adp(), this, new FrailPower(adp(), crackedHeartFrail, true));
+                break;
+            }
+            case A_CRACKED_HEART: {
+                nail.attackAnimation(adp());
+                dmg(adp(), info);
+                applyToTarget(adp(), this, new NextTurnPowerPower(adp(), new VulnerablePower(adp(), crackedHeartVulnerable, false)));
+                nail.resetIdle();
                 break;
             }
             case COLLAPSING_HEART: {
                 hammer.attackAnimation(adp());
                 dmg(adp(), info);
                 hammer.resetIdle();
-                applyToTarget(adp(), this, new VulnerablePower(adp(), collapsingHeartVulnerable, true));
                 break;
             }
             case BROKEN: {
-                specialDownAnimation(adp());
-                atb(new SilentGirlEffectAction(true));
-                dmg(adp(), info);
+                for (int i = 0; i < multiplier; i++) {
+                    specialUpAnimation(adp());
+                    waitAnimation(1.5f);
+                    specialDownAnimation(adp());
+                    dmg(adp(), info);
+                }
                 resetIdle();
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        if(!RuinaMod.ruinaConfig.getBool("seenD49Message")){
-                            RuinaMod.ruinaConfig.setBool("seenD49Message", true);
-                            try { RuinaMod.ruinaConfig.save(); } catch (IOException e) { e.printStackTrace(); }
-                            att(new Day49PhaseTransition5Action(0, 5, Act5Angela.this));
-                        }
-                        else { att(new Day49PhaseTransition5Action(0, 2, Act5Angela.this)); }
-                        isDone = true;
-                    }
-                });
+                break;
+            }
+            case LEER: {
+                rangedAnimation(adp());
+                applyToTarget(adp(), this, new Paralysis(adp(), leerParalysis));
+                applyToTarget(this, this, new StrengthPower(this, leerStrength));
+                resetIdle(1.0f);
+                break;
+            }
+            case SUPPRESS: {
+                phaseChangeAnimation();
+                hammer.deadAnimation();
+                nail.deadAnimation();
+                atb(new RemoveDebuffsAction(this));
+                block(this, suppressBlock);
+                atb(new HealAction(this, this, (int)(maxHealth * 0.25f)));
+                applyToTarget(this, this, new StrengthPower(this, suppressStrength));
+                enraged = 2;
+                resetIdle(1.0f);
                 break;
             }
             case PHASE_TRANSITION:
-                // Same Animation, No damage
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        runAnim("SpecialDown");
-                        playSound("SilentHammer");
-                        isDone = true;
-                    }
-                });
+                specialUpAnimation(adp());
+                waitAnimation(1.5f);
+                specialDownAnimation(adp());
                 atb(new SilentGirlEffectAction(true));
                 resetIdle();
                 atb(new AbstractGameAction() {
@@ -172,31 +271,60 @@ public class Act5Angela extends AbstractCardMonster {
                     }
                 });
                 break;
-
         }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                turnCounter += 1;
-                isDone = true;
-            }
-        });
-        atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
         if(halfDead){ setMoveShortcut(PHASE_TRANSITION); }
-        else {
-            if (turnCounter == 3) {
-                specialUpAnimation(adp());
-                setMoveShortcut(BROKEN, MOVES[BROKEN], cardList.get(BROKEN));
-            } else if (turnCounter == 2) {
-                setMoveShortcut(COLLAPSING_HEART, MOVES[COLLAPSING_HEART], cardList.get(COLLAPSING_HEART));
+        else if (enraged == 1) {
+            if (currentHealth <= maxHealth * HP_THRESHOLD) {
+                setMoveShortcut(SUPPRESS, MOVES[SUPPRESS], getMoveCardFromByte(SUPPRESS));
+            } else if (lastMove(DIGGING_NAIL)) {
+                setMoveShortcut(SLAM, MOVES[SLAM], getMoveCardFromByte(SLAM));
+            } else if (lastMove(SLAM)) {
+                setMoveShortcut(A_CRACKED_HEART, MOVES[A_CRACKED_HEART], getMoveCardFromByte(A_CRACKED_HEART));
+            } else if (lastMove(A_CRACKED_HEART)) {
+                setMoveShortcut(COLLAPSING_HEART, MOVES[COLLAPSING_HEART], getMoveCardFromByte(COLLAPSING_HEART));
             } else {
-                setMoveShortcut(CRACKED_HEART, MOVES[CRACKED_HEART], cardList.get(CRACKED_HEART));
+                setMoveShortcut(DIGGING_NAIL, MOVES[DIGGING_NAIL], getMoveCardFromByte(DIGGING_NAIL));
+            }
+        } else {
+            if (lastMove(BROKEN)) {
+                setMoveShortcut(LEER, MOVES[LEER], getMoveCardFromByte(LEER));
+            } else {
+                setMoveShortcut(BROKEN, MOVES[BROKEN], getMoveCardFromByte(BROKEN));
             }
         }
+    }
+
+    @Override
+    public void getAdditionalMoves(int num, int whichMove) {
+        ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
+        if(halfDead || ((currentHealth <= maxHealth * HP_THRESHOLD) && enraged == 1) || enraged == 2){}
+        else {
+            ArrayList<Byte> possibilities = new ArrayList<>();
+            if (!lastMove(SLAM, moveHistory)) {
+                possibilities.add(SLAM);
+            }
+            if (!lastMove(COLLAPSING_HEART, moveHistory)) {
+                possibilities.add(COLLAPSING_HEART);
+            }
+            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
+        }
+    }
+
+    protected AbstractCard getMoveCardFromByte(Byte move) {
+        ArrayList<AbstractCard> list = new ArrayList<>();
+        list.add(new DiggingNail(this));
+        list.add(new Slam(this));
+        list.add(new CrackedHeart(this));
+        list.add(new CollapsingHeart(this));
+        list.add(new BrokenToPieces(this));
+        list.add(new Leer(this));
+        list.add(new Suppress(this));
+        return list.get(move);
     }
 
     @Override
@@ -205,7 +333,7 @@ public class Act5Angela extends AbstractCardMonster {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                runAnim("Idle1");
+                runAnim("Idle" + enraged);
                 this.isDone = true;
             }
         });
@@ -220,51 +348,10 @@ public class Act5Angela extends AbstractCardMonster {
         }
     }
 
-    private void populateCards() {
-        cardList.add(new Terror());
-        cardList.add(new Madness());
-        cardList.add(new Bludgeon());
-        cardList.add(new DaggerSpray());
-        cardList.add(new Terror());
-        cardList.add(new Terror());
-        cardList.add(new Terror());
-        cardList.add(new Terror());
-        cardList.add(new Terror());
-    }
-
-    public void damage(DamageInfo info) {
-        // Shouldn't be possible - but just in case
-        super.damage(info);
-        if (this.currentHealth <= 0 && !this.halfDead) {
-            cardsToRender.clear();
-            AbstractCardMonster.hoveredCard = null;
-            this.halfDead = true;
-            for (AbstractPower p : this.powers) {
-                p.onDeath();
-            }
-            for (AbstractRelic r : AbstractDungeon.player.relics) {
-                r.onMonsterDeath(this);
-            }
-            att(new ClearCardQueueAction());
-            ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
-            for (AbstractPower power : this.powers) {
-                if (!(power instanceof Refracting)) {
-                    powersToRemove.add(power);
-                }
-            }
-            for (AbstractPower power : powersToRemove) {
-                this.powers.remove(power);
-            }
-            cardsToRender.clear();
-            setMove(PHASE_TRANSITION, Intent.UNKNOWN);
-            additionalIntents.clear();
-            additionalMoves.clear();
-            ArrayList<AbstractCard> cards = cardsToRender;
-            if (cards.size() > 1) {
-                cards.remove(cards.size() - 1);
-            }
-            createIntent();
-        }
+    @Override
+    public void renderTip(SpriteBatch sb) {
+        super.renderTip(sb);
+        tips.add(new CardPowerTip(curse.makeStatEquivalentCopy()));
     }
 
     public void die() {
@@ -293,14 +380,43 @@ public class Act5Angela extends AbstractCardMonster {
         animationAction("SpecialDown", "SilentHammer", enemy, this);
     }
 
-    public void transitionToSecondPart() {
-        AbstractDungeon.bossKey = TreeOfLifeManager.ID;
-        CardCrawlGame.music.fadeOutBGM();
-        CardCrawlGame.music.fadeOutTempBGM();
-        MapRoomNode node = new MapRoomNode(-1, 15);
-        node.room = new MonsterRoomBoss();
-        AbstractDungeon.nextRoom = node;
-        AbstractDungeon.closeCurrentScreen();
-        AbstractDungeon.nextRoomTransitionStart();
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        for (int i = 0; i < additionalIntents.size(); i++) {
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
+            EnemyMoveInfo additionalMove = null;
+            if (i < additionalMoves.size()) {
+                additionalMove = additionalMoves.get(i);
+            }
+            if (additionalMove != null) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+            }
+        }
+    }
+
+    private void PhaseCheck() {
+        if(currentHealth <= TRANSITION_HP_THRESHOLD){
+            specialUpAnimation(adp());
+            waitAnimation(1.5f);
+            specialDownAnimation(adp());
+            atb(new SilentGirlEffectAction(true));
+            resetIdle();
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    if(!RuinaMod.ruinaConfig.getBool("seenD49Message")){
+                        RuinaMod.ruinaConfig.setBool("seenD49Message", true);
+                        try { RuinaMod.ruinaConfig.save(); } catch (IOException e) { e.printStackTrace(); }
+                        att(new Day49PhaseTransition5Action(0, 5, Act5Angela.this));
+                    }
+                    else { att(new Day49PhaseTransition5Action(0, 2, Act5Angela.this)); }
+                    isDone = true;
+                }
+            });
+        }
+        else {
+            att(new RollMoveAction(this));
+        }
     }
 }
