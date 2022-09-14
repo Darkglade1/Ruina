@@ -1,4 +1,4 @@
-package ruina.shaders.Aspiration;
+package ruina.shaders.Yesod;
 
 import basemod.interfaces.ScreenPostProcessor;
 import com.badlogic.gdx.Gdx;
@@ -12,11 +12,12 @@ import com.megacrit.cardcrawl.helpers.ShaderHelper;
 
 import static ruina.RuinaMod.makeShaderPath;
 
-public class AspirationPostProcessor implements ScreenPostProcessor {
+public class YesodPostProcessor implements ScreenPostProcessor {
 
-    private static final String VERTEX_PATH = makeShaderPath("Aspiration/vertex.vs");
-    private static final String FRAGMENT_PATH = makeShaderPath("Aspiration/fragment.fs");
+    private static final String VERTEX_PATH = makeShaderPath("Yesod/vertex.vs");
+    private static final String FRAGMENT_PATH = makeShaderPath("Yesod/fragment.fs");
     private float u_time = 0f;
+
 
     private static final ShaderProgram shaderEffect = new ShaderProgram(
             Gdx.files.internal(VERTEX_PATH).readString(),
@@ -28,7 +29,12 @@ public class AspirationPostProcessor implements ScreenPostProcessor {
         sb.end();
         sb.setShader(shaderEffect);
         sb.begin();
-        u_time += Gdx.graphics.getDeltaTime();
+        if(u_time < 5f){
+            u_time += Gdx.graphics.getDeltaTime();
+        }
+        else { u_time = 5f; }
+
+        System.out.println(u_time);
         shaderEffect.setUniform1fv("u_time", new float[] { u_time }, 0, 1);
         shaderEffect.setUniform2fv("u_resolution", new float[] {Settings.WIDTH, Settings.HEIGHT }, 0, 2);
 

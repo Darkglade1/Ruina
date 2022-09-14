@@ -95,6 +95,7 @@ import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.day49.*;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.Fields.D49SaveData;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.SephirahYesod;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
@@ -1025,6 +1026,7 @@ public class RuinaMod implements
         // Post Angela5 Fakeout
         BaseMod.addMonster(TreeOfLifeManager.ID, (BaseMod.GetMonster) TreeOfLifeManager::new);
         // Add individual Sephirah here
+        BaseMod.addMonster(SephirahYesod.ID, (BaseMod.GetMonster) SephirahYesod::new);
 
 
         BaseMod.addSaveField("defeatedMalkuth", new CustomSavable<Boolean>() {

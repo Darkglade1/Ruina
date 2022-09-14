@@ -1382,5 +1382,11 @@
       ""
     ],
     "NAME": "Memoirs Of Lobotomy"
+  },
+  "${ModID}:SephirahYesod": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Yesod"
   }
 }
