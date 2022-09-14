@@ -151,7 +151,10 @@ public class RuinaMod implements
 
     private static final String modID = "ruina";
     public static final TextureAtlas UIAtlas = new TextureAtlas();
+    public static final TextureAtlas UIAtlasDuplicate = new TextureAtlas();
+
     private static Texture silenceImg;
+    private static Texture freezeImg;
 
     public static String getModID() {
         return modID;
@@ -680,7 +683,10 @@ public class RuinaMod implements
         }
 
         silenceImg = new Texture(makeUIPath("silenceImg.png"));
+        freezeImg = new Texture(makeUIPath("freezeImg.png"));
+
         UIAtlas.addRegion("silenceImg", silenceImg, 0, 0, silenceImg.getWidth(), silenceImg.getHeight());
+        UIAtlasDuplicate.addRegion("freezeImg", freezeImg, 0, 0, freezeImg.getWidth(), freezeImg.getHeight());
 
         // Load the Mod Badge
         Texture badgeTexture = TexLoader.getTexture(BADGE_IMAGE);

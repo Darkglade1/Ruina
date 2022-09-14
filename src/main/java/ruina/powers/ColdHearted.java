@@ -11,13 +11,14 @@ import ruina.RuinaMod;
 import static ruina.util.Wiz.atb;
 
 public class ColdHearted extends AbstractUnremovablePower {
-    public static final String POWER_ID = RuinaMod.makeID(Memoir.class.getSimpleName());
+    public static final String POWER_ID = RuinaMod.makeID(ColdHearted.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public ColdHearted(AbstractCreature owner, int amount) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
+        updateDescription();
     }
 
     @Override

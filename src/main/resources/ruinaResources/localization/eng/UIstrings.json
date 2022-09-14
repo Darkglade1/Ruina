@@ -121,5 +121,10 @@
       "\"When I'm done, everything will go back to the way it was, and i'll disappear without a trace. There isn't much time, so I'll get started right away.\"",
       "???"
     ]
+  },
+  "ruina:ReticentFrigidity": {
+    "TEXT": [
+      "*Reticent ruina:Frigidity. NL "
+    ]
   }
 }

@@ -29,6 +29,7 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.*;
 import ruina.cardmods.FrozenMod;
+import ruina.cardmods.ReticentFrigidityMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractDeckMonster;
 import ruina.monsters.day49.angelaCards.frostsplinter.*;
@@ -174,6 +175,21 @@ public class Act4Angela extends AbstractDeckMonster
         atb(new ApplyPowerAction(this, this, new DamageReductionInvincible(this, HP / 4)));
         atb(new ApplyPowerAction(this, this, new FrostSplinterStrongAttackWarning(this, 0)));
         atb(new ApplyPowerAction(this, this, new ReticentFrigidity(this)));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                for(AbstractCard c: AbstractDungeon.player.drawPile.group){
+                    CardModifierManager.addModifier(c, new ReticentFrigidityMod());
+                }
+                for(AbstractCard c: AbstractDungeon.player.hand.group){
+                    CardModifierManager.addModifier(c, new ReticentFrigidityMod());
+                }
+                for(AbstractCard c: AbstractDungeon.player.discardPile.group){
+                    CardModifierManager.addModifier(c, new ReticentFrigidityMod());
+                }
+                isDone = true;
+            }
+        });
     }
 
     @Override
