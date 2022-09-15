@@ -49,21 +49,21 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
 
     public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, String abnormalityID, String threatLevel) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Day49/AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
         abnoID = abnormalityID;
         warningTier = threatLevel;
     }
 
     public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, boolean ignoreBlights, String abnormalityID, String threatLevel) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY, ignoreBlights);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Day49/AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
         abnoID = abnormalityID;
         warningTier = threatLevel;
     }
 
     public AbnormalityContainer(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, String abnormalityID, String threatLevel) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Day49/AbnormalityContainer/ContainmentUnit/Spriter/AbnormalityContainer.scml"));
         abnoID = abnormalityID;
         warningTier = threatLevel;
     }

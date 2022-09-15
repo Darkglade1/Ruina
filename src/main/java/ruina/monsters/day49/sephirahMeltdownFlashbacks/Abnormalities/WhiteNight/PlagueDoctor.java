@@ -43,12 +43,12 @@ public class PlagueDoctor extends AbstractRuinaMonster
     private Color visibleRenderBlue = Color.BLACK.cpy();
 
     public PlagueDoctor() {
-        this(0.0f, 0.0f);
+        this(0.0f, 295f);
     }
 
     public PlagueDoctor(final float x, final float y) {
         super(NAME, ID, 140, 0.0F, 0, 220.0f, 320.0f, null, x, y);
-        loadAnimation(makeMonsterPath("Day49/SephirahMeltdownFlashbacks/TestProphet/skeleton.atlas"), makeMonsterPath("Day49/SephirahMeltdownFlashbacks/TestProphet/skeleton.json"), 1.6F);
+        loadAnimation(makeMonsterPath("Day49/SephirahMeltdownFlashbacks/TestProphet/skeleton.atlas"), makeMonsterPath("Day49/SephirahMeltdownFlashbacks/TestProphet/skeleton.json"), 2.5F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "0_Default_", true);
         e.setTime(e.getEndTime() * MathUtils.random());
         this.stateData.setMix("0_Default_", "1_default_to_Kiss", 0.2F);
@@ -60,48 +60,17 @@ public class PlagueDoctor extends AbstractRuinaMonster
         addMove(PALE_HANDS, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
         addMove(DEPRESSION, Intent.DEFEND_DEBUFF);
         invisibleRender.a = 0;
-        flipHorizontal = true;
     }
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
-        switch (this.nextMove) {
-            case PALE_HANDS: {
-                //attackAnimation(adp());
-                dmg(adp(), info);
-                applyToTarget(adp(), this, new Bleed(adp(), BLEED));
-                //resetIdle();
-                break;
-            }
-            case DEPRESSION: {
-                //specialAnimation();
-                block(this, BLOCK);
-                applyToTarget(adp(), this, new StrengthPower(adp(), -DEBUFF));
-                applyToTarget(adp(), this, new DexterityPower(adp(), -DEBUFF));
-                //resetIdle(1.0f);
-                break;
-            }
-        }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                PlagueDoctor.this.state.setAnimation(0, "1_default_to_Kiss", false);
-                PlagueDoctor.this.state.setTimeScale(0.75F);
-                PlagueDoctor.this.state.setAnimation(0, "2_Kiss_loop", false);
-                PlagueDoctor.this.state.setTimeScale(2.5F);
-                PlagueDoctor.this.state.addAnimation(0, "0_Default_", true, 0.0F);
                 blessings += 1;
                 isDone = true;
             }
         });
-        atb(new RollMoveAction(this));
     }
 
     @Override

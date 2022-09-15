@@ -36,13 +36,16 @@ public class AngelaWhiteNight extends AbnormalityContainer
 
     protected void setupAbnormality() {
         abnormalityBG = new AbnormalityBackground(abnoID);
-        abnormalityBG.drawX = adp().drawX;
+        abnormalityBG.drawX = this.drawX;
         abnormalityEncyclopedia = new AbnormalityEncyclopedia(abnoID);
-        abnormalityEncyclopedia.drawX = adp().drawX;
+        abnormalityEncyclopedia.drawX = this.drawX;
         abnormalityWarning = new AbnormalityWarning(warningTier);
-        abnormalityWarning.drawX = adp().drawX;
+        abnormalityWarning.drawX = this.drawX;
         staticDischarge = new Static();
-        staticDischarge.drawX = adp().drawX;
+        staticDischarge.drawX = this.drawX;
+
+        abnormality = new PlagueDoctor();
+        abnormality.drawX = this.drawX;
     }
 
     @Override

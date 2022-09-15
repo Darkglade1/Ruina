@@ -26,7 +26,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     public WhiteNight(){ this(0, 0); }
     public WhiteNight(float x, float y) {
         super(NAME, ID, 999, 0.0F, 0.0F, 500.0F, 600.0F, null, x, y);
-        loadAnimation(makeMonsterPath("AbnormalityContainer/AbnormalityUnit/Spriter/WhiteNight/WhiteNight.atlas"), makeMonsterPath("AbnormalityContainer/AbnormalityUnit/Spriter/WhiteNight/WhiteNight.json"), 1.5F);
+        loadAnimation(makeMonsterPath("Day49/AbnormalityContainer/AbnormalityUnit/Spriter/WhiteNight/WhiteNight.atlas"), makeMonsterPath("Day49/AbnormalityContainer/AbnormalityUnit/Spriter/WhiteNight/WhiteNight.json"), 1.5F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "normal", true);
         e.setTime(e.getEndTime() * MathUtils.random());
         this.state.setTimeScale(1.0F);
@@ -46,7 +46,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     }
 
     static {
-        TextureAtlas atlas = new TextureAtlas(makeMonsterPath("AbnormalityContainer/AbnormalityUnit/Spriter/WhiteNight/backEffect.atlas"));
+        TextureAtlas atlas = new TextureAtlas(makeMonsterPath("Day49/AbnormalityContainer/AbnormalityUnit/Spriter/WhiteNight/backEffect.atlas"));
         Ring = atlas.findRegion("0407");
         LightAura = atlas.findRegion("0408");
         AuraPin = atlas.findRegion("0400");

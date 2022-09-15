@@ -13,11 +13,11 @@ public class AbnormalityBackground extends AbstractRuinaMonster
     public static final String ID = makeID(AbnormalityBackground.class.getSimpleName());
     public static final String NAME = "";
     private static final byte NONE = 0;
-    public AbnormalityBackground() { this(0.0f, 0.0f, "ts_BloodBath"); }
-    public AbnormalityBackground(String ABNOID) { this(0.0f, 0.0f, ABNOID); }
+    public AbnormalityBackground() { this(0.0f, 275f, "ts_BloodBath"); }
+    public AbnormalityBackground(String ABNOID) { this(0.0f, 275f, ABNOID); }
     public AbnormalityBackground(final float x, final float y, String ABNOID) {
         super(NAME, ID, 20, -5.0F, 0, 130.0f, 125.0f, null, x, y);
-        this.animation = new BetterSpriterAnimation(makeMonsterPath("AbnormalityContainer/AbnormalityBackground/Spriter/AbnormalityBackground.scml"));
+        this.animation = new BetterSpriterAnimation(makeMonsterPath("Day49/AbnormalityContainer/AbnormalityBackground/Spriter/AbnormalityBackground.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(this.maxHealth));
         runAnim(ABNOID);
