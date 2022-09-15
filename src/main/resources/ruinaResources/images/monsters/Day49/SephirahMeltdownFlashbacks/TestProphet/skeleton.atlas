@@ -1,0 +1,257 @@
+
+skeleton.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Baby_necklas
+  rotate: true
+  xy: 939, 10
+  size: 77, 46
+  orig: 77, 46
+  offset: 0, 0
+  index: -1
+Baby_ring
+  rotate: true
+  xy: 991, 565
+  size: 68, 31
+  orig: 68, 31
+  offset: 0, 0
+  index: -1
+Coat
+  rotate: false
+  xy: 2, 630
+  size: 451, 392
+  orig: 451, 392
+  offset: 0, 0
+  index: -1
+Coat_back
+  rotate: true
+  xy: 882, 437
+  size: 366, 107
+  orig: 366, 107
+  offset: 0, 0
+  index: -1
+Hat
+  rotate: false
+  xy: 659, 10
+  size: 183, 77
+  orig: 183, 77
+  offset: 0, 0
+  index: -1
+Hat_back
+  rotate: true
+  xy: 991, 635
+  size: 168, 25
+  orig: 168, 25
+  offset: 0, 0
+  index: -1
+Wing_back_1
+  rotate: true
+  xy: 705, 285
+  size: 294, 175
+  orig: 294, 175
+  offset: 0, 0
+  index: -1
+Wing_back_2
+  rotate: false
+  xy: 669, 89
+  size: 313, 194
+  orig: 313, 194
+  offset: 0, 0
+  index: -1
+Wing_back_3
+  rotate: false
+  xy: 399, 286
+  size: 304, 293
+  orig: 304, 293
+  offset: 0, 0
+  index: -1
+Wing_default_back_3
+  rotate: false
+  xy: 330, 19
+  size: 226, 72
+  orig: 226, 72
+  offset: 0, 0
+  index: -1
+Wing_default_back_f_1
+  rotate: true
+  xy: 330, 93
+  size: 191, 337
+  orig: 191, 337
+  offset: 0, 0
+  index: -1
+Wing_default_front_0_1
+  rotate: false
+  xy: 558, 7
+  size: 99, 84
+  orig: 99, 84
+  offset: 0, 0
+  index: -1
+Wing_default_front_0_2
+  rotate: false
+  xy: 882, 319
+  size: 96, 116
+  orig: 96, 116
+  offset: 0, 0
+  index: -1
+Wing_default_front_1_3
+  rotate: true
+  xy: 859, 805
+  size: 217, 143
+  orig: 217, 143
+  offset: 0, 0
+  index: -1
+Wing_front_1
+  rotate: false
+  xy: 455, 581
+  size: 395, 220
+  orig: 395, 220
+  offset: 0, 0
+  index: -1
+Wing_front_2
+  rotate: false
+  xy: 455, 803
+  size: 402, 219
+  orig: 402, 219
+  offset: 0, 0
+  index: -1
+Wing_front_3
+  rotate: false
+  xy: 2, 293
+  size: 395, 335
+  orig: 395, 335
+  offset: 0, 0
+  index: -1
+Wing_front_4
+  rotate: true
+  xy: 2, 2
+  size: 289, 326
+  orig: 289, 326
+  offset: 0, 0
+  index: -1
+beak
+  rotate: true
+  xy: 844, 13
+  size: 74, 93
+  orig: 74, 93
+  offset: 0, 0
+  index: -1
+eye1
+  rotate: false
+  xy: 980, 376
+  size: 42, 59
+  orig: 42, 59
+  offset: 0, 0
+  index: -1
+eye2
+  rotate: true
+  xy: 399, 599
+  size: 29, 48
+  orig: 29, 48
+  offset: 0, 0
+  index: -1
+
+skeleton2.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Baby
+  rotate: true
+  xy: 796, 386
+  size: 118, 200
+  orig: 118, 200
+  offset: 0, 0
+  index: -1
+Baby_eye_closed
+  rotate: false
+  xy: 590, 228
+  size: 72, 44
+  orig: 72, 44
+  offset: 0, 0
+  index: -1
+Baby_eye_open
+  rotate: false
+  xy: 100, 5
+  size: 72, 44
+  orig: 72, 44
+  offset: 0, 0
+  index: -1
+Baby_eye_open_2
+  rotate: false
+  xy: 590, 182
+  size: 72, 44
+  orig: 72, 44
+  offset: 0, 0
+  index: -1
+Fur
+  rotate: true
+  xy: 417, 2
+  size: 152, 130
+  orig: 152, 130
+  offset: 0, 0
+  index: -1
+Hat_shadow
+  rotate: false
+  xy: 2, 4
+  size: 96, 45
+  orig: 96, 45
+  offset: 0, 0
+  index: -1
+Wing_back_4
+  rotate: true
+  xy: 256, 280
+  size: 224, 291
+  orig: 224, 291
+  offset: 0, 0
+  index: -1
+Wing_default_back_2
+  rotate: false
+  xy: 256, 156
+  size: 230, 122
+  orig: 230, 122
+  offset: 0, 0
+  index: -1
+Wing_default_back_4
+  rotate: false
+  xy: 2, 51
+  size: 249, 179
+  orig: 249, 179
+  offset: 0, 0
+  index: -1
+Wing_default_front_0_3
+  rotate: true
+  xy: 253, 11
+  size: 143, 162
+  orig: 143, 162
+  offset: 0, 0
+  index: -1
+Wing_default_front_0_4
+  rotate: false
+  xy: 2, 232
+  size: 252, 272
+  orig: 252, 272
+  offset: 0, 0
+  index: -1
+Wing_default_front_1_1
+  rotate: false
+  xy: 549, 381
+  size: 245, 123
+  orig: 245, 123
+  offset: 0, 0
+  index: -1
+Wing_default_front_1_2
+  rotate: false
+  xy: 549, 274
+  size: 237, 105
+  orig: 237, 105
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 488, 169
+  size: 100, 103
+  orig: 100, 103
+  offset: 0, 0
+  index: -1

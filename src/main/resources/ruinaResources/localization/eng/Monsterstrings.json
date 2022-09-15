@@ -1388,5 +1388,17 @@
       ""
     ],
     "NAME": "Yesod"
+  },
+  "${ModID}:TestProphet": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Yesod"
+  },
+  "${ModID}:PlagueDoctor": {
+    "MOVES": [
+      ""
+    ],
+    "NAME": "Yesod"
   }
 }

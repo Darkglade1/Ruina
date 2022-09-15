@@ -93,8 +93,10 @@ import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.day49.*;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.PlagueDoctor;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.Fields.D49SaveData;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.ProphetTest;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.SephirahYesod;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
@@ -1033,6 +1035,8 @@ public class RuinaMod implements
         BaseMod.addMonster(TreeOfLifeManager.ID, (BaseMod.GetMonster) TreeOfLifeManager::new);
         // Add individual Sephirah here
         BaseMod.addMonster(SephirahYesod.ID, (BaseMod.GetMonster) SephirahYesod::new);
+        BaseMod.addMonster(ProphetTest.ID, (BaseMod.GetMonster) ProphetTest::new);
+        BaseMod.addMonster(PlagueDoctor.ID, (BaseMod.GetMonster) PlagueDoctor::new);
 
 
         BaseMod.addSaveField("defeatedMalkuth", new CustomSavable<Boolean>() {
