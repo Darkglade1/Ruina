@@ -4,28 +4,25 @@ import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.*;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;
 
-public class AngelaWhiteNight extends AbnormalityContainer
+public class AbnormalityPlagueDoctor extends AbnormalityContainer
 {
     private static final String ABNOID = "WhiteNight";
     private static final String WARNING = "ALEPH";
-    public static final String ID = makeID(AngelaWhiteNight.class.getSimpleName());
+    public static final String ID = makeID(AbnormalityPlagueDoctor.class.getSimpleName());
     public static final String NAME = "";
     private static final byte NONE = 0;
     private final int HEAL = calcAscensionSpecial(100);
-    public AngelaWhiteNight(){
+    public AbnormalityPlagueDoctor(){
         this(0, 275);
     }
-    public AngelaWhiteNight(final float x, final float y) {
+    public AbnormalityPlagueDoctor(final float x, final float y) {
         super(NAME, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y, ABNOID, WARNING);
         this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 9) {

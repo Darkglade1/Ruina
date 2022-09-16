@@ -46,7 +46,7 @@ public class Day49 extends AbstractRuinaDungeon {
         this.addTempMusic("Story5", RuinaMod.makeMusicPath("Story5.ogg"));
         // Marionette
         this.addTempMusic("Story3", RuinaMod.makeMusicPath("Story3.ogg"));
-
+        this.addTempMusic("Trumpet2", RuinaMod.makeMusicPath("Trumpet2.ogg"));
         // Silent Girl P2
         this.addTempMusic("Trumpet3", RuinaMod.makeMusicPath("Trumpet3.ogg"));
     }

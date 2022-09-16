@@ -20,7 +20,7 @@ public class AbnormalityBackground extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Day49/AbnormalityContainer/AbnormalityBackground/Spriter/AbnormalityBackground.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(this.maxHealth));
-        runAnim(ABNOID);
+        runAnim("Dummy");
     }
 
     @Override
