@@ -1,14 +1,15 @@
 package ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.*;
-import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.vfx.WhiteNightAura;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;
@@ -50,17 +51,16 @@ public class AngelaWhiteNight extends AbnormalityContainer
 
     @Override
     protected void getAbnormality(int timesBreached) {
-        prepareBreach();
-        WhiteNight whiteNight = new WhiteNight();
-        atb(new SpawnMonsterAction(whiteNight, true));
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                AbstractDungeon.effectsQueue.add(new WhiteNightAura(whiteNight.hb));
-                att(new UsePreBattleActionAction(whiteNight));
-                isDone = true;
+                AbstractDungeon.topLevelEffectsQueue.add(new BorderFlashEffect(Color.RED));
+                this.isDone = true;
             }
         });
+        CustomDungeon.playTempMusicInstantly("Trumpet3");
+        WhiteNight whiteNight = new WhiteNight();
+        atb(new SpawnMonsterAction(whiteNight, true));
         whiteNight.rollMove();
         whiteNight.createIntent();
     }
