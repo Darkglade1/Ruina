@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import ruina.RuinaMod;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.Fields.D49SaveData;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.*;
 import ruina.monsters.theHead.Baral;
 import ruina.util.TexLoader;
 
@@ -183,7 +184,41 @@ public class FloorOption {
 
     public void goToBossRespectiveOfButton(FloorENUM floor){
             if(AbstractDungeon.bossList.isEmpty()){ AbstractDungeon.bossList.add("Hexaghost"); }
-            AbstractDungeon.bossKey = TreeOfLifeManager.ID;
+            switch (floor){
+                case MALKUTH:
+                    AbstractDungeon.bossKey = SephirahMalkuth.ID;
+                    break;
+                case YESOD:
+                    AbstractDungeon.bossKey = SephirahYesod.ID;
+                    break;
+                case HOD:
+                    AbstractDungeon.bossKey = SephirahHod.ID;
+                    break;
+                case NETZACH:
+                    AbstractDungeon.bossKey = SephirahNetzach.ID;
+                    break;
+                case TIPHERETH:
+                    AbstractDungeon.bossKey = SephirahTiphereth.ID;
+                    break;
+                case GEBURA:
+                    AbstractDungeon.bossKey = SephirahGebura.ID;
+                    break;
+                case CHESED:
+                    AbstractDungeon.bossKey = SephirahChesed.ID;
+                    break;
+                case BINAH:
+                    AbstractDungeon.bossKey = SephirahBinah.ID;
+                    break;
+                case HOKMA:
+                    AbstractDungeon.bossKey = SephirahHokma.ID;
+                    break;
+                case KETER:
+                    AbstractDungeon.bossKey = TreeOfLifeManager.ID;
+                    break;
+                default:
+                    AbstractDungeon.bossKey = TreeOfLifeManager.ID;
+                    break;
+            }
             CardCrawlGame.music.fadeOutBGM();
             CardCrawlGame.music.fadeOutTempBGM();
             MapRoomNode node = new MapRoomNode(-1, 15);

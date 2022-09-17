@@ -100,9 +100,7 @@ import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.PlagueDoctor;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.Fields.D49SaveData;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
-import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.SephirahHokma;
-import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.SephirahTiphereth;
-import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.SephirahYesod;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.*;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
@@ -1044,15 +1042,17 @@ public class RuinaMod implements
         // Post Angela5 Fakeout
         BaseMod.addMonster(TreeOfLifeManager.ID, (BaseMod.GetMonster) TreeOfLifeManager::new);
         // Add individual Sephirah here
+        BaseMod.addMonster(SephirahMalkuth.ID, (BaseMod.GetMonster) SephirahMalkuth::new);
         BaseMod.addMonster(SephirahYesod.ID, (BaseMod.GetMonster) SephirahYesod::new);
+        BaseMod.addMonster(SephirahNetzach.ID, (BaseMod.GetMonster) SephirahNetzach::new);
+        BaseMod.addMonster(SephirahHod.ID, (BaseMod.GetMonster) SephirahHod::new);
 
+        BaseMod.addMonster(SephirahGebura.ID, (BaseMod.GetMonster) SephirahGebura::new);
         BaseMod.addMonster(SephirahTiphereth.ID, (BaseMod.GetMonster) SephirahTiphereth::new);
-        //BaseMod.addMonster(AbnormalityQueenOfHatred.ID, (BaseMod.GetMonster) AbnormalityQueenOfHatred::new);
+        BaseMod.addMonster(SephirahChesed.ID, (BaseMod.GetMonster) SephirahChesed::new);
 
+        BaseMod.addMonster(SephirahBinah.ID, (BaseMod.GetMonster) SephirahBinah::new);
         BaseMod.addMonster(SephirahHokma.ID, (BaseMod.GetMonster) SephirahHokma::new);
-        //BaseMod.addMonster(PlagueDoctor.ID, (BaseMod.GetMonster) PlagueDoctor::new);
-        //BaseMod.addMonster(AbnormalityPlagueDoctor.ID, (BaseMod.GetMonster) AbnormalityPlagueDoctor::new);
-
 
 
 
