@@ -86,6 +86,11 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
         setupAbnormality();
     }
 
+    public void breachSetup(){
+        currentlyBreaching = true;
+        prepareBreach();
+        getAbnormality(timesBreached++);
+    }
     protected abstract void getAbnormality(int timesBreached);
     protected void prepareBreach(){
         atb(new AbstractGameAction() {
@@ -116,9 +121,7 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
             for (AbstractPower p : this.powers) { p.onDeath(); }
             for (AbstractRelic r : AbstractDungeon.player.relics) { r.onMonsterDeath(this); }
             if(!currentlyBreaching){
-                currentlyBreaching = true;
-                prepareBreach();
-                getAbnormality(timesBreached++);
+                breachSetup();
             }
             atb(new AbstractGameAction() {
                 @Override
@@ -130,12 +133,15 @@ public abstract class AbnormalityContainer extends AbstractRuinaMonster
         }
     }
 
-    @Override
-    public void die(){
-
+    public void die() {
+        if (!(AbstractDungeon.getCurrRoom()).cannotLose) {
+            super.die();
+        }
     }
 
-    public void properDie(){ super.die(); }
+    public void dieBypass() {
+        super.die(false);
+    }
 
     public void render(SpriteBatch sb){
         if(currentlyBreaching && staticDischarge != null){ staticDischarge.render(sb); }

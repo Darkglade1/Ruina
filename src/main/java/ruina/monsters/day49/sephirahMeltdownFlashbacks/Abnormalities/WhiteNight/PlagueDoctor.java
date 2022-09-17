@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.AnimationActions.plaguedoctor.PlagueDoctorBlessAnimation;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.AnimationActions.plaguedoctor.WhitenightTextClockAction;
 import ruina.powers.Bleed;
 
 import static ruina.RuinaMod.makeID;
@@ -28,7 +30,7 @@ public class PlagueDoctor extends AbstractRuinaMonster
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    private int blessings = 0;
+    private int blessings = 11;
 
     private static final byte PALE_HANDS = 0;
     private static final byte DEPRESSION = 1;
@@ -51,9 +53,11 @@ public class PlagueDoctor extends AbstractRuinaMonster
         loadAnimation(makeMonsterPath("Day49/SephirahMeltdownFlashbacks/TestProphet/skeleton.atlas"), makeMonsterPath("Day49/SephirahMeltdownFlashbacks/TestProphet/skeleton.json"), 2.5F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "0_Default_", true);
         e.setTime(e.getEndTime() * MathUtils.random());
-        this.stateData.setMix("0_Default_", "1_default_to_Kiss", 0.2F);
-        this.stateData.setMix("1_default_to_Kiss", "2_Kiss_loop", 2.5F);
-        this.stateData.setMix("2_Kiss_loop", "3_Kiss_to_Default", 2.5F);
+        this.stateData.setMix("0_Default_", "1_default_to_Kiss", 1F);
+        this.stateData.setMix("1_default_to_Kiss", "2_Kiss_loop", 1f);
+        this.stateData.setMix("2_Kiss_loop", "3_Kiss_to_Default", 1F);
+        this.stateData.setMix("3_Kiss_to_Default", "0_Default_", 1F);
+
         skeleton.setColor(Color.BLACK.cpy());
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(88), calcAscensionTankiness(94));
@@ -62,8 +66,13 @@ public class PlagueDoctor extends AbstractRuinaMonster
         invisibleRender.a = 0;
     }
 
+    public int getBlessings(){
+        return blessings;
+    }
     @Override
     public void takeTurn() {
+        atb(new PlagueDoctorBlessAnimation(this));
+        atb(new WhitenightTextClockAction(blessings));
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -674,6 +683,61 @@ public class PlagueDoctor extends AbstractRuinaMonster
                 // Identical, to the last, but  sparkles.
                 break;
             case 12:
+                // INVISIBLE
+                skeleton.findSlot("Hat").getColor().set(invisibleRender);
+                skeleton.findSlot("Hat_shadow").getColor().set(invisibleRender);
+                skeleton.findSlot("Hat_back").getColor().set(invisibleRender);
+                skeleton.findSlot("head").getColor().set(invisibleRender);
+                skeleton.findSlot("beak").getColor().set(invisibleRender);
+                skeleton.findSlot("Coat").getColor().set(invisibleRender);
+                skeleton.findSlot("Coat_back").getColor().set(invisibleRender);
+                skeleton.findSlot("Fur").getColor().set(invisibleRender);
+
+                skeleton.findSlot("eye1").getColor().set(invisibleRender);
+                skeleton.findSlot("eye2").getColor().set(invisibleRender);
+
+                skeleton.findSlot("Baby").getColor().set(visibleRender);
+                skeleton.findSlot("Baby_necklas").getColor().set(visibleRender);
+                skeleton.findSlot("Baby_eye_closed").getColor().set(invisibleRender);
+                skeleton.findSlot("Baby_eye_open").getColor().set(invisibleRender);
+                skeleton.findSlot("Baby_eye_open_2").getColor().set(visibleRender);
+                skeleton.findSlot("Baby_ring").getColor().set(visibleRender);
+
+                // Front Wing (Default)
+                skeleton.findSlot("Wing_default_front_0_1").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_default_front_0_2").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_default_front_0_3").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_default_front_0_4").getColor().set(visibleRender);
+
+                skeleton.findSlot("Wing_default_front_1_1").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_default_front_1_2").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_default_front_1_3").getColor().set(visibleRender);
+
+                // Back Wing (Default)
+                skeleton.findSlot("Wing_default_back_f_1").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_default_back_2").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_default_back_3").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_default_back_4").getColor().set(visibleRender);
+
+                // Front + Back Wing (Blessing 1)
+                skeleton.findSlot("Wing_back_1").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_front_1").getColor().set(visibleRender);
+
+                // Front + Back Wing (Blessing 2)
+                skeleton.findSlot("Wing_front_2").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_back_2").getColor().set(visibleRender);
+
+                // Front + Back Wing (Blessing 3)
+                skeleton.findSlot("Wing_front_3").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_back_3").getColor().set(visibleRender);
+
+                // Front + Back Wing (Blessing 4)
+                skeleton.findSlot("Wing_front_4").getColor().set(visibleRender);
+                skeleton.findSlot("Wing_back_4").getColor().set(visibleRender);
+
+                // Identical, to the last, but  sparkles.
+                break;
+            case 13:
                 // INVISIBLE
                 skeleton.findSlot("Hat").getColor().set(invisibleRender);
                 skeleton.findSlot("Hat_shadow").getColor().set(invisibleRender);

@@ -10,10 +10,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.AnimationActions.whitenight.WhiteNightAttackAnimation;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.atb;
 
 public class WhiteNight extends AbstractRuinaMonster {
     public static final String ID = makeID(WhiteNight.class.getSimpleName());
@@ -30,6 +32,8 @@ public class WhiteNight extends AbstractRuinaMonster {
         AnimationState.TrackEntry e = this.state.setAnimation(0, "0_Default_outsidde", true);
         e.setTime(e.getEndTime() * MathUtils.random());
         this.stateData.setMix("0_Default_outsidde", "1_Default_outsidde_special", 1F);
+        this.stateData.setMix("1_Default_outsidde_special", "0_Default_outsidde", 1F);
+
         this.stateData.setMix("0_Default_outsidde", "Dead", 1F);
         drawX = adp().drawX + 480.0F * Settings.scale;;
         halfDead = true;
@@ -39,6 +43,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     }
 
     public void usePreBattleAction() {
+        hideHealthBar();
     }
 
     protected void getMove(int i) {
@@ -46,7 +51,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     }
 
     public void takeTurn() {
-
+        atb(new WhiteNightAttackAnimation(this));
     }
 
 

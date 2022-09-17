@@ -699,13 +699,13 @@
   "${ModID}:ReticentFrigidity": {
     "NAME": "Reticent Frigidity",
     "DESCRIPTIONS": [
-      "You may #yFreeze any card, during your turn. NL #yFrozen cards are #yUnplayable and #yRetain. NL If you #yFreeze a card through this effect, this creature deals #b75% less damage for #b1 turn."
+      "You may #yFreeze any card, during your turn. NL #yFrozen cards are #yUnplayable and #yRetain. NL If you #yFreeze a card through this effect, this creature deals #b50% less damage for #b1 turn."
     ]
   },
   "${ModID}:ColdHearted": {
     "NAME": "ColdHearted",
     "DESCRIPTIONS": [
-      "Take #b75% less damage.",
+      "Take #b50% less damage.",
       " NL (Lasts #b%1$s turn.)",
       " NL (Lasts #b%1$s turns.)"
     ]

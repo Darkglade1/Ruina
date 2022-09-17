@@ -68,26 +68,26 @@ public class Act4Angela extends AbstractDeckMonster
     private static final byte ABSOLUTE_ZERO = 7;
     private static final byte PHASE_TRANSITION = 8;
 
-    public final int frigidGazeBlock = 28;
+    public final int frigidGazeBlock = 32;
     public final int frigidGazeStrength = 6;
 
-    public final int bitterColdDamage = 18;
+    public final int bitterColdDamage = 27;
     public final int bitterColdHits = 3;
     public final int bitterColdFrail = 1;
 
-    public final int frostSplinter_damage = 22;
+    public final int frostSplinter_damage = 33;
     public final int frostSplinter_hits = 2;
 
-    public final int swordOfFrost_damage = 26;
+    public final int swordOfFrost_damage = 39;
     public final int swordOfFrost_hits = 3;
 
-    public final int hailstormDamage = 70;
+    public final int hailstormDamage = 100;
     public final int hailstormChill = 2;
 
-    public final int blizzardDamage = 70;
+    public final int blizzardDamage = 100;
     public final int blizzardChill = 4;
 
-    public final int deepFreezeDamage = 85;
+    public final int deepFreezeDamage = 150;
     public final int deepFreezeChill = 4;
     public final int deepFreezeDebuff = 1;
 

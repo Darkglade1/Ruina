@@ -1,13 +1,17 @@
 package ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.QueenOfHatred;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.*;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.PlagueDoctor;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.WhiteNight;
+import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
-import static ruina.util.Wiz.atb;
+import static ruina.util.Wiz.*;
 
 public class AbnormalityQueenOfHatred extends AbnormalityContainer
 {
@@ -27,6 +31,8 @@ public class AbnormalityQueenOfHatred extends AbnormalityContainer
         } else {
             setHp(1);
         }
+        this.drawX = adp().drawX;
+        setupAbnormality();
     }
 
     protected void setupAbnormality() {
@@ -41,12 +47,12 @@ public class AbnormalityQueenOfHatred extends AbnormalityContainer
 
         abnormality = new QueenOfHatredNormal();
         abnormality.drawX = this.drawX;
+
     }
 
     @Override
     protected void getAbnormality(int timesBreached) {
-        QueenOfHatredNormal queen = new QueenOfHatredNormal();
-        queen.configureAsBreachingAbno();
+        QueenOfHatredMonster queen = new QueenOfHatredMonster();
         atb(new SpawnMonsterAction(queen, true));
         queen.rollMove();
         queen.createIntent();
@@ -54,6 +60,21 @@ public class AbnormalityQueenOfHatred extends AbnormalityContainer
 
     @Override
     public void takeTurn() {
+        if(!currentlyBreaching){
+            abnormality.takeTurn();
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    if(abnormality instanceof QueenOfHatredNormal){
+                        if (((QueenOfHatredNormal) abnormality).getTurnCounter() == 5){
+                            breachSetup();
+                            ((QueenOfHatredNormal) abnormality).reset();
+                        }
+                    }
+                    isDone = true;
+                }
+            });
+        }
     }
 
     @Override

@@ -2,13 +2,17 @@ package ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight
 
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.*;
+import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makeID;
+import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
 public class AbnormalityPlagueDoctor extends AbnormalityContainer
@@ -30,6 +34,8 @@ public class AbnormalityPlagueDoctor extends AbnormalityContainer
         } else {
             setHp(1);
         }
+        this.drawX = adp().drawX;
+        setupAbnormality();
     }
 
     protected void setupAbnormality() {
@@ -56,14 +62,45 @@ public class AbnormalityPlagueDoctor extends AbnormalityContainer
             }
         });
         CustomDungeon.playTempMusicInstantly("Trumpet3");
+        CardCrawlGame.fadeIn(2.5f);
         WhiteNight whiteNight = new WhiteNight();
         atb(new SpawnMonsterAction(whiteNight, true));
+
+        AbnormalityPlagueDoctor.this.gold = 0;
+        AbnormalityPlagueDoctor.this.currentHealth = 0;
+        AbnormalityPlagueDoctor.this.dieBypass();
+        AbstractDungeon.getMonsters().monsters.remove(this);
+        whiteNight.hideHealthBar();
+        whiteNight.halfDead = true;
         whiteNight.rollMove();
         whiteNight.createIntent();
     }
 
     @Override
     public void takeTurn() {
+        if(!currentlyBreaching){
+            abnormality.takeTurn();
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    if(abnormality instanceof PlagueDoctor){
+                        if (((PlagueDoctor) abnormality).getBlessings() == 13){
+                            Texture apostles = TexLoader.getTexture(makeMonsterPath("Seraphim/Apostles.png"));
+                            atb(new AbstractGameAction() {
+                                @Override
+                                public void update() {
+                                    playSound("WhiteNightSummon");
+                                    this.isDone = true;
+                                }
+                            });
+                            flashImageVfx(apostles, 2.0f);
+                            breachSetup();
+                        }
+                    }
+                    isDone = true;
+                }
+            });
+        }
     }
 
     @Override

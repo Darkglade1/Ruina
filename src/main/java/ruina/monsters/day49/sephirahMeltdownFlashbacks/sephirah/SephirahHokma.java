@@ -3,25 +3,27 @@ package ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.AbnormalityPlagueDoctor;
 import ruina.powers.Bleed;
-import ruina.shaders.Yesod.YesodPostProcessor;
 import ruina.shaders.Yesod.YesodShader;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
-public class SephirahYesod extends AbstractRuinaMonster
+public class SephirahHokma extends AbstractRuinaMonster
 {
-    public static final String ID = makeID(SephirahYesod.class.getSimpleName());
+    public static final String ID = makeID(SephirahHokma.class.getSimpleName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
@@ -34,16 +36,16 @@ public class SephirahYesod extends AbstractRuinaMonster
     private final int DEBUFF = calcAscensionSpecial(1);
     private final int BLEED = calcAscensionSpecial(3);
 
-    public SephirahYesod() {
-        this(0.0f, 0.0f);
+    public SephirahHokma() {
+        this(85.0f, 0.0f);
     }
 
-    public SephirahYesod(final float x, final float y) {
+    public SephirahHokma(final float x, final float y) {
         super(NAME, ID, 140, 0.0F, 0, 220.0f, 320.0f, null, x, y);
-        loadAnimation(makeMonsterPath("Day49/SephirahMeltdownFlashbacks/Yesod/yesod.atlas"), makeMonsterPath("Day49/SephirahMeltdownFlashbacks/Yesod/yesod.json"), 1F);
-        AnimationState.TrackEntry e = this.state.setAnimation(0, "First", true);
+        loadAnimation(makeMonsterPath("Day49/SephirahMeltdownFlashbacks/Hokma/hokma.atlas"), makeMonsterPath("Day49/SephirahMeltdownFlashbacks/Hokma/hokma.json"), 1.75f);
+        AnimationState.TrackEntry e = this.state.setAnimation(0, "Phase_01", true);
         e.setTime(e.getEndTime() * MathUtils.random());
-        this.stateData.setMix("First", "Second", 0.2F);
+        this.stateData.setMix("Phase_01", "Phase_02", 1f);
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(88), calcAscensionTankiness(94));
         addMove(PALE_HANDS, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
@@ -62,18 +64,14 @@ public class SephirahYesod extends AbstractRuinaMonster
 
         switch (this.nextMove) {
             case PALE_HANDS: {
-                attackAnimation(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new Bleed(adp(), BLEED));
-                resetIdle();
                 break;
             }
             case DEPRESSION: {
-                specialAnimation();
                 block(this, BLOCK);
                 applyToTarget(adp(), this, new StrengthPower(adp(), -DEBUFF));
                 applyToTarget(adp(), this, new DexterityPower(adp(), -DEBUFF));
-                resetIdle(1.0f);
                 break;
             }
         }
@@ -82,8 +80,7 @@ public class SephirahYesod extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        AbstractDungeon.effectsQueue.add(new YesodShader());
-
+        atb(new SpawnMonsterAction(new AbnormalityPlagueDoctor(), false));
     }
 
     @Override

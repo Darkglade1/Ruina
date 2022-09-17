@@ -100,6 +100,8 @@ import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.Abnormalities.WhiteNight.PlagueDoctor;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.Fields.D49SaveData;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.SephirahHokma;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.SephirahTiphereth;
 import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.SephirahYesod;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
@@ -380,6 +382,8 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("WhiteNightCall"), makeSFXPath("WhiteNight_Call.wav"));
         BaseMod.addAudio(makeID("WhiteNightCharge"), makeSFXPath("WhiteNight_Strong_Charge.wav"));
         BaseMod.addAudio(makeID("WhiteNightFire"), makeSFXPath("WhiteNight_Strong_Fire.wav"));
+        BaseMod.addAudio(makeID("WhiteNightBell"), makeSFXPath("WhiteNight_Clock_Bell.wav"));
+        BaseMod.addAudio(makeID("WhiteNightClock"), makeSFXPath("WhiteNight_Clock_Tick.wav"));
 
         BaseMod.addAudio(makeID("BossBirdLamp"), makeSFXPath("Bossbird_Bigbird_FarAtk.wav"));
         BaseMod.addAudio(makeID("BossBirdBirth"), makeSFXPath("BossBird_Birth.wav"));
@@ -653,6 +657,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("NothingHello"), makeSFXPath("NothingThere_Hello.wav"));
         BaseMod.addAudio(makeID("NothingNormal"), makeSFXPath("NothingThere_Normal_Flesh.wav"));
         BaseMod.addAudio(makeID("BulletShot"), makeSFXPath("Matan_NormalShot.wav"));
+
+
+
     }
 
     @Override
@@ -1039,12 +1046,14 @@ public class RuinaMod implements
         // Add individual Sephirah here
         BaseMod.addMonster(SephirahYesod.ID, (BaseMod.GetMonster) SephirahYesod::new);
 
-        BaseMod.addMonster(PlagueDoctor.ID, (BaseMod.GetMonster) PlagueDoctor::new);
-        BaseMod.addMonster(AbnormalityPlagueDoctor.ID, (BaseMod.GetMonster) AbnormalityPlagueDoctor::new);
-        BaseMod.addMonster(AbnormalityQueenOfHatred.ID, (BaseMod.GetMonster) AbnormalityQueenOfHatred::new);
+        BaseMod.addMonster(SephirahTiphereth.ID, (BaseMod.GetMonster) SephirahTiphereth::new);
+        //BaseMod.addMonster(AbnormalityQueenOfHatred.ID, (BaseMod.GetMonster) AbnormalityQueenOfHatred::new);
 
-        BaseMod.addMonster(QueenOfHatredMonster.ID, (BaseMod.GetMonster) QueenOfHatredMonster::new);
-        BaseMod.addMonster(QueenOfHatredNormal.ID, (BaseMod.GetMonster) QueenOfHatredNormal::new);
+        BaseMod.addMonster(SephirahHokma.ID, (BaseMod.GetMonster) SephirahHokma::new);
+        //BaseMod.addMonster(PlagueDoctor.ID, (BaseMod.GetMonster) PlagueDoctor::new);
+        //BaseMod.addMonster(AbnormalityPlagueDoctor.ID, (BaseMod.GetMonster) AbnormalityPlagueDoctor::new);
+
+
 
 
         BaseMod.addSaveField("defeatedMalkuth", new CustomSavable<Boolean>() {

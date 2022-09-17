@@ -40,7 +40,7 @@ public class ColdHearted extends AbstractUnremovablePower {
     }
 
     public float atDamageReceive(float damage, DamageInfo.DamageType type) {
-        if (type == DamageInfo.DamageType.NORMAL) { return damage * 0.75F; }
+        if (type == DamageInfo.DamageType.NORMAL) { return damage * 0.5F; }
         return damage;
     }
 }
