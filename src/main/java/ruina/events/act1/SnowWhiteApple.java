@@ -30,9 +30,9 @@ public class SnowWhiteApple extends AbstractImageEvent {
 
     private AbstractRelic relic = new Malice();
     private final AbstractCard curse = new Parasite();
-    private static final int MAX_HP_GAIN = 15;
-    private static final float MAX_HP_LOSS_PERCENT = 0.08f;
-    private static final float HIGH_ASC_MAX_HP_LOSS_PERCENT = 0.10f;
+    private static final int MAX_HP_GAIN = 16;
+    private static final float MAX_HP_LOSS_PERCENT = 0.10f;
+    private static final float HIGH_ASC_MAX_HP_LOSS_PERCENT = 0.12f;
     private final int maxHPLoss;
 
     private int screenNum = 0;
