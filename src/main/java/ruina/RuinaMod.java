@@ -843,6 +843,10 @@ public class RuinaMod implements
                 .bonusCondition(RuinaMod::englishOnly)
                 .dungeonID(Asiyah.ID)
                 .create());
+        BaseMod.addEvent(new AddEventParams.Builder(YourBook.ID, YourBook.class)
+                .bonusCondition(RuinaMod::englishOnly)
+                .dungeonID(Asiyah.ID)
+                .create());
 
 
         //Act 2

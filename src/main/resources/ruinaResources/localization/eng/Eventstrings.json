@@ -840,5 +840,28 @@
       "Obtain ",
       "[Wake Up]"
     ]
+  },
+  "ruina:YourBook": {
+    "NAME": "Your Book",
+    "DESCRIPTIONS": [
+      "As you navigate the twists and turns of this library’s labyrinth, you spot a strange book poking out one of the bookshelves. NL NL It has your #yname on it.",
+      "Against your better judgment, you find your curiosity piqued, and you go to read the book. As you flip open its pages, you find details of yourself experiencing encounters you do not remember, #gliving and #rdying against foes that you do not recall. NL The book seems #pendless. Every page you turn, you live and die. Live and die. @Live@ @and@ @die@ . Despite your lack of recollection about these events, you cannot help but feel that all these pages spoke #ytruth. NL You can’t help but feel mounting despair at the idea that your story inevitably leads to #pdeath. And in the end, you – ",
+      "You won’t let yourself be deceived by the machinations of this place.",
+      "In the depths of your #pdespair, you cling onto a #gglimmer of #yhope. You cling to the thought that surely, one day you will break out of this cycle of life and death. NL You feel your resolve harden and #ymanifest, and you feel that you had become stronger through this experience.",
+      "Your #pdespair bubbles up to your throat, #rchoking you with its weight. You feel a cold #bchill spread throughout your body, something #phollow permeating your very being and shaping your very self. NL There is no hope. There is no escape. NL After all, there is no conclusion more natural than #pdeath."
+    ],
+    "OPTIONS": [
+      "[Read the book] ",
+      "[Leave it alone] ",
+      "[Overcome it] ",
+      "[Succumb to it] ",
+      "Obtain a special Relic.",
+      "Become Cursed - ",
+      ".",
+      "Lose ",
+      " HP.",
+      "Obtain ",
+      "[Leave]"
+    ]
   }
 }
