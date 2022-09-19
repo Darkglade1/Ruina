@@ -32,14 +32,14 @@ public class GeburaHead extends Gebura {
 
     public GeburaHead(final float x, final float y) {
         super(x, y);
-        this.setHp(300);
+        this.setHp(calcAscensionTankiness(350));
     }
 
     @Override
     public void usePreBattleAction() {
         if (!usedPreBattleAction) {
             usedPreBattleAction = true;
-            applyToTarget(this, this, new GeburaProwess(this, 10, 5));
+            applyToTarget(this, this, new GeburaProwess(this, 10, 10));
             super.usePreBattleAction();
             for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (mo instanceof Zena) {

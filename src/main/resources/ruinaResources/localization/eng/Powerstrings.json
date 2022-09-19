@@ -292,11 +292,11 @@
   },
   "${ModID}:BlackSilence": {
     "NAME": "The Black Silence",
-    "DESCRIPTIONS": ["Gains #b", " #yStrength at end of round.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
+    "DESCRIPTIONS": ["Gains #b", " #yStrength at end of turn.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
   },
   "${ModID}:BlueReverberation": {
     "NAME": "The Blue Reverberation",
-    "DESCRIPTIONS": ["Gains #b%1$s #yStrength at end of round."]
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength at end of turn."]
   },
   "${ModID}:ContractOfMight": {
     "NAME": "Contract Of Might",
@@ -424,11 +424,11 @@
     "DESCRIPTIONS": ["Whenever you play #b", " unique cards, add #yFurioso to your hand."]
   },
   "${ModID}:AClaw": {
-    "NAME": "Executioner",
+    "NAME": "A Claw",
     "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL This creature's incoming #ghealing is increased by #b", "%."]
   },
   "${ModID}:AnArbiter": {
-    "NAME": "Complete Arbiter",
+    "NAME": "An Arbiter",
     "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it steals #b", " positive #yStrength from its target."]
   },
   "${ModID}:GeburaProwess": {
@@ -625,10 +625,18 @@
   },
   "${ModID}:SingularityT": {
     "NAME": "Singularity T",
-    "DESCRIPTIONS": ["Whenever you play #b", " cards in a single turn, this creature takes a turn and decrease the threshold by #b", " for this turn.", "Degraded Singularity T", "Whenever you play a card, this creature takes a turn."]
+    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards.", "Degraded Singularity T"]
   },
   "${ModID}:SingularityJ": {
     "NAME": "Singularity J",
-    "DESCRIPTIONS": ["#yNegate ALL #ydebuffs applied to this creature. NL NL Whenever this creature attacks an enemy, steal ALL of its target's positive #yStrength."]
+    "DESCRIPTIONS": ["Each combatant can only apply #b", " #ydebuff(s) to this creature per turn. NL NL Each combatant can only deal attack damage to this creature #b", " time(s) per turn.", "Degraded Singularity J"]
+  },
+  "${ModID}:SingularityF": {
+    "NAME": "Singularity F",
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it applies #b", " #yFairy to the target."]
+  },
+  "${ModID}:Fairy": {
+    "NAME": "Fairy",
+    "DESCRIPTIONS": ["Whenever this creature deals attack damage, it also loses HP equal to the damage dealt times #b", ". Decreased by #b1 each turn."]
   }
 }

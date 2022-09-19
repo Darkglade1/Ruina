@@ -22,5 +22,5 @@ public class Fairy extends AbstractRuinaCard {
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
     @Override
-    public void upp() { }
+    public void upp() { this.name = cardStrings.EXTENDED_DESCRIPTION[0]; }
 }

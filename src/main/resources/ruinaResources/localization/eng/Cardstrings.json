@@ -381,15 +381,19 @@
   },
   "${ModID}:Pillar": {
     "NAME": "Degraded Pillar",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Apply !M! *Fairy.",
+    "EXTENDED_DESCRIPTION": ["Pillar"]
   },
   "${ModID}:Fairy": {
     "NAME": "Degraded Fairy",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage !M! times.",
+    "EXTENDED_DESCRIPTION": ["Fairy"]
   },
   "${ModID}:Chain": {
     "NAME": "Degraded Chain",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak.",
+    "EXTENDED_DESCRIPTION": ["Chain"]
   },
   "${ModID}:Climax": {
     "NAME": "Rising Climax",
@@ -774,7 +778,7 @@
   },
   "${ModID}:TriSerum": {
     "NAME": "Tri-Serum Cocktail",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Shuffle !ruina:SecondMagic! *Wound(s) into the discard pile."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Shuffle !ruina:SecondMagic! *Wound(s) into your draw pile."
   },
   "${ModID}:SerumK": {
     "NAME": "Serum K",

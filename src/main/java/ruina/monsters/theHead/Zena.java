@@ -80,7 +80,6 @@ public class Zena extends AbstractCardMonster
     public final int POWER_DEBUFF = calcAscensionSpecial(2);
     public final int THICK_LINE_DEBUFF = 2;
     public final int BIRDCAGE_HITS = 2;
-    public final int INVINCIBLE;
 
     public GeburaHead gebura;
     public BinahHead binah;
@@ -119,8 +118,8 @@ public class Zena extends AbstractCardMonster
             additionalMovesHistory.add(new ArrayList<>());
         }
         currentPhase = phase;
-        this.setHp(calcAscensionTankiness(3000));
-        addMove(LINE, Intent.ATTACK_DEFEND, calcAscensionDamage(24));
+        this.setHp(calcAscensionTankiness(9000));
+        addMove(LINE, Intent.ATTACK_DEFEND, calcAscensionDamage(22));
         addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
         addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
         addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(35));
@@ -139,12 +138,6 @@ public class Zena extends AbstractCardMonster
                 shockwave.add(TexLoader.getTexture(makeMonsterPath("Zena/Shockwave/frame" + i + ".png")));
             }
         }
-
-        if (AbstractDungeon.ascensionLevel >= 19) {
-            INVINCIBLE = 450;
-        } else {
-            INVINCIBLE = 600;
-        }
     }
 
     @Override
@@ -157,7 +150,9 @@ public class Zena extends AbstractCardMonster
         currentPhase = PHASE.PHASE2;
         numAdditionalMoves++;
         applyToTarget(this, this, new AnArbiter(this, POWER_DEBUFF));
-        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            applyToTarget(this, this, new SingularityJ(this));
+        }
     }
 
     @Override
@@ -465,15 +460,6 @@ public class Zena extends AbstractCardMonster
         atb(new RollMoveAction(this));
     }
 
-    public void enrage() {
-        if (enraged && !this.hasPower(SingularityJ.POWER_ID)) {
-            atb(new TalkAction(this, DIALOG[1]));
-            applyToTarget(this, this, new SingularityJ(this));
-            setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
-            createIntent();
-        }
-    }
-
     private void fixOrbPositioning() {
         for (int i = 0; i < AbstractDungeon.player.orbs.size(); i++) {
             (AbstractDungeon.player.orbs.get(i)).setSlot(i, AbstractDungeon.player.maxOrbs);
@@ -625,6 +611,10 @@ public class Zena extends AbstractCardMonster
             atb(new TalkAction(this, DIALOG[0]));
             enraged = true;
             gebura.canSplit = false;
+            if (this.hasPower(SingularityJ.POWER_ID)) {
+                AbstractPower power = this.getPower(SingularityJ.POWER_ID);
+                ((SingularityJ)power).unlock();
+            }
         }
     }
 

@@ -49,13 +49,6 @@ public class AnArbiter extends AbstractUnremovablePower {
     }
 
     @Override
-    public void atEndOfRound() {
-        if (owner instanceof Zena) {
-            ((Zena) owner).enrage();
-        }
-    }
-
-    @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }

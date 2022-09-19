@@ -69,25 +69,24 @@ public class Baral extends AbstractCardMonster
     private static final byte TRI_SERUM_COCKTAIL = 3;
     private static final byte SERUM_K = 4;
 
-    public final int SERUM_W_DAMAGE = calcAscensionDamage(45);
+    public final int SERUM_W_DAMAGE = calcAscensionDamage(40);
 
     public final int serumR_Damage = calcAscensionDamage(12);
     public final int serumR_Hits = 2;
     public final int serumR_Strength = calcAscensionSpecial(5);
 
-    public final int extirpationDamage = calcAscensionDamage(26);
+    public final int extirpationDamage = calcAscensionDamage(24);
     public final int extirpationBlock = calcAscensionTankiness(50);
 
-    public final int triSerumDamage = calcAscensionDamage(9);
+    public final int triSerumDamage = calcAscensionDamage(8);
     public final int triSerumHits = 3;
 
     public final int SERUM_K_BLOCK = calcAscensionTankiness(60);
-    public final int SERUM_K_HEAL = calcAscensionTankiness(150);
+    public final int SERUM_K_HEAL = calcAscensionTankiness(300);
     public final int SERUM_K_STR = calcAscensionSpecial(3);
     public final int HEALING_BOOST = calcAscensionSpecial(100);
     public final int STATUS = calcAscensionSpecial(1);
     public final int KILL_THRESHOLD = 25;
-    public final int INVINCIBLE;
 
     public RolandHead roland;
     public Zena zena;
@@ -127,7 +126,7 @@ public class Baral extends AbstractCardMonster
             additionalMovesHistory.add(new ArrayList<>());
         }
         currentPhase = phase;
-        this.setHp(calcAscensionTankiness(3000));
+        this.setHp(calcAscensionTankiness(9000));
 
         addMove(SERUM_W, Intent.ATTACK, SERUM_W_DAMAGE);
         addMove(SERUM_R, Intent.ATTACK_BUFF, serumR_Damage, serumR_Hits, true);
@@ -156,12 +155,6 @@ public class Baral extends AbstractCardMonster
                 serumWFinish.add(TexLoader.getTexture(makeMonsterPath("Baral/Frames/frame" + i + ".png")));
             }
         }
-
-        if (AbstractDungeon.ascensionLevel >= 19) {
-            INVINCIBLE = 450;
-        } else {
-            INVINCIBLE = 600;
-        }
     }
 
     @Override
@@ -176,7 +169,6 @@ public class Baral extends AbstractCardMonster
         rollMove();
         createIntent();
         applyToTarget(this, this, new AClaw(this, HEALING_BOOST));
-        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
         if (AbstractDungeon.ascensionLevel >= 19) {
             applyToTarget(this, this, new SingularityT(this));
         }
@@ -291,7 +283,13 @@ public class Baral extends AbstractCardMonster
         }
 
         if (roland != null && target == roland) {
-            roland.halfDead = false;
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    roland.halfDead = false;
+                    this.isDone = true;
+                }
+            });
         }
 
         if(info.base > -1) {
@@ -418,7 +416,7 @@ public class Baral extends AbstractCardMonster
                 if (flip1) {
                     setFlipAnimation(false);
                 }
-                intoDiscardMo(new Wound(), STATUS, this);
+                intoDrawMo(new Wound(), STATUS, this);
                 break;
             }
             case SERUM_K: {

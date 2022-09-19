@@ -93,7 +93,7 @@ public class BlackSilence3 extends AbstractCardMonster {
         cardList.add(new BlindFury(this));
         AbstractCard waltz = new WaltzInBlack(this);
         AbstractCard darkBond = new DarkBond(this);
-        if (RuinaMod.isHumility()) {
+        if (AbstractDungeon.ascensionLevel >= 19) {
             waltz.upgrade();
             darkBond.upgrade();
         }
@@ -201,7 +201,7 @@ public class BlackSilence3 extends AbstractCardMonster {
             case DARKBOND:
                 guardAnimation();
                 int effectMultiplier = 1;
-                if (RuinaMod.isHumility() && !isAngelicaAttacking()) {
+                if (AbstractDungeon.ascensionLevel >= 19 && !isAngelicaAttacking()) {
                     effectMultiplier = 2;
                 }
                 for (AbstractMonster mo : monsterList()) {
@@ -313,7 +313,7 @@ public class BlackSilence3 extends AbstractCardMonster {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if (this.nextMove == WALTZ && RuinaMod.isHumility()) {
+        if (this.nextMove == WALTZ && AbstractDungeon.ascensionLevel >= 19) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             info.applyPowers(this, adp());
             if (isAngelicaAttacking()) {

@@ -16,11 +16,12 @@ public class Pillar extends AbstractRuinaCard {
     public Pillar(Binah parent) {
         super(ID, 3, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         block = baseBlock = parent.BLOCK;
+        magicNumber = baseMagicNumber = parent.PILLAR_FAIRY;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
     @Override
-    public void upp() { }
+    public void upp() { this.name = cardStrings.EXTENDED_DESCRIPTION[0]; uDesc(); }
 }

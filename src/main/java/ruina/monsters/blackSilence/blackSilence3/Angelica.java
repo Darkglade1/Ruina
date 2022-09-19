@@ -91,7 +91,7 @@ public class Angelica extends AbstractCardMonster {
         cardList.add(new AtelierLogic(this));
         AbstractCard waltz = new WaltzInWhite(this);
         AbstractCard ashenBond = new AshenBond(this);
-        if (RuinaMod.isHumility()) {
+        if (AbstractDungeon.ascensionLevel >= 19) {
             waltz.upgrade();
             ashenBond.upgrade();
         }
@@ -193,7 +193,7 @@ public class Angelica extends AbstractCardMonster {
             case ASHENBOND:
                 guardAnimation();
                 int effectMultiplier = 1;
-                if (RuinaMod.isHumility() && !isRolandAttacking()) {
+                if (AbstractDungeon.ascensionLevel >= 19 && !isRolandAttacking()) {
                     effectMultiplier = 2;
                 }
                 for (AbstractMonster mo : monsterList()) {
@@ -313,7 +313,7 @@ public class Angelica extends AbstractCardMonster {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if (this.nextMove == WALTZ && RuinaMod.isHumility()) {
+        if (this.nextMove == WALTZ && AbstractDungeon.ascensionLevel >= 19) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             info.applyPowers(this, adp());
             if (isRolandAttacking()) {

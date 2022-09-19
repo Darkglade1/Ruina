@@ -52,13 +52,14 @@ public class Binah extends AbstractAllyCardMonster
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    private static final byte DEGRADED_PILLAR = 0;
-    private static final byte DEGRADED_CHAIN = 1;
-    private static final byte DEGRADED_FAIRY = 2;
+    protected static final byte DEGRADED_PILLAR = 0;
+    protected static final byte DEGRADED_CHAIN = 1;
+    protected static final byte DEGRADED_FAIRY = 2;
 
     public final int WEAK = 1;
     public final int BLOCK = 14;
     public final int fairyHits = 2;
+    public final int PILLAR_FAIRY = 1;
 
     public Elena elena;
     public VermilionCross vermilionCross;
@@ -187,6 +188,9 @@ public class Binah extends AbstractAllyCardMonster
                 waitAnimation(0.25f);
                 pillarEffect(target);
                 dmg(target, info);
+                if (cardList.get(DEGRADED_PILLAR).upgraded) {
+                    applyToTarget(target, this, new ruina.powers.Fairy(target, PILLAR_FAIRY));
+                }
                 resetIdle();
                 break;
             }
