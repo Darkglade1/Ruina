@@ -15,12 +15,12 @@ public class Chain extends AbstractRuinaCard {
 
     public Chain(Binah parent) {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
-        magicNumber = baseMagicNumber = parent.WEAK;
+        magicNumber = baseMagicNumber = parent.DEBUFF;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) { }
 
     @Override
-    public void upp() { this.name = cardStrings.EXTENDED_DESCRIPTION[0]; }
+    public void upp() { this.name = cardStrings.EXTENDED_DESCRIPTION[0]; uDesc(); }
 }

@@ -37,10 +37,8 @@ import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
-import ruina.actions.BetterIntentFlashAction;
-import ruina.actions.DamageAllOtherCharactersAction;
-import ruina.actions.HeadDialogueAction;
-import ruina.actions.UsePreBattleActionAction;
+import ruina.actions.*;
+import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.zenaCards.*;
 import ruina.powers.*;
@@ -76,10 +74,11 @@ public class Zena extends AbstractCardMonster
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
     public final int BLOCK = calcAscensionTankiness(45);
-    public final int DEBUFF = calcAscensionSpecial(2);
-    public final int POWER_DEBUFF = calcAscensionSpecial(2);
+    public final int DEBUFF = 2;
+    public final int POWER_DEBUFF = 2;
     public final int THICK_LINE_DEBUFF = 2;
     public final int BIRDCAGE_HITS = 2;
+    public final int BIRDCAGE_FAIRY = 3;
 
     public GeburaHead gebura;
     public BinahHead binah;
@@ -118,7 +117,7 @@ public class Zena extends AbstractCardMonster
             additionalMovesHistory.add(new ArrayList<>());
         }
         currentPhase = phase;
-        this.setHp(calcAscensionTankiness(9000));
+        this.setHp(calcAscensionTankiness(5000));
         addMove(LINE, Intent.ATTACK_DEFEND, calcAscensionDamage(22));
         addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
         addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
@@ -240,6 +239,21 @@ public class Zena extends AbstractCardMonster
                 waitAnimation();
                 shockwaveCutscene();
                 massAttackFinishAnimation();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        int numAllies = 0;
+                        for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+                            if (mo instanceof AbstractAllyMonster && !mo.isDeadOrEscaped()) {
+                                numAllies++;
+                            }
+                        }
+                        if (numAllies == 0) {
+                            att(new YeetPlayerAction());
+                        }
+                        this.isDone = true;
+                    }
+                });
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 atb(new AbstractGameAction() {
                     @Override
@@ -271,13 +285,13 @@ public class Zena extends AbstractCardMonster
                     dmg(target, info);
                     resetIdle();
                 }
-                if (this.hasPower(StrengthPower.POWER_ID)) {
-                    AbstractPower strength = this.getPower(StrengthPower.POWER_ID);
-                    if (strength.amount > 0) {
-                        applyToTargetNextTurn(this, this, new StrengthPower(this, strength.amount));
-                    }
-                }
-                break;
+               for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+                   if (mo instanceof AbstractAllyMonster && !mo.isDeadOrEscaped()) {
+                       applyToTarget(mo, this, new Fairy(mo, BIRDCAGE_FAIRY));
+                   }
+               }
+               applyToTarget(adp(), this, new Fairy(adp(), BIRDCAGE_FAIRY));
+               break;
             }
         }
 
@@ -469,10 +483,10 @@ public class Zena extends AbstractCardMonster
     @Override
     protected void getMove(final int num) {
         if (enraged) {
-            if (!this.lastMove(SHOCKWAVE)) {
-                setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
-            } else {
+            if (!this.lastMove(BIRDCAGE)) {
                 setMoveShortcut(BIRDCAGE, MOVES[BIRDCAGE], cardList.get(BIRDCAGE).makeStatEquivalentCopy());
+            } else {
+                setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
             }
         } else if (currentPhase == PHASE.PHASE1) {
             if (halfDead) {

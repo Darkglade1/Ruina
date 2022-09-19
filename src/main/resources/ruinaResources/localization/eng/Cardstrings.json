@@ -393,6 +393,7 @@
   "${ModID}:Chain": {
     "NAME": "Degraded Chain",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak and Vulnerable.",
     "EXTENDED_DESCRIPTION": ["Chain"]
   },
   "${ModID}:Climax": {
@@ -778,7 +779,7 @@
   },
   "${ModID}:TriSerum": {
     "NAME": "Tri-Serum Cocktail",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Shuffle !ruina:SecondMagic! *Wound(s) into your draw pile."
+    "DESCRIPTION": "Deal !D! damage !M! times."
   },
   "${ModID}:SerumK": {
     "NAME": "Serum K",
@@ -798,11 +799,11 @@
   },
   "${ModID}:ZenaShockwave": {
     "NAME": "Shockwave",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "If there is only 1 enemy, instantly kill it. NL Deal !D! damage to ALL enemies."
   },
   "${ModID}:Birdcage": {
     "NAME": "Birdcage",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Double this creature's Strength next turn."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Fairy to ALL enemies."
   },
   "${ModID}:Marionette": {
     "NAME": "Marionette",

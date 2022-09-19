@@ -73,7 +73,7 @@ public class Baral extends AbstractCardMonster
 
     public final int serumR_Damage = calcAscensionDamage(12);
     public final int serumR_Hits = 2;
-    public final int serumR_Strength = calcAscensionSpecial(5);
+    public final int serumR_Strength = 5;
 
     public final int extirpationDamage = calcAscensionDamage(24);
     public final int extirpationBlock = calcAscensionTankiness(50);
@@ -82,10 +82,8 @@ public class Baral extends AbstractCardMonster
     public final int triSerumHits = 3;
 
     public final int SERUM_K_BLOCK = calcAscensionTankiness(60);
-    public final int SERUM_K_HEAL = calcAscensionTankiness(300);
-    public final int SERUM_K_STR = calcAscensionSpecial(3);
-    public final int HEALING_BOOST = calcAscensionSpecial(100);
-    public final int STATUS = calcAscensionSpecial(1);
+    public final int SERUM_K_HEAL = calcAscensionTankiness(200);
+    public final int SERUM_K_STR = 3;
     public final int KILL_THRESHOLD = 25;
 
     public RolandHead roland;
@@ -126,12 +124,12 @@ public class Baral extends AbstractCardMonster
             additionalMovesHistory.add(new ArrayList<>());
         }
         currentPhase = phase;
-        this.setHp(calcAscensionTankiness(9000));
+        this.setHp(calcAscensionTankiness(5000));
 
         addMove(SERUM_W, Intent.ATTACK, SERUM_W_DAMAGE);
         addMove(SERUM_R, Intent.ATTACK_BUFF, serumR_Damage, serumR_Hits, true);
         addMove(EXTIRPATION, Intent.ATTACK_DEFEND, extirpationDamage);
-        addMove(TRI_SERUM_COCKTAIL, Intent.ATTACK_DEBUFF, triSerumDamage, triSerumHits, true);
+        addMove(TRI_SERUM_COCKTAIL, Intent.ATTACK, triSerumDamage, triSerumHits, true);
         addMove(SERUM_K, Intent.DEFEND_BUFF);
         cardList.add(new SerumW(this));
         cardList.add(new SerumR(this));
@@ -168,7 +166,7 @@ public class Baral extends AbstractCardMonster
         numAdditionalMoves++;
         rollMove();
         createIntent();
-        applyToTarget(this, this, new AClaw(this, HEALING_BOOST));
+        applyToTarget(this, this, new AClaw(this));
         if (AbstractDungeon.ascensionLevel >= 19) {
             applyToTarget(this, this, new SingularityT(this));
         }
@@ -416,7 +414,6 @@ public class Baral extends AbstractCardMonster
                 if (flip1) {
                     setFlipAnimation(false);
                 }
-                intoDrawMo(new Wound(), STATUS, this);
                 break;
             }
             case SERUM_K: {

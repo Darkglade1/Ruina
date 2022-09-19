@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 
 import java.util.HashMap;
@@ -19,7 +21,10 @@ public class SingularityJ extends AbstractUnremovablePower implements OnReceiveP
 
     private static final int LIMIT = 3;
     private static final int UNLOCKED_LIMIT = 1;
-    private HashMap<AbstractCreature, Integer> limitMap = new HashMap<>();
+    private HashMap<AbstractCreature, Integer> attackLimitMap = new HashMap<>();
+    private HashMap<AbstractCreature, Integer> debuffLimitMap = new HashMap<>();
+    private boolean justStrengthDown = false;
+    private boolean negateGainStrengthUp = false;
 
     public SingularityJ(AbstractCreature owner) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, LIMIT);
@@ -29,17 +34,37 @@ public class SingularityJ extends AbstractUnremovablePower implements OnReceiveP
     @Override
     public boolean onReceivePower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
         if (power.type == PowerType.DEBUFF) {
-            if (limitMap.containsKey(source)) {
-                int times = limitMap.get(source);
+            if (debuffLimitMap.containsKey(source)) {
+                int times = debuffLimitMap.get(source);
+
+                //Handle temp Strength down effects
+                if (power instanceof StrengthPower) {
+                    if (times < this.amount) {
+                        justStrengthDown = true;
+                    } else {
+                        negateGainStrengthUp = true;
+                    }
+                }
+                if (power instanceof GainStrengthPower) {
+                    if (justStrengthDown) {
+                        justStrengthDown = false;
+                        return true;
+                    }
+                    if (negateGainStrengthUp) {
+                        negateGainStrengthUp = false;
+                        return false;
+                    }
+                }
+
                 if (times >= this.amount) {
                     return false;
                 } else {
                     times++;
-                    limitMap.put(source, times);
+                    debuffLimitMap.put(source, times);
                     return true;
                 }
             } else {
-                limitMap.put(source, 1);
+                debuffLimitMap.put(source, 1);
                 return true;
             }
         }
@@ -48,25 +73,31 @@ public class SingularityJ extends AbstractUnremovablePower implements OnReceiveP
 
     @Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-        AbstractCreature source = info.owner;
-        if (limitMap.containsKey(source)) {
-            int times = limitMap.get(source);
-            if (times >= this.amount) {
-                return 0;
+        if (info.type == DamageInfo.DamageType.NORMAL) {
+            AbstractCreature source = info.owner;
+            if (attackLimitMap.containsKey(source)) {
+                int times = attackLimitMap.get(source);
+                if (times >= this.amount) {
+                    return 0;
+                } else {
+                    times++;
+                    attackLimitMap.put(source, times);
+                    return damageAmount;
+                }
             } else {
-                times++;
-                limitMap.put(source, times);
+                attackLimitMap.put(source, 1);
                 return damageAmount;
             }
-        } else {
-            limitMap.put(source, 1);
-            return damageAmount;
         }
+        return damageAmount;
     }
 
     @Override
     public void atStartOfTurn() {
-        for (Map.Entry<AbstractCreature,Integer> entry : limitMap.entrySet()) {
+        for (Map.Entry<AbstractCreature,Integer> entry : debuffLimitMap.entrySet()) {
+            entry.setValue(0);
+        }
+        for (Map.Entry<AbstractCreature,Integer> entry : attackLimitMap.entrySet()) {
             entry.setValue(0);
         }
     }

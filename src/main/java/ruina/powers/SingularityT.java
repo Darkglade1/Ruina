@@ -19,7 +19,7 @@ public class SingularityT extends AbstractUnremovablePower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private int degradedThreshold = 12;
+    private int degradedThreshold = 15;
     private int unlockedThreshold = 6;
 
     private int currentThreshold;

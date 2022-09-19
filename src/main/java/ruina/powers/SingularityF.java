@@ -20,7 +20,7 @@ public class SingularityF extends AbstractUnremovablePower {
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        if (info.type == DamageInfo.DamageType.NORMAL && info.owner == owner && damageAmount > 0) {
+        if (info.type == DamageInfo.DamageType.NORMAL && info.owner == owner) {
             flash();
             applyToTarget(target, owner, new Fairy(target, amount));
         }

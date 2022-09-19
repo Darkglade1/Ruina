@@ -19,6 +19,7 @@ public class Birdcage extends AbstractRuinaCard {
     public Birdcage(Zena parent) {
         super(ID, 4, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + ThinLine.class.getSimpleName() + ".png"));
         this.magicNumber = baseMagicNumber = parent.BIRDCAGE_HITS;
+        this.secondMagicNumber = baseSecondMagicNumber = parent.BIRDCAGE_FAIRY;
         this.parent = parent;
     }
 

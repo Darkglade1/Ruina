@@ -425,7 +425,7 @@
   },
   "${ModID}:AClaw": {
     "NAME": "A Claw",
-    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL This creature's incoming #ghealing is increased by #b", "%."]
+    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL Whenever this creature gains #yStrength, it gains twice as much."]
   },
   "${ModID}:AnArbiter": {
     "NAME": "An Arbiter",
@@ -633,10 +633,10 @@
   },
   "${ModID}:SingularityF": {
     "NAME": "Singularity F",
-    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it applies #b", " #yFairy to the target."]
+    "DESCRIPTIONS": ["Whenever this creature attack, it applies #b", " #yFairy to the target."]
   },
   "${ModID}:Fairy": {
     "NAME": "Fairy",
-    "DESCRIPTIONS": ["Whenever this creature deals attack damage, it also loses HP equal to the damage dealt times #b", ". Decreased by #b1 each turn."]
+    "DESCRIPTIONS": ["Whenever this creature attacks, it loses #b", " HP. NL Whenever this creature is attacked, the attacker gains #b", " #yBlock."]
   }
 }
