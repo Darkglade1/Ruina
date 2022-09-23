@@ -807,7 +807,7 @@
   },
   "ruina:Aspiration": {
     "NAME": "热望",
-    "DESCRIPTION": "获得 !M! 点 力量 。 NL 失去当前一半的生命值。 在战斗结束时，恢复同等的生命值。"
+    "DESCRIPTION": "获得 !M! 点 力量 。 NL 失去 !ruina:SecondMagic! 点生命。 在战斗结束时，恢复同等的生命值。"
   },
   "ruina:FrostSplinter": {
     "NAME": "霜雕",

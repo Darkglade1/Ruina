@@ -807,7 +807,7 @@
   },
   "ruina:Aspiration": {
     "NAME": "열망",
-    "DESCRIPTION": "힘을 !M! 얻습니다. NL 현재 체력의 절반만큼을 잃습니다. 전투 종료시, 이 효과로 잃은 체력을 다시 회복합니다."
+    "DESCRIPTION": "힘을 !M! 얻습니다. NL 체력을 !ruina:SecondMagic! 잃습니다. 전투 종료시, 이 효과로 잃은 체력을 다시 회복합니다."
   },
   "ruina:FrostSplinter": {
     "NAME": "서리조각",

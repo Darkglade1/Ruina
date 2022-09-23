@@ -1,6 +1,5 @@
 package ruina.cards.EGO.act3;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
@@ -22,10 +21,12 @@ public class Aspiration extends AbstractEgoCard {
     public static final int COST = 0;
     public static final int STRENGTH = 3;
     public static final int UPG_STRENGTH = 1;
+    public static final int HP_LOSS = 10;
 
     public Aspiration() {
         super(ID, COST, CardType.SKILL, CardTarget.SELF);
         magicNumber = baseMagicNumber = STRENGTH;
+        secondMagicNumber = baseSecondMagicNumber = HP_LOSS;
         isInnate = true;
         isEthereal = true;
     }
@@ -39,7 +40,7 @@ public class Aspiration extends AbstractEgoCard {
             atb(new VFXAction(new OfferingEffect(), 0.5F));
         }
         int initialHP = adp().currentHealth;
-        atb(new LoseHPAction(p, p, p.currentHealth / 2));
+        atb(new LoseHPAction(p, p, secondMagicNumber));
         atb(new AspirationAction(initialHP));
     }
 

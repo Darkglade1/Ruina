@@ -820,7 +820,7 @@
   },
   "${ModID}:Aspiration": {
     "NAME": "Aspiration",
-    "DESCRIPTION": "Gain !M! Strength. NL Lose half of your current HP. At the end of combat, heal the HP lost by this card."
+    "DESCRIPTION": "Gain !M! Strength. NL Lose !ruina:SecondMagic! HP. At the end of combat, heal the HP lost by this card."
   },
   "${ModID}:FrostSplinter": {
     "NAME": "Frost Splinter",

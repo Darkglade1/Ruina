@@ -1,11 +1,11 @@
 package ruina.relics;
 
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import ruina.actions.ExhaustRandomCurseInHandAction;
 import ruina.cardmods.RetainMod;
 import ruina.cards.EGO.AbstractEgoCard;
 
@@ -22,17 +22,7 @@ public class EGOBook extends AbstractEasyRelic {
 
     @Override
     public void onPlayerEndTurn() {
-        boolean triggered = false;
-        for (AbstractCard card : adp().hand.group) {
-            if (card.color == AbstractCard.CardColor.CURSE || card.type == AbstractCard.CardType.CURSE) {
-                if (!triggered) {
-                    this.flash();
-                    this.addToTop(new RelicAboveCreatureAction(adp(), this));
-                    triggered = true;
-                }
-                AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(card, adp().hand));
-            }
-        }
+        AbstractDungeon.actionManager.addToBottom(new ExhaustRandomCurseInHandAction(this));
     }
 
     @Override

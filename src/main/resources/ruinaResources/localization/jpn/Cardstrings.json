@@ -807,7 +807,7 @@
   },
   "ruina:Aspiration": {
     "NAME": "熱望",
-    "DESCRIPTION": "筋力 !M! を得る。 NL 現在HPの半分を失う。 NL 戦闘終了時、このカードによって減らされたHPを回復する。"
+    "DESCRIPTION": "筋力 !M! を得る。 NL HPを !ruina:SecondMagic! 失う。 NL 戦闘終了時、このカードによって減らされたHPを回復する。"
   },
   "ruina:FrostSplinter": {
     "NAME": "霜の欠片",
