@@ -125,7 +125,7 @@
     "NAME": "Book of E.G.O.",
     "FLAVOR": "There is a light within all of us. A light that will one day break free and change the world.",
     "DESCRIPTIONS": [
-      "At the end of your turn, #yExhaust ALL #pCurses in your hand. Whenever a #pCurse is #yExhausted, add a random #yEGO card to your hand and give it #yRetain."
+      "At the end of your turn, #yExhaust a random #pCurse in your hand. NL Whenever a #pCurse is #yExhausted, add a random #yEGO card to your hand and give it #yRetain."
     ]
   }
 }

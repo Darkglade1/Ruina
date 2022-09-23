@@ -33,8 +33,8 @@ public class YourBook extends AbstractImageEvent {
     private AbstractRelic relic = new EGOBook();
     private final AbstractCard curse = new Writhe();
     private final AbstractCard card = new Metamorphosis();
-    private static final float HP_LOSS_PERCENT = 0.20f;
-    private static final float HIGH_ASC_HP_LOSS_PERCENT = 0.25f;
+    private static final float HP_LOSS_PERCENT = 0.08f;
+    private static final float HIGH_ASC_HP_LOSS_PERCENT = 0.10f;
     private final int hpLoss;
 
     private int screenNum = 0;

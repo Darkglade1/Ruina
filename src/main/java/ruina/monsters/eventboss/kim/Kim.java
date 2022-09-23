@@ -221,8 +221,10 @@ public class Kim extends AbstractCardMonster {
                     if (justApplied) {
                         justApplied = false;
                     } else {
-                        Wiz.makePowerRemovable(this);
-                        atb(new RemoveSpecificPowerAction(owner, owner, this));
+                        if (!owner.hasPower(StunMonsterPower.POWER_ID)) {
+                            Wiz.makePowerRemovable(this);
+                            atb(new RemoveSpecificPowerAction(owner, owner, this));
+                        }
                     }
                 }
 

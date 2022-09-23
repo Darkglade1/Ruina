@@ -2,6 +2,7 @@ package ruina.cards;
 
 import basemod.AutoAdd;
 import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -29,15 +30,25 @@ public class Guilt extends AbstractRuinaCard {
         exhaust = true;
     }
 
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        exhaustedByPlay = true;
+        if (this.dontTriggerOnUseCard) {
+            AbstractMonster target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+            applyToTargetNextTurnTop(target, new StrengthPower(target, magicNumber));
+            exhaust = false;
+            freeToPlayOnce = true;
+        } else {
+            exhaustedByPlay = true;
+        }
     }
 
+    @Override
     public void triggerOnEndOfTurnForPlayingCard() {
-        AbstractMonster target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-        applyToTargetNextTurnTop(target, new StrengthPower(target, magicNumber));
+        this.dontTriggerOnUseCard = true;
+        AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
     }
 
+    @Override
     public void triggerOnExhaust() {
         if (!exhaustedByPlay) {
             intoDiscard(this.makeStatEquivalentCopy(), 1);
