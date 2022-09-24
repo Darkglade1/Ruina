@@ -19,10 +19,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
@@ -65,13 +62,13 @@ public class Puppeteer extends AbstractCardMonster
 
     public final int tuggingStringsHits = 2;
 
-    private static final float MASTERMIND_DAMAGE_REDUCTION = 0.5f;
+    private final int MASTERMIND_DAMAGE_REDUCTION = calcAscensionSpecial(50);
     private static final int MASS_ATTACK_COOLDOWN = 3;
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
     public final int BLOCK = calcAscensionTankiness(20);
     public final int STRENGTH = calcAscensionSpecial(3);
-    public final int WEAK = calcAscensionSpecial(1);
+    public final int DEBUFF = calcAscensionSpecial(1);
     public final int VULNERABLE = 1;
     public Chesed chesed;
     public Puppet puppet;
@@ -140,7 +137,7 @@ public class Puppeteer extends AbstractCardMonster
                 if (owner.hasPower(Chesed.MARK_POWER_ID)) {
                     return damage;
                 } else {
-                    return damage * (1 - MASTERMIND_DAMAGE_REDUCTION);
+                    return damage * (1 - ((float)MASTERMIND_DAMAGE_REDUCTION / 100));
                 }
             }
 
@@ -156,7 +153,7 @@ public class Puppeteer extends AbstractCardMonster
 
             @Override
             public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + (int)(MASTERMIND_DAMAGE_REDUCTION * 100) + POWER_DESCRIPTIONS[1];
+                description = POWER_DESCRIPTIONS[0] + MASTERMIND_DAMAGE_REDUCTION + POWER_DESCRIPTIONS[1];
             }
         });
         applyToTarget(this, this, new InvisibleBarricadePower(this));
@@ -228,7 +225,8 @@ public class Puppeteer extends AbstractCardMonster
                         block(mo, BLOCK);
                     }
                 }
-                applyToTarget(target, this, new WeakPower(target, WEAK, true));
+                applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
                 resetIdle(1.0f);
                 break;
             }

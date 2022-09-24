@@ -74,11 +74,6 @@ public class Gebura extends AbstractAllyCardMonster
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public static final String R_POWER_ID = makeID("Relentless");
-    public static final PowerStrings R_powerStrings = CardCrawlGame.languagePack.getPowerStrings(R_POWER_ID);
-    public static final String R_POWER_NAME = R_powerStrings.NAME;
-    public static final String[] R_POWER_DESCRIPTIONS = R_powerStrings.DESCRIPTIONS;
-
     public Gebura() {
         this(0.0f, 0.0f);
     }
@@ -172,24 +167,6 @@ public class Gebura extends AbstractAllyCardMonster
         if (strength != null) {
             applyToTarget(this, this, new StrengthPower(this, strength.amount));
         }
-        applyToTarget(this, this, new AbstractLambdaPower(R_POWER_NAME, R_POWER_ID, AbstractPower.PowerType.BUFF, false, this, RELENTLESS_THRESHOLD) {
-            @Override
-            public void atEndOfRound() {
-                if (amount > 0) {
-                    AbstractPower strength = getPower(StrengthPower.POWER_ID);
-                    if (strength != null) {
-                        applyToTarget(owner, owner, new StrengthPower(owner, -strength.amount / 2));
-                    }
-                }
-                amount = RELENTLESS_THRESHOLD;
-                updateDescription();
-            }
-
-            @Override
-            public void updateDescription() {
-                description = R_POWER_DESCRIPTIONS[0] + amount + R_POWER_DESCRIPTIONS[1];
-            }
-        });
     }
 
     public void dialogue() {

@@ -273,7 +273,7 @@
   },
   "${ModID}:ThinStrings": {
     "NAME": "Thin Strings",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Apply !M! Weak."
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Apply !M! Weak and Frail."
   },
   "${ModID}:Puppetry": {
     "NAME": "Puppetry",
@@ -281,7 +281,7 @@
   },
   "${ModID}:ContractOfMight": {
     "NAME": "Contract Of Might",
-    "DESCRIPTION": "Gain !M! Strength. NL At the end of your turn, take !ruina:SecondMagic! damage and increase the damage you will take from this power by !ruina:SecondMagic!."
+    "DESCRIPTION": "Gain !M! Strength. NL You can only play !ruina:SecondMagic! cards per turn."
   },
   "${ModID}:ContractOfLight": {
     "NAME": "Contract Of Light",
@@ -518,7 +518,7 @@
   },
   "${ModID}:Searing": {
     "NAME": "Searing Resolution",
-    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Burn(s) into your draw pile."
+    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Burn into your draw pile."
   },
   "${ModID}:Sorrow": {
     "NAME": "Wound of Sorrow",

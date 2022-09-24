@@ -280,7 +280,7 @@
   },
   "${ModID}:PuppetStrings": {
     "NAME": "Puppet Strings",
-    "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn at full HP. NL NL The #renemy's Mass Attack #gheals this creature instead."]
+    "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn with full HP and increased max HP. NL NL The #renemy's Mass Attack #gheals this creature instead."]
   },
   "${ModID}:Vibration": {
     "NAME": "Vibration",
@@ -300,7 +300,7 @@
   },
   "${ModID}:ContractOfMight": {
     "NAME": "Contract Of Might",
-    "DESCRIPTIONS": ["At the end of your turn, take #b", " damage and increase the damage you will take from this power by #b", "."]
+    "DESCRIPTIONS": ["You can only play #b", " cards per turn."]
   },
   "${ModID}:ContractOfLight": {
     "NAME": "Contract Of Light",
@@ -638,5 +638,9 @@
   "${ModID}:Fairy": {
     "NAME": "Fairy",
     "DESCRIPTIONS": ["Whenever this creature attacks, it loses #b", " HP. NL Whenever this creature is attacked, the attacker gains #b", " #yBlock."]
+  },
+  "${ModID}:FlameShield": {
+    "NAME": "Flame Shield",
+    "DESCRIPTIONS": ["Whenever you play an #yAttack, shuffle #b", " #yBurn+ into your discard pile. NL This power is removed when #yTempered #yPassion is removed."]
   }
 }

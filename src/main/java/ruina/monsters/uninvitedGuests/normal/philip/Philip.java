@@ -23,6 +23,7 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.philip.philipCards.*;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.FlameShield;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -54,11 +55,11 @@ public class Philip extends AbstractCardMonster
     public final int BLOCK = calcAscensionTankiness(10);
     public final int EVENTIDE_BURNS = 3;
     public final int STRENGTH = calcAscensionSpecial(2);
-    public final int SEARING_BURNS = calcAscensionSpecial(1);
+    public final int SEARING_BURNS = 1;
     public final int damageBonus = calcAscensionSpecial(30);
-    public final int damageReduction = 60;
-    public final int damageReductionDecay = 10;
-    private int TURNS_TILL_BONUS_INTENT = 3;
+    public final int damageReduction = calcAscensionSpecial(60);
+    public final int damageReductionDecay = calcAscensionSpecial(10);
+    public int TURNS_TILL_BONUS_INTENT = 3;
     public boolean gotBonusIntent = false;
     public int TURNS_TILL_BONUS_DAMAGE = 6;
     public boolean gotBonusDamage = false;
@@ -147,6 +148,8 @@ public class Philip extends AbstractCardMonster
             public void atEndOfRound() {
                 if (amount <= amount2) {
                     makePowerRemovable(this);
+                    makePowerRemovable(owner, FlameShield.POWER_ID);
+                    atb(new RemoveSpecificPowerAction(owner, owner, FlameShield.POWER_ID));
                 }
                 atb(new ReducePowerAction(owner, owner, this, amount2));
             }
@@ -156,6 +159,9 @@ public class Philip extends AbstractCardMonster
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1] + amount2 + POWER_DESCRIPTIONS[2];
             }
         });
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            applyToTarget(this, this, new FlameShield(this, 1));
+        }
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -294,11 +300,6 @@ public class Philip extends AbstractCardMonster
         gotBonusIntent = true;
         playSound("PhilipTransform", 2.0f);
         Summon();
-        //reset all the cooldowns
-        moveHistory.clear();
-        for (ArrayList<Byte> additionalMoveHistory : additionalMovesHistory) {
-            additionalMoveHistory.clear();
-        }
         atb(new RollMoveAction(malkuth)); //to make her roll for mass attack if she can
     }
 
@@ -345,21 +346,24 @@ public class Philip extends AbstractCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (moveHistory.size() >= 3 && !gotBonusIntent) {
-            moveHistory.clear();
-        }
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(SEARING) && !this.lastMoveBefore(SEARING)) {
-            possibilities.add(SEARING);
+        if (!gotBonusIntent) {
+            if (!this.lastMove(EVENTIDE)) {
+                possibilities.add(EVENTIDE);
+            }
         }
-        if (!this.lastMove(EVENTIDE) && !this.lastMoveBefore(EVENTIDE)) {
-            possibilities.add(EVENTIDE);
-        }
-        if (!this.lastMove(STIGMATIZE) && !this.lastMoveBefore(STIGMATIZE)) {
-            possibilities.add(STIGMATIZE);
+        if (!this.gotBonusDamage) {
+            if (!this.lastMove(SEARING)) {
+                possibilities.add(SEARING);
+            }
         }
         if (gotBonusIntent) {
-            if (!this.lastMove(SORROW) && !this.lastMoveBefore(SORROW)) {
+            if (!this.lastMove(STIGMATIZE)) {
+                possibilities.add(STIGMATIZE);
+            }
+        }
+        if (gotBonusDamage) {
+            if (!this.lastMove(SORROW)) {
                 possibilities.add(SORROW);
             }
         }
@@ -370,28 +374,32 @@ public class Philip extends AbstractCardMonster
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        if (moveHistory.size() >= 3 && !gotBonusIntent) {
-            moveHistory.clear();
-        }
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(SEARING, moveHistory) && !this.lastMoveBefore(SEARING, moveHistory)) {
+        if (!this.lastMove(SEARING, moveHistory)) {
             possibilities.add(SEARING);
         }
-        if (!this.lastMove(STIGMATIZE, moveHistory) && !this.lastMoveBefore(STIGMATIZE, moveHistory)) {
-            possibilities.add(STIGMATIZE);
+        if (whichMove == 0 && this.gotBonusIntent) {
+            if (!this.lastMove(STIGMATIZE, moveHistory)) {
+                possibilities.add(STIGMATIZE);
+            }
         }
-        if (whichMove == 0 && !gotBonusIntent) {
-            if (!this.lastMove(EMOTIONS, moveHistory) && !this.lastMoveBefore(EMOTIONS, moveHistory)) {
+        if (whichMove == 1 && this.gotBonusDamage) {
+            if (!this.lastMove(STIGMATIZE, moveHistory)) {
+                possibilities.add(STIGMATIZE);
+            }
+        }
+        if (whichMove == 0 && !gotBonusIntent && !gotBonusDamage) {
+            if (!this.lastMove(EMOTIONS, moveHistory)) {
                 possibilities.add(EMOTIONS);
             }
         }
-        if (whichMove == 1 && gotBonusIntent) {
-            if (!this.lastMove(EMOTIONS, moveHistory) && !this.lastMoveBefore(EMOTIONS, moveHistory)) {
+        if (whichMove == 1 && gotBonusIntent && !gotBonusDamage) {
+            if (!this.lastMove(EMOTIONS, moveHistory)) {
                 possibilities.add(EMOTIONS);
             }
         }
-        if (gotBonusIntent) {
-            if (!this.lastMove(SORROW, moveHistory) && !this.lastMoveBefore(SORROW, moveHistory)) {
+        if (gotBonusDamage) {
+            if (!this.lastMove(SORROW, moveHistory)) {
                 possibilities.add(SORROW);
             }
         }

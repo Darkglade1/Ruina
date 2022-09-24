@@ -1,5 +1,6 @@
 package ruina.powers;
 
+import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -17,7 +18,7 @@ public class ContractOfLight extends AbstractEasyPower {
     private static final int ENERGY = 2;
 
     public ContractOfLight(AbstractCreature owner) {
-        super(NAME, POWER_ID, PowerType.DEBUFF, false, owner, ENERGY);
+        super(NAME, POWER_ID, NeutralPowertypePatch.NEUTRAL, false, owner, ENERGY);
     }
 
     public void atStartOfTurnPostDraw() {

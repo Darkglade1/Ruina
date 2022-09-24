@@ -62,7 +62,7 @@ public class Tanya extends AbstractCardMonster
     private static final byte KICKS_AND_STOMPS = 4;
     private static final byte FISTICUFFS = 5;
 
-    public final int overspeedHits = 3;
+    public final int overspeedHits = 2;
     public final int kicksAndStompsHits = 2;
 
     private static final int MASS_ATTACK_COOLDOWN = 3; //cooldown resets to 3
@@ -74,8 +74,8 @@ public class Tanya extends AbstractCardMonster
     public final int METALLICIZE_GAIN = calcAscensionSpecial(5);
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int WEAK = calcAscensionSpecial(1);
-    public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(5);
-    public final int GUTS_STRENGTH = calcAscensionSpecial(2);
+    public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(8);
+    public final int GUTS_STRENGTH = calcAscensionSpecial(3);
     public Gebura gebura;
     private boolean usingMassAttack = false;
 
@@ -98,7 +98,7 @@ public class Tanya extends AbstractCardMonster
         }
         this.setHp(calcAscensionTankiness(450));
 
-        addMove(OVERSPEED, Intent.ATTACK, calcAscensionDamage(20), overspeedHits, true);
+        addMove(OVERSPEED, Intent.ATTACK, calcAscensionDamage(30), overspeedHits, true);
         addMove(BEATDOWN, IntentEnums.MASS_ATTACK, calcAscensionDamage(28));
         addMove(INTIMIDATE, Intent.DEFEND_BUFF);
         addMove(LUPINE_ASSAULT, Intent.ATTACK_DEFEND, calcAscensionDamage(22));
@@ -138,6 +138,9 @@ public class Tanya extends AbstractCardMonster
         });
         applyToTarget(this, this, new PlatedArmorPower(this, INITIAL_PLATED_ARMOR));
         block(this, INITIAL_PLATED_ARMOR);
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            applyToTarget(this, this, new BarricadePower(this));
+        }
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -312,7 +315,9 @@ public class Tanya extends AbstractCardMonster
         if (this.firstMove) {
             firstMove = false;
         }
-        atb(new RemoveAllBlockAction(this, this));
+        if (AbstractDungeon.ascensionLevel < 19) {
+            atb(new RemoveAllBlockAction(this, this));
+        }
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
@@ -394,20 +399,7 @@ public class Tanya extends AbstractCardMonster
 
     @Override
     public void damage(DamageInfo info) {
-        int previousHealth = currentHealth;
         super.damage(info);
-        int nextHealth = currentHealth;
-        int difference = previousHealth - nextHealth;
-        if (difference > 0) {
-            AbstractPower relentless = gebura.getPower(Gebura.R_POWER_ID);
-            if (relentless != null) {
-                relentless.amount -= difference;
-                if (relentless.amount < 0) {
-                    relentless.amount = 0;
-                }
-                relentless.updateDescription();
-            }
-        }
         if (this.currentHealth <= 0 && !this.halfDead) {
             this.halfDead = true;
             Iterator var2 = this.powers.iterator();
@@ -426,7 +418,7 @@ public class Tanya extends AbstractCardMonster
 
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power instanceof PlatedArmorPower) && !(power instanceof MetallicizePower) && !(power instanceof StrengthPower) && !(power instanceof GainStrengthPower) && !(power instanceof InvisibleBarricadePower) && !(power instanceof StunMonsterPower)) {
+                if (!(power instanceof PlatedArmorPower) && !(power instanceof MetallicizePower) && !(power instanceof StrengthPower) && !(power instanceof GainStrengthPower) && !(power instanceof InvisibleBarricadePower) && !(power instanceof BarricadePower) && !(power instanceof StunMonsterPower)) {
                     powersToRemove.add(power);
                 }
             }
