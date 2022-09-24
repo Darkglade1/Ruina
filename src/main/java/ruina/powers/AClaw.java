@@ -19,9 +19,12 @@ public class AClaw extends AbstractUnremovablePower implements OnReceivePowerPow
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private boolean active = true;
+    private int kill_threshold;
 
-    public AClaw(AbstractCreature owner) {
+    public AClaw(AbstractCreature owner, int kill_threshold) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, 0);
+        this.kill_threshold = kill_threshold;
+        updateDescription();
     }
 
     @Override
@@ -52,5 +55,5 @@ public class AClaw extends AbstractUnremovablePower implements OnReceivePowerPow
     }
 
     @Override
-    public void updateDescription() { this.description = DESCRIPTIONS[0]; }
+    public void updateDescription() { this.description = DESCRIPTIONS[0] + kill_threshold + DESCRIPTIONS[1]; }
 }

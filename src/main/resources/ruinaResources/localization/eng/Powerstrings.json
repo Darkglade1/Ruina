@@ -425,7 +425,7 @@
   },
   "${ModID}:AClaw": {
     "NAME": "A Claw",
-    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL Whenever this creature gains #yStrength, it gains twice as much."]
+    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL Whenever this creature gains #yStrength, it gains twice as much. NL After reaching #b", " #yStrength, will begin to frequently use a #rlethal attack on you."]
   },
   "${ModID}:AnArbiter": {
     "NAME": "An Arbiter",
@@ -625,11 +625,11 @@
   },
   "${ModID}:SingularityT": {
     "NAME": "Singularity T",
-    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards.", "Degraded Singularity T"]
+    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards. NL If the other #renemy #rdies, this power is #yupgraded.", "Degraded Singularity T"]
   },
   "${ModID}:SingularityJ": {
     "NAME": "Singularity J",
-    "DESCRIPTIONS": ["Each combatant can only apply #b", " #ydebuff(s) to this creature per turn. NL NL Each combatant can only deal attack damage to this creature #b", " time(s) per turn.", "Degraded Singularity J"]
+    "DESCRIPTIONS": ["Each combatant can only apply #b", " #ydebuff(s) to this creature per turn. NL Each combatant can only deal attack damage to this creature #b", " time(s) per turn. NL If the other #renemy #rdies, this power is #yupgraded and this creature becomes #renraged.", "Degraded Singularity J"]
   },
   "${ModID}:SingularityF": {
     "NAME": "Singularity F",

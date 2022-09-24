@@ -166,7 +166,7 @@ public class Baral extends AbstractCardMonster
         numAdditionalMoves++;
         rollMove();
         createIntent();
-        applyToTarget(this, this, new AClaw(this));
+        applyToTarget(this, this, new AClaw(this, KILL_THRESHOLD));
         if (AbstractDungeon.ascensionLevel >= 19) {
             applyToTarget(this, this, new SingularityT(this));
         }

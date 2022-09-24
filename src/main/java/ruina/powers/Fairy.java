@@ -21,7 +21,7 @@ public class Fairy extends AbstractEasyPower {
     private final int damageMultiplier = 2;
 
     public Fairy(AbstractCreature owner, int amount) {
-        super(NAME, POWER_ID, PowerType.DEBUFF, true, owner, amount);
+        super(NAME, POWER_ID, PowerType.DEBUFF, false, owner, amount);
     }
 
     @Override
