@@ -1370,5 +1370,24 @@
     "NAME": "Silent Girl",
     "DIALOG": [
     ]
+  },
+  "${ModID}:FinalAngela": {
+    "MOVES": [
+      "plc",
+      "plc",
+      "plc",
+      "plc",
+      "plc",
+      "plc",
+      "plc",
+      "plc",
+      "plc",
+      "plc",
+      "plc",
+      "plc"
+    ],
+    "NAME": "Regret Made Manifest",
+    "DIALOG": [
+    ]
   }
 }
