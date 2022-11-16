@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.screens.stats.StatsScreen;
 import ruina.monsters.day49.Act5Angela;
 import ruina.monsters.day49.dialogue.Day49PhaseTransition5;
-import ruina.monsters.theHead.Baral;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
 
 public class Day49PhaseTransition5Action extends AbstractGameAction {
     boolean started = false;
@@ -32,7 +32,7 @@ public class Day49PhaseTransition5Action extends AbstractGameAction {
             ++AbstractDungeon.bossCount;
             StatsScreen.incrementBossSlain();
             if(AbstractDungeon.bossList.isEmpty()){ AbstractDungeon.bossList.add("Hexaghost"); }
-            AbstractDungeon.bossKey = Baral.ID;
+            AbstractDungeon.bossKey = TreeOfLifeManager.ID;
             CardCrawlGame.music.fadeOutBGM();
             CardCrawlGame.music.fadeOutTempBGM();
             MapRoomNode node = new MapRoomNode(-1, 15);

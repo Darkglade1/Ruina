@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.screens.stats.StatsScreen;
 import ruina.monsters.day49.Act3Angela;
 import ruina.monsters.day49.dialogue.Day49PhaseTransition1;
 import ruina.monsters.day49.dialogue.Day49PhaseTransition2;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
 
 public class Day49PhaseTransition2Action extends AbstractGameAction {
     boolean started = false;

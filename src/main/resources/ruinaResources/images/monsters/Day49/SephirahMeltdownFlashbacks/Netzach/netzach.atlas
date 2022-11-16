@@ -1,0 +1,97 @@
+
+netzach.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 474, 352
+  size: 201, 158
+  orig: 201, 158
+  offset: 0, 0
+  index: -1
+2
+  rotate: true
+  xy: 340, 2
+  size: 46, 146
+  orig: 46, 146
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 929, 375
+  size: 48, 135
+  orig: 48, 135
+  offset: 0, 0
+  index: -1
+4
+  rotate: true
+  xy: 2, 19
+  size: 194, 336
+  orig: 194, 336
+  offset: 0, 0
+  index: -1
+5
+  rotate: false
+  xy: 546, 204
+  size: 51, 53
+  orig: 51, 53
+  offset: 0, 0
+  index: -1
+6
+  rotate: false
+  xy: 599, 269
+  size: 60, 81
+  orig: 60, 81
+  offset: 0, 0
+  index: -1
+7
+  rotate: false
+  xy: 474, 259
+  size: 123, 91
+  orig: 123, 91
+  offset: 0, 0
+  index: -1
+8
+  rotate: false
+  xy: 838, 366
+  size: 89, 144
+  orig: 89, 144
+  offset: 0, 0
+  index: -1
+9
+  rotate: true
+  xy: 340, 50
+  size: 163, 111
+  orig: 163, 111
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 2, 215
+  size: 470, 295
+  orig: 470, 295
+  offset: 0, 0
+  index: -1
+body 2
+  rotate: false
+  xy: 677, 358
+  size: 159, 152
+  orig: 159, 152
+  offset: 0, 0
+  index: -1
+eye
+  rotate: false
+  xy: 979, 483
+  size: 26, 27
+  orig: 26, 27
+  offset: 0, 0
+  index: -1
+face
+  rotate: true
+  xy: 474, 194
+  size: 63, 70
+  orig: 63, 70
+  offset: 0, 0
+  index: -1

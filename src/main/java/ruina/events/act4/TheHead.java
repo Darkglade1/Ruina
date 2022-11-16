@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import ruina.RuinaMod;
 import ruina.dungeons.BlackSilence;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.TreeOfLifeManager;
 import ruina.monsters.theHead.Baral;
 
 import static ruina.RuinaMod.*;
