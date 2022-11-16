@@ -718,10 +718,14 @@
   },
   "${ModID}:PaleLibrarian": {
     "NAME": "Pale Librarian",
-    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards in a single turn. NL This creature only acts on its #b1st intent. Its #b2nd intent is a preview of its next move if the effect of #rEulogistic #rLullaby activates, and its #b3rd intent is a preview of its move next turn."]
+    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards in a single turn. NL This creature only acts on its #b1st intent. Its #b2nd intent is a preview of its next move if the former effect activated this turn, and its #b3rd intent is a preview of its move next turn."]
   },
   "${ModID}:EulogisticLullaby": {
     "NAME": "Imperfect Paradise - An Eulogistic Lullaby",
-    "DESCRIPTIONS": ["The first card you play each turn is negated. NL Also, send the top #b cards of your draw pile to the discard pile. NL At the start of each turn, shuffle #b #yAnguish into your draw pile."]
+    "DESCRIPTIONS": ["Negate the effects of the first card played each turn, and send the top #b cards of your draw pile to the discard pile. NL At the start of each turn, shuffle #b #yAnguish into your draw pile."]
   },
+  "${ModID}:OneTrueSorrow": {
+    "NAME": "One True Sorrow - Shadow Of A Former Self",
+    "DESCRIPTIONS": ["At the end of each turn, #yExhaust random cards in your discard pile equal to the amount of leftover energy, starting with higher rarity cards."]
+  }
 }
