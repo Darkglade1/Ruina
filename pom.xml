@@ -72,6 +72,13 @@
             <scope>system</scope>
             <systemPath>${Steam.path}/workshop/content/646570/2689018131/CorruptTheSpire.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.evacipated.cardcrawl.mod</groupId>
+            <artifactId>BundleOfPotions</artifactId>
+            <version>1.0.0</version>
+            <scope>system</scope>
+            <systemPath>${Steam.path}/workshop/content/646570/2889885168/bundle_of_potions.jar</systemPath>
+        </dependency>
     </dependencies>
 
 
