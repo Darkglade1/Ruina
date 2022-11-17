@@ -1069,5 +1069,15 @@
   "${ModID}:Suppress": {
     "NAME": "Don't Suppress Your Heart",
     "DESCRIPTION": "This creature removes ALL of its debuffs. NL Gain !B! Block. NL This creature heals for *25% of its Max HP. NL Gain !M! Strength."
+  },
+
+  "${ModID}:Desolation": {
+    "NAME": "Desolation",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL *Invoke memories of the past."
+  },
+
+  "${ModID}:FurtherDesolation": {
+    "NAME": "Further Desolation",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL *Reset *things *to *the *beginning. NL  *Invoke memories of the past."
   }
 }

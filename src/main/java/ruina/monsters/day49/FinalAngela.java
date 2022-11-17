@@ -3,6 +3,7 @@ package ruina.monsters.day49;
 import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -22,8 +23,12 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
+import ruina.cards.Guilt;
 import ruina.monsters.AbstractCardMonster;
+import ruina.monsters.act3.silentGirl.DummyHammer;
+import ruina.monsters.act3.silentGirl.DummyNail;
 import ruina.monsters.blackSilence.blackSilence1.cards.*;
+import ruina.monsters.day49.ui.TreeOfLife;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 import ruina.util.AdditionalIntent;
@@ -41,6 +46,8 @@ public class FinalAngela extends AbstractCardMonster {
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
+
+    private TreeOfLife treeOfLife = new TreeOfLife();
 
     private static final byte CRYSTAL = 0;
     private static final byte WHEELS = 1;
@@ -102,12 +109,15 @@ public class FinalAngela extends AbstractCardMonster {
     public static final String KILLING_POWER_NAME = KillingpowerStrings.NAME;
     public static final String[] KILLING_POWER_DESCRIPTIONS = KillingpowerStrings.DESCRIPTIONS;
 
+    private DummyHammer hammer = new DummyHammer(100.0f, 0.0f);
+    private DummyNail nail = new DummyNail(-300.0f, 0.0f);
+
     public FinalAngela() {
         this(0.0f, 0.0f);
     }
 
     public FinalAngela(final float x, final float y) {
-        super(NAME, ID, 1000, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(NAME, ID, 9999, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence1/Spriter/BlackSilence1.scml"));
         animation.setFlip(true, false);
         this.setHp(calcAscensionTankiness(1000));
@@ -141,6 +151,7 @@ public class FinalAngela extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
+        treeOfLife.init();
         CustomDungeon.playTempMusicInstantly("Roland1");
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
             @Override
@@ -568,4 +579,19 @@ public class FinalAngela extends AbstractCardMonster {
         animationAction("Slash", "RolandDualSword", enemy, this);
     }
 
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if (!this.isDeadOrEscaped()) {
+            hammer.render(sb);
+            nail.render(sb);
+            treeOfLife.render(sb);
+        }
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        treeOfLife.update();
+    }
 }

@@ -1038,6 +1038,7 @@ public class RuinaMod implements
         BaseMod.addMonster(Act3Angela.ID, (BaseMod.GetMonster) Act3Angela::new);
         BaseMod.addMonster(Act4Angela.ID, (BaseMod.GetMonster) Act4Angela::new);
         BaseMod.addMonster(Act5Angela.ID, (BaseMod.GetMonster) Act5Angela::new);
+        BaseMod.addMonster(FinalAngela.ID, (BaseMod.GetMonster) FinalAngela::new);
 
         // Post Angela5 Fakeout
         BaseMod.addMonster(TreeOfLifeManager.ID, (BaseMod.GetMonster) TreeOfLifeManager::new);

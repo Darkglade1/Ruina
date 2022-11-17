@@ -727,5 +727,40 @@
   "${ModID}:OneTrueSorrow": {
     "NAME": "One True Sorrow - Shadow Of A Former Self",
     "DESCRIPTIONS": ["At the end of each turn, #yExhaust random cards in your discard pile equal to the amount of leftover energy, starting with higher rarity cards."]
+  },
+
+  "${ModID}:FlashbackMemory": {
+    "NAME": "Memory Imprint",
+    "DESCRIPTIONS": ["Deal {X} more damage to exit the memory."]
+  },
+
+  "${ModID}:FlashbackMalkuth": {
+    "NAME": "Memory Imprinted: Malkuth",
+    "DESCRIPTIONS": ["A green smoke occasionally covers the screen. NL The types of your cards become randomised at the start of each turn. NL Whenever you play an #rAttack, this creature gains #b{x} #yStrength. NL Whenever you play a #gSkill, ??? NL Whenever you play a power, ???"]
+  },
+
+  "${ModID}:FlashbackYesod": {
+    "NAME": "Memory Imprinted: Yesod",
+    "DESCRIPTIONS": ["The screen occasionally becomes pixelated. NL The names of your cards become jumbled and their art is covered with static."]
+  },
+
+  "${ModID}:FlashbackHod": {
+    "NAME": "Memory Imprinted: Hod",
+    "DESCRIPTIONS": ["A CRT filter covers the screen. NL -7 strength -7 dexterity"]
+  },
+
+  "${ModID}:FlashbackNetzach": {
+    "NAME": "Memory Imprinted: Netzach",
+    "DESCRIPTIONS": ["A green smoke occasionally covers the screen. NL You cannot heal."]
+  },
+
+  "${ModID}:FlashbackTiphereth": {
+    "NAME": "Memory Imprinted: Tiphereth",
+    "DESCRIPTIONS": ["????."]
+  },
+
+  "${ModID}:FlashbackGebura": {
+    "NAME": "Memory Imprinted: Tiphereth",
+    "DESCRIPTIONS": ["Demon Form"]
   }
 }

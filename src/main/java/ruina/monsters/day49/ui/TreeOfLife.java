@@ -3,7 +3,9 @@ package ruina.monsters.day49.ui;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import ruina.RuinaMod;
 import ruina.util.TexLoader;
 
@@ -14,7 +16,7 @@ import static ruina.monsters.day49.ui.FloorTYPE.*;
 
 public class TreeOfLife {
 
-    private float renderX = 800F * Settings.scale;
+    private float renderX = 700F * Settings.scale;
     private float renderY = 300F * Settings.scale;
     private ArrayList<FloorOption> floorOptions = new ArrayList<>();
     public static final String TREE_PATH = RuinaMod.makeVfxPath("TreeOfLife.png");
@@ -23,6 +25,7 @@ public class TreeOfLife {
     public TreeOfLife(){ }
 
     public void init(){
+
         floorOptions.clear();
         floorOptions.add(new FloorOption(MALKUTH, ASIYAH));
         floorOptions.add(new FloorOption(YESOD, ASIYAH));
