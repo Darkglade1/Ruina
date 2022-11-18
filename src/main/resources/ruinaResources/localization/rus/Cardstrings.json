@@ -281,7 +281,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "Контракт могущества",
-    "DESCRIPTION": "Даёт !M! Силы. NL В конце каждого вашего хода наносит !ruina:SecondMagic! урона вам и повышает получаемый урон от этого эффекта на !ruina:SecondMagic!."
+    "DESCRIPTION": "Даёт !M! Силы. NL Вы можете играть только в !ruina:Second Magic! карт за ход."
   },
   "ruina:ContractOfLight": {
     "NAME": "Контракт света",
@@ -381,15 +381,20 @@
   },
   "ruina:Pillar": {
     "NAME": "Поблёкший столб",
-    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона."
+    "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона.",
+    "UPGRADE_DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона. NL Подать заявку !М! *Сказочный.",
+    "EXTENDED_DESCRIPTION": ["Столб"]
   },
   "ruina:Fairy": {
     "NAME": "Поблёкшая фея",
-    "DESCRIPTION": "Наносит !D! урона !M! раза."
+    "DESCRIPTION": "Наносит !D! урона !M! раза.",
+    "EXTENDED_DESCRIPTION": ["Сказочный"]
   },
   "ruina:Chain": {
     "NAME": "Поблёкшая цепь",
-    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости."
+    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости.",
+    "UPGRADE_DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! Слабости и !M! Уязвимости.",
+    "EXTENDED_DESCRIPTION": ["Цепь"]
   },
   "ruina:Climax": {
     "NAME": "Близится финал",
@@ -774,7 +779,7 @@
   },
   "ruina:SerumK": {
     "NAME": "Сыворотка K",
-    "DESCRIPTION": "Даёт !B! Защиты и восполняет !M! ОЗ соратнику с наименьшим запасом ОЗ."
+    "DESCRIPTION": "Даёт !B! Защиты и восполняет !M! ОЗ соратнику с наименьшим запасом ОЗ и получает !ruina:SecondMagic! Сила на следующий ход."
   },
   "ruina:Line": {
     "NAME": "Линия",
@@ -790,7 +795,11 @@
   },
   "ruina:ZenaShockwave": {
     "NAME": "Ударная волна",
-    "DESCRIPTION": "Наносит !D! урона ВСЕМ врагам."
+    "DESCRIPTION": "Если есть только 1 враг, мгновенно убейте его. NL Наносит !D! урона ВСЕМ врагам."
+  },
+  "${ModID}:Birdcage": {
+    "NAME": "клетка для птиц",
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Применить !ruina:SecondMagic! Фея для ВСЕХ врагов."
   },
   "ruina:Marionette": {
     "NAME": "Марионетка",

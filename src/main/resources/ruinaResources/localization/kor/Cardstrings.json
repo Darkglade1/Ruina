@@ -281,7 +281,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "힘의 계약",
-    "DESCRIPTION": "힘을 !M! 얻습니다. NL 턴 종료시, 피해를 !ruina:SecondMagic! 받고, 이 효과로 받는 피해량이 !ruina:SecondMagic! 만큼 증가합니다."
+    "DESCRIPTION": "힘을 !M! 얻습니다. NL !ruina:Second Magic! 만 플레이할 수 있습니다! 턴당 카드."
   },
   "ruina:ContractOfLight": {
     "NAME": "빛의 계약",
@@ -381,15 +381,20 @@
   },
   "ruina:Pillar": {
     "NAME": "열화된 기둥",
-    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다."
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다.",
+    "UPGRADE_DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다. NL 신청하세요 !M! *요정.",
+    "EXTENDED_DESCRIPTION": ["기둥"]
   },
   "ruina:Fairy": {
     "NAME": "열화된 요정",
-    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다.",
+    "EXTENDED_DESCRIPTION": ["요정"]
   },
   "ruina:Chain": {
     "NAME": "열화된 사슬",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화를 !M! 부여합니다."
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화를 !M! 부여합니다.",
+    "UPGRADE_DESCRIPTION": "피해를 !D! 줍니다. NL 약화와 취약을 !M! 부여합니다.",
+    "EXTENDED_DESCRIPTION": ["체인"]
   },
   "ruina:Climax": {
     "NAME": "클라이막스",
@@ -774,7 +779,7 @@
   },
   "ruina:SerumK": {
     "NAME": "혈청 K",
-    "DESCRIPTION": "가장 체력이 낮은 아군에게 방어도를 !B! 부여하고 체력을 !M! 회복시킵니다."
+    "DESCRIPTION": "가장 체력이 낮은 아군에게 방어도를 !B! 부여하고 체력을 !M! 회복시킵니다 그리고 !ruina:SecondMagic! 다음 턴의 힘."
   },
   "ruina:Line": {
     "NAME": "선",
@@ -790,7 +795,11 @@
   },
   "ruina:ZenaShockwave": {
     "NAME": "충격파",
-    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다."
+    "DESCRIPTION": "적이 1명뿐이라면 즉시 죽인다. NL 적 전체에게 피해를 !D! 줍니다."
+  },
+  "${ModID}:Birdcage": {
+    "NAME": "새장",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL !ruina:SecondMagic! 을 적용하세요 모든 적에게 요정."
   },
   "ruina:Marionette": {
     "NAME": "꼭두각시",

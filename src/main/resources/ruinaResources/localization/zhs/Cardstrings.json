@@ -281,7 +281,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "力量合同",
-    "DESCRIPTION": "获得 !M! 点 力量 。 NL 在你的回合结束时，受到 !ruina:SecondMagic! 点伤害然后增加你下次受到的伤害 !ruina:SecondMagic! 点。"
+    "DESCRIPTION": "获得 !M! 点 力量 。 NL 你只能玩 !ruina:Second Magic！ 每回合卡。"
   },
   "ruina:ContractOfLight": {
     "NAME": "光明合同",
@@ -381,15 +381,20 @@
   },
   "ruina:Pillar": {
     "NAME": "劣化之柱",
-    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。 NL 申请 !M! *仙女。",
+    "EXTENDED_DESCRIPTION": ["支柱"]
   },
   "ruina:Fairy": {
     "NAME": "劣化妖灵",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。",
+    "EXTENDED_DESCRIPTION": ["仙女"]
   },
   "ruina:Chain": {
     "NAME": "劣化之链",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。NL 给予 !M! 层 虚弱 和 易伤 。",
+    "EXTENDED_DESCRIPTION": ["链"]
   },
   "ruina:Climax": {
     "NAME": "逐渐上涨的高潮",
@@ -774,7 +779,7 @@
   },
   "ruina:SerumK": {
     "NAME": "血清-K",
-    "DESCRIPTION": "血量最低的友方获得 !B! 点 格挡 并恢复 !M! 点生命。"
+    "DESCRIPTION": "血量最低的友方获得 !B! 点 格挡 并恢复 !M! 点生命 并获得 !ruina:SecondMagic! 下一回合力量。"
   },
   "ruina:Line": {
     "NAME": "线",
@@ -790,7 +795,11 @@
   },
   "ruina:ZenaShockwave": {
     "NAME": "震击",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。"
+    "DESCRIPTION": "如果只有 1 个敌人，则立即将其杀死。NL 对所有敌人造成 !D! 点伤害。"
+  },
+  "${ModID}:Birdcage": {
+    "NAME": "鸟笼",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 申请 !ruina:SecondMagic! 所有敌人的童话。"
   },
   "ruina:Marionette": {
     "NAME": "提线木偶",

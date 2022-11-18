@@ -281,7 +281,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "力の契約",
-    "DESCRIPTION": "筋力 !M! を得る。 あなたのターン終了時、 NL !ruina:SecondMagic! ダメージを受け、この効果のダメージが NL !ruina:SecondMagic! 増える。"
+    "DESCRIPTION": "筋力 !M! を得る。 あなたのターン終了時、 NL !ruina:Second Magic のみプレイできます。 ターンごとのカード。"
   },
   "ruina:ContractOfLight": {
     "NAME": "光の契約",
@@ -381,15 +381,20 @@
   },
   "ruina:Pillar": {
     "NAME": "劣化した柱",
-    "DESCRIPTION": " !B! ブロック を得る。 NL !D! ダメージを与える。"
+    "DESCRIPTION": " !B! ブロック を得る。 NL !D! ダメージを与える。",
+    "UPGRADE_DESCRIPTION": " !B! ブロック を得る。 NL !D! ダメージを与える。 NL 適用 !M! *妖精。",
+    "EXTENDED_DESCRIPTION": ["柱"]
   },
   "ruina:Fairy": {
     "NAME": "劣化した妖精",
-    "DESCRIPTION": " !D! ダメージを !M! 回与える。"
+    "DESCRIPTION": " !D! ダメージを !M! 回与える。",
+    "EXTENDED_DESCRIPTION": ["妖精"]
   },
   "ruina:Chain": {
     "NAME": "劣化した鎖",
-    "DESCRIPTION": "!D! ダメージを与える。 NL 脱力 !M! を与える。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL 脱力 !M! を与える。",
+    "UPGRADE_DESCRIPTION": "!D! ダメージを与える。 NL 弱体 と 脱力 !M! を与える。",
+    "EXTENDED_DESCRIPTION": ["鎖"]
   },
   "ruina:Climax": {
     "NAME": "クライマックス！！！",
@@ -774,7 +779,7 @@
   },
   "ruina:SerumK": {
     "NAME": "血清K",
-    "DESCRIPTION": "もっともHPの低い味方は !B! ブロック を得て、HPを !M! 回復する。"
+    "DESCRIPTION": "もっともHPの低い味方は !B! ブロック を得て、HPを !M! 回復する ルイナ：セカンドマジック !ruina:SecondMagic! 次のターンの強さ。"
   },
   "ruina:Line": {
     "NAME": "線",
@@ -790,7 +795,11 @@
   },
   "ruina:ZenaShockwave": {
     "NAME": "衝撃波",
-    "DESCRIPTION": "全ての敵に !D! ダメージを与える。"
+    "DESCRIPTION": "敵が1体の場合は即死。NL 全ての敵に !D! ダメージを与える。"
+  },
+  "${ModID}:Birdcage": {
+    "NAME": "鳥かご",
+    "DESCRIPTION": " !D! ダメージを !M! 回与える。 NL !ruina:SecondMagic! 適用 すべての敵の妖精。"
   },
   "ruina:Marionette": {
     "NAME": "操り人形",
