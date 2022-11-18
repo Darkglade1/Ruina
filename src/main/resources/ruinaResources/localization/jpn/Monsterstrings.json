@@ -972,6 +972,8 @@
     ],
     "NAME": "ジェナ",
     "DIALOG": [
+      "あなたはなんて価値のないエンフォーサーでした。 。 。",
+      "私をここまで追い込んだことを後悔させます。"
     ]
   },
   "ruina:Baral": {
@@ -984,6 +986,7 @@
     ],
     "NAME": "バラル",
     "DIALOG": [
+      "アービターを落とすなんて、なんて恥ずべきことだ。 。 。 "
     ]
   },
   "ruina:SilentGirl": {
@@ -1307,6 +1310,18 @@
       "立派な獲物だな。素晴らしい!",
       "騒がしいな。 まとめて撃ち抜いてやろう。",
       "一人減った。あと一人だな。"
+    ]
+  },
+  "${ModID}:Kim": {
+    "MOVES": [
+      "Yield My Flesh",
+      "To Claim Their Bones",
+      "And Take One's Life",
+      "Acupuncture"
+    ],
+    "NAME": "The Sword Saint",
+    "DIALOG": [
+
     ]
   }
 }

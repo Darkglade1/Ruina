@@ -92,5 +92,40 @@
     "DESCRIPTIONS": [
       "戦闘開始時 #y筋力 #b" , " を得る。 NL #yアタック を #b", " 枚プレイする度 #b", " ダメージを受ける。"
     ]
+  },
+  "${ModID}:Greed": {
+    "NAME": "Memory of Devouring Greed",
+    "FLAVOR": "She ended up eating away anything in her sight. Now, only visceral greed remains.",
+    "DESCRIPTIONS": [
+      "At the start of combat, #yExhaust up to #b"," card. Gain #yGold based on the rarity (rarer cards give more #yGold)."
+    ]
+  },
+  "${ModID}:Despair": {
+    "NAME": "Memory of Overwhelming Despair",
+    "FLAVOR": "As with sorrow, perhaps sharing the burden will blunt the edge.",
+    "DESCRIPTIONS": [
+      "The first time you #yExhaust a card each turn, gain #b", " #yBlock."
+    ]
+  },
+  "${ModID}:Hate": {
+    "NAME": "Memory of Boundless Hate",
+    "FLAVOR": "She vowed to love everything in the world, but all that was left was a collapsing heart.",
+    "DESCRIPTIONS": [
+      "Whenever you lose HP, gain #b", " #yStrength."
+    ]
+  },
+  "${ModID}:BrokenHeart": {
+    "NAME": "Memory of Broken Hearts",
+    "FLAVOR": "So this little lady has made a decision! To stay here and never leave until laughter is restored to this place!",
+    "DESCRIPTIONS": [
+      "At the start of combat, gain [E] [E] and #b", " #yruina:Bleed."
+    ]
+  },
+  "${ModID}:EGOBook": {
+    "NAME": "Book of E.G.O.",
+    "FLAVOR": "There is a light within all of us. A light that will one day break free and change the world.",
+    "DESCRIPTIONS": [
+      "At the end of your turn, #yExhaust a random #pCurse in your hand. NL Whenever a #pCurse is #yExhausted, add a random #yEGO card to your hand and give it #yRetain."
+    ]
   }
 }

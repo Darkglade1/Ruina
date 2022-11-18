@@ -973,6 +973,8 @@
     ],
     "NAME": "Зина",
     "DIALOG": [
+      "Каким бесполезным энфорсером ты был. . .",
+      "Я заставлю тебя пожалеть, что подтолкнула меня к этому моменту."
     ]
   },
   "ruina:Baral": {
@@ -985,6 +987,7 @@
     ],
     "NAME": "Барал",
     "DIALOG": [
+      "Как позорно с моей стороны позволить арбитру упасть. . ."
     ]
   },
   "ruina:SilentGirl": {
@@ -1308,6 +1311,18 @@
       "How wonderful it is to have such fine prey appear before me!",
       "Cease your ramblings, mutt! I shall put both of you down!",
       "One down, one to go."
+    ]
+  },
+  "${ModID}:Kim": {
+    "MOVES": [
+      "Yield My Flesh",
+      "To Claim Their Bones",
+      "And Take One's Life",
+      "Acupuncture"
+    ],
+    "NAME": "The Sword Saint",
+    "DIALOG": [
+
     ]
   }
 }
