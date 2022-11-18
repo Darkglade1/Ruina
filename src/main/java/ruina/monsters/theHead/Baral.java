@@ -41,10 +41,7 @@ import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.baralCards.*;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.patches.RenderHandPatch;
-import ruina.powers.AClaw;
-import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.PlayerBlackSilence;
-import ruina.powers.SingularityT;
+import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -527,7 +524,23 @@ public class Baral extends AbstractCardMonster
                 takeCustomTurn(additionalMove, roland);
             }
         }
-        atb(new RollMoveAction(this));
+
+        // Make Serum K give the Strength at end of Baral's turn if he took a turn during the player's turn
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (!AbstractDungeon.actionManager.turnHasEnded) {
+                    for (AbstractPower power : Baral.this.powers) {
+                        if (power instanceof NextTurnPowerPower) {
+                            power.atEndOfRound();
+                        }
+                    }
+                }
+                this.isDone = true;
+            }
+        });
+
+        atb(new RollMoveAction(Baral.this));
 
         if(currentPhase.equals(PHASE.PHASE1)){
             switch (GameActionManager.turn){
