@@ -1,8 +1,10 @@
 package ruina.monsters.blackSilence.blackSilence3;
 
+import basemod.ReflectionHacks;
 import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
@@ -15,10 +17,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -90,9 +89,15 @@ public class Angelica extends AbstractCardMonster {
         cardList.add(new ZelkovaWorkshop(this));
         cardList.add(new AllasWorkshop(this));
         cardList.add(new AtelierLogic(this));
-        cardList.add(new WaltzInWhite(this));
-        cardList.add(new AshenBond(this));
-        bond = new AshenBond(this);
+        AbstractCard waltz = new WaltzInWhite(this);
+        AbstractCard ashenBond = new AshenBond(this);
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            waltz.upgrade();
+            ashenBond.upgrade();
+        }
+        cardList.add(waltz);
+        cardList.add(ashenBond);
+        bond = ashenBond.makeStatEquivalentCopy();
     }
 
     public void usePreBattleAction() {
@@ -187,10 +192,14 @@ public class Angelica extends AbstractCardMonster {
             }
             case ASHENBOND:
                 guardAnimation();
+                int effectMultiplier = 1;
+                if (AbstractDungeon.ascensionLevel >= 19 && !isRolandAttacking()) {
+                    effectMultiplier = 2;
+                }
                 for (AbstractMonster mo : monsterList()) {
                     if (!mo.isDeadOrEscaped()) {
-                        block(mo, bondBlock);
-                        applyToTarget(mo, this, new StrengthPower(this, bondStrength));
+                        block(mo, bondBlock * effectMultiplier);
+                        applyToTarget(mo, this, new StrengthPower(this, bondStrength * effectMultiplier));
                     }
                 }
                 resetIdle();
@@ -298,6 +307,25 @@ public class Angelica extends AbstractCardMonster {
         if (this.particleTimer < 0.0F) {
             this.particleTimer = 0.04F;
             AbstractDungeon.effectsQueue.add(new FlexibleWrathParticleEffect(this, Color.WHITE.cpy()));
+        }
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        if (this.nextMove == WALTZ && AbstractDungeon.ascensionLevel >= 19) {
+            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
+            info.applyPowers(this, adp());
+            if (isRolandAttacking()) {
+                info.output *= 2;
+            }
+            if (this.hasPower(BackAttackPower.POWER_ID)) {
+                info.output = (int)((float)info.output * 1.5F);
+            }
+            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+            Texture attackImg = getAttackIntent(info.output * waltzHits);
+            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
+            updateCard();
         }
     }
 

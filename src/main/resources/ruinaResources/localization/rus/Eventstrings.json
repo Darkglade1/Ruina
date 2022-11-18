@@ -740,5 +740,128 @@
     ],
     "OPTIONS": [
     ]
+  },
+  "ruina:WanderingSamurai": {
+    "NAME": "Wandering Samurai",
+    "DESCRIPTIONS": [
+      "You spot a lone figure in the distance, a #ychance encounter with a wandering swordsman looking for someone to test themselves against. NL You seem them raise their sword, challenging you.",
+      "You turn tail and run. Although you felt that heeding your self-preservation instinct was the best choice, you couldn't help but feel a bit #pshameful about it."
+    ],
+    "OPTIONS": [
+      "[Accept the duel] ",
+      "[Turn tail and flee] ",
+      "Fight an enemy.",
+      "Obtain ",
+      " Uncommon relics.",
+      "Remove ",
+      " cards.",
+      "Become Cursed - ",
+      "[Leave]",
+      "Choose Cards to Remove.",
+      "."
+    ]
+  },
+  "ruina:Art": {
+    "NAME": "Floor of Art",
+    "DESCRIPTIONS": [
+      "The Floor of Art. It was a magnificent floor, filled with #ygrand paintings, #ypicturesque scenes . . . and the stench of #palcohol. NL Someone yawned loudly, a sleepy figure half-hidden by stacks of books. NL \"Hey, wanna be a bro and bring me that beer from over there?\" NL The figure shamelessly makes this request. In the distance, you see a couple other librarians grappling with a restless #pAbnormality while this one lazed about.",
+      "You walk back with the drink in hand and pass it over. The figure quickly snatches it from your hand and gulps it down. NL \"Ahhh, that hits the spot!\" He grins at you, #ggiddy and #pdrunk. \"Hey, you seem like a nice sort, wanna drink this with me?\" NL The two of you wile the time away in a #pdrunken stupor, ignoring the nearby #rcommotion.",
+      "You walk over to the drink, pick it up, and @throw@ it away in a nearby trash bin. NL \"Hey! Why did you #pwaste a perfectly good drink like that?\" the figure shouts in indignation. NL You tell him that drinking could wait until after the floor didn't have an ongoing #rincident. NL \"That feisty #pAbnormality? It's not even that #rdangerous. And it's not like we'd die for good if we're killed. Those assistants should be able to take care of it,\" he grumbles. NL Regardless, the two of you head over to help suppress the #pAbnormality. NL It ended up being much more #rdangerous than expected."
+    ],
+    "OPTIONS": [
+      "[Bring them the drink] ",
+      "[Cut off his supply] ",
+      "Obtain ",
+      "s.",
+      "Lose ",
+      ".",
+      "Obtain a random EGO card.",
+      "Obtain an EGO card.",
+      "[Wake up]",
+      "[Locked] Requires: Potion.",
+      "Obtain an upgraded EGO card."
+    ]
+  },
+  "ruina:Realization": {
+    "NAME": "Realization",
+    "DESCRIPTIONS": [
+      "I whispered into people the essence of life. NL So that they will cherish their own emotions and focus on them only. NL So that the fluctuating shape of the mind can be exposed to the world.",
+      "The king asks of you: \"Is it wrong to chase after our desires and pursue them without end?\"",
+      "You tell them to pursue it. Is it so bad to lust for honey when there are flowers? After all, we are born to pursue happiness.",
+      "You tell them to control it, to suppress their raging whims. For how could people live together with such unchecked impulses?",
+      "The king asks of you: \"Will I be a hero even if I eat away all my desires?\"",
+      "The king laughs, feeling vindicated. \"Then I shall let my greed seek #yeternity — seek #pdeep, #pdeep #yeternity.\"",
+      "The king sighs, dejected yet resolved. \"Then I shall bury my greed in a golden amber, sealed away for all eternity.\"",
+      "The knight asks of you: \"How can I protect people from the truth of reality? From the inexorable march of time?\"",
+      "You tell them it's hopeless. That only an endless stream of grief awaits them.",
+      "You tell them it's inevitable, but not unbeatable. After all, the will to protect has remained unchanged after all this time, has it not?",
+      "The knight asks of you: \"Did I save them, in the end? Or were my actions in vain?\"",
+      "The knight cries, overwhelmed by grief. And in the throes of her despair, her swords will eventually point at those she could not protect.",
+      "The knight cries, happy to have been of use. And inside her eyes, diamonds stained black once again regained a glint of sparkling white.",
+      "The queen asks of you: \"How can I defeat evil? To eradicate it at its root and save the world?\"",
+      "You tell them that evil is always present, always residing within the darkness of humanity.",
+      "You tell them to help others, to stop people from needing to be evil to survive.",
+      "The queen asks of you: \"How can I exist in a peaceful world? A world without villains to face?\"",
+      "The queen giggles, hysteria overtaking her. \"You're right! In a world with no villains, I'll just have to become one!\".",
+      "The queen sighs, resigned to her fate. \"You're right that a peaceful world is good, but it's so boring! Maybe I need a different job . . .\"",
+      "The girl asks of you: \"How can I make people happy? To bring laughter and joy to a gloomy place?\"",
+      "You tell them that everyone appreciates a good joke, that a funny prank will surely bring a smile to everyone's face.",
+      "You tell them that people would surely smile at a nice, thoughtful gesture. Such as giving away a gift!",
+      "The girl asks of you: \"Did I make my new friends happy? Did I make them cry tears of joy and relief?\"",
+      "The girl sobs in sadness. \"I just wanted them to be happy! Will they leave me now? Being lonely is so sad . . .\"",
+      "The girl cries in delight. \"I'll make sure to give out more gifts! And more people will be happy and surprised when they open them!\""
+    ],
+    "OPTIONS": [
+      "[Speak to the king who desired everything]",
+      "[You should pursue it without fear]",
+      "[You should restrain yourself]",
+      "[Yes you will]",
+      "[No you won't]",
+      "[Speak to the knight who fell into despair] ",
+      "[You can't save them]",
+      "[You can only prepare them for it]",
+      "[You were worthless]",
+      "[You made a difference]",
+      "[Speak to the queen who succumbed to hatred]",
+      "[Evil will always be present]",
+      "[Prevent people from resorting to evil]",
+      "[You can become the villain]",
+      "[You can be glad that it's peaceful]",
+      "[Speak to the girl seeking a friend]",
+      "[You can prank them]",
+      "[You can do something nice]",
+      "[You made them sad]",
+      "[You made them happy]",
+      "Become Cursed - ",
+      ".",
+      "Lose ",
+      " Max HP.",
+      " HP.",
+      "Obtain ",
+      "[Wake Up]"
+    ]
+  },
+  "ruina:YourBook": {
+    "NAME": "Your Book",
+    "DESCRIPTIONS": [
+      "As you navigate the twists and turns of this library’s labyrinth, you spot a strange book poking out one of the bookshelves. NL NL It has your #yname on it.",
+      "Against your better judgment, you find your curiosity piqued, and you go to read the book. As you flip open its pages, you find details of yourself experiencing encounters you do not remember, #gliving and #rdying against foes that you do not recall. NL The book seems #pendless. Every page you turn, you live and die. Live and die. @Live@ @and@ @die@ . Despite your lack of recollection about these events, you cannot help but feel that all these pages spoke #ytruth. NL You can’t help but feel mounting despair at the idea that your story inevitably leads to #pdeath. And in the end, you – ",
+      "You won’t let yourself be deceived by the machinations of this place.",
+      "In the depths of your #pdespair, you cling onto a #gglimmer of #yhope. You cling to the thought that surely, one day you will break out of this cycle of life and death. NL You feel your resolve harden and #ymanifest, and you feel that you had become stronger through this experience.",
+      "Your #pdespair bubbles up to your throat, #rchoking you with its weight. You feel a cold #bchill spread throughout your body, something #phollow permeating your very being and shaping your very self. NL There is no hope. There is no escape. NL After all, there is no conclusion more natural than #pdeath."
+    ],
+    "OPTIONS": [
+      "[Read the book] ",
+      "[Leave it alone] ",
+      "[Overcome it] ",
+      "[Succumb to it] ",
+      "Obtain a special Relic.",
+      "Become Cursed - ",
+      ".",
+      "Lose ",
+      " HP.",
+      "Obtain ",
+      "[Leave]"
+    ]
   }
 }

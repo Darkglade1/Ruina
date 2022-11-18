@@ -973,6 +973,8 @@
     ],
     "NAME": "珍娜",
     "DIALOG": [
+      "你真是个毫无价值的执法者。 。 。",
+      "我会让你后悔把我逼到这个地步。"
     ]
   },
   "ruina:Baral": {
@@ -985,6 +987,7 @@
     ],
     "NAME": "巴拉尔",
     "DIALOG": [
+      "让仲裁者陨落对我来说是多么可耻。 。 。"
     ]
   },
   "ruina:SilentGirl": {
@@ -1308,6 +1311,18 @@
       "有这么好的猎物出现在我面前是多么美妙啊！",
       "停止你的胡言乱语，笨蛋！ 我要把你们俩都放下！",
       "一个下来，一个去。"
+    ]
+  },
+  "${ModID}:Kim": {
+    "MOVES": [
+      "Yield My Flesh",
+      "To Claim Their Bones",
+      "And Take One's Life",
+      "Acupuncture"
+    ],
+    "NAME": "The Sword Saint",
+    "DIALOG": [
+
     ]
   }
 }

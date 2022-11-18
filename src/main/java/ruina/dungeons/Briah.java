@@ -27,6 +27,7 @@ public class Briah extends AbstractRuinaDungeon {
         this.addTempMusic("Roland1", RuinaMod.makeMusicPath("Roland1.ogg"));
         this.addTempMusic("Roland2", RuinaMod.makeMusicPath("Roland2.ogg"));
         this.addTempMusic("Roland3", RuinaMod.makeMusicPath("Roland3.ogg"));
+        this.addTempMusic("Samurai", RuinaMod.makeMusicPath("Samurai.ogg"));
     }
 
     public Briah(CustomDungeon cd, AbstractPlayer p, ArrayList<String> emptyList) {

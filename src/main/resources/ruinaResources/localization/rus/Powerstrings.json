@@ -300,7 +300,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "Контракт могущества",
-    "DESCRIPTIONS": ["В конце вашего хода наносит #b", " урона вам и повышает получаемый урон от этого эффекта на #b", "."]
+    "DESCRIPTIONS": ["Вы можете разыгрывать только #b", " карт за ход."]
   },
   "ruina:ContractOfLight": {
     "NAME": "Контракт света",
@@ -425,7 +425,7 @@
   },
   "ruina:AClaw": {
     "NAME": "Палач",
-    "DESCRIPTIONS": ["Не может потерять #yСилу. NL Если получит не менее #b", " урона по ОЗ, снижает этот урон на #b", "%. NL Получает #b", " #yСилы, когда умирает существо."]
+    "DESCRIPTIONS": ["Не может потерять #yСилу. NL Всякий раз, когда это существо получает Силу, оно получает вдвое больше. NL После достижения #b", " Силы начнет часто использовать по вам смертельную атаку."]
   },
   "ruina:AnArbiter": {
     "NAME": "Завершённый Арбитр",
@@ -614,5 +614,33 @@
   "${ModID}:MagicBullet": {
     "NAME": "Magic Bullet",
     "DESCRIPTIONS": ["Receives #b", "% more damage from #yAttacks this turn."]
+  },
+  "${ModID}:Rupture": {
+    "NAME": "Rupture",
+    "DESCRIPTIONS": ["At the end of your turn, take #b", " damage."]
+  },
+  "${ModID}:CounterAttack": {
+    "NAME": "Counter Attack",
+    "DESCRIPTIONS": ["Whenever you play an #yAttack this turn, this creature will #yCounter #yAttack you. If this effect did not trigger at least once this turn, will use a #rpowerful attack next turn."]
+  },
+  "${ModID}:SingularityT": {
+    "NAME": "Сингулярность Т",
+    "DESCRIPTIONS": ["Когда вы разыграете #b", " карт, получает ход дополнительно к своёму стандартном ходу. NL Если другой враг умирает, эта сила повышается.", "Деградированная сингулярность T"]
+  },
+  "${ModID}:SingularityJ": {
+    "NAME": "Сингулярность J",
+    "DESCRIPTIONS": ["Каждый боец может применить к этому существу только #b" , " дебаффа за ход. NL Каждый боец может нанести урон от атаки этому существу только #b", " раза за ход. NL Если другой враг умирает, эта способность повышается, и это существо приходит в ярость.", "Деградированная сингулярность J"]
+  },
+  "${ModID}:SingularityF": {
+    "NAME": "Сингулярность F",
+    "DESCRIPTIONS": ["Всякий раз, когда это существо атакует, оно применяет к цели #b" , " Фею."]
+  },
+  "${ModID}:Fairy": {
+    "NAME": "Сказочный",
+    "DESCRIPTIONS": ["Всякий раз, когда это существо атакует, оно теряет #b", " HP. NL Всякий раз, когда это существо подвергается нападению, атакующий получает #b", " Блока."]
+  },
+  "${ModID}:FlameShield": {
+    "NAME": "Огненный щит",
+    "DESCRIPTIONS": ["Всякий раз, когда вы разыгрываете атаку, замешайте #b" , " горение в стопку сброса. NL Эта способность удаляется при удалении 절제된 열정."]
   }
 }

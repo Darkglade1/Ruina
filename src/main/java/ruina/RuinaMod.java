@@ -77,6 +77,7 @@ import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
+import ruina.monsters.eventboss.kim.Kim;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
@@ -184,7 +185,9 @@ public class RuinaMod implements
     public static Boolean clown;
     public static final String DISABLE_ALT_TITLE_ART = "disableAltTitleArt";
     public static boolean disableAltTitleArt = false;
+    public static final String SKIP_CUTSCENES = "skipCutscenes";
 
+    public static boolean skipCutscenes = false;
     public static boolean corruptTheSpireLoaded = false;
 
 
@@ -205,6 +208,7 @@ public class RuinaMod implements
             ruinaDefaults.put("headClear", false);
             ruinaDefaults.put("clown", false);
             ruinaDefaults.put(DISABLE_ALT_TITLE_ART, false);
+            ruinaDefaults.put(SKIP_CUTSCENES, false);
             ruinaConfig = new SpireConfig("Ruina", "RuinaMod", ruinaDefaults);
         } catch (IOException e) {
             logger.error("RuinaMod SpireConfig initialization failed:");
@@ -632,6 +636,8 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("NothingHello"), makeSFXPath("NothingThere_Hello.wav"));
         BaseMod.addAudio(makeID("NothingNormal"), makeSFXPath("NothingThere_Normal_Flesh.wav"));
         BaseMod.addAudio(makeID("BulletShot"), makeSFXPath("Matan_NormalShot.wav"));
+
+        BaseMod.addAudio(makeID("Parry"), makeSFXPath("Parry_Atk.wav"));
     }
 
     @Override
@@ -655,6 +661,10 @@ public class RuinaMod implements
                 .packageFilter(AbstractRuinaCard.class)
                 .setDefaultSeen(false)
                 .cards();
+    }
+
+    public static boolean englishOnly() {
+        return Settings.language == Settings.GameLanguage.ENG;
     }
 
     @Override
@@ -687,11 +697,21 @@ public class RuinaMod implements
                 settingsPanel, // The mod panel in which this button will be in
                 (label) -> {}, // thing??????? idk
                 (button) -> { // The actual button:
-
                     disableAltTitleArt = button.enabled; // The boolean true/false will be whether the button is enabled or not
                     saveData();
                 });
         settingsPanel.addUIElement(disableAltTitleButton); // Add the button to the settings panel. Button is a go.
+
+        ModLabeledToggleButton skipCutscenesButton = new ModLabeledToggleButton("Skip cutscenes in the final fight.",
+                350.0f, 600.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                skipCutscenes, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+                    skipCutscenes = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    saveData();
+                });
+        settingsPanel.addUIElement(skipCutscenesButton);
 
         Asiyah asiyah = new Asiyah();
         asiyah.addAct(Exordium.ID);
@@ -819,6 +839,14 @@ public class RuinaMod implements
         BaseMod.addEvent(GalaxyChild.ID, GalaxyChild.class, Asiyah.ID);
         BaseMod.addEvent(Funeral.ID, Funeral.class, Asiyah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(Art.ID, Art.class)
+                .bonusCondition(RuinaMod::englishOnly)
+                .dungeonID(Asiyah.ID)
+                .create());
+        BaseMod.addEvent(new AddEventParams.Builder(YourBook.ID, YourBook.class)
+                .bonusCondition(RuinaMod::englishOnly)
+                .dungeonID(Asiyah.ID)
+                .create());
 
 
         //Act 2
@@ -864,6 +892,8 @@ public class RuinaMod implements
         BaseMod.addMonster(BadWolf.ID, (BaseMod.GetMonster) BadWolf::new);
         BaseMod.addMonster(QueenOfHate.ID, (BaseMod.GetMonster) QueenOfHate::new);
 
+        BaseMod.addMonster(Kim.ID, (BaseMod.GetMonster) Kim::new);
+
         briah.addBoss(EncounterIDs.RED_AND_WOLF, () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new LittleRed(-480.0F, 0.0F),
@@ -883,6 +913,10 @@ public class RuinaMod implements
         BaseMod.addEvent(NothingThere.ID, NothingThere.class, Briah.ID);
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Briah.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(WanderingSamurai.ID, WanderingSamurai.class)
+                .bonusCondition(RuinaMod::englishOnly)
+                .dungeonID(Briah.ID)
+                .create());
 
 
         // Act 3
@@ -942,6 +976,10 @@ public class RuinaMod implements
         BaseMod.addEvent(DistortedYan.ID, DistortedYan.class, Atziluth.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
         BaseMod.addEvent(YesterdayPromise.ID, YesterdayPromise.class, Atziluth.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(Realization.ID, Realization.class)
+                .bonusCondition(RuinaMod::englishOnly)
+                .dungeonID(Atziluth.ID)
+                .create());
 
         //Uninvited Guests
         BaseMod.addMonster(Puppeteer.ID, "Puppeteer", () -> new MonsterGroup(
@@ -1011,6 +1049,9 @@ public class RuinaMod implements
                         new Angelica()
 
                 }));
+        silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
+        //For some reason you need two bosses in the list to not crash the game even when providing a boss ID
+        // So, hello second roland.
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 
         //The Head
@@ -1152,6 +1193,7 @@ public class RuinaMod implements
     public static void saveData() {
         try {
             ruinaConfig.setBool(DISABLE_ALT_TITLE_ART, disableAltTitleArt);
+            ruinaConfig.setBool(SKIP_CUTSCENES, skipCutscenes);
             ruinaConfig.save();
         } catch (Exception e) {
             e.printStackTrace();
@@ -1165,6 +1207,7 @@ public class RuinaMod implements
         LocalDate clownCheck = LocalDate.now();
         clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
         disableAltTitleArt = ruinaConfig.getBool(DISABLE_ALT_TITLE_ART);
+        skipCutscenes = ruinaConfig.getBool(SKIP_CUTSCENES);
     }
 
     public static boolean hijackMenu() {

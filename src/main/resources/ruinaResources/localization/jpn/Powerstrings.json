@@ -300,7 +300,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "力の契約",
-    "DESCRIPTIONS": ["あなたのターン終了時, #b", " ダメージを受け、この効果から受けるダメージが #b", " 増える。"]
+    "DESCRIPTIONS": ["毎ターン #b", " しかプレイできない。"]
   },
   "ruina:ContractOfLight": {
     "NAME": "光の契約",
@@ -425,7 +425,7 @@
   },
   "ruina:AClaw": {
     "NAME": "処刑人",
-    "DESCRIPTIONS": ["この敵 は #y筋力 を失わない。 NL  この敵が #b", " 以上の ブロックされなかったダメージを受けるなら、ダメージを #b", "% 減らす。 NL 相手が #r戦闘不能 になる度、 #y筋力 を #b", " 得る。"]
+    "DESCRIPTIONS": ["この敵 は #y筋力 を失わない。 NL  このクリーチャーがストレングスを得るたび、それは2倍になる。 NL #b", " に達すると、 強さ、頻繁に致命的な攻撃を使用し始めます。"]
   },
   "ruina:AnArbiter": {
     "NAME": "調律者",
@@ -614,5 +614,33 @@
   "ruina:MagicBullet": {
     "NAME": "魔弾",
     "DESCRIPTIONS": ["#yアタック から受けるダメージが #b", "% 増加。"]
+  },
+  "${ModID}:Rupture": {
+    "NAME": "Rupture",
+    "DESCRIPTIONS": ["At the end of your turn, take #b", " damage."]
+  },
+  "${ModID}:CounterAttack": {
+    "NAME": "Counter Attack",
+    "DESCRIPTIONS": ["Whenever you play an #yAttack this turn, this creature will #yCounter #yAttack you. If this effect did not trigger at least once this turn, will use a #rpowerful attack next turn."]
+  },
+  "${ModID}:SingularityT": {
+    "NAME": "特異点T",
+    "DESCRIPTIONS": ["通常のターンに加えて、このキャラクターはあなたがカードを #b", " 枚プレイするたびに行動する。 NL 他の敵が死亡すると、このパワーがアップグレードされます。", "劣化特異点 T"]
+  },
+  "${ModID}:SingularityJ": {
+    "NAME": "特異点J",
+    "DESCRIPTIONS": ["各戦闘員は、ターンごとにこのクリーチャーに #b", " つのデバフしか適用できません。 NL 各戦闘員は、このクリーチャーに 1 ターンに #b", " 回だけ攻撃ダメージを与えることができます。 NL 他の敵が死亡した場合、このパワーはアップグレードされ、このクリーチャーは激怒する。", "劣化特異点J"]
+  },
+  "${ModID}:SingularityF": {
+    "NAME": "特異点F",
+    "DESCRIPTIONS": ["このクリーチャーが攻撃する時、対象にフェアリーを #b", " つ適用する。"]
+  },
+  "${ModID}:Fairy": {
+    "NAME": "妖精",
+    "DESCRIPTIONS": ["このクリーチャーは攻撃するたび、HPを #b", " 失う。 NL このクリーチャーが攻撃されるたび、攻撃者は #b", " ブロック を得る。"]
+  },
+  "${ModID}:FlameShield": {
+    "NAME": "フレイムシールド",
+    "DESCRIPTIONS": ["あなたがアタックをプレイするたびに、#b", " バーンをあなたの捨て札パイルにシャッフルする。 NL このパワーは、強化された情熱が取り除かれると取り除かれます。"]
   }
 }

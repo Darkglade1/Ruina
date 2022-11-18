@@ -30,7 +30,8 @@
   },
   "${ModID}:LoveAndHate": {
     "NAME": "In the Name of Love and Hate",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "Deal !D! X damage to ALL enemies. NL If X is !M! or more, deals 50% more damage.",
+    "UPGRADE_DESCRIPTION": "Deal !D! X damage to ALL enemies. NL If X is !M! or more, deals 50% more damage. NL If X is !ruina:SecondMagic! or more, also deals 100% more damage."
   },
   "${ModID}:GoldRush": {
     "NAME": "Gold Rush",
@@ -272,7 +273,7 @@
   },
   "${ModID}:ThinStrings": {
     "NAME": "Thin Strings",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Apply !M! Weak."
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Apply !M! Weak and Frail."
   },
   "${ModID}:Puppetry": {
     "NAME": "Puppetry",
@@ -280,7 +281,7 @@
   },
   "${ModID}:ContractOfMight": {
     "NAME": "Contract Of Might",
-    "DESCRIPTION": "Gain !M! Strength. NL At the end of your turn, take !ruina:SecondMagic! damage and increase the damage you will take from this power by !ruina:SecondMagic!."
+    "DESCRIPTION": "Gain !M! Strength. NL You can only play !ruina:SecondMagic! cards per turn."
   },
   "${ModID}:ContractOfLight": {
     "NAME": "Contract Of Light",
@@ -380,15 +381,20 @@
   },
   "${ModID}:Pillar": {
     "NAME": "Degraded Pillar",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage."
+    "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Apply !M! *Fairy.",
+    "EXTENDED_DESCRIPTION": ["Pillar"]
   },
   "${ModID}:Fairy": {
     "NAME": "Degraded Fairy",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage !M! times.",
+    "EXTENDED_DESCRIPTION": ["Fairy"]
   },
   "${ModID}:Chain": {
     "NAME": "Degraded Chain",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak and Vulnerable.",
+    "EXTENDED_DESCRIPTION": ["Chain"]
   },
   "${ModID}:Climax": {
     "NAME": "Rising Climax",
@@ -512,7 +518,7 @@
   },
   "${ModID}:Searing": {
     "NAME": "Searing Resolution",
-    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Burn(s) into your draw pile."
+    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Burn into your draw pile."
   },
   "${ModID}:Sorrow": {
     "NAME": "Wound of Sorrow",
@@ -729,11 +735,13 @@
   },
   "${ModID}:WaltzInWhite": {
     "NAME": "Waltz in White",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage !M! times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage if its *Partner intends to attack."
   },
   "${ModID}:AshenBond": {
     "NAME": "Ashen Bond",
-    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength."
+    "DESCRIPTION": "ALL allies gain !B! Block and !M! Strength.",
+    "UPGRADE_DESCRIPTION": "ALL allies gain !B! Block and !M! Strength. NL If its *Partner does NOT intend to attack, double these effects."
   },
   "${ModID}:UnitedWorkshop": {
     "NAME": "United Assault",
@@ -749,11 +757,13 @@
   },
   "${ModID}:DarkBond": {
     "NAME": "Dark Bond",
-    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile."
+    "DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile.",
+    "UPGRADE_DESCRIPTION": "ALL allies gain !B! Block. NL Shuffle !M! *Void into your draw pile. NL If its *Partner does NOT intend to attack, double these effects."
   },
   "${ModID}:WaltzInBlack": {
     "NAME": "Waltz in Black",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage !M! times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage !M! times. NL Deals double damage if its *Partner intends to attack."
   },
   "${ModID}:SerumW": {
     "NAME": "Serum W",
@@ -773,7 +783,7 @@
   },
   "${ModID}:SerumK": {
     "NAME": "Serum K",
-    "DESCRIPTION": "The lowest HP ally gains !B! Block and heals !M! HP."
+    "DESCRIPTION": "The lowest HP ally gains !B! Block, heals !M! HP, and gains !ruina:SecondMagic! Strength next turn."
   },
   "${ModID}:Line": {
     "NAME": "Line",
@@ -781,7 +791,7 @@
   },
   "${ModID}:ThinLine": {
     "NAME": "Thin Line",
-    "DESCRIPTION": "Deal !D! damage. NL Steal !M! Strength from the target."
+    "DESCRIPTION": "Deal !D! damage. NL Steal !M! positive Strength from the target."
   },
   "${ModID}:ThickLine": {
     "NAME": "Thick Line",
@@ -789,7 +799,11 @@
   },
   "${ModID}:ZenaShockwave": {
     "NAME": "Shockwave",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "If there is only 1 enemy, instantly kill it. NL Deal !D! damage to ALL enemies."
+  },
+  "${ModID}:Birdcage": {
+    "NAME": "Birdcage",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Fairy to ALL enemies."
   },
   "${ModID}:Marionette": {
     "NAME": "Marionette",
@@ -806,7 +820,7 @@
   },
   "${ModID}:Aspiration": {
     "NAME": "Aspiration",
-    "DESCRIPTION": "Gain !M! Strength. NL Lose half of your current HP. At the end of combat, heal the HP lost by this card."
+    "DESCRIPTION": "Gain !M! Strength. NL Lose !ruina:SecondMagic! HP. At the end of combat, heal the HP lost by this card."
   },
   "${ModID}:FrostSplinter": {
     "NAME": "Frost Splinter",
@@ -888,7 +902,7 @@
   },
   "${ModID}:Fragments": {
     "NAME": "Fragments from Somewhere",
-    "DESCRIPTION": "Steal the enemy's Block. NL Deal !D! damage."
+    "DESCRIPTION": "Steal the enemy's Block. NL Deal !D! damage. NL Apply !M! Weak."
   },
   "${ModID}:OurGalaxy": {
     "NAME": "Our Galaxy",
@@ -946,5 +960,21 @@
   "${ModID}:GrindingGears": {
     "NAME": "Grinding Gears",
     "DESCRIPTION": "Take !M! damage. NL Remove !ruina:SecondMagic! card from the *Singing *Machine and add it to your hand. NL *Stun the *Singing *Machine for 1 turn."
+  },
+  "${ModID}:Yield": {
+    "NAME": "Yield My Flesh",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength."
+  },
+  "${ModID}:Claim": {
+    "NAME": "To Claim Their Bones",
+    "DESCRIPTION": "While this card is held, the user can *Counter *Attack for !D! damage. User cannot make an attack on their turn."
+  },
+  "${ModID}:TakeOnesLife": {
+    "NAME": "And Take One's Life",
+    "DESCRIPTION": "Deal !D! damage. NL Target takes damage next turn equal to unblocked damage dealt."
+  },
+  "${ModID}:Acupuncture": {
+    "NAME": "Acupuncture",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
   }
 }

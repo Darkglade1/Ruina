@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SetMoveAction;
+import com.megacrit.cardcrawl.actions.unique.IncreaseMaxHpAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -50,6 +51,7 @@ public class Puppet extends AbstractRuinaMonster
 
     private final int BLOCK = calcAscensionTankiness(12);
     private final int PLATED_ARMOR = calcAscensionSpecial(11);
+    public final int maxHPIncrease = calcAscensionTankiness(20);
 
     public boolean attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
     private final Puppeteer puppeteer;
@@ -148,6 +150,7 @@ public class Puppet extends AbstractRuinaMonster
             }
             case REVIVE: {
                 atb(new HealAction(this, this, this.maxHealth));
+                atb(new IncreaseMaxHpAction(this, ((float)maxHPIncrease / 100), true));
                 this.halfDead = false;
                 applyToTarget(this, this, new BetterPlatedArmor(this, PLATED_ARMOR));
                 for (AbstractRelic r : AbstractDungeon.player.relics) {

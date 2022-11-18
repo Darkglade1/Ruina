@@ -18,7 +18,7 @@ public class BlackSilence extends AbstractEasyPower {
     }
 
     @Override
-    public void atEndOfRound() {
+    public void atEndOfTurn(boolean isPlayer) {
         flash();
         addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, amount), amount));
     }

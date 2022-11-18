@@ -31,10 +31,7 @@ import ruina.actions.GretaStealCardAction;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.greta.gretaCards.*;
-import ruina.powers.AbstractLambdaPower;
-import ruina.powers.Bleed;
-import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.Paralysis;
+import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.FlexibleWrathParticleEffect;
@@ -161,6 +158,7 @@ public class Greta extends AbstractCardMonster
         });
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new StrengthPower(this, 1)); //hacky solution again LOL
+        applyToTarget(this, this, new CenterOfAttention(this));
     }
 
     @Override

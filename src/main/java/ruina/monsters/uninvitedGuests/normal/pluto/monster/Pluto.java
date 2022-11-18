@@ -158,7 +158,9 @@ public class Pluto extends AbstractCardMonster {
                         contracts.add(new ConfusingContract());
                         contracts.add(new ContractOfLight());
                         contracts.add(new ContractOfMight());
-                        contracts.add(new NoContract());
+                        if (AbstractDungeon.ascensionLevel < 19) {
+                            contracts.add(new NoContract());
+                        }
                         att(new ChooseOneAction(contracts));
                         isDone = true;
                     }

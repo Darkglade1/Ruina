@@ -15,13 +15,13 @@ import static ruina.util.Wiz.att;
 @AutoAdd.Ignore
 public class ContractOfMight extends AbstractRuinaCard {
     public final static String ID = makeID(ContractOfMight.class.getSimpleName());
-    private static final int STRENGTH = 5;
-    public static final int SELF_DAMAGE = 2;
+    private static final int STRENGTH = 6;
+    public static final int CARD_LIMIT = 6;
 
     public ContractOfMight() {
         super(ID, -2, CardType.POWER, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         magicNumber = baseMagicNumber = STRENGTH;
-        secondMagicNumber = baseSecondMagicNumber = SELF_DAMAGE;
+        secondMagicNumber = baseSecondMagicNumber = CARD_LIMIT;
     }
 
     @Override

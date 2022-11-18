@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -35,15 +36,11 @@ import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
-import ruina.actions.BetterIntentFlashAction;
-import ruina.actions.DamageAllOtherCharactersAction;
-import ruina.actions.HeadDialogueAction;
-import ruina.actions.UsePreBattleActionAction;
+import ruina.RuinaMod;
+import ruina.actions.*;
+import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.theHead.zenaCards.Line;
-import ruina.monsters.theHead.zenaCards.ThickLine;
-import ruina.monsters.theHead.zenaCards.ThinLine;
-import ruina.monsters.theHead.zenaCards.ZenaShockwave;
+import ruina.monsters.theHead.zenaCards.*;
 import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
@@ -69,22 +66,26 @@ public class Zena extends AbstractCardMonster
     private static final byte THIN_LINE = 1;
     private static final byte THICK_LINE = 2;
     private static final byte SHOCKWAVE = 3;
-    private static final byte NONE = 4;
+    private static final byte BIRDCAGE = 4;
+    private static final byte NONE = 5;
+
 
     private static final int MASS_ATTACK_COOLDOWN = 3;
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
     public final int BLOCK = calcAscensionTankiness(45);
-    public final int DEBUFF = calcAscensionSpecial(2);
-    public final int POWER_DEBUFF = calcAscensionSpecial(2);
+    public final int DEBUFF = 2;
+    public final int POWER_DEBUFF = 2;
     public final int THICK_LINE_DEBUFF = 2;
-    public final int INVINCIBLE;
+    public final int BIRDCAGE_HITS = 2;
+    public final int BIRDCAGE_FAIRY = 3;
 
     public GeburaHead gebura;
     public BinahHead binah;
     public Baral baral;
     public boolean deathTriggered = false;
     public boolean usedShockwave = false;
+    public boolean enraged = false;
 
     public enum PHASE{
         PHASE1,
@@ -116,11 +117,12 @@ public class Zena extends AbstractCardMonster
             additionalMovesHistory.add(new ArrayList<>());
         }
         currentPhase = phase;
-        this.setHp(calcAscensionTankiness(3000));
-        addMove(LINE, Intent.ATTACK_DEFEND, calcAscensionDamage(24));
+        this.setHp(calcAscensionTankiness(5000));
+        addMove(LINE, Intent.ATTACK_DEFEND, calcAscensionDamage(22));
         addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
         addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
         addMove(SHOCKWAVE, IntentEnums.MASS_ATTACK, calcAscensionDamage(35));
+        addMove(BIRDCAGE, Intent.ATTACK, calcAscensionDamage(20), BIRDCAGE_HITS, true);
         addMove(NONE, Intent.NONE);
         halfDead = currentPhase.equals(PHASE.PHASE1);
 
@@ -128,17 +130,12 @@ public class Zena extends AbstractCardMonster
         cardList.add(new ThinLine(this));
         cardList.add(new ThickLine(this));
         cardList.add(new ZenaShockwave(this));
+        cardList.add(new Birdcage(this));
 
         if (shockwave.isEmpty()) {
             for (int i = 1; i <= 2; i++) {
                 shockwave.add(TexLoader.getTexture(makeMonsterPath("Zena/Shockwave/frame" + i + ".png")));
             }
-        }
-
-        if (AbstractDungeon.ascensionLevel >= 19) {
-            INVINCIBLE = 450;
-        } else {
-            INVINCIBLE = 600;
         }
     }
 
@@ -152,7 +149,9 @@ public class Zena extends AbstractCardMonster
         currentPhase = PHASE.PHASE2;
         numAdditionalMoves++;
         applyToTarget(this, this, new AnArbiter(this, POWER_DEBUFF));
-        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            applyToTarget(this, this, new SingularityJ(this));
+        }
     }
 
     @Override
@@ -197,7 +196,23 @@ public class Zena extends AbstractCardMonster
             case THIN_LINE: {
                 pierceAnimation(target);
                 dmg(target, info);
-                applyToTarget(target, this, new StrengthPower(target, -DEBUFF));
+                AbstractCreature enemy = target;
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        int debuff = DEBUFF;
+                        AbstractPower str = enemy.getPower(StrengthPower.POWER_ID);
+                        if (str != null) {
+                            if (str.amount > 0) {
+                                if (debuff > str.amount) {
+                                    debuff = str.amount;
+                                }
+                                applyToTargetTop(enemy, Zena.this, new StrengthPower(enemy, -debuff));
+                            }
+                        }
+                        this.isDone = true;
+                    }
+                });
                 applyToTargetNextTurn(this, new StrengthPower(this, DEBUFF));
                 resetIdle();
                 break;
@@ -224,6 +239,21 @@ public class Zena extends AbstractCardMonster
                 waitAnimation();
                 shockwaveCutscene();
                 massAttackFinishAnimation();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        int numAllies = 0;
+                        for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+                            if (mo instanceof AbstractAllyMonster && !mo.isDeadOrEscaped()) {
+                                numAllies++;
+                            }
+                        }
+                        if (numAllies == 0) {
+                            att(new YeetPlayerAction());
+                        }
+                        this.isDone = true;
+                    }
+                });
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 atb(new AbstractGameAction() {
                     @Override
@@ -244,6 +274,24 @@ public class Zena extends AbstractCardMonster
                     }
                 });
                 break;
+            }
+            case BIRDCAGE: {
+                for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        bluntAnimation(target);
+                    } else {
+                        pierceAnimation(target);
+                    }
+                    dmg(target, info);
+                    resetIdle();
+                }
+               for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+                   if (mo instanceof AbstractAllyMonster && !mo.isDeadOrEscaped()) {
+                       applyToTarget(mo, this, new Fairy(mo, BIRDCAGE_FAIRY));
+                   }
+               }
+               applyToTarget(adp(), this, new Fairy(adp(), BIRDCAGE_FAIRY));
+               break;
             }
         }
 
@@ -308,6 +356,7 @@ public class Zena extends AbstractCardMonster
                 this.isDone = true;
             }
         });
+
         if(currentPhase.equals(Zena.PHASE.PHASE1)){
             switch (GameActionManager.turn){
                 case 4:
@@ -433,7 +482,13 @@ public class Zena extends AbstractCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (currentPhase == PHASE.PHASE1) {
+        if (enraged) {
+            if (!this.lastMove(BIRDCAGE)) {
+                setMoveShortcut(BIRDCAGE, MOVES[BIRDCAGE], cardList.get(BIRDCAGE).makeStatEquivalentCopy());
+            } else {
+                setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
+            }
+        } else if (currentPhase == PHASE.PHASE1) {
             if (halfDead) {
                 setMoveShortcut(NONE);
             } else if (massAttackCooldown <= 0) {
@@ -452,8 +507,6 @@ public class Zena extends AbstractCardMonster
         } else {
             if (massAttackCooldown <= 0) {
                 setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
-            } else if (AbstractDungeon.ascensionLevel >= 19 && !this.lastMove(THICK_LINE) && !this.lastMoveBefore(THICK_LINE)) {
-                setMoveShortcut(THICK_LINE, MOVES[THICK_LINE], cardList.get(THICK_LINE).makeStatEquivalentCopy());
             } else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
                 if (!this.lastMove(THIN_LINE)) {
@@ -542,6 +595,7 @@ public class Zena extends AbstractCardMonster
         super.die(triggerRelics);
         gebura.enemyBoss = baral;
         binah.targetEnemy = baral;
+        baral.onZenaDeath();
         AbstractDungeon.onModifyPower();
         if (baral.isDeadOrEscaped() && !baral.deathTriggered) {
             deathTriggered = true;
@@ -564,6 +618,18 @@ public class Zena extends AbstractCardMonster
             }
         });
         fullScreenAnimation(shockwave, 0.5f, 1.0f);
+    }
+
+    public void onBaralDeath() {
+        if (AbstractDungeon.ascensionLevel >= 19 && !this.isDeadOrEscaped()) {
+            atb(new TalkAction(this, DIALOG[0]));
+            enraged = true;
+            gebura.canSplit = false;
+            if (this.hasPower(SingularityJ.POWER_ID)) {
+                AbstractPower power = this.getPower(SingularityJ.POWER_ID);
+                ((SingularityJ)power).unlock();
+            }
+        }
     }
 
 }

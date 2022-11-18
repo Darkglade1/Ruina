@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -39,9 +41,7 @@ import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.baralCards.*;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.patches.RenderHandPatch;
-import ruina.powers.AClaw;
-import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.PlayerBlackSilence;
+import ruina.powers.*;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -66,28 +66,22 @@ public class Baral extends AbstractCardMonster
     private static final byte TRI_SERUM_COCKTAIL = 3;
     private static final byte SERUM_K = 4;
 
-    public final int SERUM_W_DAMAGE = calcAscensionDamage(45);
+    public final int SERUM_W_DAMAGE = calcAscensionDamage(40);
 
     public final int serumR_Damage = calcAscensionDamage(12);
     public final int serumR_Hits = 2;
-    public final int serumR_Strength = calcAscensionSpecial(5);
+    public final int serumR_Strength = 5;
 
-    public final int extirpationDamage = calcAscensionDamage(26);
+    public final int extirpationDamage = calcAscensionDamage(24);
     public final int extirpationBlock = calcAscensionTankiness(50);
 
-    public final int triSerumDamage = calcAscensionDamage(9);
+    public final int triSerumDamage = calcAscensionDamage(8);
     public final int triSerumHits = 3;
 
-    private static final int SERUM_COOLDOWN = 2;
-    private int serumCooldown = 1;
-
     public final int SERUM_K_BLOCK = calcAscensionTankiness(60);
-    public final int SERUM_K_HEAL = calcAscensionTankiness(150);
-    public final int POWER_STRENGTH = calcAscensionSpecial(8);
-    public final int POWER_DAMAGE_REDUCTION = calcAscensionSpecial(30);
-    public final int POWER_THRESHOLD = 30;
+    public final int SERUM_K_HEAL = calcAscensionTankiness(200);
+    public final int SERUM_K_STR = 3;
     public final int KILL_THRESHOLD = 25;
-    public final int INVINCIBLE;
 
     public RolandHead roland;
     public Zena zena;
@@ -101,6 +95,8 @@ public class Baral extends AbstractCardMonster
     public int playerCardDraw;
     public boolean deathTriggered = false;
     private boolean usedPreBattleAction = false;
+    public boolean enraged = false;
+    private boolean useExtirpation = true;
 
     public enum PHASE{
         PHASE1,
@@ -125,7 +121,7 @@ public class Baral extends AbstractCardMonster
             additionalMovesHistory.add(new ArrayList<>());
         }
         currentPhase = phase;
-        this.setHp(calcAscensionTankiness(3000));
+        this.setHp(calcAscensionTankiness(5000));
 
         addMove(SERUM_W, Intent.ATTACK, SERUM_W_DAMAGE);
         addMove(SERUM_R, Intent.ATTACK_BUFF, serumR_Damage, serumR_Hits, true);
@@ -137,6 +133,7 @@ public class Baral extends AbstractCardMonster
         cardList.add(new Extirpation(this));
         cardList.add(new TriSerum(this));
         cardList.add(new SerumK(this));
+
 
         if (bgTextures.isEmpty()) {
             ArrayList<Texture> bgs = new ArrayList<>();
@@ -153,12 +150,6 @@ public class Baral extends AbstractCardMonster
                 serumWFinish.add(TexLoader.getTexture(makeMonsterPath("Baral/Frames/frame" + i + ".png")));
             }
         }
-
-        if (AbstractDungeon.ascensionLevel >= 19) {
-            INVINCIBLE = 450;
-        } else {
-            INVINCIBLE = 600;
-        }
     }
 
     @Override
@@ -172,8 +163,10 @@ public class Baral extends AbstractCardMonster
         numAdditionalMoves++;
         rollMove();
         createIntent();
-        applyToTarget(this, this, new AClaw(this, POWER_THRESHOLD, POWER_DAMAGE_REDUCTION, POWER_STRENGTH));
-        applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
+        applyToTarget(this, this, new AClaw(this, KILL_THRESHOLD));
+        if (AbstractDungeon.ascensionLevel >= 19) {
+            applyToTarget(this, this, new SingularityT(this));
+        }
     }
 
     @Override
@@ -284,6 +277,16 @@ public class Baral extends AbstractCardMonster
             });
         }
 
+        if (roland != null && target == roland) {
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    roland.halfDead = false;
+                    this.isDone = true;
+                }
+            });
+        }
+
         if(info.base > -1) {
             info.applyPowers(this, target);
         }
@@ -298,7 +301,7 @@ public class Baral extends AbstractCardMonster
                         this.isDone = true;
                     }
                 });
-                float duration = 3.5f;
+                float duration = 2.5f;
                 if (currentPhase == PHASE.PHASE1) {
                     atb(new VFXAction(new SerumWAnimation(roland, this, false, bgTextures), duration));
                 } else {
@@ -332,13 +335,6 @@ public class Baral extends AbstractCardMonster
                     }
                 }
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        serumCooldown = SERUM_COOLDOWN + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case SERUM_R: {
@@ -358,18 +354,18 @@ public class Baral extends AbstractCardMonster
                 float targetBehind = target.drawX + targetOffset * Settings.scale;
                 serumR1(target);
                 waitAnimation(0.5f);
-                moveSpriteAnimation(targetBehind, target);
+                moveSpriteAnimation(targetBehind);
                 serumR2(target);
                 dmg(target, info);
                 waitAnimation(0.75f);
-                setFlipAnimation(flip1, target);
+                setFlipAnimation(flip1);
                 serumR1(target);
                 waitAnimation(0.5f);
-                moveSpriteAnimation(initialX, target);
+                moveSpriteAnimation(initialX);
                 serumR2(target);
                 dmg(target, info);
                 resetIdle(0.75f);
-                setFlipAnimation(flip2, target);
+                setFlipAnimation(flip2);
                 applyToTarget(this, this, new StrengthPower(this, serumR_Strength));
                 break;
             }
@@ -396,11 +392,11 @@ public class Baral extends AbstractCardMonster
                 float targetBehind = target.drawX + targetOffset * Settings.scale;
                 serumR1(target);
                 waitAnimation(0.5f);
-                moveSpriteAnimation(targetBehind, target);
+                moveSpriteAnimation(targetBehind);
                 serumR2(target);
                 dmg(target, info);
                 waitAnimation(0.75f);
-                setFlipAnimation(flip1, target);
+                setFlipAnimation(flip1);
                 pierceAnimation(target);
                 waitAnimation(0.5f);
                 pierceFinAnimation(target);
@@ -408,10 +404,13 @@ public class Baral extends AbstractCardMonster
                 waitAnimation(0.75f);
                 serumR1(target);
                 waitAnimation(0.5f);
-                moveSpriteAnimation(initialX, target);
+                moveSpriteAnimation(initialX);
                 serumR2(target);
                 dmg(target, info);
                 resetIdle(0.75f);
+                if (flip1) {
+                    setFlipAnimation(false);
+                }
                 break;
             }
             case SERUM_K: {
@@ -422,6 +421,7 @@ public class Baral extends AbstractCardMonster
                 }
                 block(healTarget, SERUM_K_BLOCK);
                 atb(new HealAction(healTarget, this, SERUM_K_HEAL));
+                applyToTargetNextTurn(healTarget, this, new StrengthPower(healTarget, SERUM_K_STR));
                 resetIdle(1.0f);
                 break;
             }
@@ -432,6 +432,17 @@ public class Baral extends AbstractCardMonster
                 @Override
                 public void update() {
                     animation.setFlip(false, false);
+                    this.isDone = true;
+                }
+            });
+        }
+
+        //Make roland half dead again if Baral took a turn during the player's turn
+        if (roland != null && target == roland && !AbstractDungeon.actionManager.turnHasEnded) {
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    roland.halfDead = true;
                     this.isDone = true;
                 }
             });
@@ -474,32 +485,24 @@ public class Baral extends AbstractCardMonster
         animationAction("SerumR2", "ClawRedEnd", enemy, this);
     }
 
-    public void moveSpriteAnimation(float x, AbstractCreature enemy) {
+    public void moveSpriteAnimation(float x) {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                if (enemy == null || !enemy.isDeadOrEscaped()) {
-                    drawX = x;
-                }
+                drawX = x;
                 this.isDone = true;
             }
         });
     }
 
-    public void setFlipAnimation(boolean flipHorizontal, AbstractCreature enemy) {
+    public void setFlipAnimation(boolean flipHorizontal) {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                if (enemy == null || !enemy.isDeadOrEscaped()) {
-                    animation.setFlip(flipHorizontal, false);
-                }
+                animation.setFlip(flipHorizontal, false);
                 this.isDone = true;
             }
         });
-    }
-
-    public void setFlipInstant(boolean flipHorizontal) {
-        animation.setFlip(flipHorizontal, false);
     }
 
     @Override
@@ -521,14 +524,23 @@ public class Baral extends AbstractCardMonster
                 takeCustomTurn(additionalMove, roland);
             }
         }
+
+        // Make Serum K give the Strength at end of Baral's turn if he took a turn during the player's turn
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                serumCooldown--;
+                if (!AbstractDungeon.actionManager.turnHasEnded) {
+                    for (AbstractPower power : Baral.this.powers) {
+                        if (power instanceof NextTurnPowerPower) {
+                            power.atEndOfRound();
+                        }
+                    }
+                }
                 this.isDone = true;
             }
         });
-        atb(new RollMoveAction(this));
+
+        atb(new RollMoveAction(Baral.this));
 
         if(currentPhase.equals(PHASE.PHASE1)){
             switch (GameActionManager.turn){
@@ -555,28 +567,49 @@ public class Baral extends AbstractCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (serumCooldown <= 0) {
-            setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
+        if (this.hasPower(StrengthPower.POWER_ID) && this.getPower(StrengthPower.POWER_ID).amount >= KILL_THRESHOLD) {
+            if (!this.lastMove(SERUM_W)) {
+                setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
+            } else {
+                setMoveShortcut(TRI_SERUM_COCKTAIL, MOVES[TRI_SERUM_COCKTAIL], cardList.get(TRI_SERUM_COCKTAIL).makeStatEquivalentCopy());
+            }
+        } else if (this.currentHealth <= this.maxHealth / 2) {
+            if (this.lastMove(SERUM_K)) {
+                setMoveShortcut(TRI_SERUM_COCKTAIL, MOVES[TRI_SERUM_COCKTAIL], cardList.get(TRI_SERUM_COCKTAIL).makeStatEquivalentCopy());
+            } else {
+                setMoveShortcut(SERUM_K, MOVES[SERUM_K], cardList.get(SERUM_K).makeStatEquivalentCopy());
+            }
+        } else if (enraged) {
+            if (this.lastMove(SERUM_W)) {
+                setMoveShortcut(TRI_SERUM_COCKTAIL, MOVES[TRI_SERUM_COCKTAIL], cardList.get(TRI_SERUM_COCKTAIL).makeStatEquivalentCopy());
+            } else if (this.lastMove(SERUM_K)){
+                setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
+            } else {
+                setMoveShortcut(SERUM_K, MOVES[SERUM_K], cardList.get(SERUM_K).makeStatEquivalentCopy());
+            }
         } else {
             if (currentPhase == PHASE.PHASE1) {
-                if (!this.lastMove(SERUM_R) && !this.lastMoveBefore(SERUM_R)) {
-                    setMoveShortcut(SERUM_R, MOVES[SERUM_R], cardList.get(SERUM_R).makeStatEquivalentCopy());
-                } else {
+                if (this.lastMove(SERUM_R)) {
+                    setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
+                } else if (this.lastMove(SERUM_W)) {
                     setMoveShortcut(EXTIRPATION, MOVES[EXTIRPATION], cardList.get(EXTIRPATION).makeStatEquivalentCopy());
+                } else {
+                    setMoveShortcut(SERUM_R, MOVES[SERUM_R], cardList.get(SERUM_R).makeStatEquivalentCopy());
                 }
             } else {
-                ArrayList<Byte> possibilities = new ArrayList<>();
-                if (!this.lastMove(SERUM_K)) {
-                    possibilities.add(SERUM_K);
+                if (this.lastMove(SERUM_W) || this.lastMove(EXTIRPATION)) {
+                    setMoveShortcut(TRI_SERUM_COCKTAIL, MOVES[TRI_SERUM_COCKTAIL], cardList.get(TRI_SERUM_COCKTAIL).makeStatEquivalentCopy());
+                } else if (this.lastMove(SERUM_K)){
+                    if (useExtirpation) {
+                        setMoveShortcut(EXTIRPATION, MOVES[EXTIRPATION], cardList.get(EXTIRPATION).makeStatEquivalentCopy());
+                        useExtirpation = false;
+                    } else {
+                        setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
+                        useExtirpation = true;
+                    }
+                } else {
+                    setMoveShortcut(SERUM_K, MOVES[SERUM_K], cardList.get(SERUM_K).makeStatEquivalentCopy());
                 }
-                if (!this.lastMove(EXTIRPATION)) {
-                    possibilities.add(EXTIRPATION);
-                }
-                if (!this.lastMove(TRI_SERUM_COCKTAIL)) {
-                    possibilities.add(TRI_SERUM_COCKTAIL);
-                }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
             }
         }
     }
@@ -591,8 +624,8 @@ public class Baral extends AbstractCardMonster
         if (!this.lastMove(SERUM_R, moveHistory) && !this.lastMoveBefore(SERUM_R, moveHistory)) {
             possibilities.add(SERUM_R);
         }
-        if (!this.lastMove(SERUM_W, moveHistory) && !this.lastMoveBefore(SERUM_W, moveHistory)) {
-            possibilities.add(SERUM_W);
+        if (!this.lastMove(TRI_SERUM_COCKTAIL, moveHistory) && !this.lastMoveBefore(TRI_SERUM_COCKTAIL, moveHistory)) {
+            possibilities.add(TRI_SERUM_COCKTAIL);
         }
         if (!this.lastMove(EXTIRPATION, moveHistory) && !this.lastMoveBefore(EXTIRPATION, moveHistory)) {
             possibilities.add(EXTIRPATION);
@@ -628,6 +661,7 @@ public class Baral extends AbstractCardMonster
         super.die(triggerRelics);
         roland.enemyBoss = zena;
         zena.binah.targetEnemy = zena;
+        zena.onBaralDeath();
         AbstractDungeon.onModifyPower();
         if (zena.isDeadOrEscaped() && !zena.deathTriggered) {
             deathTriggered = true;
@@ -651,5 +685,17 @@ public class Baral extends AbstractCardMonster
         });
         waitAnimation();
         fullScreenAnimation(serumWFinish, 0.1f, 1.0f);
+    }
+
+    public void onZenaDeath() {
+        if (AbstractDungeon.ascensionLevel >= 19 && !this.isDeadOrEscaped()) {
+            atb(new TalkAction(this, DIALOG[0]));
+            enraged = true;
+            zena.gebura.canSplit = false;
+            if (this.hasPower(SingularityT.POWER_ID)) {
+                AbstractPower power = this.getPower(SingularityT.POWER_ID);
+                ((SingularityT)power).unlock();
+            }
+        }
     }
 }

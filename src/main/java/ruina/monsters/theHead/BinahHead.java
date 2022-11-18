@@ -6,15 +6,18 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.actions.BetterTalkAction;
 import ruina.monsters.uninvitedGuests.normal.elena.Binah;
-import ruina.powers.AnArbiter;
+import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Chain;
+import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Fairy;
+import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Pillar;
+import ruina.powers.SingularityF;
 import ruina.vfx.WaitEffect;
 
 import static ruina.util.Wiz.applyToTarget;
@@ -32,13 +35,30 @@ public class BinahHead extends Binah {
 
     public BinahHead(final float x, final float y) {
         super(x, y);
+        addMove(DEGRADED_PILLAR, Intent.ATTACK_DEFEND, 30);
+        addMove(DEGRADED_CHAIN, Intent.ATTACK_DEBUFF, 24);
+        addMove(DEGRADED_FAIRY, Intent.ATTACK, 16, fairyHits, true);
+
+        cardList.clear();
+
+        AbstractCard pillar = new Pillar(this);
+        pillar.upgrade();
+        cardList.add(pillar);
+
+        AbstractCard chain = new Chain(this);
+        chain.upgrade();
+        cardList.add(chain);
+
+        AbstractCard fairy = new Fairy(this);
+        fairy.upgrade();
+        cardList.add(fairy);
     }
 
     @Override
     public void usePreBattleAction() {
         if (!usedPreBattleAction) {
             usedPreBattleAction = true;
-            applyToTarget(this, this, new AnArbiter(this, 2));
+            applyToTarget(this, this, new SingularityF(this, 1));
             super.usePreBattleAction();
             for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (mo instanceof Baral) {

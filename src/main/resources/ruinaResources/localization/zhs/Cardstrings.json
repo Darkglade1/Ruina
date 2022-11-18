@@ -30,7 +30,8 @@
   },
   "ruina:LoveAndHate": {
     "NAME": "以爱与恨的名义",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。"
+    "DESCRIPTION": "交易 !D！X 对所有敌人造成伤害。 NL 如果 X 是 !M! 或更多，造成 50% 以上的伤害。",
+    "UPGRADE_DESCRIPTION": "交易 !D！X 对所有敌人造成伤害。 NL 如果 X 是 !M! 或更多，造成 50% 以上的伤害。 NL 如果 X 是 !ruina:SecondMagic! 或更多，也会造成 100% 以上的伤害。"
   },
   "ruina:GoldRush": {
     "NAME": "闪金冲锋",
@@ -280,7 +281,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "力量合同",
-    "DESCRIPTION": "获得 !M! 点 力量 。 NL 在你的回合结束时，受到 !ruina:SecondMagic! 点伤害然后增加你下次受到的伤害 !ruina:SecondMagic! 点。"
+    "DESCRIPTION": "获得 !M! 点 力量 。 NL 你只能玩 !ruina:Second Magic！ 每回合卡。"
   },
   "ruina:ContractOfLight": {
     "NAME": "光明合同",
@@ -380,15 +381,20 @@
   },
   "ruina:Pillar": {
     "NAME": "劣化之柱",
-    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。",
+    "UPGRADE_DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。 NL 申请 !M! *仙女。",
+    "EXTENDED_DESCRIPTION": ["支柱"]
   },
   "ruina:Fairy": {
     "NAME": "劣化妖灵",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。",
+    "EXTENDED_DESCRIPTION": ["仙女"]
   },
   "ruina:Chain": {
     "NAME": "劣化之链",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害。NL 给予 !M! 层 虚弱 和 易伤 。",
+    "EXTENDED_DESCRIPTION": ["链"]
   },
   "ruina:Climax": {
     "NAME": "逐渐上涨的高潮",
@@ -773,7 +779,7 @@
   },
   "ruina:SerumK": {
     "NAME": "血清-K",
-    "DESCRIPTION": "血量最低的友方获得 !B! 点 格挡 并恢复 !M! 点生命。"
+    "DESCRIPTION": "血量最低的友方获得 !B! 点 格挡 并恢复 !M! 点生命 并获得 !ruina:SecondMagic! 下一回合力量。"
   },
   "ruina:Line": {
     "NAME": "线",
@@ -789,7 +795,11 @@
   },
   "ruina:ZenaShockwave": {
     "NAME": "震击",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。"
+    "DESCRIPTION": "如果只有 1 个敌人，则立即将其杀死。NL 对所有敌人造成 !D! 点伤害。"
+  },
+  "${ModID}:Birdcage": {
+    "NAME": "鸟笼",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 申请 !ruina:SecondMagic! 所有敌人的童话。"
   },
   "ruina:Marionette": {
     "NAME": "提线木偶",
@@ -806,7 +816,7 @@
   },
   "ruina:Aspiration": {
     "NAME": "热望",
-    "DESCRIPTION": "获得 !M! 点 力量 。 NL 失去当前一半的生命值。 在战斗结束时，恢复同等的生命值。"
+    "DESCRIPTION": "获得 !M! 点 力量 。 NL 失去 !ruina:SecondMagic! 点生命。 在战斗结束时，恢复同等的生命值。"
   },
   "ruina:FrostSplinter": {
     "NAME": "霜雕",
@@ -888,7 +898,7 @@
   },
   "ruina:Fragments": {
     "NAME": "彼方的碎片",
-    "DESCRIPTION": "窃取敌人的 格挡 。 NL 造成 !D! 点伤害。"
+    "DESCRIPTION": "窃取敌人的 格挡 。 NL 造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 。"
   },
   "ruina:OurGalaxy": {
     "NAME": "我们的小小银河",
@@ -946,5 +956,21 @@
   "ruina:GrindingGears": {
     "NAME": "发抖",
     "DESCRIPTION": "受到 !M! 点伤害。 NL 移除 *歌唱机 内的 !ruina:SecondMagic! 张卡牌并加入你的手牌中。 NL *击晕 *歌唱机 一回合。"
+  },
+  "${ModID}:Yield": {
+    "NAME": "Yield My Flesh",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength."
+  },
+  "${ModID}:Claim": {
+    "NAME": "To Claim Their Bones",
+    "DESCRIPTION": "While this card is held, the user can *Counter *Attack for !D! damage. User cannot make an attack on their turn."
+  },
+  "${ModID}:TakeOnesLife": {
+    "NAME": "And Take One's Life",
+    "DESCRIPTION": "Deal !D! damage. NL Target takes damage next turn equal to unblocked damage dealt."
+  },
+  "${ModID}:Acupuncture": {
+    "NAME": "Acupuncture",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
   }
 }

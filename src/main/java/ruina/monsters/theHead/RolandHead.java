@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.BlackSilence;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeID;
@@ -53,6 +54,10 @@ public class RolandHead extends Roland {
                     if (this.amount >= CARDS_PER_TURN) {
                         this.amount = 0;
                         takeTurn();
+                        AbstractPower power = owner.getPower(BlackSilence.POWER_ID);
+                        if (power != null) {
+                            power.atEndOfTurn(false);
+                        }
                         atb(new AbstractGameAction() {
                             @Override
                             public void update() {

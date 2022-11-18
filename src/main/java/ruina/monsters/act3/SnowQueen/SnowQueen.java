@@ -25,6 +25,7 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.cardmods.FrozenMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.CenterOfAttention;
 import ruina.vfx.FlexibleCalmParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
 
@@ -114,6 +115,7 @@ public class SnowQueen extends AbstractRuinaMonster
                 description = POWER_DESCRIPTIONS[0];
             }
         });
+        applyToTarget(this, this, new CenterOfAttention(this));
         Summon();
     }
 

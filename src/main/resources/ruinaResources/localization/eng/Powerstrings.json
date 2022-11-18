@@ -280,7 +280,7 @@
   },
   "${ModID}:PuppetStrings": {
     "NAME": "Puppet Strings",
-    "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn at full HP. NL NL The #renemy's Mass Attack #gheals this creature instead."]
+    "DESCRIPTIONS": ["Whenever this creature #rdies, it #grevives next turn with full HP and increased max HP. NL NL The #renemy's Mass Attack #gheals this creature instead."]
   },
   "${ModID}:Vibration": {
     "NAME": "Vibration",
@@ -292,15 +292,15 @@
   },
   "${ModID}:BlackSilence": {
     "NAME": "The Black Silence",
-    "DESCRIPTIONS": ["Gains #b", " #yStrength at end of round.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
+    "DESCRIPTIONS": ["Gains #b", " #yStrength at end of turn.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
   },
   "${ModID}:BlueReverberation": {
     "NAME": "The Blue Reverberation",
-    "DESCRIPTIONS": ["Gains #b%1$s #yStrength at end of round."]
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength at end of turn."]
   },
   "${ModID}:ContractOfMight": {
     "NAME": "Contract Of Might",
-    "DESCRIPTIONS": ["At the end of your turn, take #b", " damage and increase the damage you will take from this power by #b", "."]
+    "DESCRIPTIONS": ["You can only play #b", " cards per turn."]
   },
   "${ModID}:ContractOfLight": {
     "NAME": "Contract Of Light",
@@ -424,12 +424,12 @@
     "DESCRIPTIONS": ["Whenever you play #b", " unique cards, add #yFurioso to your hand."]
   },
   "${ModID}:AClaw": {
-    "NAME": "Executioner",
-    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL If this creature would receive #b", " or more unblocked attack damage, reduce the damage by #b", "%. NL Whenever a creature #rdies, gains #b", " #yStrength."]
+    "NAME": "A Claw",
+    "DESCRIPTIONS": ["This creature cannot lose #yStrength. NL Whenever this creature gains #yStrength, it gains twice as much. NL After reaching #b", " #yStrength, will begin to frequently use a #rlethal attack on you."]
   },
   "${ModID}:AnArbiter": {
-    "NAME": "Complete Arbiter",
-    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it steals #b", " #yStrength from its target."]
+    "NAME": "An Arbiter",
+    "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage, it steals #b", " positive #yStrength from its target."]
   },
   "${ModID}:GeburaProwess": {
     "NAME": "Gebura's Prowess",
@@ -614,5 +614,33 @@
   "${ModID}:MagicBullet": {
     "NAME": "Magic Bullet",
     "DESCRIPTIONS": ["Receives #b", "% more damage from #yAttacks this turn."]
+  },
+  "${ModID}:Rupture": {
+    "NAME": "Rupture",
+    "DESCRIPTIONS": ["At the end of your turn, take #b", " damage."]
+  },
+  "${ModID}:CounterAttack": {
+    "NAME": "Counter Attack",
+    "DESCRIPTIONS": ["Whenever you play an #yAttack this turn, this creature will #yCounter #yAttack you. If this effect did not trigger at least once this turn, will use a #rpowerful attack next turn."]
+  },
+  "${ModID}:SingularityT": {
+    "NAME": "Singularity T",
+    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards. NL If the other #renemy #rdies, this power is #yupgraded.", "Degraded Singularity T"]
+  },
+  "${ModID}:SingularityJ": {
+    "NAME": "Singularity J",
+    "DESCRIPTIONS": ["Each combatant can only apply #b", " #ydebuff(s) to this creature per turn. NL Each combatant can only deal attack damage to this creature #b", " time(s) per turn. NL If the other #renemy #rdies, this power is #yupgraded and this creature becomes #renraged.", "Degraded Singularity J"]
+  },
+  "${ModID}:SingularityF": {
+    "NAME": "Singularity F",
+    "DESCRIPTIONS": ["Whenever this creature attack, it applies #b", " #yFairy to the target."]
+  },
+  "${ModID}:Fairy": {
+    "NAME": "Fairy",
+    "DESCRIPTIONS": ["Whenever this creature attacks, it loses #b", " HP. NL Whenever this creature is attacked, the attacker gains #b", " #yBlock."]
+  },
+  "${ModID}:FlameShield": {
+    "NAME": "Flame Shield",
+    "DESCRIPTIONS": ["Whenever you play an #yAttack, shuffle #b", " #yBurn+ into your discard pile. NL This power is removed when #yTempered #yPassion is removed."]
   }
 }

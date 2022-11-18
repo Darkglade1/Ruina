@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.RuinaMod;
@@ -40,8 +41,13 @@ public class NextTurnPowerPower extends AbstractEasyPower {
     @Override
     public void atEndOfRound() {
         flash();
-        addToBot(new ApplyPowerAction(owner, owner, powerToGain, powerToGain.amount));
-        addToBot(new RemoveSpecificPowerAction(owner, owner, this.ID));
+        if (!AbstractDungeon.actionManager.turnHasEnded) {
+            addToTop(new RemoveSpecificPowerAction(owner, owner, this.ID));
+            addToTop(new ApplyPowerAction(owner, owner, powerToGain, powerToGain.amount));
+        } else {
+            addToBot(new ApplyPowerAction(owner, owner, powerToGain, powerToGain.amount));
+            addToBot(new RemoveSpecificPowerAction(owner, owner, this.ID));
+        }
     }
 
     @Override

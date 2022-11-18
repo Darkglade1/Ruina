@@ -30,7 +30,8 @@
   },
   "ruina:LoveAndHate": {
     "NAME": "사랑과 증오의 이름으로",
-    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다."
+    "DESCRIPTION": "거래 !D! X 모든 적에게 피해를 입힙니다. NL X가 !M! 이면! 이상, 50% 더 많은 피해를 줍니다.",
+    "UPGRADE_DESCRIPTION": "거래 !D! X 모든 적에게 피해를 입힙니다. NL X가 !M! 이면! 이상, 50% 더 많은 피해를 줍니다. NL X라면 !ruina:SecondMagic! 이상, 또한 100% 더 많은 피해를 줍니다."
   },
   "ruina:GoldRush": {
     "NAME": "골드 러시",
@@ -280,7 +281,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "힘의 계약",
-    "DESCRIPTION": "힘을 !M! 얻습니다. NL 턴 종료시, 피해를 !ruina:SecondMagic! 받고, 이 효과로 받는 피해량이 !ruina:SecondMagic! 만큼 증가합니다."
+    "DESCRIPTION": "힘을 !M! 얻습니다. NL !ruina:Second Magic! 만 플레이할 수 있습니다! 턴당 카드."
   },
   "ruina:ContractOfLight": {
     "NAME": "빛의 계약",
@@ -380,15 +381,20 @@
   },
   "ruina:Pillar": {
     "NAME": "열화된 기둥",
-    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다."
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다.",
+    "UPGRADE_DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다. NL 신청하세요 !M! *요정.",
+    "EXTENDED_DESCRIPTION": ["기둥"]
   },
   "ruina:Fairy": {
     "NAME": "열화된 요정",
-    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다.",
+    "EXTENDED_DESCRIPTION": ["요정"]
   },
   "ruina:Chain": {
     "NAME": "열화된 사슬",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화를 !M! 부여합니다."
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화를 !M! 부여합니다.",
+    "UPGRADE_DESCRIPTION": "피해를 !D! 줍니다. NL 약화와 취약을 !M! 부여합니다.",
+    "EXTENDED_DESCRIPTION": ["체인"]
   },
   "ruina:Climax": {
     "NAME": "클라이막스",
@@ -773,7 +779,7 @@
   },
   "ruina:SerumK": {
     "NAME": "혈청 K",
-    "DESCRIPTION": "가장 체력이 낮은 아군에게 방어도를 !B! 부여하고 체력을 !M! 회복시킵니다."
+    "DESCRIPTION": "가장 체력이 낮은 아군에게 방어도를 !B! 부여하고 체력을 !M! 회복시킵니다 그리고 !ruina:SecondMagic! 다음 턴의 힘."
   },
   "ruina:Line": {
     "NAME": "선",
@@ -789,7 +795,11 @@
   },
   "ruina:ZenaShockwave": {
     "NAME": "충격파",
-    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다."
+    "DESCRIPTION": "적이 1명뿐이라면 즉시 죽인다. NL 적 전체에게 피해를 !D! 줍니다."
+  },
+  "${ModID}:Birdcage": {
+    "NAME": "새장",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL !ruina:SecondMagic! 을 적용하세요 모든 적에게 요정."
   },
   "ruina:Marionette": {
     "NAME": "꼭두각시",
@@ -806,7 +816,7 @@
   },
   "ruina:Aspiration": {
     "NAME": "열망",
-    "DESCRIPTION": "힘을 !M! 얻습니다. NL 현재 체력의 절반만큼을 잃습니다. 전투 종료시, 이 효과로 잃은 체력을 다시 회복합니다."
+    "DESCRIPTION": "힘을 !M! 얻습니다. NL 체력을 !ruina:SecondMagic! 잃습니다. 전투 종료시, 이 효과로 잃은 체력을 다시 회복합니다."
   },
   "ruina:FrostSplinter": {
     "NAME": "서리조각",
@@ -888,7 +898,7 @@
   },
   "ruina:Fragments": {
     "NAME": "어딘가의 조각",
-    "DESCRIPTION": "적의 방어도를 훔쳐 자신의 것으로 만듭니다. NL 피해를 !D! 줍니다."
+    "DESCRIPTION": "적의 방어도를 훔쳐 자신의 것으로 만듭니다. NL 피해를 !D! 줍니다. NL 약화를 !M! 부여합니다."
   },
   "ruina:OurGalaxy": {
     "NAME": "우리의 은하수",
@@ -946,5 +956,21 @@
   "ruina:GrindingGears": {
     "NAME": "갈려나가는 톱니",
     "DESCRIPTION": "피해를 !M! 받습니다. NL *노래하는 *기계 안에 수납된 !ruina:SecondMagic! 카드를 제거한 후 손으로 가져옵니다. NL *노래하는 *기계를 1턴동안 *기절 시킵니다."
+  },
+  "${ModID}:Yield": {
+    "NAME": "Yield My Flesh",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength."
+  },
+  "${ModID}:Claim": {
+    "NAME": "To Claim Their Bones",
+    "DESCRIPTION": "While this card is held, the user can *Counter *Attack for !D! damage. User cannot make an attack on their turn."
+  },
+  "${ModID}:TakeOnesLife": {
+    "NAME": "And Take One's Life",
+    "DESCRIPTION": "Deal !D! damage. NL Target takes damage next turn equal to unblocked damage dealt."
+  },
+  "${ModID}:Acupuncture": {
+    "NAME": "Acupuncture",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
   }
 }

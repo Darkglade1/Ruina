@@ -187,9 +187,7 @@ public abstract class AbstractEgoCard extends AbstractRuinaCard {
         list.add(BlindRage.ID);
         list.add(FadedMemories.ID);
         list.add(GoldRush.ID);
-        if (adp().energy.energyMaster >= LoveAndHate.COST) {
-            list.add(LoveAndHate.ID); //only add it if the player can cast it
-        }
+        list.add(LoveAndHate.ID);
         list.add(Mimicry.ID);
         list.add(Nihil.ID);
         list.add(Smile.ID);

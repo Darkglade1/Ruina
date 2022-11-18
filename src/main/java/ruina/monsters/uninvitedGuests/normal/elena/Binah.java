@@ -22,13 +22,13 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
-import ruina.actions.BetterTalkAction;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
@@ -52,13 +52,14 @@ public class Binah extends AbstractAllyCardMonster
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    private static final byte DEGRADED_PILLAR = 0;
-    private static final byte DEGRADED_CHAIN = 1;
-    private static final byte DEGRADED_FAIRY = 2;
+    protected static final byte DEGRADED_PILLAR = 0;
+    protected static final byte DEGRADED_CHAIN = 1;
+    protected static final byte DEGRADED_FAIRY = 2;
 
-    public final int WEAK = 1;
+    public final int DEBUFF = 1;
     public final int BLOCK = 14;
     public final int fairyHits = 2;
+    public final int PILLAR_FAIRY = 1;
 
     public Elena elena;
     public VermilionCross vermilionCross;
@@ -187,6 +188,9 @@ public class Binah extends AbstractAllyCardMonster
                 waitAnimation(0.25f);
                 pillarEffect(target);
                 dmg(target, info);
+                if (cardList.get(DEGRADED_PILLAR).upgraded) {
+                    applyToTarget(target, this, new ruina.powers.Fairy(target, PILLAR_FAIRY));
+                }
                 resetIdle();
                 break;
             }
@@ -194,7 +198,10 @@ public class Binah extends AbstractAllyCardMonster
                 bluntAnimation(target);
                 dmg(target, info);
                 chainsEffect(target);
-                applyToTarget(target, this, new WeakPower(target, WEAK, false));
+                applyToTarget(target, this, new WeakPower(target, DEBUFF, false));
+                if (cardList.get(DEGRADED_CHAIN).upgraded) {
+                    applyToTarget(target, this, new VulnerablePower(target, DEBUFF, false));
+                }
                 resetIdle();
                 break;
             }

@@ -70,6 +70,9 @@ public class DaCapo extends AbstractEgoCard {
             upgradeDamage(UP_DAMAGE + timesUpgraded);
             this.upgraded = true;
             this.timesUpgraded++;
+            if (this.timesUpgraded >= MAX_UPGRADES) {
+                isInnate = true;
+            }
             setText();
         }
     }

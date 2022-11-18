@@ -113,5 +113,13 @@
       " #gEGO #g카드를 #g선택하여 #g받습니다. ]",
       "EGO 카드 보상을 받습니다."
     ]
+  },
+  "ruina:CounterIntentStrings": {
+    "TEXT": [
+      "This enemy intends to NL #yCounter #yAttack for #b",
+      " damage.",
+      " damage #b",
+      " times."
+    ]
   }
 }

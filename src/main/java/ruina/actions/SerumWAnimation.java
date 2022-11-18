@@ -76,7 +76,7 @@ public class SerumWAnimation extends AbstractGameEffect {
             grabbed = true;
         }
         if (owner.drawX == endX) {
-            if (bgCounter < bgTextures.size() - 4) {
+            if (bgCounter < bgTextures.size() - 6) {
                 bgCounter++;
                 startX = Math.abs(endX - Settings.WIDTH);
                 graphicsAnimation = 0.0f;

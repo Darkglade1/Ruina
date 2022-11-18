@@ -300,7 +300,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "힘의 계약",
-    "DESCRIPTIONS": ["매 턴 종료시, 피해를 #b", " 받고, 이 효과로 받는 피해량이 #b", " 증가합니다."]
+    "DESCRIPTIONS": ["턴당 #b", " 카드만 사용할 수 있습니다."]
   },
   "ruina:ContractOfLight": {
     "NAME": "빛의 계약",
@@ -425,7 +425,7 @@
   },
   "ruina:AClaw": {
     "NAME": "처형자",
-    "DESCRIPTIONS": ["이 생물은 절대로 #y힘을 잃지 않습니다. NL 이 생물이 막히지 않은 피해를 #b", " 또는 그 이상을 받으면, 그 피해를 #b", "% 감소시킵니다. NL 다른 적이 #r죽으면, #y힘을 #b", " 얻습니다."]
+    "DESCRIPTIONS": ["이 생물은 절대로 #y힘을 잃지 않습니다. NL 이 생물은 힘을 얻을 때마다 두 배로 힘을 얻습니다. NL #b", " 에 도달한 후 힘, 자주 치명적인 공격을 사용하기 시작합니다."]
   },
   "ruina:AnArbiter": {
     "NAME": "완벽한 조율자",
@@ -614,5 +614,33 @@
   "ruina:MagicBullet": {
     "NAME": "마법의 총알",
     "DESCRIPTIONS": ["이번 턴에 #y공격으로부터 #b", "% 더 많은 피해를 받습니다."]
+  },
+  "${ModID}:Rupture": {
+    "NAME": "Rupture",
+    "DESCRIPTIONS": ["At the end of your turn, take #b", " damage."]
+  },
+  "${ModID}:CounterAttack": {
+    "NAME": "Counter Attack",
+    "DESCRIPTIONS": ["Whenever you play an #yAttack this turn, this creature will #yCounter #yAttack you. If this effect did not trigger at least once this turn, will use a #rpowerful attack next turn."]
+  },
+  "${ModID}:SingularityT": {
+    "NAME": "특이점 T",
+    "DESCRIPTIONS": ["매번 카드를 #b", " 장 사용할때마다 이 생물이 행동합니다. NL 다른 적이 죽으면 이 힘이 업그레이드됩니다.", "저하된 특이점 T"]
+  },
+  "${ModID}:SingularityJ": {
+    "NAME": "특이점 J",
+    "DESCRIPTIONS": ["각 전투원은 턴당 이 생물에게 #b", " 개의 디버프만 적용할 수 있습니다. NL 각 전투원은 턴당 #b" , " 번만 이 생물에게 공격 피해를 입힐 수 있습니다. NL 다른 적이 죽으면 이 능력이 업그레이드되고 이 생물은 분노하게 됩니다.", "저하된 특이점 J"]
+  },
+  "${ModID}:SingularityF": {
+    "NAME": "특이점 F",
+    "DESCRIPTIONS": ["이 생물이 공격할 때마다 대상에 요정 #b", " 개를 적용합니다."]
+  },
+  "${ModID}:Fairy": {
+    "NAME": "요정",
+    "DESCRIPTIONS": ["이 생물은 공격할 때마다 #b", " HP를 잃습니다. NL 이 생물이 공격을 받을 때마다 공격자는 #b ", " 차단하다 을 얻습니다."]
+  },
+  "${ModID}:FlameShield": {
+    "NAME": "플레임 실드",
+    "DESCRIPTIONS": ["공격을 할 때마다 불타다 #b", " 개를 폐기 더미에 섞습니다. NL 이 힘은 절제된 열정 이 제거되면 제거됩니다."]
   }
 }
