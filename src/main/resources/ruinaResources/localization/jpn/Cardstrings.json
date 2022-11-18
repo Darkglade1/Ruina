@@ -956,5 +956,21 @@
   "ruina:GrindingGears": {
     "NAME": "研削",
     "DESCRIPTION": "HP !M! を失う。 NL *歌う機械 に奪われたカードを NL !ruina:SecondMagic! 枚取り戻し手札に加える。 NL *歌う機械 が1ターンの間 *スタン する。"
+  },
+  "${ModID}:Yield": {
+    "NAME": "Yield My Flesh",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength."
+  },
+  "${ModID}:Claim": {
+    "NAME": "To Claim Their Bones",
+    "DESCRIPTION": "While this card is held, the user can *Counter *Attack for !D! damage. User cannot make an attack on their turn."
+  },
+  "${ModID}:TakeOnesLife": {
+    "NAME": "And Take One's Life",
+    "DESCRIPTION": "Deal !D! damage. NL Target takes damage next turn equal to unblocked damage dealt."
+  },
+  "${ModID}:Acupuncture": {
+    "NAME": "Acupuncture",
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
   }
 }
