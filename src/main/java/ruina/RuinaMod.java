@@ -663,8 +663,8 @@ public class RuinaMod implements
                 .cards();
     }
 
-    public static boolean englishOnly() {
-        return Settings.language == Settings.GameLanguage.ENG;
+    public static boolean localizedLanguageOnly() {
+        return Settings.language == Settings.GameLanguage.ENG || Settings.language == Settings.GameLanguage.JPN;
     }
 
     @Override
@@ -840,11 +840,11 @@ public class RuinaMod implements
         BaseMod.addEvent(Funeral.ID, Funeral.class, Asiyah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Asiyah.ID);
         BaseMod.addEvent(new AddEventParams.Builder(Art.ID, Art.class)
-                .bonusCondition(RuinaMod::englishOnly)
+                .bonusCondition(RuinaMod::localizedLanguageOnly)
                 .dungeonID(Asiyah.ID)
                 .create());
         BaseMod.addEvent(new AddEventParams.Builder(YourBook.ID, YourBook.class)
-                .bonusCondition(RuinaMod::englishOnly)
+                .bonusCondition(RuinaMod::localizedLanguageOnly)
                 .dungeonID(Asiyah.ID)
                 .create());
 
@@ -914,7 +914,7 @@ public class RuinaMod implements
         BaseMod.addEvent(Language.ID, Language.class, Briah.ID);
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Briah.ID);
         BaseMod.addEvent(new AddEventParams.Builder(WanderingSamurai.ID, WanderingSamurai.class)
-                .bonusCondition(RuinaMod::englishOnly)
+                .bonusCondition(RuinaMod::localizedLanguageOnly)
                 .dungeonID(Briah.ID)
                 .create());
 
@@ -977,7 +977,7 @@ public class RuinaMod implements
         BaseMod.addEvent(PatronLibrarian.ID, PatronLibrarian.class, Atziluth.ID);
         BaseMod.addEvent(YesterdayPromise.ID, YesterdayPromise.class, Atziluth.ID);
         BaseMod.addEvent(new AddEventParams.Builder(Realization.ID, Realization.class)
-                .bonusCondition(RuinaMod::englishOnly)
+                .bonusCondition(RuinaMod::localizedLanguageOnly)
                 .dungeonID(Atziluth.ID)
                 .create());
 

@@ -5,7 +5,7 @@
   },
   "ruina:FragmentOfBliss": {
     "NAME": "幸せの破片",
-    "DESCRIPTION": "!M! ブロック を得る。 NL 得られる ブロック はバフやデバフの効果で増減しない。"
+    "DESCRIPTION": " !M! ブロック を得る。 NL 得られる ブロック はバフやデバフの効果で増減しない。"
   },
   "ruina:FalseThrone": {
     "NAME": "偽りの王座",
@@ -48,7 +48,7 @@
   },
   "ruina:Lumber": {
     "NAME": "伐採",
-    "DESCRIPTION": "!D! ダメージを与える。 NL !M! 枚のカードを 廃棄 NL 廃棄 されたアタックの基本ダメージ分、このカードのダメージが増加。 NL このカードを山札に加えシャッフル。"
+    "DESCRIPTION": "!D! ダメージを与え、 !M! 枚のカードを 廃棄 。 NL 廃棄 されたアタックのダメージ分、このカードのダメージが増加。 NL このカードを山札に加えシャッフル。"
   },
   "ruina:Harvest": {
     "NAME": "収穫",
@@ -57,7 +57,7 @@
   },
   "ruina:HomingInstinct": {
     "NAME": "帰巣本能",
-    "DESCRIPTION": "!M! 枚のカードを 廃棄 。 NL あなたのターン開始時、 廃棄 されたカードのコストに等しい [E] を得る。"
+    "DESCRIPTION": " !M! 枚のカードを 廃棄 。 NL あなたのターン開始時、 廃棄 されたカードのコストに等しい [E] を得る。"
   },
   "ruina:CobaltScar": {
     "NAME": "蒼の傷跡",
@@ -86,7 +86,7 @@
   },
   "ruina:Penitence": {
     "NAME": "懺悔",
-    "DESCRIPTION": "HPを !M! 回復する。 NL すべてのデバフを取り除く。"
+    "DESCRIPTION": "HPを !M! 回復する。 NL 全てのデバフを取り除く。"
   },
   "ruina:SoundOfAStar": {
     "NAME": "星の音",
@@ -253,7 +253,7 @@
   },
   "ruina:BattleCommand": {
     "NAME": "戦闘射撃",
-    "DESCRIPTION": "!D! ダメージを与える。 NL すべての味方は 筋力 !M! を得る。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL 全ての味方は 筋力 !M! を得る。"
   },
   "ruina:Disposal": {
     "NAME": "処分",
@@ -277,11 +277,11 @@
   },
   "ruina:Puppetry": {
     "NAME": "操作の糸",
-    "DESCRIPTION": "すべての味方は 筋力 !M! を得る。"
+    "DESCRIPTION": "全ての味方は 筋力 !M! を得る。"
   },
   "ruina:ContractOfMight": {
     "NAME": "力の契約",
-    "DESCRIPTION": "筋力 !M! を得る。 あなたのターン終了時、 NL !ruina:Second Magic のみプレイできます。 ターンごとのカード。"
+    "DESCRIPTION": "筋力 !M! を得る。 １ターンの間に、 NL !ruina:Second Magic! 枚を超えてカードをプレイすることはできない。"
   },
   "ruina:ContractOfLight": {
     "NAME": "光の契約",
@@ -325,7 +325,7 @@
   },
   "ruina:Intimidate": {
     "NAME": "威嚇",
-    "DESCRIPTION": "すべての *プレート *アーマー を *金属化 に変える。 NL *プレート *アーマー !M! を得る。"
+    "DESCRIPTION": "全ての *プレート *アーマー を *金属化 に変える。 NL *プレート *アーマー !M! を得る。"
   },
   "ruina:LupineAssault": {
     "NAME": "狼の猛襲",
@@ -382,7 +382,7 @@
   "ruina:Pillar": {
     "NAME": "劣化した柱",
     "DESCRIPTION": " !B! ブロック を得る。 NL !D! ダメージを与える。",
-    "UPGRADE_DESCRIPTION": " !B! ブロック を得る。 NL !D! ダメージを与える。 NL 適用 !M! *妖精。",
+    "UPGRADE_DESCRIPTION": " !B! ブロック を得る。 NL !D! ダメージを与える。 NL *妖精 !M! を与える。",
     "EXTENDED_DESCRIPTION": ["柱"]
   },
   "ruina:Fairy": {
@@ -406,7 +406,7 @@
   },
   "ruina:Catch": {
     "NAME": "受け取ってくださぁ～い！",
-    "DESCRIPTION": "!M! 枚の *負傷 を山札に混ぜる。"
+    "DESCRIPTION": " !M! 枚の *負傷 を山札に混ぜる。"
   },
   "ruina:Pow": {
     "NAME": "パ～ン！パパン！！",
@@ -582,7 +582,7 @@
   },
   "ruina:Preach": {
     "NAME": "考えの歯車：説破",
-    "DESCRIPTION": "すべての味方は次のターン 筋力 !M! を得る。"
+    "DESCRIPTION": "全ての味方は次のターン 筋力 !M! を得る。"
   },
   "ruina:Accelerate": {
     "NAME": "考えの歯車：加速",
@@ -667,7 +667,7 @@
   "ruina:Yun": {
     "NAME": "記憶 - ユン事務所",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": ["!M! 枚の *めまい を 山札に混ぜる。", " NL !ruina:SecondMagic! 枚の *負傷を捨て札に混ぜる。"]
+    "EXTENDED_DESCRIPTION": [" !M! 枚の *めまい を 山札に混ぜる。", " NL !ruina:SecondMagic! 枚の *負傷を捨て札に混ぜる。"]
   },
   "ruina:Zwei": {
     "NAME": "記憶 - ツヴァイ協会",
@@ -677,7 +677,7 @@
   "ruina:Dawn": {
     "NAME": "記憶 - 夜明事務所",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": ["!M! 枚の *火傷を 山札に混ぜる。", "敵は NL ruina:保護 !ruina:SecondMagic! を得る。"]
+    "EXTENDED_DESCRIPTION": [" !M! 枚の *火傷を 山札に混ぜる。", "敵は NL ruina:保護 !ruina:SecondMagic! を得る。"]
   },
   "ruina:Shi": {
     "NAME": "記憶 - シ協会",
@@ -719,7 +719,7 @@
   },
   "ruina:Void": {
     "NAME": "空虚",
-    "DESCRIPTION": " 脱力 と 脆弱化 !ruina:SecondMagic! を与える。 NL !M!枚の *空虚 を捨て札に混ぜる。"
+    "DESCRIPTION": " 脱力 と 脆弱化 !ruina:SecondMagic! を与える。 NL !M! 枚の *空虚 を捨て札に混ぜる。"
   },
   "ruina:ZelkovaWorkshop": {
     "NAME": "ケヤキ工房",
@@ -743,11 +743,11 @@
   },
   "ruina:UnitedWorkshop": {
     "NAME": "連携",
-    "DESCRIPTION": " !D! ダメージを !M! 回与える。 NL この *パートナー が攻撃予定のとき、 NL 筋力 !ruina:SecondMagic! を得る。"
+    "DESCRIPTION": " !D! ダメージを !M! 回与える。 NL *パートナー が攻撃予定のとき、 NL 筋力 !ruina:SecondMagic! を得る。"
   },
   "ruina:UnstableLoneliness": {
     "NAME": "不安定な結束",
-    "DESCRIPTION": "!D! ダメージを与える。 NL この *パートナー が攻撃予定でない時、 脱力 と 脆弱化 !M! を与える。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL *パートナー が攻撃予定でない時、 脱力 と 脆弱化 !M! を与える。"
   },
   "ruina:BlindFury": {
     "NAME": "激怒",
@@ -779,7 +779,7 @@
   },
   "ruina:SerumK": {
     "NAME": "血清K",
-    "DESCRIPTION": "もっともHPの低い味方は !B! ブロック を得て、HPを !M! 回復する ルイナ：セカンドマジック !ruina:SecondMagic! 次のターンの強さ。"
+    "DESCRIPTION": "最もHPの低い味方は !B! ブロック を得て、HPを !M! 回復し、次のターン 筋力 !ruina:SecondMagic! を得る。"
   },
   "ruina:Line": {
     "NAME": "線",
@@ -795,11 +795,11 @@
   },
   "ruina:ZenaShockwave": {
     "NAME": "衝撃波",
-    "DESCRIPTION": "敵が1体の場合は即死。NL 全ての敵に !D! ダメージを与える。"
+    "DESCRIPTION": "敵が1体なら即死させる。NL 全ての敵に !D! ダメージを与える。"
   },
-  "${ModID}:Birdcage": {
-    "NAME": "鳥かご",
-    "DESCRIPTION": " !D! ダメージを !M! 回与える。 NL !ruina:SecondMagic! 適用 すべての敵の妖精。"
+  "ruina:Birdcage": {
+    "NAME": "鳥籠",
+    "DESCRIPTION": " !D! ダメージを !M! 回与え、全ての敵に NL 妖精 !ruina:SecondMagic! を与える。"
   },
   "ruina:Marionette": {
     "NAME": "操り人形",
@@ -816,7 +816,7 @@
   },
   "ruina:Aspiration": {
     "NAME": "熱望",
-    "DESCRIPTION": "筋力 !M! を得る。 NL HPを !ruina:SecondMagic! 失う。 NL 戦闘終了時、このカードによって減らされたHPを回復する。"
+    "DESCRIPTION": "筋力 !M! を得る。 NL HPを !ruina:SecondMagic! 失う。 NL 戦闘終了時、このカードによって減らされたHP分回復する。"
   },
   "ruina:FrostSplinter": {
     "NAME": "霜の欠片",
@@ -824,7 +824,7 @@
   },
   "ruina:Guilt": {
     "NAME": "罪悪感",
-    "DESCRIPTION": "あなたのターン終了時、ランダムな敵が次のターン 筋力 !M! を得る。 NL このカードがプレイする以外の方法で 廃棄 されたとき、捨て札にこのカードのコピーを加える。"
+    "DESCRIPTION": "あなたのターン終了時、ランダムな敵が次のターン 筋力 !M! を得る。 NL このカードがプレイする以外の方法で 廃棄 されたとき、捨て札にこのカードの複製を加える。"
   },
   "ruina:CHRBOSS_PreparedMind": {
     "NAME": "心構え",
@@ -898,7 +898,7 @@
   },
   "ruina:Fragments": {
     "NAME": "どこかの欠片",
-    "DESCRIPTION": "敵の ブロック を奪う。 NL !D! ダメージを与える。NL 脱力 !M! を与える。"
+    "DESCRIPTION": "敵の ブロック を奪う。 NL !D! ダメージを与える。 NL 脱力 !M! を与える。"
   },
   "ruina:OurGalaxy": {
     "NAME": "僕らの銀河",
@@ -943,7 +943,7 @@
   },
   "ruina:SolemnLament": {
     "NAME": "厳粛な哀悼",
-    "DESCRIPTION": "無形 !M! NL 全コストを ruina:発現 で払った時、このカードのコピーを捨て札に加える。"
+    "DESCRIPTION": "無形 !M! NL 全コストを ruina:発現 で払った時、このカードの複製を捨て札に加える。"
   },
   "ruina:Wingbeat": {
     "NAME": "羽ばたき",
@@ -951,26 +951,26 @@
   },
   "ruina:Regret": {
     "NAME": "後悔",
-    "DESCRIPTION": "!D! ダメージを与える。 NL 手札に呪いか状態異常があるとき、追加で !D! ダメージを与える。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL 手札に呪いか状態異常があるとき、その枚数分追加で !D! ダメージを与える。"
   },
   "ruina:GrindingGears": {
     "NAME": "研削",
     "DESCRIPTION": "HP !M! を失う。 NL *歌う機械 に奪われたカードを NL !ruina:SecondMagic! 枚取り戻し手札に加える。 NL *歌う機械 が1ターンの間 *スタン する。"
   },
-  "${ModID}:Yield": {
-    "NAME": "Yield My Flesh",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Strength."
+  "ruina:Yield": {
+    "NAME": "肉斬",
+    "DESCRIPTION": "!D! ダメージを与える。 NL 筋力 !M! を得る。"
   },
-  "${ModID}:Claim": {
-    "NAME": "To Claim Their Bones",
-    "DESCRIPTION": "While this card is held, the user can *Counter *Attack for !D! damage. User cannot make an attack on their turn."
+  "ruina:Claim": {
+    "NAME": "骨断",
+    "DESCRIPTION": "相手のアタックに *反撃 し !D! ダメージを与える。自分のターンでは行動しない。"
   },
-  "${ModID}:TakeOnesLife": {
-    "NAME": "And Take One's Life",
-    "DESCRIPTION": "Deal !D! damage. NL Target takes damage next turn equal to unblocked damage dealt."
+  "ruina:TakeOnesLife": {
+    "NAME": "殺主",
+    "DESCRIPTION": "!D! ダメージを与える。 NL ブロックされていないダメージ分、次のあなたのターン終了時に追加でダメージを与える。"
   },
-  "${ModID}:Acupuncture": {
-    "NAME": "Acupuncture",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
+  "ruina:Acupuncture": {
+    "NAME": "刺法",
+    "DESCRIPTION": "!D! ダメージを !M! 回与える。 NL *麻痺 !ruina:SecondMagic! を与える。"
   }
 }
