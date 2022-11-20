@@ -300,7 +300,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "힘의 계약",
-    "DESCRIPTIONS": ["턴당 #b", " 카드만 사용할 수 있습니다."]
+    "DESCRIPTIONS": ["매 턴 카드를 #b", " 장만 사용할 수 있습니다."]
   },
   "ruina:ContractOfLight": {
     "NAME": "빛의 계약",
@@ -425,7 +425,7 @@
   },
   "ruina:AClaw": {
     "NAME": "처형자",
-    "DESCRIPTIONS": ["이 생물은 절대로 #y힘을 잃지 않습니다. NL 이 생물은 힘을 얻을 때마다 두 배로 힘을 얻습니다. NL #b", " 에 도달한 후 힘, 자주 치명적인 공격을 사용하기 시작합니다."]
+    "DESCRIPTIONS": ["이 생물의 힘은 그 어떤 수단으로도 감소시킬 수 없습니다. NL 이 생물은 힘 획득량이 2배로 증가합니다. NL 보유한 힘이 #b", " 이상이라면, #y즉사 #y공격 사용 빈도가 증가합니다."]
   },
   "ruina:AnArbiter": {
     "NAME": "완벽한 조율자",
@@ -504,7 +504,7 @@
   },
   "ruina:LaetitiaPower": {
     "NAME": "래티씨아",
-    "DESCRIPTIONS": ["매 턴 처음 사용하는 #b", " or ", " 비용의 카드가 2번 사용됩니다. (", " 번 남음)"]
+    "DESCRIPTIONS": ["매 턴 처음 사용하는 #b", " 또는 ", " 비용의 카드가 2번 사용됩니다. (", " 번 남음)"]
   },
   "ruina:Satiation": {
     "NAME": "잠깐의 배부름",
@@ -607,7 +607,7 @@
     "NAME": "7번째 탄환",
     "DESCRIPTIONS": ["#y공격 카드를 #b", " 장 사용하면, #b1 턴 동안 이 생물이 적에게 막히지 않은 피해를 줄때마다, 대상의 체력을 막히지 않은 피해만큼 감소시킵니다.", " NL NL 이번 턴에, 이 생물이 적에게 막히지 않은 피해를 입히면, 대상의 체력을 막히지 않은 피해만큼 추가로 감소시킵니다."]
   },
-  "${ModID}:CenterOfAttention": {
+  "ruina:CenterOfAttention": {
     "NAME": "관심의 중심",
     "DESCRIPTIONS": ["무작위 지정 효과들은 전부 이 적을 우선으로 합니다."]
   },
@@ -615,32 +615,32 @@
     "NAME": "마법의 총알",
     "DESCRIPTIONS": ["이번 턴에 #y공격으로부터 #b", "% 더 많은 피해를 받습니다."]
   },
-  "${ModID}:Rupture": {
-    "NAME": "Rupture",
-    "DESCRIPTIONS": ["At the end of your turn, take #b", " damage."]
+  "ruina:Rupture": {
+    "NAME": "파열상",
+    "DESCRIPTIONS": ["턴 종료시, 피해를 #b", " 받습니다."]
   },
-  "${ModID}:CounterAttack": {
-    "NAME": "Counter Attack",
-    "DESCRIPTIONS": ["Whenever you play an #yAttack this turn, this creature will #yCounter #yAttack you. If this effect did not trigger at least once this turn, will use a #rpowerful attack next turn."]
+  "ruina:CounterAttack": {
+    "NAME": "카운터 공격",
+    "DESCRIPTIONS": ["이번 턴 동안 #y공격 카드를 사용할 때마다, 이 생물이 당신에게 #y카운터 #y공격 을 가합니다. 이번 턴 동안 이 효과가 단 한 번도 발동되지 않았다면, 다음 턴에 #r아주 #r강력한 #r공격을 사용합니다."]
   },
-  "${ModID}:SingularityT": {
+  "ruina:SingularityT": {
     "NAME": "특이점 T",
-    "DESCRIPTIONS": ["매번 카드를 #b", " 장 사용할때마다 이 생물이 행동합니다. NL 다른 적이 죽으면 이 힘이 업그레이드됩니다.", "저하된 특이점 T"]
+    "DESCRIPTIONS": ["매번 카드를 #b", " 장 사용할때마다, 이 생물이 행동합니다. NL 다른 적이 죽으면 이 파워 효과가 강화됩니다.", "불안정한 특이점 T"]
   },
-  "${ModID}:SingularityJ": {
+  "ruina:SingularityJ": {
     "NAME": "특이점 J",
-    "DESCRIPTIONS": ["각 전투원은 턴당 이 생물에게 #b", " 개의 디버프만 적용할 수 있습니다. NL 각 전투원은 턴당 #b" , " 번만 이 생물에게 공격 피해를 입힐 수 있습니다. NL 다른 적이 죽으면 이 능력이 업그레이드되고 이 생물은 분노하게 됩니다.", "저하된 특이점 J"]
+    "DESCRIPTIONS": ["전투 내에 존재하는 생물 1명당, 이 생물에게 한 턴에 #b", " 개의 해로운 효과만 부여할 수 있습니다. NL 각 전투원은 매 턴당 #b" , " 번만 이 생물에게 공격 피해를 입힐 수 있습니다. NL 다른 적이 사망하면, 이 파워 효과가 강화되고 이 적이 분노합니다.", "불안정한 특이점 J"]
   },
-  "${ModID}:SingularityF": {
+  "ruina:SingularityF": {
     "NAME": "특이점 F",
-    "DESCRIPTIONS": ["이 생물이 공격할 때마다 대상에 요정 #b", " 개를 적용합니다."]
+    "DESCRIPTIONS": ["이 생물이 공격할 때마다, 그 대상에게 요정 을 #b", " 부여합니다."]
   },
-  "${ModID}:Fairy": {
+  "ruina:Fairy": {
     "NAME": "요정",
-    "DESCRIPTIONS": ["이 생물은 공격할 때마다 #b", " HP를 잃습니다. NL 이 생물이 공격을 받을 때마다 공격자는 #b ", " 차단하다 을 얻습니다."]
+    "DESCRIPTIONS": ["이 생물은 공격할 때마다, 체력을 #b", " 잃습니다. NL 이 생물이 공격을 받을 때마다, 공격자에게 방어도를 #b ", " 부여합니다."]
   },
-  "${ModID}:FlameShield": {
-    "NAME": "플레임 실드",
-    "DESCRIPTIONS": ["공격을 할 때마다 불타다 #b", " 개를 폐기 더미에 섞습니다. NL 이 힘은 절제된 열정 이 제거되면 제거됩니다."]
+  "ruina:FlameShield": {
+    "NAME": "화염 방패",
+    "DESCRIPTIONS": ["공격 카드를 사용할 때마다, #y화상+ #b", " 장을 버린 카드 더미에 넣습니다. NL 이 파워 효과는 '식어버린 마음' 효과가 제거되면 같이 제거됩니다."]
   }
 }
