@@ -10,7 +10,7 @@
     "NAME": "指令",
     "FLAVOR": "奇妙な指令の数々。一体誰がこんなことを考えたのだろうか？",
     "DESCRIPTIONS": [
-      "#y指令: NL 1 #b", " 体の通常", " 体の #rエリート", " 敵に遭遇。 ", " 敵に遭遇。 ", " 回 #pイベント を発生させる。 ", " 回 #pイベント を発生させる。 ", "/",
+      "#y指令: NL 1 #b", " 体の", " 体の #rエリート", " 敵に遭遇。 ", " 敵に遭遇。 ", " 回 #pイベント を発生させる。 ", " 回 #pイベント を発生させる。 ", "/",
       " NL 2 #b", " 枚のコモン", " 枚の #bアンコモン", " 枚の #yレア", " カードを得る。 ", " カードを得る。 ",
       " NL 全て達成すれば特別なレリックが完成。"
     ]
@@ -41,7 +41,7 @@
     "NAME": "四卦",
     "FLAVOR": "都市の均衡は維持されなければならない。",
     "DESCRIPTIONS": [
-      "あなたのターンの開始時に、この戦闘中以下からまだ発動されていない効果が発動。: NL #y筋力 #b", " を得る。 NL #y敏捷性 #b", " を得る。 NL [E] を得る。 NL #b", " 枚カードをドローする。"
+      "ターンの開始時に、この戦闘中以下からまだ発動されていない効果が発動。: NL #y筋力 #b", " を得る。 NL #y敏捷性 #b", " を得る。 NL [E] を得る。 NL #b", " 枚カードをドローする。"
     ]
   },
   "ruina:LowellsGift": {
@@ -55,14 +55,14 @@
     "NAME": "昨日の約束",
     "FLAVOR": "眼鏡をお貸しします。この契約書をよくご覧ください。",
     "DESCRIPTIONS": [
-      "カードをプレイする [E] が足りないとき、 #b5 HP を足りない [E] として払うことができる。"
+      "カードをプレイする [E] が足りないとき、HP #b5  を足りない [E] として払うことができる。"
     ]
   },
   "ruina:Book": {
     "NAME": "何かの本",
     "FLAVOR": "自由を得るためには、誰かが戦わなければならない。",
     "DESCRIPTIONS": [
-      "戦闘終了時、あなたのHPを #b", "% #g回復 。"
+      "戦闘終了時、HPを #b", "% #g回復 。"
     ]
   },
   "ruina:Overexertion": {
@@ -93,39 +93,39 @@
       "戦闘開始時 #y筋力 #b" , " を得る。 NL #yアタック を #b", " 枚プレイする度 #b", " ダメージを受ける。"
     ]
   },
-  "${ModID}:Greed": {
-    "NAME": "Memory of Devouring Greed",
-    "FLAVOR": "She ended up eating away anything in her sight. Now, only visceral greed remains.",
+  "ruina:Greed": {
+    "NAME": "貪欲の記憶",
+    "FLAVOR": "結局全てを喰らい尽くしてしまった。今では本能的な貪欲だけが残った。",
     "DESCRIPTIONS": [
-      "At the start of combat, #yExhaust up to #b"," card. Gain #yGold based on the rarity (rarer cards give more #yGold)."
+      "戦闘開始時、 #b"," 枚のカードを #y廃棄 し、廃棄したカードのレアリティに応じて #yゴールド を得る。"
     ]
   },
-  "${ModID}:Despair": {
-    "NAME": "Memory of Overwhelming Despair",
-    "FLAVOR": "As with sorrow, perhaps sharing the burden will blunt the edge.",
+  "ruina:Despair": {
+    "NAME": "絶望の記憶",
+    "FLAVOR": "全ての悲しみがそうであるよう、分かち合う者が増えるほどに鈍くなるのではないのだろうか。",
     "DESCRIPTIONS": [
-      "The first time you #yExhaust a card each turn, gain #b", " #yBlock."
+      "各ターン、カードを初めて #y廃棄 する度、 #b", " #yブロックを得る。"
     ]
   },
-  "${ModID}:Hate": {
-    "NAME": "Memory of Boundless Hate",
-    "FLAVOR": "She vowed to love everything in the world, but all that was left was a collapsing heart.",
+  "ruina:Hate": {
+    "NAME": "憎悪の記憶",
+    "FLAVOR": "この世のすべてを愛すと心に決めたが、残ったものは崩れゆく心だけであった。",
     "DESCRIPTIONS": [
-      "Whenever you lose HP, gain #b", " #yStrength."
+      "HPを失う度、 #y筋力 #b", " を得る。"
     ]
   },
-  "${ModID}:BrokenHeart": {
-    "NAME": "Memory of Broken Hearts",
-    "FLAVOR": "So this little lady has made a decision! To stay here and never leave until laughter is restored to this place!",
+  "ruina:BrokenHeart": {
+    "NAME": "友だち",
+    "FLAVOR": "ちびのおじょうちゃんは決心したの！ここに笑い声が戻ってくるまで離れないって！",
     "DESCRIPTIONS": [
-      "At the start of combat, gain [E] [E] and #b", " #yruina:Bleed."
+      "戦闘開始時、 [E] [E] と #yruina:出血 #b", " を得る。"
     ]
   },
-  "${ModID}:EGOBook": {
-    "NAME": "Book of E.G.O.",
-    "FLAVOR": "There is a light within all of us. A light that will one day break free and change the world.",
+  "ruina:EGOBook": {
+    "NAME": "E.G.O.の本",
+    "FLAVOR": "私たちは皆、自分の中に光を持つ。その光は、いつか自由をもたらし、世界を変えるだろう。",
     "DESCRIPTIONS": [
-      "At the end of your turn, #yExhaust a random #pCurse in your hand. NL Whenever a #pCurse is #yExhausted, add a random #yEGO card to your hand and give it #yRetain."
+      "あなたのターン終了時、手札にあるランダムな #p呪い を1枚 #y廃棄 する。 NL #p呪い が #y廃棄 される度、手札に #y保留 を持つランダムな #yEGO カードを加える。"
     ]
   }
 }
