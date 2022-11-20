@@ -735,11 +735,13 @@
   },
   "ruina:WaltzInWhite": {
     "NAME": "白色のワルツ",
-    "DESCRIPTION": " !D! ダメージを !M! 回与える。"
+    "DESCRIPTION": " !D! ダメージを !M! 回与える。",
+    "UPGRADE_DESCRIPTION": "!D! ダメージを !M! 回与える。 NL パートナーが攻撃する場合、与えるダメージが 2 倍になります。"
   },
   "ruina:AshenBond": {
     "NAME": "白い結束",
-    "DESCRIPTION": "全ての味方に !B! ブロック と筋力 !M! を与える。"
+    "DESCRIPTION": "全ての味方に !B! ブロック と筋力 !M! を与える。",
+    "UPGRADE_DESCRIPTION": "全ての味方に !B! ブロック と筋力 !M! を与える。 NL パートナーが攻撃するつもりがない場合、これらの効果を2倍にする。"
   },
   "ruina:UnitedWorkshop": {
     "NAME": "連携",
@@ -755,11 +757,13 @@
   },
   "ruina:DarkBond": {
     "NAME": "黒い結束",
-    "DESCRIPTION": "全ての味方に !B! ブロック を与える。 NL !M! 枚の *空虚 を山札に混ぜる。"
+    "DESCRIPTION": "全ての味方に !B! ブロック を与える。 NL !M! 枚の *空虚 を山札に混ぜる。",
+    "UPGRADE_DESCRIPTION": "全ての味方に !B! ブロック を与える。 NL !M! 枚の *空虚 を山札に混ぜる。 NL パートナーが攻撃するつもりがない場合、これらの効果を2倍にする。"
   },
   "ruina:WaltzInBlack": {
     "NAME": "黒色のワルツ",
-    "DESCRIPTION": " !D! ダメージを !M! 回与える。"
+    "DESCRIPTION": " !D! ダメージを !M! 回与える。",
+    "UPGRADE_DESCRIPTION": "!D! ダメージを !M! 回与える。 NL パートナーが攻撃する場合、与えるダメージが 2 倍になります。"
   },
   "ruina:SerumW": {
     "NAME": "血清W",

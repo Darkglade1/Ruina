@@ -735,11 +735,13 @@
   },
   "ruina:WaltzInWhite": {
     "NAME": "백색 왈츠",
-    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다.",
+    "UPGRADE_DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 파트너가 공격을 시도하면 두 배의 피해를 입힙니다."
   },
   "ruina:AshenBond": {
     "NAME": "하얀 결속",
-    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻고 힘을 !M! 얻습니다."
+    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻고 힘을 !M! 얻습니다.",
+    "UPGRADE_DESCRIPTION": "모든 아군이 방어도를 !B! 얻고 힘을 !M! 얻습니다. NL 파트너가 공격할 생각이 없으면 이 효과를 두 배로 늘립니다."
   },
   "ruina:UnitedWorkshop": {
     "NAME": "연계",
@@ -755,11 +757,13 @@
   },
   "ruina:DarkBond": {
     "NAME": "검은 결속",
-    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻습니다. NL *공허 !M! 장을 뽑을 카드 더미에 넣습니다."
+    "DESCRIPTION": "모든 아군이 방어도를 !B! 얻습니다. NL *공허 !M! 장을 뽑을 카드 더미에 넣습니다.",
+    "UPGRADE_DESCRIPTION": "모든 아군이 방어도를 !B! 얻습니다. NL *공허 !M! 장을 뽑을 카드 더미에 넣습니다. NL 파트너가 공격할 생각이 없으면 이 효과를 두 배로 늘립니다."
   },
   "ruina:WaltzInBlack": {
     "NAME": "흑색 왈츠",
-    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다.",
+    "UPGRADE_DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 파트너가 공격을 시도하면 두 배의 피해를 입힙니다."
   },
   "ruina:SerumW": {
     "NAME": "혈청 W",
