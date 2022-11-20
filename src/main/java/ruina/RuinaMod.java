@@ -664,7 +664,7 @@ public class RuinaMod implements
     }
 
     public static boolean localizedLanguageOnly() {
-        return Settings.language == Settings.GameLanguage.ENG || Settings.language == Settings.GameLanguage.JPN;
+        return Settings.language == Settings.GameLanguage.ENG || Settings.language == Settings.GameLanguage.JPN || Settings.language == Settings.GameLanguage.KOR;
     }
 
     @Override
