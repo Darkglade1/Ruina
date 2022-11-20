@@ -735,11 +735,13 @@
   },
   "ruina:WaltzInWhite": {
     "NAME": "纯白圆舞曲",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 如果其伙伴打算攻击，则造成双倍伤害。"
   },
   "ruina:AshenBond": {
     "NAME": "纯白之束",
-    "DESCRIPTION": "所有友方获得 !B! 点 格挡 和 !M! 点 力量 。"
+    "DESCRIPTION": "所有友方获得 !B! 点 格挡 和 !M! 点 力量 。",
+    "UPGRADE_DESCRIPTION": "所有友方获得 !B! 点 格挡 和 !M! 点 力量 。 NL 如果其伙伴不打算攻击，则将这些效果加倍。"
   },
   "ruina:UnitedWorkshop": {
     "NAME": "联合-工坊",
@@ -755,11 +757,13 @@
   },
   "ruina:DarkBond": {
     "NAME": "漆黑之束",
-    "DESCRIPTION": "所有友方获得 !B! 点 格挡 。 NL 将 !M! 张 *虚空 放入你的抽牌堆中。"
+    "DESCRIPTION": "所有友方获得 !B! 点 格挡 。 NL 将 !M! 张 *虚空 放入你的抽牌堆中。",
+    "UPGRADE_DESCRIPTION": "所有友方获得 !B! 点 格挡 。 NL 将 !M! 张 *虚空 放入你的抽牌堆中。 NL 如果其伙伴不打算攻击，则将这些效果加倍。"
   },
   "ruina:WaltzInBlack": {
     "NAME": "漆黑华尔兹",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 如果其伙伴打算攻击，则造成双倍伤害。"
   },
   "ruina:SerumW": {
     "NAME": "血清-W",
