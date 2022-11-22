@@ -1,11 +1,13 @@
 package ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.DexterityPower;
@@ -34,7 +36,7 @@ public class SephirahMalkuth extends AbstractRuinaMonster
     private final int BLEED = calcAscensionSpecial(3);
 
     public SephirahMalkuth() {
-        this(0.0f, 0.0f);
+        this(-0f, 175.0f);
     }
 
     public SephirahMalkuth(final float x, final float y) {
@@ -102,4 +104,9 @@ public class SephirahMalkuth extends AbstractRuinaMonster
         animationAction("Special", "BloodSpecial", this);
     }
 
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        drawX = AbstractDungeon.player.drawX + 480.0F * Settings.scale;
+    }
 }

@@ -729,38 +729,55 @@
     "DESCRIPTIONS": ["At the end of each turn, #yExhaust random cards in your discard pile equal to the amount of leftover energy, starting with higher rarity cards."]
   },
 
-  "${ModID}:FlashbackMemory": {
-    "NAME": "Memory Imprint",
-    "DESCRIPTIONS": ["Deal {X} more damage to exit the memory."]
-  },
-
-  "${ModID}:FlashbackMalkuth": {
+  "${ModID}:MalkuthMemory": {
     "NAME": "Memory Imprinted: Malkuth",
-    "DESCRIPTIONS": ["A green smoke occasionally covers the screen. NL The types of your cards become randomised at the start of each turn. NL Whenever you play an #rAttack, this creature gains #b{x} #yStrength. NL Whenever you play a #gSkill, ??? NL Whenever you play a power, ???"]
+    "DESCRIPTIONS": ["The types of your cards become randomised at the start of each turn. NL Whenever you play an #rAttack, this creature gains #b%1$s #yStrength. NL Whenever you play a #gSkill, you lose #b%2$s #yStrength this turn. NL Whenever you play a #pPower, Lose [E] and draw #b%3$s less card next turn."]
   },
 
-  "${ModID}:FlashbackYesod": {
+  "${ModID}:YesodMemory": {
     "NAME": "Memory Imprinted: Yesod",
-    "DESCRIPTIONS": ["The screen occasionally becomes pixelated. NL The names of your cards become jumbled and their art is covered with static."]
+    "DESCRIPTIONS": [
+      "The screen occasionally becomes pixelated. NL The names of your cards become jumbled and their art is covered with static.",
+      "The names of your cards become jumbled and their art is covered with static."
+    ]
   },
 
-  "${ModID}:FlashbackHod": {
+  "${ModID}:HodMemory": {
     "NAME": "Memory Imprinted: Hod",
-    "DESCRIPTIONS": ["A CRT filter covers the screen. NL -7 strength -7 dexterity"]
+    "DESCRIPTIONS": ["Gain #b%1$s #bFalse #yStrength and #b%2$s #rFalse #yDexterity. NL Whenever you play #b%3$s cards, invert all of your buffs."]
   },
 
-  "${ModID}:FlashbackNetzach": {
+  "${ModID}:NetzachMemory": {
     "NAME": "Memory Imprinted: Netzach",
-    "DESCRIPTIONS": ["A green smoke occasionally covers the screen. NL You cannot heal."]
+    "DESCRIPTIONS": [
+      "You cannot heal, and any HP you would gain is #rredirected to Angela. NL Any healing Angela receives is doubled. NL Whenever this creature deals damage. NL The target heals 5 HP."
+    ]
   },
 
-  "${ModID}:FlashbackTiphereth": {
+  "${ModID}:TipherethMemory": {
     "NAME": "Memory Imprinted: Tiphereth",
-    "DESCRIPTIONS": ["????."]
+    "DESCRIPTIONS": [
+      "Heals to full HP at the start of each turn. NL Whenever a #yminion dies, this creature loses #b%1$s Max HP."
+    ]
   },
 
-  "${ModID}:FlashbackGebura": {
-    "NAME": "Memory Imprinted: Tiphereth",
-    "DESCRIPTIONS": ["Demon Form"]
+  "${ModID}:GeburaMemory": {
+    "NAME": "Memory Imprinted: The Red Mist",
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength at the start of each turn."]
+  },
+
+  "${ModID}:ChesedMemory": {
+    "NAME": "Memory Imprinted: Chesed",
+    "DESCRIPTIONS": ["plc"]
+  },
+
+  "${ModID}:BinahMemory": {
+    "NAME": "Memory Imprinted: Binah",
+    "DESCRIPTIONS": ["plc"]
+  },
+
+  "${ModID}:HokmaMemory": {
+    "NAME": "Memory Imprinted: Hokma",
+    "DESCRIPTIONS": [""]
   }
 }

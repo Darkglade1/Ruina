@@ -12,7 +12,7 @@ public class YesodShader extends AbstractGameEffect {
     private boolean doneFadeIN = false;
 
     public YesodShader(){
-        duration = 2f;
+        duration = 5f;
         startingDuration = duration;
     }
     @Override
@@ -24,8 +24,8 @@ public class YesodShader extends AbstractGameEffect {
             PostProcessorPatch.addPostProcessor(postProcessor);
         }
         duration -= Gdx.graphics.getDeltaTime();
-        if(duration <= 0){
-            //PostProcessorPatch.removePostProcessor(postProcessor);
+        if(duration <= -2.5f){
+            PostProcessorPatch.removePostProcessor(postProcessor);
             isDone = true;
         }
     }

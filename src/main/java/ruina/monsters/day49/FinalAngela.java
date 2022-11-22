@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -28,13 +29,18 @@ import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.act3.silentGirl.DummyHammer;
 import ruina.monsters.act3.silentGirl.DummyNail;
 import ruina.monsters.blackSilence.blackSilence1.cards.*;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.powers.MalkuthMemory;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.powers.YesodMemory;
+import ruina.monsters.day49.sephirahMeltdownFlashbacks.sephirah.*;
 import ruina.monsters.day49.ui.TreeOfLife;
+import ruina.monsters.uninvitedGuests.normal.pluto.monster.Pluto;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -47,8 +53,117 @@ public class FinalAngela extends AbstractCardMonster {
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
+    // debug
     private TreeOfLife treeOfLife = new TreeOfLife();
 
+    private enum PHASE{
+        MALKUTH,
+        YESOD,
+        HOD,
+        NETZACH,
+        TIPHERETH,
+        GEBURA,
+        CHESED,
+        BINAH,
+        HOKMA,
+        KETHER
+    }
+
+    private static HashMap<PHASE, PHASE> phaseMap = new HashMap<>();
+
+    private PHASE currentPhase = PHASE.MALKUTH;
+
+    private SephirahMalkuth malkuth = new SephirahMalkuth();
+    private SephirahYesod yesod = new SephirahYesod();
+    private SephirahHod hod = new SephirahHod();
+    private SephirahNetzach netzach = new SephirahNetzach();
+    private SephirahTiphereth tiphereth = new SephirahTiphereth();
+    private SephirahGebura gebura = new SephirahGebura();
+    private SephirahChesed chesed = new SephirahChesed();
+    private SephirahBinah binah = new SephirahBinah();
+    private SephirahHokma hokma = new SephirahHokma();
+    // Generic
+    private static final byte DESOLATION = 0;
+
+    //fourth match flame
+    private static final byte MALKUTH1 = 1;
+    // crumbled hope
+    private static final byte MALKUTH2 = 2;
+    // embrace
+    private static final byte MALKUTH3 = 3;
+    // endearment
+    private static final byte MALKUTH4 = 4;
+    // starved fluttering
+    private static final byte MALKUTH5 = 5;
+    // ravening hunger
+    private static final byte MALKUTH6 = 6;
+    // for the kingdom
+    private static final byte MALKUTH7 = 6;
+    // strike of retribution
+    private static final byte MALKUTH8 = 6;
+    // encroaching malice
+    private static final byte MALKUTH9 = 6;
+    // crumbling life
+    private static final byte MALKUTH10 = 6;
+
+    private static final byte YESOD1 = 7;
+    private static final byte YESOD2 = 8;
+    private static final byte YESOD3 = 9;
+    private static final byte YESOD4 = 10;
+    private static final byte YESOD5 = 11;
+    private static final byte YESOD6 = 12;
+
+    private static final byte HOD1 = 13;
+    private static final byte HOD2 = 14;
+    private static final byte HOD3 = 15;
+    private static final byte HOD4 = 16;
+    private static final byte HOD5 = 17;
+    private static final byte HOD6 = 18;
+
+    private static final byte NETZACH1 = 19;
+    private static final byte NETZACH2 = 20;
+    private static final byte NETZACH3 = 21;
+    private static final byte NETZACH4 = 22;
+    private static final byte NETZACH5 = 23;
+    private static final byte NETZACH6 = 24;
+
+    private static final byte TIPHERETH1 = 25;
+    private static final byte TIPHERETH2 = 26;
+    private static final byte TIPHERETH3 = 27;
+
+    private boolean mgirl1destroy = false;
+    private boolean mgirl2destroy = false;
+    private boolean mgirl3destroy = false;
+
+    private static final byte GEBURA1 = 19;
+    private static final byte GEBURA2 = 20;
+    private static final byte GEBURA3 = 21;
+
+    private static final byte CHESED1 = 19;
+    private static final byte CHESED2 = 20;
+    private static final byte CHESED3 = 21;
+    private static final byte CHESED4 = 22;
+    private static final byte CHESED5 = 23;
+    private static final byte CHESED6 = 24;
+
+    private static final byte BINAH1 = 25;
+    private static final byte BINAH2 = 26;
+    private static final byte BINAH3 = 27;
+    private static final byte BINAH4 = 27;
+
+    private boolean bird1destroy = false;
+    private boolean bird2destroy = false;
+    private boolean bird3destroy = false;
+    private boolean apocbirddestroy = false;
+
+    private static final byte HOKMA1 = 28;
+    private static final byte HOKMA2 = 29;
+    private static final byte HOKMA3 = 30;
+    private static final byte HOKMA4 = 31;
+    private static final byte HOKMA5 = 32;
+    private static final byte HOKMA6 = 33;
+
+    // Final
     private static final byte CRYSTAL = 0;
     private static final byte WHEELS = 1;
     private static final byte DURANDAL = 2;
@@ -117,7 +232,8 @@ public class FinalAngela extends AbstractCardMonster {
     }
 
     public FinalAngela(final float x, final float y) {
-        super(NAME, ID, 9999, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        // x9 + 4000
+        super(NAME, ID, 1100, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence1/Spriter/BlackSilence1.scml"));
         animation.setFlip(true, false);
         this.setHp(calcAscensionTankiness(1000));
@@ -151,6 +267,7 @@ public class FinalAngela extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
+        setupPhaseMap();
         treeOfLife.init();
         CustomDungeon.playTempMusicInstantly("Roland1");
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
@@ -179,6 +296,7 @@ public class FinalAngela extends AbstractCardMonster {
                 description = KILLING_POWER_DESCRIPTIONS[0];
             }
         });
+        setupSephirahPowers();
     }
 
     private boolean isPlayerTurn() {
@@ -585,13 +703,49 @@ public class FinalAngela extends AbstractCardMonster {
         if (!this.isDeadOrEscaped()) {
             hammer.render(sb);
             nail.render(sb);
-            treeOfLife.render(sb);
+            //treeOfLife.render(sb);
+            renderSephirah(sb);
         }
     }
 
     @Override
     public void update() {
         super.update();
-        treeOfLife.update();
+        //treeOfLife.update();
+    }
+
+    public void setupPhaseMap(){
+        phaseMap.clear();
+        phaseMap.put(PHASE.MALKUTH, PHASE.YESOD);
+        phaseMap.put(PHASE.YESOD, PHASE.HOD);
+        phaseMap.put(PHASE.HOD, PHASE.NETZACH);
+        phaseMap.put(PHASE.NETZACH, PHASE.TIPHERETH);
+        phaseMap.put(PHASE.TIPHERETH, PHASE.GEBURA);
+        phaseMap.put(PHASE.GEBURA, PHASE.CHESED);
+        phaseMap.put(PHASE.CHESED, PHASE.BINAH);
+        phaseMap.put(PHASE.BINAH, PHASE.HOKMA);
+        phaseMap.put(PHASE.HOKMA, PHASE.KETHER);
+    }
+
+    public void renderSephirah(SpriteBatch sb){
+        switch (currentPhase){
+            case MALKUTH:
+                malkuth.render(sb);
+        }
+    }
+    public void transitionPhase(){
+        currentPhase = phaseMap.get(currentPhase);
+        switch (currentPhase){
+            // add powers.
+        }
+    }
+    public void setupSephirahPowers(){
+        switch (currentPhase){
+            case MALKUTH:
+                System.out.println("???");
+                atb(new ApplyPowerAction(this, this, new MalkuthMemory(this)));
+                atb(new ApplyPowerAction(this, this, new YesodMemory(this, true)));
+                break;
+        }
     }
 }
