@@ -1,11 +1,11 @@
 {
   "ruina:Wisdom": {
     "NAME": "知恵",
-    "DESCRIPTION": "カードを !M! 枚引く。 NL *知恵を求める案山子 によってこのカードが 廃棄 されると、相手は次のターン *スタン する。"
+    "DESCRIPTION": "カードを !M! 枚引く。 NL *案山子により 廃棄 されると、相手は次のターン *スタン する。"
   },
   "ruina:FragmentOfBliss": {
     "NAME": "幸せの破片",
-    "DESCRIPTION": " !M! ブロック を得る。 NL 得られる ブロック はバフやデバフの効果で増減しない。"
+    "DESCRIPTION": "固定 !M! ブロック を得る。"
   },
   "ruina:FalseThrone": {
     "NAME": "偽りの王座",
@@ -17,7 +17,7 @@
   },
   "ruina:Mimicry": {
     "NAME": "ミミクリー",
-    "DESCRIPTION": " !D! ダメージを与える。 NL ブロック されなかったダメージの分だけHPを回復する。"
+    "DESCRIPTION": " !D! ダメージを与える。 NL これで減らしたHPの分だけHPを回復する。"
   },
   "ruina:Nihil": {
     "NAME": "虚無",
@@ -30,12 +30,12 @@
   },
   "ruina:LoveAndHate": {
     "NAME": "愛と憎悪の名のもとに",
-    "DESCRIPTION": "ディール !D! X 敵全体にダメージ。 NL X が !M! の場合 以上の場合、与えるダメージが 50% 増加します。",
-    "UPGRADE_DESCRIPTION": "ディール !D! X 敵全体にダメージ。 NL X が !M! の場合 以上の場合、与えるダメージが 50% 増加します。 NL X が !ruina:SecondMagic! の場合! 以上の場合、さらに 100% の追加ダメージを与えます。"
+    "DESCRIPTION": "全ての敵にX× !D! ダメージを与える。 NL X が !M! 以上なら、ダメージが 50% 増加。",
+    "UPGRADE_DESCRIPTION": "全ての敵にX× !D! ダメージを与える。 NL X が !M! 以上なら、ダメージが 50% 増加。 NL X が !ruina:SecondMagic! なら、さらに 100% 増加。"
   },
   "ruina:GoldRush": {
     "NAME": "ゴールドラッシュ",
-    "DESCRIPTION": " 筋力 !M! を得る。 NL 最後にプレイしたカードがアタックの時、 筋力 を二倍にする。"
+    "DESCRIPTION": " 筋力 !M! を得る。 NL 最後にプレイしたカードがアタックの時、 筋力 を2倍にする。"
   },
   "ruina:BlindRage": {
     "NAME": "目の眩む憤怒",
@@ -48,7 +48,7 @@
   },
   "ruina:Lumber": {
     "NAME": "伐採",
-    "DESCRIPTION": "!D! ダメージを与え、 !M! 枚のカードを 廃棄 。 NL 廃棄 されたアタックのダメージ分、このカードのダメージが増加。 NL このカードを山札に加えシャッフル。"
+    "DESCRIPTION": "!D! ダメージを与え、 !M! 枚のカードを 廃棄 。 NL 廃棄 したアタックのダメージ分、基本ダメージが増加。 NL これを山札に加えシャッフル。"
   },
   "ruina:Harvest": {
     "NAME": "収穫",
@@ -57,11 +57,11 @@
   },
   "ruina:HomingInstinct": {
     "NAME": "帰巣本能",
-    "DESCRIPTION": " !M! 枚のカードを 廃棄 。 NL あなたのターン開始時、 廃棄 されたカードのコストに等しい [E] を得る。"
+    "DESCRIPTION": " !M! 枚のカードを 廃棄 。 NL ターン開始時、 廃棄 されたカードのコストに等しい [E] を得る。"
   },
   "ruina:CobaltScar": {
     "NAME": "蒼の傷跡",
-    "DESCRIPTION": " あなたが !ruina:SecondMagic! 回アタックする度、 全ての敵に !M! ダメージを与える。"
+    "DESCRIPTION": " !ruina:SecondMagic! 枚のアタックをプレイする度、 全ての敵に !M! ダメージを与える。"
   },
   "ruina:Thirst": {
     "NAME": "渇き",
@@ -73,16 +73,16 @@
   },
   "ruina:ParadiseLost": {
     "NAME": "失楽園",
-    "DESCRIPTION": " あなたのターン開始時、カードを !M! 枚 廃棄 してもよい。 12枚のカードが 廃棄 される度、 全ての敵はHP NL !ruina:SecondMagic! を失う。",
-    "UPGRADE_DESCRIPTION": "あなたのターン開始時、カードを !M! 枚 廃棄 してもよい。 12枚のカードが 廃棄される度、全ての敵はHP NL !ruina:SecondMagic! を失う。"
+    "DESCRIPTION": " ターン開始時、カードを !M! 枚 廃棄 してもよい。 12枚のカードが 廃棄 される度、 全ての敵はHP NL !ruina:SecondMagic! を失う。",
+    "UPGRADE_DESCRIPTION": "ターン開始時、カードを !M! 枚 廃棄 してもよい。 12枚のカードが 廃棄される度、全ての敵はHP NL !ruina:SecondMagic! を失う。"
   },
   "ruina:DeadSilence": {
     "NAME": "静寂",
-    "DESCRIPTION": "!D! ダメージを与える。 NL ターン終了時に追加のターンを得る。 NL 敵を倒した時、次のターン [E] [E] を得る。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL ターン終了時に追加のターンを得る。 NL これで敵を倒した時、次のターン [E] [E] を得る。"
   },
   "ruina:Heaven": {
     "NAME": "天国",
-    "DESCRIPTION": " !B! ブロック を X 回得る。 NL このターンあなたが攻撃される度、自身の ブロック に等しいダメージを与える。"
+    "DESCRIPTION": " !B! ブロック を X 回得る。 NL このターン攻撃される度、自身の ブロック に等しいダメージを与える。"
   },
   "ruina:Penitence": {
     "NAME": "懺悔",
@@ -102,11 +102,11 @@
   },
   "ruina:Beak": {
     "NAME": "くちばし",
-    "DESCRIPTION": "あなたのターン開始時、手札にある最もコストの高いカードのコストを0にする。 NL それは 廃棄 を得る。"
+    "DESCRIPTION": "ターン開始時、手札にある最もコストの高いカードのコストを0にする。 NL それは 廃棄 を得る。"
   },
   "ruina:Lamp": {
     "NAME": "ランプ",
-    "DESCRIPTION": "このターン敵は 筋力 !M! を失う。 NL あなたがこのターン攻撃される度 NL !ruina:SecondMagic! ダメージを与える。"
+    "DESCRIPTION": "このターン敵は 筋力 !M! を失う。 NL このターン攻撃される度 NL !ruina:SecondMagic! ダメージを与える。"
   },
   "ruina:Justitia": {
     "NAME": "ユースティティア",
@@ -115,7 +115,7 @@
   },
   "ruina:Dazzled": {
     "NAME": "眩惑",
-    "DESCRIPTION": "ターン終了時に手札にあるとき、このカードのコストが戦闘中 !M! 増加。 NL このカードのコストが NL !ruina:SecondMagic! 以上の時、 使用不可 を得る "
+    "DESCRIPTION": "ターン終了時に手札にあるとき、コストが !M! 増加。 NL コストが NL !ruina:SecondMagic! 以上の時、 使用不可  "
   },
   "ruina:ForestKeeperLock": {
     "NAME": "黒い森の森番",
@@ -127,11 +127,11 @@
   },
   "ruina:CHRBOSS_UpstandingSlash": {
     "NAME": "縦斬り",
-    "DESCRIPTION": " !D! ダメージを 2 回与える。 ブロック されていない NL !ruina:SecondMagic! 以上のダメージを与えた時、 脆弱化 !M! を与える。"
+    "DESCRIPTION": " !D! ダメージを 2 回与える。 これでHPを NL !ruina:SecondMagic! 以上減らした時、 脆弱化 !M! を与える。"
   },
   "ruina:CHRBOSS_LevelSlash": {
     "NAME": "横斬り",
-    "DESCRIPTION": " !D! ダメージを !M! 回与える。 ブロック されていない NL !ruina:SecondMagic! 以上のダメージを与えた時、次のターン追加行動する。"
+    "DESCRIPTION": " !D! ダメージを !M! 回与える。 これでHPを NL !ruina:SecondMagic! 以上減らした時、次のターン追加行動する。"
   },
   "ruina:CHRBOSS_Spear": {
     "NAME": "突き",
@@ -193,7 +193,7 @@
   },
   "ruina:CHRBOSS_ResonantScythe": {
     "NAME": "振動の鎌",
-    "DESCRIPTION": "!D! ダメージを与える。 NL これが2回目の行動なら3倍のダメージを与える。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL これが2回目の行動なら3倍のダメージ。"
   },
   "ruina:CHRBOSS_TrailsOfBlue": {
     "NAME": "青い軌跡",
@@ -281,7 +281,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "力の契約",
-    "DESCRIPTION": "筋力 !M! を得る。 １ターンの間に、 NL !ruina:Second Magic! 枚を超えてカードをプレイすることはできない。"
+    "DESCRIPTION": "筋力 !M! を得る。1ターンの間に、 NL !ruina:SecondMagic! 枚を超えてカードをプレイすることはできない。"
   },
   "ruina:ContractOfLight": {
     "NAME": "光の契約",
@@ -297,23 +297,23 @@
   },
   "ruina:Ally_UpstandingSlash": {
     "NAME": "縦斬り",
-    "DESCRIPTION": " !D! ダメージを 2 回与える。 ブロック されていない NL !ruina:SecondMagic! 以上のダメージを与えた時、 弱体 !M! を与える。"
+    "DESCRIPTION": " !D! ダメージを 2 回与える。 これでHPを NL !ruina:SecondMagic! 以上減らした時、 弱体 !M! を与える。"
   },
   "ruina:Ally_LevelSlash": {
     "NAME": "横斬り",
-    "DESCRIPTION": " !D! ダメージを 2 回与える。 ブロック されていない NL !ruina:SecondMagic! 以上のダメージを与えた時、 筋力 !M! を得る。"
+    "DESCRIPTION": " !D! ダメージを 2 回与える。 これでHPを NL !ruina:SecondMagic! 以上減らした時、 筋力 !M! を得る。"
   },
   "ruina:Ally_Spear": {
     "NAME": "突き",
-    "DESCRIPTION": " !D! ダメージを !M! 回与える。 NL ブロック を持っていない相手に2倍のダメージ。"
+    "DESCRIPTION": " !D! ダメージを !M! 回与える。 NL ブロック がない相手に2倍のダメージ。"
   },
   "ruina:Ally_GreaterSplitHorizontal": {
     "NAME": "大切断-縦",
-    "DESCRIPTION": "!D! ダメージを与える。 NL ブロック されなかったダメージの分、このターン相手の 筋力 を失わせる。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL これで減らしたHPの分、このターン相手の 筋力 を失わせる。"
   },
   "ruina:Ally_GreaterSplitVertical": {
     "NAME": "大切断-横",
-    "DESCRIPTION": "!D! ダメージを与える。 NL ブロック されなかったダメージの分、このターン相手の 筋力 を失わせる。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL これで減らしたHPの分、このターン相手の 筋力 を失わせる。"
   },
   "ruina:Overspeed": {
     "NAME": "過速",
@@ -566,7 +566,7 @@
   },
   "ruina:Trial": {
     "NAME": "試食",
-    "DESCRIPTION": "!D! ダメージを与える。 NL ブロック されなかったダメージの分だけHPを回復する。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL これで減らしたHPの分だけHPを回復する。"
   },
   "ruina:Sack": {
     "NAME": "食事",
@@ -618,7 +618,7 @@
   },
   "ruina:Contract": {
     "NAME": "契約",
-    "DESCRIPTION": "強制的に *ruina:契約 のカードから一枚選ばさせ、プレイさせる。"
+    "DESCRIPTION": "強制的に *ruina:契約 をプレイさせる。"
   },
   "ruina:BindingTerms": {
     "NAME": "足枷",
@@ -630,7 +630,7 @@
   },
   "ruina:Wheels": {
     "NAME": "ホイールズ・インダストリー",
-    "DESCRIPTION": "!D! ダメージを与える。 NL プレイヤーのターンの時、 このターン相手は筋力 !M! を失う。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL プレイヤーのターンの時、 このターン相手は 筋力 !M! を失う。"
   },
   "ruina:Durandal": {
     "NAME": "デュランダル",
@@ -638,7 +638,7 @@
   },
   "ruina:Allas": {
     "NAME": "アラス工房",
-    "DESCRIPTION": "!D! ダメージを与える。 NL プレイヤーのターンの時、このターン相手は筋力 !M! を失う。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL プレイヤーのターンの時、このターン相手は 筋力 !M! を失う。"
   },
   "ruina:Gun": {
     "NAME": "ロジックアトリエ",
@@ -646,7 +646,7 @@
   },
   "ruina:Mook": {
     "NAME": "ムク工房",
-    "DESCRIPTION": "!D! ダメージを与える。 NL 対象から全ての ブロック を取り除く。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL 相手の ブロック を0にする。"
   },
   "ruina:OldBoys": {
     "NAME": "老いた少年工房",
@@ -667,7 +667,7 @@
   "ruina:Yun": {
     "NAME": "記憶 - ユン事務所",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": [" !M! 枚の *めまい を 山札に混ぜる。", " NL !ruina:SecondMagic! 枚の *負傷を捨て札に混ぜる。"]
+    "EXTENDED_DESCRIPTION": [" !M! 枚の *めまい を 山札に混ぜる。", " NL !ruina:SecondMagic! 枚の *負傷 を捨て札に混ぜる。"]
   },
   "ruina:Zwei": {
     "NAME": "記憶 - ツヴァイ協会",
@@ -677,37 +677,37 @@
   "ruina:Dawn": {
     "NAME": "記憶 - 夜明事務所",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": [" !M! 枚の *火傷を 山札に混ぜる。", "敵は NL ruina:保護 !ruina:SecondMagic! を得る。"]
+    "EXTENDED_DESCRIPTION": [" !M! 枚の *火傷 を山札に混ぜる。", "敵は NL ruina:保護 !ruina:SecondMagic! を得る。"]
   },
   "ruina:Shi": {
     "NAME": "記憶 - シ協会",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": ["あなたは *脱力 !M! を得る。", "あなたは NL 脆弱化 !ruina:SecondMagic! を得る。"]
+    "EXTENDED_DESCRIPTION": [" *脱力 !M! を得る。", "*脆弱化 !ruina:SecondMagic! を得る。"]
   },
   "ruina:Love": {
     "NAME": "記憶 - 愛の町",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": ["敵は *再生 !M! を得る。", " NL !ruina:SecondMagic! 枚の *粘液を捨て札に混ぜる。"]
+    "EXTENDED_DESCRIPTION": ["敵は *再生 !M! を得る。", " NL !ruina:SecondMagic! 枚の *粘液 を捨て札に混ぜる。"]
   },
   "ruina:Liu": {
     "NAME": "記憶 - リウ協会",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": ["敵は *筋力 !M! を得る。", "あなたは NL 弱体 !ruina:SecondMagic! を得る。"]
+    "EXTENDED_DESCRIPTION": ["敵は *筋力 !M! を得る。", "弱体 !ruina:SecondMagic! を得る。"]
   },
   "ruina:Purple": {
     "NAME": "記憶 - 紫の涙",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": ["敵は *無形 !M! を得る。", "敵は NL !ruina:SecondMagic! 体のミニオンを召喚する。"]
+    "EXTENDED_DESCRIPTION": ["敵は *無形 !M! を得る。", "敵は NL !ruina:SecondMagic! 体の *ミニオン を召喚する。"]
   },
   "ruina:Hana": {
     "NAME": "記憶 - ハナ協会",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": [" !M! 枚の *後悔 を手札に混ぜる。", "あなたは NL HP !ruina:SecondMagic! を失う。"]
+    "EXTENDED_DESCRIPTION": [" !M! 枚の *後悔 を手札に混ぜる。", "HP !ruina:SecondMagic! を失う。"]
   },
   "ruina:Blue": {
     "NAME": "記憶 - 青い残響",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": ["敵が追加行動する。", "あなたがプレイするカードを 廃棄 する。"]
+    "EXTENDED_DESCRIPTION": ["敵が追加行動する。", "プレイするカードが 廃棄 される。"]
   },
   "ruina:Agony": {
     "NAME": "苦痛",
@@ -727,7 +727,7 @@
   },
   "ruina:AllasWorkshop": {
     "NAME": "アラス工房",
-    "DESCRIPTION": "!D! ダメージを与える。 NL この *パートナー が攻撃予定のとき、 弱体 !M! を与える。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL *パートナー が攻撃予定なら、 弱体 !M! を与える。"
   },
   "ruina:AtelierLogic": {
     "NAME": "ロジックアトリエ",
@@ -736,16 +736,16 @@
   "ruina:WaltzInWhite": {
     "NAME": "白色のワルツ",
     "DESCRIPTION": " !D! ダメージを !M! 回与える。",
-    "UPGRADE_DESCRIPTION": "!D! ダメージを !M! 回与える。 NL パートナーが攻撃する場合、与えるダメージが 2 倍になります。"
+    "UPGRADE_DESCRIPTION": " !D! ダメージを !M! 回与える。 NL *パートナー が攻撃予定なら、 2倍のダメージ。"
   },
   "ruina:AshenBond": {
     "NAME": "白い結束",
     "DESCRIPTION": "全ての味方に !B! ブロック と筋力 !M! を与える。",
-    "UPGRADE_DESCRIPTION": "全ての味方に !B! ブロック と筋力 !M! を与える。 NL パートナーが攻撃するつもりがない場合、これらの効果を2倍にする。"
+    "UPGRADE_DESCRIPTION": " !D! ダメージを !M! 回与える。 NL *パートナー が攻撃予定でないなら、 効果が2倍。"
   },
   "ruina:UnitedWorkshop": {
     "NAME": "連携",
-    "DESCRIPTION": " !D! ダメージを !M! 回与える。 NL *パートナー が攻撃予定のとき、 NL 筋力 !ruina:SecondMagic! を得る。"
+    "DESCRIPTION": " !D! ダメージを !M! 回与える。 NL *パートナー が攻撃予定なら、 NL 筋力 !ruina:SecondMagic! を得る。"
   },
   "ruina:UnstableLoneliness": {
     "NAME": "不安定な結束",
@@ -758,16 +758,16 @@
   "ruina:DarkBond": {
     "NAME": "黒い結束",
     "DESCRIPTION": "全ての味方に !B! ブロック を与える。 NL !M! 枚の *空虚 を山札に混ぜる。",
-    "UPGRADE_DESCRIPTION": "全ての味方に !B! ブロック を与える。 NL !M! 枚の *空虚 を山札に混ぜる。 NL パートナーが攻撃するつもりがない場合、これらの効果を2倍にする。"
+    "UPGRADE_DESCRIPTION": "全ての味方に !B! ブロック を与える。 NL !M! 枚の *空虚 を山札に混ぜる。 NL *パートナー が攻撃予定でないなら、 効果が2倍。"
   },
   "ruina:WaltzInBlack": {
     "NAME": "黒色のワルツ",
     "DESCRIPTION": " !D! ダメージを !M! 回与える。",
-    "UPGRADE_DESCRIPTION": "!D! ダメージを !M! 回与える。 NL パートナーが攻撃する場合、与えるダメージが 2 倍になります。"
+    "UPGRADE_DESCRIPTION": " !D! ダメージを !M! 回与える。 NL *パートナー が攻撃予定なら、 2倍のダメージ。"
   },
   "ruina:SerumW": {
     "NAME": "血清W",
-    "DESCRIPTION": "!D! ダメージを与える。 NL この敵 の 筋力 が !M! 以上の時、相手を即死させる"
+    "DESCRIPTION": "!D! ダメージを与える。 NL 自身の 筋力 が !M! 以上なら、相手は死ぬ。"
   },
   "ruina:SerumR": {
     "NAME": "血清R",
@@ -783,7 +783,7 @@
   },
   "ruina:SerumK": {
     "NAME": "血清K",
-    "DESCRIPTION": "最もHPの低い味方は !B! ブロック を得て、HPを !M! 回復し、次のターン 筋力 !ruina:SecondMagic! を得る。"
+    "DESCRIPTION": "最もHPの低い味方が !B! ブロック を得て、HPを !M! 回復し、次のターン 筋力 !ruina:SecondMagic! を得る。"
   },
   "ruina:Line": {
     "NAME": "線",
@@ -807,8 +807,8 @@
   },
   "ruina:Marionette": {
     "NAME": "操り人形",
-    "DESCRIPTION": "!D! ダメージを与えて、カードを !M! 枚引く。この戦闘中このカードのコストが NL !ruina:SecondMagic! 増える。",
-    "UPGRADE_DESCRIPTION": "!D! ダメージを与えて、カードを !M! 枚引く。この戦闘中、このカードのコストとドローが !ruina:SecondMagic! 増える。"
+    "DESCRIPTION": "!D! ダメージを与えて、カードを !M! 枚引く。コストが NL !ruina:SecondMagic! 増える。",
+    "UPGRADE_DESCRIPTION": "!D! ダメージを与えて、カードを !M! 枚引く。このカードのコストとドローが !ruina:SecondMagic! 増える。"
   },
   "ruina:WristCutter": {
     "NAME": "リストカッター",
@@ -820,15 +820,15 @@
   },
   "ruina:Aspiration": {
     "NAME": "熱望",
-    "DESCRIPTION": "筋力 !M! を得る。 NL HPを !ruina:SecondMagic! 失う。 NL 戦闘終了時、このカードによって減らされたHP分回復する。"
+    "DESCRIPTION": "筋力 !M! を得る。 NL HPを !ruina:SecondMagic! 失う。 NL 戦闘終了時、このカードによって減らされたHPを回復する。"
   },
   "ruina:FrostSplinter": {
     "NAME": "霜の欠片",
-    "DESCRIPTION": "あなたのターン開始時 [E] を得て、カードを !M! 枚引き、 NL !ruina:SecondMagic! 枚のカードを ruina:凍結 。"
+    "DESCRIPTION": "ターン開始時、 [E] を得て、カードを !M! 枚引き、 NL !ruina:SecondMagic! 枚のカードを ruina:凍結 。"
   },
   "ruina:Guilt": {
     "NAME": "罪悪感",
-    "DESCRIPTION": "あなたのターン終了時、ランダムな敵が次のターン 筋力 !M! を得る。 NL このカードがプレイする以外の方法で 廃棄 されたとき、捨て札にこのカードの複製を加える。"
+    "DESCRIPTION": "あなたのターン終了時、敵が次のターン 筋力 !M! を得る。 NL プレイ以外で 廃棄 されるなら、捨て札にこのカードの複製を加える。"
   },
   "ruina:CHRBOSS_PreparedMind": {
     "NAME": "心構え",
@@ -848,21 +848,21 @@
   },
   "ruina:SecondChair": {
     "NAME": "二番目の演奏者",
-    "DESCRIPTION": "ターン終了時に手札にあるとき、ランダムな敵が次のターン 筋力 を得る。"
+    "DESCRIPTION": "ターン終了時に手札にあるとき、敵が次のターン 筋力 を得る。"
   },
   "ruina:ThirdChair": {
     "NAME": "三番目の演奏者",
-    "DESCRIPTION": "ターン終了時に手札にあるとき、交互に 脱力 か 脆弱化 !M! を得る。",
+    "DESCRIPTION": "ターン終了時に手札にあるとき、 脱力 か 脆弱化 !M! を得る。",
     "EXTENDED_DESCRIPTION": [" ( 脱力 )", " (脆弱化)"]
   },
   "ruina:FourthChair": {
     "NAME": "四番目の演奏者",
-    "DESCRIPTION": "ターン終了時に手札にあるとき、交互に 筋力 か 敏捷性 !M! を失う。",
+    "DESCRIPTION": "ターン終了時に手札にあるとき、 筋力 か 敏捷性 !M! を失う。",
     "EXTENDED_DESCRIPTION": [" (筋力)", " (敏捷性)"]
   },
   "ruina:Conductor": {
     "NAME": "指揮者",
-    "DESCRIPTION": "使用不可。 NL ターン終了時に手札にあるとき、 他の *演奏者 カードのコストを !M! 増やす。 NL あなたの手札に !ruina:SecondMagic! 枚の *演奏者 カードがあるなら、それらのカードの効果を再度発動。"
+    "DESCRIPTION": "使用不可。 NL ターン終了時に手札にあるとき、 他の *演奏者 カードのコストを !M! 増やす。 NL 手札に !ruina:SecondMagic! 枚の *演奏者 カードがあるなら、それらのカードの効果を再度発動。"
   },
   "ruina:TodaysExpression": {
     "NAME": "今日の表情",
@@ -871,7 +871,7 @@
   },
   "ruina:SanguineDesire": {
     "NAME": "血色の欲望",
-    "DESCRIPTION": "!D! ダメージを与える。 NL ブロックされていないダメージの半分に等しい ruina:出血 を与える。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL これで減らしたHPの半分に等しい ruina:出血 を与える。"
   },
   "ruina:RedEyes": {
     "NAME": "赤眼",
@@ -879,12 +879,12 @@
   },
   "ruina:Laetitia": {
     "NAME": "Laetitia",
-    "DESCRIPTION": "各ターン初めてプレイされるコストが 0 または 1 のカードを2回プレイする。",
-    "UPGRADE_DESCRIPTION": "各ターン初めてプレイされるコストが 0 または 1 のカードを2回プレイする。 NL ruina:回収 !stslib:refund!"
+    "DESCRIPTION": "各ターンで最初にプレイするコストが 0 または 1 のカードを2回プレイする。",
+    "UPGRADE_DESCRIPTION": "各ターンで最初にプレイするコストが 0 または 1 のカードを2回プレイする。 NL ruina:回収 !stslib:refund!"
   },
   "ruina:BlackSwan": {
     "NAME": "黒鳥",
-    "DESCRIPTION": " ruina:腐食 !M! を与える。 NL このターンあなたがデバフを与えたとき、このカードのコストは0。"
+    "DESCRIPTION": " ruina:腐食 !M! を与える。 NL このターンデバフを与えたなら、このカードのコストは0。"
   },
   "ruina:Gift": {
     "NAME": "プレゼント",
@@ -910,15 +910,15 @@
   },
   "ruina:Pleasure": {
     "NAME": "快楽",
-    "DESCRIPTION": "ruina:自動使用 NL [E] とトゲ !M! を得る。 NL このカードが 廃棄 された時、 HPを !ruina:SecondMagic! 失う。 NL ruina:使い捨て !stslib:ex!"
+    "DESCRIPTION": "ruina:自動使用 NL [E] とトゲ !M! を得る。 NL これが 廃棄 された時、 HPを !ruina:SecondMagic! 失う。 NL ruina:使い捨て !stslib:ex!"
   },
   "ruina:FaintAroma": {
     "NAME": "残香",
-    "DESCRIPTION": "敵に ブロック されていないアタックダメージを与える度、さらにそれに等しいHPを失わせる。"
+    "DESCRIPTION": "アタックで敵のHPを減らす時、2倍減らす。"
   },
   "ruina:Grinder": {
     "NAME": "グラインダーMk5-2",
-    "DESCRIPTION": "あなたがターン中はじめて ブロック されなかった !M! ダメージを与える度、次のターン [E] を得る。"
+    "DESCRIPTION": "各ターンに1回、アタックでHPを !M! 失わせる度、次のターン [E] を得る。"
   },
   "ruina:Hornet": {
     "NAME": "ホーネット",
@@ -930,7 +930,7 @@
   },
   "ruina:GreenStem": {
     "NAME": "緑の枝",
-    "DESCRIPTION": "毒 !M! を与える。 NL このカードが 廃棄 された時、全ての敵の 毒 が2倍になる。 NL ruina:使い捨て !stslib:ex!"
+    "DESCRIPTION": "毒 !M! を与える。 NL 廃棄 された時、全ての敵の 毒 が2倍になる。 NL ruina:使い捨て !stslib:ex!"
   },
   "ruina:MagicBullet": {
     "NAME": "魔弾",
@@ -947,7 +947,7 @@
   },
   "ruina:SolemnLament": {
     "NAME": "厳粛な哀悼",
-    "DESCRIPTION": "無形 !M! NL 全コストを ruina:発現 で払った時、このカードの複製を捨て札に加える。"
+    "DESCRIPTION": "無形 !M! を得る。 NL 全コストを ruina:発現 で払った時、このカードの複製を捨て札に加える。"
   },
   "ruina:Wingbeat": {
     "NAME": "羽ばたき",
@@ -959,7 +959,7 @@
   },
   "ruina:GrindingGears": {
     "NAME": "研削",
-    "DESCRIPTION": "HP !M! を失う。 NL *歌う機械 に奪われたカードを NL !ruina:SecondMagic! 枚取り戻し手札に加える。 NL *歌う機械 が1ターンの間 *スタン する。"
+    "DESCRIPTION": "HP !M! を失う。 NL *歌う機械 に奪われたカードを NL !ruina:SecondMagic! 枚取り戻し手札に加える。 NL *歌う機械 がこのターン *スタン 。"
   },
   "ruina:Yield": {
     "NAME": "肉斬",
@@ -967,11 +967,11 @@
   },
   "ruina:Claim": {
     "NAME": "骨断",
-    "DESCRIPTION": "相手のアタックに *反撃 し !D! ダメージを与える。自分のターンでは行動しない。"
+    "DESCRIPTION": "相手のアタックに *反撃 し !D! ダメージを与える。自身のターンでは行動しない。"
   },
   "ruina:TakeOnesLife": {
-    "NAME": "殺主",
-    "DESCRIPTION": "!D! ダメージを与える。 NL ブロックされていないダメージ分、次のあなたのターン終了時に追加でダメージを与える。"
+    "NAME": "命断",
+    "DESCRIPTION": "!D! ダメージを与える。 NL これで減らしたHP分、次のあなたのターン終了時に追加でダメージを与える。"
   },
   "ruina:Acupuncture": {
     "NAME": "刺法",
