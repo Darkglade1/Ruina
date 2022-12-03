@@ -201,7 +201,11 @@ public class BlackSilence4 extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("GoneAngels");
+        if (altMusic) {
+            CustomDungeon.playTempMusicInstantly("GoneAngelsMusicBox");
+        } else {
+            CustomDungeon.playTempMusicInstantly("GoneAngels");
+        }
         applyToTarget(this, this, new Scars(this, scarHeal));
         applyToTarget(this, this, new InvinciblePower(this, INVINCIBLE));
     }
