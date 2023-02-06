@@ -744,7 +744,7 @@
 
   "${ModID}:HodMemory": {
     "NAME": "Memory Imprinted: Hod",
-    "DESCRIPTIONS": ["Gain #b%1$s #bFalse #yStrength and #b%2$s #rFalse #yDexterity. NL Whenever you play #b%3$s cards, invert all of your buffs."]
+    "DESCRIPTIONS": ["Gain #yFalse #yStrength and #yFalse #yDexterity. NL Whenever you play #b%1$s cards, invert all of your \"False\" buffs."]
   },
 
   "${ModID}:NetzachMemory": {
