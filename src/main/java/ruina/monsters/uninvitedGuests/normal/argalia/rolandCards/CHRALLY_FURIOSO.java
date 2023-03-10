@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
+import ruina.actions.SetCardTargetCoordinatesAction;
 import ruina.cards.AbstractRuinaCard;
+import ruina.monsters.theHead.Baral;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.monsters.uninvitedGuests.normal.bremen.bremenCards.Bawk;
 
@@ -31,6 +33,9 @@ public class CHRALLY_FURIOSO extends AbstractRuinaCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        if (m instanceof Baral) {
+            atb(new SetCardTargetCoordinatesAction(this, Settings.WIDTH / 3, Settings.HEIGHT / 3));
+        }
         float initialX = parent.drawX;
         float targetBehind = m.drawX + 150.0f * Settings.scale;
         float targetFront = m.drawX - 200.0f * Settings.scale;
