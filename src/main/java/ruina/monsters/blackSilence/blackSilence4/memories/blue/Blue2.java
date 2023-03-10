@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
+import ruina.monsters.blackSilence.blackSilence4.memories.yun.Yun1;
 import ruina.powers.AbstractLambdaPower;
 
 import static ruina.RuinaMod.makeID;
@@ -49,5 +50,9 @@ public class Blue2 extends Blue {
                 description = POWER_DESCRIPTIONS[0];
             }
         });
+    }
+
+    public AbstractCard makeCopy() {
+        return new Blue2(parent);
     }
 }

@@ -1,9 +1,11 @@
 package ruina.monsters.blackSilence.blackSilence4.memories.dawn;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
+import ruina.monsters.blackSilence.blackSilence4.memories.yun.Yun1;
 import ruina.powers.Protection;
 
 import static ruina.RuinaMod.makeID;
@@ -27,5 +29,9 @@ public class Dawn2 extends Dawn {
 
     public void onChoseThisOption(){
         applyToTarget(parent, parent, new Protection(parent, secondMagicNumber));
+    }
+
+    public AbstractCard makeCopy() {
+        return new Dawn2(parent);
     }
 }

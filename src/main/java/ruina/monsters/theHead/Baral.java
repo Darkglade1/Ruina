@@ -80,7 +80,7 @@ public class Baral extends AbstractCardMonster
 
     public final int SERUM_K_BLOCK = calcAscensionTankiness(60);
     public final int SERUM_K_HEAL = calcAscensionTankiness(200);
-    public final int SERUM_K_STR = 3;
+    public final int SERUM_K_STR = calcAscensionSpecial(2);
     public final int KILL_THRESHOLD = 25;
 
     public RolandHead roland;

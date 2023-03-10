@@ -1,9 +1,11 @@
 package ruina.monsters.blackSilence.blackSilence4.memories.purple;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
+import ruina.monsters.blackSilence.blackSilence4.memories.yun.Yun1;
 
 import static ruina.RuinaMod.makeID;
 
@@ -25,5 +27,9 @@ public class Purple2 extends Purple {
 
     public void onChoseThisOption(){
         parent.Summon();
+    }
+
+    public AbstractCard makeCopy() {
+        return new Purple2(parent);
     }
 }

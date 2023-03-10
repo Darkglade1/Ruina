@@ -1,6 +1,7 @@
 package ruina.monsters.blackSilence.blackSilence4.memories.yun;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -28,5 +29,9 @@ public class Yun1 extends Yun {
 
     public void onChoseThisOption(){
         intoDrawMo(new Dazed(), magicNumber, parent);
+    }
+
+    public AbstractCard makeCopy() {
+        return new Yun1(parent);
     }
 }

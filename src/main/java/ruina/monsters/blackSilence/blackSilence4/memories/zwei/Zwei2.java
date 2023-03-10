@@ -1,10 +1,12 @@
 package ruina.monsters.blackSilence.blackSilence4.memories.zwei;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
+import ruina.monsters.blackSilence.blackSilence4.memories.yun.Yun1;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.applyToTarget;
@@ -27,5 +29,9 @@ public class Zwei2 extends Zwei {
 
     public void onChoseThisOption(){
         applyToTarget(parent, parent, new PlatedArmorPower(parent, secondMagicNumber));
+    }
+
+    public AbstractCard makeCopy() {
+        return new Zwei2(parent);
     }
 }

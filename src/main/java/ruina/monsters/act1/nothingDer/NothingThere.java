@@ -208,7 +208,7 @@ public class NothingThere extends AbstractMultiIntentMonster
             AdditionalIntent additionalIntent = additionalIntents.get(i);
             atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
             atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (gunman.isDeadOrEscaped()) {
+            if (additionalIntent.targetTexture == null) {
                 takeCustomTurn(additionalMove, adp());
             } else {
                 takeCustomTurn(additionalMove, gunman);
