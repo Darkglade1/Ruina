@@ -229,10 +229,18 @@ public class Orchestra extends AbstractRuinaMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        movement1.end();
-                        movement2.end();
-                        movement3.end();
-                        movement4.end();
+                        if (movement1 != null) {
+                            movement1.end();
+                        }
+                        if (movement2 != null) {
+                            movement2.end();
+                        }
+                        if (movement3 != null) {
+                            movement3.end();
+                        }
+                        if (movement4 != null) {
+                            movement4.end();
+                        }
                         this.isDone = true;
                     }
                 });

@@ -93,39 +93,39 @@
       "전투 시작시, #y힘을 #b" , " 얻습니다. #y공격 카드를 #b", " 번 사용할때마다, #b", " 피해를 받게 됩니다."
     ]
   },
-  "${ModID}:Greed": {
-    "NAME": "Memory of Devouring Greed",
-    "FLAVOR": "She ended up eating away anything in her sight. Now, only visceral greed remains.",
+  "ruina:Greed": {
+    "NAME": "폭식하는 탐욕의 기억",
+    "FLAVOR": " 마법소녀는 결국 모든 걸 먹어 치우게 되었다. 이제는 본능적인 탐욕만 남았다.",
     "DESCRIPTIONS": [
-      "At the start of combat, #yExhaust up to #b"," card. Gain #yGold based on the rarity (rarer cards give more #yGold)."
+      "전투 시작시, 카드를 #b"," 장 까지 선택해 #y소멸시킵니다. 이 효과로 카드를 소멸시키면 #y골드를 얻습니다. (카드 등급이 희귀할수록 더 많은 #y골드를 얻습니다)."
     ]
   },
-  "${ModID}:Despair": {
-    "NAME": "Memory of Overwhelming Despair",
-    "FLAVOR": "As with sorrow, perhaps sharing the burden will blunt the edge.",
+  "ruina:Despair": {
+    "NAME": "넘쳐흐르는 절망의 기억",
+    "FLAVOR": "또 다시 지키지 못했다는 자괴감에, 세상에 대한 분노에, 결국 칼 끝이 향하는 건 보호해 주지 못한 모든 이들.",
     "DESCRIPTIONS": [
-      "The first time you #yExhaust a card each turn, gain #b", " #yBlock."
+      "매 턴 처음으로 카드를 #y소멸 시키면, #y방어도를 #b", " 얻습니다."
     ]
   },
-  "${ModID}:Hate": {
-    "NAME": "Memory of Boundless Hate",
-    "FLAVOR": "She vowed to love everything in the world, but all that was left was a collapsing heart.",
+  "ruina:Hate": {
+    "NAME": "끝없는 증오의 기억",
+    "FLAVOR": "세상의 모든 것을 사랑할 것이라고 마음 먹었지만 남아있는 것은 부서져 가는 마음 뿐이었다.",
     "DESCRIPTIONS": [
-      "Whenever you lose HP, gain #b", " #yStrength."
+      "체력을 잃을 때마다, #y힘을 #b", " 얻습니다."
     ]
   },
-  "${ModID}:BrokenHeart": {
-    "NAME": "Memory of Broken Hearts",
-    "FLAVOR": "So this little lady has made a decision! To stay here and never leave until laughter is restored to this place!",
+  "ruina:BrokenHeart": {
+    "NAME": "망가진 마음의 기억",
+    "FLAVOR": "그래서 꼬마 아가씨는 결심했어! 이 곳에 웃음소리를 되찾을 때까지 떠나지 않겠다고!",
     "DESCRIPTIONS": [
-      "At the start of combat, gain [E] [E] and #b", " #yruina:Bleed."
+      "전투 시작시, [E] [E] 를 얻고 #b", " #yruina:출혈 을 받습니다."
     ]
   },
-  "${ModID}:EGOBook": {
-    "NAME": "Book of E.G.O.",
-    "FLAVOR": "There is a light within all of us. A light that will one day break free and change the world.",
+  "ruina:EGOBook": {
+    "NAME": "E.G.O 의 책",
+    "FLAVOR": "우리 모두에게 빛이 있다. 언젠가는 자유로워지고 세상을 바꿀 빛.",
     "DESCRIPTIONS": [
-      "At the end of your turn, #yExhaust a random #pCurse in your hand. NL Whenever a #pCurse is #yExhausted, add a random #yEGO card to your hand and give it #yRetain."
+      "매 턴 종료시, 손패의 무작위 #p저주 카드 를 #y소멸 시킵니다. NL #p저주 카드가 #y소멸 될 때마다, 무작위 #yEGO 카드를 얻고 그 카드를 #y보존 합니다."
     ]
   }
 }
