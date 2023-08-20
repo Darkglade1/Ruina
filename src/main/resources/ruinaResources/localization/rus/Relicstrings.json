@@ -69,7 +69,7 @@
     "NAME": "Перенапряжение",
     "FLAVOR": "Она просто должна была идти вперёд. Идите, пока путь не будет чист. Идите, пока она не перестанет.",
     "DESCRIPTIONS": [
-      "Даёт [E] [E] в начале боя. NL Даёт #b%1$s #yСлабости и #b1 #yУязвимости в начале вашего второго хода."
+      "Даёт [E] [E] в начале боя. NL Даёт #b%1$s #yСлабости и #b1 #yХрупкости в начале вашего второго хода."
     ]
   },
   "ruina:LifeFiber": {
@@ -93,39 +93,39 @@
       "Даёт #b" , " #yСилы в начале боя. Когда вы разыгрываете #b", " #yАтак, вы получаете #b", " урона."
     ]
   },
-  "${ModID}:Greed": {
-    "NAME": "Memory of Devouring Greed",
-    "FLAVOR": "She ended up eating away anything in her sight. Now, only visceral greed remains.",
+  "ruina:Greed": {
+    "NAME": "Воспоминание о поглотившей жадности",
+    "FLAVOR": "Она закончила тем, что пожирала всё, что могла найти. Теперь, она действует лишь из чистой жадности.",
     "DESCRIPTIONS": [
-      "At the start of combat, #yExhaust up to #b"," card. Gain #yGold based on the rarity (rarer cards give more #yGold)."
+      "#yСожгите до #b"," карты в начале боя. Даёт #yзолото в зависимости от её редкости (чем выше редкость, тем больше #yзолота)."
     ]
   },
-  "${ModID}:Despair": {
-    "NAME": "Memory of Overwhelming Despair",
-    "FLAVOR": "As with sorrow, perhaps sharing the burden will blunt the edge.",
+  "ruina:Despair": {
+    "NAME": "Воспоминание о непреодолимом отчаянии",
+    "FLAVOR": "Возможно как и в случае грусти, поделиться с кем-то смягчит боль.",
     "DESCRIPTIONS": [
-      "The first time you #yExhaust a card each turn, gain #b", " #yBlock."
+      "Даёт #b", " #yЗащиты, при первом #yСожжении карты в ходу."
     ]
   },
-  "${ModID}:Hate": {
-    "NAME": "Memory of Boundless Hate",
-    "FLAVOR": "She vowed to love everything in the world, but all that was left was a collapsing heart.",
+  "ruina:Hate": {
+    "NAME": "Воспоминание о нескончаемой ненависти",
+    "FLAVOR": "Она поклялась любить всех на свете, но осталась с разбитым сердцем.",
     "DESCRIPTIONS": [
-      "Whenever you lose HP, gain #b", " #yStrength."
+      "Даёт #b", " #yСилы, когда вы теряете ОЗ."
     ]
   },
-  "${ModID}:BrokenHeart": {
-    "NAME": "Memory of Broken Hearts",
-    "FLAVOR": "So this little lady has made a decision! To stay here and never leave until laughter is restored to this place!",
+  "ruina:BrokenHeart": {
+    "NAME": "Воспоминание о разбитых сердцах",
+    "FLAVOR": "Эта юная леди решила остаться здесь до тех пор, пока радость и веселье не вернутся в это место!",
     "DESCRIPTIONS": [
-      "At the start of combat, gain [E] [E] and #b", " #yruina:Bleed."
+      "Даёт [E] [E] и #b", " #yruina:Кровотечения в начале боя."
     ]
   },
-  "${ModID}:EGOBook": {
-    "NAME": "Book of E.G.O.",
-    "FLAVOR": "There is a light within all of us. A light that will one day break free and change the world.",
+  "ruina:EGOBook": {
+    "NAME": "Книга Э.П.О.С.",
+    "FLAVOR": "В каждом из нас живёт свет. Свет, который однажды выйдет на свободу и изменит мир.",
     "DESCRIPTIONS": [
-      "At the end of your turn, #yExhaust a random #pCurse in your hand. NL Whenever a #pCurse is #yExhausted, add a random #yEGO card to your hand and give it #yRetain."
+      "В конце вашего хода #yСжигает случ. #pПроклятие в руке. NL Добавляет случ. #yЭ.П.О.С. карту с #y«Оставляется», когда #yСжигается #pПроклятие."
     ]
   }
 }

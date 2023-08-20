@@ -116,10 +116,10 @@
   },
   "ruina:CounterIntentStrings": {
     "TEXT": [
-      "This enemy intends to NL #yCounter #yAttack for #b",
-      " damage.",
-      " damage #b",
-      " times."
+      "Этот враг планирует #yКонтратаковать, нанеся #b",
+      " урона.",
+      " урона #b",
+      " раза."
     ]
   }
 }
