@@ -767,7 +767,7 @@
   },
   "${ModID}:SerumW": {
     "NAME": "Serum W",
-    "DESCRIPTION": "Deal !D! damage. NL If the user has at least !M! Strength, instantly kill the target."
+    "DESCRIPTION": "Deal !D! damage. NL If this card's user has at least !M! Strength, instantly kill the target."
   },
   "${ModID}:SerumR": {
     "NAME": "Serum R",

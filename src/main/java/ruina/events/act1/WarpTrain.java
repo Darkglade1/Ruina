@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import ruina.RuinaMod;
 
 import static ruina.RuinaMod.makeEventPath;
+import static ruina.util.Wiz.adp;
 
 public class WarpTrain extends AbstractImageEvent {
 
@@ -86,7 +87,7 @@ public class WarpTrain extends AbstractImageEvent {
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
         }
         transformCard = true;
-        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck, 1, OPTIONS[5], false, true, false, false);
+        AbstractDungeon.gridSelectScreen.open(adp().masterDeck.getPurgeableCards(), 1, OPTIONS[5], false, true, false, false);
     }
 
 }
