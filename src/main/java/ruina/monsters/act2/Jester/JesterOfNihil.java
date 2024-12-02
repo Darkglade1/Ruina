@@ -105,21 +105,6 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         }
         this.setHp(calcAscensionTankiness(600));
 
-        ArrayList<Integer> possibleGirls = new ArrayList<>();
-        possibleGirls.add(0);
-        possibleGirls.add(1);
-        Collections.shuffle(possibleGirls, AbstractDungeon.monsterRng.random);
-        int first = possibleGirls.remove(0);
-        int second = possibleGirls.remove(0);
-        //If Queen of Love is selected always put her in the first position
-        if (second == 0) {
-            int temp = second;
-            second = first;
-            first = temp;
-        }
-        girl1 = returnGirl(first, GIRL_1_X_POSITION);
-        girl2 = returnGirl(second, GIRL_2_X_POSITION);
-
         addMove(WILL_OF_NIHIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(30));
         addMove(CONSUMING_DESIRE, Intent.ATTACK_DEFEND, calcAscensionDamage(6), 2, true);
         addMove(LOVE_AND_HATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
@@ -134,26 +119,9 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         this.type = EnemyType.BOSS;
     }
 
-    public AbstractMagicalGirl returnGirl(int num, float xPosition) {
-        AbstractMagicalGirl girl = null;
-        if (num == 0) {
-            girl = new QueenOfLove(xPosition, 0.0f, this);
-        }
-        if (num == 1) {
-            girl = new ServantOfCourage(xPosition, 0.0f, this);
-        }
-        return girl;
-    }
-
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland3");
-        Statue statue1 = new Statue(STATUE_1_X_POSITION, 0.0f, this, girl1);
-        Statue statue2 = new Statue(STATUE_2_X_POSITION, 0.0f, this, girl2);
-        atb(new SpawnMonsterAction(statue1, true));
-        atb(new UsePreBattleActionAction(statue1));
-        atb(new SpawnMonsterAction(statue2, true));
-        atb(new UsePreBattleActionAction(statue2));
         applyToTarget(this, this, power);
     }
 
@@ -409,10 +377,12 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     }
 
     public void SummonGirl(AbstractMagicalGirl girl) {
-        if (girl == girl1) {
+        if (girl instanceof QueenOfLove) {
+            girl1 = girl;
             girl1Spawned = true;
         }
-        if (girl == girl2) {
+        if (girl instanceof ServantOfCourage) {
+            girl2 = girl;
             girl2Spawned = true;
         }
         atb(new SpawnMonsterAction(girl, false));

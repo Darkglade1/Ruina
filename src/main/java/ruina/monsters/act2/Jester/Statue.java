@@ -1,9 +1,11 @@
 package ruina.monsters.act2.Jester;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -30,13 +32,12 @@ public class Statue extends AbstractRuinaMonster
     public static final String MAGICALGIRL_POWER_NAME = MAGICALGIRLPowerStrings.NAME;
     public static final String[] MAGICALGIRL_POWER_DESCRIPTIONS = MAGICALGIRLPowerStrings.DESCRIPTIONS;
 
-    public Statue(final float x, final float y, JesterOfNihil jester, AbstractMagicalGirl girl) {
+    public Statue(final float x, final float y, AbstractMagicalGirl girl) {
         super(NAME, ID, 5, -5.0F, 0, 150.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Statue/Spriter/Statue.scml"));
         this.type = EnemyType.NORMAL;
         setHp(5);
         addMove(NONE, Intent.NONE);
-        this.jester = jester;
         this.magicalGirl = girl;
         if (girl instanceof QueenOfLove) {
             name = MOVES[0];
@@ -49,6 +50,11 @@ public class Statue extends AbstractRuinaMonster
     }
     
     public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof JesterOfNihil) {
+                jester = (JesterOfNihil) mo;
+            }
+        }
         applyToTarget(this, this, new AbstractLambdaPower(MAGICALGIRL_POWER_NAME, MAGICALGIRL_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() {

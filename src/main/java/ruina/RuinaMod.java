@@ -63,6 +63,9 @@ import ruina.monsters.act1.spiderBud.SpiderBud;
 import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Jester.JesterOfNihil;
+import ruina.monsters.act2.Jester.QueenOfLove;
+import ruina.monsters.act2.Jester.ServantOfCourage;
+import ruina.monsters.act2.Jester.Statue;
 import ruina.monsters.act3.*;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.bigBird.BigBird;
@@ -936,8 +939,12 @@ public class RuinaMod implements
                         new NightmareWolf(),
                 }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
         briah.addBoss(Ozma.ID, (BaseMod.GetMonster) Ozma::new, makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
-        briah.addBoss(JesterOfNihil.ID, (BaseMod.GetMonster) JesterOfNihil::new, makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
-
+        briah.addBoss(JesterOfNihil.ID, "Jester of Nihil", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Statue(-350.0f, 0.0F, new ServantOfCourage(-400.0f, 0.0f)),
+                        new Statue(-150.0f, 0.0F, new QueenOfLove(-600.0f, 0.0f)),
+                        new JesterOfNihil(),
+                }), makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
         BaseMod.addEvent(ChurchOfGears.ID, ChurchOfGears.class, Briah.ID);
         BaseMod.addEvent(ZweiAssociation.ID, ZweiAssociation.class, Briah.ID);
