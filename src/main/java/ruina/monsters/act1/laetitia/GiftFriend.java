@@ -37,16 +37,13 @@ public class GiftFriend extends AbstractRuinaMonster {
     private static final byte TAKE_IT = 0;
     private static final byte UNKNOWN = 1;
 
-    public Laetitia parent;
-
-    public GiftFriend(final float x, final float y, Laetitia elite) {
+    public GiftFriend(final float x, final float y) {
         super(NAME, ID, 20, 0.0F, 0, 200.0f, 200.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Friend/Spriter/Friend.scml"));
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(17), calcAscensionTankiness(19));
         addMove(TAKE_IT, Intent.ATTACK, calcAscensionDamage(6));
         addMove(UNKNOWN, Intent.UNKNOWN);
-        parent = elite;
         storedX = x;
         if (AbstractDungeon.ascensionLevel >= 18) {
             card.upgrade();
@@ -90,7 +87,7 @@ public class GiftFriend extends AbstractRuinaMonster {
     public void damage(DamageInfo info) {
         super.damage(info);
         if (this.isDead || this.isDying || this.currentHealth <= 0) {
-            AbstractMonster giftFriend1 = new WitchFriend(storedX, 0.0f, parent);
+            AbstractMonster giftFriend1 = new WitchFriend(storedX, 0.0f);
             atb(new SpawnMonsterAction(giftFriend1, true));
             atb(new UsePreBattleActionAction(giftFriend1));
         }

@@ -1,11 +1,9 @@
 package ruina.monsters.act1.laetitia;
 
 import actlikeit.dungeons.CustomDungeon;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -14,9 +12,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.UsePreBattleActionAction;
 import ruina.cards.Gift;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.LonelyIsSad;
@@ -71,7 +67,6 @@ public class Laetitia extends AbstractRuinaMonster {
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning1");
         atb(new ApplyPowerAction(this, this, new LonelyIsSad(this, DAMAGE_INCREASE)));
-        Summon();
     }
 
     @Override
@@ -110,18 +105,6 @@ public class Laetitia extends AbstractRuinaMonster {
         } else {
             setMoveShortcut(GIFT, MOVES[GIFT]);
         }
-    }
-
-
-    public void Summon() {
-        float xPos_Middle_L = -85;
-        float xPos_Short_L = -330f;
-        AbstractMonster giftFriend1 = new GiftFriend(xPos_Middle_L, 0.0f, this);
-        atb(new SpawnMonsterAction(giftFriend1, true));
-        atb(new UsePreBattleActionAction(giftFriend1));
-        AbstractMonster giftFriend2 = new GiftFriend(xPos_Short_L, 0.0f, this);
-        atb(new SpawnMonsterAction(giftFriend2, true));
-        atb(new UsePreBattleActionAction(giftFriend2));
     }
 
     @Override

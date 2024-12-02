@@ -49,6 +49,7 @@ import ruina.monsters.act1.*;
 import ruina.monsters.act1.blackSwan.BlackSwan;
 import ruina.monsters.act1.blackSwan.Brother;
 import ruina.monsters.act1.fairyFestival.FairyQueen;
+import ruina.monsters.act1.laetitia.GiftFriend;
 import ruina.monsters.act1.laetitia.Laetitia;
 import ruina.monsters.act1.nothingDer.Gunman;
 import ruina.monsters.act1.queenBee.QueenBee;
@@ -755,7 +756,12 @@ public class RuinaMod implements
                         new AllAroundHelper(0.0F, 0.0F, false),
                 }));
         BaseMod.addMonster(Alriune.ID, (BaseMod.GetMonster) Alriune::new);
-        BaseMod.addMonster(Laetitia.ID, (BaseMod.GetMonster) Laetitia::new);
+        BaseMod.addMonster(Laetitia.ID, "Laetitia", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new GiftFriend(-450.0F, 0.0F),
+                        new GiftFriend(-200.0F, 0.0F),
+                        new Laetitia(50.0F, 0.0F)
+                }));
 
         BaseMod.addMonster(ForsakenMurderer.ID, (BaseMod.GetMonster) ForsakenMurderer::new);
         BaseMod.addMonster(ScorchedGirl.ID, "ScorchedGirl", () -> new MonsterGroup(

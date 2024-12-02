@@ -44,7 +44,7 @@ public class SurprisePresent extends AbstractUnremovablePower {
             dmg(adp(), damageInfo, AbstractGameAction.AttackEffect.FIRE);
             atb(new MakeTempCardInHandAction(gift, 1));
             if(owner instanceof GiftFriend){
-                AbstractMonster giftFriend1 = new WitchFriend(((GiftFriend) owner).storedX, 0.0f, ((GiftFriend) owner).parent);
+                AbstractMonster giftFriend1 = new WitchFriend(((GiftFriend) owner).storedX, 0.0f);
                 atb(new SpawnMonsterAction(giftFriend1, true));
                 atb(new UsePreBattleActionAction(giftFriend1));
             }

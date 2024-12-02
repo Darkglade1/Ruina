@@ -33,15 +33,12 @@ public class WitchFriend extends AbstractRuinaMonster
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public Laetitia parent;
-
-    public WitchFriend(final float x, final float y, Laetitia elite) {
+    public WitchFriend(final float x, final float y) {
         super(NAME, ID, 15, 0.0F, 0, 220.0f, 200.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("WeeWitch/Spriter/WeeWitch.scml"));
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(12), calcAscensionTankiness(14));
         addMove(GLITCH, Intent.ATTACK, calcAscensionDamage(11));
-        parent = elite;
     }
 
     @Override
