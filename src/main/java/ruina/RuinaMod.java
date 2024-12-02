@@ -880,7 +880,11 @@ public class RuinaMod implements
 
 
         //Act 2
-        BaseMod.addMonster(Mountain.ID, (BaseMod.GetMonster) Mountain::new);
+        BaseMod.addMonster(Mountain.ID, "Mountain_of_Bodies", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new MeltedCorpses(-480.0F, 0.0F),
+                        new Mountain(-100.0f, 0.0f),
+                }));
         BaseMod.addMonster(RoadHome.ID, "Road_Home", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new HomeAlly(-500.0F, 0.0F),
@@ -919,12 +923,12 @@ public class RuinaMod implements
                 }));
         BaseMod.addMonster(KnightOfDespair.ID, "KnightOfDespair", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new Sword(-360.0F, 0.0F),
+                        new Sword(-360.0F, 0.0F, true),
                         new KnightOfDespair(0.0F, 0.0F),
                 }));
         BaseMod.addMonster(KingOfGreed.ID, "KingOfGreed", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new BrilliantBliss(-400.0F, 0.0F),
+                        new BrilliantBliss(-450.0F, 0.0F),
                         new BrilliantBliss(-250.0F, 0.0F),
                         new KingOfGreed(0.0F, 0.0F),
                 }));

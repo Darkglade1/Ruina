@@ -65,7 +65,6 @@ public class KnightOfDespair extends AbstractRuinaMonster
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
             }
         });
-        Summon();
     }
 
     @Override
@@ -106,7 +105,7 @@ public class KnightOfDespair extends AbstractRuinaMonster
             @Override
             public void update() {
                 float xPosition = -360.0F;
-                sword = new Sword(xPosition, 0.0f);
+                sword = new Sword(xPosition, 0.0f, false);
                 att(new UsePreBattleActionAction(sword));
                 att(new SpawnMonsterAction(sword, true));
                 this.isDone = true;

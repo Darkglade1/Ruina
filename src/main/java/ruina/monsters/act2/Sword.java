@@ -29,16 +29,18 @@ public class Sword extends AbstractRuinaMonster
     private static final byte TEAR_HEART = 0;
     private final int BLOCK = calcAscensionSpecial(8);
     private KnightOfDespair knight;
+    boolean gainInitialBlock;
 
     public static final String POWER_ID = makeID("Worthless");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public Sword(final float x, final float y) {
+    public Sword(final float x, final float y, boolean gainInitialBlock) {
         super(NAME, ID, 40, -5.0F, 0, 150.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Sword/Spriter/Sword.scml"));
         this.type = EnemyType.NORMAL;
+        this.gainInitialBlock = gainInitialBlock;
         setHp(calcAscensionTankiness(40));
         addMove(TEAR_HEART, Intent.ATTACK, calcAscensionDamage(18));
     }
@@ -63,6 +65,9 @@ public class Sword extends AbstractRuinaMonster
             }
         });
         applyToTarget(this, this, new MetallicizePower(this, BLOCK));
+        if (gainInitialBlock) {
+            block(this, BLOCK);
+        }
     }
 
     @Override

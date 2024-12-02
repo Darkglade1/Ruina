@@ -87,10 +87,6 @@ public class Mountain extends AbstractMultiIntentMonster
     public static final String BODIES_POWER_NAME = BODIESPowerStrings.NAME;
     public static final String[] BODIES_POWER_DESCRIPTIONS = BODIESPowerStrings.DESCRIPTIONS;
 
-    public Mountain() {
-        this(-100.0f, 0.0f);
-    }
-
     public Mountain(final float x, final float y) {
         super(NAME, ID, 100, -5.0F, 0, 330.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Mountain/Spriter/Mountain.scml"));
@@ -123,7 +119,12 @@ public class Mountain extends AbstractMultiIntentMonster
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning3");
         AbstractDungeon.getCurrRoom().cannotLose = true;
-        Summon();
+        playSound("Spawn", 0.7f);
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof MeltedCorpses) {
+                corpse = mo;
+            }
+        }
         stagePower = new AbstractLambdaPower(ABSORPTION_POWER_NAME, ABSORPTION_POWER_ID, AbstractPower.PowerType.BUFF, false, this, currentStage) {
             @Override
             public void updateDescription() {
