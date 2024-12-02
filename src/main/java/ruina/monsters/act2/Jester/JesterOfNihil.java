@@ -70,10 +70,6 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
 
     private static final int MASS_ATTACK_COOLDOWN = 3;
     private static final int RAMPAGE_COOLDOWN = 1;
-    private static final float GIRL_1_X_POSITION = -600.0f;
-    private static final float GIRL_2_X_POSITION = -400.0f;
-    private static final float STATUE_1_X_POSITION = -150.0f;
-    private static final float STATUE_2_X_POSITION = -350.0f;
     private boolean girl1Spawned = false;
     private boolean girl2Spawned = false;
     private AbstractMagicalGirl girl1;

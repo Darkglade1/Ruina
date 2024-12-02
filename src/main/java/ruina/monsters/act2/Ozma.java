@@ -3,7 +3,6 @@ package ruina.monsters.act2;
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -16,7 +15,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawReductionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Oblivion;
@@ -35,14 +33,10 @@ public class Ozma extends AbstractRuinaMonster
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
 
-    private static final float MINION_1_X_POSITION = -300.0f;
-    private static final float MINION_2_X_POSITION = -550.0f;
-
     private static final byte FADING_MEMORIES = 0;
     private static final byte POWDER_OF_LIFE = 1;
     private static final byte HINDER = 2;
     private static final byte SQUASH = 3;
-    private static final byte AWAKEN = 4;
 
     private final int STRENGTH = calcAscensionSpecial(4);
     private final int PARALYSIS = calcAscensionSpecial(2);
@@ -71,7 +65,6 @@ public class Ozma extends AbstractRuinaMonster
         addMove(POWDER_OF_LIFE, Intent.DEFEND_BUFF);
         addMove(HINDER, Intent.ATTACK_DEBUFF, calcAscensionDamage(17));
         addMove(SQUASH, Intent.ATTACK, calcAscensionDamage(22));
-        addMove(AWAKEN, Intent.UNKNOWN);
     }
 
     @Override
@@ -89,16 +82,6 @@ public class Ozma extends AbstractRuinaMonster
                 description = POWER_DESCRIPTIONS[0];
             }
         });
-        Summon();
-    }
-
-    private void Summon() {
-        AbstractMonster jack1 = new Jack(MINION_1_X_POSITION, 0.0f, true, this);
-        AbstractMonster jack2 = new Jack(MINION_2_X_POSITION, 0.0f, false, this);
-        atb(new SpawnMonsterAction(jack1, true));
-        atb(new UsePreBattleActionAction(jack1));
-        atb(new SpawnMonsterAction(jack2, true));
-        atb(new UsePreBattleActionAction(jack2));
     }
 
     @Override
@@ -150,12 +133,6 @@ public class Ozma extends AbstractRuinaMonster
             case SQUASH: {
                 attackAnimation(adp());
                 dmg(adp(), info);
-                resetIdle(1.0f);
-                break;
-            }
-            case AWAKEN: {
-                buffAnimation();
-                Summon();
                 resetIdle(1.0f);
                 break;
             }

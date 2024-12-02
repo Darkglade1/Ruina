@@ -9,8 +9,10 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.JackStealAction;
@@ -35,18 +37,14 @@ public class Jack extends AbstractRuinaMonster
 
     public ArrayList<AbstractCard> stolenCards = new ArrayList<>();
     private final boolean startSingle;
-    private final Ozma ozma;
+    private Ozma ozma;
 
     public static final String POWER_ID = makeID("Steal");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public Jack() {
-        this(0.0f, 0.0f, true, null);
-    }
-
-    public Jack(final float x, final float y, boolean startSingle, Ozma ozma) {
+    public Jack(final float x, final float y, boolean startSingle) {
         super(NAME, ID, 100, -5.0F, 0, 135.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jack/Spriter/Jack.scml"));
         this.type = EnemyType.BOSS;
@@ -54,11 +52,15 @@ public class Jack extends AbstractRuinaMonster
         addMove(ATTACK, Intent.ATTACK, calcAscensionSpecial(3));
         addMove(MULTI_ATTACK, Intent.ATTACK, calcAscensionSpecial(2), 2, true);
         this.startSingle = startSingle;
-        this.ozma = ozma;
     }
 
     @Override
     public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Ozma) {
+                ozma = (Ozma) mo;
+            }
+        }
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
