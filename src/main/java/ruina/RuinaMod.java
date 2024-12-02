@@ -946,8 +946,8 @@ public class RuinaMod implements
                 }), makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
         briah.addBoss(JesterOfNihil.ID, "Jester of Nihil", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new Statue(-350.0f, 0.0F, new ServantOfCourage(-400.0f, 0.0f)),
-                        new Statue(-150.0f, 0.0F, new QueenOfLove(-600.0f, 0.0f)),
+                        new Statue(-350.0f, 0.0F, 1),
+                        new Statue(-150.0f, 0.0F, 0),
                         new JesterOfNihil(),
                 }), makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
 

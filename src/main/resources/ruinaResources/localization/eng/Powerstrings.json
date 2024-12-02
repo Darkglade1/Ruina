@@ -61,7 +61,7 @@
   },
   "${ModID}:MagicalGirl": {
     "NAME": "A Real Magical Girl!",
-    "DESCRIPTIONS": ["On death, summon the ", " to fight by your side."]
+    "DESCRIPTIONS": ["On death, summon a magical girl to fight by your side."]
   },
   "${ModID}:Paralysis": {
     "NAME": "Paralysis",

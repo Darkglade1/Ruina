@@ -372,18 +372,21 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         }
     }
 
-    public void SummonGirl(AbstractMagicalGirl girl) {
-        if (girl instanceof QueenOfLove) {
-            girl1 = girl;
+    public void SummonGirl(int girl) {
+        AbstractMagicalGirl magicalGirl = null;
+        if (girl == 0) {
+            magicalGirl = girl1 = new QueenOfLove(-600.0f, 0.0f);
             girl1Spawned = true;
         }
-        if (girl instanceof ServantOfCourage) {
-            girl2 = girl;
+        if (girl == 1) {
+            magicalGirl = girl2 = new ServantOfCourage(-400.0f, 0.0f);
             girl2Spawned = true;
         }
-        atb(new SpawnMonsterAction(girl, false));
-        atb(new UsePreBattleActionAction(girl));
-        atb(new TalkAction(girl, girl.getSummonDialog()));
+        if (magicalGirl != null) {
+            atb(new SpawnMonsterAction(magicalGirl, false));
+            atb(new UsePreBattleActionAction(magicalGirl));
+            atb(new TalkAction(magicalGirl, magicalGirl.getSummonDialog()));
+        }
     }
 
     @Override
