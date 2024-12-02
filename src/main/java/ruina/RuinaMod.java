@@ -919,7 +919,12 @@ public class RuinaMod implements
                         new Sword(-360.0F, 0.0F),
                         new KnightOfDespair(0.0F, 0.0F),
                 }));
-        BaseMod.addMonster(KingOfGreed.ID, (BaseMod.GetMonster) KingOfGreed::new);
+        BaseMod.addMonster(KingOfGreed.ID, "KingOfGreed", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new BrilliantBliss(-400.0F, 0.0F),
+                        new BrilliantBliss(-250.0F, 0.0F),
+                        new KingOfGreed(0.0F, 0.0F),
+                }));
         BaseMod.addMonster(BadWolf.ID, (BaseMod.GetMonster) BadWolf::new);
         BaseMod.addMonster(QueenOfHate.ID, (BaseMod.GetMonster) QueenOfHate::new);
 

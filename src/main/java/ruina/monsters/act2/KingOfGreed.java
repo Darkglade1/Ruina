@@ -78,7 +78,7 @@ public class KingOfGreed extends AbstractRuinaMonster
         };
         applyToTarget(this, this, road);
         applyToTarget(this, this, new CenterOfAttention(this));
-        Summon();
+        playSound("GreedDiamond");
     }
 
     @Override
@@ -142,25 +142,6 @@ public class KingOfGreed extends AbstractRuinaMonster
         if (road != null) {
             road.amount = turn;
             road.updateDescription();
-        }
-    }
-
-    public void Summon() {
-        playSound("GreedDiamond");
-        float xPosition2 = -400.0F;
-        float xPosition1 = -250.0F;
-        if (AbstractDungeon.ascensionLevel >= 17) {
-            AbstractMonster bliss1 = new BrilliantBliss(xPosition1, 0.0f);
-            atb(new SpawnMonsterAction(bliss1, true));
-            atb(new UsePreBattleActionAction(bliss1));
-        } else {
-            AbstractMonster bliss1 = new BrilliantBliss(xPosition1, 0.0f);
-            atb(new SpawnMonsterAction(bliss1, true));
-            atb(new UsePreBattleActionAction(bliss1));
-
-            AbstractMonster bliss2 = new BrilliantBliss(xPosition2, 0.0f);
-            atb(new SpawnMonsterAction(bliss2, true));
-            atb(new UsePreBattleActionAction(bliss2));
         }
     }
 
