@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Bleed;
@@ -35,10 +36,10 @@ public class FairyMass extends AbstractRuinaMonster {
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private final FairyQueen queen;
+    private FairyQueen queen;
     private int consumeThreshold;
 
-    public FairyMass(final float x, final float y, FairyQueen queen) {
+    public FairyMass(final float x, final float y) {
         super(NAME, ID, 75, 0.0F, 0, 160.0f, 200.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FairyMass/Spriter/FairyMass.scml"));
         this.type = EnemyType.BOSS;
@@ -49,12 +50,16 @@ public class FairyMass extends AbstractRuinaMonster {
         }
         addMove(WINGBEATS, Intent.ATTACK_DEBUFF, wingBeatsDamage);
         addMove(GLUTTONY, Intent.ATTACK, calcAscensionDamage(5));
-        this.queen = queen;
         consumeThreshold = (int)(this.maxHealth * CONSUME_THRESHOLD);
     }
 
     @Override
     public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof FairyQueen) {
+                queen = (FairyQueen) mo;
+            }
+        }
         applyToTarget(this, this, new Meal(this, consumeThreshold, queen));
     }
 

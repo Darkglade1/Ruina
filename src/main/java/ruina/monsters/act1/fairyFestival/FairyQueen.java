@@ -77,7 +77,6 @@ public class FairyQueen extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Angela2");
-        Summon();
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, SELF_DEBUFF) {
 
             @Override
@@ -164,9 +163,9 @@ public class FairyQueen extends AbstractRuinaMonster
             if (minions[i] == null) {
                 AbstractMonster minion;
                 if (i == 0) {
-                    minion = new FairyMass(xPos_Farthest_L, 0.0f, this);
+                    minion = new FairyMass(xPos_Farthest_L, 0.0f);
                 } else {
-                    minion = new FairyMass(xPos_Middle_L, 0.0f, this);
+                    minion = new FairyMass(xPos_Middle_L, 0.0f);
                 }
                 atb(new SpawnMonsterAction(minion, true));
                 atb(new UsePreBattleActionAction(minion));

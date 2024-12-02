@@ -48,6 +48,7 @@ import ruina.events.act3.*;
 import ruina.monsters.act1.*;
 import ruina.monsters.act1.blackSwan.BlackSwan;
 import ruina.monsters.act1.blackSwan.Brother;
+import ruina.monsters.act1.fairyFestival.FairyMass;
 import ruina.monsters.act1.fairyFestival.FairyQueen;
 import ruina.monsters.act1.laetitia.GiftFriend;
 import ruina.monsters.act1.laetitia.Laetitia;
@@ -825,13 +826,18 @@ public class RuinaMod implements
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
-        asiyah.addBoss(FairyQueen.ID, (BaseMod.GetMonster) FairyQueen::new, makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
-        asiyah.addBoss(EncounterIDs.NOTHING_DER, () -> new MonsterGroup(
+        asiyah.addBoss(FairyQueen.ID, "Fairy Queen", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new FairyMass(-450.0F, 0.0F),
+                        new FairyMass(-200.0F, 0.0F),
+                        new FairyQueen(0.0F, 0.0F)
+                }), makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
+        asiyah.addBoss(EncounterIDs.NOTHING_DER, "Those Who Hunt Monsters", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new ruina.monsters.act1.nothingDer.NothingThere(-1000.0F, 0.0F),
                         new Gunman(70.0F, 0.0F),
                 }), makeMonsterPath("Gunman/GunMap.png"), makeMonsterPath("Gunman/GunIcon.png"));
-        asiyah.addBoss(BlackSwan.ID, () -> new MonsterGroup(
+        asiyah.addBoss(BlackSwan.ID, "Dream of a Black Swan", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Brother(-450.0F, 0.0F, 1),
                         new Brother(-250.0F, 0.0F, 2),
@@ -915,7 +921,7 @@ public class RuinaMod implements
 
         BaseMod.addMonster(Kim.ID, (BaseMod.GetMonster) Kim::new);
 
-        briah.addBoss(EncounterIDs.RED_AND_WOLF, () -> new MonsterGroup(
+        briah.addBoss(EncounterIDs.RED_AND_WOLF, "The Mercenary's Nightmare", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new LittleRed(-480.0F, 0.0F),
                         new NightmareWolf(),
