@@ -895,7 +895,7 @@ public class RuinaMod implements
                         new Scarecrow(-450.0F, 0.0F, 1),
                         new Scarecrow(-150.0F, 0.0F, 0),
                 }));
-        BaseMod.addMonster(EncounterIDs.SCARECROWS_3, "3_Scarecrowss", () -> new MonsterGroup(
+        BaseMod.addMonster(EncounterIDs.SCARECROWS_3, "3_Scarecrows", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Scarecrow(-450.0F, 0.0F, 2),
                         new Scarecrow(-200.0F, 0.0F, 1),
@@ -914,7 +914,11 @@ public class RuinaMod implements
                         new SanguineBat(-450.0F, 0.0F),
                         new Nosferatu(-150.0F, 0.0F),
                 }));
-        BaseMod.addMonster(KnightOfDespair.ID, (BaseMod.GetMonster) KnightOfDespair::new);
+        BaseMod.addMonster(KnightOfDespair.ID, "KnightOfDespair", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Sword(-360.0F, 0.0F),
+                        new KnightOfDespair(0.0F, 0.0F),
+                }));
         BaseMod.addMonster(KingOfGreed.ID, (BaseMod.GetMonster) KingOfGreed::new);
         BaseMod.addMonster(BadWolf.ID, (BaseMod.GetMonster) BadWolf::new);
         BaseMod.addMonster(QueenOfHate.ID, (BaseMod.GetMonster) QueenOfHate::new);

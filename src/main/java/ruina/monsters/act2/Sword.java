@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -34,21 +35,21 @@ public class Sword extends AbstractRuinaMonster
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public Sword() {
-        this(0.0f, 0.0f, null);
-    }
-
-    public Sword(final float x, final float y, KnightOfDespair knight) {
+    public Sword(final float x, final float y) {
         super(NAME, ID, 40, -5.0F, 0, 150.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Sword/Spriter/Sword.scml"));
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(40));
         addMove(TEAR_HEART, Intent.ATTACK, calcAscensionDamage(18));
-        this.knight = knight;
     }
 
     @Override
     public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof KnightOfDespair) {
+                knight = (KnightOfDespair) mo;
+            }
+        }
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {

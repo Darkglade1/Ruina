@@ -102,12 +102,11 @@ public class KnightOfDespair extends AbstractRuinaMonster
     }
 
     public void Summon() {
-        KnightOfDespair knight = this;
         atb(new AbstractGameAction() {
             @Override
             public void update() {
                 float xPosition = -360.0F;
-                sword = new Sword(xPosition, 0.0f, knight);
+                sword = new Sword(xPosition, 0.0f);
                 att(new UsePreBattleActionAction(sword));
                 att(new SpawnMonsterAction(sword, true));
                 this.isDone = true;
