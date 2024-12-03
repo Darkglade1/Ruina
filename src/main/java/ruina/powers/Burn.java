@@ -18,7 +18,7 @@ public class Burn extends AbstractUnremovablePower {
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Burn(AbstractCreature owner, int amount) {
-        super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
+        super(NAME, POWER_ID, PowerType.DEBUFF, false, owner, amount);
     }
 
     @Override
