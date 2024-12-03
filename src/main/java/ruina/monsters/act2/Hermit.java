@@ -82,9 +82,11 @@ public class Hermit extends AbstractMultiIntentMonster
             if (mo instanceof ServantOfWrath) {
                 wrath = (ServantOfWrath)mo;
             }
+            if (mo instanceof HermitStaff) {
+                staff = (HermitStaff) mo;
+            }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        Summon();
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -237,12 +239,11 @@ public class Hermit extends AbstractMultiIntentMonster
     }
 
     private void Summon() {
-        Hermit hermit = this;
         atb(new AbstractGameAction() {
             @Override
             public void update() {
                 float xPosition = -200.0F;
-                staff = new HermitStaff(xPosition, 0.0f, hermit);
+                staff = new HermitStaff(xPosition, 0.0f);
                 att(new UsePreBattleActionAction(staff));
                 att(new SpawnMonsterAction(staff, true));
                 this.isDone = true;

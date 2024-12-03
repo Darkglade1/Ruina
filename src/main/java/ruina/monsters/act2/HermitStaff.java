@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
@@ -36,21 +37,22 @@ public class HermitStaff extends AbstractRuinaMonster
     private static final byte ATTACK = 0;
     private Hermit hermit;
 
-    public HermitStaff() {
-        this(0.0f, 0.0f, null);
-    }
-
-    public HermitStaff(final float x, final float y, Hermit hermit) {
+    public HermitStaff(final float x, final float y) {
         super(NAME, ID, 40, -5.0F, 0, 150.0f, 195.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Staff/Spriter/Staff.scml"));
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(44), calcAscensionTankiness(48));
         addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(8));
-        this.hermit = hermit;
     }
 
     @Override
     public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Hermit) {
+                hermit = (Hermit) mo;
+            }
+        }
+        addPower(new MinionPower(this));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -134,7 +136,7 @@ public class HermitStaff extends AbstractRuinaMonster
     @Override
     public void renderIntent(SpriteBatch sb) {
         super.renderIntent(sb);
-        if (!hermit.wrath.isDead) {
+        if (hermit != null && !hermit.wrath.isDead) {
             BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
             float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
             sb.draw(ServantOfWrath.targetTexture, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);

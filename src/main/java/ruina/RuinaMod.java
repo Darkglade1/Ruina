@@ -894,6 +894,7 @@ public class RuinaMod implements
         BaseMod.addMonster(ServantOfWrath.ID, "Servant_of_Wrath", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new ServantOfWrath(-500.0F, 0.0F),
+                        new HermitStaff(-200.0f, 0.0f),
                         new Hermit(100.0F, 0.0F),
                 }));
 
