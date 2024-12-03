@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.JackStealAction;
 import ruina.monsters.AbstractRuinaMonster;
@@ -61,6 +62,7 @@ public class Jack extends AbstractRuinaMonster
                 ozma = (Ozma) mo;
             }
         }
+        addPower(new MinionPower(this));
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {

@@ -833,7 +833,7 @@ public class RuinaMod implements
                 new AbstractMonster[]{
                         new FairyMass(-450.0F, 0.0F),
                         new FairyMass(-200.0F, 0.0F),
-                        new FairyQueen(0.0F, 0.0F)
+                        new FairyQueen(100.0F, 0.0F)
                 }), makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
         asiyah.addBoss(EncounterIDs.NOTHING_DER, "Those Who Hunt Monsters", () -> new MonsterGroup(
                 new AbstractMonster[]{

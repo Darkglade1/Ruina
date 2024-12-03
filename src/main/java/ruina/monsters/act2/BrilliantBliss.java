@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.FragmentOfBliss;
 import ruina.monsters.AbstractRuinaMonster;
@@ -47,6 +48,7 @@ public class BrilliantBliss extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
+        addPower(new MinionPower(this));
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() {

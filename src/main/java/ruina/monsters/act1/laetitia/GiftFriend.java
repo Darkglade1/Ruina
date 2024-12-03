@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.cards.Gift;
@@ -52,6 +53,7 @@ public class GiftFriend extends AbstractRuinaMonster {
 
     @Override
     public void usePreBattleAction() {
+        addPower(new MinionPower(this));
         atb(new ApplyPowerAction(this, this, new SurprisePresent(this, 3, calcAscensionSpecial(10), card)));
     }
 

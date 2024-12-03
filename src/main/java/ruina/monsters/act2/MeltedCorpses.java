@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
@@ -47,6 +48,7 @@ public class MeltedCorpses extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
+        addPower(new MinionPower(this));
         applyToTarget(this, this, new AbstractLambdaPower(CORPSE_POWER_NAME, CORPSE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() {

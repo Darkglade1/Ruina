@@ -54,10 +54,6 @@ public class FairyQueen extends AbstractRuinaMonster
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public FairyQueen() {
-        this(100.0f, 0.0f);
-    }
-
     public FairyQueen(final float x, final float y) {
         super(NAME, ID, 180, 0.0F, 0, 250.0f, 280.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FairyQueen/Spriter/FairyQueen.scml"));

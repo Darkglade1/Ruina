@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Bleed;
@@ -60,6 +61,7 @@ public class FairyMass extends AbstractRuinaMonster {
                 queen = (FairyQueen) mo;
             }
         }
+        addPower(new MinionPower(this));
         applyToTarget(this, this, new Meal(this, consumeThreshold, queen));
     }
 
