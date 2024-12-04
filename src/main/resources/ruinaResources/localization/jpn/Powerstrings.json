@@ -61,7 +61,7 @@
   },
   "ruina:MagicalGirl": {
     "NAME": "本物の魔法少女!",
-    "DESCRIPTIONS": ["戦闘不能時に ", " をあなたの味方として召喚する。"]
+    "DESCRIPTIONS": ["戦闘不能時に 本物の魔法少女 をあなたの味方として召喚する。"]
   },
   "ruina:Paralysis": {
     "NAME": "麻痺",

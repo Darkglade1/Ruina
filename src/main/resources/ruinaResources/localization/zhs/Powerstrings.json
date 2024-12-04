@@ -61,7 +61,7 @@
   },
   "ruina:MagicalGirl": {
     "NAME": "一个真正的魔法少女!",
-    "DESCRIPTIONS": ["死亡时，将 ", " 召唤到你的一方。"]
+    "DESCRIPTIONS": ["死亡时，将 一个真正的魔法少女 召唤到你的一方。"]
   },
   "ruina:Paralysis": {
     "NAME": "麻痹",

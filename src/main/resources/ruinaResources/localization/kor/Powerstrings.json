@@ -61,7 +61,7 @@
   },
   "ruina:MagicalGirl": {
     "NAME": "진짜 마법소녀!",
-    "DESCRIPTIONS": ["사망시, 아군 ", " 가 등장해 당신과 함께 싸웁니다."]
+    "DESCRIPTIONS": ["사망시, 아군 진짜 마법소녀 가 등장해 당신과 함께 싸웁니다."]
   },
   "ruina:Paralysis": {
     "NAME": "마비",
