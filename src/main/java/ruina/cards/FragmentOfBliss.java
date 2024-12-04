@@ -2,6 +2,7 @@ package ruina.cards;
 
 import basemod.AutoAdd;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.util.Wiz;
 
@@ -17,6 +18,10 @@ public class FragmentOfBliss extends AbstractRuinaCard {
         magicNumber = baseMagicNumber = BLOCK;
         isEthereal = true;
         exhaust = true;
+        if (AbstractDungeon.ascensionLevel >= 17) {
+            baseMagicNumber -= 10;
+            magicNumber = baseMagicNumber;
+        }
     }
 
     @Override
