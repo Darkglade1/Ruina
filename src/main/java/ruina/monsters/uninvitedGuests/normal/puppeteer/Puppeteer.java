@@ -353,7 +353,7 @@ public class Puppeteer extends AbstractCardMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, chesed, chesed.allyIcon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, chesed, chesed.icon);
             }
         }
     }

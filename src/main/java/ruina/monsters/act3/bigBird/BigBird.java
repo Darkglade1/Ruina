@@ -318,10 +318,10 @@ public class BigBird extends AbstractMultiIntentMonster
                     if (additionalMove.nextMove == DAZZLE_PLAYER) {
                         applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
                     } else {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage1, sage1.allyIcon);
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage1, sage1.icon);
                     }
                 } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage2, sage2.allyIcon);
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage2, sage2.icon);
                 }
             }
         }

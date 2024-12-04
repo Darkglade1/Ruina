@@ -118,7 +118,7 @@ public class Roland extends AbstractAllyCardMonster {
         addMove(RANGA, Intent.ATTACK_DEBUFF, RANGA_DAMAGE, RANGA_HITS, true);
         addMove(MACE, Intent.ATTACK, MACE_DAMAGE, MACE_HITS, true);
         addMove(FURIOSO, Intent.ATTACK, furiosoDamage, furiosoHits, true);
-        this.allyIcon = makeUIPath("RolandIcon.png");
+        this.icon = makeUIPath("RolandIcon.png");
         populateCards();
     }
 

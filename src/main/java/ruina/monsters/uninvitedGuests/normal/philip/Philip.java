@@ -418,10 +418,10 @@ public class Philip extends AbstractCardMonster
             }
             if (additionalMove != null) {
                 if (i == 0) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, malkuth, malkuth.allyIcon);
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, malkuth, malkuth.icon);
                 } else {
                     if (attackingAlly) {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, malkuth, malkuth.allyIcon);
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, malkuth, malkuth.icon);
                     } else {
                         applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
                     }

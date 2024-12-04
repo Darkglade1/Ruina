@@ -83,7 +83,7 @@ public class Yesod extends AbstractAllyCardMonster
         cardList.add(new Reload(this));
         cardList.add(new FloodingBullets(this));
 
-        this.allyIcon = makeUIPath("YesodIcon.png");
+        this.icon = makeUIPath("YesodIcon.png");
     }
 
     @Override

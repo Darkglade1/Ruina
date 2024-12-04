@@ -321,12 +321,12 @@ public class Bremen extends AbstractCardMonster
             if (additionalMove != null) {
                 if (i == 1) {
                     if (lastIntentTargetAlly) {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, netzach, netzach.allyIcon);
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, netzach, netzach.icon);
                     } else {
                         applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
                     }
                 } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, netzach, netzach.allyIcon);
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, netzach, netzach.icon);
                 }
             }
         }

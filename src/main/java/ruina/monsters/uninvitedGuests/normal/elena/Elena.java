@@ -297,7 +297,7 @@ public class Elena extends AbstractCardMonster
             }
             if (additionalMove != null) {
                 if (additionalMove.nextMove == SANGUINE_NAILS) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, binah, binah.allyIcon);
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, binah, binah.icon);
                 } else {
                     applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
                 }

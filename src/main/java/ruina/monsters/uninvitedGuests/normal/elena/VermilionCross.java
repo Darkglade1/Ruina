@@ -256,7 +256,7 @@ public class VermilionCross extends AbstractCardMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, binah, binah.allyIcon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, binah, binah.icon);
             }
         }
     }

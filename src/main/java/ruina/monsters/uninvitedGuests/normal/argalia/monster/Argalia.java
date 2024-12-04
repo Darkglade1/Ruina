@@ -307,7 +307,7 @@ public class Argalia extends AbstractDeckMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, roland, roland.allyIcon, i);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, roland, roland.icon, i);
             }
         }
     }

@@ -2,14 +2,11 @@ package ruina.monsters.act2.Jester;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
@@ -23,10 +20,6 @@ import static ruina.util.Wiz.*;
 public class QueenOfLove extends AbstractMagicalGirl
 {
     public static final String ID = RuinaMod.makeID(QueenOfLove.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte LOVE_AND_JUSTICE = 0;
     private static final byte ARCANA_BEATS = 1;
@@ -39,7 +32,7 @@ public class QueenOfLove extends AbstractMagicalGirl
     public static final String[] JUSTICE_POWER_DESCRIPTIONS = JUSTICEPowerStrings.DESCRIPTIONS;
 
     public QueenOfLove(final float x, final float y) {
-        super(NAME, ID, 120, -5.0F, 0, 170.0f, 215.0f, null, x, y);
+        super(ID, ID, 120, -5.0F, 0, 170.0f, 215.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("QueenOfLove/Spriter/QueenOfLove.scml"));
         this.animation.setFlip(true, false);
         if (AbstractDungeon.ascensionLevel >= 9) {
@@ -48,10 +41,10 @@ public class QueenOfLove extends AbstractMagicalGirl
             this.setHp(140);
         }
 
-        addMove(LOVE_AND_JUSTICE, Intent.ATTACK, 3, 3, true);
+        addMove(LOVE_AND_JUSTICE, Intent.ATTACK, 3, 3);
         addMove(ARCANA_BEATS, Intent.BUFF);
 
-        this.allyIcon = makeUIPath("LoveIcon.png");
+        this.icon = makeUIPath("LoveIcon.png");
     }
 
     @Override
@@ -62,11 +55,6 @@ public class QueenOfLove extends AbstractMagicalGirl
 
     @Override
     public void usePreBattleAction() {
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof JesterOfNihil) {
-                jester = (JesterOfNihil) mo;
-            }
-        }
         applyToTarget(this, this, new AbstractLambdaPower(JUSTICE_POWER_NAME, JUSTICE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() {
@@ -82,23 +70,8 @@ public class QueenOfLove extends AbstractMagicalGirl
             return;
         }
         super.takeTurn();
-
-        DamageInfo info;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
-        
         AbstractMonster mo = this;
-        AbstractCreature target = jester;
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
-
+        AbstractMonster jester = target;
         switch (this.nextMove) {
             case LOVE_AND_JUSTICE: {
                 for (int i = 0; i < multiplier; i++) {

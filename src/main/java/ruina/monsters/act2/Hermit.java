@@ -222,7 +222,7 @@ public class Hermit extends AbstractMultiIntentMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, wrath, wrath.allyIcon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, wrath, wrath.icon);
             }
         }
     }

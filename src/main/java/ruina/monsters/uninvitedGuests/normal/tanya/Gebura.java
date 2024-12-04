@@ -18,7 +18,6 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
-import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.monsters.uninvitedGuests.normal.tanya.geburaCards.*;
 import ruina.powers.AbstractLambdaPower;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -98,7 +97,7 @@ public class Gebura extends AbstractAllyCardMonster
         cardList.add(new Ally_GreaterSplitVertical(this));
         cardList.add(new Ally_GreaterSplitHorizontal(this));
 
-        this.allyIcon = makeUIPath("GeburaIcon.png");
+        this.icon = makeUIPath("GeburaIcon.png");
     }
 
     @Override

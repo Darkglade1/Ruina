@@ -105,7 +105,11 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
             firstMove = false;
         }
         if(info.base > -1) {
-            info.applyPowers(this, adp());
+            if (target != null) {
+                info.applyPowers(this, target);
+            } else {
+                info.applyPowers(this, adp());
+            }
         }
         for (AbstractPower power : this.powers) {
             if (power instanceof InvisibleBarricadePower) {

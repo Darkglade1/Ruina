@@ -348,7 +348,7 @@ public class Greta extends AbstractCardMonster
                         applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
                     }
                 } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, hod, hod.allyIcon);
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, hod, hod.icon);
                 }
             }
         }

@@ -211,7 +211,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, red, red.allyIcon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, red, red.icon);
             }
         }
     }

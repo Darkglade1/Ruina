@@ -25,7 +25,6 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -36,7 +35,6 @@ import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
-import ruina.RuinaMod;
 import ruina.actions.*;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
@@ -574,7 +572,7 @@ public class Zena extends AbstractCardMonster
                     additionalMove = additionalMoves.get(i);
                 }
                 if (additionalMove != null) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, gebura, gebura.allyIcon);
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, gebura, gebura.icon);
                 }
             }
         }
@@ -586,7 +584,7 @@ public class Zena extends AbstractCardMonster
         if (currentPhase == PHASE.PHASE1 && gebura != null && !gebura.isDead && !gebura.isDying && !this.isDeadOrEscaped() && nextMove != SHOCKWAVE) {
             BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
             float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
-            sb.draw(TexLoader.getTexture(gebura.allyIcon), this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
+            sb.draw(TexLoader.getTexture(gebura.icon), this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
         }
     }
 

@@ -319,7 +319,7 @@ public class Oswald extends AbstractCardMonster
             }
             if (additionalMove != null) {
                 if (additionalMove.nextMove == BRAINWASH) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, tiph, tiph.allyIcon);
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, tiph, tiph.icon);
                 } else {
                     applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
                 }

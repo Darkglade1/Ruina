@@ -46,7 +46,7 @@ public class HomeAlly extends AbstractAllyMonster
 
         addMove(NONE, Intent.NONE);
 
-        this.allyIcon = makeUIPath("HomeIcon.png");
+        this.icon = makeUIPath("HomeIcon.png");
     }
 
     @Override

@@ -58,7 +58,7 @@ public class Tiph extends AbstractAllyCardMonster
         cardList.add(new Kick(this));
         cardList.add(new Confrontation(this));
 
-        this.allyIcon = makeUIPath("TiphIcon.png");
+        this.icon = makeUIPath("TiphIcon.png");
     }
 
     @Override

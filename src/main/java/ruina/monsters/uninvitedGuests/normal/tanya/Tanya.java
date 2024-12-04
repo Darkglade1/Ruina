@@ -392,7 +392,7 @@ public class Tanya extends AbstractCardMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, gebura, gebura.allyIcon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, gebura, gebura.icon);
             }
         }
     }

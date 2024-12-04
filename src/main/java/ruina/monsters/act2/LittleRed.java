@@ -80,7 +80,7 @@ public class LittleRed extends AbstractAllyMonster
         addMove(HOLLOW_POINT_SHELL, Intent.ATTACK, calcAscensionDamage(7), 2, true);
         addMove(BULLET_SHOWER, Intent.ATTACK, calcAscensionDamage(8), 3, true);
 
-        this.allyIcon = makeUIPath("RedIcon.png");
+        this.icon = makeUIPath("RedIcon.png");
     }
 
     @Override

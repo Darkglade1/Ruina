@@ -70,7 +70,7 @@ public class Hokma extends AbstractAllyCardMonster
         cardList.add(new Silence(this));
         cardList.add(new Time(this));
 
-        this.allyIcon = makeUIPath("HokmaIcon.png");
+        this.icon = makeUIPath("HokmaIcon.png");
     }
 
     @Override

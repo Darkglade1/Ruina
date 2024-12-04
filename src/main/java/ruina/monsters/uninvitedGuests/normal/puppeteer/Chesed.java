@@ -94,7 +94,7 @@ public class Chesed extends AbstractAllyCardMonster
         cardList.add(new Concentration(this));
         cardList.add(new Disposal(this));
 
-        this.allyIcon = makeUIPath("ChesedIcon.png");
+        this.icon = makeUIPath("ChesedIcon.png");
     }
 
     @Override

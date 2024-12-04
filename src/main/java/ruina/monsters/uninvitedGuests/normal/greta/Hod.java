@@ -102,7 +102,7 @@ public class Hod extends AbstractAllyCardMonster
         cardList.add(new SerpentineBarrier(this));
         cardList.add(new Duel(this));
 
-        this.allyIcon = makeUIPath("HodIcon.png");
+        this.icon = makeUIPath("HodIcon.png");
     }
 
     @Override

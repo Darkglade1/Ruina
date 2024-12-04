@@ -2,7 +2,6 @@ package ruina.monsters.act2.Jester;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -19,9 +18,6 @@ import static ruina.util.Wiz.applyToTarget;
 public class Statue extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Statue.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     protected int magicalGirl;
     protected JesterOfNihil jester;
@@ -33,9 +29,8 @@ public class Statue extends AbstractRuinaMonster
     public static final String[] MAGICALGIRL_POWER_DESCRIPTIONS = MAGICALGIRLPowerStrings.DESCRIPTIONS;
 
     public Statue(final float x, final float y, int girl) {
-        super(NAME, ID, 5, -5.0F, 0, 150.0f, 225.0f, null, x, y);
+        super(ID, ID, 5, -5.0F, 0, 150.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Statue/Spriter/Statue.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(5);
         addMove(NONE, Intent.NONE);
         this.magicalGirl = girl;

@@ -282,7 +282,7 @@ public class Pluto extends AbstractCardMonster {
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, hokma, hokma.allyIcon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, hokma, hokma.icon);
             }
         }
     }

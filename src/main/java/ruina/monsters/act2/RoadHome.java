@@ -248,7 +248,7 @@ public class RoadHome extends AbstractMultiIntentMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, home, home.allyIcon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, home, home.icon);
             }
         }
     }

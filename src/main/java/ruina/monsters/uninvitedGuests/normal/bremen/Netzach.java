@@ -77,7 +77,7 @@ public class Netzach extends AbstractAllyCardMonster
         cardList.add(new BalefulBrand(this));
         cardList.add(new Faith(this));
 
-        this.allyIcon = makeUIPath("NetzachIcon.png");
+        this.icon = makeUIPath("NetzachIcon.png");
     }
 
     @Override

@@ -239,7 +239,7 @@ public class Eileen extends AbstractCardMonster
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, yesod, yesod.allyIcon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, yesod, yesod.icon);
             }
         }
     }

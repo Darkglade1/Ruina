@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
@@ -16,7 +15,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -25,10 +23,8 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.CollectorCurseEffect;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
@@ -38,7 +34,6 @@ import ruina.powers.SenselessWrath;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.FlexibleWrathParticleEffect;
-import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
@@ -50,10 +45,6 @@ import static ruina.util.Wiz.*;
 public class JesterOfNihil extends AbstractMultiIntentMonster
 {
     public static final String ID = makeID(JesterOfNihil.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte WILL_OF_NIHIL = 0;
     private static final byte CONSUMING_DESIRE = 1;
@@ -73,13 +64,9 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     private boolean girl2Spawned = false;
     private AbstractMagicalGirl girl1;
     private AbstractMagicalGirl girl2;
-    private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
     private int numIntentThatCanRampage = 2; //0 is the second intent, 1 is the third intent, 2 is the first intent
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
-    private int ramageCooldown = RAMPAGE_COOLDOWN;
-
-    private float particleTimer;
-    private float particleTimer2;
+    private int rampageCooldown = RAMPAGE_COOLDOWN;
 
     public static final String HATE_POWER_ID = makeID("PointlessHate");
     public static final PowerStrings hatePowerStrings = CardCrawlGame.languagePack.getPowerStrings(HATE_POWER_ID);
@@ -91,19 +78,15 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     }
 
     public JesterOfNihil(final float x, final float y) {
-        super(NAME, ID, 600, -5.0F, 0, 280.0f, 255.0f, null, x, y);
+        super(ID, ID, 600, -5.0F, 0, 280.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jester/Spriter/Jester.scml"));
-        this.type = EnemyType.BOSS;
-        numAdditionalMoves = 2;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(2);
         this.setHp(calcAscensionTankiness(600));
 
         addMove(WILL_OF_NIHIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(30));
-        addMove(CONSUMING_DESIRE, Intent.ATTACK_DEFEND, calcAscensionDamage(6), 2, true);
+        addMove(CONSUMING_DESIRE, Intent.ATTACK_DEFEND, calcAscensionDamage(6), 2);
         addMove(LOVE_AND_HATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
-        addMove(SWORD_OF_TEARS, Intent.ATTACK, calcAscensionDamage(10), 2, true);
+        addMove(SWORD_OF_TEARS, Intent.ATTACK, calcAscensionDamage(10), 2);
         addMove(RAMPAGE, Intent.BUFF);
         addMove(SETUP, Intent.UNKNOWN);
     }
@@ -117,22 +100,12 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland3");
-        applyToTarget(this, this, power);
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        if (this.firstMove) {
-            atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
-        }
-
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case WILL_OF_NIHIL: {
                 atb(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
@@ -200,7 +173,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        ramageCooldown = RAMPAGE_COOLDOWN + 1;
+                        rampageCooldown = RAMPAGE_COOLDOWN + 1;
                         numIntentThatCanRampage = (numIntentThatCanRampage + 1) % 3;
                         this.isDone = true;
                     }
@@ -209,23 +182,19 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 break;
             }
             case SETUP: {
-                if (girl1 instanceof QueenOfLove || girl2 instanceof QueenOfLove) {
-                    applyToTarget(this, this, new AbstractLambdaPower(HATE_POWER_NAME, HATE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, HATE_BLOCK) {
-                        @Override
-                        public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
-                            this.flash();
-                            block(owner, amount);
-                        }
+                applyToTarget(this, this, new AbstractLambdaPower(HATE_POWER_NAME, HATE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, HATE_BLOCK) {
+                    @Override
+                    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
+                        this.flash();
+                        block(owner, amount);
+                    }
 
-                        @Override
-                        public void updateDescription() {
-                            description = HATE_POWER_DESCRIPTIONS[0] + amount + HATE_POWER_DESCRIPTIONS[1];
-                        }
-                    });
-                }
-                if (girl1 instanceof ServantOfCourage || girl2 instanceof ServantOfCourage) {
-                    applyToTarget(this, this, new SenselessWrath(this));
-                }
+                    @Override
+                    public void updateDescription() {
+                        description = HATE_POWER_DESCRIPTIONS[0] + amount + HATE_POWER_DESCRIPTIONS[1];
+                    }
+                });
+                applyToTarget(this, this, new SenselessWrath(this));
                 break;
             }
         }
@@ -249,48 +218,15 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
 
     @Override
     public void takeTurn() {
-        super.takeTurn();
-        atb(new RemoveAllBlockAction(this, this));
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (i == 0) {
-                if (!girl1Spawned || girl1.isDead || girl1.isDying) {
-                    takeCustomTurn(additionalMove, adp());
-                } else {
-                    takeCustomTurn(additionalMove, girl1);
-                }
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        additionalIntent.usePrimaryIntentsColor = true;
-                        this.isDone = true;
-                    }
-                });
-            }
-            if (i == 1) {
-                if (!girl2Spawned || girl2.isDead || girl2.isDying) {
-                    takeCustomTurn(additionalMove, adp());
-                } else {
-                    takeCustomTurn(additionalMove, girl2);
-                }
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        additionalIntent.usePrimaryIntentsColor = true;
-                        this.isDone = true;
-                    }
-                });
-            }
+        if (this.firstMove) {
+            atb(new TalkAction(this, DIALOG[0]));
         }
+        super.takeTurn();
         atb(new AbstractGameAction() {
             @Override
             public void update() {
                 massAttackCooldown--;
-                ramageCooldown--;
+                rampageCooldown--;
                 this.isDone = true;
             }
         });
@@ -303,7 +239,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
             setMoveShortcut(SETUP);
         } else if (girl1Spawned && girl2Spawned &&(!girl1.isDead || !girl2.isDead) && massAttackCooldown <= 0) {
             setMoveShortcut(WILL_OF_NIHIL);
-        } else if (numIntentThatCanRampage == 2 && ramageCooldown <= 0) {
+        } else if (numIntentThatCanRampage == 2 && rampageCooldown <= 0) {
             setMoveShortcut(RAMPAGE);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -324,7 +260,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         if (!firstMove) {
-            if (numIntentThatCanRampage == whichMove && ramageCooldown <= 0) {
+            if (numIntentThatCanRampage == whichMove && rampageCooldown <= 0) {
                 setAdditionalMoveShortcut(RAMPAGE, moveHistory);
             } else {
                 ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
@@ -345,28 +281,18 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
+    public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
+        if (index == 0) {
+            if (girl1Spawned) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl1, girl1.icon);
+            } else {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
             }
-            if (additionalMove != null) {
-                if (i == 0) {
-                    if (girl1Spawned) {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl1, girl1.allyIcon);
-                    } else {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-                    }
-                } else {
-                    if (girl2Spawned) {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl2, girl2.allyIcon);
-                    } else {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-                    }
-                }
+        } else {
+            if (girl2Spawned) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl2, girl2.icon);
+            } else {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
             }
         }
     }

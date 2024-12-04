@@ -60,7 +60,7 @@ public class Sage extends AbstractAllyMonster
         addMove(RING, Intent.BUFF);
         addMove(SMACK, Intent.ATTACK, 6);
 
-        this.allyIcon = makeUIPath("SageIcon.png");
+        this.icon = makeUIPath("SageIcon.png");
         this.isTargetableByPlayer = true;
     }
 

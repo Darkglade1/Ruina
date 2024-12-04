@@ -27,7 +27,6 @@ import static ruina.util.Wiz.*;
 public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("AllyStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
-    public String allyIcon;
     public boolean massAttackHitsPlayer = false;
 
     //basically just for little Red who is an ally that can become an enemy
@@ -74,6 +73,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
 
     @Override
     public void takeTurn() {
+        super.takeTurn();
         if (isAlly && !isTargetableByPlayer) {
             atb(new AbstractGameAction() {
                 @Override
@@ -89,6 +89,17 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     public void createIntent() {
         super.createIntent();
         applyPowers();
+    }
+
+    @Override
+    public void applyPowers() {
+        if (this.nextMove == -1) {
+            super.applyPowers();
+            return;
+        }
+        if (target != null) {
+            applyPowers(target);
+        }
     }
 
     public void applyPowers(AbstractCreature target) {
