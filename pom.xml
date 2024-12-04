@@ -4,7 +4,7 @@
 
     <groupId>Ruina</groupId>
     <artifactId>Ruina</artifactId>
-    <version>3.7.0</version>
+    <version>3.8.0</version>
     <name>Ruina</name>
     <description>An alternate Act mod based on Library of Ruina.</description>
     <!-- -->
@@ -12,7 +12,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <SlayTheSpire.version>12-22-2020</SlayTheSpire.version>
+        <SlayTheSpire.version>12-18-2022</SlayTheSpire.version>
         <ModTheSpire.version>3.18.2</ModTheSpire.version>
         <ModID>ruina</ModID>
         <JarName>Ruina</JarName>
