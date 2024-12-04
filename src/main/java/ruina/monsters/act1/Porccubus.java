@@ -1,10 +1,7 @@
 package ruina.monsters.act1;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
@@ -17,10 +14,6 @@ import static ruina.util.Wiz.*;
 public class Porccubus extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Porccubus.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte UNBEARABLE_PLEASURE = 0;
     private static final byte BRISTLE = 1;
@@ -33,9 +26,8 @@ public class Porccubus extends AbstractRuinaMonster
     }
 
     public Porccubus(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 285.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 250.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Porccubus/Spriter/Porccubus.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(45), calcAscensionTankiness(48));
         addMove(UNBEARABLE_PLEASURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
         addMove(BRISTLE, Intent.ATTACK_BUFF, calcAscensionDamage(8));

@@ -7,25 +7,18 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.cards.performance.AbstractPerformanceCard;
-import ruina.cards.performance.Conductor;
-import ruina.cards.performance.FirstChair;
-import ruina.cards.performance.FourthChair;
-import ruina.cards.performance.SecondChair;
-import ruina.cards.performance.ThirdChair;
+import ruina.cards.performance.*;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.FerventAdoration;
@@ -42,10 +35,6 @@ import static ruina.util.Wiz.*;
 public class Orchestra extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Orchestra.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte FIRST = 0;
     private static final byte SECOND = 1;
@@ -91,9 +80,8 @@ public class Orchestra extends AbstractRuinaMonster
     }
 
     public Orchestra(final float x, final float y) {
-        super(NAME, ID, 230, 0.0F, 0, 250.0f, 280.0f, null, x, y);
+        super(ID, ID, 230, 0.0F, 0, 250.0f, 280.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Orchestra/Spriter/Orchestra.scml"));
-        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(230));
         addMove(FIRST, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
         addMove(SECOND, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));

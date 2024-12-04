@@ -1,10 +1,7 @@
 package ruina.monsters.act1.redShoes;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Bleed;
@@ -16,10 +13,6 @@ import static ruina.util.Wiz.*;
 public class LeftShoe extends AbstractRuinaMonster
 {
     public static final String ID = makeID(LeftShoe.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte SANGUINE_DESIRE = 0;
 
@@ -30,9 +23,8 @@ public class LeftShoe extends AbstractRuinaMonster
     }
 
     public LeftShoe(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 220.0f, 285.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 220.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("LeftShoe/Spriter/LeftShoe.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(22), calcAscensionTankiness(24));
         addMove(SANGUINE_DESIRE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
     }

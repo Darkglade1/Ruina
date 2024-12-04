@@ -4,11 +4,9 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -28,10 +26,6 @@ import static ruina.util.Wiz.*;
 public class ShyLook extends AbstractRuinaMonster
 {
     public static final String ID = makeID(ShyLook.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte DEFEND = 1;
     private static final byte BUFF = 2;
@@ -57,9 +51,8 @@ public class ShyLook extends AbstractRuinaMonster
     }
 
     public ShyLook(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 265.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 250.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ShyLook/Spriter/ShyLook.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(67), calcAscensionTankiness(72));
         addMove(DEFEND, Intent.DEFEND);
         addMove(BUFF, Intent.BUFF);

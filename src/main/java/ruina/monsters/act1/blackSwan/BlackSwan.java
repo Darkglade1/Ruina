@@ -3,11 +3,9 @@ package ruina.monsters.act1.blackSwan;
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -25,11 +23,6 @@ import static ruina.util.Wiz.*;
 public class BlackSwan extends AbstractRuinaMonster
 {
     public static final String ID = makeID(BlackSwan.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
-
     private static final byte WRITHE = 0;
     private static final byte PARASOL = 1;
     private static final byte REALITY = 2;
@@ -52,9 +45,8 @@ public class BlackSwan extends AbstractRuinaMonster
     }
 
     public BlackSwan(final float x, final float y) {
-        super(NAME, ID, 160, 0.0F, 0, 170.0f, 275.0f, null, x, y);
+        super(ID, ID, 160, 0.0F, 0, 170.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSwan/Spriter/BlackSwan.scml"));
-        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(160));
         addMove(WRITHE, Intent.ATTACK, calcAscensionDamage(6), 2);
         addMove(PARASOL, Intent.DEFEND_BUFF);

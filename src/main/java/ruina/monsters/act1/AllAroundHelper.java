@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
@@ -23,10 +22,6 @@ import static ruina.util.Wiz.*;
 public class AllAroundHelper extends AbstractRuinaMonster
 {
     public static final String ID = makeID(AllAroundHelper.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte CHARGE = 0;
     private static final byte CLEAN = 1;
@@ -45,9 +40,8 @@ public class AllAroundHelper extends AbstractRuinaMonster
     }
 
     public AllAroundHelper(final float x, final float y, boolean attackFirst) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 215.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 250.0f, 215.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Helper/Spriter/Helper.scml"));
-        this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(50), calcAscensionTankiness(54));
         addMove(CHARGE, Intent.BUFF);
         addMove(CLEAN, Intent.ATTACK, calcAscensionDamage(7), 2);

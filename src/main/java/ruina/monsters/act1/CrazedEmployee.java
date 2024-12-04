@@ -1,16 +1,10 @@
 package ruina.monsters.act1;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.*;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
@@ -22,10 +16,6 @@ import static ruina.util.Wiz.*;
 public class CrazedEmployee extends AbstractRuinaMonster
 {
     public static final String ID = makeID(CrazedEmployee.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte TREMBLING_MOTION = 0;
     private static final byte SHAKING_BLOW = 1;
@@ -46,9 +36,8 @@ public class CrazedEmployee extends AbstractRuinaMonster
     }
 
     public CrazedEmployee(final float x, final float y, int debuff) {
-        super(NAME, ID, 140, 0.0F, 0, 220.0f, 245.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 220.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("CrazedEmployee/Spriter/CrazedEmployee.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(24), calcAscensionTankiness(27));
         addMove(TREMBLING_MOTION, Intent.DEBUFF);
         addMove(SHAKING_BLOW, Intent.ATTACK, calcAscensionDamage(5));

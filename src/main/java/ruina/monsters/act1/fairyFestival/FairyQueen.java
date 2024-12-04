@@ -6,11 +6,9 @@ import com.megacrit.cardcrawl.actions.common.InstantKillAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -32,10 +30,6 @@ import static ruina.util.Wiz.*;
 public class FairyQueen extends AbstractRuinaMonster
 {
     public static final String ID = makeID(FairyQueen.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte QUEENS_DECREE = 0;
     private static final byte PREDATION = 1;
@@ -55,9 +49,8 @@ public class FairyQueen extends AbstractRuinaMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public FairyQueen(final float x, final float y) {
-        super(NAME, ID, 180, 0.0F, 0, 250.0f, 280.0f, null, x, y);
+        super(ID, ID, 180, 0.0F, 0, 250.0f, 280.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FairyQueen/Spriter/FairyQueen.scml"));
-        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(180));
         addMove(QUEENS_DECREE, Intent.UNKNOWN);
         addMove(PREDATION, Intent.ATTACK, calcAscensionDamage(6), 2);

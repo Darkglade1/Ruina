@@ -2,11 +2,8 @@ package ruina.monsters.act1;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Enlightenment;
 import ruina.monsters.AbstractRuinaMonster;
@@ -18,10 +15,6 @@ import static ruina.util.Wiz.*;
 public class Fragment extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Fragment.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte PENETRATE = 0;
     private static final byte ECHOES = 1;
@@ -34,9 +27,8 @@ public class Fragment extends AbstractRuinaMonster
     }
 
     public Fragment(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 235.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 250.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Fragment/Spriter/Fragment.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(46), calcAscensionTankiness(52));
         addMove(PENETRATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
         addMove(ECHOES, Intent.ATTACK, calcAscensionDamage(12));

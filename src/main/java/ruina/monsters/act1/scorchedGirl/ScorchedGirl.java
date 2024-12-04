@@ -1,15 +1,10 @@
 package ruina.monsters.act1.scorchedGirl;
 
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.actions.utility.LoseBlockAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
@@ -21,10 +16,6 @@ import static ruina.util.Wiz.*;
 public class ScorchedGirl extends AbstractRuinaMonster
 {
     public static final String ID = makeID(ScorchedGirl.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte EMBER = 0;
     private static final byte EXTINGUISH = 1;
@@ -36,9 +27,8 @@ public class ScorchedGirl extends AbstractRuinaMonster
     }
 
     public ScorchedGirl(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 230.0f, 235.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 230.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Scorched/Spriter/Scorched.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(35), calcAscensionTankiness(39));
         addMove(EMBER, Intent.DEBUFF);
         addMove(EXTINGUISH, Intent.ATTACK, calcAscensionDamage(22));

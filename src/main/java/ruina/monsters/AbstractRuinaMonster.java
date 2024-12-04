@@ -1,6 +1,7 @@
 package ruina.monsters;
 
 import basemod.abstracts.CustomMonster;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -8,6 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
@@ -23,6 +25,10 @@ import static ruina.util.Wiz.*;
 
 public abstract class AbstractRuinaMonster extends CustomMonster {
 
+    public String NAME;
+    public String[] MOVES;
+    public String[] DIALOG;
+
     protected Map<Byte, EnemyMoveInfo> moves;
     protected boolean firstMove = true;
     protected DamageInfo info;
@@ -31,20 +37,29 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     private static final float ASCENSION_TANK_BUFF_PERCENT = 1.10f;
     private static final float ASCENSION_SPECIAL_BUFF_PERCENT = 1.5f;
     private static final float ASCENSION_TANK_NERF_PERCENT = 0.85f;
+    public AbstractRuinaMonster target;
+    public String icon;
+
+    // for stance particle effects
+    protected float particleTimer;
+    protected float particleTimer2;
 
     public AbstractRuinaMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
         setUpMisc();
+        setUpStrings(id);
     }
 
     public AbstractRuinaMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, boolean ignoreBlights) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY, ignoreBlights);
         setUpMisc();
+        setUpStrings(id);
     }
 
     public AbstractRuinaMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
         setUpMisc();
+        setUpStrings(id);
     }
 
 
@@ -52,6 +67,13 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         moves = new HashMap<>();
         this.dialogX = (this.hb_x - 70.0F) * Settings.scale;
         this.dialogY -= (this.hb_y - 55.0F) * Settings.scale;
+    }
+
+    protected void setUpStrings(String ID) {
+        MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
+        this.name = monsterStrings.NAME;
+        MOVES = monsterStrings.MOVES;
+        DIALOG = monsterStrings.DIALOG;
     }
 
     protected void addMove(byte moveCode, Intent intent) {
@@ -77,8 +99,8 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
 
     @Override
     public void takeTurn() {
-        this.info = getInfoFromMove();
-        this.multiplier = getMultiplierFromMove();
+        this.info = getInfoFromMove(this.nextMove);
+        this.multiplier = getMultiplierFromMove(this.nextMove);
         if (firstMove) {
             firstMove = false;
         }
@@ -92,19 +114,19 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         }
     }
 
-    protected DamageInfo getInfoFromMove() {
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
+    protected DamageInfo getInfoFromMove(byte move) {
+        if(moves.containsKey(move)) {
+            EnemyMoveInfo emi = moves.get(move);
             return new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
         } else {
             return new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
         }
     }
 
-    protected int getMultiplierFromMove() {
+    protected int getMultiplierFromMove(byte move) {
         int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
+        if(moves.containsKey(move)) {
+            EnemyMoveInfo emi = moves.get(move);
             multiplier = emi.multiplier;
         }
         return multiplier;

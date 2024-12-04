@@ -1,12 +1,9 @@
 package ruina.monsters.act1;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Paralysis;
@@ -20,10 +17,6 @@ import static ruina.util.Wiz.*;
 public class Butterflies extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Butterflies.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte TRANQUILITY = 0;
     private static final byte LIBERATION = 1;
@@ -36,9 +29,8 @@ public class Butterflies extends AbstractRuinaMonster
     }
 
     public Butterflies(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 100.0f, 160.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 100.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Butterflies/Spriter/Butterflies.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(12), calcAscensionTankiness(15));
         addMove(TRANQUILITY, Intent.ATTACK, 5);
         addMove(LIBERATION, Intent.DEBUFF);

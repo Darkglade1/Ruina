@@ -3,10 +3,7 @@ package ruina.monsters.act1.blackSwan;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
@@ -20,10 +17,6 @@ import static ruina.util.Wiz.*;
 public class Brother extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Brother.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte GREEN_WASTE = 0;
     private static final byte NONE = 1;
@@ -41,9 +34,8 @@ public class Brother extends AbstractRuinaMonster
     }
 
     public Brother(final float x, final float y, int brotherNum) {
-        super(NAME, ID, 22, 0.0F, 0, 80.0f, 235.0f, null, x, y);
+        super(ID, ID, 22, 0.0F, 0, 80.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Brother/Spriter/Brother.scml"));
-        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(22));
         addMove(GREEN_WASTE, Intent.ATTACK, calcAscensionSpecial(2));
         addMove(NONE, Intent.NONE);

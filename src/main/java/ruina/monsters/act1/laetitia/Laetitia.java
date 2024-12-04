@@ -6,11 +6,8 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Gift;
@@ -23,10 +20,6 @@ import static ruina.util.Wiz.*;
 
 public class Laetitia extends AbstractRuinaMonster {
     public static final String ID = makeID(Laetitia.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte GIFT = 0;
     private static final byte FUN = 1;
@@ -42,12 +35,11 @@ public class Laetitia extends AbstractRuinaMonster {
     }
 
     public Laetitia(final float x, final float y) {
-        super(NAME, ID, 100, 0.0F, 0, 200.0f, 250.0f, null, x, y);
+        super(ID, ID, 100, 0.0F, 0, 200.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Laetitia/Spriter/Laetitia.scml"));
-        this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(100));
         addMove(GIFT, Intent.ATTACK_DEBUFF, calcAscensionDamage(4));
-        addMove(FUN, Intent.ATTACK, calcAscensionDamage(2), 2, true);
+        addMove(FUN, Intent.ATTACK, calcAscensionDamage(2), 2);
 
         if (AbstractDungeon.ascensionLevel >= 18) {
             gift.upgrade();

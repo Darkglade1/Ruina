@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -30,6 +31,7 @@ public class AdditionalIntent {
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString("AbstractMonster").TEXT;
     public AbstractMonster.Intent intent;
     public Texture targetTexture = null;
+    public AbstractCreature target;
 
     public int damage;
     public int baseDamage;
@@ -160,12 +162,14 @@ public class AdditionalIntent {
         }
     }
 
-    public void setTargetTexture(String path) {
+    public void setTargetTexture(String path, AbstractCreature target) {
         targetTexture = TexLoader.getTexture(path);
+        this.target = target;
     }
 
     public void clearTargetTexture() {
         targetTexture = null;
+        target = null;
     }
 
     public void render(SpriteBatch sb, int position) {

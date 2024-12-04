@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -27,10 +26,6 @@ import static ruina.util.Wiz.*;
 public class GalaxyFriend extends AbstractRuinaMonster
 {
     public static final String ID = makeID(GalaxyFriend.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte WAITING = 0;
     private static final byte STAR_SHOWER = 1;
@@ -51,9 +46,8 @@ public class GalaxyFriend extends AbstractRuinaMonster
     }
 
     public GalaxyFriend(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 245.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 250.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("GalaxyFriend/Spriter/GalaxyFriend.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(28), calcAscensionTankiness(31));
         addMove(WAITING, Intent.DEFEND);
         addMove(STAR_SHOWER, Intent.ATTACK, calcAscensionDamage(9));

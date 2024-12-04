@@ -1,10 +1,8 @@
 package ruina.monsters.act1.spiderBud;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -20,10 +18,6 @@ import static ruina.util.Wiz.*;
 public class SpiderBud extends AbstractRuinaMonster
 {
     public static final String ID = makeID(SpiderBud.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte PROTECTIVE_INSTINCTS = 0;
     private static final byte COCOON = 1;
@@ -44,9 +38,8 @@ public class SpiderBud extends AbstractRuinaMonster
     }
 
     public SpiderBud(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 200.0f, 275.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 200.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SpiderBud/Spriter/SpiderBud.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(35), calcAscensionTankiness(38));
         addMove(PROTECTIVE_INSTINCTS, Intent.DEFEND);
         addMove(COCOON, Intent.STRONG_DEBUFF);

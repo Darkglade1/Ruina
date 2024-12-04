@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,7 +17,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -28,20 +26,16 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.stances.DivinityStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.FlexibleDivinityParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -51,10 +45,6 @@ import static ruina.util.Wiz.*;
 public class Gunman extends AbstractMultiIntentMonster
 {
     public static final String ID = makeID(Gunman.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     public static final String LASER = RuinaMod.makeMonsterPath("Gunman/Laser.png");
     private static final Texture LASER_TEXTURE = TexLoader.getTexture(LASER);
@@ -74,30 +64,20 @@ public class Gunman extends AbstractMultiIntentMonster
     private final int VULNERABLE = 1;
     private final int SEVENGTH_BULLET = 7;
     private boolean powerTriggered = false;
-    public NothingThere nothingThere;
 
     public static final String POWER_ID = makeID("SeventhBullet");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private float particleTimer;
-    private float particleTimer2;
-
-    public String enemyIcon = makeUIPath("GunIcon.png");
-
     public Gunman() {
         this(100.0f, 0.0f);
     }
 
     public Gunman(final float x, final float y) {
-        super(NAME, ID, 180, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(ID, ID, 180, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Gunman/Spriter/Gunman.scml"));
-        this.type = EnemyType.BOSS;
-        numAdditionalMoves = 1;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(1);
         this.setHp(calcAscensionTankiness(180));
 
         addMove(RUTHLESS_BULLETS, IntentEnums.MASS_ATTACK, calcAscensionDamage(17));
@@ -105,6 +85,8 @@ public class Gunman extends AbstractMultiIntentMonster
         addMove(SILENT_SCOPE, Intent.DEFEND_DEBUFF);
         addMove(MAGIC_BULLET, Intent.ATTACK, 15);
         addMove(DEATH_MARK, Intent.DEBUFF);
+
+        this.icon = makeUIPath("GunIcon.png");
     }
 
     @Override
@@ -117,7 +99,7 @@ public class Gunman extends AbstractMultiIntentMonster
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof NothingThere) {
-                nothingThere = (NothingThere)mo;
+                target = (NothingThere)mo;
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
@@ -165,12 +147,7 @@ public class Gunman extends AbstractMultiIntentMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case RUTHLESS_BULLETS: {
                 int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
@@ -237,22 +214,10 @@ public class Gunman extends AbstractMultiIntentMonster
 
     @Override
     public void takeTurn() {
-        super.takeTurn();
         if (this.firstMove) {
             atb(new TalkAction(this, DIALOG[1]));
         }
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, nothingThere);
-            }
-        }
+        super.takeTurn();
         counter--;
         atb(new RollMoveAction(this));
     }
@@ -285,25 +250,10 @@ public class Gunman extends AbstractMultiIntentMonster
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, nothingThere, nothingThere.enemyIcon);
-            }
-        }
-    }
-
-    @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        if (!nothingThere.isDeadOrEscaped()) {
-            nothingThere.onGunManDeath();
+        if (!target.isDeadOrEscaped() && target instanceof NothingThere) {
+            ((NothingThere)target).onGunManDeath();
             AbstractDungeon.onModifyPower();
         }
         if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {

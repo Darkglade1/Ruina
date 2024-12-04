@@ -1,11 +1,9 @@
 package ruina.monsters.act1.fairyFestival;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
@@ -22,9 +20,6 @@ import static ruina.util.Wiz.*;
 
 public class FairyMass extends AbstractRuinaMonster {
     public static final String ID = makeID(FairyMass.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte WINGBEATS = 0;
     private static final byte GLUTTONY = 1;
@@ -41,9 +36,8 @@ public class FairyMass extends AbstractRuinaMonster {
     private final int consumeThreshold;
 
     public FairyMass(final float x, final float y) {
-        super(NAME, ID, 75, 0.0F, 0, 160.0f, 200.0f, null, x, y);
+        super(ID, ID, 75, 0.0F, 0, 160.0f, 200.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FairyMass/Spriter/FairyMass.scml"));
-        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(18), calcAscensionTankiness(20));
         int wingBeatsDamage = 3;
         if (AbstractDungeon.ascensionLevel >= 19) {
@@ -52,6 +46,12 @@ public class FairyMass extends AbstractRuinaMonster {
         addMove(WINGBEATS, Intent.ATTACK_DEBUFF, wingBeatsDamage);
         addMove(GLUTTONY, Intent.ATTACK, calcAscensionDamage(5));
         consumeThreshold = (int)(this.maxHealth * CONSUME_THRESHOLD);
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
     }
 
     @Override

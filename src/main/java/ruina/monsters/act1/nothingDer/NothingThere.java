@@ -3,7 +3,6 @@ package ruina.monsters.act1.nothingDer;
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
@@ -11,21 +10,16 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.util.AdditionalIntent;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -35,11 +29,6 @@ import static ruina.util.Wiz.*;
 public class NothingThere extends AbstractMultiIntentMonster
 {
     public static final String ID = makeID(NothingThere.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
-
     private static final byte DENSE_FLESH = 0;
     private static final byte EYE_CONTACT = 1;
     private static final byte REACHING_HAND = 2;
@@ -49,29 +38,22 @@ public class NothingThere extends AbstractMultiIntentMonster
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int STATUS = calcAscensionSpecial(1);
     private final int POWER_CAP = calcAscensionSpecial(20);
-    public Gunman gunman;
 
     public static final String POWER_ID = makeID("Mimicry");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public String enemyIcon = makeUIPath("NothingIcon.png");
-
     public NothingThere() {
         this(100.0f, 0.0f);
     }
 
     public NothingThere(final float x, final float y) {
-        super(NAME, ID, 220, -5.0F, 0, 250.0f, 205.0f, null, x, y);
+        super(ID, ID, 220, -5.0F, 0, 250.0f, 205.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("NothingThere/Spriter/NothingThere.scml"));
         this.animation.setFlip(true, false);
         this.flipHorizontal = true; //additionalIntent class checks for this boolean to know when to flip additional intent positioning
-        this.type = EnemyType.BOSS;
-        numAdditionalMoves = 1;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(1);
         this.setHp(calcAscensionTankiness(220));
 
         int attackDamage = 2;
@@ -82,6 +64,8 @@ public class NothingThere extends AbstractMultiIntentMonster
         addMove(EYE_CONTACT, Intent.ATTACK_DEBUFF, attackDamage);
         addMove(REACHING_HAND, Intent.ATTACK, 5, 2);
         addMove(EVOLVE, Intent.BUFF);
+
+        this.icon = makeUIPath("NothingIcon.png");
     }
 
     @Override
@@ -97,7 +81,7 @@ public class NothingThere extends AbstractMultiIntentMonster
         AbstractDungeon.player.dialogX += 480.0F * Settings.scale;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Gunman) {
-                gunman = (Gunman)mo;
+                target = (Gunman)mo;
             }
         }
         applyToTarget(this, this, new InvisibleBarricadePower(this));
@@ -130,12 +114,7 @@ public class NothingThere extends AbstractMultiIntentMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case DENSE_FLESH: {
                 blockAnimation();
@@ -189,7 +168,6 @@ public class NothingThere extends AbstractMultiIntentMonster
 
     @Override
     public void takeTurn() {
-        super.takeTurn();
         if (this.firstMove) {
             atb(new AbstractGameAction() {
                 @Override
@@ -200,18 +178,7 @@ public class NothingThere extends AbstractMultiIntentMonster
             });
             atb(new TalkAction(this, DIALOG[0]));
         }
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, gunman);
-            }
-        }
+        super.takeTurn();
         atb(new RollMoveAction(this));
     }
 
@@ -234,21 +201,6 @@ public class NothingThere extends AbstractMultiIntentMonster
         }
     }
 
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, gunman, gunman.enemyIcon);
-            }
-        }
-    }
-
     public void onGunManDeath() {
         atb(new AbstractGameAction() {
             @Override
@@ -263,8 +215,8 @@ public class NothingThere extends AbstractMultiIntentMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        if (!gunman.isDeadOrEscaped()) {
-            gunman.onNothingDeath();
+        if (!target.isDeadOrEscaped() && target instanceof Gunman) {
+            ((Gunman) target).onNothingDeath();
             AbstractDungeon.onModifyPower();
         }
         if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {

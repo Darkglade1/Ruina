@@ -1,10 +1,7 @@
 package ruina.monsters.act1.queenBee;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
@@ -17,10 +14,6 @@ import static ruina.util.Wiz.*;
 public class QueenBee extends AbstractRuinaMonster
 {
     public static final String ID = makeID(QueenBee.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte BOOST_AGGRESSION = 0;
     private static final byte BOOST_LOYALTY = 1;
@@ -34,9 +27,8 @@ public class QueenBee extends AbstractRuinaMonster
     }
 
     public QueenBee(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 220.0f, 295.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 220.0f, 295.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("QueenBee/Spriter/QueenBee.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(32), calcAscensionTankiness(36));
         addMove(BOOST_AGGRESSION, Intent.BUFF);
         addMove(BOOST_LOYALTY, Intent.DEFEND);

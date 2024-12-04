@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
@@ -29,10 +28,6 @@ import static ruina.util.Wiz.*;
 public class Alriune extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Alriune.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte SPRINGS_GENESIS = 0;
     private static final byte FULL_BLOOM = 1;
@@ -56,9 +51,8 @@ public class Alriune extends AbstractRuinaMonster
     }
 
     public Alriune(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 250.0f, 280.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 250.0f, 280.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Alriune/Spriter/Alriune.scml"));
-        this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(77), calcAscensionTankiness(81));
         addMove(SPRINGS_GENESIS, Intent.DEBUFF);
         addMove(FULL_BLOOM, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));

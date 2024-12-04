@@ -8,9 +8,7 @@ import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
@@ -26,10 +24,6 @@ import static ruina.util.Wiz.*;
 
 public class GiftFriend extends AbstractRuinaMonster {
     public static final String ID = makeID(GiftFriend.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private final AbstractCard card = new Gift();
 
@@ -39,9 +33,8 @@ public class GiftFriend extends AbstractRuinaMonster {
     private static final byte UNKNOWN = 1;
 
     public GiftFriend(final float x, final float y) {
-        super(NAME, ID, 20, 0.0F, 0, 200.0f, 200.0f, null, x, y);
+        super(ID, ID, 20, 0.0F, 0, 200.0f, 200.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Friend/Spriter/Friend.scml"));
-        this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(17), calcAscensionTankiness(19));
         addMove(TAKE_IT, Intent.ATTACK, calcAscensionDamage(6));
         addMove(UNKNOWN, Intent.UNKNOWN);
@@ -49,6 +42,12 @@ public class GiftFriend extends AbstractRuinaMonster {
         if (AbstractDungeon.ascensionLevel >= 18) {
             card.upgrade();
         }
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.ELITE;
     }
 
     @Override

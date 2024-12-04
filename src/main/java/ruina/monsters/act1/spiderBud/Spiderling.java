@@ -1,12 +1,9 @@
 package ruina.monsters.act1.spiderBud;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 
@@ -19,10 +16,6 @@ import static ruina.util.Wiz.*;
 public class Spiderling extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Spiderling.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte THIN_WEBBING = 0;
     private static final byte STINGY_FANGS = 1;
@@ -34,9 +27,8 @@ public class Spiderling extends AbstractRuinaMonster
     }
 
     public Spiderling(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 200.0f, 165.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 200.0f, 165.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Spiderling/Spriter/Spiderling.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(10), calcAscensionTankiness(12));
         addMove(THIN_WEBBING, Intent.ATTACK_DEBUFF, calcAscensionSpecial(2));
         addMove(STINGY_FANGS, Intent.ATTACK, calcAscensionDamage(5));

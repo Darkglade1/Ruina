@@ -3,6 +3,7 @@ package ruina.monsters;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,16 +17,20 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
+import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.powers.Enchanted;
 import ruina.util.AdditionalIntent;
+import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.atb;
 
 public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     public ArrayList<EnemyMoveInfo> additionalMoves = new ArrayList<>();
@@ -48,8 +53,40 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
     }
 
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
+    @Override
+    public void takeTurn() {
+        super.takeTurn();
+        for (AdditionalIntent additionalIntent : this.additionalIntents) {
+            //that way they don't fade out after the monster takes its primary intent
+            additionalIntent.usePrimaryIntentsColor = false;
+        }
+        takeCustomTurn(this.moves.get(nextMove), adp());
+        for (int i = 0; i < additionalMoves.size(); i++) {
+            EnemyMoveInfo additionalMove = additionalMoves.get(i);
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
+            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
+            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
+            if (additionalIntent.targetTexture == null) {
+                takeCustomTurn(additionalMove, adp());
+            } else {
+                takeCustomTurn(additionalMove, additionalIntent.target);
+            }
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    additionalIntent.usePrimaryIntentsColor = true;
+                    this.isDone = true;
+                }
+            });
+        }
+    }
 
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
+        info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
+        multiplier = move.multiplier;
+        if(info.base > -1) {
+            info.applyPowers(this, target);
+        }
     }
 
     @Override
@@ -59,7 +96,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     }
 
     protected void applyPowersToAdditionalIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, String targetTexturePath, int whichMove) {
-        if (!AbstractDungeon.actionManager.turnHasEnded && (additionalMove.nextMove == -1 || target.isDead || target.isDying)) {
+        if (additionalMove.nextMove == -1 || target.isDead || target.isDying) {
             target = adp();
         }
         if (additionalMove.baseDamage > -1) {
@@ -84,7 +121,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                     intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + additionalIntent.damage + TEXT[2];
                 }
                 if (targetTexturePath != null) {
-                    additionalIntent.setTargetTexture(targetTexturePath);
+                    additionalIntent.setTargetTexture(targetTexturePath, target);
                 }
             } else {
                 additionalIntent.clearTargetTexture();
@@ -95,7 +132,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                     PowerTip intentTip = additionalIntent.intentTip;
                     intentTip.body = TEXT[5] + FontHelper.colorString(target.name, "y") + TEXT[6];
                     if (targetTexturePath != null) {
-                        additionalIntent.setTargetTexture(targetTexturePath);
+                        additionalIntent.setTargetTexture(targetTexturePath, target);
                     }
                 } else {
                     additionalIntent.clearTargetTexture();
@@ -134,7 +171,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         if (moveHistory.isEmpty()) {
             return false;
         } else {
-            return (Byte)moveHistory.get(moveHistory.size() - 1) == move;
+            return moveHistory.get(moveHistory.size() - 1) == move;
         }
     }
 
@@ -144,7 +181,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         } else if (moveHistory.size() < 2) {
             return false;
         } else {
-            return (Byte)moveHistory.get(moveHistory.size() - 2) == move;
+            return moveHistory.get(moveHistory.size() - 2) == move;
         }
     }
 
@@ -152,7 +189,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         if (moveHistory.size() < 2) {
             return false;
         } else {
-            return (Byte)moveHistory.get(moveHistory.size() - 1) == move && (Byte)moveHistory.get(moveHistory.size() - 2) == move;
+            return moveHistory.get(moveHistory.size() - 1) == move && (Byte)moveHistory.get(moveHistory.size() - 2) == move;
         }
     }
 
@@ -231,11 +268,28 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     }
 
     @Override
-    public void takeTurn() {
-        super.takeTurn();
-        for (AdditionalIntent additionalIntent : this.additionalIntents) {
-            //that way they don't fade out after the monster takes its primary intent
-            additionalIntent.usePrimaryIntentsColor = false;
+    public void applyPowers() {
+        super.applyPowers();
+        for (int i = 0; i < additionalIntents.size(); i++) {
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
+            EnemyMoveInfo additionalMove = null;
+            if (i < additionalMoves.size()) {
+                additionalMove = additionalMoves.get(i);
+            }
+            if (additionalMove != null) {
+                handleTargetingForIntent(additionalMove, additionalIntent, i);
+            }
+        }
+    }
+
+    public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
+        applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+    }
+
+    public void setNumAdditionalMoves(int num) {
+        numAdditionalMoves = num;
+        for (int i = 0; i < numAdditionalMoves; i++) {
+            additionalMovesHistory.add(new ArrayList<>());
         }
     }
 }

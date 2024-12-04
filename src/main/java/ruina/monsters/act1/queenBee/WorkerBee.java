@@ -1,10 +1,7 @@
 package ruina.monsters.act1.queenBee;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 
@@ -15,10 +12,6 @@ import static ruina.util.Wiz.*;
 public class WorkerBee extends AbstractRuinaMonster
 {
     public static final String ID = makeID(WorkerBee.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte CARRY_LARVAE = 0;
     private static final byte GARDU_DU_CORPS = 1;
@@ -30,9 +23,8 @@ public class WorkerBee extends AbstractRuinaMonster
     }
 
     public WorkerBee(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 230.0f, 255.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 230.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("WorkerBee/Spriter/WorkerBee.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(42), calcAscensionTankiness(46));
         addMove(CARRY_LARVAE, Intent.ATTACK_DEFEND, calcAscensionDamage(9));
         addMove(GARDU_DU_CORPS, Intent.ATTACK, calcAscensionDamage(5), 2);
