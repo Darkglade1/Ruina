@@ -240,9 +240,7 @@ public class Gunman extends AbstractMultiIntentMonster
         super.takeTurn();
         if (this.firstMove) {
             atb(new TalkAction(this, DIALOG[1]));
-            firstMove = false;
         }
-        atb(new RemoveAllBlockAction(this, this));
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);

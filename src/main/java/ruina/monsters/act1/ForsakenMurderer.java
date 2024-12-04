@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -53,7 +52,7 @@ public class ForsakenMurderer extends AbstractRuinaMonster
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(43), calcAscensionTankiness(47));
         addMove(CHAINED_WRATH, Intent.ATTACK_BUFF, calcAscensionDamage(6));
-        addMove(METALLIC_RINGING, Intent.ATTACK, calcAscensionDamage(6), 2, true);
+        addMove(METALLIC_RINGING, Intent.ATTACK, calcAscensionDamage(6), 2);
     }
 
     @Override
@@ -78,17 +77,7 @@ public class ForsakenMurderer extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
-        if (firstMove) {
-            firstMove = false;
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case CHAINED_WRATH: {
                 attackAnimation(adp());

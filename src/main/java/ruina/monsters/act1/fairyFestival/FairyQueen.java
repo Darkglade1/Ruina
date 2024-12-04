@@ -60,7 +60,7 @@ public class FairyQueen extends AbstractRuinaMonster
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(180));
         addMove(QUEENS_DECREE, Intent.UNKNOWN);
-        addMove(PREDATION, Intent.ATTACK, calcAscensionDamage(6), 2, true);
+        addMove(PREDATION, Intent.ATTACK, calcAscensionDamage(6), 2);
         addMove(RAVENOUSNESS, Intent.BUFF);
     }
 
@@ -85,17 +85,7 @@ public class FairyQueen extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
-        if (firstMove) {
-            firstMove = false;
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case QUEENS_DECREE: {
                 specialAnimation();

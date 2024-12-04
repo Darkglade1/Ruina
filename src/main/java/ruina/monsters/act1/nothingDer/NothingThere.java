@@ -80,7 +80,7 @@ public class NothingThere extends AbstractMultiIntentMonster
         }
         addMove(DENSE_FLESH, Intent.DEFEND);
         addMove(EYE_CONTACT, Intent.ATTACK_DEBUFF, attackDamage);
-        addMove(REACHING_HAND, Intent.ATTACK, 5, 2, true);
+        addMove(REACHING_HAND, Intent.ATTACK, 5, 2);
         addMove(EVOLVE, Intent.BUFF);
     }
 
@@ -199,9 +199,7 @@ public class NothingThere extends AbstractMultiIntentMonster
                 }
             });
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
-        atb(new RemoveAllBlockAction(this, this));
         takeCustomTurn(this.moves.get(nextMove), adp());
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);

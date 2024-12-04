@@ -232,6 +232,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
 
     @Override
     public void takeTurn() {
+        super.takeTurn();
         for (AdditionalIntent additionalIntent : this.additionalIntents) {
             //that way they don't fade out after the monster takes its primary intent
             additionalIntent.usePrimaryIntentsColor = false;

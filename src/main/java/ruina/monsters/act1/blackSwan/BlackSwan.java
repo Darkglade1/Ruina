@@ -56,7 +56,7 @@ public class BlackSwan extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSwan/Spriter/BlackSwan.scml"));
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(160));
-        addMove(WRITHE, Intent.ATTACK, calcAscensionDamage(6), 2, true);
+        addMove(WRITHE, Intent.ATTACK, calcAscensionDamage(6), 2);
         addMove(PARASOL, Intent.DEFEND_BUFF);
         addMove(REALITY, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
         addMove(SHRIEK, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
@@ -93,13 +93,7 @@ public class BlackSwan extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case WRITHE: {
                 for (int i = 0; i < multiplier; i++) {

@@ -50,7 +50,7 @@ public class AllAroundHelper extends AbstractRuinaMonster
         this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(50), calcAscensionTankiness(54));
         addMove(CHARGE, Intent.BUFF);
-        addMove(CLEAN, Intent.ATTACK, calcAscensionDamage(7), 2, true);
+        addMove(CLEAN, Intent.ATTACK, calcAscensionDamage(7), 2);
         this.attackFirst = attackFirst;
 
         if (AbstractDungeon.ascensionLevel >= 3) {
@@ -105,17 +105,7 @@ public class AllAroundHelper extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
-        if (firstMove) {
-            firstMove = false;
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case CHARGE: {
                 specialAnimation(adp());

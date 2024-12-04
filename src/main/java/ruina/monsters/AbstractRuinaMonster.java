@@ -2,12 +2,16 @@ package ruina.monsters;
 
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
+import ruina.powers.InvisibleBarricadePower;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
@@ -15,13 +19,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.atb;
-import static ruina.util.Wiz.att;
+import static ruina.util.Wiz.*;
 
 public abstract class AbstractRuinaMonster extends CustomMonster {
 
     protected Map<Byte, EnemyMoveInfo> moves;
     protected boolean firstMove = true;
+    protected DamageInfo info;
+    protected int multiplier;
     private static final float ASCENSION_DAMAGE_BUFF_PERCENT = 1.10f;
     private static final float ASCENSION_TANK_BUFF_PERCENT = 1.10f;
     private static final float ASCENSION_SPECIAL_BUFF_PERCENT = 1.5f;
@@ -53,10 +58,10 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         this.addMove(moveCode, intent, -1);
     }
     protected void addMove(byte moveCode, Intent intent, int baseDamage) {
-        this.addMove(moveCode, intent, baseDamage, 0);
+        this.addMove(moveCode, intent, baseDamage, 0, false);
     }
     protected void addMove(byte moveCode, Intent intent, int baseDamage, int multiplier) {
-        this.addMove(moveCode, intent, baseDamage, multiplier, false);
+        this.addMove(moveCode, intent, baseDamage, multiplier, true);
     }
     protected void addMove(byte moveCode, Intent intent, int baseDamage, int multiplier, boolean isMultiDamage) {
         this.moves.put(moveCode, new EnemyMoveInfo(moveCode, intent, baseDamage, multiplier, isMultiDamage));
@@ -68,6 +73,41 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
     public void setMoveShortcut(byte next) {
         this.setMoveShortcut(next, null);
+    }
+
+    @Override
+    public void takeTurn() {
+        this.info = getInfoFromMove();
+        this.multiplier = getMultiplierFromMove();
+        if (firstMove) {
+            firstMove = false;
+        }
+        if(info.base > -1) {
+            info.applyPowers(this, adp());
+        }
+        for (AbstractPower power : this.powers) {
+            if (power instanceof InvisibleBarricadePower) {
+                atb(new RemoveAllBlockAction(this, this));
+            }
+        }
+    }
+
+    protected DamageInfo getInfoFromMove() {
+        if(moves.containsKey(this.nextMove)) {
+            EnemyMoveInfo emi = moves.get(this.nextMove);
+            return new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
+        } else {
+            return new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
+        }
+    }
+
+    protected int getMultiplierFromMove() {
+        int multiplier = 0;
+        if(moves.containsKey(this.nextMove)) {
+            EnemyMoveInfo emi = moves.get(this.nextMove);
+            multiplier = emi.multiplier;
+        }
+        return multiplier;
     }
 
     protected int calcAscensionDamage(float base) {

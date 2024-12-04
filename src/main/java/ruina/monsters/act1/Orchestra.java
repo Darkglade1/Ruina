@@ -115,7 +115,6 @@ public class Orchestra extends AbstractRuinaMonster
         performerCards.add(new SecondChair());
         performerCards.add(new ThirdChair());
         performerCards.add(new FourthChair());
-        // performerCards.add(new Conductor());
         if (AbstractDungeon.ascensionLevel >= 19) {
             for (AbstractCard card : performerCards) {
                 card.upgrade();
@@ -157,13 +156,7 @@ public class Orchestra extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case FIRST: {
                 attackAnimation1(adp());

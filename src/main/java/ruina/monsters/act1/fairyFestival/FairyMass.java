@@ -38,7 +38,7 @@ public class FairyMass extends AbstractRuinaMonster {
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private FairyQueen queen;
-    private int consumeThreshold;
+    private final int consumeThreshold;
 
     public FairyMass(final float x, final float y) {
         super(NAME, ID, 75, 0.0F, 0, 160.0f, 200.0f, null, x, y);
@@ -67,11 +67,7 @@ public class FairyMass extends AbstractRuinaMonster {
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-        if (info.base > -1) {
-            info.applyPowers(this, adp());
-        }
+        super.takeTurn();
         switch (nextMove) {
             case GLUTTONY:
                 attackAnimation(adp());

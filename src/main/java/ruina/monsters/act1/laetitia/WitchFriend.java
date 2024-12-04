@@ -64,18 +64,7 @@ public class WitchFriend extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info;
-        int multiplier;
-        if (moves.containsKey(nextMove)) {
-            info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = this.moves.get(nextMove).multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
-
-        if (info.base > -1) {
-            info.applyPowers(this, adp());
-        }
+        super.takeTurn();
         switch (this.nextMove) {
             case GLITCH: {
                 attackAnimation(adp());

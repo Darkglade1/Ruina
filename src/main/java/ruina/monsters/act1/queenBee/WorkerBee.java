@@ -35,18 +35,12 @@ public class WorkerBee extends AbstractRuinaMonster
         this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(42), calcAscensionTankiness(46));
         addMove(CARRY_LARVAE, Intent.ATTACK_DEFEND, calcAscensionDamage(9));
-        addMove(GARDU_DU_CORPS, Intent.ATTACK, calcAscensionDamage(5), 2, true);
+        addMove(GARDU_DU_CORPS, Intent.ATTACK, calcAscensionDamage(5), 2);
     }
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case CARRY_LARVAE: {
                 block(this, BLOCK);
