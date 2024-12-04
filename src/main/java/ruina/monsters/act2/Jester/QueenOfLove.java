@@ -66,9 +66,6 @@ public class QueenOfLove extends AbstractMagicalGirl
 
     @Override
     public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
         super.takeTurn();
         AbstractMonster mo = this;
         AbstractMonster jester = target;

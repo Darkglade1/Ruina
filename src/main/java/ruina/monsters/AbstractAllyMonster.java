@@ -74,6 +74,9 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     @Override
     public void takeTurn() {
         super.takeTurn();
+        if (this.isDead) {
+            return;
+        }
         if (isAlly && !isTargetableByPlayer) {
             atb(new AbstractGameAction() {
                 @Override

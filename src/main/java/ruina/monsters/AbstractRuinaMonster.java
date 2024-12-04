@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
@@ -226,6 +227,28 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
             ((BetterSpriterAnimation)this.animation).startDying();
         }
         super.die(triggerRelics);
+    }
+
+    public int[] calcMassAttack(DamageInfo info) {
+        int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
+        info.applyPowers(this, adp());
+        damageArray[damageArray.length - 1] = info.output;
+        for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+            AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
+            info.applyPowers(this, mo);
+            damageArray[i] = info.output;
+        }
+        return damageArray;
+    }
+
+    public int[] calcMassAttackNoHitPlayer(DamageInfo info) {
+        int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
+        for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
+            AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
+            info.applyPowers(this, mo);
+            damageArray[i] = info.output;
+        }
+        return damageArray;
     }
 
     //Runs a specific animation

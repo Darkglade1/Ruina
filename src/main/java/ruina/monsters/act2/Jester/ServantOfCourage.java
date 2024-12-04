@@ -44,11 +44,7 @@ public class ServantOfCourage extends AbstractMagicalGirl
 
     @Override
     public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
         super.takeTurn();
-
         switch (this.nextMove) {
             case HELP: {
                 for (int i = 0; i < multiplier; i++) {

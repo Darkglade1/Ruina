@@ -119,15 +119,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                         atb(new VFXAction(new CollectorCurseEffect(mo.hb.cX, mo.hb.cY)));
                     }
                 }
-                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
-                info.applyPowers(this, adp());
-                damageArray[damageArray.length - 1] = info.output;
-                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
-                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-                    info.applyPowers(this, mo);
-                    damageArray[i] = info.output;
-                }
-                atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                atb(new DamageAllOtherCharactersAction(this, calcMassAttack(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle();
                 atb(new AbstractGameAction() {
                     @Override

@@ -108,9 +108,6 @@ public class LittleRed extends AbstractAllyMonster
 
     @Override
     public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
         super.takeTurn();
         if (this.firstMove && !enraged) {
             atb(new TalkAction(this, DIALOG[0]));

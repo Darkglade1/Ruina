@@ -150,18 +150,10 @@ public class Gunman extends AbstractMultiIntentMonster
         super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case RUTHLESS_BULLETS: {
-                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
-                info.applyPowers(this, adp());
-                damageArray[damageArray.length - 1] = info.output;
-                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
-                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-                    info.applyPowers(this, mo);
-                    damageArray[i] = info.output;
-                }
                 massAttackAnimation(target);
                 waitAnimation();
                 massAttackEffect();
-                atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                atb(new DamageAllOtherCharactersAction(this, calcMassAttack(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle();
                 waitAnimation();
                 counter = MASS_ATTACK_COOLDOWN + 1;
