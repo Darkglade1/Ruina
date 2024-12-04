@@ -157,14 +157,14 @@ public class BlueStar extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (!firstMove && minions[0] == null && minions[1] == null) {
-            setMoveShortcut(WORSHIPPERS, MOVES[WORSHIPPERS]);
+            setMoveShortcut(WORSHIPPERS);
         } else {
             if (moveCounter == 0) {
-                setMoveShortcut(RISING_STAR, MOVES[RISING_STAR]);
+                setMoveShortcut(RISING_STAR);
             } else if (moveCounter == 1) {
-                setMoveShortcut(STARRY_SKY, MOVES[STARRY_SKY]);
+                setMoveShortcut(STARRY_SKY);
             } else {
-                setMoveShortcut(SOUND_OF_STAR, MOVES[SOUND_OF_STAR]);
+                setMoveShortcut(SOUND_OF_STAR);
             }
         }
     }

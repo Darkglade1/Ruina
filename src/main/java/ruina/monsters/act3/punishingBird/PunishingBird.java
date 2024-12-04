@@ -90,14 +90,14 @@ public class PunishingBird extends AbstractRuinaMonster {
         PunishingBirdPunishmentPower punishment = (PunishingBirdPunishmentPower) this.getPower(PunishingBirdPunishmentPower.POWER_ID);
         if (punishment != null) {
             if (punishment.getPunishment()) {
-                setMoveShortcut(PUNISHMENT, MOVES[1]);
+                setMoveShortcut(PUNISHMENT);
                 punishment.setPunishment(false);
                 punishment.updateDescription();
             } else {
-                setMoveShortcut(PECK, MOVES[0]);
+                setMoveShortcut(PECK);
             }
         } else {
-            setMoveShortcut(PECK, MOVES[0]);
+            setMoveShortcut(PECK);
         }
     }
 

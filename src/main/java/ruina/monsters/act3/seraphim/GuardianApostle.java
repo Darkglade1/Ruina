@@ -127,9 +127,9 @@ public class GuardianApostle extends AbstractRuinaMonster {
     @Override
     protected void getMove(final int num) {
         if (halfDead) {
-            setMoveShortcut(EMPTY, MOVES[EMPTY]);
+            setMoveShortcut(EMPTY);
         } else if (firstMove) {
-            setMoveShortcut(RISE_AND_SERVE, MOVES[RISE_AND_SERVE]);
+            setMoveShortcut(RISE_AND_SERVE);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(COMMAND_FIRE)) {
@@ -148,7 +148,7 @@ public class GuardianApostle extends AbstractRuinaMonster {
                 possibilities.add(LORD_SHEW_US);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

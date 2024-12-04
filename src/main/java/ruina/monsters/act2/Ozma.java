@@ -155,7 +155,7 @@ public class Ozma extends AbstractRuinaMonster
             drawDebuffAmt = oblivion.amount;
         }
         if (cooldown <= 0 && drawDebuffAmt < MAX_DRAW_DEBUFF) {
-            setMoveShortcut(FADING_MEMORIES, MOVES[FADING_MEMORIES]);
+            setMoveShortcut(FADING_MEMORIES);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(SQUASH)) {
@@ -168,7 +168,7 @@ public class Ozma extends AbstractRuinaMonster
                 possibilities.add(POWDER_OF_LIFE);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

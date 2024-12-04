@@ -220,9 +220,9 @@ public class ServantOfWrath extends AbstractAllyMonster
     @Override
     protected void getMove(final int num) {
         if (enraged) {
-            setMoveShortcut(EMBODIMENTS_OF_EVIL, MOVES[EMBODIMENTS_OF_EVIL]);
+            setMoveShortcut(EMBODIMENTS_OF_EVIL);
         } else {
-            setMoveShortcut(RAGE, MOVES[RAGE]);
+            setMoveShortcut(RAGE);
         }
     }
 

@@ -88,11 +88,11 @@ public class CrazedEmployee extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (debuff == 2) {
-            setMoveShortcut(SHAKING_BLOW, MOVES[SHAKING_BLOW]);
+            setMoveShortcut(SHAKING_BLOW);
         } else if (firstMove) {
-            setMoveShortcut(TREMBLING_MOTION, MOVES[TREMBLING_MOTION]);
+            setMoveShortcut(TREMBLING_MOTION);
         } else {
-            setMoveShortcut(SHAKING_BLOW, MOVES[SHAKING_BLOW]);
+            setMoveShortcut(SHAKING_BLOW);
         }
     }
 

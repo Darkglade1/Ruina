@@ -57,9 +57,9 @@ public class WorkerBee extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (lastMove(CARRY_LARVAE)) {
-            setMoveShortcut(GARDU_DU_CORPS, MOVES[GARDU_DU_CORPS]);
+            setMoveShortcut(GARDU_DU_CORPS);
         } else {
-            setMoveShortcut(CARRY_LARVAE, MOVES[CARRY_LARVAE]);
+            setMoveShortcut(CARRY_LARVAE);
         }
     }
 

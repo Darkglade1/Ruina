@@ -98,10 +98,10 @@ public class SpiderBud extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (enraged || onlyEnemyAlive()) {
-            setMoveShortcut(CATCHING_FOOD, MOVES[CATCHING_FOOD]);
+            setMoveShortcut(CATCHING_FOOD);
             enraged = false;
         } else {
-            setMoveShortcut((byte) currentMove, MOVES[currentMove]);
+            setMoveShortcut((byte) currentMove);
         }
     }
 

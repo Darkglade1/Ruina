@@ -79,9 +79,9 @@ public class RemnantOfTime extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(BACKLASH_OF_TIME)) {
-            setMoveShortcut(TORRENT_OF_HOURS, MOVES[TORRENT_OF_HOURS]);
+            setMoveShortcut(TORRENT_OF_HOURS);
         } else {
-            setMoveShortcut(BACKLASH_OF_TIME, MOVES[BACKLASH_OF_TIME]);
+            setMoveShortcut(BACKLASH_OF_TIME);
         }
     }
 

@@ -82,11 +82,11 @@ public class QueenBee extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (onlyEnemyAlive()) {
-            setMoveShortcut(HORNET_STRIKE, MOVES[HORNET_STRIKE]);
+            setMoveShortcut(HORNET_STRIKE);
         } else if (lastMove(BOOST_AGGRESSION)){
-            setMoveShortcut(BOOST_LOYALTY, MOVES[BOOST_LOYALTY]);
+            setMoveShortcut(BOOST_LOYALTY);
         } else {
-            setMoveShortcut(BOOST_AGGRESSION, MOVES[BOOST_AGGRESSION]);
+            setMoveShortcut(BOOST_AGGRESSION);
         }
     }
 

@@ -157,9 +157,9 @@ public class JudgementBird extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (lastMove(STARE)) {
-            setMoveShortcut(JUDGEMENT, MOVES[JUDGEMENT]);
+            setMoveShortcut(JUDGEMENT);
         } else if (cooldownCounter <= 0) {
-            setMoveShortcut(STARE, MOVES[STARE]);
+            setMoveShortcut(STARE);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(HEAVY_GUILT)) {
@@ -169,7 +169,7 @@ public class JudgementBird extends AbstractRuinaMonster
                 possibilities.add(CEASELESS_DUTY);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

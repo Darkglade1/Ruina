@@ -126,7 +126,7 @@ public class Scarecrow extends AbstractRuinaMonster
             return;
         }
         if (struggleCounter <= 0) {
-            setMoveShortcut(STRUGGLE, MOVES[STRUGGLE]);
+            setMoveShortcut(STRUGGLE);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(RAKE)) {
@@ -136,7 +136,7 @@ public class Scarecrow extends AbstractRuinaMonster
                 possibilities.add(HARVEST);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

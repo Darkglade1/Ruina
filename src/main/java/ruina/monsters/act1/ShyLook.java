@@ -143,7 +143,7 @@ public class ShyLook extends AbstractRuinaMonster
             possibilities.add(ATTACK);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[0]);
+        setMoveShortcut(move);
         face = move;
         runAnim("Idle" + face);
     }

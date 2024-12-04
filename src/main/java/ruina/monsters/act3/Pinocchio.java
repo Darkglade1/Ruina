@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
@@ -159,7 +158,7 @@ public class Pinocchio extends AbstractDeckMonster
     @Override
     protected void getMove(final int num) {
         if (this.firstMove) {
-            setMoveShortcut(LEARN, MOVES[LEARN]);
+            setMoveShortcut(LEARN);
         } else {
             AbstractCard c = topDeckCardForMoveAction();
             setMoveShortcut((byte) c.cardID.hashCode(), c.name, c);

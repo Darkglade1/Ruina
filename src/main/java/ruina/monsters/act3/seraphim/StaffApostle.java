@@ -93,7 +93,7 @@ public class StaffApostle extends AbstractRuinaMonster {
 
     @Override
     protected void getMove(final int num) {
-        setMoveShortcut(THY_WORDS, MOVES[THY_WORDS]);
+        setMoveShortcut(THY_WORDS);
     }
 
     private void attackAnimation(AbstractCreature enemy) {

@@ -117,9 +117,9 @@ public class Sage extends AbstractAllyMonster
     @Override
     protected void getMove(final int num) {
         if (firstMove) {
-            setMoveShortcut(RING, MOVES[RING]);
+            setMoveShortcut(RING);
         } else {
-            setMoveShortcut(SMACK, MOVES[SMACK]);
+            setMoveShortcut(SMACK);
         }
     }
 

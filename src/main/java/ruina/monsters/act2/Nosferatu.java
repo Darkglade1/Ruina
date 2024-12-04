@@ -95,7 +95,7 @@ public class Nosferatu extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(MERCILESS_GESTURE)) {
-            setMoveShortcut(UNBEARABLE_DROUGHT, MOVES[UNBEARABLE_DROUGHT]);
+            setMoveShortcut(UNBEARABLE_DROUGHT);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(UNBEARABLE_DROUGHT)) {
@@ -108,7 +108,7 @@ public class Nosferatu extends AbstractRuinaMonster
                 possibilities.add(LOOMING_PRESENCE);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

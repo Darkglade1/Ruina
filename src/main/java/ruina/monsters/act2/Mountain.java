@@ -296,7 +296,7 @@ public class Mountain extends AbstractMultiIntentMonster
         if (this.halfDead) {
             setMoveShortcut(REVIVE);
         } else if (this.currentStage == STAGE1) {
-            setMoveShortcut(DEVOUR, MOVES[DEVOUR]);
+            setMoveShortcut(DEVOUR);
         } else if (this.currentStage == STAGE2) {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(DEVOUR)) {
@@ -309,7 +309,7 @@ public class Mountain extends AbstractMultiIntentMonster
                 possibilities.add(HORRID_SCREECH);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastTwoMoves(RAM)) {
@@ -319,7 +319,7 @@ public class Mountain extends AbstractMultiIntentMonster
                 possibilities.add(BITE);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

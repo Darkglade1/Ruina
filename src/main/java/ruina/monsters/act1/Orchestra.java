@@ -246,17 +246,17 @@ public class Orchestra extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (lastMove(FIRST)) {
-            setMoveShortcut(SECOND, MOVES[SECOND]);
+            setMoveShortcut(SECOND);
         } else if (lastMove(SECOND)) {
-            setMoveShortcut(THIRD, MOVES[THIRD]);
+            setMoveShortcut(THIRD);
         } else if (lastMove(THIRD)) {
-            setMoveShortcut(FOURTH, MOVES[FOURTH]);
+            setMoveShortcut(FOURTH);
         } else if (lastMove(FOURTH)) {
-            setMoveShortcut(FINALE, MOVES[FINALE]);
+            setMoveShortcut(FINALE);
         } else if (lastMove(FINALE)) {
-            setMoveShortcut(CURTAIN, MOVES[CURTAIN]);
+            setMoveShortcut(CURTAIN);
         } else {
-            setMoveShortcut(FIRST, MOVES[FIRST]);
+            setMoveShortcut(FIRST);
         }
     }
 

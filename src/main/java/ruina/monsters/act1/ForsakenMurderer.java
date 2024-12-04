@@ -96,7 +96,7 @@ public class ForsakenMurderer extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (firstMove) {
-            setMoveShortcut(METALLIC_RINGING, MOVES[METALLIC_RINGING]);
+            setMoveShortcut(METALLIC_RINGING);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(CHAINED_WRATH)) {
@@ -106,7 +106,7 @@ public class ForsakenMurderer extends AbstractRuinaMonster
                 possibilities.add(METALLIC_RINGING);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

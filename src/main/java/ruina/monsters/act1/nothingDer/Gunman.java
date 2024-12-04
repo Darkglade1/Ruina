@@ -225,7 +225,7 @@ public class Gunman extends AbstractMultiIntentMonster
     @Override
     protected void getMove(final int num) {
         if (counter <= 0) {
-            setMoveShortcut(RUTHLESS_BULLETS, MOVES[RUTHLESS_BULLETS]);
+            setMoveShortcut(RUTHLESS_BULLETS);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastTwoMoves(INEVITABLE_BULLET)) {
@@ -235,7 +235,7 @@ public class Gunman extends AbstractMultiIntentMonster
                 possibilities.add(SILENT_SCOPE);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

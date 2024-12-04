@@ -132,17 +132,17 @@ public class BlackSwan extends AbstractRuinaMonster
     protected void getMove(final int num) {
         if (numDeadBrothers >= DEAD_BROTHERS_THRESHOLD) {
             if (lastMove(SHRIEK)) {
-                setMoveShortcut(WRITHE, MOVES[WRITHE]);
+                setMoveShortcut(WRITHE);
             } else {
-                setMoveShortcut(SHRIEK, MOVES[SHRIEK]);
+                setMoveShortcut(SHRIEK);
             }
         } else {
             if (lastMove(REALITY)) {
-                setMoveShortcut(WRITHE, MOVES[WRITHE]);
+                setMoveShortcut(WRITHE);
             } else if (lastMove(WRITHE)) {
-                setMoveShortcut(PARASOL, MOVES[PARASOL]);
+                setMoveShortcut(PARASOL);
             } else {
-                setMoveShortcut(REALITY, MOVES[REALITY]);
+                setMoveShortcut(REALITY);
             }
         }
     }

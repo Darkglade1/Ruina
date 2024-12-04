@@ -78,7 +78,7 @@ public class WitchFriend extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        setMoveShortcut(GLITCH, MOVES[GLITCH]);
+        setMoveShortcut(GLITCH);
     }
 
     private void attackAnimation(AbstractCreature enemy) {

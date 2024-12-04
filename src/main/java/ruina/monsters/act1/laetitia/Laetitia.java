@@ -88,9 +88,9 @@ public class Laetitia extends AbstractRuinaMonster {
     @Override
     protected void getMove(final int num) {
         if (lastTwoMoves(GIFT)) {
-            setMoveShortcut(FUN, MOVES[FUN]);
+            setMoveShortcut(FUN);
         } else {
-            setMoveShortcut(GIFT, MOVES[GIFT]);
+            setMoveShortcut(GIFT);
         }
     }
 

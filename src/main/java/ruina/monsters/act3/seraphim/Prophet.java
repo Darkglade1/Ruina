@@ -253,7 +253,7 @@ public class Prophet extends AbstractAllyMonster
 
     @Override
     protected void getMove(final int num) {
-        setMoveShortcut(BAPTISM, MOVES[BAPTISM]);
+        setMoveShortcut(BAPTISM);
     }
 
     @Override

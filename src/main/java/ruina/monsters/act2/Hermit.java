@@ -194,7 +194,7 @@ public class Hermit extends AbstractMultiIntentMonster
                 possibilities.add(CRACKLE);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

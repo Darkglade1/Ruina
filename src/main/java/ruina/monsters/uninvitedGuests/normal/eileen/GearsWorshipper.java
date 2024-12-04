@@ -88,7 +88,7 @@ public class GearsWorshipper extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        setMoveShortcut(VAPOR, MOVES[VAPOR]);
+        setMoveShortcut(VAPOR);
     }
 
     @Override

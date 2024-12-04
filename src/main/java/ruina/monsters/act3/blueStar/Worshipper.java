@@ -194,9 +194,9 @@ public class Worshipper extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (this.currentHealth <= meetAgainThreshold) {
-            setMoveShortcut(MEET_AGAIN, MOVES[MEET_AGAIN]);
+            setMoveShortcut(MEET_AGAIN);
         } else if (this.currentHealth <= (int)(this.maxHealth * STRONG_ATK_HP_THRESHOLD)) {
-            setMoveShortcut(HEAR_STAR, MOVES[HEAR_STAR]);
+            setMoveShortcut(HEAR_STAR);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastTwoMoves(FOR_THE_STAR)) {
@@ -206,7 +206,7 @@ public class Worshipper extends AbstractRuinaMonster
                 possibilities.add(EVERLASTING_FAITH);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

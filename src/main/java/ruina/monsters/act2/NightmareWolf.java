@@ -181,11 +181,11 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(CRUEL_CLAWS)) {
-            setMoveShortcut(BLOODSTAINED_HUNT, MOVES[BLOODSTAINED_HUNT]);
+            setMoveShortcut(BLOODSTAINED_HUNT);
         } else if (this.lastMove(FEROCIOUS_FANGS)) {
-            setMoveShortcut(CRUEL_CLAWS, MOVES[CRUEL_CLAWS]);
+            setMoveShortcut(CRUEL_CLAWS);
         } else {
-            setMoveShortcut(FEROCIOUS_FANGS, MOVES[FEROCIOUS_FANGS]);
+            setMoveShortcut(FEROCIOUS_FANGS);
         }
     }
 

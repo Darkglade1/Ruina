@@ -2,12 +2,10 @@ package ruina.monsters.act2;
 
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -15,7 +13,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.CenterOfAttention;
@@ -125,7 +122,7 @@ public class KingOfGreed extends AbstractRuinaMonster
     protected void getMove(final int num) {
         int turn;
         if (this.lastMove(EDACITY)) {
-            setMoveShortcut(FIXATION, MOVES[FIXATION]);
+            setMoveShortcut(FIXATION);
             turn = FIXATION;
         } else if (this.lastMove(FIXATION)) {
             if (canPlaySound) { //avoid spamming the sound in case someone calls rollMove a bunch
@@ -133,10 +130,10 @@ public class KingOfGreed extends AbstractRuinaMonster
                 runAnim("SpecialIdle");
                 canPlaySound = false;
             }
-            setMoveShortcut(ROAD_OF_KING, MOVES[ROAD_OF_KING]);
+            setMoveShortcut(ROAD_OF_KING);
             turn = ROAD_OF_KING;
         } else {
-            setMoveShortcut(EDACITY, MOVES[EDACITY]);
+            setMoveShortcut(EDACITY);
             turn = EDACITY;
         }
         if (road != null) {

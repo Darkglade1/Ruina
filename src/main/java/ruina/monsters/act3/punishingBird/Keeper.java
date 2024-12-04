@@ -84,29 +84,29 @@ public class Keeper extends AbstractRuinaMonster {
     protected void getMove(final int num) {
         if (lastMove(CUCKOO)) {
             if (num <= 45) {
-                setMoveShortcut(RING, MOVES[1]);
+                setMoveShortcut(RING);
             } else {
-                setMoveShortcut(SMACK, MOVES[2]);
+                setMoveShortcut(SMACK);
             }
         } else if (lastMove(RING)) {
             if (num <= 45) {
-                setMoveShortcut(CUCKOO, MOVES[0]);
+                setMoveShortcut(CUCKOO);
             } else {
-                setMoveShortcut(SMACK, MOVES[2]);
+                setMoveShortcut(SMACK);
             }
         } else if (lastMove(SMACK)) {
             if (num <= 45) {
-                setMoveShortcut(CUCKOO, MOVES[0]);
+                setMoveShortcut(CUCKOO);
             } else {
-                setMoveShortcut(RING, MOVES[1]);
+                setMoveShortcut(RING);
             }
         } else {
             if (num <= 33) {
-                setMoveShortcut(CUCKOO, MOVES[0]);
+                setMoveShortcut(CUCKOO);
             } else if (num <= 66) {
-                setMoveShortcut(RING, MOVES[1]);
+                setMoveShortcut(RING);
             } else {
-                setMoveShortcut(SMACK, MOVES[2]);
+                setMoveShortcut(SMACK);
             }
         }
     }

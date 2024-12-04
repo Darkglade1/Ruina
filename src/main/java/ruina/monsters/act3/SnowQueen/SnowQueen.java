@@ -178,7 +178,7 @@ public class SnowQueen extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (canBlizzard) {
-            setMoveShortcut(BLIZZARD, MOVES[BLIZZARD]);
+            setMoveShortcut(BLIZZARD);
         } else if (frozenThroneCounter < MAX_FROZEN_THRONE_USES){
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(FRIGID_GAZE)) {
@@ -191,7 +191,7 @@ public class SnowQueen extends AbstractRuinaMonster
                 possibilities.add(FROZEN_THRONE);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastTwoMoves(FRIGID_GAZE)) {
@@ -201,7 +201,7 @@ public class SnowQueen extends AbstractRuinaMonster
                 possibilities.add(ICE_SPLINTERS);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

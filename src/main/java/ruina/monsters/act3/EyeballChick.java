@@ -82,7 +82,7 @@ public class EyeballChick extends AbstractRuinaMonster
             possibilities.add(PIERCE);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
+        setMoveShortcut(move);
     }
 
     private void attackAnimation(AbstractCreature enemy) {

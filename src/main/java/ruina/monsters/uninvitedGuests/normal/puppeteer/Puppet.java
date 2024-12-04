@@ -179,7 +179,7 @@ public class Puppet extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(REVIVING)) {
-            setMoveShortcut(REVIVE, MOVES[REVIVE]);
+            setMoveShortcut(REVIVE);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastTwoMoves(FORCEFUL_GESTURE)) {
@@ -189,7 +189,7 @@ public class Puppet extends AbstractRuinaMonster
                 possibilities.add(REPRESSED_FLESH);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

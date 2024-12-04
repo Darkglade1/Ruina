@@ -109,9 +109,9 @@ public class PriceOfSilence extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(STOLEN_TIME)) {
-            setMoveShortcut(SILENT_HOUR, MOVES[SILENT_HOUR]);
+            setMoveShortcut(SILENT_HOUR);
         } else {
-            setMoveShortcut(STOLEN_TIME, MOVES[STOLEN_TIME]);
+            setMoveShortcut(STOLEN_TIME);
         }
     }
 

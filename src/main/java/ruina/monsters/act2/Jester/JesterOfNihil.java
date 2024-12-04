@@ -42,7 +42,6 @@ import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -305,7 +304,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         } else if (girl1Spawned && girl2Spawned &&(!girl1.isDead || !girl2.isDead) && massAttackCooldown <= 0) {
             setMoveShortcut(WILL_OF_NIHIL);
         } else if (numIntentThatCanRampage == 2 && ramageCooldown <= 0) {
-            setMoveShortcut(RAMPAGE, MOVES[RAMPAGE]);
+            setMoveShortcut(RAMPAGE);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(CONSUMING_DESIRE)) {
@@ -318,7 +317,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 possibilities.add(SWORD_OF_TEARS);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

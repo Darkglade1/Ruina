@@ -87,9 +87,9 @@ public class TeddyBear extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (lastMove(TIMID_ENDEARMENT)) {
-            setMoveShortcut(DISPLAY_AFFECTION, MOVES[DISPLAY_AFFECTION]);
+            setMoveShortcut(DISPLAY_AFFECTION);
         } else {
-            setMoveShortcut(TIMID_ENDEARMENT, MOVES[TIMID_ENDEARMENT]);
+            setMoveShortcut(TIMID_ENDEARMENT);
         }
     }
 

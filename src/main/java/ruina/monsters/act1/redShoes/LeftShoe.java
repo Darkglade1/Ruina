@@ -46,7 +46,7 @@ public class LeftShoe extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        setMoveShortcut(SANGUINE_DESIRE, MOVES[SANGUINE_DESIRE]);
+        setMoveShortcut(SANGUINE_DESIRE);
     }
 
     private void attackAnimation(AbstractCreature enemy) {

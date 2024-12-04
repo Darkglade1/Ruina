@@ -197,9 +197,9 @@ public class RoadHome extends AbstractMultiIntentMonster
     @Override
     protected void getMove(final int num) {
         if (isHomeDead) {
-            setMoveShortcut(HOMING_INSTINCT, MOVES[HOMING_INSTINCT]);
+            setMoveShortcut(HOMING_INSTINCT);
         } else {
-            setMoveShortcut(LETS_GO, MOVES[LETS_GO]);
+            setMoveShortcut(LETS_GO);
         }
     }
 

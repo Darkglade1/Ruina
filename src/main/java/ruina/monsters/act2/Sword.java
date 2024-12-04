@@ -104,7 +104,7 @@ public class Sword extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        setMoveShortcut(TEAR_HEART, MOVES[TEAR_HEART]);
+        setMoveShortcut(TEAR_HEART);
     }
 
     private void attackAnimation(AbstractCreature enemy) {

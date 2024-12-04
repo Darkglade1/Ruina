@@ -127,11 +127,11 @@ public class FairyQueen extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (currentHealth <= maxHealth * ENRAGE_THRESHOLD && !enraged) {
-            setMoveShortcut(RAVENOUSNESS, MOVES[RAVENOUSNESS]);
+            setMoveShortcut(RAVENOUSNESS);
         } else if (minions[0] == null && minions[1] == null && !firstMove && !enraged) {
-            setMoveShortcut(QUEENS_DECREE, MOVES[QUEENS_DECREE]);
+            setMoveShortcut(QUEENS_DECREE);
         } else {
-            setMoveShortcut(PREDATION, MOVES[PREDATION]);
+            setMoveShortcut(PREDATION);
         }
     }
 

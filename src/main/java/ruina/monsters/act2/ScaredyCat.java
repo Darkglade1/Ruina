@@ -142,9 +142,9 @@ public class ScaredyCat extends AbstractRuinaMonster
             setMoveShortcut(FLEE);
         } else {
             if (this.lastMove(RAWR)) {
-                setMoveShortcut(GROWL, MOVES[GROWL]);
+                setMoveShortcut(GROWL);
             } else {
-                setMoveShortcut(RAWR, MOVES[RAWR]);
+                setMoveShortcut(RAWR);
             }
         }
     }

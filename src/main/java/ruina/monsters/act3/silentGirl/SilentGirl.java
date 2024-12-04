@@ -5,7 +5,6 @@ import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -20,7 +19,6 @@ import ruina.BetterSpriterAnimation;
 import ruina.cards.Guilt;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.CenterOfAttention;
 import ruina.powers.NextTurnPowerPower;
 import ruina.powers.Paralysis;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -190,19 +188,19 @@ public class SilentGirl extends AbstractRuinaMonster
     protected void getMove(final int num) {
         if (enraged == 1) {
             if (lastMove(DIGGING_NAIL)) {
-                setMoveShortcut(SLAM, MOVES[SLAM]);
+                setMoveShortcut(SLAM);
             } else if (lastMove(SLAM)) {
-                setMoveShortcut(A_CRACKED_HEART, MOVES[A_CRACKED_HEART]);
+                setMoveShortcut(A_CRACKED_HEART);
             } else if (lastMove(A_CRACKED_HEART)) {
-                setMoveShortcut(COLLAPSING_HEART, MOVES[COLLAPSING_HEART]);
+                setMoveShortcut(COLLAPSING_HEART);
             } else {
-                setMoveShortcut(DIGGING_NAIL, MOVES[DIGGING_NAIL]);
+                setMoveShortcut(DIGGING_NAIL);
             }
         } else {
             if (lastMove(BROKEN)) {
-                setMoveShortcut(LEER, MOVES[LEER]);
+                setMoveShortcut(LEER);
             } else {
-                setMoveShortcut(BROKEN, MOVES[BROKEN]);
+                setMoveShortcut(BROKEN);
             }
         }
     }

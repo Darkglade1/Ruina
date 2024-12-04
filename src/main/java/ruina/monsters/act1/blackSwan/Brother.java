@@ -107,7 +107,7 @@ public class Brother extends AbstractRuinaMonster
         if (halfDead || firstMove) {
             setMoveShortcut(NONE);
         } else {
-            setMoveShortcut(GREEN_WASTE, MOVES[GREEN_WASTE]);
+            setMoveShortcut(GREEN_WASTE);
         }
     }
 

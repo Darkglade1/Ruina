@@ -40,8 +40,6 @@ import ruina.powers.Paralysis;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
-import java.util.Iterator;
-
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
@@ -343,31 +341,31 @@ public class Twilight extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (eggBrokenRecently) {
-            setMoveShortcut(PEACE_FOR_ALL, MOVES[PEACE_FOR_ALL]);
+            setMoveShortcut(PEACE_FOR_ALL);
         } else {
             if (currentEgg == BirdEgg.BIG_EGG) {
                 if (!this.lastMove(SURVEILLANCE)) {
-                    setMoveShortcut(SURVEILLANCE, MOVES[SURVEILLANCE]);
+                    setMoveShortcut(SURVEILLANCE);
                 } else {
-                    setMoveShortcut(TALONS, MOVES[TALONS]);
+                    setMoveShortcut(TALONS);
                 }
             } else if (currentEgg == BirdEgg.SMALL_EGG) {
                 if (!this.lastMove(TORN_MOUTH)) {
-                    setMoveShortcut(TORN_MOUTH, MOVES[TORN_MOUTH]);
+                    setMoveShortcut(TORN_MOUTH);
                 } else {
-                    setMoveShortcut(TALONS, MOVES[TALONS]);
+                    setMoveShortcut(TALONS);
                 }
             } else if (currentEgg == BirdEgg.LONG_EGG) {
                 if (!this.lastMove(TILTED_SCALE)) {
-                    setMoveShortcut(TILTED_SCALE, MOVES[TILTED_SCALE]);
+                    setMoveShortcut(TILTED_SCALE);
                 } else {
-                    setMoveShortcut(TALONS, MOVES[TALONS]);
+                    setMoveShortcut(TALONS);
                 }
             } else {
                 if (!this.lastMove(BRILLIANT_EYES) && !this.lastMoveBefore(BRILLIANT_EYES)) {
-                    setMoveShortcut(BRILLIANT_EYES, MOVES[BRILLIANT_EYES]);
+                    setMoveShortcut(BRILLIANT_EYES);
                 } else {
-                    setMoveShortcut(TALONS, MOVES[TALONS]);
+                    setMoveShortcut(TALONS);
                 }
             }
         }

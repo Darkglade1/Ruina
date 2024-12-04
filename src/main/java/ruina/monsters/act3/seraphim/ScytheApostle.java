@@ -94,7 +94,7 @@ public class ScytheApostle extends AbstractRuinaMonster {
 //        }
         possibilities.add(THY_WILL_BE_DONE);
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
+        setMoveShortcut(move);
     }
 
     private void slashUpAnimation(AbstractCreature enemy) {

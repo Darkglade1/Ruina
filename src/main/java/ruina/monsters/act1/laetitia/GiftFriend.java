@@ -74,9 +74,9 @@ public class GiftFriend extends AbstractRuinaMonster {
     protected void getMove(final int num) {
         AbstractPower p = this.getPower(SurprisePresent.POWER_ID);
         if (p != null && p.amount == 1) {
-            setMoveShortcut(UNKNOWN, MOVES[UNKNOWN]);
+            setMoveShortcut(UNKNOWN);
         } else {
-            setMoveShortcut(TAKE_IT, MOVES[TAKE_IT]);
+            setMoveShortcut(TAKE_IT);
         }
     }
 

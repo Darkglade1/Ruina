@@ -96,7 +96,7 @@ public class QueenOfHate extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (this.hysteriaTriggered && !usedLight) {
-            setMoveShortcut(LIGHT_OF_HATRED, MOVES[LIGHT_OF_HATRED]);
+            setMoveShortcut(LIGHT_OF_HATRED);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastTwoMoves(ARCANA_BEATS)) {
@@ -106,7 +106,7 @@ public class QueenOfHate extends AbstractRuinaMonster
                 possibilities.add(NAME_OF_HATE);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

@@ -8,10 +8,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
 
 import static ruina.RuinaMod.makeMonsterPath;
@@ -111,12 +109,12 @@ public class ServantOfCourage extends AbstractMagicalGirl
     @Override
     protected void getMove(final int num) {
         if (this.currentHealth <= this.maxHealth * 0.30f) {
-            setMoveShortcut(HELP, MOVES[HELP]);
+            setMoveShortcut(HELP);
         } else {
             if (this.lastMove(PROTECT_FRIEND)) {
-                setMoveShortcut(HELP, MOVES[HELP]);
+                setMoveShortcut(HELP);
             } else {
-                setMoveShortcut(PROTECT_FRIEND, MOVES[PROTECT_FRIEND]);
+                setMoveShortcut(PROTECT_FRIEND);
             }
         }
     }

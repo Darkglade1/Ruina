@@ -58,9 +58,9 @@ public class ScorchedGirl extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (!lastTwoMoves(EMBER)) {
-            setMoveShortcut(EMBER, MOVES[EMBER]);
+            setMoveShortcut(EMBER);
         } else {
-            setMoveShortcut(EXTINGUISH, MOVES[EXTINGUISH]);
+            setMoveShortcut(EXTINGUISH);
         }
     }
 

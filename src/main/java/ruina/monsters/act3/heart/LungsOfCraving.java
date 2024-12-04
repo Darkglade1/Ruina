@@ -81,7 +81,7 @@ public class LungsOfCraving extends AbstractRuinaMonster
             possibilities.add(RETRACTING_BEATS);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
+        setMoveShortcut(move);
     }
 
     private void attackAnimation(AbstractCreature enemy) {

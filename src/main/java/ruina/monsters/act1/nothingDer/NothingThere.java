@@ -185,9 +185,9 @@ public class NothingThere extends AbstractMultiIntentMonster
     @Override
     protected void getMove(final int num) {
         if (lastMove(DENSE_FLESH)) {
-            setMoveShortcut(EYE_CONTACT, MOVES[EYE_CONTACT]);
+            setMoveShortcut(EYE_CONTACT);
         } else {
-            setMoveShortcut(DENSE_FLESH, MOVES[DENSE_FLESH]);
+            setMoveShortcut(DENSE_FLESH);
         }
     }
 

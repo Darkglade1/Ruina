@@ -222,17 +222,17 @@ public class LittleRed extends AbstractAllyMonster
     protected void getMove(final int num) {
         if (!enraged) {
             if (this.lastMove(HOLLOW_POINT_SHELL)) {
-                setMoveShortcut(CATCH_BREATH, MOVES[CATCH_BREATH]);
+                setMoveShortcut(CATCH_BREATH);
             } else if (this.lastMove(CATCH_BREATH)) {
-                setMoveShortcut(BEAST_HUNT, MOVES[BEAST_HUNT]);
+                setMoveShortcut(BEAST_HUNT);
             } else {
-                setMoveShortcut(HOLLOW_POINT_SHELL, MOVES[HOLLOW_POINT_SHELL]);
+                setMoveShortcut(HOLLOW_POINT_SHELL);
             }
         } else {
             if (this.lastMove(BULLET_SHOWER)) {
-                setMoveShortcut(HOLLOW_POINT_SHELL, MOVES[HOLLOW_POINT_SHELL]);
+                setMoveShortcut(HOLLOW_POINT_SHELL);
             } else {
-                setMoveShortcut(BULLET_SHOWER, MOVES[BULLET_SHOWER]);
+                setMoveShortcut(BULLET_SHOWER);
             }
         }
     }

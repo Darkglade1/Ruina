@@ -62,9 +62,9 @@ public class Fragment extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (lastMove(PENETRATE)) {
-            setMoveShortcut(ECHOES, MOVES[ECHOES]);
+            setMoveShortcut(ECHOES);
         } else {
-            setMoveShortcut(PENETRATE, MOVES[PENETRATE]);
+            setMoveShortcut(PENETRATE);
         }
     }
 

@@ -77,9 +77,9 @@ public class HeartOfAspiration extends AbstractRuinaMonster
             }
         }
         if (otherEnemyCount > 0) {
-            setMoveShortcut(PULSATION, MOVES[PULSATION]);
+            setMoveShortcut(PULSATION);
         } else {
-            setMoveShortcut(BEATS_OF_ASPIRATION, MOVES[BEATS_OF_ASPIRATION]);
+            setMoveShortcut(BEATS_OF_ASPIRATION);
         }
     }
 

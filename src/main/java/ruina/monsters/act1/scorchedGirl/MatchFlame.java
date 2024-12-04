@@ -73,7 +73,7 @@ public class MatchFlame extends AbstractRuinaMonster
             possibilities.add(KINDLE);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
+        setMoveShortcut(move);
     }
 
     private void attackAnimation(AbstractCreature enemy) {

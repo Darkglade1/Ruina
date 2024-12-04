@@ -75,9 +75,9 @@ public class Bloodbath extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(PALE_HANDS)) {
-            setMoveShortcut(DEPRESSION, MOVES[DEPRESSION]);
+            setMoveShortcut(DEPRESSION);
         } else {
-            setMoveShortcut(PALE_HANDS, MOVES[PALE_HANDS]);
+            setMoveShortcut(PALE_HANDS);
         }
     }
 

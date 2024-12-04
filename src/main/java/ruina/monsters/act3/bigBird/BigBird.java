@@ -258,9 +258,9 @@ public class BigBird extends AbstractMultiIntentMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(SALVATION)) {
-            setMoveShortcut(DAZZLE_PLAYER, MOVES[DAZZLE_PLAYER]);
+            setMoveShortcut(DAZZLE_PLAYER);
         } else {
-            setMoveShortcut(SALVATION, MOVES[SALVATION]);
+            setMoveShortcut(SALVATION);
         }
     }
 

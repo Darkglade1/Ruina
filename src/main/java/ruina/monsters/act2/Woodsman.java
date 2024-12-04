@@ -163,7 +163,7 @@ public class Woodsman extends AbstractRuinaMonster
             possibilities.add(PULSE);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move]);
+        setMoveShortcut(move);
     }
 
     private void strikeAnimation(AbstractCreature enemy) {

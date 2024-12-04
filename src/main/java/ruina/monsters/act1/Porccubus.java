@@ -58,9 +58,9 @@ public class Porccubus extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (lastMove(UNBEARABLE_PLEASURE)) {
-            setMoveShortcut(BRISTLE, MOVES[BRISTLE]);
+            setMoveShortcut(BRISTLE);
         } else {
-            setMoveShortcut(UNBEARABLE_PLEASURE, MOVES[UNBEARABLE_PLEASURE]);
+            setMoveShortcut(UNBEARABLE_PLEASURE);
         }
     }
 

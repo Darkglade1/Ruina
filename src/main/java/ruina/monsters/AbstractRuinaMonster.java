@@ -1,7 +1,6 @@
 package ruina.monsters;
 
 import basemod.abstracts.CustomMonster;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -89,12 +88,13 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         this.moves.put(moveCode, new EnemyMoveInfo(moveCode, intent, baseDamage, multiplier, isMultiDamage));
     }
 
-    public void setMoveShortcut(byte next, String text) {
-        EnemyMoveInfo info = this.moves.get(next);
-        this.setMove(text, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
-    }
     public void setMoveShortcut(byte next) {
-        this.setMoveShortcut(next, null);
+        String moveName = null;
+        if (next < MOVES.length) {
+            moveName = MOVES[next];
+        }
+        EnemyMoveInfo info = this.moves.get(next);
+        this.setMove(moveName, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
     }
 
     @Override

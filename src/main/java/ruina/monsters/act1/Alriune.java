@@ -137,7 +137,7 @@ public class Alriune extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (cooldown <= 0) {
-            setMoveShortcut(SPRINGS_GENESIS, MOVES[SPRINGS_GENESIS]);
+            setMoveShortcut(SPRINGS_GENESIS);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(FULL_BLOOM)) {
@@ -147,7 +147,7 @@ public class Alriune extends AbstractRuinaMonster
                 possibilities.add(MAGNIFICENT_END);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

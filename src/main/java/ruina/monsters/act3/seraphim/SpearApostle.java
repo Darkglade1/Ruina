@@ -70,9 +70,9 @@ public class SpearApostle extends AbstractRuinaMonster {
     @Override
     protected void getMove(final int num) {
         if (lastMove(THE_WILL_OF_THE_LORD_BE_DONE)) {
-            setMoveShortcut(FOR_HE_IS_HOLY, MOVES[FOR_HE_IS_HOLY]);
+            setMoveShortcut(FOR_HE_IS_HOLY);
         } else {
-            setMoveShortcut(THE_WILL_OF_THE_LORD_BE_DONE, MOVES[THE_WILL_OF_THE_LORD_BE_DONE]);
+            setMoveShortcut(THE_WILL_OF_THE_LORD_BE_DONE);
         }
     }
 

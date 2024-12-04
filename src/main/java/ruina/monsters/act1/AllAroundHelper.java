@@ -124,11 +124,11 @@ public class AllAroundHelper extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (attackFirst && firstMove) {
-            setMoveShortcut(CLEAN, MOVES[CLEAN]);
+            setMoveShortcut(CLEAN);
         } else if (lastMove(CHARGE)) {
-            setMoveShortcut(CLEAN, MOVES[CLEAN]);
+            setMoveShortcut(CLEAN);
         } else {
-            setMoveShortcut(CHARGE, MOVES[CHARGE]);
+            setMoveShortcut(CHARGE);
         }
     }
 

@@ -137,7 +137,7 @@ public class BadWolf extends AbstractRuinaMonster
     @Override
     protected void getMove(final int num) {
         if (triggered) {
-            setMoveShortcut(HUNT, MOVES[HUNT]);
+            setMoveShortcut(HUNT);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(CLAW)) {
@@ -150,7 +150,7 @@ public class BadWolf extends AbstractRuinaMonster
                 possibilities.add(HUNT);
             }
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move]);
+            setMoveShortcut(move);
         }
     }
 

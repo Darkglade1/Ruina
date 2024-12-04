@@ -354,15 +354,15 @@ public class Seraphim extends AbstractMultiIntentMonster {
     protected void getMove(final int num) {
         switch (phase) {
             case 1:
-                setMoveShortcut(WINGS_OF_GRACE, MOVES[WINGS_OF_GRACE]);
+                setMoveShortcut(WINGS_OF_GRACE);
                 break;
             case 2:
             case 3:
                 if (firstMove && !lockedIntent) {
-                    setMoveShortcut(RISE_AND_SERVE, MOVES[RISE_AND_SERVE]);
+                    setMoveShortcut(RISE_AND_SERVE);
                 } else {
                     if (!lockedIntent) {
-                        setMoveShortcut(num <= 45 ? BEHOLD_MY_POWER : DO_NOT_DENY, num <= 45 ? MOVES[BEHOLD_MY_POWER] : MOVES[DO_NOT_DENY]);
+                        setMoveShortcut(num <= 45 ? BEHOLD_MY_POWER : DO_NOT_DENY);
                     }
                 }
                 break;
