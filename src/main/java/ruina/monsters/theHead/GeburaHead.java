@@ -43,8 +43,8 @@ public class GeburaHead extends Gebura {
             super.usePreBattleAction();
             for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (mo instanceof Zena) {
-                    enemyBoss = mo;
-                    ((Zena)enemyBoss).gebura = this;
+                    target = (Zena)mo;
+                    ((Zena) target).gebura = this;
                 }
             }
             atb(new AbstractGameAction() {
@@ -99,9 +99,9 @@ public class GeburaHead extends Gebura {
     public void renderIntent(SpriteBatch sb) {
         super.renderIntent(sb);
         Texture targetTexture = null;
-        if (enemyBoss instanceof Baral) {
+        if (target instanceof Baral) {
             targetTexture = Baral.targetTexture;
-        } else if (enemyBoss instanceof Zena) {
+        } else if (target instanceof Zena) {
             targetTexture = Zena.targetTexture;
         }
         if (targetTexture != null) {

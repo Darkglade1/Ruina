@@ -10,15 +10,12 @@ import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.philip.philipCards.*;
@@ -38,10 +35,6 @@ import static ruina.util.Wiz.*;
 public class Philip extends AbstractCardMonster
 {
     public static final String ID = makeID(Philip.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte EVENTIDE = 0;
     private static final byte EMOTIONS = 1;
@@ -63,7 +56,6 @@ public class Philip extends AbstractCardMonster
     public boolean gotBonusIntent = false;
     public int TURNS_TILL_BONUS_DAMAGE = 6;
     public boolean gotBonusDamage = false;
-    public Malkuth malkuth;
     private int phase = 1;
     private boolean attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
 
@@ -86,14 +78,10 @@ public class Philip extends AbstractCardMonster
     }
 
     public Philip(final float x, final float y) {
-        super(NAME, ID, 700, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(ID, ID, 700, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Philip/Spriter/Philip.scml"));
-        this.type = EnemyType.BOSS;
-        numAdditionalMoves = 1;
-        maxAdditionalMoves = 2;
-        for (int i = 0; i < maxAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(2);
+        this.numAdditionalMoves = 1; //only starts with 1 extra intent
         this.setHp(calcAscensionTankiness(700));
 
         addMove(EVENTIDE, Intent.DEBUFF);
@@ -124,7 +112,7 @@ public class Philip extends AbstractCardMonster
         CustomDungeon.playTempMusicInstantly("Ensemble1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Malkuth) {
-                malkuth = (Malkuth)mo;
+                target = (Malkuth)mo;
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
@@ -167,12 +155,7 @@ public class Philip extends AbstractCardMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case EVENTIDE: {
                 buffAnimation();
@@ -248,29 +231,6 @@ public class Philip extends AbstractCardMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
-        atb(new RemoveAllBlockAction(this, this));
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, malkuth);
-            }
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    additionalIntent.usePrimaryIntentsColor = true;
-                    this.isDone = true;
-                }
-            });
-        }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -300,7 +260,7 @@ public class Philip extends AbstractCardMonster
         gotBonusIntent = true;
         playSound("PhilipTransform", 2.0f);
         Summon();
-        atb(new RollMoveAction(malkuth)); //to make her roll for mass attack if she can
+        atb(new RollMoveAction(target)); //to make malkuth roll for mass attack if she can
     }
 
     private void getBonusDamage() {
@@ -329,7 +289,7 @@ public class Philip extends AbstractCardMonster
             }
         });
         Summon();
-        atb(new RollMoveAction(malkuth)); //to make her roll for mass attack if she can
+        atb(new RollMoveAction(target)); //to make her roll for mass attack if she can
     }
 
     @Override
@@ -408,24 +368,14 @@ public class Philip extends AbstractCardMonster
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                if (i == 0) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, malkuth, malkuth.icon);
-                } else {
-                    if (attackingAlly) {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, malkuth, malkuth.icon);
-                    } else {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-                    }
-                }
+    public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
+        if (index == 0) {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+        } else {
+            if (attackingAlly) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+            } else {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
             }
         }
     }
@@ -438,12 +388,15 @@ public class Philip extends AbstractCardMonster
                 atb(new SuicideAction(mo));
             }
         }
-        malkuth.onBossDeath();
+        if (target instanceof Malkuth) {
+            ((Malkuth) target).onBossDeath();
+        }
     }
 
     public void Summon() {
-        malkuth.massAttackCooldownCounter = 0;
-        //float xPos_Farthest_L = -450.0f;
+        if (target instanceof Malkuth) {
+            ((Malkuth) target).massAttackCooldownCounter = 0;
+        }
         float xPos_Middle_L = -175.0f;
         float xPos_Short_L = 0F;
         float y = 125.0f;

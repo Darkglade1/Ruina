@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -17,26 +16,21 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.tanya.tanyaCards.*;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -50,10 +44,6 @@ import static ruina.util.Wiz.*;
 public class Tanya extends AbstractCardMonster
 {
     public static final String ID = makeID(Tanya.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte OVERSPEED = 0;
     private static final byte BEATDOWN = 1;
@@ -76,7 +66,6 @@ public class Tanya extends AbstractCardMonster
     public final int WEAK = calcAscensionSpecial(1);
     public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(8);
     public final int GUTS_STRENGTH = calcAscensionSpecial(3);
-    public Gebura gebura;
     private boolean usingMassAttack = false;
 
     public static final String POWER_ID = makeID("Guts");
@@ -89,20 +78,16 @@ public class Tanya extends AbstractCardMonster
     }
 
     public Tanya(final float x, final float y) {
-        super(NAME, ID, 450, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(ID, ID, 450, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Tanya/Spriter/Tanya.scml"));
-        this.type = EnemyType.BOSS;
-        numAdditionalMoves = 1;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(1);
         this.setHp(calcAscensionTankiness(450));
 
-        addMove(OVERSPEED, Intent.ATTACK, calcAscensionDamage(30), overspeedHits, true);
+        addMove(OVERSPEED, Intent.ATTACK, calcAscensionDamage(30), overspeedHits);
         addMove(BEATDOWN, IntentEnums.MASS_ATTACK, calcAscensionDamage(28));
         addMove(INTIMIDATE, Intent.DEFEND_BUFF);
         addMove(LUPINE_ASSAULT, Intent.ATTACK_DEFEND, calcAscensionDamage(22));
-        addMove(KICKS_AND_STOMPS, Intent.ATTACK_BUFF, calcAscensionDamage(12), kicksAndStompsHits, true);
+        addMove(KICKS_AND_STOMPS, Intent.ATTACK_BUFF, calcAscensionDamage(12), kicksAndStompsHits);
         addMove(FISTICUFFS, Intent.ATTACK_DEBUFF, calcAscensionDamage(26));
 
         cardList.add(new Overspeed(this));
@@ -125,7 +110,7 @@ public class Tanya extends AbstractCardMonster
         AbstractDungeon.getCurrRoom().cannotLose = true;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Gebura) {
-                gebura = (Gebura)mo;
+                target = (Gebura)mo;
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
@@ -140,18 +125,14 @@ public class Tanya extends AbstractCardMonster
         block(this, INITIAL_PLATED_ARMOR);
         if (AbstractDungeon.ascensionLevel >= 19) {
             applyToTarget(this, this, new BarricadePower(this));
+        } else {
+            applyToTarget(this, this, new InvisibleBarricadePower(this));
         }
-        applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case OVERSPEED: {
                 for (int i = 0; i < multiplier; i++) {
@@ -232,15 +213,7 @@ public class Tanya extends AbstractCardMonster
     }
 
     private void doMassAttack(DamageInfo info) {
-        int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
-        info.applyPowers(this, adp());
-        damageArray[damageArray.length - 1] = info.output;
-        for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
-            AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-            info.applyPowers(this, mo);
-            damageArray[i] = info.output;
-        }
-        att(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+        att(new DamageAllOtherCharactersAction(this, calcMassAttack(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
     }
 
     private void massAttackStart() {
@@ -267,7 +240,7 @@ public class Tanya extends AbstractCardMonster
         String finish = RuinaMod.makeMonsterPath("Tanya/Spriter/Special 3.png");
         Texture finishTexture = TexLoader.getTexture(finish);
         float duration = 0.8f;
-        float x = (adp().hb.cX + gebura.hb.cX) / 2;
+        float x = (adp().hb.cX + target.hb.cX) / 2;
         float y = (float) Settings.HEIGHT + (375.0F * Settings.scale);
         AbstractGameEffect effect = new VfxBuilder(texture, (float) Settings.WIDTH / 2, y, duration)
                 .arc((float) Settings.WIDTH / 2, y, x, adp().hb.cY, y)
@@ -312,24 +285,6 @@ public class Tanya extends AbstractCardMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
-        if (AbstractDungeon.ascensionLevel < 19) {
-            atb(new RemoveAllBlockAction(this, this));
-        }
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, gebura);
-            }
-        }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -342,7 +297,7 @@ public class Tanya extends AbstractCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (gebura != null && !gebura.isDead && !gebura.isDying && gebura.greaterSplitCooldownCounter <= 0) {
+        if (canUseOverspeed()) {
             setMoveShortcut(OVERSPEED, MOVES[OVERSPEED], cardList.get(OVERSPEED).makeStatEquivalentCopy());
         } else if (massAttackCooldown <= 0) {
             setMoveShortcut(BEATDOWN, MOVES[BEATDOWN], cardList.get(BEATDOWN).makeStatEquivalentCopy());
@@ -363,7 +318,7 @@ public class Tanya extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (gebura != null && !gebura.isDead && !gebura.isDying && gebura.greaterSplitCooldownCounter <= 0) {
+        if (canUseOverspeed()) {
             setAdditionalMoveShortcut(OVERSPEED, moveHistory, cardList.get(OVERSPEED).makeStatEquivalentCopy());
         } else if (massAttackCooldown <= 0) {
             setAdditionalMoveShortcut(INTIMIDATE, moveHistory, cardList.get(INTIMIDATE).makeStatEquivalentCopy());
@@ -382,19 +337,12 @@ public class Tanya extends AbstractCardMonster
         }
     }
 
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, gebura, gebura.icon);
-            }
+    private boolean canUseOverspeed() {
+        Gebura gebura = null;
+        if (target instanceof Gebura) {
+            gebura = (Gebura) target;
         }
+        return gebura != null && !gebura.isDead && !gebura.isDying && gebura.greaterSplitCooldownCounter <= 0;
     }
 
     @Override
@@ -445,7 +393,9 @@ public class Tanya extends AbstractCardMonster
     public void die(boolean triggerRelics) {
         if (!AbstractDungeon.getCurrRoom().cannotLose) {
             super.die(triggerRelics);
-            gebura.onBossDeath();
+            if (target instanceof Gebura) {
+                ((Gebura) target).onBossDeath();
+            }
         }
     }
 

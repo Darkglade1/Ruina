@@ -8,14 +8,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -40,10 +36,6 @@ import static ruina.util.Wiz.*;
 public class Hod extends AbstractAllyCardMonster
 {
     public static final String ID = RuinaMod.makeID(Hod.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte SNAKE_SLIT = 0;
     private static final byte VIOLET_BLADE = 1;
@@ -63,7 +55,6 @@ public class Hod extends AbstractAllyCardMonster
     public static final int pierceTriggerHits = 2;
 
     private PurpleTearStance stancePower;
-    public Greta greta;
 
     public static final int SLASH = 1;
     public static final int PIERCE = 2;
@@ -74,23 +65,19 @@ public class Hod extends AbstractAllyCardMonster
     private byte pierceMove = LACERATION;
     private byte guardMove = SERPENTINE_BARRIER;
 
-    private float particleTimer;
-    private float particleTimer2;
-
     public Hod() {
         this(0.0f, 0.0f);
     }
 
     public Hod(final float x, final float y) {
-        super(NAME, ID, 130, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(ID, ID, 130, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Hod/Spriter/Hod.scml"));
         this.animation.setFlip(true, false);
 
         this.setHp(calcAscensionTankiness(130));
-        this.type = EnemyType.BOSS;
 
-        addMove(SNAKE_SLIT, Intent.ATTACK_BUFF, 7, snakeHits, true);
-        addMove(VIOLET_BLADE, Intent.ATTACK, 8, violetHits, true);
+        addMove(SNAKE_SLIT, Intent.ATTACK_BUFF, 7, snakeHits);
+        addMove(VIOLET_BLADE, Intent.ATTACK, 8, violetHits);
         addMove(LACERATION, Intent.ATTACK_DEBUFF, 12);
         addMove(VENOMOUS_FANGS, Intent.ATTACK_DEBUFF, 14);
         addMove(SERPENTINE_BARRIER, Intent.DEFEND);
@@ -116,7 +103,7 @@ public class Hod extends AbstractAllyCardMonster
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Greta) {
-                greta = (Greta)mo;
+                target = (Greta)mo;
             }
         }
         stancePower = new PurpleTearStance(this, stance);
@@ -165,30 +152,10 @@ public class Hod extends AbstractAllyCardMonster
 
     @Override
     public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
-        super.takeTurn();
         if (firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
-
-        DamageInfo info;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
-
-        AbstractCreature target = greta;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeTurn();
         switch (this.nextMove) {
             case SNAKE_SLIT: {
                 for (int i = 0; i < multiplier; i++) {
@@ -275,15 +242,6 @@ public class Hod extends AbstractAllyCardMonster
                 setMoveShortcut(SERPENTINE_BARRIER, MOVES[SERPENTINE_BARRIER], cardList.get(SERPENTINE_BARRIER));
             }
         }
-    }
-
-    @Override
-    public void applyPowers() {
-        if (this.nextMove == -1) {
-            super.applyPowers();
-            return;
-        }
-        applyPowers(greta);
     }
 
     public void onBossDeath() {

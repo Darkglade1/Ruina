@@ -326,6 +326,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
 
     public void setNumAdditionalMoves(int num) {
         numAdditionalMoves = num;
+        maxAdditionalMoves = num;
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }

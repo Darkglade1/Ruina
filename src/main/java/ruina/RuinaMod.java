@@ -112,6 +112,7 @@ import ruina.monsters.uninvitedGuests.normal.bremen.Netzach;
 import ruina.monsters.uninvitedGuests.normal.clown.Oswald;
 import ruina.monsters.uninvitedGuests.normal.clown.Tiph;
 import ruina.monsters.uninvitedGuests.normal.eileen.Eileen;
+import ruina.monsters.uninvitedGuests.normal.eileen.GearsWorshipper;
 import ruina.monsters.uninvitedGuests.normal.eileen.Yesod;
 import ruina.monsters.uninvitedGuests.normal.elena.Binah;
 import ruina.monsters.uninvitedGuests.normal.elena.Elena;
@@ -1106,6 +1107,8 @@ public class RuinaMod implements
         BaseMod.addMonster(Eileen.ID, "Eileen", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Yesod(-550.0F, 0.0F),
+                        new GearsWorshipper(Eileen.MINION_X_1, 0.0f),
+                        new GearsWorshipper(Eileen.MINION_X_2, 0.0f),
                         new Eileen(200.0F, 0.0F),
                 }));
         BaseMod.addMonster(Pluto.ID, "Pluto", () -> new MonsterGroup(

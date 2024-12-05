@@ -11,10 +11,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -42,10 +40,6 @@ import static ruina.util.Wiz.*;
 public class Malkuth extends AbstractAllyCardMonster
 {
     public static final String ID = RuinaMod.makeID(Malkuth.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte COORDINATED_ASSAULT = 0;
     private static final byte EMOTIONAL_TURBULENCE = 1;
@@ -82,8 +76,6 @@ public class Malkuth extends AbstractAllyCardMonster
     private static final int EGO = 3;
     private int phase = NORMAL;
 
-    public Philip philip;
-
     public static final String POWER_ID = makeID("Dragon");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
@@ -101,16 +93,15 @@ public class Malkuth extends AbstractAllyCardMonster
     }
 
     public Malkuth(final float x, final float y) {
-        super(NAME, ID, 150, -5.0F, 0, 200.0f, 240.0f, null, x, y);
+        super(ID, ID, 150, -5.0F, 0, 200.0f, 240.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Malkuth/Spriter/Malkuth.scml"));
         this.animation.setFlip(true, false);
-        this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(150));
 
         addMove(COORDINATED_ASSAULT, Intent.DEFEND_BUFF);
         addMove(EMOTIONAL_TURBULENCE, Intent.ATTACK_DEFEND, 16);
-        addMove(FERVID_EMOTIONS, Intent.ATTACK_BUFF, 12, fervidHits, true);
-        addMove(RAGING_STORM, IntentEnums.MASS_ATTACK, 20, stormHits, true);
+        addMove(FERVID_EMOTIONS, Intent.ATTACK_BUFF, 12, fervidHits);
+        addMove(RAGING_STORM, IntentEnums.MASS_ATTACK, 20, stormHits);
         addMove(INFERNO, IntentEnums.MASS_ATTACK, 50);
 
         cardList.add(new Coordinated(this));
@@ -120,6 +111,12 @@ public class Malkuth extends AbstractAllyCardMonster
         cardList.add(new Inferno(this));
 
         this.icon = TexLoader.getTexture(makeUIPath("MalkuthIcon.png"));
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
     }
 
     public void distort() {
@@ -163,16 +160,10 @@ public class Malkuth extends AbstractAllyCardMonster
     }
 
     @Override
-    protected void setUpMisc() {
-        super.setUpMisc();
-        this.type = EnemyType.BOSS;
-    }
-
-    @Override
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Philip) {
-                philip = (Philip)mo;
+                target = (Philip)mo;
             }
         }
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, EXHAUST_GAIN) {
@@ -195,30 +186,10 @@ public class Malkuth extends AbstractAllyCardMonster
 
     @Override
     public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
-        super.takeTurn();
         if (firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
-
-        DamageInfo info;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
-
-        AbstractCreature target = philip;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeTurn();
 
         switch (this.nextMove) {
             case COORDINATED_ASSAULT: {
@@ -251,19 +222,13 @@ public class Malkuth extends AbstractAllyCardMonster
                 break;
             }
             case RAGING_STORM: {
-                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
-                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
-                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-                    info.applyPowers(this, mo);
-                    damageArray[i] = info.output;
-                }
                 for (int i = 0; i < multiplier; i++) {
                     if (i % 2 == 0) {
                         ragingStormStart(target);
                     } else {
                         ragingStormFin(target);
                     }
-                    atb(new AllyDamageAllEnemiesAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                    atb(new AllyDamageAllEnemiesAction(this, calcMassAttackNoHitPlayer(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                     for (AbstractMonster mo : monsterList()) {
                         if (!mo.isDeadOrEscaped() && !(mo instanceof AbstractAllyMonster)) {
                             applyToTarget(mo, this, new VulnerablePower(mo, VULNERABLE, true));
@@ -281,17 +246,11 @@ public class Malkuth extends AbstractAllyCardMonster
                 break;
             }
             case INFERNO: {
-                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
-                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
-                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-                    info.applyPowers(this, mo);
-                    damageArray[i] = info.output;
-                }
                 infernoStart(target);
                 waitAnimation(1.0f);
                 infernoFin(target);
                 atb(new VFXAction(new ExplosionEffect(target.hb.cX, target.hb.cY), 0.1F));
-                atb(new AllyDamageAllEnemiesAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                atb(new AllyDamageAllEnemiesAction(this, calcMassAttackNoHitPlayer(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
@@ -409,15 +368,6 @@ public class Malkuth extends AbstractAllyCardMonster
             }
         }
         return false;
-    }
-
-    @Override
-    public void applyPowers() {
-        if (this.nextMove == -1 || philip.isDeadOrEscaped()) {
-            super.applyPowers();
-            return;
-        }
-        applyPowers(philip);
     }
 
     public void onBossDeath() {

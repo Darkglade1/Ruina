@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
@@ -23,8 +22,6 @@ import static ruina.util.Wiz.*;
 public class FreshMeat extends AbstractRuinaMonster
 {
     public static final String ID = makeID(FreshMeat.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
 
     private static final byte NONE = 0;
     private final int HEAL = calcAscensionSpecial(100);
@@ -38,9 +35,8 @@ public class FreshMeat extends AbstractRuinaMonster
     public static final String[] POWER_DESCRIPTIONS = PowerStrings.DESCRIPTIONS;
 
     public FreshMeat(final float x, final float y, AbstractCard card, Greta greta) {
-        super(NAME, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y);
+        super(ID, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FreshMeat/Spriter/FreshMeat.scml"));
-        this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 9) {
             setHp(60);
         } else {

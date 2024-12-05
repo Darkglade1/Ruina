@@ -4,23 +4,18 @@ import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.cards.Melody;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.bremen.bremenCards.*;
@@ -28,7 +23,6 @@ import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.MelodyPower;
 import ruina.powers.Paralysis;
 import ruina.util.AdditionalIntent;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -39,10 +33,6 @@ import static ruina.util.Wiz.*;
 public class Bremen extends AbstractCardMonster
 {
     public static final String ID = makeID(Bremen.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte MELODY = 0;
     private static final byte NEIGH = 1;
@@ -65,10 +55,9 @@ public class Bremen extends AbstractCardMonster
     public final int MELODY_PLAYER_STR = 1;
     public final int TRIO_COOLDOWN = 2;
     private int cooldown = TRIO_COOLDOWN;
-    public Netzach netzach;
     private boolean lastIntentTargetAlly = true;
     public Melody melodyCard = new Melody();
-    private MelodyPower melodyPower = new MelodyPower(this, MELODY_LENGTH, MELODY_PLAYER_STR, MELODY_BOSS_STR, melodyCard, this);
+    private final MelodyPower melodyPower = new MelodyPower(this, MELODY_LENGTH, MELODY_PLAYER_STR, MELODY_BOSS_STR, melodyCard);
 
     public static final String POWER_ID = makeID("Melody");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -80,21 +69,17 @@ public class Bremen extends AbstractCardMonster
     }
 
     public Bremen(final float x, final float y) {
-        super(NAME, ID, 850, -5.0F, 0, 200.0f, 265.0f, null, x, y);
+        super(ID, ID, 850, -5.0F, 0, 200.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Bremen/Spriter/Bremen.scml"));
-        this.type = EnemyType.BOSS;
-        numAdditionalMoves = 2;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(2);
         this.setHp(calcAscensionTankiness(850));
 
         addMove(MELODY, Intent.ATTACK_BUFF, calcAscensionDamage(8));
         addMove(NEIGH, Intent.ATTACK, calcAscensionDamage(19));
         addMove(BAWK, Intent.DEBUFF);
         addMove(RARF, Intent.DEFEND_DEBUFF);
-        addMove(TENDON, Intent.ATTACK, calcAscensionDamage(8), tendonHits, true);
-        addMove(TRIO, Intent.ATTACK_BUFF, calcAscensionDamage(6), trioHits, true);
+        addMove(TENDON, Intent.ATTACK, calcAscensionDamage(8), tendonHits);
+        addMove(TRIO, Intent.ATTACK_BUFF, calcAscensionDamage(6), trioHits);
     }
 
     @Override
@@ -108,7 +93,7 @@ public class Bremen extends AbstractCardMonster
         CustomDungeon.playTempMusicInstantly("Ensemble1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Netzach) {
-                netzach = (Netzach)mo;
+                target = (Netzach)mo;
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
@@ -119,12 +104,7 @@ public class Bremen extends AbstractCardMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case MELODY: {
                 bluntAnimation(target);
@@ -194,10 +174,6 @@ public class Bremen extends AbstractCardMonster
         animationAction("Slash", "BremenHorse", enemy, this);
     }
 
-    private void blockAnimation() {
-        animationAction("Block", null, this);
-    }
-
     private void specialAttackAnimation(AbstractCreature enemy) {
         animationAction("Special1", "BremenStrong", enemy, this);
     }
@@ -214,29 +190,6 @@ public class Bremen extends AbstractCardMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
-        atb(new RemoveAllBlockAction(this, this));
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, netzach);
-            }
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    additionalIntent.usePrimaryIntentsColor = true;
-                    this.isDone = true;
-                }
-            });
-        }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -310,32 +263,24 @@ public class Bremen extends AbstractCardMonster
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
+    public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
+        if (index == 1) {
+            if (lastIntentTargetAlly) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+            } else {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
             }
-            if (additionalMove != null) {
-                if (i == 1) {
-                    if (lastIntentTargetAlly) {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, netzach, netzach.icon);
-                    } else {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-                    }
-                } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, netzach, netzach.icon);
-                }
-            }
+        } else {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
         }
     }
 
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        netzach.onBossDeath();
+        if (target instanceof Netzach) {
+            ((Netzach) target).onBossDeath();
+        }
     }
 
     @Override

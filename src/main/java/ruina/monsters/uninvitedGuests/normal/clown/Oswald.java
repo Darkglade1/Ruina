@@ -5,7 +5,6 @@ import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,23 +13,19 @@ import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.clown.oswaldCards.*;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -41,10 +36,6 @@ import static ruina.util.Wiz.*;
 public class Oswald extends AbstractCardMonster
 {
     public static final String ID = makeID(Oswald.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte CLIMAX = 0;
     private static final byte FUN = 1;
@@ -64,7 +55,6 @@ public class Oswald extends AbstractCardMonster
     public final int BRAINWASH_DAMAGE = calcAscensionTankiness(40);
     public final int BRAINWASH_DAMAGE_INCREASE = calcAscensionTankiness(20);
     public int brainwashDamage = BRAINWASH_DAMAGE;
-    public Tiph tiph;
 
     public static final String POWER_ID = makeID("Brainwash");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -76,17 +66,13 @@ public class Oswald extends AbstractCardMonster
     }
 
     public Oswald(final float x, final float y) {
-        super(NAME, ID, 700, -5.0F, 0, 200.0f, 245.0f, null, x, y);
+        super(ID, ID, 700, -5.0F, 0, 200.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Oswald/Spriter/Oswald.scml"));
-        this.type = EnemyType.BOSS;
-        numAdditionalMoves = 1;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(1);
         this.setHp(calcAscensionTankiness(700));
 
-        addMove(CLIMAX, Intent.ATTACK, climaxDamage, climaxHits, true);
-        addMove(FUN, Intent.ATTACK, calcAscensionDamage(9), funHits, true);
+        addMove(CLIMAX, Intent.ATTACK, climaxDamage, climaxHits);
+        addMove(FUN, Intent.ATTACK, calcAscensionDamage(9), funHits);
         addMove(CATCH, Intent.DEBUFF);
         addMove(POW, Intent.BUFF);
         addMove(BRAINWASH, Intent.STRONG_DEBUFF);
@@ -103,7 +89,7 @@ public class Oswald extends AbstractCardMonster
         CustomDungeon.playTempMusicInstantly("Ensemble2");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Tiph) {
-                tiph = (Tiph)mo;
+                target = (Tiph)mo;
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
@@ -112,12 +98,7 @@ public class Oswald extends AbstractCardMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case CLIMAX: {
                 for (int i = 0; i < multiplier; i++) {
@@ -252,22 +233,6 @@ public class Oswald extends AbstractCardMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
-        atb(new RemoveAllBlockAction(this, this));
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, tiph);
-            }
-        }
         atb(new RollMoveAction(this));
     }
 
@@ -290,7 +255,7 @@ public class Oswald extends AbstractCardMonster
         } else if (this.lastMove(FUN, moveHistory)) {
             setAdditionalMoveShortcut(POW, moveHistory, getMoveCardFromByte(POW));
         } else {
-            if (firstMove || (tiph != null && !tiph.isDead && !tiph.isDying)) {
+            if (firstMove || (target != null && !target.isDead && !target.isDying)) {
                 setAdditionalMoveShortcut(BRAINWASH, moveHistory, getMoveCardFromByte(BRAINWASH));
             } else {
                 setAdditionalMoveShortcut(CATCH, moveHistory, getMoveCardFromByte(CATCH));
@@ -309,28 +274,20 @@ public class Oswald extends AbstractCardMonster
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                if (additionalMove.nextMove == BRAINWASH) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, tiph, tiph.icon);
-                } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-                }
-            }
+    public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
+        if (additionalMove.nextMove == BRAINWASH) {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+        } else {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
         }
     }
 
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        tiph.onBossDeath();
+        if (target instanceof Tiph) {
+            ((Tiph) target).onBossDeath();
+        }
     }
 
 }

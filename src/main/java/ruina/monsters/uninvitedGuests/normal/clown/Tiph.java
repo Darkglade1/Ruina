@@ -4,13 +4,9 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -28,10 +24,6 @@ import static ruina.util.Wiz.*;
 public class Tiph extends AbstractAllyCardMonster
 {
     public static final String ID = RuinaMod.makeID(Tiph.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte AUGURY_KICK = 0;
     private static final byte CONFRONTATION = 1;
@@ -39,19 +31,15 @@ public class Tiph extends AbstractAllyCardMonster
     public final int STRENGTH = 2;
     public final int PROTECTION = 2;
 
-    public Oswald oswald;
-
     public Tiph() {
         this(0.0f, 0.0f);
     }
 
     public Tiph(final float x, final float y) {
-        super(NAME, ID, 300, -5.0F, 0, 200, 260.0f, null, x, y);
+        super(ID, ID, 300, -5.0F, 0, 200, 260.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Tiph/Spriter/Tiph.scml"));
         this.animation.setFlip(true, false);
-
         this.setHp(300);
-        this.type = EnemyType.BOSS;
 
         addMove(AUGURY_KICK, Intent.ATTACK_BUFF, 10);
         addMove(CONFRONTATION, Intent.ATTACK_DEFEND, 7);
@@ -72,7 +60,7 @@ public class Tiph extends AbstractAllyCardMonster
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Oswald) {
-                oswald = (Oswald)mo;
+                target = (Oswald)mo;
             }
         }
         super.usePreBattleAction();
@@ -80,28 +68,14 @@ public class Tiph extends AbstractAllyCardMonster
 
     @Override
     public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
-        super.takeTurn();
         if (firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
-
-        DamageInfo info;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
+        super.takeTurn();
 
         AbstractCreature target;
         if (isAlly) {
-            target = oswald;
+            target = this.target;
         } else {
             target = adp();
         }
@@ -117,7 +91,7 @@ public class Tiph extends AbstractAllyCardMonster
                 if (isAlly) {
                     applyToTarget(adp(), this, new StrengthPower(adp(), STRENGTH));
                 } else {
-                    applyToTarget(oswald, this, new StrengthPower(oswald, STRENGTH));
+                    applyToTarget(this.target, this, new StrengthPower(this.target, STRENGTH));
                 }
                 resetIdle();
                 break;
@@ -129,7 +103,7 @@ public class Tiph extends AbstractAllyCardMonster
                 if (isAlly) {
                     applyToTarget(adp(), this, new Protection(adp(), PROTECTION));
                 } else {
-                    applyToTarget(oswald, this, new Protection(oswald, PROTECTION));
+                    applyToTarget(this.target, this, new Protection(this.target, PROTECTION));
                 }
                 resetIdle();
                 break;
@@ -158,15 +132,6 @@ public class Tiph extends AbstractAllyCardMonster
     public void onBrainwashed() {
         setMoveShortcut(CONFRONTATION, MOVES[CONFRONTATION], cardList.get(CONFRONTATION));
         createIntent();
-    }
-
-    @Override
-    public void applyPowers() {
-        if (this.nextMove == -1 || !isAlly) {
-            super.applyPowers();
-            return;
-        }
-        applyPowers(oswald);
     }
 
     public void onBossDeath() {

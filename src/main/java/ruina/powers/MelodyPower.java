@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 import ruina.cards.Melody;
-import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
 
 import java.util.ArrayList;
 
@@ -26,17 +25,15 @@ public class MelodyPower extends AbstractUnremovablePower {
     private final ArrayList<AbstractCard.CardType> sequence = new ArrayList<>();
     private final ArrayList<AbstractCard.CardType> currentProgress = new ArrayList<>();
     boolean completed = false;
-    private Melody melodyCard;
-    private final Bremen bremen;
+    private final Melody melodyCard;
     private final int MELODY_PLAYER_STR;
     private final int MELODY_BOSS_STR;
 
-    public MelodyPower(AbstractCreature owner, int amount, int playerStr, int bossStr, Melody melodyCard, Bremen bremen) {
+    public MelodyPower(AbstractCreature owner, int amount, int playerStr, int bossStr, Melody melodyCard) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
         MELODY_BOSS_STR = bossStr;
         MELODY_PLAYER_STR = playerStr;
         this.melodyCard = melodyCard;
-        this.bremen = bremen;
         generateSequence();
         updateDescription();
     }
@@ -80,7 +77,6 @@ public class MelodyPower extends AbstractUnremovablePower {
         sequence.clear();
         currentProgress.clear();
         for (int i = 0; i < amount; i++) {
-            //don't include powers for now
             if (AbstractDungeon.monsterRng.randomBoolean(1.0f) && !pickedPowerAlready) {
                 if (AbstractDungeon.monsterRng.randomBoolean(0.5f)) {
                     sequence.add(AbstractCard.CardType.ATTACK);
@@ -131,12 +127,6 @@ public class MelodyPower extends AbstractUnremovablePower {
             melodyCard.rawDescription += descriptions[4];
         }
         melodyCard.initializeDescription();
-    }
-
-    public void pointToNewCard(Melody card) {
-        this.melodyCard = card;
-        bremen.melodyCard = card;
-        updateMelodyText();
     }
 
     @Override

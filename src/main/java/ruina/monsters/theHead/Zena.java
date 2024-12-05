@@ -591,7 +591,7 @@ public class Zena extends AbstractCardMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        gebura.enemyBoss = baral;
+        gebura.target = baral;
         binah.targetEnemy = baral;
         baral.onZenaDeath();
         AbstractDungeon.onModifyPower();

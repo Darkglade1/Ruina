@@ -84,7 +84,7 @@ public class MintyDamageSummationCompatibilityPatch {
         @SpireInsertPatch(locator = allyPatch.Locator.class, localvars = {"dmg", "c"})
         public static void patch(AbstractDungeon fakeInstance, SpriteBatch sb, @ByRef int[] dmg, @ByRef int[] c) {
             for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-                if (mo instanceof AbstractAllyMonster) {
+                if (mo instanceof AbstractAllyMonster && !mo.isDead) {
                     if (mo.intent == IntentEnums.MASS_ATTACK && ((AbstractAllyMonster) mo).massAttackHitsPlayer) {
                         int tmp;
                         c[0]++;

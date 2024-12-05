@@ -9,10 +9,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -33,10 +31,6 @@ import static ruina.util.Wiz.*;
 public class Gebura extends AbstractAllyCardMonster
 {
     public static final String ID = RuinaMod.makeID(Gebura.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte UPSTANDING_SLASH = 0;
     private static final byte LEVEL_SLASH = 1;
@@ -59,15 +53,11 @@ public class Gebura extends AbstractAllyCardMonster
     public final int GREATER_SPLIT_COOLDOWN = 3;
     public int greaterSplitCooldownCounter = GREATER_SPLIT_COOLDOWN;
 
-    public final int RELENTLESS_THRESHOLD = 40;
-
     public final int powerStrength = 1;
     public final int EGOtimer = 4;
     protected boolean manifestedEGO = false;
     protected int phase = 1;
     public boolean canSplit = true;
-
-    public AbstractMonster enemyBoss;
 
     public static final String POWER_ID = makeID("GeburaRedMist");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -79,16 +69,14 @@ public class Gebura extends AbstractAllyCardMonster
     }
 
     public Gebura(final float x, final float y) {
-        super(NAME, ID, 200, -5.0F, 0, 200.0f, 240.0f, null, x, y);
+        super(ID, ID, 200, -5.0F, 0, 200.0f, 240.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Gebura/Spriter/RedMist.scml"));
         this.animation.setFlip(true, false);
-
         this.setHp(200);
-        this.type = EnemyType.BOSS;
 
-        addMove(UPSTANDING_SLASH, Intent.ATTACK_DEBUFF, upstanding_damage, upstandingHits, true);
-        addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, level_damage, levelHits, true);
-        addMove(SPEAR, Intent.ATTACK, 4, spearHits, true);
+        addMove(UPSTANDING_SLASH, Intent.ATTACK_DEBUFF, upstanding_damage, upstandingHits);
+        addMove(LEVEL_SLASH, Intent.ATTACK_BUFF, level_damage, levelHits);
+        addMove(SPEAR, Intent.ATTACK, 4, spearHits);
         addMove(GSV, Intent.ATTACK_DEBUFF, 30);
         addMove(GSH, Intent.ATTACK_DEBUFF, 40);
 
@@ -111,7 +99,7 @@ public class Gebura extends AbstractAllyCardMonster
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Tanya) {
-                enemyBoss = mo;
+                target = (Tanya)mo;
             }
         }
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, powerStrength) {
@@ -172,32 +160,16 @@ public class Gebura extends AbstractAllyCardMonster
     public void dialogue() {
         if (firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
     }
 
     @Override
     public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
-        super.takeTurn();
         dialogue();
-        DamageInfo info;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
+        super.takeTurn();
 
-        AbstractCreature enemy = enemyBoss;
+        AbstractCreature enemy = target;
 
-        if(info.base > -1) {
-            info.applyPowers(this, enemy);
-        }
         final int[] threshold = {0};
         switch (this.nextMove) {
             case UPSTANDING_SLASH: {
@@ -423,16 +395,6 @@ public class Gebura extends AbstractAllyCardMonster
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move], cardList.get(move));
         }
-    }
-
-    @Override
-    public void applyPowers() {
-        if (this.nextMove == -1 || enemyBoss.isDeadOrEscaped()) {
-            super.applyPowers();
-            return;
-        }
-        AbstractCreature target = enemyBoss;
-        applyPowers(target);
     }
 
     public void onBossDeath() {

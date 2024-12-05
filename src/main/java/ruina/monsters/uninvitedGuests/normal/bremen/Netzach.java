@@ -5,14 +5,11 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import ruina.BetterSpriterAnimation;
@@ -37,10 +34,6 @@ import static ruina.util.Wiz.*;
 public class Netzach extends AbstractAllyCardMonster
 {
     public static final String ID = RuinaMod.makeID(Netzach.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte WILL = 0;
     private static final byte BALEFUL = 1;
@@ -50,8 +43,6 @@ public class Netzach extends AbstractAllyCardMonster
     public final int BLOCK = 13;
     public final int DRAW = 2;
     public final int faithHits = 2;
-
-    public Bremen bremen;
 
     public static final String POWER_ID = makeID("Messenger");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -63,12 +54,10 @@ public class Netzach extends AbstractAllyCardMonster
     }
 
     public Netzach(final float x, final float y) {
-        super(NAME, ID, 160, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(ID, ID, 160, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Netzach/Spriter/Netzach.scml"));
         this.animation.setFlip(true, false);
-
         this.setHp(calcAscensionTankiness(160));
-        this.type = EnemyType.BOSS;
 
         addMove(WILL, Intent.DEFEND_BUFF);
         addMove(BALEFUL, Intent.ATTACK_DEBUFF, 17);
@@ -91,7 +80,7 @@ public class Netzach extends AbstractAllyCardMonster
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Bremen) {
-                bremen = (Bremen)mo;
+                target = (Bremen)mo;
             }
         }
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
@@ -102,7 +91,6 @@ public class Netzach extends AbstractAllyCardMonster
                 if (prescripts.isEmpty()) {
                     prescripts.add(new AttackPrescript());
                     prescripts.add(new SkillPrescript());
-                    //prescripts.add(new PowerPrescript());
                 }
                 AbstractCard chosenCard = prescripts.remove(AbstractDungeon.monsterRng.random(prescripts.size() - 1));
                 makeInHand(chosenCard);
@@ -118,30 +106,10 @@ public class Netzach extends AbstractAllyCardMonster
 
     @Override
     public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
-        super.takeTurn();
         if (firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
-
-        DamageInfo info;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
-
-        AbstractCreature target = bremen;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeTurn();
         switch (this.nextMove) {
             case WILL: {
                 blockAnimation();
@@ -194,15 +162,6 @@ public class Netzach extends AbstractAllyCardMonster
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
         setMoveShortcut(move, MOVES[move], cardList.get(move));
-    }
-
-    @Override
-    public void applyPowers() {
-        if (this.nextMove == -1) {
-            super.applyPowers();
-            return;
-        }
-        applyPowers(bremen);
     }
 
     public void onBossDeath() {
