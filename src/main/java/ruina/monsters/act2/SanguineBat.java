@@ -2,11 +2,8 @@ package ruina.monsters.act2;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.VampireDamageActionButItCanFizzle;
@@ -22,9 +19,6 @@ import static ruina.util.Wiz.*;
 public class SanguineBat extends AbstractRuinaMonster
 {
     public static final String ID = makeID(SanguineBat.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte BLOODSUCKING = 0;
     private static final byte DIGGING_TEETH = 1;
@@ -38,9 +32,8 @@ public class SanguineBat extends AbstractRuinaMonster
     }
 
     public SanguineBat(final float x, final float y) {
-        super(NAME, ID, 40, -5.0F, 50.0f, 230.0f, 155.0f, null, x, y);
+        super(ID, ID, 40, -5.0F, 50.0f, 230.0f, 155.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Bat/Spriter/Bat.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(31), calcAscensionTankiness(37));
         addMove(BLOODSUCKING, Intent.ATTACK_BUFF, calcAscensionDamage(5), 2, true);
         addMove(DIGGING_TEETH, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
@@ -49,17 +42,7 @@ public class SanguineBat extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
-        if (this.firstMove) {
-            firstMove = false;
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case BLOODSUCKING: {
                 for (int i = 0; i < multiplier; i++) {

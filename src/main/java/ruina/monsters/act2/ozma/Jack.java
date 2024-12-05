@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -29,9 +28,6 @@ import static ruina.util.Wiz.*;
 public class Jack extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Jack.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte ATTACK = 0;
     private static final byte MULTI_ATTACK = 1;
@@ -46,13 +42,18 @@ public class Jack extends AbstractRuinaMonster
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Jack(final float x, final float y, boolean startSingle) {
-        super(NAME, ID, 100, -5.0F, 0, 135.0f, 160.0f, null, x, y);
+        super(ID, ID, 100, -5.0F, 0, 135.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jack/Spriter/Jack.scml"));
-        this.type = EnemyType.BOSS;
         setHp(100);
         addMove(ATTACK, Intent.ATTACK, calcAscensionSpecial(3));
-        addMove(MULTI_ATTACK, Intent.ATTACK, calcAscensionSpecial(2), 2, true);
+        addMove(MULTI_ATTACK, Intent.ATTACK, calcAscensionSpecial(2), 2);
         this.startSingle = startSingle;
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.BOSS;
     }
 
     @Override
@@ -88,17 +89,7 @@ public class Jack extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
-        if (this.firstMove) {
-            firstMove = false;
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case ATTACK: {
                 bluntAnimation(adp());

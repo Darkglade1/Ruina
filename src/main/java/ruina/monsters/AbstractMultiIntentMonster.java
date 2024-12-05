@@ -40,7 +40,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     protected int maxAdditionalMoves = 0;
     protected static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("MultiIntentStrings"));
     protected static final String[] TEXT = uiStrings.TEXT;
-    protected boolean attackingMonsterWithPrimaryIntent;
+    public boolean attackingMonsterWithPrimaryIntent;
 
     public AbstractMultiIntentMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -282,7 +282,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if (attackingMonsterWithPrimaryIntent) {
+        if (attackingMonsterWithPrimaryIntent && this.nextMove != -1) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             if (info.base > -1) {
                 info.applyPowers(this, target);

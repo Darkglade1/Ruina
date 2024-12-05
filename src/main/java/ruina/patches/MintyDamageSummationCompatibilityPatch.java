@@ -10,10 +10,7 @@ import ruina.CustomIntent.IntentEnums;
 import ruina.monsters.AbstractAllyAttackingMinion;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.act2.mountain.Mountain;
-import ruina.monsters.act2.roadHome.RoadHome;
 import ruina.monsters.act3.bigBird.Sage;
-import ruina.monsters.theHead.Zena;
 import ruina.util.AdditionalIntent;
 
 public class MintyDamageSummationCompatibilityPatch {
@@ -44,9 +41,13 @@ public class MintyDamageSummationCompatibilityPatch {
                 }
             }
             //hardcode these cases where the enemy attacks NPC with primary intent
-            if (m instanceof Mountain) {
-                if (((Mountain) m).currentStage == Mountain.STAGE1) {
-                    dmg[0] -= m.getIntentDmg();
+            if (m instanceof AbstractMultiIntentMonster) {
+                if (((AbstractMultiIntentMonster) m).attackingMonsterWithPrimaryIntent) {
+                    int damage = m.getIntentDmg();
+                    if ((Boolean) ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg")) {
+                        damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
+                    }
+                    dmg[0] -= damage;
                     c[0]--;
                 }
             }
@@ -57,22 +58,6 @@ public class MintyDamageSummationCompatibilityPatch {
                         damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
                     }
                     dmg[0] -= damage;
-                    c[0]--;
-                }
-            }
-            if (m instanceof Zena) {
-                if (((Zena) m).currentPhase == Zena.PHASE.PHASE1 && m.intent != IntentEnums.MASS_ATTACK) {
-                    int damage = m.getIntentDmg();
-                    if ((Boolean) ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg")) {
-                        damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
-                    }
-                    dmg[0] -= damage;
-                    c[0]--;
-                }
-            }
-            if (m instanceof RoadHome) {
-                if (!((RoadHome) m).isHomeDead) {
-                    dmg[0] -= m.getIntentDmg();
                     c[0]--;
                 }
             }

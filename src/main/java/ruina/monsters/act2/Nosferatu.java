@@ -2,11 +2,8 @@ package ruina.monsters.act2;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
@@ -23,9 +20,6 @@ import static ruina.util.Wiz.*;
 public class Nosferatu extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Nosferatu.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte UNBEARABLE_DROUGHT = 0;
     private static final byte MERCILESS_GESTURE = 1;
@@ -40,9 +34,8 @@ public class Nosferatu extends AbstractRuinaMonster
     }
 
     public Nosferatu(final float x, final float y) {
-        super(NAME, ID, 40, -5.0F, 0, 250.0f, 275.0f, null, x, y);
+        super(ID, ID, 40, -5.0F, 0, 250.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Nosferatu/Spriter/Nosferatu.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(85), calcAscensionTankiness(90));
         addMove(UNBEARABLE_DROUGHT, Intent.ATTACK_BUFF, calcAscensionDamage(14));
         addMove(MERCILESS_GESTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
@@ -56,17 +49,7 @@ public class Nosferatu extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
-        if (this.firstMove) {
-            firstMove = false;
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case UNBEARABLE_DROUGHT: {
                 attack1Animation(adp());

@@ -1,10 +1,8 @@
 package ruina.monsters.act2.roadHome;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -20,13 +18,8 @@ import static ruina.util.Wiz.applyToTarget;
 public class HomeAlly extends AbstractAllyMonster
 {
     public static final String ID = RuinaMod.makeID(HomeAlly.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte NONE = 0;
-
     public RoadHome roadHome;
 
     public static final String POWER_ID = RuinaMod.makeID("WayHome");
@@ -34,14 +27,12 @@ public class HomeAlly extends AbstractAllyMonster
     public static final String POWER_NAME = PowerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = PowerStrings.DESCRIPTIONS;
 
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("HomeIcon.png"));
-
     public HomeAlly() {
         this(0.0f, 0.0f);
     }
 
     public HomeAlly(final float x, final float y) {
-        super(NAME, ID, 50, -5.0F, 0, 300.0f, 300.0f, makeMonsterPath("RoadHome/HouseSmall.png"), x, y);
+        super(ID, ID, 50, -5.0F, 0, 300.0f, 300.0f, makeMonsterPath("RoadHome/HouseSmall.png"), x, y);
         this.setHp(calcAscensionTankiness(50));
 
         addMove(NONE, Intent.NONE);

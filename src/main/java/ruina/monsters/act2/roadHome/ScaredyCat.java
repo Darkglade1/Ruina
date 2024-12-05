@@ -1,17 +1,11 @@
 package ruina.monsters.act2.roadHome;
 
-import com.megacrit.cardcrawl.actions.common.EscapeAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAndDeckAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SetMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -28,9 +22,6 @@ import static ruina.util.Wiz.*;
 public class ScaredyCat extends AbstractRuinaMonster
 {
     public static final String ID = makeID(ScaredyCat.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte RAWR = 0;
     private static final byte GROWL = 1;
@@ -52,11 +43,10 @@ public class ScaredyCat extends AbstractRuinaMonster
     }
 
     public ScaredyCat(final float x, final float y) {
-        super(NAME, ID, 100, -5.0F, 0, 270.0f, 255.0f, null, x, y);
+        super(ID, ID, 100, -5.0F, 0, 270.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScaredyCat/Spriter/ScaredyCat.scml"));
-        this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(100));
-        addMove(RAWR, Intent.ATTACK, calcAscensionDamage(7), 2, true);
+        addMove(RAWR, Intent.ATTACK, calcAscensionDamage(7), 2);
         addMove(GROWL, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
         addMove(COURAGE, Intent.BUFF);
         addMove(FLEE, Intent.ESCAPE);
@@ -92,17 +82,7 @@ public class ScaredyCat extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
-        if (this.firstMove) {
-            firstMove = false;
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case RAWR: {
                 for (int i = 0; i < multiplier; i++) {

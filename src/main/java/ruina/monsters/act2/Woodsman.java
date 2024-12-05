@@ -4,12 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
@@ -30,10 +28,6 @@ import static ruina.util.Wiz.*;
 public class Woodsman extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Woodsman.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte STRIKE = 0;
     private static final byte LUMBER = 1;
@@ -54,9 +48,8 @@ public class Woodsman extends AbstractRuinaMonster
     }
 
     public Woodsman(final float x, final float y) {
-        super(NAME, ID, 40, -5.0F, 0, 230.0f, 275.0f, null, x, y);
+        super(ID, ID, 40, -5.0F, 0, 230.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Woodsman/Spriter/Woodsman.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(140), calcAscensionTankiness(148));
         addMove(STRIKE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10), 2, true);
         addMove(LUMBER, Intent.ATTACK, calcAscensionDamage(4), 4, true);
@@ -92,18 +85,10 @@ public class Woodsman extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
         if (this.firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case STRIKE: {
                 for (int i = 0; i < multiplier; i++) {

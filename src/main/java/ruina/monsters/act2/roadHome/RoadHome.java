@@ -1,10 +1,8 @@
 package ruina.monsters.act2.roadHome;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.ReflectionHacks;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -17,27 +15,16 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.BobEffect;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
-import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
-import ruina.vfx.VFXActionButItCanFizzle;
-
-import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -46,21 +33,14 @@ import static ruina.util.Wiz.*;
 public class RoadHome extends AbstractMultiIntentMonster
 {
     public static final String ID = makeID(RoadHome.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
     public static final String HOUSE = RuinaMod.makeMonsterPath("RoadHome/House.png");
     private static final Texture HOUSE_TEXTURE = TexLoader.getTexture(HOUSE);
-    protected static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("MultiIntentStrings"));
-    protected static final String[] TEXT = uiStrings.TEXT;
 
     private static final byte LETS_GO = 0;
     private static final byte NONE = 1;
     private static final byte HOMING_INSTINCT = 2;
 
     private ScaredyCat cat;
-    private HomeAlly home;
 
     public boolean isHomeDead = false;
 
@@ -76,13 +56,9 @@ public class RoadHome extends AbstractMultiIntentMonster
     }
 
     public RoadHome(final float x, final float y) {
-        super(NAME, ID, 120, -5.0F, 0, 200.0f, 235.0f, null, x, y);
+        super(ID, ID, 120, -5.0F, 0, 200.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("RoadHome/Spriter/RoadHome.scml"));
-        this.type = EnemyType.ELITE;
-        numAdditionalMoves = 2;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(2);
         setHp(calcAscensionTankiness(120));
         addMove(LETS_GO, Intent.ATTACK, calcAscensionDamage(10));
         addMove(HOMING_INSTINCT, Intent.ATTACK_DEBUFF, calcAscensionDamage(35));
@@ -103,7 +79,7 @@ public class RoadHome extends AbstractMultiIntentMonster
                 cat = (ScaredyCat)mo;
             }
             if (mo instanceof HomeAlly) {
-                home = (HomeAlly)mo;
+                target = (HomeAlly)mo;
             }
         }
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
@@ -139,18 +115,7 @@ public class RoadHome extends AbstractMultiIntentMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
-
-        if (this.firstMove) {
-            atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
-        }
-
+        super.takeCustomTurn(move, target);
         switch (this.nextMove) {
             case LETS_GO: {
                 specialAnimation(target);
@@ -171,26 +136,10 @@ public class RoadHome extends AbstractMultiIntentMonster
 
     @Override
     public void takeTurn() {
+        if (this.firstMove) {
+            atb(new TalkAction(this, DIALOG[0]));
+        }
         super.takeTurn();
-        if (isHomeDead) {
-            takeCustomTurn(this.moves.get(nextMove), adp());
-        } else {
-            takeCustomTurn(this.moves.get(nextMove), home);
-        }
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            takeCustomTurn(additionalMove, home);
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    additionalIntent.usePrimaryIntentsColor = true;
-                    this.isDone = true;
-                }
-            });
-        }
         atb(new RollMoveAction(this));
     }
 
@@ -211,56 +160,13 @@ public class RoadHome extends AbstractMultiIntentMonster
     }
 
     @Override
-    public void createIntent() {
-        super.createIntent();
-        applyPowers();
-    }
-
-    @Override
     public void applyPowers() {
-        if (this.nextMove == -1) {
-            super.applyPowers();
-            return;
-        }
         if (!isHomeDead) {
-            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-            AbstractCreature target = home;
-            if (info.base > -1) {
-                info.applyPowers(this, target);
-                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-                PowerTip intentTip = (PowerTip) ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
-                int multiplier = moves.get(this.nextMove).multiplier;
-                if (multiplier > 0) {
-                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + multiplier + TEXT[4];
-                } else {
-                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
-                }
-                Texture attackImg = getAttackIntent(info.output);
-                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
-            }
+            attackingMonsterWithPrimaryIntent = true;
         } else {
-            super.applyPowers();
+            attackingMonsterWithPrimaryIntent = false;
         }
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, home, home.icon);
-            }
-        }
-    }
-
-    @Override
-    public void renderIntent(SpriteBatch sb) {
-        super.renderIntent(sb);
-        if (!isHomeDead) {
-            BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
-            float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
-            sb.draw(HomeAlly.targetTexture, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
-        }
+        super.applyPowers();
     }
 
     @Override
@@ -280,8 +186,8 @@ public class RoadHome extends AbstractMultiIntentMonster
         if (!cat.isDeadOrEscaped()) {
             cat.roadDeath();
         }
-        if (!isHomeDead) {
-            home.OnRoadDeath();
+        if (!isHomeDead && target instanceof HomeAlly) {
+            ((HomeAlly) target).OnRoadDeath();
         }
     }
 

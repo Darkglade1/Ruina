@@ -4,11 +4,9 @@ import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -29,9 +27,6 @@ import static ruina.util.Wiz.*;
 public class Ozma extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Ozma.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte FADING_MEMORIES = 0;
     private static final byte POWDER_OF_LIFE = 1;
@@ -57,9 +52,8 @@ public class Ozma extends AbstractRuinaMonster
     }
 
     public Ozma(final float x, final float y) {
-        super(NAME, ID, 500, -5.0F, 0, 250.0f, 275.0f, null, x, y);
+        super(ID, ID, 500, -5.0F, 0, 250.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Ozma/Spriter/Ozma.scml"));
-        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(500));
         addMove(FADING_MEMORIES, Intent.STRONG_DEBUFF);
         addMove(POWDER_OF_LIFE, Intent.DEFEND_BUFF);
@@ -86,17 +80,7 @@ public class Ozma extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
-        if (this.firstMove) {
-            firstMove = false;
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case FADING_MEMORIES: {
                 debuffAnimation();

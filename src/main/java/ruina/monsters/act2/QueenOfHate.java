@@ -1,12 +1,9 @@
 package ruina.monsters.act2;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
@@ -21,9 +18,6 @@ import static ruina.util.Wiz.*;
 public class QueenOfHate extends AbstractRuinaMonster
 {
     public static final String ID = makeID(QueenOfHate.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte ARCANA_BEATS = 0;
     private static final byte NAME_OF_HATE = 1;
@@ -43,9 +37,8 @@ public class QueenOfHate extends AbstractRuinaMonster
     }
 
     public QueenOfHate(final float x, final float y) {
-        super(NAME, ID, 40, -5.0F, 0, 300.0f, 275.0f, null, x, y);
+        super(ID, ID, 40, -5.0F, 0, 300.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("QueenOfHate/Spriter/QueenOfHate.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(101), calcAscensionTankiness(108));
         addMove(ARCANA_BEATS, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
         addMove(NAME_OF_HATE, Intent.ATTACK, calcAscensionDamage(19));
@@ -59,17 +52,7 @@ public class QueenOfHate extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
-        if (this.firstMove) {
-            firstMove = false;
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case ARCANA_BEATS: {
                 biteAnimation(adp());

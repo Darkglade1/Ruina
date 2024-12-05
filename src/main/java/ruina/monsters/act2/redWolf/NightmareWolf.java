@@ -2,27 +2,21 @@ package ruina.monsters.act2.redWolf;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.util.AdditionalIntent;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -33,9 +27,6 @@ import static ruina.util.Wiz.*;
 public class NightmareWolf extends AbstractMultiIntentMonster
 {
     public static final String ID = makeID(NightmareWolf.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte CRUEL_CLAWS = 0;
     private static final byte FEROCIOUS_FANGS = 1;
@@ -46,8 +37,6 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int HEAL = calcAscensionSpecial(100);
     private final int BLEED = calcAscensionSpecial(2);
-    public LittleRed red;
-    private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
 
     public static final String POWER_ID = makeID("BloodstainedClaws");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -59,18 +48,14 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     }
 
     public NightmareWolf(final float x, final float y) {
-        super(NAME, ID, 450, -5.0F, 0, 330.0f, 285.0f, null, x, y);
+        super(ID, ID, 450, -5.0F, 0, 330.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("NightmareWolf/Spriter/NightmareWolf.scml"));
-        this.type = EnemyType.BOSS;
-        numAdditionalMoves = 1;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(1);
         this.setHp(calcAscensionTankiness(450));
 
         addMove(CRUEL_CLAWS, Intent.ATTACK_DEFEND, calcAscensionDamage(9));
-        addMove(FEROCIOUS_FANGS, Intent.ATTACK_DEBUFF, calcAscensionDamage(7), 2, true);
-        addMove(BLOODSTAINED_HUNT, Intent.ATTACK, calcAscensionDamage(6), 3, true);
+        addMove(FEROCIOUS_FANGS, Intent.ATTACK_DEBUFF, calcAscensionDamage(7), 2);
+        addMove(BLOODSTAINED_HUNT, Intent.ATTACK, calcAscensionDamage(6), 3);
         addMove(HOWL, Intent.BUFF);
     }
 
@@ -84,7 +69,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof LittleRed) {
-                red = (LittleRed)mo;
+                target = (LittleRed)mo;
             }
         }
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, HEAL) {
@@ -93,17 +78,12 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
             }
         });
-        applyToTarget(this, this, power);
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case CRUEL_CLAWS: {
                 block(this, BLOCK);
@@ -162,19 +142,6 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        atb(new RemoveAllBlockAction(this, this));
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (red.isDead || red.isDying) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, red);
-            }
-        }
         atb(new RollMoveAction(this));
     }
 
@@ -201,21 +168,6 @@ public class NightmareWolf extends AbstractMultiIntentMonster
         }
     }
 
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, red, red.icon);
-            }
-        }
-    }
-
     public void onRedDeath() {
         playSound("Fog", 1.5f);
         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg
@@ -226,10 +178,11 @@ public class NightmareWolf extends AbstractMultiIntentMonster
     public void damage(DamageInfo info) {
         super.damage(info);
         if (this.isDead || this.currentHealth <= 0) {
-            if (info.owner == red) {
-                red.onKillWolf();
+            if (info.owner == target && info.owner instanceof LittleRed) {
+                ((LittleRed) info.owner).onKillWolf();
             } else {
-                if (!red.isDead && !red.isDying) {
+                if (!target.isDead && !target.isDying && target instanceof LittleRed) {
+                    LittleRed red = (LittleRed)target;
                     addToBot(new AbstractGameAction() {
                         @Override
                         public void update() {

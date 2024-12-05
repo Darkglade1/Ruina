@@ -2,7 +2,6 @@ package ruina.monsters.act2.wrath;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -12,10 +11,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import ruina.BetterSpriterAnimation;
@@ -36,10 +33,6 @@ import static ruina.util.Wiz.*;
 public class ServantOfWrath extends AbstractAllyMonster
 {
     public static final String ID = RuinaMod.makeID(ServantOfWrath.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte EMBODIMENTS_OF_EVIL = 0;
     private static final byte RAGE = 1;
@@ -58,19 +51,16 @@ public class ServantOfWrath extends AbstractAllyMonster
     public static final String FURY_POWER_NAME = furyPowerStrings.NAME;
     public static final String[] FURY_POWER_DESCRIPTIONS = furyPowerStrings.DESCRIPTIONS;
 
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("WrathIcon.png"));
-
     public ServantOfWrath() {
         this(0.0f, 0.0f);
     }
 
     public ServantOfWrath(final float x, final float y) {
-        super(NAME, ID, 300, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(ID, ID, 300, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ServantOfWrath/Spriter/Wrath.scml"));
         this.animation.setFlip(true, false);
         massAttackHitsPlayer = true;
         this.setHp(300);
-        this.type = EnemyType.ELITE;
 
         if (AbstractDungeon.ascensionLevel >= 18) {
             furyThreshold = HIGH_ASC_FURY_THRESHOLD;
@@ -98,6 +88,7 @@ public class ServantOfWrath extends AbstractAllyMonster
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Hermit) {
                 hermit = (Hermit)mo;
+                target = hermit;
             }
         }
         applyToTarget(this, this, new AbstractLambdaPower(FURY_POWER_NAME, FURY_POWER_ID, AbstractPower.PowerType.BUFF, false, this, furyThreshold) {
@@ -142,26 +133,8 @@ public class ServantOfWrath extends AbstractAllyMonster
         }
         super.takeTurn();
 
-        AbstractCreature target;
-        if (hermit.staff == null || this.intent == IntentEnums.MASS_ATTACK) {
-            target = hermit;
-        } else {
-            target = hermit.staff;
-        }
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
         switch (this.nextMove) {
             case EMBODIMENTS_OF_EVIL: {
-                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
-                info.applyPowers(this, adp());
-                damageArray[damageArray.length - 1] = info.output;
-                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
-                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-                    info.applyPowers(this, mo);
-                    damageArray[i] = info.output;
-                }
                 for (int i = 0; i < multiplier; i++) {
                     if (i == 0) {
                         big1Animation(target);
@@ -178,7 +151,7 @@ public class ServantOfWrath extends AbstractAllyMonster
                             isDone = true;
                         }
                     });
-                    atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                    atb(new DamageAllOtherCharactersAction(this, calcMassAttack(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                     resetIdle(1.0f);
                 }
                 applyToTargetNextTurn(adp(), new Erosion(adp(), EROSION + 1));
@@ -218,17 +191,14 @@ public class ServantOfWrath extends AbstractAllyMonster
 
     @Override
     public void applyPowers() {
-        if (this.nextMove == -1 || hermit.isDeadOrEscaped()) {
-            super.applyPowers();
-            return;
+        if (hermit != null) {
+            if (hermit.staff == null || this.intent == IntentEnums.MASS_ATTACK) {
+                target = hermit;
+            } else {
+                target = hermit.staff;
+            }
         }
-        AbstractCreature target;
-        if (hermit.staff == null || this.intent == IntentEnums.MASS_ATTACK) {
-            target = hermit;
-        } else {
-            target = hermit.staff;
-        }
-        applyPowers(target);
+        super.applyPowers();
     }
 
     public void onHermitDeath() {

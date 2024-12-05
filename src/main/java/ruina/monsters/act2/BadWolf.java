@@ -95,7 +95,6 @@ public class BadWolf extends AbstractRuinaMonster
             }
         });
         super.takeTurn();
-
         switch (this.nextMove) {
             case CLAW: {
                 slashAnimation(adp());

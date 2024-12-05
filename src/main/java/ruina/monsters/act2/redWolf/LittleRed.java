@@ -16,10 +16,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
@@ -38,10 +36,6 @@ import static ruina.util.Wiz.*;
 public class LittleRed extends AbstractAllyMonster
 {
     public static final String ID = RuinaMod.makeID(LittleRed.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte BEAST_HUNT = 0;
     private static final byte CATCH_BREATH = 1;
@@ -51,8 +45,6 @@ public class LittleRed extends AbstractAllyMonster
     private final int DEFENSE = calcAscensionTankiness(10);
     private final int STRENGTH = 3;
     public boolean enraged = false;
-
-    public NightmareWolf wolf;
 
     public static final String STRIKE_POWER_ID = RuinaMod.makeID("StrikeWithoutHesitation");
     public static final PowerStrings strikePowerStrings = CardCrawlGame.languagePack.getPowerStrings(STRIKE_POWER_ID);
@@ -69,17 +61,15 @@ public class LittleRed extends AbstractAllyMonster
     }
 
     public LittleRed(final float x, final float y) {
-        super(NAME, ID, 150, -5.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(ID, ID, 150, -5.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("LittleRed/Spriter/LittleRed.scml"));
         this.animation.setFlip(true, false);
-
         this.setHp(150);
-        this.type = EnemyType.BOSS;
 
         addMove(BEAST_HUNT, Intent.ATTACK, calcAscensionDamage(9));
         addMove(CATCH_BREATH, Intent.BUFF);
-        addMove(HOLLOW_POINT_SHELL, Intent.ATTACK, calcAscensionDamage(7), 2, true);
-        addMove(BULLET_SHOWER, Intent.ATTACK, calcAscensionDamage(8), 3, true);
+        addMove(HOLLOW_POINT_SHELL, Intent.ATTACK, calcAscensionDamage(7), 2);
+        addMove(BULLET_SHOWER, Intent.ATTACK, calcAscensionDamage(8), 3);
 
         this.icon = TexLoader.getTexture(makeUIPath("RedIcon.png"));
     }
@@ -95,7 +85,7 @@ public class LittleRed extends AbstractAllyMonster
         CustomDungeon.playTempMusicInstantly("Roland1");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof NightmareWolf) {
-                wolf = (NightmareWolf)mo;
+                target = (NightmareWolf)mo;
             }
         }
         applyToTarget(this, this, new AbstractLambdaPower(FURY_POWER_NAME, FURY_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
@@ -109,26 +99,16 @@ public class LittleRed extends AbstractAllyMonster
 
     @Override
     public void takeTurn() {
-        super.takeTurn();
         if (this.firstMove && !enraged) {
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
-        DamageInfo info;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
+        super.takeTurn();
 
         AbstractCreature target;
         if (enraged) {
             target = AbstractDungeon.player;
         } else {
-            target = wolf;
+            target = this.target;
         }
 
         if(info.base > -1) {
@@ -236,26 +216,13 @@ public class LittleRed extends AbstractAllyMonster
     }
 
     @Override
-    public void applyPowers() {
-        if (this.nextMove == -1 || wolf.isDeadOrEscaped()) {
-            super.applyPowers();
-            return;
-        }
-        AbstractCreature target;
-        if (!enraged) {
-            target = wolf;
-        } else {
-            target = adp();
-        }
-        applyPowers(target);
-    }
-
-    @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        if (!wolf.isDeadOrEscaped()) {
+        if (!target.isDeadOrEscaped()) {
             AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 2.0f, DIALOG[3], false));
-            wolf.onRedDeath();
+            if (target instanceof NightmareWolf) {
+                ((NightmareWolf) target).onRedDeath();
+            }
         } else {
             onBossVictoryLogic();
         }

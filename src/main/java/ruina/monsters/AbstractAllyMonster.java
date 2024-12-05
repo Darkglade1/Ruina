@@ -96,7 +96,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
 
     @Override
     public void applyPowers() {
-        if (this.nextMove == -1) {
+        if (this.nextMove == -1 || !isAlly) {
             super.applyPowers();
             return;
         }
