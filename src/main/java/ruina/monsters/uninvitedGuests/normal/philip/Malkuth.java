@@ -119,7 +119,7 @@ public class Malkuth extends AbstractAllyCardMonster
         cardList.add(new RagingStorm(this));
         cardList.add(new Inferno(this));
 
-        this.icon = makeUIPath("MalkuthIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("MalkuthIcon.png"));
     }
 
     public void distort() {

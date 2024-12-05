@@ -1,4 +1,4 @@
-package ruina.monsters.act2.Jester;
+package ruina.monsters.act2.jester;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.powers.AbstractLambdaPower;
+import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
@@ -44,7 +45,7 @@ public class QueenOfLove extends AbstractMagicalGirl
         addMove(LOVE_AND_JUSTICE, Intent.ATTACK, 3, 3);
         addMove(ARCANA_BEATS, Intent.BUFF);
 
-        this.icon = makeUIPath("LoveIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("LoveIcon.png"));
     }
 
     @Override

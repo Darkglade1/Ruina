@@ -1,9 +1,6 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.mountain;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -12,11 +9,7 @@ import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -24,32 +17,25 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.BobEffect;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.CenterOfAttention;
 import ruina.util.AdditionalIntent;
-import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.makeID;
+import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
 public class Mountain extends AbstractMultiIntentMonster
 {
     public static final String ID = makeID(Mountain.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte DEVOUR = 0;
     private static final byte BITE = 1;
@@ -74,8 +60,6 @@ public class Mountain extends AbstractMultiIntentMonster
     private static final float REVIVE_PERCENT = 0.50f;
     private static final float STARTING_PERCENT = 0.50f;
     private AbstractLambdaPower stagePower;
-    private AbstractMonster corpse;
-    private Texture targetTexture = TexLoader.getTexture(makeUIPath("CorpseIcon.png"));
 
     public static final String ABSORPTION_POWER_ID = makeID("Absorption");
     public static final PowerStrings absorptionPowerStrings = CardCrawlGame.languagePack.getPowerStrings(ABSORPTION_POWER_ID);
@@ -88,14 +72,9 @@ public class Mountain extends AbstractMultiIntentMonster
     public static final String[] BODIES_POWER_DESCRIPTIONS = BODIESPowerStrings.DESCRIPTIONS;
 
     public Mountain(final float x, final float y) {
-        super(NAME, ID, 100, -5.0F, 0, 330.0f, 285.0f, null, x, y);
+        super(ID, ID, 100, -5.0F, 0, 330.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Mountain/Spriter/Mountain.scml"));
-        this.type = EnemyType.ELITE;
-        numAdditionalMoves = 2;
-        maxAdditionalMoves = 2;
-        for (int i = 0; i < maxAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(2);
         this.setHp(STAGE3_HP);
         this.currentHealth = (int)(STAGE3_HP * STARTING_PERCENT);
         updateHealthBar();
@@ -122,7 +101,7 @@ public class Mountain extends AbstractMultiIntentMonster
         playSound("Spawn", 0.7f);
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof MeltedCorpses) {
-                corpse = mo;
+                target = (MeltedCorpses)mo;
             }
         }
         stagePower = new AbstractLambdaPower(ABSORPTION_POWER_NAME, ABSORPTION_POWER_ID, AbstractPower.PowerType.BUFF, false, this, currentStage) {
@@ -173,19 +152,7 @@ public class Mountain extends AbstractMultiIntentMonster
         if (this.halfDead && move.nextMove != REVIVE) {
             return;
         }
-        if (this.firstMove) {
-            atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
-        }
-        if (target.isDeadOrEscaped()) {
-            target = adp();
-        }
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case DEVOUR: {
                 attackAnimation(target);
@@ -261,34 +228,11 @@ public class Mountain extends AbstractMultiIntentMonster
 
     @Override
     public void takeTurn() {
+        if (this.firstMove) {
+            atb(new TalkAction(this, DIALOG[0]));
+        }
         super.takeTurn();
-        AbstractMonster mo = this;
-        if (currentStage == STAGE1) {
-            takeCustomTurn(this.moves.get(nextMove), corpse);
-        } else {
-            takeCustomTurn(this.moves.get(nextMove), adp());
-        }
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            if (!mo.halfDead) {
-                atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-                atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            }
-            if (additionalIntent.targetTexture != null) {
-                takeCustomTurn(additionalMove, corpse);
-            } else {
-                takeCustomTurn(additionalMove, adp());
-            }
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    additionalIntent.usePrimaryIntentsColor = true;
-                    this.isDone = true;
-                }
-            });
-        }
-       atb(new RollMoveAction(this));
+        atb(new RollMoveAction(this));
     }
 
     @Override
@@ -358,41 +302,24 @@ public class Mountain extends AbstractMultiIntentMonster
 
     @Override
     public void applyPowers() {
-        super.applyPowers();
-        if (currentStage == STAGE1 && !corpse.isDeadOrEscaped()) {
-            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-            AbstractCreature target = corpse;
-            if (info.base > -1) {
-                info.applyPowers(this, target);
-                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-                PowerTip intentTip = (PowerTip) ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
-                int multiplier = moves.get(this.nextMove).multiplier;
-                if (multiplier > 0) {
-                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + multiplier + TEXT[4];
-                } else {
-                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
-                }
-                Texture attackImg = getAttackIntent(info.output);
-                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
-            }
+        if (currentStage == STAGE1 && !target.isDeadOrEscaped()) {
+            attackingMonsterWithPrimaryIntent = true;
+        } else {
+            attackingMonsterWithPrimaryIntent = false;
         }
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
+        super.applyPowers();
+    }
+
+    @Override
+    public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
+        if (currentStage == STAGE3) {
+            if (index == 1 && additionalIntent.baseDamage >= 0) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+            } else {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
             }
-            if (additionalMove != null) {
-                if (currentStage == STAGE3) {
-                    if (i == 1 && additionalIntent.baseDamage >= 0) {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, corpse, makeUIPath("CorpseIcon.png"));
-                    } else {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-                    }
-                } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, corpse, makeUIPath("CorpseIcon.png"));
-                }
-            }
+        } else {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
         }
     }
 
@@ -445,18 +372,16 @@ public class Mountain extends AbstractMultiIntentMonster
     private void Summon() {
         playSound("Spawn", 0.7f);
         float xPosition = -480.0F;
-        corpse = new MeltedCorpses(xPosition, 0.0f);
-        atb(new SpawnMonsterAction(corpse, true));
-        atb(new UsePreBattleActionAction(corpse));
+        target = new MeltedCorpses(xPosition, 0.0f);
+        atb(new SpawnMonsterAction(target, true));
+        atb(new UsePreBattleActionAction(target));
     }
 
     private void Grow() {
         AbstractDungeon.getCurrRoom().cannotLose = true;
         if (currentStage < STAGE3) {
             currentStage++;
-            if (numAdditionalMoves < maxAdditionalMoves) {
-                numAdditionalMoves++;
-            }
+            numAdditionalMoves++;
             animationAction("Idle" + currentStage, "Grow", 0.7f, this);
             updateValues();
             rollMove();
@@ -495,16 +420,6 @@ public class Mountain extends AbstractMultiIntentMonster
             this.maxHealth = STAGE3_HP;
         }
         healthBarUpdatedEvent();
-    }
-
-    @Override
-    public void renderIntent(SpriteBatch sb) {
-        super.renderIntent(sb);
-        if (currentStage == STAGE1 && targetTexture != null && !corpse.isDeadOrEscaped()) {
-            BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
-            float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
-            sb.draw(targetTexture, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
-        }
     }
 
 }

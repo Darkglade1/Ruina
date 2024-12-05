@@ -27,6 +27,7 @@ import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.greta.hodCards.*;
 import ruina.powers.PurpleTearStance;
 import ruina.util.AllyMove;
+import ruina.util.TexLoader;
 import ruina.vfx.FlexibleDivinityParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -102,7 +103,7 @@ public class Hod extends AbstractAllyCardMonster
         cardList.add(new SerpentineBarrier(this));
         cardList.add(new Duel(this));
 
-        this.icon = makeUIPath("HodIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("HodIcon.png"));
     }
 
     @Override

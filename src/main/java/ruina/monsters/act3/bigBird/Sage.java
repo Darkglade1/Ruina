@@ -17,6 +17,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.Unruffled;
+import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeMonsterPath;
@@ -60,7 +61,7 @@ public class Sage extends AbstractAllyMonster
         addMove(RING, Intent.BUFF);
         addMove(SMACK, Intent.ATTACK, 6);
 
-        this.icon = makeUIPath("SageIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("SageIcon.png"));
         this.isTargetableByPlayer = true;
     }
 

@@ -1,4 +1,4 @@
-package ruina.monsters.act2.Jester;
+package ruina.monsters.act2.jester;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.powers.Erosion;
+import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
@@ -33,7 +34,7 @@ public class ServantOfCourage extends AbstractMagicalGirl
         addMove(HELP, Intent.ATTACK, 7, 2);
         addMove(PROTECT_FRIEND, Intent.STRONG_DEBUFF);
 
-        this.icon = makeUIPath("CourageIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("CourageIcon.png"));
     }
 
     @Override

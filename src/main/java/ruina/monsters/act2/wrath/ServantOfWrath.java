@@ -1,4 +1,4 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.wrath;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.Color;
@@ -81,7 +81,7 @@ public class ServantOfWrath extends AbstractAllyMonster
         addMove(EMBODIMENTS_OF_EVIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(8), 3, true);
         addMove(RAGE, Intent.ATTACK_DEBUFF, 8, 2, true);
 
-        this.icon = makeUIPath("WrathIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("WrathIcon.png"));
 
     }
 
@@ -137,20 +137,10 @@ public class ServantOfWrath extends AbstractAllyMonster
 
     @Override
     public void takeTurn() {
-        super.takeTurn();
         if (this.firstMove) {
             atb(new ShoutAction(this, DIALOG[0], 2.0F, 3.0F));
-            firstMove = false;
         }
-        DamageInfo info;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
+        super.takeTurn();
 
         AbstractCreature target;
         if (hermit.staff == null || this.intent == IntentEnums.MASS_ATTACK) {

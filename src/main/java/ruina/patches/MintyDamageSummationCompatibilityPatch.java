@@ -7,16 +7,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import javassist.CtBehavior;
 import ruina.CustomIntent.IntentEnums;
+import ruina.monsters.AbstractAllyAttackingMinion;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.act2.HermitStaff;
-import ruina.monsters.act2.Mountain;
-import ruina.monsters.act2.RoadHome;
+import ruina.monsters.act2.mountain.Mountain;
+import ruina.monsters.act2.roadHome.RoadHome;
 import ruina.monsters.act3.bigBird.Sage;
 import ruina.monsters.theHead.Zena;
-import ruina.monsters.uninvitedGuests.normal.eileen.GearsWorshipper;
-import ruina.monsters.uninvitedGuests.normal.philip.CryingChild;
-import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.util.AdditionalIntent;
 
 public class MintyDamageSummationCompatibilityPatch {
@@ -53,32 +50,8 @@ public class MintyDamageSummationCompatibilityPatch {
                     c[0]--;
                 }
             }
-            if (m instanceof HermitStaff) {
-                dmg[0] -= m.getIntentDmg();
-                c[0]--;
-            }
-            if (m instanceof Puppet) {
-                if (((Puppet) m).attackingAlly) {
-                    int damage = m.getIntentDmg();
-                    if ((Boolean) ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg")) {
-                        damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
-                    }
-                    dmg[0] -= damage;
-                    c[0]--;
-                }
-            }
-            if (m instanceof CryingChild) {
-                if (((CryingChild) m).attackingAlly) {
-                    int damage = m.getIntentDmg();
-                    if ((Boolean) ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg")) {
-                        damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
-                    }
-                    dmg[0] -= damage;
-                    c[0]--;
-                }
-            }
-            if (m instanceof GearsWorshipper) {
-                if (((GearsWorshipper) m).attackingAlly) {
+            if (m instanceof AbstractAllyAttackingMinion) {
+                if (((AbstractAllyAttackingMinion) m).isAttackingAlly()) {
                     int damage = m.getIntentDmg();
                     if ((Boolean) ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg")) {
                         damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");

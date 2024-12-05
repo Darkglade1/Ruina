@@ -26,6 +26,7 @@ import ruina.monsters.uninvitedGuests.normal.bremen.netzachCards.Faith;
 import ruina.monsters.uninvitedGuests.normal.bremen.netzachCards.Will;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
+import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
@@ -77,7 +78,7 @@ public class Netzach extends AbstractAllyCardMonster
         cardList.add(new BalefulBrand(this));
         cardList.add(new Faith(this));
 
-        this.icon = makeUIPath("NetzachIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("NetzachIcon.png"));
     }
 
     @Override

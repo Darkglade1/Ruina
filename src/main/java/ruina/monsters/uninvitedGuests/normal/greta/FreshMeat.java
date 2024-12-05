@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
@@ -36,8 +37,6 @@ public class FreshMeat extends AbstractRuinaMonster
     public static final String POWER_NAME = PowerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = PowerStrings.DESCRIPTIONS;
 
-    public static String icon = makeUIPath("MeatIcon.png");
-
     public FreshMeat(final float x, final float y, AbstractCard card, Greta greta) {
         super(NAME, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FreshMeat/Spriter/FreshMeat.scml"));
@@ -49,6 +48,7 @@ public class FreshMeat extends AbstractRuinaMonster
         }
         this.card = card;
         this.greta = greta;
+        this.icon = TexLoader.getTexture(makeUIPath("MeatIcon.png"));
     }
 
     @Override

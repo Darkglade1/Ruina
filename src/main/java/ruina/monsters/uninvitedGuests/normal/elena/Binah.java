@@ -90,7 +90,7 @@ public class Binah extends AbstractAllyCardMonster
         cardList.add(new Chain(this));
         cardList.add(new Fairy(this));
 
-        this.icon = makeUIPath("BinahIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("BinahIcon.png"));
     }
 
     @Override

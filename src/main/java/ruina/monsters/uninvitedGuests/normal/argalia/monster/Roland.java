@@ -30,6 +30,7 @@ import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_RANGA;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_Wheels;
 import ruina.powers.BlackSilence;
 import ruina.powers.Bleed;
+import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
@@ -118,7 +119,7 @@ public class Roland extends AbstractAllyCardMonster {
         addMove(RANGA, Intent.ATTACK_DEBUFF, RANGA_DAMAGE, RANGA_HITS, true);
         addMove(MACE, Intent.ATTACK, MACE_DAMAGE, MACE_HITS, true);
         addMove(FURIOSO, Intent.ATTACK, furiosoDamage, furiosoHits, true);
-        this.icon = makeUIPath("RolandIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("RolandIcon.png"));
         populateCards();
     }
 

@@ -18,6 +18,7 @@ import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.clown.tiphCards.Confrontation;
 import ruina.monsters.uninvitedGuests.normal.clown.tiphCards.Kick;
 import ruina.powers.Protection;
+import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeMonsterPath;
@@ -58,7 +59,7 @@ public class Tiph extends AbstractAllyCardMonster
         cardList.add(new Kick(this));
         cardList.add(new Confrontation(this));
 
-        this.icon = makeUIPath("TiphIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("TiphIcon.png"));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package ruina.monsters.act2.Jester;
+package ruina.monsters.act2.jester;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

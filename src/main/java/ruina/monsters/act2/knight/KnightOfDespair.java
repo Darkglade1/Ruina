@@ -1,4 +1,4 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.knight;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
@@ -27,10 +26,6 @@ import static ruina.util.Wiz.*;
 public class KnightOfDespair extends AbstractRuinaMonster
 {
     public static final String ID = makeID(KnightOfDespair.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte DESPAIR = 0;
 
@@ -51,9 +46,8 @@ public class KnightOfDespair extends AbstractRuinaMonster
     }
 
     public KnightOfDespair(final float x, final float y) {
-        super(NAME, ID, 160, -5.0F, 0, 250.0f, 245.0f, null, x, y);
+        super(ID, ID, 160, -5.0F, 0, 250.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Knight/Spriter/Knight.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(160));
         addMove(DESPAIR, Intent.UNKNOWN);
     }
@@ -76,18 +70,10 @@ public class KnightOfDespair extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
         if (this.firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case DESPAIR: {
                 if (sword == null || sword.isDeadOrEscaped()) {

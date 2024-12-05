@@ -20,6 +20,7 @@ import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.util.TexLoader;
 
 import java.util.ArrayList;
 
@@ -65,7 +66,7 @@ public class NothingThere extends AbstractMultiIntentMonster
         addMove(REACHING_HAND, Intent.ATTACK, 5, 2);
         addMove(EVOLVE, Intent.BUFF);
 
-        this.icon = makeUIPath("NothingIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("NothingIcon.png"));
     }
 
     @Override

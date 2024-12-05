@@ -86,7 +86,7 @@ public class Gunman extends AbstractMultiIntentMonster
         addMove(MAGIC_BULLET, Intent.ATTACK, 15);
         addMove(DEATH_MARK, Intent.DEBUFF);
 
-        this.icon = makeUIPath("GunIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("GunIcon.png"));
     }
 
     @Override

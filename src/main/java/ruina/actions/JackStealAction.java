@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShowCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import ruina.monsters.act2.Jack;
+import ruina.monsters.act2.ozma.Jack;
 
 import static ruina.util.Wiz.adp;
 

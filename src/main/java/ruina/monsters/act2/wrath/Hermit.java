@@ -1,29 +1,21 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.wrath;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.util.AdditionalIntent;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -34,10 +26,6 @@ import static ruina.util.Wiz.*;
 public class Hermit extends AbstractMultiIntentMonster
 {
     public static final String ID = makeID(Hermit.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte HOLD_STILL = 0;
     private static final byte MAKE_WAY = 1;
@@ -47,7 +35,6 @@ public class Hermit extends AbstractMultiIntentMonster
     private final int BLOCK = calcAscensionTankiness(11);
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int DEBUFF = calcAscensionSpecial(1);
-    public ServantOfWrath wrath;
     public HermitStaff staff;
 
     public Hermit() {
@@ -55,13 +42,9 @@ public class Hermit extends AbstractMultiIntentMonster
     }
 
     public Hermit(final float x, final float y) {
-        super(NAME, ID, 160, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(ID, ID, 160, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Hermit/Spriter/Hermit.scml"));
-        this.type = EnemyType.ELITE;
-        numAdditionalMoves = 1;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(1);
         this.setHp(calcAscensionTankiness(190), calcAscensionTankiness(200));
 
         addMove(HOLD_STILL, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
@@ -80,7 +63,7 @@ public class Hermit extends AbstractMultiIntentMonster
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof ServantOfWrath) {
-                wrath = (ServantOfWrath)mo;
+                target = (ServantOfWrath)mo;
             }
             if (mo instanceof HermitStaff) {
                 staff = (HermitStaff) mo;
@@ -92,12 +75,7 @@ public class Hermit extends AbstractMultiIntentMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case HOLD_STILL: {
                 attack1Animation(target);
@@ -159,22 +137,6 @@ public class Hermit extends AbstractMultiIntentMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
-        atb(new RemoveAllBlockAction(this, this));
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (wrath.isDead || wrath.isDying) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, wrath);
-            }
-        }
         atb(new RollMoveAction(this));
     }
 
@@ -213,24 +175,11 @@ public class Hermit extends AbstractMultiIntentMonster
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, wrath, wrath.icon);
-            }
-        }
-    }
-
-    @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        wrath.onHermitDeath();
+        if (target instanceof ServantOfWrath) {
+            ((ServantOfWrath) target).onHermitDeath();
+        }
         for (AbstractMonster mo : monsterList()) {
             if (mo instanceof HermitStaff) {
                 atb(new SuicideAction(mo));

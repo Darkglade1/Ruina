@@ -1,12 +1,10 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.greed;
 
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -24,10 +22,6 @@ import static ruina.util.Wiz.*;
 public class KingOfGreed extends AbstractRuinaMonster
 {
     public static final String ID = makeID(KingOfGreed.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte ROAD_OF_KING = 0;
     private static final byte FIXATION = 1;
@@ -50,9 +44,8 @@ public class KingOfGreed extends AbstractRuinaMonster
     }
 
     public KingOfGreed(final float x, final float y) {
-        super(NAME, ID, 110, 10.0F, 0, 200.0f, 245.0f, null, x, y);
+        super(ID, ID, 110, 10.0F, 0, 200.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Greed/Spriter/Greed.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(115), calcAscensionTankiness(122));
         addMove(ROAD_OF_KING, Intent.ATTACK, calcAscensionDamage(26));
         addMove(FIXATION, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
@@ -80,18 +73,10 @@ public class KingOfGreed extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
         if (this.firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case ROAD_OF_KING: {
                 specialAnimation(adp());

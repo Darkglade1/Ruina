@@ -1,4 +1,4 @@
-package ruina.monsters.act2.Jester;
+package ruina.monsters.act2.jester;
 
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

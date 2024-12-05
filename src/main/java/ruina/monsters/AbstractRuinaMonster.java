@@ -1,6 +1,7 @@
 package ruina.monsters;
 
 import basemod.abstracts.CustomMonster;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -38,7 +39,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     private static final float ASCENSION_SPECIAL_BUFF_PERCENT = 1.5f;
     private static final float ASCENSION_TANK_NERF_PERCENT = 0.85f;
     public AbstractRuinaMonster target;
-    public String icon;
+    public Texture icon;
 
     // for stance particle effects
     protected float particleTimer;

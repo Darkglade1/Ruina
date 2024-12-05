@@ -1,4 +1,4 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.roadHome;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;

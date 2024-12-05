@@ -1,4 +1,4 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.ozma;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

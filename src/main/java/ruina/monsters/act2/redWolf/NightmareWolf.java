@@ -1,4 +1,4 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.redWolf;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;

@@ -1,4 +1,4 @@
-package ruina.monsters.act2.Jester;
+package ruina.monsters.act2.jester;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.Gdx;

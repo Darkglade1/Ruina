@@ -1,4 +1,4 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.greed;
 
 import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
@@ -23,8 +22,6 @@ import static ruina.util.Wiz.atb;
 public class BrilliantBliss extends AbstractRuinaMonster
 {
     public static final String ID = makeID(BrilliantBliss.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
 
     private static final byte NONE = 0;
 
@@ -40,9 +37,8 @@ public class BrilliantBliss extends AbstractRuinaMonster
     }
 
     public BrilliantBliss(final float x, final float y) {
-        super(NAME, ID, 20, -5.0F, 0, 130.0f, 125.0f, null, x, y);
+        super(ID, ID, 20, -5.0F, 0, 130.0f, 125.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Bliss/Spriter/Bliss.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(20));
     }
 

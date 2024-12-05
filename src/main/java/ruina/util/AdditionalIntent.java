@@ -162,8 +162,8 @@ public class AdditionalIntent {
         }
     }
 
-    public void setTargetTexture(String path, AbstractCreature target) {
-        targetTexture = TexLoader.getTexture(path);
+    public void setTargetTexture(Texture texture, AbstractCreature target) {
+        targetTexture = texture;
         this.target = target;
     }
 

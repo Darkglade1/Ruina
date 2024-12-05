@@ -1,4 +1,4 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.redWolf;
 
 import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
@@ -28,6 +28,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeMonsterPath;
@@ -80,7 +81,7 @@ public class LittleRed extends AbstractAllyMonster
         addMove(HOLLOW_POINT_SHELL, Intent.ATTACK, calcAscensionDamage(7), 2, true);
         addMove(BULLET_SHOWER, Intent.ATTACK, calcAscensionDamage(8), 3, true);
 
-        this.icon = makeUIPath("RedIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("RedIcon.png"));
     }
 
     @Override

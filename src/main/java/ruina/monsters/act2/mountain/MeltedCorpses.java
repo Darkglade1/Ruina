@@ -1,27 +1,24 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.mountain;
 
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.util.TexLoader;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.applyToTarget;
 import static ruina.util.Wiz.atb;
 
 public class MeltedCorpses extends AbstractRuinaMonster
 {
     public static final String ID = makeID(MeltedCorpses.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
 
     private static final byte NONE = 0;
     private final int HEAL = calcAscensionSpecial(30);
@@ -36,14 +33,20 @@ public class MeltedCorpses extends AbstractRuinaMonster
     }
 
     public MeltedCorpses(final float x, final float y) {
-        super(NAME, ID, 30, -5.0F, 0, 230.0f, 225.0f, null, x, y);
+        super(ID, ID, 30, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Corpse/Spriter/Corpse.scml"));
-        this.type = EnemyType.NORMAL;
         if (AbstractDungeon.ascensionLevel >= 8) {
             setHp(30);
         } else {
             setHp(40);
         }
+        this.icon = TexLoader.getTexture(makeUIPath("CorpseIcon.png"));
+    }
+
+    @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.ELITE;
     }
 
     @Override

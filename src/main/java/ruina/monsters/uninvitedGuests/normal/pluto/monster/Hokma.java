@@ -26,6 +26,7 @@ import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.pluto.hokmaCards.Silence;
 import ruina.monsters.uninvitedGuests.normal.pluto.hokmaCards.Time;
 import ruina.powers.AbstractLambdaPower;
+import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.*;
@@ -70,7 +71,7 @@ public class Hokma extends AbstractAllyCardMonster
         cardList.add(new Silence(this));
         cardList.add(new Time(this));
 
-        this.icon = makeUIPath("HokmaIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("HokmaIcon.png"));
     }
 
     @Override

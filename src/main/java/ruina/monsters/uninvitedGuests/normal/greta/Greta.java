@@ -343,7 +343,7 @@ public class Greta extends AbstractCardMonster
             if (additionalMove != null) {
                 if (i == 1) {
                     if (meat != null) {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, meat, FreshMeat.icon);
+                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, meat, meat.icon);
                     } else {
                         applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
                     }

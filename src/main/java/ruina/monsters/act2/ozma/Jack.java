@@ -1,4 +1,4 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.ozma;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;

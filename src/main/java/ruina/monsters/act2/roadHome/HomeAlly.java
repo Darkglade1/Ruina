@@ -1,4 +1,4 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.roadHome;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -46,7 +46,7 @@ public class HomeAlly extends AbstractAllyMonster
 
         addMove(NONE, Intent.NONE);
 
-        this.icon = makeUIPath("HomeIcon.png");
+        this.icon = TexLoader.getTexture(makeUIPath("HomeIcon.png"));
     }
 
     @Override

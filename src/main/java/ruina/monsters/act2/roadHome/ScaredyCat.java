@@ -1,4 +1,4 @@
-package ruina.monsters.act2;
+package ruina.monsters.act2.roadHome;
 
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAndDeckAction;
