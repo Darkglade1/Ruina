@@ -1,10 +1,7 @@
 package ruina.monsters.act3;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
@@ -18,10 +15,6 @@ import static ruina.util.Wiz.*;
 public class Bloodbath extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Bloodbath.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte PALE_HANDS = 0;
     private static final byte DEPRESSION = 1;
@@ -35,9 +28,8 @@ public class Bloodbath extends AbstractRuinaMonster
     }
 
     public Bloodbath(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 220.0f, 320.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 220.0f, 320.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Bloodbath/Spriter/Bloodbath.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(88), calcAscensionTankiness(94));
         addMove(PALE_HANDS, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
         addMove(DEPRESSION, Intent.DEFEND_DEBUFF);
@@ -45,13 +37,7 @@ public class Bloodbath extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case PALE_HANDS: {
                 attackAnimation(adp());

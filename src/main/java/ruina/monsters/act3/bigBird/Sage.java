@@ -4,14 +4,11 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -27,10 +24,6 @@ import static ruina.util.Wiz.*;
 public class Sage extends AbstractAllyMonster
 {
     public static final String ID = RuinaMod.makeID(Sage.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte RING = 0;
     private static final byte SMACK = 1;
@@ -38,8 +31,6 @@ public class Sage extends AbstractAllyMonster
     private final int RITUAL = 1;
 
     private static final int DAMAGE_CAP = 1;
-
-    public BigBird bigBird;
     private final int dialogNum;
 
     public static final String POWER_ID = RuinaMod.makeID("Unruffled");
@@ -52,7 +43,7 @@ public class Sage extends AbstractAllyMonster
     }
 
     public Sage(final float x, final float y, int dialogNum) {
-        super(NAME, ID, 500, -5.0F, 0, 200.0f, 220.0f, null, x, y);
+        super(ID, ID, 500, -5.0F, 0, 200.0f, 220.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Keeper/Spriter/Keeper.scml"));
         this.animation.setFlip(true, false);
         this.dialogNum = dialogNum;
@@ -66,11 +57,17 @@ public class Sage extends AbstractAllyMonster
     }
 
     @Override
+    protected void setUpMisc() {
+        super.setUpMisc();
+        this.type = EnemyType.ELITE;
+    }
+
+    @Override
     public void usePreBattleAction() {
         atb(new TalkAction(this, DIALOG[dialogNum]));
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof BigBird) {
-                bigBird = (BigBird)mo;
+                target = (BigBird)mo;
             }
         }
         applyToTarget(this, this, new Unruffled(this, DAMAGE_CAP));
@@ -80,24 +77,6 @@ public class Sage extends AbstractAllyMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
-        DamageInfo info;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
-
-        AbstractCreature target = bigBird;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
         switch (this.nextMove) {
             case RING: {
                 specialAnimation();
@@ -122,15 +101,6 @@ public class Sage extends AbstractAllyMonster
         } else {
             setMoveShortcut(SMACK);
         }
-    }
-
-    @Override
-    public void applyPowers() {
-        if (this.nextMove == -1 || bigBird.isDeadOrEscaped()) {
-            super.applyPowers();
-            return;
-        }
-        applyPowers(bigBird);
     }
 
     public void onBigBirdDeath() {

@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
@@ -28,10 +27,6 @@ import static ruina.util.Wiz.*;
 public class BurrowingHeaven extends AbstractRuinaMonster
 {
     public static final String ID = makeID(BurrowingHeaven.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte YOUR_OWN_HEAVEN = 0;
     private static final byte BLOODY_WINGS = 1;
@@ -52,9 +47,8 @@ public class BurrowingHeaven extends AbstractRuinaMonster
     }
 
     public BurrowingHeaven(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 280.0f, 245.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 280.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BurrowingHeaven/Spriter/BurrowingHeaven.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(140));
         addMove(YOUR_OWN_HEAVEN, Intent.ATTACK, calcAscensionDamage(21));
         addMove(BLOODY_WINGS, Intent.ATTACK_DEBUFF, calcAscensionDamage(16));
@@ -87,13 +81,7 @@ public class BurrowingHeaven extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case YOUR_OWN_HEAVEN: {
                 attackAnimation(adp());

@@ -6,12 +6,11 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.ForestKeeperLock;
 import ruina.monsters.AbstractRuinaMonster;
@@ -24,9 +23,6 @@ import static ruina.util.Wiz.*;
 
 public class Keeper extends AbstractRuinaMonster {
     public static final String ID = makeID(Keeper.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte CUCKOO = 0;
     private static final byte RING = 1;
@@ -40,22 +36,17 @@ public class Keeper extends AbstractRuinaMonster {
     public static final AbstractCard card = new ForestKeeperLock();
 
     public Keeper(final float x, final float y) {
-        super(NAME, ID, 40, -5.0F, 0, 200.0f, 220.0f, null, x, y);
+        super(ID, ID, 40, -5.0F, 0, 200.0f, 220.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Keeper/Spriter/Keeper.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(40), calcAscensionTankiness(48));
         addMove(CUCKOO, Intent.DEFEND);
-        addMove(RING, Intent.ATTACK, calcAscensionDamage(6), 2, true);
+        addMove(RING, Intent.ATTACK, calcAscensionDamage(6), 2);
         addMove(SMACK, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
     }
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-        if (info.base > -1) {
-            info.applyPowers(this, adp());
-        }
+        super.takeTurn();
         switch (nextMove) {
             case CUCKOO:
                 specialAnimation();
@@ -113,6 +104,7 @@ public class Keeper extends AbstractRuinaMonster {
 
     @Override
     public void usePreBattleAction() {
+        addPower(new MinionPower(this));
         applyToTarget(this, this, new AbstractLambdaPower(lock_pname, lock_pid, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
             public void updateDescription() {

@@ -37,6 +37,7 @@ public class Mountain extends AbstractMultiIntentMonster
 {
     public static final String ID = makeID(Mountain.class.getSimpleName());
 
+    public static final float MINION_X = -480.0F;
     private static final byte DEVOUR = 0;
     private static final byte BITE = 1;
     private static final byte HORRID_SCREECH = 2;
@@ -371,8 +372,7 @@ public class Mountain extends AbstractMultiIntentMonster
 
     private void Summon() {
         playSound("Spawn", 0.7f);
-        float xPosition = -480.0F;
-        target = new MeltedCorpses(xPosition, 0.0f);
+        target = new MeltedCorpses(MINION_X, 0.0f);
         atb(new SpawnMonsterAction(target, true));
         atb(new UsePreBattleActionAction(target));
     }

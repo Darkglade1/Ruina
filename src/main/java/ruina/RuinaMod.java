@@ -81,14 +81,17 @@ import ruina.monsters.act2.wrath.Hermit;
 import ruina.monsters.act2.wrath.HermitStaff;
 import ruina.monsters.act2.wrath.ServantOfWrath;
 import ruina.monsters.act3.*;
+import ruina.monsters.act3.SnowQueen.PrisonOfIce;
 import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.bigBird.Sage;
 import ruina.monsters.act3.blueStar.BlueStar;
+import ruina.monsters.act3.blueStar.Worshipper;
 import ruina.monsters.act3.heart.HeartOfAspiration;
 import ruina.monsters.act3.heart.LungsOfCraving;
 import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
+import ruina.monsters.act3.punishingBird.Keeper;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.silentGirl.SilentGirl;
@@ -845,8 +848,8 @@ public class RuinaMod implements
 
         asiyah.addBoss(FairyQueen.ID, "Fairy Queen", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new FairyMass(-450.0F, 0.0F),
-                        new FairyMass(-200.0F, 0.0F),
+                        new FairyMass(FairyQueen.MINION_X_1, 0.0F),
+                        new FairyMass(FairyQueen.MINION_X_2, 0.0F),
                         new FairyQueen(100.0F, 0.0F)
                 }), makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
         asiyah.addBoss(EncounterIDs.NOTHING_DER, "Those Who Hunt Monsters", () -> new MonsterGroup(
@@ -896,7 +899,7 @@ public class RuinaMod implements
         //Act 2
         BaseMod.addMonster(Mountain.ID, "Mountain_of_Bodies", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new MeltedCorpses(-480.0F, 0.0F),
+                        new MeltedCorpses(Mountain.MINION_X, 0.0F),
                         new Mountain(-100.0f, 0.0f),
                 }));
         BaseMod.addMonster(RoadHome.ID, "Road_Home", () -> new MonsterGroup(
@@ -908,7 +911,7 @@ public class RuinaMod implements
         BaseMod.addMonster(ServantOfWrath.ID, "Servant_of_Wrath", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new ServantOfWrath(-500.0F, 0.0F),
-                        new HermitStaff(-200.0f, 0.0f),
+                        new HermitStaff(Hermit.MINION_X, 0.0f),
                         new Hermit(100.0F, 0.0F),
                 }));
 
@@ -938,7 +941,7 @@ public class RuinaMod implements
                 }));
         BaseMod.addMonster(KnightOfDespair.ID, "KnightOfDespair", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new Sword(-360.0F, 0.0F, true),
+                        new Sword(KnightOfDespair.MINION_X, 0.0F, true),
                         new KnightOfDespair(0.0F, 0.0F),
                 }));
         BaseMod.addMonster(KingOfGreed.ID, "KingOfGreed", () -> new MonsterGroup(
@@ -998,10 +1001,24 @@ public class RuinaMod implements
                         new Sage(-350.0F, 0.0F, 1),
                         new BigBird(150.0F, 0.0F)
                 }));
-        BaseMod.addMonster(BlueStar.ID, (BaseMod.GetMonster) BlueStar::new);
-        BaseMod.addMonster(SnowQueen.ID, (BaseMod.GetMonster) SnowQueen::new);
+        BaseMod.addMonster(BlueStar.ID, "Blue Star", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Worshipper(BlueStar.MINION_X_1, 0.0F),
+                        new Worshipper(BlueStar.MINION_X_2, 0.0F),
+                        new BlueStar(150.0F, 0.0F)
+                }));
+        BaseMod.addMonster(SnowQueen.ID, "Snow Queen", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new PrisonOfIce(-400.0F, 0.0F),
+                        new SnowQueen(0.0F, 0.0F)
+                }));
 
-        BaseMod.addMonster(PunishingBird.ID, (BaseMod.GetMonster) PunishingBird::new);
+        BaseMod.addMonster(PunishingBird.ID, "Punshing Bird", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Keeper(-450.0F, 0.0F),
+                        new Keeper(-150.0F, 0.0F),
+                        new PunishingBird(100.0F, 0.0F),
+                }));
         BaseMod.addMonster(BurrowingHeaven.ID, (BaseMod.GetMonster) BurrowingHeaven::new);
         BaseMod.addMonster(PriceOfSilence.ID, "Price of Silence", () -> new MonsterGroup(
                 new AbstractMonster[]{

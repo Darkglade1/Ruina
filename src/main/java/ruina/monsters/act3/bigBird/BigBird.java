@@ -5,13 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.InstantKillAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -19,10 +16,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.cards.Dazzled;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
@@ -30,7 +25,6 @@ import ruina.powers.Enchanted;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
-import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
@@ -42,10 +36,6 @@ import static ruina.util.Wiz.*;
 public class BigBird extends AbstractMultiIntentMonster
 {
     public static final String ID = makeID(BigBird.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final Texture EXECUTE = TexLoader.getTexture(makeMonsterPath("BigBird/Salvation.png"));
 
@@ -73,13 +63,9 @@ public class BigBird extends AbstractMultiIntentMonster
     }
 
     public BigBird(final float x, final float y) {
-        super(NAME, ID, 400, -5.0F, 0, 300.0f, 355.0f, null, x, y);
+        super(ID, ID, 400, -5.0F, 0, 300.0f, 355.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BigBird/Spriter/BigBird.scml"));
-        this.type = EnemyType.ELITE;
-        numAdditionalMoves = 2;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(2);
         this.setHp(calcAscensionTankiness(400));
 
         addMove(SALVATION, Intent.ATTACK, calcAscensionDamage(17));
@@ -118,12 +104,7 @@ public class BigBird extends AbstractMultiIntentMonster
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeCustomTurn(move, target);
         switch (move.nextMove) {
             case SALVATION: {
                 if (target == adp()) {
@@ -213,45 +194,6 @@ public class BigBird extends AbstractMultiIntentMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
-        atb(new RemoveAllBlockAction(this, this));
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (i == 0) {
-                if (sage1.isDead || sage1.isDying) {
-                    takeCustomTurn(additionalMove, adp());
-                } else {
-                    takeCustomTurn(additionalMove, sage1);
-                }
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        additionalIntent.usePrimaryIntentsColor = true;
-                        this.isDone = true;
-                    }
-                });
-            }
-            if (i == 1) {
-                if (sage2.isDead || sage2.isDying) {
-                    takeCustomTurn(additionalMove, adp());
-                } else {
-                    takeCustomTurn(additionalMove, sage2);
-                }
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        additionalIntent.usePrimaryIntentsColor = true;
-                        this.isDone = true;
-                    }
-                });
-            }
-        }
         atb(new RollMoveAction(this));
     }
 
@@ -305,25 +247,15 @@ public class BigBird extends AbstractMultiIntentMonster
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
+    public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
+        if (index == 0) {
+            if (additionalMove.nextMove == DAZZLE_PLAYER) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+            } else {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage1, sage1.icon);
             }
-            if (additionalMove != null) {
-                if (i == 0) {
-                    if (additionalMove.nextMove == DAZZLE_PLAYER) {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-                    } else {
-                        applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage1, sage1.icon);
-                    }
-                } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage2, sage2.icon);
-                }
-            }
+        } else {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage2, sage2.icon);
         }
     }
 

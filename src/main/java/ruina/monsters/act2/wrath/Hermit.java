@@ -27,6 +27,7 @@ public class Hermit extends AbstractMultiIntentMonster
 {
     public static final String ID = makeID(Hermit.class.getSimpleName());
 
+    public static final float MINION_X = -200.0F;
     private static final byte HOLD_STILL = 0;
     private static final byte MAKE_WAY = 1;
     private static final byte CRACKLE = 2;
@@ -191,8 +192,7 @@ public class Hermit extends AbstractMultiIntentMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                float xPosition = -200.0F;
-                staff = new HermitStaff(xPosition, 0.0f);
+                staff = new HermitStaff(MINION_X, 0.0f);
                 att(new UsePreBattleActionAction(staff));
                 att(new SpawnMonsterAction(staff, true));
                 this.isDone = true;

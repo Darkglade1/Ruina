@@ -14,9 +14,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.DarkSmokePuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokingEmberEffect;
@@ -37,9 +38,6 @@ import static ruina.util.Wiz.*;
 public class Worshipper extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Worshipper.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     public static final String YEET = RuinaMod.makeMonsterPath("Worshipper/Spriter/Suicide.png");
     private static final Texture YEET_TEXTURE = TexLoader.getTexture(YEET);
@@ -65,20 +63,14 @@ public class Worshipper extends AbstractRuinaMonster
     private final int meetAgainThreshold;
     private boolean yeeting = false;
 
-    public Worshipper() {
-        this(0.0f, 0.0f, null);
-    }
-
-    public Worshipper(final float x, final float y, BlueStar star) {
-        super(NAME, ID, 40, -5.0F, 0, 220.0f, 255.0f, null, x, y);
+    public Worshipper(final float x, final float y) {
+        super(ID, ID, 40, -5.0F, 0, 220.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Worshipper/Spriter/Worshipper.scml"));
-        this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(38), calcAscensionTankiness(44));
         addMove(FOR_THE_STAR, Intent.ATTACK, calcAscensionDamage(13));
         addMove(EVERLASTING_FAITH, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
         addMove(HEAR_STAR, Intent.ATTACK, calcAscensionDamage(18));
         addMove(MEET_AGAIN, Intent.UNKNOWN);
-        this.star = star;
         meetAgainThreshold = (int)(this.maxHealth * MEET_AGAIN_HP_THRESHOLD);
     }
 
@@ -90,6 +82,12 @@ public class Worshipper extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof BlueStar) {
+                this.star = (BlueStar) mo;
+            }
+        }
+        addPower(new MinionPower(this));
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, MARTYR_DAMAGE) {
             @Override
             public void onDeath() {
@@ -122,17 +120,7 @@ public class Worshipper extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
-        if (this.firstMove) {
-            firstMove = false;
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case FOR_THE_STAR: {
                 attackAnimation(adp());
@@ -154,7 +142,6 @@ public class Worshipper extends AbstractRuinaMonster
                 break;
             }
             case MEET_AGAIN: {
-                //specialAnimation();
                 triggerMartyr = false;
                 atb(new AbstractGameAction() {
                     @Override
@@ -223,10 +210,6 @@ public class Worshipper extends AbstractRuinaMonster
 
     private void bigAttackAnimation(AbstractCreature enemy) {
         animationAction("BigAttack", "WorshipperAttack", enemy, this);
-    }
-
-    private void specialAnimation() {
-        animationAction("Suicide", "WorshipperSuicide", this);
     }
 
     private void YeetEffect() {

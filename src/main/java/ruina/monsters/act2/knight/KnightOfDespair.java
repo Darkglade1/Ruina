@@ -27,6 +27,8 @@ public class KnightOfDespair extends AbstractRuinaMonster
 {
     public static final String ID = makeID(KnightOfDespair.class.getSimpleName());
 
+    public static final float MINION_X = -360.0F;
+
     private static final byte DESPAIR = 0;
 
     private static final int DESPAIR_LOSS = 40;
@@ -97,8 +99,7 @@ public class KnightOfDespair extends AbstractRuinaMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                float xPosition = -360.0F;
-                sword = new Sword(xPosition, 0.0f, false);
+                sword = new Sword(MINION_X, 0.0f, false);
                 att(new UsePreBattleActionAction(sword));
                 att(new SpawnMonsterAction(sword, true));
                 this.isDone = true;

@@ -10,10 +10,6 @@ import static ruina.util.Wiz.atb;
 
 public class DummyHammer extends AbstractRuinaMonster
 {
-    public DummyHammer() {
-        this(0.0f, 0.0f);
-    }
-
     public DummyHammer(final float x, final float y) {
         super("", "", 70, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Hammer/Spriter/Hammer.scml"));

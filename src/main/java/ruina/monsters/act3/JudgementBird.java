@@ -6,11 +6,9 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
@@ -32,10 +30,6 @@ import static ruina.util.Wiz.*;
 public class JudgementBird extends AbstractRuinaMonster
 {
     public static final String ID = makeID(JudgementBird.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte STARE = 0;
     private static final byte JUDGEMENT = 1;
@@ -62,9 +56,8 @@ public class JudgementBird extends AbstractRuinaMonster
     }
 
     public JudgementBird(final float x, final float y) {
-        super(NAME, ID, 280, 0.0F, 0, 280.0f, 360.0f, null, x, y);
+        super(ID, ID, 280, 0.0F, 0, 280.0f, 360.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("JudgementBird/Spriter/JudgementBird.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(280));
         addMove(STARE, Intent.STRONG_DEBUFF);
         addMove(JUDGEMENT, Intent.ATTACK, calcAscensionDamage(22));
@@ -99,13 +92,7 @@ public class JudgementBird extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case STARE: {
                 specialAnimation(adp());

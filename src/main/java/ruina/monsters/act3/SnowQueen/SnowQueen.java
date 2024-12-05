@@ -7,21 +7,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.stances.CalmStance;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.UsePreBattleActionAction;
 import ruina.cardmods.FrozenMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
@@ -38,10 +34,6 @@ import static ruina.util.Wiz.*;
 public class SnowQueen extends AbstractRuinaMonster
 {
     public static final String ID = makeID(SnowQueen.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte BLIZZARD = 0;
     private static final byte FRIGID_GAZE = 1;
@@ -59,21 +51,16 @@ public class SnowQueen extends AbstractRuinaMonster
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
-    private PrisonOfIce prison;
     public boolean canBlizzard = true;
     private int frozenThroneCounter = 0;
-    private float particleTimer;
-    private float particleTimer2;
 
     public SnowQueen() {
         this(0.0f, 0.0f);
     }
 
     public SnowQueen(final float x, final float y) {
-        super(NAME, ID, 260, 0.0F, 0, 280.0f, 325.0f, null, x, y);
+        super(ID, ID, 260, 0.0F, 0, 280.0f, 325.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SnowQueen/Spriter/SnowQueen.scml"));
-        this.type = EnemyType.ELITE;
         setHp(calcAscensionTankiness(260));
         addMove(BLIZZARD, Intent.STRONG_DEBUFF);
         addMove(FRIGID_GAZE, Intent.ATTACK_DEFEND, calcAscensionDamage(20));
@@ -116,18 +103,11 @@ public class SnowQueen extends AbstractRuinaMonster
             }
         });
         applyToTarget(this, this, new CenterOfAttention(this));
-        Summon();
     }
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case BLIZZARD: {
                 specialAnimation(adp());
@@ -233,13 +213,6 @@ public class SnowQueen extends AbstractRuinaMonster
                 atb(new SuicideAction(mo));
             }
         }
-    }
-
-    private void Summon() {
-        float xPosition = -400.0F;
-        prison = new PrisonOfIce(xPosition, 0.0f, this);
-        atb(new SpawnMonsterAction(prison, true));
-        atb(new UsePreBattleActionAction(prison));
     }
 
     private void attack1Animation(AbstractCreature enemy) {

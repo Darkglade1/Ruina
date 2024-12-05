@@ -31,6 +31,8 @@ public class FairyQueen extends AbstractRuinaMonster
 {
     public static final String ID = makeID(FairyQueen.class.getSimpleName());
 
+    public static final float MINION_X_1 = -450.0F;
+    public static final float MINION_X_2 = -200.0F;
     private static final byte QUEENS_DECREE = 0;
     private static final byte PREDATION = 1;
     private static final byte RAVENOUSNESS = 2;
@@ -65,6 +67,13 @@ public class FairyQueen extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
+        int i = 0;
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof FairyMass) {
+                minions[i] = mo;
+                i++;
+            }
+        }
         CustomDungeon.playTempMusicInstantly("Angela2");
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, SELF_DEBUFF) {
 
@@ -136,15 +145,13 @@ public class FairyQueen extends AbstractRuinaMonster
     }
 
     public void Summon() {
-        float xPos_Farthest_L = -450.0F;
-        float xPos_Middle_L = -200F;
         for (int i = 0; i < minions.length; i++) {
             if (minions[i] == null) {
                 AbstractMonster minion;
                 if (i == 0) {
-                    minion = new FairyMass(xPos_Farthest_L, 0.0f);
+                    minion = new FairyMass(MINION_X_1, 0.0f);
                 } else {
-                    minion = new FairyMass(xPos_Middle_L, 0.0f);
+                    minion = new FairyMass(MINION_X_2, 0.0f);
                 }
                 atb(new SpawnMonsterAction(minion, true));
                 atb(new UsePreBattleActionAction(minion));

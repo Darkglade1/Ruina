@@ -1,11 +1,8 @@
 package ruina.monsters.act3;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
@@ -20,10 +17,6 @@ import static ruina.util.Wiz.*;
 public class EyeballChick extends AbstractRuinaMonster
 {
     public static final String ID = makeID(EyeballChick.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte STARE = 0;
     private static final byte PIERCE = 1;
@@ -36,9 +29,8 @@ public class EyeballChick extends AbstractRuinaMonster
     }
 
     public EyeballChick(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0.0f, 200.0f, 220.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0.0f, 200.0f, 220.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("EyeballChick/Spriter/EyeballChick.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(40), calcAscensionTankiness(46));
         addMove(STARE, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
         addMove(PIERCE, Intent.ATTACK_BUFF, calcAscensionDamage(7));
@@ -46,13 +38,7 @@ public class EyeballChick extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case STARE: {
                 attackAnimation(adp());

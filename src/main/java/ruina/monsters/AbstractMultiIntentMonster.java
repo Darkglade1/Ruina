@@ -70,7 +70,13 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
             AdditionalIntent additionalIntent = additionalIntents.get(i);
             if (!this.halfDead) {
-                atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
+                String moveName;
+                if (additionalIntent.enemyCard != null) {
+                    moveName = additionalIntent.enemyCard.name;
+                } else {
+                    moveName = MOVES[additionalMove.nextMove];
+                }
+                atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, moveName)));
                 atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
             }
             if (additionalIntent.targetTexture == null) {
@@ -311,7 +317,11 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     }
 
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
-        applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+        if (target != null) {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+        } else {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+        }
     }
 
     public void setNumAdditionalMoves(int num) {

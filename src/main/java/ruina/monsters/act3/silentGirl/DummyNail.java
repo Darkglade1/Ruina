@@ -8,10 +8,6 @@ import static ruina.RuinaMod.makeMonsterPath;
 
 public class DummyNail extends AbstractRuinaMonster
 {
-    public DummyNail() {
-        this(0.0f, 0.0f);
-    }
-
     public DummyNail(final float x, final float y) {
         super("", "", 70, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Nail/Spriter/Nail.scml"));

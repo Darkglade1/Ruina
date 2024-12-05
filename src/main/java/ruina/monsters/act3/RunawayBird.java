@@ -1,12 +1,9 @@
 package ruina.monsters.act3;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 
@@ -19,10 +16,6 @@ import static ruina.util.Wiz.*;
 public class RunawayBird extends AbstractRuinaMonster
 {
     public static final String ID = makeID(RunawayBird.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte SWEEP = 0;
     private static final byte SHRIEK = 1;
@@ -34,9 +27,8 @@ public class RunawayBird extends AbstractRuinaMonster
     }
 
     public RunawayBird(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0.0f, 200.0f, 220.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0.0f, 200.0f, 220.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("RunawayBird/Spriter/RunawayBird.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(36), calcAscensionTankiness(42));
         addMove(SWEEP, Intent.ATTACK, calcAscensionDamage(10));
         addMove(SHRIEK, Intent.DEBUFF);
@@ -44,13 +36,7 @@ public class RunawayBird extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case SWEEP: {
                 sweepAnimation(adp());

@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -33,10 +32,6 @@ import static ruina.util.Wiz.*;
 public class SilentGirl extends AbstractRuinaMonster
 {
     public static final String ID = makeID(SilentGirl.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte DIGGING_NAIL = 0;
     private static final byte SLAM = 1;
@@ -52,12 +47,11 @@ public class SilentGirl extends AbstractRuinaMonster
     private final int BLOCK = calcAscensionTankiness(12);
     private final int PARALYSIS = calcAscensionSpecial(2);
     private final int CURSE_AMT = 1;
-    private final float HP_THRESHOLD = 0.5f;
     private int enraged = 1; //1 is false, 2 is true
     private final int maxHP = calcAscensionTankiness(240);
 
-    private DummyHammer hammer = new DummyHammer(100.0f, 0.0f);
-    private DummyNail nail = new DummyNail(-300.0f, 0.0f);
+    private final DummyHammer hammer = new DummyHammer(100.0f, 0.0f);
+    private final DummyNail nail = new DummyNail(-300.0f, 0.0f);
     AbstractCard curse = new Guilt();
 
     public static final String POWER_ID = makeID("Remorse");
@@ -70,15 +64,14 @@ public class SilentGirl extends AbstractRuinaMonster
     }
 
     public SilentGirl(final float x, final float y) {
-        super(NAME, ID, 480, 0.0F, 0, 250.0f, 290.0f, null, x, y);
+        super(ID, ID, 480, 0.0F, 0, 250.0f, 290.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SilentGirl/Spriter/SilentGirl.scml"));
-        this.type = EnemyType.BOSS;
         setHp(maxHP);
         addMove(DIGGING_NAIL, Intent.ATTACK_DEBUFF, calcAscensionDamage(16));
         addMove(SLAM, Intent.ATTACK_DEFEND, calcAscensionDamage(20));
         addMove(A_CRACKED_HEART, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
         addMove(COLLAPSING_HEART, Intent.ATTACK, calcAscensionDamage(22));
-        addMove(BROKEN, Intent.ATTACK, calcAscensionDamage(12), 2, true);
+        addMove(BROKEN, Intent.ATTACK, calcAscensionDamage(12), 2);
         addMove(LEER, Intent.DEBUFF);
         addMove(SUPPRESS, Intent.UNKNOWN);
 
@@ -113,13 +106,7 @@ public class SilentGirl extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case DIGGING_NAIL: {
                 nail.attackAnimation(adp());

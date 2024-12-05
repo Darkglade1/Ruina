@@ -1,10 +1,7 @@
 package ruina.monsters.act3.priceOfSilence;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
@@ -17,10 +14,6 @@ import static ruina.util.Wiz.*;
 public class RemnantOfTime extends AbstractRuinaMonster
 {
     public static final String ID = makeID(RemnantOfTime.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte BACKLASH_OF_TIME = 0;
     private static final byte TORRENT_OF_HOURS = 1;
@@ -33,23 +26,16 @@ public class RemnantOfTime extends AbstractRuinaMonster
     }
 
     public RemnantOfTime(final float x, final float y) {
-        super(NAME, ID, 140, 0.0F, 0, 280.0f, 225.0f, null, x, y);
+        super(ID, ID, 140, 0.0F, 0, 280.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Remnant/Spriter/Remnant.scml"));
-        this.type = EnemyType.NORMAL;
         setHp(calcAscensionTankiness(80), calcAscensionTankiness(86));
-        addMove(BACKLASH_OF_TIME, Intent.ATTACK, calcAscensionDamage(7), 2, true);
+        addMove(BACKLASH_OF_TIME, Intent.ATTACK, calcAscensionDamage(7), 2);
         addMove(TORRENT_OF_HOURS, Intent.DEFEND_BUFF);
     }
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, adp());
-        }
-
+        super.takeTurn();
         switch (this.nextMove) {
             case BACKLASH_OF_TIME: {
                 for (int i = 0; i < multiplier; i++) {

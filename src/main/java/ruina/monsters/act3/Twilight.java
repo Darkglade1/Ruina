@@ -23,7 +23,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -47,9 +46,6 @@ import static ruina.util.Wiz.*;
 public class Twilight extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Twilight.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final Texture SHOCKWAVE = TexLoader.getTexture(makeMonsterPath("Twilight/Shockwave.png"));
 
@@ -96,7 +92,7 @@ public class Twilight extends AbstractRuinaMonster
     private final AbstractAnimation longEgg;
     private BirdEgg currentEgg = BirdEgg.BIG_EGG;
     AbstractPower currentEggPower;
-    private AbstractCard status = new Dazzled();
+    private final AbstractCard status = new Dazzled();
 
     private static final float HP_THRESHOLD_PERCENT = 0.25f;
     private final int dmgThreshold;
@@ -111,7 +107,7 @@ public class Twilight extends AbstractRuinaMonster
     }
 
     public Twilight(final float x, final float y) {
-        super(NAME, ID, 550, -5.0F, 0, 330.0f, 305.0f, null, x, y);
+        super(ID, ID, 550, -5.0F, 0, 330.0f, 305.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Twilight/Spriter/Twilight.scml"));
         this.bird = new BetterSpriterAnimation(makeMonsterPath("Twilight/Bird/Bird.scml"));
 
@@ -122,7 +118,6 @@ public class Twilight extends AbstractRuinaMonster
         this.longEgg = new BetterSpriterAnimation(makeMonsterPath("Twilight/Eggs/Eggs.scml"));
         ((BetterSpriterAnimation)longEgg).myPlayer.setAnimation("LongEgg");
 
-        this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(550));
         dmgThreshold = (int)(this.maxHealth * HP_THRESHOLD_PERCENT);
 
@@ -130,7 +125,7 @@ public class Twilight extends AbstractRuinaMonster
         addMove(SURVEILLANCE, Intent.ATTACK_DEBUFF, calcAscensionDamage(16));
         addMove(TORN_MOUTH, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
         addMove(TILTED_SCALE, Intent.DEFEND_DEBUFF);
-        addMove(TALONS, Intent.ATTACK, calcAscensionDamage(13), 2, true);
+        addMove(TALONS, Intent.ATTACK, calcAscensionDamage(13), 2);
         addMove(BRILLIANT_EYES, Intent.DEBUFF);
 
         if (AbstractDungeon.ascensionLevel >= 19) {
@@ -275,11 +270,7 @@ public class Twilight extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-        if (info.base > -1) {
-            info.applyPowers(this, adp());
-        }
+        super.takeTurn();
         switch (nextMove) {
             case PEACE_FOR_ALL: {
                 commandAnimation();
