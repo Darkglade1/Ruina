@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.FreeAttackPower;
 import ruina.cards.EGO.AbstractEgoCard;
-import ruina.powers.HornetPower;
+import ruina.powers.act1.HornetPower;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.applyToTarget;

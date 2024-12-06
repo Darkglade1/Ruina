@@ -39,6 +39,9 @@ import ruina.monsters.theHead.baralCards.*;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.patches.RenderHandPatch;
 import ruina.powers.*;
+import ruina.powers.act5.AClaw;
+import ruina.powers.act5.PlayerBlackSilence;
+import ruina.powers.act5.SingularityT;
 import ruina.util.TexLoader;
 
 import java.util.ArrayList;

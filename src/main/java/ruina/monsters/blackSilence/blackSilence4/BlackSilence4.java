@@ -57,7 +57,7 @@ import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei1;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei2;
 import ruina.powers.Paralysis;
-import ruina.powers.Scars;
+import ruina.powers.act5.Scars;
 import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.FlexibleWrathParticleEffect;
 

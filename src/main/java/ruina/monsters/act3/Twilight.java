@@ -34,7 +34,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.cards.Dazzled;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.LongEgg;
+import ruina.powers.act3.LongEgg;
 import ruina.powers.Paralysis;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;

@@ -14,9 +14,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
-import ruina.powers.PlayerBlackSilence;
+import ruina.powers.act5.PlayerBlackSilence;
 
-import static ruina.powers.PlayerBlackSilence.THRESHOLD;
+import static ruina.powers.act5.PlayerBlackSilence.THRESHOLD;
 import static ruina.util.Wiz.*;
 
 public class BlackSilenceRenderMod extends AbstractCardModifier {

@@ -32,6 +32,6 @@ public class ContractOfMight extends AbstractRuinaCard {
 
     public void onChoseThisOption(){
         att(new ApplyPowerAction(adp(), adp(), new StrengthPower(adp(), magicNumber)));
-        att(new ApplyPowerAction(adp(), adp(), new ruina.powers.ContractOfMight(adp(), secondMagicNumber)));
+        att(new ApplyPowerAction(adp(), adp(), new ruina.powers.act4.ContractOfMight(adp(), secondMagicNumber)));
     }
 }

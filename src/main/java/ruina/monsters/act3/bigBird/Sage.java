@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.RitualPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.powers.Unruffled;
+import ruina.powers.act3.Unruffled;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 

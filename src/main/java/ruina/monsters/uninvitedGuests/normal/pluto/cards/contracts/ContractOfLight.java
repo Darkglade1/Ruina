@@ -26,6 +26,6 @@ public class ContractOfLight extends AbstractRuinaCard {
     public void upp() { }
 
     public void onChoseThisOption(){
-        att(new ApplyPowerAction(adp(), adp(), new ruina.powers.ContractOfLight(adp())));
+        att(new ApplyPowerAction(adp(), adp(), new ruina.powers.act4.ContractOfLight(adp())));
     }
 }

@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.WingsOfGrace;
+import ruina.powers.act3.WingsOfGrace;
 
 import java.util.ArrayList;
 

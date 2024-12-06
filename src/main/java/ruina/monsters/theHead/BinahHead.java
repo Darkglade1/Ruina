@@ -11,7 +11,7 @@ import ruina.monsters.uninvitedGuests.normal.elena.Binah;
 import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Chain;
 import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Fairy;
 import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Pillar;
-import ruina.powers.SingularityF;
+import ruina.powers.act5.SingularityF;
 import ruina.vfx.WaitEffect;
 
 import static ruina.util.Wiz.applyToTarget;

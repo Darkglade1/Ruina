@@ -7,8 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import ruina.events.FullScreenImgEvent;
-import ruina.events.act3.Realization;
-import ruina.powers.PlayerBlackSilence;
+import ruina.powers.act5.PlayerBlackSilence;
 
 import java.util.Iterator;
 

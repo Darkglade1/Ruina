@@ -23,7 +23,7 @@ public class FrostSplinter extends AbstractEgoCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new ApplyPowerAction(p, p, new ruina.powers.FrostSplinter(p, magicNumber)));
+        atb(new ApplyPowerAction(p, p, new ruina.powers.act3.FrostSplinter(p, magicNumber)));
     }
 
     @Override

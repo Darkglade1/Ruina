@@ -1,14 +1,13 @@
 package ruina.patches;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import ruina.events.act3.Realization;
-import ruina.powers.PlayerBlackSilence;
+import ruina.powers.act5.PlayerBlackSilence;
 
 import java.util.Iterator;
 

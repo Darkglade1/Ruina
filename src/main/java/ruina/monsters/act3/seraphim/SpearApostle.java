@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Bleed;
-import ruina.powers.WingsOfGrace;
+import ruina.powers.act3.WingsOfGrace;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;

@@ -21,7 +21,6 @@ import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.act3.bigBird.BigBird;
-import ruina.powers.Enchanted;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 

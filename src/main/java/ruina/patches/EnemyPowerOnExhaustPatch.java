@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CtBehavior;
 import ruina.monsters.act1.Orchestra;
-import ruina.powers.Emotion;
+import ruina.powers.act4.Emotion;
 
 @SpirePatch(
         clz = CardGroup.class,

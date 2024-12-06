@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Gift;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.LonelyIsSad;
+import ruina.powers.act1.LonelyIsSad;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;

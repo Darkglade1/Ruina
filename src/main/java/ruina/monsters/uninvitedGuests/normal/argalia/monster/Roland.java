@@ -15,7 +15,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.*;
-import ruina.powers.BlackSilence;
+import ruina.powers.act4.BlackSilence;
 import ruina.powers.Bleed;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;

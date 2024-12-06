@@ -19,7 +19,7 @@ import ruina.monsters.AbstractDeckMonster;
 import ruina.monsters.eventboss.redMist.cards.*;
 import ruina.powers.Bleed;
 import ruina.powers.NextTurnPowerPower;
-import ruina.powers.RedMistPower;
+import ruina.powers.act3.RedMistPower;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;

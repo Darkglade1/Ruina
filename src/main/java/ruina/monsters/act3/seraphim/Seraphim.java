@@ -24,16 +24,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.powers.WingsOfGrace;
+import ruina.powers.act3.WingsOfGrace;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 

@@ -17,7 +17,7 @@ import ruina.monsters.eventboss.yan.cards.*;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
 import ruina.powers.Paralysis;
-import ruina.powers.Unkillable;
+import ruina.powers.act3.Unkillable;
 
 import java.util.ArrayList;
 

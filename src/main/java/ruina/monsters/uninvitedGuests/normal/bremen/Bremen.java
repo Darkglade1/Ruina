@@ -20,7 +20,7 @@ import ruina.cards.Melody;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.bremen.bremenCards.*;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.MelodyPower;
+import ruina.powers.act4.MelodyPower;
 import ruina.powers.Paralysis;
 import ruina.util.AdditionalIntent;
 

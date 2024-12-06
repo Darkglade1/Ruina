@@ -6,9 +6,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.cards.EGO.AbstractEgoCard;
-import ruina.powers.ParadiseLostPower;
+import ruina.powers.act3.ParadiseLostPower;
 
-import static com.megacrit.cardcrawl.core.CardCrawlGame.languagePack;
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;

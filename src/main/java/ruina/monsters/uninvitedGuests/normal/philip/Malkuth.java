@@ -26,7 +26,7 @@ import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.uninvitedGuests.normal.philip.malkuthCards.*;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.Emotion;
+import ruina.powers.act4.Emotion;
 import ruina.util.TexLoader;
 import ruina.vfx.ExplosionEffect;
 import ruina.vfx.VFXActionButItCanFizzle;

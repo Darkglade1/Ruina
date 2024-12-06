@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.Oblivion;
+import ruina.powers.act2.Oblivion;
 import ruina.powers.Paralysis;
 
 import java.util.ArrayList;

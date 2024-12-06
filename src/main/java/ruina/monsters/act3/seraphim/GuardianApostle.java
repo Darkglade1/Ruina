@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.Unkillable;
-import ruina.powers.WingsOfGrace;
+import ruina.powers.act3.Unkillable;
+import ruina.powers.act3.WingsOfGrace;
 
 import java.util.ArrayList;
 

@@ -21,7 +21,7 @@ import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.greta.hodCards.*;
-import ruina.powers.PurpleTearStance;
+import ruina.powers.act4.PurpleTearStance;
 import ruina.util.AllyMove;
 import ruina.util.TexLoader;
 import ruina.vfx.FlexibleDivinityParticleEffect;

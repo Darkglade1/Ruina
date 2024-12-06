@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
-import ruina.powers.GeburaProwess;
+import ruina.powers.act5.GeburaProwess;
 import ruina.vfx.WaitEffect;
 
 import static ruina.util.Wiz.applyToTarget;

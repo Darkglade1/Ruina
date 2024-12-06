@@ -16,7 +16,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.cards.Gift;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.SurprisePresent;
+import ruina.powers.act1.SurprisePresent;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;

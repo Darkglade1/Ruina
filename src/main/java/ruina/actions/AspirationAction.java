@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import ruina.powers.act3.Aspiration;
 
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.att;
@@ -26,7 +27,7 @@ public class AspirationAction extends AbstractGameAction {
             if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
                 att(new HealAction(adp(), adp(), difference));
             } else {
-                att(new ApplyPowerAction(adp(), adp(), new ruina.powers.Aspiration(adp(), difference)));
+                att(new ApplyPowerAction(adp(), adp(), new Aspiration(adp(), difference)));
             }
         }
 

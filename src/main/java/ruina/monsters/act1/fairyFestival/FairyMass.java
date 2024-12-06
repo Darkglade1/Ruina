@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Bleed;
-import ruina.powers.Meal;
+import ruina.powers.act1.Meal;
 
 import java.util.ArrayList;
 

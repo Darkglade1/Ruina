@@ -20,8 +20,8 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence3.angelicaCards.*;
-import ruina.powers.SoulLink;
-import ruina.powers.WhiteNoise;
+import ruina.powers.act5.SoulLink;
+import ruina.powers.act5.WhiteNoise;
 import ruina.vfx.FlexibleWrathParticleEffect;
 
 import java.util.ArrayList;
@@ -239,7 +239,7 @@ public class Angelica extends AbstractCardMonster {
 
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power instanceof StrengthPower) && !(power instanceof GainStrengthPower) && !(power instanceof ruina.powers.WhiteNoise) && !(power instanceof SoulLink)) {
+                if (!(power instanceof StrengthPower) && !(power instanceof GainStrengthPower) && !(power instanceof WhiteNoise) && !(power instanceof SoulLink)) {
                     powersToRemove.add(power);
                 }
             }

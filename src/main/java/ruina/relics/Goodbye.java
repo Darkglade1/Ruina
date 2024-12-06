@@ -1,6 +1,6 @@
 package ruina.relics;
 
-import ruina.powers.GoodbyePower;
+import ruina.powers.act2.GoodbyePower;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;

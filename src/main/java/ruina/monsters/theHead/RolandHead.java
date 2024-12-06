@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.BlackSilence;
+import ruina.powers.act4.BlackSilence;
 import ruina.vfx.WaitEffect;
 
 import static ruina.RuinaMod.makeID;

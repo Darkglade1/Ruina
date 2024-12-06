@@ -25,7 +25,7 @@ import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractDeckMonster;
 import ruina.monsters.uninvitedGuests.normal.argalia.cards.*;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.BlueReverberation;
+import ruina.powers.act4.BlueReverberation;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.NextTurnPowerPower;
 import ruina.util.AdditionalIntent;

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.FrozenEye;
-import ruina.powers.Wisdom;
+import ruina.powers.act2.Wisdom;
 
 public class WisdomAction extends AbstractGameAction {
     public WisdomAction() {

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.cards.EGO.AbstractEgoCard;
-import ruina.powers.CobaltScarPower;
+import ruina.powers.act2.CobaltScarPower;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;

@@ -34,6 +34,7 @@ import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.zenaCards.*;
 import ruina.powers.*;
+import ruina.powers.act5.*;
 import ruina.util.TexLoader;
 import ruina.vfx.CustomCeilingDust;
 

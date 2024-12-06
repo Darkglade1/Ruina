@@ -25,7 +25,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.MeetAgain;
+import ruina.powers.act3.MeetAgain;
 import ruina.powers.Paralysis;
 import ruina.util.TexLoader;
 

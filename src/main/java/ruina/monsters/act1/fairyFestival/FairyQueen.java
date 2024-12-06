@@ -21,7 +21,7 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.CenterOfAttention;
-import ruina.powers.Meal;
+import ruina.powers.act1.Meal;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;

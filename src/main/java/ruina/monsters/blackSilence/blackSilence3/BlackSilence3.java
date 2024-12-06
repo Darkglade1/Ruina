@@ -22,7 +22,7 @@ import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence3.rolandCards.*;
 import ruina.powers.Paralysis;
-import ruina.powers.SoulLink;
+import ruina.powers.act5.SoulLink;
 
 import java.util.ArrayList;
 
@@ -91,7 +91,7 @@ public class BlackSilence3 extends AbstractCardMonster {
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland3");
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
-        applyToTarget(this, this, new ruina.powers.BlackSilence3(this));
+        applyToTarget(this, this, new ruina.powers.act5.BlackSilence3(this));
         applyToTarget(this, this, new SoulLink(this, REVIVE_PERCENT));
         AbstractDungeon.player.drawX += 480.0F * Settings.scale;
         AbstractDungeon.player.dialogX += 480.0F * Settings.scale;
@@ -247,7 +247,7 @@ public class BlackSilence3 extends AbstractCardMonster {
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power instanceof StrengthPower) && !(power instanceof GainStrengthPower) && !(power instanceof ruina.powers.BlackSilence3) && !(power instanceof SoulLink)) {
+                if (!(power instanceof StrengthPower) && !(power instanceof GainStrengthPower) && !(power instanceof ruina.powers.act5.BlackSilence3) && !(power instanceof SoulLink)) {
                     powersToRemove.add(power);
                 }
             }

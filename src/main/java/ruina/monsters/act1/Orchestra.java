@@ -21,7 +21,7 @@ import ruina.RuinaMod;
 import ruina.cards.performance.*;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.FerventAdoration;
+import ruina.powers.act1.FerventAdoration;
 import ruina.util.TexLoader;
 import ruina.vfx.OrchestraCurtainEffect;
 import ruina.vfx.OrchestraMusicEffect;

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AClaw;
+import ruina.powers.act5.AClaw;
 import ruina.powers.AbstractUnremovablePower;
 
 @SpirePatch(clz = RemoveSpecificPowerAction.class, method = "update")

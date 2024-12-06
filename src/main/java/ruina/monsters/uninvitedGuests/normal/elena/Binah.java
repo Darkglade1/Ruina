@@ -158,7 +158,7 @@ public class Binah extends AbstractAllyCardMonster
                 pillarEffect(target);
                 dmg(target, info);
                 if (cardList.get(DEGRADED_PILLAR).upgraded) {
-                    applyToTarget(target, this, new ruina.powers.Fairy(target, PILLAR_FAIRY));
+                    applyToTarget(target, this, new ruina.powers.act5.Fairy(target, PILLAR_FAIRY));
                 }
                 resetIdle();
                 break;

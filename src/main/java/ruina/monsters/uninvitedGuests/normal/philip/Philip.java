@@ -20,7 +20,7 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.philip.philipCards.*;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.FlameShield;
+import ruina.powers.act4.FlameShield;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;

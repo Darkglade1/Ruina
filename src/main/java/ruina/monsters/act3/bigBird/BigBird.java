@@ -21,7 +21,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.cards.Dazzled;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.Enchanted;
+import ruina.powers.act3.Enchanted;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
