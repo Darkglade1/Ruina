@@ -1,19 +1,15 @@
 package ruina.monsters.theHead;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.powers.GeburaProwess;
 import ruina.vfx.WaitEffect;
@@ -94,12 +90,7 @@ public class GeburaHead extends Gebura {
     @Override
     public void renderIntent(SpriteBatch sb) {
         super.renderIntent(sb);
-        if (target != null) {
-            sb.setColor(Color.WHITE.cpy());
-            BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
-            float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
-            sb.draw(target.icon, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
-        }
+        renderTargetIcon(sb);
     }
 
     public void onBossDeath() {

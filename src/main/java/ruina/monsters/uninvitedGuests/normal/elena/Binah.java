@@ -1,8 +1,6 @@
 package ruina.monsters.uninvitedGuests.normal.elena;
 
-import basemod.ReflectionHacks;
 import basemod.helpers.VfxBuilder;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
@@ -23,7 +21,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
@@ -200,7 +197,7 @@ public class Binah extends AbstractAllyCardMonster
         } else {
             move = DEGRADED_PILLAR;
         }
-        setMoveShortcut(move, MOVES[move], cardList.get(move));
+        setMoveShortcut(move, cardList.get(move));
     }
 
     public void onBossDeath() {
@@ -253,12 +250,7 @@ public class Binah extends AbstractAllyCardMonster
     @Override
     public void renderIntent(SpriteBatch sb) {
         super.renderIntent(sb);
-        if (target != null) {
-            sb.setColor(Color.WHITE.cpy());
-            BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
-            float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
-            sb.draw(target.icon, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
-        }
+        renderTargetIcon(sb);
     }
 
 }

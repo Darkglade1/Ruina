@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.CustomIntent.IntentEnums;
 import ruina.actions.TransferBlockToAllyAction;
 import ruina.powers.InvisibleAllyBarricadePower;
@@ -233,5 +234,16 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
 
     public void setAnimationFlip(boolean horizontal, boolean vertical) {
         animation.setFlip(horizontal, vertical);
+    }
+
+    protected void renderTargetIcon(SpriteBatch sb) {
+        if (target != null) {
+            Color white = Color.WHITE.cpy();
+            white.a = sb.getColor().a;
+            sb.setColor(white);
+            BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
+            float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
+            sb.draw(target.icon, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
+        }
     }
 }

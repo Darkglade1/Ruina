@@ -116,21 +116,21 @@ public class Tiph extends AbstractAllyCardMonster
     protected void getMove(final int num) {
         if (isAlly) {
             if (this.lastMove(AUGURY_KICK)) {
-                setMoveShortcut(CONFRONTATION, MOVES[CONFRONTATION], cardList.get(CONFRONTATION));
+                setMoveShortcut(CONFRONTATION, cardList.get(CONFRONTATION));
             } else {
-                setMoveShortcut(AUGURY_KICK, MOVES[AUGURY_KICK], cardList.get(AUGURY_KICK));
+                setMoveShortcut(AUGURY_KICK, cardList.get(AUGURY_KICK));
             }
         } else {
             if (this.lastMove(CONFRONTATION)) {
-                setMoveShortcut(AUGURY_KICK, MOVES[AUGURY_KICK], cardList.get(AUGURY_KICK));
+                setMoveShortcut(AUGURY_KICK, cardList.get(AUGURY_KICK));
             } else {
-                setMoveShortcut(CONFRONTATION, MOVES[CONFRONTATION], cardList.get(CONFRONTATION));
+                setMoveShortcut(CONFRONTATION, cardList.get(CONFRONTATION));
             }
         }
     }
 
     public void onBrainwashed() {
-        setMoveShortcut(CONFRONTATION, MOVES[CONFRONTATION], cardList.get(CONFRONTATION));
+        setMoveShortcut(CONFRONTATION, cardList.get(CONFRONTATION));
         createIntent();
     }
 

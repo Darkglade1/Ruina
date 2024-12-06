@@ -268,7 +268,7 @@ public class Chesed extends AbstractAllyCardMonster
             possibilities.add(CONCENTRATE);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], cardList.get(move));
+        setMoveShortcut(move, cardList.get(move));
     }
 
     public void checkDisposalCanUse() {
@@ -276,7 +276,7 @@ public class Chesed extends AbstractAllyCardMonster
             if (puppeteer.puppet.isDeadOrEscaped() && puppeteer.puppet.nextMove == Puppet.REVIVE) {
                 if (puppeteer.hasPower(MARK_POWER_ID)) {
                     att(new TalkAction(this, DIALOG[2]));
-                    setMoveShortcut(DISPOSAL, MOVES[DISPOSAL], cardList.get(DISPOSAL));
+                    setMoveShortcut(DISPOSAL, cardList.get(DISPOSAL));
                     createIntent();
                 }
             }

@@ -102,9 +102,9 @@ public abstract class AbstractAllyCardMonster extends AbstractAllyMonster {
         AbstractAllyCardMonster.hoveredCard = null; //in case the player was hovering one of them while it was getting yeeted
     }
 
-    public void setMoveShortcut(byte next, String text, AbstractCard allyCard) {
+    public void setMoveShortcut(byte next, AbstractCard allyCard) {
         EnemyMoveInfo info = this.moves.get(next);
-        this.setMove(text, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
+        this.setMove(allyCard.name, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
         setAllyCard(allyCard, info.baseDamage);
     }
 

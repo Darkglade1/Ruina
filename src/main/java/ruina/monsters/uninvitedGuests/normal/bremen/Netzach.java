@@ -161,7 +161,7 @@ public class Netzach extends AbstractAllyCardMonster
             possibilities.add(BLIND_FAITH);
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], cardList.get(move));
+        setMoveShortcut(move, cardList.get(move));
     }
 
     public void onBossDeath() {
