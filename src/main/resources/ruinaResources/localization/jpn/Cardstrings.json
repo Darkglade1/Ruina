@@ -412,9 +412,9 @@
     "NAME": "パ～ン！パパン！！",
     "DESCRIPTION": " 脱力 !M! を与える。 NL 筋力 !ruina:SecondMagic! を得る。"
   },
-  "ruina:Brainwash": {
-    "NAME": "あなたが必要なんですよ～？",
-    "DESCRIPTION": "*洗脳 !M! を与える。"
+  "${ModID}:WeNeedYou": {
+    "NAME": "君が必要なんだよ、知ってるでしょ",
+    "DESCRIPTION": "!D! ダメージを与える。 NL 脱力 と 弱体 !M! を与える。"
   },
   "ruina:Kick": {
     "NAME": "卦脚",
@@ -422,7 +422,11 @@
   },
   "ruina:Confrontation": {
     "NAME": "対峙",
-    "DESCRIPTION": "!D! ダメージを与える。 NL 全ての味方は *保護 !M! を得る。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL 全ての味方に !B! ブロック を与える。"
+  },
+  "${ModID}:Trigram": {
+    "NAME": "真の卦形成",
+    "DESCRIPTION": " !D! ダメージを !M! 回与える。"
   },
   "ruina:Melody": {
     "NAME": "メロディー",

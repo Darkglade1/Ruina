@@ -412,9 +412,9 @@
     "NAME": "펑! 퍼펑!",
     "DESCRIPTION": "약화를 !M! 부여합니다. NL 힘을 !ruina:SecondMagic! 얻습니다."
   },
-  "ruina:Brainwash": {
-    "NAME": "당신이 필요하답니다~",
-    "DESCRIPTION": "*세뇌를 !M! 부여합니다."
+  "${ModID}:WeNeedYou": {
+    "NAME": "우리에게 당신이 필요해요, 당신도 알다시피요",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 약화와 취약을 !M! 부여합니다."
   },
   "ruina:Kick": {
     "NAME": "괘각",
@@ -422,7 +422,11 @@
   },
   "ruina:Confrontation": {
     "NAME": "대치",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL 모든 아군이 *보호 를 !M! 얻습니다."
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 모든 아군이 방어도를 !B! 얻습니다."
+  },
+  "${ModID}:Trigram": {
+    "NAME": "진정한 삼괘 형성",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
   },
   "ruina:Melody": {
     "NAME": "멜로디",

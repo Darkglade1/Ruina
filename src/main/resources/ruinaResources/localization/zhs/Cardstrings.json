@@ -412,9 +412,9 @@
     "NAME": "砰！嘭！",
     "DESCRIPTION": "给予 !M! 层 虚弱 。 NL 获得 !ruina:SecondMagic! 点 力量 。"
   },
-  "ruina:Brainwash": {
-    "NAME": "我需要你哟",
-    "DESCRIPTION": "给予 !M! *洗脑 。"
+  "${ModID}:WeNeedYou": {
+    "NAME": "你知道，我们需要你",
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 虚弱 和 易伤 。"
   },
   "ruina:Kick": {
     "NAME": "卦脚",
@@ -422,7 +422,11 @@
   },
   "ruina:Confrontation": {
     "NAME": "一触即发",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 所有友方获得 !M! 层 *守护 。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 所有友方获得 !B! 点 格挡 。"
+  },
+  "${ModID}:Trigram": {
+    "NAME": "真卦阵",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   },
   "ruina:Melody": {
     "NAME": "旋律",

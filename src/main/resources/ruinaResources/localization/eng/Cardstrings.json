@@ -414,7 +414,7 @@
   },
   "${ModID}:WeNeedYou": {
     "NAME": "We Need You, You Know",
-    "DESCRIPTION": "Deal !D! damage. Apply !M! Weak and Vulnerable."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Weak and Vulnerable."
   },
   "${ModID}:Kick": {
     "NAME": "Augury Kick",

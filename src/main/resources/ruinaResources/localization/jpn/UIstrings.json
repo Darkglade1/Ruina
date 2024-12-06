@@ -121,5 +121,10 @@
       " ダメージを #b",
       " 回与える #y反撃。"
     ]
+  },
+  "ruina:BrainwashMod": {
+    "TEXT": [
+      "ruina:洗脳 NL "
+    ]
   }
 }

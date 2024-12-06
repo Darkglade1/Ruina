@@ -28,17 +28,24 @@
     "DESCRIPTION": "被冰冻的牌获得 #y无法被打出 和 #y保留 。"
   },
   {
-    "PROPER_NAME": "Erosion",
+    "PROPER_NAME": "腐蚀",
     "NAMES": [
       "腐蚀"
     ],
     "DESCRIPTION": "拥有 #y腐蚀 的生物受到的攻击伤害增加。 回合结束时减少 #b1 层。"
   },
   {
-    "PROPER_NAME": "Protection",
+    "PROPER_NAME": "守护",
     "NAMES": [
       "守护"
     ],
     "DESCRIPTION": "拥有 #y守护 的生物受到的攻击伤害减少。 回合结束时减少 #b1 层。"
+  },
+  {
+    "PROPER_NAME": "洗脑",
+    "NAMES": [
+      "洗脑"
+    ],
+    "DESCRIPTION": "洗脑卡成本为0，但只能以你的盟友为目标。"
   }
 ]

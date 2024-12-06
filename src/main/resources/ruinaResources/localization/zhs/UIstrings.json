@@ -121,5 +121,10 @@
       " damage #b",
       " times."
     ]
+  },
+  "ruina:BrainwashMod": {
+    "TEXT": [
+      "ruina:洗脑 NL "
+    ]
   }
 }

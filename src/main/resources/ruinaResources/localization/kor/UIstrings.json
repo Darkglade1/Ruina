@@ -121,5 +121,10 @@
       " 피해를 #b",
       " 번 주려고 합니다."
     ]
+  },
+  "ruina:BrainwashMod": {
+    "TEXT": [
+      "ruina:세뇌 NL "
+    ]
   }
 }
