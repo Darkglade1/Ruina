@@ -17,10 +17,13 @@ public class FlexibleDivinityParticleEffect extends AbstractGameEffect {
     private float vY;
     private float dur_div2;
     private AtlasRegion img;
-    private AbstractCreature creature;
 
-    public FlexibleDivinityParticleEffect(AbstractCreature creature) {
-        this.creature = creature;
+    public FlexibleDivinityParticleEffect(AbstractCreature creature, Color color) {
+        if (color != null) {
+            this.color = new Color(MathUtils.random(color.r - 0.1F, color.r + 0.1F), MathUtils.random(color.g - 0.1F, color.g + 0.1F), MathUtils.random(color.b - 0.1F, color.b + 0.1F), 0.0F);
+        } else {
+            this.color = new Color(MathUtils.random(0.8F, 1.0F), MathUtils.random(0.5F, 0.7F), MathUtils.random(0.8F, 1.0F), 0.0F);
+        }
         this.scale = Settings.scale;
         this.img = ImageMaster.EYE_ANIM_0;
         this.scale = MathUtils.random(1.0F, 1.5F);
@@ -28,7 +31,6 @@ public class FlexibleDivinityParticleEffect extends AbstractGameEffect {
         this.duration = this.startingDuration;
         this.scale *= Settings.scale;
         this.dur_div2 = this.duration / 2.0F;
-        this.color = new Color(MathUtils.random(0.8F, 1.0F), MathUtils.random(0.5F, 0.7F), MathUtils.random(0.8F, 1.0F), 0.0F);
         this.x = creature.hb.cX + MathUtils.random(-creature.hb.width / 2.0F - 50.0F * Settings.scale, creature.hb.width / 2.0F + 50.0F * Settings.scale);
         this.y = creature.hb.cY + MathUtils.random(-creature.hb.height / 2.0F + 10.0F * Settings.scale, creature.hb.height / 2.0F - 20.0F * Settings.scale);
         this.renderBehind = MathUtils.randomBoolean();
@@ -39,6 +41,10 @@ public class FlexibleDivinityParticleEffect extends AbstractGameEffect {
 
         this.x -= (float)this.img.packedWidth / 2.0F;
         this.y -= (float)this.img.packedHeight / 2.0F;
+    }
+
+    public FlexibleDivinityParticleEffect(AbstractCreature creature) {
+        this(creature, null);
     }
 
     public void update() {

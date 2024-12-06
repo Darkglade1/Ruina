@@ -412,9 +412,9 @@
     "NAME": "Pow! Kablammo!",
     "DESCRIPTION": "Apply !M! Weak. NL Gain !ruina:SecondMagic! Strength."
   },
-  "${ModID}:Brainwash": {
+  "${ModID}:WeNeedYou": {
     "NAME": "We Need You, You Know",
-    "DESCRIPTION": "Apply !M! *Brainwash."
+    "DESCRIPTION": "Deal !D! damage. Apply !M! Weak and Vulnerable."
   },
   "${ModID}:Kick": {
     "NAME": "Augury Kick",

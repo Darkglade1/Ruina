@@ -121,5 +121,10 @@
       " damage #b",
       " times."
     ]
+  },
+  "ruina:BrainwashMod": {
+    "TEXT": [
+      "*Brainwashed. NL "
+    ]
   }
 }

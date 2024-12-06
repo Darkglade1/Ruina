@@ -46,7 +46,27 @@ public class FlexibleStanceAuraEffect extends AbstractGameEffect {
             this.renderBehind = false;
             this.vY = MathUtils.random(0.0F, -40.0F);
         }
+    }
 
+    public FlexibleStanceAuraEffect(Color color, AbstractCreature creature) {
+        this.img = ImageMaster.EXHAUST_L;
+        this.duration = 2.0F;
+        this.scale = MathUtils.random(2.7F, 2.5F) * Settings.scale;
+        this.color = new Color(MathUtils.random(color.r - 0.05F, color.r + 0.05F), MathUtils.random(color.g - 0.05F, color.g + 0.05F), MathUtils.random(color.b - 0.05F, color.b + 0.05F), 0.0F);
+        this.x = creature.hb.cX + MathUtils.random(-creature.hb.width / 16.0F, creature.hb.width / 16.0F);
+        this.y = creature.hb.cY + MathUtils.random(-creature.hb.height / 16.0F, creature.hb.height / 12.0F);
+        this.x -= (float)this.img.packedWidth / 2.0F;
+        this.y -= (float)this.img.packedHeight / 2.0F;
+        switcher = !switcher;
+        this.renderBehind = true;
+        this.rotation = MathUtils.random(360.0F);
+        if (switcher) {
+            this.renderBehind = true;
+            this.vY = MathUtils.random(0.0F, 40.0F);
+        } else {
+            this.renderBehind = false;
+            this.vY = MathUtils.random(0.0F, -40.0F);
+        }
     }
 
     public void update() {

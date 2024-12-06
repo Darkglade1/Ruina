@@ -326,10 +326,6 @@
     "NAME": "Arbiter's Judgement",
     "DESCRIPTIONS": ["Your #gally targets the last #renemy you targeted with a card this combat. NL Whenever this creature attacks, it #ycancels the 2nd intent of its target."]
   },
-  "${ModID}:Brainwash": {
-    "NAME": "Brainwash",
-    "DESCRIPTIONS": ["Your #gally has been #yBrainwashed into an #renemy for #b", " turn(s). #yBrainwash is removed after this creature loses #b", " more HP."]
-  },
   "${ModID}:Messenger": {
     "NAME": "Messenger",
     "DESCRIPTIONS": ["At the start of this creature's turn, put a random #yPrescript card into your hand."]
@@ -642,5 +638,9 @@
   "${ModID}:FlameShield": {
     "NAME": "Flame Shield",
     "DESCRIPTIONS": ["Whenever you play an #yAttack, shuffle #b", " #yBurn+ into your discard pile. NL This power is removed when #yTempered #yPassion is removed."]
+  },
+  "${ModID}:Brainwash": {
+    "NAME": "Brainwash",
+    "DESCRIPTIONS": ["The first ", "single-target #yAttack or #ySkill played each turn becomes #yBrainwashed and is shuffled back into the draw pile. NL #yBrainwashed cards cost 0 but can only target your #gally."]
   }
 }

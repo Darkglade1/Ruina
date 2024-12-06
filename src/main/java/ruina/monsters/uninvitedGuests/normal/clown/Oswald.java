@@ -1,31 +1,29 @@
 package ruina.monsters.uninvitedGuests.normal.clown;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.ReflectionHacks;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
-import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.clown.oswaldCards.*;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.act4.Brainwash;
 import ruina.util.AdditionalIntent;
+import ruina.vfx.FlexibleDivinityParticleEffect;
+import ruina.vfx.FlexibleStanceAuraEffect;
 
 import java.util.ArrayList;
 
@@ -44,22 +42,14 @@ public class Oswald extends AbstractCardMonster
     private static final byte BRAINWASH = 4;
 
     public final int funHits = 2;
-    public final int climaxDamage = calcAscensionDamage(5);
+    public final int climaxDamage = calcAscensionDamage(6);
     public int climaxHits = 4;
     public final int climaxHitIncrease = calcAscensionSpecial(1);
 
     public final int STATUS = calcAscensionSpecial(3);
     public final int STRENGTH = calcAscensionSpecial(1);
     public final int WEAK = calcAscensionSpecial(2);
-    public final int BRAINWASH_LENGTH = 2;
-    public final int BRAINWASH_DAMAGE = calcAscensionTankiness(40);
-    public final int BRAINWASH_DAMAGE_INCREASE = calcAscensionTankiness(20);
-    public int brainwashDamage = BRAINWASH_DAMAGE;
-
-    public static final String POWER_ID = makeID("Brainwash");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    public final int ALLY_DEBUFF = 1;
 
     public Oswald() {
         this(0.0f, 0.0f);
@@ -72,10 +62,10 @@ public class Oswald extends AbstractCardMonster
         this.setHp(calcAscensionTankiness(700));
 
         addMove(CLIMAX, Intent.ATTACK, climaxDamage, climaxHits);
-        addMove(FUN, Intent.ATTACK, calcAscensionDamage(9), funHits);
+        addMove(FUN, Intent.ATTACK, calcAscensionDamage(11), funHits);
         addMove(CATCH, Intent.DEBUFF);
         addMove(POW, Intent.BUFF);
-        addMove(BRAINWASH, Intent.STRONG_DEBUFF);
+        addMove(BRAINWASH, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
     }
 
     @Override
@@ -94,6 +84,7 @@ public class Oswald extends AbstractCardMonster
         }
         atb(new TalkAction(this, DIALOG[0]));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
+        applyToTarget(this, this, new Brainwash(this, 1));
     }
 
     @Override
@@ -144,63 +135,10 @@ public class Oswald extends AbstractCardMonster
             }
             case BRAINWASH: {
                 specialAnimation();
-                applyToTarget(target, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.DEBUFF, false, target, BRAINWASH_LENGTH) {
-                    boolean justApplied = true;
-
-                    @Override
-                    public void onInitialApplication() {
-                        if (owner instanceof AbstractAllyMonster) {
-                            owner.halfDead = false;
-                            ((AbstractAllyMonster) owner).isAlly = false;
-                            ((AbstractAllyMonster) owner).setAnimationFlip(false, false);
-                            Color color = new Color(1.0F, 1.0F, 1.0F, 0.5F);
-                            ReflectionHacks.setPrivate(owner, AbstractMonster.class, "intentColor", color);
-                        }
-                        if (owner instanceof Tiph) {
-                            ((Tiph) owner).onBrainwashed();
-                        }
-                        amount2 = brainwashDamage;
-                        brainwashDamage += BRAINWASH_DAMAGE_INCREASE;
-                        updateDescription();
-                        AbstractDungeon.onModifyPower();
-                    }
-
-                    @Override
-                    public int onAttacked(DamageInfo info, int damageAmount) {
-                        flash();
-                        amount2 -= damageAmount;
-                        if (amount2 <= 0) {
-                            atb(new RemoveSpecificPowerAction(owner, owner, this));
-                        }
-                        updateDescription();
-                        return damageAmount;
-                    }
-
-                    @Override
-                    public void onRemove() {
-                        if (owner instanceof AbstractAllyMonster) {
-                            owner.halfDead = true;
-                            ((AbstractAllyMonster) owner).isAlly = true;
-                            ((AbstractAllyMonster) owner).setAnimationFlip(true, false);
-                        }
-                    }
-
-                    @Override
-                    public void atEndOfRound() {
-                        if (justApplied) {
-                            justApplied = false;
-                        } else {
-                            atb(new ReducePowerAction(owner, owner, this, 1));
-                        }
-                    }
-
-                    @Override
-                    public void updateDescription() {
-                        description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1] + amount2 + POWER_DESCRIPTIONS[2];
-                    }
-                });
-                resetIdle(1.0f);
-                break;
+                dmg(target, info);
+                applyToTarget(target, this, new WeakPower(target, ALLY_DEBUFF, true));
+                applyToTarget(target, this, new VulnerablePower(target, ALLY_DEBUFF, true));
+                resetIdle();
             }
         }
     }
@@ -269,16 +207,16 @@ public class Oswald extends AbstractCardMonster
         list.add(new Fun(this));
         list.add(new Catch(this));
         list.add(new Pow(this));
-        list.add(new Brainwash(this));
+        list.add(new WeNeedYou(this));
         return list.get(move);
     }
 
     @Override
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
-        if (additionalMove.nextMove == BRAINWASH) {
-            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
-        } else {
+        if (additionalMove.nextMove == POW) {
             applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
+        } else {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
         }
     }
 
@@ -287,6 +225,23 @@ public class Oswald extends AbstractCardMonster
         super.die(triggerRelics);
         if (target instanceof Tiph) {
             ((Tiph) target).onBossDeath();
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if (this.hasPower(Brainwash.POWER_ID) && this.getPower(Brainwash.POWER_ID).amount > 0) {
+            this.particleTimer -= Gdx.graphics.getDeltaTime();
+            if (this.particleTimer < 0.0F) {
+                this.particleTimer = 0.04F;
+                AbstractDungeon.effectsQueue.add(new FlexibleDivinityParticleEffect(this, Color.GOLD.cpy()));
+            }
+            this.particleTimer2 -= Gdx.graphics.getDeltaTime();
+            if (this.particleTimer2 < 0.0F) {
+                this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
+                AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(Color.GOLD.cpy(), this));
+            }
         }
     }
 

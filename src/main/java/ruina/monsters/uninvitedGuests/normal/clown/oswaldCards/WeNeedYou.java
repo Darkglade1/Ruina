@@ -11,13 +11,13 @@ import ruina.monsters.uninvitedGuests.normal.clown.Oswald;
 import static ruina.RuinaMod.makeID;
 
 @AutoAdd.Ignore
-public class Brainwash extends AbstractRuinaCard {
-    public final static String ID = makeID(Brainwash.class.getSimpleName());
+public class WeNeedYou extends AbstractRuinaCard {
+    public final static String ID = makeID(WeNeedYou.class.getSimpleName());
     Oswald parent;
 
-    public Brainwash(Oswald parent) {
+    public WeNeedYou(Oswald parent) {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
-        magicNumber = baseMagicNumber = parent.BRAINWASH_LENGTH;
+        magicNumber = baseMagicNumber = parent.ALLY_DEBUFF;
         this.parent = parent;
     }
 
@@ -35,6 +35,6 @@ public class Brainwash extends AbstractRuinaCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new Brainwash(parent);
+        return new WeNeedYou(parent);
     }
 }
