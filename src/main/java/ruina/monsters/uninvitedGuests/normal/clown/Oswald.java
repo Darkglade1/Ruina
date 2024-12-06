@@ -188,16 +188,12 @@ public class Oswald extends AbstractCardMonster
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        if (this.lastMove(BRAINWASH, moveHistory) || this.lastMove(CATCH, moveHistory)) {
+        if (this.lastMove(BRAINWASH, moveHistory)) {
             setAdditionalMoveShortcut(FUN, moveHistory, getMoveCardFromByte(FUN));
         } else if (this.lastMove(FUN, moveHistory)) {
             setAdditionalMoveShortcut(POW, moveHistory, getMoveCardFromByte(POW));
         } else {
-            if (firstMove || (target != null && !target.isDead && !target.isDying)) {
-                setAdditionalMoveShortcut(BRAINWASH, moveHistory, getMoveCardFromByte(BRAINWASH));
-            } else {
-                setAdditionalMoveShortcut(CATCH, moveHistory, getMoveCardFromByte(CATCH));
-            }
+            setAdditionalMoveShortcut(BRAINWASH, moveHistory, getMoveCardFromByte(BRAINWASH));
         }
     }
 
