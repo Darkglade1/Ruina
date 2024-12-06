@@ -26,7 +26,7 @@ public class MakeAlliesHalfDead {
     public static void MakeAlliesHalfDeadReee(GameActionManager instance) {
         if (AbstractDungeon.getCurrRoom() != null) {
             for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                if (!mo.isDead) {
+                if (!mo.isDeadOrEscaped()) {
                     if (mo instanceof AbstractAllyMonster) {
                         AbstractAllyMonster ally = (AbstractAllyMonster)mo;
                         if (ally.isAlly && !ally.isTargetableByPlayer) {

@@ -21,7 +21,7 @@ public class BrainwashPatch {
         @SpirePostfixPatch()
         public static void toggle() {
             for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-                if (mo instanceof Tiph) {
+                if (mo instanceof Tiph && !mo.isDeadOrEscaped()) {
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
@@ -48,7 +48,7 @@ public class BrainwashPatch {
         @SpirePostfixPatch()
         public static void toggle(AbstractPlayer instance, AbstractCard c, AbstractMonster monster, int energyOnUse) {
             for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-                if (mo instanceof Tiph) {
+                if (mo instanceof Tiph && !mo.isDeadOrEscaped()) {
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
