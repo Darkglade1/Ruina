@@ -642,5 +642,19 @@
   "${ModID}:Brainwash": {
     "NAME": "Brainwash",
     "DESCRIPTIONS": ["The first ", "single-target #yAttack or #ySkill played each turn becomes #yBrainwashed and is shuffled back into the draw pile. NL #yBrainwashed cards cost 0 but can only target your #gally."]
+  },
+  "${ModID}:FourTrigrams": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      "Geon of Four Trigrams",
+      "Deals #b",
+      "% more damage with attacks.",
+      "Gon of Four Trigrams",
+      "Receives #b",
+      "% less damage from attacks.",
+      "Ri of Four Trigrams",
+      "An ally draws #b",
+      " more card(s) next turn.",
+      " NL Changes every turn."]
   }
 }

@@ -107,7 +107,6 @@ public class Hod extends AbstractAllyCardMonster
             }
         }
         stancePower = new PurpleTearStance(this, stance);
-        applyToTarget(this, this, stancePower);
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -115,6 +114,7 @@ public class Hod extends AbstractAllyCardMonster
                 this.isDone = true;
             }
         });
+        applyToTarget(this, this, stancePower);
         super.usePreBattleAction();
         AllyMove changeToSlash = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("SlashStance.png")), DIALOG[3], () -> {
             if (stance == SLASH) {

@@ -15,6 +15,7 @@ import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.clown.tiphCards.Confrontation;
 import ruina.monsters.uninvitedGuests.normal.clown.tiphCards.Kick;
 import ruina.monsters.uninvitedGuests.normal.clown.tiphCards.Trigram;
+import ruina.powers.act4.FourTrigrams;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
@@ -33,6 +34,18 @@ public class Tiph extends AbstractAllyCardMonster
     public final int STRENGTH = 2;
     public final int BLOCK = 10;
     public final int trigramHits = 2;
+
+    private FourTrigrams trigramPower;
+
+    public static final int GEON = 1;
+    public static final int GON = 2;
+    public static final int RI = 3;
+
+    public static final int geonDamageBonus = 50;
+    public static final int gonDamageReduction = 50;
+    public static final int riDrawBonus = 1;
+
+    public int trigram = GEON;
 
     public Tiph() {
         this(0.0f, 0.0f);
@@ -68,6 +81,9 @@ public class Tiph extends AbstractAllyCardMonster
                 target = (Oswald)mo;
             }
         }
+        trigramPower = new FourTrigrams(this);
+        trigramPower.changeTrigram(trigram);
+        applyToTarget(this, this, trigramPower);
         super.usePreBattleAction();
     }
 
@@ -77,17 +93,6 @@ public class Tiph extends AbstractAllyCardMonster
             atb(new TalkAction(this, DIALOG[0]));
         }
         super.takeTurn();
-
-        AbstractCreature target;
-        if (isAlly) {
-            target = this.target;
-        } else {
-            target = adp();
-        }
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
         switch (this.nextMove) {
             case AUGURY_KICK: {
                 bluntAnimation(target);
