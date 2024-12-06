@@ -106,10 +106,7 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     }
 
     public void applyPowers(AbstractCreature target) {
-        applyPowers(target, -1);
-    }
-
-    public void applyPowers(AbstractCreature target, float additionalMultiplier) {
+        float additionalMultiplier = getAdditionalMultiplier();
         if (this.nextMove >= 0) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             if (target != adp()) {
@@ -179,6 +176,10 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
                 super.applyPowers();
             }
         }
+    }
+
+    protected float getAdditionalMultiplier() {
+        return -1;
     }
 
     @Override

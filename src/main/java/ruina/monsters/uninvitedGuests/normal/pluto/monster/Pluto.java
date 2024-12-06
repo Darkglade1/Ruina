@@ -5,23 +5,16 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
-import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.ConfusingContract;
@@ -29,8 +22,6 @@ import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.ContractOfLig
 import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.ContractOfMight;
 import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.NoContract;
 import ruina.monsters.uninvitedGuests.normal.pluto.plutoCards.*;
-import ruina.util.AdditionalIntent;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -40,10 +31,6 @@ import static ruina.util.Wiz.*;
 
 public class Pluto extends AbstractCardMonster {
     public static final String ID = makeID(Pluto.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte SAFEGUARD = 0;
     private static final byte MISSLE = 1;
@@ -63,32 +50,20 @@ public class Pluto extends AbstractCardMonster {
     public final int STATUS = calcAscensionSpecial(2);
     private int onslaughtTimesUsed;
 
-    private Hokma hokma;
     public Shade shade;
-
-    public enum PHASE{
-        SHADES,
-        NO_SHADES
-    }
-
-    public PHASE currentPhase = PHASE.SHADES;
 
     public Pluto() {
         this(150f, 0.0f);
     }
+
     public Pluto(final float x, final float y) {
-        super(NAME, ID, 900, -5.0F, 0, 250.0f, 255.0f, null, x, y);
+        super(ID, ID, 900, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Pluto/Spriter/Pluto.scml"));
-        this.type = EnemyType.BOSS;
+        setNumAdditionalMoves(1);
         this.setHp(calcAscensionTankiness(900));
 
-        numAdditionalMoves = 1;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
-
         addMove(SAFEGUARD, Intent.DEFEND_BUFF);
-        addMove(MISSLE, Intent.ATTACK, magicMissleDamage, magicMissleHits, true);
+        addMove(MISSLE, Intent.ATTACK, magicMissleDamage, magicMissleHits);
         addMove(ONSLAUGHT, Intent.ATTACK, magicOnslaughtDamage);
         addMove(CONTRACT, Intent.UNKNOWN);
         addMove(BINDING_TERMS, Intent.DEBUFF);
@@ -101,25 +76,22 @@ public class Pluto extends AbstractCardMonster {
     }
 
     @Override
-    public void usePreBattleAction()
-    {
+    public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Ensemble3");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Hokma) {
-                hokma = (Hokma)mo;
+                target = (Hokma) mo;
+            }
+            if (mo instanceof Shade) {
+                shade = (Shade) mo;
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        Summon();
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-        if (info.base > -1) {
-            info.applyPowers(this, target);
-        }
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case SAFEGUARD: {
                 buffAnimation();
@@ -177,10 +149,7 @@ public class Pluto extends AbstractCardMonster {
 
     @Override
     public void takeTurn() {
-        super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
+        AbstractCreature hokma = target;
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -188,36 +157,7 @@ public class Pluto extends AbstractCardMonster {
                 this.isDone = true;
             }
         });
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, hokma);
-            }
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    additionalIntent.usePrimaryIntentsColor = true;
-                    this.isDone = true;
-                }
-            });
-        }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                boolean shadeExists = false;
-                for(AbstractMonster m: monsterList()){
-                    if(m instanceof Shade){ shadeExists = true; }
-                }
-                if(!shadeExists && currentPhase.equals(PHASE.SHADES)){ currentPhase = PHASE.NO_SHADES; }
-                isDone = true;
-            }
-        });
+        super.takeTurn();
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -232,7 +172,7 @@ public class Pluto extends AbstractCardMonster {
 
     @Override
     protected void getMove(final int num) {
-        if (currentPhase.equals(PHASE.NO_SHADES)) {
+        if (shade != null && shade.isDeadOrEscaped()) {
             setMoveShortcut(ONSLAUGHT, MOVES[ONSLAUGHT], getMoveCardFromByte(ONSLAUGHT));
         } else {
             if (firstMove) {
@@ -272,22 +212,6 @@ public class Pluto extends AbstractCardMonster {
     }
 
 
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, hokma, hokma.icon);
-            }
-        }
-    }
-
-
     protected AbstractCard getMoveCardFromByte(Byte move) {
         ArrayList<AbstractCard> list = new ArrayList<>();
         list.add(new Safeguard(this));
@@ -298,17 +222,6 @@ public class Pluto extends AbstractCardMonster {
         return list.get(move);
     }
 
-    public void Summon() {
-        float xPos_Farthest_L = -750.0F;
-        float xPos_Middle_L = -450F;
-        float xPos_Short_L = -150F;
-        float xPos_Shortest_L = 0F;
-        Shade shade = new Shade(xPos_Short_L, 0.0f);
-        this.shade = shade;
-        atb(new SpawnMonsterAction(shade, true));
-        atb(new UsePreBattleActionAction(shade));
-    }
-
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
@@ -317,7 +230,9 @@ public class Pluto extends AbstractCardMonster {
                 atb(new SuicideAction(mo));
             }
         }
-        hokma.onBossDeath();
+        if (target instanceof Hokma) {
+            ((Hokma) target).onBossDeath();
+        }
     }
 
     private void bluntAnimation(AbstractCreature enemy) {
@@ -334,10 +249,6 @@ public class Pluto extends AbstractCardMonster {
 
     private void contractAnimation(AbstractCreature enemy) {
         animationAction("Contract", "PlutoContract", enemy, this);
-    }
-
-    private void specialAnimation() {
-        animationAction("Special", "PlutoStrongStart", this);
     }
 
     private void buffAnimation() {

@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -107,12 +106,6 @@ public abstract class AbstractAllyCardMonster extends AbstractAllyMonster {
         EnemyMoveInfo info = this.moves.get(next);
         this.setMove(text, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
         setAllyCard(allyCard, info.baseDamage);
-    }
-
-    @Override
-    public void applyPowers(AbstractCreature target, float additionalMultiplier) {
-        super.applyPowers(target, additionalMultiplier);
-        updateAllyCard();
     }
 
     @Override

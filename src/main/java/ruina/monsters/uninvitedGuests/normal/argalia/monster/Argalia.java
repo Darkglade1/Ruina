@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -15,16 +14,13 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractDeckMonster;
 import ruina.monsters.uninvitedGuests.normal.argalia.cards.*;
@@ -33,20 +29,14 @@ import ruina.powers.BlueReverberation;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.NextTurnPowerPower;
 import ruina.util.AdditionalIntent;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
-public class Argalia extends AbstractDeckMonster
-{
+public class Argalia extends AbstractDeckMonster {
     public static final String ID = makeID(Argalia.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     public static final byte LARGO = 0;
     public static final byte ALLEGRO = 1;
@@ -77,9 +67,6 @@ public class Argalia extends AbstractDeckMonster
 
     private static final int INTENT_SHIFT_AMT = 1;
 
-    public Roland roland;
-    private InvisibleBarricadePower power = new InvisibleBarricadePower(this);
-
     public static final String POWER_ID = makeID("Vibration");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
@@ -90,25 +77,21 @@ public class Argalia extends AbstractDeckMonster
     public static final String RESONANCE_POWER_NAME = ResonancepowerStrings.NAME;
     public static final String[] RESONANCE_POWER_DESCRIPTIONS = ResonancepowerStrings.DESCRIPTIONS;
 
-    public Argalia() { this(0.0f, 0.0f); }
+    public Argalia() {
+        this(0.0f, 0.0f);
+    }
 
     public Argalia(final float x, final float y) {
-        super(NAME, ID, 1500, -5.0F, 0, 250.0f, 255.0f, null, x, y);
+        super(ID, ID, 1500, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Argalia/Spriter/Argalia.scml"));
-        this.type = EnemyType.BOSS;
+        setNumAdditionalMoves(2);
         this.setHp(calcAscensionTankiness(1500));
 
-        maxAdditionalMoves = 2;
-        for (int i = 0; i < maxAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
-        numAdditionalMoves = 2;
-
         addMove(LARGO, Intent.ATTACK_DEFEND, largoDamage);
-        addMove(ALLEGRO, Intent.ATTACK_BUFF, allegroDamage, allegroHits, true);
+        addMove(ALLEGRO, Intent.ATTACK_BUFF, allegroDamage, allegroHits);
         addMove(SCYTHE, Intent.ATTACK, scytheDamage);
         addMove(TRAILS, Intent.ATTACK_DEBUFF, trailsDamage);
-        addMove(DANZA, IntentEnums.MASS_ATTACK, tempestuousDamage, tempestuousHits, true);
+        addMove(DANZA, IntentEnums.MASS_ATTACK, tempestuousDamage, tempestuousHits);
         initializeDeck();
     }
 
@@ -119,9 +102,8 @@ public class Argalia extends AbstractDeckMonster
     }
 
     @Override
-    public void usePreBattleAction()
-    {
-        applyToTarget(this, this, power);
+    public void usePreBattleAction() {
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new AbstractLambdaPower(RESONANCE_POWER_NAME, RESONANCE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, INTENT_SHIFT_AMT) {
             @Override
             public void onUseCard(AbstractCard card, UseCardAction action) {
@@ -137,16 +119,16 @@ public class Argalia extends AbstractDeckMonster
         applyToTarget(this, this, new StrengthPower(this, 1)); //this 1 strength is a hack to make the powers line up properly LOL
         CustomDungeon.playTempMusicInstantly("EnsembleArgalia");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Roland) { roland = (Roland) mo; }
+            if (mo instanceof Roland) {
+                target = (Roland) mo;
+            }
         }
 
     }
 
+    @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature enemy, int whichMove) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-        if(info.base > -1) { info.applyPowers(this, enemy); }
-        int[] damageArray;
+        super.takeCustomTurn(move, enemy, whichMove);
         switch (move.nextMove) {
             case LARGO: {
                 slashLeftAnimation(enemy);
@@ -198,7 +180,7 @@ public class Argalia extends AbstractDeckMonster
             case SCYTHE: {
                 slamAnimation(enemy);
                 if (whichMove == SCYTHE_INTENT_NUM) {
-                    info.output = (int)(info.output * scytheDamageMultiplier);
+                    info.output = (int) (info.output * scytheDamageMultiplier);
                 }
                 dmg(enemy, info);
                 resetIdle(1.0f);
@@ -211,14 +193,6 @@ public class Argalia extends AbstractDeckMonster
                 applyToTarget(enemy, this, new StrengthPower(enemy, -trailsStrengthLoss));
                 break;
             case DANZA: {
-                damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
-                info.applyPowers(this, adp());
-                damageArray[damageArray.length - 1] = info.output;
-                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
-                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-                    info.applyPowers(this, mo);
-                    damageArray[i] = info.output;
-                }
                 for (int i = 0; i < multiplier; i++) {
                     if (i == 0) {
                         slashLeftAnimation(adp());
@@ -231,7 +205,7 @@ public class Argalia extends AbstractDeckMonster
                     } else {
                         slamAnimation(adp());
                     }
-                    atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                    atb(new DamageAllOtherCharactersAction(this, calcMassAttack(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                     resetIdle(1.0f);
                 }
                 atb(new AbstractGameAction() {
@@ -247,35 +221,19 @@ public class Argalia extends AbstractDeckMonster
     }
 
     @Override
-    public void takeTurn() {
-        super.takeTurn();
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (firstMove) {
-                    att(new TalkAction(Argalia.this, DIALOG[0]));
-                    firstMove = false;
-                }
-                isDone = true;
-            }
-        });
-        atb(new RemoveAllBlockAction(this, this));
-        takeCustomTurn(this.moves.get(nextMove), adp(), -1);
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (roland.isDead || roland.isDying) { takeCustomTurn(additionalMove, adp(), i);
-            } else { takeCustomTurn(additionalMove, roland, i); }
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    additionalIntent.usePrimaryIntentsColor = true;
-                    this.isDone = true;
-                }
-            });
+    protected int applySpecialMultiplier(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, int whichMove, int dmg) {
+        if (additionalMove.nextMove == Argalia.SCYTHE && whichMove == Argalia.SCYTHE_INTENT_NUM) {
+            return (int)(dmg * Argalia.scytheDamageMultiplier);
         }
+        return dmg;
+    }
+
+    @Override
+    public void takeTurn() {
+        if (firstMove) {
+            atb(new TalkAction(Argalia.this, DIALOG[0]));
+        }
+        super.takeTurn();
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -288,27 +246,17 @@ public class Argalia extends AbstractDeckMonster
 
     @Override
     protected void getMove(final int num) {
-        if(queueDanza){ setMoveShortcut(DANZA, MOVES[DANZA], new CHRBOSS_TempestuousDanza(this)); }
-        else { createMoveFromCard(topDeckCardForMoveAction()); }
+        if (queueDanza) {
+            setMoveShortcut(DANZA, MOVES[DANZA], new CHRBOSS_TempestuousDanza(this));
+        } else {
+            createMoveFromCard(topDeckCardForMoveAction());
+        }
     }
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
-        if(!queueDanza){ createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove)); }
-    }
-
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, roland, roland.icon, i);
-            }
+        if (!queueDanza) {
+            createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove));
         }
     }
 
@@ -323,12 +271,19 @@ public class Argalia extends AbstractDeckMonster
     }
 
     protected void createMoveFromCard(AbstractCard c) {
-        if (c.cardID.equals(CHRBOSS_Largo.ID)) { setMoveShortcut(LARGO, MOVES[LARGO], c);
-        } else if (c.cardID.equals(CHRBOSS_Allegro.ID)) { setMoveShortcut(ALLEGRO, MOVES[ALLEGRO], c);
-        } else if (c.cardID.equals(CHRBOSS_ResonantScythe.ID)) { setMoveShortcut(SCYTHE, MOVES[SCYTHE], c);
-        } else if (c.cardID.equals(CHRBOSS_TrailsOfBlue.ID)) { setMoveShortcut(TRAILS, MOVES[TRAILS], c);
-        } else if (c.cardID.equals(CHRBOSS_TempestuousDanza.ID)) { setMoveShortcut(DANZA, MOVES[DANZA], c);
-        } else { setMoveShortcut(ALLEGRO, MOVES[ALLEGRO], c); }
+        if (c.cardID.equals(CHRBOSS_Largo.ID)) {
+            setMoveShortcut(LARGO, MOVES[LARGO], c);
+        } else if (c.cardID.equals(CHRBOSS_Allegro.ID)) {
+            setMoveShortcut(ALLEGRO, MOVES[ALLEGRO], c);
+        } else if (c.cardID.equals(CHRBOSS_ResonantScythe.ID)) {
+            setMoveShortcut(SCYTHE, MOVES[SCYTHE], c);
+        } else if (c.cardID.equals(CHRBOSS_TrailsOfBlue.ID)) {
+            setMoveShortcut(TRAILS, MOVES[TRAILS], c);
+        } else if (c.cardID.equals(CHRBOSS_TempestuousDanza.ID)) {
+            setMoveShortcut(DANZA, MOVES[DANZA], c);
+        } else {
+            setMoveShortcut(ALLEGRO, MOVES[ALLEGRO], c);
+        }
     }
 
     protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
@@ -347,12 +302,14 @@ public class Argalia extends AbstractDeckMonster
         }
     }
 
-    public void danzaCheck(){
+    public void danzaCheck() {
         att(new AbstractGameAction() {
             @Override
             public void update() {
                 danzaTimer += 1;
-                if(danzaTimer % DANZA_COOLDOWN == 0){ queueDanza = true; }
+                if (danzaTimer % DANZA_COOLDOWN == 0) {
+                    queueDanza = true;
+                }
                 isDone = true;
             }
         });
@@ -406,7 +363,9 @@ public class Argalia extends AbstractDeckMonster
             super.die(triggerRelics);
             reverbClear = true;
             saveConfig();
-            roland.onArgaliaDeath();
+            if (target instanceof Roland) {
+                ((Roland) target).onArgaliaDeath();
+            }
             this.onBossVictoryLogic();
             this.onFinalBossVictoryLogic();
         }

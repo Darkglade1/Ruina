@@ -160,7 +160,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
         DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         int multiplier = move.multiplier;
         if (info.base > -1) {
@@ -325,21 +325,6 @@ public class Seraphim extends AbstractMultiIntentMonster {
     @Override
     public void takeTurn() {
         super.takeTurn();
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            takeCustomTurn(additionalMove, adp());
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    additionalIntent.usePrimaryIntentsColor = true;
-                    this.isDone = true;
-                }
-            });
-        }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -428,7 +413,7 @@ public class Seraphim extends AbstractMultiIntentMonster {
                 additionalMove = additionalMoves.get(i);
             }
             if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, i);
             }
         }
     }

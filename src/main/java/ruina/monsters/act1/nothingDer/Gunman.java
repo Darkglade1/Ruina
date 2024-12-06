@@ -146,8 +146,8 @@ public class Gunman extends AbstractMultiIntentMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        super.takeCustomTurn(move, target);
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case RUTHLESS_BULLETS: {
                 massAttackAnimation(target);

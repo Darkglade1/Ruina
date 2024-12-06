@@ -131,8 +131,8 @@ public class Tanya extends AbstractCardMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        super.takeCustomTurn(move, target);
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case OVERSPEED: {
                 for (int i = 0; i < multiplier; i++) {

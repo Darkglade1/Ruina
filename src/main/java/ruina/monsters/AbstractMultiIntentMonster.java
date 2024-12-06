@@ -21,7 +21,6 @@ import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.act3.bigBird.BigBird;
-import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.powers.Enchanted;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -62,9 +61,9 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             additionalIntent.usePrimaryIntentsColor = false;
         }
         if (attackingMonsterWithPrimaryIntent) {
-            takeCustomTurn(this.moves.get(nextMove), target);
+            takeCustomTurn(this.moves.get(nextMove), target, -1);
         } else {
-            takeCustomTurn(this.moves.get(nextMove), adp());
+            takeCustomTurn(this.moves.get(nextMove), adp(), -1);
         }
         for (int i = 0; i < additionalMoves.size(); i++) {
             EnemyMoveInfo additionalMove = additionalMoves.get(i);
@@ -80,9 +79,9 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
                 atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
             }
             if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
+                takeCustomTurn(additionalMove, adp(), i);
             } else {
-                takeCustomTurn(additionalMove, additionalIntent.target);
+                takeCustomTurn(additionalMove, additionalIntent.target, i);
             }
             atb(new AbstractGameAction() {
                 @Override
@@ -94,7 +93,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         }
     }
 
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
         info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
         multiplier = move.multiplier;
         if(info.base > -1) {
@@ -118,13 +117,8 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             info.applyPowers(this, target);
 
             dmg = info.output;
+            dmg = applySpecialMultiplier(additionalMove, additionalIntent, target, whichMove, dmg);
 
-            if (this instanceof Argalia && additionalMove.nextMove == Argalia.SCYTHE && whichMove == Argalia.SCYTHE_INTENT_NUM) {
-                dmg = (int)(dmg * Argalia.scytheDamageMultiplier);
-            }
-            if (target.hasPower(Enchanted.POWER_ID) && this.hasPower(BigBird.Salvation_POWER_ID)) {
-                dmg = BigBird.INSTANT_KILL_NUM;
-            }
             additionalIntent.updateDamage(dmg);
             if (target != adp()) {
                 PowerTip intentTip = additionalIntent.intentTip;
@@ -154,8 +148,8 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         }
     }
 
-    protected void applyPowersToAdditionalIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, Texture targetTexture) {
-        applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, targetTexture, -1);
+    protected int applySpecialMultiplier(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, int whichMove, int dmg) {
+        return dmg;
     }
 
     @Override
@@ -318,9 +312,9 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
 
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
         if (target != null) {
-            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
         } else {
-            applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
         }
     }
 

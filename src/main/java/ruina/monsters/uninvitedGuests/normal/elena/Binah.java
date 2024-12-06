@@ -17,10 +17,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -32,6 +30,7 @@ import ruina.actions.AllyGainBlockAction;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
+import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Chain;
 import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Fairy;
 import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Pillar;
@@ -47,10 +46,6 @@ import static ruina.util.Wiz.*;
 public class Binah extends AbstractAllyCardMonster
 {
     public static final String ID = RuinaMod.makeID(Binah.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     protected static final byte DEGRADED_PILLAR = 0;
     protected static final byte DEGRADED_CHAIN = 1;
@@ -63,7 +58,6 @@ public class Binah extends AbstractAllyCardMonster
 
     public Elena elena;
     public VermilionCross vermilionCross;
-    public AbstractCreature targetEnemy;
 
     public static final String POWER_ID = makeID("Arbiter");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -75,16 +69,14 @@ public class Binah extends AbstractAllyCardMonster
     }
 
     public Binah(final float x, final float y) {
-        super(NAME, ID, 120, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(ID, ID, 120, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Binah/Spriter/Binah.scml"));
         this.animation.setFlip(true, false);
-
         this.setHp(calcAscensionTankiness(120));
-        this.type = EnemyType.BOSS;
 
         addMove(DEGRADED_PILLAR, Intent.ATTACK_DEFEND, 24);
         addMove(DEGRADED_CHAIN, Intent.ATTACK_DEBUFF, 21);
-        addMove(DEGRADED_FAIRY, Intent.ATTACK, 14, fairyHits, true);
+        addMove(DEGRADED_FAIRY, Intent.ATTACK, 14, fairyHits);
 
         cardList.add(new Pillar(this));
         cardList.add(new Chain(this));
@@ -104,7 +96,7 @@ public class Binah extends AbstractAllyCardMonster
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Elena) {
                 elena = (Elena)mo;
-                targetEnemy = elena;
+                target = elena;
             }
             if (mo instanceof VermilionCross) {
                 vermilionCross = (VermilionCross)mo;
@@ -137,8 +129,8 @@ public class Binah extends AbstractAllyCardMonster
             @Override
             public void onAfterUseCard(AbstractCard card, UseCardAction action) {
                 AbstractCreature newTarget = action.target;
-                if (newTarget instanceof AbstractMultiIntentMonster) {
-                    targetEnemy = action.target;
+                if (newTarget instanceof AbstractRuinaMonster && !newTarget.isDeadOrEscaped()) {
+                    target = (AbstractRuinaMonster) action.target;
                     AbstractDungeon.onModifyPower();
                 }
             }
@@ -154,33 +146,13 @@ public class Binah extends AbstractAllyCardMonster
     public void dialogue() {
         if (firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
     }
 
     @Override
     public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
-        super.takeTurn();
         dialogue();
-
-        DamageInfo info;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
-
-        AbstractCreature target = targetEnemy;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeTurn();
         switch (this.nextMove) {
             case DEGRADED_PILLAR: {
                 specialAnimation(target);
@@ -229,25 +201,6 @@ public class Binah extends AbstractAllyCardMonster
             move = DEGRADED_PILLAR;
         }
         setMoveShortcut(move, MOVES[move], cardList.get(move));
-    }
-
-    @Override
-    public void applyPowers() {
-        if (this.nextMove == -1) {
-            super.applyPowers();
-            return;
-        }
-        if (targetEnemy == null) {
-            targetEnemy = elena;
-        }
-        if (targetEnemy.isDeadOrEscaped()) {
-            if (elena.isDeadOrEscaped()) {
-                targetEnemy = vermilionCross;
-            } else {
-                targetEnemy = elena;
-            }
-        }
-        applyPowers(targetEnemy);
     }
 
     public void onBossDeath() {
@@ -300,17 +253,11 @@ public class Binah extends AbstractAllyCardMonster
     @Override
     public void renderIntent(SpriteBatch sb) {
         super.renderIntent(sb);
-        Texture targetTexture = null;
-        if (targetEnemy == elena) {
-            targetTexture = Elena.targetTexture;
-        } else if (targetEnemy == vermilionCross) {
-            targetTexture = VermilionCross.targetTexture;
-        }
-        if (targetTexture != null) {
+        if (target != null) {
             sb.setColor(Color.WHITE.cpy());
             BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
             float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
-            sb.draw(targetTexture, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
+            sb.draw(target.icon, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
         }
     }
 

@@ -154,8 +154,8 @@ public class Philip extends AbstractCardMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        super.takeCustomTurn(move, target);
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case EVENTIDE: {
                 buffAnimation();
@@ -370,12 +370,12 @@ public class Philip extends AbstractCardMonster
     @Override
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
         if (index == 0) {
-            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
         } else {
             if (attackingAlly) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
             } else {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
             }
         }
     }

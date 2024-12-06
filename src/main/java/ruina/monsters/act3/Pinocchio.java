@@ -67,8 +67,8 @@ public class Pinocchio extends AbstractDeckMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        super.takeCustomTurn(move, target);
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case LEARN: {
                 blockAnimation();

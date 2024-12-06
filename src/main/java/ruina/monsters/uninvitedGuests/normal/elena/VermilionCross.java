@@ -1,28 +1,20 @@
 package ruina.monsters.uninvitedGuests.normal.elena;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.elena.vermilionCards.*;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -32,10 +24,6 @@ import static ruina.util.Wiz.*;
 public class VermilionCross extends AbstractCardMonster
 {
     public static final String ID = makeID(VermilionCross.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte OBSTRUCT = 0;
     private static final byte SHOCKWAVE = 1;
@@ -50,28 +38,21 @@ public class VermilionCross extends AbstractCardMonster
     public final int STRENGTH = calcAscensionSpecial(5);
     public final int BURNS = calcAscensionSpecial(1);
     public final int allyIntangible = calcAscensionSpecial(1);
-    public Binah binah;
     public Elena elena;
-
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("VermilionIcon.png"));
 
     public VermilionCross() {
         this(0.0f, 0.0f);
     }
 
     public VermilionCross(final float x, final float y) {
-        super(NAME, ID, 600, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(ID, ID, 600, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Vermilion/Spriter/Vermilion.scml"));
-        this.type = EnemyType.BOSS;
-        numAdditionalMoves = 1;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(1);
         this.setHp(calcAscensionTankiness(600));
 
         addMove(OBSTRUCT, Intent.DEFEND);
         addMove(SHOCKWAVE, Intent.ATTACK_BUFF, calcAscensionDamage(16));
-        addMove(HEATED_WEAPON, Intent.ATTACK_DEBUFF, calcAscensionDamage(7), heatedWeaponHits, true);
+        addMove(HEATED_WEAPON, Intent.ATTACK_DEBUFF, calcAscensionDamage(7), heatedWeaponHits);
         addMove(RAMPAGE, Intent.ATTACK, calcAscensionDamage(45));
         addMove(HEAT_UP, Intent.DEFEND_BUFF);
 
@@ -80,6 +61,8 @@ public class VermilionCross extends AbstractCardMonster
         cardList.add(new HeatedWeapon(this));
         cardList.add(new Rampage(this));
         cardList.add(new HeatUp(this));
+
+        this.icon = TexLoader.getTexture(makeUIPath("VermilionIcon.png"));
     }
 
     @Override
@@ -92,7 +75,7 @@ public class VermilionCross extends AbstractCardMonster
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Binah) {
-                binah = (Binah)mo;
+                target = (Binah)mo;
             }
             if (mo instanceof Elena) {
                 elena = (Elena)mo;
@@ -102,13 +85,8 @@ public class VermilionCross extends AbstractCardMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case OBSTRUCT: {
                 blockAnimation();
@@ -185,21 +163,6 @@ public class VermilionCross extends AbstractCardMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, binah);
-            }
-        }
         atb(new RollMoveAction(this));
     }
 
@@ -247,27 +210,14 @@ public class VermilionCross extends AbstractCardMonster
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, binah, binah.icon);
-            }
-        }
-    }
-
-    @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
         elena.onVermilionDeath();
-        binah.targetEnemy = elena;
+        target.target = elena;
         if (elena.isDeadOrEscaped()) {
-            binah.onBossDeath();
+            if (target instanceof Binah) {
+                ((Binah) target).onBossDeath();
+            }
         }
     }
 

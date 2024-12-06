@@ -132,7 +132,6 @@ public class ServantOfWrath extends AbstractAllyMonster
             atb(new ShoutAction(this, DIALOG[0], 2.0F, 3.0F));
         }
         super.takeTurn();
-
         switch (this.nextMove) {
             case EMBODIMENTS_OF_EVIL: {
                 for (int i = 0; i < multiplier; i++) {

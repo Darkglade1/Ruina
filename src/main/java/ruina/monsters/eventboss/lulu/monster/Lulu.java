@@ -4,9 +4,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -25,10 +23,6 @@ import static ruina.util.Wiz.*;
 
 public class Lulu extends AbstractCardMonster {
     public static final String ID = RuinaMod.makeID(Lulu.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte PREPARED_MIND = 0;
     private static final byte FLAMING_BAT = 1;
@@ -51,15 +45,13 @@ public class Lulu extends AbstractCardMonster {
     }
 
     public Lulu(final float x, final float y) {
-        super(NAME, ID, 105, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(ID, ID, 105, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Lulu/Spriter/Lulu.scml"));
-
         this.setHp(calcAscensionTankiness(105));
-        this.type = EnemyType.ELITE;
 
         addMove(PREPARED_MIND, Intent.BUFF);
         addMove(FLAMING_BAT, Intent.ATTACK_DEBUFF, FLAMING_BAT_DAMAGE);
-        addMove(SET_ABLAZE, Intent.ATTACK, SET_ABLAZE_DAMAGE, SET_ABLAZE_HITS, true);
+        addMove(SET_ABLAZE, Intent.ATTACK, SET_ABLAZE_DAMAGE, SET_ABLAZE_HITS);
 
         cardList.add(new CHRBOSS_PreparedMind(this));
         cardList.add(new CHRBOSS_FlamingBat(this));
@@ -91,18 +83,7 @@ public class Lulu extends AbstractCardMonster {
 
     @Override
     public void takeTurn() {
-        DamageInfo info;
-        int multiplier = 0;
-        if (moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
-        if (info.base > -1) {
-            info.applyPowers(this, adp());
-        }
+        super.takeTurn();
         switch (nextMove) {
             case PREPARED_MIND: {
                 guardAnimation();

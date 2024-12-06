@@ -123,7 +123,9 @@ import ruina.monsters.uninvitedGuests.normal.philip.Malkuth;
 import ruina.monsters.uninvitedGuests.normal.philip.Philip;
 import ruina.monsters.uninvitedGuests.normal.pluto.monster.Hokma;
 import ruina.monsters.uninvitedGuests.normal.pluto.monster.Pluto;
+import ruina.monsters.uninvitedGuests.normal.pluto.monster.Shade;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Chesed;
+import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
@@ -1071,6 +1073,7 @@ public class RuinaMod implements
         BaseMod.addMonster(Puppeteer.ID, "Puppeteer", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Chesed(-550.0F, 0.0F),
+                        new Puppet(-100.0F, 0.0F),
                         new Puppeteer(200.0F, 0.0F),
                 }));
         BaseMod.addMonster(Tanya.ID, "Tanya", () -> new MonsterGroup(
@@ -1114,6 +1117,7 @@ public class RuinaMod implements
         BaseMod.addMonster(Pluto.ID, "Pluto", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Hokma(-550.0F, 0.0F),
+                        new Shade(-150.0F, 0.0F),
                         new Pluto(200.0F, 0.0F),
                 }));
 

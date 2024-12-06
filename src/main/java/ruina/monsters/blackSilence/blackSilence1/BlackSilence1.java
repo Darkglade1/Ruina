@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
@@ -33,10 +32,6 @@ import static ruina.util.Wiz.*;
 
 public class BlackSilence1 extends AbstractCardMonster {
     public static final String ID = RuinaMod.makeID(BlackSilence1.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte CRYSTAL = 0;
     private static final byte WHEELS = 1;
@@ -103,22 +98,21 @@ public class BlackSilence1 extends AbstractCardMonster {
     }
 
     public BlackSilence1(final float x, final float y) {
-        super(NAME, ID, 1000, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(ID, ID, 1000, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence1/Spriter/BlackSilence1.scml"));
         animation.setFlip(true, false);
         this.setHp(calcAscensionTankiness(1000));
-        this.type = EnemyType.BOSS;
 
-        addMove(CRYSTAL, Intent.ATTACK_DEFEND, crystalDamage, crystalHits, true);
+        addMove(CRYSTAL, Intent.ATTACK_DEFEND, crystalDamage, crystalHits);
         addMove(WHEELS, Intent.ATTACK_DEBUFF, wheelsDamage);
-        addMove(DURANDAL, Intent.ATTACK_BUFF, durandalDamage, durandalHits, true);
+        addMove(DURANDAL, Intent.ATTACK_BUFF, durandalDamage, durandalHits);
         addMove(ALLAS, Intent.ATTACK_DEBUFF, ALLAS_DAMAGE);
-        addMove(GUN, Intent.ATTACK, GUN_DAMAGE, GUN_HITS, true);
+        addMove(GUN, Intent.ATTACK, GUN_DAMAGE, GUN_HITS);
         addMove(MOOK, Intent.ATTACK_DEBUFF, MOOK_DAMAGE);
         addMove(OLD_BOY, Intent.ATTACK_DEFEND, OLD_BOY_DAMAGE);
-        addMove(RANGA, Intent.ATTACK_DEBUFF, RANGA_DAMAGE, RANGA_HITS, true);
-        addMove(MACE, Intent.ATTACK_BUFF, MACE_DAMAGE, MACE_HITS, true);
-        addMove(FURIOSO, Intent.ATTACK_DEBUFF, furiosoDamage, furiosoHits, true);
+        addMove(RANGA, Intent.ATTACK_DEBUFF, RANGA_DAMAGE, RANGA_HITS);
+        addMove(MACE, Intent.ATTACK_BUFF, MACE_DAMAGE, MACE_HITS);
+        addMove(FURIOSO, Intent.ATTACK_DEBUFF, furiosoDamage, furiosoHits);
         populateCards();
         populateMovepool();
 
@@ -433,21 +427,6 @@ public class BlackSilence1 extends AbstractCardMonster {
         //if previewIntent wasn't a valid intent, roll again (should only happen at the start of combat)
         if (rollAgain) {
             rollMove();
-        }
-    }
-
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-            }
         }
     }
 

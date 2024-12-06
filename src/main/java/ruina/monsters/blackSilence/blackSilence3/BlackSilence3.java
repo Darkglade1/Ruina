@@ -12,25 +12,17 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.blackSilence.blackSilence3.rolandCards.BlindFury;
-import ruina.monsters.blackSilence.blackSilence3.rolandCards.DarkBond;
-import ruina.monsters.blackSilence.blackSilence3.rolandCards.UnitedWorkshop;
-import ruina.monsters.blackSilence.blackSilence3.rolandCards.UnstableLoneliness;
-import ruina.monsters.blackSilence.blackSilence3.rolandCards.WaltzInBlack;
+import ruina.monsters.blackSilence.blackSilence3.rolandCards.*;
 import ruina.powers.Paralysis;
 import ruina.powers.SoulLink;
-import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
 
@@ -40,10 +32,6 @@ import static ruina.util.Wiz.*;
 public class BlackSilence3 extends AbstractCardMonster {
 
     public static final String ID = RuinaMod.makeID(BlackSilence3.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     public AbstractCard bond;
 
@@ -52,7 +40,6 @@ public class BlackSilence3 extends AbstractCardMonster {
     private static final byte FURY = 2;
     private static final byte WALTZ = 3;
     private static final byte DARKBOND = 4;
-    private static final byte NONE = 5;
     private static final byte SOUL_LINK_REVIVAL = 6;
 
     public final int unitedDamage = calcAscensionDamage(8);
@@ -76,16 +63,15 @@ public class BlackSilence3 extends AbstractCardMonster {
     }
 
     public BlackSilence3(final float x, final float y) {
-        super(NAME, ID, 600, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(ID, ID, 600, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence3/Spriter/BlackSilence3.scml"));
         this.animation.setFlip(true, false);
         this.setHp(calcAscensionTankiness(600));
-        this.type = EnemyType.BOSS;
 
-        addMove(UNITED_WORKSHOP, Intent.ATTACK_BUFF, unitedDamage, unitedHits, true);
+        addMove(UNITED_WORKSHOP, Intent.ATTACK_BUFF, unitedDamage, unitedHits);
         addMove(LONELINESS, Intent.ATTACK_DEBUFF, lonelyDamage);
         addMove(FURY, Intent.ATTACK_DEBUFF, furyDamage);
-        addMove(WALTZ, Intent.ATTACK, waltzDamage, waltzHits, true);
+        addMove(WALTZ, Intent.ATTACK, waltzDamage, waltzHits);
         addMove(DARKBOND, Intent.DEFEND_DEBUFF);
 
         cardList.add(new UnitedWorkshop(this));
@@ -125,15 +111,7 @@ public class BlackSilence3 extends AbstractCardMonster {
 
     @Override
     public void takeTurn() {
-        DamageInfo info;
-        int multiplier = 0;
-        if (moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
+        super.takeTurn();
         AbstractCreature target = adp();
         if (info.base > -1) {
             info.output = this.getIntentDmg(); //fuck back attack

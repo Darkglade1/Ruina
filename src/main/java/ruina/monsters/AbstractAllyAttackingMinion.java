@@ -20,7 +20,7 @@ public abstract class AbstractAllyAttackingMinion extends AbstractRuinaMonster
     protected static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("MultiIntentStrings"));
     protected static final String[] TEXT = uiStrings.TEXT;
 
-    protected boolean attackingAlly = true;
+    public boolean attackingAlly = true;
 
     public AbstractAllyAttackingMinion(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -45,12 +45,14 @@ public abstract class AbstractAllyAttackingMinion extends AbstractRuinaMonster
                 ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
                 PowerTip intentTip = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
                 int multiplier = moves.get(this.nextMove).multiplier;
+                Texture attackImg;
                 if (multiplier > 0) {
+                    attackImg = getAttackIntent(info.output * multiplier);
                     intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + multiplier + TEXT[4];
                 } else {
+                    attackImg = getAttackIntent(info.output);
                     intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
                 }
-                Texture attackImg = getAttackIntent(info.output);
                 ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
             }
         } else {
@@ -61,7 +63,7 @@ public abstract class AbstractAllyAttackingMinion extends AbstractRuinaMonster
     @Override
     public void renderIntent(SpriteBatch sb) {
         super.renderIntent(sb);
-        if (isAttackingAlly()) {
+        if (isAttackingAlly() && this.getIntentBaseDmg() >= 0) {
             BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
             float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
             sb.draw(target.icon, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);

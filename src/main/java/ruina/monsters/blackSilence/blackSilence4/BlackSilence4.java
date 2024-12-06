@@ -11,23 +11,18 @@ import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.blights.Shield;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.stances.WrathStance;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.actions.ChooseOneActionButItCanFizzle;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
@@ -63,10 +58,8 @@ import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei1;
 import ruina.monsters.blackSilence.blackSilence4.memories.zwei.Zwei2;
 import ruina.powers.Paralysis;
 import ruina.powers.Scars;
-import ruina.util.AdditionalIntent;
 import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.FlexibleWrathParticleEffect;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -75,10 +68,6 @@ import static ruina.util.Wiz.*;
 
 public class BlackSilence4 extends AbstractCardMonster {
     public static final String ID = RuinaMod.makeID(BlackSilence4.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte AGONY = 0;
     private static final byte SCREAM = 1;
@@ -126,9 +115,6 @@ public class BlackSilence4 extends AbstractCardMonster {
 
     private final ArrayList<Byte> memories = new ArrayList<>();
 
-    private float particleTimer;
-    private float particleTimer2;
-
     AbstractMonster minion;
 
     public BlackSilence4() {
@@ -136,20 +122,14 @@ public class BlackSilence4 extends AbstractCardMonster {
     }
 
     public BlackSilence4(final float x, final float y) {
-        super(NAME, ID, 1300, -15.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(ID, ID, 1300, -15.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence4/Spriter/BlackSilence4.scml"));
-
+        setNumAdditionalMoves(4);
         numAdditionalMoves = 1;
-        maxAdditionalMoves = 4;
-        for (int i = 0; i < maxAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
-
         this.setHp(calcAscensionTankiness(1300));
-        this.type = EnemyType.BOSS;
 
         addMove(AGONY, Intent.ATTACK, calcAscensionDamage(40));
-        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(16), screamHits, true);
+        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(16), screamHits);
         addMove(VOID, Intent.STRONG_DEBUFF);
         addMove(YUN, Intent.UNKNOWN);
         addMove(ZWEI, Intent.UNKNOWN);
@@ -211,13 +191,8 @@ public class BlackSilence4 extends AbstractCardMonster {
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case AGONY: {
                 int animation = AbstractDungeon.monsterRng.random(2);
@@ -345,24 +320,6 @@ public class BlackSilence4 extends AbstractCardMonster {
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            takeCustomTurn(additionalMove, adp());
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    additionalIntent.usePrimaryIntentsColor = true;
-                    this.isDone = true;
-                }
-            });
-        }
         if (!memories.isEmpty()) {
             memories.remove(0);
         }
@@ -420,21 +377,6 @@ public class BlackSilence4 extends AbstractCardMonster {
         memories.add(PURPLE_TEAR);
         memories.add(HANA);
         memories.add(BLUE_REVERB);
-    }
-
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-            }
-        }
     }
 
     @Override

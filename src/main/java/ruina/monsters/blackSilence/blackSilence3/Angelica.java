@@ -12,21 +12,14 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.blackSilence.blackSilence3.angelicaCards.AllasWorkshop;
-import ruina.monsters.blackSilence.blackSilence3.angelicaCards.AshenBond;
-import ruina.monsters.blackSilence.blackSilence3.angelicaCards.AtelierLogic;
-import ruina.monsters.blackSilence.blackSilence3.angelicaCards.WaltzInWhite;
-import ruina.monsters.blackSilence.blackSilence3.angelicaCards.ZelkovaWorkshop;
+import ruina.monsters.blackSilence.blackSilence3.angelicaCards.*;
 import ruina.powers.SoulLink;
 import ruina.powers.WhiteNoise;
 import ruina.vfx.FlexibleWrathParticleEffect;
@@ -39,10 +32,6 @@ import static ruina.util.Wiz.*;
 public class Angelica extends AbstractCardMonster {
 
     public static final String ID = RuinaMod.makeID(Angelica.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     public AbstractCard bond;
 
@@ -51,7 +40,6 @@ public class Angelica extends AbstractCardMonster {
     private static final byte ATELIER = 2;
     private static final byte WALTZ = 3;
     private static final byte ASHENBOND = 4;
-    private static final byte NONE = 5;
     private static final byte SOUL_LINK_REVIVAL = 6;
 
     public final int zelkovaDamage = calcAscensionDamage(8);
@@ -70,21 +58,18 @@ public class Angelica extends AbstractCardMonster {
     private static final byte TURNS_UNTIL_WALTZ = 3;
     private int turn = TURNS_UNTIL_WALTZ;
 
-    private float particleTimer;
-
     public Angelica() {
         this(70.0f, 0.0f);
     }
 
     public Angelica(final float x, final float y) {
-        super(NAME, ID, 600, 0.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(ID, ID, 600, 0.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Angelica/Spriter/Angelica.scml"));
         this.setHp(calcAscensionTankiness(600));
-        this.type = EnemyType.BOSS;
-        addMove(ZELKOVA, Intent.ATTACK_DEFEND, zelkovaDamage, zelkovaHits, true);
+        addMove(ZELKOVA, Intent.ATTACK_DEFEND, zelkovaDamage, zelkovaHits);
         addMove(ALLAS, Intent.ATTACK_DEBUFF, allasDamage);
-        addMove(ATELIER, Intent.ATTACK, atelierDamage, atelierHits, true);
-        addMove(WALTZ, Intent.ATTACK, waltzDamage, waltzHits, true);
+        addMove(ATELIER, Intent.ATTACK, atelierDamage, atelierHits);
+        addMove(WALTZ, Intent.ATTACK, waltzDamage, waltzHits);
         addMove(ASHENBOND, Intent.DEFEND_BUFF);
         cardList.add(new ZelkovaWorkshop(this));
         cardList.add(new AllasWorkshop(this));
@@ -118,15 +103,7 @@ public class Angelica extends AbstractCardMonster {
 
     @Override
     public void takeTurn() {
-        DamageInfo info;
-        int multiplier = 0;
-        if (moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
+        super.takeTurn();
         AbstractCreature target = adp();
         if (info.base > -1) {
             info.output = this.getIntentDmg();

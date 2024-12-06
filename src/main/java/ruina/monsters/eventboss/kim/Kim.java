@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -42,10 +41,6 @@ public class Kim extends AbstractCardMonster {
 
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("CounterIntentStrings"));
     private static final String[] TEXT = uiStrings.TEXT;
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte YIELD = 0;
     private static final byte CLAIM = 1;
@@ -73,16 +68,14 @@ public class Kim extends AbstractCardMonster {
     }
 
     public Kim(final float x, final float y) {
-        super(NAME, ID, 180, 0.0F, 0, 230.0f, 275.0f, null, x, y);
+        super(ID, ID, 180, 0.0F, 0, 230.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Kim/Spriter/Kim.scml"));
-
         this.setHp(calcAscensionTankiness(200));
-        this.type = EnemyType.ELITE;
 
         addMove(YIELD, Intent.ATTACK_BUFF, calcAscensionDamage(10));
         addMove(CLAIM, Intent.ATTACK, calcAscensionDamage(20));
         addMove(TAKE_ONES_LIFE, Intent.ATTACK_DEBUFF, calcAscensionDamage(27));
-        addMove(ACUPUNCTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6), ACUPUNCTURE_HITS, true);
+        addMove(ACUPUNCTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6), ACUPUNCTURE_HITS);
 
         cardList.add(new Yield(this));
         cardList.add(new Claim(this));
@@ -104,18 +97,7 @@ public class Kim extends AbstractCardMonster {
 
     @Override
     public void takeTurn() {
-        DamageInfo info;
-        int multiplier = 0;
-        if (moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
-        if (info.base > -1) {
-            info.applyPowers(this, adp());
-        }
+        super.takeTurn();
         switch (nextMove) {
             case YIELD: {
                 slashAnimation(adp());
@@ -244,11 +226,6 @@ public class Kim extends AbstractCardMonster {
         setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
     }
 
-    @Override
-    public void createIntent() {
-        super.createIntent();
-        applyPowers();
-    }
     @Override
     public void applyPowers() {
         if (this.nextMove == CLAIM) {

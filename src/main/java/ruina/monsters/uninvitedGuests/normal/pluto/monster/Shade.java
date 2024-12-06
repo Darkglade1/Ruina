@@ -13,7 +13,6 @@ import com.esotericsoftware.spine.Skeleton;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.cards.red.Defend_Red;
 import com.megacrit.cardcrawl.cards.red.Strike_Red;
@@ -22,19 +21,16 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.vfx.TintEffect;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractDeckMonster;
-import ruina.util.AdditionalIntent;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -43,21 +39,16 @@ import static ruina.util.Wiz.*;
 public class Shade extends AbstractDeckMonster
 {
     public static final String ID = makeID(Shade.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     public final int MAX_DAMAGE = calcAscensionSpecial(50);
-
-    private Hokma hokma;
+    protected Map<Byte, Integer> blockMoveValues = new HashMap<>();
 
     public Shade() {
         this(0.0f, 0.0f);
     }
 
     public Shade(final float x, final float y) {
-        super(NAME, ID, 300, AbstractDungeon.player.hb_x / Settings.scale, AbstractDungeon.player.hb_y / Settings.scale, AbstractDungeon.player.hb_w / Settings.scale, AbstractDungeon.player.hb_h / Settings.scale, null, x, y);
+        super(ID, ID, 300, AbstractDungeon.player.hb_x / Settings.scale, AbstractDungeon.player.hb_y / Settings.scale, AbstractDungeon.player.hb_w / Settings.scale, AbstractDungeon.player.hb_h / Settings.scale, null, x, y);
         this.type = EnemyType.BOSS;
         this.setHp(calcAscensionTankiness(300));
         // you removed my yan code by accident do not remove this or it will NPE and everything will go kaboom boom die and it will be ur fault
@@ -65,11 +56,7 @@ public class Shade extends AbstractDeckMonster
         // double warning ^ do not touch this or i will be big mad
         this.dialogX = -(AbstractDungeon.player.dialogX - AbstractDungeon.player.drawX);
         this.dialogY =  (AbstractDungeon.player.dialogY - AbstractDungeon.player.drawY);
-        numAdditionalMoves = 1;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
-        //name = AbstractDungeon.player.title;
+        setNumAdditionalMoves(1);
         AbstractCard fillerCard = new Madness(); //in case deck somehow has no cards
         addMove((byte) fillerCard.cardID.hashCode(), Intent.ATTACK, 12);
         initializeDeck();
@@ -85,26 +72,24 @@ public class Shade extends AbstractDeckMonster
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Hokma) {
-                hokma = (Hokma)mo;
+                target = (Hokma)mo;
             }
         }
         applyToTarget(this, this, new BarricadePower(this));
     }
 
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, AbstractCard card) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
+    @Override
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
+        int blockValue = getBlockForMove(move.nextMove);
         if (info.base > -1) {
-            info.applyPowers(this, target);
-        }
-        if (info.base > -1) {
-            if (card.baseBlock > 0) {
-                block(this, card.baseBlock);
+            if (blockValue > 0) {
+                block(this, blockValue);
             }
             dmg(target, info, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         } else {
-            if (card.baseBlock > 0) {
-                block(this, card.baseBlock);
+            if (blockValue > 0) {
+                block(this, blockValue);
             }
         }
         resetIdle();
@@ -113,10 +98,7 @@ public class Shade extends AbstractDeckMonster
 
     @Override
     public void takeTurn() {
-        super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
+        AbstractCreature hokma = target;
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -124,25 +106,7 @@ public class Shade extends AbstractDeckMonster
                 this.isDone = true;
             }
         });
-        takeCustomTurn(this.moves.get(nextMove), adp(), enemyCard);
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, additionalIntent.enemyCard.name)));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp(), additionalIntent.enemyCard);
-            } else {
-                takeCustomTurn(additionalMove, hokma, additionalIntent.enemyCard);
-            }
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    additionalIntent.usePrimaryIntentsColor = true;
-                    this.isDone = true;
-                }
-            });
-        }
+        super.takeTurn();
         atb(new RollMoveAction(this));
     }
 
@@ -164,16 +128,6 @@ public class Shade extends AbstractDeckMonster
             return;
         }
         super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, hokma, hokma.icon);
-            }
-        }
     }
 
     @Override
@@ -198,8 +152,18 @@ public class Shade extends AbstractDeckMonster
                 cardCopy.initializeDescription();
                 masterDeck.addToBottom(cardCopy);
                 addMove((byte) card.cardID.hashCode(), intent, card.baseDamage);
+                if (card.baseBlock > 0) {
+                    blockMoveValues.put((byte) card.cardID.hashCode(), card.baseBlock);
+                }
             }
         }
+    }
+
+    private int getBlockForMove(byte move) {
+        if (blockMoveValues.containsKey(move)) {
+            return blockMoveValues.get(move);
+        }
+        return -1;
     }
 
     protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) { setAdditionalMoveShortcut((byte) c.cardID.hashCode(), moveHistory, c); }
@@ -296,9 +260,5 @@ public class Shade extends AbstractDeckMonster
             }
         }
         return 0;
-    }
-
-    void renderImage() {
-        // (re)use the rendering of AbstractPlayer
     }
 }

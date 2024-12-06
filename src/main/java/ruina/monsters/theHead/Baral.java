@@ -11,16 +11,13 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
@@ -29,20 +26,20 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.actions.*;
+import ruina.actions.HeadDialogueAction;
+import ruina.actions.SerumWAnimation;
+import ruina.actions.UsePreBattleActionAction;
+import ruina.actions.YeetPlayerAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.baralCards.*;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.patches.RenderHandPatch;
 import ruina.powers.*;
-import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -53,10 +50,6 @@ public class Baral extends AbstractCardMonster
 {
     public static final String ID = makeID(Baral.class.getSimpleName());
     public static final String METRICS_ID = makeID("TheHead");
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte SERUM_W = 0;
     private static final byte SERUM_R = 1;
@@ -81,8 +74,8 @@ public class Baral extends AbstractCardMonster
     public final int SERUM_K_STR = calcAscensionSpecial(2);
     public final int KILL_THRESHOLD = 25;
 
-    public RolandHead roland;
     public Zena zena;
+    public RolandHead roland;
 
     public int playerMaxHp;
     public int playerCurrentHp;
@@ -102,29 +95,23 @@ public class Baral extends AbstractCardMonster
     }
 
     public PHASE currentPhase;
-
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("BaralIcon.png"));
     private static final ArrayList<TextureRegion> bgTextures = new ArrayList<>();
     private static final ArrayList<Texture> serumWFinish = new ArrayList<>();
 
     public Baral() { this(0.0f, 0.0f, PHASE.PHASE1); }
     public Baral(final float x, final float y) { this(x, y, PHASE.PHASE1); }
     public Baral(final float x, final float y, PHASE phase) {
-        super(NAME, ID, 999999, -5.0F, 0, 160.0f, 300.0f, null, x, y);
+        super(ID, ID, 999999, -5.0F, 0, 160.0f, 300.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Baral/Spriter/Baral.scml"));
-        this.type = EnemyType.BOSS;
+        setNumAdditionalMoves(1);
         numAdditionalMoves = 0;
-        maxAdditionalMoves = 1;
-        for (int i = 0; i < maxAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
         currentPhase = phase;
         this.setHp(calcAscensionTankiness(5000));
 
         addMove(SERUM_W, Intent.ATTACK, SERUM_W_DAMAGE);
-        addMove(SERUM_R, Intent.ATTACK_BUFF, serumR_Damage, serumR_Hits, true);
+        addMove(SERUM_R, Intent.ATTACK_BUFF, serumR_Damage, serumR_Hits);
         addMove(EXTIRPATION, Intent.ATTACK_DEFEND, extirpationDamage);
-        addMove(TRI_SERUM_COCKTAIL, Intent.ATTACK, triSerumDamage, triSerumHits, true);
+        addMove(TRI_SERUM_COCKTAIL, Intent.ATTACK, triSerumDamage, triSerumHits);
         addMove(SERUM_K, Intent.DEFEND_BUFF);
         cardList.add(new SerumW(this));
         cardList.add(new SerumR(this));
@@ -132,6 +119,7 @@ public class Baral extends AbstractCardMonster
         cardList.add(new TriSerum(this));
         cardList.add(new SerumK(this));
 
+        this.icon = TexLoader.getTexture(makeUIPath("BaralIcon.png"));
 
         if (bgTextures.isEmpty()) {
             ArrayList<Texture> bgs = new ArrayList<>();
@@ -195,7 +183,7 @@ public class Baral extends AbstractCardMonster
                 }
             });
 
-            roland = new RolandHead(-1100.0F, 0.0f);
+            target = roland = new RolandHead(-1100.0F, 0.0f);
             roland.drawX = AbstractDungeon.player.drawX;
             AbstractPower power = new PlayerBlackSilence(adp(), roland);
             atb(new AbstractGameAction() {
@@ -261,10 +249,8 @@ public class Baral extends AbstractCardMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         if (move.baseDamage >= 0 && currentPhase == PHASE.PHASE2 && target == adp()) {
             atb(new AbstractGameAction() {
                 @Override
@@ -274,7 +260,6 @@ public class Baral extends AbstractCardMonster
                 }
             });
         }
-
         if (roland != null && target == roland) {
             atb(new AbstractGameAction() {
                 @Override
@@ -283,10 +268,6 @@ public class Baral extends AbstractCardMonster
                     this.isDone = true;
                 }
             });
-        }
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
         }
         switch (move.nextMove) {
             case SERUM_W: {
@@ -506,23 +487,6 @@ public class Baral extends AbstractCardMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
-        atb(new RemoveAllBlockAction(this, this));
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, roland);
-            }
-        }
-
         // Make Serum K give the Strength at end of Baral's turn if he took a turn during the player's turn
         atb(new AbstractGameAction() {
             @Override
@@ -538,7 +502,7 @@ public class Baral extends AbstractCardMonster
             }
         });
 
-        atb(new RollMoveAction(Baral.this));
+        atb(new RollMoveAction(this));
 
         if(currentPhase.equals(PHASE.PHASE1)){
             switch (GameActionManager.turn){
@@ -633,21 +597,6 @@ public class Baral extends AbstractCardMonster
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, roland, roland.icon);
-            }
-        }
-    }
-
-    @Override
     public void damage(DamageInfo info) {
         if (info.owner != zena) {
             super.damage(info);
@@ -657,8 +606,8 @@ public class Baral extends AbstractCardMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        roland.enemyBoss = zena;
-        zena.binah.targetEnemy = zena;
+        roland.target = zena;
+        zena.binah.target = zena;
         zena.onBaralDeath();
         AbstractDungeon.onModifyPower();
         if (zena.isDeadOrEscaped() && !zena.deathTriggered) {

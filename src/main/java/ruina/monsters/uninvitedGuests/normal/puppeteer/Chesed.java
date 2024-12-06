@@ -10,10 +10,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
@@ -37,10 +35,6 @@ import static ruina.util.Wiz.*;
 public class Chesed extends AbstractAllyCardMonster
 {
     public static final String ID = RuinaMod.makeID(Chesed.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte BATTLEFIELD_COMMAND = 0;
     private static final byte ENERGY_SHIELD = 1;
@@ -77,17 +71,15 @@ public class Chesed extends AbstractAllyCardMonster
     }
 
     public Chesed(final float x, final float y) {
-        super(NAME, ID, 150, -5.0F, 0, 230.0f, 250.0f, null, x, y);
+        super(ID, ID, 150, -5.0F, 0, 230.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Chesed/Spriter/Chesed.scml"));
         this.animation.setFlip(true, false);
-
         this.setHp(calcAscensionTankiness(150));
-        this.type = EnemyType.BOSS;
 
         addMove(BATTLEFIELD_COMMAND, Intent.ATTACK_BUFF, 18);
         addMove(ENERGY_SHIELD, Intent.ATTACK_DEFEND, 7);
-        addMove(CONCENTRATE, Intent.ATTACK_DEFEND, 11, CONCENTRATE_HITS, true);
-        addMove(DISPOSAL, Intent.ATTACK, 12, DISPOSAL_HITS, true);
+        addMove(CONCENTRATE, Intent.ATTACK_DEFEND, 11, CONCENTRATE_HITS);
+        addMove(DISPOSAL, Intent.ATTACK, 12, DISPOSAL_HITS);
 
         cardList.add(new BattleCommand(this));
         cardList.add(new EnergyShield(this));
@@ -107,7 +99,7 @@ public class Chesed extends AbstractAllyCardMonster
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Puppeteer) {
-                puppeteer = (Puppeteer)mo;
+                target = puppeteer = (Puppeteer)mo;
             }
         }
         applyToTarget(this, this, new AbstractLambdaPower(FINISHING_POWER_NAME, FINISHING_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
@@ -188,35 +180,10 @@ public class Chesed extends AbstractAllyCardMonster
 
     @Override
     public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
-        super.takeTurn();
         if (firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
-            firstMove = false;
         }
-
-        DamageInfo info;
-        int multiplier = 0;
-        if(moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else {
-            info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL);
-        }
-
-        AbstractCreature target;
-        if (puppeteer.puppet.isDeadOrEscaped()) {
-            target = puppeteer;
-        } else {
-            target = puppeteer.puppet;
-        }
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+        super.takeTurn();
         switch (this.nextMove) {
             case BATTLEFIELD_COMMAND: {
                 slashAnimation(target);
@@ -306,7 +273,7 @@ public class Chesed extends AbstractAllyCardMonster
 
     public void checkDisposalCanUse() {
         if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {
-            if (puppeteer.puppet.isDeadOrEscaped()) {
+            if (puppeteer.puppet.isDeadOrEscaped() && puppeteer.puppet.nextMove == Puppet.REVIVE) {
                 if (puppeteer.hasPower(MARK_POWER_ID)) {
                     att(new TalkAction(this, DIALOG[2]));
                     setMoveShortcut(DISPOSAL, MOVES[DISPOSAL], cardList.get(DISPOSAL));
@@ -318,16 +285,15 @@ public class Chesed extends AbstractAllyCardMonster
 
     @Override
     public void applyPowers() {
-        if (this.nextMove == -1 || puppeteer.isDeadOrEscaped()) {
-            super.applyPowers();
-            return;
-        }
-        AbstractCreature target;
         if (puppeteer.puppet.isDeadOrEscaped()) {
             target = puppeteer;
         } else {
             target = puppeteer.puppet;
         }
+        super.applyPowers();
+    }
+
+    protected float getAdditionalMultiplier() {
         if (nextMove == DISPOSAL) {
             float multiplier = 1;
             if (puppeteer.hasPower(MARK_POWER_ID)) {
@@ -336,10 +302,9 @@ public class Chesed extends AbstractAllyCardMonster
             if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {
                 multiplier *= 2;
             }
-            applyPowers(target, multiplier);
-        } else {
-            applyPowers(target);
+            return multiplier;
         }
+        return -1;
     }
 
     public void onBossDeath() {

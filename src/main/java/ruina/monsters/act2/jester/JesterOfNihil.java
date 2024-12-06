@@ -104,8 +104,8 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        super.takeCustomTurn(move, target);
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case WILL_OF_NIHIL: {
                 atb(new SFXAction("MONSTER_COLLECTOR_DEBUFF"));
@@ -276,15 +276,15 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
         if (index == 0) {
             if (girl1Spawned) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl1, girl1.icon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl1, girl1.icon, index);
             } else {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
             }
         } else {
             if (girl2Spawned) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl2, girl2.icon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, girl2, girl2.icon, index);
             } else {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
             }
         }
     }

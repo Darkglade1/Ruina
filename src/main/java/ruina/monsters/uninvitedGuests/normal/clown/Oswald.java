@@ -97,8 +97,8 @@ public class Oswald extends AbstractCardMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        super.takeCustomTurn(move, target);
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case CLIMAX: {
                 for (int i = 0; i < multiplier; i++) {
@@ -276,9 +276,9 @@ public class Oswald extends AbstractCardMonster
     @Override
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
         if (additionalMove.nextMove == BRAINWASH) {
-            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
         } else {
-            applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
         }
     }
 

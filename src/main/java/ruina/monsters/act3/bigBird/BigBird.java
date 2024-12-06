@@ -103,8 +103,8 @@ public class BigBird extends AbstractMultiIntentMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        super.takeCustomTurn(move, target);
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case SALVATION: {
                 if (target == adp()) {
@@ -198,6 +198,14 @@ public class BigBird extends AbstractMultiIntentMonster
     }
 
     @Override
+    protected int applySpecialMultiplier(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, int whichMove, int dmg) {
+        if (target.hasPower(Enchanted.POWER_ID) && this.hasPower(BigBird.Salvation_POWER_ID)) {
+            return BigBird.INSTANT_KILL_NUM;
+        }
+        return dmg;
+    }
+
+    @Override
     protected void getMove(final int num) {
         if (this.lastMove(SALVATION)) {
             setMoveShortcut(DAZZLE_PLAYER);
@@ -250,12 +258,12 @@ public class BigBird extends AbstractMultiIntentMonster
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
         if (index == 0) {
             if (additionalMove.nextMove == DAZZLE_PLAYER) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
             } else {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage1, sage1.icon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage1, sage1.icon, index);
             }
         } else {
-            applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage2, sage2.icon);
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage2, sage2.icon, index);
         }
     }
 

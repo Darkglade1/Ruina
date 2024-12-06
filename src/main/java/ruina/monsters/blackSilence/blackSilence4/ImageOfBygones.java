@@ -1,11 +1,8 @@
 package ruina.monsters.blackSilence.blackSilence4;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.GenericStrengthUpPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
@@ -19,9 +16,6 @@ import static ruina.util.Wiz.*;
 public class ImageOfBygones extends AbstractRuinaMonster
 {
     public static final String ID = makeID(ImageOfBygones.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
 
     private static final byte AGONY = 0;
     private static final byte SCREAM = 1;
@@ -29,17 +23,12 @@ public class ImageOfBygones extends AbstractRuinaMonster
     private final int STRENGTH = calcAscensionSpecial(3);
     private final BlackSilence4 parent;
 
-    public ImageOfBygones() {
-        this(0.0f, 0.0f, null);
-    }
-
     public ImageOfBygones(final float x, final float y, BlackSilence4 parent) {
-        super(NAME, ID, 100, -15.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(ID, ID, 100, -15.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSilence4/Spriter/BlackSilence4.scml"));
-        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(132), calcAscensionTankiness(143));
         addMove(AGONY, Intent.ATTACK, calcAscensionDamage(20));
-        addMove(SCREAM, Intent.ATTACK, calcAscensionDamage(9), 2, true);
+        addMove(SCREAM, Intent.ATTACK, calcAscensionDamage(9), 2);
         this.parent = parent;
     }
 
@@ -56,15 +45,8 @@ public class ImageOfBygones extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
-
+        super.takeTurn();
         AbstractCreature target = adp();
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
-
         switch (this.nextMove) {
             case AGONY: {
                 int animation = AbstractDungeon.monsterRng.random(2);
@@ -171,10 +153,6 @@ public class ImageOfBygones extends AbstractRuinaMonster
 
     private void slashAnimation(AbstractCreature enemy) {
         animationAction("Slash", "RolandDualSword", enemy, this);
-    }
-
-    private void blockAnimation() {
-        animationAction("Block", null, this);
     }
 
 }

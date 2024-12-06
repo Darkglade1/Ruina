@@ -103,8 +103,8 @@ public class Bremen extends AbstractCardMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        super.takeCustomTurn(move, target);
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case MELODY: {
                 bluntAnimation(target);
@@ -266,12 +266,12 @@ public class Bremen extends AbstractCardMonster
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
         if (index == 1) {
             if (lastIntentTargetAlly) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
             } else {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
             }
         } else {
-            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
         }
     }
 

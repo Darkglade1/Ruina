@@ -4,30 +4,17 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyCardMonster;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_ALLAS;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_Crystal;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_Durandal;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_GUN;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_MACE;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_MOOK;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_OLDBOYS;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_RANGA;
-import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_Wheels;
+import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.*;
 import ruina.powers.BlackSilence;
 import ruina.powers.Bleed;
 import ruina.util.TexLoader;
@@ -41,10 +28,6 @@ import static ruina.util.Wiz.*;
 
 public class Roland extends AbstractAllyCardMonster {
     public static final String ID = RuinaMod.makeID(Roland.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     public static final byte CRYSTAL = 0;
     public static final byte WHEELS = 1;
@@ -92,9 +75,7 @@ public class Roland extends AbstractAllyCardMonster {
 
     public static final int furiosoCap = 9;
     public int furiosoCount = furiosoCap;
-
-    public AbstractMonster enemyBoss;
-    private ArrayList<Byte> movepool = new ArrayList<>();
+    private final ArrayList<Byte> movepool = new ArrayList<>();
 
     public BlackSilence power = new BlackSilence(this, 2);
 
@@ -103,22 +84,21 @@ public class Roland extends AbstractAllyCardMonster {
     }
 
     public Roland(final float x, final float y) {
-        super(NAME, ID, 650, 10.0F, 0, 230.0f, 265.0f, null, x, y);
+        super(ID, ID, 650, 10.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Roland/Spriter/Roland.scml"));
-
         this.setHp(calcAscensionTankiness(650));
-        this.type = EnemyType.BOSS;
 
-        addMove(CRYSTAL, Intent.ATTACK_DEFEND, crystalDamage, crystalHits, true);
+        addMove(CRYSTAL, Intent.ATTACK_DEFEND, crystalDamage, crystalHits);
         addMove(WHEELS, Intent.ATTACK_DEBUFF, wheelsDamage);
-        addMove(DURANDAL, Intent.ATTACK_BUFF, durandalDamage, durandalHits, true);
+        addMove(DURANDAL, Intent.ATTACK_BUFF, durandalDamage, durandalHits);
         addMove(ALLAS, Intent.ATTACK_DEBUFF, ALLAS_DAMAGE);
-        addMove(GUN, Intent.ATTACK, GUN_DAMAGE, GUN_HITS, true);
+        addMove(GUN, Intent.ATTACK, GUN_DAMAGE, GUN_HITS);
         addMove(MOOK, Intent.ATTACK_DEBUFF, MOOK_DAMAGE);
         addMove(OLD_BOY, Intent.ATTACK_DEFEND, OLD_BOY_DAMAGE);
-        addMove(RANGA, Intent.ATTACK_DEBUFF, RANGA_DAMAGE, RANGA_HITS, true);
-        addMove(MACE, Intent.ATTACK, MACE_DAMAGE, MACE_HITS, true);
-        addMove(FURIOSO, Intent.ATTACK, furiosoDamage, furiosoHits, true);
+        addMove(RANGA, Intent.ATTACK_DEBUFF, RANGA_DAMAGE, RANGA_HITS);
+        addMove(MACE, Intent.ATTACK, MACE_DAMAGE, MACE_HITS);
+        addMove(FURIOSO, Intent.ATTACK, furiosoDamage, furiosoHits);
+
         this.icon = TexLoader.getTexture(makeUIPath("RolandIcon.png"));
         populateCards();
     }
@@ -134,7 +114,9 @@ public class Roland extends AbstractAllyCardMonster {
         applyToTarget(this, this, power);
         updatePower();
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Argalia) { enemyBoss = mo; }
+            if (mo instanceof Argalia) {
+                target = (Argalia)mo;
+            }
         }
         super.usePreBattleAction();
     }
@@ -145,35 +127,15 @@ public class Roland extends AbstractAllyCardMonster {
     }
 
     public void dialogue() {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (firstMove) {
-                    att(new TalkAction(Roland.this, DIALOG[0]));
-                    firstMove = false;
-                }
-                isDone = true;
-            }
-        });
+        if (firstMove) {
+            atb(new TalkAction(Roland.this, DIALOG[0]));
+        }
     }
 
     @Override
     public void takeTurn() {
-        if (this.isDead) {
-            return;
-        }
-        super.takeTurn();
         dialogue();
-        DamageInfo info;
-        int multiplier = 0;
-        if (moves.containsKey(this.nextMove)) {
-            EnemyMoveInfo emi = moves.get(this.nextMove);
-            info = new DamageInfo(this, emi.baseDamage, DamageInfo.DamageType.NORMAL);
-            multiplier = emi.multiplier;
-        } else { info = new DamageInfo(this, 0, DamageInfo.DamageType.NORMAL); }
-        AbstractCreature target;
-        target = enemyBoss;
-        if (info.base > -1) { info.applyPowers(this, target); }
+        super.takeTurn();
         switch (this.nextMove) {
             case CRYSTAL: {
                 block(this, crystalBlock);
@@ -438,17 +400,6 @@ public class Roland extends AbstractAllyCardMonster {
         cardList.add(new CHRALLY_RANGA(this));
         cardList.add(new CHRALLY_MACE(this));
         cardList.add(new CHRALLY_FURIOSO(this));
-    }
-
-    @Override
-    public void applyPowers() {
-        if (this.nextMove == -1 || enemyBoss.isDeadOrEscaped()) {
-            super.applyPowers();
-            return;
-        }
-        AbstractCreature target;
-        target = enemyBoss;
-        applyPowers(target);
     }
 
     public void onArgaliaDeath() {

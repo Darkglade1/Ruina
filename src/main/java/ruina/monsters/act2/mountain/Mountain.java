@@ -149,11 +149,11 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
         if (this.halfDead && move.nextMove != REVIVE) {
             return;
         }
-        super.takeCustomTurn(move, target);
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case DEVOUR: {
                 attackAnimation(target);
@@ -315,12 +315,12 @@ public class Mountain extends AbstractMultiIntentMonster
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
         if (currentStage == STAGE3) {
             if (index == 1 && additionalIntent.baseDamage >= 0) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
             } else {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
             }
         } else {
-            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon);
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
         }
     }
 

@@ -1,8 +1,5 @@
 package ruina.monsters.uninvitedGuests.normal.puppeteer;
 
-import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
@@ -12,19 +9,13 @@ import com.megacrit.cardcrawl.actions.unique.IncreaseMaxHpAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.monsters.AbstractRuinaMonster;
+import ruina.monsters.AbstractAllyAttackingMinion;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.BetterPlatedArmor;
 import ruina.powers.InvisibleBarricadePower;
@@ -35,48 +26,35 @@ import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
-public class Puppet extends AbstractRuinaMonster
+public class Puppet extends AbstractAllyAttackingMinion
 {
     public static final String ID = makeID(Puppet.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    protected static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("MultiIntentStrings"));
-    protected static final String[] TEXT = uiStrings.TEXT;
 
-    private static final byte FORCEFUL_GESTURE = 0;
-    private static final byte REPRESSED_FLESH = 1;
-    private static final byte REVIVING = 2;
-    private static final byte REVIVE = 3;
+    public static final byte FORCEFUL_GESTURE = 0;
+    public static final byte REPRESSED_FLESH = 1;
+    public static final byte REVIVING = 2;
+    public static final byte REVIVE = 3;
 
     private final int BLOCK = calcAscensionTankiness(12);
     private final int PLATED_ARMOR = calcAscensionSpecial(11);
     public final int maxHPIncrease = calcAscensionTankiness(20);
-
-    public boolean attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
-    private final Puppeteer puppeteer;
-    private final Chesed chesed;
+    private Puppeteer puppeteer;
 
     public static final String POWER_ID = makeID("PuppetStrings");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public Puppet() {
-        this(0.0f, 0.0f, null);
-    }
-
-    public Puppet(final float x, final float y, Puppeteer puppeteer) {
-        super(NAME, ID, 40, -5.0F, 0, 250.0f, 395.0f, null, x, y);
+    public Puppet(final float x, final float y) {
+        super(ID, ID, 40, -5.0F, 0, 250.0f, 395.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Puppet/Spriter/Puppet.scml"));
-        this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(90), calcAscensionTankiness(98));
         addMove(FORCEFUL_GESTURE, Intent.ATTACK_DEFEND, calcAscensionDamage(15));
-        addMove(REPRESSED_FLESH, Intent.ATTACK, calcAscensionDamage(9), 2, true);
+        addMove(REPRESSED_FLESH, Intent.ATTACK, calcAscensionDamage(9), 2);
         addMove(REVIVING, Intent.UNKNOWN);
         addMove(REVIVE, Intent.BUFF);
-        this.puppeteer = puppeteer;
-        this.chesed = puppeteer.chesed;
+
+        attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
     }
 
     @Override
@@ -87,6 +65,17 @@ public class Puppet extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Puppeteer) {
+                puppeteer = (Puppeteer) mo;
+            }
+        }
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Chesed) {
+                target = (Chesed) mo;
+            }
+        }
+        addPower(new MinionPower(this));
         block(this, PLATED_ARMOR);
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new BetterPlatedArmor(this, PLATED_ARMOR));
@@ -110,13 +99,12 @@ public class Puppet extends AbstractRuinaMonster
 
     @Override
     public void takeTurn() {
+        super.takeTurn();
         atb(new RemoveAllBlockAction(this, this));
-        DamageInfo info = new DamageInfo(this, this.moves.get(nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = this.moves.get(nextMove).multiplier;
 
         AbstractCreature target;
-        if (!chesed.isDead && !chesed.isDying && attackingAlly) {
-            target = chesed;
+        if (!this.target.isDead && !this.target.isDying && attackingAlly) {
+            target = this.target;
         } else {
             target = adp();
         }
@@ -193,57 +181,12 @@ public class Puppet extends AbstractRuinaMonster
         }
     }
 
-    @Override
-    public void createIntent() {
-        super.createIntent();
-        applyPowers();
-    }
-
-    @Override
-    public void applyPowers() {
-        if (this.nextMove == -1) {
-            super.applyPowers();
-            return;
-        }
-        if (chesed != null && !chesed.isDead && !chesed.isDying && attackingAlly) {
-            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-            AbstractCreature target = chesed;
-            if (info.base > -1) {
-                info.applyPowers(this, target);
-                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-                PowerTip intentTip = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
-                int multiplier = moves.get(this.nextMove).multiplier;
-                Texture attackImg;
-                if (multiplier > 0) {
-                    attackImg = getAttackIntent(info.output * multiplier);
-                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[3] + multiplier + TEXT[4];
-                } else {
-                    attackImg = getAttackIntent(info.output);
-                    intentTip.body = TEXT[0] + FontHelper.colorString(target.name, "y") + TEXT[1] + info.output + TEXT[2];
-                }
-                ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
-            }
-        } else {
-            super.applyPowers();
-        }
-    }
-
     private void bluntAnimation(AbstractCreature enemy) {
         animationAction("Blunt", "BluntHori", enemy, this);
     }
 
     private void slashAnimation(AbstractCreature enemy) {
         animationAction("Slash", "BluntVert", enemy, this);
-    }
-
-    @Override
-    public void renderIntent(SpriteBatch sb) {
-        super.renderIntent(sb);
-        if (!chesed.isDead && !chesed.isDying && attackingAlly && !this.isDeadOrEscaped()) {
-            BobEffect bobEffect = ReflectionHacks.getPrivate(this, AbstractMonster.class, "bobEffect");
-            float intentAngle = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentAngle");
-            sb.draw(Chesed.targetTexture, this.intentHb.cX - 48.0F, this.intentHb.cY - 48.0F + (40.0f * Settings.scale) + bobEffect.y, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, intentAngle, 0, 0, 48, 48, false, false);
-        }
     }
 
     @Override

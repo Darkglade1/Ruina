@@ -1,17 +1,14 @@
 package ruina.monsters.uninvitedGuests.normal.elena;
 
 import actlikeit.dungeons.CustomDungeon;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -19,9 +16,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.elena.elenaCards.*;
 import ruina.powers.AbstractLambdaPower;
@@ -31,7 +26,6 @@ import ruina.powers.Protection;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.ThirstEffect;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -41,10 +35,6 @@ import static ruina.util.Wiz.*;
 public class Elena extends AbstractCardMonster
 {
     public static final String ID = makeID(Elena.class.getSimpleName());
-    private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings(ID);
-    public static final String NAME = monsterStrings.NAME;
-    public static final String[] MOVES = monsterStrings.MOVES;
-    public static final String[] DIALOG = monsterStrings.DIALOG;
 
     private static final byte CIRCULATION = 0;
     private static final byte SANGUINE_NAILS = 1;
@@ -59,7 +49,6 @@ public class Elena extends AbstractCardMonster
     public final int FRAIL = calcAscensionSpecial(2);
     public final int BLEED = calcAscensionSpecial(10);
     public final int INJECT_STR = calcAscensionSpecial(1);
-    public Binah binah;
     public VermilionCross vermilionCross;
 
     public static final String POWER_ID = makeID("BloodRed");
@@ -67,20 +56,14 @@ public class Elena extends AbstractCardMonster
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("ElenaIcon.png"));
-
     public Elena() {
         this(0.0f, 0.0f);
     }
 
     public Elena(final float x, final float y) {
-        super(NAME, ID, 500, -5.0F, 0, 160.0f, 245.0f, null, x, y);
+        super(ID, ID, 500, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Elena/Spriter/Elena.scml"));
-        this.type = EnemyType.BOSS;
-        numAdditionalMoves = 1;
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            additionalMovesHistory.add(new ArrayList<>());
-        }
+        setNumAdditionalMoves(1);
         this.setHp(calcAscensionTankiness(500));
 
         addMove(CIRCULATION, Intent.BUFF);
@@ -94,6 +77,8 @@ public class Elena extends AbstractCardMonster
         cardList.add(new Siphon(this));
         cardList.add(new Bloodspreading(this));
         cardList.add(new Inject(this));
+
+        this.icon = TexLoader.getTexture(makeUIPath("ElenaIcon.png"));
     }
 
     @Override
@@ -107,7 +92,7 @@ public class Elena extends AbstractCardMonster
         CustomDungeon.playTempMusicInstantly("Ensemble3");
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Binah) {
-                binah = (Binah)mo;
+                target = (Binah)mo;
             }
             if (mo instanceof VermilionCross) {
                 vermilionCross = (VermilionCross)mo;
@@ -132,13 +117,8 @@ public class Elena extends AbstractCardMonster
     }
 
     @Override
-    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target) {
-        DamageInfo info = new DamageInfo(this, move.baseDamage, DamageInfo.DamageType.NORMAL);
-        int multiplier = move.multiplier;
-
-        if(info.base > -1) {
-            info.applyPowers(this, target);
-        }
+    public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
+        super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case CIRCULATION: {
                 buffAnimation();
@@ -228,22 +208,6 @@ public class Elena extends AbstractCardMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        if (this.firstMove) {
-            firstMove = false;
-        }
-        atb(new RemoveAllBlockAction(this, this));
-        takeCustomTurn(this.moves.get(nextMove), adp());
-        for (int i = 0; i < additionalMoves.size(); i++) {
-            EnemyMoveInfo additionalMove = additionalMoves.get(i);
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            atb(new VFXActionButItCanFizzle(this, new MoveNameEffect(hb.cX - animX, hb.cY + hb.height / 2.0F, MOVES[additionalMove.nextMove])));
-            atb(new BetterIntentFlashAction(this, additionalIntent.intentImg));
-            if (additionalIntent.targetTexture == null) {
-                takeCustomTurn(additionalMove, adp());
-            } else {
-                takeCustomTurn(additionalMove, binah);
-            }
-        }
         atb(new RollMoveAction(this));
     }
 
@@ -287,21 +251,11 @@ public class Elena extends AbstractCardMonster
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        for (int i = 0; i < additionalIntents.size(); i++) {
-            AdditionalIntent additionalIntent = additionalIntents.get(i);
-            EnemyMoveInfo additionalMove = null;
-            if (i < additionalMoves.size()) {
-                additionalMove = additionalMoves.get(i);
-            }
-            if (additionalMove != null) {
-                if (additionalMove.nextMove == SANGUINE_NAILS) {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, binah, binah.icon);
-                } else {
-                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null);
-                }
-            }
+    public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
+        if (additionalMove.nextMove == SANGUINE_NAILS) {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
+        } else {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
         }
     }
 
@@ -314,9 +268,9 @@ public class Elena extends AbstractCardMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        binah.targetEnemy = vermilionCross;
-        if (vermilionCross.isDeadOrEscaped()) {
-            binah.onBossDeath();
+        target.target = vermilionCross;
+        if (vermilionCross.isDeadOrEscaped() && target instanceof Binah) {
+            ((Binah) target).onBossDeath();
         }
     }
 
