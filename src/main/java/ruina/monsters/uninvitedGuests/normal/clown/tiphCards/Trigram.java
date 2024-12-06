@@ -10,12 +10,18 @@ import ruina.monsters.uninvitedGuests.normal.clown.Tiph;
 import static ruina.RuinaMod.makeID;
 
 @AutoAdd.Ignore
-public class Confrontation extends AbstractRuinaCard {
-    public final static String ID = makeID(Confrontation.class.getSimpleName());
+public class Trigram extends AbstractRuinaCard {
+    public final static String ID = makeID(Trigram.class.getSimpleName());
 
-    public Confrontation(Tiph parent) {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
-        baseBlock = parent.BLOCK;
+    public Trigram(Tiph parent) {
+        super(ID, 4, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
+        baseMagicNumber = magicNumber = parent.trigramHits;
+    }
+
+    @Override
+    public float getTitleFontSize()
+    {
+        return 14;
     }
 
     @Override

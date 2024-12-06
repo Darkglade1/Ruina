@@ -10,10 +10,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
+import ruina.actions.AllyGainBlockAction;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.clown.tiphCards.Confrontation;
 import ruina.monsters.uninvitedGuests.normal.clown.tiphCards.Kick;
-import ruina.powers.Protection;
+import ruina.monsters.uninvitedGuests.normal.clown.tiphCards.Trigram;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
@@ -27,9 +28,11 @@ public class Tiph extends AbstractAllyCardMonster
 
     private static final byte AUGURY_KICK = 0;
     private static final byte CONFRONTATION = 1;
+    private static final byte TRIGRAM = 2;
 
     public final int STRENGTH = 2;
-    public final int PROTECTION = 2;
+    public final int BLOCK = 10;
+    public final int trigramHits = 2;
 
     public Tiph() {
         this(0.0f, 0.0f);
@@ -39,13 +42,15 @@ public class Tiph extends AbstractAllyCardMonster
         super(ID, ID, 300, -5.0F, 0, 200, 260.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Tiph/Spriter/Tiph.scml"));
         this.animation.setFlip(true, false);
-        this.setHp(300);
+        this.setHp(160);
 
         addMove(AUGURY_KICK, Intent.ATTACK_BUFF, 10);
-        addMove(CONFRONTATION, Intent.ATTACK_DEFEND, 7);
+        addMove(CONFRONTATION, Intent.ATTACK_DEFEND, 16);
+        addMove(TRIGRAM, Intent.ATTACK, 12, trigramHits);
 
         cardList.add(new Kick(this));
         cardList.add(new Confrontation(this));
+        cardList.add(new Trigram(this));
 
         this.icon = TexLoader.getTexture(makeUIPath("TiphIcon.png"));
     }
@@ -88,22 +93,31 @@ public class Tiph extends AbstractAllyCardMonster
                 bluntAnimation(target);
                 dmg(target, info);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-                if (isAlly) {
-                    applyToTarget(adp(), this, new StrengthPower(adp(), STRENGTH));
-                } else {
-                    applyToTarget(this.target, this, new StrengthPower(this.target, STRENGTH));
-                }
+                applyToTarget(adp(), this, new StrengthPower(adp(), STRENGTH));
                 resetIdle();
                 break;
             }
             case CONFRONTATION: {
                 pierceAnimation(target);
                 dmg(target, info);
-                applyToTarget(this, this, new Protection(this, PROTECTION));
-                if (isAlly) {
-                    applyToTarget(adp(), this, new Protection(adp(), PROTECTION));
-                } else {
-                    applyToTarget(this.target, this, new Protection(this.target, PROTECTION));
+                atb(new AllyGainBlockAction(this, this, BLOCK));
+                block(adp(), BLOCK);
+                resetIdle();
+                break;
+            }
+            case TRIGRAM: {
+                for (int i = 0; i < multiplier; i++) {
+                    if (i % 2 == 0) {
+                        special1Animation(target);
+                        waitAnimation(1.0f);
+                        special2Animation(target);
+                    } else {
+                        special1AnimationNoSound(target);
+                        waitAnimation();
+                        special4Animation(target);
+                    }
+                    dmg(target, info);
+                    waitAnimation();
                 }
                 resetIdle();
                 break;
@@ -114,24 +128,13 @@ public class Tiph extends AbstractAllyCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (isAlly) {
-            if (this.lastMove(AUGURY_KICK)) {
-                setMoveShortcut(CONFRONTATION, cardList.get(CONFRONTATION));
-            } else {
-                setMoveShortcut(AUGURY_KICK, cardList.get(AUGURY_KICK));
-            }
+        if (this.lastMove(TRIGRAM)) {
+            setMoveShortcut(CONFRONTATION, cardList.get(CONFRONTATION));
+        } else if (this.lastMove(CONFRONTATION)) {
+            setMoveShortcut(AUGURY_KICK, cardList.get(AUGURY_KICK));
         } else {
-            if (this.lastMove(CONFRONTATION)) {
-                setMoveShortcut(AUGURY_KICK, cardList.get(AUGURY_KICK));
-            } else {
-                setMoveShortcut(CONFRONTATION, cardList.get(CONFRONTATION));
-            }
+            setMoveShortcut(TRIGRAM, cardList.get(TRIGRAM));
         }
-    }
-
-    public void onBrainwashed() {
-        setMoveShortcut(CONFRONTATION, cardList.get(CONFRONTATION));
-        createIntent();
     }
 
     public void onBossDeath() {
@@ -154,6 +157,22 @@ public class Tiph extends AbstractAllyCardMonster
 
     private void pierceAnimation(AbstractCreature enemy) {
         animationAction("Pierce", "HanaStab", enemy, this);
+    }
+
+    private void special1Animation(AbstractCreature enemy) {
+        animationAction("Special1", "HanaStrongCharge", enemy, this);
+    }
+
+    private void special1AnimationNoSound(AbstractCreature enemy) {
+        animationAction("Special1", null, enemy, this);
+    }
+
+    private void special2Animation(AbstractCreature enemy) {
+        animationAction("Special2", "HanaStrongStart", enemy, this);
+    }
+
+    private void special4Animation(AbstractCreature enemy) {
+        animationAction("Special4", "HanaStrongFin", enemy, this);
     }
 
 }

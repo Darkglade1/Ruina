@@ -64,8 +64,6 @@ public class Chesed extends AbstractAllyCardMonster
     public static final String MARK_POWER_NAME = MARKPowerStrings.NAME;
     public static final String[] MARK_POWER_DESCRIPTIONS = MARKPowerStrings.DESCRIPTIONS;
 
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("ChesedIcon.png"));
-
     public Chesed() {
         this(0.0f, 0.0f);
     }

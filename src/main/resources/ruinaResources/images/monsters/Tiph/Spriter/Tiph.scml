@@ -4,6 +4,9 @@
         <file id="0" name="Idle.png" width="426" height="370" pivot_x="0" pivot_y="1"/>
         <file id="1" name="Pierce.png" width="564" height="331" pivot_x="0" pivot_y="1"/>
         <file id="2" name="Blunt.png" width="512" height="526" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Special1.png" width="457" height="229" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Special2.png" width="654" height="229" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Special4.png" width="712" height="303" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="Tiph">
         <animation id="0" name="Idle" length="1000" interval="100">
@@ -14,7 +17,7 @@
             </mainline>
             <timeline id="0" name="Idle">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-253" y="294"/>
+                    <object folder="0" file="0" x="-253" y="292" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -26,7 +29,7 @@
             </mainline>
             <timeline id="0" name="Pierce">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-427" y="281"/>
+                    <object folder="0" file="1" x="-427" y="277" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -38,7 +41,43 @@
             </mainline>
             <timeline id="0" name="Blunt">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-269" y="360"/>
+                    <object folder="0" file="2" x="-269" y="356" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Special1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special1">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-386" y="228"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Special2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special2">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-534" y="228"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Special4" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special4">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-592" y="262"/>
                 </key>
             </timeline>
         </animation>

@@ -40,5 +40,12 @@
       "protection"
     ],
     "DESCRIPTION": "Creatures with #yProtection receive less damage from attacks. Reduced by #b1 at end of round."
+  },
+  {
+    "PROPER_NAME": "Brainwashed",
+    "NAMES": [
+      "brainwashed"
+    ],
+    "DESCRIPTION": "#yBrainwashed cards cost 0 but can only target your #gally."
   }
 ]

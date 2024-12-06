@@ -31,14 +31,16 @@ public class Brainwash extends AbstractUnremovablePower {
         if (this.amount > 0 && card.target == AbstractCard.CardTarget.ENEMY && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL)) {
             this.flash();
             this.amount--;
-            BrainwashMod mod = new BrainwashMod();
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    CardModifierManager.addModifier(card, mod.makeCopy());
-                    this.isDone = true;
-                }
-            });
+            if (!CardModifierManager.hasModifier(card, BrainwashMod.ID)) {
+                BrainwashMod mod = new BrainwashMod();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        CardModifierManager.addModifier(card, mod.makeCopy());
+                        this.isDone = true;
+                    }
+                });
+            }
         }
     }
 

@@ -518,6 +518,9 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("HanaBlunt"), makeSFXPath("Hana_Blow.wav"));
         BaseMod.addAudio(makeID("HanaStab"), makeSFXPath("Hana_Stab.wav"));
+        BaseMod.addAudio(makeID("HanaStrongStart"), makeSFXPath("Hana_Strong_Start.wav"));
+        BaseMod.addAudio(makeID("HanaStrongCharge"), makeSFXPath("Hana_Strong_Charge.wav"));
+        BaseMod.addAudio(makeID("HanaStrongFin"), makeSFXPath("Hana_Strong_Fin.wav"));
 
         BaseMod.addAudio(makeID("BremenStrongFar"), makeSFXPath("Bremen_StrongFar.wav"));
         BaseMod.addAudio(makeID("BremenStrong"), makeSFXPath("Bremen_Strong.wav"));

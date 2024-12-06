@@ -422,7 +422,11 @@
   },
   "${ModID}:Confrontation": {
     "NAME": "Confrontation",
-    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !M! *Protection."
+    "DESCRIPTION": "Deal !D! damage. NL ALL allies gain !B! Block."
+  },
+  "${ModID}:Trigram": {
+    "NAME": "True Trigram Formation",
+    "DESCRIPTION": "Deal !D! damage !M! times."
   },
   "${ModID}:Melody": {
     "NAME": "Melody",

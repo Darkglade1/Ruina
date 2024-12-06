@@ -46,8 +46,8 @@ public class Oswald extends AbstractCardMonster
     public int climaxHits = 4;
     public final int climaxHitIncrease = calcAscensionSpecial(1);
 
-    public final int STATUS = calcAscensionSpecial(3);
-    public final int STRENGTH = calcAscensionSpecial(1);
+    public final int STATUS = calcAscensionSpecial(2);
+    public final int STRENGTH = calcAscensionSpecial(2);
     public final int WEAK = calcAscensionSpecial(2);
     public final int ALLY_DEBUFF = 1;
 

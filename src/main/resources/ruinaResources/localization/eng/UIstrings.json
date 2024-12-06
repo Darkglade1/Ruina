@@ -124,7 +124,7 @@
   },
   "ruina:BrainwashMod": {
     "TEXT": [
-      "*Brainwashed. NL "
+      "ruina:Brainwashed. NL "
     ]
   }
 }
