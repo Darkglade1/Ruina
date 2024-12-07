@@ -55,7 +55,11 @@ public class BrainwashMod extends AbstractCardModifier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return TEXT[0] + rawDescription;
+        if (!rawDescription.contains(TEXT[0])) {
+            return TEXT[0] + rawDescription;
+        } else {
+            return rawDescription;
+        }
     }
 
     @Override
