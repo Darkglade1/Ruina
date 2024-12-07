@@ -82,11 +82,11 @@ public class Alriune extends AbstractRuinaMonster
 
             @Override
             public void onUseCard(AbstractCard card, UseCardAction action) {
-                if (!triggered && card.type == AbstractCard.CardType.ATTACK) {
-                    triggered = true;
-                    this.flash();
-                    LaurelWreathMod mod = new LaurelWreathMod();
-                    if (!CardModifierManager.hasModifier(card, LaurelWreathMod.ID)) {
+                if (!CardModifierManager.hasModifier(card, LaurelWreathMod.ID)) {
+                    if (!triggered && card.type == AbstractCard.CardType.ATTACK) {
+                        triggered = true;
+                        this.flash();
+                        LaurelWreathMod mod = new LaurelWreathMod();
                         CardModifierManager.addModifier(card, mod.makeCopy());
                     }
                 }

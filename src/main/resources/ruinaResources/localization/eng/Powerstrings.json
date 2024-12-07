@@ -480,7 +480,7 @@
   },
   "${ModID}:WintersInception": {
     "NAME": "Winter's Inception",
-    "DESCRIPTIONS": ["The first #yAttack you play each turn gains #yLaurel #yWreath. This creature receives #b", "% less damage from #yAttacks without #yLaurel #yWreath."]
+    "DESCRIPTIONS": ["The first #yAttack without #yLaurel #yWreath you play each turn gains #yLaurel #yWreath. This creature receives #b", "% less damage from #yAttacks without #yLaurel #yWreath."]
   },
   "${ModID}:Performance": {
     "NAME": "Endless Performance",

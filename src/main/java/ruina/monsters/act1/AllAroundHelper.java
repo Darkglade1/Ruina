@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.FlexibleLoseStrengthPower;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -44,7 +44,7 @@ public class AllAroundHelper extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Helper/Spriter/Helper.scml"));
         setHp(calcAscensionTankiness(50), calcAscensionTankiness(54));
         addMove(CHARGE, Intent.BUFF);
-        addMove(CLEAN, Intent.ATTACK, calcAscensionDamage(7), 2);
+        addMove(CLEAN, Intent.ATTACK, calcAscensionDamage(6), 2);
         this.attackFirst = attackFirst;
 
         if (AbstractDungeon.ascensionLevel >= 3) {
@@ -103,8 +103,8 @@ public class AllAroundHelper extends AbstractRuinaMonster
         switch (this.nextMove) {
             case CHARGE: {
                 specialAnimation(adp());
-                applyToTargetNextTurn(this, new StrengthPower(this, STRENGTH));
-                applyToTargetNextTurn(this, new LoseStrengthPower(this, STRENGTH));
+                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                applyToTarget(this, this, new FlexibleLoseStrengthPower(this, STRENGTH - 1, true));
                 resetIdle(1.0f);
                 break;
             }

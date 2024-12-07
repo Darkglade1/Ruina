@@ -25,6 +25,7 @@ public class CrazedEmployee extends AbstractRuinaMonster
     private final int SELF_DEBUFF = 1;
 
     private final int debuff;
+    private boolean hasDebuffed = false;
 
     public static final String POWER_ID = makeID("Song");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -73,6 +74,7 @@ public class CrazedEmployee extends AbstractRuinaMonster
                     applyToTarget(adp(), this, new FrailPower(adp(), DEBUFF, true));
                 }
                 resetIdle();
+                hasDebuffed = true;
                 break;
             }
             case SHAKING_BLOW: {
@@ -89,8 +91,14 @@ public class CrazedEmployee extends AbstractRuinaMonster
     protected void getMove(final int num) {
         if (debuff == 2) {
             setMoveShortcut(SHAKING_BLOW);
-        } else if (firstMove) {
-            setMoveShortcut(TREMBLING_MOTION);
+        } else if (!hasDebuffed) {
+            if (firstMove && debuff == 0) {
+                setMoveShortcut(TREMBLING_MOTION);
+            } else if (!firstMove && debuff == 1) {
+                setMoveShortcut(TREMBLING_MOTION);
+            } else {
+                setMoveShortcut(SHAKING_BLOW);
+            }
         } else {
             setMoveShortcut(SHAKING_BLOW);
         }
