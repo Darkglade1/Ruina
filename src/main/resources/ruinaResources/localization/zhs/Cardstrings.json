@@ -892,7 +892,7 @@
   },
   "ruina:Gift": {
     "NAME": "礼物",
-    "DESCRIPTION": "每当 保留 时，这张牌的耗能减少 !ruina:SecondMagic! 。 NL 如果这张牌的耗能变为0，令你受到 !M! 点伤害然后 消耗 这张牌。 NL 这张牌的耗能不会被其他效果影响。"
+    "DESCRIPTION": "在你的回合结束时，令你受到 !M! 点伤害然后 消耗 这张牌。"
   },
   "ruina:Enlightenment": {
     "NAME": "顿悟",

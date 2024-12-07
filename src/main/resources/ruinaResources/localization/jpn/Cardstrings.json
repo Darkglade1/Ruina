@@ -892,7 +892,7 @@
   },
   "ruina:Gift": {
     "NAME": "プレゼント",
-    "DESCRIPTION": "ターン終了時、コストが NL !ruina:SecondMagic! 減る。 NL コストが0なら 廃棄 し、 !M! ダメージを受ける。 NL この効果以外でコストは変化しない。"
+    "DESCRIPTION": "ターン終了なら 廃棄 し、 !M! ダメージを受ける。"
   },
   "ruina:Enlightenment": {
     "NAME": "悟り",
