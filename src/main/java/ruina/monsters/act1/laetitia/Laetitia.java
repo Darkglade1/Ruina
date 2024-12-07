@@ -35,15 +35,15 @@ public class Laetitia extends AbstractRuinaMonster {
     public Laetitia(final float x, final float y) {
         super(ID, ID, 100, 0.0F, 0, 200.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Laetitia/Spriter/Laetitia.scml"));
-        setHp(calcAscensionTankiness(100));
+        setHp(calcAscensionTankiness(70));
         addMove(GIFT, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
         addMove(FUN, Intent.ATTACK, calcAscensionDamage(10));
 
         if (AbstractDungeon.ascensionLevel >= 18) {
             gift.upgrade();
-            DAMAGE_INCREASE = 75;
+            DAMAGE_INCREASE = 33;
         } else {
-            DAMAGE_INCREASE = 100;
+            DAMAGE_INCREASE = 50;
         }
     }
 
