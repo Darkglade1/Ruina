@@ -1,7 +1,7 @@
 package ruina.monsters.act1.laetitia;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -51,7 +51,7 @@ public class WitchFriend extends AbstractRuinaMonster
                     public void update() {
                         for (AbstractCard card : adp().hand.group) {
                             if (card instanceof Gift) {
-                                this.addToTop(new DiscardSpecificCardAction(card));
+                                att(new ExhaustSpecificCardAction(card, adp().hand));
                             }
                         }
                         this.isDone = true;

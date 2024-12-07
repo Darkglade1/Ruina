@@ -2,7 +2,6 @@ package ruina.monsters.act1.laetitia;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -37,8 +36,8 @@ public class Laetitia extends AbstractRuinaMonster {
         super(ID, ID, 100, 0.0F, 0, 200.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Laetitia/Spriter/Laetitia.scml"));
         setHp(calcAscensionTankiness(100));
-        addMove(GIFT, Intent.ATTACK_DEBUFF, calcAscensionDamage(5));
-        addMove(FUN, Intent.ATTACK, calcAscensionDamage(8));
+        addMove(GIFT, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
+        addMove(FUN, Intent.ATTACK, calcAscensionDamage(10));
 
         if (AbstractDungeon.ascensionLevel >= 18) {
             gift.upgrade();
@@ -72,12 +71,9 @@ public class Laetitia extends AbstractRuinaMonster {
                 break;
             }
             case FUN: {
-                for (int i = 0; i < multiplier; i++) {
-                    attackAnimation(adp());
-                    dmg(adp(), info);
-                    resetIdle(0.25f);
-                    waitAnimation(0.25f);
-                }
+                attackAnimation(adp());
+                dmg(adp(), info);
+                resetIdle();
                 break;
             }
         }

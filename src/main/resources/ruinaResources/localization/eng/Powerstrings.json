@@ -515,7 +515,7 @@
   "${ModID}:Gimme": {
     "NAME": "Gimme that Gift!",
     "DESCRIPTIONS": [
-      "On death, discard all #yGifts in your hand."
+      "On death, #yexhaust all #yGifts in your hand."
     ]
   },
   "${ModID}:SurprisePresent": {

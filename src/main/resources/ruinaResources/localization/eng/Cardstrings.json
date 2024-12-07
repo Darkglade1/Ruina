@@ -892,7 +892,7 @@
   },
   "${ModID}:Gift": {
     "NAME": "Gift",
-    "DESCRIPTION": "When Exhausted, take !M! damage."
+    "DESCRIPTION": "Unplayable. NL If this card is in your hand at end of turn, take !M! damage and Exhaust this card."
   },
   "${ModID}:Enlightenment": {
     "NAME": "Enlightenment",
