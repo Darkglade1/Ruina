@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 
 @SpirePatch(cls = "com.megacrit.cardcrawl.characters.AbstractPlayer", method = "renderHand")
 public class RenderHandPatch {
-	public static boolean plsDontRenderHand = false;
-	public static SpireReturn Prefix(final AbstractPlayer __instance, final SpriteBatch sb) {
-		if (plsDontRenderHand) {
-			return SpireReturn.Return((Object)null);
+	public static boolean plsDontRenderHandOrTips = false;
+	public static SpireReturn<Void> Prefix(final AbstractPlayer __instance, final SpriteBatch sb) {
+		if (plsDontRenderHandOrTips) {
+			return SpireReturn.Return(null);
 		}
 		return SpireReturn.Continue();
 	}

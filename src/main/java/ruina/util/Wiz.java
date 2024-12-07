@@ -241,7 +241,7 @@ public class Wiz {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                RenderHandPatch.plsDontRenderHand = true;
+                RenderHandPatch.plsDontRenderHandOrTips = true;
                 AbstractDungeon.overlayMenu.hideCombatPanels();
                 this.isDone = true;
             }
@@ -254,7 +254,7 @@ public class Wiz {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                RenderHandPatch.plsDontRenderHand = false;
+                RenderHandPatch.plsDontRenderHandOrTips = false;
                 AbstractDungeon.overlayMenu.showCombatPanels();
                 this.isDone = true;
             }
@@ -265,7 +265,7 @@ public class Wiz {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                RenderHandPatch.plsDontRenderHand = true;
+                RenderHandPatch.plsDontRenderHandOrTips = true;
                 AbstractDungeon.overlayMenu.hideCombatPanels();
                 this.isDone = true;
             }
@@ -285,7 +285,7 @@ public class Wiz {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                RenderHandPatch.plsDontRenderHand = false;
+                RenderHandPatch.plsDontRenderHandOrTips = false;
                 AbstractDungeon.overlayMenu.showCombatPanels();
                 this.isDone = true;
             }

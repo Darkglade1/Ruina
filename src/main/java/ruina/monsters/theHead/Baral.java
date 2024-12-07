@@ -278,7 +278,7 @@ public class Baral extends AbstractCardMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        RenderHandPatch.plsDontRenderHand = true;
+                        RenderHandPatch.plsDontRenderHandOrTips = true;
                         AbstractDungeon.overlayMenu.hideCombatPanels();
                         this.isDone = true;
                     }
