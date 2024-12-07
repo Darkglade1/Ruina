@@ -7,10 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -24,6 +21,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
+import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act3.WhiteNightBlessing;
 import ruina.util.TexLoader;
@@ -58,7 +56,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     private final int BLESSING_AMT = 3;
 
     public WhiteNight() {
-        this(100.0f, 0.0f);
+        this(-50.0f, 0.0f);
     }
 
     public WhiteNight(final float x, final float y) {
@@ -91,6 +89,7 @@ public class WhiteNight extends AbstractRuinaMonster {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
+                CardCrawlGame.fadeIn(2.5f);
                 CustomDungeon.playTempMusicInstantly("WhiteNightBGM");
                 playSound("WhiteNightAppear");
                 AbstractDungeon.effectsQueue.add(new WhiteNightAura(hb.cX + (10.0f * Settings.scale), hb.cY));
@@ -172,7 +171,7 @@ public class WhiteNight extends AbstractRuinaMonster {
             public void update() {
                 if (nextMove == BEHOLD || nextMove == RISE_AND_SERVE) {
                     moveCounter = 0;
-                } else {
+                } else if (nextMove != SAVIOR) {
                     moveCounter++;
                 }
                 this.isDone = true;
@@ -188,7 +187,7 @@ public class WhiteNight extends AbstractRuinaMonster {
         } else {
             if (lastMove(PRAYER)) {
                 setMoveShortcut(RISE_AND_SERVE);
-            } else if (!firstMove && minions[0] == null && minions[1] == null && minions[2] == null && moveCounter < 2) {
+            } else if (minions[0] == null && minions[1] == null && minions[2] == null && moveCounter < 2) {
                 setMoveShortcut(SAVIOR);
             } else {
                 if (moveCounter == 0) {
@@ -216,20 +215,24 @@ public class WhiteNight extends AbstractRuinaMonster {
     }
 
     public void Summon() {
-        float xPos_Farthest_L = -750.0F;
-        float xPos_Middle_L = -450F;
-        float xPos_Short_L = -150F;
-        float xPos_Shortest_L = 0F;
-//        AbstractMonster apostle1 = new GuardianApostle(xPos_Middle_L, 0.0f, this);
-//        atb(new SpawnMonsterAction(apostle1, true));
-//        atb(new UsePreBattleActionAction(apostle1));
-//        apostle1.rollMove();
-//        apostle1.createIntent();
-//        AbstractMonster apostle2 = new GuardianApostle(xPos_Short_L, 0.0f, this);
-//        atb(new SpawnMonsterAction(apostle2, true));
-//        atb(new UsePreBattleActionAction(apostle2));
-//        apostle2.rollMove();
-//        apostle2.createIntent();
+        float xPos_Middle_L = -650F;
+        float xPos_Short_L = -350F;
+        float xPos_Shortest_L = 250F;
+        AbstractMonster apostle1 = new ScytheApostle(xPos_Middle_L, 0.0f, this);
+        minions[0] = apostle1;
+        atb(new SpawnMonsterAction(apostle1, true));
+        atb(new UsePreBattleActionAction(apostle1));
+
+        AbstractMonster apostle2 = new SpearApostle(xPos_Short_L, 0.0f, this);
+        minions[1] = apostle2;
+        atb(new SpawnMonsterAction(apostle2, true));
+        atb(new UsePreBattleActionAction(apostle2));
+
+        AbstractMonster apostle3 = new StaffApostle(xPos_Shortest_L, 0.0f, this);
+        minions[2] = apostle3;
+        atb(new SpawnMonsterAction(apostle3, true));
+        atb(new UsePreBattleActionAction(apostle3));
+
     }
 
     private void shockwaveEffect() {
