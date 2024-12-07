@@ -1,24 +1,34 @@
 package ruina.powers.act3;
 
+import basemod.helpers.CardModifierManager;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.purple.Wish;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
+import ruina.cardmods.BlockUpMod;
+import ruina.cardmods.DamageUpMod;
 import ruina.monsters.act3.whiteNight.WhiteNight;
 import ruina.powers.AbstractEasyPower;
+
+import static ruina.util.Wiz.atb;
 
 public class WhiteNightBlessing extends AbstractEasyPower {
     public static final String POWER_ID = RuinaMod.makeID(WhiteNightBlessing.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    private final int maxTurns;
     WhiteNight whiteNight;
 
-    public WhiteNightBlessing(AbstractCreature owner, int amount, WhiteNight whiteNight) {
+    public WhiteNightBlessing(AbstractCreature owner, int amount, int maxTurns, WhiteNight whiteNight) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
         this.whiteNight = whiteNight;
+        this.maxTurns = maxTurns;
     }
 
     @Override
@@ -29,23 +39,27 @@ public class WhiteNightBlessing extends AbstractEasyPower {
             if (this.amount <= 0) {
                 this.amount = 0;
             }
-//            FrozenMod mod = new FrozenMod();
-//            atb(new AbstractGameAction() {
-//                @Override
-//                public void update() {
-//                    if (!CardModifierManager.hasModifier(card, FrozenMod.ID)) {
-//                        CardModifierManager.addModifier(card, mod.makeCopy());
-//                    }
-//                    this.isDone = true;
-//                }
-//            });
+            DamageUpMod damageMod = new DamageUpMod(3);
+            BlockUpMod blockMod = new BlockUpMod(3);
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    if (card.baseDamage >= 0 && !(card instanceof Wish)) {
+                        CardModifierManager.addModifier(card, damageMod);
+                    }
+                    if (card.baseBlock >= 0 && !(card instanceof Wish)) {
+                        CardModifierManager.addModifier(card, blockMod);
+                    }
+                    this.isDone = true;
+                }
+            });
             updateDescription();
         }
     }
 
     @Override
     public void duringTurn() {
-        if (this.amount <= 0) {
+        if (this.amount <= 0 || GameActionManager.turn >= maxTurns) {
             whiteNight.awaken();
         }
     }

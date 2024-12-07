@@ -54,6 +54,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     private final int heal = calcAscensionTankiness(8);
     private final int block = calcAscensionTankiness(15);
     private final int BLESSING_AMT = 12;
+    private final int MAX_TURNS = 6;
 
     public WhiteNight() {
         this(-50.0f, 0.0f);
@@ -81,7 +82,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Angela3");
-        applyToTarget(this, this, new WhiteNightBlessing(this, BLESSING_AMT, this));
+        applyToTarget(this, this, new WhiteNightBlessing(this, BLESSING_AMT, MAX_TURNS, this));
     }
 
     public void awaken() {

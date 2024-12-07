@@ -655,6 +655,6 @@
   },
   "${ModID}:WhiteNightBlessing": {
     "NAME": "Blessings",
-    "DESCRIPTIONS": ["Cards you play become #yBlessed. #yBlessed cards deal more damage and gain more #yBlock. NL After #b", " more cards are played, #yawakens."]
+    "DESCRIPTIONS": ["Cards you play become #yBlessed. #yBlessed cards deal more damage and gain more #yBlock. NL After #b", " more cards are played, this creature #yawakens."]
   }
 }
