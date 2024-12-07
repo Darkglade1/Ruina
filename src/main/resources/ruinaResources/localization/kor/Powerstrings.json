@@ -592,7 +592,7 @@
   },
   "ruina:Mimicry": {
     "NAME": "미미크리",
-    "DESCRIPTIONS": ["가장 최근에 받은 막히지 않은 피해량만큼 공격력이 증가합니다. 최대 수치는 #b", " 입니다."]
+    "DESCRIPTIONS": ["이번 전투에서 마지막으로 사용한 공격의 기본 피해와 동일한 추가 공격력을 입힙니다."]
   },
   "ruina:SeventhBullet": {
     "NAME": "7번째 탄환",

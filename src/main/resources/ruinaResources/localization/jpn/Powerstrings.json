@@ -592,7 +592,7 @@
   },
   "ruina:Mimicry": {
     "NAME": "ミミクリー",
-    "DESCRIPTIONS": ["直近でアタックで失ったHP（最大 #b", " まで）だけ、与えるダメージが増える。"]
+    "DESCRIPTIONS": ["この戦闘で最後に行われた攻撃の基本ダメージに等しい追加攻撃ダメージを与えます。"]
   },
   "ruina:SeventhBullet": {
     "NAME": "7つの弾丸",

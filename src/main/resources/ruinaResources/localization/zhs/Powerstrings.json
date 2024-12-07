@@ -592,7 +592,7 @@
   },
   "${ModID}:Mimicry": {
     "NAME": "模仿",
-    "DESCRIPTIONS": ["造成与最近受到的未格挡攻击伤害相等的额外攻击伤害，最多为 #b", "。"]
+    "DESCRIPTIONS": ["造成额外的攻击伤害，伤害值等于本次战斗中最后一次攻击的基础伤害。"]
   },
   "${ModID}:SeventhBullet": {
     "NAME": "第七颗子弹",
