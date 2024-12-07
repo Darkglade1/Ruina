@@ -53,7 +53,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     private final int ritual = calcAscensionSpecial(1);
     private final int heal = calcAscensionTankiness(8);
     private final int block = calcAscensionTankiness(15);
-    private final int BLESSING_AMT = 3;
+    private final int BLESSING_AMT = 12;
 
     public WhiteNight() {
         this(-50.0f, 0.0f);
