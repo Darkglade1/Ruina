@@ -12,7 +12,7 @@ public class NoCutsceneAfterCreditsPatch {
             locator = Locator.class
     )
     public static void Insert() {
-        if(AbstractDungeon.id == BlackSilence.ID) {
+        if(CardCrawlGame.dungeon instanceof BlackSilence) {
             CardCrawlGame.playCreditsBgm = false;
         }
     }
