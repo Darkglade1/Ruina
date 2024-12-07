@@ -272,7 +272,7 @@ public class Greta extends AbstractCardMonster
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
         } else {
-            if (meat != null) {
+            if (meat != null && !meat.isDeadOrEscaped()) {
                 setAdditionalMoveShortcut(TRIAL, moveHistory, getMoveCardFromByte(TRIAL));
             } else {
                 setAdditionalMoveShortcut(SACK, moveHistory, getMoveCardFromByte(SACK));
@@ -294,7 +294,7 @@ public class Greta extends AbstractCardMonster
     @Override
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
         if (index == 1) {
-            if (meat != null) {
+            if (additionalMove.nextMove == TRIAL) {
                 applyPowersToAdditionalIntent(additionalMove, additionalIntent, meat, meat.icon, index);
             } else {
                 applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);

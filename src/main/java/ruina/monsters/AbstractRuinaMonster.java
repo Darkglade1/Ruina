@@ -40,6 +40,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     private static final float ASCENSION_TANK_NERF_PERCENT = 0.85f;
     public AbstractRuinaMonster target;
     public Texture icon;
+    public boolean justDiedThisTurn = false;
 
     // for stance particle effects
     protected float particleTimer;
@@ -223,6 +224,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
 
     @Override
     public void die(boolean triggerRelics) {
+        this.justDiedThisTurn = true;
         this.useShakeAnimation(5.0F);
         if (this.animation instanceof BetterSpriterAnimation) {
             ((BetterSpriterAnimation)this.animation).startDying();

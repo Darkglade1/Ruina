@@ -26,7 +26,6 @@ public class FreshMeat extends AbstractRuinaMonster
     private static final byte NONE = 0;
     private final int HEAL = calcAscensionSpecial(100);
     private final AbstractCard card;
-    private Greta greta;
     private boolean gaveCard = false;
 
     public static final String POWER_ID = makeID("FreshMeat");
@@ -34,7 +33,7 @@ public class FreshMeat extends AbstractRuinaMonster
     public static final String POWER_NAME = PowerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = PowerStrings.DESCRIPTIONS;
 
-    public FreshMeat(final float x, final float y, AbstractCard card, Greta greta) {
+    public FreshMeat(final float x, final float y, AbstractCard card) {
         super(ID, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FreshMeat/Spriter/FreshMeat.scml"));
         if (AbstractDungeon.ascensionLevel >= 9) {
@@ -43,7 +42,6 @@ public class FreshMeat extends AbstractRuinaMonster
             setHp(80);
         }
         this.card = card;
-        this.greta = greta;
         this.icon = TexLoader.getTexture(makeUIPath("MeatIcon.png"));
     }
 
@@ -91,11 +89,5 @@ public class FreshMeat extends AbstractRuinaMonster
     public void renderTip(SpriteBatch sb) {
         super.renderTip(sb);
         tips.add(new CardPowerTip(card.makeStatEquivalentCopy()));
-    }
-
-    @Override
-    public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
-        greta.meat = null;
     }
 }

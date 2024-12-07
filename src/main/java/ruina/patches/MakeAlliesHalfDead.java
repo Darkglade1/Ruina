@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CtBehavior;
 import ruina.monsters.AbstractAllyMonster;
+import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 
@@ -26,6 +27,9 @@ public class MakeAlliesHalfDead {
     public static void MakeAlliesHalfDeadReee(GameActionManager instance) {
         if (AbstractDungeon.getCurrRoom() != null) {
             for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (mo instanceof AbstractRuinaMonster) {
+                    ((AbstractRuinaMonster) mo).justDiedThisTurn = false;
+                }
                 if (!mo.isDeadOrEscaped()) {
                     if (mo instanceof AbstractAllyMonster) {
                         AbstractAllyMonster ally = (AbstractAllyMonster)mo;

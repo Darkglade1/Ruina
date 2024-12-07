@@ -71,7 +71,7 @@ public class GretaStealCardAction extends AbstractGameAction {
 
             this.tickDuration();// 82
             if (this.isDone && this.card != null) {// 83
-                FreshMeat meat = new FreshMeat(-150.0f, 0.0f, card, owner);
+                FreshMeat meat = new FreshMeat(-150.0f, 0.0f, card);
                 owner.meat = meat;
                 att(new ShowCardAction(this.card));// 85
                 att(new UsePreBattleActionAction(meat));

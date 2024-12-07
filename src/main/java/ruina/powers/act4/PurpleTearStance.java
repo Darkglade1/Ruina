@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.uninvitedGuests.normal.greta.Hod;
@@ -67,7 +69,7 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
                     @Override
                     public void update() {
                         for (AbstractPower power : enemy.powers) {
-                            if (power.type == PowerType.DEBUFF) {
+                            if (power.type == PowerType.DEBUFF && !(power instanceof GainStrengthPower) && !(power instanceof StrengthPower)) {
                                 atb(new ApplyPowerAction(enemy, owner, power, power.amount));
                             }
                         }
