@@ -18,6 +18,7 @@ public class Trial extends AbstractRuinaCard {
     public Trial(Greta parent) {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         this.parent = parent;
+        magicNumber = baseMagicNumber = parent.STRENGTH;
     }
 
     @Override

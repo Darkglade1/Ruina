@@ -17,7 +17,6 @@ public class Sack extends AbstractRuinaCard {
 
     public Sack(Greta parent) {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
-        magicNumber = baseMagicNumber = parent.STRENGTH;
         this.parent = parent;
     }
 

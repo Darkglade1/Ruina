@@ -2,7 +2,6 @@ package ruina.monsters.uninvitedGuests.normal.greta;
 
 import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -36,11 +35,7 @@ public class FreshMeat extends AbstractRuinaMonster
     public FreshMeat(final float x, final float y, AbstractCard card) {
         super(ID, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FreshMeat/Spriter/FreshMeat.scml"));
-        if (AbstractDungeon.ascensionLevel >= 9) {
-            setHp(60);
-        } else {
-            setHp(80);
-        }
+        setHp(80);
         this.card = card;
         this.icon = TexLoader.getTexture(makeUIPath("MeatIcon.png"));
     }
@@ -71,10 +66,7 @@ public class FreshMeat extends AbstractRuinaMonster
         if (this.isDead || this.isDying || this.currentHealth <= 0) {
             if (info.owner instanceof Greta) {
                 atb(new HealAction(info.owner, info.owner, HEAL));
-                AbstractCard masterCard = StSLib.getMasterDeckEquivalent(card);
-                if (masterCard != null) {
-                    adp().masterDeck.removeCard(masterCard);
-                }
+                adp().hand.moveToExhaustPile(card);
             } else {
                 if (!gaveCard) {
                     makeInHand(card);

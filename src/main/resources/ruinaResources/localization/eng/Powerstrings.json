@@ -360,7 +360,7 @@
   },
   "${ModID}:FreshMeat": {
     "NAME": "Fresh Meat",
-    "DESCRIPTIONS": ["On death, if the #renemy killed it, the #renemy heals #b", " HP and ", " is #rPurged and #rremoved from your master deck. Otherwise, ", " is put into your hand."]
+    "DESCRIPTIONS": ["On death, if the #renemy killed it, the #renemy heals #b", " HP and ", " is #rexhausted. Otherwise, ", " is put into your hand."]
   },
   "${ModID}:PurpleTearStance": {
     "NAME": "",

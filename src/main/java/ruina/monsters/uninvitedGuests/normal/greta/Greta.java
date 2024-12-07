@@ -188,13 +188,15 @@ public class Greta extends AbstractCardMonster
             case TRIAL: {
                 specialAttackAnimation(target);
                 atb(new VampireDamageActionButItCanFizzle(target, info, AbstractGameAction.AttackEffect.NONE));
+                if (!target.isDeadOrEscaped()) {
+                    applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                }
                 resetIdle();
                 break;
             }
             case SACK: {
                 sackAnimation(target);
                 atb(new GretaStealCardAction(this));
-                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 resetIdle();
                 break;
             }

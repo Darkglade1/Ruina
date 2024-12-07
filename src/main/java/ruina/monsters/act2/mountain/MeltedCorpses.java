@@ -35,11 +35,7 @@ public class MeltedCorpses extends AbstractRuinaMonster
     public MeltedCorpses(final float x, final float y) {
         super(ID, ID, 30, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Corpse/Spriter/Corpse.scml"));
-        if (AbstractDungeon.ascensionLevel >= 8) {
-            setHp(30);
-        } else {
-            setHp(40);
-        }
+        setHp(40);
         this.icon = TexLoader.getTexture(makeUIPath("CorpseIcon.png"));
     }
 

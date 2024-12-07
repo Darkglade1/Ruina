@@ -570,11 +570,11 @@
   },
   "${ModID}:Trial": {
     "NAME": "Trial Smack",
-    "DESCRIPTION": "Deal !D! damage. NL Heal HP equal to unblocked damage."
+    "DESCRIPTION": "Deal !D! damage. NL Heal HP equal to unblocked damage. NL Gain !M! Strength."
   },
   "${ModID}:Sack": {
     "NAME": "Into the Sack You Go!",
-    "DESCRIPTION": "Turn the Rarest card in your deck into *Fresh *Meat. NL Gain !M! Strength."
+    "DESCRIPTION": "Turn the Rarest card in your deck into *Fresh *Meat."
   },
   "${ModID}:FloodingBullets": {
     "NAME": "Flooding Bullets",
