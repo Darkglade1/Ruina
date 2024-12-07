@@ -1324,5 +1324,19 @@
     "DIALOG": [
 
     ]
+  },
+  "${ModID}:WhiteNight": {
+    "MOVES": [
+      "Prayer",
+      "Rise and Serve",
+      "Benediction",
+      "Salvation",
+      "Behold My Power",
+      "I am Thy Savior"
+    ],
+    "NAME": "White Night",
+    "DIALOG": [
+
+    ]
   }
 }

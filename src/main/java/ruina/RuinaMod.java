@@ -36,10 +36,10 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import corruptthespire.Cor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ruina.CustomIntent.MassAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
+import ruina.CustomIntent.MassAttackIntent;
 import ruina.dungeons.*;
 import ruina.events.NeowAngela;
 import ruina.events.act1.*;
@@ -81,8 +81,6 @@ import ruina.monsters.act2.wrath.Hermit;
 import ruina.monsters.act2.wrath.HermitStaff;
 import ruina.monsters.act2.wrath.ServantOfWrath;
 import ruina.monsters.act3.*;
-import ruina.monsters.act3.SnowQueen.PrisonOfIce;
-import ruina.monsters.act3.SnowQueen.SnowQueen;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.bigBird.Sage;
 import ruina.monsters.act3.blueStar.BlueStar;
@@ -93,8 +91,10 @@ import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.Keeper;
 import ruina.monsters.act3.punishingBird.PunishingBird;
-import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.silentGirl.SilentGirl;
+import ruina.monsters.act3.snowQueen.PrisonOfIce;
+import ruina.monsters.act3.snowQueen.SnowQueen;
+import ruina.monsters.act3.whiteNight.WhiteNight;
 import ruina.monsters.blackSilence.blackSilence1.BlackSilence1;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
@@ -998,7 +998,7 @@ public class RuinaMod implements
 
         // Act 3
         atziluth.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
-        atziluth.addBoss(Prophet.ID, (BaseMod.GetMonster) Prophet::new, makeMonsterPath("Seraphim/WhiteNightMap.png"), makeMonsterPath("Seraphim/WhiteNightMapOutline.png"));
+        atziluth.addBoss(WhiteNight.ID, (BaseMod.GetMonster) WhiteNight::new, makeMonsterPath("WhiteNight/WhiteNightMap.png"), makeMonsterPath("WhiteNight/WhiteNightMapOutline.png"));
         atziluth.addBoss(SilentGirl.ID, (BaseMod.GetMonster) SilentGirl::new, makeMonsterPath("SilentGirl/MapIcon.png"), makeMonsterPath("SilentGirl/MapIcon.png"));
 
         BaseMod.addMonster(BigBird.ID, "Big Bird", () -> new MonsterGroup(

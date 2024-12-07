@@ -12,7 +12,7 @@ import ruina.monsters.act3.Bloodbath;
 import ruina.monsters.act3.BurrowingHeaven;
 import ruina.monsters.act3.JudgementBird;
 import ruina.monsters.act3.Pinocchio;
-import ruina.monsters.act3.SnowQueen.SnowQueen;
+import ruina.monsters.act3.snowQueen.SnowQueen;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
 import ruina.monsters.act3.heart.HeartOfAspiration;

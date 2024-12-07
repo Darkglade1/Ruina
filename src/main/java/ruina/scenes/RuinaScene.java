@@ -36,7 +36,7 @@ import ruina.monsters.act2.roadHome.ScaredyCat;
 import ruina.monsters.act2.wrath.Hermit;
 import ruina.monsters.act2.wrath.ServantOfWrath;
 import ruina.monsters.act3.*;
-import ruina.monsters.act3.SnowQueen.SnowQueen;
+import ruina.monsters.act3.snowQueen.SnowQueen;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
 import ruina.monsters.act3.blueStar.Worshipper;
@@ -45,9 +45,8 @@ import ruina.monsters.act3.heart.LungsOfCraving;
 import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
-import ruina.monsters.act3.seraphim.Prophet;
-import ruina.monsters.act3.seraphim.Seraphim;
 import ruina.monsters.act3.silentGirl.SilentGirl;
+import ruina.monsters.act3.whiteNight.WhiteNight;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
@@ -123,7 +122,7 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Crystal");
                 } else if (mo instanceof ServantOfWrath || mo instanceof Hermit) {
                     this.bg = this.atlas.findRegion("mod/Wrath");
-                } else if (mo instanceof Prophet || mo instanceof Seraphim) {
+                } else if (mo instanceof WhiteNight) {
                     this.bg = this.atlas.findRegion("mod/Paradise");
                 } else if (mo instanceof Twilight) {
                     this.bg = this.atlas.findRegion("mod/Twilight");

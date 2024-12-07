@@ -11,7 +11,6 @@ import ruina.monsters.uninvitedGuests.normal.clown.Tiph;
 
 import static ruina.util.Wiz.atb;
 
-
 public class BrainwashPatch {
     @SpirePatch(
             clz = AbstractPlayer.class,
@@ -20,16 +19,18 @@ public class BrainwashPatch {
     public static class ToggleAllyTargetable {
         @SpirePostfixPatch()
         public static void toggle() {
-            for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-                if (mo instanceof Tiph && !mo.isDeadOrEscaped()) {
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            ((Tiph) mo).isTargetableByPlayer = false;
-                            mo.halfDead = true;
-                            this.isDone = true;
-                        }
-                    });
+            if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().monsters != null) {
+                for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+                    if (mo instanceof Tiph && !mo.isDeadOrEscaped()) {
+                        atb(new AbstractGameAction() {
+                            @Override
+                            public void update() {
+                                ((Tiph) mo).isTargetableByPlayer = false;
+                                mo.halfDead = true;
+                                this.isDone = true;
+                            }
+                        });
+                    }
                 }
             }
         }

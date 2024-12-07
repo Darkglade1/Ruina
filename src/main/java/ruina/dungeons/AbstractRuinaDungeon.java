@@ -12,8 +12,8 @@ import ruina.monsters.act1.fairyFestival.FairyQueen;
 import ruina.monsters.act2.jester.JesterOfNihil;
 import ruina.monsters.act2.ozma.Ozma;
 import ruina.monsters.act3.Twilight;
-import ruina.monsters.act3.seraphim.Prophet;
 import ruina.monsters.act3.silentGirl.SilentGirl;
+import ruina.monsters.act3.whiteNight.WhiteNight;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.theHead.Baral;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
@@ -72,7 +72,7 @@ public class AbstractRuinaDungeon extends CustomDungeon {
                 floor = Floor.CHESED;
             } else if (bossKey.equals(Twilight.ID)){
                 floor = Floor.BINAH;
-            } else if (bossKey.equals(Prophet.ID)){
+            } else if (bossKey.equals(WhiteNight.ID)){
                 floor = Floor.HOKMA;
             } else if (bossKey.equals(SilentGirl.ID)){
                 floor = Floor.ROLAND;

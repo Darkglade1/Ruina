@@ -315,6 +315,26 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         playSound(sound, 1.0f);
     }
 
+    public static void playSoundAnimation(String sound, float volume) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound(sound, volume);
+                this.isDone = true;
+            }
+        });
+    }
+
+    public static void playSoundAnimation(String sound) {
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                playSound(sound);
+                this.isDone = true;
+            }
+        });
+    }
+
     public void resetIdle() {
         resetIdle(0.5f);
     }
