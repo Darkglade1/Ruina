@@ -25,7 +25,7 @@
   },
   "${ModID}:Bodies": {
     "NAME": "Mountain of Corpses",
-    "DESCRIPTIONS": ["At end of round, if there are no #yMelted #yCorpses alive, summon a #yMelted #yCorpse. NL If a #yMelted #yCorpse dies while this creature is targeting it, this creature will target you instead."]
+    "DESCRIPTIONS": ["At end of round, if there are no #yMelted #yCorpses alive, summon a #yMelted #yCorpse."]
   },
   "${ModID}:Corpse": {
     "NAME": "Corpse",
@@ -360,7 +360,7 @@
   },
   "${ModID}:FreshMeat": {
     "NAME": "Fresh Meat",
-    "DESCRIPTIONS": ["On death, if the #renemy killed it, the #renemy heals #b", " HP and ", " is #rPurged and #rremoved from your master deck. Otherwise, ", " is put into your hand. NL NL If this creature dies while the #renemy is targeting it, the #renemy will target you instead."]
+    "DESCRIPTIONS": ["On death, if the #renemy killed it, the #renemy heals #b", " HP and ", " is #rPurged and #rremoved from your master deck. Otherwise, ", " is put into your hand."]
   },
   "${ModID}:PurpleTearStance": {
     "NAME": "",
@@ -593,7 +593,7 @@
   },
   "${ModID}:Mimicry": {
     "NAME": "Mimicry",
-    "DESCRIPTIONS": ["Deals additional attack damage equal to the most recent amount of unblocked attack damage received, up to a maximum of #b", ". NL NL If this creature dies during your turn while the other #renemy is targeting it, the other #renemy will target #yyou instead (and vice versa for the other #renemy dying)."]
+    "DESCRIPTIONS": ["Deals additional attack damage equal to the most recent amount of unblocked attack damage received, up to a maximum of #b", "."]
   },
   "${ModID}:SeventhBullet": {
     "NAME": "The Seventh Bullet",
