@@ -1,41 +1,28 @@
 package ruina.monsters.act1.nothingDer;
 
 import basemod.helpers.VfxBuilder;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import com.megacrit.cardcrawl.stances.DivinityStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.TexLoader;
-import ruina.vfx.FlexibleDivinityParticleEffect;
-import ruina.vfx.FlexibleStanceAuraEffect;
 
 import java.util.ArrayList;
 
@@ -62,13 +49,6 @@ public class Gunman extends AbstractMultiIntentMonster
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int DEBUFF = calcAscensionSpecial(1);
     private final int VULNERABLE = 1;
-    private final int SEVENGTH_BULLET = 7;
-    private boolean powerTriggered = false;
-
-    public static final String POWER_ID = makeID("SeventhBullet");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Gunman() {
         this(100.0f, 0.0f);
@@ -104,45 +84,6 @@ public class Gunman extends AbstractMultiIntentMonster
         }
         atb(new TalkAction(this, DIALOG[0]));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
-            @Override
-            public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-                if (card.type == AbstractCard.CardType.ATTACK) {
-                    flashWithoutSound();
-                    amount++;
-                    if (amount % SEVENGTH_BULLET == 0) {
-                        flash();
-                        powerTriggered = true;
-                        amount = 0;
-                        updateDescription();
-                    }
-                }
-            }
-
-            @Override
-            public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (info.type == DamageInfo.DamageType.NORMAL && info.owner == owner && damageAmount > 0 && powerTriggered) {
-                    flash();
-                    att(new LoseHPAction(target, Gunman.this, damageAmount));
-                }
-            }
-
-            @Override
-            public void atEndOfRound() {
-                if (powerTriggered) {
-                    powerTriggered = false;
-                    updateDescription();
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + SEVENGTH_BULLET + POWER_DESCRIPTIONS[1];
-                if (powerTriggered) {
-                    description += POWER_DESCRIPTIONS[2];
-                }
-            }
-        });
     }
 
     @Override
@@ -250,26 +191,6 @@ public class Gunman extends AbstractMultiIntentMonster
         }
         if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             onBossVictoryLogic();
-        }
-    }
-
-    @Override
-    public void render(SpriteBatch sb) {
-        super.render(sb);
-        if (this.hasPower(POWER_ID)) {
-            if (this.getPower(POWER_ID).amount == SEVENGTH_BULLET - 1 || powerTriggered) {
-                this.particleTimer -= Gdx.graphics.getDeltaTime();
-                if (this.particleTimer < 0.0F) {
-                    this.particleTimer = 0.04F;
-                    AbstractDungeon.effectsQueue.add(new FlexibleDivinityParticleEffect(this));
-                }
-
-                this.particleTimer2 -= Gdx.graphics.getDeltaTime();
-                if (this.particleTimer2 < 0.0F) {
-                    this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
-                    AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(DivinityStance.STANCE_ID, this));
-                }
-            }
         }
     }
 

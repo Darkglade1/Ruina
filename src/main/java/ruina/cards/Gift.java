@@ -17,7 +17,7 @@ import static ruina.util.Wiz.atb;
 public class Gift extends AbstractRuinaCard {
     public final static String ID = makeID(Gift.class.getSimpleName());
     private static final int DAMAGE = 8;
-    private static final int UPG_DAMAGE = 2;
+    private static final int UPG_DAMAGE = 4;
 
     public Gift() {
         super(ID, -2, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE, CardColor.COLORLESS);

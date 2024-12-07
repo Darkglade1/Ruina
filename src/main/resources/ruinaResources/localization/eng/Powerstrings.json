@@ -592,7 +592,7 @@
   },
   "${ModID}:Mimicry": {
     "NAME": "Mimicry",
-    "DESCRIPTIONS": ["Deals additional attack damage equal to the most recent amount of unblocked attack damage received, up to a maximum of #b", "."]
+    "DESCRIPTIONS": ["Deals additional attack damage equal to the base damage of the last #yAttack played this combat."]
   },
   "${ModID}:SeventhBullet": {
     "NAME": "The Seventh Bullet",

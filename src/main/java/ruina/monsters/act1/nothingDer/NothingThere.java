@@ -4,6 +4,8 @@ import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -38,7 +40,6 @@ public class NothingThere extends AbstractMultiIntentMonster
     private final int BLOCK = calcAscensionTankiness(12);
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int STATUS = calcAscensionSpecial(1);
-    private final int POWER_CAP = calcAscensionSpecial(20);
 
     public static final String POWER_ID = makeID("Mimicry");
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -88,17 +89,15 @@ public class NothingThere extends AbstractMultiIntentMonster
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
             @Override
-            public int onAttacked(DamageInfo info, int damageAmount) {
-                if (info.type == DamageInfo.DamageType.NORMAL && info.owner != null && damageAmount > 0) {
-                    this.flash();
-                    this.amount = damageAmount;
-                    if (this.amount > POWER_CAP) {
-                        this.amount = POWER_CAP;
+            public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+                if (card.type == AbstractCard.CardType.ATTACK) {
+                    if (card.baseDamage != this.amount) {
+                        this.flash();
+                        this.amount = card.baseDamage;
+                        updateDescription();
+                        AbstractDungeon.onModifyPower();
                     }
-                    updateDescription();
-                    AbstractDungeon.onModifyPower();
                 }
-                return damageAmount;
             }
 
             @Override
@@ -108,7 +107,7 @@ public class NothingThere extends AbstractMultiIntentMonster
 
             @Override
             public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + POWER_CAP + POWER_DESCRIPTIONS[1];
+                description = POWER_DESCRIPTIONS[0];
             }
         });
     }
