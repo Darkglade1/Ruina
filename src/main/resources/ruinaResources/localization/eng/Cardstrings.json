@@ -832,7 +832,7 @@
   },
   "${ModID}:Guilt": {
     "NAME": "Guilt",
-    "DESCRIPTION": "At the end of your turn, a random enemy gains !M! Strength next turn. NL If this is Exhausted without being played, add a copy of it into your discard pile."
+    "DESCRIPTION": "If this card is in your hand at the end of your turn, a random enemy gains !M! Strength next turn. NL If this is Exhausted without being played, add a copy of it into your discard pile."
   },
   "${ModID}:CHRBOSS_PreparedMind": {
     "NAME": "Prepared Mind",
@@ -848,20 +848,20 @@
   },
   "${ModID}:FirstChair": {
     "NAME": "First Chair",
-    "DESCRIPTION": "At the end of your turn, take !M! damage."
+    "DESCRIPTION": "If this card is in your hand at the end of your turn, take !M! damage."
   },
   "${ModID}:SecondChair": {
     "NAME": "Second Chair",
-    "DESCRIPTION": "At the end of your turn, a random enemy gains !M! Strength next turn."
+    "DESCRIPTION": "If this card is in your hand at the end of your turn, a random enemy gains !M! Strength next turn."
   },
   "${ModID}:ThirdChair": {
     "NAME": "Third Chair",
-    "DESCRIPTION": "At the end of your turn, gain !M! Weak or Frail, alternating each time.",
+    "DESCRIPTION": "If this card is in your hand at the end of your turn, gain !M! Weak or Frail, alternating each time.",
     "EXTENDED_DESCRIPTION": [" (Weak)", " (Frail)"]
   },
   "${ModID}:FourthChair": {
     "NAME": "Fourth Chair",
-    "DESCRIPTION": "At the end of your turn, lose !M! Strength or Dexterity, alternating each time.",
+    "DESCRIPTION": "If this card is in your hand at the end of your turn, lose !M! Strength or Dexterity, alternating each time.",
     "EXTENDED_DESCRIPTION": [" (Strength)", " (Dexterity)"]
   },
   "${ModID}:Conductor": {
