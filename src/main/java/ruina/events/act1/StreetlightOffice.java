@@ -22,7 +22,7 @@ public class StreetlightOffice extends AbstractImageEvent {
     private static final String NAME = eventStrings.NAME;
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    public static final String IMG = makeEventPath("Lulu.png");
+    public static final String IMG = makeEventPath("Streetlight.png");
 
     private int screenNum = 0;
     private static final int GOLD_REWARD = 250;
