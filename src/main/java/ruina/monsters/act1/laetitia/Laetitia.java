@@ -24,9 +24,8 @@ public class Laetitia extends AbstractRuinaMonster {
     private static final byte GIFT = 0;
     private static final byte FUN = 1;
 
-    private final int giftGifts = 1;
-
     private final int DAMAGE_INCREASE;
+    private final int STATUS = 1;
 
     private final AbstractCard gift = new Gift();
 
@@ -38,8 +37,8 @@ public class Laetitia extends AbstractRuinaMonster {
         super(ID, ID, 100, 0.0F, 0, 200.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Laetitia/Spriter/Laetitia.scml"));
         setHp(calcAscensionTankiness(100));
-        addMove(GIFT, Intent.ATTACK_DEBUFF, calcAscensionDamage(4));
-        addMove(FUN, Intent.ATTACK, calcAscensionDamage(2), 2);
+        addMove(GIFT, Intent.ATTACK_DEBUFF, calcAscensionDamage(5));
+        addMove(FUN, Intent.ATTACK, calcAscensionDamage(8));
 
         if (AbstractDungeon.ascensionLevel >= 18) {
             gift.upgrade();
@@ -68,7 +67,7 @@ public class Laetitia extends AbstractRuinaMonster {
             case GIFT: {
                 attackAnimation(adp());
                 dmg(adp(), info);
-                atb(new MakeTempCardInHandAction(gift.makeStatEquivalentCopy(), giftGifts));
+                intoDiscardMo(gift.makeStatEquivalentCopy(), STATUS, this);
                 resetIdle();
                 break;
             }

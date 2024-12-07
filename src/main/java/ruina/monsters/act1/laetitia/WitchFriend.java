@@ -1,9 +1,9 @@
 package ruina.monsters.act1.laetitia;
 
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DiscardSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -20,7 +20,6 @@ import static ruina.util.Wiz.*;
 public class WitchFriend extends AbstractRuinaMonster
 {
     public static final String ID = makeID(WitchFriend.class.getSimpleName());
-
     private static final byte GLITCH = 0;
 
     public static final String POWER_ID = makeID("Gimme");
@@ -45,16 +44,20 @@ public class WitchFriend extends AbstractRuinaMonster
     public void usePreBattleAction() {
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
-            public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (target == adp() && info.owner == owner && damageAmount > 0) {
-                    for (AbstractCard card : adp().hand.group) {
-                        if (card.cardID.equals(Gift.ID)) {
-                            atb(new ExhaustSpecificCardAction(card, adp().hand));
+            public void onDeath() {
+                this.flash();
+                atb(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        for (AbstractCard card : adp().hand.group) {
+                            if (card instanceof Gift) {
+                                this.addToTop(new DiscardSpecificCardAction(card));
+                            }
                         }
+                        this.isDone = true;
                     }
-                }
+                });
             }
-
             @Override
             public void updateDescription() {
                 description = POWER_DESCRIPTIONS[0];

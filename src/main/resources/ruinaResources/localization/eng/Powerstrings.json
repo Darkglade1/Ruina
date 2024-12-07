@@ -515,14 +515,13 @@
   "${ModID}:Gimme": {
     "NAME": "Gimme that Gift!",
     "DESCRIPTIONS": [
-      "Whenever you receive unblocked attack damage from this creature, #yExhaust all #yGifts in your hand."
+      "On death, discard all #yGifts in your hand."
     ]
   },
   "${ModID}:SurprisePresent": {
     "NAME": "Surprise Present",
     "DESCRIPTIONS": [
-      "In #b%1$s turns, this creature #rexplodes, dealing #b%2$s damage to you and adding a #yGift to your hand. NL NL On death, spawns a #bWee #bWitch's #bFriend.",
-      "In #b%1$s turn, this creature #rexplodes, dealing #b%2$s damage to you and adding a #yGift to your hand. NL NL On death, spawns a #bWee #bWitch's #bFriend."
+      "On death, spawns a #bWee #bWitch's #bFriend."
     ]
   },
   "${ModID}:Song": {
