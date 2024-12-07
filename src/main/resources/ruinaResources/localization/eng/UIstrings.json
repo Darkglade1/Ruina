@@ -114,8 +114,9 @@
       "Choose an EGO card."
     ]
   },
-  "ruina:CounterIntentStrings": {
+  "ruina:CounterAttackIntent": {
     "TEXT": [
+      "Counter Attack",
       "This enemy intends to NL #yCounter #yAttack for #b",
       " damage.",
       " damage #b",

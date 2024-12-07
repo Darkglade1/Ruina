@@ -114,8 +114,9 @@
       "EGO カードを選ぶ"
     ]
   },
-  "ruina:CounterIntentStrings": {
+  "ruina:CounterAttackIntent": {
     "TEXT": [
+      "反撃",
       "この敵の予定は NL #b",
       " ダメージの #y反撃。",
       " ダメージを #b",

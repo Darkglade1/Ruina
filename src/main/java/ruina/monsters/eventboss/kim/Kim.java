@@ -1,8 +1,6 @@
 package ruina.monsters.eventboss.kim;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
@@ -15,14 +13,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
+import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.powers.AbstractLambdaPower;
@@ -38,9 +34,6 @@ import static ruina.util.Wiz.*;
 
 public class Kim extends AbstractCardMonster {
     public static final String ID = RuinaMod.makeID(Kim.class.getSimpleName());
-
-    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("CounterIntentStrings"));
-    private static final String[] TEXT = uiStrings.TEXT;
 
     private static final byte YIELD = 0;
     private static final byte CLAIM = 1;
@@ -73,7 +66,7 @@ public class Kim extends AbstractCardMonster {
         this.setHp(calcAscensionTankiness(200));
 
         addMove(YIELD, Intent.ATTACK_BUFF, calcAscensionDamage(10));
-        addMove(CLAIM, Intent.ATTACK, calcAscensionDamage(20));
+        addMove(CLAIM, IntentEnums.COUNTER_ATTACK, calcAscensionDamage(20));
         addMove(TAKE_ONES_LIFE, Intent.ATTACK_DEBUFF, calcAscensionDamage(27));
         addMove(ACUPUNCTURE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6), ACUPUNCTURE_HITS);
 
@@ -224,31 +217,6 @@ public class Kim extends AbstractCardMonster {
             move = YIELD;
         }
         setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
-    }
-
-    @Override
-    public void applyPowers() {
-        if (this.nextMove == CLAIM) {
-            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
-            info.applyPowers(this, adp());
-            Color color = new Color(0.5F, 0.0F, 1.0F, 0.5F);
-            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
-            PowerTip intentTip = (PowerTip)ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
-            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
-            Texture attackImg;
-            if (moves.get(this.nextMove).multiplier > 0) {
-                intentTip.body = TEXT[0] + info.output + TEXT[2] + moves.get(this.nextMove).multiplier + TEXT[3];
-                attackImg = getAttackIntent(info.output * moves.get(this.nextMove).multiplier);
-            } else {
-                intentTip.body = TEXT[0] + info.output + TEXT[1];
-                attackImg = getAttackIntent(info.output);
-            }
-            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
-        } else {
-            Color color = new Color(1.0F, 1.0F, 1.0F, 0.5F);
-            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
-            super.applyPowers();
-        }
     }
 
     public void slashAnimation(AbstractCreature enemy) {

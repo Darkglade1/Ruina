@@ -114,8 +114,9 @@
       "EGO 카드 보상을 받습니다."
     ]
   },
-  "ruina:CounterIntentStrings": {
+  "ruina:CounterAttackIntent": {
     "TEXT": [
+      "카운터 공격",
       "이 적은 NL #y카운터 #y공격으로 #b",
       " 피해를 주려고 합니다.",
       " 피해를 #b",

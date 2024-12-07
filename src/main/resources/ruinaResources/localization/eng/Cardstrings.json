@@ -971,7 +971,7 @@
   },
   "${ModID}:Claim": {
     "NAME": "To Claim Their Bones",
-    "DESCRIPTION": "While this card is held, the user can *Counter *Attack for !D! damage. User cannot make an attack on their turn."
+    "DESCRIPTION": "While this card is held, the user can *Counter *Attack for !D! damage. NL If unused, uses a *powerful attack next turn."
   },
   "${ModID}:TakeOnesLife": {
     "NAME": "And Take One's Life",

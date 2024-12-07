@@ -36,6 +36,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import corruptthespire.Cor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ruina.CustomIntent.CounterAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
@@ -775,6 +776,7 @@ public class RuinaMod implements
         CustomDungeon.addAct(5, silence);
 
         CustomIntent.add(new MassAttackIntent());
+        CustomIntent.add(new CounterAttackIntent());
 
         //Act 1
         BaseMod.addMonster(AllAroundHelper.ID, "All_Around_Helper", () -> new MonsterGroup(
