@@ -570,11 +570,11 @@
   },
   "ruina:Trial": {
     "NAME": "試食",
-    "DESCRIPTION": "!D! ダメージを与える。 NL これで減らしたHPの分だけHPを回復する。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL これで減らしたHPの分だけHPを回復する。 NL 筋力 !M! を得る。"
   },
   "ruina:Sack": {
     "NAME": "食事",
-    "DESCRIPTION": "あなたのデッキからランダムなカードを *肉 にして調理する。 NL 筋力 !M! を得る。"
+    "DESCRIPTION": "あなたのデッキからランダムなカードを *肉 にして調理する。"
   },
   "ruina:FloodingBullets": {
     "NAME": "氾濫する弾丸",

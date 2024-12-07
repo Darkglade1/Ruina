@@ -570,11 +570,11 @@
   },
   "ruina:Trial": {
     "NAME": "시식",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL 막히지 않은 피해만큼 체력을 회복합니다."
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 막히지 않은 피해만큼 체력을 회복합니다. NL 힘을 !M! 얻습니다."
   },
   "ruina:Sack": {
     "NAME": "포획",
-    "DESCRIPTION": "당신의 덱에서 희귀도가 높은 카드를 *신선한 *고기 하수인으로 만듭니다. NL 힘을 !M! 얻습니다."
+    "DESCRIPTION": "당신의 덱에서 희귀도가 높은 카드를 *신선한 *고기 하수인으로 만듭니다."
   },
   "ruina:FloodingBullets": {
     "NAME": "범람하는 탄환",

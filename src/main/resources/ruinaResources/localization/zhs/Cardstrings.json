@@ -570,11 +570,11 @@
   },
   "ruina:Trial": {
     "NAME": "焖透",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 恢复等同未被 格挡 伤害的生命。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 恢复等同未被 格挡 伤害的生命。 NL 获得 !M! 点 力量 。"
   },
   "ruina:Sack": {
     "NAME": "生擒!",
-    "DESCRIPTION": "将你卡组中的随机一张牌变为 *鲜肉 。 NL 获得 !M! 点 力量 。"
+    "DESCRIPTION": "将你卡组中的随机一张牌变为 *鲜肉 。"
   },
   "ruina:FloodingBullets": {
     "NAME": "倾泻魔弹",
