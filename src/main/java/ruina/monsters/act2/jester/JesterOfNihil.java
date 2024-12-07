@@ -83,10 +83,10 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         setNumAdditionalMoves(2);
         this.setHp(calcAscensionTankiness(600));
 
-        addMove(WILL_OF_NIHIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(30));
+        addMove(WILL_OF_NIHIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(28));
         addMove(CONSUMING_DESIRE, Intent.ATTACK_DEFEND, calcAscensionDamage(6), 2);
         addMove(LOVE_AND_HATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
-        addMove(SWORD_OF_TEARS, Intent.ATTACK, calcAscensionDamage(10), 2);
+        addMove(SWORD_OF_TEARS, Intent.ATTACK, calcAscensionDamage(9), 2);
         addMove(RAMPAGE, Intent.BUFF);
         addMove(SETUP, Intent.UNKNOWN);
     }

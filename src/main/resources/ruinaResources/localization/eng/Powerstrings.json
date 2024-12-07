@@ -4,7 +4,7 @@
     "DESCRIPTIONS": ["Next turn, gain #b", " ", "."]
   },
   "${ModID}:StrikeWithoutHesitation": {
-    "NAME": "Strike Without Hesitation",
+    "NAME": "Strike True",
     "DESCRIPTIONS": ["Whenever this creature deals unblocked attack damage this turn, gains #b", " #yStrength."]
   },
   "${ModID}:FuryWithNoOutlet": {

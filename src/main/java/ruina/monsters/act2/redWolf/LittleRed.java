@@ -3,7 +3,6 @@ package ruina.monsters.act2.redWolf;
 import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
-import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -122,7 +121,7 @@ public class LittleRed extends AbstractAllyMonster
                 break;
             }
             case CATCH_BREATH: {
-                atb(new AddTemporaryHPAction(this, this, DEFENSE));
+                atb(new HealAction(this, this, DEFENSE));
                 applyToTarget(this, this, new AbstractLambdaPower(STRIKE_POWER_NAME, STRIKE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
 
                     boolean justApplied = true;
