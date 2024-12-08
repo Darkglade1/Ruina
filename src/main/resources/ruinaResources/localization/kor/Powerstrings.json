@@ -448,7 +448,7 @@
   },
   "ruina:Remorse": {
     "NAME": "죄책감",
-    "DESCRIPTIONS": ["턴 종료시, ", " 카드 #b", " 장을 뽑을 카드 더미 맨 위에 올려놓습니다."]
+    "DESCRIPTIONS": ["턴 종료시, ", " 카드 #b", " 장을 손에 넣으세요."]
   },
   "ruina:Judas": {
     "NAME": "유다",

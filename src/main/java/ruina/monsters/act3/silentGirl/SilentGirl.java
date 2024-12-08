@@ -42,7 +42,7 @@ public class SilentGirl extends AbstractRuinaMonster
     private static final byte SUPPRESS = 6;
 
     private final int FRAIL = calcAscensionSpecial(2);
-    private final int VULNERABLE = calcAscensionSpecial(2);
+    private final int VULNERABLE = calcAscensionSpecial(1);
     private final int STRENGTH = calcAscensionSpecial(3);
     private final int BLOCK = calcAscensionTankiness(12);
     private final int PARALYSIS = calcAscensionSpecial(2);
@@ -67,11 +67,11 @@ public class SilentGirl extends AbstractRuinaMonster
         super(ID, ID, 480, 0.0F, 0, 250.0f, 290.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SilentGirl/Spriter/SilentGirl.scml"));
         setHp(maxHP);
-        addMove(DIGGING_NAIL, Intent.ATTACK_DEBUFF, calcAscensionDamage(16));
-        addMove(SLAM, Intent.ATTACK_DEFEND, calcAscensionDamage(20));
-        addMove(A_CRACKED_HEART, Intent.ATTACK_DEBUFF, calcAscensionDamage(15));
-        addMove(COLLAPSING_HEART, Intent.ATTACK, calcAscensionDamage(22));
-        addMove(BROKEN, Intent.ATTACK, calcAscensionDamage(12), 2);
+        addMove(DIGGING_NAIL, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
+        addMove(SLAM, Intent.ATTACK_DEFEND, calcAscensionDamage(22));
+        addMove(A_CRACKED_HEART, Intent.ATTACK_DEBUFF, calcAscensionDamage(17));
+        addMove(COLLAPSING_HEART, Intent.ATTACK, calcAscensionDamage(24));
+        addMove(BROKEN, Intent.ATTACK, calcAscensionDamage(13), 2);
         addMove(LEER, Intent.DEBUFF);
         addMove(SUPPRESS, Intent.UNKNOWN);
 
@@ -92,7 +92,7 @@ public class SilentGirl extends AbstractRuinaMonster
         applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, CURSE_AMT) {
             @Override
             public void atEndOfRound() {
-                atb(new MakeTempCardInDrawPileAction(curse.makeStatEquivalentCopy(), amount, false, true));
+                makeInHand(curse.makeStatEquivalentCopy(), amount);
             }
 
             @Override

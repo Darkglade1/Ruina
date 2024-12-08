@@ -448,7 +448,7 @@
   },
   "ruina:Remorse": {
     "NAME": "罪悪感",
-    "DESCRIPTIONS": ["ターン終了時、山札の一番上に #b", " ", " を置く。"]
+    "DESCRIPTIONS": ["ターン終了時、にあなたの手札に #b", " ", " を置く。"]
   },
   "ruina:Judas": {
     "NAME": "ユダ",

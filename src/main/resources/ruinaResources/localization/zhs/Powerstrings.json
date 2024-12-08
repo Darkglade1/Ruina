@@ -448,7 +448,7 @@
   },
   "ruina:Remorse": {
     "NAME": "罪恶感",
-    "DESCRIPTIONS": ["在回合结束时，将 #b", " ", " 放入你的抽牌堆顶。"]
+    "DESCRIPTIONS": ["在回合结束时，将 #b", " ", " 加入你的手牌。"]
   },
   "ruina:Judas": {
     "NAME": "Judas",

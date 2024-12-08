@@ -448,7 +448,7 @@
   },
   "${ModID}:Remorse": {
     "NAME": "Remorse",
-    "DESCRIPTIONS": ["At end of round, put #b", " ", " on top of your draw pile."]
+    "DESCRIPTIONS": ["At end of round, add #b", " ", " to your hand."]
   },
   "${ModID}:Judas": {
     "NAME": "Judas",
