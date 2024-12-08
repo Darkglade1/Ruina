@@ -28,7 +28,7 @@ public class Brainwash extends AbstractUnremovablePower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (this.amount > 0 && card.target == AbstractCard.CardTarget.ENEMY && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL)) {
+        if (this.amount > 0 && (card.target == AbstractCard.CardTarget.ENEMY || card.target == AbstractCard.CardTarget.SELF_AND_ENEMY) && (card.type == AbstractCard.CardType.ATTACK || card.type == AbstractCard.CardType.SKILL)) {
             this.flash();
             this.amount--;
             BrainwashMod mod = new BrainwashMod();
