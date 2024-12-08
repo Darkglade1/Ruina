@@ -78,7 +78,7 @@ public class BlackSilence1 extends AbstractCardMonster {
     public final int furiosoHits = 16;
     public final int furiosoDebuff = calcAscensionSpecial(3);
 
-    public int CARDS_PER_TURN;
+    public final int CARDS_PER_TURN = 5;
 
     private final ArrayList<Byte> movepool = new ArrayList<>();
     private byte previewIntent = -1;
@@ -115,12 +115,6 @@ public class BlackSilence1 extends AbstractCardMonster {
         addMove(FURIOSO, Intent.ATTACK_DEBUFF, furiosoDamage, furiosoHits);
         populateCards();
         populateMovepool();
-
-        if (AbstractDungeon.ascensionLevel >= 19) {
-            CARDS_PER_TURN = 4;
-        } else {
-            CARDS_PER_TURN = 5;
-        }
     }
 
     @Override
