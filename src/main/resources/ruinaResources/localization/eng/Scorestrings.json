@@ -1,0 +1,8 @@
+{
+  "${ModID}:HeadHunter": {
+    "NAME": "Head Hunter",
+    "DESCRIPTIONS": [
+      "Defeated the agents of the Head."
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "${ModID}:HeadHunter": {
+    "NAME": "猎头",
+    "DESCRIPTIONS": [
+      "击败了首领的特工。"
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 package ruina.monsters.theHead;
 
 import actlikeit.dungeons.CustomDungeon;
+import actlikeit.savefields.CustomScore;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.localization.ScoreBonusStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -26,6 +28,7 @@ import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
+import ruina.RuinaMod;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.HeadDialogueAction;
 import ruina.actions.UsePreBattleActionAction;
@@ -518,6 +521,8 @@ public class Zena extends AbstractCardMonster {
             gebura.onBossDeath();
             headClear = true;
             saveConfig();
+            ScoreBonusStrings sbs = CardCrawlGame.languagePack.getScoreString(RuinaMod.makeID("HeadHunter"));
+            CustomScore.add(RuinaMod.makeID("HeadHunter"), sbs.NAME, sbs.DESCRIPTIONS[0], 400, false);
             this.onBossVictoryLogic();
             this.onFinalBossVictoryLogic();
         }

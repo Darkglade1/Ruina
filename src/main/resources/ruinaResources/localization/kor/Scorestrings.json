@@ -1,0 +1,8 @@
+{
+  "${ModID}:HeadHunter": {
+    "NAME": "헤드헌터",
+    "DESCRIPTIONS": [
+      "수장의 요원들을 물리쳤습니다."
+    ]
+  }
+}

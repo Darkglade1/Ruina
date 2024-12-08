@@ -1202,6 +1202,7 @@ public class RuinaMod implements
         BaseMod.loadCustomStringsFile(UIStrings.class, makeLocPath(language, "UIstrings"));
         BaseMod.loadCustomStringsFile(TutorialStrings.class, makeLocPath(language, "Tutorialstrings"));
         BaseMod.loadCustomStringsFile(PotionStrings.class, makeLocPath(language, "Potionstrings"));
+        BaseMod.loadCustomStringsFile(ScoreBonusStrings.class, makeLocPath(language, "Scorestrings"));
     }
 
     @Override
