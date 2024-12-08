@@ -615,11 +615,11 @@
   },
   "${ModID}:SingularityT": {
     "NAME": "Singularity T",
-    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards. NL If the other #renemy #rdies, this power is #yupgraded.", "Degraded Singularity T"]
+    "DESCRIPTIONS": ["In addition to its normal turn, this creature takes a turn whenever you play #b", " cards."]
   },
   "${ModID}:SingularityJ": {
     "NAME": "Singularity J",
-    "DESCRIPTIONS": ["Each combatant can only apply #b", " #ydebuff(s) to this creature per turn. NL Each combatant can only deal attack damage to this creature #b", " time(s) per turn. NL If the other #renemy #rdies, this power is #yupgraded and this creature becomes #renraged.", "Degraded Singularity J"]
+    "DESCRIPTIONS": ["The difference in HP between the 2 enemies cannot exceed #b", ". NL If the limit is reached, the lower HP enemy becomes immune to damage."]
   },
   "${ModID}:SingularityF": {
     "NAME": "Singularity F",

@@ -19,23 +19,17 @@ public class SingularityT extends AbstractUnremovablePower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
-    private int degradedThreshold = 15;
-    private int unlockedThreshold = 6;
-
-    private int currentThreshold;
+    private final int threshold = 15;
 
     public SingularityT(AbstractCreature owner) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, 0);
-        this.currentThreshold = degradedThreshold;
-        this.name = DESCRIPTIONS[2];
         updateDescription();
     }
 
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         this.amount++;
-        if (this.amount >= currentThreshold) {
+        if (this.amount >= threshold) {
             flash();
             this.amount = 0;
             if (!owner.hasPower(StunMonsterPower.POWER_ID)) {
@@ -57,18 +51,8 @@ public class SingularityT extends AbstractUnremovablePower {
         }
     }
 
-    public void unlock() {
-        currentThreshold = unlockedThreshold;
-        if (this.amount >= currentThreshold) {
-            this.amount = currentThreshold - 1;
-        }
-        this.name = NAME;
-        updateDescription();
-        flash();
-    }
-
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + currentThreshold + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0] + threshold + DESCRIPTIONS[1];
     }
 }

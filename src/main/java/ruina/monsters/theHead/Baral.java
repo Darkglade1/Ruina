@@ -97,7 +97,6 @@ public class Baral extends AbstractCardMonster
     public int playerCardDraw;
     public boolean deathTriggered = false;
     private boolean usedPreBattleAction = false;
-    public boolean enraged = false;
     private boolean useExtirpation = true;
 
     public enum PHASE{
@@ -536,14 +535,6 @@ public class Baral extends AbstractCardMonster
             } else {
                 setMoveShortcut(SERUM_K, MOVES[SERUM_K], cardList.get(SERUM_K).makeStatEquivalentCopy());
             }
-        } else if (enraged) {
-            if (this.lastMove(SERUM_W)) {
-                setMoveShortcut(TRI_SERUM_COCKTAIL, MOVES[TRI_SERUM_COCKTAIL], cardList.get(TRI_SERUM_COCKTAIL).makeStatEquivalentCopy());
-            } else if (this.lastMove(SERUM_K)){
-                setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
-            } else {
-                setMoveShortcut(SERUM_K, MOVES[SERUM_K], cardList.get(SERUM_K).makeStatEquivalentCopy());
-            }
         } else {
             if (currentPhase == PHASE.PHASE1) {
                 if (this.lastMove(SERUM_R)) {
@@ -664,14 +655,8 @@ public class Baral extends AbstractCardMonster
     }
 
     public void onZenaDeath() {
-        if (AbstractDungeon.ascensionLevel >= 19 && !this.isDeadOrEscaped()) {
+        if (!this.isDeadOrEscaped()) {
             atb(new TalkAction(this, DIALOG[0]));
-            enraged = true;
-            zena.gebura.canSplit = false;
-            if (this.hasPower(SingularityT.POWER_ID)) {
-                AbstractPower power = this.getPower(SingularityT.POWER_ID);
-                ((SingularityT)power).unlock();
-            }
         }
     }
 }

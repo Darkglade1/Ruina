@@ -71,7 +71,6 @@ public class Zena extends AbstractCardMonster {
     public Baral baral;
     public boolean deathTriggered = false;
     public boolean usedShockwave = false;
-    public boolean enraged = false;
 
     public enum PHASE {
         PHASE1,
@@ -137,7 +136,8 @@ public class Zena extends AbstractCardMonster {
         numAdditionalMoves++;
         applyToTarget(this, this, new AnArbiter(this, POWER_DEBUFF));
         if (AbstractDungeon.ascensionLevel >= 19) {
-            applyToTarget(this, this, new SingularityJ(this));
+            applyToTarget(this, this, new SingularityJ(this, baral));
+            applyToTarget(baral, baral, new SingularityJInvisible(baral, this));
         }
     }
 
@@ -432,13 +432,7 @@ public class Zena extends AbstractCardMonster {
 
     @Override
     protected void getMove(final int num) {
-        if (enraged) {
-            if (!this.lastMove(BIRDCAGE)) {
-                setMoveShortcut(BIRDCAGE, MOVES[BIRDCAGE], cardList.get(BIRDCAGE).makeStatEquivalentCopy());
-            } else {
-                setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
-            }
-        } else if (currentPhase == PHASE.PHASE1) {
+        if (currentPhase == PHASE.PHASE1) {
             if (halfDead) {
                 setMoveShortcut(NONE);
             } else if (massAttackCooldown <= 0) {
@@ -475,7 +469,7 @@ public class Zena extends AbstractCardMonster {
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (moveHistory.size() >= 3) {
-            moveHistory.clear(); //resetss cooldowns
+            moveHistory.clear(); //resets cooldowns
         }
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (!this.lastMove(THIN_LINE, moveHistory) && !this.lastMoveBefore(THIN_LINE, moveHistory)) {
@@ -524,14 +518,8 @@ public class Zena extends AbstractCardMonster {
     }
 
     public void onBaralDeath() {
-        if (AbstractDungeon.ascensionLevel >= 19 && !this.isDeadOrEscaped()) {
+        if (!this.isDeadOrEscaped()) {
             atb(new TalkAction(this, DIALOG[0]));
-            enraged = true;
-            gebura.canSplit = false;
-            if (this.hasPower(SingularityJ.POWER_ID)) {
-                AbstractPower power = this.getPower(SingularityJ.POWER_ID);
-                ((SingularityJ) power).unlock();
-            }
         }
     }
 
