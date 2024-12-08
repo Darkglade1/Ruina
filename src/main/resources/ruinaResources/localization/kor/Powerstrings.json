@@ -196,11 +196,11 @@
   },
   "ruina:Salvation": {
     "NAME": "구원",
-    "DESCRIPTIONS": ["이 적은 #y현혹당한 생물을 #r즉사시킵니다. NL #y현혹 상태이상이 부여된 생물을 공격하면 #y현혹 상태이상을 #g제거 할 수있습니다."]
+    "DESCRIPTIONS": ["이 적은 #y현혹당한 생물을 #r즉사시킵니다."]
   },
   "ruina:Enchanted": {
     "NAME": "현혹됨",
-    "DESCRIPTIONS": ["이 생물의 공격력이 #b", " 이 됩니다. NL 이 생물을 공격하여 현혹 상태이상을 #g제거 할 수 있습니다."]
+    "DESCRIPTIONS": ["이 생물의 공격력이 #b", " 이 됩니다. NL 이 생물이 체력을 #b", " 이상 잃으면 현혹됨 효과가 제거됩니다."]
   },
   "ruina:Martyr": {
     "NAME": "순교",

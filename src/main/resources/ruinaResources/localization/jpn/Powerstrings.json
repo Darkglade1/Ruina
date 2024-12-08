@@ -196,11 +196,11 @@
   },
   "ruina:Salvation": {
     "NAME": "救い",
-    "DESCRIPTIONS": ["この敵の攻撃は #y魅了された味方 を #r即死 させる。 NL #y魅了 は #yあなた が #y魅了された味方 にアタックすると #g取り除かれる 。"]
+    "DESCRIPTIONS": ["この敵の攻撃は #y魅了された味方 を #r即死 させる。"]
   },
   "ruina:Enchanted": {
     "NAME": "魅了",
-    "DESCRIPTIONS": ["この味方の攻撃は #b", " ダメージを与える。 NL #y魅了 は #yあなた がこの味方にアタックすると #g取り除かれる 。"]
+    "DESCRIPTIONS": ["この味方の攻撃は #b", " ダメージを与える。 NL #y魅了  の味方 がHPを #b", " 以上失うことで回復する。"]
   },
   "ruina:Martyr": {
     "NAME": "殉教",

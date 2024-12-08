@@ -196,11 +196,11 @@
   },
   "ruina:Salvation": {
     "NAME": "救赎",
-    "DESCRIPTIONS": ["这个生物的攻击会 #r秒杀 #y着魔 的生物。 NL 如果你攻击一个 #y着魔 的生物 ， #y着魔 就会被 #g移除 。"]
+    "DESCRIPTIONS": ["这个生物的攻击会 #r秒杀 #y着魔 的生物。"]
   },
   "ruina:Enchanted": {
     "NAME": "着魔",
-    "DESCRIPTIONS": ["这个生物的攻击造成 #b", " 点伤害。 NL 如果你攻击这个生物， #y着魔 就会被 #g移除 。"]
+    "DESCRIPTIONS": ["这个生物的攻击造成 #b", " 点伤害。 NL 在失去不少于 #b", " 点生命之后移除 #y着魔。"]
   },
   "ruina:Martyr": {
     "NAME": "殉教者",
