@@ -16,7 +16,7 @@ import static ruina.util.Wiz.*;
 @AutoAdd.Ignore
 public class NoContract extends AbstractRuinaCard {
     public final static String ID = makeID(NoContract.class.getSimpleName());
-    private static final int STRENGTH = 3;
+    private static final int STRENGTH = 5;
 
     public NoContract() {
         super(ID, -2, CardType.POWER, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
