@@ -1125,13 +1125,13 @@ public class RuinaMod implements
                         new Pluto(200.0F, 0.0F),
                 }));
 
-        uninvitedGuests.addBoss(Argalia.ID, () -> new MonsterGroup(
+        uninvitedGuests.addBoss(Argalia.ID, "The Blue Reverberation", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Roland(-500.0F, 0.0F),
                         new Argalia(0.0F, 0.0F),
                 }), makeMonsterPath("Argalia/Blue.png"), makeMonsterPath("Argalia/BlueOutline.png"));
 
-        uninvitedGuestsShort.addBoss(Argalia.ID, () -> new MonsterGroup(
+        uninvitedGuestsShort.addBoss(Argalia.ID, "The Blue Reverberation", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Roland(-500.0F, 0.0F),
                         new Argalia(0.0F, 0.0F),
