@@ -131,7 +131,7 @@
   },
   "ruina:CHRBOSS_LevelSlash": {
     "NAME": "횡베기",
-    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 막히지 않은 피해를 !ruina:SecondMagic! 이상 입히면, 다음 턴에 의도가 추가로 1개 더 생깁니다."
+    "DESCRIPTION": "!D! 피해를 2번 줍니다. NL 막히지 않은 피해를 !ruina:SecondMagic! 이상 입히면, 힘을 !M! 얻습니다."
   },
   "ruina:CHRBOSS_Spear": {
     "NAME": "찌르기",
@@ -147,7 +147,7 @@
   },
   "ruina:CHRBOSS_FocusSpirit": {
     "NAME": "기합",
-    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 다음 턴에 임시 힘을 !M! 얻습니다."
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 힘을 !M! 얻습니다."
   },
   "ruina:CHRBOSS_GiantFist": {
     "NAME": "거대 주먹",

@@ -131,7 +131,7 @@
   },
   "ruina:CHRBOSS_LevelSlash": {
     "NAME": "Ровный разрез",
-    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Если нанесено не менее !ruina:SecondMagic! урона по ОЗ врага, даёт дополнительное намерение в след. ходу."
+    "DESCRIPTION": "Наносит !D! урона 2 раза. NL Если нанесено не менее !ruina:SecondMagic! урона по ОЗ врага, даёт !M! Силы."
   },
   "ruina:CHRBOSS_Spear": {
     "NAME": "Копьё",
@@ -147,7 +147,7 @@
   },
   "ruina:CHRBOSS_FocusSpirit": {
     "NAME": "Подготовка духа",
-    "DESCRIPTION": "Даёт !B! Защиты. NL Даёт !M! Силы до конца хода на след. ход."
+    "DESCRIPTION": "Даёт !B! Защиты. NL даёт !M! Силы."
   },
   "ruina:CHRBOSS_GiantFist": {
     "NAME": "Гигантский кулак",

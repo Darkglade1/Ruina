@@ -131,7 +131,7 @@
   },
   "ruina:CHRBOSS_LevelSlash": {
     "NAME": "大刀横斩",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 如果至少造成 !ruina:SecondMagic! 未被 格挡 的伤害，在下个回合获得额外的意图。"
+    "DESCRIPTION": "造成 !D! 点伤害2次。 NL 如果至少造成 !ruina:SecondMagic! 未被 格挡 的伤害，获得 !M! 点 力量 。"
   },
   "ruina:CHRBOSS_Spear": {
     "NAME": "大刀直刺",
@@ -147,7 +147,7 @@
   },
   "ruina:CHRBOSS_FocusSpirit": {
     "NAME": "屏息凝神",
-    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 在下个回合获得 !M! 点临时 力量 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 力量 。"
   },
   "ruina:CHRBOSS_GiantFist": {
     "NAME": "巨拳轰击",

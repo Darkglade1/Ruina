@@ -131,7 +131,7 @@
   },
   "ruina:CHRBOSS_LevelSlash": {
     "NAME": "横斬り",
-    "DESCRIPTION": " !D! ダメージを !M! 回与える。 これでHPを NL !ruina:SecondMagic! 以上減らした時、次のターン追加行動する。"
+    "DESCRIPTION": " !D! ダメージを 2 回与える。 これでHPを NL !ruina:SecondMagic! 以上減らした時、筋力 !M! を得る。"
   },
   "ruina:CHRBOSS_Spear": {
     "NAME": "突き",
@@ -147,7 +147,7 @@
   },
   "ruina:CHRBOSS_FocusSpirit": {
     "NAME": "気合",
-    "DESCRIPTION": " !B! ブロック を得る。 NL 次のターン一時的な 筋力 !M! を得る。"
+    "DESCRIPTION": " !B! ブロック を得る。 NL 筋力 !M! を得る。"
   },
   "ruina:CHRBOSS_GiantFist": {
     "NAME": "巨大な拳",
