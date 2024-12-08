@@ -131,7 +131,7 @@
   },
   "${ModID}:CHRBOSS_LevelSlash": {
     "NAME": "Level Slash",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gains an extra intent for the next turn."
+    "DESCRIPTION": "Deal !D! damage 2 times. NL If at least !ruina:SecondMagic! unblocked damage was dealt, gains !M! Strength."
   },
   "${ModID}:CHRBOSS_Spear": {
     "NAME": "Spear",
@@ -147,7 +147,7 @@
   },
   "${ModID}:CHRBOSS_FocusSpirit": {
     "NAME": "Focus Spirit",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Temporary Strength next turn."
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! Strength."
   },
   "${ModID}:CHRBOSS_GiantFist": {
     "NAME": "Giant Fist",

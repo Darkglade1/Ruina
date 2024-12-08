@@ -1,6 +1,7 @@
 package ruina.monsters.eventboss.redMist.cards;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.cards.EGO.AbstractEgoCard;
@@ -11,10 +12,11 @@ import static ruina.RuinaMod.makeID;
 @AutoAdd.Ignore
 public class CHRBOSS_GreaterSplitVertical extends AbstractEgoCard {
     public final static String ID = makeID(CHRBOSS_GreaterSplitVertical.class.getSimpleName());
+    RedMist parent;
 
     public CHRBOSS_GreaterSplitVertical(RedMist parent) {
         super(ID, 5, CardType.ATTACK, CardTarget.ENEMY);
-        damage = baseDamage = parent.greaterSplitVerticalDamage;
+        this.parent = parent;
         magicNumber = baseMagicNumber = parent.GSVBleed;
     }
 
@@ -29,4 +31,9 @@ public class CHRBOSS_GreaterSplitVertical extends AbstractEgoCard {
 
     @Override
     public void upp() { }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new CHRBOSS_GreaterSplitVertical(parent);
+    }
 }

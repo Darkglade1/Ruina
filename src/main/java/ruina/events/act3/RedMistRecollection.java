@@ -22,13 +22,14 @@ public class RedMistRecollection extends AbstractImageEvent {
     private static final String[] OPTIONS = eventStrings.OPTIONS;
     public static final String IMG = makeEventPath("Kali.png");
 
-    private enum CurScreen {INTRO, INTRO2, LEAVE;}
+    private static final int GOLD_REWARD = 50;
+
+    private enum CurScreen {INTRO, INTRO2, LEAVE}
     private CurScreen screen = CurScreen.INTRO;
 
     public RedMistRecollection() {
         super(NAME, DESCRIPTIONS[0], IMG);
         imageEventText.setDialogOption(OPTIONS[0]);
-        noCardsInRewards = true;
     }
 
     @Override
@@ -50,6 +51,7 @@ public class RedMistRecollection extends AbstractImageEvent {
                     case 0:
                         AbstractDungeon.getCurrRoom().monsters = new MonsterGroup(new RedMist(0.0F, 0.0F));
                         AbstractDungeon.getCurrRoom().rewards.clear();
+                        AbstractDungeon.getCurrRoom().addGoldToRewards(GOLD_REWARD);
                         AbstractDungeon.getCurrRoom().addRelicToRewards(RelicLibrary.getRelic(Strongest.ID).makeCopy());
                         AbstractDungeon.getCurrRoom().eliteTrigger = true;
                         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg
