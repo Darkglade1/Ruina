@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
@@ -34,14 +33,9 @@ public class JudgementBird extends AbstractRuinaMonster
     private static final byte STARE = 0;
     private static final byte JUDGEMENT = 1;
     private static final byte HEAVY_GUILT = 2;
-    private static final byte CEASELESS_DUTY = 3;
 
-    private static final int COOLDOWN = 2;
-    private int cooldownCounter = COOLDOWN;
-
-    private final int DEBUFF = calcAscensionSpecial(1);
-    private final int STRENGTH = calcAscensionSpecial(4);
-    private final int BLOCK = calcAscensionTankiness(8);
+    private final int DEBUFF = 1;
+    private final int STRENGTH = calcAscensionSpecial(3);
     private final int PARALYSIS = calcAscensionSpecial(2);
     private final int COST_THRESHOLD = calcAscensionSpecial(1);
     private final int COST_INCREASE = 1;
@@ -60,9 +54,8 @@ public class JudgementBird extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("JudgementBird/Spriter/JudgementBird.scml"));
         setHp(calcAscensionTankiness(280));
         addMove(STARE, Intent.STRONG_DEBUFF);
-        addMove(JUDGEMENT, Intent.ATTACK, calcAscensionDamage(22));
+        addMove(JUDGEMENT, Intent.ATTACK, calcAscensionDamage(20));
         addMove(HEAVY_GUILT, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
-        addMove(CEASELESS_DUTY, Intent.DEFEND_BUFF);
     }
 
     @Override
@@ -98,6 +91,7 @@ public class JudgementBird extends AbstractRuinaMonster
                 specialAnimation(adp());
                 applyToTarget(adp(), this, new VulnerablePower(adp(), DEBUFF, true));
                 applyToTarget(adp(), this, new FrailPower(adp(), DEBUFF, true));
+                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 resetIdle();
                 break;
             }
@@ -107,13 +101,6 @@ public class JudgementBird extends AbstractRuinaMonster
                 judgementVfx();
                 dmg(adp(), info);
                 resetIdle();
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        cooldownCounter = COOLDOWN + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case HEAVY_GUILT: {
@@ -123,40 +110,18 @@ public class JudgementBird extends AbstractRuinaMonster
                 resetIdle();
                 break;
             }
-            case CEASELESS_DUTY: {
-                specialAnimation(adp());
-                block(this, BLOCK);
-                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-                resetIdle();
-                break;
-            }
         }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                cooldownCounter--;
-                this.isDone = true;
-            }
-        });
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (lastMove(STARE)) {
-            setMoveShortcut(JUDGEMENT);
-        } else if (cooldownCounter <= 0) {
+        if (lastMove(HEAVY_GUILT)) {
             setMoveShortcut(STARE);
+        } else if (lastMove(STARE)) {
+            setMoveShortcut(JUDGEMENT);
         } else {
-            ArrayList<Byte> possibilities = new ArrayList<>();
-            if (!this.lastMove(HEAVY_GUILT)) {
-                possibilities.add(HEAVY_GUILT);
-            }
-            if (!this.lastMove(CEASELESS_DUTY)) {
-                possibilities.add(CEASELESS_DUTY);
-            }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move);
+            setMoveShortcut(HEAVY_GUILT);
         }
     }
 
