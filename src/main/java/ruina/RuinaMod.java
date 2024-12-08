@@ -886,7 +886,6 @@ public class RuinaMod implements
         BaseMod.addEvent(NightInTheBackstreets.ID, NightInTheBackstreets.class, Asiyah.ID);
         BaseMod.addEvent(SnowWhiteApple.ID, SnowWhiteApple.class, Asiyah.ID);
         BaseMod.addEvent(DerFreischutz.ID, DerFreischutz.class, Asiyah.ID);
-        BaseMod.addEvent(UnknownPath.ID, UnknownPath.class, Asiyah.ID);
         BaseMod.addEvent(new AddEventParams.Builder(SingingMachine.ID, SingingMachine.class)
                 .bonusCondition(SingingMachine::hasValidCards)
                 .dungeonID(Asiyah.ID)
