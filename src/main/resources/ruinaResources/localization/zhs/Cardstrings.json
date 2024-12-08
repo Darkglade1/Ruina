@@ -686,7 +686,7 @@
   "ruina:Shi": {
     "NAME": "追忆-し协会",
     "DESCRIPTION": "选择:",
-    "EXTENDED_DESCRIPTION": ["你获得 !M! 层 虚弱 。", "你获得 !ruina:SecondMagic! 层 脆弱 。"]
+    "EXTENDED_DESCRIPTION": ["失去  !M! 点 力量 。", "时失去 !ruina:SecondMagic! 点 敏捷 。"]
   },
   "ruina:Love": {
     "NAME": "追忆-爱之小镇",

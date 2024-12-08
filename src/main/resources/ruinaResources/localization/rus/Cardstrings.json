@@ -686,7 +686,7 @@
   "ruina:Shi": {
     "NAME": "Воспоминание - Ассоциация Си",
     "DESCRIPTION": "Выберите одно:",
-    "EXTENDED_DESCRIPTION": ["Накладывает на вас !M! Слабости.", "Накладывает на вас !ruina:SecondMagic! Хрупкости."]
+    "EXTENDED_DESCRIPTION": ["Отнимает !M! Силы.", "Отнимает !ruina:SecondMagic! Ловкости."]
   },
   "ruina:Love": {
     "NAME": "Воспоминание - Город любви",

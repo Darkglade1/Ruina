@@ -686,7 +686,7 @@
   "ruina:Shi": {
     "NAME": "기억 - 시 협회",
     "DESCRIPTION": "선택:",
-    "EXTENDED_DESCRIPTION": ["약화를 !M! 얻습니다.", "손상을 !ruina:SecondMagic! 얻습니다."]
+    "EXTENDED_DESCRIPTION": ["힘을 !M! 잃습니다.", "민첩을 !ruina:SecondMagic! 잃습니다."]
   },
   "ruina:Love": {
     "NAME": "기억 - 사랑 마을",

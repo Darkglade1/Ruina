@@ -686,7 +686,7 @@
   "ruina:Shi": {
     "NAME": "記憶 - シ協会",
     "DESCRIPTION": "一つ選ぶ:",
-    "EXTENDED_DESCRIPTION": [" *脱力 !M! を得る。", "*脆弱化 !ruina:SecondMagic! を得る。"]
+    "EXTENDED_DESCRIPTION": ["筋力 !M! を失う。", "敏捷性 !ruina:SecondMagic! を失う。"]
   },
   "ruina:Love": {
     "NAME": "記憶 - 愛の町",
