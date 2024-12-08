@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.powers.RitualPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.powers.act3.Unruffled;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
@@ -29,14 +28,7 @@ public class Sage extends AbstractAllyMonster
     private static final byte SMACK = 1;
 
     private final int RITUAL = 1;
-
-    private static final int DAMAGE_CAP = 1;
     private final int dialogNum;
-
-    public static final String POWER_ID = RuinaMod.makeID("Unruffled");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Sage() {
         this(0.0f, 0.0f, 0);
@@ -53,7 +45,6 @@ public class Sage extends AbstractAllyMonster
         addMove(SMACK, Intent.ATTACK, 6);
 
         this.icon = TexLoader.getTexture(makeUIPath("SageIcon.png"));
-        this.isTargetableByPlayer = true;
     }
 
     @Override
@@ -70,7 +61,6 @@ public class Sage extends AbstractAllyMonster
                 target = (BigBird)mo;
             }
         }
-        applyToTarget(this, this, new Unruffled(this, DAMAGE_CAP));
         super.usePreBattleAction();
     }
 

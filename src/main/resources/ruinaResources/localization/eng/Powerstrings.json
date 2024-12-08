@@ -196,11 +196,11 @@
   },
   "${ModID}:Salvation": {
     "NAME": "Salvation",
-    "DESCRIPTIONS": ["This creature’s attacks #rinstantly #rkill #yEnchanted creatures. NL #yEnchanted is #gremoved whenever #yyou attack an #yEnchanted creature."]
+    "DESCRIPTIONS": ["This creature’s attacks #rinstantly #rkill #yEnchanted creatures. NL #yEnchanted is #gremoved after #yEnchanted creatures lose a certain amount of HP."]
   },
   "${ModID}:Enchanted": {
     "NAME": "Enchanted",
-    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL #yEnchanted is #gremoved whenever #yyou attack this creature."]
+    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL #yEnchanted is #gremoved after this creature loses #b", " more HP."]
   },
   "${ModID}:Martyr": {
     "NAME": "Martyr",

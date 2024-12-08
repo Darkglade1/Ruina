@@ -12,10 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Dazzled;
@@ -40,18 +37,22 @@ public class BigBird extends AbstractMultiIntentMonster
     private static final Texture EXECUTE = TexLoader.getTexture(makeMonsterPath("BigBird/Salvation.png"));
 
     private static final byte SALVATION = 0;
-    private static final byte DAZZLE_ENEMY = 1;
+    private static final byte DAZZLE_ALLY = 1;
     private static final byte DAZZLE_PLAYER = 2;
     private static final byte ILLUMINATE = 3;
     private static final byte ILLUMINATE_2 = 4;
     
-    private final int STATUS = calcAscensionSpecial(3);
+    private final int STATUS = calcAscensionSpecial(2);
     private final int DEBUFF = calcAscensionSpecial(1);
+    private final int STRENGTH = calcAscensionSpecial(2);
     
     public Sage sage1;
     public Sage sage2;
 
     public static final int INSTANT_KILL_NUM = 999;
+    private static final int ENCHANTED_HP_AMT = 20;
+    private static final int ENCHANTED_HP_INCREASE = 5;
+    private int currEnchantedHPAmt = ENCHANTED_HP_AMT;
 
     public static final String Salvation_POWER_ID = makeID("Salvation");
     public static final PowerStrings SalvationPowerStrings = CardCrawlGame.languagePack.getPowerStrings(Salvation_POWER_ID);
@@ -69,10 +70,10 @@ public class BigBird extends AbstractMultiIntentMonster
         this.setHp(calcAscensionTankiness(400));
 
         addMove(SALVATION, Intent.ATTACK, calcAscensionDamage(17));
-        addMove(DAZZLE_ENEMY, Intent.STRONG_DEBUFF);
+        addMove(DAZZLE_ALLY, Intent.STRONG_DEBUFF);
         addMove(DAZZLE_PLAYER, Intent.DEBUFF);
         addMove(ILLUMINATE, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
-        addMove(ILLUMINATE_2, Intent.ATTACK_DEBUFF, calcAscensionDamage(11));
+        addMove(ILLUMINATE_2, Intent.ATTACK_BUFF, calcAscensionDamage(8));
     }
 
     @Override
@@ -133,10 +134,17 @@ public class BigBird extends AbstractMultiIntentMonster
                 resetIdle(1.0f);
                 break;
             }
-            case DAZZLE_ENEMY: {
+            case DAZZLE_ALLY: {
                 dazzleAnimation(target);
                 if (target != adp()) {
-                    applyToTarget(target, this, new Enchanted(target, 1));
+                    applyToTarget(target, this, new Enchanted(target, 1, currEnchantedHPAmt));
+                    atb(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            currEnchantedHPAmt += ENCHANTED_HP_INCREASE;
+                            this.isDone = true;
+                        }
+                    });
                 } else {
                     intoDiscardMo(new Dazzled(), STATUS, this);
                 }
@@ -145,30 +153,26 @@ public class BigBird extends AbstractMultiIntentMonster
             }
             case DAZZLE_PLAYER: {
                 specialAnimation(target);
-                intoDrawMo(new Dazzled(), STATUS, this);
+                if (whichMove >= 0) {
+                    intoDiscardMo(new Dazzled(), STATUS, this);
+                } else {
+                    intoDrawMo(new Dazzled(), STATUS, this);
+                }
                 resetIdle(1.0f);
                 break;
             }
             case ILLUMINATE: {
                 dazzleAnimation(target);
                 dmg(target, info);
-                if (AbstractDungeon.ascensionLevel >= 18) {
-                    applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
-                    applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
-                } else {
-                    applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
-                }
+                applyToTarget(target, this, new WeakPower(target, DEBUFF, true));
+                applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
                 resetIdle(1.0f);
                 break;
             }
             case ILLUMINATE_2: {
                 dazzleAnimation(target);
                 dmg(target, info);
-                if (AbstractDungeon.ascensionLevel >= 18) {
-                    applyToTarget(target, this, new VulnerablePower(target, DEBUFF, true));
-                } else {
-                    applyToTarget(target, this, new FrailPower(target, DEBUFF, true));
-                }
+                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 resetIdle(1.0f);
                 break;
             }
@@ -220,18 +224,21 @@ public class BigBird extends AbstractMultiIntentMonster
         if (whichMove == 0) {
             if (this.firstMove) {
                 setAdditionalMoveShortcut(DAZZLE_PLAYER, moveHistory);
+                moveHistory.clear(); // we don't want subsequent moves to be affected by this move being in the move history
             } else {
                 if (sage1 != null && (sage1.isDead || sage1.isDying)) {
-                    if (this.lastMove(ILLUMINATE, moveHistory)) {
+                    if (this.lastMove(SALVATION)) {
                         setAdditionalMoveShortcut(SALVATION, moveHistory);
                     } else {
                         setAdditionalMoveShortcut(ILLUMINATE, moveHistory);
                     }
                 } else {
-                    if (!this.lastMove(DAZZLE_ENEMY, moveHistory)) {
-                        setAdditionalMoveShortcut(DAZZLE_ENEMY, moveHistory);
-                    } else {
+                    if (this.lastMove(DAZZLE_ALLY, moveHistory)) {
+                        setAdditionalMoveShortcut(DAZZLE_PLAYER, moveHistory);
+                    } else if (this.lastMove(DAZZLE_PLAYER, moveHistory)) {
                         setAdditionalMoveShortcut(SALVATION, moveHistory);
+                    }  else {
+                        setAdditionalMoveShortcut(DAZZLE_ALLY, moveHistory);
                     }
                 }
             }
@@ -239,16 +246,18 @@ public class BigBird extends AbstractMultiIntentMonster
 
         if (whichMove == 1) {
             if (sage2 != null && (sage2.isDead || sage2.isDying)) {
-                if (this.lastMove(ILLUMINATE_2, moveHistory)) {
+                if (this.lastMove(SALVATION)) {
                     setAdditionalMoveShortcut(SALVATION, moveHistory);
                 } else {
                     setAdditionalMoveShortcut(ILLUMINATE_2, moveHistory);
                 }
             } else {
-                if (!this.lastMove(DAZZLE_ENEMY, moveHistory)) {
-                    setAdditionalMoveShortcut(DAZZLE_ENEMY, moveHistory);
-                } else {
+                if (this.lastMove(DAZZLE_ALLY, moveHistory)) {
+                    setAdditionalMoveShortcut(DAZZLE_PLAYER, moveHistory);
+                } else if (this.lastMove(DAZZLE_PLAYER, moveHistory)) {
                     setAdditionalMoveShortcut(SALVATION, moveHistory);
+                }  else {
+                    setAdditionalMoveShortcut(DAZZLE_ALLY, moveHistory);
                 }
             }
         }
@@ -256,12 +265,10 @@ public class BigBird extends AbstractMultiIntentMonster
 
     @Override
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
-        if (index == 0) {
-            if (additionalMove.nextMove == DAZZLE_PLAYER) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
-            } else {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage1, sage1.icon, index);
-            }
+        if (additionalMove.nextMove == DAZZLE_PLAYER) {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
+        } else if (index == 0) {
+            applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage1, sage1.icon, index);
         } else {
             applyPowersToAdditionalIntent(additionalMove, additionalIntent, sage2, sage2.icon, index);
         }
