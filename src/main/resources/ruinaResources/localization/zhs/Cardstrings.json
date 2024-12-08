@@ -771,7 +771,7 @@
   },
   "ruina:SerumW": {
     "NAME": "血清-W",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果拥有至少 !M! 点 力量 ，立刻杀死目标。"
+    "DESCRIPTION": "造成 !D! 点伤害。 NL 如果拥有至少 !M! 点 力量 ，则造成三倍伤害。"
   },
   "ruina:SerumR": {
     "NAME": "血清-R",
@@ -803,7 +803,7 @@
   },
   "ruina:ZenaShockwave": {
     "NAME": "震击",
-    "DESCRIPTION": "如果只有 1 个敌人，则立即将其杀死。NL 对所有敌人造成 !D! 点伤害。"
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。"
   },
   "${ModID}:Birdcage": {
     "NAME": "鸟笼",

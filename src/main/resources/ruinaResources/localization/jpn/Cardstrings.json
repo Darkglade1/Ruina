@@ -771,7 +771,7 @@
   },
   "ruina:SerumW": {
     "NAME": "血清W",
-    "DESCRIPTION": "!D! ダメージを与える。 NL 自身の 筋力 が !M! 以上なら、相手は死ぬ。"
+    "DESCRIPTION": "!D! ダメージを与える。 NL 自身の 筋力 が !M! ら3倍のダメージ。"
   },
   "ruina:SerumR": {
     "NAME": "血清R",
@@ -803,7 +803,7 @@
   },
   "ruina:ZenaShockwave": {
     "NAME": "衝撃波",
-    "DESCRIPTION": "敵が1体なら即死させる。NL 全ての敵に !D! ダメージを与える。"
+    "DESCRIPTION": "全ての敵に !D! ダメージを与える。"
   },
   "ruina:Birdcage": {
     "NAME": "鳥籠",

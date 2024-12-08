@@ -771,7 +771,7 @@
   },
   "ruina:SerumW": {
     "NAME": "혈청 W",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL 이 생물의 힘이 !M! 이상이라면, 대상을 즉사시킵니다."
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 이 생물의 힘이 !M! 이상이라면, 피해량이 3배 증가합니다."
   },
   "ruina:SerumR": {
     "NAME": "혈청 R",
@@ -803,7 +803,7 @@
   },
   "ruina:ZenaShockwave": {
     "NAME": "충격파",
-    "DESCRIPTION": "적이 1명뿐이라면 즉시 죽인다. NL 적 전체에게 피해를 !D! 줍니다."
+    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다."
   },
   "ruina:Birdcage": {
     "NAME": "새장",
