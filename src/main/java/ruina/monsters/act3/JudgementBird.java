@@ -54,7 +54,7 @@ public class JudgementBird extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("JudgementBird/Spriter/JudgementBird.scml"));
         setHp(calcAscensionTankiness(280));
         addMove(STARE, Intent.STRONG_DEBUFF);
-        addMove(JUDGEMENT, Intent.ATTACK, calcAscensionDamage(20));
+        addMove(JUDGEMENT, Intent.ATTACK, calcAscensionDamage(16));
         addMove(HEAVY_GUILT, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
     }
 

@@ -62,10 +62,16 @@ public class MintyDamageSummationCompatibilityPatch {
                 }
             }
 
-            //hardcode this ally who isn't halfdead and thus not ignored by default
-            if (m instanceof Sage) {
-                dmg[0] -= m.getIntentDmg();
-                c[0]--;
+            //these allies aren't halfdead
+            if (m instanceof AbstractAllyMonster) {
+                if (((AbstractAllyMonster) m).isTargetableByPlayer) {
+                    int damage = m.getIntentDmg();
+                    if ((Boolean) ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg")) {
+                        damage *= (Integer)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
+                    }
+                    dmg[0] -= damage;
+                    c[0]--;
+                }
             }
         }
 
