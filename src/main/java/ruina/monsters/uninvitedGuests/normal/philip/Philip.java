@@ -86,9 +86,9 @@ public class Philip extends AbstractCardMonster
 
         addMove(EVENTIDE, Intent.DEBUFF);
         addMove(EMOTIONS, Intent.DEFEND_BUFF);
-        addMove(STIGMATIZE, Intent.ATTACK, calcAscensionDamage(9), stigmatizeHits, true);
+        addMove(STIGMATIZE, Intent.ATTACK, calcAscensionDamage(9), stigmatizeHits);
         addMove(SEARING, Intent.ATTACK_DEBUFF, calcAscensionDamage(17));
-        addMove(SORROW, Intent.ATTACK, calcAscensionDamage(6), sorrowHits, true);
+        addMove(SORROW, Intent.ATTACK, calcAscensionDamage(6), sorrowHits);
 
         cardList.add(new Eventide(this));
         cardList.add(new Emotions(this));
@@ -147,9 +147,6 @@ public class Philip extends AbstractCardMonster
                 description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1] + amount2 + POWER_DESCRIPTIONS[2];
             }
         });
-        if (AbstractDungeon.ascensionLevel >= 19) {
-            applyToTarget(this, this, new FlameShield(this, 1));
-        }
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
