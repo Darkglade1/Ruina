@@ -216,8 +216,8 @@ public class RuinaMod implements
     public static boolean skipCutscenes = false;
 
 
-    public static final String ALT_MUSIC = "altMusic";
-    public static boolean altMusic = false;
+    public static final String ORIGINAL_MUSIC = "originalMusic";
+    public static boolean originalMusic = false;
     public static boolean corruptTheSpireLoaded = false;
 
 
@@ -746,13 +746,13 @@ public class RuinaMod implements
                 });
         settingsPanel.addUIElement(skipCutscenesButton);
 
-        ModLabeledToggleButton altMusicButton = new ModLabeledToggleButton("Use alternate music for Gone Angels.",
+        ModLabeledToggleButton altMusicButton = new ModLabeledToggleButton("Use the original music for Gone Angels instead of the piano cover. \nWarning for content creators, you should not enable this since the original song is likely to get videos copyright struck.",
                 350.0f, 500.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
-                altMusic, // Boolean it uses
+                originalMusic, // Boolean it uses
                 settingsPanel, // The mod panel in which this button will be in
                 (label) -> {}, // thing??????? idk
                 (button) -> { // The actual button:
-                    altMusic = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    originalMusic = button.enabled; // The boolean true/false will be whether the button is enabled or not
                     saveData();
                 });
         settingsPanel.addUIElement(altMusicButton);
@@ -1291,7 +1291,7 @@ public class RuinaMod implements
         try {
             ruinaConfig.setBool(DISABLE_ALT_TITLE_ART, disableAltTitleArt);
             ruinaConfig.setBool(SKIP_CUTSCENES, skipCutscenes);
-            ruinaConfig.setBool(ALT_MUSIC, altMusic);
+            ruinaConfig.setBool(ORIGINAL_MUSIC, originalMusic);
             ruinaConfig.save();
         } catch (Exception e) {
             e.printStackTrace();
@@ -1306,7 +1306,7 @@ public class RuinaMod implements
         clown = clownCheck.getDayOfMonth() == 1 && clownCheck.getMonth() == Month.APRIL;
         disableAltTitleArt = ruinaConfig.getBool(DISABLE_ALT_TITLE_ART);
         skipCutscenes = ruinaConfig.getBool(SKIP_CUTSCENES);
-        altMusic = ruinaConfig.getBool(ALT_MUSIC);
+        originalMusic = ruinaConfig.getBool(ORIGINAL_MUSIC);
     }
 
     public static boolean hijackMenu() {
