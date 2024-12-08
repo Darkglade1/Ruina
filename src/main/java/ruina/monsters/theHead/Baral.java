@@ -2,6 +2,7 @@ package ruina.monsters.theHead;
 
 import actlikeit.dungeons.CustomDungeon;
 import actlikeit.savefields.CustomScore;
+import basemod.ReflectionHacks;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,6 +26,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.BackAttackPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.NeutralStance;
@@ -39,12 +41,14 @@ import ruina.actions.YeetPlayerAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.baralCards.*;
+import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.patches.RenderHandPatch;
 import ruina.powers.*;
 import ruina.powers.act5.AClaw;
 import ruina.powers.act5.PlayerBlackSilence;
 import ruina.powers.act5.SingularityT;
+import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 
 import java.util.ArrayList;
@@ -78,7 +82,8 @@ public class Baral extends AbstractCardMonster
     public final int SERUM_K_BLOCK = calcAscensionTankiness(60);
     public final int SERUM_K_HEAL = calcAscensionTankiness(200);
     public final int SERUM_K_STR = calcAscensionSpecial(2);
-    public final int KILL_THRESHOLD = 25;
+    public final int KILL_THRESHOLD = 30;
+    private final int SERUM_W_DAMAGE_MULTIPLIER = 3;
 
     public Zena zena;
     public RolandHead roland;
@@ -277,6 +282,9 @@ public class Baral extends AbstractCardMonster
         }
         switch (move.nextMove) {
             case SERUM_W: {
+                if (serumWThresholdCheck()) {
+                    info.output *= SERUM_W_DAMAGE_MULTIPLIER;
+                }
                 moveAnimation();
                 atb(new AbstractGameAction() {
                     @Override
@@ -300,25 +308,6 @@ public class Baral extends AbstractCardMonster
                 waitAnimation(0.25f);
                 serumWAnimation(target);
                 dmg(target, info);
-                AbstractPower strength = getPower(StrengthPower.POWER_ID);
-                if (strength != null && strength.amount >= KILL_THRESHOLD) {
-                    if (target == adp()) {
-                        atb(new YeetPlayerAction());
-                    } else {
-                        AbstractCreature enemy = target;
-                        atb(new AbstractGameAction() {
-                            @Override
-                            public void update() {
-                                enemy.currentHealth = 0;
-                                enemy.healthBarUpdatedEvent();
-                                enemy.useStaggerAnimation();
-                                AbstractDungeon.effectList.add(new StrikeEffect(enemy, enemy.hb.cX, enemy.hb.cY, 999));
-                                enemy.damage(new DamageInfo(null, 0, DamageInfo.DamageType.HP_LOSS));
-                                this.isDone = true;
-                            }
-                        });
-                    }
-                }
                 resetIdle(1.0f);
                 break;
             }
@@ -586,7 +575,7 @@ public class Baral extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (moveHistory.size() >= 3) {
-            moveHistory.clear(); //resetss cooldowns
+            moveHistory.clear(); //resets cooldowns
         }
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (!this.lastMove(SERUM_R, moveHistory) && !this.lastMoveBefore(SERUM_R, moveHistory)) {
@@ -595,11 +584,43 @@ public class Baral extends AbstractCardMonster
         if (!this.lastMove(TRI_SERUM_COCKTAIL, moveHistory) && !this.lastMoveBefore(TRI_SERUM_COCKTAIL, moveHistory)) {
             possibilities.add(TRI_SERUM_COCKTAIL);
         }
-        if (!this.lastMove(EXTIRPATION, moveHistory) && !this.lastMoveBefore(EXTIRPATION, moveHistory)) {
-            possibilities.add(EXTIRPATION);
+        if (serumWThresholdCheck()) {
+            if (!this.lastMove(SERUM_W, moveHistory) && !this.lastMoveBefore(SERUM_W, moveHistory)) {
+                possibilities.add(SERUM_W);
+            }
+        } else {
+            if (!this.lastMove(EXTIRPATION, moveHistory) && !this.lastMoveBefore(EXTIRPATION, moveHistory)) {
+                possibilities.add(EXTIRPATION);
+            }
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
         setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        if (this.nextMove == SERUM_W && serumWThresholdCheck()) {
+            DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
+            info.applyPowers(this, adp());
+            info.output *= SERUM_W_DAMAGE_MULTIPLIER;
+            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
+            Texture attackImg = getAttackIntent(info.output);
+            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
+            updateCard();
+        }
+    }
+
+    @Override
+    protected int applySpecialMultiplier(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, int whichMove, int dmg) {
+        if (additionalMove.nextMove == SERUM_W && serumWThresholdCheck()) {
+            return dmg * SERUM_W_DAMAGE_MULTIPLIER;
+        }
+        return dmg;
+    }
+
+    private boolean serumWThresholdCheck() {
+        return this.hasPower(StrengthPower.POWER_ID) && this.getPower(StrengthPower.POWER_ID).amount >= KILL_THRESHOLD;
     }
 
     @Override

@@ -32,11 +32,10 @@ import ruina.RuinaMod;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.HeadDialogueAction;
 import ruina.actions.UsePreBattleActionAction;
-import ruina.actions.YeetPlayerAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.zenaCards.*;
-import ruina.powers.*;
+import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.act5.*;
 import ruina.util.TexLoader;
 import ruina.vfx.CustomCeilingDust;
@@ -214,21 +213,6 @@ public class Zena extends AbstractCardMonster {
                 waitAnimation();
                 shockwaveCutscene();
                 massAttackFinishAnimation();
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        int numAllies = 0;
-                        for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-                            if (mo instanceof AbstractAllyMonster && !mo.isDeadOrEscaped()) {
-                                numAllies++;
-                            }
-                        }
-                        if (numAllies == 0) {
-                            att(new YeetPlayerAction());
-                        }
-                        this.isDone = true;
-                    }
-                });
                 atb(new DamageAllOtherCharactersAction(this, calcMassAttack(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 atb(new AbstractGameAction() {
                     @Override

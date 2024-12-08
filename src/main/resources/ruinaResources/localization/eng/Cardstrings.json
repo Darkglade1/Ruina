@@ -771,7 +771,7 @@
   },
   "${ModID}:SerumW": {
     "NAME": "Serum W",
-    "DESCRIPTION": "Deal !D! damage. NL If this card's user has at least !M! Strength, instantly kill the target."
+    "DESCRIPTION": "Deal !D! damage. NL If this card's user has at least !M! Strength, deals triple damage."
   },
   "${ModID}:SerumR": {
     "NAME": "Serum R",
@@ -803,7 +803,7 @@
   },
   "${ModID}:ZenaShockwave": {
     "NAME": "Shockwave",
-    "DESCRIPTION": "If there is only 1 enemy, instantly kill it. NL Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies."
   },
   "${ModID}:Birdcage": {
     "NAME": "Birdcage",
