@@ -1,4 +1,4 @@
-package ruina.monsters.blackSilence.blackSilence4.memories.Shi;
+package ruina.monsters.blackSilence.blackSilence4.memories.shi;
 
 import basemod.AutoAdd;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -19,8 +19,8 @@ public class Shi extends AbstractRuinaCard {
         this.rawDescription = cardStrings.DESCRIPTION + " NL " + cardStrings.EXTENDED_DESCRIPTION[0] + " NL " + cardStrings.EXTENDED_DESCRIPTION[1];
         this.initializeDescription();
         this.parent = parent;
-        magicNumber = baseMagicNumber = parent.shiWeak;
-        secondMagicNumber = baseSecondMagicNumber = parent.shiFrail;
+        magicNumber = baseMagicNumber = parent.shiDebuff1;
+        secondMagicNumber = baseSecondMagicNumber = parent.shiDebuff2;
     }
 
     @Override

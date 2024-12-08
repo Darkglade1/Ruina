@@ -29,9 +29,9 @@ import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence4.cards.Agony;
 import ruina.monsters.blackSilence.blackSilence4.cards.Scream;
 import ruina.monsters.blackSilence.blackSilence4.cards.Void;
-import ruina.monsters.blackSilence.blackSilence4.memories.Shi.Shi;
-import ruina.monsters.blackSilence.blackSilence4.memories.Shi.Shi1;
-import ruina.monsters.blackSilence.blackSilence4.memories.Shi.Shi2;
+import ruina.monsters.blackSilence.blackSilence4.memories.shi.Shi;
+import ruina.monsters.blackSilence.blackSilence4.memories.shi.Shi1;
+import ruina.monsters.blackSilence.blackSilence4.memories.shi.Shi2;
 import ruina.monsters.blackSilence.blackSilence4.memories.blue.Blue;
 import ruina.monsters.blackSilence.blackSilence4.memories.blue.Blue1;
 import ruina.monsters.blackSilence.blackSilence4.memories.blue.Blue2;
@@ -98,8 +98,8 @@ public class BlackSilence4 extends AbstractCardMonster {
     public final int dawnBurns = calcAscensionSpecial(2);
     public final int dawnProtection = calcAscensionSpecial(5);
 
-    public final int shiWeak = calcAscensionSpecial(3);
-    public final int shiFrail = calcAscensionSpecial(3);
+    public final int shiDebuff1 = calcAscensionSpecial(3);
+    public final int shiDebuff2 = calcAscensionSpecial(3);
 
     public final int loveRegen = calcAscensionSpecial(15);
     public final int loveSlimed = calcAscensionSpecial(4);
@@ -114,6 +114,7 @@ public class BlackSilence4 extends AbstractCardMonster {
     public final int hanaHpLoss = calcAscensionSpecial(20);
 
     private final ArrayList<Byte> memories = new ArrayList<>();
+    private int cycleNum = 0;
 
     AbstractMonster minion;
 
@@ -128,8 +129,8 @@ public class BlackSilence4 extends AbstractCardMonster {
         numAdditionalMoves = 1;
         this.setHp(calcAscensionTankiness(1300));
 
-        addMove(AGONY, Intent.ATTACK, calcAscensionDamage(40));
-        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(16), screamHits);
+        addMove(AGONY, Intent.ATTACK, calcAscensionDamage(45));
+        addMove(SCREAM, Intent.ATTACK_DEBUFF, calcAscensionDamage(19), screamHits);
         addMove(VOID, Intent.STRONG_DEBUFF);
         addMove(YUN, Intent.UNKNOWN);
         addMove(ZWEI, Intent.UNKNOWN);
@@ -312,6 +313,7 @@ public class BlackSilence4 extends AbstractCardMonster {
                 options.add(new Blue1(this));
                 options.add(new Blue2(this));
                 atb(new ChooseOneActionButItCanFizzle(options, this));
+                cycleNum++;
                 break;
             }
         }
@@ -368,12 +370,16 @@ public class BlackSilence4 extends AbstractCardMonster {
     }
 
     private void populateMemories() {
-        memories.add(YUN);
-        memories.add(ZWEI);
-        memories.add(DAWN);
-        memories.add(SHI);
-        memories.add(LOVE);
-        memories.add(LIU);
+        if (cycleNum <= 0) {
+            memories.add(YUN);
+            memories.add(ZWEI);
+            memories.add(DAWN);
+        }
+        if (cycleNum <= 1) {
+            memories.add(SHI);
+            memories.add(LOVE);
+            memories.add(LIU);
+        }
         memories.add(PURPLE_TEAR);
         memories.add(HANA);
         memories.add(BLUE_REVERB);

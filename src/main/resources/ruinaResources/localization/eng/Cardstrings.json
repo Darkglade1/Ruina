@@ -686,7 +686,7 @@
   "${ModID}:Shi": {
     "NAME": "Memory - Shi Association",
     "DESCRIPTION": "Choose one:",
-    "EXTENDED_DESCRIPTION": ["You gain !M! Weak.", "You gain !ruina:SecondMagic! Frail."]
+    "EXTENDED_DESCRIPTION": ["You lose !M! Strength.", "You lose !ruina:SecondMagic! Dexterity."]
   },
   "${ModID}:Love": {
     "NAME": "Memory - Love Town",
