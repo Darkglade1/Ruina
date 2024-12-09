@@ -177,7 +177,7 @@
   },
   "${ModID}:FadingTwilight": {
     "NAME": "Fading Twilight",
-    "DESCRIPTIONS": ["This creature cycles between 3 different #yEggs. Every #b", " turns, switches the active #yEgg. NL After losing #b", " more HP, the currently active #yEgg is #rdisabled and removed from the cycle. NL After an #yEgg is #rdisabled, will use a #ypowerful attack next turn."]
+    "DESCRIPTIONS": ["This creature cycles between 3 different #yEggs. Every #b", " turns, switches the active #yEgg. NL After losing #b", " more HP, the currently active #yEgg is #rdisabled and removed from the cycle."]
   },
   "${ModID}:PunishingBirdPunishmentPower": {
     "NAME": "Punishment",

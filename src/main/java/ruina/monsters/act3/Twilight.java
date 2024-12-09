@@ -25,17 +25,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Dazzled;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.act3.LongEgg;
-import ruina.powers.Paralysis;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
@@ -59,7 +55,7 @@ public class Twilight extends AbstractRuinaMonster
     private final int BLOCK = calcAscensionTankiness(24);
     private final int VULNERABLE = calcAscensionSpecial(1);
     private final int FRAIL = calcAscensionSpecial(2);
-    private final int PARALYSIS = calcAscensionSpecial(2);
+    private final int STRENGTH = calcAscensionSpecial(2);
     private final int WEAK = calcAscensionSpecial(2);
     private final int STATUS = 1;
     private final int NUM_DAZZLE = 1;
@@ -100,7 +96,9 @@ public class Twilight extends AbstractRuinaMonster
     private boolean bigEggBroken = false;
     private boolean smallEggBroken = false;
     private boolean longEggBroken = false;
-    private boolean eggBrokenRecently = false;
+
+    private boolean useBigAttack = false;
+    private int cycleCounter = 0;
 
     public Twilight() {
         this(0.0f, 0.0f);
@@ -121,11 +119,11 @@ public class Twilight extends AbstractRuinaMonster
         this.setHp(calcAscensionTankiness(550));
         dmgThreshold = (int)(this.maxHealth * HP_THRESHOLD_PERCENT);
 
-        addMove(PEACE_FOR_ALL, Intent.ATTACK, calcAscensionDamage(38));
+        addMove(PEACE_FOR_ALL, Intent.ATTACK, calcAscensionDamage(36));
         addMove(SURVEILLANCE, Intent.ATTACK_DEBUFF, calcAscensionDamage(16));
-        addMove(TORN_MOUTH, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
+        addMove(TORN_MOUTH, Intent.ATTACK_BUFF, calcAscensionDamage(14));
         addMove(TILTED_SCALE, Intent.DEFEND_DEBUFF);
-        addMove(TALONS, Intent.ATTACK, calcAscensionDamage(13), 2);
+        addMove(TALONS, Intent.ATTACK, calcAscensionDamage(12), 2);
         addMove(BRILLIANT_EYES, Intent.DEBUFF);
 
         if (AbstractDungeon.ascensionLevel >= 19) {
@@ -156,8 +154,6 @@ public class Twilight extends AbstractRuinaMonster
                         flash();
                         if (owner instanceof Twilight) {
                             ((Twilight) owner).cycleEgg();
-                            ((Twilight) owner).rollMove();
-                            ((Twilight) owner).createIntent();
                         }
                         amount = EGG_CYCLE_TURN_NUM;
                     } else {
@@ -276,13 +272,8 @@ public class Twilight extends AbstractRuinaMonster
                 commandAnimation();
                 smashAnimation(adp(), info);
                 resetIdle();
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        eggBrokenRecently = false;
-                        this.isDone = true;
-                    }
-                });
+                cycleCounter++;
+                useBigAttack = false;
                 break;
             }
             case SURVEILLANCE: {
@@ -295,7 +286,7 @@ public class Twilight extends AbstractRuinaMonster
             case TORN_MOUTH: {
                 punishAnimation(adp());
                 dmg(adp(), info);
-                applyToTarget(adp(), this, new Paralysis(adp(), PARALYSIS));
+                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 resetIdle();
                 break;
             }
@@ -316,6 +307,8 @@ public class Twilight extends AbstractRuinaMonster
                     dmg(adp(), info);
                     resetIdle();
                 }
+                cycleCounter++;
+                useBigAttack = true;
                 break;
             }
             case BRILLIANT_EYES: {
@@ -326,38 +319,39 @@ public class Twilight extends AbstractRuinaMonster
                 break;
             }
         }
+        if (cycleCounter > 2) {
+            cycleCounter = 0;
+        }
         atb(new RollMoveAction(this));
+    }
+
+    private void setAttack() {
+        if (useBigAttack) {
+            setMoveShortcut(PEACE_FOR_ALL);
+        } else {
+            setMoveShortcut(TALONS);
+        }
     }
 
     @Override
     protected void getMove(final int num) {
-        if (eggBrokenRecently) {
-            setMoveShortcut(PEACE_FOR_ALL);
-        } else {
-            if (currentEgg == BirdEgg.BIG_EGG) {
-                if (!this.lastMove(SURVEILLANCE)) {
-                    setMoveShortcut(SURVEILLANCE);
-                } else {
-                    setMoveShortcut(TALONS);
-                }
-            } else if (currentEgg == BirdEgg.SMALL_EGG) {
-                if (!this.lastMove(TORN_MOUTH)) {
-                    setMoveShortcut(TORN_MOUTH);
-                } else {
-                    setMoveShortcut(TALONS);
-                }
-            } else if (currentEgg == BirdEgg.LONG_EGG) {
-                if (!this.lastMove(TILTED_SCALE)) {
-                    setMoveShortcut(TILTED_SCALE);
-                } else {
-                    setMoveShortcut(TALONS);
-                }
+        if (cycleCounter == 0) {
+            if (!this.lastMove(SURVEILLANCE)) {
+                setMoveShortcut(SURVEILLANCE);
             } else {
-                if (!this.lastMove(BRILLIANT_EYES) && !this.lastMoveBefore(BRILLIANT_EYES)) {
-                    setMoveShortcut(BRILLIANT_EYES);
-                } else {
-                    setMoveShortcut(TALONS);
-                }
+                setAttack();
+            }
+        } else if (cycleCounter == 1) {
+            if (!this.lastMove(TORN_MOUTH)) {
+                setMoveShortcut(TORN_MOUTH);
+            } else {
+                setAttack();
+            }
+        } else {
+            if (!this.lastMove(TILTED_SCALE)) {
+                setMoveShortcut(TILTED_SCALE);
+            } else {
+                setAttack();
             }
         }
     }
@@ -391,7 +385,6 @@ public class Twilight extends AbstractRuinaMonster
                 } else {
                     cycleEgg();
                 }
-                this.eggBrokenRecently = true;
             }
             AbstractPower power = this.getPower(FADING_TWILIGHT_POWER_ID);
             if (power != null) {
