@@ -1,6 +1,5 @@
 package ruina.cards;
 
-import basemod.AutoAdd;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,7 +7,6 @@ import ruina.cardmods.UnplayableMod;
 
 import static ruina.RuinaMod.makeID;
 
-@AutoAdd.Ignore
 public class Dazzled extends AbstractRuinaCard {
     public final static String ID = makeID(Dazzled.class.getSimpleName());
     private static final int COST = 1;

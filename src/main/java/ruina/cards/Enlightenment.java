@@ -1,6 +1,5 @@
 package ruina.cards;
 
-import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,7 +9,6 @@ import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.atb;
 import static ruina.util.Wiz.block;
 
-@AutoAdd.Ignore
 public class Enlightenment extends AbstractRuinaCard {
     public final static String ID = makeID(Enlightenment.class.getSimpleName());
     private static final int DRAW = 1;

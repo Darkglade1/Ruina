@@ -1,15 +1,20 @@
 package ruina.monsters.act1;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Enlightenment;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.util.DetailedIntent;
+import ruina.util.TexLoader;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import java.util.ArrayList;
+
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class Fragment extends AbstractRuinaMonster
@@ -66,6 +71,21 @@ public class Fragment extends AbstractRuinaMonster
         } else {
             setMoveShortcut(PENETRATE);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        String textureString = makeUIPath("detailedIntents/Enlightenment.png");
+        Texture texture = TexLoader.getTexture(textureString);
+        switch (move.nextMove) {
+            case PENETRATE: {
+                DetailedIntent detail = new DetailedIntent(this, STATUS, texture, DetailedIntent.TargetType.DISCARD_PILE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     private void attackAnimation(AbstractCreature enemy) {

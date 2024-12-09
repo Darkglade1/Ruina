@@ -203,32 +203,32 @@ public class Hermit extends AbstractMultiIntentMonster
 
     @Override
     protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
-        ArrayList<DetailedIntent> details = new ArrayList<>();
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
         switch (move.nextMove) {
             case HOLD_STILL: {
-                DetailedIntent powerDetail;
+                DetailedIntent detail;
                 if (intentNum == -1) {
-                    powerDetail = new DetailedIntent(this, DEBUFF, DetailedIntent.FRAIL_TEXTURE);
+                    detail = new DetailedIntent(this, DEBUFF, DetailedIntent.FRAIL_TEXTURE);
                 } else {
-                    powerDetail = new DetailedIntent(this, DEBUFF, DetailedIntent.VULNERABLE_TEXTURE);
+                    detail = new DetailedIntent(this, DEBUFF, DetailedIntent.VULNERABLE_TEXTURE);
                 }
-                details.add(powerDetail);
+                detailsList.add(detail);
                 break;
             }
             case CRACKLE: {
-                DetailedIntent blockDetail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
-                details.add(blockDetail);
-                DetailedIntent powerDetail = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
-                details.add(powerDetail);
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail2);
                 break;
             }
             case HELLO: {
-                DetailedIntent summonDetail = new DetailedIntent(this, DetailedIntent.SUMMON);
-                details.add(summonDetail);
+                DetailedIntent detail = new DetailedIntent(this, DetailedIntent.SUMMON);
+                detailsList.add(detail);
                 break;
             }
         }
-        return details;
+        return detailsList;
     }
 
 }

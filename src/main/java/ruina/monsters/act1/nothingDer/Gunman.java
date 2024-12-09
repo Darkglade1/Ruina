@@ -22,6 +22,7 @@ import ruina.RuinaMod;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 
 import java.util.ArrayList;
@@ -180,6 +181,28 @@ public class Gunman extends AbstractMultiIntentMonster
         } else {
             setAdditionalMoveShortcut(MAGIC_BULLET, moveHistory);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case SILENT_SCOPE: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, DEBUFF, DetailedIntent.WEAK_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+            case DEATH_MARK: {
+                DetailedIntent detail = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, VULNERABLE, DetailedIntent.VULNERABLE_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override

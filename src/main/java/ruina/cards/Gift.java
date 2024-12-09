@@ -1,6 +1,5 @@
 package ruina.cards;
 
-import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
@@ -13,7 +12,6 @@ import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
-@AutoAdd.Ignore
 public class Gift extends AbstractRuinaCard {
     public final static String ID = makeID(Gift.class.getSimpleName());
     private static final int DAMAGE = 5;

@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -22,14 +23,14 @@ import ruina.cards.performance.*;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.act1.FerventAdoration;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.OrchestraCurtainEffect;
 import ruina.vfx.OrchestraMusicEffect;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class Orchestra extends AbstractRuinaMonster
@@ -258,6 +259,48 @@ public class Orchestra extends AbstractRuinaMonster
         } else {
             setMoveShortcut(FIRST);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        String textureString = makePowerPath("FerventAdoration32.png");
+        Texture texture = TexLoader.getTexture(textureString);
+        switch (move.nextMove) {
+            case FIRST: {
+                DetailedIntent detail = new DetailedIntent(this, WEAK, DetailedIntent.WEAK_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case SECOND: {
+                DetailedIntent detail = new DetailedIntent(this, 1, texture);
+                detailsList.add(detail);
+                break;
+            }
+            case THIRD: {
+                DetailedIntent detail = new DetailedIntent(this, PLAYER_DRAW, DetailedIntent.DRAW_UP_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case FOURTH: {
+                DetailedIntent detail = new DetailedIntent(this, STATUS, DetailedIntent.VOID_TEXTURE, DetailedIntent.TargetType.DISCARD_PILE);
+                detailsList.add(detail);
+                break;
+            }
+            case FINALE: {
+                DetailedIntent detail = new DetailedIntent(this, 1, texture);
+                detailsList.add(detail);
+                break;
+            }
+            case CURTAIN: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, HEAL, DetailedIntent.HEAL_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override

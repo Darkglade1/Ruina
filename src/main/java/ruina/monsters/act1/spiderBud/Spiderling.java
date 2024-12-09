@@ -4,8 +4,10 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
 
@@ -68,8 +70,21 @@ public class Spiderling extends AbstractRuinaMonster
         setMoveShortcut(move);
     }
 
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case THIN_WEBBING: {
+                DetailedIntent detail = new DetailedIntent(this, STATUS, DetailedIntent.SLIMED_TEXTURE, DetailedIntent.TargetType.DISCARD_PILE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
+    }
+
     private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack", "SpiderBabyAtk", enemy, this);
+        animationAction("Attack", "SpiderBabyAtk", 0.6f, enemy, this);
     }
 
 }

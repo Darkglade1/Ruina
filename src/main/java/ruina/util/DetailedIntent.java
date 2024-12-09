@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeUIPath;
+import static ruina.RuinaMod.*;
 
 public class DetailedIntent {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("IntentStrings"));
@@ -50,6 +49,9 @@ public class DetailedIntent {
     public static final String STRENGTH = makeUIPath("detailedIntents/Strength.png");
     public static Texture STRENGTH_TEXTURE = TexLoader.getTexture(STRENGTH);
 
+    public static final String FLEX = makeUIPath("detailedIntents/Flex.png");
+    public static Texture FLEX_TEXTURE = TexLoader.getTexture(FLEX);
+
     public static final String DEXTERITY = makeUIPath("detailedIntents/Dexterity.png");
     public static Texture DEXTERITY_TEXTURE = TexLoader.getTexture(DEXTERITY);
 
@@ -61,6 +63,24 @@ public class DetailedIntent {
 
     public static final String DRAW_DOWN = makeUIPath("detailedIntents/DrawDown.png");
     public static Texture DRAW_DOWN_TEXTURE = TexLoader.getTexture(DRAW_DOWN);
+
+    public static final String DRAW_UP = makeUIPath("detailedIntents/DrawUp.png");
+    public static Texture DRAW_UP_TEXTURE = TexLoader.getTexture(DRAW_UP);
+
+    public static final String THORNS = makeUIPath("detailedIntents/Thorns.png");
+    public static Texture THORNS_TEXTURE = TexLoader.getTexture(THORNS);
+
+    public static final String WEB = makeUIPath("detailedIntents/Web.png");
+    public static Texture WEB_TEXTURE = TexLoader.getTexture(WEB);
+
+    public static final String BLEED = makePowerPath("Bleed32.png");
+    public static Texture BLEED_TEXTURE = TexLoader.getTexture(BLEED);
+
+    public static final String PARALYSIS = makePowerPath("Paralysis32.png");
+    public static Texture PARALYSIS_TEXTURE = TexLoader.getTexture(PARALYSIS);
+
+    public static final String EROSION = makePowerPath("Erosion32.png");
+    public static Texture EROSION_TEXTURE = TexLoader.getTexture(EROSION);
 
     public static final String HEAL = makeUIPath("detailedIntents/Heal.png");
     public static Texture HEAL_TEXTURE = TexLoader.getTexture(HEAL);
@@ -127,6 +147,9 @@ public class DetailedIntent {
         this.icon = icon;
         this.target = target;
         bob = ReflectionHacks.getPrivate(monster, AbstractMonster.class, "bobEffect");
+        if (monster.flipHorizontal) {
+            X_OFFSET = -X_OFFSET;
+        }
     }
 
     public DetailedIntent(AbstractMonster monster, String description) {

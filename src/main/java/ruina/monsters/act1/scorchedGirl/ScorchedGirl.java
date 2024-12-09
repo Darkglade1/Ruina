@@ -5,9 +5,13 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.util.DetailedIntent;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -62,6 +66,24 @@ public class ScorchedGirl extends AbstractRuinaMonster
         } else {
             setMoveShortcut(EXTINGUISH);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case EMBER: {
+                DetailedIntent detail = new DetailedIntent(this, BURN, DetailedIntent.BURN_TEXTURE, DetailedIntent.TargetType.DRAW_PILE);
+                detailsList.add(detail);
+                break;
+            }
+            case EXTINGUISH: {
+                DetailedIntent detail = new DetailedIntent(this, DetailedIntent.DIES);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     private void attackAnimation(AbstractCreature enemy) {
