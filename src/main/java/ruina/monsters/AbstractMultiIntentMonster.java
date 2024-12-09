@@ -22,9 +22,12 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.util.AdditionalIntent;
+import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
@@ -163,6 +166,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         for (int i = 0; i < numAdditionalMoves; i++) {
             getAdditionalMoves(AbstractDungeon.aiRng.random(99), i);
         }
+        postGetMove();
     }
 
     public void getAdditionalMoves(int num, int whichMove) {
@@ -327,5 +331,17 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         for (int i = 0; i < numAdditionalMoves; i++) {
             additionalMovesHistory.add(new ArrayList<>());
         }
+    }
+
+    @Override
+    protected Map<Integer, ArrayList<DetailedIntent>> getDetailedIntents() {
+        Map<Integer, ArrayList<DetailedIntent>> detailsMap = super.getDetailedIntents();
+        for (int i = 0; i < additionalMoves.size(); i++) {
+            ArrayList<DetailedIntent> details = getDetails(additionalMoves.get(i), i);
+            if (details != null) {
+                detailsMap.put(i, details);
+            }
+        }
+        return detailsMap;
     }
 }

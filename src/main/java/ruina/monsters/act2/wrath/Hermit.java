@@ -16,6 +16,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
 
@@ -198,6 +199,36 @@ public class Hermit extends AbstractMultiIntentMonster
                 this.isDone = true;
             }
         });
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> details = new ArrayList<>();
+        switch (move.nextMove) {
+            case HOLD_STILL: {
+                DetailedIntent powerDetail;
+                if (intentNum == -1) {
+                    powerDetail = new DetailedIntent(this, DEBUFF, DetailedIntent.FRAIL_TEXTURE);
+                } else {
+                    powerDetail = new DetailedIntent(this, DEBUFF, DetailedIntent.VULNERABLE_TEXTURE);
+                }
+                details.add(powerDetail);
+                break;
+            }
+            case CRACKLE: {
+                DetailedIntent blockDetail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                details.add(blockDetail);
+                DetailedIntent powerDetail = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                details.add(powerDetail);
+                break;
+            }
+            case HELLO: {
+                DetailedIntent summonDetail = new DetailedIntent(this, DetailedIntent.SUMMON);
+                details.add(summonDetail);
+                break;
+            }
+        }
+        return details;
     }
 
 }

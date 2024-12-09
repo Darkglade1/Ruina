@@ -83,7 +83,7 @@ public class AdditionalIntent {
         }
 
         intentParticleTimer = 0.5f;
-        this.bobEffect = new BobEffect();
+        this.bobEffect = ReflectionHacks.getPrivate(source, AbstractMonster.class, "bobEffect");
 
         this.intentImg = this.getIntentImg();
         this.intentBg = null;
@@ -113,7 +113,6 @@ public class AdditionalIntent {
     }
 
     public void update(int position) {
-        this.bobEffect.update();
         if (intentColor.a != 1.0F) {
             intentColor.a += Gdx.graphics.getDeltaTime();
             if (intentColor.a > 1.0f) {

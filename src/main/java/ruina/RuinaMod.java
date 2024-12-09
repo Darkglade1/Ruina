@@ -133,6 +133,7 @@ import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
 import ruina.patches.PlayerSpireFields;
 import ruina.potions.EgoPotion;
 import ruina.relics.AbstractEasyRelic;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 
 import java.io.IOException;
@@ -218,6 +219,10 @@ public class RuinaMod implements
 
     public static final String ORIGINAL_MUSIC = "originalMusic";
     public static boolean originalMusic = false;
+
+    public static final String DISABLE_DETAILED_INTENTS_CONFIG = "disableDetailedIntentsConfig";
+    public static boolean disableDetailedIntentsConfig = false;
+
     public static boolean corruptTheSpireLoaded = false;
 
 
@@ -757,6 +762,17 @@ public class RuinaMod implements
                 });
         settingsPanel.addUIElement(altMusicButton);
 
+        ModLabeledToggleButton disableDetailedIntents = new ModLabeledToggleButton("Disable the detailed intents.",
+                350.0f, 400.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                disableDetailedIntentsConfig,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+                    disableDetailedIntentsConfig = button.enabled;
+                    saveData();
+                });
+        settingsPanel.addUIElement(disableDetailedIntents);
+
         Asiyah asiyah = new Asiyah();
         asiyah.addAct(Exordium.ID);
 
@@ -1228,6 +1244,7 @@ public class RuinaMod implements
     public void receivePostBattle(AbstractRoom abstractRoom) {
         PlayerSpireFields.totalBlockGained.set(adp(), 0);
         PlayerSpireFields.appliedDebuffThisTurn.set(adp(), false);
+        DetailedIntent.intents.clear();
     }
 
     @Override
@@ -1292,6 +1309,7 @@ public class RuinaMod implements
             ruinaConfig.setBool(DISABLE_ALT_TITLE_ART, disableAltTitleArt);
             ruinaConfig.setBool(SKIP_CUTSCENES, skipCutscenes);
             ruinaConfig.setBool(ORIGINAL_MUSIC, originalMusic);
+            ruinaConfig.setBool(DISABLE_DETAILED_INTENTS_CONFIG, disableDetailedIntentsConfig);
             ruinaConfig.save();
         } catch (Exception e) {
             e.printStackTrace();
@@ -1307,6 +1325,7 @@ public class RuinaMod implements
         disableAltTitleArt = ruinaConfig.getBool(DISABLE_ALT_TITLE_ART);
         skipCutscenes = ruinaConfig.getBool(SKIP_CUTSCENES);
         originalMusic = ruinaConfig.getBool(ORIGINAL_MUSIC);
+        disableDetailedIntentsConfig = ruinaConfig.getBool(DISABLE_DETAILED_INTENTS_CONFIG);
     }
 
     public static boolean hijackMenu() {

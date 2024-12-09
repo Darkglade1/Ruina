@@ -127,5 +127,22 @@
     "TEXT": [
       "ruina:Brainwashed. NL "
     ]
+  },
+  "${ModID}:IntentStrings": {
+    "TEXT": [
+      "you",
+      "self",
+      "ALL enemies",
+      "random enemy",
+      "Lifesteal",
+      "ALL minions",
+      "Steals the rarest card",
+      "Cleanse debuffs",
+      "Add Parasite to master deck",
+      "Dies",
+      "Heals to half HP",
+      "Removes negative Strength",
+      "Summons"
+    ]
   }
 }

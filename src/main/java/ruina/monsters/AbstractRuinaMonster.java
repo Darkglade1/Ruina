@@ -1,7 +1,9 @@
 package ruina.monsters;
 
+import basemod.ReflectionHacks;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -13,11 +15,15 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.RunicDome;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -380,6 +386,47 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
                 this.isDone = true;
             }
         });
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        Map<Integer, ArrayList<DetailedIntent>> detailsMap = DetailedIntent.intents.get(this);
+        if (detailsMap != null && !this.isDead && !this.isDying && !AbstractDungeon.isScreenUp) {
+            for (int intentNum : detailsMap.keySet()) {
+                ArrayList<DetailedIntent> detailList = detailsMap.get(intentNum);
+                for (int i = 0; i < detailList.size(); i++) {
+                    DetailedIntent detail = detailList.get(i);
+                    detail.renderDetails(sb, i + 1, intentNum + 1);
+                }
+            }
+        }
+        super.render(sb);
+    }
+
+    protected void postGetMove() {
+        if (!RuinaMod.disableDetailedIntentsConfig && !adp().hasRelic(RunicDome.ID)) {
+            DetailedIntent.intents.put(this, getDetailedIntents());
+        }
+    }
+
+    protected Map<Integer, ArrayList<DetailedIntent>> getDetailedIntents() {
+        EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
+        Map<Integer, ArrayList<DetailedIntent>> detailsMap = new HashMap<>();
+        ArrayList<DetailedIntent> details = getDetails(move, -1);
+        if (details != null) {
+            detailsMap.put(-1, details);
+        }
+        return detailsMap;
+    }
+
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        return null;
+    }
+
+    @Override
+    public void rollMove() {
+        super.rollMove();
+        postGetMove();
     }
 
 }
