@@ -24,6 +24,7 @@ import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.CenterOfAttention;
 import ruina.util.AdditionalIntent;
+import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
@@ -302,6 +303,41 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case DEVOUR: {
+                DetailedIntent detail = new DetailedIntent(this, DetailedIntent.LIFESTEAL);
+                detailsList.add(detail);
+                break;
+            }
+            case BITE: {
+                DetailedIntent detail = new DetailedIntent(this, ATTACK_DEBUFF_AMT, DetailedIntent.WEAK_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case HORRID_SCREECH: {
+                DetailedIntent detail = new DetailedIntent(this, DAZES, DetailedIntent.DAZED_TEXTURE, DetailedIntent.TargetType.DISCARD_PILE);
+                detailsList.add(detail);
+                break;
+            }
+            case VOMIT: {
+                DetailedIntent detail = new DetailedIntent(this, NORMAL_DEBUFF_AMT, DetailedIntent.FRAIL_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, SLIMES, DetailedIntent.SLIMED_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+            case REVIVE: {
+                DetailedIntent detail = new DetailedIntent(this, 1, DetailedIntent.HEAL_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
+    }
+
+    @Override
     public void applyPowers() {
         if (currentStage == STAGE1 && !target.isDeadOrEscaped()) {
             attackingMonsterWithPrimaryIntent = true;
@@ -351,6 +387,8 @@ public class Mountain extends AbstractMultiIntentMonster
             }
             additionalIntents.clear();
             additionalMoves.clear();
+            DetailedIntent.intents.clear();
+            setDetailedIntents();
         }
     }
 

@@ -8,12 +8,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.util.DetailedIntent;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -127,6 +131,26 @@ public class ScaredyCat extends AbstractRuinaMonster
                 setMoveShortcut(RAWR);
             }
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case GROWL: {
+                if (AbstractDungeon.ascensionLevel >= 18) {
+                    DetailedIntent detail = new DetailedIntent(this, WOUND, DetailedIntent.WOUND_TEXTURE, DetailedIntent.TargetType.DRAW_PILE);
+                    detailsList.add(detail);
+                    DetailedIntent detail2 = new DetailedIntent(this, WOUND, DetailedIntent.WOUND_TEXTURE, DetailedIntent.TargetType.DISCARD_PILE);
+                    detailsList.add(detail2);
+                } else {
+                    DetailedIntent detail = new DetailedIntent(this, WOUND, DetailedIntent.WOUND_TEXTURE, DetailedIntent.TargetType.DISCARD_PILE);
+                    detailsList.add(detail);
+                }
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override

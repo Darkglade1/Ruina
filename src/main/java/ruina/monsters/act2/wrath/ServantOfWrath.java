@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import ruina.BetterSpriterAnimation;
@@ -22,9 +23,12 @@ import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.ErosionSplatter;
 import ruina.vfx.WaitEffect;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
@@ -186,6 +190,24 @@ public class ServantOfWrath extends AbstractAllyMonster
         } else {
             setMoveShortcut(RAGE);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case RAGE: {
+                DetailedIntent detail = new DetailedIntent(this, EROSION, DetailedIntent.EROSION_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case EMBODIMENTS_OF_EVIL: {
+                DetailedIntent detail = new DetailedIntent(this, EROSION + 1, DetailedIntent.EROSION_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override

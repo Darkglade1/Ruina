@@ -3,10 +3,14 @@ package ruina.monsters.act2.jester;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.powers.Erosion;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
@@ -80,6 +84,19 @@ public class ServantOfCourage extends AbstractMagicalGirl
                 setMoveShortcut(PROTECT_FRIEND);
             }
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case PROTECT_FRIEND: {
+                DetailedIntent detail = new DetailedIntent(this, DEBUFF_AMT, DetailedIntent.EROSION_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     private void attack1Animation(AbstractCreature enemy) {

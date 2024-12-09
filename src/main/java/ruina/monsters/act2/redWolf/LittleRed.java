@@ -3,6 +3,7 @@ package ruina.monsters.act2.redWolf;
 import actlikeit.dungeons.CustomDungeon;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
@@ -17,6 +18,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
@@ -25,11 +27,13 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
-import static ruina.RuinaMod.makeMonsterPath;
-import static ruina.RuinaMod.makeUIPath;
+import java.util.ArrayList;
+
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class LittleRed extends AbstractAllyMonster
@@ -212,6 +216,23 @@ public class LittleRed extends AbstractAllyMonster
                 setMoveShortcut(BULLET_SHOWER);
             }
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        String textureString = makePowerPath("StrikeWithoutHesitation32.png");
+        Texture texture = TexLoader.getTexture(textureString);
+        switch (move.nextMove) {
+            case CATCH_BREATH: {
+                DetailedIntent detail = new DetailedIntent(this, STRENGTH, texture);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, DEFENSE, DetailedIntent.HEAL_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override

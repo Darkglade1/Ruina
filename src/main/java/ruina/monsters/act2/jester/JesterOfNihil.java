@@ -32,6 +32,7 @@ import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.act2.SenselessWrath;
 import ruina.util.AdditionalIntent;
+import ruina.util.DetailedIntent;
 import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.FlexibleWrathParticleEffect;
 import ruina.vfx.WaitEffect;
@@ -270,6 +271,29 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 setAdditionalMoveShortcut(move, moveHistory);
             }
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case CONSUMING_DESIRE: {
+                DetailedIntent detail = new DetailedIntent(this, ATTACK_BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case LOVE_AND_HATE: {
+                DetailedIntent detail = new DetailedIntent(this, DEBUFF, DetailedIntent.WEAK_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case RAMPAGE: {
+                DetailedIntent detail = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override

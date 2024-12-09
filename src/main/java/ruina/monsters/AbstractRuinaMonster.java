@@ -404,6 +404,10 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
     protected void postGetMove() {
+        setDetailedIntents();
+    }
+
+    protected void setDetailedIntents() {
         if (!RuinaMod.disableDetailedIntentsConfig && !adp().hasRelic(RunicDome.ID)) {
             DetailedIntent.intents.put(this, getDetailedIntents());
         }

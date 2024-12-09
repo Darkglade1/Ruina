@@ -1,5 +1,6 @@
 package ruina.monsters.act2.redWolf;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -12,11 +13,12 @@ import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.Bleed;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.util.DetailedIntent;
+import ruina.util.TexLoader;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class NightmareWolf extends AbstractMultiIntentMonster
@@ -149,6 +151,29 @@ public class NightmareWolf extends AbstractMultiIntentMonster
         } else {
             setAdditionalMoveShortcut(BLOODSTAINED_HUNT, moveHistory);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case CRUEL_CLAWS: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case FEROCIOUS_FANGS: {
+                DetailedIntent detail = new DetailedIntent(this, BLEED, DetailedIntent.BLEED_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case HOWL: {
+                DetailedIntent detail2 = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     public void onRedDeath() {

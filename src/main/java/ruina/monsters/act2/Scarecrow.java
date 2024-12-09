@@ -1,5 +1,6 @@
 package ruina.monsters.act2;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -9,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.ExhaustTopCardAction;
@@ -16,11 +18,12 @@ import ruina.actions.WisdomAction;
 import ruina.cards.Wisdom;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.util.DetailedIntent;
+import ruina.util.TexLoader;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class Scarecrow extends AbstractRuinaMonster
@@ -131,6 +134,21 @@ public class Scarecrow extends AbstractRuinaMonster
     }
 
     @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        String textureString = makeUIPath("detailedIntents/Wisdom.png");
+        Texture texture = TexLoader.getTexture(textureString);
+        switch (move.nextMove) {
+            case STRUGGLE: {
+                DetailedIntent detail = new DetailedIntent(this, WISDOM_AMT, texture, DetailedIntent.TargetType.DISCARD_PILE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
+    }
+
+    @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
         playSound("ScarecrowDeath", 0.5f);
@@ -141,7 +159,7 @@ public class Scarecrow extends AbstractRuinaMonster
     }
 
     private void harvestAnimation(AbstractCreature enemy) {
-        animationAction("Attack2", "Harvest", 0.5f, enemy, this);
+        animationAction("Attack2", "Harvest", 0.3f, enemy, this);
     }
 
 }

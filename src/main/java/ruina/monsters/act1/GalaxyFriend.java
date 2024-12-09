@@ -138,6 +138,11 @@ public class GalaxyFriend extends AbstractRuinaMonster
                 detailsList.add(detail);
                 break;
             }
+            case REVIVE: {
+                DetailedIntent detail = new DetailedIntent(this, 1, DetailedIntent.HEAL_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
         }
         return detailsList;
     }
@@ -176,6 +181,7 @@ public class GalaxyFriend extends AbstractRuinaMonster
                     public void update() {
                         setMove(REVIVE, Intent.BUFF);
                         createIntent();
+                        setDetailedIntents();
                         isDone = true;
                     }
                 });

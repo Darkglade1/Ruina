@@ -12,12 +12,18 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.util.DetailedIntent;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -95,6 +101,24 @@ public class KnightOfDespair extends AbstractRuinaMonster
         setMoveShortcut(DESPAIR);
     }
 
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case DESPAIR: {
+                if (!firstMove && (sword == null || sword.isDeadOrEscaped())) {
+                    DetailedIntent detail = new DetailedIntent(this, DetailedIntent.SUMMON);
+                    detailsList.add(detail);
+                } else {
+                    DetailedIntent detail = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                    detailsList.add(detail);
+                }
+                break;
+            }
+        }
+        return detailsList;
+    }
+
     public void Summon() {
         atb(new AbstractGameAction() {
             @Override
@@ -114,6 +138,7 @@ public class KnightOfDespair extends AbstractRuinaMonster
             stabCount = MAX_STABS;
         }
         animationAction("Idle" + stabCount, "KnightAttack", this);
+        setDetailedIntents(); // update detailed intent if needed
     }
 
     @Override
