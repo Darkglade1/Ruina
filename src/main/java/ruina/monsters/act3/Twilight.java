@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -32,8 +33,11 @@ import ruina.cards.Dazzled;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.act3.LongEgg;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -354,6 +358,31 @@ public class Twilight extends AbstractRuinaMonster
                 setAttack();
             }
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case SURVEILLANCE: {
+                DetailedIntent detail = new DetailedIntent(this, FRAIL, DetailedIntent.FRAIL_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case TORN_MOUTH: {
+                DetailedIntent detail = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case TILTED_SCALE: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, VULNERABLE, DetailedIntent.VULNERABLE_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override

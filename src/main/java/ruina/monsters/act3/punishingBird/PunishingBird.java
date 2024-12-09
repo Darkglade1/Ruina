@@ -11,14 +11,18 @@ import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act3.PunishingBirdPunishmentPower;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -82,6 +86,19 @@ public class PunishingBird extends AbstractRuinaMonster {
         } else {
             setMoveShortcut(PECK);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case PECK: {
+                DetailedIntent detail = new DetailedIntent(this, STATUS, DetailedIntent.WOUND_TEXTURE, DetailedIntent.TargetType.DRAW_PILE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override

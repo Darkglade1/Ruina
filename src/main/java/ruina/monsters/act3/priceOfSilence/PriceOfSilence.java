@@ -1,6 +1,7 @@
 package ruina.monsters.act3.priceOfSilence;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -8,6 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
@@ -15,9 +17,12 @@ import ruina.BetterSpriterAnimation;
 import ruina.cards.StolenTime;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.util.DetailedIntent;
+import ruina.util.TexLoader;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import java.util.ArrayList;
+
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class PriceOfSilence extends AbstractRuinaMonster
@@ -100,6 +105,21 @@ public class PriceOfSilence extends AbstractRuinaMonster
         } else {
             setMoveShortcut(STOLEN_TIME);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        String textureString = makeUIPath("detailedIntents/StolenTime.png");
+        Texture texture = TexLoader.getTexture(textureString);
+        switch (move.nextMove) {
+            case STOLEN_TIME: {
+                DetailedIntent detail = new DetailedIntent(this, STATUS, texture, DetailedIntent.TargetType.DRAW_PILE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     private void effectAnimation(AbstractCreature enemy) {

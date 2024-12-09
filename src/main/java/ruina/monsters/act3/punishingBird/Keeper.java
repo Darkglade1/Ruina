@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
@@ -16,6 +17,9 @@ import ruina.cards.ForestKeeperLock;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
+import ruina.util.DetailedIntent;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -27,6 +31,9 @@ public class Keeper extends AbstractRuinaMonster {
     private static final byte CUCKOO = 0;
     private static final byte RING = 1;
     private static final byte SMACK = 2;
+
+    private final int PARALYSIS = calcAscensionSpecial(1);
+    private final int BLOCK = calcAscensionTankiness(12);
 
     public static final String lock_pid = makeID("Lock");
     public static final PowerStrings str_lock = CardCrawlGame.languagePack.getPowerStrings(lock_pid);
@@ -50,7 +57,7 @@ public class Keeper extends AbstractRuinaMonster {
         switch (nextMove) {
             case CUCKOO:
                 specialAnimation();
-                block(this, calcAscensionTankiness(12));
+                block(this, BLOCK);
                 resetIdle(1.0f);
                 break;
             case RING:
@@ -64,7 +71,7 @@ public class Keeper extends AbstractRuinaMonster {
             case SMACK:
                 attackAnimation(adp());
                 dmg(adp(), info);
-                atb(new ApplyPowerAction(adp(), this, new Paralysis(adp(), calcAscensionSpecial(1))));
+                atb(new ApplyPowerAction(adp(), this, new Paralysis(adp(), PARALYSIS)));
                 resetIdle();
                 break;
         }
@@ -100,6 +107,24 @@ public class Keeper extends AbstractRuinaMonster {
                 setMoveShortcut(SMACK);
             }
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case CUCKOO: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case SMACK: {
+                DetailedIntent detail = new DetailedIntent(this, PARALYSIS, DetailedIntent.PARALYSIS_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override

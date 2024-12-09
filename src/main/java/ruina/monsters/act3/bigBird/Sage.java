@@ -9,12 +9,16 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
@@ -91,6 +95,19 @@ public class Sage extends AbstractAllyMonster
         } else {
             setMoveShortcut(SMACK);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case RING: {
+                DetailedIntent detail = new DetailedIntent(this, RITUAL, DetailedIntent.RITUAL_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     public void onBigBirdDeath() {

@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
@@ -19,7 +20,10 @@ import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.act1.fairyFestival.FairyMass;
 import ruina.powers.CenterOfAttention;
+import ruina.util.DetailedIntent;
 import ruina.vfx.WaitEffect;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -156,6 +160,26 @@ public class BlueStar extends AbstractRuinaMonster
                 setMoveShortcut(SOUND_OF_STAR);
             }
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case RISING_STAR: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE, DetailedIntent.TargetType.ALL_ENEMIES);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, VULNERABLE, DetailedIntent.VULNERABLE_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+            case STARRY_SKY: {
+                DetailedIntent detail = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE, DetailedIntent.TargetType.ALL_ENEMIES);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     public void Summon() {

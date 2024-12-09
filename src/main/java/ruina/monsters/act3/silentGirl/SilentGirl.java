@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
@@ -20,6 +21,7 @@ import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.NextTurnPowerPower;
 import ruina.powers.Paralysis;
+import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
@@ -160,7 +162,7 @@ public class SilentGirl extends AbstractRuinaMonster
                 nail.deadAnimation();
                 this.halfDead = false;
                 atb(new HealAction(this, this, maxHealth));
-                block(this, BLOCK * 3);
+                block(this, BLOCK);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 enraged = 2;
                 AbstractDungeon.getCurrRoom().cannotLose = false;
@@ -190,6 +192,45 @@ public class SilentGirl extends AbstractRuinaMonster
                 setMoveShortcut(BROKEN);
             }
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case DIGGING_NAIL: {
+                DetailedIntent detail = new DetailedIntent(this, FRAIL, DetailedIntent.FRAIL_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case SLAM: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case A_CRACKED_HEART: {
+                DetailedIntent detail = new DetailedIntent(this, VULNERABLE, DetailedIntent.VULNERABLE_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case LEER: {
+                DetailedIntent detail = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, PARALYSIS, DetailedIntent.PARALYSIS_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+            case SUPPRESS: {
+                DetailedIntent detail = new DetailedIntent(this, this.maxHP, DetailedIntent.HEAL_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail2);
+                DetailedIntent detail3 = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail3);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override
@@ -232,6 +273,7 @@ public class SilentGirl extends AbstractRuinaMonster
                 setMoveShortcut(SUPPRESS);
                 this.createIntent();
                 atb(new SetMoveAction(this, SUPPRESS, Intent.NONE));
+                setDetailedIntents();
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {

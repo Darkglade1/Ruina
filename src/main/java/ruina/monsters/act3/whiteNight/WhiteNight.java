@@ -8,12 +8,12 @@ import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.RitualPower;
@@ -24,7 +24,10 @@ import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act3.WhiteNightBlessing;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -50,9 +53,9 @@ public class WhiteNight extends AbstractRuinaMonster {
     public AbstractMonster[] minions = new AbstractMonster[3];
     private int moveCounter = 0;
 
-    private final int ritual = calcAscensionSpecial(1);
-    private final int heal = calcAscensionTankiness(8);
-    private final int block = calcAscensionTankiness(15);
+    private final int RITUAL = calcAscensionSpecial(1);
+    private final int HEAL = calcAscensionTankiness(8);
+    private final int BLOCK = calcAscensionTankiness(15);
     private final int BLESSING_AMT = 12;
     private final int MAX_TURNS = 6;
 
@@ -115,7 +118,7 @@ public class WhiteNight extends AbstractRuinaMonster {
         switch (this.nextMove) {
             case PRAYER:
                 playSoundAnimation("ProphetBless");
-                applyToTarget(this, this, new RitualPower(this, ritual, false));
+                applyToTarget(this, this, new RitualPower(this, RITUAL, false));
                 waitAnimation();
                 break;
             case RISE_AND_SERVE:
@@ -134,7 +137,7 @@ public class WhiteNight extends AbstractRuinaMonster {
                 if (ritPower != null) {
                     ritAmt = ritPower.amount;
                 }
-                ritAmt = Math.max(ritAmt, ritual);
+                ritAmt = Math.max(ritAmt, RITUAL);
                 for (AbstractMonster m : monsterList()) {
                     if (!m.isDeadOrEscaped()) {
                         if (m == this) {
@@ -150,8 +153,8 @@ public class WhiteNight extends AbstractRuinaMonster {
                 playSoundAnimation("ProphetBless");
                 for (AbstractMonster m : monsterList()) {
                     if (!m.isDeadOrEscaped()) {
-                        atb(new HealAction(m, this, heal));
-                        block(m, block);
+                        atb(new HealAction(m, this, HEAL));
+                        block(m, BLOCK);
                     }
                 }
                 waitAnimation();
@@ -200,6 +203,43 @@ public class WhiteNight extends AbstractRuinaMonster {
                 }
             }
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case PRAYER: {
+                DetailedIntent detail = new DetailedIntent(this, RITUAL, DetailedIntent.RITUAL_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case RISE_AND_SERVE: {
+                DetailedIntent detail = new DetailedIntent(this, DetailedIntent.SUMMON);
+                detailsList.add(detail);
+                break;
+            }
+            case BENEDICTION: {
+                DetailedIntent detail = new DetailedIntent(this, RITUAL, DetailedIntent.RITUAL_TEXTURE, DetailedIntent.TargetType.ALL_MINIONS);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, RITUAL, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+            case SALVATION: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE, DetailedIntent.TargetType.ALL_ENEMIES);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, HEAL, DetailedIntent.HEAL_TEXTURE, DetailedIntent.TargetType.ALL_ENEMIES);
+                detailsList.add(detail2);
+                break;
+            }
+            case SAVIOR: {
+                DetailedIntent detail = new DetailedIntent(this, DetailedIntent.SUMMON);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
 

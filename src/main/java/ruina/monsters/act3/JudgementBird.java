@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -17,6 +18,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
@@ -123,6 +125,28 @@ public class JudgementBird extends AbstractRuinaMonster
         } else {
             setMoveShortcut(HEAVY_GUILT);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case HEAVY_GUILT: {
+                DetailedIntent detail = new DetailedIntent(this, PARALYSIS, DetailedIntent.PARALYSIS_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case STARE: {
+                DetailedIntent detail = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, DEBUFF, DetailedIntent.VULNERABLE_TEXTURE);
+                detailsList.add(detail2);
+                DetailedIntent detail3 = new DetailedIntent(this, DEBUFF, DetailedIntent.FRAIL_TEXTURE);
+                detailsList.add(detail3);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     private void attackAnimation(AbstractCreature enemy) {

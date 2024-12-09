@@ -2,8 +2,12 @@ package ruina.monsters.act3.whiteNight;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.util.DetailedIntent;
+
+import java.util.ArrayList;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -65,6 +69,19 @@ public class ScytheApostle extends AbstractRuinaMonster {
         } else {
             setMoveShortcut(FOLLOW_THEE);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case FOLLOW_THEE: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     private void slashUpAnimation(AbstractCreature enemy) {

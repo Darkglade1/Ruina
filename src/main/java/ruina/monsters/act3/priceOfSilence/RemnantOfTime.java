@@ -1,14 +1,19 @@
 package ruina.monsters.act3.priceOfSilence;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.util.DetailedIntent;
+import ruina.util.TexLoader;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import java.util.ArrayList;
+
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class RemnantOfTime extends AbstractRuinaMonster
@@ -69,6 +74,21 @@ public class RemnantOfTime extends AbstractRuinaMonster
         } else {
             setMoveShortcut(BACKLASH_OF_TIME);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case TORRENT_OF_HOURS: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE, DetailedIntent.TargetType.ALL_ENEMIES);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE, DetailedIntent.TargetType.ALL_ENEMIES);
+                detailsList.add(detail2);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     private void attackForwardAnimation(AbstractCreature enemy) {

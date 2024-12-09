@@ -21,13 +21,13 @@ import ruina.powers.AbstractLambdaPower;
 import ruina.powers.act3.Enchanted;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.AdditionalIntent;
+import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class BigBird extends AbstractMultiIntentMonster
@@ -261,6 +261,45 @@ public class BigBird extends AbstractMultiIntentMonster
                 }
             }
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        String textureString = makeUIPath("detailedIntents/Dazzled.png");
+        Texture texture = TexLoader.getTexture(textureString);
+        String textureString2 = makePowerPath("Enchanted32.png");
+        Texture texture2 = TexLoader.getTexture(textureString2);
+        switch (move.nextMove) {
+            case DAZZLE_PLAYER: {
+                if (intentNum >= 0) {
+                    DetailedIntent detail = new DetailedIntent(this, STATUS, texture, DetailedIntent.TargetType.DISCARD_PILE);
+                    detailsList.add(detail);
+                } else {
+                    DetailedIntent detail = new DetailedIntent(this, STATUS, texture, DetailedIntent.TargetType.DRAW_PILE);
+                    detailsList.add(detail);
+                }
+                break;
+            }
+            case DAZZLE_ALLY: {
+                DetailedIntent detail = new DetailedIntent(this, 1, texture2);
+                detailsList.add(detail);
+                break;
+            }
+            case ILLUMINATE: {
+                DetailedIntent detail = new DetailedIntent(this, DEBUFF, DetailedIntent.WEAK_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, DEBUFF, DetailedIntent.FRAIL_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+            case ILLUMINATE_2: {
+                DetailedIntent detail = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override

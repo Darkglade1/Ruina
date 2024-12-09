@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.stances.CalmStance;
 import ruina.BetterSpriterAnimation;
@@ -22,6 +23,7 @@ import ruina.cardmods.FrozenMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.CenterOfAttention;
+import ruina.util.DetailedIntent;
 import ruina.vfx.FlexibleCalmParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
 
@@ -183,6 +185,35 @@ public class SnowQueen extends AbstractRuinaMonster
             byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
             setMoveShortcut(move);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case BLIZZARD: {
+                DetailedIntent detail = new DetailedIntent(this, DEBUFF, DetailedIntent.WEAK_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, DEBUFF, DetailedIntent.FRAIL_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+            case FRIGID_GAZE: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case FROZEN_THRONE: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail2);
+                DetailedIntent detail3 = new DetailedIntent(this, METALLICIZE, DetailedIntent.METALLICIZE_TEXTURE);
+                detailsList.add(detail3);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     @Override

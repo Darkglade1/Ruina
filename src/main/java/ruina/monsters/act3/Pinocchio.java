@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractDeckMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
 import java.util.HashMap;

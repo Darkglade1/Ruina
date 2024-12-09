@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
-import ruina.RuinaMod;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,6 +71,9 @@ public class DetailedIntent {
 
     public static final String WEB = makeUIPath("detailedIntents/Web.png");
     public static Texture WEB_TEXTURE = TexLoader.getTexture(WEB);
+
+    public static final String RITUAL = makeUIPath("detailedIntents/Ritual.png");
+    public static Texture RITUAL_TEXTURE = TexLoader.getTexture(RITUAL);
 
     public static final String BLEED = makePowerPath("Bleed32.png");
     public static Texture BLEED_TEXTURE = TexLoader.getTexture(BLEED);
@@ -177,7 +179,7 @@ public class DetailedIntent {
                 } else {
                     pileTexture = DISCARD_PILE_TEXTURE;
                 }
-                FontHelper.renderFontCentered(sb, FontHelper.topPanelInfoFont, Integer.toString(amount), monster.intentHb.cX - (32.0f * scaleWidth), textY, white);
+                FontHelper.renderFontCentered(sb, FontHelper.topPanelInfoFont, Integer.toString(amount), monster.intentHb.cX - (32.0f * scaleWidth) + xOffset, textY, white);
                 sb.draw(icon, monster.intentHb.cX - 16.0F - (7.0f * scaleWidth) + xOffset, iconY, 16.0F, 16.0F, 32.0F, 32.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 32, 32, false, false);
                 sb.draw(pileTexture, monster.intentHb.cX - 16.0F + (27.0f * scaleWidth) + xOffset, iconY, 16.0F, 16.0F, 32.0F, 32.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 32, 32, false, false);
             } else if (target == TargetType.ALL_ENEMIES || target == TargetType.ALL_MINIONS || target == TargetType.RANDOM_ENEMY) {

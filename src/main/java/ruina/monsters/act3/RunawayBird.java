@@ -4,8 +4,10 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
 
@@ -65,6 +67,19 @@ public class RunawayBird extends AbstractRuinaMonster
         }
         byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
         setMoveShortcut(move);
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        switch (move.nextMove) {
+            case SHRIEK: {
+                DetailedIntent detail = new DetailedIntent(this, STATUS, DetailedIntent.DAZED_TEXTURE, DetailedIntent.TargetType.DRAW_PILE);
+                detailsList.add(detail);
+                break;
+            }
+        }
+        return detailsList;
     }
 
     private void sweepAnimation(AbstractCreature enemy) {
