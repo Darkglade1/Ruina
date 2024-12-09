@@ -127,5 +127,22 @@
     "TEXT": [
       "ruina:세뇌 NL "
     ]
+  },
+  "${ModID}:IntentStrings": {
+    "TEXT": [
+      "you",
+      "self",
+      "모든 적",
+      "random enemy",
+      "라이프스틸",
+      "모든 미니언",
+      "Steals the rarest card",
+      "Cleanse debuffs",
+      "Add Parasite to master deck",
+      "Dies",
+      "Heals to half HP",
+      "Removes negative Strength",
+      "소환장"
+    ]
   }
 }
