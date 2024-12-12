@@ -34,6 +34,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import corruptthespire.Cor;
+import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ruina.CustomIntent.CounterAttackIntent;
@@ -130,16 +131,21 @@ import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
+import ruina.multiplayer.NoMultiplyPowerList;
 import ruina.patches.PlayerSpireFields;
 import ruina.potions.EgoPotion;
+import ruina.powers.AbstractEasyPower;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
+import spireTogether.SpireTogetherMod;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Properties;
 
 import static ruina.util.Wiz.adp;
@@ -1176,6 +1182,10 @@ public class RuinaMod implements
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");
+
+        if (Loader.isModLoaded("spireTogether")) {
+            SpireTogetherMod.subscribe(new NoMultiplyPowerList());
+        }
     }
 
     public void receiveEditPotions() {
@@ -1339,6 +1349,9 @@ public class RuinaMod implements
         } else {
             return 0;
         }
+    }
 
+    public static boolean isMultiplayerConnected() {
+        return Loader.isModLoaded("spireTogether") && SpireTogetherMod.isConnected;
     }
 }
