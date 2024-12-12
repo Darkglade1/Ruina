@@ -3,6 +3,8 @@ package ruina.multiplayer;
 import basemod.AutoAdd;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
+import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import javassist.CtClass;
 import ruina.RuinaMod;
 import ruina.powers.AbstractEasyPower;
@@ -33,7 +35,9 @@ public class NoMultiplyPowerList implements TiSPowerSyncRulesSubscriber {
                 }
             }
         }
-        return null;
+        powerClassList.add(GainStrengthPower.class);
+        powerClassList.add(LoseStrengthPower.class);
+        return powerClassList;
     }
 
     @Override
