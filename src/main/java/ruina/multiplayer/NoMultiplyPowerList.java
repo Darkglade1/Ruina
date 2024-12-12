@@ -33,7 +33,7 @@ public class NoMultiplyPowerList implements TiSPowerSyncRulesSubscriber {
                 }
             }
         }
-        return null;
+        return powerClassList;
     }
 
     @Override
