@@ -40,7 +40,7 @@ public class Angelica extends AbstractCardMonster {
     private static final byte ATELIER = 2;
     private static final byte WALTZ = 3;
     private static final byte ASHENBOND = 4;
-    private static final byte SOUL_LINK_REVIVAL = 6;
+    private static final byte SOUL_LINK_REVIVAL = 5;
 
     public final int zelkovaDamage = calcAscensionDamage(8);
     public final int zelkovaHits = 2;
@@ -71,6 +71,7 @@ public class Angelica extends AbstractCardMonster {
         addMove(ATELIER, Intent.ATTACK, atelierDamage, atelierHits);
         addMove(WALTZ, Intent.ATTACK, waltzDamage, waltzHits);
         addMove(ASHENBOND, Intent.DEFEND_BUFF);
+        addMove(SOUL_LINK_REVIVAL, Intent.UNKNOWN);
         cardList.add(new ZelkovaWorkshop(this));
         cardList.add(new AllasWorkshop(this));
         cardList.add(new AtelierLogic(this));

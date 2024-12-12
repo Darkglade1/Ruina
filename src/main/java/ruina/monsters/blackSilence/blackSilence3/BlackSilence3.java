@@ -40,7 +40,7 @@ public class BlackSilence3 extends AbstractCardMonster {
     private static final byte FURY = 2;
     private static final byte WALTZ = 3;
     private static final byte DARKBOND = 4;
-    private static final byte SOUL_LINK_REVIVAL = 6;
+    private static final byte SOUL_LINK_REVIVAL = 5;
 
     public final int unitedDamage = calcAscensionDamage(8);
     public final int unitedHits = 2;
@@ -73,6 +73,7 @@ public class BlackSilence3 extends AbstractCardMonster {
         addMove(FURY, Intent.ATTACK_DEBUFF, furyDamage);
         addMove(WALTZ, Intent.ATTACK, waltzDamage, waltzHits);
         addMove(DARKBOND, Intent.DEFEND_DEBUFF);
+        addMove(SOUL_LINK_REVIVAL, Intent.UNKNOWN);
 
         cardList.add(new UnitedWorkshop(this));
         cardList.add(new UnstableLoneliness(this));
