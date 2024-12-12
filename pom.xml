@@ -75,9 +75,9 @@
         <dependency>
             <groupId>spireTogether</groupId>
             <artifactId>spireTogether</artifactId>
-            <version>6.4.18</version>
+            <version>7.0.5</version>
             <scope>system</scope>
-            <systemPath>${Steam.path}/workshop/content/646570/2384072973/TogetherInSpire.jar</systemPath>
+            <systemPath>${Steam.path}/workshop/content/646570/2385028403/TogetherInSpire.jar</systemPath>
         </dependency>
     </dependencies>
 
