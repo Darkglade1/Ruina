@@ -2,21 +2,18 @@ package ruina.monsters.act2;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
+import ruina.powers.act2.Hunter;
+import ruina.powers.act2.Skulk;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
@@ -42,16 +39,6 @@ public class BadWolf extends AbstractRuinaMonster
     private int phase = 1;
     boolean triggered = false;
 
-    public static final String HUNTER_POWER_ID = makeID("Hunter");
-    public static final PowerStrings HUNTERPowerStrings = CardCrawlGame.languagePack.getPowerStrings(HUNTER_POWER_ID);
-    public static final String HUNTER_POWER_NAME = HUNTERPowerStrings.NAME;
-    public static final String[] HUNTER_POWER_DESCRIPTIONS = HUNTERPowerStrings.DESCRIPTIONS;
-
-    public static final String SKULK_POWER_ID = makeID("Skulk");
-    public static final PowerStrings SKULKPowerStrings = CardCrawlGame.languagePack.getPowerStrings(SKULK_POWER_ID);
-    public static final String SKULK_POWER_NAME = SKULKPowerStrings.NAME;
-    public static final String[] SKULK_POWER_DESCRIPTIONS = SKULKPowerStrings.DESCRIPTIONS;
-
     public BadWolf() {
         this(0.0f, 0.0f);
     }
@@ -68,23 +55,7 @@ public class BadWolf extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         playSound("WolfPhase");
-        applyToTarget(this, this, new AbstractLambdaPower(HUNTER_POWER_NAME, HUNTER_POWER_ID, AbstractPower.PowerType.BUFF, false, this, SKULK_TURNS) {
-            @Override
-            public void atEndOfRound() {
-                if (owner instanceof BadWolf) {
-                    ((BadWolf) owner).checkSkulkTrigger();
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                if (amount == 1) {
-                    description = HUNTER_POWER_DESCRIPTIONS[0] + (int)(HP_THRESHOLD * 100) + HUNTER_POWER_DESCRIPTIONS[1] + STRENGTH + HUNTER_POWER_DESCRIPTIONS[2] + amount + HUNTER_POWER_DESCRIPTIONS[4];
-                } else {
-                    description = HUNTER_POWER_DESCRIPTIONS[0] + (int)(HP_THRESHOLD * 100) + HUNTER_POWER_DESCRIPTIONS[1] + STRENGTH + HUNTER_POWER_DESCRIPTIONS[2] + amount + HUNTER_POWER_DESCRIPTIONS[3];
-                }
-            }
-        });
+        applyToTarget(this, this, new Hunter(this, SKULK_TURNS, STRENGTH, HP_THRESHOLD));
     }
 
     @Override
@@ -189,7 +160,7 @@ public class BadWolf extends AbstractRuinaMonster
 
     @Override
     public void damage(DamageInfo info) {
-        if (this.hasPower(SKULK_POWER_ID)) {
+        if (this.hasPower(Skulk.POWER_ID)) {
             return;
         }
         super.damage(info);
@@ -199,61 +170,13 @@ public class BadWolf extends AbstractRuinaMonster
         if (this.currentHealth < (int)(this.maxHealth * HP_THRESHOLD) && !triggered) {
             triggered = true;
             applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-            applyToTarget(this, this, new AbstractLambdaPower(SKULK_POWER_NAME, SKULK_POWER_ID, AbstractPower.PowerType.BUFF, false, this, SKULK_TURNS) {
-
-                @Override
-                public void onInitialApplication() {
-                    att(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            halfDead = true;
-                            this.isDone = true;
-                        }
-                    });
-                    if (owner instanceof BadWolf) {
-                        ((BadWolf) owner).changePhase(2);
-                        ((BadWolf) owner).rollMove();
-                        ((BadWolf) owner).createIntent();
-                    }
-                }
-
-                @Override
-                public void onRemove() {
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            halfDead = false;
-                            this.isDone = true;
-                        }
-                    });
-                    if (owner instanceof BadWolf) {
-                        ((BadWolf) owner).changePhase(1);
-                    }
-                }
-
-                @Override
-                public void atEndOfRound() {
-                    if (amount == 1) {
-                        makePowerRemovable(owner, SKULK_POWER_ID);
-                    }
-                    atb(new ReducePowerAction(owner, owner, this, 1));
-                }
-
-                @Override
-                public void updateDescription() {
-                    if (amount == 1) {
-                        description = SKULK_POWER_DESCRIPTIONS[0] + amount + SKULK_POWER_DESCRIPTIONS[2];
-                    } else {
-                        description = SKULK_POWER_DESCRIPTIONS[0] + amount + SKULK_POWER_DESCRIPTIONS[1];
-                    }
-                }
-            });
+            applyToTarget(this, this, new Skulk(this, SKULK_TURNS));
         }
     }
 
     @Override
     public void renderReticle(SpriteBatch sb) {
-        if (!this.hasPower(SKULK_POWER_ID)) {
+        if (!this.hasPower(Skulk.POWER_ID)) {
             super.renderReticle(sb);
         }
     }

@@ -24,6 +24,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act2.Courage;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 
@@ -189,7 +190,7 @@ public class RoadHome extends AbstractMultiIntentMonster
     public void damage(DamageInfo info) {
         super.damage(info);
         if (info.output > 0 && info.type == DamageInfo.DamageType.NORMAL && info.owner != null) {
-            AbstractPower power = cat.getPower(ScaredyCat.POWER_ID);
+            AbstractPower power = cat.getPower(Courage.POWER_ID);
             if (power != null) {
                 power.onSpecificTrigger();
             }

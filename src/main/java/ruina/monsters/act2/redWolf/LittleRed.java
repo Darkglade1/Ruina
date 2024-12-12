@@ -8,11 +8,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -27,6 +24,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act2.StrikeWithoutHesitation;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
@@ -48,11 +46,6 @@ public class LittleRed extends AbstractAllyMonster
     private final int DEFENSE = calcAscensionTankiness(10);
     private final int STRENGTH = 3;
     public boolean enraged = false;
-
-    public static final String STRIKE_POWER_ID = RuinaMod.makeID("StrikeWithoutHesitation");
-    public static final PowerStrings strikePowerStrings = CardCrawlGame.languagePack.getPowerStrings(STRIKE_POWER_ID);
-    public static final String STRIKE_POWER_NAME = strikePowerStrings.NAME;
-    public static final String[] STRIKE_POWER_DESCRIPTIONS = strikePowerStrings.DESCRIPTIONS;
 
     public static final String FURY_POWER_ID = RuinaMod.makeID("FuryWithNoOutlet");
     public static final PowerStrings furyPowerStrings = CardCrawlGame.languagePack.getPowerStrings(FURY_POWER_ID);
@@ -126,32 +119,7 @@ public class LittleRed extends AbstractAllyMonster
             }
             case CATCH_BREATH: {
                 atb(new HealAction(this, this, DEFENSE));
-                applyToTarget(this, this, new AbstractLambdaPower(STRIKE_POWER_NAME, STRIKE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
-
-                    boolean justApplied = true;
-
-                    @Override
-                    public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                        if (info.owner == owner && damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL) {
-                            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner, owner, new StrengthPower(owner, amount), amount));
-                        }
-                    }
-
-                    @Override
-                    public void atEndOfRound() {
-                        if (justApplied) {
-                            justApplied = false;
-                        } else {
-                            makePowerRemovable(this);
-                            addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-                        }
-                    }
-
-                    @Override
-                    public void updateDescription() {
-                        description = STRIKE_POWER_DESCRIPTIONS[0] + amount + STRIKE_POWER_DESCRIPTIONS[1];
-                    }
-                });
+                applyToTarget(this, this, new StrikeWithoutHesitation(this, STRENGTH));
                 break;
             }
             case HOLLOW_POINT_SHELL: {

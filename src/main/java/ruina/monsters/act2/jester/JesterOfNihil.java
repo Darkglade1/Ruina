@@ -13,12 +13,9 @@ import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.stances.WrathStance;
@@ -28,8 +25,8 @@ import ruina.CustomIntent.IntentEnums;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.act2.PointlessHate;
 import ruina.powers.act2.SenselessWrath;
 import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
@@ -68,11 +65,6 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     private int numIntentThatCanRampage = 2; //0 is the second intent, 1 is the third intent, 2 is the first intent
     private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
     private int rampageCooldown = RAMPAGE_COOLDOWN;
-
-    public static final String HATE_POWER_ID = makeID("PointlessHate");
-    public static final PowerStrings hatePowerStrings = CardCrawlGame.languagePack.getPowerStrings(HATE_POWER_ID);
-    public static final String HATE_POWER_NAME = hatePowerStrings.NAME;
-    public static final String[] HATE_POWER_DESCRIPTIONS = hatePowerStrings.DESCRIPTIONS;
 
     public JesterOfNihil() {
         this(100.0f, 0.0f);
@@ -175,18 +167,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 break;
             }
             case SETUP: {
-                applyToTarget(this, this, new AbstractLambdaPower(HATE_POWER_NAME, HATE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, HATE_BLOCK) {
-                    @Override
-                    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
-                        this.flash();
-                        block(owner, amount);
-                    }
-
-                    @Override
-                    public void updateDescription() {
-                        description = HATE_POWER_DESCRIPTIONS[0] + amount + HATE_POWER_DESCRIPTIONS[1];
-                    }
-                });
+                applyToTarget(this, this, new PointlessHate(this, HATE_BLOCK));
                 applyToTarget(this, this, new SenselessWrath(this));
                 break;
             }

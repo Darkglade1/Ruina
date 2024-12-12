@@ -4,8 +4,6 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -13,8 +11,8 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.CenterOfAttention;
+import ruina.powers.act2.Road;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -36,11 +34,6 @@ public class KingOfGreed extends AbstractRuinaMonster
 
     private boolean canPlaySound = true;
 
-    public static final String POWER_ID = makeID("Road");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     AbstractPower road;
 
     public KingOfGreed() {
@@ -58,18 +51,7 @@ public class KingOfGreed extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        road = new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 2) {
-            @Override
-            public void updateDescription() {
-                if (amount == 0) {
-                    description = POWER_DESCRIPTIONS[3];
-                } else if (amount == 1) {
-                    description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[2];
-                } else {
-                    description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-                }
-            }
-        };
+        road = new Road(this, 2);
         applyToTarget(this, this, road);
         applyToTarget(this, this, new CenterOfAttention(this));
         playSound("GreedDiamond");

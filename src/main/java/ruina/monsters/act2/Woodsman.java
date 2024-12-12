@@ -2,7 +2,6 @@ package ruina.monsters.act2;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,14 +9,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleEnergyPower;
+import ruina.powers.act2.Heart;
 import ruina.util.DetailedIntent;
 import ruina.vfx.BloodSplatter;
 
@@ -61,28 +57,7 @@ public class Woodsman extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         applyToTarget(adp(), adp(), new InvisibleEnergyPower(adp(), ENERGY_GAIN));
-        applyToTarget(this, this, new AbstractLambdaPower(HEART_POWER_NAME, HEART_POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
-            @Override
-            public void atEndOfRound() {
-                int str = EnergyPanel.totalCount * amount;
-                if (str > 0) {
-                    applyToTarget(owner, owner, new StrengthPower(owner, str));
-                }
-            }
-
-            public void onRemove() {
-                atb(new RemoveSpecificPowerAction(adp(), adp(), InvisibleEnergyPower.POWER_ID));
-            }
-
-            @Override
-            public void updateDescription() {
-                description = HEART_POWER_DESCRIPTIONS[0];
-                for (int i = 0; i < ENERGY_GAIN; i++) {
-                    description += " [E]";
-                }
-                description += HEART_POWER_DESCRIPTIONS[1] + amount + HEART_POWER_DESCRIPTIONS[2];
-            }
-        });
+        applyToTarget(this, this, new Heart(this, STRENGTH, ENERGY_GAIN));
     }
 
     @Override

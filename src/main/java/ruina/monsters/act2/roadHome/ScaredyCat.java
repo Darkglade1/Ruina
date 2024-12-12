@@ -3,18 +3,13 @@ package ruina.monsters.act2.roadHome;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act2.Courage;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -36,11 +31,6 @@ public class ScaredyCat extends AbstractRuinaMonster
 
     private final int WOUND = 1;
     private final int STRENGTH = calcAscensionSpecial(2);
-
-    public static final String POWER_ID = makeID("Courage");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public ScaredyCat() {
         this(0.0f, 0.0f);
@@ -69,19 +59,7 @@ public class ScaredyCat extends AbstractRuinaMonster
                 road = (RoadHome)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
-            @Override
-            public void onSpecificTrigger() {
-                flash();
-                applyToTarget(owner, owner, new StrengthPower(owner, STRENGTH));
-                applyToTarget(owner, owner, new LoseStrengthPower(owner, STRENGTH));
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + FontHelper.colorString(road.name, "y") + POWER_DESCRIPTIONS[1] + amount + POWER_DESCRIPTIONS[2];
-            }
-        });
+        applyToTarget(this, this, new Courage(this, STRENGTH, road));
     }
 
     @Override
@@ -167,8 +145,8 @@ public class ScaredyCat extends AbstractRuinaMonster
         this.currentHealth = this.maxHealth = 1;
         healthBarUpdatedEvent();
         applyToTarget(this, this, new StrengthPower(this, -9999));
-        makePowerRemovable(this, POWER_ID);
-        atb(new RemoveSpecificPowerAction(this, this, POWER_ID));
+        makePowerRemovable(this, Courage.POWER_ID);
+        atb(new RemoveSpecificPowerAction(this, this, Courage.POWER_ID));
         setMoveShortcut(FLEE);
         createIntent();
         atb(new SetMoveAction(this, FLEE, Intent.ESCAPE));

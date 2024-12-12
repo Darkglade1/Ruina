@@ -23,6 +23,7 @@ import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.AbstractLambdaPower;
 import ruina.powers.CenterOfAttention;
+import ruina.powers.act2.Absorption;
 import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -61,12 +62,7 @@ public class Mountain extends AbstractMultiIntentMonster
     public int currentStage = STAGE3;
     private static final float REVIVE_PERCENT = 0.50f;
     private static final float STARTING_PERCENT = 0.50f;
-    private AbstractLambdaPower stagePower;
-
-    public static final String ABSORPTION_POWER_ID = makeID("Absorption");
-    public static final PowerStrings absorptionPowerStrings = CardCrawlGame.languagePack.getPowerStrings(ABSORPTION_POWER_ID);
-    public static final String ABSORPTION_POWER_NAME = absorptionPowerStrings.NAME;
-    public static final String[] ABSORPTION_POWER_DESCRIPTIONS = absorptionPowerStrings.DESCRIPTIONS;
+    private AbstractPower stagePower;
 
     public static final String BODIES_POWER_ID = makeID("Bodies");
     public static final PowerStrings BODIESPowerStrings = CardCrawlGame.languagePack.getPowerStrings(BODIES_POWER_ID);
@@ -106,26 +102,7 @@ public class Mountain extends AbstractMultiIntentMonster
                 target = (MeltedCorpses)mo;
             }
         }
-        stagePower = new AbstractLambdaPower(ABSORPTION_POWER_NAME, ABSORPTION_POWER_ID, AbstractPower.PowerType.BUFF, false, this, currentStage) {
-            @Override
-            public void updateDescription() {
-                if (amount == STAGE1) {
-                    description = ABSORPTION_POWER_DESCRIPTIONS[2] + (amount + 1) + ABSORPTION_POWER_DESCRIPTIONS[3];
-                } else if (amount == STAGE2) {
-                    description = ABSORPTION_POWER_DESCRIPTIONS[0] + (amount - 1) + ABSORPTION_POWER_DESCRIPTIONS[1] + " " + ABSORPTION_POWER_DESCRIPTIONS[2] + (amount + 1) + ABSORPTION_POWER_DESCRIPTIONS[3];
-                } else {
-                    description = ABSORPTION_POWER_DESCRIPTIONS[0] + (amount - 1) + ABSORPTION_POWER_DESCRIPTIONS[1];
-                }
-            }
-            @Override
-            public void atEndOfRound() {
-                if (owner.currentHealth == owner.maxHealth) {
-                    if (owner instanceof Mountain) {
-                        ((Mountain) owner).Grow();
-                    }
-                }
-            }
-        };
+        stagePower = new Absorption(this, currentStage);
         applyToTarget(this, this, stagePower);
         applyToTarget(this, this, new AbstractLambdaPower(BODIES_POWER_NAME, BODIES_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
             @Override
@@ -378,7 +355,7 @@ public class Mountain extends AbstractMultiIntentMonster
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power.ID.equals(ABSORPTION_POWER_ID)) && !(power.ID.equals(BODIES_POWER_ID)) && !power.ID.equals(CenterOfAttention.POWER_ID)) {
+                if (!(power.ID.equals(Absorption.POWER_ID)) && !(power.ID.equals(BODIES_POWER_ID)) && !power.ID.equals(CenterOfAttention.POWER_ID)) {
                     powersToRemove.add(power);
                 }
             }
@@ -415,7 +392,7 @@ public class Mountain extends AbstractMultiIntentMonster
         atb(new UsePreBattleActionAction(target));
     }
 
-    private void Grow() {
+    public void Grow() {
         AbstractDungeon.getCurrRoom().cannotLose = true;
         if (currentStage < STAGE3) {
             currentStage++;
@@ -427,7 +404,7 @@ public class Mountain extends AbstractMultiIntentMonster
         }
     }
 
-    private void Shrink() {
+    public void Shrink() {
         if (currentStage > STAGE1) {
             currentStage--;
             if (currentStage == STAGE1) {

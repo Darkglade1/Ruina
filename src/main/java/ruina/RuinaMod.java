@@ -133,6 +133,7 @@ import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
 import ruina.multiplayer.MultiplayerCompatibility;
 import ruina.patches.PlayerSpireFields;
 import ruina.potions.EgoPotion;
+import ruina.powers.act2.Skulk;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -1256,7 +1257,7 @@ public class RuinaMod implements
     @Override
     public boolean receivePreMonsterTurn(AbstractMonster abstractMonster) {
         PlayerSpireFields.appliedDebuffThisTurn.set(adp(), false);
-        if (abstractMonster.hasPower(BadWolf.SKULK_POWER_ID)) {
+        if (abstractMonster.hasPower(Skulk.POWER_ID)) {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {

@@ -9,20 +9,17 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
+import ruina.powers.act2.BlindFury;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.ErosionSplatter;
@@ -43,17 +40,12 @@ public class ServantOfWrath extends AbstractAllyMonster
 
     private static final int FURY_THRESHOLD = 20;
     private static final int HIGH_ASC_FURY_THRESHOLD = 15;
-    private int furyThreshold;
+    private final int furyThreshold;
 
     private final int EROSION = 2;
     public boolean enraged = false;
 
     public Hermit hermit;
-
-    public static final String FURY_POWER_ID = RuinaMod.makeID("BlindFury");
-    public static final PowerStrings furyPowerStrings = CardCrawlGame.languagePack.getPowerStrings(FURY_POWER_ID);
-    public static final String FURY_POWER_NAME = furyPowerStrings.NAME;
-    public static final String[] FURY_POWER_DESCRIPTIONS = furyPowerStrings.DESCRIPTIONS;
 
     public ServantOfWrath() {
         this(0.0f, 0.0f);
@@ -95,38 +87,7 @@ public class ServantOfWrath extends AbstractAllyMonster
                 target = hermit;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(FURY_POWER_NAME, FURY_POWER_ID, AbstractPower.PowerType.BUFF, false, this, furyThreshold) {
-            @Override
-            public int onAttacked(DamageInfo info, int damageAmount) {
-                if (damageAmount > 0) {
-                    this.amount -= damageAmount;
-                    if (this.amount < 0) {
-                        this.amount = 0;
-                    }
-                    updateDescription();
-                }
-                return damageAmount;
-            }
-
-            @Override
-            public void atEndOfRound() {
-                if (this.amount <= 0) {
-                    if (owner instanceof ServantOfWrath) {
-                        ((ServantOfWrath) owner).enraged = true;
-                        ((ServantOfWrath) owner).rollMove();
-                        ((ServantOfWrath) owner).createIntent();
-                        playSound("WrathMeet");
-                    }
-                    this.amount = furyThreshold;
-                    updateDescription();
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = FURY_POWER_DESCRIPTIONS[0] + amount + FURY_POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new BlindFury(this, furyThreshold));
         super.usePreBattleAction();
     }
 

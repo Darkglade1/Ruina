@@ -12,6 +12,7 @@ import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.theHead.Zena;
 import ruina.monsters.uninvitedGuests.normal.clown.Tiph;
+import ruina.powers.act2.Skulk;
 
 @SpirePatch(
         clz = AbstractPlayer.class,
@@ -42,7 +43,7 @@ public class MakeAlliesUntargetable {
             }
         }
 
-        if (hoveredMonster[0] != null && hoveredMonster[0].hasPower(BadWolf.SKULK_POWER_ID)) {
+        if (hoveredMonster[0] != null && hoveredMonster[0].hasPower(Skulk.POWER_ID)) {
             hoveredMonster[0] = null;
         }
 

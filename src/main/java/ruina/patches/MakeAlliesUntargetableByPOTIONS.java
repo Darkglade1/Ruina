@@ -8,6 +8,7 @@ import javassist.CtBehavior;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.theHead.Zena;
+import ruina.powers.act2.Skulk;
 
 @SpirePatch(
         clz = PotionPopUp.class,
@@ -25,7 +26,7 @@ public class MakeAlliesUntargetableByPOTIONS {
             }
         }
 
-        if (hoveredMonster[0] != null && hoveredMonster[0].hasPower(BadWolf.SKULK_POWER_ID)) {
+        if (hoveredMonster[0] != null && hoveredMonster[0].hasPower(Skulk.POWER_ID)) {
             hoveredMonster[0] = null;
         }
 

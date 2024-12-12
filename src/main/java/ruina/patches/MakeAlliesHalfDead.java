@@ -12,6 +12,7 @@ import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.act2.BadWolf;
 import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
+import ruina.powers.act2.Skulk;
 
 import static ruina.util.Wiz.atb;
 import static ruina.util.Wiz.att;
@@ -46,7 +47,7 @@ public class MakeAlliesHalfDead {
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {
-                            if (mo.hasPower(BadWolf.SKULK_POWER_ID)) {
+                            if (mo.hasPower(Skulk.POWER_ID)) {
                                 att(new AbstractGameAction() {
                                     @Override
                                     public void update() {
