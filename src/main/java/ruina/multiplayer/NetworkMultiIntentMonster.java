@@ -23,11 +23,6 @@ public class NetworkMultiIntentMonster extends NetworkMonster implements Seriali
         this.additionalIntents = mo.additionalIntents;
     }
 
-    public void preMonsterPrepare(AbstractMonster monster) {
-        super.preMonsterPrepare(monster);
-        AbstractMultiIntentMonster mo = (AbstractMultiIntentMonster)monster;
-    }
-
     public void postMonsterPrepare(AbstractMonster monster) {
         super.postMonsterPrepare(monster);
         AbstractMultiIntentMonster mo = (AbstractMultiIntentMonster)monster;

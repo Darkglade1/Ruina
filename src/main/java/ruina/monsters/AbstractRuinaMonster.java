@@ -18,10 +18,16 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
+import ruina.multiplayer.NetworkMultiIntentMonster;
+import ruina.multiplayer.NetworkRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
+import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.networkcore.objects.entities.NetworkMonster;
+import spireTogether.other.RoomDataManager;
+import spireTogether.util.SpireHelp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +43,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     public String[] DIALOG;
 
     protected Map<Byte, EnemyMoveInfo> moves;
-    protected boolean firstMove = true;
+    public boolean firstMove = true;
     protected DamageInfo info;
     protected int multiplier;
     private static final float ASCENSION_DAMAGE_BUFF_PERCENT = 1.10f;
@@ -112,6 +118,13 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         this.multiplier = getMultiplierFromMove(this.nextMove);
         if (firstMove) {
             firstMove = false;
+            if (RuinaMod.isMultiplayerConnected()) {
+                P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateFirstMove, firstMove, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+                NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+                if (m instanceof NetworkRuinaMonster) {
+                    ((NetworkRuinaMonster)m).firstMove = this.firstMove;
+                }
+            }
         }
         if(info.base > -1) {
             if (target != null) {
