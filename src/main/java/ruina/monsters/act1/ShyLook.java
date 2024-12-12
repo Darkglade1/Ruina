@@ -1,29 +1,23 @@
 package ruina.monsters.act1;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act1.Expression;
 import ruina.util.DetailedIntent;
-import ruina.util.TexLoader;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.makeID;
+import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
 public class ShyLook extends AbstractRuinaMonster
@@ -44,11 +38,6 @@ public class ShyLook extends AbstractRuinaMonster
     private final int CARD_THRESHOLD = 3;
     private int face = 1;
 
-    public static final String POWER_ID = makeID("Expression");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     public ShyLook() {
         this(0.0f, 0.0f);
     }
@@ -66,25 +55,7 @@ public class ShyLook extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
-            @Override
-            public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-                this.amount++;
-                if (this.amount >= CARD_THRESHOLD) {
-                    flash();
-                    this.amount = 0;
-                    rollMove();
-                    createIntent();
-                } else {
-                    flashWithoutSound();
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + CARD_THRESHOLD + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Expression(this, 0, CARD_THRESHOLD));
     }
 
     @Override

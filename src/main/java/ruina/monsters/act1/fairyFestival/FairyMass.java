@@ -29,11 +29,6 @@ public class FairyMass extends AbstractRuinaMonster {
     private final int BLEED = 1;
     private final float CONSUME_THRESHOLD = 0.25f;
 
-    public static final String POWER_ID = makeID("Meal");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     private FairyQueen queen;
     private final int consumeThreshold;
 

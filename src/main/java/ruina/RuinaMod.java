@@ -1186,9 +1186,9 @@ public class RuinaMod implements
         headClear = ruinaConfig.getBool("headClear");
 
         if (Loader.isModLoaded("spireTogether")) {
-            SpireTogetherMod.subscribe(new NoMultiplyPowerList());
-            SpireTogetherMod.subscribe(new MultiplayerSubscriber());
-            SpireTogetherMod.subscribe(new MessengerListener());
+            //SpireTogetherMod.subscribe(new NoMultiplyPowerList());
+//            SpireTogetherMod.subscribe(new MultiplayerSubscriber());
+//            SpireTogetherMod.subscribe(new MessengerListener());
         }
     }
 

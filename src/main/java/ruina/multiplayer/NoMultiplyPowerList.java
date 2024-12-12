@@ -13,6 +13,7 @@ import spireTogether.subscribers.TiSPowerSyncRulesSubscriber;
 import java.util.ArrayList;
 import java.util.Collection;
 
+@AutoAdd.Ignore
 public class NoMultiplyPowerList implements TiSPowerSyncRulesSubscriber {
 
     @Override

@@ -7,9 +7,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -20,9 +18,9 @@ import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.CenterOfAttention;
 import ruina.powers.act1.Meal;
+import ruina.powers.act1.Satiation;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -49,11 +47,6 @@ public class FairyQueen extends AbstractRuinaMonster
     public AbstractMonster[] minions = new AbstractMonster[2];
     private boolean enraged = false;
 
-    public static final String POWER_ID = makeID("Satiation");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     public FairyQueen(final float x, final float y) {
         super(ID, ID, 180, 0.0F, 0, 250.0f, 280.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FairyQueen/Spriter/FairyQueen.scml"));
@@ -79,13 +72,7 @@ public class FairyQueen extends AbstractRuinaMonster
             }
         }
         CustomDungeon.playTempMusicInstantly("Angela2");
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, SELF_DEBUFF) {
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1] + amount + POWER_DESCRIPTIONS[2];
-            }
-        });
+        applyToTarget(this, this, new Satiation(this, SELF_DEBUFF));
         applyToTarget(this, this, new CenterOfAttention(this));
     }
 

@@ -2,19 +2,14 @@ package ruina.monsters.act1;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.FlexibleLoseStrengthPower;
+import ruina.powers.act1.Pattern;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -33,11 +28,6 @@ public class AllAroundHelper extends AbstractRuinaMonster
     private int DAMAGE_THRESHOLD = 9;
     private final int STRENGTH = calcAscensionSpecial(2);
     private final boolean attackFirst;
-
-    public static final String POWER_ID = makeID("Pattern");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public AllAroundHelper() {
         this(0.0f, 0.0f, false);
@@ -71,34 +61,7 @@ public class AllAroundHelper extends AbstractRuinaMonster
             CustomDungeon.playTempMusicInstantly("Warning1");
             playSound("HelperOn", 8.0f);
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, DAMAGE_THRESHOLD) {
-            @Override
-            public void onInitialApplication() {
-                amount2 = 0;
-            }
-
-            @Override
-            public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (info.type == DamageInfo.DamageType.NORMAL && info.owner == owner && damageAmount > 0) {
-                    amount2 += damageAmount;
-                    if (amount2 >= amount) {
-                        flash();
-                        amount2 = 0;
-                        atb(new RemoveDebuffsAction(owner));
-                    }
-                }
-            }
-
-            @Override
-            public void atEndOfRound() {
-                amount2 = 0;
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Pattern(this, DAMAGE_THRESHOLD));
     }
 
     @Override

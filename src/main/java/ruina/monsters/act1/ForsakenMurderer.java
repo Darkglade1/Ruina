@@ -1,21 +1,13 @@
 package ruina.monsters.act1;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act1.Fear;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -34,11 +26,6 @@ public class ForsakenMurderer extends AbstractRuinaMonster
     private final int STRENGTH_LOSS = 1;
     private final int STRENGTH = calcAscensionSpecial(1);
 
-    public static final String POWER_ID = makeID("Fear");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     public ForsakenMurderer() {
         this(0.0f, 0.0f);
     }
@@ -53,22 +40,7 @@ public class ForsakenMurderer extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH_LOSS) {
-            public void onUseCard(AbstractCard card, UseCardAction action) {
-                if (card.type == AbstractCard.CardType.ATTACK) {
-                    this.flash();
-                    atb(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, -amount), -amount));
-                    if (!this.owner.hasPower(ArtifactPower.POWER_ID)) {
-                        atb(new ApplyPowerAction(this.owner, this.owner, new GainStrengthPower(this.owner, amount), amount));
-                    }
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Fear(this, STRENGTH_LOSS));
     }
 
     @Override
