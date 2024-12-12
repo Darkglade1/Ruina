@@ -131,6 +131,7 @@ import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
+import ruina.multiplayer.MessengerListener;
 import ruina.multiplayer.MultiplayerSubscriber;
 import ruina.multiplayer.NoMultiplyPowerList;
 import ruina.patches.PlayerSpireFields;
@@ -1187,6 +1188,7 @@ public class RuinaMod implements
         if (Loader.isModLoaded("spireTogether")) {
             SpireTogetherMod.subscribe(new NoMultiplyPowerList());
             SpireTogetherMod.subscribe(new MultiplayerSubscriber());
+            SpireTogetherMod.subscribe(new MessengerListener());
         }
     }
 
