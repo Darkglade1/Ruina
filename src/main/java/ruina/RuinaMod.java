@@ -34,14 +34,13 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import corruptthespire.Cor;
-import javassist.CtClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ruina.CustomIntent.CounterAttackIntent;
+import ruina.CustomIntent.MassAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
-import ruina.CustomIntent.MassAttackIntent;
 import ruina.dungeons.*;
 import ruina.events.NeowAngela;
 import ruina.events.act1.*;
@@ -131,12 +130,9 @@ import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
-import ruina.multiplayer.MessengerListener;
-import ruina.multiplayer.MultiplayerSubscriber;
-import ruina.multiplayer.NoMultiplyPowerList;
+import ruina.multiplayer.MultiplayerCompatibility;
 import ruina.patches.PlayerSpireFields;
 import ruina.potions.EgoPotion;
-import ruina.powers.AbstractEasyPower;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -146,8 +142,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Properties;
 
 import static ruina.util.Wiz.adp;
@@ -1186,9 +1180,7 @@ public class RuinaMod implements
         headClear = ruinaConfig.getBool("headClear");
 
         if (Loader.isModLoaded("spireTogether")) {
-            //SpireTogetherMod.subscribe(new NoMultiplyPowerList());
-//            SpireTogetherMod.subscribe(new MultiplayerSubscriber());
-//            SpireTogetherMod.subscribe(new MessengerListener());
+            MultiplayerCompatibility.addSubscribers();
         }
     }
 
