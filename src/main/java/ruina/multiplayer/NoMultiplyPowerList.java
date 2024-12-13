@@ -14,10 +14,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class NoMultiplyPowerList implements TiSPowerSyncRulesSubscriber {
-
+    protected static ArrayList<Class<? extends AbstractPower>> powerClassList = new ArrayList<>();
     @Override
     public ArrayList<Class<? extends AbstractPower>> noMultiplyPowers() {
-        ArrayList<Class<? extends AbstractPower>> powerClassList = new ArrayList<>();
+        return powerClassList;
+    }
+
+    @Override
+    public ArrayList<Class<? extends AbstractPower>> noSyncPowers() {
+        return new ArrayList<>();
+    }
+
+    public static void initializeNoMultiplayerPowersList() {
         AutoAdd autoAdd = new AutoAdd(RuinaMod.getModID())
                 .packageFilter(RuinaMod.class);
 
@@ -37,11 +45,5 @@ public class NoMultiplyPowerList implements TiSPowerSyncRulesSubscriber {
         }
         powerClassList.add(GainStrengthPower.class);
         powerClassList.add(LoseStrengthPower.class);
-        return powerClassList;
-    }
-
-    @Override
-    public ArrayList<Class<? extends AbstractPower>> noSyncPowers() {
-        return new ArrayList<>();
     }
 }

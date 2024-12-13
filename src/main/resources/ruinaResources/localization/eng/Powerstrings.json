@@ -656,7 +656,7 @@
     "DESCRIPTIONS": ["Cards you play become #yBlessed. #yBlessed cards deal more damage and gain more #yBlock. NL After #b", " more cards are played, this creature #yawakens at end of round."]
   },
   "${ModID}:MultiplayerAllyBuff": {
-    "NAME": "Multiplayer Enhancement",
+    "NAME": "Multiplayer Adjustment",
     "DESCRIPTIONS": ["Deals #b", "% more damage to enemies. NL Receives #b", "% more damage from enemies."]
   }
 }

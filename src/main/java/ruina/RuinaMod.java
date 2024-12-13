@@ -1181,9 +1181,9 @@ public class RuinaMod implements
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");
 
-//        if (Loader.isModLoaded("spireTogether")) {
-//            MultiplayerCompatibility.addSubscribers();
-//        }
+        if (Loader.isModLoaded("spireTogether")) {
+            MultiplayerCompatibility.addSubscribers();
+        }
     }
 
     public void receiveEditPotions() {
