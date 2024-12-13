@@ -1,11 +1,7 @@
 package ruina.monsters.eventboss.lulu.monster;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
@@ -14,10 +10,8 @@ import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.eventboss.lulu.cards.CHRBOSS_FlamingBat;
 import ruina.monsters.eventboss.lulu.cards.CHRBOSS_PreparedMind;
 import ruina.monsters.eventboss.lulu.cards.CHRBOSS_SetAblaze;
-import ruina.powers.AbstractLambdaPower;
-import ruina.powers.Burn;
+import ruina.powers.act1.FlamingBat;
 
-import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
@@ -34,11 +28,6 @@ public class Lulu extends AbstractCardMonster {
     public final int SET_ABLAZE_DAMAGE = calcAscensionDamage(6);
     public final int SET_ABLAZE_HITS = 2;
     private final int FLAMING_BAT_BURN_AMOUNT = calcAscensionSpecial(2);
-
-    public static final String POWER_ID = makeID("FlamingBat");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Lulu() {
         this(0.0f, 0.0f);
@@ -66,19 +55,7 @@ public class Lulu extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, FLAMING_BAT_BURN_AMOUNT) {
-            @Override
-            public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL) {
-                    applyToTarget(target, owner, new Burn(target, amount));
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = String.format(POWER_DESCRIPTIONS[0], amount);
-            }
-        });
+        applyToTarget(this, this, new FlamingBat(this, FLAMING_BAT_BURN_AMOUNT));
     }
 
     @Override
