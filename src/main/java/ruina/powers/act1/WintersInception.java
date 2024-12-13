@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
 import ruina.cardmods.LaurelWreathMod;
-import ruina.powers.AbstractEasyPower;
+import ruina.powers.AbstractUnremovablePower;
 
-public class WintersInception extends AbstractEasyPower {
+public class WintersInception extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(WintersInception.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

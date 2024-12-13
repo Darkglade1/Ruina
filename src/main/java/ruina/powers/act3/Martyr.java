@@ -13,13 +13,13 @@ import com.megacrit.cardcrawl.vfx.DarkSmokePuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokingEmberEffect;
 import ruina.RuinaMod;
 import ruina.monsters.act3.blueStar.Worshipper;
-import ruina.powers.AbstractEasyPower;
+import ruina.powers.AbstractUnremovablePower;
 
 import static ruina.monsters.AbstractRuinaMonster.playSound;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
-public class Martyr extends AbstractEasyPower {
+public class Martyr extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(Martyr.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

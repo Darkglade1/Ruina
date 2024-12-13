@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
-import ruina.powers.AbstractEasyPower;
+import ruina.powers.AbstractUnremovablePower;
 
 import static ruina.util.Wiz.makePowerRemovable;
 
-public class StrikeWithoutHesitation extends AbstractEasyPower {
+public class StrikeWithoutHesitation extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(StrikeWithoutHesitation.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

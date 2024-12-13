@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
-import ruina.powers.AbstractEasyPower;
+import ruina.powers.AbstractUnremovablePower;
 
 import static ruina.util.Wiz.makeInHand;
 
-public class Remorse extends AbstractEasyPower {
+public class Remorse extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(Remorse.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

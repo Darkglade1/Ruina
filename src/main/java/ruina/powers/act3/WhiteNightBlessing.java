@@ -13,11 +13,11 @@ import ruina.RuinaMod;
 import ruina.cardmods.BlockUpMod;
 import ruina.cardmods.DamageUpMod;
 import ruina.monsters.act3.whiteNight.WhiteNight;
-import ruina.powers.AbstractEasyPower;
+import ruina.powers.AbstractUnremovablePower;
 
 import static ruina.util.Wiz.atb;
 
-public class WhiteNightBlessing extends AbstractEasyPower {
+public class WhiteNightBlessing extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(WhiteNightBlessing.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

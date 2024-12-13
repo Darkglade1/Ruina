@@ -7,13 +7,12 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import ruina.RuinaMod;
-import ruina.powers.AbstractEasyPower;
+import ruina.powers.AbstractUnremovablePower;
 import ruina.powers.InvisibleEnergyPower;
 
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.adp;
 
-public class Heart extends AbstractEasyPower {
+public class Heart extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(Heart.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

@@ -10,11 +10,11 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import ruina.RuinaMod;
-import ruina.powers.AbstractEasyPower;
+import ruina.powers.AbstractUnremovablePower;
 
 import static ruina.monsters.AbstractRuinaMonster.playSound;
 
-public class TickingTime extends AbstractEasyPower {
+public class TickingTime extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(TickingTime.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

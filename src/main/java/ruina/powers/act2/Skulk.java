@@ -7,12 +7,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
 import ruina.monsters.act2.BadWolf;
-import ruina.powers.AbstractEasyPower;
+import ruina.powers.AbstractUnremovablePower;
 
 import static ruina.util.Wiz.*;
-import static ruina.util.Wiz.atb;
 
-public class Skulk extends AbstractEasyPower {
+public class Skulk extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(Skulk.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
