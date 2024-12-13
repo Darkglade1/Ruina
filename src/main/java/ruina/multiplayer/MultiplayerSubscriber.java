@@ -26,6 +26,6 @@ public class MultiplayerSubscriber implements TiSCustomSerializationSubscriber {
 
     @Override
     public ArrayList<Class<?>> getDefaultSerializableClasses() {
-        return null;
+        return new ArrayList<>();
     }
 }

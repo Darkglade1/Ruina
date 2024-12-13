@@ -172,15 +172,15 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             getAdditionalMoves(AbstractDungeon.aiRng.random(99), i);
         }
         postGetMove();
-        if (RuinaMod.isMultiplayerConnected()) {
-            P2PManager.SendData(NetworkMultiIntentMonster.request_monsterUpdateAdditionalIntents, this.additionalMoves, this.additionalMovesHistory, this.additionalIntents, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
-            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
-            if (m instanceof NetworkMultiIntentMonster) {
-                ((NetworkMultiIntentMonster)m).additionalMoves = this.additionalMoves;
-                ((NetworkMultiIntentMonster)m).additionalMovesHistory = this.additionalMovesHistory;
-                ((NetworkMultiIntentMonster)m).additionalIntents = this.additionalIntents;
-            }
-        }
+//        if (RuinaMod.isMultiplayerConnected()) {
+//            P2PManager.SendData(NetworkMultiIntentMonster.request_monsterUpdateAdditionalIntents, this.additionalMoves, this.additionalMovesHistory, this.additionalIntents, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+//            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+//            if (m instanceof NetworkMultiIntentMonster) {
+//                ((NetworkMultiIntentMonster)m).additionalMoves = this.additionalMoves;
+//                ((NetworkMultiIntentMonster)m).additionalMovesHistory = this.additionalMovesHistory;
+//                ((NetworkMultiIntentMonster)m).additionalIntents = this.additionalIntents;
+//            }
+//        }
     }
 
     public void getAdditionalMoves(int num, int whichMove) {

@@ -138,6 +138,7 @@ import ruina.relics.AbstractEasyRelic;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import spireTogether.SpireTogetherMod;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -1180,9 +1181,9 @@ public class RuinaMod implements
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");
 
-        if (Loader.isModLoaded("spireTogether")) {
-            MultiplayerCompatibility.addSubscribers();
-        }
+//        if (Loader.isModLoaded("spireTogether")) {
+//            MultiplayerCompatibility.addSubscribers();
+//        }
     }
 
     public void receiveEditPotions() {
@@ -1350,5 +1351,20 @@ public class RuinaMod implements
 
     public static boolean isMultiplayerConnected() {
         return Loader.isModLoaded("spireTogether") && SpireTogetherMod.isConnected;
+    }
+
+    public static int getMultiplayerEnemyHealthScaling(int baseValue) {
+        if (isMultiplayerConnected()) {
+            int baseHealthScale = P2PManager.data.settings.enemyHealthPercentBase;
+            int playerHealthScale = P2PManager.data.settings.enemyHealthPercentScaled;
+            float baseScale = ((float)baseHealthScale / 100);
+            float playerScale = ((float)playerHealthScale / 100);
+            float finalMult = baseScale + (baseScale * playerScale * P2PManager.GetPlayerCountWithoutSelf());
+            System.out.println(baseScale);
+            System.out.println(playerScale);
+            System.out.println(finalMult);
+            return (int)(baseValue * finalMult);
+        }
+        return baseValue;
     }
 }

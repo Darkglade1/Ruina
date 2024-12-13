@@ -42,6 +42,6 @@ public class NoMultiplyPowerList implements TiSPowerSyncRulesSubscriber {
 
     @Override
     public ArrayList<Class<? extends AbstractPower>> noSyncPowers() {
-        return null;
+        return new ArrayList<>();
     }
 }

@@ -26,6 +26,7 @@ import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.eileen.yesodCards.FloodingBullets;
 import ruina.monsters.uninvitedGuests.normal.eileen.yesodCards.Reload;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.MultiplayerAllyBuff;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
@@ -54,8 +55,6 @@ public class Yesod extends AbstractAllyCardMonster
     public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String POWER_NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("YesodIcon.png"));
 
     public Yesod() {
         this(0.0f, 0.0f);
@@ -127,6 +126,9 @@ public class Yesod extends AbstractAllyCardMonster
                 int[] damageArray = calcMassAttack(info);
                 for (int i = 0; i < damageArray.length - 1; i++) {
                     damageArray[i] *= currentDamageBonus;
+                    if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerAllyBuff.POWER_ID)) {
+                        damageArray[i] *= (1.0f + ((float)getPower(MultiplayerAllyBuff.POWER_ID).amount / 100));
+                    }
                 }
                 for (int i = 0; i < multiplier; i++) {
                     rangeAnimation(target);

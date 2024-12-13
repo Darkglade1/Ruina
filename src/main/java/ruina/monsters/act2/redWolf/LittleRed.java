@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.actions.animations.ShoutAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,6 +25,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.AbstractLambdaPower;
+import ruina.powers.MultiplayerAllyBuff;
 import ruina.powers.act2.StrikeWithoutHesitation;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -165,6 +167,10 @@ public class LittleRed extends AbstractAllyMonster
         atb(new VFXAction(this, new InflameEffect(this), 1.0F));
         applyToTarget(this, this, new StrengthPower(this, STRENGTH));
         atb(new HealAction(this, this, maxHealth));
+        if (RuinaMod.isMultiplayerConnected()) {
+            makePowerRemovable(this, MultiplayerAllyBuff.POWER_ID);
+            atb(new RemoveSpecificPowerAction(this, this, MultiplayerAllyBuff.POWER_ID));
+        }
     }
 
     @Override

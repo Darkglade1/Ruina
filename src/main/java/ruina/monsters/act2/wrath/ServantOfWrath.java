@@ -19,6 +19,7 @@ import ruina.RuinaMod;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.Erosion;
+import ruina.powers.MultiplayerAllyBuff;
 import ruina.powers.act2.BlindFury;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -115,7 +116,13 @@ public class ServantOfWrath extends AbstractAllyMonster
                             isDone = true;
                         }
                     });
-                    atb(new DamageAllOtherCharactersAction(this, calcMassAttack(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                    int[] damageArray = calcMassAttack(info);
+                    for (int j = 0; j < damageArray.length - 1; j++) {
+                        if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerAllyBuff.POWER_ID)) {
+                            damageArray[j] *= (1.0f + ((float)getPower(MultiplayerAllyBuff.POWER_ID).amount / 100));
+                        }
+                    }
+                    atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                     resetIdle(1.0f);
                 }
                 applyToTargetNextTurn(adp(), new Erosion(adp(), EROSION + 1));

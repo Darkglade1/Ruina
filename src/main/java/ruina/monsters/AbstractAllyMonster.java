@@ -15,11 +15,16 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.CustomIntent.IntentEnums;
+import ruina.RuinaMod;
 import ruina.actions.TransferBlockToAllyAction;
 import ruina.powers.InvisibleAllyBarricadePower;
+import ruina.powers.MultiplayerAllyBuff;
 import ruina.util.AllyMove;
+import spireTogether.gamemodes.TiSGameModeSettings;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeUIPath;
@@ -61,6 +66,9 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
         blockMove.setY(this.intentHb.cY - (32.0f * Settings.scale));
         allyMoves.add(blockMove);
         applyToTarget(this, this, new InvisibleAllyBarricadePower(this));
+        if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new MultiplayerAllyBuff(this));
+        }
         if (isAlly && !isTargetableByPlayer) {
             atb(new AbstractGameAction() {
                 @Override
