@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act2.Courage;
+import ruina.powers.act2.CourageInvisiblePower;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ public class ScaredyCat extends AbstractRuinaMonster
             }
         }
         applyToTarget(this, this, new Courage(this, STRENGTH, road));
+        applyToTarget(road, this, new CourageInvisiblePower(road));
     }
 
     @Override

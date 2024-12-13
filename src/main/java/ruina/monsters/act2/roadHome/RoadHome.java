@@ -7,19 +7,16 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.powers.act2.Courage;
 import ruina.powers.act2.EasilyDistracted;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -147,17 +144,6 @@ public class RoadHome extends AbstractMultiIntentMonster
             attackingMonsterWithPrimaryIntent = false;
         }
         super.applyPowers();
-    }
-
-    @Override
-    public void damage(DamageInfo info) {
-        super.damage(info);
-        if (info.output > 0 && info.type == DamageInfo.DamageType.NORMAL && info.owner != null) {
-            AbstractPower power = cat.getPower(Courage.POWER_ID);
-            if (power != null) {
-                power.onSpecificTrigger();
-            }
-        }
     }
 
     @Override

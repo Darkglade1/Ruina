@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
-import ruina.powers.AbstractEasyPower;
+import ruina.powers.AbstractUnremovablePower;
 
 import static ruina.util.Wiz.applyToTarget;
 
-public class Courage extends AbstractEasyPower {
+public class Courage extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(Courage.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
