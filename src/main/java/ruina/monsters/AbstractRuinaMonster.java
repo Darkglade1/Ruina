@@ -18,7 +18,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.multiplayer.NetworkMultiIntentMonster;
 import ruina.multiplayer.NetworkRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.DetailedIntent;
@@ -444,6 +443,20 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     public void rollMove() {
         super.rollMove();
         postGetMove();
+    }
+
+    protected boolean lastMoveBeforeBefore(byte move) {
+        if (moveHistory.isEmpty()) {
+            return false;
+        } else if (moveHistory.size() < 3) {
+            return false;
+        } else {
+            return moveHistory.get(moveHistory.size() - 3) == move;
+        }
+    }
+
+    protected boolean threeTurnCooldownHasPassedForMove(byte move) {
+        return moveHistory.size() >= 3 && !this.lastMove(move) && !this.lastMoveBefore(move) && !this.lastMoveBeforeBefore(move);
     }
 
 }

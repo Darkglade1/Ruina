@@ -55,15 +55,12 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     private final int ATTACK_BLOCK = calcAscensionTankiness(6);
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int DEBUFF = calcAscensionSpecial(1);
-
-    private static final int MASS_ATTACK_COOLDOWN = 3;
     private static final int RAMPAGE_COOLDOWN = 1;
     private boolean girl1Spawned = false;
     private boolean girl2Spawned = false;
     private AbstractMagicalGirl girl1;
     private AbstractMagicalGirl girl2;
     private int numIntentThatCanRampage = 2; //0 is the second intent, 1 is the third intent, 2 is the first intent
-    private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
     private int rampageCooldown = RAMPAGE_COOLDOWN;
 
     public JesterOfNihil() {
@@ -114,13 +111,6 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 }
                 atb(new DamageAllOtherCharactersAction(this, calcMassAttack(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle();
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        massAttackCooldown = MASS_ATTACK_COOLDOWN + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case CONSUMING_DESIRE: {
@@ -199,7 +189,6 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                massAttackCooldown--;
                 rampageCooldown--;
                 this.isDone = true;
             }
@@ -211,7 +200,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
     protected void getMove(final int num) {
         if (firstMove) {
             setMoveShortcut(SETUP);
-        } else if (girl1Spawned && girl2Spawned &&(!girl1.isDead || !girl2.isDead) && massAttackCooldown <= 0) {
+        } else if (girl1Spawned && girl2Spawned &&(!girl1.isDead || !girl2.isDead) && threeTurnCooldownHasPassedForMove(WILL_OF_NIHIL)) {
             setMoveShortcut(WILL_OF_NIHIL);
         } else if (numIntentThatCanRampage == 2 && rampageCooldown <= 0) {
             setMoveShortcut(RAMPAGE);
@@ -233,11 +222,11 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
+        ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (!firstMove) {
             if (numIntentThatCanRampage == whichMove && rampageCooldown <= 0) {
                 setAdditionalMoveShortcut(RAMPAGE, moveHistory);
             } else {
-                ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
                 ArrayList<Byte> possibilities = new ArrayList<>();
                 if (!this.lastMove(CONSUMING_DESIRE, moveHistory)) {
                     possibilities.add(CONSUMING_DESIRE);
