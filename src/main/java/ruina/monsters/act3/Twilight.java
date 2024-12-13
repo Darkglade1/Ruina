@@ -17,22 +17,23 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Dazzled;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act3.BigEgg;
+import ruina.powers.act3.FadingTwilight;
 import ruina.powers.act3.LongEgg;
+import ruina.powers.act3.SmallEgg;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
@@ -54,14 +55,11 @@ public class Twilight extends AbstractRuinaMonster
     private static final byte TORN_MOUTH = 2;
     private static final byte TILTED_SCALE = 3;
     private static final byte TALONS = 4;
-    private static final byte BRILLIANT_EYES = 5;
 
     private final int BLOCK = calcAscensionTankiness(24);
     private final int VULNERABLE = calcAscensionSpecial(1);
     private final int FRAIL = calcAscensionSpecial(2);
     private final int STRENGTH = calcAscensionSpecial(2);
-    private final int WEAK = calcAscensionSpecial(2);
-    private final int STATUS = 1;
     private final int NUM_DAZZLE = 1;
     private final int SMALL_EGG_NUM_CARDS = 2;
     private final int SMALL_EGG_COST_INCREASE = calcAscensionSpecial(1);
@@ -70,21 +68,6 @@ public class Twilight extends AbstractRuinaMonster
     private enum BirdEgg {
         BIG_EGG, SMALL_EGG, LONG_EGG;
     }
-
-    public static final String BIG_EGG_POWER_ID = makeID("BigEgg");
-    public static final PowerStrings bigEggPowerStrings = CardCrawlGame.languagePack.getPowerStrings(BIG_EGG_POWER_ID);
-    public static final String BIG_EGG_POWER_NAME = bigEggPowerStrings.NAME;
-    public static final String[] BIG_EGG_POWER_DESCRIPTIONS = bigEggPowerStrings.DESCRIPTIONS;
-
-    public static final String SMALL_EGG_POWER_ID = makeID("SmallEgg");
-    public static final PowerStrings SMALLEggPowerStrings = CardCrawlGame.languagePack.getPowerStrings(SMALL_EGG_POWER_ID);
-    public static final String SMALL_EGG_POWER_NAME = SMALLEggPowerStrings.NAME;
-    public static final String[] SMALL_EGG_POWER_DESCRIPTIONS = SMALLEggPowerStrings.DESCRIPTIONS;
-
-    public static final String FADING_TWILIGHT_POWER_ID = makeID("FadingTwilight");
-    public static final PowerStrings FadingTwilightPowerStrings = CardCrawlGame.languagePack.getPowerStrings(FADING_TWILIGHT_POWER_ID);
-    public static final String FADING_TWILIGHT_POWER_NAME = FadingTwilightPowerStrings.NAME;
-    public static final String[] FADING_TWILIGHT_POWER_DESCRIPTIONS = FadingTwilightPowerStrings.DESCRIPTIONS;
 
     private final AbstractAnimation bird;
     private final AbstractAnimation bigEgg;
@@ -128,7 +111,6 @@ public class Twilight extends AbstractRuinaMonster
         addMove(TORN_MOUTH, Intent.ATTACK_BUFF, calcAscensionDamage(14));
         addMove(TILTED_SCALE, Intent.DEFEND_DEBUFF);
         addMove(TALONS, Intent.ATTACK, calcAscensionDamage(12), 2);
-        addMove(BRILLIANT_EYES, Intent.DEBUFF);
 
         if (AbstractDungeon.ascensionLevel >= 19) {
             status.upgrade();
@@ -149,34 +131,10 @@ public class Twilight extends AbstractRuinaMonster
         CustomDungeon.playTempMusicInstantly("Roland3");
         playSound("BossBirdBirth", 0.5f);
         switchEgg(currentEgg);
-        applyToTarget(this, this, new AbstractLambdaPower(FADING_TWILIGHT_POWER_NAME, FADING_TWILIGHT_POWER_ID, AbstractPower.PowerType.BUFF, false, this, EGG_CYCLE_TURN_NUM) {
-            @Override
-            public void atEndOfRound() {
-                if (getNumEggsLeft() > 1) {
-                    amount--;
-                    if (amount <= 0) {
-                        flash();
-                        if (owner instanceof Twilight) {
-                            ((Twilight) owner).cycleEgg();
-                        }
-                        amount = EGG_CYCLE_TURN_NUM;
-                    } else {
-                        flashWithoutSound();
-                    }
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                if (amount2 <= 0) {
-                    amount2 = dmgThreshold;
-                }
-                description = FADING_TWILIGHT_POWER_DESCRIPTIONS[0] + EGG_CYCLE_TURN_NUM + FADING_TWILIGHT_POWER_DESCRIPTIONS[1] + amount2 + FADING_TWILIGHT_POWER_DESCRIPTIONS[2];
-            }
-        });
+        applyToTarget(this, this, new FadingTwilight(this, EGG_CYCLE_TURN_NUM, dmgThreshold));
     }
 
-    private int getNumEggsLeft() {
+    public int getNumEggsLeft() {
         int count = 0;
         if (!bigEggBroken) {
             count++;
@@ -190,7 +148,7 @@ public class Twilight extends AbstractRuinaMonster
         return count;
     }
 
-    private void cycleEgg() {
+    public void cycleEgg() {
         if (currentEgg == BirdEgg.BIG_EGG) {
             if (!smallEggBroken) {
                 switchEgg(BirdEgg.SMALL_EGG);
@@ -218,42 +176,11 @@ public class Twilight extends AbstractRuinaMonster
         AbstractPower eggPower = null;
         switch(egg) {
             case BIG_EGG:
-                eggPower = new AbstractLambdaPower(BIG_EGG_POWER_NAME, BIG_EGG_POWER_ID, AbstractPower.PowerType.BUFF, false, this, NUM_DAZZLE) {
-                    @Override
-                    public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target) {
-                        if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL) {
-                            intoDrawMo(status.makeStatEquivalentCopy(), amount, Twilight.this);
-                        }
-                    }
-                    @Override
-                    public void updateDescription() {
-                        description = BIG_EGG_POWER_DESCRIPTIONS[0] + amount + " " + FontHelper.colorString(status.name, "y") + BIG_EGG_POWER_DESCRIPTIONS[1];
-                    }
-                };
+                eggPower = new BigEgg(this, NUM_DAZZLE, status);
                 applyToTarget(this, this, eggPower);
                 break;
             case SMALL_EGG:
-                eggPower = new AbstractLambdaPower(SMALL_EGG_POWER_NAME, SMALL_EGG_POWER_ID, AbstractPower.PowerType.BUFF, false, this, SMALL_EGG_NUM_CARDS) {
-                    int counter = 0;
-                    @Override
-                    public void onCardDraw(AbstractCard card) {
-                        if (counter < amount) {
-                            card.setCostForTurn(card.costForTurn + SMALL_EGG_COST_INCREASE);
-                            card.flash();
-                            counter++;
-                        }
-                    }
-
-                    @Override
-                    public void atEndOfRound() {
-                        counter = 0;
-                    }
-
-                    @Override
-                    public void updateDescription() {
-                        description = SMALL_EGG_POWER_DESCRIPTIONS[0] + amount + SMALL_EGG_POWER_DESCRIPTIONS[1] + SMALL_EGG_COST_INCREASE + SMALL_EGG_POWER_DESCRIPTIONS[2];
-                    }
-                };
+                eggPower = new SmallEgg(this, SMALL_EGG_NUM_CARDS, SMALL_EGG_COST_INCREASE);
                 applyToTarget(this, this, eggPower);
                 break;
             case LONG_EGG:
@@ -313,13 +240,6 @@ public class Twilight extends AbstractRuinaMonster
                 }
                 cycleCounter++;
                 useBigAttack = true;
-                break;
-            }
-            case BRILLIANT_EYES: {
-                specialAnimation();
-                applyToTarget(adp(), this, new WeakPower(adp(), WEAK, true));
-                intoDrawMo(new VoidCard(), STATUS, this);
-                resetIdle();
                 break;
             }
         }
@@ -408,14 +328,14 @@ public class Twilight extends AbstractRuinaMonster
                 if (bigEggBroken && smallEggBroken && longEggBroken) {
                     currentEgg = null;
                     makePowerRemovable(this, currentEggPower.ID);
-                    makePowerRemovable(this, FADING_TWILIGHT_POWER_ID);
+                    makePowerRemovable(this, FadingTwilight.POWER_ID);
                     atb(new RemoveSpecificPowerAction(this, this, currentEggPower));
-                    atb(new RemoveSpecificPowerAction(this, this, FADING_TWILIGHT_POWER_ID));
+                    atb(new RemoveSpecificPowerAction(this, this, FadingTwilight.POWER_ID));
                 } else {
                     cycleEgg();
                 }
             }
-            AbstractPower power = this.getPower(FADING_TWILIGHT_POWER_ID);
+            AbstractPower power = this.getPower(FadingTwilight.POWER_ID);
             if (power != null) {
                 if (power instanceof TwoAmountPower) {
                     ((TwoAmountPower) power).amount2 = dmgThreshold - dmgTaken;

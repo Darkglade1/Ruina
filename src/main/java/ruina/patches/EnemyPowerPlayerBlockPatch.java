@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CtBehavior;
-import ruina.monsters.act3.BurrowingHeaven;
+import ruina.powers.AbstractEasyPower;
 
 @SpirePatch(
         clz = AbstractCreature.class,
@@ -25,7 +25,7 @@ public class EnemyPowerPlayerBlockPatch {
             if (tmp[0] > 0.0F) {
                 for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                     for (AbstractPower p : mo.powers) {
-                        if (p.ID.equals(BurrowingHeaven.POWER_ID)) {
+                        if (p instanceof AbstractEasyPower) {
                            p.onGainedBlock((int)tmp[0]);
                         }
                     }

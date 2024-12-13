@@ -1,6 +1,5 @@
 package ruina.multiplayer;
 
-import basemod.AutoAdd;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.AbstractRuinaMonster;
@@ -11,7 +10,6 @@ import spireTogether.subscribers.TiSCustomSerializationSubscriber;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@AutoAdd.Ignore
 public class MultiplayerSubscriber implements TiSCustomSerializationSubscriber {
     @Override
     public HashMap<Class<?>, Class<? extends NetworkObject<?>>> getCustomSerializers() {

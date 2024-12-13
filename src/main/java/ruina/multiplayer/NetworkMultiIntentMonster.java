@@ -1,6 +1,5 @@
 package ruina.multiplayer;
 
-import basemod.AutoAdd;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.monsters.AbstractMultiIntentMonster;
@@ -10,7 +9,6 @@ import spireTogether.networkcore.objects.entities.NetworkMonster;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-@AutoAdd.Ignore
 public class NetworkMultiIntentMonster extends NetworkMonster implements Serializable {
     static final long serialVersionUID = 1L;
     public ArrayList<EnemyMoveInfo> additionalMoves;

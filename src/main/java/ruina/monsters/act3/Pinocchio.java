@@ -8,16 +8,12 @@ import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.BarricadePower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractDeckMonster;
-import ruina.powers.AbstractLambdaPower;
-import ruina.util.DetailedIntent;
+import ruina.powers.act3.Imposter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,11 +35,6 @@ public class Pinocchio extends AbstractDeckMonster
     public final int STRENGTH = calcAscensionSpecial(2);
 
     protected Map<Byte, Integer> blockMoveValues = new HashMap<>();
-
-    public static final String POWER_ID = makeID("Imposter");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Pinocchio() {
         this(0.0f, 0.0f);
@@ -73,18 +64,7 @@ public class Pinocchio extends AbstractDeckMonster
         switch (move.nextMove) {
             case LEARN: {
                 blockAnimation();
-                applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
-                    @Override
-                    public void atEndOfRound() {
-                        this.flash();
-                        applyToTarget(owner, owner, new StrengthPower(owner, amount));
-                    }
-
-                    @Override
-                    public void updateDescription() {
-                        description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-                    }
-                });
+                applyToTarget(this, this, new Imposter(this, STRENGTH));
                 block(this, BLOCK);
                 resetIdle();
                 break;

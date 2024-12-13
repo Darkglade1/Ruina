@@ -3,31 +3,24 @@ package ruina.monsters.act3.blueStar;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.DarkSmokePuffEffect;
-import com.megacrit.cardcrawl.vfx.combat.SmokingEmberEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
-import ruina.powers.act3.MeetAgain;
 import ruina.powers.Paralysis;
+import ruina.powers.act3.Martyr;
+import ruina.powers.act3.MeetAgain;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 
@@ -54,11 +47,6 @@ public class Worshipper extends AbstractRuinaMonster
 
     private final int MARTYR_DAMAGE = calcAscensionSpecial(15);
     private final int PARALYSIS = calcAscensionSpecial(1);
-
-    public static final String POWER_ID = makeID("Martyr");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private BlueStar star;
     public boolean triggerMartyr = true;
@@ -90,33 +78,7 @@ public class Worshipper extends AbstractRuinaMonster
             }
         }
         addPower(new MinionPower(this));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, MARTYR_DAMAGE) {
-            @Override
-            public void onDeath() {
-                if (owner instanceof Worshipper) {
-                    if (((Worshipper) owner).triggerMartyr) {
-                        atb(new AbstractGameAction() {
-                            @Override
-                            public void update() {
-                                playSound("WorshipperExplode");
-                                AbstractDungeon.effectsQueue.add(new DarkSmokePuffEffect(owner.hb.cX, owner.hb.cY));
-                                for(int i = 0; i < 12; ++i) {
-                                    AbstractDungeon.effectsQueue.add(new SmokingEmberEffect(owner.hb.cX + MathUtils.random(-50.0F, 50.0F) * Settings.scale, owner.hb.cY + MathUtils.random(-50.0F, 50.0F) * Settings.scale));
-                                }
-                                this.isDone = true;
-                            }
-                        });
-                        DamageInfo damageInfo = new DamageInfo(this.owner, amount, DamageInfo.DamageType.THORNS);
-                        atb(new DamageAction(adp(), damageInfo, AbstractGameAction.AttackEffect.NONE, true));
-                    }
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Martyr(this, MARTYR_DAMAGE));
         applyToTarget(this, this, new MeetAgain(this, meetAgainThreshold));
     }
 

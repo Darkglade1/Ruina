@@ -1,0 +1,41 @@
+package ruina.powers.act3;
+
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.PowerStrings;
+import ruina.RuinaMod;
+import ruina.powers.AbstractEasyPower;
+
+import static ruina.util.Wiz.atb;
+
+public class Unnerving extends AbstractEasyPower {
+    public static final String POWER_ID = RuinaMod.makeID(Unnerving.class.getSimpleName());
+    private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
+    public static final String NAME = powerStrings.NAME;
+    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
+    public Unnerving(AbstractCreature owner, int amount) {
+        super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
+    }
+
+    @Override
+    public float atDamageReceive(float damage, DamageInfo.DamageType type) {
+        if (type == DamageInfo.DamageType.NORMAL) {
+            return damage * (1.0f - ((float)amount / 100));
+        } else {
+            return damage;
+        }
+    }
+
+    @Override
+    public void onGainedBlock(float blockAmount) {
+        atb(new LoseHPAction(owner, owner, (int)blockAmount));
+    }
+
+    @Override
+    public void updateDescription() {
+        description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
+    }
+}

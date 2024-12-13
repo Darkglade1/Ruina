@@ -1,6 +1,5 @@
 package ruina.multiplayer;
 
-import basemod.AutoAdd;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -14,7 +13,6 @@ import spireTogether.util.NetworkMessage;
 
 import java.util.ArrayList;
 
-@AutoAdd.Ignore
 public class MessengerListener implements TiSNetworkMessageSubscriber {
     @Override
     public void onMessageReceive(NetworkMessage networkMessage, String s, Object o, Integer integer) {

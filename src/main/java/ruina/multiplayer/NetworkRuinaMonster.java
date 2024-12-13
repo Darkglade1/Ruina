@@ -1,13 +1,11 @@
 package ruina.multiplayer;
 
-import basemod.AutoAdd;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.monsters.AbstractRuinaMonster;
 import spireTogether.networkcore.objects.entities.NetworkMonster;
 
 import java.io.Serializable;
 
-@AutoAdd.Ignore
 public class NetworkRuinaMonster extends NetworkMonster implements Serializable {
     static final long serialVersionUID = 1L;
     public boolean firstMove;

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CtBehavior;
-import ruina.monsters.act3.Twilight;
+import ruina.powers.AbstractEasyPower;
 
 import static ruina.util.Wiz.monsterList;
 
@@ -24,7 +24,7 @@ public class MonsterOnCardDrawPatch {
         for (AbstractMonster mo : monsterList()) {
             for (AbstractPower p : mo.powers) {
                 //hardcode this so we don't accidentally break other mods
-                if (p.ID.equals(Twilight.SMALL_EGG_POWER_ID)) {
+                if (p instanceof AbstractEasyPower) {
                     p.onCardDraw(c);
                 }
             }

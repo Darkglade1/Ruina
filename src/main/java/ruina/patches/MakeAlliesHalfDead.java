@@ -10,9 +10,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CtBehavior;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.monsters.act2.BadWolf;
-import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.powers.act2.Skulk;
+import ruina.powers.act3.TickingTime;
 
 import static ruina.util.Wiz.atb;
 import static ruina.util.Wiz.att;
@@ -60,7 +59,7 @@ public class MakeAlliesHalfDead {
                         }
                     });
 
-                    AbstractPower power = mo.getPower(PriceOfSilence.POWER_ID);
+                    AbstractPower power = mo.getPower(TickingTime.POWER_ID);
                     if (power != null) {
                         power.amount = 0;
                     }

@@ -1,22 +1,17 @@
 package ruina.monsters.act3;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act3.Unnerving;
 import ruina.util.DetailedIntent;
 import ruina.vfx.BurrowingHeavenEffect;
 
@@ -37,12 +32,7 @@ public class BurrowingHeaven extends AbstractRuinaMonster
     private final int FRAIL = calcAscensionSpecial(1);
     private final int VULNERABLE = calcAscensionSpecial(2);
     private final int STR_DOWN = calcAscensionSpecial(2);
-    private final float DAMAGE_REDUCTION = 0.5f;
-
-    public static final String POWER_ID = makeID("Unnerving");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    private final int DAMAGE_REDUCTION = 50;
 
     public BurrowingHeaven() {
         this(0.0f, 0.0f);
@@ -59,26 +49,7 @@ public class BurrowingHeaven extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, (int)(DAMAGE_REDUCTION * 100)) {
-            @Override
-            public float atDamageReceive(float damage, DamageInfo.DamageType type) {
-                if (type == DamageInfo.DamageType.NORMAL) {
-                    return damage * (1.0f - DAMAGE_REDUCTION);
-                } else {
-                    return damage;
-                }
-            }
-
-            @Override
-            public void onGainedBlock(float blockAmount) {
-                atb(new LoseHPAction(owner, owner, (int)blockAmount));
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Unnerving(this, DAMAGE_REDUCTION));
     }
 
     @Override
