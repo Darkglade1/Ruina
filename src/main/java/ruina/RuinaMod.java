@@ -1360,9 +1360,6 @@ public class RuinaMod implements
             float baseScale = ((float)baseHealthScale / 100);
             float playerScale = ((float)playerHealthScale / 100);
             float finalMult = baseScale + (baseScale * playerScale * P2PManager.GetPlayerCountWithoutSelf());
-            System.out.println(baseScale);
-            System.out.println(playerScale);
-            System.out.println(finalMult);
             return (int)(baseValue * finalMult);
         }
         return baseValue;
