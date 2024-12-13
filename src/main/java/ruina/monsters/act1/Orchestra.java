@@ -6,23 +6,18 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.cards.performance.*;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.act1.FerventAdoration;
+import ruina.powers.act1.Performance;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.OrchestraCurtainEffect;
@@ -52,8 +47,6 @@ public class Orchestra extends AbstractRuinaMonster
     private final int BLOCK = calcAscensionTankiness(8);
     private final int HEAL = calcAscensionTankiness(10);
 
-    private final ArrayList<AbstractCard> performerCards = new ArrayList<>();
-
     public static final String MOVEMENT1 = RuinaMod.makeMonsterPath("Orchestra/1st.png");
     private final Texture MOVEMENT1_TEXTURE = TexLoader.getTexture(MOVEMENT1);
 
@@ -70,11 +63,6 @@ public class Orchestra extends AbstractRuinaMonster
     private OrchestraMusicEffect movement2;
     private OrchestraMusicEffect movement3;
     private OrchestraMusicEffect movement4;
-
-    public static final String POWER_ID = makeID("Performance");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Orchestra() {
         this(0.0f, 0.0f);
@@ -100,47 +88,8 @@ public class Orchestra extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        performerCards.add(new FirstChair());
-        performerCards.add(new SecondChair());
-        performerCards.add(new ThirdChair());
-        performerCards.add(new FourthChair());
-        if (AbstractDungeon.ascensionLevel >= 19) {
-            for (AbstractCard card : performerCards) {
-                card.upgrade();
-            }
-        }
         CustomDungeon.playTempMusicInstantly("Angela3");
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-
-            @Override
-            public void atEndOfRound() {
-                if (!performerCards.isEmpty()) {
-                    flash();
-                    intoDiscard(performerCards.remove(0), 1);
-                }
-                updateDescription();
-            }
-
-            @Override
-            public void onExhaust(AbstractCard card) {
-                if (card instanceof AbstractPerformanceCard) {
-                    flash();
-                    intoDiscard(card.makeStatEquivalentCopy(), 1);
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                if (!performerCards.isEmpty()) {
-                    description = POWER_DESCRIPTIONS[0] + " " + POWER_DESCRIPTIONS[1];
-                } else {
-                    description = POWER_DESCRIPTIONS[1];
-                }
-                if (AbstractDungeon.ascensionLevel >= 19) {
-                    description += POWER_DESCRIPTIONS[2];
-                }
-            }
-        });
+        applyToTarget(this, this, new Performance(this));
     }
 
     @Override

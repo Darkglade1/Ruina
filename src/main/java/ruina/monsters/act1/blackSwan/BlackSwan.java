@@ -4,9 +4,7 @@ import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -14,8 +12,8 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
+import ruina.powers.act1.Dream;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -38,11 +36,6 @@ public class BlackSwan extends AbstractRuinaMonster
     private final int STRENGTH = calcAscensionSpecial(1);
     private static final int DEAD_BROTHERS_THRESHOLD = 3;
     public int numDeadBrothers = 0;
-
-    public static final String POWER_ID = makeID("Dream");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public BlackSwan() {
         this(0.0f, 0.0f);
@@ -67,24 +60,7 @@ public class BlackSwan extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Angela1");
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
-
-            @Override
-            public void atEndOfRound() {
-                for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                    if (mo instanceof Brother && mo.halfDead) {
-                        ((Brother) mo).revive();
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                amount2 = DEAD_BROTHERS_THRESHOLD;
-                description = POWER_DESCRIPTIONS[0] + DEAD_BROTHERS_THRESHOLD + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Dream(this, 0, DEAD_BROTHERS_THRESHOLD));
     }
 
     @Override
@@ -178,7 +154,7 @@ public class BlackSwan extends AbstractRuinaMonster
 
     public void onBrotherDeath() {
         numDeadBrothers++;
-        AbstractPower power = getPower(POWER_ID);
+        AbstractPower power = getPower(Dream.POWER_ID);
         if (power != null) {
             power.amount++;
         }

@@ -2,15 +2,12 @@ package ruina.monsters.act1.spiderBud;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.EntanglePower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act1.Hunt;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -27,15 +24,10 @@ public class SpiderBud extends AbstractRuinaMonster
     private static final byte COCOON = 1;
     private static final byte CATCHING_FOOD = 2;
 
-    private boolean enraged = false;
+    public boolean enraged = false;
     private int currentMove = PROTECTIVE_INSTINCTS;
 
     private final int BLOCK = calcAscensionTankiness(4);
-
-    public static final String POWER_ID = makeID("Hunt");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public SpiderBud() {
         this(0.0f, 0.0f);
@@ -53,20 +45,7 @@ public class SpiderBud extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         playSound("SpiderDown");
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void onSpecificTrigger() {
-                if (!enraged) {
-                    flash();
-                    enraged = true;
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new Hunt(this));
     }
 
     @Override

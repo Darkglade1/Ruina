@@ -4,7 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import ruina.monsters.act1.spiderBud.SpiderBud;
+import ruina.powers.act1.Hunt;
 
 import static ruina.util.Wiz.monsterList;
 
@@ -20,7 +20,7 @@ public class PowerOnKillPatch {
     public static void triggerOnKillPowers(AbstractMonster instance, boolean triggerRelics) {
         for (AbstractMonster mo : monsterList()) {
             for (AbstractPower power : mo.powers) {
-                if (power.ID.equals(SpiderBud.POWER_ID)) {
+                if (power.ID.equals(Hunt.POWER_ID)) {
                     power.onSpecificTrigger();
                 }
             }

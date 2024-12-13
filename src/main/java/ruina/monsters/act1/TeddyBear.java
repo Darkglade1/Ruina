@@ -2,8 +2,6 @@ package ruina.monsters.act1;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
@@ -25,11 +23,6 @@ public class TeddyBear extends AbstractRuinaMonster
 
     private final int BLOCK = calcAscensionTankiness(11);
     private final int STRENGTH = calcAscensionSpecial(1);
-
-    public static final String POWER_ID = makeID("Affection");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public TeddyBear() {
         this(0.0f, 0.0f);

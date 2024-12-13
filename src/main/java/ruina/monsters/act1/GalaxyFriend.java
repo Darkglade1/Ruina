@@ -5,9 +5,7 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -16,7 +14,7 @@ import com.megacrit.cardcrawl.powers.RegenerateMonsterPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act1.DontLeave;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -38,11 +36,6 @@ public class GalaxyFriend extends AbstractRuinaMonster
     private final int DEBUFF = calcAscensionSpecial(1);
     private final int BLOCK = calcAscensionTankiness(7);
 
-    public static final String POWER_ID = makeID("DontLeave");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     public GalaxyFriend() {
         this(0.0f, 0.0f);
     }
@@ -61,13 +54,7 @@ public class GalaxyFriend extends AbstractRuinaMonster
     public void usePreBattleAction() {
         AbstractDungeon.getCurrRoom().cannotLose = true;
         applyToTarget(this, this, new RegenerateMonsterPower(this, REGEN));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new DontLeave(this));
     }
 
     @Override
@@ -159,7 +146,7 @@ public class GalaxyFriend extends AbstractRuinaMonster
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power instanceof RegenerateMonsterPower) && !(power.ID.equals(POWER_ID))) {
+                if (!(power instanceof RegenerateMonsterPower) && !(power.ID.equals(DontLeave.POWER_ID))) {
                     powersToRemove.add(power);
                 }
             }
