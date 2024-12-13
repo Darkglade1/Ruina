@@ -4,20 +4,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.ExhaustTopCardAction;
 import ruina.actions.WisdomAction;
 import ruina.cards.Wisdom;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act2.Search;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 
@@ -39,11 +34,6 @@ public class Scarecrow extends AbstractRuinaMonster
 
     private final int WISDOM_AMT = calcAscensionSpecial(2);
 
-    public static final String SEARCH_POWER_ID = makeID("Search");
-    public static final PowerStrings SEARCHPowerStrings = CardCrawlGame.languagePack.getPowerStrings(SEARCH_POWER_ID);
-    public static final String SEARCH_POWER_NAME = SEARCHPowerStrings.NAME;
-    public static final String[] SEARCH_POWER_DESCRIPTIONS = SEARCHPowerStrings.DESCRIPTIONS;
-
     public Scarecrow() {
         this(0.0f, 0.0f, STRUGGLE_THRESHOLD);
     }
@@ -61,18 +51,7 @@ public class Scarecrow extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         atb(new WisdomAction());
-        applyToTarget(this, this, new AbstractLambdaPower(SEARCH_POWER_NAME, SEARCH_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL) {
-                    atb(new ExhaustTopCardAction(owner));
-                }
-            }
-            @Override
-            public void updateDescription() {
-                description = SEARCH_POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new Search(this));
     }
 
     @Override

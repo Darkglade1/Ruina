@@ -21,9 +21,9 @@ import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.CenterOfAttention;
 import ruina.powers.act2.Absorption;
+import ruina.powers.act2.Bodies;
 import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -104,25 +104,7 @@ public class Mountain extends AbstractMultiIntentMonster
         }
         stagePower = new Absorption(this, currentStage);
         applyToTarget(this, this, stagePower);
-        applyToTarget(this, this, new AbstractLambdaPower(BODIES_POWER_NAME, BODIES_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = BODIES_POWER_DESCRIPTIONS[0];
-            }
-            @Override
-            public void atEndOfRound() {
-                boolean foundCorpse = false;
-                for (AbstractMonster mo : monsterList()) {
-                    if (mo instanceof MeltedCorpses) {
-                        foundCorpse = true;
-                        break;
-                    }
-                }
-                if (!foundCorpse) {
-                    Summon();
-                }
-            }
-        });
+        applyToTarget(this, this, new Bodies(this));
         applyToTarget(this, this, new CenterOfAttention(this));
     }
 
@@ -385,7 +367,7 @@ public class Mountain extends AbstractMultiIntentMonster
         }
     }
 
-    private void Summon() {
+    public void Summon() {
         playSound("Spawn", 0.7f);
         target = new MeltedCorpses(MINION_X, 0.0f);
         atb(new SpawnMonsterAction(target, true));

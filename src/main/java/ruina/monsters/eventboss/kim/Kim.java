@@ -2,33 +2,23 @@ package ruina.monsters.eventboss.kim;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
+import ruina.powers.act2.CounterAttack;
+import ruina.powers.act2.Rupture;
 import ruina.util.TexLoader;
-import ruina.util.Wiz;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
@@ -45,16 +35,6 @@ public class Kim extends AbstractCardMonster {
     public final int ACUPUNCTURE_HITS = 2;
 
     public boolean usedCounter = false;
-
-    public static final String POWER_ID = makeID("CounterAttack");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
-    public static final String R_POWER_ID = makeID("Rupture");
-    public static final PowerStrings rpowerStrings = CardCrawlGame.languagePack.getPowerStrings(R_POWER_ID);
-    public static final String R_POWER_NAME = rpowerStrings.NAME;
-    public static final String[] R_POWER_DESCRIPTIONS = rpowerStrings.DESCRIPTIONS;
 
     public Kim() {
         this(0.0f, 0.0f);
@@ -117,19 +97,7 @@ public class Kim extends AbstractCardMonster {
                     @Override
                     public void update() {
                         if(damageDealt[0] > 0){
-                            applyToTarget(adp(), Kim.this, new AbstractLambdaPower(R_POWER_NAME, R_POWER_ID, AbstractPower.PowerType.DEBUFF, false, adp(), damageDealt[0]) {
-                                @Override
-                                public void atEndOfTurn(boolean isPlayer) {
-                                    this.flash();
-                                    atb(new DamageAction(owner, new DamageInfo(owner, amount, DamageInfo.DamageType.THORNS), AttackEffect.POISON));
-                                    atb(new RemoveSpecificPowerAction(owner, owner, this));
-                                }
-
-                                @Override
-                                public void updateDescription() {
-                                    description = R_POWER_DESCRIPTIONS[0] + amount + R_POWER_DESCRIPTIONS[1];
-                                }
-                            });
+                            applyToTarget(adp(), Kim.this, new Rupture(adp(), damageDealt[0]));
                         }
                         isDone = true;
                     }
@@ -179,35 +147,7 @@ public class Kim extends AbstractCardMonster {
         byte move;
         if (this.lastMove(YIELD)) {
             usedCounter = false;
-            applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, NeutralPowertypePatch.NEUTRAL, false, this, 0) {
-
-                boolean justApplied = true;
-                @Override
-                public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-                    if (card.type == AbstractCard.CardType.ATTACK && !owner.hasPower(StunMonsterPower.POWER_ID)) {
-                        this.flash();
-                        CounterAttack();
-                        usedCounter = true;
-                    }
-                }
-
-                @Override
-                public void atEndOfTurn(boolean isPlayer) {
-                    if (justApplied) {
-                        justApplied = false;
-                    } else {
-                        if (!owner.hasPower(StunMonsterPower.POWER_ID)) {
-                            Wiz.makePowerRemovable(this);
-                            atb(new RemoveSpecificPowerAction(owner, owner, this));
-                        }
-                    }
-                }
-
-                @Override
-                public void updateDescription() {
-                    description = POWER_DESCRIPTIONS[0];
-                }
-            });
+            applyToTarget(this, this, new CounterAttack(this));
             move = CLAIM;
         } else if (this.lastMove(CLAIM) && usedCounter) {
             move = ACUPUNCTURE;

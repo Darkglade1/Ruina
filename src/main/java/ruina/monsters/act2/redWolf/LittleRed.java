@@ -12,20 +12,17 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.MultiplayerAllyBuff;
+import ruina.powers.act2.FuryWithNoOutlet;
 import ruina.powers.act2.StrikeWithoutHesitation;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -48,11 +45,6 @@ public class LittleRed extends AbstractAllyMonster
     private final int DEFENSE = calcAscensionTankiness(10);
     private final int STRENGTH = 3;
     public boolean enraged = false;
-
-    public static final String FURY_POWER_ID = RuinaMod.makeID("FuryWithNoOutlet");
-    public static final PowerStrings furyPowerStrings = CardCrawlGame.languagePack.getPowerStrings(FURY_POWER_ID);
-    public static final String FURY_POWER_NAME = furyPowerStrings.NAME;
-    public static final String[] FURY_POWER_DESCRIPTIONS = furyPowerStrings.DESCRIPTIONS;
 
     public LittleRed() {
         this(0.0f, 0.0f);
@@ -86,12 +78,7 @@ public class LittleRed extends AbstractAllyMonster
                 target = (NightmareWolf)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(FURY_POWER_NAME, FURY_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = FURY_POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new FuryWithNoOutlet(this));
         super.usePreBattleAction();
     }
 

@@ -6,9 +6,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -16,9 +14,9 @@ import com.megacrit.cardcrawl.powers.DrawReductionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
-import ruina.powers.act2.Oblivion;
 import ruina.powers.Paralysis;
+import ruina.powers.act2.Agony;
+import ruina.powers.act2.Oblivion;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 
@@ -45,11 +43,6 @@ public class Ozma extends AbstractRuinaMonster
     private final int MAX_DRAW_DEBUFF = calcAscensionSpecial(2);
     private int cooldown = 0;
 
-    public static final String POWER_ID = makeID("Agony");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     public Ozma() {
         this(0.0f, 0.0f);
     }
@@ -73,12 +66,7 @@ public class Ozma extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland2");
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new Agony(this));
     }
 
     @Override

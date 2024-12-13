@@ -2,22 +2,17 @@ package ruina.monsters.act2.ozma;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.JackStealAction;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act2.Steal;
 
 import java.util.ArrayList;
 
@@ -35,11 +30,6 @@ public class Jack extends AbstractRuinaMonster
     public ArrayList<AbstractCard> stolenCards = new ArrayList<>();
     private final boolean startSingle;
     private Ozma ozma;
-
-    public static final String POWER_ID = makeID("Steal");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Jack(final float x, final float y, boolean startSingle) {
         super(ID, ID, 100, -5.0F, 0, 135.0f, 160.0f, null, x, y);
@@ -64,27 +54,7 @@ public class Jack extends AbstractRuinaMonster
             }
         }
         addPower(new MinionPower(this));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (owner instanceof Jack && target == adp()) {
-                    atb(new JackStealAction((Jack) owner));
-                }
-            }
-
-            @Override
-            public int onAttacked(DamageInfo info, int damageAmount) {
-                if (damageAmount > 0 && stolenCards.size() > 0) {
-                    flash();
-                    atb(new MakeTempCardInHandAction(stolenCards.remove(0)));
-                }
-                return damageAmount;
-            }
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new Steal(this));
     }
 
     @Override

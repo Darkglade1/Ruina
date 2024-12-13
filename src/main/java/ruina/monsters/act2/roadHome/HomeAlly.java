@@ -1,14 +1,11 @@
 package ruina.monsters.act2.roadHome;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act2.WayHome;
 import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.makeMonsterPath;
@@ -21,11 +18,6 @@ public class HomeAlly extends AbstractAllyMonster
 
     private static final byte NONE = 0;
     public RoadHome roadHome;
-
-    public static final String POWER_ID = RuinaMod.makeID("WayHome");
-    public static final PowerStrings PowerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = PowerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = PowerStrings.DESCRIPTIONS;
 
     public HomeAlly() {
         this(0.0f, 0.0f);
@@ -53,12 +45,7 @@ public class HomeAlly extends AbstractAllyMonster
                 roadHome = (RoadHome)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new WayHome(this));
         super.usePreBattleAction();
     }
 
