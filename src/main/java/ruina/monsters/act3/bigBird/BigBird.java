@@ -7,19 +7,19 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.InstantKillAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Dazzled;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.powers.AbstractLambdaPower;
-import ruina.powers.act3.Enchanted;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.act3.Enchanted;
+import ruina.powers.act3.Salvation;
 import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -53,11 +53,6 @@ public class BigBird extends AbstractMultiIntentMonster
     private static final int ENCHANTED_HP_AMT = 20;
     private static final int ENCHANTED_HP_INCREASE = 5;
     private int currEnchantedHPAmt = ENCHANTED_HP_AMT;
-
-    public static final String Salvation_POWER_ID = makeID("Salvation");
-    public static final PowerStrings SalvationPowerStrings = CardCrawlGame.languagePack.getPowerStrings(Salvation_POWER_ID);
-    public static final String Salvation_POWER_NAME = SalvationPowerStrings.NAME;
-    public static final String[] Salvation_POWER_DESCRIPTIONS = SalvationPowerStrings.DESCRIPTIONS;
 
     public BigBird() {
         this(100.0f, 0.0f);
@@ -94,12 +89,7 @@ public class BigBird extends AbstractMultiIntentMonster
                 }
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(Salvation_POWER_NAME, Salvation_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = Salvation_POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new Salvation(this));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -203,7 +193,7 @@ public class BigBird extends AbstractMultiIntentMonster
 
     @Override
     protected int applySpecialMultiplier(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, int whichMove, int dmg) {
-        if (target.hasPower(Enchanted.POWER_ID) && this.hasPower(BigBird.Salvation_POWER_ID)) {
+        if (target.hasPower(Enchanted.POWER_ID)) {
             return BigBird.INSTANT_KILL_NUM;
         }
         return dmg;

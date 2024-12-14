@@ -7,16 +7,13 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.ForestKeeperLock;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
+import ruina.powers.act3.Lock;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -35,11 +32,6 @@ public class Keeper extends AbstractRuinaMonster {
     private final int PARALYSIS = calcAscensionSpecial(1);
     private final int BLOCK = calcAscensionTankiness(12);
 
-    public static final String lock_pid = makeID("Lock");
-    public static final PowerStrings str_lock = CardCrawlGame.languagePack.getPowerStrings(lock_pid);
-    public static final String lock_pname = str_lock.NAME;
-    public static final String[] lock_desc = str_lock.DESCRIPTIONS;
-
     public static final AbstractCard card = new ForestKeeperLock();
 
     public Keeper(final float x, final float y) {
@@ -49,6 +41,12 @@ public class Keeper extends AbstractRuinaMonster {
         addMove(CUCKOO, Intent.DEFEND);
         addMove(RING, Intent.ATTACK, calcAscensionDamage(6), 2);
         addMove(SMACK, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
+    }
+
+    @Override
+    public void usePreBattleAction() {
+        addPower(new MinionPower(this));
+        applyToTarget(this, this, new Lock(this));
     }
 
     @Override
@@ -125,17 +123,6 @@ public class Keeper extends AbstractRuinaMonster {
             }
         }
         return detailsList;
-    }
-
-    @Override
-    public void usePreBattleAction() {
-        addPower(new MinionPower(this));
-        applyToTarget(this, this, new AbstractLambdaPower(lock_pname, lock_pid, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = lock_desc[0];
-            }
-        });
     }
 
     @Override

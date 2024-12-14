@@ -3,16 +3,13 @@ package ruina.monsters.act3.snowQueen;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.cardmods.FrozenMod;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act3.KaiAndGerda;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -21,13 +18,7 @@ import static ruina.util.Wiz.*;
 public class PrisonOfIce extends AbstractRuinaMonster
 {
     public static final String ID = makeID(PrisonOfIce.class.getSimpleName());
-
     private static final byte NONE = 0;
-
-    public static final String POWER_ID = makeID("KaiAndGerda");
-    public static final PowerStrings PowerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = PowerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = PowerStrings.DESCRIPTIONS;
 
     private SnowQueen queen;
 
@@ -51,12 +42,7 @@ public class PrisonOfIce extends AbstractRuinaMonster
             }
         }
         addPower(new MinionPower(this));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new KaiAndGerda(this));
     }
 
     @Override
