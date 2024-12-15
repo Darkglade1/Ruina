@@ -459,4 +459,17 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         return moveHistory.size() >= 3 && !this.lastMove(move) && !this.lastMoveBefore(move) && !this.lastMoveBeforeBefore(move);
     }
 
+    protected boolean lastMoveIgnoringMove(byte move, byte moveToIgnore) {
+        if (moveHistory.isEmpty()) {
+            return false;
+        }
+        for (int i = moveHistory.size() - 1; i >= 0; i--) {
+            byte currMove = moveHistory.get(i);
+            if (currMove != moveToIgnore) {
+                return currMove == move;
+            }
+        }
+        return false;
+    }
+
 }

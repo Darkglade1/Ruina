@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import ruina.RuinaMod;
 import ruina.actions.ApplyPowerActionButItCanFizzle;
 import ruina.actions.MakeTempCardInDiscardActionButItCanFizzle;
 import ruina.actions.MakeTempCardInDrawPileActionButItCanFizzle;
@@ -228,7 +229,7 @@ public class Wiz {
 
     public static void dmg(AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect) {
         DamageAction action = new DamageAction(target, info, effect);
-        if (info.owner instanceof AbstractMonster) {
+        if (RuinaMod.isMultiplayerConnected() && info.owner instanceof AbstractMonster) {
             ActionPatches.markActionForNoDamageSync(action);
             ActionPatches.markActionForNoDataSync(action);
         }

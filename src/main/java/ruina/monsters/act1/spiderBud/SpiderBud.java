@@ -25,7 +25,6 @@ public class SpiderBud extends AbstractRuinaMonster
     private static final byte CATCHING_FOOD = 2;
 
     public boolean enraged = false;
-    private int currentMove = PROTECTIVE_INSTINCTS;
 
     private final int BLOCK = calcAscensionTankiness(4);
 
@@ -58,14 +57,12 @@ public class SpiderBud extends AbstractRuinaMonster
                     block(mo, BLOCK);
                 }
                 resetIdle();
-                currentMove = COCOON;
                 break;
             }
             case COCOON: {
                 debuffAnimation(adp());
                 applyToTarget(adp(), this, new EntanglePower(adp()));
                 resetIdle();
-                currentMove = PROTECTIVE_INSTINCTS;
                 break;
             }
             case CATCHING_FOOD: {
@@ -83,8 +80,10 @@ public class SpiderBud extends AbstractRuinaMonster
         if (enraged || onlyEnemyAlive()) {
             setMoveShortcut(CATCHING_FOOD);
             enraged = false;
+        } else if (lastMoveIgnoringMove(PROTECTIVE_INSTINCTS, CATCHING_FOOD)){
+            setMoveShortcut(COCOON);
         } else {
-            setMoveShortcut((byte) currentMove);
+            setMoveShortcut(PROTECTIVE_INSTINCTS);
         }
     }
 

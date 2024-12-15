@@ -43,8 +43,6 @@ public class FairyQueen extends AbstractRuinaMonster
     private final int RAVENOUSNESS_STR = calcAscensionSpecial(4);
     private final float ENRAGE_THRESHOLD = 0.5f;
     private final int SELF_DEBUFF = 1;
-
-    public AbstractMonster[] minions = new AbstractMonster[2];
     private boolean enraged = false;
 
     public FairyQueen(final float x, final float y) {
@@ -64,13 +62,6 @@ public class FairyQueen extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        int i = 0;
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof FairyMass) {
-                minions[i] = mo;
-                i++;
-            }
-        }
         CustomDungeon.playTempMusicInstantly("Angela2");
         applyToTarget(this, this, new Satiation(this, SELF_DEBUFF));
         applyToTarget(this, this, new CenterOfAttention(this));
@@ -98,21 +89,21 @@ public class FairyQueen extends AbstractRuinaMonster
             }
             case RAVENOUSNESS: {
                 enrageAnimation();
-                for (AbstractMonster minion : minions) {
-                    if (minion != null) {
-                        AbstractPower meal = minion.getPower(Meal.POWER_ID);
-                        if (meal != null && minion.currentHealth <= meal.amount) {
+                for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                    if (mo instanceof FairyMass && !mo.isDeadOrEscaped()) {
+                        AbstractPower meal = mo.getPower(Meal.POWER_ID);
+                        if (meal != null && mo.currentHealth <= meal.amount) {
                             applyToTarget(this, this, new WeakPower(this, SELF_DEBUFF, true));
                             applyToTarget(this, this, new VulnerablePower(this, SELF_DEBUFF, true));
                         }
                         atb(new AbstractGameAction() {
                             @Override
                             public void update() {
-                                AbstractDungeon.effectList.add(new StrikeEffect(minion, minion.hb.cX, minion.hb.cY, 999));
+                                AbstractDungeon.effectList.add(new StrikeEffect(mo, mo.hb.cX, mo.hb.cY, 999));
                                 this.isDone = true;
                             }
                         });
-                        atb(new InstantKillAction(minion));
+                        atb(new InstantKillAction(mo));
                     }
                 }
                 applyToTarget(this, this, new StrengthPower(this, RAVENOUSNESS_STR));
@@ -128,7 +119,7 @@ public class FairyQueen extends AbstractRuinaMonster
     protected void getMove(final int num) {
         if (currentHealth <= maxHealth * ENRAGE_THRESHOLD && !enraged) {
             setMoveShortcut(RAVENOUSNESS);
-        } else if (minions[0] == null && minions[1] == null && !firstMove && !enraged) {
+        } else if (!areMinionsAlive() && !firstMove && !enraged) {
             setMoveShortcut(QUEENS_DECREE);
         } else {
             setMoveShortcut(PREDATION);
@@ -156,19 +147,21 @@ public class FairyQueen extends AbstractRuinaMonster
     }
 
     public void Summon() {
-        for (int i = 0; i < minions.length; i++) {
-            if (minions[i] == null) {
-                AbstractMonster minion;
-                if (i == 0) {
-                    minion = new FairyMass(MINION_X_1, 0.0f);
-                } else {
-                    minion = new FairyMass(MINION_X_2, 0.0f);
-                }
-                atb(new SpawnMonsterAction(minion, true));
-                atb(new UsePreBattleActionAction(minion));
-                minions[i] = minion;
+        AbstractMonster minion = new FairyMass(MINION_X_1, 0.0f);
+        atb(new SpawnMonsterAction(minion, true));
+        atb(new UsePreBattleActionAction(minion));
+        AbstractMonster minion2 = new FairyMass(MINION_X_2, 0.0f);
+        atb(new SpawnMonsterAction(minion2, true));
+        atb(new UsePreBattleActionAction(minion2));
+    }
+
+    private boolean areMinionsAlive() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof FairyMass && !mo.isDeadOrEscaped()) {
+                return true;
             }
         }
+        return false;
     }
 
     public void consumeMinion(AbstractMonster minion) {
