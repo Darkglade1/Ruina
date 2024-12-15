@@ -6,7 +6,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
+import ruina.multiplayer.MessengerListener;
 import ruina.powers.AbstractUnremovablePower;
+import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.util.SpireHelp;
 
 import static ruina.util.Wiz.atb;
 
@@ -30,11 +33,19 @@ public class Pattern extends AbstractUnremovablePower {
         if (info.type == DamageInfo.DamageType.NORMAL && info.owner == owner && damageAmount > 0) {
             amount2 += damageAmount;
             if (amount2 >= amount) {
-                flash();
-                amount2 = 0;
-                atb(new RemoveDebuffsAction(owner));
+                onSpecificTrigger();
+                if (RuinaMod.isMultiplayerConnected()) {
+                    P2PManager.SendData(MessengerListener.request_helperClearedDebuffs, SpireHelp.Gameplay.CreatureToUID(owner), SpireHelp.Gameplay.GetMapLocation());
+                }
             }
         }
+    }
+
+    @Override
+    public void onSpecificTrigger() {
+        flash();
+        amount2 = 0;
+        atb(new RemoveDebuffsAction(owner));
     }
 
     @Override
