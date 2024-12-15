@@ -27,6 +27,7 @@ import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.networkcore.objects.entities.NetworkIntent;
 import spireTogether.networkcore.objects.entities.NetworkMonster;
 import spireTogether.other.RoomDataManager;
 import spireTogether.util.SpireHelp;
@@ -172,15 +173,18 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             getAdditionalMoves(AbstractDungeon.aiRng.random(99), i);
         }
         postGetMove();
-//        if (RuinaMod.isMultiplayerConnected()) {
-//            P2PManager.SendData(NetworkMultiIntentMonster.request_monsterUpdateAdditionalIntents, this.additionalMoves, this.additionalMovesHistory, this.additionalIntents, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
-//            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
-//            if (m instanceof NetworkMultiIntentMonster) {
-//                ((NetworkMultiIntentMonster)m).additionalMoves = this.additionalMoves;
-//                ((NetworkMultiIntentMonster)m).additionalMovesHistory = this.additionalMovesHistory;
-//                ((NetworkMultiIntentMonster)m).additionalIntents = this.additionalIntents;
-//            }
-//        }
+        if (RuinaMod.isMultiplayerConnected()) {
+            ArrayList<NetworkIntent> additionalNetworkMoves = new ArrayList<>();
+            for (EnemyMoveInfo info : this.additionalMoves) {
+                additionalNetworkMoves.add(new NetworkIntent(info));
+            }
+            P2PManager.SendData(NetworkMultiIntentMonster.request_monsterUpdateAdditionalIntents, additionalNetworkMoves, this.additionalMovesHistory, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+            if (m instanceof NetworkMultiIntentMonster) {
+                ((NetworkMultiIntentMonster)m).additionalMoves = additionalNetworkMoves;
+                ((NetworkMultiIntentMonster)m).additionalMovesHistory = this.additionalMovesHistory;
+            }
+        }
     }
 
     public void getAdditionalMoves(int num, int whichMove) {
