@@ -8,11 +8,14 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act1.Expression;
+import ruina.powers.multiplayer.ExpressionMultiplayer;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 
@@ -55,7 +58,11 @@ public class ShyLook extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new Expression(this, 0, CARD_THRESHOLD));
+        if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new ExpressionMultiplayer(this, 0, CARD_THRESHOLD * P2PManager.GetPlayerCount()));
+        } else {
+            applyToTarget(this, this, new Expression(this, 0, CARD_THRESHOLD));
+        }
     }
 
     @Override
