@@ -22,6 +22,7 @@ import ruina.RuinaMod;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.multiplayer.MultiplayerEnemyBuff;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 
@@ -85,6 +86,9 @@ public class Gunman extends AbstractMultiIntentMonster
         }
         atb(new TalkAction(this, DIALOG[0]));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
+        if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new MultiplayerEnemyBuff(this));
+        }
     }
 
     @Override

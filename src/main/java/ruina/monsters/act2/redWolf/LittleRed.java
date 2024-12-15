@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.powers.MultiplayerAllyBuff;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
 import ruina.powers.act2.FuryWithNoOutlet;
 import ruina.powers.act2.StrikeWithoutHesitation;
 import ruina.util.DetailedIntent;

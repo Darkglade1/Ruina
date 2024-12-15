@@ -23,6 +23,7 @@ import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.multiplayer.NetworkMultiIntentMonster;
+import ruina.powers.multiplayer.MultiplayerEnemyBuff;
 import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -107,6 +108,10 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         if(info.base > -1) {
             info.applyPowers(this, target);
         }
+        if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerEnemyBuff.POWER_ID) && target instanceof AbstractMonster) {
+            int amount = getPower(MultiplayerEnemyBuff.POWER_ID).amount;
+            info.output = (int)(info.output * (1.0f + ((float)amount / 100)));
+        }
     }
 
     @Override
@@ -161,6 +166,10 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     }
 
     protected int applySpecialMultiplier(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, int whichMove, int dmg) {
+        if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerEnemyBuff.POWER_ID) && target instanceof AbstractMonster) {
+            int amount = getPower(MultiplayerEnemyBuff.POWER_ID).amount;
+            return (int)(dmg * (1.0f + ((float)amount / 100)));
+        }
         return dmg;
     }
 
@@ -311,6 +320,10 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             if (info.base > -1) {
                 info.applyPowers(this, target);
+                if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerEnemyBuff.POWER_ID)) {
+                    int amount = getPower(MultiplayerEnemyBuff.POWER_ID).amount;
+                    info.output = (int)(info.output * (1.0f + ((float)amount / 100)));
+                }
                 ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
                 PowerTip intentTip = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
                 int multiplier = moves.get(this.nextMove).multiplier;

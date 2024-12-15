@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.MultiplayerAllyBuff;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
 import ruina.powers.act2.Corpse;
 import ruina.util.TexLoader;
 
@@ -43,9 +43,6 @@ public class MeltedCorpses extends AbstractRuinaMonster
     public void usePreBattleAction() {
         addPower(new MinionPower(this));
         applyToTarget(this, this, new Corpse(this, HEAL));
-        if (RuinaMod.isMultiplayerConnected()) {
-            applyToTarget(this, this, new MultiplayerAllyBuff(this));
-        }
     }
 
     @Override

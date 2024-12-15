@@ -18,7 +18,7 @@ import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
 import ruina.actions.TransferBlockToAllyAction;
 import ruina.powers.InvisibleAllyBarricadePower;
-import ruina.powers.MultiplayerAllyBuff;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
 import ruina.util.AllyMove;
 
 import java.util.ArrayList;

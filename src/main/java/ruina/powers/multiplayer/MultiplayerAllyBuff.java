@@ -1,4 +1,4 @@
-package ruina.powers;
+package ruina.powers.multiplayer;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
+import ruina.powers.AbstractUnremovablePower;
 
 public class MultiplayerAllyBuff extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(MultiplayerAllyBuff.class.getSimpleName());

@@ -19,7 +19,7 @@ import ruina.RuinaMod;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.powers.Erosion;
-import ruina.powers.MultiplayerAllyBuff;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
 import ruina.powers.act2.BlindFury;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;

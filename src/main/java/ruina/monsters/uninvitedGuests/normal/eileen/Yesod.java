@@ -26,7 +26,7 @@ import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.eileen.yesodCards.FloodingBullets;
 import ruina.monsters.uninvitedGuests.normal.eileen.yesodCards.Reload;
 import ruina.powers.AbstractLambdaPower;
-import ruina.powers.MultiplayerAllyBuff;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 

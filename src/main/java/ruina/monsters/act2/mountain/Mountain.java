@@ -18,12 +18,15 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.CenterOfAttention;
 import ruina.powers.act2.Absorption;
 import ruina.powers.act2.Bodies;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
+import ruina.powers.multiplayer.MultiplayerEnemyBuff;
 import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -103,6 +106,9 @@ public class Mountain extends AbstractMultiIntentMonster
         applyToTarget(this, this, stagePower);
         applyToTarget(this, this, new Bodies(this));
         applyToTarget(this, this, new CenterOfAttention(this));
+        if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new MultiplayerEnemyBuff(this));
+        }
     }
 
     @Override
@@ -334,7 +340,7 @@ public class Mountain extends AbstractMultiIntentMonster
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power.ID.equals(Absorption.POWER_ID)) && !(power.ID.equals(Bodies.POWER_ID)) && !power.ID.equals(CenterOfAttention.POWER_ID)) {
+                if (!(power.ID.equals(Absorption.POWER_ID)) && !(power.ID.equals(Bodies.POWER_ID)) && !power.ID.equals(CenterOfAttention.POWER_ID) && !power.ID.equals(MultiplayerEnemyBuff.POWER_ID)) {
                     powersToRemove.add(power);
                 }
             }
