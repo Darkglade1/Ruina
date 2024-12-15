@@ -50,9 +50,9 @@ public class FearMultiplayer extends AbstractUnremovablePower {
 
     private void trigger() {
         this.flash();
-        atb(new ApplyPowerAction(this.owner, adp(), new StrengthPower(this.owner, -strLoss), -strLoss));
+        atb(new ApplyPowerAction(this.owner, this.owner, new StrengthPower(this.owner, -strLoss), -strLoss));
         if (!this.owner.hasPower(ArtifactPower.POWER_ID)) {
-            atb(new ApplyPowerAction(this.owner, adp(), new GainStrengthPower(this.owner, strLoss), strLoss));
+            atb(new ApplyPowerAction(this.owner, this.owner, new GainStrengthPower(this.owner, strLoss), strLoss));
         }
     }
 
