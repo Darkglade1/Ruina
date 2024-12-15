@@ -24,6 +24,7 @@ import ruina.patches.RenderHandPatch;
 import ruina.powers.AbstractUnremovablePower;
 import ruina.powers.LosePowerPower;
 import ruina.powers.NextTurnPowerPower;
+import spireTogether.patches.combatsync.ActionPatches;
 
 import java.util.ArrayList;
 import java.util.function.BiFunction;
@@ -226,7 +227,12 @@ public class Wiz {
     }
 
     public static void dmg(AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect) {
-        atb(new DamageAction(target, info, effect));
+        DamageAction action = new DamageAction(target, info, effect);
+        if (info.owner instanceof AbstractMonster) {
+            ActionPatches.markActionForNoDamageSync(action);
+            ActionPatches.markActionForNoDataSync(action);
+        }
+        atb(action);
     }
 
     public static void dmg(AbstractCreature target, DamageInfo info) {

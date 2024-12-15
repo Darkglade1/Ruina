@@ -20,11 +20,8 @@ import ruina.actions.TransferBlockToAllyAction;
 import ruina.powers.InvisibleAllyBarricadePower;
 import ruina.powers.MultiplayerAllyBuff;
 import ruina.util.AllyMove;
-import spireTogether.gamemodes.TiSGameModeSettings;
-import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeUIPath;
