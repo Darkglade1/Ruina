@@ -52,8 +52,8 @@ public class Mountain extends AbstractMultiIntentMonster
     private final int DAZES = calcAscensionSpecial(3);
     private final int SLIMES = calcAscensionSpecial(1);
 
-    private final int STAGE1_HP = calcAscensionTankiness(50);
-    private final int STAGE2_HP = calcAscensionTankiness(100);
+    private final int STAGE1_HP;
+    private final int STAGE2_HP;
     private final int STAGE3_HP = calcAscensionTankiness(125);
 
     public static final int STAGE3 = 3;
@@ -64,17 +64,14 @@ public class Mountain extends AbstractMultiIntentMonster
     private static final float STARTING_PERCENT = 0.50f;
     private AbstractPower stagePower;
 
-    public static final String BODIES_POWER_ID = makeID("Bodies");
-    public static final PowerStrings BODIESPowerStrings = CardCrawlGame.languagePack.getPowerStrings(BODIES_POWER_ID);
-    public static final String BODIES_POWER_NAME = BODIESPowerStrings.NAME;
-    public static final String[] BODIES_POWER_DESCRIPTIONS = BODIESPowerStrings.DESCRIPTIONS;
-
     public Mountain(final float x, final float y) {
         super(ID, ID, 100, -5.0F, 0, 330.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Mountain/Spriter/Mountain.scml"));
         setNumAdditionalMoves(2);
         this.setHp(STAGE3_HP);
-        this.currentHealth = (int)(STAGE3_HP * STARTING_PERCENT);
+        STAGE2_HP = Math.round(this.maxHealth * 0.8f);
+        STAGE1_HP = Math.round((float)this.maxHealth / 6);
+        this.currentHealth = (int)(this.maxHealth * STARTING_PERCENT);
         updateHealthBar();
         runAnim("Idle3");
 
@@ -337,7 +334,7 @@ public class Mountain extends AbstractMultiIntentMonster
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power.ID.equals(Absorption.POWER_ID)) && !(power.ID.equals(BODIES_POWER_ID)) && !power.ID.equals(CenterOfAttention.POWER_ID)) {
+                if (!(power.ID.equals(Absorption.POWER_ID)) && !(power.ID.equals(Bodies.POWER_ID)) && !power.ID.equals(CenterOfAttention.POWER_ID)) {
                     powersToRemove.add(power);
                 }
             }
