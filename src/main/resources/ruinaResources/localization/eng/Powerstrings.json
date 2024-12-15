@@ -658,5 +658,9 @@
   "${ModID}:MultiplayerAllyBuff": {
     "NAME": "Multiplayer Adjustment",
     "DESCRIPTIONS": ["Deals #b", "% more damage to enemies. NL Receives #b", "% more damage from enemies."]
+  },
+  "${ModID}:FearMultiplayer": {
+    "NAME": "Fear",
+    "DESCRIPTIONS": ["Whenever players play #b", " #yAttack(s), this creature loses #b", " #yStrength this turn."]
   }
 }

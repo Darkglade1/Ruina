@@ -6,9 +6,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act1.Fear;
+import ruina.powers.multiplayer.FearMultiplayer;
 import ruina.util.DetailedIntent;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 
@@ -40,7 +43,11 @@ public class ForsakenMurderer extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new Fear(this, STRENGTH_LOSS));
+        if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new FearMultiplayer(this, STRENGTH_LOSS, P2PManager.GetPlayerCount(), 0));
+        } else {
+            applyToTarget(this, this, new Fear(this, STRENGTH_LOSS));
+        }
     }
 
     @Override
