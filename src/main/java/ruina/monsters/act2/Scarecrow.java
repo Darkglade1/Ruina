@@ -5,11 +5,9 @@ import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.WisdomAction;
 import ruina.cards.Wisdom;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act2.Search;
@@ -50,7 +48,6 @@ public class Scarecrow extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        atb(new WisdomAction());
         applyToTarget(this, this, new Search(this));
     }
 
