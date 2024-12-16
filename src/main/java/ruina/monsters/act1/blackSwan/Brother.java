@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act1.BrotherPower;
 
@@ -21,9 +22,9 @@ public class Brother extends AbstractRuinaMonster
     private static final byte GREEN_WASTE = 0;
     private static final byte NONE = 1;
 
-    private final int PLATED_ARMOR = calcAscensionSpecial(2);
+    private final int PLATED_ARMOR = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(2));
     private final int STATUS = calcAscensionSpecial(1);
-    private final int ARTIFACT = calcAscensionSpecial(1);
+    private final int ARTIFACT = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(1));
     private final int VULNERABLE = 1;
 
     private final int brotherNum;

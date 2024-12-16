@@ -47,7 +47,7 @@ public class Gunman extends AbstractMultiIntentMonster
     private static final int MASS_ATTACK_COOLDOWN = 2;
     private int counter = MASS_ATTACK_COOLDOWN;
 
-    private final int BLOCK = calcAscensionTankiness(10);
+    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(10));
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int DEBUFF = calcAscensionSpecial(1);
     private final int VULNERABLE = 1;

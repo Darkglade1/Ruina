@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Erosion;
 import ruina.powers.act1.Dream;
@@ -30,7 +31,7 @@ public class BlackSwan extends AbstractRuinaMonster
     private static final byte REALITY = 2;
     private static final byte SHRIEK = 3;
 
-    private final int BLOCK = calcAscensionTankiness(7);
+    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(7));
     private final int DEBUFF = calcAscensionSpecial(1);
     private final int EROSION = calcAscensionSpecial(3);
     private final int STRENGTH = calcAscensionSpecial(1);

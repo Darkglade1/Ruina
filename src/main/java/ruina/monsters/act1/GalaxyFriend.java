@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.RegenerateMonsterPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act1.DontLeave;
 import ruina.util.DetailedIntent;
@@ -34,7 +35,7 @@ public class GalaxyFriend extends AbstractRuinaMonster
 
     private final int REGEN = 2;
     private final int DEBUFF = calcAscensionSpecial(1);
-    private final int BLOCK = calcAscensionTankiness(7);
+    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(7));
 
     public GalaxyFriend() {
         this(0.0f, 0.0f);

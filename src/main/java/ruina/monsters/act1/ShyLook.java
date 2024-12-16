@@ -33,10 +33,10 @@ public class ShyLook extends AbstractRuinaMonster
     private static final byte DEFEND_ATTACK = 4;
     private static final byte ATTACK = 5;
 
-    private final int BLOCK = calcAscensionTankiness(13);
+    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(13));
     private final int STRENGTH = calcAscensionSpecial(3);
     private final int DEBUFF = calcAscensionSpecial(1);
-    private final int ATTACK_BLOCK = calcAscensionTankiness(6);
+    private final int ATTACK_BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(6));
 
     private final int CARD_THRESHOLD = 3;
     private int face = 1;

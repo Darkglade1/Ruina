@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.EntanglePower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act1.Hunt;
 import ruina.util.DetailedIntent;
@@ -26,7 +27,7 @@ public class SpiderBud extends AbstractRuinaMonster
 
     public boolean enraged = false;
 
-    private final int BLOCK = calcAscensionTankiness(4);
+    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(5));
 
     public SpiderBud() {
         this(0.0f, 0.0f);

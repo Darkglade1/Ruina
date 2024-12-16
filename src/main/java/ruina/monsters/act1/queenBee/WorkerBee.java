@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.util.DetailedIntent;
 
@@ -20,7 +21,7 @@ public class WorkerBee extends AbstractRuinaMonster
     private static final byte CARRY_LARVAE = 0;
     private static final byte GARDU_DU_CORPS = 1;
 
-    private final int BLOCK = calcAscensionTankiness(5);
+    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(5));
 
     public WorkerBee() {
         this(0.0f, 0.0f);

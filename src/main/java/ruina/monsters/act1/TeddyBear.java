@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act1.Affection;
 import ruina.util.DetailedIntent;
@@ -21,7 +22,7 @@ public class TeddyBear extends AbstractRuinaMonster
     private static final byte TIMID_ENDEARMENT = 0;
     private static final byte DISPLAY_AFFECTION = 1;
 
-    private final int BLOCK = calcAscensionTankiness(11);
+    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(11));
     private final int STRENGTH = calcAscensionSpecial(1);
 
     public TeddyBear() {
