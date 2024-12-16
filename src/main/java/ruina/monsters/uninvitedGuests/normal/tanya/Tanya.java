@@ -309,7 +309,7 @@ public class Tanya extends AbstractCardMonster
             if (!this.lastMove(FISTICUFFS)) {
                 possibilities.add(FISTICUFFS);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
         }
     }
@@ -332,7 +332,7 @@ public class Tanya extends AbstractCardMonster
             if (!this.lastMove(KICKS_AND_STOMPS, moveHistory) && !this.lastMoveBefore(KICKS_AND_STOMPS, moveHistory)) {
                 possibilities.add(KICKS_AND_STOMPS);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
         }
     }

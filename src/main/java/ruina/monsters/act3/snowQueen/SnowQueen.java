@@ -140,7 +140,7 @@ public class SnowQueen extends AbstractRuinaMonster
             if (!this.lastMove(FROZEN_THRONE) && !this.lastMoveBefore(FROZEN_THRONE)) {
                 possibilities.add(FROZEN_THRONE);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -150,7 +150,7 @@ public class SnowQueen extends AbstractRuinaMonster
             if (!this.lastTwoMoves(ICE_SPLINTERS)) {
                 possibilities.add(ICE_SPLINTERS);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }

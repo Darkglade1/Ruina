@@ -283,7 +283,7 @@ public class Puppeteer extends AbstractCardMonster
             if (!this.lastMove(THIN_STRINGS)) {
                 possibilities.add(THIN_STRINGS);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
         }
     }
@@ -304,7 +304,7 @@ public class Puppeteer extends AbstractCardMonster
             if (!this.lastMove(PUPPETRY, moveHistory)) {
                 possibilities.add(PUPPETRY);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
         }
     }

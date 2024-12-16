@@ -178,7 +178,7 @@ public class Gunman extends AbstractMultiIntentMonster
             if (!this.lastMove(SILENT_SCOPE)) {
                 possibilities.add(SILENT_SCOPE);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }

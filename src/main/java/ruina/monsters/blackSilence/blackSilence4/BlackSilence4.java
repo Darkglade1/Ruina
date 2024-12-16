@@ -343,7 +343,7 @@ public class BlackSilence4 extends AbstractCardMonster {
         if (!this.lastMove(VOID) && !this.lastMoveBefore(VOID)) {
             possibilities.add(VOID);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
     }
 
@@ -364,7 +364,7 @@ public class BlackSilence4 extends AbstractCardMonster {
             if (!this.lastMove(VOID, moveHistory) && !this.lastMoveBefore(VOID, moveHistory)) {
                 possibilities.add(VOID);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
         }
     }

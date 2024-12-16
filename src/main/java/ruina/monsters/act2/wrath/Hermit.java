@@ -157,7 +157,7 @@ public class Hermit extends AbstractMultiIntentMonster
             if (!this.lastMove(CRACKLE) && !this.lastMoveBefore(CRACKLE)) {
                 possibilities.add(CRACKLE);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }
@@ -172,7 +172,7 @@ public class Hermit extends AbstractMultiIntentMonster
         if (!this.lastTwoMoves(MAKE_WAY, moveHistory)) {
             possibilities.add(MAKE_WAY);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setAdditionalMoveShortcut(move, moveHistory);
     }
 

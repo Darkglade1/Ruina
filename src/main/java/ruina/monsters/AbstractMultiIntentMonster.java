@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.BobEffect;
@@ -30,6 +32,7 @@ import ruina.vfx.VFXActionButItCanFizzle;
 import spireTogether.networkcore.P2P.P2PManager;
 import spireTogether.networkcore.objects.entities.NetworkIntent;
 import spireTogether.networkcore.objects.entities.NetworkMonster;
+import spireTogether.networkcore.objects.rooms.NetworkLocation;
 import spireTogether.other.RoomDataManager;
 import spireTogether.util.SpireHelp;
 
@@ -177,9 +180,22 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     public void rollMove() {
         additionalIntents.clear();
         additionalMoves.clear();
-        this.getMove(AbstractDungeon.aiRng.random(99));
+        Random seedToUse;
+        if (RuinaMod.isMultiplayerConnected()) {
+            Long newSeed = 0L;
+            NetworkLocation l = SpireHelp.Gameplay.GetMapLocation(false);
+            if(l != null){
+                newSeed += l.x;
+                newSeed += l.y;
+            }
+            newSeed += GameActionManager.turn;
+            seedToUse = new Random(newSeed);
+        } else {
+            seedToUse = AbstractDungeon.aiRng;
+        }
+        this.getMove(seedToUse.random(99));
         for (int i = 0; i < numAdditionalMoves; i++) {
-            getAdditionalMoves(AbstractDungeon.aiRng.random(99), i);
+            getAdditionalMoves(seedToUse.random(99), i);
         }
         if (RuinaMod.isMultiplayerConnected()) {
             ArrayList<NetworkIntent> additionalNetworkMoves = new ArrayList<>();

@@ -253,7 +253,7 @@ public class Greta extends AbstractCardMonster
         if (!this.lastMove(SLAP) && !this.lastMoveBefore(SLAP)) {
             possibilities.add(SLAP);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
     }
 
@@ -271,7 +271,7 @@ public class Greta extends AbstractCardMonster
             if (!this.lastMove(SEASON, moveHistory) && !this.lastMoveBefore(SEASON, moveHistory)) {
                 possibilities.add(SEASON);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
         } else {
             if (meat != null && !meat.isDeadOrEscaped()) {

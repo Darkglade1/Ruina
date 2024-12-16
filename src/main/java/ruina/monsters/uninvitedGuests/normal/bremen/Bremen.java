@@ -219,7 +219,7 @@ public class Bremen extends AbstractCardMonster
             if (!this.lastMove(TENDON) && !this.lastMoveBefore(TENDON)) {
                 possibilities.add(TENDON);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
         }
     }
@@ -247,7 +247,7 @@ public class Bremen extends AbstractCardMonster
         if (possibilities.isEmpty()) {
             possibilities.add(NEIGH);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
     }
 

@@ -90,7 +90,7 @@ public class QueenOfHate extends AbstractRuinaMonster
             if (!this.lastTwoMoves(NAME_OF_HATE)) {
                 possibilities.add(NAME_OF_HATE);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }

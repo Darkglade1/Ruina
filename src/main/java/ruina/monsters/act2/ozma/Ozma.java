@@ -142,7 +142,7 @@ public class Ozma extends AbstractRuinaMonster
             if (!this.lastMove(POWDER_OF_LIFE) && !this.lastMoveBefore(POWDER_OF_LIFE)) {
                 possibilities.add(POWDER_OF_LIFE);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }

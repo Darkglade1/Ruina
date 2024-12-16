@@ -176,7 +176,7 @@ public class Puppet extends AbstractAllyAttackingMinion
             if (!this.lastTwoMoves(REPRESSED_FLESH)) {
                 possibilities.add(REPRESSED_FLESH);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }

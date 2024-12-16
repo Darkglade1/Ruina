@@ -216,7 +216,7 @@ public class Mountain extends AbstractMultiIntentMonster
             if (!this.lastMove(HORRID_SCREECH) && !this.lastMoveBefore(HORRID_SCREECH)) {
                 possibilities.add(HORRID_SCREECH);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -226,7 +226,7 @@ public class Mountain extends AbstractMultiIntentMonster
             if (!this.lastTwoMoves(BITE)) {
                 possibilities.add(BITE);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }
@@ -248,7 +248,7 @@ public class Mountain extends AbstractMultiIntentMonster
                 if (!this.lastTwoMoves(BITE, moveHistory)) {
                     possibilities.add(BITE);
                 }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
                 setAdditionalMoveShortcut(move, moveHistory);
             }
         } else {

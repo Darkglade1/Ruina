@@ -86,7 +86,7 @@ public class ForsakenMurderer extends AbstractRuinaMonster
             if (!this.lastTwoMoves(METALLIC_RINGING)) {
                 possibilities.add(METALLIC_RINGING);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }

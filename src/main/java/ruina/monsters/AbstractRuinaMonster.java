@@ -4,6 +4,7 @@ import basemod.ReflectionHacks;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -466,6 +467,11 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
             }
         }
         return false;
+    }
+
+    protected int convertNumToRandomIndex(int num, float size) {
+        float convertedNum = (float)num / 100;
+        return Math.round(Interpolation.linear.apply(0, size, convertedNum));
     }
 
 }

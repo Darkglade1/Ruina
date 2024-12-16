@@ -131,7 +131,7 @@ public class CryingChild extends AbstractAllyAttackingMinion
         if (!this.lastTwoMoves(MURMUR)) {
             possibilities.add(MURMUR);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
     }
 

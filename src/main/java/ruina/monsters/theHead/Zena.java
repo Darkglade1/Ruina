@@ -445,7 +445,7 @@ public class Zena extends AbstractCardMonster {
                 if (!this.lastMove(LINE)) {
                     possibilities.add(LINE);
                 }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
                 setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
             }
         } else {
@@ -459,7 +459,7 @@ public class Zena extends AbstractCardMonster {
                 if (!this.lastMove(LINE)) {
                     possibilities.add(LINE);
                 }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
                 setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
             }
         }
@@ -481,7 +481,7 @@ public class Zena extends AbstractCardMonster {
         if (!this.lastMove(LINE, moveHistory) && !this.lastMoveBefore(LINE, moveHistory)) {
             possibilities.add(LINE);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
     }
 

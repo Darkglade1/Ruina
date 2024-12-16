@@ -82,7 +82,7 @@ public class SanguineBat extends AbstractRuinaMonster
         if (!this.lastMove(AVID_THIRST) && !this.lastMoveBefore(AVID_THIRST)) {
             possibilities.add(AVID_THIRST);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
     }
 

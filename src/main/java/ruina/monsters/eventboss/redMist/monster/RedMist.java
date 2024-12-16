@@ -330,7 +330,7 @@ public class RedMist extends AbstractCardMonster {
                     possibilities.add(SPEAR);
                 }
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
 
         }

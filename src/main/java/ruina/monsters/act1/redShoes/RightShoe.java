@@ -67,7 +67,7 @@ public class RightShoe extends AbstractRuinaMonster
         if (!this.lastTwoMoves(BURSTING_DESIRE)) {
             possibilities.add(BURSTING_DESIRE);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
     }
 

@@ -354,7 +354,7 @@ public class Malkuth extends AbstractAllyCardMonster
             if (possibilities.isEmpty()) {
                 possibilities.add(FERVID_EMOTIONS);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move, cardList.get(move));
         }
     }

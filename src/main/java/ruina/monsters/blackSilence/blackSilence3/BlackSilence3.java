@@ -224,7 +224,7 @@ public class BlackSilence3 extends AbstractCardMonster {
             if (!this.lastMove(FURY) && !this.lastMoveBefore(FURY)) {
                 possibilities.add(FURY);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
         }
     }

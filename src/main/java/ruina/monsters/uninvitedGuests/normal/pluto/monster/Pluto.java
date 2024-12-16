@@ -188,7 +188,7 @@ public class Pluto extends AbstractCardMonster {
                 if (!this.lastMove(BINDING_TERMS) && !this.lastMoveBefore(BINDING_TERMS)) {
                     possibilities.add(BINDING_TERMS);
                 }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
                 setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
             }
         }
@@ -207,7 +207,7 @@ public class Pluto extends AbstractCardMonster {
         if (!this.lastMove(MISSLE, moveHistory)) {
             possibilities.add(MISSLE);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
     }
 

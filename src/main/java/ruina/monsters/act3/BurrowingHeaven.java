@@ -105,7 +105,7 @@ public class BurrowingHeaven extends AbstractRuinaMonster
         if (!this.lastMove(GAZE_OF_OTHERS) && !this.lastMoveBefore(GAZE_OF_OTHERS)) {
             possibilities.add(GAZE_OF_OTHERS);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
     }
 

@@ -93,7 +93,7 @@
 ////
 ////        }
 //        possibilities.add(THY_WILL_BE_DONE);
-//        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+//        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
 //        setMoveShortcut(move);
 //    }
 //

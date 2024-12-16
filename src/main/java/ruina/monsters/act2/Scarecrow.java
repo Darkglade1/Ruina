@@ -107,7 +107,7 @@ public class Scarecrow extends AbstractRuinaMonster
             if (!this.lastMove(HARVEST)) {
                 possibilities.add(HARVEST);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }

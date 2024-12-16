@@ -215,7 +215,7 @@ public class Angelica extends AbstractCardMonster {
             if (!this.lastMove(ATELIER) && !this.lastMoveBefore(ATELIER)) {
                 possibilities.add(ATELIER);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
         }
     }

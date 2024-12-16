@@ -584,7 +584,7 @@ public class Baral extends AbstractCardMonster
                 possibilities.add(EXTIRPATION);
             }
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
     }
 

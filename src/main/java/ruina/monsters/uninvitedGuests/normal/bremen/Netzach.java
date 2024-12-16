@@ -160,7 +160,7 @@ public class Netzach extends AbstractAllyCardMonster
         if (possibilities.isEmpty()) {
             possibilities.add(BLIND_FAITH);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move, cardList.get(move));
     }
 

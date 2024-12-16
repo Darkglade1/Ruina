@@ -184,7 +184,7 @@ public class VermilionCross extends AbstractCardMonster
             if (possibilities.isEmpty()) {
                 possibilities.add(HEATED_WEAPON);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
         }
     }
@@ -205,7 +205,7 @@ public class VermilionCross extends AbstractCardMonster
         if (!this.lastMove(HEAT_UP, moveHistory) && !this.lastMoveBefore(HEAT_UP, moveHistory)) {
             possibilities.add(HEAT_UP);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
     }
 

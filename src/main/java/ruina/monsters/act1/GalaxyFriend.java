@@ -108,7 +108,7 @@ public class GalaxyFriend extends AbstractRuinaMonster
         if (!this.lastMove(GLIMMER)) {
             possibilities.add(GLIMMER);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
     }
 

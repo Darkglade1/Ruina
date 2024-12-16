@@ -215,7 +215,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
             if (!this.lastMove(SWORD_OF_TEARS)) {
                 possibilities.add(SWORD_OF_TEARS);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }
@@ -237,7 +237,7 @@ public class JesterOfNihil extends AbstractMultiIntentMonster
                 if (!this.lastMove(SWORD_OF_TEARS, moveHistory)) {
                     possibilities.add(SWORD_OF_TEARS);
                 }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
                 setAdditionalMoveShortcut(move, moveHistory);
             }
         }
