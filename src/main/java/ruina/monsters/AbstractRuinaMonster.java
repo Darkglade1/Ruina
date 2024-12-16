@@ -415,10 +415,6 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         super.render(sb);
     }
 
-    protected void postGetMove() {
-        setDetailedIntents();
-    }
-
     protected void setDetailedIntents() {
         if (!RuinaMod.disableDetailedIntentsConfig && !adp().hasRelic(RunicDome.ID)) {
             DetailedIntent.intents.put(this, getDetailedIntents());
@@ -440,9 +436,9 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
     @Override
-    public void rollMove() {
-        super.rollMove();
-        postGetMove();
+    public void createIntent() {
+        super.createIntent();
+        setDetailedIntents();
     }
 
     protected boolean lastMoveBeforeBefore(byte move) {

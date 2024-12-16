@@ -181,7 +181,6 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         for (int i = 0; i < numAdditionalMoves; i++) {
             getAdditionalMoves(AbstractDungeon.aiRng.random(99), i);
         }
-        postGetMove();
         if (RuinaMod.isMultiplayerConnected()) {
             ArrayList<NetworkIntent> additionalNetworkMoves = new ArrayList<>();
             for (EnemyMoveInfo info : this.additionalMoves) {

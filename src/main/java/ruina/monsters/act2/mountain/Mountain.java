@@ -73,7 +73,7 @@ public class Mountain extends AbstractMultiIntentMonster
         setNumAdditionalMoves(2);
         this.setHp(STAGE3_HP);
         STAGE2_HP = Math.round(this.maxHealth * 0.8f);
-        STAGE1_HP = Math.round(this.maxHealth * 0.2f);
+        STAGE1_HP = Math.round(this.maxHealth * 0.4f);
         this.currentHealth = (int)(this.maxHealth * STARTING_PERCENT);
         updateHealthBar();
         runAnim("Idle3");
