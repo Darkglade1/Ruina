@@ -1,6 +1,7 @@
 package ruina.monsters.act2.jester;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -58,6 +59,9 @@ public class QueenOfLove extends AbstractMagicalGirl
 
     @Override
     public void takeTurn() {
+        if (firstMove) {
+            atb(new TalkAction(this, this.getSummonDialog()));
+        }
         super.takeTurn();
         AbstractMonster mo = this;
         AbstractMonster jester = target;
@@ -96,10 +100,10 @@ public class QueenOfLove extends AbstractMagicalGirl
         if (this.currentHealth <= this.maxHealth * 0.30f) {
             setMoveShortcut(LOVE_AND_JUSTICE);
         } else {
-            if (this.lastMove(ARCANA_BEATS)) {
-                setMoveShortcut(LOVE_AND_JUSTICE);
-            } else {
+            if (this.lastMove(LOVE_AND_JUSTICE)) {
                 setMoveShortcut(ARCANA_BEATS);
+            } else {
+                setMoveShortcut(LOVE_AND_JUSTICE);
             }
         }
     }

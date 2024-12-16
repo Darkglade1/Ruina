@@ -66,6 +66,8 @@ import ruina.monsters.act2.*;
 import ruina.monsters.act2.greed.BrilliantBliss;
 import ruina.monsters.act2.greed.KingOfGreed;
 import ruina.monsters.act2.jester.JesterOfNihil;
+import ruina.monsters.act2.jester.QueenOfLove;
+import ruina.monsters.act2.jester.ServantOfCourage;
 import ruina.monsters.act2.jester.Statue;
 import ruina.monsters.act2.knight.KnightOfDespair;
 import ruina.monsters.act2.knight.Sword;
@@ -989,8 +991,8 @@ public class RuinaMod implements
                 }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
         briah.addBoss(JesterOfNihil.ID, "Jester of Nihil", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new Statue(-350.0f, 0.0F, 1),
-                        new Statue(-150.0f, 0.0F, 0),
+                        new QueenOfLove(-600.0f, 0.0F),
+                        new ServantOfCourage(-400.0f, 0.0F),
                         new JesterOfNihil(),
                 }), makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
         briah.addBoss(Ozma.ID, "Ozma", () -> new MonsterGroup(

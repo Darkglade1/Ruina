@@ -20,9 +20,6 @@ public abstract class AbstractMagicalGirl extends AbstractAllyMonster {
                 target = (JesterOfNihil) mo;
             }
         }
-        rollMove();
-        createIntent();
-        AbstractDungeon.onModifyPower();
         super.usePreBattleAction();
     }
 

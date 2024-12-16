@@ -165,8 +165,13 @@ public class RoadHome extends AbstractMultiIntentMonster
 
     public void homeDeath() {
         isHomeDead = true;
-        makePowerRemovable(this, EasilyDistracted.POWER_ID);
-        atb(new RemoveSpecificPowerAction(this, this, EasilyDistracted.POWER_ID));
+        if (RuinaMod.isMultiplayerConnected()) {
+            makePowerRemovable(this, EasilyDistractedMultiplayer.POWER_ID);
+            atb(new RemoveSpecificPowerAction(this, this, EasilyDistractedMultiplayer.POWER_ID));
+        } else {
+            makePowerRemovable(this, EasilyDistracted.POWER_ID);
+            atb(new RemoveSpecificPowerAction(this, this, EasilyDistracted.POWER_ID));
+        }
     }
 
     public void catDeath() {

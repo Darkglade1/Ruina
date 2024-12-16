@@ -69,9 +69,9 @@ public class Statue extends AbstractRuinaMonster
         setMove(NONE, Intent.NONE);
     }
 
-    @Override
-    public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
-        jester.SummonGirl(magicalGirl);
-    }
+//    @Override
+//    public void die(boolean triggerRelics) {
+//        super.die(triggerRelics);
+//        jester.SummonGirl(magicalGirl);
+//    }
 }

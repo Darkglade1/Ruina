@@ -1,5 +1,6 @@
 package ruina.monsters.act2.jester;
 
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -49,6 +50,9 @@ public class ServantOfCourage extends AbstractMagicalGirl
 
     @Override
     public void takeTurn() {
+        if (firstMove) {
+            atb(new TalkAction(this, this.getSummonDialog()));
+        }
         super.takeTurn();
         switch (this.nextMove) {
             case HELP: {
@@ -78,10 +82,10 @@ public class ServantOfCourage extends AbstractMagicalGirl
         if (this.currentHealth <= this.maxHealth * 0.30f) {
             setMoveShortcut(HELP);
         } else {
-            if (this.lastMove(PROTECT_FRIEND)) {
-                setMoveShortcut(HELP);
-            } else {
+            if (this.lastMove(HELP)) {
                 setMoveShortcut(PROTECT_FRIEND);
+            } else {
+                setMoveShortcut(HELP);
             }
         }
     }
