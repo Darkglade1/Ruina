@@ -2,33 +2,22 @@ package ruina.monsters.act2.greed;
 
 import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.FragmentOfBliss;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act2.Bliss;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.applyToTarget;
-import static ruina.util.Wiz.atb;
 
 public class BrilliantBliss extends AbstractRuinaMonster
 {
     public static final String ID = makeID(BrilliantBliss.class.getSimpleName());
 
     private static final byte NONE = 0;
-
-    public static final String POWER_ID = makeID("Bliss");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     AbstractCard fragment = new FragmentOfBliss();
 
@@ -45,17 +34,7 @@ public class BrilliantBliss extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         addPower(new MinionPower(this));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + FontHelper.colorString(fragment.name, "y") + POWER_DESCRIPTIONS[1];
-            }
-
-            @Override
-            public void onDeath() {
-                atb(new MakeTempCardInHandAction(fragment, 1));
-            }
-        });
+        applyToTarget(this, this, new Bliss(this, fragment));
     }
 
     @Override

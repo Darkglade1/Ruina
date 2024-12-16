@@ -3,7 +3,9 @@ package ruina.multiplayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.monsters.act1.AllAroundHelper;
+import ruina.monsters.act2.knight.Sword;
 import ruina.powers.act1.Pattern;
+import ruina.powers.act2.Worthless;
 import spireTogether.networkcore.objects.entities.NetworkIntent;
 import spireTogether.networkcore.objects.rooms.NetworkLocation;
 import spireTogether.other.RoomDataManager;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public class MessengerListener implements TiSNetworkMessageSubscriber {
 
     public static String request_helperClearedDebuffs = "ruina_helperClearedDebuffs";
+    public static String request_swordCommittedSuicide = "ruina_swordCommittedSuicide";
     @Override
     public void onMessageReceive(NetworkMessage networkMessage, String s, Object o, Integer integer) {
         if (networkMessage.request.equals(NetworkMultiIntentMonster.request_monsterUpdateAdditionalIntents)) {
@@ -49,6 +52,20 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
                     if (m instanceof AllAroundHelper && SpireHelp.Gameplay.CreatureToUID(m).equals(monsterID)) {
                         if (m.hasPower(Pattern.POWER_ID)) {
                             m.getPower(Pattern.POWER_ID).onSpecificTrigger();
+                        }
+                    }
+                }
+            }
+        }
+        if (networkMessage.request.equals(request_swordCommittedSuicide)) {
+            Object[] dataIn = (Object[]) networkMessage.object;
+            String monsterID = (String)dataIn[0];
+            NetworkLocation requestLocation = (NetworkLocation)dataIn[1];
+            if (requestLocation.isSameRoomAndAction()) {
+                for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+                    if (m instanceof Sword && SpireHelp.Gameplay.CreatureToUID(m).equals(monsterID)) {
+                        if (m.hasPower(Worthless.POWER_ID)) {
+                            m.getPower(Worthless.POWER_ID).onSpecificTrigger();
                         }
                     }
                 }
