@@ -17,6 +17,7 @@ import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.act1.Mimicry;
+import ruina.powers.multiplayer.MimicryMultiplayer;
 import ruina.powers.multiplayer.MultiplayerEnemyBuff;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -79,9 +80,11 @@ public class NothingThere extends AbstractMultiIntentMonster
             }
         }
         applyToTarget(this, this, new InvisibleBarricadePower(this));
-        applyToTarget(this, this, new Mimicry(this, 0));
         if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new MimicryMultiplayer(this, 0));
             applyToTarget(this, this, new MultiplayerEnemyBuff(this));
+        } else {
+            applyToTarget(this, this, new Mimicry(this, 0));
         }
     }
 

@@ -99,7 +99,13 @@ public class Gunman extends AbstractMultiIntentMonster
                 massAttackAnimation(target);
                 waitAnimation();
                 massAttackEffect();
-                atb(new DamageAllOtherCharactersAction(this, calcMassAttack(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                int[] damageArray = calcMassAttack(info);
+                for (int j = 0; j < damageArray.length - 1; j++) {
+                    if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerEnemyBuff.POWER_ID)) {
+                        damageArray[j] *= (1.0f + ((float)getPower(MultiplayerEnemyBuff.POWER_ID).amount / 100));
+                    }
+                }
+                atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle();
                 waitAnimation();
                 counter = MASS_ATTACK_COOLDOWN + 1;
