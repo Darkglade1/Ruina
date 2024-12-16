@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class NetworkMultiIntentMonster extends NetworkRuinaMonster implements Serializable {
+    static final long serialVersionUID = 1L;
     public ArrayList<NetworkIntent> additionalMoves;
     public ArrayList<ArrayList<Byte>> additionalMovesHistory;
     public static String request_monsterUpdateAdditionalIntents = "ruina_monsterUpdateAdditionalIntents";

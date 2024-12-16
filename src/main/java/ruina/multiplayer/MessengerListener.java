@@ -35,21 +35,6 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
                 mo.additionalMoves = additionalMoves;
                 mo.additionalMovesHistory = additionalMovesHistory;
             }
-
-            if (requestLocation.isSameRoomAndAction()) {
-                for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-                    if (m instanceof AbstractMultiIntentMonster && SpireHelp.Gameplay.CreatureToUID(m).equals(monsterID)) {
-                        ((AbstractMultiIntentMonster)m).additionalMoves.clear();
-                        ((AbstractMultiIntentMonster)m).additionalIntents.clear();
-                        for (NetworkIntent intent : additionalMoves) {
-                            ((AbstractMultiIntentMonster)m).additionalMoves.add(intent.toStandard());
-                            AdditionalIntent additionalIntent = new AdditionalIntent(m, intent.toStandard());
-                            ((AbstractMultiIntentMonster)m).additionalIntents.add(additionalIntent);
-                        }
-                        ((AbstractMultiIntentMonster)m).additionalMovesHistory = additionalMovesHistory;
-                    }
-                }
-            }
         }
         if (networkMessage.request.equals(NetworkRuinaMonster.request_monsterUpdateFirstMove)) {
             Object[] dataIn = (Object[]) networkMessage.object;
@@ -59,14 +44,6 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
             NetworkRuinaMonster mo = (NetworkRuinaMonster) RoomDataManager.GetMonsterForLocation(monsterID, requestLocation);
             if (mo != null) {
                 mo.firstMove = firstMove;
-            }
-
-            if (requestLocation.isSameRoomAndAction()) {
-                for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-                    if (m instanceof AbstractRuinaMonster && SpireHelp.Gameplay.CreatureToUID(m).equals(monsterID)) {
-                        ((AbstractRuinaMonster)m).firstMove = firstMove;
-                    }
-                }
             }
         }
         if (networkMessage.request.equals(request_helperClearedDebuffs)) {

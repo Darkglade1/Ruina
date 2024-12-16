@@ -7,6 +7,7 @@ import spireTogether.networkcore.objects.entities.NetworkMonster;
 import java.io.Serializable;
 
 public class NetworkRuinaMonster extends NetworkMonster implements Serializable {
+    static final long serialVersionUID = 1L;
     public boolean firstMove;
     public static String request_monsterUpdateFirstMove = "ruina_monsterUpdateFirstMove";
 
