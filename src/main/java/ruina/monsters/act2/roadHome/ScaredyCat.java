@@ -8,10 +8,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act2.Courage;
 import ruina.powers.act2.CourageInvisiblePower;
+import ruina.powers.multiplayer.CourageInvisiblePowerMultiplayer;
+import ruina.powers.multiplayer.CourageMultiplayer;
 import ruina.util.DetailedIntent;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 
@@ -60,8 +64,13 @@ public class ScaredyCat extends AbstractRuinaMonster
                 road = (RoadHome)mo;
             }
         }
-        applyToTarget(this, this, new Courage(this, STRENGTH, road));
-        applyToTarget(road, this, new CourageInvisiblePower(road));
+        if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new CourageMultiplayer(this, STRENGTH, P2PManager.GetPlayerCount(), 0, road));
+            applyToTarget(road, this, new CourageInvisiblePowerMultiplayer(road));
+        } else {
+            applyToTarget(this, this, new Courage(this, STRENGTH, road));
+            applyToTarget(road, this, new CourageInvisiblePower(road));
+        }
     }
 
     @Override

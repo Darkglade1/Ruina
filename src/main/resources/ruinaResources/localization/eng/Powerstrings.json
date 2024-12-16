@@ -665,10 +665,22 @@
   },
   "${ModID}:FearMultiplayer": {
     "NAME": "Fear",
-    "DESCRIPTIONS": ["Whenever players play #b", " #yAttack(s) in a single turn, this creature loses #b", " #yStrength this turn."]
+    "DESCRIPTIONS": ["Whenever players play #b", " #yAttacks in a single turn, this creature loses #b", " #yStrength this turn."]
   },
   "${ModID}:ExpressionMultiplayer": {
     "NAME": "Expression",
     "DESCRIPTIONS": ["Whenever players play #b", " cards, this creature changes its intent."]
+  },
+  "${ModID}:MimicryMultiplayer": {
+    "NAME": "Mimicry",
+    "DESCRIPTIONS": ["Deals additional attack damage equal to the base damage of the last #yAttack played this combat by players."]
+  },
+  "${ModID}:EasilyDistractedMultiplayer": {
+    "NAME": "Easily Distracted",
+    "DESCRIPTIONS": ["When attacked #b", " times by players in a single turn, this creature #rcancels one of its intents for the turn."]
+  },
+  "${ModID}:CourageMultiplayer": {
+    "NAME": "Courage",
+    "DESCRIPTIONS": ["Whenever the ", " is attacked #b", " times by players in a single turn, this creature gains #b", " #yStrength this turn. NL NL If the #yRoad #yHome dies, this creature will intend to #yflee."]
   }
 }

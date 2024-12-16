@@ -18,8 +18,10 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.act2.EasilyDistracted;
+import ruina.powers.multiplayer.EasilyDistractedMultiplayer;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 
@@ -74,7 +76,11 @@ public class RoadHome extends AbstractMultiIntentMonster
                 target = (HomeAlly)mo;
             }
         }
-        applyToTarget(this, this, new EasilyDistracted(this));
+        if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new EasilyDistractedMultiplayer(this, P2PManager.GetPlayerCount(), 0));
+        } else {
+            applyToTarget(this, this, new EasilyDistracted(this));
+        }
     }
 
     @Override
