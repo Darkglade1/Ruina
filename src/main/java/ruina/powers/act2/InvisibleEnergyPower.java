@@ -1,9 +1,10 @@
-package ruina.powers;
+package ruina.powers.act2;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import ruina.RuinaMod;
+import ruina.powers.AbstractEasyPower;
 
 import static ruina.util.Wiz.atb;
 

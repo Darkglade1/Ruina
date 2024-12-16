@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import ruina.RuinaMod;
 import ruina.powers.AbstractUnremovablePower;
-import ruina.powers.InvisibleEnergyPower;
 
 import static ruina.util.Wiz.*;
 

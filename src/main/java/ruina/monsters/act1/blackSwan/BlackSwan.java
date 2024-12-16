@@ -31,7 +31,7 @@ public class BlackSwan extends AbstractRuinaMonster
     private static final byte REALITY = 2;
     private static final byte SHRIEK = 3;
 
-    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(7));
+    private final int BLOCK = calcAscensionTankiness(7);
     private final int DEBUFF = calcAscensionSpecial(1);
     private final int EROSION = calcAscensionSpecial(3);
     private final int STRENGTH = calcAscensionSpecial(1);

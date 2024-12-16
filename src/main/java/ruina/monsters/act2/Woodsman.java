@@ -5,15 +5,13 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.InvisibleEnergyPower;
 import ruina.powers.act2.Heart;
+import ruina.powers.act2.InvisibleEnergyPower;
 import ruina.util.DetailedIntent;
 import ruina.vfx.BloodSplatter;
 
@@ -36,11 +34,6 @@ public class Woodsman extends AbstractRuinaMonster
     private final int STATUS = calcAscensionSpecial(1);
     private final int DEBUFF = calcAscensionSpecial(2);
 
-    public static final String HEART_POWER_ID = makeID("Heart");
-    public static final PowerStrings HEARTPowerStrings = CardCrawlGame.languagePack.getPowerStrings(HEART_POWER_ID);
-    public static final String HEART_POWER_NAME = HEARTPowerStrings.NAME;
-    public static final String[] HEART_POWER_DESCRIPTIONS = HEARTPowerStrings.DESCRIPTIONS;
-
     public Woodsman() {
         this(0.0f, 0.0f);
     }
@@ -56,7 +49,7 @@ public class Woodsman extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(adp(), adp(), new InvisibleEnergyPower(adp(), ENERGY_GAIN));
+        applyToTarget(adp(), this, new InvisibleEnergyPower(adp(), ENERGY_GAIN));
         applyToTarget(this, this, new Heart(this, STRENGTH, ENERGY_GAIN));
     }
 

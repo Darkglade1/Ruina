@@ -24,7 +24,7 @@ public class Brother extends AbstractRuinaMonster
 
     private final int PLATED_ARMOR = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(2));
     private final int STATUS = calcAscensionSpecial(1);
-    private final int ARTIFACT = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(1));
+    private final int ARTIFACT = calcAscensionSpecial(1);
     private final int VULNERABLE = 1;
 
     private final int brotherNum;

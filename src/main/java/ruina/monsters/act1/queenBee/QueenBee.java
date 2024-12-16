@@ -25,7 +25,7 @@ public class QueenBee extends AbstractRuinaMonster
     private static final byte HORNET_STRIKE = 2;
 
     private final int STRENGTH = calcAscensionSpecial(2);
-    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(9));
+    private final int BLOCK = calcAscensionTankiness(9);
 
     public QueenBee() {
         this(0.0f, 0.0f);

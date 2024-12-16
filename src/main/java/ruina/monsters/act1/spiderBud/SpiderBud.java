@@ -27,7 +27,7 @@ public class SpiderBud extends AbstractRuinaMonster
 
     public boolean enraged = false;
 
-    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(5));
+    private final int BLOCK = calcAscensionTankiness(5);
 
     public SpiderBud() {
         this(0.0f, 0.0f);

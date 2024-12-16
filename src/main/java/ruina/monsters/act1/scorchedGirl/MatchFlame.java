@@ -23,7 +23,7 @@ public class MatchFlame extends AbstractRuinaMonster
     private static final byte BROKEN_HOPE = 0;
     private static final byte KINDLE = 1;
 
-    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(6));
+    private final int BLOCK = calcAscensionTankiness(6);
 
     public MatchFlame() {
         this(0.0f, 0.0f);

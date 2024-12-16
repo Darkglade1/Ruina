@@ -35,7 +35,7 @@ public class NothingThere extends AbstractMultiIntentMonster
     private static final byte REACHING_HAND = 2;
     private static final byte EVOLVE = 3;
 
-    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(12));
+    private final int BLOCK = calcAscensionTankiness(12);
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int STATUS = calcAscensionSpecial(1);
 
