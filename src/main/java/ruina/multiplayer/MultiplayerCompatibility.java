@@ -4,8 +4,8 @@ import spireTogether.SpireTogetherMod;
 
 public class MultiplayerCompatibility {
     public static void addSubscribers() {
-        NoMultiplyPowerList.initializeNoMultiplayerPowersList();
-        SpireTogetherMod.subscribe(new NoMultiplyPowerList());
+        MultiplayerPowerSyncRules.initializePowersList();
+        SpireTogetherMod.subscribe(new MultiplayerPowerSyncRules());
         SpireTogetherMod.subscribe(new MultiplayerSubscriber());
         SpireTogetherMod.subscribe(new MessengerListener());
     }

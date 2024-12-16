@@ -8,24 +8,27 @@ import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import javassist.CtClass;
 import ruina.RuinaMod;
 import ruina.powers.AbstractEasyPower;
+import ruina.powers.InvisibleAllyBarricadePower;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
 import spireTogether.subscribers.TiSPowerSyncRulesSubscriber;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class NoMultiplyPowerList implements TiSPowerSyncRulesSubscriber {
-    protected static ArrayList<Class<? extends AbstractPower>> powerClassList = new ArrayList<>();
+public class MultiplayerPowerSyncRules implements TiSPowerSyncRulesSubscriber {
+    protected static ArrayList<Class<? extends AbstractPower>> noMultiplyPowerClassList = new ArrayList<>();
+    protected static ArrayList<Class<? extends AbstractPower>> noSyncPowerClassList = new ArrayList<>();
     @Override
     public ArrayList<Class<? extends AbstractPower>> noMultiplyPowers() {
-        return powerClassList;
+        return noMultiplyPowerClassList;
     }
 
     @Override
     public ArrayList<Class<? extends AbstractPower>> noSyncPowers() {
-        return new ArrayList<>();
+        return noSyncPowerClassList;
     }
 
-    public static void initializeNoMultiplayerPowersList() {
+    public static void initializePowersList() {
         AutoAdd autoAdd = new AutoAdd(RuinaMod.getModID())
                 .packageFilter(RuinaMod.class);
 
@@ -37,13 +40,17 @@ public class NoMultiplyPowerList implements TiSPowerSyncRulesSubscriber {
             if (!ignore) {
                 try {
                     Class<? extends AbstractEasyPower> powerClass = (Class<? extends AbstractEasyPower>) Loader.getClassPool().getClassLoader().loadClass(ctClass.getName());
-                    powerClassList.add(powerClass);
+                    noMultiplyPowerClassList.add(powerClass);
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
             }
         }
-        powerClassList.add(GainStrengthPower.class);
-        powerClassList.add(LoseStrengthPower.class);
+        noMultiplyPowerClassList.add(GainStrengthPower.class);
+        noMultiplyPowerClassList.add(LoseStrengthPower.class);
+
+        // maybe add ally powers to this list?
+        noSyncPowerClassList.add(MultiplayerAllyBuff.class);
+        noSyncPowerClassList.add(InvisibleAllyBarricadePower.class);
     }
 }
