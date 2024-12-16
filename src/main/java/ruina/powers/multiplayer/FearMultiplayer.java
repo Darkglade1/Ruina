@@ -57,6 +57,11 @@ public class FearMultiplayer extends AbstractUnremovablePower {
     }
 
     @Override
+    public void atEndOfRound() {
+        amount = 0;
+    }
+
+    @Override
     public void updateDescription() {
         description = POWER_DESCRIPTIONS[0] + cardThreshold + POWER_DESCRIPTIONS[1] + strLoss + POWER_DESCRIPTIONS[2];
     }
