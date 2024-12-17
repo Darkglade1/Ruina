@@ -686,5 +686,9 @@
   "${ModID}:SenselessWrathMultiplayer": {
     "NAME": "Senseless Wrath",
     "DESCRIPTIONS": ["Every other #pdebuff applied to this creature by #yplayers or other enemies is #ynegated."]
+  },
+  "${ModID}:CounterAttackMultiplayer": {
+    "NAME": "Counter Attack",
+    "DESCRIPTIONS": ["Whenever #yplayers play #b", " #yAttacks this turn, this creature will #yCounter #yAttack ALL #yplayers. If this effect did not trigger at least once this turn, will use a #rpowerful attack next turn."]
   }
 }

@@ -15,7 +15,9 @@ import ruina.monsters.AbstractCardMonster;
 import ruina.powers.Paralysis;
 import ruina.powers.act2.CounterAttack;
 import ruina.powers.act2.Rupture;
+import ruina.powers.multiplayer.CounterAttackMultiplayer;
 import ruina.util.TexLoader;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 
@@ -140,6 +142,7 @@ public class Kim extends AbstractCardMonster {
         bluntAnimation(adp());
         dmg(adp(), info);
         resetIdle();
+        usedCounter = true;
     }
 
     @Override
@@ -147,7 +150,11 @@ public class Kim extends AbstractCardMonster {
         byte move;
         if (this.lastMove(YIELD)) {
             usedCounter = false;
-            applyToTarget(this, this, new CounterAttack(this));
+            if (RuinaMod.isMultiplayerConnected()) {
+                applyToTarget(this, this, new CounterAttackMultiplayer(this, P2PManager.GetPlayerCount(), 0));
+            } else {
+                applyToTarget(this, this, new CounterAttack(this));
+            }
             move = CLAIM;
         } else if (this.lastMove(CLAIM) && usedCounter) {
             move = ACUPUNCTURE;
