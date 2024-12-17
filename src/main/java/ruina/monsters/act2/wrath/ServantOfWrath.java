@@ -181,10 +181,10 @@ public class ServantOfWrath extends AbstractAllyMonster
     @Override
     public void applyPowers() {
         if (hermit != null) {
-            if (hermit.staff == null || this.intent == IntentEnums.MASS_ATTACK) {
+            if (hermit.getAliveMinion() == null || this.intent == IntentEnums.MASS_ATTACK) {
                 target = hermit;
             } else {
-                target = hermit.staff;
+                target = hermit.getAliveMinion();
             }
         }
         super.applyPowers();
