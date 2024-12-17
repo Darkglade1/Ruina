@@ -55,7 +55,7 @@ public class ZenaNoPreEvent extends Zena {
 
     @Override
     protected void getMove(final int num) {
-        if (!firstMove && GameActionManager.turn == 1) { // this gives zena shockwave on turn 2
+        if (moveHistory.size() == 1) { // this gives zena shockwave on turn 2
             setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
         } else {
             super.getMove(num);
