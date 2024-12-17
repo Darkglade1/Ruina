@@ -45,7 +45,7 @@ public class HomeAlly extends AbstractAllyMonster
                 roadHome = (RoadHome)mo;
             }
         }
-        applyToTarget(this, this, new WayHome(this));
+        addPower(new WayHome(this));
         super.usePreBattleAction();
     }
 

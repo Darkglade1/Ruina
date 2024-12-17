@@ -135,9 +135,9 @@ public class Malkuth extends AbstractAllyCardMonster
                 target = (Philip)mo;
             }
         }
-        applyToTarget(this, this, new Dragon(this, EXHAUST_GAIN));
-        applyToTarget(this, this, new Emotion(this, 0, EMOTION_THRESHOLD));
-        applyToTarget(this, this, new StrengthPower(this, STARTING_STR));
+        addPower(new Dragon(this, EXHAUST_GAIN));
+        addPower(new Emotion(this, 0, EMOTION_THRESHOLD));
+        addPower(new StrengthPower(this, STARTING_STR));
         super.usePreBattleAction();
     }
 

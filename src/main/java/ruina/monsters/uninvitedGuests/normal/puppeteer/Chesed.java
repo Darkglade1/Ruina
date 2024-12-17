@@ -85,7 +85,7 @@ public class Chesed extends AbstractAllyCardMonster
                 target = puppeteer = (Puppeteer)mo;
             }
         }
-        applyToTarget(this, this, new FinishingTouch(this, MARK_DURATION, MARK_BOOST));
+        addPower(new FinishingTouch(this, MARK_DURATION, MARK_BOOST));
         super.usePreBattleAction();
     }
 

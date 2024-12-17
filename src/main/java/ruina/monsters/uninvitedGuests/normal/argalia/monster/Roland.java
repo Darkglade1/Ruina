@@ -111,7 +111,7 @@ public class Roland extends AbstractAllyCardMonster {
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, power);
+        addPower(power);
         updatePower();
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Argalia) {

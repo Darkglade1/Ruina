@@ -38,7 +38,7 @@ public class RolandHead extends Roland {
     public void usePreBattleAction() {
         if (!usedPreBattleAction) {
             usedPreBattleAction = true;
-            applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
+            addPower(new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
                 @Override
                 public void onAfterUseCard(AbstractCard card, UseCardAction action) {
                     this.amount++;

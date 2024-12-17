@@ -78,7 +78,7 @@ public class LittleRed extends AbstractAllyMonster
                 target = (NightmareWolf)mo;
             }
         }
-        applyToTarget(this, this, new FuryWithNoOutlet(this));
+        addPower(new FuryWithNoOutlet(this));
         super.usePreBattleAction();
     }
 

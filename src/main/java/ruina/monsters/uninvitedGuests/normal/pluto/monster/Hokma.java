@@ -69,7 +69,7 @@ public class Hokma extends AbstractAllyCardMonster
                 target = pluto = (Pluto)mo;
             }
         }
-        applyToTarget(this, this, new PriceOfTime(this, CARDS_PER_TURN));
+        addPower(new PriceOfTime(this, CARDS_PER_TURN));
         super.usePreBattleAction();
     }
 

@@ -82,7 +82,7 @@ public class Yesod extends AbstractAllyCardMonster
                 target = (Eileen)mo;
             }
         }
-        applyToTarget(this, this, new DarkBargain(this));
+        addPower(new DarkBargain(this));
         super.usePreBattleAction();
     }
 

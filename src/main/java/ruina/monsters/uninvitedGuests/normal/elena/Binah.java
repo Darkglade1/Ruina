@@ -82,7 +82,7 @@ public class Binah extends AbstractAllyCardMonster
                 vermilionCross = (VermilionCross)mo;
             }
         }
-        applyToTarget(this, this, new Arbiter(this));
+        addPower(new Arbiter(this));
         super.usePreBattleAction();
     }
 

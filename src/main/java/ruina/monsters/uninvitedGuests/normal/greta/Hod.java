@@ -114,7 +114,7 @@ public class Hod extends AbstractAllyCardMonster
                 this.isDone = true;
             }
         });
-        applyToTarget(this, this, stancePower);
+        addPower(stancePower);
         super.usePreBattleAction();
         AllyMove changeToSlash = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("SlashStance.png")), DIALOG[3], () -> {
             if (stance == SLASH) {

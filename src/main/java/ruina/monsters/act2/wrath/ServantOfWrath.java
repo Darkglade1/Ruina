@@ -88,7 +88,7 @@ public class ServantOfWrath extends AbstractAllyMonster
                 target = hermit;
             }
         }
-        applyToTarget(this, this, new BlindFury(this, furyThreshold));
+        addPower(new BlindFury(this, furyThreshold));
         super.usePreBattleAction();
     }
 

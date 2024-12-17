@@ -83,7 +83,7 @@ public class Tiph extends AbstractAllyCardMonster
         }
         trigramPower = new FourTrigrams(this);
         trigramPower.changeTrigram(trigram);
-        applyToTarget(this, this, trigramPower);
+        addPower(trigramPower);
         super.usePreBattleAction();
     }
 

@@ -48,7 +48,7 @@ public class BinahHead extends Binah {
     public void usePreBattleAction() {
         if (!usedPreBattleAction) {
             usedPreBattleAction = true;
-            applyToTarget(this, this, new SingularityF(this, 1));
+            addPower(new SingularityF(this, 1));
             super.usePreBattleAction();
             for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (mo instanceof Baral) {

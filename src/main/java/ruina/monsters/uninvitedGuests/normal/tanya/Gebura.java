@@ -96,7 +96,7 @@ public class Gebura extends AbstractAllyCardMonster
                 target = (Tanya)mo;
             }
         }
-        applyToTarget(this, this, new GeburaRedMist(this, powerStrength, EGOtimer));
+        addPower(new GeburaRedMist(this, powerStrength, EGOtimer));
         super.usePreBattleAction();
     }
 

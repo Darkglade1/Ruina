@@ -73,7 +73,7 @@ public class Netzach extends AbstractAllyCardMonster
                 target = (Bremen)mo;
             }
         }
-        applyToTarget(this, this, new Messenger(this));
+        addPower(new Messenger(this));
         super.usePreBattleAction();
     }
 

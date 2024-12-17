@@ -53,7 +53,7 @@ public class QueenOfLove extends AbstractMagicalGirl
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new Justice(this));
+        addPower(new Justice(this));
         super.usePreBattleAction();
     }
 
