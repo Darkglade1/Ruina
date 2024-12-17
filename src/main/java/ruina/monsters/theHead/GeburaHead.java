@@ -20,10 +20,12 @@ import static ruina.util.Wiz.atb;
 public class GeburaHead extends Gebura {
 
     private boolean usedPreBattleAction = false;
+    public boolean shouldIncrementPower;
 
-    public GeburaHead(final float x, final float y) {
+    public GeburaHead(final float x, final float y, boolean shouldIncrementPower) {
         super(x, y);
         this.setHp(calcAscensionTankiness(350));
+        this.shouldIncrementPower = shouldIncrementPower;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class GeburaHead extends Gebura {
                 @Override
                 public void update() {
                     AbstractPower power = getPower(POWER_ID);
-                    if (power != null) {
+                    if (power != null && shouldIncrementPower) {
                         if (power instanceof TwoAmountPower) {
                             ((TwoAmountPower) power).amount2++;
                             power.updateDescription(); //stop her power from ticking down too early

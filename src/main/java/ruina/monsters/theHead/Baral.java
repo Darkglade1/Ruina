@@ -61,11 +61,11 @@ public class Baral extends AbstractCardMonster
     public static final String ID = makeID(Baral.class.getSimpleName());
     public static final String METRICS_ID = makeID("TheHead");
 
-    private static final byte SERUM_W = 0;
-    private static final byte SERUM_R = 1;
-    private static final byte EXTIRPATION = 2;
-    private static final byte TRI_SERUM_COCKTAIL = 3;
-    private static final byte SERUM_K = 4;
+    protected static final byte SERUM_W = 0;
+    protected static final byte SERUM_R = 1;
+    protected static final byte EXTIRPATION = 2;
+    protected static final byte TRI_SERUM_COCKTAIL = 3;
+    protected static final byte SERUM_K = 4;
 
     public final int SERUM_W_DAMAGE = calcAscensionDamage(40);
 
@@ -83,7 +83,7 @@ public class Baral extends AbstractCardMonster
     public final int SERUM_K_HEAL = calcAscensionTankiness(200);
     public final int SERUM_K_STR = calcAscensionSpecial(2);
     public final int KILL_THRESHOLD = 30;
-    private final int SERUM_W_DAMAGE_MULTIPLIER = 3;
+    protected final int SERUM_W_DAMAGE_MULTIPLIER = 3;
 
     public Zena zena;
     public RolandHead roland;
@@ -97,7 +97,7 @@ public class Baral extends AbstractCardMonster
     public int playerCardDraw;
     public boolean deathTriggered = false;
     private boolean usedPreBattleAction = false;
-    private boolean useExtirpation = true;
+    protected boolean useExtirpation = true;
 
     public enum PHASE{
         PHASE1,
@@ -105,17 +105,14 @@ public class Baral extends AbstractCardMonster
     }
 
     public PHASE currentPhase;
-    private static final ArrayList<TextureRegion> bgTextures = new ArrayList<>();
-    private static final ArrayList<Texture> serumWFinish = new ArrayList<>();
-
-    public Baral() { this(0.0f, 0.0f, PHASE.PHASE1); }
-    public Baral(final float x, final float y) { this(x, y, PHASE.PHASE1); }
-    public Baral(final float x, final float y, PHASE phase) {
+    protected static final ArrayList<TextureRegion> bgTextures = new ArrayList<>();
+    protected static final ArrayList<Texture> serumWFinish = new ArrayList<>();
+    public Baral(final float x, final float y) {
         super(ID, ID, 999999, -5.0F, 0, 160.0f, 300.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Baral/Spriter/Baral.scml"));
         setNumAdditionalMoves(1);
         numAdditionalMoves = 0;
-        currentPhase = phase;
+        currentPhase = PHASE.PHASE1;
         this.setHp(calcAscensionTankiness(5000));
 
         addMove(SERUM_W, Intent.ATTACK, SERUM_W_DAMAGE);
@@ -495,15 +492,17 @@ public class Baral extends AbstractCardMonster
                 this.isDone = true;
             }
         });
-
         atb(new RollMoveAction(this));
+        handlePreEvent();
+    }
 
+    protected void handlePreEvent() {
         if(currentPhase.equals(PHASE.PHASE1)){
             switch (GameActionManager.turn){
                 case 2:
                     waitAnimation();
                     atb(new HeadDialogueAction(0, 2));
-                    GeburaHead gebura = new GeburaHead(-700.0f, 0.0f);
+                    GeburaHead gebura = new GeburaHead(-700.0f, 0.0f, true);
                     atb(new SpawnMonsterAction(gebura, false));
                     atb(new UsePreBattleActionAction(gebura));
                     gebura.onEntry();

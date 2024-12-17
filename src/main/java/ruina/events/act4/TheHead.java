@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import ruina.RuinaMod;
+import ruina.dungeons.EncounterIDs;
 import ruina.monsters.theHead.Baral;
 
 import static ruina.RuinaMod.makeEventPath;
@@ -64,7 +65,11 @@ public class TheHead extends AbstractImageEvent {
     }
 
     public void savedTransitionToHeadFight() {
-        AbstractDungeon.bossKey = Baral.ID;
+        if (RuinaMod.isMultiplayerConnected()) {
+            AbstractDungeon.bossKey = EncounterIDs.HEAD_NO_PRE;
+        } else {
+            AbstractDungeon.bossKey = EncounterIDs.HEAD;
+        }
         CardCrawlGame.music.fadeOutBGM();
         CardCrawlGame.music.fadeOutTempBGM();
         MapRoomNode node = new MapRoomNode(-1, 15);

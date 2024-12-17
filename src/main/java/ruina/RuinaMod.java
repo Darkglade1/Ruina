@@ -106,8 +106,7 @@ import ruina.monsters.eventboss.kim.Kim;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
 import ruina.monsters.eventboss.yan.monster.yanDistortion;
-import ruina.monsters.theHead.Baral;
-import ruina.monsters.theHead.Zena;
+import ruina.monsters.theHead.*;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
@@ -1173,10 +1172,18 @@ public class RuinaMod implements
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 
         //The Head
-        BaseMod.addMonster(Baral.ID, "The Head", () -> new MonsterGroup(
+        BaseMod.addMonster(EncounterIDs.HEAD, "The Head", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Baral(-250.0F, 0.0F),
                         new Zena(-50.0F, 0.0F),
+                }));
+        BaseMod.addMonster(EncounterIDs.HEAD_NO_PRE, "The Head", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new BinahHead(-1250.0f, 0.0f),
+                        new RolandHead(-975.0F, 0.0f),
+                        new GeburaHead(-700.0f, 0.0f, false),
+                        new BaralNoPreEvent(-250.0F, 0.0F),
+                        new ZenaNoPreEvent(-50.0F, 0.0F),
                 }));
 
         reverbClear = ruinaConfig.getBool("reverbClear");
