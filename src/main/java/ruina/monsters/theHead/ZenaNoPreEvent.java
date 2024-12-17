@@ -45,7 +45,7 @@ public class ZenaNoPreEvent extends Zena {
             applyToTarget(this, this, new SingularityJ(this, baral));
             applyToTarget(baral, baral, new SingularityJInvisible(baral, this));
         }
-        applyToTarget(adp(), adp(), new PlayerBackAttack(adp(), BACK_ATTACK_AMT));
+        applyToTarget(adp(), this, new PlayerBackAttack(adp(), BACK_ATTACK_AMT));
     }
 
     @Override
