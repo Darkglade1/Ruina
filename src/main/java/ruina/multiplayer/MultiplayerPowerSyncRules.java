@@ -8,8 +8,7 @@ import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import javassist.CtClass;
 import ruina.RuinaMod;
 import ruina.powers.AbstractEasyPower;
-import ruina.powers.InvisibleAllyBarricadePower;
-import ruina.powers.multiplayer.MultiplayerAllyBuff;
+import ruina.powers.act4.FreshMeat;
 import spireTogether.subscribers.TiSPowerSyncRulesSubscriber;
 
 import java.util.ArrayList;
@@ -49,8 +48,6 @@ public class MultiplayerPowerSyncRules implements TiSPowerSyncRulesSubscriber {
         noMultiplyPowerClassList.add(GainStrengthPower.class);
         noMultiplyPowerClassList.add(LoseStrengthPower.class);
 
-        // maybe add ally powers to this list?
-        noSyncPowerClassList.add(MultiplayerAllyBuff.class);
-        noSyncPowerClassList.add(InvisibleAllyBarricadePower.class);
+        noSyncPowerClassList.add(FreshMeat.class);
     }
 }

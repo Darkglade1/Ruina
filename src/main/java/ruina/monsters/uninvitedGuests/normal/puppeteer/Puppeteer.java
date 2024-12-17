@@ -10,13 +10,14 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
@@ -25,8 +26,8 @@ import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.puppeteerCards.*;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.act4.Mastermind;
 
 import java.util.ArrayList;
 import java.util.function.BiFunction;
@@ -51,19 +52,13 @@ public class Puppeteer extends AbstractCardMonster
     public final int tuggingStringsHits = 2;
 
     private final int MASTERMIND_DAMAGE_REDUCTION = calcAscensionSpecial(50);
-    private static final int MASS_ATTACK_COOLDOWN = 3;
-    private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
     public final int BLOCK = calcAscensionTankiness(20);
     public final int STRENGTH = calcAscensionSpecial(3);
     public final int DEBUFF = calcAscensionSpecial(1);
     public final int VULNERABLE = 1;
     public Puppet puppet;
-
-    public static final String POWER_ID = makeID("Mastermind");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    private boolean aboutToMassAttack;
 
     public Puppeteer() {
         this(0.0f, 0.0f);
@@ -109,40 +104,7 @@ public class Puppeteer extends AbstractCardMonster
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public float atDamageReceive(float damage, DamageInfo.DamageType type) {
-                //handles attack damage
-                if (type == DamageInfo.DamageType.NORMAL) {
-                    return calculateDamageTakenAmount(damage, type);
-                } else {
-                    return damage;
-                }
-            }
-
-            private float calculateDamageTakenAmount(float damage, DamageInfo.DamageType type) {
-                if (owner.hasPower(Chesed.MARK_POWER_ID)) {
-                    return damage;
-                } else {
-                    return damage * (1 - ((float)MASTERMIND_DAMAGE_REDUCTION / 100));
-                }
-            }
-
-            @Override
-            public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-                //handles non-attack damage
-                if (info.type != DamageInfo.DamageType.NORMAL) {
-                    return (int) calculateDamageTakenAmount(damageAmount, info.type);
-                } else {
-                    return damageAmount;
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + MASTERMIND_DAMAGE_REDUCTION + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Mastermind(this, MASTERMIND_DAMAGE_REDUCTION));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -165,13 +127,6 @@ public class Puppeteer extends AbstractCardMonster
                 massAttackFinishAnimation();
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        massAttackCooldown = MASS_ATTACK_COOLDOWN + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case TUGGING_STRINGS: {
@@ -256,19 +211,13 @@ public class Puppeteer extends AbstractCardMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                massAttackCooldown--;
-                this.isDone = true;
-            }
-        });
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (massAttackCooldown <= 0) {
+        aboutToMassAttack = aboutToMassAttack();
+        if (threeTurnCooldownHasPassedForMove(PULLING_STRINGS_TAUT)) {
             setMoveShortcut(PULLING_STRINGS_TAUT, MOVES[PULLING_STRINGS_TAUT], cardList.get(PULLING_STRINGS_TAUT).makeStatEquivalentCopy());
         } else if (lastMove(ASSAILING_PULLS)) {
             setMoveShortcut(TUGGING_STRINGS, MOVES[TUGGING_STRINGS], cardList.get(TUGGING_STRINGS).makeStatEquivalentCopy());
@@ -277,7 +226,7 @@ public class Puppeteer extends AbstractCardMonster
             if (!this.lastMove(TUGGING_STRINGS)) {
                 possibilities.add(TUGGING_STRINGS);
             }
-            if (!this.lastMove(ASSAILING_PULLS) && target != null && !target.isDead && !target.isDying && massAttackCooldown != 1) {
+            if (!this.lastMove(ASSAILING_PULLS) && target != null && !target.isDead && !target.isDying && !aboutToMassAttack) {
                 possibilities.add(ASSAILING_PULLS);
             }
             if (!this.lastMove(THIN_STRINGS)) {
@@ -298,7 +247,7 @@ public class Puppeteer extends AbstractCardMonster
             if (!this.lastMove(TUGGING_STRINGS, moveHistory)) {
                 possibilities.add(TUGGING_STRINGS);
             }
-            if (!this.lastMove(ASSAILING_PULLS, moveHistory) && this.nextMove != ASSAILING_PULLS && massAttackCooldown != 1) {
+            if (!this.lastMove(ASSAILING_PULLS, moveHistory) && !this.lastMove(ASSAILING_PULLS) && !aboutToMassAttack) {
                 possibilities.add(ASSAILING_PULLS);
             }
             if (!this.lastMove(PUPPETRY, moveHistory)) {
@@ -307,6 +256,16 @@ public class Puppeteer extends AbstractCardMonster
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
         }
+    }
+
+    private boolean aboutToMassAttack() {
+        if (moveHistory.size() == 3) {
+            return true;
+        }
+        if (this.lastMoveBeforeBefore(PULLING_STRINGS_TAUT)) {
+            return true;
+        }
+        return false;
     }
 
     @Override

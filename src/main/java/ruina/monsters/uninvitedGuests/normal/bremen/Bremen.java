@@ -8,10 +8,8 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -20,8 +18,8 @@ import ruina.cards.Melody;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.bremen.bremenCards.*;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.act4.MelodyPower;
 import ruina.powers.Paralysis;
+import ruina.powers.act4.MelodyPower;
 import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
@@ -58,11 +56,6 @@ public class Bremen extends AbstractCardMonster
     private boolean lastIntentTargetAlly = true;
     public Melody melodyCard = new Melody();
     private final MelodyPower melodyPower = new MelodyPower(this, MELODY_LENGTH, MELODY_PLAYER_STR, MELODY_BOSS_STR, melodyCard);
-
-    public static final String POWER_ID = makeID("Melody");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Bremen() {
         this(0.0f, 0.0f);

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
+import ruina.powers.act4.GeburaRedMist;
 import ruina.powers.act5.GeburaProwess;
 import ruina.vfx.WaitEffect;
 
@@ -44,7 +45,7 @@ public class GeburaHead extends Gebura {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    AbstractPower power = getPower(POWER_ID);
+                    AbstractPower power = getPower(GeburaRedMist.POWER_ID);
                     if (power != null && shouldIncrementPower) {
                         if (power instanceof TwoAmountPower) {
                             ((TwoAmountPower) power).amount2++;
@@ -72,7 +73,7 @@ public class GeburaHead extends Gebura {
     public void dialogue() {
     }
 
-    protected void manifestEGO() {
+    public void manifestEGO() {
         atb(new AbstractGameAction() {
             @Override
             public void update() {

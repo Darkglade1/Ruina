@@ -5,14 +5,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.*;
@@ -27,11 +22,6 @@ public class FreshMeat extends AbstractRuinaMonster
     private final AbstractCard card;
     private boolean gaveCard = false;
 
-    public static final String POWER_ID = makeID("FreshMeat");
-    public static final PowerStrings PowerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = PowerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = PowerStrings.DESCRIPTIONS;
-
     public FreshMeat(final float x, final float y, AbstractCard card) {
         super(ID, ID, 80, -5.0F, 0, 230.0f, 225.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("FreshMeat/Spriter/FreshMeat.scml"));
@@ -42,13 +32,7 @@ public class FreshMeat extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, HEAL) {
-            @Override
-            public void updateDescription() {
-                String cardName = FontHelper.colorString(card.name, "y");
-                description = POWER_DESCRIPTIONS[0] + HEAL + POWER_DESCRIPTIONS[1] + cardName + POWER_DESCRIPTIONS[2] + cardName + POWER_DESCRIPTIONS[3];
-            }
-        });
+        applyToTarget(this, this, new ruina.powers.act4.FreshMeat(this, HEAL, card));
     }
 
     @Override

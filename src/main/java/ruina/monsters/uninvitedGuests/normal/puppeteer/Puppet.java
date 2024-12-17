@@ -8,17 +8,15 @@ import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.actions.unique.IncreaseMaxHpAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractAllyAttackingMinion;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.BetterPlatedArmor;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.act4.PuppetStrings;
 
 import java.util.ArrayList;
 
@@ -38,12 +36,6 @@ public class Puppet extends AbstractAllyAttackingMinion
     private final int BLOCK = calcAscensionTankiness(12);
     private final int PLATED_ARMOR = calcAscensionSpecial(11);
     public final int maxHPIncrease = calcAscensionTankiness(20);
-    private Puppeteer puppeteer;
-
-    public static final String POWER_ID = makeID("PuppetStrings");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Puppet(final float x, final float y) {
         super(ID, ID, 40, -5.0F, 0, 250.0f, 395.0f, null, x, y);
@@ -66,11 +58,6 @@ public class Puppet extends AbstractAllyAttackingMinion
     @Override
     public void usePreBattleAction() {
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Puppeteer) {
-                puppeteer = (Puppeteer) mo;
-            }
-        }
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Chesed) {
                 target = (Chesed) mo;
             }
@@ -79,22 +66,7 @@ public class Puppet extends AbstractAllyAttackingMinion
         block(this, PLATED_ARMOR);
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new BetterPlatedArmor(this, PLATED_ARMOR));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-                if (info.owner == puppeteer) {
-                    att(new HealAction(owner, owner, info.output));
-                    return 0;
-                } else {
-                    return damageAmount;
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new PuppetStrings(this));
     }
 
     @Override
@@ -207,7 +179,7 @@ public class Puppet extends AbstractAllyAttackingMinion
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power.ID.equals(MinionPower.POWER_ID)) && !(power.ID.equals(StrengthPower.POWER_ID)) && !(power.ID.equals(GainStrengthPower.POWER_ID)) && !(power.ID.equals(POWER_ID)) && !(power.ID.equals(PlatedArmorPower.POWER_ID)) && !(power.ID.equals(BarricadePower.POWER_ID))) {
+                if (!(power.ID.equals(MinionPower.POWER_ID)) && !(power.ID.equals(StrengthPower.POWER_ID)) && !(power.ID.equals(GainStrengthPower.POWER_ID)) && !(power.ID.equals(PuppetStrings.POWER_ID)) && !(power.ID.equals(PlatedArmorPower.POWER_ID)) && !(power.ID.equals(BarricadePower.POWER_ID))) {
                     powersToRemove.add(power);
                 }
             }

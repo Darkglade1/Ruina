@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
+import ruina.RuinaMod;
+import spireTogether.patches.combatsync.ActionPatches;
 
 public class AllyDamageAllEnemiesAction extends AbstractGameAction {
     public int[] damage;
@@ -29,7 +31,10 @@ public class AllyDamageAllEnemiesAction extends AbstractGameAction {
         } else {
             this.duration = Settings.ACTION_DUR_FAST;
         }
-
+        if (RuinaMod.isMultiplayerConnected()) {
+            ActionPatches.markActionForNoDataSync(this);
+            ActionPatches.markActionForNoDamageSync(this);
+        }
     }
 
     public AllyDamageAllEnemiesAction(AbstractCreature source, int[] amount, DamageType type, AttackEffect effect) {

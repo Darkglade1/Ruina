@@ -135,6 +135,7 @@ import ruina.multiplayer.MultiplayerCompatibility;
 import ruina.patches.PlayerSpireFields;
 import ruina.potions.EgoPotion;
 import ruina.powers.act2.Skulk;
+import ruina.powers.act4.PriceOfTime;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -1276,7 +1277,7 @@ public class RuinaMod implements
                 }
             });
         }
-        return !abstractMonster.hasPower(Hokma.POWER_ID);
+        return !abstractMonster.hasPower(PriceOfTime.POWER_ID);
     }
 
     @Override

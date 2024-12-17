@@ -3,25 +3,24 @@ package ruina.monsters.uninvitedGuests.normal.philip;
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.philip.philipCards.*;
-import ruina.powers.AbstractLambdaPower;
-import ruina.powers.act4.FlameShield;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.act4.Embers;
+import ruina.powers.act4.Passion;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
@@ -62,16 +61,6 @@ public class Philip extends AbstractCardMonster
     AbstractCard status = new Burn();
 
     public AbstractMonster[] minions = new AbstractMonster[2];
-
-    public static final String POWER_ID = makeID("Passion");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
-    public static final String DAMAGE_POWER_ID = makeID("Embers");
-    public static final PowerStrings DAMAGE_powerStrings = CardCrawlGame.languagePack.getPowerStrings(DAMAGE_POWER_ID);
-    public static final String DAMAGE_POWER_NAME = DAMAGE_powerStrings.NAME;
-    public static final String[] DAMAGE_POWER_DESCRIPTIONS = DAMAGE_powerStrings.DESCRIPTIONS;
 
     public Philip() {
         this(0.0f, 0.0f);
@@ -116,37 +105,7 @@ public class Philip extends AbstractCardMonster
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, damageReduction) {
-            @Override
-            public void onInitialApplication() {
-                amount2 = damageReductionDecay;
-                updateDescription();
-            }
-
-            @Override
-            public float atDamageReceive(float damage, DamageInfo.DamageType type) {
-                if (type == DamageInfo.DamageType.NORMAL) {
-                    return damage * (1.0f - ((float)amount / 100));
-                } else {
-                    return damage;
-                }
-            }
-
-            @Override
-            public void atEndOfRound() {
-                if (amount <= amount2) {
-                    makePowerRemovable(this);
-                    makePowerRemovable(owner, FlameShield.POWER_ID);
-                    atb(new RemoveSpecificPowerAction(owner, owner, FlameShield.POWER_ID));
-                }
-                atb(new ReducePowerAction(owner, owner, this, amount2));
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1] + amount2 + POWER_DESCRIPTIONS[2];
-            }
-        });
+        applyToTarget(this, this, new Passion(this, damageReduction, damageReductionDecay));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -265,26 +224,7 @@ public class Philip extends AbstractCardMonster
         phase = 2;
         playSound("PhilipTransform", 2.0f);
         runAnim("Idle" + phase);
-        applyToTarget(this, this, new AbstractLambdaPower(DAMAGE_POWER_NAME, DAMAGE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, damageBonus) {
-            @Override
-            public void onInitialApplication() {
-                this.priority = 99;
-            }
-
-            @Override
-            public float atDamageGive(float damage, DamageInfo.DamageType type) {
-                if (type == DamageInfo.DamageType.NORMAL) {
-                    return damage * (1 + ((float)amount / 100));
-                } else {
-                    return damage;
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = DAMAGE_POWER_DESCRIPTIONS[0] + amount + DAMAGE_POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Embers(this, damageBonus));
         Summon();
         atb(new RollMoveAction(target)); //to make her roll for mass attack if she can
     }

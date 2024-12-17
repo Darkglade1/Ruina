@@ -8,13 +8,10 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -24,10 +21,11 @@ import ruina.CustomIntent.IntentEnums;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractDeckMonster;
 import ruina.monsters.uninvitedGuests.normal.argalia.cards.*;
-import ruina.powers.AbstractLambdaPower;
-import ruina.powers.act4.BlueReverberation;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.NextTurnPowerPower;
+import ruina.powers.act4.BlueReverberation;
+import ruina.powers.act4.Resonance;
+import ruina.powers.act4.Vibration;
 import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
@@ -67,16 +65,6 @@ public class Argalia extends AbstractDeckMonster {
 
     private static final int INTENT_SHIFT_AMT = 1;
 
-    public static final String POWER_ID = makeID("Vibration");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
-    public static final String RESONANCE_POWER_ID = makeID("Resonance");
-    public static final PowerStrings ResonancepowerStrings = CardCrawlGame.languagePack.getPowerStrings(RESONANCE_POWER_ID);
-    public static final String RESONANCE_POWER_NAME = ResonancepowerStrings.NAME;
-    public static final String[] RESONANCE_POWER_DESCRIPTIONS = ResonancepowerStrings.DESCRIPTIONS;
-
     public Argalia() {
         this(0.0f, 0.0f);
     }
@@ -104,17 +92,7 @@ public class Argalia extends AbstractDeckMonster {
     @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, new InvisibleBarricadePower(this));
-        applyToTarget(this, this, new AbstractLambdaPower(RESONANCE_POWER_NAME, RESONANCE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, INTENT_SHIFT_AMT) {
-            @Override
-            public void onUseCard(AbstractCard card, UseCardAction action) {
-                shiftIntents();
-            }
-
-            @Override
-            public void updateDescription() {
-                description = RESONANCE_POWER_DESCRIPTIONS[0] + amount + RESONANCE_POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Resonance(this, INTENT_SHIFT_AMT));
         applyToTarget(this, this, new BlueReverberation(this, calcAscensionSpecial(2)));
         applyToTarget(this, this, new StrengthPower(this, 1)); //this 1 strength is a hack to make the powers line up properly LOL
         CustomDungeon.playTempMusicInstantly("EnsembleArgalia");
@@ -123,7 +101,6 @@ public class Argalia extends AbstractDeckMonster {
                 target = (Roland) mo;
             }
         }
-
     }
 
     @Override
@@ -137,10 +114,10 @@ public class Argalia extends AbstractDeckMonster {
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        AbstractPower vibration = enemy.getPower(POWER_ID);
+                        AbstractPower vibration = enemy.getPower(Vibration.POWER_ID);
                         if (vibration != null) {
                             vibration.flash();
-                            att(new RemoveSpecificPowerAction(enemy, Argalia.this, POWER_ID));
+                            att(new RemoveSpecificPowerAction(enemy, Argalia.this, Vibration.POWER_ID));
                             att(new GainBlockAction(Argalia.this, largoBlock));
                         } else {
                             applyVibration(enemy);
@@ -164,10 +141,10 @@ public class Argalia extends AbstractDeckMonster {
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        AbstractPower vibration = enemy.getPower(POWER_ID);
+                        AbstractPower vibration = enemy.getPower(Vibration.POWER_ID);
                         if (vibration != null) {
                             vibration.flash();
-                            att(new RemoveSpecificPowerAction(enemy, Argalia.this, POWER_ID));
+                            att(new RemoveSpecificPowerAction(enemy, Argalia.this, Vibration.POWER_ID));
                             att(new ApplyPowerAction(Argalia.this, Argalia.this, new NextTurnPowerPower(Argalia.this, new StrengthPower(Argalia.this, allegroStrength))));
                         } else {
                             applyVibration(enemy);
@@ -315,7 +292,7 @@ public class Argalia extends AbstractDeckMonster {
         });
     }
 
-    private void shiftIntents() {
+    public void shiftIntents() {
         if (this.hasPower(StunMonsterPower.POWER_ID)) {
             return;
         }
@@ -349,12 +326,7 @@ public class Argalia extends AbstractDeckMonster {
     }
 
     private void applyVibration(AbstractCreature target) {
-        applyToTargetTop(target, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.DEBUFF, false, target, 1) {
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTargetTop(target, this, new Vibration(target, 1));
     }
 
     @Override

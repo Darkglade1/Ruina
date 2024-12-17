@@ -2,18 +2,13 @@ package ruina.monsters.uninvitedGuests.normal.philip;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractAllyAttackingMinion;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.act4.TorchedHeart;
 
 import java.util.ArrayList;
 
@@ -31,11 +26,6 @@ public class CryingChild extends AbstractAllyAttackingMinion
     private final int WEAK = calcAscensionSpecial(1);
     private final int DAMAGE_REDUCTION = 50;
     private final Philip philip;
-
-    public static final String POWER_ID = makeID("TorchedHeart");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public CryingChild(final float x, final float y, Philip philip) {
         super(ID, ID, 40, -5.0F, 0, 100.0f, 185.0f, null, x, y);
@@ -57,30 +47,7 @@ public class CryingChild extends AbstractAllyAttackingMinion
     @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, new InvisibleBarricadePower(this));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, DAMAGE_REDUCTION) {
-            @Override
-            public float atDamageReceive(float damage, DamageInfo.DamageType type) {
-                //handles attack damage
-                if (type == DamageInfo.DamageType.NORMAL) {
-                    return calculateDamageTakenAmount(damage, type);
-                } else {
-                    return damage;
-                }
-            }
-
-            private float calculateDamageTakenAmount(float damage, DamageInfo.DamageType type) {
-                if (owner.hasPower(VulnerablePower.POWER_ID)) {
-                    return damage;
-                } else {
-                    return damage * (1 - ((float)DAMAGE_REDUCTION / 100));
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new TorchedHeart(this, DAMAGE_REDUCTION));
     }
 
     @Override

@@ -4,31 +4,26 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
-import ruina.cards.AttackPrescript;
-import ruina.cards.SkillPrescript;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.bremen.netzachCards.BalefulBrand;
 import ruina.monsters.uninvitedGuests.normal.bremen.netzachCards.Faith;
 import ruina.monsters.uninvitedGuests.normal.bremen.netzachCards.Will;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
+import ruina.powers.act4.Messenger;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.makeUIPath;
 import static ruina.util.Wiz.*;
 
 public class Netzach extends AbstractAllyCardMonster
@@ -44,11 +39,6 @@ public class Netzach extends AbstractAllyCardMonster
     public final int DRAW = 2;
     public final int faithHits = 2;
 
-    public static final String POWER_ID = makeID("Messenger");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     public Netzach() {
         this(0.0f, 0.0f);
     }
@@ -61,7 +51,7 @@ public class Netzach extends AbstractAllyCardMonster
 
         addMove(WILL, Intent.DEFEND_BUFF);
         addMove(BALEFUL, Intent.ATTACK_DEBUFF, 17);
-        addMove(BLIND_FAITH, Intent.ATTACK, 13, faithHits, true);
+        addMove(BLIND_FAITH, Intent.ATTACK, 13, faithHits);
 
         cardList.add(new Will(this));
         cardList.add(new BalefulBrand(this));
@@ -83,24 +73,7 @@ public class Netzach extends AbstractAllyCardMonster
                 target = (Bremen)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            final ArrayList<AbstractCard> prescripts = new ArrayList<>();
-
-            @Override
-            public void atStartOfTurn() {
-                if (prescripts.isEmpty()) {
-                    prescripts.add(new AttackPrescript());
-                    prescripts.add(new SkillPrescript());
-                }
-                AbstractCard chosenCard = prescripts.remove(AbstractDungeon.monsterRng.random(prescripts.size() - 1));
-                makeInHand(chosenCard);
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new Messenger(this));
         super.usePreBattleAction();
     }
 

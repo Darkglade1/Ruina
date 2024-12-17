@@ -13,10 +13,8 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
@@ -28,8 +26,8 @@ import ruina.RuinaMod;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.tanya.tanyaCards.*;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.act4.Guts;
 import ruina.util.TexLoader;
 
 import java.util.ArrayList;
@@ -67,11 +65,6 @@ public class Tanya extends AbstractCardMonster
     public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(8);
     public final int GUTS_STRENGTH = calcAscensionSpecial(3);
     private boolean usingMassAttack = false;
-
-    public static final String POWER_ID = makeID("Guts");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Tanya() {
         this(0.0f, 0.0f);
@@ -114,13 +107,7 @@ public class Tanya extends AbstractCardMonster
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + GUTS_STRENGTH + POWER_DESCRIPTIONS[1] + GUTS_METALLICIZE_GAIN + POWER_DESCRIPTIONS[2];
-            }
-        });
+        applyToTarget(this, this, new Guts(this, GUTS_STRENGTH, GUTS_METALLICIZE_GAIN));
         applyToTarget(this, this, new PlatedArmorPower(this, INITIAL_PLATED_ARMOR));
         block(this, INITIAL_PLATED_ARMOR);
         if (AbstractDungeon.ascensionLevel >= 19) {

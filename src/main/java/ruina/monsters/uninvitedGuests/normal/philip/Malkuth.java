@@ -1,19 +1,13 @@
 package ruina.monsters.uninvitedGuests.normal.philip;
 
-import basemod.helpers.CardModifierManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -21,12 +15,12 @@ import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
 import ruina.actions.AllyDamageAllEnemiesAction;
-import ruina.cardmods.ManifestMod;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.uninvitedGuests.normal.philip.malkuthCards.*;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act4.Dragon;
 import ruina.powers.act4.Emotion;
+import ruina.powers.act4.Wildfire;
 import ruina.util.TexLoader;
 import ruina.vfx.ExplosionEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -34,7 +28,8 @@ import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.makeUIPath;
 import static ruina.util.Wiz.*;
 
 public class Malkuth extends AbstractAllyCardMonster
@@ -75,18 +70,6 @@ public class Malkuth extends AbstractAllyCardMonster
     private static final int DISTORTED = 2;
     private static final int EGO = 3;
     private int phase = NORMAL;
-
-    public static final String POWER_ID = makeID("Dragon");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
-    public static final String R_POWER_ID = makeID("Wildfire");
-    public static final PowerStrings R_powerStrings = CardCrawlGame.languagePack.getPowerStrings(R_POWER_ID);
-    public static final String R_POWER_NAME = R_powerStrings.NAME;
-    public static final String[] R_POWER_DESCRIPTIONS = R_powerStrings.DESCRIPTIONS;
-
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("MalkuthIcon.png"));
 
     public Malkuth() {
         this(0.0f, 0.0f);
@@ -135,21 +118,7 @@ public class Malkuth extends AbstractAllyCardMonster
             distorted = true;
             massAttackCooldownCounter = 0;
             playSound("XiaoRoar");
-            applyToTargetTop(this, this, new AbstractLambdaPower(R_POWER_NAME, R_POWER_ID, AbstractPower.PowerType.BUFF, false, this, passiveVulnerable) {
-                @Override
-                public void atEndOfRound() {
-                    for (AbstractMonster mo : monsterList()) {
-                        if (!mo.isDeadOrEscaped() && !(mo instanceof AbstractAllyMonster)) {
-                            applyToTarget(mo, owner, new VulnerablePower(mo, amount, true));
-                        }
-                    }
-                }
-
-                @Override
-                public void updateDescription() {
-                    description = R_POWER_DESCRIPTIONS[0] + amount + R_POWER_DESCRIPTIONS[1];
-                }
-            });
+            applyToTargetTop(this, this, new Wildfire(this, passiveVulnerable));
             IdlePose();
             waitAnimation();
         }
@@ -166,19 +135,7 @@ public class Malkuth extends AbstractAllyCardMonster
                 target = (Philip)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, EXHAUST_GAIN) {
-            @Override
-            public void onInitialApplication() {
-                for (AbstractCard card : adp().drawPile.group) {
-                    CardModifierManager.addModifier(card, new ManifestMod());
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Dragon(this, EXHAUST_GAIN));
         applyToTarget(this, this, new Emotion(this, 0, EMOTION_THRESHOLD));
         applyToTarget(this, this, new StrengthPower(this, STARTING_STR));
         super.usePreBattleAction();

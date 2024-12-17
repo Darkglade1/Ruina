@@ -5,16 +5,11 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import ruina.BetterSpriterAnimation;
@@ -22,11 +17,12 @@ import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.pluto.hokmaCards.Silence;
 import ruina.monsters.uninvitedGuests.normal.pluto.hokmaCards.Time;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act4.PriceOfTime;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.makeUIPath;
 import static ruina.util.Wiz.*;
 
 public class Hokma extends AbstractAllyCardMonster
@@ -40,11 +36,6 @@ public class Hokma extends AbstractAllyCardMonster
     public final int CARDS_PER_TURN = 6;
 
     public Pluto pluto;
-
-    public static final String POWER_ID = makeID("PriceOfTime");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Hokma() {
         this(0.0f, 0.0f);
@@ -78,20 +69,7 @@ public class Hokma extends AbstractAllyCardMonster
                 target = pluto = (Pluto)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
-            @Override
-            public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-                this.amount++;
-                if (this.amount >= CARDS_PER_TURN) {
-                    this.amount = 0;
-                    takeTurn();
-                }
-            }
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + CARDS_PER_TURN + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new PriceOfTime(this, CARDS_PER_TURN));
         super.usePreBattleAction();
     }
 

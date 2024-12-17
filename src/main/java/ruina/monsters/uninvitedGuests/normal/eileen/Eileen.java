@@ -7,12 +7,9 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
@@ -23,8 +20,8 @@ import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.Accelerate;
 import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.Preach;
 import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.Propagate;
 import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.ThoughtGearBrainwash;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.act4.Gears;
 
 import java.util.ArrayList;
 
@@ -49,11 +46,6 @@ public class Eileen extends AbstractCardMonster
     public final int HP_LOSS = 100;
 
     public AbstractMonster[] minions = new AbstractMonster[2];
-
-    public static final String POWER_ID = makeID("Gears");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Eileen() {
         this(0.0f, 0.0f);
@@ -99,18 +91,7 @@ public class Eileen extends AbstractCardMonster
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, HP_LOSS) {
-
-            @Override
-            public void atEndOfRound() {
-                Summon();
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Gears(this, HP_LOSS));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
