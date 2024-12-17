@@ -1,7 +1,6 @@
 package ruina.monsters.uninvitedGuests.normal.elena;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -39,6 +38,7 @@ public class VermilionCross extends AbstractCardMonster
     public final int BURNS = calcAscensionSpecial(1);
     public final int allyIntangible = calcAscensionSpecial(1);
     public Elena elena;
+    public boolean hadBlock;
 
     public VermilionCross() {
         this(0.0f, 0.0f);
@@ -100,7 +100,7 @@ public class VermilionCross extends AbstractCardMonster
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        if (currentBlock > 0) {
+                        if (hadBlock) {
                             AbstractCreature powerTarget = elena;
                             if (elena.isDeadOrEscaped()) {
                                 powerTarget = VermilionCross.this;
@@ -110,7 +110,6 @@ public class VermilionCross extends AbstractCardMonster
                         this.isDone = true;
                     }
                 });
-                atb(new RemoveAllBlockAction(this, this));
                 resetIdle();
                 break;
             }
