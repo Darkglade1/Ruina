@@ -27,6 +27,8 @@ import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.tanya.tanyaCards.*;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.RuinaMetallicize;
+import ruina.powers.RuinaPlatedArmor;
 import ruina.powers.act4.Guts;
 import ruina.util.TexLoader;
 
@@ -58,11 +60,11 @@ public class Tanya extends AbstractCardMonster
 
     public final int BLOCK = calcAscensionTankiness(16);
     public final int INITIAL_PLATED_ARMOR = calcAscensionTankiness(20);
-    public final int PLATED_ARMOR_GAIN = calcAscensionTankiness(15);
-    public final int METALLICIZE_GAIN = calcAscensionSpecial(5);
+    public final int PLATED_ARMOR_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(15));
+    public final int METALLICIZE_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(5));
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int WEAK = calcAscensionSpecial(1);
-    public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(8);
+    public final int GUTS_METALLICIZE_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(8));
     public final int GUTS_STRENGTH = calcAscensionSpecial(3);
     private boolean usingMassAttack = false;
 
@@ -108,7 +110,7 @@ public class Tanya extends AbstractCardMonster
         }
         atb(new TalkAction(this, DIALOG[0]));
         applyToTarget(this, this, new Guts(this, GUTS_STRENGTH, GUTS_METALLICIZE_GAIN));
-        applyToTarget(this, this, new PlatedArmorPower(this, INITIAL_PLATED_ARMOR));
+        applyToTarget(this, this, new RuinaPlatedArmor(this, INITIAL_PLATED_ARMOR));
         block(this, INITIAL_PLATED_ARMOR);
         if (AbstractDungeon.ascensionLevel >= 19) {
             applyToTarget(this, this, new BarricadePower(this));
@@ -147,7 +149,7 @@ public class Tanya extends AbstractCardMonster
                     }
                 });
                 waitAnimation(0.5f);
-                applyToTarget(this, this, new MetallicizePower(this, METALLICIZE_GAIN));
+                applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE_GAIN));
                 atb(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -163,9 +165,9 @@ public class Tanya extends AbstractCardMonster
                 if (platedArmor != null) {
                     int amount = platedArmor.amount;
                     atb(new RemoveSpecificPowerAction(this, this, platedArmor));
-                    applyToTarget(this, this, new MetallicizePower(this, amount));
+                    applyToTarget(this, this, new RuinaMetallicize(this, amount));
                 }
-                applyToTarget(this, this, new PlatedArmorPower(this, PLATED_ARMOR_GAIN));
+                applyToTarget(this, this, new RuinaPlatedArmor(this, PLATED_ARMOR_GAIN));
                 resetIdle();
                 break;
             }
@@ -372,7 +374,7 @@ public class Tanya extends AbstractCardMonster
             att(new HealAction(this, this, maxHealth));
 
             applyToTarget(this, this, new StrengthPower(this, GUTS_STRENGTH));
-            applyToTarget(this, this, new MetallicizePower(this, METALLICIZE_GAIN));
+            applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE_GAIN));
         }
     }
 

@@ -4,10 +4,11 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.RuinaMetallicize;
 import ruina.powers.act2.Worthless;
 
 import static ruina.RuinaMod.makeID;
@@ -19,7 +20,7 @@ public class Sword extends AbstractRuinaMonster
     public static final String ID = makeID(Sword.class.getSimpleName());
 
     private static final byte TEAR_HEART = 0;
-    private final int BLOCK = calcAscensionSpecial(8);
+    private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(8));
     private KnightOfDespair knight;
     boolean gainInitialBlock;
 
@@ -40,7 +41,7 @@ public class Sword extends AbstractRuinaMonster
         }
         addPower(new MinionPower(this));
         applyToTarget(this, this, new Worthless(this));
-        applyToTarget(this, this, new MetallicizePower(this, BLOCK));
+        applyToTarget(this, this, new RuinaMetallicize(this, BLOCK));
         if (gainInitialBlock) {
             block(this, BLOCK);
         }

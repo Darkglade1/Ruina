@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractAllyAttackingMinion;
-import ruina.powers.BetterPlatedArmor;
+import ruina.powers.RuinaPlatedArmor;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.act4.PuppetStrings;
 
@@ -65,7 +65,7 @@ public class Puppet extends AbstractAllyAttackingMinion
         addPower(new MinionPower(this));
         block(this, PLATED_ARMOR);
         applyToTarget(this, this, new InvisibleBarricadePower(this));
-        applyToTarget(this, this, new BetterPlatedArmor(this, PLATED_ARMOR));
+        applyToTarget(this, this, new RuinaPlatedArmor(this, PLATED_ARMOR));
         applyToTarget(this, this, new PuppetStrings(this));
     }
 
@@ -112,7 +112,7 @@ public class Puppet extends AbstractAllyAttackingMinion
                 atb(new HealAction(this, this, this.maxHealth));
                 atb(new IncreaseMaxHpAction(this, ((float)maxHPIncrease / 100), true));
                 this.halfDead = false;
-                applyToTarget(this, this, new BetterPlatedArmor(this, PLATED_ARMOR));
+                applyToTarget(this, this, new RuinaPlatedArmor(this, PLATED_ARMOR));
                 for (AbstractRelic r : AbstractDungeon.player.relics) {
                     r.onSpawnMonster(this);
                 }

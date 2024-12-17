@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.RuinaMod;
 import ruina.powers.AbstractUnremovablePower;
+import ruina.powers.RuinaPlatedArmor;
 
 import static ruina.util.Wiz.*;
 
@@ -35,7 +35,7 @@ public class BrotherPower extends AbstractUnremovablePower {
         if (!owner.halfDead) {
             switch (brotherNum) {
                 case 1: {
-                    applyToTarget(target, owner, new PlatedArmorPower(target, amount));
+                    applyToTarget(target, owner, new RuinaPlatedArmor(target, amount));
                     block(target, amount);
                     break;
                 }

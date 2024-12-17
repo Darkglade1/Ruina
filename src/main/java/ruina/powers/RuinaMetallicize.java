@@ -2,16 +2,12 @@ package ruina.powers;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.powers.MetallicizePower;
 
-public class BetterPlatedArmor extends PlatedArmorPower {
+public class RuinaMetallicize extends MetallicizePower {
 
-    public BetterPlatedArmor(AbstractCreature owner, int amt) {
+    public RuinaMetallicize(AbstractCreature owner, int amt) {
         super(owner, amt);
-    }
-
-    public void onRemove() {
-
     }
 
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {

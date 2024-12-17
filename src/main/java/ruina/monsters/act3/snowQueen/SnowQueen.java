@@ -12,13 +12,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.MetallicizePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.stances.CalmStance;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.CenterOfAttention;
+import ruina.powers.RuinaMetallicize;
 import ruina.powers.act3.PromiseOfWinter;
 import ruina.util.DetailedIntent;
 import ruina.vfx.FlexibleCalmParticleEffect;
@@ -44,7 +45,7 @@ public class SnowQueen extends AbstractRuinaMonster
     private final int DEBUFF = calcAscensionSpecial(3);
     private final int BLOCK = calcAscensionTankiness(16);
     private final int STRENGTH = calcAscensionSpecial(3);
-    private final int METALLICIZE = calcAscensionSpecial(5);
+    private final int METALLICIZE = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(5));
     public boolean canBlizzard = true;
     private int frozenThroneCounter = 0;
 
@@ -110,7 +111,7 @@ public class SnowQueen extends AbstractRuinaMonster
                 specialAnimation(adp());
                 block(this, BLOCK);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-                applyToTarget(this, this, new MetallicizePower(this, METALLICIZE));
+                applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE));
                 resetIdle(1.0f);
                 atb(new AbstractGameAction() {
                     @Override
