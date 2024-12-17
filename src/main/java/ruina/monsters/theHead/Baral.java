@@ -21,6 +21,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.ScoreBonusStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -597,6 +599,8 @@ public class Baral extends AbstractCardMonster
             ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
             Texture attackImg = getAttackIntent(info.output);
             ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentImg", attackImg);
+            PowerTip intentTip = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
+            intentTip.body = AbstractMonster.TEXT[4] + info.output + AbstractMonster.TEXT[5];
             updateCard();
         }
     }
