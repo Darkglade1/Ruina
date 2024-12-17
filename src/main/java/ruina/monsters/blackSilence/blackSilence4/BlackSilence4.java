@@ -196,7 +196,7 @@ public class BlackSilence4 extends AbstractCardMonster {
         super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case AGONY: {
-                int animation = AbstractDungeon.monsterRng.random(2);
+                int animation = AbstractDungeon.miscRng.random(2);
                 switch (animation) {
                     case 0:
                         wheelsAnimation(target);
@@ -213,7 +213,7 @@ public class BlackSilence4 extends AbstractCardMonster {
                 break;
             }
             case SCREAM: {
-                int animation = AbstractDungeon.monsterRng.random(2);
+                int animation = AbstractDungeon.miscRng.random(2);
                 for (int i = 0; i < multiplier; i++) {
                     switch (animation) {
                         case 0:
