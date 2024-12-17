@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
+import ruina.monsters.uninvitedGuests.normal.elena.VermilionCross;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -118,6 +119,13 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
                 info.applyPowers(this, target);
             } else {
                 info.applyPowers(this, adp());
+            }
+        }
+        if (this instanceof VermilionCross) {
+            if (this.currentBlock > 0) {
+                ((VermilionCross) this).hadBlock = true;
+            } else {
+                ((VermilionCross) this).hadBlock = false;
             }
         }
         for (AbstractPower power : this.powers) {
