@@ -88,7 +88,11 @@ public class ServantOfWrath extends AbstractAllyMonster
                 target = hermit;
             }
         }
-        addPower(new BlindFury(this, furyThreshold));
+        if (RuinaMod.isMultiplayerConnected()) {
+            addPower(new BlindFury(this, RuinaMod.getMultiplayerEnemyHealthScaling(furyThreshold)));
+        } else {
+            addPower(new BlindFury(this, furyThreshold));
+        }
         super.usePreBattleAction();
     }
 
