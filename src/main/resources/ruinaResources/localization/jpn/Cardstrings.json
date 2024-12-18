@@ -149,40 +149,6 @@
     "NAME": "気合",
     "DESCRIPTION": " !B! ブロック を得る。 NL 筋力 !M! を得る。"
   },
-  "ruina:CHRBOSS_GiantFist": {
-    "NAME": "巨大な拳",
-    "DESCRIPTION": "!D! ダメージを与える。 NL *麻痺 !M! を与える。"
-  },
-  "ruina:CHRBOSS_Compress": {
-    "NAME": "圧縮",
-    "DESCRIPTION": " !B! ブロック を得る。"
-  },
-  "ruina:CHRBOSS_FlurryOfFists": {
-    "NAME": "連続拳",
-    "DESCRIPTION": " !D! ダメージを !M! 回与える。 NL 筋力 !ruina:SecondMagic! を得る。",
-    "EXTENDED_DESCRIPTION": [" !D! ダメージを !M! 回与える。 次のターン NL 筋力 !ruina:SecondMagic! を得る。"]
-  },
-  "ruina:CHRBOSS_BalefulBrand": {
-    "NAME": "不吉な烙印",
-    "DESCRIPTION": "!D! ダメージを与える。 NL *腐食 !M! を与える。",
-    "EXTENDED_DESCRIPTION": ["!D! ダメージを与える。 NL 次のターン *腐食 !M! を与える。"]
-  },
-  "ruina:CHRBOSS_Lock": {
-    "NAME": "施錠",
-    "DESCRIPTION": "!D! ダメージを与える。 NL *ドロー減少 !M! を与える。"
-  },
-  "ruina:CHRBOSS_yanAttack": {
-    "NAME": "意志の剣",
-    "DESCRIPTION": " *ねじれた手 は 筋力 !M! を得る。"
-  },
-  "ruina:CHRBOSS_yanProtect": {
-    "NAME": "保護",
-    "DESCRIPTION": " *ねじれた手 は *保護 !M! を得る。"
-  },
-  "ruina:CHRBOSS_DistortedBlade": {
-    "NAME": "ねじれた剣",
-    "DESCRIPTION": "!D! ダメージを与える。 NL *腐食 !M! を与える。"
-  },
   "ruina:CHRBOSS_Largo": {
     "NAME": "ラルゴ",
     "DESCRIPTION": " !B! ブロック を得る。 NL !D! ダメージと *振動 を与える。 NL 相手が *振動 なら、それを失わせ再度 !B! ブロック を得る。"
@@ -447,10 +413,6 @@
   "ruina:SkillPrescript": {
     "NAME": "指令-スキル",
     "DESCRIPTION": " !B! ブロック を得る。"
-  },
-  "ruina:PowerPrescript": {
-    "NAME": "指令-パワー",
-    "DESCRIPTION": "筋力 !M! を得る。"
   },
   "ruina:EverlastingMelody": {
     "NAME": "永遠に忘れられぬ旋律",
@@ -863,10 +825,6 @@
     "NAME": "四番目の演奏者",
     "DESCRIPTION": "ターン終了時に手札にあるとき、 筋力 か 敏捷性 !M! を失う。",
     "EXTENDED_DESCRIPTION": [" (筋力)", " (敏捷性)"]
-  },
-  "ruina:Conductor": {
-    "NAME": "指揮者",
-    "DESCRIPTION": "使用不可。 NL ターン終了時に手札にあるとき、 他の *演奏者 カードのコストを !M! 増やす。 NL 手札に !ruina:SecondMagic! 枚の *演奏者 カードがあるなら、それらのカードの効果を再度発動。"
   },
   "ruina:TodaysExpression": {
     "NAME": "今日の表情",

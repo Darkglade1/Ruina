@@ -149,40 +149,6 @@
     "NAME": "기합",
     "DESCRIPTION": "방어도를 !B! 얻습니다. NL 힘을 !M! 얻습니다."
   },
-  "ruina:CHRBOSS_GiantFist": {
-    "NAME": "거대 주먹",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL *마비를 !M! 부여합니다."
-  },
-  "ruina:CHRBOSS_Compress": {
-    "NAME": "압축",
-    "DESCRIPTION": "방어도를 !B! 얻습니다."
-  },
-  "ruina:CHRBOSS_FlurryOfFists": {
-    "NAME": "연속 주먹",
-    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL 힘을 !ruina:SecondMagic! 얻습니다.",
-    "EXTENDED_DESCRIPTION": ["!D! 피해를 !M! 번 줍니다. NL 다음 턴에 힘을 !ruina:SecondMagic! 얻습니다."]
-  },
-  "ruina:CHRBOSS_BalefulBrand": {
-    "NAME": "불길한 낙인",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL *부식 을 !M! 부여합니다.",
-    "EXTENDED_DESCRIPTION": ["피해를 !D! 줍니다. NL 다음 턴에 *부식 을 !M! 부여합니다."]
-  },
-  "ruina:CHRBOSS_Lock": {
-    "NAME": "잠금",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL *드로우 *감소 를 !M! 부여합니다."
-  },
-  "ruina:CHRBOSS_yanAttack": {
-    "NAME": "의지의 검",
-    "DESCRIPTION": "*손이 힘을 !M! 얻습니다."
-  },
-  "ruina:CHRBOSS_yanProtect": {
-    "NAME": "보호",
-    "DESCRIPTION": "*손이 *보호를 !M! 얻습니다"
-  },
-  "ruina:CHRBOSS_DistortedBlade": {
-    "NAME": "뒤틀린 검",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL *부식 을 !M! 부여합니다."
-  },
   "ruina:CHRBOSS_Largo": {
     "NAME": "전주",
     "DESCRIPTION": "방어도를 !B! 얻습니다. NL 피해를 !D! 줍니다. NL *진동 을 1 부여합니다. 이미 대상에게 *진동 효과가 부여되어있다면, 진동을 제거하고 방어도를 !B! 얻습니다."
@@ -447,10 +413,6 @@
   "ruina:SkillPrescript": {
     "NAME": "스킬 지령",
     "DESCRIPTION": "방어도를 !B! 얻습니다."
-  },
-  "ruina:PowerPrescript": {
-    "NAME": "파워 지령",
-    "DESCRIPTION": "힘을 !M! 얻습니다."
   },
   "ruina:EverlastingMelody": {
     "NAME": "영원히 잊을수 없는 선율",
@@ -863,10 +825,6 @@
     "NAME": "네번째 연주자",
     "DESCRIPTION": "턴 종료시, 힘 또는 민첩을 !M! 잃습니다, 효과가 발동될때마다 다른 효과로 변경됩니다.",
     "EXTENDED_DESCRIPTION": [" (힘 감소)", " (민첩 감소)"]
-  },
-  "ruina:Conductor": {
-    "NAME": "지휘자",
-    "DESCRIPTION": "사용불가. NL 이 카드가 보존되면, 손 안에 있는 모든 *연주자 카드의 비용이 이번 전투동안 !M! 증가합니다. *연주자 카드의 비용이 !ruina:SecondMagic! 이상이 되면, 효과를 한번 더 발동합니다."
   },
   "ruina:TodaysExpression": {
     "NAME": "오늘의 표정",
