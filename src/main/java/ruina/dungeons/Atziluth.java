@@ -36,7 +36,6 @@ public class Atziluth extends AbstractRuinaDungeon {
         this.addTempMusic("WhiteNightBGM", RuinaMod.makeMusicPath("WhiteNightBGM.ogg"));
         this.addTempMusic("RedMistBGM", RuinaMod.makeMusicPath("RedMistBgm.ogg"));
         this.addTempMusic("Gebura2", RuinaMod.makeMusicPath("Gebura2.ogg"));
-        this.addTempMusic("ChildrenOfTheCity", RuinaMod.makeMusicPath("ChildrenOfTheCity.ogg"));
         this.addTempMusic("Story2", RuinaMod.makeMusicPath("Story2.ogg"));
         this.addTempMusic("Space", RuinaMod.makeMusicPath("Space.ogg"));
     }

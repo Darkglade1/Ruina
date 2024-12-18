@@ -36,7 +36,6 @@ import ruina.monsters.act2.roadHome.ScaredyCat;
 import ruina.monsters.act2.wrath.Hermit;
 import ruina.monsters.act2.wrath.ServantOfWrath;
 import ruina.monsters.act3.*;
-import ruina.monsters.act3.snowQueen.SnowQueen;
 import ruina.monsters.act3.bigBird.BigBird;
 import ruina.monsters.act3.blueStar.BlueStar;
 import ruina.monsters.act3.blueStar.Worshipper;
@@ -46,11 +45,11 @@ import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
 import ruina.monsters.act3.priceOfSilence.RemnantOfTime;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.act3.silentGirl.SilentGirl;
+import ruina.monsters.act3.snowQueen.SnowQueen;
 import ruina.monsters.act3.whiteNight.WhiteNight;
 import ruina.monsters.blackSilence.blackSilence3.Angelica;
 import ruina.monsters.blackSilence.blackSilence3.BlackSilence3;
 import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
-import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.theHead.Zena;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
@@ -142,8 +141,6 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Heart");
                 } else if (mo instanceof Pinocchio) {
                     this.bg = this.atlas.findRegion("mod/Lies");
-                } else if (mo instanceof yanDistortion) {
-                    this.bg = this.atlas.findRegion("mod/Yan");
                 } else if (mo instanceof Puppeteer) {
                     this.bg = this.atlas.findRegion("mod/Chesed");
                 } else if (mo instanceof Argalia) {

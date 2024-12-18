@@ -68,7 +68,6 @@ import ruina.monsters.act2.greed.KingOfGreed;
 import ruina.monsters.act2.jester.JesterOfNihil;
 import ruina.monsters.act2.jester.QueenOfLove;
 import ruina.monsters.act2.jester.ServantOfCourage;
-import ruina.monsters.act2.jester.Statue;
 import ruina.monsters.act2.knight.KnightOfDespair;
 import ruina.monsters.act2.knight.Sword;
 import ruina.monsters.act2.mountain.MeltedCorpses;
@@ -105,7 +104,6 @@ import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.eventboss.kim.Kim;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
-import ruina.monsters.eventboss.yan.monster.yanDistortion;
 import ruina.monsters.theHead.*;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
@@ -1078,7 +1076,6 @@ public class RuinaMod implements
         BaseMod.addMonster(Pinocchio.ID, (BaseMod.GetMonster) Pinocchio::new);
 
         BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
-        BaseMod.addMonster(yanDistortion.ID, (BaseMod.GetMonster) yanDistortion::new);
 
 
         BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);
