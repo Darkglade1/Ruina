@@ -1,5 +1,7 @@
 package ruina.powers.act3;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -8,6 +10,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
 import ruina.powers.AbstractUnremovablePower;
 
+import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
 public class Unnerving extends AbstractUnremovablePower {
@@ -31,7 +34,7 @@ public class Unnerving extends AbstractUnremovablePower {
 
     @Override
     public void onGainedBlock(float blockAmount) {
-        atb(new LoseHPAction(owner, owner, (int)blockAmount));
+        atb(new DamageAction(owner, new DamageInfo(adp(), (int)blockAmount, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.POISON));
     }
 
     @Override
