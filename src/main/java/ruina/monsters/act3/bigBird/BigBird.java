@@ -15,11 +15,13 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.cards.Dazzled;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.act3.Enchanted;
 import ruina.powers.act3.Salvation;
+import ruina.powers.multiplayer.EnchantedMultiplayer;
 import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -127,7 +129,11 @@ public class BigBird extends AbstractMultiIntentMonster
             case DAZZLE_ALLY: {
                 dazzleAnimation(target);
                 if (target != adp()) {
-                    applyToTarget(target, this, new Enchanted(target, 1, currEnchantedHPAmt));
+                    if (RuinaMod.isMultiplayerConnected()) {
+                        applyToTarget(target, this, new EnchantedMultiplayer(target, currEnchantedHPAmt, 1));
+                    } else {
+                        applyToTarget(target, this, new Enchanted(target, currEnchantedHPAmt, 1));
+                    }
                     atb(new AbstractGameAction() {
                         @Override
                         public void update() {

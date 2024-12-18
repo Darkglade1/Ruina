@@ -72,8 +72,7 @@ public class NothingThere extends AbstractMultiIntentMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning3");
-        AbstractDungeon.player.drawX += 480.0F * Settings.scale;
-        AbstractDungeon.player.dialogX += 480.0F * Settings.scale;
+        adp().movePosition((float)Settings.WIDTH / 2.0F, AbstractDungeon.floorY);
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Gunman) {
                 target = (Gunman)mo;

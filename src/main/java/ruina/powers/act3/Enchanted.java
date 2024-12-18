@@ -13,7 +13,7 @@ import static ruina.util.Wiz.atb;
 
 public class Enchanted extends AbstractEasyPower {
 
-    public static final String POWER_ID = RuinaMod.makeID("Enchanted");
+    public static final String POWER_ID = RuinaMod.makeID(Enchanted.class.getSimpleName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
@@ -35,8 +35,8 @@ public class Enchanted extends AbstractEasyPower {
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
-        amount2 -= damageAmount;
-        if (amount2 <= 0) {
+        amount -= damageAmount;
+        if (amount <= 0) {
             atb(new RemoveSpecificPowerAction(owner, owner, this));
         }
         updateDescription();
@@ -46,7 +46,7 @@ public class Enchanted extends AbstractEasyPower {
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
         if (type == DamageInfo.DamageType.NORMAL) {
-            return amount;
+            return amount2;
         } else {
             return damage;
         }
@@ -63,6 +63,6 @@ public class Enchanted extends AbstractEasyPower {
 
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount2 + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0] + amount2 + DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
     }
 }

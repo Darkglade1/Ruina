@@ -665,23 +665,23 @@
   },
   "${ModID}:FearMultiplayer": {
     "NAME": "Fear",
-    "DESCRIPTIONS": ["Whenever #yplayers play #b", " #yAttacks in a single turn, this creature loses #b", " #yStrength this turn."]
+    "DESCRIPTIONS": ["Whenever #yplayers collectively play #b", " #yAttacks in a single turn, this creature loses #b", " #yStrength this turn."]
   },
   "${ModID}:ExpressionMultiplayer": {
     "NAME": "Expression",
-    "DESCRIPTIONS": ["Whenever #yplayers play #b", " cards, this creature changes its intent."]
+    "DESCRIPTIONS": ["Whenever #yplayers collectively play #b", " cards, this creature changes its intent."]
   },
   "${ModID}:MimicryMultiplayer": {
     "NAME": "Mimicry",
-    "DESCRIPTIONS": ["Deals additional attack damage equal to the base damage of the last #yAttack played this combat by #yplayers."]
+    "DESCRIPTIONS": ["Deals additional attack damage equal to the base damage of the last #yAttack played this combat by a #yplayer."]
   },
   "${ModID}:EasilyDistractedMultiplayer": {
     "NAME": "Easily Distracted",
-    "DESCRIPTIONS": ["When attacked #b", " times by #yplayers in a single turn, this creature #rcancels one of its intents for the turn."]
+    "DESCRIPTIONS": ["When #yplayers collectively attack this creature #b", " times in a single turn, this creature #rcancels one of its intents for the turn."]
   },
   "${ModID}:CourageMultiplayer": {
     "NAME": "Courage",
-    "DESCRIPTIONS": ["Whenever the ", " is attacked #b", " times by #yplayers in a single turn, this creature gains #b", " #yStrength this turn. NL NL If the #yRoad #yHome dies, this creature will intend to #yflee."]
+    "DESCRIPTIONS": ["Whenever #yplayers collectively attack the ", " #b", " times in a single turn, this creature gains #b", " #yStrength this turn. NL NL If the #yRoad #yHome dies, this creature will intend to #yflee."]
   },
   "${ModID}:SenselessWrathMultiplayer": {
     "NAME": "Senseless Wrath",
@@ -689,6 +689,10 @@
   },
   "${ModID}:CounterAttackMultiplayer": {
     "NAME": "Counter Attack",
-    "DESCRIPTIONS": ["Whenever #yplayers play #b", " #yAttacks this turn, this creature will #yCounter #yAttack ALL #yplayers. If this effect did not trigger at least once this turn, will use a #rpowerful attack next turn."]
+    "DESCRIPTIONS": ["Whenever #yplayers collectively play #b", " #yAttacks this turn, this creature will #yCounter #yAttack ALL #yplayers. If this effect did not trigger at least once this turn, will use a #rpowerful attack next turn."]
+  },
+  "${ModID}:EnchantedMultiplayer": {
+    "NAME": "Enchanted",
+    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL #yEnchanted is #gremoved after #yplayers collectively cause this creature to lose #b", " more HP."]
   }
 }

@@ -94,8 +94,7 @@ public class BlackSilence3 extends AbstractCardMonster {
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         applyToTarget(this, this, new ruina.powers.act5.BlackSilence3(this));
         applyToTarget(this, this, new SoulLink(this, REVIVE_PERCENT));
-        AbstractDungeon.player.drawX += 480.0F * Settings.scale;
-        AbstractDungeon.player.dialogX += 480.0F * Settings.scale;
+        adp().movePosition((float)Settings.WIDTH / 2.0F, AbstractDungeon.floorY);
         applyToTarget(adp(), this, new SurroundedPower(adp()));
         for (AbstractMonster mo : monsterList()) {
             if (mo instanceof Angelica) {
