@@ -980,5 +980,9 @@
   "ruina:Acupuncture": {
     "NAME": "Акупунуктура",
     "DESCRIPTION": "Наносит !D! урона !M! раза. NL Накладывает !ruina:SecondMagic! *Паралича."
+  },
+  "${ModID}:Distorted": {
+    "NAME": "Искаженный",
+    "DESCRIPTION": "Не может быть удалена из колоды."
   }
 }

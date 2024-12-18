@@ -980,5 +980,9 @@
   "ruina:Acupuncture": {
     "NAME": "刺法",
     "DESCRIPTION": "!D! ダメージを !M! 回与える。 NL *麻痺 !ruina:SecondMagic! を与える。"
+  },
+  "${ModID}:Distorted": {
+    "NAME": "歪",
+    "DESCRIPTION": "デッキから削除することはできません。"
   }
 }

@@ -980,5 +980,9 @@
   "ruina:Acupuncture": {
     "NAME": "자법",
     "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL *마비 를 !ruina:SecondMagic! 부여합니다."
+  },
+  "${ModID}:Distorted": {
+    "NAME": "비뚤어진",
+    "DESCRIPTION": "덱에서 제거할 수 없습니다."
   }
 }
