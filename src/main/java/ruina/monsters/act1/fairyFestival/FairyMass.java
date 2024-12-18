@@ -25,7 +25,7 @@ public class FairyMass extends AbstractRuinaMonster {
     private static final byte GLUTTONY = 1;
 
     private final int BLEED = 1;
-    private final float CONSUME_THRESHOLD = 0.25f;
+    private final float CONSUME_THRESHOLD = 0.33f;
 
     private FairyQueen queen;
     private final int consumeThreshold;
@@ -40,7 +40,7 @@ public class FairyMass extends AbstractRuinaMonster {
         }
         addMove(WINGBEATS, Intent.ATTACK_DEBUFF, wingBeatsDamage);
         addMove(GLUTTONY, Intent.ATTACK, calcAscensionDamage(5));
-        consumeThreshold = (int)(this.maxHealth * CONSUME_THRESHOLD);
+        consumeThreshold = Math.round(this.maxHealth * CONSUME_THRESHOLD);
     }
 
     @Override

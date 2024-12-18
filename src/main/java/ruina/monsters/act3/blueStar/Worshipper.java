@@ -42,8 +42,8 @@ public class Worshipper extends AbstractRuinaMonster
     private static final byte HEAR_STAR = 2;
     private static final byte MEET_AGAIN = 3;
 
-    private static final float STRONG_ATK_HP_THRESHOLD = 0.5f;
-    private static final float MEET_AGAIN_HP_THRESHOLD = 0.25f;
+    private static final float STRONG_ATK_HP_THRESHOLD = 0.66f;
+    private static final float MEET_AGAIN_HP_THRESHOLD = 0.33f;
 
     private final int MARTYR_DAMAGE = calcAscensionSpecial(15);
     private final int PARALYSIS = calcAscensionSpecial(1);
@@ -61,7 +61,7 @@ public class Worshipper extends AbstractRuinaMonster
         addMove(EVERLASTING_FAITH, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
         addMove(HEAR_STAR, Intent.ATTACK, calcAscensionDamage(18));
         addMove(MEET_AGAIN, Intent.UNKNOWN);
-        meetAgainThreshold = (int)(this.maxHealth * MEET_AGAIN_HP_THRESHOLD);
+        meetAgainThreshold = Math.round(this.maxHealth * MEET_AGAIN_HP_THRESHOLD);
     }
 
     @Override
