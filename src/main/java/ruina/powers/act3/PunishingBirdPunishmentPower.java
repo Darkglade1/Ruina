@@ -7,8 +7,11 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
+import ruina.multiplayer.MessengerListener;
 import ruina.powers.AbstractUnremovablePower;
 import ruina.util.TexLoader;
+import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.util.SpireHelp;
 
 import static ruina.RuinaMod.makePowerPath;
 
@@ -31,18 +34,28 @@ public class PunishingBirdPunishmentPower extends AbstractUnremovablePower {
         updateDescription();
     }
 
+    @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.type == DamageInfo.DamageType.NORMAL && info.owner != null && info.owner != this.owner) {
             if (!isPunishSet) {
-                flash();
-                isPunishSet = true;
-                setBirdIcon();
-                updateDescription();
+                onSpecificTrigger();
+                if (RuinaMod.isMultiplayerConnected()) {
+                    P2PManager.SendData(MessengerListener.request_punishingBirdMad, SpireHelp.Gameplay.CreatureToUID(owner), SpireHelp.Gameplay.GetMapLocation());
+                }
             }
         }
         return damageAmount;
     }
 
+    @Override
+    public void onSpecificTrigger() {
+        flash();
+        isPunishSet = true;
+        setBirdIcon();
+        updateDescription();
+    }
+
+    @Override
     public void updateDescription() {
         this.description = isPunishSet ? DESCRIPTIONS[1] : DESCRIPTIONS[0];
     }

@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import ruina.RuinaMod;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.atb;
@@ -20,7 +22,11 @@ public class ForestKeeperLock extends AbstractRuinaCard {
 
     public ForestKeeperLock() {
         super(ID, 0, CardType.SKILL, AbstractCard.CardRarity.SPECIAL, CardTarget.ENEMY);
-        magicNumber = baseMagicNumber = STRENGTH_LOSS;
+        if (RuinaMod.isMultiplayerConnected()) {
+            magicNumber = baseMagicNumber = STRENGTH_LOSS / P2PManager.GetPlayerCount();
+        } else {
+            magicNumber = baseMagicNumber = STRENGTH_LOSS;
+        }
         selfRetain = true;
         exhaust = true;
     }
@@ -35,7 +41,11 @@ public class ForestKeeperLock extends AbstractRuinaCard {
 
     @Override
     public void upp() {
-        upgradeMagicNumber(UP_STRENGTH_LOSS);
+        if (RuinaMod.isMultiplayerConnected()) {
+            upgradeMagicNumber(UP_STRENGTH_LOSS / P2PManager.GetPlayerCount());
+        } else {
+            upgradeMagicNumber(UP_STRENGTH_LOSS);
+        }
     }
 
     @Override
