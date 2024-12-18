@@ -26,6 +26,7 @@ import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 
@@ -130,7 +131,7 @@ public class BigBird extends AbstractMultiIntentMonster
                 dazzleAnimation(target);
                 if (target != adp()) {
                     if (RuinaMod.isMultiplayerConnected()) {
-                        applyToTarget(target, this, new EnchantedMultiplayer(target, currEnchantedHPAmt, 1));
+                        applyToTarget(target, this, new EnchantedMultiplayer(target, currEnchantedHPAmt * P2PManager.GetPlayerCount(), 1));
                     } else {
                         applyToTarget(target, this, new Enchanted(target, currEnchantedHPAmt, 1));
                     }

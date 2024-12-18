@@ -24,8 +24,10 @@ import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act3.WhiteNightBlessing;
+import ruina.powers.multiplayer.WhiteNightBlessingMultiplayer;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 
@@ -83,7 +85,11 @@ public class WhiteNight extends AbstractRuinaMonster {
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Angela3");
-        applyToTarget(this, this, new WhiteNightBlessing(this, BLESSING_AMT, MAX_TURNS, this));
+        if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new WhiteNightBlessingMultiplayer(this, BLESSING_AMT * P2PManager.GetPlayerCount(), MAX_TURNS, this));
+        } else {
+            applyToTarget(this, this, new WhiteNightBlessing(this, BLESSING_AMT, MAX_TURNS, this));
+        }
     }
 
     public void awaken() {
@@ -105,8 +111,13 @@ public class WhiteNight extends AbstractRuinaMonster {
                 this.isDone = true;
             }
         });
-        makePowerRemovable(this, WhiteNightBlessing.POWER_ID);
-        atb(new RemoveSpecificPowerAction(this, this, WhiteNightBlessing.POWER_ID));
+        if (RuinaMod.isMultiplayerConnected()) {
+            makePowerRemovable(this, WhiteNightBlessingMultiplayer.POWER_ID);
+            atb(new RemoveSpecificPowerAction(this, this, WhiteNightBlessingMultiplayer.POWER_ID));
+        } else {
+            makePowerRemovable(this, WhiteNightBlessing.POWER_ID);
+            atb(new RemoveSpecificPowerAction(this, this, WhiteNightBlessing.POWER_ID));
+        }
         atb(new RollMoveAction(this));
     }
 

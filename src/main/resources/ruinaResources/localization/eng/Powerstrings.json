@@ -694,5 +694,9 @@
   "${ModID}:EnchantedMultiplayer": {
     "NAME": "Enchanted",
     "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL #yEnchanted is #gremoved after #yplayers collectively cause this creature to lose #b", " more HP."]
+  },
+  "${ModID}:WhiteNightBlessingMultiplayer": {
+    "NAME": "Blessings",
+    "DESCRIPTIONS": ["Cards #yplayers play become #yBlessed. #yBlessed cards deal more damage and gain more #yBlock. NL After #b", " more cards are collectively played, this creature #yawakens at end of round."]
   }
 }
