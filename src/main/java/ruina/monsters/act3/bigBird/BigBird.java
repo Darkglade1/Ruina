@@ -104,7 +104,7 @@ public class BigBird extends AbstractMultiIntentMonster
                     dazzleAnimation(target);
                     dmg(target, info);
                 } else {
-                    if (target.hasPower(Enchanted.POWER_ID)) {
+                    if (target.hasPower(Enchanted.POWER_ID) || target.hasPower(EnchantedMultiplayer.POWER_ID)) {
                         salvation1Animation(target);
                         atb(new VFXAction(new WaitEffect(), 0.25f));
                         flashImageVfx(EXECUTE, 1.5f);
@@ -199,7 +199,7 @@ public class BigBird extends AbstractMultiIntentMonster
 
     @Override
     protected int applySpecialMultiplier(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, int whichMove, int dmg) {
-        if (target.hasPower(Enchanted.POWER_ID)) {
+        if (target.hasPower(Enchanted.POWER_ID) || target.hasPower(EnchantedMultiplayer.POWER_ID)) {
             return BigBird.INSTANT_KILL_NUM;
         }
         return dmg;
