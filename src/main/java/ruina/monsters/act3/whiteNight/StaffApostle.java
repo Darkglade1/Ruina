@@ -24,15 +24,13 @@ public class StaffApostle extends AbstractRuinaMonster {
 
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int DEBUFF = calcAscensionSpecial(1);
-    private final WhiteNight whiteNight;
 
-    public StaffApostle(final float x, final float y, WhiteNight whiteNight) {
+    public StaffApostle(final float x, final float y) {
         super(ID, ID, 50, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("StaffApostle/Spriter/StaffApostle.scml"));
         setHp(calcAscensionTankiness(52), calcAscensionTankiness(56));
         addMove(THY_WORDS, Intent.ATTACK_BUFF, calcAscensionDamage(7));
         addMove(GIVE_US_REST, Intent.ATTACK_DEBUFF, calcAscensionDamage(9));
-        this.whiteNight = whiteNight;
     }
 
     @Override
@@ -96,16 +94,5 @@ public class StaffApostle extends AbstractRuinaMonster {
 
     private void specialAnimation() {
         animationAction("Special", null, this);
-    }
-
-    @Override
-    public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
-        for (int i = 0; i < whiteNight.minions.length; i++) {
-            if (whiteNight.minions[i] == this) {
-                whiteNight.minions[i] = null;
-                break;
-            }
-        }
     }
 }

@@ -10,8 +10,6 @@ import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -48,7 +46,6 @@ public class Worshipper extends AbstractRuinaMonster
     private final int MARTYR_DAMAGE = calcAscensionSpecial(15);
     private final int PARALYSIS = calcAscensionSpecial(1);
 
-    private BlueStar star;
     public boolean triggerMartyr = true;
     private final int meetAgainThreshold;
     private boolean yeeting = false;
@@ -72,11 +69,6 @@ public class Worshipper extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof BlueStar) {
-                this.star = (BlueStar) mo;
-            }
-        }
         addPower(new MinionPower(this));
         applyToTarget(this, this, new Martyr(this, MARTYR_DAMAGE));
         applyToTarget(this, this, new MeetAgain(this, meetAgainThreshold));
@@ -120,17 +112,6 @@ public class Worshipper extends AbstractRuinaMonster
             }
         }
         atb(new RollMoveAction(this));
-    }
-
-    @Override
-    public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
-        for (int i = 0; i < star.minions.length; i++) {
-            if (star.minions[i] == this) {
-                star.minions[i] = null;
-                break;
-            }
-        }
     }
 
     @Override
