@@ -60,13 +60,13 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
                 }
             }
         }
-        if (networkMessage.request.equals(request_queenTriggerHysteria)) {
+        if (networkMessage.request.equals(request_swordCommittedSuicide)) {
             Object[] dataIn = (Object[]) networkMessage.object;
             String monsterID = (String)dataIn[0];
             NetworkLocation requestLocation = (NetworkLocation)dataIn[1];
             if (requestLocation.isSameRoomAndAction()) {
                 for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-                    if (m instanceof QueenOfHate && SpireHelp.Gameplay.CreatureToUID(m).equals(monsterID)) {
+                    if (m instanceof Sword && SpireHelp.Gameplay.CreatureToUID(m).equals(monsterID)) {
                         if (m.hasPower(Worthless.POWER_ID)) {
                             m.getPower(Worthless.POWER_ID).onSpecificTrigger();
                         }

@@ -182,14 +182,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         additionalMoves.clear();
         Random seedToUse;
         if (RuinaMod.isMultiplayerConnected()) {
-            Long newSeed = 0L;
-            NetworkLocation l = SpireHelp.Gameplay.GetMapLocation(false);
-            if(l != null){
-                newSeed += l.x;
-                newSeed += l.y;
-            }
-            newSeed += GameActionManager.turn;
-            seedToUse = new Random(newSeed);
+            seedToUse = generateMultiplayerRandom();
         } else {
             seedToUse = AbstractDungeon.aiRng;
         }

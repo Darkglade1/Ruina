@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -16,17 +17,21 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.elena.VermilionCross;
+import ruina.multiplayer.NetworkMultiIntentMonster;
 import ruina.multiplayer.NetworkRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.networkcore.objects.entities.NetworkIntent;
 import spireTogether.networkcore.objects.entities.NetworkMonster;
+import spireTogether.networkcore.objects.rooms.NetworkLocation;
 import spireTogether.other.RoomDataManager;
 import spireTogether.util.SpireHelp;
 
@@ -480,6 +485,28 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     protected int convertNumToRandomIndex(int num, float size) {
         float convertedNum = (float)num / 100;
         return Math.round(Interpolation.linear.apply(0, size, convertedNum));
+    }
+
+    @Override
+    public void rollMove() {
+        Random seedToUse;
+        if (RuinaMod.isMultiplayerConnected()) {
+            seedToUse = generateMultiplayerRandom();
+        } else {
+            seedToUse = AbstractDungeon.aiRng;
+        }
+        this.getMove(seedToUse.random(99));
+    }
+
+    protected Random generateMultiplayerRandom() {
+        Long newSeed = 0L;
+        NetworkLocation l = SpireHelp.Gameplay.GetMapLocation(false);
+        if(l != null){
+            newSeed += l.x;
+            newSeed += l.y;
+        }
+        newSeed += GameActionManager.turn;
+        return new Random(newSeed);
     }
 
 }
