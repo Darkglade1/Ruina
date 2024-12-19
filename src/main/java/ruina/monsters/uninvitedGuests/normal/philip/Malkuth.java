@@ -297,9 +297,9 @@ public class Malkuth extends AbstractAllyCardMonster
         }
         if (canUseMassAttack()) {
             if (phase == EGO) {
-                setMoveShortcut(INFERNO, cardList.get(INFERNO));
+                setMoveShortcut(INFERNO);
             } else {
-                setMoveShortcut(RAGING_STORM, cardList.get(RAGING_STORM));
+                setMoveShortcut(RAGING_STORM);
             }
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -318,7 +318,7 @@ public class Malkuth extends AbstractAllyCardMonster
                 possibilities.add(FERVID_EMOTIONS);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setMoveShortcut(move, cardList.get(move));
+            setMoveShortcut(move);
         }
     }
 

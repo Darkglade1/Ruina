@@ -134,11 +134,11 @@ public class Tiph extends AbstractAllyCardMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(TRIGRAM)) {
-            setMoveShortcut(CONFRONTATION, cardList.get(CONFRONTATION));
+            setMoveShortcut(CONFRONTATION);
         } else if (this.lastMove(CONFRONTATION)) {
-            setMoveShortcut(AUGURY_KICK, cardList.get(AUGURY_KICK));
+            setMoveShortcut(AUGURY_KICK);
         } else {
-            setMoveShortcut(TRIGRAM, cardList.get(TRIGRAM));
+            setMoveShortcut(TRIGRAM);
         }
     }
 

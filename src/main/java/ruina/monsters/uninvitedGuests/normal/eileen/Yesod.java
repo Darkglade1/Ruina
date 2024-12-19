@@ -126,9 +126,9 @@ public class Yesod extends AbstractAllyCardMonster
     @Override
     protected void getMove(final int num) {
         if (lastMove(FLOODING_BULLETS)) {
-            setMoveShortcut(RELOAD, cardList.get(RELOAD));
+            setMoveShortcut(RELOAD);
         } else {
-            setMoveShortcut(FLOODING_BULLETS, cardList.get(FLOODING_BULLETS));
+            setMoveShortcut(FLOODING_BULLETS);
         }
     }
 

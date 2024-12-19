@@ -367,13 +367,13 @@ public class Roland extends AbstractAllyCardMonster {
     @Override
     protected void getMove(final int num) {
         if (furiosoCount <= 0) {
-            setMoveShortcut(FURIOSO, cardList.get(FURIOSO));
+            setMoveShortcut(FURIOSO);
         } else {
             if (movepool.isEmpty()) {
                 populateMovepool();
             }
             byte move = movepool.remove(AbstractDungeon.monsterRng.random(movepool.size() - 1));
-            setMoveShortcut(move, cardList.get(move));
+            setMoveShortcut(move);
         }
     }
 

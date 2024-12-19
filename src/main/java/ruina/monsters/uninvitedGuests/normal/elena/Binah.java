@@ -143,7 +143,7 @@ public class Binah extends AbstractAllyCardMonster
         } else {
             move = DEGRADED_PILLAR;
         }
-        setMoveShortcut(move, cardList.get(move));
+        setMoveShortcut(move);
     }
 
     public void onBossDeath() {

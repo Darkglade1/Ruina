@@ -335,9 +335,9 @@ public class Gebura extends AbstractAllyCardMonster
     protected void getMove(final int num) {
         if (greaterSplitCooldownCounter <= 0 && canSplit) {
             if (phase == 1) {
-                setMoveShortcut(GSV, cardList.get(GSV));
+                setMoveShortcut(GSV);
             } else {
-                setMoveShortcut(GSH, cardList.get(GSH));
+                setMoveShortcut(GSH);
             }
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -354,7 +354,7 @@ public class Gebura extends AbstractAllyCardMonster
                 possibilities.add(UPSTANDING_SLASH);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setMoveShortcut(move, cardList.get(move));
+            setMoveShortcut(move);
         }
     }
 

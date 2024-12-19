@@ -225,21 +225,21 @@ public class Hod extends AbstractAllyCardMonster
     protected void getMove(final int num) {
         if (stance == SLASH) {
             if (slashMove == VIOLET_BLADE) {
-                setMoveShortcut(VIOLET_BLADE, cardList.get(VIOLET_BLADE));
+                setMoveShortcut(VIOLET_BLADE);
             } else {
-                setMoveShortcut(SNAKE_SLIT, cardList.get(SNAKE_SLIT));
+                setMoveShortcut(SNAKE_SLIT);
             }
         } else if (stance == PIERCE) {
             if (pierceMove == VENOMOUS_FANGS) {
-                setMoveShortcut(VENOMOUS_FANGS, cardList.get(VENOMOUS_FANGS));
+                setMoveShortcut(VENOMOUS_FANGS);
             } else {
-                setMoveShortcut(LACERATION, cardList.get(LACERATION));
+                setMoveShortcut(LACERATION);
             }
         } else {
             if (guardMove == DUEL) {
-                setMoveShortcut(DUEL, cardList.get(DUEL));
+                setMoveShortcut(DUEL);
             } else {
-                setMoveShortcut(SERPENTINE_BARRIER, cardList.get(SERPENTINE_BARRIER));
+                setMoveShortcut(SERPENTINE_BARRIER);
             }
         }
     }

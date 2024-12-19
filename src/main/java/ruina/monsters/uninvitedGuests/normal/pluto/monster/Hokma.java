@@ -117,9 +117,9 @@ public class Hokma extends AbstractAllyCardMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(SILENCE) && this.lastMoveBefore(SILENCE)) {
-            setMoveShortcut(TIME, cardList.get(TIME));
+            setMoveShortcut(TIME);
         } else {
-            setMoveShortcut(SILENCE, cardList.get(SILENCE));
+            setMoveShortcut(SILENCE);
         }
     }
 

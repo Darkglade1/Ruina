@@ -179,7 +179,7 @@ public class Chesed extends AbstractAllyCardMonster
             possibilities.add(CONCENTRATE);
         }
         byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-        setMoveShortcut(move, cardList.get(move));
+        setMoveShortcut(move);
     }
 
     public void checkDisposalCanUse() {
@@ -187,7 +187,7 @@ public class Chesed extends AbstractAllyCardMonster
             if (puppeteer.puppet.isDeadOrEscaped() && puppeteer.puppet.nextMove == Puppet.REVIVE) {
                 if (puppeteer.hasPower(Mark.POWER_ID)) {
                     att(new TalkAction(this, DIALOG[2]));
-                    setMoveShortcut(DISPOSAL, cardList.get(DISPOSAL));
+                    setMoveShortcut(DISPOSAL);
                     createIntent();
                 }
             }
