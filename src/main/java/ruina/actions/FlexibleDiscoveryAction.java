@@ -6,11 +6,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.watcher.MasterRealityPower;
+import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import java.util.ArrayList;
-
-import static ruina.util.Wiz.att;
 
 public class FlexibleDiscoveryAction extends AbstractGameAction {
     private boolean retrieveCard = false;
@@ -27,9 +26,7 @@ public class FlexibleDiscoveryAction extends AbstractGameAction {
 
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST) {
-            AbstractDungeon.cardRewardScreen.discoveryOpen();
-            AbstractDungeon.cardRewardScreen.rewardGroup = cards;
-
+            AbstractDungeon.cardRewardScreen.customCombatOpen(cards, CardRewardScreen.TEXT[1], false);
             for (AbstractCard tmp : AbstractDungeon.cardRewardScreen.rewardGroup) {
                 UnlockTracker.markCardAsSeen(tmp.cardID);
             }
@@ -45,13 +42,11 @@ public class FlexibleDiscoveryAction extends AbstractGameAction {
                         disCard.setCostForTurn(0);
                     }
                     disCard.current_x = -1000.0F * Settings.scale;
-                    att(new MakeTempCardInHandAction(disCard, amount));
+                    addToTop(new MakeTempCardInHandAction(disCard, amount));
                     AbstractDungeon.cardRewardScreen.discoveryCard = null;
                 }
-
                 this.retrieveCard = true;
             }
-
             this.tickDuration();
         }
     }
