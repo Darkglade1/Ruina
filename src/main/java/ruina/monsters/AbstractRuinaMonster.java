@@ -506,6 +506,8 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
             newSeed += l.y;
         }
         newSeed += GameActionManager.turn;
+        String uid = SpireHelp.Gameplay.CreatureToUID(this);
+        newSeed += uid.hashCode();
         return new Random(newSeed);
     }
 
