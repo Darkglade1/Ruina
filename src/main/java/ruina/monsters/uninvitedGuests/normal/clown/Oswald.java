@@ -212,7 +212,9 @@ public class Oswald extends AbstractCardMonster
         if (additionalMove.nextMove == POW) {
             applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
         } else {
-            applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
+            if (target != null) {
+                applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
+            }
         }
     }
 

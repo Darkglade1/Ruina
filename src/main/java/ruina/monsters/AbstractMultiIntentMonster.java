@@ -324,7 +324,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if (attackingMonsterWithPrimaryIntent && this.nextMove != -1) {
+        if (attackingMonsterWithPrimaryIntent && this.nextMove != -1 && target != null) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             if (info.base > -1) {
                 info.applyPowers(this, target);
