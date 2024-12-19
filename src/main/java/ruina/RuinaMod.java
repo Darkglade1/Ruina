@@ -874,26 +874,26 @@ public class RuinaMod implements
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
-//        asiyah.addBoss(FairyQueen.ID, "Fairy Queen", () -> new MonsterGroup(
-//                new AbstractMonster[]{
-//                        new FairyMass(FairyQueen.MINION_X_1, 0.0F),
-//                        new FairyMass(FairyQueen.MINION_X_2, 0.0F),
-//                        new FairyQueen(100.0F, 0.0F)
-//                }), makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
+        asiyah.addBoss(FairyQueen.ID, "Fairy Queen", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new FairyMass(FairyQueen.MINION_X_1, 0.0F),
+                        new FairyMass(FairyQueen.MINION_X_2, 0.0F),
+                        new FairyQueen(100.0F, 0.0F)
+                }), makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
         asiyah.addBoss(EncounterIDs.NOTHING_DER, "Those Who Hunt Monsters", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new ruina.monsters.act1.nothingDer.NothingThere(-1000.0F, 0.0F),
                         new Gunman(70.0F, 0.0F),
                 }), makeMonsterPath("Gunman/GunMap.png"), makeMonsterPath("Gunman/GunIcon.png"));
-//        asiyah.addBoss(BlackSwan.ID, "Dream of a Black Swan", () -> new MonsterGroup(
-//                new AbstractMonster[]{
-//                        new Brother(-450.0F, 0.0F, 1),
-//                        new Brother(-250.0F, 0.0F, 2),
-//                        new BlackSwan(-50.0F, 0.0F),
-//                        new Brother(150.0F, 0.0F, 3),
-//                        new Brother(350.0F, 0.0F, 4),
-//                }), makeMonsterPath("BlackSwan/SwanMap.png"), makeMonsterPath("BlackSwan/SwanMapOutline.png"));
-//        asiyah.addBoss(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new, makeMonsterPath("Orchestra/OrchestraMap.png"), makeMonsterPath("Orchestra/OrchestraMap.png"));
+        asiyah.addBoss(BlackSwan.ID, "Dream of a Black Swan", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Brother(-450.0F, 0.0F, 1),
+                        new Brother(-250.0F, 0.0F, 2),
+                        new BlackSwan(-50.0F, 0.0F),
+                        new Brother(150.0F, 0.0F, 3),
+                        new Brother(350.0F, 0.0F, 4),
+                }), makeMonsterPath("BlackSwan/SwanMap.png"), makeMonsterPath("BlackSwan/SwanMapOutline.png"));
+        asiyah.addBoss(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new, makeMonsterPath("Orchestra/OrchestraMap.png"), makeMonsterPath("Orchestra/OrchestraMap.png"));
 
 
         BaseMod.addEvent(ShiAssociation.ID, ShiAssociation.class, Asiyah.ID);
@@ -982,23 +982,23 @@ public class RuinaMod implements
 
         BaseMod.addMonster(Kim.ID, (BaseMod.GetMonster) Kim::new);
 
-//        briah.addBoss(EncounterIDs.RED_AND_WOLF, "The Mercenary's Nightmare", () -> new MonsterGroup(
-//                new AbstractMonster[]{
-//                        new LittleRed(-480.0F, 0.0F),
-//                        new NightmareWolf(),
-//                }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
+        briah.addBoss(EncounterIDs.RED_AND_WOLF, "The Mercenary's Nightmare", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new LittleRed(-480.0F, 0.0F),
+                        new NightmareWolf(),
+                }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
         briah.addBoss(JesterOfNihil.ID, "Jester of Nihil", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new QueenOfLove(-600.0f, 0.0F),
                         new ServantOfCourage(-400.0f, 0.0F),
                         new JesterOfNihil(),
                 }), makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
-//        briah.addBoss(Ozma.ID, "Ozma", () -> new MonsterGroup(
-//                new AbstractMonster[]{
-//                        new Jack(-550.0f, 0.0F, false),
-//                        new Jack(-300.0f, 0.0F, true),
-//                        new Ozma(),
-//                }), makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
+        briah.addBoss(Ozma.ID, "Ozma", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Jack(-550.0f, 0.0F, false),
+                        new Jack(-300.0f, 0.0F, true),
+                        new Ozma(),
+                }), makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
 
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
         BaseMod.addEvent(ChurchOfGears.ID, ChurchOfGears.class, Briah.ID);
@@ -1018,9 +1018,9 @@ public class RuinaMod implements
 
 
         // Act 3
-        //atziluth.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
+        atziluth.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
         atziluth.addBoss(WhiteNight.ID, (BaseMod.GetMonster) WhiteNight::new, makeMonsterPath("WhiteNight/WhiteNightMap.png"), makeMonsterPath("WhiteNight/WhiteNightMapOutline.png"));
-        //atziluth.addBoss(SilentGirl.ID, (BaseMod.GetMonster) SilentGirl::new, makeMonsterPath("SilentGirl/MapIcon.png"), makeMonsterPath("SilentGirl/MapIcon.png"));
+        atziluth.addBoss(SilentGirl.ID, (BaseMod.GetMonster) SilentGirl::new, makeMonsterPath("SilentGirl/MapIcon.png"), makeMonsterPath("SilentGirl/MapIcon.png"));
 
         BaseMod.addMonster(BigBird.ID, "Big Bird", () -> new MonsterGroup(
                 new AbstractMonster[]{
