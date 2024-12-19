@@ -265,7 +265,7 @@ public class Philip extends AbstractCardMonster
             }
         }
         byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+        setMoveShortcut(move);
     }
 
     @Override
@@ -301,7 +301,7 @@ public class Philip extends AbstractCardMonster
             }
         }
         byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override

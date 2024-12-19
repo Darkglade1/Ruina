@@ -109,7 +109,7 @@ public class Pinocchio extends AbstractDeckMonster
             setMoveShortcut(LEARN);
         } else {
             AbstractCard c = topDeckCardForMoveAction();
-            setMoveShortcut((byte) c.cardID.hashCode(), c.name, c);
+            setMoveShortcut((byte) c.cardID.hashCode());
         }
     }
 
@@ -156,5 +156,5 @@ public class Pinocchio extends AbstractDeckMonster
         return -1;
     }
 
-    protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) { setAdditionalMoveShortcut((byte) c.cardID.hashCode(), moveHistory, c); }
+    protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) { setAdditionalMoveShortcut((byte) c.cardID.hashCode(), moveHistory); }
 }

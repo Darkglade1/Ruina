@@ -287,9 +287,9 @@ public class Tanya extends AbstractCardMonster
     @Override
     protected void getMove(final int num) {
         if (canUseOverspeed()) {
-            setMoveShortcut(OVERSPEED, MOVES[OVERSPEED], cardList.get(OVERSPEED).makeStatEquivalentCopy());
+            setMoveShortcut(OVERSPEED);
         } else if (massAttackCooldown <= 0) {
-            setMoveShortcut(BEATDOWN, MOVES[BEATDOWN], cardList.get(BEATDOWN).makeStatEquivalentCopy());
+            setMoveShortcut(BEATDOWN);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(LUPINE_ASSAULT)) {
@@ -299,7 +299,7 @@ public class Tanya extends AbstractCardMonster
                 possibilities.add(FISTICUFFS);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+            setMoveShortcut(move);
         }
     }
 
@@ -308,9 +308,9 @@ public class Tanya extends AbstractCardMonster
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (canUseOverspeed()) {
-            setAdditionalMoveShortcut(OVERSPEED, moveHistory, cardList.get(OVERSPEED).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(OVERSPEED, moveHistory);
         } else if (massAttackCooldown <= 0) {
-            setAdditionalMoveShortcut(INTIMIDATE, moveHistory, cardList.get(INTIMIDATE).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(INTIMIDATE, moveHistory);
         } else {
             if (!this.lastMove(LUPINE_ASSAULT, moveHistory)) {
                 possibilities.add(LUPINE_ASSAULT);
@@ -322,7 +322,7 @@ public class Tanya extends AbstractCardMonster
                 possibilities.add(KICKS_AND_STOMPS);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(move, moveHistory);
         }
     }
 

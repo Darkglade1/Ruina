@@ -1,9 +1,11 @@
 package ruina.monsters.uninvitedGuests.normal.philip;
 
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,6 +17,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
 import ruina.actions.AllyDamageAllEnemiesAction;
+import ruina.cardmods.ManifestMod;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.uninvitedGuests.normal.philip.malkuthCards.*;
@@ -138,6 +141,9 @@ public class Malkuth extends AbstractAllyCardMonster
         addPower(new Dragon(this, EXHAUST_GAIN));
         addPower(new Emotion(this, 0, EMOTION_THRESHOLD));
         addPower(new StrengthPower(this, STARTING_STR));
+        for (AbstractCard card : adp().drawPile.group) {
+            CardModifierManager.addModifier(card, new ManifestMod());
+        }
         super.usePreBattleAction();
     }
 

@@ -218,9 +218,9 @@ public class Puppeteer extends AbstractCardMonster
     protected void getMove(final int num) {
         aboutToMassAttack = aboutToMassAttack();
         if (threeTurnCooldownHasPassedForMove(PULLING_STRINGS_TAUT)) {
-            setMoveShortcut(PULLING_STRINGS_TAUT, MOVES[PULLING_STRINGS_TAUT], cardList.get(PULLING_STRINGS_TAUT).makeStatEquivalentCopy());
+            setMoveShortcut(PULLING_STRINGS_TAUT);
         } else if (lastMove(ASSAILING_PULLS)) {
-            setMoveShortcut(TUGGING_STRINGS, MOVES[TUGGING_STRINGS], cardList.get(TUGGING_STRINGS).makeStatEquivalentCopy());
+            setMoveShortcut(TUGGING_STRINGS);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(TUGGING_STRINGS)) {
@@ -233,7 +233,7 @@ public class Puppeteer extends AbstractCardMonster
                 possibilities.add(THIN_STRINGS);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+            setMoveShortcut(move);
         }
     }
 
@@ -241,7 +241,7 @@ public class Puppeteer extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (this.lastMove(ASSAILING_PULLS, moveHistory)) {
-            setAdditionalMoveShortcut(TUGGING_STRINGS, moveHistory, cardList.get(TUGGING_STRINGS).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(TUGGING_STRINGS, moveHistory);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(TUGGING_STRINGS, moveHistory)) {
@@ -254,7 +254,7 @@ public class Puppeteer extends AbstractCardMonster
                 possibilities.add(PUPPETRY);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(move, moveHistory);
         }
     }
 

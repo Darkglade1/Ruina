@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -300,9 +299,9 @@ public class RedMist extends AbstractCardMonster {
     protected void getMove(final int num) {
         if (greaterSplitCooldownCounter <= 0) {
             if (EGO) {
-                setMoveShortcut(GSH, MOVES[GSH], new CHRBOSS_GreaterSplitHorizontal(this));
+                setMoveShortcut(GSH);
             } else {
-                setMoveShortcut(GSV, MOVES[GSV], new CHRBOSS_GreaterSplitVertical(this));
+                setMoveShortcut(GSV);
             }
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -331,8 +330,7 @@ public class RedMist extends AbstractCardMonster {
                 }
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
-
+            setMoveShortcut(move);
         }
     }
 

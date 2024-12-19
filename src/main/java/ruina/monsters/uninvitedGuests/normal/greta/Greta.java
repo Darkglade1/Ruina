@@ -76,6 +76,13 @@ public class Greta extends AbstractCardMonster
         addMove(SEASON, Intent.DEBUFF);
         addMove(TRIAL, Intent.ATTACK_BUFF, calcAscensionDamage(19));
         addMove(SACK, Intent.STRONG_DEBUFF);
+
+        cardList.add(new BreakEgg(this));
+        cardList.add(new Slap(this));
+        cardList.add(new Mince(this));
+        cardList.add(new Season(this));
+        cardList.add(new Trial(this));
+        cardList.add(new Sack(this));
     }
 
     @Override
@@ -209,7 +216,7 @@ public class Greta extends AbstractCardMonster
             possibilities.add(SLAP);
         }
         byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
+        setMoveShortcut(move);
     }
 
     @Override
@@ -227,25 +234,14 @@ public class Greta extends AbstractCardMonster
                 possibilities.add(SEASON);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
+            setAdditionalMoveShortcut(move, moveHistory);
         } else {
             if (meat != null && !meat.isDeadOrEscaped()) {
-                setAdditionalMoveShortcut(TRIAL, moveHistory, getMoveCardFromByte(TRIAL));
+                setAdditionalMoveShortcut(TRIAL, moveHistory);
             } else {
-                setAdditionalMoveShortcut(SACK, moveHistory, getMoveCardFromByte(SACK));
+                setAdditionalMoveShortcut(SACK, moveHistory);
             }
         }
-    }
-
-    protected AbstractCard getMoveCardFromByte(Byte move) {
-        ArrayList<AbstractCard> list = new ArrayList<>();
-        list.add(new BreakEgg(this));
-        list.add(new Slap(this));
-        list.add(new Mince(this));
-        list.add(new Season(this));
-        list.add(new Trial(this));
-        list.add(new Sack(this));
-        return list.get(move);
     }
 
     @Override

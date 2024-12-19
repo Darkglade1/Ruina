@@ -94,11 +94,11 @@ public class Lulu extends AbstractCardMonster {
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(FLAMING_BAT)) {
-            setMoveShortcut(SET_ABLAZE, MOVES[SET_ABLAZE], cardList.get(SET_ABLAZE).makeStatEquivalentCopy());
+            setMoveShortcut(SET_ABLAZE);
         } else if (this.lastMove(PREPARED_MIND)) {
-            setMoveShortcut(FLAMING_BAT, MOVES[FLAMING_BAT], cardList.get(FLAMING_BAT).makeStatEquivalentCopy());
+            setMoveShortcut(FLAMING_BAT);
         } else {
-            setMoveShortcut(PREPARED_MIND, MOVES[PREPARED_MIND], cardList.get(PREPARED_MIND).makeStatEquivalentCopy());
+            setMoveShortcut(PREPARED_MIND);
         }
     }
 

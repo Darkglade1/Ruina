@@ -161,9 +161,9 @@ public class Eileen extends AbstractCardMonster
     @Override
     protected void getMove(final int num) {
         if (lastMove(PREACH)) {
-            setMoveShortcut(ACCELERATE, MOVES[ACCELERATE], cardList.get(ACCELERATE).makeStatEquivalentCopy());
+            setMoveShortcut(ACCELERATE);
         } else {
-            setMoveShortcut(PREACH, MOVES[PREACH], cardList.get(PREACH).makeStatEquivalentCopy());
+            setMoveShortcut(PREACH);
         }
     }
 
@@ -171,9 +171,9 @@ public class Eileen extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (this.lastMove(PROPAGATE, moveHistory)) {
-            setAdditionalMoveShortcut(BRAINWASH, moveHistory, cardList.get(BRAINWASH).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(BRAINWASH, moveHistory);
         } else {
-            setAdditionalMoveShortcut(PROPAGATE, moveHistory, cardList.get(PROPAGATE).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(PROPAGATE, moveHistory);
         }
     }
 

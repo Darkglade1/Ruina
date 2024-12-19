@@ -21,29 +21,24 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.ScoreBonusStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.BackAttackPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.HeadDialogueAction;
 import ruina.actions.SerumWAnimation;
 import ruina.actions.UsePreBattleActionAction;
-import ruina.actions.YeetPlayerAction;
 import ruina.cardmods.BlackSilenceRenderMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.theHead.baralCards.*;
-import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.patches.RenderHandPatch;
 import ruina.powers.*;
@@ -122,6 +117,7 @@ public class Baral extends AbstractCardMonster
         addMove(EXTIRPATION, Intent.ATTACK_DEFEND, extirpationDamage);
         addMove(TRI_SERUM_COCKTAIL, Intent.ATTACK, triSerumDamage, triSerumHits);
         addMove(SERUM_K, Intent.DEFEND_BUFF);
+
         cardList.add(new SerumW(this));
         cardList.add(new SerumR(this));
         cardList.add(new Extirpation(this));
@@ -526,38 +522,38 @@ public class Baral extends AbstractCardMonster
     protected void getMove(final int num) {
         if (this.hasPower(StrengthPower.POWER_ID) && this.getPower(StrengthPower.POWER_ID).amount >= KILL_THRESHOLD) {
             if (!this.lastMove(SERUM_W)) {
-                setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
+                setMoveShortcut(SERUM_W);
             } else {
-                setMoveShortcut(TRI_SERUM_COCKTAIL, MOVES[TRI_SERUM_COCKTAIL], cardList.get(TRI_SERUM_COCKTAIL).makeStatEquivalentCopy());
+                setMoveShortcut(TRI_SERUM_COCKTAIL);
             }
         } else if (this.currentHealth <= this.maxHealth / 2) {
             if (this.lastMove(SERUM_K)) {
-                setMoveShortcut(TRI_SERUM_COCKTAIL, MOVES[TRI_SERUM_COCKTAIL], cardList.get(TRI_SERUM_COCKTAIL).makeStatEquivalentCopy());
+                setMoveShortcut(TRI_SERUM_COCKTAIL);
             } else {
-                setMoveShortcut(SERUM_K, MOVES[SERUM_K], cardList.get(SERUM_K).makeStatEquivalentCopy());
+                setMoveShortcut(SERUM_K);
             }
         } else {
             if (currentPhase == PHASE.PHASE1) {
                 if (this.lastMove(SERUM_R)) {
-                    setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
+                    setMoveShortcut(SERUM_W);
                 } else if (this.lastMove(SERUM_W)) {
-                    setMoveShortcut(EXTIRPATION, MOVES[EXTIRPATION], cardList.get(EXTIRPATION).makeStatEquivalentCopy());
+                    setMoveShortcut(EXTIRPATION);
                 } else {
-                    setMoveShortcut(SERUM_R, MOVES[SERUM_R], cardList.get(SERUM_R).makeStatEquivalentCopy());
+                    setMoveShortcut(SERUM_R);
                 }
             } else {
                 if (this.lastMove(SERUM_W) || this.lastMove(EXTIRPATION)) {
-                    setMoveShortcut(TRI_SERUM_COCKTAIL, MOVES[TRI_SERUM_COCKTAIL], cardList.get(TRI_SERUM_COCKTAIL).makeStatEquivalentCopy());
+                    setMoveShortcut(TRI_SERUM_COCKTAIL);
                 } else if (this.lastMove(SERUM_K)){
                     if (useExtirpation) {
-                        setMoveShortcut(EXTIRPATION, MOVES[EXTIRPATION], cardList.get(EXTIRPATION).makeStatEquivalentCopy());
+                        setMoveShortcut(EXTIRPATION);
                         useExtirpation = false;
                     } else {
-                        setMoveShortcut(SERUM_W, MOVES[SERUM_W], cardList.get(SERUM_W).makeStatEquivalentCopy());
+                        setMoveShortcut(SERUM_W);
                         useExtirpation = true;
                     }
                 } else {
-                    setMoveShortcut(SERUM_K, MOVES[SERUM_K], cardList.get(SERUM_K).makeStatEquivalentCopy());
+                    setMoveShortcut(SERUM_K);
                 }
             }
         }
@@ -586,7 +582,7 @@ public class Baral extends AbstractCardMonster
             }
         }
         byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override

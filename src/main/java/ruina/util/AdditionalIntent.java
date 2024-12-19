@@ -94,6 +94,15 @@ public class AdditionalIntent {
         intentTip = createAdditionalIntentTip(this);
     }
 
+    public void updateEnemyCard(AbstractCard enemyCard) {
+        this.enemyCard = enemyCard;
+        if (this.enemyCard != null) {
+            this.enemyCard.drawScale = 0.25f;
+            this.enemyCard.targetDrawScale = 0.25f;
+            this.enemyCard.baseDamage = baseDamage;
+        }
+    }
+
     public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move) {
         this(source, move, null);
     }

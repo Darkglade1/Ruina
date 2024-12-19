@@ -163,7 +163,7 @@ public class Kim extends AbstractCardMonster {
         } else {
             move = YIELD;
         }
-        setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+        setMoveShortcut(move);
     }
 
     public void slashAnimation(AbstractCreature enemy) {

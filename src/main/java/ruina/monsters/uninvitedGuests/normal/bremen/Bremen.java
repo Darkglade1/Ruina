@@ -73,6 +73,13 @@ public class Bremen extends AbstractCardMonster
         addMove(RARF, Intent.DEFEND_DEBUFF);
         addMove(TENDON, Intent.ATTACK, calcAscensionDamage(8), tendonHits);
         addMove(TRIO, Intent.ATTACK_BUFF, calcAscensionDamage(6), trioHits);
+
+        cardList.add(new EverlastingMelody(this));
+        cardList.add(new Neigh(this));
+        cardList.add(new Bawk(this));
+        cardList.add(new Rarf(this));
+        cardList.add(new Tendon(this));
+        cardList.add(new Trio(this));
     }
 
     @Override
@@ -197,7 +204,7 @@ public class Bremen extends AbstractCardMonster
     @Override
     protected void getMove(final int num) {
         if (cooldown <= 0) {
-            setMoveShortcut(TRIO, MOVES[TRIO], getMoveCardFromByte(TRIO));
+            setMoveShortcut(TRIO);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(RARF) && !this.lastMoveBefore(RARF)) {
@@ -213,7 +220,7 @@ public class Bremen extends AbstractCardMonster
                 possibilities.add(TENDON);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
+            setMoveShortcut(move);
         }
     }
 
@@ -241,18 +248,7 @@ public class Bremen extends AbstractCardMonster
             possibilities.add(NEIGH);
         }
         byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
-    }
-
-    protected AbstractCard getMoveCardFromByte(Byte move) {
-        ArrayList<AbstractCard> list = new ArrayList<>();
-        list.add(new EverlastingMelody(this));
-        list.add(new Neigh(this));
-        list.add(new Bawk(this));
-        list.add(new Rarf(this));
-        list.add(new Tendon(this));
-        list.add(new Trio(this));
-        return list.get(move);
+        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override

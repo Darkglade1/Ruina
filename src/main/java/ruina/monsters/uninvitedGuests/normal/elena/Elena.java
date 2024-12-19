@@ -204,7 +204,7 @@ public class Elena extends AbstractCardMonster
             possibilities.add(CIRCULATION);
         }
         byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+        setMoveShortcut(move);
     }
 
     @Override
@@ -224,7 +224,7 @@ public class Elena extends AbstractCardMonster
             possibilities.add(SANGUINE_NAILS);
         }
         byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override

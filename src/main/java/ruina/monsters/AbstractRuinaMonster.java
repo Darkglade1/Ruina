@@ -22,14 +22,12 @@ import com.megacrit.cardcrawl.relics.RunicDome;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.elena.VermilionCross;
-import ruina.multiplayer.NetworkMultiIntentMonster;
 import ruina.multiplayer.NetworkRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 import spireTogether.networkcore.P2P.P2PManager;
-import spireTogether.networkcore.objects.entities.NetworkIntent;
 import spireTogether.networkcore.objects.entities.NetworkMonster;
 import spireTogether.networkcore.objects.rooms.NetworkLocation;
 import spireTogether.other.RoomDataManager;
@@ -111,7 +109,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
 
     public void setMoveShortcut(byte next) {
         String moveName = null;
-        if (next < MOVES.length) {
+        if (next >= 0 && next < MOVES.length) {
             moveName = MOVES[next];
         }
         EnemyMoveInfo info = this.moves.get(next);

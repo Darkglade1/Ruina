@@ -98,7 +98,18 @@ public class BlackSilence1 extends AbstractCardMonster {
         addMove(RANGA, Intent.ATTACK_DEBUFF, RANGA_DAMAGE, RANGA_HITS);
         addMove(MACE, Intent.ATTACK_BUFF, MACE_DAMAGE, MACE_HITS);
         addMove(FURIOSO, Intent.ATTACK_DEBUFF, furiosoDamage, furiosoHits);
-        populateCards();
+
+        cardList.add(new Crystal(this));
+        cardList.add(new Wheels(this));
+        cardList.add(new Durandal(this));
+        cardList.add(new Allas(this));
+        cardList.add(new Gun(this));
+        cardList.add(new Mook(this));
+        cardList.add(new OldBoys(this));
+        cardList.add(new Ranga(this));
+        cardList.add(new Mace(this));
+        cardList.add(new Furioso(this));
+
         populateMovepool();
 
         if (AbstractDungeon.ascensionLevel >= 19) {
@@ -370,7 +381,7 @@ public class BlackSilence1 extends AbstractCardMonster {
     protected void getMove(final int num) {
         boolean rollAgain = false;
         if (previewIntent >= 0) {
-            setMoveShortcut(previewIntent, MOVES[previewIntent], cardList.get(previewIntent));
+            setMoveShortcut(previewIntent);
         } else {
             rollAgain = true;
         }
@@ -380,7 +391,7 @@ public class BlackSilence1 extends AbstractCardMonster {
         } else {
             previewIntent = movepool.remove(0);
         }
-        setAdditionalMoveShortcut(previewIntent, moveHistory, cardList.get(previewIntent));
+        setAdditionalMoveShortcut(previewIntent, moveHistory);
         for (AdditionalIntent additionalIntent : additionalIntents) {
             additionalIntent.transparent = true;
             additionalIntent.usePrimaryIntentsColor = false;
@@ -403,19 +414,6 @@ public class BlackSilence1 extends AbstractCardMonster {
         //make sure these below can't be used right before furioso
         movepool.add(AbstractDungeon.aiRng.random(movepool.size() - 3), DURANDAL);
         movepool.add(AbstractDungeon.aiRng.random(movepool.size() - 3), MACE);
-    }
-
-    private void populateCards() {
-        cardList.add(new Crystal(this));
-        cardList.add(new Wheels(this));
-        cardList.add(new Durandal(this));
-        cardList.add(new Allas(this));
-        cardList.add(new Gun(this));
-        cardList.add(new Mook(this));
-        cardList.add(new OldBoys(this));
-        cardList.add(new Ranga(this));
-        cardList.add(new Mace(this));
-        cardList.add(new Furioso(this));
     }
 
     private void attackAnimation(AbstractCreature enemy) {

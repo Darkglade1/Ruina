@@ -211,7 +211,7 @@ public class BlackSilence3 extends AbstractCardMonster {
     @Override
     protected void getMove(final int num) {
         if (turn <= 0) {
-            setMoveShortcut(WALTZ, MOVES[WALTZ], cardList.get(WALTZ).makeStatEquivalentCopy());
+            setMoveShortcut(WALTZ);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(UNITED_WORKSHOP) && !this.lastMoveBefore(UNITED_WORKSHOP)) {
@@ -224,12 +224,12 @@ public class BlackSilence3 extends AbstractCardMonster {
                 possibilities.add(FURY);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+            setMoveShortcut(move);
         }
     }
 
     public void setBondIntent() {
-        setMoveShortcut(DARKBOND, MOVES[DARKBOND], cardList.get(DARKBOND).makeStatEquivalentCopy());
+        setMoveShortcut(DARKBOND);
         createIntent();
     }
 

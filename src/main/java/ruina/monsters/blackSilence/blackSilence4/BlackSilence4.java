@@ -344,7 +344,7 @@ public class BlackSilence4 extends AbstractCardMonster {
             possibilities.add(VOID);
         }
         byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+        setMoveShortcut(move);
     }
 
     @Override
@@ -352,7 +352,7 @@ public class BlackSilence4 extends AbstractCardMonster {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (whichMove == numAdditionalMoves - 1) { //the last intent handles memories
             byte move = memories.get(0);
-            setAdditionalMoveShortcut(move, moveHistory, cardList.get(move));
+            setAdditionalMoveShortcut(move, moveHistory);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(AGONY, moveHistory)) {
@@ -365,7 +365,7 @@ public class BlackSilence4 extends AbstractCardMonster {
                 possibilities.add(VOID);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(move, moveHistory);
         }
     }
 

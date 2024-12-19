@@ -113,7 +113,7 @@ public class Shade extends AbstractDeckMonster
     @Override
     protected void getMove(final int num) {
         AbstractCard c = topDeckCardForMoveAction();
-        setMoveShortcut((byte) c.cardID.hashCode(), c.name, c);
+        setMoveShortcut((byte) c.cardID.hashCode());
     }
 
     @Override
@@ -166,7 +166,7 @@ public class Shade extends AbstractDeckMonster
         return -1;
     }
 
-    protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) { setAdditionalMoveShortcut((byte) c.cardID.hashCode(), moveHistory, c); }
+    protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) { setAdditionalMoveShortcut((byte) c.cardID.hashCode(), moveHistory); }
 
     @Override
     public void die(boolean triggerRelics) {

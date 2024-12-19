@@ -1,6 +1,5 @@
 package ruina.monsters.theHead;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -56,7 +55,7 @@ public class ZenaNoPreEvent extends Zena {
     @Override
     protected void getMove(final int num) {
         if (moveHistory.size() == 1) { // this gives zena shockwave on turn 2
-            setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
+            setMoveShortcut(SHOCKWAVE);
         } else {
             super.getMove(num);
         }

@@ -168,7 +168,7 @@ public class VermilionCross extends AbstractCardMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(OBSTRUCT)) {
-            setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
+            setMoveShortcut(SHOCKWAVE);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (moveHistory.size() >= 3) {
@@ -184,7 +184,7 @@ public class VermilionCross extends AbstractCardMonster
                 possibilities.add(HEATED_WEAPON);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+            setMoveShortcut(move);
         }
     }
 
@@ -205,7 +205,7 @@ public class VermilionCross extends AbstractCardMonster
             possibilities.add(HEAT_UP);
         }
         byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override

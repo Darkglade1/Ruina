@@ -66,6 +66,12 @@ public class Oswald extends AbstractCardMonster
         addMove(CATCH, Intent.DEBUFF);
         addMove(POW, Intent.BUFF);
         addMove(BRAINWASH, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
+
+        cardList.add(new Climax(this));
+        cardList.add(new Fun(this));
+        cardList.add(new Catch(this));
+        cardList.add(new Pow(this));
+        cardList.add(new WeNeedYou(this));
     }
 
     @Override
@@ -177,11 +183,11 @@ public class Oswald extends AbstractCardMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(CLIMAX)) {
-            setMoveShortcut(FUN, MOVES[FUN], getMoveCardFromByte(FUN));
+            setMoveShortcut(FUN);
         } else if (this.lastMove(FUN)) {
-            setMoveShortcut(CATCH, MOVES[CATCH], getMoveCardFromByte(CATCH));
+            setMoveShortcut(CATCH);
         } else {
-            setMoveShortcut(CLIMAX, MOVES[CLIMAX], getMoveCardFromByte(CLIMAX));
+            setMoveShortcut(CLIMAX);
         }
     }
 
@@ -189,22 +195,12 @@ public class Oswald extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (this.lastMove(BRAINWASH, moveHistory)) {
-            setAdditionalMoveShortcut(FUN, moveHistory, getMoveCardFromByte(FUN));
+            setAdditionalMoveShortcut(FUN, moveHistory);
         } else if (this.lastMove(FUN, moveHistory)) {
-            setAdditionalMoveShortcut(POW, moveHistory, getMoveCardFromByte(POW));
+            setAdditionalMoveShortcut(POW, moveHistory);
         } else {
-            setAdditionalMoveShortcut(BRAINWASH, moveHistory, getMoveCardFromByte(BRAINWASH));
+            setAdditionalMoveShortcut(BRAINWASH, moveHistory);
         }
-    }
-
-    protected AbstractCard getMoveCardFromByte(Byte move) {
-        ArrayList<AbstractCard> list = new ArrayList<>();
-        list.add(new Climax(this));
-        list.add(new Fun(this));
-        list.add(new Catch(this));
-        list.add(new Pow(this));
-        list.add(new WeNeedYou(this));
-        return list.get(move);
     }
 
     @Override

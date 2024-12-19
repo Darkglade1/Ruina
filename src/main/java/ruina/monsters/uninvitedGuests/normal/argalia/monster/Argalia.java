@@ -81,6 +81,12 @@ public class Argalia extends AbstractDeckMonster {
         addMove(TRAILS, Intent.ATTACK_DEBUFF, trailsDamage);
         addMove(DANZA, IntentEnums.MASS_ATTACK, tempestuousDamage, tempestuousHits);
         initializeDeck();
+
+        cardList.add(new CHRBOSS_Largo(this));
+        cardList.add(new CHRBOSS_Allegro(this));
+        cardList.add(new CHRBOSS_ResonantScythe(this));
+        cardList.add(new CHRBOSS_TrailsOfBlue(this));
+        cardList.add(new CHRBOSS_TempestuousDanza(this));
     }
 
     @Override
@@ -224,7 +230,7 @@ public class Argalia extends AbstractDeckMonster {
     @Override
     protected void getMove(final int num) {
         if (queueDanza) {
-            setMoveShortcut(DANZA, MOVES[DANZA], new CHRBOSS_TempestuousDanza(this));
+            setMoveShortcut(DANZA);
         } else {
             createMoveFromCard(topDeckCardForMoveAction());
         }
@@ -249,33 +255,33 @@ public class Argalia extends AbstractDeckMonster {
 
     protected void createMoveFromCard(AbstractCard c) {
         if (c.cardID.equals(CHRBOSS_Largo.ID)) {
-            setMoveShortcut(LARGO, MOVES[LARGO], c);
+            setMoveShortcut(LARGO);
         } else if (c.cardID.equals(CHRBOSS_Allegro.ID)) {
-            setMoveShortcut(ALLEGRO, MOVES[ALLEGRO], c);
+            setMoveShortcut(ALLEGRO);
         } else if (c.cardID.equals(CHRBOSS_ResonantScythe.ID)) {
-            setMoveShortcut(SCYTHE, MOVES[SCYTHE], c);
+            setMoveShortcut(SCYTHE);
         } else if (c.cardID.equals(CHRBOSS_TrailsOfBlue.ID)) {
-            setMoveShortcut(TRAILS, MOVES[TRAILS], c);
+            setMoveShortcut(TRAILS);
         } else if (c.cardID.equals(CHRBOSS_TempestuousDanza.ID)) {
-            setMoveShortcut(DANZA, MOVES[DANZA], c);
+            setMoveShortcut(DANZA);
         } else {
-            setMoveShortcut(ALLEGRO, MOVES[ALLEGRO], c);
+            setMoveShortcut(ALLEGRO);
         }
     }
 
     protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) {
         if (c.cardID.equals(CHRBOSS_Largo.ID)) {
-            setAdditionalMoveShortcut(LARGO, moveHistory, c);
+            setAdditionalMoveShortcut(LARGO, moveHistory);
         } else if (c.cardID.equals(CHRBOSS_Allegro.ID)) {
-            setAdditionalMoveShortcut(ALLEGRO, moveHistory, c);
+            setAdditionalMoveShortcut(ALLEGRO, moveHistory);
         } else if (c.cardID.equals(CHRBOSS_ResonantScythe.ID)) {
-            setAdditionalMoveShortcut(SCYTHE, moveHistory, c);
+            setAdditionalMoveShortcut(SCYTHE, moveHistory);
         } else if (c.cardID.equals(CHRBOSS_TrailsOfBlue.ID)) {
-            setAdditionalMoveShortcut(TRAILS, moveHistory, c);
+            setAdditionalMoveShortcut(TRAILS, moveHistory);
         } else if (c.cardID.equals(CHRBOSS_TempestuousDanza.ID)) {
-            setAdditionalMoveShortcut(DANZA, moveHistory, c);
+            setAdditionalMoveShortcut(DANZA, moveHistory);
         } else {
-            setAdditionalMoveShortcut(LARGO, moveHistory, c);
+            setAdditionalMoveShortcut(LARGO, moveHistory);
         }
     }
 
@@ -315,9 +321,9 @@ public class Argalia extends AbstractDeckMonster {
 
                 additionalMoves.clear();
                 additionalIntents.clear();
-                setMoveShortcut(new1stMove, MOVES[new1stMove], new1stCard);
-                setAdditionalMoveShortcut(new2ndMove, additionalMovesHistory.get(0), new2ndCard);
-                setAdditionalMoveShortcut(new3rdMove, additionalMovesHistory.get(1), new3rdCard);
+                setMoveShortcut(new1stMove);
+                setAdditionalMoveShortcut(new2ndMove, additionalMovesHistory.get(0));
+                setAdditionalMoveShortcut(new3rdMove, additionalMovesHistory.get(1));
                 createIntent();
                 AbstractDungeon.onModifyPower();
                 this.isDone = true;
