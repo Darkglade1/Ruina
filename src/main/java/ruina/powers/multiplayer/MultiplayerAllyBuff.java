@@ -50,6 +50,11 @@ public class MultiplayerAllyBuff extends AbstractUnremovablePower {
     }
 
     @Override
+    public void stackPower(int stackAmount) {
+        // don't let this stack
+    }
+
+    @Override
     public void updateDescription() {
         description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1] + amount + POWER_DESCRIPTIONS[2];
     }
