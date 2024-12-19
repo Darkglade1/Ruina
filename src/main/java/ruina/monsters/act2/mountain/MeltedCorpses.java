@@ -20,7 +20,7 @@ public class MeltedCorpses extends AbstractRuinaMonster
     public static final String ID = makeID(MeltedCorpses.class.getSimpleName());
 
     private static final byte NONE = 0;
-    private final int HEAL = calcAscensionSpecial(30);
+    private final int HEAL = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(30));
 
     public MeltedCorpses() {
         this(0.0f, 0.0f);

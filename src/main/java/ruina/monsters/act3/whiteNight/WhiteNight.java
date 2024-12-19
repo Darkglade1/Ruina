@@ -54,7 +54,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     private boolean awakened = false;
 
     private final int RITUAL = calcAscensionSpecial(1);
-    private final int HEAL = calcAscensionTankiness(8);
+    private final int HEAL = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(8));
     private final int BLOCK = calcAscensionTankiness(15);
     private final int BLESSING_AMT = 12;
     private final int MAX_TURNS = 6;

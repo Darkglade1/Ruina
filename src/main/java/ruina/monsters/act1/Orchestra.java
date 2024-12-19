@@ -45,7 +45,7 @@ public class Orchestra extends AbstractRuinaMonster
     private final int PLAYER_DRAW = 2;
     private final int STATUS = 1;
     private final int BLOCK = calcAscensionTankiness(8);
-    private final int HEAL = calcAscensionTankiness(10);
+    private final int HEAL = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(10));
 
     public static final String MOVEMENT1 = RuinaMod.makeMonsterPath("Orchestra/1st.png");
     private final Texture MOVEMENT1_TEXTURE = TexLoader.getTexture(MOVEMENT1);

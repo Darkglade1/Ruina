@@ -42,7 +42,7 @@ public class LittleRed extends AbstractAllyMonster
     private static final byte HOLLOW_POINT_SHELL = 2;
     private static final byte BULLET_SHOWER = 3;
 
-    private final int DEFENSE = calcAscensionTankiness(10);
+    private final int DEFENSE = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(10));
     private final int STRENGTH = 3;
     public boolean enraged = false;
 
