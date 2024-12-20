@@ -36,7 +36,7 @@ public class VermilionCross extends AbstractCardMonster
     public final int HEAT_UP_BLOCK = calcAscensionTankiness(10);
     public final int STRENGTH = calcAscensionSpecial(5);
     public final int BURNS = calcAscensionSpecial(1);
-    public final int allyIntangible = calcAscensionSpecial(1);
+    public final int allyIntangible = 1;
     public Elena elena;
     public boolean hadBlock;
 
