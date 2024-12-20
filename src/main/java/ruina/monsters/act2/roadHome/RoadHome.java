@@ -77,7 +77,7 @@ public class RoadHome extends AbstractMultiIntentMonster
             }
         }
         if (RuinaMod.isMultiplayerConnected()) {
-            applyToTarget(this, this, new EasilyDistractedMultiplayer(this, P2PManager.GetPlayerCount(), 0));
+            applyToTarget(this, this, new EasilyDistractedMultiplayer(this, RuinaMod.getMultiplayerPlayerCountScaling(1), 0));
         } else {
             applyToTarget(this, this, new EasilyDistracted(this));
         }

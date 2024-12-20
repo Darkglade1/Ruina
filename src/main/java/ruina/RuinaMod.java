@@ -1371,4 +1371,11 @@ public class RuinaMod implements
         }
         return baseValue;
     }
+
+    public static int getMultiplayerPlayerCountScaling(int baseValue) {
+        if (isMultiplayerConnected()) {
+            return baseValue * P2PManager.GetPlayerCount();
+        }
+        return baseValue;
+    }
 }

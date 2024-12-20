@@ -59,7 +59,7 @@ public class ShyLook extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         if (RuinaMod.isMultiplayerConnected()) {
-            applyToTarget(this, this, new ExpressionMultiplayer(this, 0, CARD_THRESHOLD * P2PManager.GetPlayerCount()));
+            applyToTarget(this, this, new ExpressionMultiplayer(this, 0, RuinaMod.getMultiplayerPlayerCountScaling(CARD_THRESHOLD)));
         } else {
             applyToTarget(this, this, new Expression(this, 0, CARD_THRESHOLD));
         }

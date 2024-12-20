@@ -86,7 +86,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Angela3");
         if (RuinaMod.isMultiplayerConnected()) {
-            applyToTarget(this, this, new WhiteNightBlessingMultiplayer(this, BLESSING_AMT * P2PManager.GetPlayerCount(), MAX_TURNS, this));
+            applyToTarget(this, this, new WhiteNightBlessingMultiplayer(this, RuinaMod.getMultiplayerPlayerCountScaling(BLESSING_AMT), MAX_TURNS, this));
         } else {
             applyToTarget(this, this, new WhiteNightBlessing(this, BLESSING_AMT, MAX_TURNS, this));
         }

@@ -65,7 +65,7 @@ public class ScaredyCat extends AbstractRuinaMonster
             }
         }
         if (RuinaMod.isMultiplayerConnected()) {
-            applyToTarget(this, this, new CourageMultiplayer(this, STRENGTH, P2PManager.GetPlayerCount(), 0, road));
+            applyToTarget(this, this, new CourageMultiplayer(this, STRENGTH, RuinaMod.getMultiplayerPlayerCountScaling(1), 0, road));
             applyToTarget(road, this, new CourageInvisiblePowerMultiplayer(road));
         } else {
             applyToTarget(this, this, new Courage(this, STRENGTH, road));

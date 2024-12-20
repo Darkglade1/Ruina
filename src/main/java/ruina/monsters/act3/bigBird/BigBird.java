@@ -131,7 +131,7 @@ public class BigBird extends AbstractMultiIntentMonster
                 dazzleAnimation(target);
                 if (target != adp()) {
                     if (RuinaMod.isMultiplayerConnected()) {
-                        applyToTarget(target, this, new EnchantedMultiplayer(target, currEnchantedHPAmt * P2PManager.GetPlayerCount(), 1));
+                        applyToTarget(target, this, new EnchantedMultiplayer(target, RuinaMod.getMultiplayerPlayerCountScaling(currEnchantedHPAmt), 1));
                     } else {
                         applyToTarget(target, this, new Enchanted(target, currEnchantedHPAmt, 1));
                     }

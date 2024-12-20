@@ -151,7 +151,7 @@ public class Kim extends AbstractCardMonster {
         if (this.lastMove(YIELD)) {
             usedCounter = false;
             if (RuinaMod.isMultiplayerConnected()) {
-                applyToTarget(this, this, new CounterAttackMultiplayer(this, P2PManager.GetPlayerCount(), 0));
+                applyToTarget(this, this, new CounterAttackMultiplayer(this, RuinaMod.getMultiplayerPlayerCountScaling(1), 0));
             } else {
                 applyToTarget(this, this, new CounterAttack(this));
             }

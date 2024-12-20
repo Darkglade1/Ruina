@@ -44,7 +44,7 @@ public class ForsakenMurderer extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         if (RuinaMod.isMultiplayerConnected()) {
-            applyToTarget(this, this, new FearMultiplayer(this, STRENGTH_LOSS, P2PManager.GetPlayerCount(), 0));
+            applyToTarget(this, this, new FearMultiplayer(this, STRENGTH_LOSS, RuinaMod.getMultiplayerPlayerCountScaling(1), 0));
         } else {
             applyToTarget(this, this, new Fear(this, STRENGTH_LOSS));
         }

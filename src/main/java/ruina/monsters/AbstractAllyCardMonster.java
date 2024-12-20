@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import ruina.RuinaMod;
 
 import java.util.ArrayList;
 
@@ -108,6 +109,12 @@ public abstract class AbstractAllyCardMonster extends AbstractAllyMonster {
                 allyCard.isDamageModified = true;
             } else {
                 allyCard.isDamageModified = false;
+            }
+            if (allyCard.baseBlock > 0) {
+                if (RuinaMod.isMultiplayerConnected()) {
+                    allyCard.block = RuinaMod.getMultiplayerPlayerCountScaling(allyCard.baseBlock);
+                    allyCard.isBlockModified = true;
+                }
             }
         }
     }

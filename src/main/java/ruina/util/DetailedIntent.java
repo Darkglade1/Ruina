@@ -148,7 +148,7 @@ public class DetailedIntent {
     public DetailedIntent(AbstractMonster monster, int amount, Texture icon, TargetType target) {
         this.monster = monster;
         if (RuinaMod.isMultiplayerConnected() && icon == BLOCK_TEXTURE) {
-            this.amount = amount * P2PManager.GetPlayerCount(); // auto adjust for multiplayer's automatic block scaling
+            this.amount = RuinaMod.getMultiplayerPlayerCountScaling(amount); // auto adjust for multiplayer's automatic block scaling
         } else {
             this.amount = amount;
         }
