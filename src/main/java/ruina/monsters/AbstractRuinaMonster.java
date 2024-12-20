@@ -480,6 +480,25 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         return false;
     }
 
+    protected boolean lastMoveBeforeIgnoringMove(byte move, byte moveToIgnore) {
+        if (moveHistory.isEmpty()) {
+            return false;
+        }
+        ArrayList<Byte> filteredMoveHistory = new ArrayList<>();
+        for (Byte move1 : moveHistory) {
+            if (move1 != moveToIgnore) {
+                filteredMoveHistory.add(move1);
+            }
+        }
+        if (filteredMoveHistory.isEmpty()) {
+            return false;
+        } else if (filteredMoveHistory.size() < 2) {
+            return false;
+        } else {
+            return filteredMoveHistory.get(filteredMoveHistory.size() - 2) == move;
+        }
+    }
+
     protected int convertNumToRandomIndex(int num, float size) {
         float convertedNum = (float)num / 100;
         return Math.round(Interpolation.linear.apply(0, size, convertedNum));

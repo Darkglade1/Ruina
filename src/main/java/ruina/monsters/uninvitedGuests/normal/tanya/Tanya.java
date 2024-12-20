@@ -55,8 +55,6 @@ public class Tanya extends AbstractCardMonster
     public final int overspeedHits = 2;
     public final int kicksAndStompsHits = 2;
 
-    private static final int MASS_ATTACK_COOLDOWN = 3; //cooldown resets to 3
-    private int massAttackCooldown = 2; //start cooldown at 2
 
     public final int BLOCK = calcAscensionTankiness(16);
     public final int INITIAL_PLATED_ARMOR = calcAscensionTankiness(20);
@@ -150,13 +148,6 @@ public class Tanya extends AbstractCardMonster
                 });
                 waitAnimation(0.5f);
                 applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE_GAIN));
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        massAttackCooldown = MASS_ATTACK_COOLDOWN + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case INTIMIDATE: {
@@ -274,13 +265,6 @@ public class Tanya extends AbstractCardMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                massAttackCooldown--;
-                this.isDone = true;
-            }
-        });
         atb(new RollMoveAction(this));
     }
 
@@ -288,7 +272,7 @@ public class Tanya extends AbstractCardMonster
     protected void getMove(final int num) {
         if (canUseOverspeed()) {
             setMoveShortcut(OVERSPEED);
-        } else if (massAttackCooldown <= 0) {
+        } else if (moveHistory.size() >= 2 && !this.lastMoveIgnoringMove(BEATDOWN, OVERSPEED) && !this.lastMoveBeforeIgnoringMove(BEATDOWN, OVERSPEED)) {
             setMoveShortcut(BEATDOWN);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -309,7 +293,7 @@ public class Tanya extends AbstractCardMonster
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (canUseOverspeed()) {
             setAdditionalMoveShortcut(OVERSPEED, moveHistory);
-        } else if (massAttackCooldown <= 0) {
+        } else if (this.lastMove(BEATDOWN)) {
             setAdditionalMoveShortcut(INTIMIDATE, moveHistory);
         } else {
             if (!this.lastMove(LUPINE_ASSAULT, moveHistory)) {
@@ -331,7 +315,7 @@ public class Tanya extends AbstractCardMonster
         if (target instanceof Gebura) {
             gebura = (Gebura) target;
         }
-        return gebura != null && !gebura.isDead && !gebura.isDying && gebura.greaterSplitCooldownCounter <= 0;
+        return gebura != null && !gebura.isDead && !gebura.isDying && (gebura.moveHistory.get(gebura.moveHistory.size() - 1) == Gebura.GSH || gebura.moveHistory.get(gebura.moveHistory.size() - 1) == Gebura.GSV);
     }
 
     @Override

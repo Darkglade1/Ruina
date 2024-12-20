@@ -31,11 +31,11 @@ public class Gebura extends AbstractAllyCardMonster
 {
     public static final String ID = RuinaMod.makeID(Gebura.class.getSimpleName());
 
-    private static final byte UPSTANDING_SLASH = 0;
-    private static final byte LEVEL_SLASH = 1;
-    private static final byte SPEAR = 2;
-    private static final byte GSV = 3;
-    private static final byte GSH = 4;
+    public static final byte UPSTANDING_SLASH = 0;
+    public static final byte LEVEL_SLASH = 1;
+    public static final byte SPEAR = 2;
+    public static final byte GSV = 3;
+    public static final byte GSH = 4;
 
     public final int STRENGTH = 2;
     public final int VULNERABLE = 1;
@@ -48,15 +48,11 @@ public class Gebura extends AbstractAllyCardMonster
     public final int level_damage = 6;
     public final int level_threshold = level_damage;
     public final int levelHits = 2;
-    
-    public final int GREATER_SPLIT_COOLDOWN = 3;
-    public int greaterSplitCooldownCounter = GREATER_SPLIT_COOLDOWN;
 
     public final int powerStrength = 1;
     public final int EGOtimer = 4;
     public boolean manifestedEGO = false;
     protected int phase = 1;
-    public boolean canSplit = true;
 
     public Gebura() {
         this(0.0f, 0.0f);
@@ -101,14 +97,8 @@ public class Gebura extends AbstractAllyCardMonster
     }
 
     public void manifestEGO() {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                playSound("RedMistChange");
-                CustomDungeon.playTempMusicInstantly("RedMistBGM");
-                this.isDone = true;
-            }
-        });
+        playSound("RedMistChange");
+        changeBGM();
         manifestedEGO = true;
         phase = 2;
         resetIdle(0.0f);
@@ -116,6 +106,15 @@ public class Gebura extends AbstractAllyCardMonster
         if (strength != null) {
             applyToTarget(this, this, new StrengthPower(this, strength.amount));
         }
+        moveHistory.clear();
+        rollMove();
+        if (target instanceof Tanya) {
+            target.rollMove();
+        }
+    }
+
+    protected void changeBGM() {
+        CustomDungeon.playTempMusicInstantly("RedMistBGM");
     }
 
     public void dialogue() {
@@ -240,13 +239,6 @@ public class Gebura extends AbstractAllyCardMonster
                     }
                 });
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        greaterSplitCooldownCounter = GREATER_SPLIT_COOLDOWN + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case GSH: {
@@ -275,23 +267,9 @@ public class Gebura extends AbstractAllyCardMonster
                     }
                 });
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        greaterSplitCooldownCounter = GREATER_SPLIT_COOLDOWN + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
         }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                greaterSplitCooldownCounter--;
-                this.isDone = true;
-            }
-        });
         atb(new RollMoveAction(this));
     }
 
@@ -333,12 +311,10 @@ public class Gebura extends AbstractAllyCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (greaterSplitCooldownCounter <= 0 && canSplit) {
-            if (phase == 1) {
-                setMoveShortcut(GSV);
-            } else {
-                setMoveShortcut(GSH);
-            }
+        if (phase == 1 && threeTurnCooldownHasPassedForMove(GSV)) {
+            setMoveShortcut(GSV);
+        } else if (threeTurnCooldownHasPassedForMove(GSH)) {
+            setMoveShortcut(GSH);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(UPSTANDING_SLASH) && !this.lastMoveBefore(UPSTANDING_SLASH)) {

@@ -59,11 +59,7 @@ public class RedMist extends AbstractCardMonster {
     private int phase = KALI_PHASE;
 
     private boolean EGO = false;
-    private final int egoExtraActions = 1;
     public static final float HP_THRESHOLD = 0.5f;
-
-    private static final int GREATER_SPLIT_COOLDOWN = 3;
-    private int greaterSplitCooldownCounter = GREATER_SPLIT_COOLDOWN;
 
     public RedMist() {
         this(0.0f, 0.0f);
@@ -198,13 +194,6 @@ public class RedMist extends AbstractCardMonster {
                     }
                 });
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        greaterSplitCooldownCounter = GREATER_SPLIT_COOLDOWN + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case GSH: {
@@ -221,13 +210,6 @@ public class RedMist extends AbstractCardMonster {
                     }
                 });
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        greaterSplitCooldownCounter = GREATER_SPLIT_COOLDOWN + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
         }
@@ -279,13 +261,6 @@ public class RedMist extends AbstractCardMonster {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                greaterSplitCooldownCounter -= 1;
-                this.isDone = true;
-            }
-        });
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
                 if (!EGO) {
                     CheckEGOTrigger();
                 }
@@ -297,12 +272,10 @@ public class RedMist extends AbstractCardMonster {
 
     @Override
     protected void getMove(final int num) {
-        if (greaterSplitCooldownCounter <= 0) {
-            if (EGO) {
-                setMoveShortcut(GSH);
-            } else {
-                setMoveShortcut(GSV);
-            }
+        if (!EGO && threeTurnCooldownHasPassedForMove(GSV)) {
+            setMoveShortcut(GSV);
+        } else if (EGO && !this.lastMove(GSH) && !this.lastMoveBefore(GSH) && !this.lastMoveBeforeBefore(GSH)) {
+            setMoveShortcut(GSH);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (EGO) {
@@ -340,8 +313,6 @@ public class RedMist extends AbstractCardMonster {
         runAnim("Idle" + phase);
         CustomDungeon.playTempMusicInstantly("RedMistBGM");
         EGO = true;
-        greaterSplitCooldownCounter = 0;
-        numAdditionalMoves += egoExtraActions;
         atb(new RemoveDebuffsAction(this));
         applyToTarget(this, this, new StrengthPower(this, focusSpiritStr));
     }

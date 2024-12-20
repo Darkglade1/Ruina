@@ -73,21 +73,8 @@ public class GeburaHead extends Gebura {
     public void dialogue() {
     }
 
-    public void manifestEGO() {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                playSound("RedMistChange");
-                this.isDone = true;
-            }
-        });
-        manifestedEGO = true;
-        phase = 2;
-        resetIdle(0.0f);
-        AbstractPower strength = getPower(StrengthPower.POWER_ID);
-        if (strength != null) {
-            applyToTarget(this, this, new StrengthPower(this, strength.amount));
-        }
+    protected void changeBGM() {
+        // don't change BGM for Head fight
     }
 
     @Override
