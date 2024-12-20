@@ -1073,7 +1073,7 @@ public class RuinaMod implements
                         new EyeballChick(300.0F, 0.0F)
                 }));
         BaseMod.addMonster(JudgementBird.ID, (BaseMod.GetMonster) JudgementBird::new);
-        //BaseMod.addMonster(Pinocchio.ID, (BaseMod.GetMonster) Pinocchio::new);
+        BaseMod.addMonster(Pinocchio.ID, (BaseMod.GetMonster) Pinocchio::new);
 
         BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
 
