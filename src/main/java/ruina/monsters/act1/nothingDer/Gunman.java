@@ -44,9 +44,6 @@ public class Gunman extends AbstractMultiIntentMonster
     private static final byte MAGIC_BULLET = 3;
     private static final byte DEATH_MARK = 4;
 
-    private static final int MASS_ATTACK_COOLDOWN = 2;
-    private int counter = MASS_ATTACK_COOLDOWN;
-
     private final int BLOCK = calcAscensionTankiness(10);
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int DEBUFF = calcAscensionSpecial(1);
@@ -108,7 +105,6 @@ public class Gunman extends AbstractMultiIntentMonster
                 atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle();
                 waitAnimation();
-                counter = MASS_ATTACK_COOLDOWN + 1;
                 break;
             }
             case INEVITABLE_BULLET: {
@@ -162,13 +158,12 @@ public class Gunman extends AbstractMultiIntentMonster
             atb(new TalkAction(this, DIALOG[1]));
         }
         super.takeTurn();
-        counter--;
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (counter <= 0) {
+        if (moveHistory.size() >= 2 && !this.lastMove(RUTHLESS_BULLETS) && !this.lastMoveBefore(RUTHLESS_BULLETS)) {
             setMoveShortcut(RUTHLESS_BULLETS);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -186,7 +181,7 @@ public class Gunman extends AbstractMultiIntentMonster
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
-        if (counter == 1) {
+        if (moveHistory.size() == 1 || this.lastMoveBeforeBefore(RUTHLESS_BULLETS)) {
             setAdditionalMoveShortcut(DEATH_MARK, moveHistory);
         } else {
             setAdditionalMoveShortcut(MAGIC_BULLET, moveHistory);
