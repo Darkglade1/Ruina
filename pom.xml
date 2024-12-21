@@ -96,6 +96,8 @@
                             <target>
                                 <copy file="target/${JarName}.jar"
                                       tofile="${Steam.path}/common/SlayTheSpire/mods/${JarName}.jar"/>
+                                <copy file="target/${JarName}.jar"
+                                      tofile="C:/Users/jeffr/Documents/SlayTheSpire/mods/${JarName}.jar"/>
                             </target>
                         </configuration>
                         <goals>

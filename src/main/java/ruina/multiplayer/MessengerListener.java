@@ -29,12 +29,16 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
     public void onMessageReceive(NetworkMessage networkMessage, String s, Object o, Integer integer) {
         if (networkMessage.request.equals(NetworkMultiIntentMonster.request_monsterUpdateAdditionalIntents)) {
             Object[] dataIn = (Object[]) networkMessage.object;
-            ArrayList<NetworkIntent> additionalMoves = (ArrayList<NetworkIntent>)dataIn[0];
-            ArrayList<ArrayList<Byte>> additionalMovesHistory= (ArrayList<ArrayList<Byte>>)dataIn[1];
-            String monsterID = (String)dataIn[2];
-            NetworkLocation requestLocation = (NetworkLocation)dataIn[3];
+            NetworkIntent networkMove = (NetworkIntent)dataIn[0];
+            ArrayList<Byte> moveHistory = (ArrayList<Byte>)dataIn[1];
+            ArrayList<NetworkIntent> additionalMoves = (ArrayList<NetworkIntent>)dataIn[2];
+            ArrayList<ArrayList<Byte>> additionalMovesHistory= (ArrayList<ArrayList<Byte>>)dataIn[3];
+            String monsterID = (String)dataIn[4];
+            NetworkLocation requestLocation = (NetworkLocation)dataIn[5];
             NetworkMultiIntentMonster mo = (NetworkMultiIntentMonster) RoomDataManager.GetMonsterForLocation(monsterID, requestLocation);
             if (mo != null) {
+                mo.networkMove = networkMove;
+                mo.moveHistory = moveHistory;
                 mo.additionalMoves = additionalMoves;
                 mo.additionalMovesHistory = additionalMovesHistory;
             }

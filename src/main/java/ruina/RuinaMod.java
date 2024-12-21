@@ -874,26 +874,26 @@ public class RuinaMod implements
 
         BaseMod.addMonster(Lulu.ID, (BaseMod.GetMonster) Lulu::new);
 
-        asiyah.addBoss(FairyQueen.ID, "Fairy Queen", () -> new MonsterGroup(
-                new AbstractMonster[]{
-                        new FairyMass(FairyQueen.MINION_X_1, 0.0F),
-                        new FairyMass(FairyQueen.MINION_X_2, 0.0F),
-                        new FairyQueen(100.0F, 0.0F)
-                }), makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
+//        asiyah.addBoss(FairyQueen.ID, "Fairy Queen", () -> new MonsterGroup(
+//                new AbstractMonster[]{
+//                        new FairyMass(FairyQueen.MINION_X_1, 0.0F),
+//                        new FairyMass(FairyQueen.MINION_X_2, 0.0F),
+//                        new FairyQueen(100.0F, 0.0F)
+//                }), makeMonsterPath("FairyQueen/FairyMapIcon.png"), makeMonsterPath("FairyQueen/FairyMapIconOutline.png"));
         asiyah.addBoss(EncounterIDs.NOTHING_DER, "Those Who Hunt Monsters", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new ruina.monsters.act1.nothingDer.NothingThere(-1000.0F, 0.0F),
                         new Gunman(70.0F, 0.0F),
                 }), makeMonsterPath("Gunman/GunMap.png"), makeMonsterPath("Gunman/GunIcon.png"));
-        asiyah.addBoss(BlackSwan.ID, "Dream of a Black Swan", () -> new MonsterGroup(
-                new AbstractMonster[]{
-                        new Brother(-450.0F, 0.0F, 1),
-                        new Brother(-250.0F, 0.0F, 2),
-                        new BlackSwan(-50.0F, 0.0F),
-                        new Brother(150.0F, 0.0F, 3),
-                        new Brother(350.0F, 0.0F, 4),
-                }), makeMonsterPath("BlackSwan/SwanMap.png"), makeMonsterPath("BlackSwan/SwanMapOutline.png"));
-        asiyah.addBoss(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new, makeMonsterPath("Orchestra/OrchestraMap.png"), makeMonsterPath("Orchestra/OrchestraMap.png"));
+//        asiyah.addBoss(BlackSwan.ID, "Dream of a Black Swan", () -> new MonsterGroup(
+//                new AbstractMonster[]{
+//                        new Brother(-450.0F, 0.0F, 1),
+//                        new Brother(-250.0F, 0.0F, 2),
+//                        new BlackSwan(-50.0F, 0.0F),
+//                        new Brother(150.0F, 0.0F, 3),
+//                        new Brother(350.0F, 0.0F, 4),
+//                }), makeMonsterPath("BlackSwan/SwanMap.png"), makeMonsterPath("BlackSwan/SwanMapOutline.png"));
+//        asiyah.addBoss(Orchestra.ID, (BaseMod.GetMonster) Orchestra::new, makeMonsterPath("Orchestra/OrchestraMap.png"), makeMonsterPath("Orchestra/OrchestraMap.png"));
 
 
         BaseMod.addEvent(ShiAssociation.ID, ShiAssociation.class, Asiyah.ID);

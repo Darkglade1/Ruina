@@ -191,11 +191,13 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             getAdditionalMoves(seedToUse.random(99), i);
         }
         if (RuinaMod.isMultiplayerConnected()) {
+            EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
+            NetworkIntent networkMove = new NetworkIntent(move);
             ArrayList<NetworkIntent> additionalNetworkMoves = new ArrayList<>();
             for (EnemyMoveInfo info : this.additionalMoves) {
                 additionalNetworkMoves.add(new NetworkIntent(info));
             }
-            P2PManager.SendData(NetworkMultiIntentMonster.request_monsterUpdateAdditionalIntents, additionalNetworkMoves, this.additionalMovesHistory, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            P2PManager.SendData(NetworkMultiIntentMonster.request_monsterUpdateAdditionalIntents, networkMove, moveHistory, additionalNetworkMoves, this.additionalMovesHistory, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
             NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
             if (m instanceof NetworkMultiIntentMonster) {
                 ((NetworkMultiIntentMonster)m).additionalMoves = additionalNetworkMoves;
