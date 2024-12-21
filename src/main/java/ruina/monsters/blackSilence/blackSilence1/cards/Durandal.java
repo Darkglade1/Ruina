@@ -1,6 +1,7 @@
 package ruina.monsters.blackSilence.blackSilence1.cards;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
@@ -15,11 +16,13 @@ import static ruina.RuinaMod.makeImagePath;
 public class Durandal extends AbstractRuinaCard {
     public final static String ID = makeID(Durandal.class.getSimpleName());
 
+    BlackSilence1 parent;
     public Durandal(BlackSilence1 parent) {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRALLY_Durandal.class.getSimpleName() + ".png"));
         damage = baseDamage = parent.durandalDamage;
         magicNumber = baseMagicNumber = parent.durandalHits;
         secondMagicNumber = baseSecondMagicNumber = parent.durandalStrength;
+        this.parent = parent;
     }
 
     @Override
@@ -27,4 +30,9 @@ public class Durandal extends AbstractRuinaCard {
 
     @Override
     public void upp() { }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new Durandal(parent);
+    }
 }

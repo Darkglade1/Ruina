@@ -1,6 +1,5 @@
 package ruina.multiplayer;
 
-import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.monsters.AbstractMultiIntentMonster;

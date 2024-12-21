@@ -1,6 +1,7 @@
 package ruina.monsters.blackSilence.blackSilence1.cards;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
@@ -15,10 +16,12 @@ import static ruina.RuinaMod.makeImagePath;
 public class Allas extends AbstractRuinaCard {
     public final static String ID = makeID(Allas.class.getSimpleName());
 
+    BlackSilence1 parent;
     public Allas(BlackSilence1 parent) {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRALLY_ALLAS.class.getSimpleName() + ".png"));
         damage = baseDamage = parent.ALLAS_DAMAGE;
         magicNumber = baseMagicNumber = parent.ALLAS_DEBUFF;
+        this.parent = parent;
     }
 
     @Override
@@ -26,4 +29,9 @@ public class Allas extends AbstractRuinaCard {
 
     @Override
     public void upp() { }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new Allas(parent);
+    }
 }

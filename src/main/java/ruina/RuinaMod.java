@@ -138,12 +138,14 @@ import ruina.relics.AbstractEasyRelic;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import spireTogether.SpireTogetherMod;
+import spireTogether.gamemodes.common.TiSGenericRunSettings;
 import spireTogether.networkcore.P2P.P2PManager;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Optional;
 import java.util.Properties;
 
 import static ruina.util.Wiz.adp;
@@ -1362,10 +1364,13 @@ public class RuinaMod implements
 
     public static int getMultiplayerEnemyHealthScaling(int baseValue) {
         if (isMultiplayerConnected()) {
-            int baseHealthScale = P2PManager.data.settings.enemyHealthPercentBase;
-            int playerHealthScale = P2PManager.data.settings.enemyHealthPercentScaled;
-            float baseScale = ((float)baseHealthScale / 100);
-            float playerScale = ((float)playerHealthScale / 100);
+            Optional<TiSGenericRunSettings> settings = P2PManager.data.gameModeSettings.getSettings(TiSGenericRunSettings.class);
+            if(!settings.isPresent()){
+                return baseValue;
+            }
+
+            float baseScale = settings.get().enemyHealthMultiplierBase.getValue();
+            float playerScale = settings.get().enemyHealthMultiplierPerPlayer.getValue();
             float finalMult = baseScale + (baseScale * playerScale * P2PManager.GetPlayerCountWithoutSelf());
             return (int)(baseValue * finalMult);
         }
