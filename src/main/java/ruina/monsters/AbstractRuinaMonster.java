@@ -22,12 +22,14 @@ import com.megacrit.cardcrawl.relics.RunicDome;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.elena.VermilionCross;
+import ruina.multiplayer.NetworkMultiIntentMonster;
 import ruina.multiplayer.NetworkRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
 import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.networkcore.objects.entities.NetworkIntent;
 import spireTogether.networkcore.objects.entities.NetworkMonster;
 import spireTogether.networkcore.objects.rooms.NetworkLocation;
 import spireTogether.other.RoomDataManager;
@@ -513,6 +515,20 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
             seedToUse = AbstractDungeon.aiRng;
         }
         this.getMove(seedToUse.random(99));
+        updateMainIntentMultiplayer();
+    }
+
+    protected void updateMainIntentMultiplayer() {
+        if (RuinaMod.isMultiplayerConnected()) {
+            EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
+            NetworkIntent networkMove = new NetworkIntent(move);
+            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateMainIntent, networkMove, moveHistory, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+            if (m instanceof NetworkRuinaMonster) {
+                ((NetworkRuinaMonster) m).networkMove = networkMove;
+                ((NetworkRuinaMonster) m).moveHistory = moveHistory;
+            }
+        }
     }
 
     protected Random generateMultiplayerRandom() {
