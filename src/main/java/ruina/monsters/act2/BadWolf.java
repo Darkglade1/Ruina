@@ -33,7 +33,7 @@ public class BadWolf extends AbstractRuinaMonster
     private static final byte HUNT = 2;
 
     public static final float HP_THRESHOLD = 0.5f;
-    private final int SKULK_TURNS = calcAscensionSpecial(1);
+    private final int SKULK_TURNS = 1;
     private final int BLEED = calcAscensionSpecial(2);
     private final int STRENGTH = calcAscensionSpecial(4);
     private int phase = 1;
