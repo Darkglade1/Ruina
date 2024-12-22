@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.TintEffect;
 import ruina.BetterSpriterAnimation;
@@ -76,6 +77,7 @@ public class Shade extends AbstractMultiIntentMonster
             }
         }
         applyToTarget(this, this, new InvisibleBarricadePower(this));
+        addPower(new MinionPower(this));
     }
 
     @Override
