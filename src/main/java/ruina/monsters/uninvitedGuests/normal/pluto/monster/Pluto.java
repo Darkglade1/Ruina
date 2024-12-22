@@ -22,6 +22,7 @@ import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.ContractOfLig
 import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.ContractOfMight;
 import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.NoContract;
 import ruina.monsters.uninvitedGuests.normal.pluto.plutoCards.*;
+import ruina.powers.InvisibleBarricadePower;
 
 import java.util.ArrayList;
 
@@ -93,6 +94,7 @@ public class Pluto extends AbstractCardMonster {
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
     @Override

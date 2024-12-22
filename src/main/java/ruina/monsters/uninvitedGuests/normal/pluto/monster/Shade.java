@@ -12,36 +12,34 @@ import com.brashmonkey.spriter.Point;
 import com.esotericsoftware.spine.Skeleton;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
-import com.megacrit.cardcrawl.cards.red.Defend_Red;
-import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.BarricadePower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.TintEffect;
 import ruina.BetterSpriterAnimation;
-import ruina.monsters.AbstractDeckMonster;
+import ruina.monsters.AbstractMultiIntentMonster;
+import ruina.powers.InvisibleBarricadePower;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
-public class Shade extends AbstractDeckMonster
+public class Shade extends AbstractMultiIntentMonster
 {
     public static final String ID = makeID(Shade.class.getSimpleName());
 
-    public final int MAX_DAMAGE = calcAscensionSpecial(50);
-    protected Map<Byte, Integer> blockMoveValues = new HashMap<>();
+    private static final byte MIMIC_ATK = 0;
+    private static final byte MIMIC_ATK_2 = 1;
+    private static final byte MIMIC_DEFENSE = 2;
+    private static final byte MIMIC_BUFF = 3;
+
+    private final int BLOCK = calcAscensionTankiness(25);
+    private final int STR = calcAscensionSpecial(2);
 
     public Shade() {
         this(0.0f, 0.0f);
@@ -57,9 +55,11 @@ public class Shade extends AbstractDeckMonster
         this.dialogX = -(AbstractDungeon.player.dialogX - AbstractDungeon.player.drawX);
         this.dialogY =  (AbstractDungeon.player.dialogY - AbstractDungeon.player.drawY);
         setNumAdditionalMoves(1);
-        AbstractCard fillerCard = new Madness(); //in case deck somehow has no cards
-        addMove((byte) fillerCard.cardID.hashCode(), Intent.ATTACK, 12);
-        initializeDeck();
+
+        addMove(MIMIC_ATK, Intent.ATTACK, calcAscensionDamage(5), 2);
+        addMove(MIMIC_ATK_2, Intent.ATTACK, calcAscensionDamage(13));
+        addMove(MIMIC_DEFENSE, Intent.DEFEND);
+        addMove(MIMIC_BUFF, Intent.BUFF);
     }
 
     @Override
@@ -75,24 +75,28 @@ public class Shade extends AbstractDeckMonster
                 target = (Hokma)mo;
             }
         }
-        applyToTarget(this, this, new BarricadePower(this));
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
     @Override
     public void takeCustomTurn(EnemyMoveInfo move, AbstractCreature target, int whichMove) {
         super.takeCustomTurn(move, target, whichMove);
-        int blockValue = getBlockForMove(move.nextMove);
-        if (info.base > -1) {
-            if (blockValue > 0) {
-                block(this, blockValue);
+        switch (move.nextMove) {
+            case MIMIC_ATK: {
+                dmg(target, info, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+                dmg(target, info, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+                break;
             }
-            dmg(target, info, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        } else {
-            if (blockValue > 0) {
-                block(this, blockValue);
-            }
+            case MIMIC_ATK_2:
+                dmg(target, info, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+                break;
+            case MIMIC_DEFENSE:
+                block(this, BLOCK);
+                break;
+            case MIMIC_BUFF:
+                applyToTarget(this, this, new StrengthPower(this, STR));
+                break;
         }
-        resetIdle();
     }
 
 
@@ -112,61 +116,42 @@ public class Shade extends AbstractDeckMonster
 
     @Override
     protected void getMove(final int num) {
-        AbstractCard c = topDeckCardForMoveAction();
-        setMoveShortcut((byte) c.cardID.hashCode());
+        if (moveHistory.size() >= 3) {
+            moveHistory.clear(); //resets the cooldowns after all moves have been used once
+        }
+        ArrayList<Byte> possibilities = new ArrayList<>();
+        if (!this.lastMove(MIMIC_ATK) && !this.lastMoveBefore(MIMIC_ATK)) {
+            possibilities.add(MIMIC_ATK);
+        }
+        if (!this.lastMove(MIMIC_ATK_2) && !this.lastMoveBefore(MIMIC_ATK_2)) {
+            possibilities.add(MIMIC_ATK_2);
+        }
+        if (!this.lastMove(MIMIC_DEFENSE) && !this.lastMoveBefore(MIMIC_DEFENSE)) {
+            possibilities.add(MIMIC_DEFENSE);
+        }
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+        setMoveShortcut(move);
     }
 
     @Override
     public void getAdditionalMoves(int num, int whichMove) {
-        createAdditionalMoveFromCard(topDeckCardForMoveAction(), moveHistory = additionalMovesHistory.get(whichMove));
-    }
-
-    @Override
-    public void applyPowers() {
-        if (this.nextMove == -1) {
-            super.applyPowers();
-            return;
+        ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
+        if (moveHistory.size() >= 3) {
+            moveHistory.clear(); //resets the cooldowns after all moves have been used once
         }
-        super.applyPowers();
-    }
-
-    @Override
-    protected void createDeck() {
-        CardStrings damageString = CardCrawlGame.languagePack.getCardStrings(Strike_Red.ID);
-        CardStrings blockString = CardCrawlGame.languagePack.getCardStrings(Defend_Red.ID);
-        for (AbstractCard card : adp().masterDeck.group) {
-            if ((card.baseDamage > 0 || card.baseBlock > 0) && !(card.rarity == AbstractCard.CardRarity.BASIC) && card.baseDamage <= MAX_DAMAGE) {
-                AbstractCard cardCopy = card.makeStatEquivalentCopy();
-                Intent intent;
-                if (card.baseDamage > 0 && card.baseBlock > 0) {
-                    intent = Intent.ATTACK_DEFEND;
-                    cardCopy.rawDescription = blockString.DESCRIPTION + " NL " + damageString.DESCRIPTION;
-                } else if (card.baseBlock > 0) {
-                    intent = Intent.DEFEND;
-                    cardCopy.rawDescription = blockString.DESCRIPTION;
-                } else {
-                    intent = Intent.ATTACK;
-                    cardCopy.rawDescription = damageString.DESCRIPTION;
-                }
-                cardCopy.name += "?";
-                cardCopy.initializeDescription();
-                masterDeck.addToBottom(cardCopy);
-                addMove((byte) card.cardID.hashCode(), intent, card.baseDamage);
-                if (card.baseBlock > 0) {
-                    blockMoveValues.put((byte) card.cardID.hashCode(), card.baseBlock);
-                }
-            }
+        ArrayList<Byte> possibilities = new ArrayList<>();
+        if (!this.lastMove(MIMIC_ATK, moveHistory) && !this.lastMoveBefore(MIMIC_ATK, moveHistory)) {
+            possibilities.add(MIMIC_ATK);
         }
-    }
-
-    private int getBlockForMove(byte move) {
-        if (blockMoveValues.containsKey(move)) {
-            return blockMoveValues.get(move);
+        if (!this.lastMove(MIMIC_ATK_2, moveHistory) && !this.lastMoveBefore(MIMIC_ATK_2, moveHistory)) {
+            possibilities.add(MIMIC_ATK_2);
         }
-        return -1;
+        if (!this.lastMove(MIMIC_BUFF, moveHistory) && !this.lastMoveBefore(MIMIC_BUFF, moveHistory)) {
+            possibilities.add(MIMIC_BUFF);
+        }
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+        setAdditionalMoveShortcut(move, moveHistory);
     }
-
-    protected void createAdditionalMoveFromCard(AbstractCard c, ArrayList<Byte> moveHistory) { setAdditionalMoveShortcut((byte) c.cardID.hashCode(), moveHistory); }
 
     @Override
     public void die(boolean triggerRelics) {

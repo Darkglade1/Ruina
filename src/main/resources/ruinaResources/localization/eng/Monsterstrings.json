@@ -660,7 +660,10 @@
   },
   "${ModID}:Shade": {
     "MOVES": [
-      ""
+      "Mimic Attack",
+      "Mimic Attack",
+      "Mimic Defense",
+      "Mimic Buff"
     ],
     "NAME": "Shade",
     "DIALOG": [
