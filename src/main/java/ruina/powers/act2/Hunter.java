@@ -31,10 +31,6 @@ public class Hunter extends AbstractUnremovablePower {
 
     @Override
     public void updateDescription() {
-        if (amount == 1) {
-            description = POWER_DESCRIPTIONS[0] + (int)(HP_THRESHOLD * 100) + POWER_DESCRIPTIONS[1] + STRENGTH + POWER_DESCRIPTIONS[2] + amount + POWER_DESCRIPTIONS[4];
-        } else {
-            description = POWER_DESCRIPTIONS[0] + (int)(HP_THRESHOLD * 100) + POWER_DESCRIPTIONS[1] + STRENGTH + POWER_DESCRIPTIONS[2] + amount + POWER_DESCRIPTIONS[3];
-        }
+        description = POWER_DESCRIPTIONS[0] + (int)(HP_THRESHOLD * 100) + POWER_DESCRIPTIONS[1] + STRENGTH + POWER_DESCRIPTIONS[2] + amount + POWER_DESCRIPTIONS[3];
     }
 }

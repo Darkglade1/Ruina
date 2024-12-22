@@ -17,7 +17,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -132,7 +131,6 @@ import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
 import ruina.multiplayer.MultiplayerCompatibility;
 import ruina.patches.PlayerSpireFields;
 import ruina.potions.EgoPotion;
-import ruina.powers.act2.Skulk;
 import ruina.powers.act4.PriceOfTime;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.DetailedIntent;
@@ -149,7 +147,6 @@ import java.util.Optional;
 import java.util.Properties;
 
 import static ruina.util.Wiz.adp;
-import static ruina.util.Wiz.atb;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
@@ -1267,15 +1264,6 @@ public class RuinaMod implements
     @Override
     public boolean receivePreMonsterTurn(AbstractMonster abstractMonster) {
         PlayerSpireFields.appliedDebuffThisTurn.set(adp(), false);
-        if (abstractMonster.hasPower(Skulk.POWER_ID)) {
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    abstractMonster.halfDead = false;
-                    this.isDone = true;
-                }
-            });
-        }
         return !abstractMonster.hasPower(PriceOfTime.POWER_ID);
     }
 

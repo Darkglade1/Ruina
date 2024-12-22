@@ -1,19 +1,16 @@
 package ruina.monsters.act2;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Bleed;
+import ruina.powers.RuinaIntangible;
 import ruina.powers.act2.Hunter;
-import ruina.powers.act2.Skulk;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
@@ -33,7 +30,7 @@ public class BadWolf extends AbstractRuinaMonster
     private static final byte HUNT = 2;
 
     public static final float HP_THRESHOLD = 0.5f;
-    private final int SKULK_TURNS = 1;
+    private final int INTANGIBLE_TURNS = calcAscensionSpecial(1);
     private final int BLEED = calcAscensionSpecial(2);
     private final int STRENGTH = calcAscensionSpecial(4);
     private int phase = 1;
@@ -55,18 +52,11 @@ public class BadWolf extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         playSound("WolfPhase");
-        applyToTarget(this, this, new Hunter(this, SKULK_TURNS, STRENGTH, HP_THRESHOLD));
+        applyToTarget(this, this, new Hunter(this, INTANGIBLE_TURNS, STRENGTH, HP_THRESHOLD));
     }
 
     @Override
     public void takeTurn() {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                halfDead = false;
-                this.isDone = true;
-            }
-        });
         super.takeTurn();
         switch (this.nextMove) {
             case CLAW: {
@@ -158,26 +148,14 @@ public class BadWolf extends AbstractRuinaMonster
         });
     }
 
-    @Override
-    public void damage(DamageInfo info) {
-        if (this.hasPower(Skulk.POWER_ID)) {
-            return;
-        }
-        super.damage(info);
-    }
-
     public void checkSkulkTrigger() {
         if (this.currentHealth < (int)(this.maxHealth * HP_THRESHOLD) && !triggered) {
             triggered = true;
             applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-            applyToTarget(this, this, new Skulk(this, SKULK_TURNS));
-        }
-    }
-
-    @Override
-    public void renderReticle(SpriteBatch sb) {
-        if (!this.hasPower(Skulk.POWER_ID)) {
-            super.renderReticle(sb);
+            applyToTarget(this, this, new RuinaIntangible(this, INTANGIBLE_TURNS, false));
+            changePhase(2);
+            rollMove();
+            createIntent();
         }
     }
 

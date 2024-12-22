@@ -7,12 +7,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.elena.vermilionCards.*;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.RuinaIntangible;
 import ruina.util.TexLoader;
 
 import java.util.ArrayList;
@@ -105,7 +105,7 @@ public class VermilionCross extends AbstractCardMonster
                             if (elena.isDeadOrEscaped()) {
                                 powerTarget = VermilionCross.this;
                             }
-                            applyToTargetTop(powerTarget, VermilionCross.this, new IntangiblePlayerPower(powerTarget, allyIntangible + 1));
+                            applyToTargetTop(powerTarget, VermilionCross.this, new RuinaIntangible(powerTarget, allyIntangible, true));
                         }
                         this.isDone = true;
                     }

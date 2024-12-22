@@ -85,7 +85,7 @@
   },
   "${ModID}:Hunter": {
     "NAME": "Hunter in the Dark",
-    "DESCRIPTIONS": ["The first time this creature is below #b", "% HP at end of round, it gains #b", " #yStrength and becomes #yUntargetable and #yImmune to damage for #b", " turns.", " turn."]
+    "DESCRIPTIONS": ["The first time this creature is below #b", "% HP at end of round, it gains #b", " #yStrength and #b", " #yIntangible."]
   },
   "${ModID}:Skulk": {
     "NAME": "Skulk",
