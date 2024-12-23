@@ -810,8 +810,8 @@ public class RuinaMod implements
         BaseMod.addMonster(Alriune.ID, (BaseMod.GetMonster) Alriune::new);
         BaseMod.addMonster(Laetitia.ID, "Laetitia", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new GiftFriend(-450.0F, 0.0F),
-                        new GiftFriend(-200.0F, 0.0F),
+                        new GiftFriend(-450.0F, 0.0F, true),
+                        new GiftFriend(-200.0F, 0.0F, false),
                         new Laetitia(50.0F, 0.0F)
                 }));
 
