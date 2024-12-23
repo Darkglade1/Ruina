@@ -113,7 +113,7 @@ public class Atziluth extends AbstractRuinaDungeon {
         monsters.add(new MonsterInfo(JudgementBird.ID, 1.0F));
         monsters.add(new MonsterInfo(PunishingBird.ID, 1.0F));
         monsters.add(new MonsterInfo(PriceOfSilence.ID, 1.0F));
-        //monsters.add(new MonsterInfo(Pinocchio.ID, 1.0F));
+        monsters.add(new MonsterInfo(Pinocchio.ID, 1.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateFirstStrongEnemy(monsters, this.generateExclusions());
         this.populateMonsterList(monsters, count, false);

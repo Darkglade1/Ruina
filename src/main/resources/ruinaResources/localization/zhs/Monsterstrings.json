@@ -529,7 +529,9 @@
   },
   "ruina:Pinocchio": {
     "MOVES": [
-      "学习"
+      "学习",
+      "说谎",
+      "费布"
     ],
     "NAME": "匹诺曹",
     "DIALOG": [

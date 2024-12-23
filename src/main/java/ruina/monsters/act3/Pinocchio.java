@@ -37,7 +37,7 @@ public class Pinocchio extends AbstractRuinaMonster
     public Pinocchio(final float x, final float y) {
         super(ID, ID, 170, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Pinocchio/Spriter/Pinocchio.scml"));
-        this.setHp(calcAscensionTankiness(170));
+        this.setHp(calcAscensionTankiness(190));
 
         addMove(LEARN, Intent.ATTACK, calcAscensionDamage(10), 2);
         addMove(LIE, Intent.DEBUFF);
@@ -68,7 +68,7 @@ public class Pinocchio extends AbstractRuinaMonster
             case LIE: {
                 blockAnimation();
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-                intoDiscardMo(new Lie(), STATUS, this);
+                intoDrawMo(new Lie(), STATUS, this);
                 resetIdle();
                 break;
             }

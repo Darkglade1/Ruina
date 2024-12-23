@@ -528,7 +528,9 @@
   },
   "ruina:Pinocchio": {
     "MOVES": [
-      "学習"
+      "学習",
+      "嘘",
+      "嘘"
     ],
     "NAME": "ピノキオ",
     "DIALOG": [
