@@ -1,7 +1,6 @@
 package ruina.cards;
 
 import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,7 +15,6 @@ import java.util.stream.Collectors;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
-import static ruina.util.Wiz.atb;
 
 public class Lie extends AbstractRuinaCard {
     public final static String ID = makeID(Lie.class.getSimpleName());
@@ -28,7 +26,7 @@ public class Lie extends AbstractRuinaCard {
     }
 
     public static boolean canDisguiseAs(AbstractCard target) {
-        return target.cost >= 0 && !target.cardID.equals(ID) && !CardModifierManager.hasModifier(target, LieMod.ID);
+        return target.cost >= 1 && !target.cardID.equals(ID) && !CardModifierManager.hasModifier(target, LieMod.ID);
     }
 
     public void disguise() {

@@ -944,11 +944,7 @@
     "DESCRIPTION": "덱에서 제거할 수 없습니다."
   },
   "${ModID}:Lie": {
-    "NAME": "Lie",
-    "DESCRIPTION": "This card imperfectly disguises itself as another card."
-  },
-  "${ModID}:LyingIsBad": {
-    "NAME": "Lying is Bad!",
-    "DESCRIPTION": "stslib:Persist NL Exhaust up to 1 card. If it was a *Lie, gain !M! Strength."
+    "NAME": "거짓말하다",
+    "DESCRIPTION": "이 카드는 다른 카드인 것처럼 불완전하게 위장합니다."
   }
 }

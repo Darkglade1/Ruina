@@ -944,11 +944,7 @@
     "DESCRIPTION": "无法从牌组中移除。"
   },
   "${ModID}:Lie": {
-    "NAME": "Lie",
-    "DESCRIPTION": "This card imperfectly disguises itself as another card."
-  },
-  "${ModID}:LyingIsBad": {
-    "NAME": "Lying is Bad!",
-    "DESCRIPTION": "stslib:Persist NL Exhaust up to 1 card. If it was a *Lie, gain !M! Strength."
+    "NAME": "说谎",
+    "DESCRIPTION": "这张卡不完美地伪装成另一张卡。"
   }
 }

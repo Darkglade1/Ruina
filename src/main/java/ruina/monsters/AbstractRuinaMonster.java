@@ -416,6 +416,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
 
     @Override
     public void render(SpriteBatch sb) {
+        super.render(sb);
         Map<Integer, ArrayList<DetailedIntent>> detailsMap = DetailedIntent.intents.get(this);
         if (detailsMap != null && !this.isDead && !this.isDying && !AbstractDungeon.isScreenUp) {
             for (int intentNum : detailsMap.keySet()) {
@@ -426,7 +427,6 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
                 }
             }
         }
-        super.render(sb);
     }
 
     protected void setDetailedIntents() {

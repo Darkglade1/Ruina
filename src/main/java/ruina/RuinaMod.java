@@ -682,7 +682,6 @@ public class RuinaMod implements
 
         BaseMod.addAudio(makeID("PinoLie"), makeSFXPath("Pino_Lie.wav"));
         BaseMod.addAudio(makeID("PinoFail"), makeSFXPath("Pino_Fail.wav"));
-        BaseMod.addAudio(makeID("PinoSuccess"), makeSFXPath("Pino_Success.wav"));
         BaseMod.addAudio(makeID("PinoOn"), makeSFXPath("Pino_On.wav"));
     }
 

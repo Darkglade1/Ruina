@@ -1,18 +1,25 @@
 package ruina.monsters.act3;
 
+import basemod.helpers.CardPowerTip;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Lie;
-import ruina.cards.LyingIsBad;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.util.DetailedIntent;
+import ruina.util.TexLoader;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import java.util.ArrayList;
+
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class Pinocchio extends AbstractRuinaMonster
@@ -30,6 +37,8 @@ public class Pinocchio extends AbstractRuinaMonster
     public final int INITIAL_STATUS = calcAscensionSpecial(3);
     public final int DEBUFF = calcAscensionSpecial(1);
 
+    AbstractCard lie = new Lie();
+
     public Pinocchio() {
         this(0.0f, 0.0f);
     }
@@ -37,7 +46,7 @@ public class Pinocchio extends AbstractRuinaMonster
     public Pinocchio(final float x, final float y) {
         super(ID, ID, 170, -5.0F, 0, 250.0f, 255.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Pinocchio/Spriter/Pinocchio.scml"));
-        this.setHp(calcAscensionTankiness(190));
+        this.setHp(calcAscensionTankiness(170));
 
         addMove(LEARN, Intent.ATTACK, calcAscensionDamage(10), 2);
         addMove(LIE, Intent.DEBUFF);
@@ -47,8 +56,7 @@ public class Pinocchio extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         applyToTarget(this, this, new ArtifactPower(this, ARTIFACT));
-        intoDrawMo(new Lie(), INITIAL_STATUS, this);
-        makeInHand(new LyingIsBad());
+        intoDrawMo(lie.makeStatEquivalentCopy(), INITIAL_STATUS, this);
         playSound("PinoOn");
     }
 
@@ -68,7 +76,7 @@ public class Pinocchio extends AbstractRuinaMonster
             case LIE: {
                 blockAnimation();
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-                intoDrawMo(new Lie(), STATUS, this);
+                intoDiscardMo(lie.makeStatEquivalentCopy(), STATUS, this);
                 resetIdle();
                 break;
             }
@@ -82,6 +90,12 @@ public class Pinocchio extends AbstractRuinaMonster
             }
         }
         atb(new RollMoveAction(this));
+    }
+
+    @Override
+    public void renderTip(SpriteBatch sb) {
+        super.renderTip(sb);
+        tips.add(new CardPowerTip(lie.makeStatEquivalentCopy()));
     }
 
     private void attackAnimation(AbstractCreature enemy) {
@@ -101,5 +115,31 @@ public class Pinocchio extends AbstractRuinaMonster
         } else {
             setMoveShortcut(LEARN);
         }
+    }
+
+    @Override
+    protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
+        ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        String textureString = makeUIPath("detailedIntents/Lie.png");
+        Texture texture = TexLoader.getTexture(textureString);
+        switch (move.nextMove) {
+            case LIE: {
+                DetailedIntent detail = new DetailedIntent(this, STATUS, texture, DetailedIntent.TargetType.DISCARD_PILE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+            case FIB: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, DEBUFF, DetailedIntent.WEAK_TEXTURE);
+                detailsList.add(detail2);
+                DetailedIntent detail3 = new DetailedIntent(this, DEBUFF, DetailedIntent.FRAIL_TEXTURE);
+                detailsList.add(detail3);
+                break;
+            }
+        }
+        return detailsList;
     }
 }
