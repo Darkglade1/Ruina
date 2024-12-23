@@ -1112,7 +1112,7 @@
   "${ModID}:GiftFriend": {
     "MOVES": [
       "G..i..f..t",
-      "B..lo..w..Up.."
+      "G..i..f..t"
     ],
     "NAME": "Gift-wrapped Friend",
     "DIALOG": [

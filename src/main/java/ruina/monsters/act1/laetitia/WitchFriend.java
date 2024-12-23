@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Gift;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -30,8 +29,8 @@ public class WitchFriend extends AbstractRuinaMonster
     public WitchFriend(final float x, final float y) {
         super(ID, ID, 15, 0.0F, 0, 220.0f, 200.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("WeeWitch/Spriter/WeeWitch.scml"));
-        setHp(calcAscensionTankiness(12), calcAscensionTankiness(14));
-        addMove(GLITCH, Intent.ATTACK, calcAscensionDamage(11));
+        setHp(calcAscensionTankiness(10), calcAscensionTankiness(12));
+        addMove(GLITCH, Intent.ATTACK, calcAscensionDamage(9));
     }
 
     @Override
@@ -40,32 +39,7 @@ public class WitchFriend extends AbstractRuinaMonster
         this.type = EnemyType.ELITE;
     }
 
-    @Override
-    public void usePreBattleAction() {
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void onDeath() {
-                this.flash();
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        for (AbstractCard card : adp().hand.group) {
-                            if (card instanceof Gift) {
-                                att(new ExhaustSpecificCardAction(card, adp().hand));
-                            }
-                        }
-                        this.isDone = true;
-                    }
-                });
-            }
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
-    }
 
-    @Override
     public void takeTurn() {
         super.takeTurn();
         switch (this.nextMove) {

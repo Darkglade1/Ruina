@@ -41,8 +41,8 @@ public class Laetitia extends AbstractRuinaMonster {
         super(ID, ID, 100, 0.0F, 0, 200.0f, 250.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Laetitia/Spriter/Laetitia.scml"));
         setHp(calcAscensionTankiness(70));
-        addMove(GIFT, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
-        addMove(FUN, Intent.ATTACK, calcAscensionDamage(10));
+        addMove(GIFT, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
+        addMove(FUN, Intent.ATTACK, calcAscensionDamage(8));
 
         if (AbstractDungeon.ascensionLevel >= 18) {
             gift.upgrade();
