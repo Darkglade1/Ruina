@@ -337,9 +337,8 @@ public class Mountain extends AbstractMultiIntentMonster
                 r.onMonsterDeath(this);
             }
             if (this.nextMove != REVIVE) {
-                setMoveShortcut(REVIVE);
-                this.createIntent();
-                atb(new SetMoveAction(this, REVIVE, Intent.NONE));
+                rollMove();
+                createIntent();
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
