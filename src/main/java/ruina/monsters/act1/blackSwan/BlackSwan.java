@@ -153,7 +153,7 @@ public class BlackSwan extends AbstractRuinaMonster
     private int getNumDeadBrothers() {
         int count = 0;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Brother && mo.isDead || mo.isDying) {
+            if (mo instanceof Brother && (mo.isDead || mo.isDying)) {
                 count++;
             }
         }
