@@ -37,6 +37,8 @@ public class ScaredyCat extends AbstractRuinaMonster
     private final int WOUND = 1;
     private final int STRENGTH = calcAscensionSpecial(2);
 
+    public static final int COWARD_PHASE = 2;
+
     public ScaredyCat() {
         this(0.0f, 0.0f);
     }
@@ -65,8 +67,12 @@ public class ScaredyCat extends AbstractRuinaMonster
             }
         }
         if (RuinaMod.isMultiplayerConnected()) {
-            applyToTarget(this, this, new CourageMultiplayer(this, STRENGTH, RuinaMod.getMultiplayerPlayerCountScaling(1), 0, road));
-            applyToTarget(road, this, new CourageInvisiblePowerMultiplayer(road));
+            if (phase == COWARD_PHASE) {
+                roadDeath();
+            } else {
+                applyToTarget(this, this, new CourageMultiplayer(this, STRENGTH, RuinaMod.getMultiplayerPlayerCountScaling(1), 0, road));
+                applyToTarget(road, this, new CourageInvisiblePowerMultiplayer(road));
+            }
         } else {
             applyToTarget(this, this, new Courage(this, STRENGTH, road));
             applyToTarget(road, this, new CourageInvisiblePower(road));
@@ -151,6 +157,7 @@ public class ScaredyCat extends AbstractRuinaMonster
     }
 
     public void roadDeath() {
+        setPhase(COWARD_PHASE);
         runAnim("Scared");
         playSound("LionChange");
         this.currentHealth = this.maxHealth = 1;

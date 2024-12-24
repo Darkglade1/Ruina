@@ -153,23 +153,25 @@ public class LittleRed extends AbstractAllyMonster
     }
 
     public void enrage(boolean gainStrAndHeal) {
-        halfDead = false;
-        setPhase(ENRAGE_PHASE);
-        isAlly = false;
-        animation.setFlip(false, false);
-        playSound("Rage", 2.0f);
-        Color color = new Color(1.0F, 1.0F, 1.0F, 0.5F);
-        ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
-        AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg
-        atb(new ShoutAction(this, DIALOG[1], 2.0F, 3.0F));
-        atb(new VFXAction(this, new InflameEffect(this), 1.0F));
-        if (gainStrAndHeal) {
-            applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-            atb(new HealAction(this, this, maxHealth));
-        }
-        if (RuinaMod.isMultiplayerConnected()) {
-            makePowerRemovable(this, MultiplayerAllyBuff.POWER_ID);
-            atb(new RemoveSpecificPowerAction(this, this, MultiplayerAllyBuff.POWER_ID));
+        if (isAlly) {
+            halfDead = false;
+            setPhase(ENRAGE_PHASE);
+            isAlly = false;
+            animation.setFlip(false, false);
+            playSound("Rage", 2.0f);
+            Color color = new Color(1.0F, 1.0F, 1.0F, 0.5F);
+            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
+            AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg
+            atb(new ShoutAction(this, DIALOG[1], 2.0F, 3.0F));
+            atb(new VFXAction(this, new InflameEffect(this), 1.0F));
+            if (gainStrAndHeal) {
+                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                atb(new HealAction(this, this, maxHealth));
+            }
+            if (RuinaMod.isMultiplayerConnected()) {
+                makePowerRemovable(this, MultiplayerAllyBuff.POWER_ID);
+                atb(new RemoveSpecificPowerAction(this, this, MultiplayerAllyBuff.POWER_ID));
+            }
         }
     }
 

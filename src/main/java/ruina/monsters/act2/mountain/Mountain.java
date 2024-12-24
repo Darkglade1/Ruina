@@ -54,7 +54,8 @@ public class Mountain extends AbstractMultiIntentMonster
 
     private final int STAGE1_HP;
     private final int STAGE2_HP;
-    private final int STAGE3_HP = calcAscensionTankiness(125);
+    private final int STAGE3_HP;
+    private final int INITIAL_HP = calcAscensionTankiness(125);
 
     public static final int STAGE3 = 3;
     public static final int STAGE2 = 2;
@@ -67,7 +68,8 @@ public class Mountain extends AbstractMultiIntentMonster
         super(ID, ID, 100, -5.0F, 0, 330.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Mountain/Spriter/Mountain.scml"));
         setNumAdditionalMoves(2);
-        this.setHp(STAGE3_HP);
+        this.setHp(INITIAL_HP);
+        STAGE3_HP = this.maxHealth;
         STAGE2_HP = Math.round(this.maxHealth * 0.8f);
         STAGE1_HP = Math.round(this.maxHealth * 0.4f);
         this.currentHealth = (int)(this.maxHealth * STARTING_PERCENT);
