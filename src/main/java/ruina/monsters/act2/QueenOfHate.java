@@ -3,7 +3,6 @@ package ruina.monsters.act2;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
@@ -32,7 +31,6 @@ public class QueenOfHate extends AbstractRuinaMonster
     private final int VULNERABLE = calcAscensionSpecial(3);
 
     public boolean hysteriaTriggered = false;
-    private boolean usedLight = false;
 
     public QueenOfHate() {
         this(0.0f, 0.0f);
@@ -71,7 +69,6 @@ public class QueenOfHate extends AbstractRuinaMonster
             }
             case LIGHT_OF_HATRED: {
                 applyToTarget(adp(), this, new VulnerablePower(adp(), VULNERABLE, true));
-                usedLight = true;
                 break;
             }
         }
@@ -80,7 +77,7 @@ public class QueenOfHate extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (this.hysteriaTriggered && !usedLight) {
+        if (this.hysteriaTriggered && !moveHistory.contains(LIGHT_OF_HATRED)) {
             setMoveShortcut(LIGHT_OF_HATRED);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();

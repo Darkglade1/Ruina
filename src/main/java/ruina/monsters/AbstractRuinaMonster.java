@@ -111,12 +111,8 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
     public void setMoveShortcut(byte next) {
-        String moveName = null;
-        if (next >= 0 && next < MOVES.length) {
-            moveName = MOVES[next];
-        }
         EnemyMoveInfo info = this.moves.get(next);
-        this.setMove(moveName, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
+        this.setMove(null, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
     }
 
     @Override
@@ -453,7 +449,15 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     @Override
     public void createIntent() {
         super.createIntent();
+        setMoveName();
         setDetailedIntents();
+    }
+
+    protected void setMoveName() {
+        EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
+        if (move.nextMove >= 0 && move.nextMove < MOVES.length) {
+            moveName = MOVES[move.nextMove];
+        }
     }
 
     protected boolean lastMoveBeforeBefore(byte move) {

@@ -33,8 +33,9 @@ public class BadWolf extends AbstractRuinaMonster
     private final int INTANGIBLE_TURNS = calcAscensionSpecial(1);
     private final int BLEED = calcAscensionSpecial(2);
     private final int STRENGTH = calcAscensionSpecial(4);
-    private int phase = 1;
-    boolean triggered = false;
+
+    public static final int HUNT_PHASE = 2;
+    public static final int POST_HUNT_PHASE = 3;
 
     public BadWolf() {
         this(0.0f, 0.0f);
@@ -53,6 +54,9 @@ public class BadWolf extends AbstractRuinaMonster
     public void usePreBattleAction() {
         playSound("WolfPhase");
         applyToTarget(this, this, new Hunter(this, INTANGIBLE_TURNS, STRENGTH, HP_THRESHOLD));
+        if (this.phase == HUNT_PHASE) {
+            runAnim("Idle" + getAnimFromPhase());
+        }
     }
 
     @Override
@@ -84,7 +88,7 @@ public class BadWolf extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (triggered) {
+        if (this.phase >= HUNT_PHASE) {
             setMoveShortcut(HUNT);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -120,20 +124,29 @@ public class BadWolf extends AbstractRuinaMonster
         return detailsList;
     }
 
-    public void changePhase(int phase) {
-        this.phase = phase;
-        if (phase == 2) {
-            playSound("Fog", 1.2f);
+    @Override
+    public void setPhase(int newPhase) {
+        super.setPhase(newPhase);
+        if (phase == HUNT_PHASE) {
+            playSound("Fog", 0.9f);
         }
-        runAnim("Idle" + phase);
+        runAnim("Idle" + getAnimFromPhase());
+    }
+
+    private int getAnimFromPhase() {
+        if (phase == HUNT_PHASE) {
+            return HUNT_PHASE;
+        } else {
+            return 1;
+        }
     }
 
     private void biteAnimation(AbstractCreature enemy) {
-        animationAction("Bite" + phase, "Bite", enemy, this);
+        animationAction("Bite" + getAnimFromPhase(), "Bite", enemy, this);
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash" + phase, "Claw", enemy, this);
+        animationAction("Slash" + getAnimFromPhase(), "Claw", enemy, this);
     }
 
     @Override
@@ -142,18 +155,17 @@ public class BadWolf extends AbstractRuinaMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                runAnim("Idle" + phase);
+                runAnim("Idle" + getAnimFromPhase());
                 this.isDone = true;
             }
         });
     }
 
     public void checkSkulkTrigger() {
-        if (this.currentHealth < (int)(this.maxHealth * HP_THRESHOLD) && !triggered) {
-            triggered = true;
+        if (this.currentHealth < (int)(this.maxHealth * HP_THRESHOLD) && phase == DEFAULT_PHASE) {
             applyToTarget(this, this, new StrengthPower(this, STRENGTH));
             applyToTarget(this, this, new RuinaIntangible(this, INTANGIBLE_TURNS, false));
-            changePhase(2);
+            setPhase(HUNT_PHASE);
             rollMove();
             createIntent();
         }

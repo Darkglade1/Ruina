@@ -26,15 +26,8 @@ public class Scarecrow extends AbstractRuinaMonster
     private static final byte RAKE = 0;
     private static final byte HARVEST = 1;
     private static final byte STRUGGLE = 2;
-
-    private static final int STRUGGLE_THRESHOLD = 2;
-    private int struggleCounter;
-
+    private final int struggleCounter;
     private final int WISDOM_AMT = calcAscensionSpecial(2);
-
-    public Scarecrow() {
-        this(0.0f, 0.0f, STRUGGLE_THRESHOLD);
-    }
 
     public Scarecrow(final float x, final float y, int struggleCounter) {
         super(ID, ID, 40, -5.0F, 0, 230.0f, 275.0f, null, x, y);
@@ -72,11 +65,9 @@ public class Scarecrow extends AbstractRuinaMonster
             }
             case STRUGGLE: {
                 intoDiscardMo(new Wisdom(), WISDOM_AMT, this);
-                struggleCounter = STRUGGLE_THRESHOLD + 1;
                 break;
             }
         }
-        struggleCounter--;
         //In case it gets stunned by Wisdom
         AbstractMonster mo = this;
         addToBot(new AbstractGameAction() {
@@ -94,7 +85,7 @@ public class Scarecrow extends AbstractRuinaMonster
         if (this.hasPower(StunMonsterPower.POWER_ID)) {
             return;
         }
-        if (struggleCounter <= 0) {
+        if (moveHistory.size() >= struggleCounter && !this.lastMove(STRUGGLE) && !this.lastMoveBefore(STRUGGLE)) {
             setMoveShortcut(STRUGGLE);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();

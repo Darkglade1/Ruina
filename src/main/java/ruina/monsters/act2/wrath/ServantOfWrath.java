@@ -44,7 +44,7 @@ public class ServantOfWrath extends AbstractAllyMonster
     private final int furyThreshold;
 
     private final int EROSION = 2;
-    public boolean enraged = false;
+    public static final int ENRAGE_PHASE = 2;
 
     public Hermit hermit;
 
@@ -135,7 +135,7 @@ public class ServantOfWrath extends AbstractAllyMonster
                         applyToTargetNextTurn(mo, new Erosion(mo, EROSION + 1));
                     }
                 }
-                enraged = false;
+                setPhase(DEFAULT_PHASE);
                 break;
             }
             case RAGE: {
@@ -157,7 +157,7 @@ public class ServantOfWrath extends AbstractAllyMonster
 
     @Override
     protected void getMove(final int num) {
-        if (enraged) {
+        if (phase == ENRAGE_PHASE) {
             setMoveShortcut(EMBODIMENTS_OF_EVIL);
         } else {
             setMoveShortcut(RAGE);

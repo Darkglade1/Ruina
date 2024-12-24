@@ -29,7 +29,7 @@ public class Heart extends AbstractUnremovablePower {
     public void atEndOfRound() {
         int str = EnergyPanel.totalCount * amount;
         if (str > 0) {
-            applyToTarget(owner, owner, new StrengthPower(owner, str));
+            applyToTarget(owner, adp(), new StrengthPower(owner, str));
         }
     }
 

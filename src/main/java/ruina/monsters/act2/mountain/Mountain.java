@@ -8,9 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -25,7 +23,6 @@ import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.powers.CenterOfAttention;
 import ruina.powers.act2.Absorption;
 import ruina.powers.act2.Bodies;
-import ruina.powers.multiplayer.MultiplayerAllyBuff;
 import ruina.powers.multiplayer.MultiplayerEnemyBuff;
 import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
@@ -62,7 +59,6 @@ public class Mountain extends AbstractMultiIntentMonster
     public static final int STAGE3 = 3;
     public static final int STAGE2 = 2;
     public static final int STAGE1 = 1;
-    public int currentStage = STAGE3;
     private static final float REVIVE_PERCENT = 0.50f;
     private static final float STARTING_PERCENT = 0.50f;
     private AbstractPower stagePower;
@@ -102,12 +98,17 @@ public class Mountain extends AbstractMultiIntentMonster
                 target = (MeltedCorpses)mo;
             }
         }
-        stagePower = new Absorption(this, currentStage);
+        stagePower = new Absorption(this, convertPhaseToStage());
         applyToTarget(this, this, stagePower);
         applyToTarget(this, this, new Bodies(this));
         applyToTarget(this, this, new CenterOfAttention(this));
         if (RuinaMod.isMultiplayerConnected()) {
             applyToTarget(this, this, new MultiplayerEnemyBuff(this));
+
+            updateValues();
+            updateNumAdditionalMoves();
+            updateCannotLose();
+            runAnim("Idle" + convertPhaseToStage());
         }
     }
 
@@ -163,7 +164,7 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack" + currentStage, "Bite", enemy, this);
+        animationAction("Attack" + convertPhaseToStage(), "Bite", enemy, this);
     }
 
     private void screechAnimation() {
@@ -184,7 +185,7 @@ public class Mountain extends AbstractMultiIntentMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                runAnim("Idle" + currentStage);
+                runAnim("Idle" + convertPhaseToStage());
                 this.isDone = true;
             }
         });
@@ -203,9 +204,9 @@ public class Mountain extends AbstractMultiIntentMonster
     protected void getMove(final int num) {
         if (this.halfDead) {
             setMoveShortcut(REVIVE);
-        } else if (this.currentStage == STAGE1) {
+        } else if (convertPhaseToStage() == STAGE1) {
             setMoveShortcut(DEVOUR);
-        } else if (this.currentStage == STAGE2) {
+        } else if (convertPhaseToStage() == STAGE2) {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(DEVOUR)) {
                 possibilities.add(DEVOUR);
@@ -238,7 +239,7 @@ public class Mountain extends AbstractMultiIntentMonster
         }
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (whichMove == 0) {
-            if (this.currentStage == STAGE2) {
+            if (convertPhaseToStage() == STAGE2) {
                 setAdditionalMoveShortcut(DEVOUR, moveHistory);
             } else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
@@ -301,7 +302,7 @@ public class Mountain extends AbstractMultiIntentMonster
 
     @Override
     public void applyPowers() {
-        if (currentStage == STAGE1 && !target.isDeadOrEscaped()) {
+        if (convertPhaseToStage() == STAGE1 && !target.isDeadOrEscaped()) {
             attackingMonsterWithPrimaryIntent = true;
         } else {
             attackingMonsterWithPrimaryIntent = false;
@@ -311,7 +312,7 @@ public class Mountain extends AbstractMultiIntentMonster
 
     @Override
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
-        if (currentStage == STAGE3) {
+        if (convertPhaseToStage() == STAGE3) {
             if (index == 1 && additionalIntent.baseDamage >= 0) {
                 applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
             } else {
@@ -334,9 +335,8 @@ public class Mountain extends AbstractMultiIntentMonster
                 r.onMonsterDeath(this);
             }
             if (this.nextMove != REVIVE) {
-                setMoveShortcut(REVIVE);
-                this.createIntent();
-                atb(new SetMoveAction(this, REVIVE, Intent.NONE));
+                rollMove();
+                createIntent();
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
@@ -347,10 +347,6 @@ public class Mountain extends AbstractMultiIntentMonster
             for (AbstractPower power : powersToRemove) {
                 this.powers.remove(power);
             }
-            additionalIntents.clear();
-            additionalMoves.clear();
-            DetailedIntent.intents.clear();
-            setDetailedIntents();
         }
     }
 
@@ -378,11 +374,11 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     public void Grow() {
-        AbstractDungeon.getCurrRoom().cannotLose = true;
-        if (currentStage < STAGE3) {
-            currentStage++;
-            numAdditionalMoves++;
-            animationAction("Idle" + currentStage, "Grow", 0.7f, this);
+        if (convertPhaseToStage() < STAGE3) {
+            setPhase(phase - 1);
+            updateNumAdditionalMoves();
+            updateCannotLose();
+            animationAction("Idle" + convertPhaseToStage(), "Grow", 0.7f, this);
             updateValues();
             rollMove();
             createIntent();
@@ -390,36 +386,54 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     public void Shrink() {
-        if (currentStage > STAGE1) {
-            currentStage--;
-            if (currentStage == STAGE1) {
-                AbstractDungeon.getCurrRoom().cannotLose = false;
-            }
-            if (numAdditionalMoves > 0) {
-                numAdditionalMoves--;
-            }
-            animationAction("Idle" + currentStage, "Shrink", 0.7f, this);
+        if (convertPhaseToStage() > STAGE1) {
+            setPhase(phase + 1);
+            updateNumAdditionalMoves();
+            updateCannotLose();
+            animationAction("Idle" + convertPhaseToStage(), "Shrink", 0.7f, this);
             updateValues();
+        }
+    }
+
+    private void updateNumAdditionalMoves() {
+        this.numAdditionalMoves = convertPhaseToStage() - 1;
+    }
+
+    private void updateCannotLose() {
+        if (convertPhaseToStage() == STAGE1) {
+            AbstractDungeon.getCurrRoom().cannotLose = false;
+        } else {
+            AbstractDungeon.getCurrRoom().cannotLose = true;
         }
     }
 
     private void updateValues() {
         setMaxHP();
-        stagePower.amount = currentStage;
+        stagePower.amount = convertPhaseToStage();
         stagePower.updateDescription();
     }
 
     private void setMaxHP() {
-        if (currentStage == STAGE1) {
+        if (convertPhaseToStage() == STAGE1) {
             this.maxHealth = STAGE1_HP;
         }
-        if (currentStage == STAGE2) {
+        if (convertPhaseToStage() == STAGE2) {
             this.maxHealth = STAGE2_HP;
         }
-        if (currentStage == STAGE3) {
+        if (convertPhaseToStage() == STAGE3) {
             this.maxHealth = STAGE3_HP;
         }
         healthBarUpdatedEvent();
+    }
+
+    private int convertPhaseToStage() {
+        if (phase == 1) {
+            return STAGE3;
+        } else if (phase == 3) {
+            return STAGE1;
+        } else {
+            return STAGE2;
+        }
     }
 
 }

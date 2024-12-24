@@ -22,7 +22,8 @@ public class Sword extends AbstractRuinaMonster
     private static final byte TEAR_HEART = 0;
     private final int BLOCK = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(8));
     private KnightOfDespair knight;
-    boolean gainInitialBlock;
+    public boolean gainInitialBlock;
+    public boolean wasFullBlocked = false;
 
     public Sword(final float x, final float y, boolean gainInitialBlock) {
         super(ID, ID, 40, -5.0F, 0, 150.0f, 275.0f, null, x, y);
@@ -64,7 +65,7 @@ public class Sword extends AbstractRuinaMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        knight.onSwordDeath();
+        knight.onSwordDeath(wasFullBlocked);
     }
 
     @Override

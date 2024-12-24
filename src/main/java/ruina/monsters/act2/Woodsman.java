@@ -42,8 +42,8 @@ public class Woodsman extends AbstractRuinaMonster
         super(ID, ID, 40, -5.0F, 0, 230.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Woodsman/Spriter/Woodsman.scml"));
         setHp(calcAscensionTankiness(140), calcAscensionTankiness(148));
-        addMove(STRIKE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10), 2, true);
-        addMove(LUMBER, Intent.ATTACK, calcAscensionDamage(4), 4, true);
+        addMove(STRIKE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10), 2);
+        addMove(LUMBER, Intent.ATTACK, calcAscensionDamage(4), 4);
         addMove(PULSE, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
     }
 

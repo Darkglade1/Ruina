@@ -1,5 +1,6 @@
 package ruina.monsters.act2.greed;
 
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
@@ -54,7 +55,14 @@ public class KingOfGreed extends AbstractRuinaMonster
         road = new Road(this, 2);
         applyToTarget(this, this, road);
         applyToTarget(this, this, new CenterOfAttention(this));
-        playSound("GreedDiamond");
+
+        EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
+        if (move.nextMove == ROAD_OF_KING) {
+            playSound("GreedStrAtkReady");
+            runAnim("SpecialIdle");
+        } else {
+            playSound("GreedDiamond");
+        }
     }
 
     @Override

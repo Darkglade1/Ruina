@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
+import ruina.monsters.act2.knight.Sword;
 import ruina.multiplayer.MessengerListener;
 import ruina.powers.AbstractUnremovablePower;
 import spireTogether.networkcore.P2P.P2PManager;
@@ -19,6 +19,7 @@ public class Worthless extends AbstractUnremovablePower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    private boolean hasTriggered = false;
 
     public Worthless(AbstractCreature owner) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, -1);
@@ -36,9 +37,11 @@ public class Worthless extends AbstractUnremovablePower {
 
     @Override
     public void onSpecificTrigger() {
-        if (owner instanceof AbstractMonster) {
+        if (owner instanceof Sword && !hasTriggered) {
             flash();
-            atb(new SuicideAction((AbstractMonster) owner));
+            hasTriggered = true;
+            ((Sword) owner).wasFullBlocked = true;
+            atb(new SuicideAction((Sword) owner));
         }
     }
 

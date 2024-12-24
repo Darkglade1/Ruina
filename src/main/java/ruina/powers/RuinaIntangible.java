@@ -15,7 +15,7 @@ public class RuinaIntangible extends IntangiblePlayerPower {
     @Override
     public void onRemove() {
         if (owner instanceof BadWolf) {
-            ((BadWolf) owner).changePhase(1);
+            ((BadWolf) owner).setPhase(BadWolf.POST_HUNT_PHASE);
         }
     }
 

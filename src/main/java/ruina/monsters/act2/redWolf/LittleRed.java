@@ -44,7 +44,8 @@ public class LittleRed extends AbstractAllyMonster
 
     private final int DEFENSE = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(10));
     private final int STRENGTH = 3;
-    public boolean enraged = false;
+
+    public static final int ENRAGE_PHASE = 2;
 
     public LittleRed() {
         this(0.0f, 0.0f);
@@ -79,18 +80,28 @@ public class LittleRed extends AbstractAllyMonster
             }
         }
         addPower(new FuryWithNoOutlet(this));
-        super.usePreBattleAction();
+        if (phase == ENRAGE_PHASE) {
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    enrage(false);
+                    this.isDone = true;
+                }
+            });
+        } else {
+            super.usePreBattleAction();
+        }
     }
 
     @Override
     public void takeTurn() {
-        if (this.firstMove && !enraged) {
+        if (this.firstMove && phase == DEFAULT_PHASE) {
             atb(new TalkAction(this, DIALOG[0]));
         }
         super.takeTurn();
 
         AbstractCreature target;
-        if (enraged) {
+        if (phase == ENRAGE_PHASE) {
             target = AbstractDungeon.player;
         } else {
             target = this.target;
@@ -141,9 +152,9 @@ public class LittleRed extends AbstractAllyMonster
         atb(new RollMoveAction(this));
     }
 
-    public void enrage() {
+    public void enrage(boolean gainStrAndHeal) {
         halfDead = false;
-        enraged = true;
+        setPhase(ENRAGE_PHASE);
         isAlly = false;
         animation.setFlip(false, false);
         playSound("Rage", 2.0f);
@@ -152,8 +163,10 @@ public class LittleRed extends AbstractAllyMonster
         AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg
         atb(new ShoutAction(this, DIALOG[1], 2.0F, 3.0F));
         atb(new VFXAction(this, new InflameEffect(this), 1.0F));
-        applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-        atb(new HealAction(this, this, maxHealth));
+        if (gainStrAndHeal) {
+            applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+            atb(new HealAction(this, this, maxHealth));
+        }
         if (RuinaMod.isMultiplayerConnected()) {
             makePowerRemovable(this, MultiplayerAllyBuff.POWER_ID);
             atb(new RemoveSpecificPowerAction(this, this, MultiplayerAllyBuff.POWER_ID));
@@ -162,7 +175,7 @@ public class LittleRed extends AbstractAllyMonster
 
     @Override
     protected void getMove(final int num) {
-        if (!enraged) {
+        if (phase == DEFAULT_PHASE) {
             if (this.lastMove(HOLLOW_POINT_SHELL)) {
                 setMoveShortcut(CATCH_BREATH);
             } else if (this.lastMove(CATCH_BREATH)) {

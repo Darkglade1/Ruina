@@ -91,7 +91,7 @@ public class RuinaScene extends AbstractScene {
             for (AbstractMonster mo : room.monsters.monsters) {
                 if (mo instanceof LittleRed) {
                     LittleRed red = (LittleRed)mo;
-                    if (red.isDead || red.isDying || red.enraged) {
+                    if (red.isDead || red.isDying || red.phase == LittleRed.ENRAGE_PHASE) {
                         this.bg = this.atlas.findRegion("mod/RedNightForest");
                     } else {
                         this.bg = this.atlas.findRegion("mod/NightForest");

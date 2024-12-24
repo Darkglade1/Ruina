@@ -3,6 +3,7 @@ package ruina.powers.act2;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
 import ruina.monsters.act2.wrath.ServantOfWrath;
@@ -15,7 +16,7 @@ public class BlindFury extends AbstractUnremovablePower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    private int initialAmount;
+    private final int initialAmount;
 
     public BlindFury(AbstractCreature owner, int amount) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
@@ -25,10 +26,7 @@ public class BlindFury extends AbstractUnremovablePower {
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (damageAmount > 0) {
-            this.amount -= damageAmount;
-            if (this.amount < 0) {
-                this.amount = 0;
-            }
+            reducePower(damageAmount);
             updateDescription();
         }
         return damageAmount;
@@ -38,19 +36,22 @@ public class BlindFury extends AbstractUnremovablePower {
     public void atEndOfRound() {
         if (this.amount <= 0) {
             if (owner instanceof ServantOfWrath) {
-                ((ServantOfWrath) owner).enraged = true;
+                ((ServantOfWrath) owner).setPhase(ServantOfWrath.ENRAGE_PHASE);
                 ((ServantOfWrath) owner).rollMove();
                 ((ServantOfWrath) owner).createIntent();
                 playSound("WrathMeet");
             }
-            this.amount = initialAmount;
+            owner.addPower(new BlindFury(owner, initialAmount));
             updateDescription();
         }
     }
 
     @Override
     public void stackPower(int stackAmount) {
-        // don't let this stack
+        if (AbstractDungeon.actionManager.turnHasEnded) {
+            this.fontScale = 8.0F;
+            this.amount = stackAmount;
+        }
     }
 
     @Override
