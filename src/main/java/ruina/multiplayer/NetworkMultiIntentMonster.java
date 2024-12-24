@@ -24,8 +24,9 @@ public class NetworkMultiIntentMonster extends NetworkRuinaMonster implements Se
         this.additionalMovesHistory = mo.additionalMovesHistory;
     }
 
-    public void postMonsterPrepare(AbstractMonster monster) {
-        super.postMonsterPrepare(monster);
+    @Override
+    public void preMonsterPrepare(AbstractMonster monster) {
+        super.preMonsterPrepare(monster);
         AbstractMultiIntentMonster mo = (AbstractMultiIntentMonster)monster;
         mo.additionalMoves.clear();
         mo.additionalIntents.clear();

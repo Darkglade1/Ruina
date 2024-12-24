@@ -20,9 +20,9 @@ public class Hunt extends AbstractUnremovablePower {
     @Override
     public void onSpecificTrigger() {
         if (owner instanceof SpiderBud) {
-            if (!((SpiderBud) owner).enraged) {
+            if (((SpiderBud) owner).phase != ((SpiderBud) owner).ENRAGE_PHASE) {
                 flash();
-                ((SpiderBud) owner).enraged = true;
+                ((SpiderBud) owner).setPhase(((SpiderBud) owner).ENRAGE_PHASE);
             }
         }
     }

@@ -15,10 +15,8 @@ public class Dream extends AbstractUnremovablePower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public Dream(AbstractCreature owner, int amount, int amount2) {
+    public Dream(AbstractCreature owner, int amount) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
-        this.amount2 = amount2;
-        updateDescription();
     }
 
     @Override
@@ -33,6 +31,6 @@ public class Dream extends AbstractUnremovablePower {
 
     @Override
     public void updateDescription() {
-        description = POWER_DESCRIPTIONS[0] + amount2 + POWER_DESCRIPTIONS[1];
+        description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
     }
 }

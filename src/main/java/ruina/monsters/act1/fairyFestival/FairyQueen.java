@@ -43,7 +43,7 @@ public class FairyQueen extends AbstractRuinaMonster
     private final int RAVENOUSNESS_STR = calcAscensionSpecial(4);
     private final float ENRAGE_THRESHOLD = 0.5f;
     private final int SELF_DEBUFF = 1;
-    private boolean enraged = false;
+    private final int ENRAGE_PHASE = 2;
 
     public FairyQueen(final float x, final float y) {
         super(ID, ID, 180, 0.0F, 0, 250.0f, 280.0f, null, x, y);
@@ -108,7 +108,7 @@ public class FairyQueen extends AbstractRuinaMonster
                 }
                 applyToTarget(this, this, new StrengthPower(this, RAVENOUSNESS_STR));
                 resetIdle(1.0f);
-                enraged = true;
+                setPhase(ENRAGE_PHASE);
                 break;
             }
         }
@@ -117,9 +117,9 @@ public class FairyQueen extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (currentHealth <= maxHealth * ENRAGE_THRESHOLD && !enraged) {
+        if (currentHealth <= maxHealth * ENRAGE_THRESHOLD && this.phase != ENRAGE_PHASE) {
             setMoveShortcut(RAVENOUSNESS);
-        } else if (!areMinionsAlive() && !firstMove && !enraged) {
+        } else if (!areMinionsAlive() && !firstMove && this.phase != ENRAGE_PHASE) {
             setMoveShortcut(QUEENS_DECREE);
         } else {
             setMoveShortcut(PREDATION);

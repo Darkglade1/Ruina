@@ -61,6 +61,16 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
                 mo.firstMove = firstMove;
             }
         }
+        if (networkMessage.request.equals(NetworkRuinaMonster.request_monsterUpdatePhase)) {
+            Object[] dataIn = (Object[]) networkMessage.object;
+            int phase = (int)dataIn[0];
+            String monsterID = (String)dataIn[1];
+            NetworkLocation requestLocation = (NetworkLocation)dataIn[2];
+            NetworkRuinaMonster mo = (NetworkRuinaMonster) RoomDataManager.GetMonsterForLocation(monsterID, requestLocation);
+            if (mo != null) {
+                mo.phase = phase;
+            }
+        }
         if (networkMessage.request.equals(request_helperClearedDebuffs)) {
             Object[] dataIn = (Object[]) networkMessage.object;
             String monsterID = (String)dataIn[0];

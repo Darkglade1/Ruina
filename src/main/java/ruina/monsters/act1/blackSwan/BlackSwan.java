@@ -7,11 +7,9 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
-import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Erosion;
 import ruina.powers.act1.Dream;
@@ -36,7 +34,6 @@ public class BlackSwan extends AbstractRuinaMonster
     private final int EROSION = calcAscensionSpecial(3);
     private final int STRENGTH = calcAscensionSpecial(1);
     private static final int DEAD_BROTHERS_THRESHOLD = 3;
-    public int numDeadBrothers = 0;
 
     public BlackSwan() {
         this(0.0f, 0.0f);
@@ -61,7 +58,7 @@ public class BlackSwan extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Angela1");
-        applyToTarget(this, this, new Dream(this, 0, DEAD_BROTHERS_THRESHOLD));
+        applyToTarget(this, this, new Dream(this, DEAD_BROTHERS_THRESHOLD));
     }
 
     @Override
@@ -111,7 +108,7 @@ public class BlackSwan extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (numDeadBrothers >= DEAD_BROTHERS_THRESHOLD) {
+        if (getNumDeadBrothers() >= DEAD_BROTHERS_THRESHOLD) {
             if (lastMove(SHRIEK)) {
                 setMoveShortcut(WRITHE);
             } else {
@@ -153,12 +150,14 @@ public class BlackSwan extends AbstractRuinaMonster
         return detailsList;
     }
 
-    public void onBrotherDeath() {
-        numDeadBrothers++;
-        AbstractPower power = getPower(Dream.POWER_ID);
-        if (power != null) {
-            power.amount++;
+    private int getNumDeadBrothers() {
+        int count = 0;
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Brother && mo.isDead || mo.isDying) {
+                count++;
+            }
         }
+        return count;
     }
 
     @Override

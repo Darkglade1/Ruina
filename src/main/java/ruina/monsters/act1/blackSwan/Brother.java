@@ -28,6 +28,7 @@ public class Brother extends AbstractRuinaMonster
     private final int VULNERABLE = 1;
 
     private final int brotherNum;
+    public final int ACTIVE_PHASE = 2;
     private BlackSwan parent;
 
     public Brother() {
@@ -42,9 +43,6 @@ public class Brother extends AbstractRuinaMonster
         addMove(NONE, Intent.NONE);
         this.brotherNum = brotherNum;
         this.name = DIALOG[brotherNum - 1];
-        if (brotherNum == 1) {
-            firstMove = false;
-        }
     }
 
     @Override
@@ -60,7 +58,7 @@ public class Brother extends AbstractRuinaMonster
                 parent = (BlackSwan) mo;
             }
         }
-        this.powers.add(new MinionPower(this));
+        addPower(new MinionPower(this));
         int brotherPowerAmount = 0;
         switch (brotherNum) {
             case 1: {
@@ -80,12 +78,21 @@ public class Brother extends AbstractRuinaMonster
                 break;
             }
         }
-        this.powers.add(new BrotherPower(this, brotherPowerAmount, brotherNum, parent));
-        if (brotherNum > 1) {
-            hideHealthBar();
-            halfDead = true;
-            currentHealth = 0;
-            healthBarUpdatedEvent();
+        applyToTarget(this, this, new BrotherPower(this, brotherPowerAmount, brotherNum, parent));
+        if (brotherNum == 1) {
+            setPhase(ACTIVE_PHASE);
+        }
+        if (brotherNum > 1 && this.phase == DEFAULT_PHASE) {
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    hideHealthBar();
+                    halfDead = true;
+                    currentHealth = 0;
+                    healthBarUpdatedEvent();
+                    this.isDone = true;
+                }
+            });
         }
     }
 
@@ -105,7 +112,7 @@ public class Brother extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (halfDead || firstMove) {
+        if (phase == DEFAULT_PHASE && brotherNum > 1) {
             setMoveShortcut(NONE);
         } else {
             setMoveShortcut(GREEN_WASTE);
@@ -114,27 +121,18 @@ public class Brother extends AbstractRuinaMonster
 
     public void revive() {
         showHealthBar();
+        setPhase(ACTIVE_PHASE);
         atb(new HealAction(this, this, maxHealth));
         atb(new AbstractGameAction() {
             @Override
             public void update() {
                 playSound("SwanRevive");
                 halfDead = false;
-                firstMove = false;
                 rollMove();
                 createIntent();
                 this.isDone = true;
             }
         });
-
-    }
-
-    @Override
-    public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
-        if (parent != null) {
-            parent.onBrotherDeath();
-        }
     }
 
     private void attackAnimation(AbstractCreature enemy) {

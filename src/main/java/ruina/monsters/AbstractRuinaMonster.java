@@ -22,7 +22,6 @@ import com.megacrit.cardcrawl.relics.RunicDome;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.elena.VermilionCross;
-import ruina.multiplayer.NetworkMultiIntentMonster;
 import ruina.multiplayer.NetworkRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.DetailedIntent;
@@ -52,6 +51,8 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     public boolean firstMove = true;
     protected DamageInfo info;
     protected int multiplier;
+    public int DEFAULT_PHASE = 1;
+    public int phase = DEFAULT_PHASE;
     private static final float ASCENSION_DAMAGE_BUFF_PERCENT = 1.10f;
     private static final float ASCENSION_TANK_BUFF_PERCENT = 1.10f;
     private static final float ASCENSION_SPECIAL_BUFF_PERCENT = 1.5f;
@@ -515,10 +516,10 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
             seedToUse = AbstractDungeon.aiRng;
         }
         this.getMove(seedToUse.random(99));
-        updateMainIntentMultiplayer();
+        notifyMainIntentUpdateMultiplayer();
     }
 
-    protected void updateMainIntentMultiplayer() {
+    protected void notifyMainIntentUpdateMultiplayer() {
         if (RuinaMod.isMultiplayerConnected()) {
             EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
             NetworkIntent networkMove = new NetworkIntent(move);
@@ -542,6 +543,17 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         String uid = SpireHelp.Gameplay.CreatureToUID(this);
         newSeed += uid.hashCode();
         return new Random(newSeed);
+    }
+
+    public void setPhase(int newPhase) {
+        this.phase = newPhase;
+        if (RuinaMod.isMultiplayerConnected()) {
+            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdatePhase, newPhase, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+            if (m instanceof NetworkRuinaMonster) {
+                ((NetworkRuinaMonster) m).phase = newPhase;
+            }
+        }
     }
 
 }

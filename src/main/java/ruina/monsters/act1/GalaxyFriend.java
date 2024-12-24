@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.RegenerateMonsterPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
-import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act1.DontLeave;
 import ruina.util.DetailedIntent;
@@ -98,18 +97,22 @@ public class GalaxyFriend extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!this.lastMove(WAITING)) {
-            possibilities.add(WAITING);
+        if (this.halfDead) {
+            setMoveShortcut(REVIVE);
+        } else {
+            ArrayList<Byte> possibilities = new ArrayList<>();
+            if (!this.lastMove(WAITING)) {
+                possibilities.add(WAITING);
+            }
+            if (!this.lastMove(STAR_SHOWER)) {
+                possibilities.add(STAR_SHOWER);
+            }
+            if (!this.lastMove(GLIMMER)) {
+                possibilities.add(GLIMMER);
+            }
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+            setMoveShortcut(move);
         }
-        if (!this.lastMove(STAR_SHOWER)) {
-            possibilities.add(STAR_SHOWER);
-        }
-        if (!this.lastMove(GLIMMER)) {
-            possibilities.add(GLIMMER);
-        }
-        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
-        setMoveShortcut(move);
     }
 
     @Override
@@ -164,15 +167,8 @@ public class GalaxyFriend extends AbstractRuinaMonster
             }
 
             if (!allDead) {
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        setMove(REVIVE, Intent.BUFF);
-                        createIntent();
-                        setDetailedIntents();
-                        isDone = true;
-                    }
-                });
+                rollMove();
+                createIntent();
             } else {
                 (AbstractDungeon.getCurrRoom()).cannotLose = false;
                 this.halfDead = false;

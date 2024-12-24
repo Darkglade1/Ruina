@@ -25,7 +25,7 @@ public class SpiderBud extends AbstractRuinaMonster
     private static final byte COCOON = 1;
     private static final byte CATCHING_FOOD = 2;
 
-    public boolean enraged = false;
+    public final int ENRAGE_PHASE = 2;
 
     private final int BLOCK = calcAscensionTankiness(5);
 
@@ -70,6 +70,7 @@ public class SpiderBud extends AbstractRuinaMonster
                 attackAnimation(adp());
                 dmg(adp(), info);
                 resetIdle(1.0f);
+                setPhase(DEFAULT_PHASE);
                 break;
             }
         }
@@ -78,9 +79,8 @@ public class SpiderBud extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (enraged || onlyEnemyAlive()) {
+        if (this.phase == ENRAGE_PHASE || onlyEnemyAlive()) {
             setMoveShortcut(CATCHING_FOOD);
-            enraged = false;
         } else if (lastMoveIgnoringMove(PROTECTIVE_INSTINCTS, CATCHING_FOOD)){
             setMoveShortcut(COCOON);
         } else {

@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -32,7 +31,6 @@ import ruina.vfx.VFXActionButItCanFizzle;
 import spireTogether.networkcore.P2P.P2PManager;
 import spireTogether.networkcore.objects.entities.NetworkIntent;
 import spireTogether.networkcore.objects.entities.NetworkMonster;
-import spireTogether.networkcore.objects.rooms.NetworkLocation;
 import spireTogether.other.RoomDataManager;
 import spireTogether.util.SpireHelp;
 
@@ -191,7 +189,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
             getAdditionalMoves(seedToUse.random(99), i);
         }
         if (RuinaMod.isMultiplayerConnected()) {
-            updateMainIntentMultiplayer();
+            notifyMainIntentUpdateMultiplayer();
             ArrayList<NetworkIntent> additionalNetworkMoves = new ArrayList<>();
             for (EnemyMoveInfo info : this.additionalMoves) {
                 additionalNetworkMoves.add(new NetworkIntent(info));

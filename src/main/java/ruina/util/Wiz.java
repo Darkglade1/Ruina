@@ -227,6 +227,10 @@ public class Wiz {
         att(new ApplyPowerAction(target, target, new NextTurnPowerPower(target, po)));
     }
 
+    public static void applyToTargetNextTurnTop(AbstractCreature target, AbstractCreature source, AbstractPower po) {
+        att(new ApplyPowerAction(target, source, new NextTurnPowerPower(target, po)));
+    }
+
     public static void dmg(AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect) {
         DamageAction action = new DamageAction(target, info, effect);
         if (RuinaMod.isMultiplayerConnected() && info.owner instanceof AbstractMonster) {

@@ -15,22 +15,27 @@ public class NetworkRuinaMonster extends NetworkMonster implements Serializable 
     public NetworkIntent networkMove;
     public ArrayList<Byte> moveHistory;
     public boolean firstMove;
+    public int phase;
     public static String request_monsterUpdateMainIntent = "ruina_monsterUpdateMainIntent";
     public static String request_monsterUpdateFirstMove = "ruina_monsterUpdateFirstMove";
+    public static String request_monsterUpdatePhase = "ruina_monsterUpdatePhase";
 
     protected NetworkRuinaMonster(AbstractRuinaMonster mo) {
         super(mo);
         EnemyMoveInfo move = ReflectionHacks.getPrivate(mo, AbstractMonster.class, "move");
-        networkMove = new NetworkIntent(move);
-        moveHistory = mo.moveHistory;
+        this.networkMove = new NetworkIntent(move);
+        this.moveHistory = mo.moveHistory;
         this.firstMove = mo.firstMove;
+        this.phase = mo.phase;
     }
 
-    public void postMonsterPrepare(AbstractMonster monster) {
-        super.postMonsterPrepare(monster);
+    @Override
+    public void preMonsterPrepare(AbstractMonster monster) {
+        super.preMonsterPrepare(monster);
         AbstractRuinaMonster mo = (AbstractRuinaMonster)monster;
         ReflectionHacks.setPrivate(mo, AbstractMonster.class, "move", networkMove.toStandard());
-        mo.moveHistory = moveHistory;
+        mo.moveHistory = this.moveHistory;
         mo.firstMove = this.firstMove;
+        mo.phase = this.phase;
     }
 }

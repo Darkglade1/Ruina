@@ -39,7 +39,6 @@ public class ShyLook extends AbstractRuinaMonster
     private final int ATTACK_BLOCK = calcAscensionTankiness(6);
 
     private final int CARD_THRESHOLD = 3;
-    private int face = 1;
 
     public ShyLook() {
         this(0.0f, 0.0f);
@@ -125,8 +124,14 @@ public class ShyLook extends AbstractRuinaMonster
         }
         byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
-        face = move;
-        runAnim("Idle" + face);
+        setPhase(move);
+        runAnim("Idle" + phase);
+    }
+
+    @Override
+    public void createIntent() {
+        super.createIntent();
+        runAnim("Idle" + phase);
     }
 
     @Override
@@ -163,18 +168,18 @@ public class ShyLook extends AbstractRuinaMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                runAnim("Idle" + face);
+                runAnim("Idle" + phase);
                 this.isDone = true;
             }
         });
     }
 
     private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack" + face, "ShyAtk", enemy, this);
+        animationAction("Attack" + phase, "ShyAtk", enemy, this);
     }
 
     private void blockAnimation() {
-        animationAction("Block" + face, null, this);
+        animationAction("Block" + phase, null, this);
     }
 
 }
