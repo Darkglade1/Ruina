@@ -10,6 +10,7 @@ public class RuinaMetallicize extends MetallicizePower {
         super(owner, amt);
     }
 
+    @Override
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         if (!owner.isDeadOrEscaped()) {
             this.flash();

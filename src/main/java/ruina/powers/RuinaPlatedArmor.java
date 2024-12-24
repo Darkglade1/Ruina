@@ -10,10 +10,12 @@ public class RuinaPlatedArmor extends PlatedArmorPower {
         super(owner, amt);
     }
 
+    @Override
     public void onRemove() {
 
     }
 
+    @Override
     public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         if (!owner.isDeadOrEscaped()) {
             this.flash();

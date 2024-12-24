@@ -111,7 +111,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         if(info.base > -1) {
             info.applyPowers(this, target);
         }
-        if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerEnemyBuff.POWER_ID) && target instanceof AbstractMonster) {
+        if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerEnemyBuff.POWER_ID) && target instanceof AbstractMonster && !(target instanceof AbstractAllyMonster)) {
             int amount = getPower(MultiplayerEnemyBuff.POWER_ID).amount;
             info.output = (int)(info.output * (1.0f + ((float)amount / 100)));
         }
