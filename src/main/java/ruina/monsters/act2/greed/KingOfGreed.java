@@ -35,8 +35,6 @@ public class KingOfGreed extends AbstractRuinaMonster
 
     private boolean canPlaySound = true;
 
-    AbstractPower road;
-
     public KingOfGreed() {
         this(0.0f, 0.0f);
     }
@@ -52,8 +50,7 @@ public class KingOfGreed extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        road = new Road(this, 2);
-        applyToTarget(this, this, road);
+        applyToTarget(this, this, new Road(this, 2));
         applyToTarget(this, this, new CenterOfAttention(this));
 
         EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
@@ -115,6 +112,7 @@ public class KingOfGreed extends AbstractRuinaMonster
             setMoveShortcut(EDACITY);
             turn = EDACITY;
         }
+        AbstractPower road = getPower(Road.POWER_ID);
         if (road != null) {
             road.amount = turn;
             road.updateDescription();

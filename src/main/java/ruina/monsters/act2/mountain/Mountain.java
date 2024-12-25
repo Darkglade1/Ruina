@@ -62,7 +62,6 @@ public class Mountain extends AbstractMultiIntentMonster
     public static final int STAGE1 = 1;
     private static final float REVIVE_PERCENT = 0.50f;
     private static final float STARTING_PERCENT = 0.50f;
-    private AbstractPower stagePower;
 
     public Mountain(final float x, final float y) {
         super(ID, ID, 100, -5.0F, 0, 330.0f, 285.0f, null, x, y);
@@ -100,8 +99,7 @@ public class Mountain extends AbstractMultiIntentMonster
                 target = (MeltedCorpses)mo;
             }
         }
-        stagePower = new Absorption(this, convertPhaseToStage());
-        applyToTarget(this, this, stagePower);
+        applyToTarget(this, this, new Absorption(this, convertPhaseToStage()));
         applyToTarget(this, this, new Bodies(this));
         applyToTarget(this, this, new CenterOfAttention(this));
         if (RuinaMod.isMultiplayerConnected()) {
@@ -415,8 +413,11 @@ public class Mountain extends AbstractMultiIntentMonster
 
     private void updateValues() {
         setMaxHP();
-        stagePower.amount = convertPhaseToStage();
-        stagePower.updateDescription();
+        AbstractPower stagePower = getPower(Absorption.POWER_ID);
+        if (stagePower != null) {
+            stagePower.amount = convertPhaseToStage();
+            stagePower.updateDescription();
+        }
     }
 
     private void setMaxHP() {

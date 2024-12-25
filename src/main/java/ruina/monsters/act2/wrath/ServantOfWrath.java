@@ -65,8 +65,8 @@ public class ServantOfWrath extends AbstractAllyMonster
             furyThreshold = FURY_THRESHOLD;
         }
 
-        addMove(EMBODIMENTS_OF_EVIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(8), 3, true);
-        addMove(RAGE, Intent.ATTACK_DEBUFF, 8, 2, true);
+        addMove(EMBODIMENTS_OF_EVIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(8), 3);
+        addMove(RAGE, Intent.ATTACK_DEBUFF, 8, 2);
 
         this.icon = TexLoader.getTexture(makeUIPath("WrathIcon.png"));
 
