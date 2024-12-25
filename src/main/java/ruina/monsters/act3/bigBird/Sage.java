@@ -69,8 +69,14 @@ public class Sage extends AbstractAllyMonster
         super.usePreBattleAction();
 
         if (RuinaMod.isMultiplayerConnected() && hasPower(EnchantedMultiplayer.POWER_ID)) {
-            isTargetableByPlayer = true;
-            halfDead = false;
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    isTargetableByPlayer = true;
+                    halfDead = false;
+                    this.isDone = true;
+                }
+            });
         }
     }
 

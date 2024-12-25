@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.eventboss.redMist.cards.*;
 import ruina.powers.Bleed;
@@ -54,11 +55,7 @@ public class RedMist extends AbstractCardMonster {
     public final int greaterSplitVerticalDamage = calcAscensionDamage(35);
     public final int greaterSplitHorizontalDamage = calcAscensionDamage(40);
 
-    private static final int KALI_PHASE = 1;
     private static final int EGO_PHASE = 2;
-    private int phase = KALI_PHASE;
-
-    private boolean EGO = false;
     public static final float HP_THRESHOLD = 0.5f;
 
     public RedMist() {
@@ -93,8 +90,12 @@ public class RedMist extends AbstractCardMonster {
 
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("Gebura2");
-        applyToTarget(this, this, new RedMistPower(this, (int)(HP_THRESHOLD * 100)));
+        if (RuinaMod.isMultiplayerConnected() && phase == EGO_PHASE) {
+            activateEGO(false);
+        } else {
+            CustomDungeon.playTempMusicInstantly("Gebura2");
+            applyToTarget(this, this, new RedMistPower(this, (int)(HP_THRESHOLD * 100)));
+        }
     }
 
     @Override
@@ -261,7 +262,7 @@ public class RedMist extends AbstractCardMonster {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                if (!EGO) {
+                if (phase == DEFAULT_PHASE) {
                     CheckEGOTrigger();
                 }
                 isDone = true;
@@ -272,13 +273,13 @@ public class RedMist extends AbstractCardMonster {
 
     @Override
     protected void getMove(final int num) {
-        if (!EGO && threeTurnCooldownHasPassedForMove(GSV)) {
+        if (phase == DEFAULT_PHASE && threeTurnCooldownHasPassedForMove(GSV)) {
             setMoveShortcut(GSV);
-        } else if (EGO && !this.lastMove(GSH) && !this.lastMoveBefore(GSH) && !this.lastMoveBeforeBefore(GSH)) {
+        } else if (phase == EGO_PHASE && !this.lastMove(GSH) && !this.lastMoveBefore(GSH) && !this.lastMoveBeforeBefore(GSH)) {
             setMoveShortcut(GSH);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (EGO) {
+            if (phase == EGO_PHASE) {
                 if (!this.lastMove(UPSTANDING_SLASH)) {
                     possibilities.add(UPSTANDING_SLASH);
                 }
@@ -307,14 +308,15 @@ public class RedMist extends AbstractCardMonster {
         }
     }
 
-    public void activateEGO() {
+    public void activateEGO(boolean gainEffects) {
         playSound("RedMistChange");
-        phase = EGO_PHASE;
+        setPhase(EGO_PHASE);
         runAnim("Idle" + phase);
         CustomDungeon.playTempMusicInstantly("RedMistBGM");
-        EGO = true;
-        atb(new RemoveDebuffsAction(this));
-        applyToTarget(this, this, new StrengthPower(this, focusSpiritStr));
+        if (gainEffects) {
+            atb(new RemoveDebuffsAction(this));
+            applyToTarget(this, this, new StrengthPower(this, focusSpiritStr));
+        }
     }
 
     public static void verticalSplitVfx() {
@@ -349,8 +351,8 @@ public class RedMist extends AbstractCardMonster {
     }
 
     public void CheckEGOTrigger() {
-        if (this.currentHealth < (int)(this.maxHealth * HP_THRESHOLD) && phase == KALI_PHASE) {
-            activateEGO();
+        if (this.currentHealth < (int)(this.maxHealth * HP_THRESHOLD) && phase == DEFAULT_PHASE) {
+            activateEGO(true);
             makePowerRemovable(this, RedMistPower.POWER_ID);
             att(new RemoveSpecificPowerAction(this, this, RedMistPower.POWER_ID));
         }
