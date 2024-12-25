@@ -26,7 +26,6 @@ import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
-import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 
@@ -55,7 +54,6 @@ public class BigBird extends AbstractMultiIntentMonster
     public static final int INSTANT_KILL_NUM = 999;
     private static final int ENCHANTED_HP_AMT = 20;
     private static final int ENCHANTED_HP_INCREASE = 5;
-    private int currEnchantedHPAmt = ENCHANTED_HP_AMT;
 
     public BigBird() {
         this(100.0f, 0.0f);
@@ -130,18 +128,13 @@ public class BigBird extends AbstractMultiIntentMonster
             case DAZZLE_ALLY: {
                 dazzleAnimation(target);
                 if (target != adp()) {
+                    int currEnchantedHPAmt = ENCHANTED_HP_AMT + ((phase - 1) * ENCHANTED_HP_INCREASE);
                     if (RuinaMod.isMultiplayerConnected()) {
                         applyToTarget(target, this, new EnchantedMultiplayer(target, RuinaMod.getMultiplayerPlayerCountScaling(currEnchantedHPAmt), 1));
                     } else {
                         applyToTarget(target, this, new Enchanted(target, currEnchantedHPAmt, 1));
                     }
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            currEnchantedHPAmt += ENCHANTED_HP_INCREASE;
-                            this.isDone = true;
-                        }
-                    });
+                    setPhase(phase + 1);
                 } else {
                     intoDiscardMo(new Dazzled(), STATUS, this);
                 }

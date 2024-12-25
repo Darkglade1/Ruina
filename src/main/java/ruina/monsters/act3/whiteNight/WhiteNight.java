@@ -27,7 +27,6 @@ import ruina.powers.act3.WhiteNightBlessing;
 import ruina.powers.multiplayer.WhiteNightBlessingMultiplayer;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
-import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 
@@ -51,7 +50,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     private static final byte BEHOLD = 4;
     private static final byte SAVIOR = 5;
 
-    private boolean awakened = false;
+    public static final int AWAKE_PHASE = 2;
 
     private final int RITUAL = calcAscensionSpecial(1);
     private final int HEAL = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(8));
@@ -85,14 +84,30 @@ public class WhiteNight extends AbstractRuinaMonster {
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Angela3");
-        if (RuinaMod.isMultiplayerConnected()) {
-            applyToTarget(this, this, new WhiteNightBlessingMultiplayer(this, RuinaMod.getMultiplayerPlayerCountScaling(BLESSING_AMT), MAX_TURNS, this));
+        if (phase == AWAKE_PHASE) {
+            phaseChange();
         } else {
-            applyToTarget(this, this, new WhiteNightBlessing(this, BLESSING_AMT, MAX_TURNS, this));
+            if (RuinaMod.isMultiplayerConnected()) {
+                applyToTarget(this, this, new WhiteNightBlessingMultiplayer(this, RuinaMod.getMultiplayerPlayerCountScaling(BLESSING_AMT), MAX_TURNS, this));
+            } else {
+                applyToTarget(this, this, new WhiteNightBlessing(this, BLESSING_AMT, MAX_TURNS, this));
+            }
         }
     }
 
     public void awaken() {
+        phaseChange();
+        if (RuinaMod.isMultiplayerConnected()) {
+            makePowerRemovable(this, WhiteNightBlessingMultiplayer.POWER_ID);
+            atb(new RemoveSpecificPowerAction(this, this, WhiteNightBlessingMultiplayer.POWER_ID));
+        } else {
+            makePowerRemovable(this, WhiteNightBlessing.POWER_ID);
+            atb(new RemoveSpecificPowerAction(this, this, WhiteNightBlessing.POWER_ID));
+        }
+        atb(new RollMoveAction(this));
+    }
+
+    private void phaseChange() {
         waitAnimation(1.0f);
         atb(new AbstractGameAction() {
             @Override
@@ -107,18 +122,10 @@ public class WhiteNight extends AbstractRuinaMonster {
                 e.setTime(e.getEndTime() * MathUtils.random());
                 WhiteNight.this.state.setTimeScale(1.0F);
                 WhiteNight.this.flipHorizontal = true;
-                awakened = true;
+                setPhase(AWAKE_PHASE);
                 this.isDone = true;
             }
         });
-        if (RuinaMod.isMultiplayerConnected()) {
-            makePowerRemovable(this, WhiteNightBlessingMultiplayer.POWER_ID);
-            atb(new RemoveSpecificPowerAction(this, this, WhiteNightBlessingMultiplayer.POWER_ID));
-        } else {
-            makePowerRemovable(this, WhiteNightBlessing.POWER_ID);
-            atb(new RemoveSpecificPowerAction(this, this, WhiteNightBlessing.POWER_ID));
-        }
-        atb(new RollMoveAction(this));
     }
 
     @Override
@@ -184,7 +191,7 @@ public class WhiteNight extends AbstractRuinaMonster {
 
     @Override
     protected void getMove(final int num) {
-        if (!awakened) {
+        if (phase == DEFAULT_PHASE) {
             setMoveShortcut(PRAYER);
         } else {
             if (lastMove(PRAYER)) {

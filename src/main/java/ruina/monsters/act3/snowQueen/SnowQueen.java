@@ -45,9 +45,7 @@ public class SnowQueen extends AbstractRuinaMonster
     private final int DEBUFF = calcAscensionSpecial(3);
     private final int BLOCK = calcAscensionTankiness(16);
     private final int STRENGTH = calcAscensionSpecial(3);
-    private final int METALLICIZE = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(5));
-    public boolean canBlizzard = true;
-    private int frozenThroneCounter = 0;
+    private final int METALLICIZE = calcAscensionSpecial(5);
 
     public SnowQueen() {
         this(0.0f, 0.0f);
@@ -85,13 +83,6 @@ public class SnowQueen extends AbstractRuinaMonster
                 applyToTarget(adp(), this, new WeakPower(adp(), DEBUFF, true));
                 applyToTarget(adp(), this, new FrailPower(adp(), DEBUFF, true));
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        canBlizzard = false;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case FRIGID_GAZE: {
@@ -113,13 +104,6 @@ public class SnowQueen extends AbstractRuinaMonster
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE));
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        frozenThroneCounter++;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
         }
@@ -128,9 +112,9 @@ public class SnowQueen extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (canBlizzard) {
+        if (firstMove) {
             setMoveShortcut(BLIZZARD);
-        } else if (frozenThroneCounter < MAX_FROZEN_THRONE_USES){
+        } else if (getNumFrozenThroneUses() < MAX_FROZEN_THRONE_USES){
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(FRIGID_GAZE)) {
                 possibilities.add(FRIGID_GAZE);
@@ -154,6 +138,16 @@ public class SnowQueen extends AbstractRuinaMonster
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
+    }
+
+    private int getNumFrozenThroneUses() {
+        int count = 0;
+        for (Byte move : moveHistory) {
+            if (move == FROZEN_THRONE) {
+                count++;
+            }
+        }
+        return count;
     }
 
     @Override

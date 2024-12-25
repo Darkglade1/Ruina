@@ -1022,8 +1022,8 @@ public class RuinaMod implements
 
         // Act 3
         atziluth.addBoss(Twilight.ID, (BaseMod.GetMonster) Twilight::new, makeMonsterPath("Twilight/TwilightMap.png"), makeMonsterPath("Twilight/TwilightMapOutline.png"));
-        atziluth.addBoss(WhiteNight.ID, (BaseMod.GetMonster) WhiteNight::new, makeMonsterPath("WhiteNight/WhiteNightMap.png"), makeMonsterPath("WhiteNight/WhiteNightMapOutline.png"));
-        atziluth.addBoss(SilentGirl.ID, (BaseMod.GetMonster) SilentGirl::new, makeMonsterPath("SilentGirl/MapIcon.png"), makeMonsterPath("SilentGirl/MapIcon.png"));
+        //atziluth.addBoss(WhiteNight.ID, (BaseMod.GetMonster) WhiteNight::new, makeMonsterPath("WhiteNight/WhiteNightMap.png"), makeMonsterPath("WhiteNight/WhiteNightMapOutline.png"));
+        //atziluth.addBoss(SilentGirl.ID, (BaseMod.GetMonster) SilentGirl::new, makeMonsterPath("SilentGirl/MapIcon.png"), makeMonsterPath("SilentGirl/MapIcon.png"));
 
         BaseMod.addMonster(BigBird.ID, "Big Bird", () -> new MonsterGroup(
                 new AbstractMonster[]{

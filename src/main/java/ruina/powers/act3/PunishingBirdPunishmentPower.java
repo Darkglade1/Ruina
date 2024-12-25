@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
+import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.multiplayer.MessengerListener;
 import ruina.powers.AbstractUnremovablePower;
 import ruina.util.TexLoader;
@@ -50,6 +51,9 @@ public class PunishingBirdPunishmentPower extends AbstractUnremovablePower {
     @Override
     public void onSpecificTrigger() {
         flash();
+        if (owner instanceof PunishingBird) {
+            ((PunishingBird) owner).setPhase(PunishingBird.ENRAGE_PHASE);
+        }
         isPunishSet = true;
         setBirdIcon();
         updateDescription();

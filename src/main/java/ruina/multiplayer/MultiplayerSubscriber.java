@@ -3,6 +3,7 @@ package ruina.multiplayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.monsters.act3.Twilight;
 import spireTogether.networkcore.objects.NetworkObject;
 import spireTogether.networkcore.objects.entities.NetworkMonster;
 import spireTogether.subscribers.TiSCustomSerializationSubscriber;
@@ -21,6 +22,7 @@ public class MultiplayerSubscriber implements TiSCustomSerializationSubscriber {
         HashMap<Class<? extends AbstractMonster>, Class<? extends NetworkMonster>> map = new HashMap<>();
         map.put(AbstractMultiIntentMonster.class, NetworkMultiIntentMonster.class);
         map.put(AbstractRuinaMonster.class, NetworkRuinaMonster.class);
+        map.put(Twilight.class, NetworkTwilight.class);
         return map;
     }
 

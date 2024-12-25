@@ -57,7 +57,6 @@ public class PrisonOfIce extends AbstractRuinaMonster
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        queen.canBlizzard = true;
         if (!queen.isDeadOrEscaped()) {
             playSound("SnowPrisonBreak");
             atb(new AbstractGameAction() {

@@ -1,5 +1,6 @@
 package ruina.powers.act3;
 
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -26,16 +27,21 @@ public class FadingTwilight extends AbstractUnremovablePower {
     public void atEndOfRound() {
         if (owner instanceof Twilight) {
             if (((Twilight) owner).getNumEggsLeft() > 1) {
-                amount--;
-                if (amount <= 0) {
+                if (amount <= 1) {
                     flash();
                     ((Twilight) owner).cycleEgg();
-                    amount = EGG_CYCLE_TURN_NUM;
+                    owner.addPower(new FadingTwilight(owner, EGG_CYCLE_TURN_NUM, dmgThreshold));
                 } else {
-                    flashWithoutSound();
+                    addToBot(new ReducePowerAction(owner, owner, this, 1));
                 }
             }
         }
+    }
+
+    @Override
+    public void stackPower(int stackAmount) {
+        this.fontScale = 8.0F;
+        this.amount = stackAmount;
     }
 
     @Override

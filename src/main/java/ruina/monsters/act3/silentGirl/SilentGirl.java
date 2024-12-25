@@ -49,9 +49,9 @@ public class SilentGirl extends AbstractRuinaMonster
     private final int BLOCK = calcAscensionTankiness(12);
     private final int PARALYSIS = calcAscensionSpecial(2);
     private final int CURSE_AMT = 1;
-    private int enraged = 1; //1 is false, 2 is true
     private final int maxHP = calcAscensionTankiness(240);
 
+    public static final int ENRAGE_PHASE = 2;
     private final DummyHammer hammer = new DummyHammer(100.0f, 0.0f);
     private final DummyNail nail = new DummyNail(-300.0f, 0.0f);
     AbstractCard curse = new Guilt();
@@ -87,8 +87,16 @@ public class SilentGirl extends AbstractRuinaMonster
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Story2");
         applyToTarget(this, this, new Remorse(this, CURSE_AMT, curse));
-        applyToTarget(this, this, new UnawakenedPower(this));
-        AbstractDungeon.getCurrRoom().cannotLose = true;
+        if (phase == ENRAGE_PHASE) {
+            phaseChangeAnimation();
+            hammer.deadAnimation();
+            nail.deadAnimation();
+            resetIdle(1.0f);
+            AbstractDungeon.getCurrRoom().cannotLose = false;
+        } else {
+            applyToTarget(this, this, new UnawakenedPower(this));
+            AbstractDungeon.getCurrRoom().cannotLose = true;
+        }
     }
 
     @Override
@@ -149,7 +157,7 @@ public class SilentGirl extends AbstractRuinaMonster
                 atb(new HealAction(this, this, maxHealth));
                 block(this, BLOCK);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-                enraged = 2;
+                setPhase(ENRAGE_PHASE);
                 AbstractDungeon.getCurrRoom().cannotLose = false;
                 resetIdle(1.0f);
                 break;
@@ -160,7 +168,9 @@ public class SilentGirl extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (enraged == 1) {
+        if (this.halfDead) {
+            setMoveShortcut(SUPPRESS);
+        } else if (phase == DEFAULT_PHASE) {
             if (lastMove(DIGGING_NAIL)) {
                 setMoveShortcut(SLAM);
             } else if (lastMove(SLAM)) {
@@ -224,7 +234,7 @@ public class SilentGirl extends AbstractRuinaMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                runAnim("Idle" + enraged);
+                runAnim("Idle" + phase);
                 this.isDone = true;
             }
         });
@@ -254,12 +264,8 @@ public class SilentGirl extends AbstractRuinaMonster
             for (AbstractRelic r : AbstractDungeon.player.relics) {
                 r.onMonsterDeath(this);
             }
-            if (this.nextMove != SUPPRESS) {
-                setMoveShortcut(SUPPRESS);
-                this.createIntent();
-                atb(new SetMoveAction(this, SUPPRESS, Intent.NONE));
-                setDetailedIntents();
-            }
+            rollMove();
+            createIntent();
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
                 if (!(power.ID.equals(Remorse.POWER_ID)) && !(power.ID.equals(StrengthPower.POWER_ID)) && !(power instanceof NextTurnPowerPower)) {

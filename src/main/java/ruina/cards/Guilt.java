@@ -10,8 +10,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.cardmods.ManifestMod;
 
 import static ruina.RuinaMod.makeID;
-import static ruina.util.Wiz.applyToTargetNextTurnTop;
-import static ruina.util.Wiz.intoDiscard;
+import static ruina.util.Wiz.*;
 
 @AutoAdd.Ignore
 public class Guilt extends AbstractRuinaCard {
@@ -34,7 +33,7 @@ public class Guilt extends AbstractRuinaCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (this.dontTriggerOnUseCard) {
             AbstractMonster target = AbstractDungeon.getCurrRoom().monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-            applyToTargetNextTurnTop(target, new StrengthPower(target, magicNumber));
+            applyToTargetNextTurnTop(target, adp(), new StrengthPower(target, magicNumber));
             exhaust = false;
             freeToPlayOnce = true;
         } else {

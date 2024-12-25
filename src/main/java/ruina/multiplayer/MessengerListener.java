@@ -127,5 +127,21 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
                 }
             }
         }
+        if (networkMessage.request.equals(NetworkTwilight.request_updateTwilight)) {
+            Object[] dataIn = (Object[]) networkMessage.object;
+            int dmgTaken = (int)dataIn[0];
+            boolean bigEggBroken = (boolean)dataIn[1];
+            boolean smallEggBroken = (boolean)dataIn[2];
+            boolean longEggBroken = (boolean)dataIn[3];
+            String monsterID = (String)dataIn[4];
+            NetworkLocation requestLocation = (NetworkLocation)dataIn[5];
+            NetworkTwilight mo = (NetworkTwilight) RoomDataManager.GetMonsterForLocation(monsterID, requestLocation);
+            if (mo != null) {
+                mo.dmgTaken = dmgTaken;
+                mo.bigEggBroken = bigEggBroken;
+                mo.smallEggBroken = smallEggBroken;
+                mo.longEggBroken = longEggBroken;
+            }
+        }
     }
 }

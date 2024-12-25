@@ -28,8 +28,10 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.cards.Dazzled;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.multiplayer.NetworkTwilight;
 import ruina.powers.act3.BigEgg;
 import ruina.powers.act3.FadingTwilight;
 import ruina.powers.act3.LongEgg;
@@ -37,6 +39,10 @@ import ruina.powers.act3.SmallEgg;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
+import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.networkcore.objects.entities.NetworkMonster;
+import spireTogether.other.RoomDataManager;
+import spireTogether.util.SpireHelp;
 
 import java.util.ArrayList;
 
@@ -74,18 +80,19 @@ public class Twilight extends AbstractRuinaMonster
     private final AbstractAnimation smallEgg;
     private final AbstractAnimation longEgg;
     private BirdEgg currentEgg = BirdEgg.BIG_EGG;
-    AbstractPower currentEggPower;
+    String currentEggPowerID;
     private final AbstractCard status = new Dazzled();
 
     private static final float HP_THRESHOLD_PERCENT = 0.25f;
     private final int dmgThreshold;
-    private int dmgTaken = 0;
-    private boolean bigEggBroken = false;
-    private boolean smallEggBroken = false;
-    private boolean longEggBroken = false;
+    public int dmgTaken = 0;
+    public boolean bigEggBroken = false;
+    public boolean smallEggBroken = false;
+    public boolean longEggBroken = false;
 
-    private boolean useBigAttack = false;
-    private int cycleCounter = 0;
+    public static final int BIG_BIRD_PHASE = 1;
+    public static final int SMALL_BIRD_PHASE = 2;
+    public static final int LONG_BIRD_PHASE = 3;
 
     public Twilight() {
         this(0.0f, 0.0f);
@@ -132,6 +139,37 @@ public class Twilight extends AbstractRuinaMonster
         playSound("BossBirdBirth", 0.5f);
         switchEgg(currentEgg);
         applyToTarget(this, this, new FadingTwilight(this, EGG_CYCLE_TURN_NUM, dmgThreshold));
+
+        if (RuinaMod.isMultiplayerConnected()) {
+            AbstractPower power = this.getPower(FadingTwilight.POWER_ID);
+            if (power != null) {
+                if (power instanceof TwoAmountPower) {
+                    ((TwoAmountPower) power).amount2 = dmgThreshold - dmgTaken;
+                    power.updateDescription();
+                }
+            }
+            if (bigEggBroken) {
+                ((BetterSpriterAnimation)bigEgg).myPlayer.setAnimation("BigEggBroken");
+            }
+            if (smallEggBroken) {
+                ((BetterSpriterAnimation)smallEgg).myPlayer.setAnimation("SmallEggBroken");
+            }
+            if (longEggBroken) {
+                ((BetterSpriterAnimation)longEgg).myPlayer.setAnimation("LongEggBroken");
+            }
+            if (hasPower(BigEgg.POWER_ID)) {
+                currentEgg = BirdEgg.BIG_EGG;
+                currentEggPowerID = BigEgg.POWER_ID;
+            }
+            if (hasPower(SmallEgg.POWER_ID)) {
+                currentEgg = BirdEgg.SMALL_EGG;
+                currentEggPowerID = SmallEgg.POWER_ID;
+            }
+            if (hasPower(LongEgg.POWER_ID)) {
+                currentEgg = BirdEgg.LONG_EGG;
+                currentEggPowerID = LongEgg.POWER_ID;
+            }
+        }
     }
 
     public int getNumEggsLeft() {
@@ -171,8 +209,8 @@ public class Twilight extends AbstractRuinaMonster
     }
     
     private void switchEgg(BirdEgg egg) {
-        makePowerRemovable(currentEggPower);
-        atb(new RemoveSpecificPowerAction(this, this, currentEggPower));
+        makePowerRemovable(this, currentEggPowerID);
+        atb(new RemoveSpecificPowerAction(this, this, currentEggPowerID));
         AbstractPower eggPower = null;
         switch(egg) {
             case BIG_EGG:
@@ -192,7 +230,7 @@ public class Twilight extends AbstractRuinaMonster
                 break;
         }
         currentEgg = egg;
-        currentEggPower = eggPower;
+        currentEggPowerID = eggPower.ID;
     }
 
     @Override
@@ -203,8 +241,7 @@ public class Twilight extends AbstractRuinaMonster
                 commandAnimation();
                 smashAnimation(adp(), info);
                 resetIdle();
-                cycleCounter++;
-                useBigAttack = false;
+                setPhase(phase + 1);
                 break;
             }
             case SURVEILLANCE: {
@@ -238,19 +275,18 @@ public class Twilight extends AbstractRuinaMonster
                     dmg(adp(), info);
                     resetIdle();
                 }
-                cycleCounter++;
-                useBigAttack = true;
+                setPhase(phase + 1);
                 break;
             }
         }
-        if (cycleCounter > 2) {
-            cycleCounter = 0;
+        if (phase > LONG_BIRD_PHASE) {
+            setPhase(BIG_BIRD_PHASE);
         }
         atb(new RollMoveAction(this));
     }
 
     private void setAttack() {
-        if (useBigAttack) {
+        if (usedTalonsLast()) {
             setMoveShortcut(PEACE_FOR_ALL);
         } else {
             setMoveShortcut(TALONS);
@@ -259,13 +295,13 @@ public class Twilight extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (cycleCounter == 0) {
+        if (phase == BIG_BIRD_PHASE) {
             if (!this.lastMove(SURVEILLANCE)) {
                 setMoveShortcut(SURVEILLANCE);
             } else {
                 setAttack();
             }
-        } else if (cycleCounter == 1) {
+        } else if (phase == SMALL_BIRD_PHASE) {
             if (!this.lastMove(TORN_MOUTH)) {
                 setMoveShortcut(TORN_MOUTH);
             } else {
@@ -278,6 +314,19 @@ public class Twilight extends AbstractRuinaMonster
                 setAttack();
             }
         }
+    }
+
+    private boolean usedTalonsLast() {
+        for (int i = moveHistory.size() - 1; i >= 0; i--) {
+            byte move = moveHistory.get(i);
+            if (move == PEACE_FOR_ALL) {
+                return false;
+            }
+            if (move == TALONS) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -327,9 +376,9 @@ public class Twilight extends AbstractRuinaMonster
                 }
                 if (bigEggBroken && smallEggBroken && longEggBroken) {
                     currentEgg = null;
-                    makePowerRemovable(this, currentEggPower.ID);
+                    makePowerRemovable(this, currentEggPowerID);
                     makePowerRemovable(this, FadingTwilight.POWER_ID);
-                    atb(new RemoveSpecificPowerAction(this, this, currentEggPower));
+                    atb(new RemoveSpecificPowerAction(this, this, currentEggPowerID));
                     atb(new RemoveSpecificPowerAction(this, this, FadingTwilight.POWER_ID));
                 } else {
                     cycleEgg();
@@ -341,6 +390,20 @@ public class Twilight extends AbstractRuinaMonster
                     ((TwoAmountPower) power).amount2 = dmgThreshold - dmgTaken;
                     power.updateDescription();
                 }
+            }
+            updateTwilightMultiplayer();
+        }
+    }
+
+    private void updateTwilightMultiplayer() {
+        if (RuinaMod.isMultiplayerConnected()) {
+            P2PManager.SendData(NetworkTwilight.request_updateTwilight, dmgTaken, bigEggBroken, smallEggBroken, longEggBroken, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+            if (m instanceof NetworkTwilight) {
+                ((NetworkTwilight)m).dmgTaken = this.dmgTaken;
+                ((NetworkTwilight)m).bigEggBroken = this.bigEggBroken;
+                ((NetworkTwilight)m).smallEggBroken = this.smallEggBroken;
+                ((NetworkTwilight)m).longEggBroken = this.longEggBroken;
             }
         }
     }

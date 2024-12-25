@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -38,8 +39,8 @@ public class PunishingBird extends AbstractRuinaMonster {
     private static final byte PUNISHMENT = 1;
 
     private final int STATUS = calcAscensionSpecial(1);
-
     private boolean playingDeathAnimation = false;
+    public static final int ENRAGE_PHASE = 2;
 
     public PunishingBird(final float x, final float y) {
         super(ID, ID, 150, -5.0F, 0, 160.0f, 305.0f, null, x, y);
@@ -47,6 +48,16 @@ public class PunishingBird extends AbstractRuinaMonster {
         setHp(calcAscensionTankiness(150));
         addMove(PECK, Intent.ATTACK_DEBUFF, calcAscensionSpecial(2), 3);
         addMove(PUNISHMENT, Intent.ATTACK, calcAscensionSpecial(calcAscensionDamage(50)));
+    }
+
+    @Override
+    public void usePreBattleAction() {
+        atb(new ApplyPowerAction(this, this, new PunishingBirdPunishmentPower(this)));
+        AbstractPower punishment = this.getPower(PunishingBirdPunishmentPower.POWER_ID);
+        if (punishment instanceof PunishingBirdPunishmentPower && phase == ENRAGE_PHASE) {
+            ((PunishingBirdPunishmentPower) punishment).setPunishment(true);
+            punishment.updateDescription();
+        }
     }
 
     @Override
@@ -74,15 +85,14 @@ public class PunishingBird extends AbstractRuinaMonster {
 
     @Override
     protected void getMove(final int num) {
-        PunishingBirdPunishmentPower punishment = (PunishingBirdPunishmentPower) this.getPower(PunishingBirdPunishmentPower.POWER_ID);
-        if (punishment != null) {
-            if (punishment.getPunishment()) {
-                setMoveShortcut(PUNISHMENT);
-                punishment.setPunishment(false);
+        if (phase == ENRAGE_PHASE) {
+            setMoveShortcut(PUNISHMENT);
+            AbstractPower punishment = this.getPower(PunishingBirdPunishmentPower.POWER_ID);
+            if (punishment instanceof PunishingBirdPunishmentPower) {
+                ((PunishingBirdPunishmentPower) punishment).setPunishment(false);
                 punishment.updateDescription();
-            } else {
-                setMoveShortcut(PECK);
             }
+            setPhase(DEFAULT_PHASE);
         } else {
             setMoveShortcut(PECK);
         }
@@ -99,11 +109,6 @@ public class PunishingBird extends AbstractRuinaMonster {
             }
         }
         return detailsList;
-    }
-
-    @Override
-    public void usePreBattleAction() {
-        atb(new ApplyPowerAction(this, this, new PunishingBirdPunishmentPower(this)));
     }
 
     @Override

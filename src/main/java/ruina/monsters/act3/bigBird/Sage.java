@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.powers.RitualPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
+import ruina.powers.multiplayer.EnchantedMultiplayer;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
@@ -66,6 +67,11 @@ public class Sage extends AbstractAllyMonster
             }
         }
         super.usePreBattleAction();
+
+        if (RuinaMod.isMultiplayerConnected() && hasPower(EnchantedMultiplayer.POWER_ID)) {
+            isTargetableByPlayer = true;
+            halfDead = false;
+        }
     }
 
     @Override
