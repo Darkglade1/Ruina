@@ -113,7 +113,7 @@
   },
   "${ModID}:BlindFury": {
     "NAME": "Blind Fury",
-    "DESCRIPTIONS": ["After this creature loses #b", " more HP, it will use a #rpowerful attack next turn that targets ALL other characters (including you)."]
+    "DESCRIPTIONS": ["Whenever this creature loses #b", " HP, it will use a #rpowerful attack next turn that targets ALL other characters (including you)."]
   },
   "${ModID}:SwordCounter": {
     "NAME": "Tears",
