@@ -20,8 +20,6 @@ public abstract class AbstractAllyAttackingMinion extends AbstractRuinaMonster
     protected static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(makeID("MultiIntentStrings"));
     protected static final String[] TEXT = uiStrings.TEXT;
 
-    public boolean attackingAlly = true;
-
     public AbstractAllyAttackingMinion(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
     }

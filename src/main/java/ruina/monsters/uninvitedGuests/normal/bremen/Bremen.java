@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Melody;
@@ -48,14 +49,9 @@ public class Bremen extends AbstractCardMonster
     public final int BLOCK = calcAscensionTankiness(22);
     public final int MELODY_LENGTH = 3;
     public final int MELODY_LENGTH_INCREASE = 1;
-    private int currentMelodyLength = MELODY_LENGTH;
     public final int MELODY_BOSS_STR = calcAscensionSpecial(2);
     public final int MELODY_PLAYER_STR = 1;
-    public final int TRIO_COOLDOWN = 2;
-    private int cooldown = TRIO_COOLDOWN;
-    private boolean lastIntentTargetAlly = true;
-    public Melody melodyCard = new Melody();
-    private final MelodyPower melodyPower = new MelodyPower(this, MELODY_LENGTH, MELODY_PLAYER_STR, MELODY_BOSS_STR, melodyCard);
+    public final Melody melodyCard = new Melody();
 
     public Bremen() {
         this(0.0f, 0.0f);
@@ -97,9 +93,14 @@ public class Bremen extends AbstractCardMonster
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        applyToTarget(this, this, melodyPower);
+        applyToTarget(this, this, new MelodyPower(this, MELODY_LENGTH, MELODY_PLAYER_STR, MELODY_BOSS_STR));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new StrengthPower(this, 1)); //hacky solution again LOL
+
+        AbstractPower power = getPower(MelodyPower.POWER_ID);
+        if (power instanceof MelodyPower) {
+            ((MelodyPower) power).generateSequence(); //generates a melody for late joiners in multiplayer
+        }
     }
 
     @Override
@@ -154,9 +155,7 @@ public class Bremen extends AbstractCardMonster
                     dmg(target, info);
                     resetIdle(1.0f);
                 }
-                currentMelodyLength += MELODY_LENGTH_INCREASE;
-                melodyPower.amount = currentMelodyLength;
-                cooldown = TRIO_COOLDOWN + 1;
+                applyToTarget(this, this, new MelodyPower(this, MELODY_LENGTH_INCREASE, MELODY_PLAYER_STR, MELODY_BOSS_STR));
                 break;
             }
         }
@@ -193,8 +192,7 @@ public class Bremen extends AbstractCardMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                cooldown--;
-                lastIntentTargetAlly = !lastIntentTargetAlly;
+                attackingAlly = !attackingAlly;
                 this.isDone = true;
             }
         });
@@ -203,7 +201,7 @@ public class Bremen extends AbstractCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (cooldown <= 0) {
+        if (moveHistory.size() >= 2 && !lastMove(TRIO) && !lastMoveBefore(TRIO)) {
             setMoveShortcut(TRIO);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -228,7 +226,7 @@ public class Bremen extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (whichMove == 1 && !lastIntentTargetAlly) {
+        if (whichMove == 1 && !attackingAlly) {
             if (!this.lastMove(BAWK, moveHistory) && !this.lastMoveBefore(BAWK, moveHistory)) {
                 possibilities.add(BAWK);
             }
@@ -254,7 +252,7 @@ public class Bremen extends AbstractCardMonster
     @Override
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
         if (index == 1) {
-            if (lastIntentTargetAlly) {
+            if (attackingAlly) {
                 applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
             } else {
                 applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);

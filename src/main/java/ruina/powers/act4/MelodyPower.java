@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.RuinaMod;
-import ruina.cards.Melody;
+import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
 import ruina.powers.AbstractUnremovablePower;
 
 import java.util.ArrayList;
@@ -26,17 +26,19 @@ public class MelodyPower extends AbstractUnremovablePower {
     private final ArrayList<AbstractCard.CardType> sequence = new ArrayList<>();
     private final ArrayList<AbstractCard.CardType> currentProgress = new ArrayList<>();
     boolean completed = false;
-    private final Melody melodyCard;
     private final int MELODY_PLAYER_STR;
     private final int MELODY_BOSS_STR;
 
-    public MelodyPower(AbstractCreature owner, int amount, int playerStr, int bossStr, Melody melodyCard) {
+    public MelodyPower(AbstractCreature owner, int amount, int playerStr, int bossStr) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
         MELODY_BOSS_STR = bossStr;
         MELODY_PLAYER_STR = playerStr;
-        this.melodyCard = melodyCard;
-        generateSequence();
         updateDescription();
+    }
+
+    @Override
+    public void onInitialApplication() {
+        generateSequence();
     }
 
     @Override
@@ -67,32 +69,33 @@ public class MelodyPower extends AbstractUnremovablePower {
         if (completed) {
             applyToTarget(adp(), adp(), new StrengthPower(adp(), MELODY_PLAYER_STR));
         } else {
-            applyToTarget(owner, owner, new StrengthPower(owner, MELODY_BOSS_STR));
+            applyToTarget(owner, adp(), new StrengthPower(owner, MELODY_BOSS_STR));
         }
         generateSequence();
     }
 
-    private void generateSequence() {
+    public void generateSequence() {
         completed = false;
-        boolean pickedPowerAlready = false;
         sequence.clear();
         currentProgress.clear();
         for (int i = 0; i < amount; i++) {
-            if (AbstractDungeon.monsterRng.randomBoolean(1.0f) && !pickedPowerAlready) {
-                if (AbstractDungeon.monsterRng.randomBoolean(0.5f)) {
-                    sequence.add(AbstractCard.CardType.ATTACK);
-                } else {
-                    sequence.add(AbstractCard.CardType.SKILL);
-                }
+            if (AbstractDungeon.miscRng.randomBoolean()) {
+                sequence.add(AbstractCard.CardType.ATTACK);
             } else {
-                pickedPowerAlready = true;
-                sequence.add(AbstractCard.CardType.POWER);
+                sequence.add(AbstractCard.CardType.SKILL);
             }
         }
         updateMelodyText();
     }
 
     private void updateMelodyText() {
+        AbstractCard melodyCard = null;
+        if (owner instanceof Bremen) {
+            melodyCard = ((Bremen) owner).melodyCard;
+        }
+        if (melodyCard == null) {
+            return;
+        }
         String[] descriptions = languagePack.getCardStrings(ruina.cards.Melody.ID).EXTENDED_DESCRIPTION;
         melodyCard.rawDescription = descriptions[0];
         String ATTACK = descriptions[1];

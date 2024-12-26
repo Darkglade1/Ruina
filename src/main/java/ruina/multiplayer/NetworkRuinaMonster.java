@@ -16,9 +16,11 @@ public class NetworkRuinaMonster extends NetworkMonster implements Serializable 
     public ArrayList<Byte> moveHistory;
     public boolean firstMove;
     public int phase;
+    public boolean attackingAlly;
     public static String request_monsterUpdateMainIntent = "ruina_monsterUpdateMainIntent";
     public static String request_monsterUpdateFirstMove = "ruina_monsterUpdateFirstMove";
     public static String request_monsterUpdatePhase = "ruina_monsterUpdatePhase";
+    public static String request_monsterUpdateAttackingAlly = "ruina_monsterUpdateAttackingAlly";
 
     protected NetworkRuinaMonster(AbstractRuinaMonster mo) {
         super(mo);
@@ -27,6 +29,7 @@ public class NetworkRuinaMonster extends NetworkMonster implements Serializable 
         this.moveHistory = mo.moveHistory;
         this.firstMove = mo.firstMove;
         this.phase = mo.phase;
+        this.attackingAlly = mo.attackingAlly;
     }
 
     @Override
@@ -37,5 +40,6 @@ public class NetworkRuinaMonster extends NetworkMonster implements Serializable 
         mo.moveHistory = this.moveHistory;
         mo.firstMove = this.firstMove;
         mo.phase = this.phase;
+        mo.attackingAlly = this.attackingAlly;
     }
 }

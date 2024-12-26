@@ -61,6 +61,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     public AbstractRuinaMonster target;
     public Texture icon;
     public boolean justDiedThisTurn = false;
+    public boolean attackingAlly;
 
     // for stance particle effects
     protected float particleTimer;
@@ -533,6 +534,17 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
             if (m instanceof NetworkRuinaMonster) {
                 ((NetworkRuinaMonster) m).networkMove = networkMove;
                 ((NetworkRuinaMonster) m).moveHistory = moveHistory;
+            }
+        }
+        notifyAttackingAllyUpdateMultiplayer();
+    }
+
+    protected void notifyAttackingAllyUpdateMultiplayer() {
+        if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
+            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateAttackingAlly, attackingAlly, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+            if (m instanceof NetworkRuinaMonster) {
+                ((NetworkRuinaMonster) m).attackingAlly = attackingAlly;
             }
         }
     }

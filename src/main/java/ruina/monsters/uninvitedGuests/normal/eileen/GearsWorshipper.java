@@ -37,9 +37,6 @@ public class GearsWorshipper extends AbstractAllyAttackingMinion
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new InvisibleBarricadePower(this));
-        createIntent();
-        addPower(new MinionPower(this));
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Eileen) {
                 eileen = (Eileen) mo;
@@ -48,6 +45,9 @@ public class GearsWorshipper extends AbstractAllyAttackingMinion
                 this.target = (Yesod)mo;
             }
         }
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
+        createIntent();
+        addPower(new MinionPower(this));
     }
 
     @Override

@@ -58,7 +58,6 @@ public class Philip extends AbstractCardMonster
     public static final int BONUS_INTENT_PHASE = 2;
     public int TURNS_FOR_BONUS_DAMAGE = 6;
     public static final int BONUS_DAMAGE_PHASE = 3;
-    private boolean attackingAlly = generateMultiplayerRandom().randomBoolean();
 
     AbstractCard status = new Burn();
 
