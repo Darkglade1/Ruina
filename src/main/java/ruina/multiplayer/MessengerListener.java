@@ -7,11 +7,13 @@ import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.knight.Sword;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.uninvitedGuests.normal.eileen.Yesod;
+import ruina.monsters.uninvitedGuests.normal.greta.Hod;
 import ruina.powers.act1.Pattern;
 import ruina.powers.act2.Hysteria;
 import ruina.powers.act2.Worthless;
 import ruina.powers.act3.PunishingBirdPunishmentPower;
 import ruina.powers.act4.DarkBargain;
+import ruina.powers.act4.PurpleTearStance;
 import spireTogether.networkcore.objects.entities.NetworkIntent;
 import spireTogether.networkcore.objects.rooms.NetworkLocation;
 import spireTogether.other.RoomDataManager;
@@ -168,6 +170,35 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
             NetworkYesod mo = (NetworkYesod) RoomDataManager.GetMonsterForLocation(monsterID, requestLocation);
             if (mo != null) {
                 mo.currentDamageBonus = currentDamageBonus;
+            }
+        }
+        if (networkMessage.request.equals(NetworkHod.request_updateHod)) {
+            Object[] dataIn = (Object[]) networkMessage.object;
+            int stance = (int)dataIn[0];
+            byte slashMove = (byte)dataIn[1];
+            byte pierceMove = (byte)dataIn[2];
+            byte guardMove = (byte)dataIn[3];
+            String monsterID = (String)dataIn[4];
+            NetworkLocation requestLocation = (NetworkLocation)dataIn[5];
+            NetworkHod mo = (NetworkHod) RoomDataManager.GetMonsterForLocation(monsterID, requestLocation);
+            if (mo != null) {
+                mo.stance = stance;
+                mo.slashMove = slashMove;
+                mo.pierceMove = pierceMove;
+                mo.guardMove = guardMove;
+            }
+        }
+        if (networkMessage.request.equals(NetworkHod.request_changeStanceHod)) {
+            Object[] dataIn = (Object[]) networkMessage.object;
+            int stance = (int)dataIn[0];
+            String monsterID = (String)dataIn[1];
+            NetworkLocation requestLocation = (NetworkLocation)dataIn[2];
+            if (requestLocation.isSameRoomAndAction()) {
+                for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+                    if (m instanceof Hod && SpireHelp.Gameplay.CreatureToUID(m).equals(monsterID)) {
+                        ((Hod) m).changeStance(stance);
+                    }
+                }
             }
         }
     }

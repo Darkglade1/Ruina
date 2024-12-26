@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -57,8 +56,6 @@ public class Greta extends AbstractCardMonster
     public final int DEBUFF = calcAscensionSpecial(2);
     public final int damageReduction = 50;
     public final int debuffCleanseTurns = 3;
-
-    public FreshMeat meat;
 
     public Greta() {
         this(0.0f, 0.0f);
@@ -236,6 +233,7 @@ public class Greta extends AbstractCardMonster
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setAdditionalMoveShortcut(move, moveHistory);
         } else {
+            FreshMeat meat = getMeat();
             if (meat != null && !meat.isDeadOrEscaped()) {
                 setAdditionalMoveShortcut(TRIAL, moveHistory);
             } else {
@@ -246,9 +244,12 @@ public class Greta extends AbstractCardMonster
 
     @Override
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
+        FreshMeat meat = getMeat();
         if (index == 1) {
             if (additionalMove.nextMove == TRIAL) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, meat, meat.icon, index);
+                if (meat != null) {
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, meat, meat.icon, index);
+                }
             } else {
                 applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
             }
@@ -268,6 +269,20 @@ public class Greta extends AbstractCardMonster
         if (target instanceof Hod) {
             ((Hod) target).onBossDeath();
         }
+    }
+
+    private FreshMeat getMeat() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof FreshMeat && !mo.isDeadOrEscaped()) {
+                return (FreshMeat) mo;
+            }
+        }
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof FreshMeat) {
+                return (FreshMeat) mo;
+            }
+        }
+        return null;
     }
 
     @Override

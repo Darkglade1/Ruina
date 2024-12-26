@@ -45,13 +45,18 @@ public class Sharkskin extends AbstractUnremovablePower {
     }
 
     @Override
-    public void atEndOfRound() {
-        amount++;
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
         if (amount >= debuffCleanseTurns) {
             amount = 0;
             flash();
             atb(new RemoveDebuffsAction(owner));
         }
+    }
+
+    @Override
+    public void atEndOfRound() {
+        owner.addPower(new Sharkskin(owner, 1, amount2, debuffCleanseTurns));
     }
 
     @Override

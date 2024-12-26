@@ -5,6 +5,7 @@ import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.uninvitedGuests.normal.eileen.Yesod;
+import ruina.monsters.uninvitedGuests.normal.greta.Hod;
 import spireTogether.networkcore.objects.NetworkObject;
 import spireTogether.networkcore.objects.entities.NetworkMonster;
 import spireTogether.subscribers.TiSCustomSerializationSubscriber;
@@ -25,6 +26,7 @@ public class MultiplayerSubscriber implements TiSCustomSerializationSubscriber {
         map.put(AbstractRuinaMonster.class, NetworkRuinaMonster.class);
         map.put(Twilight.class, NetworkTwilight.class);
         map.put(Yesod.class, NetworkYesod.class);
+        map.put(Hod.class, NetworkHod.class);
         return map;
     }
 

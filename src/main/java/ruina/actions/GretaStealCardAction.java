@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import ruina.monsters.uninvitedGuests.normal.greta.FreshMeat;
 import ruina.monsters.uninvitedGuests.normal.greta.Greta;
 
-import static ruina.util.Wiz.att;
+import static ruina.util.Wiz.*;
 
 public class GretaStealCardAction extends AbstractGameAction {
     private Greta owner;
@@ -71,10 +71,9 @@ public class GretaStealCardAction extends AbstractGameAction {
 
             this.tickDuration();// 82
             if (this.isDone && this.card != null) {// 83
-                FreshMeat meat = new FreshMeat(-150.0f, 0.0f, card);
-                owner.meat = meat;
+                FreshMeat meat = new FreshMeat(-150.0f, 0.0f);
                 att(new ShowCardAction(this.card));// 85
-                att(new UsePreBattleActionAction(meat));
+                applyToTargetTop(meat, meat, new ruina.powers.act4.FreshMeat(meat, meat.HEAL, card));
                 att(new SpawnMonsterAction(meat, true));
             }
 

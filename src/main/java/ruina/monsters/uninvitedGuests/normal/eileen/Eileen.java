@@ -23,6 +23,7 @@ import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.ThoughtGearBrain
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.act4.Gears;
 import spireTogether.patches.combatsync.ActionPatches;
+import spireTogether.util.helpers.GameplayHelpers;
 
 import java.util.ArrayList;
 
@@ -86,7 +87,7 @@ public class Eileen extends AbstractCardMonster
         }
         int i = 0;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof GearsWorshipper) {
+            if (mo instanceof GearsWorshipper && !mo.isDeadOrEscaped()) {
                 minions[i] = mo;
                 i++;
             }
@@ -208,8 +209,12 @@ public class Eileen extends AbstractCardMonster
     }
 
     public void onMinionDeath() {
-        DamageAction damage = new DamageAction(this, new DamageInfo(adp(), HP_LOSS, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.NONE);
-        atb(damage);
+        if (RuinaMod.isMultiplayerConnected() && GameplayHelpers.isPlayerTurn()) {
+            DamageAction damage = new DamageAction(this, new DamageInfo(adp(), HP_LOSS, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.NONE);
+            atb(damage);
+        } else {
+            atb(new LoseHPAction(this, this, HP_LOSS));
+        }
     }
 
 }

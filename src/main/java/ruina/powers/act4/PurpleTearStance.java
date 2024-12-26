@@ -39,12 +39,14 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
     private static final Texture guard32 = TexLoader.getTexture(makePowerPath("GuardStance32.png"));
 
     private int stance;
-    private int pierceStanceCounter = 0;
 
     public PurpleTearStance(AbstractCreature owner, int stance) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, 0);
         this.stance = stance;
         this.priority = 99;
+
+        this.region128 = new TextureAtlas.AtlasRegion(pierce84, 0, 0, 84, 84);
+        this.region48 = new TextureAtlas.AtlasRegion(pierce32, 0, 0, 32, 32);
     }
 
     @Override
@@ -59,11 +61,8 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
     @Override
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (info.type == DamageInfo.DamageType.NORMAL && info.owner == owner && stance == Hod.PIERCE) {
-            pierceStanceCounter++;
-            amount = pierceStanceCounter;
-            if (amount >= Hod.pierceTriggerHits) {
+            if (owner instanceof Hod && ((Hod) owner).nextMove == Hod.VENOMOUS_FANGS) {
                 flash();
-                pierceStanceCounter = amount = 0;
                 AbstractCreature enemy = target;
                 atb(new AbstractGameAction() {
                     @Override
@@ -88,7 +87,7 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
             this.region48 = new TextureAtlas.AtlasRegion(slash32, 0, 0, 32, 32);
         } else {
             if (stance == Hod.PIERCE) {
-                amount = pierceStanceCounter;
+                amount = 0;
                 this.region128 = new TextureAtlas.AtlasRegion(pierce84, 0, 0, 84, 84);
                 this.region48 = new TextureAtlas.AtlasRegion(pierce32, 0, 0, 32, 32);
             } else {
@@ -118,13 +117,18 @@ public class PurpleTearStance extends AbstractUnremovablePower implements OnRece
     }
 
     @Override
+    public void stackPower(int stackAmount) {
+        // doesn't stack
+    }
+
+    @Override
     public void updateDescription() {
         if (stance == Hod.SLASH) {
             name = DESCRIPTIONS[0];
             description = DESCRIPTIONS[1] + Hod.slashDamageBonus + DESCRIPTIONS[2];
         } else if (stance == Hod.PIERCE) {
             name = DESCRIPTIONS[3];
-            description = DESCRIPTIONS[4] + Hod.pierceTriggerHits + DESCRIPTIONS[5];
+            description = DESCRIPTIONS[4] + 2 + DESCRIPTIONS[5];
         } else {
             name = DESCRIPTIONS[6];
             description = DESCRIPTIONS[7];
