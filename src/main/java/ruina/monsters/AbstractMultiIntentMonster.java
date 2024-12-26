@@ -40,6 +40,7 @@ import java.util.Map;
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
+import static spireTogether.patches.monster.MonsterIntentPatch.pauseIntentSync;
 
 public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     public ArrayList<EnemyMoveInfo> additionalMoves = new ArrayList<>();
@@ -188,8 +189,11 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         for (int i = 0; i < numAdditionalMoves; i++) {
             getAdditionalMoves(seedToUse.random(99), i);
         }
-        if (RuinaMod.isMultiplayerConnected()) {
-            notifyMainIntentUpdateMultiplayer();
+        notifyMainIntentUpdateMultiplayer();
+        notifyAdditionalIntentUpdateMultiplayer();
+    }
+    public void notifyAdditionalIntentUpdateMultiplayer() {
+        if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
             ArrayList<NetworkIntent> additionalNetworkMoves = new ArrayList<>();
             for (EnemyMoveInfo info : this.additionalMoves) {
                 additionalNetworkMoves.add(new NetworkIntent(info));

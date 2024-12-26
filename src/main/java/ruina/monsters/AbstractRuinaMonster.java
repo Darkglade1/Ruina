@@ -40,6 +40,7 @@ import java.util.Map;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;
+import static spireTogether.patches.monster.MonsterIntentPatch.pauseIntentSync;
 
 public abstract class AbstractRuinaMonster extends CustomMonster {
 
@@ -524,7 +525,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
     protected void notifyMainIntentUpdateMultiplayer() {
-        if (RuinaMod.isMultiplayerConnected()) {
+        if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
             EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
             NetworkIntent networkMove = new NetworkIntent(move);
             P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateMainIntent, networkMove, moveHistory, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
