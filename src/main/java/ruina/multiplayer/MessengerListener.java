@@ -6,10 +6,12 @@ import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.knight.Sword;
 import ruina.monsters.act3.punishingBird.PunishingBird;
+import ruina.monsters.uninvitedGuests.normal.eileen.Yesod;
 import ruina.powers.act1.Pattern;
 import ruina.powers.act2.Hysteria;
 import ruina.powers.act2.Worthless;
 import ruina.powers.act3.PunishingBirdPunishmentPower;
+import ruina.powers.act4.DarkBargain;
 import spireTogether.networkcore.objects.entities.NetworkIntent;
 import spireTogether.networkcore.objects.rooms.NetworkLocation;
 import spireTogether.other.RoomDataManager;
@@ -25,6 +27,7 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
     public static String request_swordCommittedSuicide = "ruina_swordCommittedSuicide";
     public static String request_queenTriggerHysteria = "ruina_queenTriggerHysteria";
     public static String request_punishingBirdMad = "ruina_punishingBirdMad";
+    public static String request_yesodGainedDamage = "ruina_yesodGainedDamage";
     @Override
     public void onMessageReceive(NetworkMessage networkMessage, String s, Object o, Integer integer) {
         if (networkMessage.request.equals(NetworkRuinaMonster.request_monsterUpdateMainIntent)) {
@@ -141,6 +144,30 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
                 mo.bigEggBroken = bigEggBroken;
                 mo.smallEggBroken = smallEggBroken;
                 mo.longEggBroken = longEggBroken;
+            }
+        }
+        if (networkMessage.request.equals(request_yesodGainedDamage)) {
+            Object[] dataIn = (Object[]) networkMessage.object;
+            String monsterID = (String)dataIn[0];
+            NetworkLocation requestLocation = (NetworkLocation)dataIn[1];
+            if (requestLocation.isSameRoomAndAction()) {
+                for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+                    if (m instanceof Yesod && SpireHelp.Gameplay.CreatureToUID(m).equals(monsterID)) {
+                        if (m.hasPower(DarkBargain.POWER_ID)) {
+                            m.getPower(DarkBargain.POWER_ID).onSpecificTrigger();
+                        }
+                    }
+                }
+            }
+        }
+        if (networkMessage.request.equals(NetworkYesod.request_updateYesod)) {
+            Object[] dataIn = (Object[]) networkMessage.object;
+            float currentDamageBonus = (float)dataIn[0];
+            String monsterID = (String)dataIn[1];
+            NetworkLocation requestLocation = (NetworkLocation)dataIn[2];
+            NetworkYesod mo = (NetworkYesod) RoomDataManager.GetMonsterForLocation(monsterID, requestLocation);
+            if (mo != null) {
+                mo.currentDamageBonus = currentDamageBonus;
             }
         }
     }

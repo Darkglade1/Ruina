@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractAllyAttackingMinion;
@@ -34,8 +35,7 @@ public class CryingChild extends AbstractAllyAttackingMinion
         addMove(WING_STROKE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
         addMove(MURMUR, Intent.ATTACK, calcAscensionDamage(10));
         this.philip = philip;
-        this.target = philip.target;
-        attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
+        attackingAlly = generateMultiplayerRandom().randomBoolean();
     }
 
     @Override
@@ -46,6 +46,11 @@ public class CryingChild extends AbstractAllyAttackingMinion
 
     @Override
     public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Malkuth) {
+                target = (Malkuth)mo;
+            }
+        }
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new TorchedHeart(this, DAMAGE_REDUCTION));
     }
@@ -54,7 +59,7 @@ public class CryingChild extends AbstractAllyAttackingMinion
     public void takeTurn() {
         super.takeTurn();
         AbstractCreature target;
-        if (!this.target.isDead && !this.target.isDying && attackingAlly) {
+        if (this.target != null && !this.target.isDead && !this.target.isDying && attackingAlly) {
             target = this.target;
         } else {
             target = adp();
@@ -82,7 +87,7 @@ public class CryingChild extends AbstractAllyAttackingMinion
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
+                attackingAlly = generateMultiplayerRandom().randomBoolean();
                 this.isDone = true;
             }
         });

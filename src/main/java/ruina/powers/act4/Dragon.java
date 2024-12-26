@@ -17,6 +17,11 @@ public class Dragon extends AbstractUnremovablePower {
     }
 
     @Override
+    public void stackPower(int stackAmount) {
+        // doesn't stack
+    }
+
+    @Override
     public void updateDescription() {
         description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
     }

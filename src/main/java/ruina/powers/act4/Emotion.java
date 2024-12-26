@@ -17,17 +17,18 @@ public class Emotion extends AbstractEasyPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     private final int threshold;
+    private final int maxEmotion;
 
     public Emotion(AbstractCreature owner, int amount, int threshold) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
-        amount2 = 0;
         this.threshold = threshold;
+        this.maxEmotion = Malkuth.EMOTION_TRIGGER_CAP * threshold;
         updateDescription();
     }
 
     @Override
     public void stackPower(int stackAmount) {
-        if (amount2 < Malkuth.EMOTION_CAP) {
+        if (amount < maxEmotion) {
             this.fontScale = 8.0F;
             this.amount += stackAmount;
             checkTrigger();
@@ -35,34 +36,27 @@ public class Emotion extends AbstractEasyPower {
     }
 
     public void checkTrigger() {
-        if ((amount / threshold) >= 1) {
+        if (amount % threshold == 0) {
             this.flash();
-            stackPower(-threshold);
-            amount2++;
-
             AbstractPower str = owner.getPower(StrengthPower.POWER_ID);
             if (str != null) {
-                str.amount *= 2;
-                str.updateDescription();
+                owner.addPower(new StrengthPower(owner, str.amount));
                 str.flash();
                 AbstractDungeon.onModifyPower();
             }
         }
-        if (amount2 >= Malkuth.EMOTION_CAP) {
-            amount = 0;
-        }
-        updateDescription();
     }
 
     @Override
     public void onExhaust(AbstractCard card) {
-        if (amount2 < Malkuth.EMOTION_CAP) {
-            stackPower(Malkuth.EXHAUST_GAIN);
+        if (amount < maxEmotion) {
+            flashWithoutSound();
+            owner.addPower(new Emotion(owner, Malkuth.EXHAUST_GAIN, threshold));
         }
     }
 
     @Override
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + threshold + DESCRIPTIONS[1] + Malkuth.EMOTION_CAP + DESCRIPTIONS[2];
+        this.description = DESCRIPTIONS[0] + threshold + DESCRIPTIONS[1] + Malkuth.EMOTION_TRIGGER_CAP + DESCRIPTIONS[2];
     }
 }

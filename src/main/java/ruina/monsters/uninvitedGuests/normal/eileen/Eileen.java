@@ -1,11 +1,10 @@
 package ruina.monsters.uninvitedGuests.normal.eileen;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
+import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -13,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
@@ -22,6 +22,7 @@ import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.Propagate;
 import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.ThoughtGearBrainwash;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.act4.Gears;
+import spireTogether.patches.combatsync.ActionPatches;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class Eileen extends AbstractCardMonster
     public final int BLOCK = calcAscensionTankiness(22);
     public final int STRENGTH = calcAscensionSpecial(4);
     public final int VULNERABLE = 1;
-    public final int HP_LOSS = 100;
+    public final int HP_LOSS = RuinaMod.getMultiplayerEnemyHealthScaling(100);
 
     public AbstractMonster[] minions = new AbstractMonster[2];
 
@@ -207,7 +208,8 @@ public class Eileen extends AbstractCardMonster
     }
 
     public void onMinionDeath() {
-        atb(new LoseHPAction(this, this, HP_LOSS));
+        DamageAction damage = new DamageAction(this, new DamageInfo(adp(), HP_LOSS, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.NONE);
+        atb(damage);
     }
 
 }

@@ -2,6 +2,7 @@ package ruina.monsters.uninvitedGuests.normal.philip;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -15,6 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.philip.philipCards.*;
@@ -51,12 +53,12 @@ public class Philip extends AbstractCardMonster
     public final int damageBonus = calcAscensionSpecial(30);
     public final int damageReduction = calcAscensionSpecial(60);
     public final int damageReductionDecay = calcAscensionSpecial(10);
-    public int TURNS_TILL_BONUS_INTENT = 3;
-    public boolean gotBonusIntent = false;
-    public int TURNS_TILL_BONUS_DAMAGE = 6;
-    public boolean gotBonusDamage = false;
-    private int phase = 1;
-    private boolean attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
+
+    public int TURNS_FOR_BONUS_INTENT = 3;
+    public static final int BONUS_INTENT_PHASE = 2;
+    public int TURNS_FOR_BONUS_DAMAGE = 6;
+    public static final int BONUS_DAMAGE_PHASE = 3;
+    private boolean attackingAlly = generateMultiplayerRandom().randomBoolean();
 
     AbstractCard status = new Burn();
 
@@ -107,6 +109,11 @@ public class Philip extends AbstractCardMonster
         atb(new TalkAction(this, DIALOG[0]));
         applyToTarget(this, this, new Passion(this, damageReduction, damageReductionDecay));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
+
+        if (RuinaMod.isMultiplayerConnected() && phase >= BONUS_INTENT_PHASE) {
+            numAdditionalMoves++;
+            runAnim("Idle" + convertPhaseToAnim());
+        }
     }
 
     @Override
@@ -164,23 +171,23 @@ public class Philip extends AbstractCardMonster
     }
 
     private void bluntAnimation(AbstractCreature enemy) {
-        animationAction("Blunt" + phase, "PhilipHori", enemy, this);
+        animationAction("Blunt" + convertPhaseToAnim(), "PhilipHori", enemy, this);
     }
 
     private void pierceAnimation(AbstractCreature enemy) {
-        animationAction("Pierce" + phase, "PhilipStab", enemy, this);
+        animationAction("Pierce" + convertPhaseToAnim(), "PhilipStab", enemy, this);
     }
 
     private void slashAnimation(AbstractCreature enemy) {
-        animationAction("Slash" + phase, "PhilipVert", enemy, this);
+        animationAction("Slash" + convertPhaseToAnim(), "PhilipVert", enemy, this);
     }
 
     private void rangeAnimation(AbstractCreature enemy) {
-        animationAction("Far" + phase, "PhilipExplosion", enemy, this);
+        animationAction("Far" + convertPhaseToAnim(), "PhilipExplosion", enemy, this);
     }
 
     private void buffAnimation() {
-        animationAction("Guard" + phase, "FireGuard", this);
+        animationAction("Guard" + convertPhaseToAnim(), "FireGuard", this);
     }
 
 
@@ -190,12 +197,10 @@ public class Philip extends AbstractCardMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                TURNS_TILL_BONUS_INTENT--;
-                if (TURNS_TILL_BONUS_INTENT <= 0 && !gotBonusIntent) {
+                if (GameActionManager.turn >= TURNS_FOR_BONUS_INTENT && phase == DEFAULT_PHASE) {
                     getAnotherIntent();
                 }
-                TURNS_TILL_BONUS_DAMAGE--;
-                if (TURNS_TILL_BONUS_DAMAGE <= 0 && !gotBonusDamage) {
+                if (GameActionManager.turn >= TURNS_FOR_BONUS_DAMAGE && phase == BONUS_INTENT_PHASE) {
                     getBonusDamage();
                 }
                 this.isDone = true;
@@ -204,7 +209,7 @@ public class Philip extends AbstractCardMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
+                attackingAlly = generateMultiplayerRandom().randomBoolean();
                 this.isDone = true;
             }
         });
@@ -213,17 +218,16 @@ public class Philip extends AbstractCardMonster
 
     private void getAnotherIntent() {
         numAdditionalMoves++;
-        gotBonusIntent = true;
+        setPhase(BONUS_INTENT_PHASE);
         playSound("PhilipTransform", 2.0f);
         Summon();
         atb(new RollMoveAction(target)); //to make malkuth roll for mass attack if she can
     }
 
     private void getBonusDamage() {
-        gotBonusDamage = true;
-        phase = 2;
+        setPhase(BONUS_DAMAGE_PHASE);
         playSound("PhilipTransform", 2.0f);
-        runAnim("Idle" + phase);
+        runAnim("Idle" + convertPhaseToAnim());
         applyToTarget(this, this, new Embers(this, damageBonus));
         Summon();
         atb(new RollMoveAction(target)); //to make her roll for mass attack if she can
@@ -235,7 +239,7 @@ public class Philip extends AbstractCardMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                runAnim("Idle" + phase);
+                runAnim("Idle" + convertPhaseToAnim());
                 this.isDone = true;
             }
         });
@@ -244,22 +248,22 @@ public class Philip extends AbstractCardMonster
     @Override
     protected void getMove(final int num) {
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (!gotBonusIntent) {
+        if (phase == DEFAULT_PHASE) {
             if (!this.lastMove(EVENTIDE)) {
                 possibilities.add(EVENTIDE);
             }
         }
-        if (!this.gotBonusDamage) {
+        if (phase < BONUS_DAMAGE_PHASE) {
             if (!this.lastMove(SEARING)) {
                 possibilities.add(SEARING);
             }
         }
-        if (gotBonusIntent) {
+        if (phase >= BONUS_INTENT_PHASE) {
             if (!this.lastMove(STIGMATIZE)) {
                 possibilities.add(STIGMATIZE);
             }
         }
-        if (gotBonusDamage) {
+        if (phase == BONUS_DAMAGE_PHASE) {
             if (!this.lastMove(SORROW)) {
                 possibilities.add(SORROW);
             }
@@ -275,27 +279,27 @@ public class Philip extends AbstractCardMonster
         if (!this.lastMove(SEARING, moveHistory)) {
             possibilities.add(SEARING);
         }
-        if (whichMove == 0 && this.gotBonusIntent) {
+        if (whichMove == 0 && phase >= BONUS_INTENT_PHASE) {
             if (!this.lastMove(STIGMATIZE, moveHistory)) {
                 possibilities.add(STIGMATIZE);
             }
         }
-        if (whichMove == 1 && this.gotBonusDamage) {
+        if (whichMove == 1 && phase == BONUS_DAMAGE_PHASE) {
             if (!this.lastMove(STIGMATIZE, moveHistory)) {
                 possibilities.add(STIGMATIZE);
             }
         }
-        if (whichMove == 0 && !gotBonusIntent && !gotBonusDamage) {
+        if (whichMove == 0 && phase == DEFAULT_PHASE) {
             if (!this.lastMove(EMOTIONS, moveHistory)) {
                 possibilities.add(EMOTIONS);
             }
         }
-        if (whichMove == 1 && gotBonusIntent && !gotBonusDamage) {
+        if (whichMove == 1 && phase == BONUS_INTENT_PHASE) {
             if (!this.lastMove(EMOTIONS, moveHistory)) {
                 possibilities.add(EMOTIONS);
             }
         }
-        if (gotBonusDamage) {
+        if (phase == BONUS_DAMAGE_PHASE) {
             if (!this.lastMove(SORROW, moveHistory)) {
                 possibilities.add(SORROW);
             }
@@ -332,7 +336,7 @@ public class Philip extends AbstractCardMonster
 
     public void Summon() {
         if (target instanceof Malkuth) {
-            ((Malkuth) target).massAttackCooldownCounter = 0;
+            target.moveHistory.clear();
         }
         float xPos_Middle_L = -175.0f;
         float xPos_Short_L = 0F;
@@ -358,6 +362,13 @@ public class Philip extends AbstractCardMonster
                 minions[i] = minion;
             }
         }
+    }
+
+    private int convertPhaseToAnim() {
+        if (phase == BONUS_DAMAGE_PHASE) {
+            return 2;
+        }
+        return 1;
     }
 
 }

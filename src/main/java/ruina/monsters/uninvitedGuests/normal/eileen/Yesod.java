@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -26,6 +27,7 @@ import ruina.powers.act4.DarkBargain;
 import ruina.powers.multiplayer.MultiplayerAllyBuff;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
@@ -45,9 +47,10 @@ public class Yesod extends AbstractAllyCardMonster
     public final int ENERGY = 1;
     public final int DRAW = 1;
     public final int bulletHits = 3;
-    public final float damageBonus = 2.0f;
+    public final float initialDamageBonus = 2.0f;
     public final float damageGrowth = 0.5f;
-    public float currentDamageBonus = damageBonus;
+    public float currentDamageBonus = initialDamageBonus;
+    public float currDamageGrowth = damageGrowth;
 
     public Yesod() {
         this(0.0f, 0.0f);
@@ -82,8 +85,24 @@ public class Yesod extends AbstractAllyCardMonster
                 target = (Eileen)mo;
             }
         }
+        if (RuinaMod.isMultiplayerConnected()) {
+            currDamageGrowth = damageGrowth / P2PManager.GetPlayerCount();
+        }
         addPower(new DarkBargain(this));
         super.usePreBattleAction();
+
+        if (RuinaMod.isMultiplayerConnected()) {
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    AbstractPower darkBargain = getPower(DarkBargain.POWER_ID);
+                    if (darkBargain != null) {
+                        darkBargain.updateDescription();
+                    }
+                    this.isDone = true;
+                }
+            });
+        }
     }
 
     @Override
