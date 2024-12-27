@@ -18,7 +18,6 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.monsters.act1.fairyFestival.FairyMass;
 import ruina.powers.CenterOfAttention;
 import ruina.util.DetailedIntent;
 import ruina.vfx.WaitEffect;
@@ -44,10 +43,7 @@ public class BlueStar extends AbstractRuinaMonster
     private final int BLOCK = calcAscensionTankiness(13);
     private final int STRENGTH = calcAscensionSpecial(4);
     private final int VULNERABLE = calcAscensionSpecial(1);
-
-    public AbstractMonster[] minions = new AbstractMonster[2];
     private final AbstractAnimation star;
-    private int moveCounter = 0;
 
     public BlueStar(final float x, final float y) {
         super(ID, ID, 200, 0.0F, 0, 250.0f, 345.0f, null, x, y);
@@ -68,13 +64,6 @@ public class BlueStar extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        int i = 0;
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Worshipper) {
-                minions[i] = mo;
-                i++;
-            }
-        }
         CustomDungeon.playTempMusicInstantly("Warning3");
         applyToTarget(this, this, new CenterOfAttention(this));
     }
@@ -88,26 +77,12 @@ public class BlueStar extends AbstractRuinaMonster
                     block(mo, BLOCK);
                 }
                 applyToTarget(adp(), this, new VulnerablePower(adp(), VULNERABLE, true));
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        moveCounter = 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case STARRY_SKY: {
                 for (AbstractMonster mo : monsterList()) {
                     applyToTarget(mo, this, new StrengthPower(mo, STRENGTH));
                 }
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        moveCounter = 2;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case SOUND_OF_STAR: {
@@ -130,13 +105,6 @@ public class BlueStar extends AbstractRuinaMonster
                         this.isDone = true;
                     }
                 });
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        moveCounter = 0;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case WORSHIPPERS: {
@@ -149,15 +117,15 @@ public class BlueStar extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (!firstMove && minions[0] == null && minions[1] == null) {
+        if (!firstMove && !areMinionsAlive()) {
             setMoveShortcut(WORSHIPPERS);
         } else {
-            if (moveCounter == 0) {
-                setMoveShortcut(RISING_STAR);
-            } else if (moveCounter == 1) {
+            if (lastMoveIgnoringMove(RISING_STAR, WORSHIPPERS)) {
                 setMoveShortcut(STARRY_SKY);
-            } else {
+            } else if (lastMoveIgnoringMove(STARRY_SKY, WORSHIPPERS)) {
                 setMoveShortcut(SOUND_OF_STAR);
+            } else {
+                setMoveShortcut(RISING_STAR);
             }
         }
     }
@@ -178,24 +146,22 @@ public class BlueStar extends AbstractRuinaMonster
                 detailsList.add(detail);
                 break;
             }
+            case WORSHIPPERS: {
+                DetailedIntent detail = new DetailedIntent(this, DetailedIntent.SUMMON);
+                detailsList.add(detail);
+                break;
+            }
         }
         return detailsList;
     }
 
     public void Summon() {
-        for (int i = 0; i < minions.length; i++) {
-            if (minions[i] == null) {
-                AbstractMonster minion;
-                if (i == 0) {
-                    minion = new Worshipper(MINION_X_1, 0.0f);
-                } else {
-                    minion = new Worshipper(MINION_X_2, 0.0f);
-                }
-                atb(new SpawnMonsterAction(minion, true));
-                atb(new UsePreBattleActionAction(minion));
-                minions[i] = minion;
-            }
-        }
+        AbstractMonster minion = new Worshipper(MINION_X_1, 0.0f);
+        atb(new SpawnMonsterAction(minion, true));
+        atb(new UsePreBattleActionAction(minion));
+        AbstractMonster minion2 = new Worshipper(MINION_X_2, 0.0f);
+        atb(new SpawnMonsterAction(minion2, true));
+        atb(new UsePreBattleActionAction(minion2));
     }
 
     @Override
@@ -216,6 +182,15 @@ public class BlueStar extends AbstractRuinaMonster
             star.renderSprite(sb, (float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2 + (150.0F * Settings.scale));
         }
         super.render(sb);
+    }
+
+    private boolean areMinionsAlive() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Worshipper && !mo.isDeadOrEscaped()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

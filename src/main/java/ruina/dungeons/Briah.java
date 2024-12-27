@@ -106,10 +106,10 @@ public class Briah extends AbstractRuinaDungeon {
     @Override
     protected void generateStrongEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo(EncounterIDs.NOS_AND_BAT, 2.0F));
-        monsters.add(new MonsterInfo(QueenOfHate.ID, 5.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.NOS_AND_BAT, 3.0F));
+        monsters.add(new MonsterInfo(QueenOfHate.ID, 6.0F));
         monsters.add(new MonsterInfo(KnightOfDespair.ID, 6.0F));
-        monsters.add(new MonsterInfo(Woodsman.ID, 4.0F));
+        monsters.add(new MonsterInfo(Woodsman.ID, 5.0F));
         monsters.add(new MonsterInfo(KingOfGreed.ID, 6.0F));
         //monsters.add(new MonsterInfo("Cultist and Chosen", 3.0F));
         monsters.add(new MonsterInfo(EncounterIDs.SCARECROWS_3, 3.0F));

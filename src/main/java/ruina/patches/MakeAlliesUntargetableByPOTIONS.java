@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
 import javassist.CtBehavior;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.monsters.act2.BadWolf;
 import ruina.monsters.theHead.Zena;
 
 @SpirePatch(
@@ -24,11 +23,6 @@ public class MakeAlliesUntargetableByPOTIONS {
                 hoveredMonster[0] = null;
             }
         }
-
-        if (hoveredMonster[0] != null && hoveredMonster[0].hasPower(BadWolf.SKULK_POWER_ID)) {
-            hoveredMonster[0] = null;
-        }
-
         if (hoveredMonster[0] != null && hoveredMonster[0] instanceof Zena && hoveredMonster[0].halfDead) {
             hoveredMonster[0] = null;
         }

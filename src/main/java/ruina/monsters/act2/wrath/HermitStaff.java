@@ -24,7 +24,6 @@ public class HermitStaff extends AbstractAllyAttackingMinion
     protected static final String[] TEXT = uiStrings.TEXT;
 
     private static final byte ATTACK = 0;
-    private Hermit hermit;
 
     public HermitStaff(final float x, final float y) {
         super(ID, ID, 40, -5.0F, 0, 150.0f, 195.0f, null, x, y);
@@ -41,11 +40,6 @@ public class HermitStaff extends AbstractAllyAttackingMinion
 
     @Override
     public void usePreBattleAction() {
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Hermit) {
-                hermit = (Hermit) mo;
-            }
-        }
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof ServantOfWrath) {
                 target = (ServantOfWrath) mo;
@@ -83,7 +77,6 @@ public class HermitStaff extends AbstractAllyAttackingMinion
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        hermit.staff = null;
         AbstractDungeon.onModifyPower();
     }
 

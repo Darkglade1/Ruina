@@ -8,16 +8,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -27,7 +21,11 @@ import ruina.actions.GretaStealCardAction;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.greta.gretaCards.*;
-import ruina.powers.*;
+import ruina.powers.Bleed;
+import ruina.powers.CenterOfAttention;
+import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.Paralysis;
+import ruina.powers.act4.Sharkskin;
 import ruina.util.AdditionalIntent;
 import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.FlexibleWrathParticleEffect;
@@ -59,13 +57,6 @@ public class Greta extends AbstractCardMonster
     public final int damageReduction = 50;
     public final int debuffCleanseTurns = 3;
 
-    public FreshMeat meat;
-
-    public static final String POWER_ID = makeID("Sharkskin");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     public Greta() {
         this(0.0f, 0.0f);
     }
@@ -82,6 +73,13 @@ public class Greta extends AbstractCardMonster
         addMove(SEASON, Intent.DEBUFF);
         addMove(TRIAL, Intent.ATTACK_BUFF, calcAscensionDamage(19));
         addMove(SACK, Intent.STRONG_DEBUFF);
+
+        cardList.add(new BreakEgg(this));
+        cardList.add(new Slap(this));
+        cardList.add(new Mince(this));
+        cardList.add(new Season(this));
+        cardList.add(new Trial(this));
+        cardList.add(new Sack(this));
     }
 
     @Override
@@ -99,46 +97,7 @@ public class Greta extends AbstractCardMonster
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
-            @Override
-            public void onInitialApplication() {
-                amount2 = damageReduction;
-                updateDescription();
-            }
-
-            @Override
-            public float atDamageReceive(float damage, DamageInfo.DamageType type) {
-                if (type == DamageInfo.DamageType.NORMAL && !hasDebuff()) {
-                    return damage * (1.0f - ((float)amount2 / 100));
-                } else {
-                    return damage;
-                }
-            }
-
-            private boolean hasDebuff() {
-                for (AbstractPower po : owner.powers) {
-                    if (po.type == PowerType.DEBUFF) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-
-            @Override
-            public void atEndOfRound() {
-                amount++;
-                if (amount >= debuffCleanseTurns) {
-                    amount = 0;
-                    flash();
-                    atb(new RemoveDebuffsAction(owner));
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount2 + POWER_DESCRIPTIONS[1] + debuffCleanseTurns + POWER_DESCRIPTIONS[2];
-            }
-        });
+        applyToTarget(this, this, new Sharkskin(this, 0, damageReduction, debuffCleanseTurns));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new StrengthPower(this, 1)); //hacky solution again LOL
         applyToTarget(this, this, new CenterOfAttention(this));
@@ -253,8 +212,8 @@ public class Greta extends AbstractCardMonster
         if (!this.lastMove(SLAP) && !this.lastMoveBefore(SLAP)) {
             possibilities.add(SLAP);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+        setMoveShortcut(move);
     }
 
     @Override
@@ -271,33 +230,26 @@ public class Greta extends AbstractCardMonster
             if (!this.lastMove(SEASON, moveHistory) && !this.lastMoveBefore(SEASON, moveHistory)) {
                 possibilities.add(SEASON);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+            setAdditionalMoveShortcut(move, moveHistory);
         } else {
+            FreshMeat meat = getMeat();
             if (meat != null && !meat.isDeadOrEscaped()) {
-                setAdditionalMoveShortcut(TRIAL, moveHistory, getMoveCardFromByte(TRIAL));
+                setAdditionalMoveShortcut(TRIAL, moveHistory);
             } else {
-                setAdditionalMoveShortcut(SACK, moveHistory, getMoveCardFromByte(SACK));
+                setAdditionalMoveShortcut(SACK, moveHistory);
             }
         }
     }
 
-    protected AbstractCard getMoveCardFromByte(Byte move) {
-        ArrayList<AbstractCard> list = new ArrayList<>();
-        list.add(new BreakEgg(this));
-        list.add(new Slap(this));
-        list.add(new Mince(this));
-        list.add(new Season(this));
-        list.add(new Trial(this));
-        list.add(new Sack(this));
-        return list.get(move);
-    }
-
     @Override
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
+        FreshMeat meat = getMeat();
         if (index == 1) {
             if (additionalMove.nextMove == TRIAL) {
-                applyPowersToAdditionalIntent(additionalMove, additionalIntent, meat, meat.icon, index);
+                if (meat != null) {
+                    applyPowersToAdditionalIntent(additionalMove, additionalIntent, meat, meat.icon, index);
+                }
             } else {
                 applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);
             }
@@ -319,11 +271,25 @@ public class Greta extends AbstractCardMonster
         }
     }
 
+    private FreshMeat getMeat() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof FreshMeat && !mo.isDeadOrEscaped()) {
+                return (FreshMeat) mo;
+            }
+        }
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof FreshMeat) {
+                return (FreshMeat) mo;
+            }
+        }
+        return null;
+    }
+
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        if (this.hasPower(POWER_ID)) {
-            if (this.getPower(POWER_ID).amount >= debuffCleanseTurns - 1) {
+        if (this.hasPower(Sharkskin.POWER_ID)) {
+            if (this.getPower(Sharkskin.POWER_ID).amount >= debuffCleanseTurns - 1) {
                 this.particleTimer -= Gdx.graphics.getDeltaTime();
                 if (this.particleTimer < 0.0F) {
                     this.particleTimer = 0.04F;

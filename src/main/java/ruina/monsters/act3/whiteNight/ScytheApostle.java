@@ -20,15 +20,13 @@ public class ScytheApostle extends AbstractRuinaMonster {
     private static final byte THY_WILL_BE_DONE = 1;
 
     private final int BLOCK = calcAscensionTankiness(9);
-    private final WhiteNight whiteNight;
 
-    public ScytheApostle(final float x, final float y, WhiteNight whiteNight) {
+    public ScytheApostle(final float x, final float y) {
         super(ID, ID, 75, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScytheApostle/Spriter/ScytheApostle.scml"));
         setHp(calcAscensionTankiness(63), calcAscensionTankiness(67));
         addMove(FOLLOW_THEE, Intent.ATTACK_DEFEND, calcAscensionDamage(12));
         addMove(THY_WILL_BE_DONE, Intent.ATTACK, calcAscensionDamage(7), 2);
-        this.whiteNight = whiteNight;
     }
 
     @Override
@@ -94,18 +92,6 @@ public class ScytheApostle extends AbstractRuinaMonster {
 
     private void specialAnimation() {
         animationAction("Block", null, this);
-    }
-
-
-    @Override
-    public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
-        for (int i = 0; i < whiteNight.minions.length; i++) {
-            if (whiteNight.minions[i] == this) {
-                whiteNight.minions[i] = null;
-                break;
-            }
-        }
     }
 
 }

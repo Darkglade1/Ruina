@@ -52,7 +52,7 @@ public class WanderingSamurai extends AbstractEvent {
         if (!RoomEventDialog.waitForInput) {
             this.buttonEffect(this.roomEventText.getSelectedOption());
         }
-        if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+        if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty() && AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
             for (int i = 0; i < AbstractDungeon.gridSelectScreen.selectedCards.size(); i++) {
                 AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(i);
                 AbstractDungeon.effectList.add(new PurgeCardEffect(c));

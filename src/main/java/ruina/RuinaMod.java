@@ -17,7 +17,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -37,10 +36,10 @@ import corruptthespire.Cor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ruina.CustomIntent.CounterAttackIntent;
+import ruina.CustomIntent.MassAttackIntent;
 import ruina.cards.AbstractRuinaCard;
 import ruina.cards.cardvars.SecondDamage;
 import ruina.cards.cardvars.SecondMagicNumber;
-import ruina.CustomIntent.MassAttackIntent;
 import ruina.dungeons.*;
 import ruina.events.NeowAngela;
 import ruina.events.act1.*;
@@ -66,7 +65,8 @@ import ruina.monsters.act2.*;
 import ruina.monsters.act2.greed.BrilliantBliss;
 import ruina.monsters.act2.greed.KingOfGreed;
 import ruina.monsters.act2.jester.JesterOfNihil;
-import ruina.monsters.act2.jester.Statue;
+import ruina.monsters.act2.jester.QueenOfLove;
+import ruina.monsters.act2.jester.ServantOfCourage;
 import ruina.monsters.act2.knight.KnightOfDespair;
 import ruina.monsters.act2.knight.Sword;
 import ruina.monsters.act2.mountain.MeltedCorpses;
@@ -103,9 +103,7 @@ import ruina.monsters.blackSilence.blackSilence4.BlackSilence4;
 import ruina.monsters.eventboss.kim.Kim;
 import ruina.monsters.eventboss.lulu.monster.Lulu;
 import ruina.monsters.eventboss.redMist.monster.RedMist;
-import ruina.monsters.eventboss.yan.monster.yanDistortion;
-import ruina.monsters.theHead.Baral;
-import ruina.monsters.theHead.Zena;
+import ruina.monsters.theHead.*;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Argalia;
 import ruina.monsters.uninvitedGuests.normal.argalia.monster.Roland;
 import ruina.monsters.uninvitedGuests.normal.bremen.Bremen;
@@ -130,20 +128,25 @@ import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppet;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
+import ruina.multiplayer.MultiplayerCompatibility;
 import ruina.patches.PlayerSpireFields;
 import ruina.potions.EgoPotion;
+import ruina.powers.act4.PriceOfTime;
 import ruina.relics.AbstractEasyRelic;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
+import spireTogether.SpireTogetherMod;
+import spireTogether.gamemodes.common.TiSGenericRunSettings;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Optional;
 import java.util.Properties;
 
 import static ruina.util.Wiz.adp;
-import static ruina.util.Wiz.atb;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
@@ -676,6 +679,10 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("BulletShot"), makeSFXPath("Matan_NormalShot.wav"));
 
         BaseMod.addAudio(makeID("Parry"), makeSFXPath("Parry_Atk.wav"));
+
+        BaseMod.addAudio(makeID("PinoLie"), makeSFXPath("Pino_Lie.wav"));
+        BaseMod.addAudio(makeID("PinoFail"), makeSFXPath("Pino_Fail.wav"));
+        BaseMod.addAudio(makeID("PinoOn"), makeSFXPath("Pino_On.wav"));
     }
 
     @Override
@@ -985,8 +992,8 @@ public class RuinaMod implements
                 }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
         briah.addBoss(JesterOfNihil.ID, "Jester of Nihil", () -> new MonsterGroup(
                 new AbstractMonster[]{
-                        new Statue(-350.0f, 0.0F, 1),
-                        new Statue(-150.0f, 0.0F, 0),
+                        new QueenOfLove(-600.0f, 0.0F),
+                        new ServantOfCourage(-400.0f, 0.0F),
                         new JesterOfNihil(),
                 }), makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
         briah.addBoss(Ozma.ID, "Ozma", () -> new MonsterGroup(
@@ -1072,7 +1079,6 @@ public class RuinaMod implements
         BaseMod.addMonster(Pinocchio.ID, (BaseMod.GetMonster) Pinocchio::new);
 
         BaseMod.addMonster(RedMist.ID, (BaseMod.GetMonster) RedMist::new);
-        BaseMod.addMonster(yanDistortion.ID, (BaseMod.GetMonster) yanDistortion::new);
 
 
         BaseMod.addEvent(RedMistRecollection.ID, RedMistRecollection.class, Atziluth.ID);
@@ -1167,15 +1173,27 @@ public class RuinaMod implements
         silence.addBoss(BlackSilence4.ID, (BaseMod.GetMonster) BlackSilence4::new, makeMonsterPath("BlackSilence4/BlackSilenceMap.png"), makeMonsterPath("BlackSilence4/BlackSilenceMapOutline.png"));
 
         //The Head
-        BaseMod.addMonster(Baral.ID, "The Head", () -> new MonsterGroup(
+        BaseMod.addMonster(EncounterIDs.HEAD, "The Head", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new Baral(-250.0F, 0.0F),
                         new Zena(-50.0F, 0.0F),
+                }));
+        BaseMod.addMonster(EncounterIDs.HEAD_NO_PRE, "The Head", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new BinahHead(-1250.0f, 0.0f),
+                        new RolandHead(-975.0F, 0.0f),
+                        new GeburaHead(-700.0f, 0.0f, false),
+                        new BaralNoPreEvent(-250.0F, 0.0F),
+                        new ZenaNoPreEvent(-50.0F, 0.0F),
                 }));
 
         reverbClear = ruinaConfig.getBool("reverbClear");
         blacksilenceClear = ruinaConfig.getBool("blacksilenceClear");
         headClear = ruinaConfig.getBool("headClear");
+
+        if (Loader.isModLoaded("spireTogether")) {
+            MultiplayerCompatibility.addSubscribers();
+        }
     }
 
     public void receiveEditPotions() {
@@ -1250,16 +1268,7 @@ public class RuinaMod implements
     @Override
     public boolean receivePreMonsterTurn(AbstractMonster abstractMonster) {
         PlayerSpireFields.appliedDebuffThisTurn.set(adp(), false);
-        if (abstractMonster.hasPower(BadWolf.SKULK_POWER_ID)) {
-            atb(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    abstractMonster.halfDead = false;
-                    this.isDone = true;
-                }
-            });
-        }
-        return !abstractMonster.hasPower(Hokma.POWER_ID);
+        return !abstractMonster.hasPower(PriceOfTime.POWER_ID);
     }
 
     @Override
@@ -1339,6 +1348,31 @@ public class RuinaMod implements
         } else {
             return 0;
         }
+    }
 
+    public static boolean isMultiplayerConnected() {
+        return Loader.isModLoaded("spireTogether") && SpireTogetherMod.isConnected;
+    }
+
+    public static int getMultiplayerEnemyHealthScaling(int baseValue) {
+        if (isMultiplayerConnected()) {
+            Optional<TiSGenericRunSettings> settings = P2PManager.data.gameModeSettings.getSettings(TiSGenericRunSettings.class);
+            if(!settings.isPresent()){
+                return baseValue;
+            }
+
+            float baseScale = settings.get().enemyHealthMultiplierBase.getValue();
+            float playerScale = settings.get().enemyHealthMultiplierPerPlayer.getValue();
+            float finalMult = baseScale + (baseScale * playerScale * P2PManager.GetPlayerCountWithoutSelf());
+            return (int)(baseValue * finalMult);
+        }
+        return baseValue;
+    }
+
+    public static int getMultiplayerPlayerCountScaling(int baseValue) {
+        if (isMultiplayerConnected()) {
+            return baseValue * P2PManager.GetPlayerCount();
+        }
+        return baseValue;
     }
 }

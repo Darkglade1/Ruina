@@ -1,28 +1,26 @@
 package ruina.monsters.act3.snowQueen;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.stances.CalmStance;
 import ruina.BetterSpriterAnimation;
-import ruina.cardmods.FrozenMod;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.CenterOfAttention;
+import ruina.powers.RuinaMetallicize;
+import ruina.powers.act3.PromiseOfWinter;
 import ruina.util.DetailedIntent;
 import ruina.vfx.FlexibleCalmParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
@@ -49,13 +47,6 @@ public class SnowQueen extends AbstractRuinaMonster
     private final int STRENGTH = calcAscensionSpecial(3);
     private final int METALLICIZE = calcAscensionSpecial(5);
 
-    public static final String POWER_ID = makeID("PromiseOfWinter");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-    public boolean canBlizzard = true;
-    private int frozenThroneCounter = 0;
-
     public SnowQueen() {
         this(0.0f, 0.0f);
     }
@@ -79,31 +70,7 @@ public class SnowQueen extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning1");
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
-            @Override
-            public void onUseCard(AbstractCard card, UseCardAction action) {
-                this.amount++;
-                if (this.amount >= THRESHOLD) {
-                    this.flash();
-                    FrozenMod mod = new FrozenMod();
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            if (!CardModifierManager.hasModifier(card, FrozenMod.ID)) {
-                                CardModifierManager.addModifier(card, mod.makeCopy());
-                            }
-                            this.isDone = true;
-                        }
-                    });
-                    this.amount = 0;
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new PromiseOfWinter(this, 0, THRESHOLD));
         applyToTarget(this, this, new CenterOfAttention(this));
     }
 
@@ -116,13 +83,6 @@ public class SnowQueen extends AbstractRuinaMonster
                 applyToTarget(adp(), this, new WeakPower(adp(), DEBUFF, true));
                 applyToTarget(adp(), this, new FrailPower(adp(), DEBUFF, true));
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        canBlizzard = false;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case FRIGID_GAZE: {
@@ -142,15 +102,8 @@ public class SnowQueen extends AbstractRuinaMonster
                 specialAnimation(adp());
                 block(this, BLOCK);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-                applyToTarget(this, this, new MetallicizePower(this, METALLICIZE));
+                applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE));
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        frozenThroneCounter++;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
         }
@@ -159,9 +112,9 @@ public class SnowQueen extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (canBlizzard) {
+        if (firstMove) {
             setMoveShortcut(BLIZZARD);
-        } else if (frozenThroneCounter < MAX_FROZEN_THRONE_USES){
+        } else if (getNumFrozenThroneUses() < MAX_FROZEN_THRONE_USES){
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(FRIGID_GAZE)) {
                 possibilities.add(FRIGID_GAZE);
@@ -172,7 +125,7 @@ public class SnowQueen extends AbstractRuinaMonster
             if (!this.lastMove(FROZEN_THRONE) && !this.lastMoveBefore(FROZEN_THRONE)) {
                 possibilities.add(FROZEN_THRONE);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -182,9 +135,19 @@ public class SnowQueen extends AbstractRuinaMonster
             if (!this.lastTwoMoves(ICE_SPLINTERS)) {
                 possibilities.add(ICE_SPLINTERS);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
+    }
+
+    private int getNumFrozenThroneUses() {
+        int count = 0;
+        for (Byte move : moveHistory) {
+            if (move == FROZEN_THRONE) {
+                count++;
+            }
+        }
+        return count;
     }
 
     @Override
@@ -219,8 +182,8 @@ public class SnowQueen extends AbstractRuinaMonster
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        if (this.hasPower(POWER_ID)) {
-            if (this.getPower(POWER_ID).amount >= THRESHOLD - 1) {
+        if (this.hasPower(PromiseOfWinter.POWER_ID)) {
+            if (this.getPower(PromiseOfWinter.POWER_ID).amount >= THRESHOLD - 1) {
                 this.particleTimer -= Gdx.graphics.getDeltaTime();
                 if (this.particleTimer < 0.0F) {
                     this.particleTimer = 0.04F;

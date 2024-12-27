@@ -4,23 +4,23 @@ import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardPowerTip;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.InstantKillAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Guilt;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.NextTurnPowerPower;
 import ruina.powers.Paralysis;
+import ruina.powers.act3.Remorse;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
@@ -49,17 +49,12 @@ public class SilentGirl extends AbstractRuinaMonster
     private final int BLOCK = calcAscensionTankiness(12);
     private final int PARALYSIS = calcAscensionSpecial(2);
     private final int CURSE_AMT = 1;
-    private int enraged = 1; //1 is false, 2 is true
     private final int maxHP = calcAscensionTankiness(240);
 
+    public static final int ENRAGE_PHASE = 2;
     private final DummyHammer hammer = new DummyHammer(100.0f, 0.0f);
     private final DummyNail nail = new DummyNail(-300.0f, 0.0f);
     AbstractCard curse = new Guilt();
-
-    public static final String POWER_ID = makeID("Remorse");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public SilentGirl() {
         this(-100.0f, 0.0f);
@@ -91,19 +86,17 @@ public class SilentGirl extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Story2");
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, CURSE_AMT) {
-            @Override
-            public void atEndOfRound() {
-                makeInHand(curse.makeStatEquivalentCopy(), amount);
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + CURSE_AMT + POWER_DESCRIPTIONS[1] + FontHelper.colorString(curse.name, "y") + POWER_DESCRIPTIONS[2];
-            }
-        });
-        AbstractDungeon.getCurrRoom().cannotLose = true;
-        applyToTarget(this, this, new UnawakenedPower(this));
+        applyToTarget(this, this, new Remorse(this, CURSE_AMT, curse));
+        if (phase == ENRAGE_PHASE) {
+            phaseChangeAnimation();
+            hammer.deadAnimation();
+            nail.deadAnimation();
+            resetIdle(1.0f);
+            AbstractDungeon.getCurrRoom().cannotLose = false;
+        } else {
+            applyToTarget(this, this, new UnawakenedPower(this));
+            AbstractDungeon.getCurrRoom().cannotLose = true;
+        }
     }
 
     @Override
@@ -164,7 +157,7 @@ public class SilentGirl extends AbstractRuinaMonster
                 atb(new HealAction(this, this, maxHealth));
                 block(this, BLOCK);
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-                enraged = 2;
+                setPhase(ENRAGE_PHASE);
                 AbstractDungeon.getCurrRoom().cannotLose = false;
                 resetIdle(1.0f);
                 break;
@@ -175,7 +168,9 @@ public class SilentGirl extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (enraged == 1) {
+        if (this.halfDead) {
+            setMoveShortcut(SUPPRESS);
+        } else if (phase == DEFAULT_PHASE) {
             if (lastMove(DIGGING_NAIL)) {
                 setMoveShortcut(SLAM);
             } else if (lastMove(SLAM)) {
@@ -239,7 +234,7 @@ public class SilentGirl extends AbstractRuinaMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                runAnim("Idle" + enraged);
+                runAnim("Idle" + phase);
                 this.isDone = true;
             }
         });
@@ -269,15 +264,11 @@ public class SilentGirl extends AbstractRuinaMonster
             for (AbstractRelic r : AbstractDungeon.player.relics) {
                 r.onMonsterDeath(this);
             }
-            if (this.nextMove != SUPPRESS) {
-                setMoveShortcut(SUPPRESS);
-                this.createIntent();
-                atb(new SetMoveAction(this, SUPPRESS, Intent.NONE));
-                setDetailedIntents();
-            }
+            rollMove();
+            createIntent();
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power.ID.equals(POWER_ID)) && !(power.ID.equals(StrengthPower.POWER_ID)) && !(power instanceof NextTurnPowerPower)) {
+                if (!(power.ID.equals(Remorse.POWER_ID)) && !(power.ID.equals(StrengthPower.POWER_ID)) && !(power instanceof NextTurnPowerPower)) {
                     powersToRemove.add(power);
                 }
             }

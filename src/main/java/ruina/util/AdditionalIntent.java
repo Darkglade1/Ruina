@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.vfx.ShieldParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.BuffParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.StunStarEffect;
 import com.megacrit.cardcrawl.vfx.combat.UnknownParticleEffect;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
 
 import java.util.ArrayList;
@@ -94,6 +95,15 @@ public class AdditionalIntent {
         intentTip = createAdditionalIntentTip(this);
     }
 
+    public void updateEnemyCard(AbstractCard enemyCard) {
+        this.enemyCard = enemyCard;
+        if (this.enemyCard != null) {
+            this.enemyCard.drawScale = 0.25f;
+            this.enemyCard.targetDrawScale = 0.25f;
+            this.enemyCard.baseDamage = baseDamage;
+        }
+    }
+
     public AdditionalIntent(AbstractMonster source, EnemyMoveInfo move) {
         this(source, move, null);
     }
@@ -106,6 +116,12 @@ public class AdditionalIntent {
                 enemyCard.isDamageModified = true;
             } else {
                 enemyCard.isDamageModified = false;
+            }
+            if (enemyCard.baseBlock > 0) {
+                if (RuinaMod.isMultiplayerConnected()) {
+                    enemyCard.block = RuinaMod.getMultiplayerPlayerCountScaling(enemyCard.baseBlock);
+                    enemyCard.isBlockModified = true;
+                }
             }
         }
         intentTip = createAdditionalIntentTip(this);

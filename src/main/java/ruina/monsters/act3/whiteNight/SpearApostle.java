@@ -22,15 +22,12 @@ public class SpearApostle extends AbstractRuinaMonster {
 
     private final int STATUS = calcAscensionSpecial(1);
 
-    private final WhiteNight whiteNight;
-
-    public SpearApostle(final float x, final float y, WhiteNight whiteNight) {
+    public SpearApostle(final float x, final float y) {
         super(ID, ID, 50, -5.0F, 0, 160.0f, 185.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("SpearApostle/Spriter/SpearApostle.scml"));
         setHp(calcAscensionTankiness(45), calcAscensionTankiness(50));
         addMove(THE_WILL_OF_THE_LORD_BE_DONE, Intent.ATTACK, calcAscensionDamage(20));
         addMove(FOR_HE_IS_HOLY, Intent.ATTACK_DEBUFF, calcAscensionDamage(10));
-        this.whiteNight = whiteNight;
     }
 
     @Override
@@ -86,17 +83,5 @@ public class SpearApostle extends AbstractRuinaMonster {
 
     private void specialAnimation() {
         animationAction("Block", null, this);
-    }
-
-
-    @Override
-    public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
-        for (int i = 0; i < whiteNight.minions.length; i++) {
-            if (whiteNight.minions[i] == this) {
-                whiteNight.minions[i] = null;
-                break;
-            }
-        }
     }
 }

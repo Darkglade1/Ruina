@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import ruina.RuinaMod;
 import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
@@ -100,35 +101,6 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
     }
 
     @Override
-    public void rollMove() {
-        cardsToRender.clear();
-        super.rollMove();
-        AbstractCardMonster.hoveredCard = null; //in case the player was hovering one of them while it was getting yeeted
-    }
-
-    public void setMove(String text, byte next, Intent intent, int damage, AbstractCard enemyCard) {
-        setMove(text, next, intent, damage);
-        setEnemyCard(enemyCard, damage);
-        cardsToRender.add(enemyCard);
-    }
-
-    public void setMoveShortcut(byte next, String text, AbstractCard enemyCard) {
-        EnemyMoveInfo info = this.moves.get(next);
-        this.setMove(text, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
-        setEnemyCard(enemyCard, info.baseDamage);
-        cardsToRender.add(enemyCard);
-    }
-
-    public void setAdditionalMoveShortcut(byte next, ArrayList<Byte> moveHistory, AbstractCard enemyCard) {
-        EnemyMoveInfo info = this.moves.get(next);
-        AdditionalIntent additionalIntent = new AdditionalIntent(this, info, enemyCard);
-        additionalIntents.add(additionalIntent);
-        additionalMoves.add(info);
-        moveHistory.add(next);
-        cardsToRender.add(enemyCard);
-    }
-
-    @Override
     public void applyPowers() {
         super.applyPowers();
         updateCard();
@@ -142,6 +114,49 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
             } else {
                 enemyCard.isDamageModified = false;
             }
+            if (enemyCard.baseBlock > 0) {
+                if (RuinaMod.isMultiplayerConnected()) {
+                    enemyCard.block = RuinaMod.getMultiplayerPlayerCountScaling(enemyCard.baseBlock);
+                    enemyCard.isBlockModified = true;
+                }
+            }
         }
+    }
+
+    @Override
+    public void createIntent() {
+        setCards();
+        super.createIntent();
+    }
+
+    private void setCards() {
+        cardsToRender.clear();
+        AbstractCardMonster.hoveredCard = null; //in case the player was hovering one of them while it was getting yeeted
+
+        EnemyMoveInfo info = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
+        byte next = info.nextMove;
+        AbstractCard card = getCardFromMove(next);
+        if (card != null) {
+            moveName = card.name;
+            setEnemyCard(card, info.baseDamage);
+            cardsToRender.add(card);
+        }
+
+        for (int i = 0; i < additionalMoves.size(); i++) {
+            EnemyMoveInfo additionalMove = additionalMoves.get(i);
+            AdditionalIntent additionalIntent = additionalIntents.get(i);
+            AbstractCard additionalCard = getCardFromMove(additionalMove.nextMove);
+            if (additionalCard != null) {
+                additionalIntent.updateEnemyCard(additionalCard);
+                cardsToRender.add(additionalCard);
+            }
+        }
+    }
+
+    private AbstractCard getCardFromMove(byte next) {
+        if (next >= 0 && next < cardList.size()) {
+            return cardList.get(next).makeStatEquivalentCopy();
+        }
+        return null;
     }
 }

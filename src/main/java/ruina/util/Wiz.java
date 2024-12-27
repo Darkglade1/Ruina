@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import ruina.RuinaMod;
 import ruina.actions.ApplyPowerActionButItCanFizzle;
 import ruina.actions.MakeTempCardInDiscardActionButItCanFizzle;
 import ruina.actions.MakeTempCardInDrawPileActionButItCanFizzle;
@@ -24,6 +25,7 @@ import ruina.patches.RenderHandPatch;
 import ruina.powers.AbstractUnremovablePower;
 import ruina.powers.LosePowerPower;
 import ruina.powers.NextTurnPowerPower;
+import spireTogether.patches.combatsync.ActionPatches;
 
 import java.util.ArrayList;
 import java.util.function.BiFunction;
@@ -225,8 +227,17 @@ public class Wiz {
         att(new ApplyPowerAction(target, target, new NextTurnPowerPower(target, po)));
     }
 
+    public static void applyToTargetNextTurnTop(AbstractCreature target, AbstractCreature source, AbstractPower po) {
+        att(new ApplyPowerAction(target, source, new NextTurnPowerPower(target, po)));
+    }
+
     public static void dmg(AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect) {
-        atb(new DamageAction(target, info, effect));
+        DamageAction action = new DamageAction(target, info, effect);
+        if (RuinaMod.isMultiplayerConnected() && info.owner instanceof AbstractMonster) {
+            ActionPatches.markActionForNoDamageSync(action);
+            ActionPatches.markActionForNoDataSync(action);
+        }
+        atb(action);
     }
 
     public static void dmg(AbstractCreature target, DamageInfo info) {

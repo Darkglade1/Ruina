@@ -4,20 +4,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
+import ruina.powers.act3.Sin;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
@@ -42,11 +37,6 @@ public class JudgementBird extends AbstractRuinaMonster
     private final int COST_THRESHOLD = calcAscensionSpecial(1);
     private final int COST_INCREASE = 1;
 
-    public static final String POWER_ID = makeID("Sin");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     public JudgementBird() {
         this(0.0f, 0.0f);
     }
@@ -62,27 +52,7 @@ public class JudgementBird extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, COST_THRESHOLD) {
-            @Override
-            public void onUseCard(AbstractCard card, UseCardAction action) {
-                if (card.costForTurn <= amount) {
-                    this.flash();
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            card.modifyCostForCombat(COST_INCREASE);
-                            this.isDone = true;
-                        }
-                    });
-
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1] + COST_INCREASE + POWER_DESCRIPTIONS[2];
-            }
-        });
+        applyToTarget(this, this, new Sin(this, COST_THRESHOLD, COST_INCREASE));
     }
 
     @Override

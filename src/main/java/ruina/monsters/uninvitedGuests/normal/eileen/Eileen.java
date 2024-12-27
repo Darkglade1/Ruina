@@ -1,21 +1,18 @@
 package ruina.monsters.uninvitedGuests.normal.eileen;
 
 import actlikeit.dungeons.CustomDungeon;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
+import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
@@ -23,8 +20,10 @@ import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.Accelerate;
 import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.Preach;
 import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.Propagate;
 import ruina.monsters.uninvitedGuests.normal.eileen.eileenCards.ThoughtGearBrainwash;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.act4.Gears;
+import spireTogether.patches.combatsync.ActionPatches;
+import spireTogether.util.helpers.GameplayHelpers;
 
 import java.util.ArrayList;
 
@@ -46,14 +45,9 @@ public class Eileen extends AbstractCardMonster
     public final int BLOCK = calcAscensionTankiness(22);
     public final int STRENGTH = calcAscensionSpecial(4);
     public final int VULNERABLE = 1;
-    public final int HP_LOSS = 100;
+    public final int HP_LOSS = RuinaMod.getMultiplayerEnemyHealthScaling(100);
 
     public AbstractMonster[] minions = new AbstractMonster[2];
-
-    public static final String POWER_ID = makeID("Gears");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Eileen() {
         this(0.0f, 0.0f);
@@ -93,24 +87,13 @@ public class Eileen extends AbstractCardMonster
         }
         int i = 0;
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof GearsWorshipper) {
+            if (mo instanceof GearsWorshipper && !mo.isDeadOrEscaped()) {
                 minions[i] = mo;
                 i++;
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, HP_LOSS) {
-
-            @Override
-            public void atEndOfRound() {
-                Summon();
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Gears(this, HP_LOSS));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -180,9 +163,9 @@ public class Eileen extends AbstractCardMonster
     @Override
     protected void getMove(final int num) {
         if (lastMove(PREACH)) {
-            setMoveShortcut(ACCELERATE, MOVES[ACCELERATE], cardList.get(ACCELERATE).makeStatEquivalentCopy());
+            setMoveShortcut(ACCELERATE);
         } else {
-            setMoveShortcut(PREACH, MOVES[PREACH], cardList.get(PREACH).makeStatEquivalentCopy());
+            setMoveShortcut(PREACH);
         }
     }
 
@@ -190,9 +173,9 @@ public class Eileen extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (this.lastMove(PROPAGATE, moveHistory)) {
-            setAdditionalMoveShortcut(BRAINWASH, moveHistory, cardList.get(BRAINWASH).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(BRAINWASH, moveHistory);
         } else {
-            setAdditionalMoveShortcut(PROPAGATE, moveHistory, cardList.get(PROPAGATE).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(PROPAGATE, moveHistory);
         }
     }
 
@@ -226,7 +209,12 @@ public class Eileen extends AbstractCardMonster
     }
 
     public void onMinionDeath() {
-        atb(new LoseHPAction(this, this, HP_LOSS));
+        if (RuinaMod.isMultiplayerConnected() && GameplayHelpers.isPlayerTurn()) {
+            DamageAction damage = new DamageAction(this, new DamageInfo(adp(), HP_LOSS, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.NONE);
+            atb(damage);
+        } else {
+            atb(new LoseHPAction(this, this, HP_LOSS));
+        }
     }
 
 }

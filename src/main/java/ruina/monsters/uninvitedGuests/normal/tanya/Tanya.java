@@ -13,10 +13,8 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
@@ -28,8 +26,10 @@ import ruina.RuinaMod;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.tanya.tanyaCards.*;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.RuinaMetallicize;
+import ruina.powers.RuinaPlatedArmor;
+import ruina.powers.act4.Guts;
 import ruina.util.TexLoader;
 
 import java.util.ArrayList;
@@ -55,23 +55,16 @@ public class Tanya extends AbstractCardMonster
     public final int overspeedHits = 2;
     public final int kicksAndStompsHits = 2;
 
-    private static final int MASS_ATTACK_COOLDOWN = 3; //cooldown resets to 3
-    private int massAttackCooldown = 2; //start cooldown at 2
 
     public final int BLOCK = calcAscensionTankiness(16);
     public final int INITIAL_PLATED_ARMOR = calcAscensionTankiness(20);
-    public final int PLATED_ARMOR_GAIN = calcAscensionTankiness(15);
-    public final int METALLICIZE_GAIN = calcAscensionSpecial(5);
+    public final int PLATED_ARMOR_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(15));
+    public final int METALLICIZE_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(5));
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int WEAK = calcAscensionSpecial(1);
-    public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(8);
+    public final int GUTS_METALLICIZE_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(8));
     public final int GUTS_STRENGTH = calcAscensionSpecial(3);
     private boolean usingMassAttack = false;
-
-    public static final String POWER_ID = makeID("Guts");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Tanya() {
         this(0.0f, 0.0f);
@@ -114,14 +107,8 @@ public class Tanya extends AbstractCardMonster
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + GUTS_STRENGTH + POWER_DESCRIPTIONS[1] + GUTS_METALLICIZE_GAIN + POWER_DESCRIPTIONS[2];
-            }
-        });
-        applyToTarget(this, this, new PlatedArmorPower(this, INITIAL_PLATED_ARMOR));
+        applyToTarget(this, this, new Guts(this, GUTS_STRENGTH, GUTS_METALLICIZE_GAIN));
+        applyToTarget(this, this, new RuinaPlatedArmor(this, INITIAL_PLATED_ARMOR));
         block(this, INITIAL_PLATED_ARMOR);
         if (AbstractDungeon.ascensionLevel >= 19) {
             applyToTarget(this, this, new BarricadePower(this));
@@ -160,14 +147,7 @@ public class Tanya extends AbstractCardMonster
                     }
                 });
                 waitAnimation(0.5f);
-                applyToTarget(this, this, new MetallicizePower(this, METALLICIZE_GAIN));
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        massAttackCooldown = MASS_ATTACK_COOLDOWN + 1;
-                        this.isDone = true;
-                    }
-                });
+                applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE_GAIN));
                 break;
             }
             case INTIMIDATE: {
@@ -176,9 +156,9 @@ public class Tanya extends AbstractCardMonster
                 if (platedArmor != null) {
                     int amount = platedArmor.amount;
                     atb(new RemoveSpecificPowerAction(this, this, platedArmor));
-                    applyToTarget(this, this, new MetallicizePower(this, amount));
+                    applyToTarget(this, this, new RuinaMetallicize(this, amount));
                 }
-                applyToTarget(this, this, new PlatedArmorPower(this, PLATED_ARMOR_GAIN));
+                applyToTarget(this, this, new RuinaPlatedArmor(this, PLATED_ARMOR_GAIN));
                 resetIdle();
                 break;
             }
@@ -285,22 +265,15 @@ public class Tanya extends AbstractCardMonster
     @Override
     public void takeTurn() {
         super.takeTurn();
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                massAttackCooldown--;
-                this.isDone = true;
-            }
-        });
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
         if (canUseOverspeed()) {
-            setMoveShortcut(OVERSPEED, MOVES[OVERSPEED], cardList.get(OVERSPEED).makeStatEquivalentCopy());
-        } else if (massAttackCooldown <= 0) {
-            setMoveShortcut(BEATDOWN, MOVES[BEATDOWN], cardList.get(BEATDOWN).makeStatEquivalentCopy());
+            setMoveShortcut(OVERSPEED);
+        } else if (moveHistory.size() >= 2 && !this.lastMoveIgnoringMove(BEATDOWN, OVERSPEED) && !this.lastMoveBeforeIgnoringMove(BEATDOWN, OVERSPEED)) {
+            setMoveShortcut(BEATDOWN);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(LUPINE_ASSAULT)) {
@@ -309,8 +282,8 @@ public class Tanya extends AbstractCardMonster
             if (!this.lastMove(FISTICUFFS)) {
                 possibilities.add(FISTICUFFS);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+            setMoveShortcut(move);
         }
     }
 
@@ -319,9 +292,9 @@ public class Tanya extends AbstractCardMonster
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         ArrayList<Byte> possibilities = new ArrayList<>();
         if (canUseOverspeed()) {
-            setAdditionalMoveShortcut(OVERSPEED, moveHistory, cardList.get(OVERSPEED).makeStatEquivalentCopy());
-        } else if (massAttackCooldown <= 0) {
-            setAdditionalMoveShortcut(INTIMIDATE, moveHistory, cardList.get(INTIMIDATE).makeStatEquivalentCopy());
+            setAdditionalMoveShortcut(OVERSPEED, moveHistory);
+        } else if (this.lastMove(BEATDOWN)) {
+            setAdditionalMoveShortcut(INTIMIDATE, moveHistory);
         } else {
             if (!this.lastMove(LUPINE_ASSAULT, moveHistory)) {
                 possibilities.add(LUPINE_ASSAULT);
@@ -332,8 +305,8 @@ public class Tanya extends AbstractCardMonster
             if (!this.lastMove(KICKS_AND_STOMPS, moveHistory) && !this.lastMoveBefore(KICKS_AND_STOMPS, moveHistory)) {
                 possibilities.add(KICKS_AND_STOMPS);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+            setAdditionalMoveShortcut(move, moveHistory);
         }
     }
 
@@ -342,7 +315,7 @@ public class Tanya extends AbstractCardMonster
         if (target instanceof Gebura) {
             gebura = (Gebura) target;
         }
-        return gebura != null && !gebura.isDead && !gebura.isDying && gebura.greaterSplitCooldownCounter <= 0;
+        return gebura != null && !gebura.isDead && !gebura.isDying && (gebura.moveHistory.get(gebura.moveHistory.size() - 1) == Gebura.GSH || gebura.moveHistory.get(gebura.moveHistory.size() - 1) == Gebura.GSV);
     }
 
     @Override
@@ -385,7 +358,7 @@ public class Tanya extends AbstractCardMonster
             att(new HealAction(this, this, maxHealth));
 
             applyToTarget(this, this, new StrengthPower(this, GUTS_STRENGTH));
-            applyToTarget(this, this, new MetallicizePower(this, METALLICIZE_GAIN));
+            applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE_GAIN));
         }
     }
 

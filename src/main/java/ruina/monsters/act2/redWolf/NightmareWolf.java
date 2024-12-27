@@ -193,7 +193,7 @@ public class NightmareWolf extends AbstractMultiIntentMonster
                     addToBot(new AbstractGameAction() {
                         @Override
                         public void update() {
-                            red.enrage();
+                            red.enrage(true);
                             this.isDone = true;
                         }
                     });

@@ -3,29 +3,25 @@ package ruina.monsters.act2.roadHome;
 import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act2.EasilyDistracted;
+import ruina.powers.multiplayer.EasilyDistractedMultiplayer;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 
@@ -40,7 +36,7 @@ public class RoadHome extends AbstractMultiIntentMonster
     private static final Texture HOUSE_TEXTURE = TexLoader.getTexture(HOUSE);
 
     private static final byte LETS_GO = 0;
-    private static final byte NONE = 1;
+    public static final byte NONE = 1;
     private static final byte HOMING_INSTINCT = 2;
 
     private ScaredyCat cat;
@@ -48,11 +44,6 @@ public class RoadHome extends AbstractMultiIntentMonster
     public boolean isHomeDead = false;
 
     private final int STATUS = calcAscensionSpecial(2);
-
-    public static final String POWER_ID = makeID("EasilyDistracted");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public RoadHome() {
         this(0.0f, 0.0f);
@@ -85,35 +76,11 @@ public class RoadHome extends AbstractMultiIntentMonster
                 target = (HomeAlly)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public int onAttacked(DamageInfo info, int damageAmount) {
-                if (info.type == DamageInfo.DamageType.NORMAL && info.owner != null && info.owner != this.owner) {
-                    this.flash();
-                    att(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            if (!RoadHome.this.hasPower(StunMonsterPower.POWER_ID)) {
-                                if (RoadHome.this.additionalIntents.size() > 0) {
-                                    RoadHome.this.additionalIntents.remove(0);
-                                    RoadHome.this.additionalMoves.remove(0);
-                                } else {
-                                    setMoveShortcut(NONE);
-                                    createIntent();
-                                }
-                            }
-                            this.isDone = true;
-                        }
-                    });
-                }
-                return damageAmount;
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new EasilyDistractedMultiplayer(this, RuinaMod.getMultiplayerPlayerCountScaling(1), 0));
+        } else {
+            applyToTarget(this, this, new EasilyDistracted(this));
+        }
     }
 
     @Override
@@ -186,17 +153,6 @@ public class RoadHome extends AbstractMultiIntentMonster
     }
 
     @Override
-    public void damage(DamageInfo info) {
-        super.damage(info);
-        if (info.output > 0 && info.type == DamageInfo.DamageType.NORMAL && info.owner != null) {
-            AbstractPower power = cat.getPower(ScaredyCat.POWER_ID);
-            if (power != null) {
-                power.onSpecificTrigger();
-            }
-        }
-    }
-
-    @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
         if (!cat.isDeadOrEscaped()) {
@@ -209,8 +165,13 @@ public class RoadHome extends AbstractMultiIntentMonster
 
     public void homeDeath() {
         isHomeDead = true;
-        makePowerRemovable(this, POWER_ID);
-        atb(new RemoveSpecificPowerAction(this, this, POWER_ID));
+        if (RuinaMod.isMultiplayerConnected()) {
+            makePowerRemovable(this, EasilyDistractedMultiplayer.POWER_ID);
+            atb(new RemoveSpecificPowerAction(this, this, EasilyDistractedMultiplayer.POWER_ID));
+        } else {
+            makePowerRemovable(this, EasilyDistracted.POWER_ID);
+            atb(new RemoveSpecificPowerAction(this, this, EasilyDistracted.POWER_ID));
+        }
     }
 
     public void catDeath() {

@@ -149,40 +149,6 @@
     "NAME": "Focus Spirit",
     "DESCRIPTION": "Gain !B! Block. NL Gain !M! Strength."
   },
-  "${ModID}:CHRBOSS_GiantFist": {
-    "NAME": "Giant Fist",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Paralysis."
-  },
-  "${ModID}:CHRBOSS_Compress": {
-    "NAME": "Compress",
-    "DESCRIPTION": "Gain !B! Block."
-  },
-  "${ModID}:CHRBOSS_FlurryOfFists": {
-    "NAME": "Flurry Of Fists",
-    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength.",
-    "EXTENDED_DESCRIPTION": ["Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! Strength next turn."]
-  },
-  "${ModID}:CHRBOSS_BalefulBrand": {
-    "NAME": "Baleful Brand",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion.",
-    "EXTENDED_DESCRIPTION": ["Deal !D! damage. NL Apply !M! *Erosion next turn."]
-  },
-  "${ModID}:CHRBOSS_Lock": {
-    "NAME": "Lock",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Draw *Reduction."
-  },
-  "${ModID}:CHRBOSS_yanAttack": {
-    "NAME": "Sword Of Volition",
-    "DESCRIPTION": "A *Hand gains !M! Strength."
-  },
-  "${ModID}:CHRBOSS_yanProtect": {
-    "NAME": "Protect",
-    "DESCRIPTION": "A *Hand gains !M! *Protection"
-  },
-  "${ModID}:CHRBOSS_DistortedBlade": {
-    "NAME": "Distorted Blade",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! *Erosion."
-  },
   "${ModID}:CHRBOSS_Largo": {
     "NAME": "Largo",
     "DESCRIPTION": "Gain !B! Block. NL Deal !D! damage. NL Apply 1 *Vibration. If the target already has *Vibration, instead remove it and gain !B! Block again."
@@ -447,10 +413,6 @@
   "${ModID}:SkillPrescript": {
     "NAME": "Skill Prescript",
     "DESCRIPTION": "Gain !B! Block."
-  },
-  "${ModID}:PowerPrescript": {
-    "NAME": "Power Prescript",
-    "DESCRIPTION": "Gain !M! Strength."
   },
   "${ModID}:EverlastingMelody": {
     "NAME": "Everlasting Melody",
@@ -864,10 +826,6 @@
     "DESCRIPTION": "If this card is in your hand at the end of your turn, lose !M! Strength or Dexterity, alternating each time.",
     "EXTENDED_DESCRIPTION": [" (Strength)", " (Dexterity)"]
   },
-  "${ModID}:Conductor": {
-    "NAME": "Conductor",
-    "DESCRIPTION": "Unplayable. NL When Retained, increase the cost of all other *Performer cards in your hand by !M! this combat. If all !ruina:SecondMagic! other *Performer cards are in your hand, trigger their effects again."
-  },
   "${ModID}:TodaysExpression": {
     "NAME": "Today's Expression",
     "DESCRIPTION": "Choose one:",
@@ -980,5 +938,13 @@
   "${ModID}:Acupuncture": {
     "NAME": "Acupuncture",
     "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
+  },
+  "${ModID}:Distorted": {
+    "NAME": "Distorted",
+    "DESCRIPTION": "Unplayable. NL Cannot be removed from your deck."
+  },
+  "${ModID}:Lie": {
+    "NAME": "Lie",
+    "DESCRIPTION": "This card imperfectly disguises itself as another card."
   }
 }

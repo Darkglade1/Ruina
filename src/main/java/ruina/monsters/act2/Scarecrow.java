@@ -4,20 +4,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.BetterSpriterAnimation;
-import ruina.actions.ExhaustTopCardAction;
-import ruina.actions.WisdomAction;
 import ruina.cards.Wisdom;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act2.Search;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 
@@ -33,20 +26,8 @@ public class Scarecrow extends AbstractRuinaMonster
     private static final byte RAKE = 0;
     private static final byte HARVEST = 1;
     private static final byte STRUGGLE = 2;
-
-    private static final int STRUGGLE_THRESHOLD = 2;
-    private int struggleCounter;
-
+    private final int struggleCounter;
     private final int WISDOM_AMT = calcAscensionSpecial(2);
-
-    public static final String SEARCH_POWER_ID = makeID("Search");
-    public static final PowerStrings SEARCHPowerStrings = CardCrawlGame.languagePack.getPowerStrings(SEARCH_POWER_ID);
-    public static final String SEARCH_POWER_NAME = SEARCHPowerStrings.NAME;
-    public static final String[] SEARCH_POWER_DESCRIPTIONS = SEARCHPowerStrings.DESCRIPTIONS;
-
-    public Scarecrow() {
-        this(0.0f, 0.0f, STRUGGLE_THRESHOLD);
-    }
 
     public Scarecrow(final float x, final float y, int struggleCounter) {
         super(ID, ID, 40, -5.0F, 0, 230.0f, 275.0f, null, x, y);
@@ -60,19 +41,7 @@ public class Scarecrow extends AbstractRuinaMonster
 
     @Override
     public void usePreBattleAction() {
-        atb(new WisdomAction());
-        applyToTarget(this, this, new AbstractLambdaPower(SEARCH_POWER_NAME, SEARCH_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL) {
-                    atb(new ExhaustTopCardAction(owner));
-                }
-            }
-            @Override
-            public void updateDescription() {
-                description = SEARCH_POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new Search(this));
     }
 
     @Override
@@ -96,11 +65,9 @@ public class Scarecrow extends AbstractRuinaMonster
             }
             case STRUGGLE: {
                 intoDiscardMo(new Wisdom(), WISDOM_AMT, this);
-                struggleCounter = STRUGGLE_THRESHOLD + 1;
                 break;
             }
         }
-        struggleCounter--;
         //In case it gets stunned by Wisdom
         AbstractMonster mo = this;
         addToBot(new AbstractGameAction() {
@@ -118,7 +85,7 @@ public class Scarecrow extends AbstractRuinaMonster
         if (this.hasPower(StunMonsterPower.POWER_ID)) {
             return;
         }
-        if (struggleCounter <= 0) {
+        if (moveHistory.size() >= struggleCounter && !this.lastMove(STRUGGLE) && !this.lastMoveBefore(STRUGGLE)) {
             setMoveShortcut(STRUGGLE);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -128,7 +95,7 @@ public class Scarecrow extends AbstractRuinaMonster
             if (!this.lastMove(HARVEST)) {
                 possibilities.add(HARVEST);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }

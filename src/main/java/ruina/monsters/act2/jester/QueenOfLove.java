@@ -1,18 +1,16 @@
 package ruina.monsters.act2.jester;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act2.Justice;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 
@@ -30,11 +28,6 @@ public class QueenOfLove extends AbstractMagicalGirl
     private static final byte ARCANA_BEATS = 1;
 
     private final int STRENGTH = 2;
-
-    public static final String JUSTICE_POWER_ID = RuinaMod.makeID("Justice");
-    public static final PowerStrings JUSTICEPowerStrings = CardCrawlGame.languagePack.getPowerStrings(JUSTICE_POWER_ID);
-    public static final String JUSTICE_POWER_NAME = JUSTICEPowerStrings.NAME;
-    public static final String[] JUSTICE_POWER_DESCRIPTIONS = JUSTICEPowerStrings.DESCRIPTIONS;
 
     public QueenOfLove(final float x, final float y) {
         super(ID, ID, 120, -5.0F, 0, 170.0f, 215.0f, null, x, y);
@@ -60,17 +53,15 @@ public class QueenOfLove extends AbstractMagicalGirl
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(this, this, new AbstractLambdaPower(JUSTICE_POWER_NAME, JUSTICE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = JUSTICE_POWER_DESCRIPTIONS[0];
-            }
-        });
+        addPower(new Justice(this));
         super.usePreBattleAction();
     }
 
     @Override
     public void takeTurn() {
+        if (firstMove) {
+            atb(new TalkAction(this, this.getSummonDialog()));
+        }
         super.takeTurn();
         AbstractMonster mo = this;
         AbstractMonster jester = target;
@@ -109,10 +100,10 @@ public class QueenOfLove extends AbstractMagicalGirl
         if (this.currentHealth <= this.maxHealth * 0.30f) {
             setMoveShortcut(LOVE_AND_JUSTICE);
         } else {
-            if (this.lastMove(ARCANA_BEATS)) {
-                setMoveShortcut(LOVE_AND_JUSTICE);
-            } else {
+            if (this.lastMove(LOVE_AND_JUSTICE)) {
                 setMoveShortcut(ARCANA_BEATS);
+            } else {
+                setMoveShortcut(LOVE_AND_JUSTICE);
             }
         }
     }

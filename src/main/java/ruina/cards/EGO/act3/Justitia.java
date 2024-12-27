@@ -1,6 +1,7 @@
 package ruina.cards.EGO.act3;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,6 +13,7 @@ import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.act3.JudgementBird;
 
 import static ruina.RuinaMod.makeID;
+import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
 public class Justitia extends AbstractEgoCard {
@@ -47,7 +49,7 @@ public class Justitia extends AbstractEgoCard {
                         }
                     });
                 } else {
-                    atb(new LoseHPAction(m, p, magicNumber));
+                    atb(new DamageAction(m, new DamageInfo(p, magicNumber, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.POISON));
                 }
                 this.isDone = true;
             }

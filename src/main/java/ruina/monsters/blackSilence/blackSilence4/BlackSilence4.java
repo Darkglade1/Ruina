@@ -196,7 +196,7 @@ public class BlackSilence4 extends AbstractCardMonster {
         super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case AGONY: {
-                int animation = AbstractDungeon.monsterRng.random(2);
+                int animation = AbstractDungeon.miscRng.random(2);
                 switch (animation) {
                     case 0:
                         wheelsAnimation(target);
@@ -213,7 +213,7 @@ public class BlackSilence4 extends AbstractCardMonster {
                 break;
             }
             case SCREAM: {
-                int animation = AbstractDungeon.monsterRng.random(2);
+                int animation = AbstractDungeon.miscRng.random(2);
                 for (int i = 0; i < multiplier; i++) {
                     switch (animation) {
                         case 0:
@@ -343,8 +343,8 @@ public class BlackSilence4 extends AbstractCardMonster {
         if (!this.lastMove(VOID) && !this.lastMoveBefore(VOID)) {
             possibilities.add(VOID);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+        setMoveShortcut(move);
     }
 
     @Override
@@ -352,7 +352,7 @@ public class BlackSilence4 extends AbstractCardMonster {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (whichMove == numAdditionalMoves - 1) { //the last intent handles memories
             byte move = memories.get(0);
-            setAdditionalMoveShortcut(move, moveHistory, cardList.get(move));
+            setAdditionalMoveShortcut(move, moveHistory);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(AGONY, moveHistory)) {
@@ -364,8 +364,8 @@ public class BlackSilence4 extends AbstractCardMonster {
             if (!this.lastMove(VOID, moveHistory) && !this.lastMoveBefore(VOID, moveHistory)) {
                 possibilities.add(VOID);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+            setAdditionalMoveShortcut(move, moveHistory);
         }
     }
 

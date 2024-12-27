@@ -149,40 +149,6 @@
     "NAME": "Подготовка духа",
     "DESCRIPTION": "Даёт !B! Защиты. NL даёт !M! Силы."
   },
-  "ruina:CHRBOSS_GiantFist": {
-    "NAME": "Гигантский кулак",
-    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! *Паралича."
-  },
-  "ruina:CHRBOSS_Compress": {
-    "NAME": "Сдавить",
-    "DESCRIPTION": "Даёт !B! Защиты."
-  },
-  "ruina:CHRBOSS_FlurryOfFists": {
-    "NAME": "Шквал кулаков",
-    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Даёт !ruina:SecondMagic! Силы.",
-    "EXTENDED_DESCRIPTION": ["Наносит !D! урона !M! раза. NL Даёт !ruina:SecondMagic! Силы в след. ходу."]
-  },
-  "ruina:CHRBOSS_BalefulBrand": {
-    "NAME": "Зловещие клеймо",
-    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! *Эрозии.",
-    "EXTENDED_DESCRIPTION": ["Наносит !D! урона. NL Накладывает !M! *Эрозии в след. ходу."]
-  },
-  "ruina:CHRBOSS_Lock": {
-    "NAME": "Зафиксировать",
-    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! *Сокращения *добора."
-  },
-  "ruina:CHRBOSS_yanAttack": {
-    "NAME": "Меч воли",
-    "DESCRIPTION": "Даёт *Руке !M! Силы."
-  },
-  "ruina:CHRBOSS_yanProtect": {
-    "NAME": "Прикрыть",
-    "DESCRIPTION": "Даёт *Руке !M! *Защищённости."
-  },
-  "ruina:CHRBOSS_DistortedBlade": {
-    "NAME": "Неверное лезвие",
-    "DESCRIPTION": "Наносит !D! урона. NL Накладывает !M! *Эрозии."
-  },
   "ruina:CHRBOSS_Largo": {
     "NAME": "С дороги",
     "DESCRIPTION": "Даёт !B! Защиты. NL Наносит !D! урона. NL Накладывает 1 *Вибрации. Если выбранный враг имеет *Вибрацию, вместо этого отнимает её и даёт ещё !B! Защиты."
@@ -447,10 +413,6 @@
   "ruina:SkillPrescript": {
     "NAME": "Предпис. Навыка",
     "DESCRIPTION": "Даёт !B! Защиты."
-  },
-  "ruina:PowerPrescript": {
-    "NAME": "Предпис. Таланта",
-    "DESCRIPTION": "Даёт !M! Силы."
   },
   "ruina:EverlastingMelody": {
     "NAME": "Нескончаемая мелодия",
@@ -864,10 +826,6 @@
     "DESCRIPTION": "Чередуя, отнимает !M! Силы или !M! Ловкости в конце вашего хода. NL",
     "EXTENDED_DESCRIPTION": [" (Сила)", " (Ловкость)"]
   },
-  "ruina:Conductor": {
-    "NAME": "Дирижёр",
-    "DESCRIPTION": "Неиграбельная. NL Повышает стоимость всех других *Исполнителей в руке на !M! до конца боя, когда Оставляется. Если все !ruina:SecondMagic! других *Исполнителя в руке, их эффект активируется дважды."
-  },
   "ruina:TodaysExpression": {
     "NAME": "Сегодняшнее выражение",
     "DESCRIPTION": "Выберите одно:",
@@ -980,5 +938,13 @@
   "ruina:Acupuncture": {
     "NAME": "Акупунуктура",
     "DESCRIPTION": "Наносит !D! урона !M! раза. NL Накладывает !ruina:SecondMagic! *Паралича."
+  },
+  "${ModID}:Distorted": {
+    "NAME": "Искаженный",
+    "DESCRIPTION": "Не может быть удалена из колоды."
+  },
+  "${ModID}:Lie": {
+    "NAME": "Ложь",
+    "DESCRIPTION": "Эта карта несовершенно маскируется под другую карту."
   }
 }

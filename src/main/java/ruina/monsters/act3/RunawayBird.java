@@ -65,7 +65,7 @@ public class RunawayBird extends AbstractRuinaMonster
         if (!this.lastTwoMoves(SHRIEK)) {
             possibilities.add(SHRIEK);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
     }
 

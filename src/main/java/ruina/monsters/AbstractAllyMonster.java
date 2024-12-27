@@ -15,8 +15,10 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import ruina.CustomIntent.IntentEnums;
+import ruina.RuinaMod;
 import ruina.actions.TransferBlockToAllyAction;
 import ruina.powers.InvisibleAllyBarricadePower;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
 import ruina.util.AllyMove;
 
 import java.util.ArrayList;
@@ -60,7 +62,10 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
         blockMove.setX(this.intentHb.x - ((50.0F + 32.0f) * Settings.scale));
         blockMove.setY(this.intentHb.cY - (32.0f * Settings.scale));
         allyMoves.add(blockMove);
-        applyToTarget(this, this, new InvisibleAllyBarricadePower(this));
+        addPower(new InvisibleAllyBarricadePower(this));
+        if (RuinaMod.isMultiplayerConnected()) {
+            addPower(new MultiplayerAllyBuff(this));
+        }
         if (isAlly && !isTargetableByPlayer) {
             atb(new AbstractGameAction() {
                 @Override

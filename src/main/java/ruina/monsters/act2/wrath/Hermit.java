@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractMultiIntentMonster;
+import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.DetailedIntent;
 
@@ -37,7 +38,6 @@ public class Hermit extends AbstractMultiIntentMonster
     private final int BLOCK = calcAscensionTankiness(11);
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int DEBUFF = calcAscensionSpecial(1);
-    public HermitStaff staff;
 
     public Hermit() {
         this(100.0f, 0.0f);
@@ -66,9 +66,6 @@ public class Hermit extends AbstractMultiIntentMonster
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof ServantOfWrath) {
                 target = (ServantOfWrath)mo;
-            }
-            if (mo instanceof HermitStaff) {
-                staff = (HermitStaff) mo;
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
@@ -104,7 +101,7 @@ public class Hermit extends AbstractMultiIntentMonster
             }
             case HELLO: {
                 specialAnimation();
-                if (staff == null) {
+                if (minionIsDead()) {
                     Summon();
                 } else {
                     buff(); //in case someone forces this enemy to use this intent twice in a row :)
@@ -144,7 +141,7 @@ public class Hermit extends AbstractMultiIntentMonster
 
     @Override
     protected void getMove(final int num) {
-        if (staff == null && !firstMove) {
+        if (minionIsDead() && !firstMove) {
             setMoveShortcut(HELLO);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -157,7 +154,7 @@ public class Hermit extends AbstractMultiIntentMonster
             if (!this.lastMove(CRACKLE) && !this.lastMoveBefore(CRACKLE)) {
                 possibilities.add(CRACKLE);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }
@@ -172,7 +169,7 @@ public class Hermit extends AbstractMultiIntentMonster
         if (!this.lastTwoMoves(MAKE_WAY, moveHistory)) {
             possibilities.add(MAKE_WAY);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setAdditionalMoveShortcut(move, moveHistory);
     }
 
@@ -188,12 +185,25 @@ public class Hermit extends AbstractMultiIntentMonster
             }
         }
     }
+    
+    private boolean minionIsDead() {
+        return getAliveMinion() == null;
+    }
+
+    public AbstractRuinaMonster getAliveMinion() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof HermitStaff && !mo.isDeadOrEscaped()) {
+                return (AbstractRuinaMonster) mo;
+            }
+        }
+        return null;
+    }
 
     private void Summon() {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                staff = new HermitStaff(MINION_X, 0.0f);
+                AbstractMonster staff = new HermitStaff(MINION_X, 0.0f);
                 att(new UsePreBattleActionAction(staff));
                 att(new SpawnMonsterAction(staff, true));
                 this.isDone = true;

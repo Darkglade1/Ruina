@@ -528,7 +528,9 @@
   },
   "${ModID}:Pinocchio": {
     "MOVES": [
-      "Learn"
+      "Learn",
+      "Lie",
+      "Fib"
     ],
     "NAME": "Pinocchio",
     "DIALOG": [
@@ -660,7 +662,10 @@
   },
   "${ModID}:Shade": {
     "MOVES": [
-      ""
+      "Mimic Attack",
+      "Mimic Attack",
+      "Mimic Defense",
+      "Mimic Buff"
     ],
     "NAME": "Shade",
     "DIALOG": [
@@ -1120,6 +1125,7 @@
   },
   "${ModID}:WitchFriend": {
     "MOVES": [
+      "#$@!#*#$@",
       "#$@!#*#$@"
     ],
     "NAME": "Wee Witch's Friend",

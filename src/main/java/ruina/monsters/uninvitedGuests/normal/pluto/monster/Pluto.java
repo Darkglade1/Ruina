@@ -22,6 +22,7 @@ import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.ContractOfLig
 import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.ContractOfMight;
 import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.NoContract;
 import ruina.monsters.uninvitedGuests.normal.pluto.plutoCards.*;
+import ruina.powers.InvisibleBarricadePower;
 
 import java.util.ArrayList;
 
@@ -67,6 +68,12 @@ public class Pluto extends AbstractCardMonster {
         addMove(ONSLAUGHT, Intent.ATTACK, magicOnslaughtDamage);
         addMove(CONTRACT, Intent.UNKNOWN);
         addMove(BINDING_TERMS, Intent.DEBUFF);
+
+        cardList.add(new Safeguard(this));
+        cardList.add(new Missile(this));
+        cardList.add(new Onslaught(this));
+        cardList.add(new Contract(this));
+        cardList.add(new BindingTerms(this));
     }
 
     @Override
@@ -87,6 +94,7 @@ public class Pluto extends AbstractCardMonster {
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
+        applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
     @Override
@@ -173,10 +181,10 @@ public class Pluto extends AbstractCardMonster {
     @Override
     protected void getMove(final int num) {
         if (shade != null && shade.isDeadOrEscaped()) {
-            setMoveShortcut(ONSLAUGHT, MOVES[ONSLAUGHT], getMoveCardFromByte(ONSLAUGHT));
+            setMoveShortcut(ONSLAUGHT);
         } else {
             if (firstMove) {
-                setMoveShortcut(CONTRACT, MOVES[CONTRACT], getMoveCardFromByte(CONTRACT));
+                setMoveShortcut(CONTRACT);
             } else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
                 if (!this.lastMove(ONSLAUGHT) && !this.lastMoveBefore(ONSLAUGHT)) {
@@ -188,8 +196,8 @@ public class Pluto extends AbstractCardMonster {
                 if (!this.lastMove(BINDING_TERMS) && !this.lastMoveBefore(BINDING_TERMS)) {
                     possibilities.add(BINDING_TERMS);
                 }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
+                byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+                setMoveShortcut(move);
             }
         }
     }
@@ -207,19 +215,8 @@ public class Pluto extends AbstractCardMonster {
         if (!this.lastMove(MISSLE, moveHistory)) {
             possibilities.add(MISSLE);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
-    }
-
-
-    protected AbstractCard getMoveCardFromByte(Byte move) {
-        ArrayList<AbstractCard> list = new ArrayList<>();
-        list.add(new Safeguard(this));
-        list.add(new Missile(this));
-        list.add(new Onslaught(this));
-        list.add(new Contract(this));
-        list.add(new BindingTerms(this));
-        return list.get(move);
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override

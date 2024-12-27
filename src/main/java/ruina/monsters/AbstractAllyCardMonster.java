@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import ruina.RuinaMod;
 
 import java.util.ArrayList;
 
@@ -96,19 +97,6 @@ public abstract class AbstractAllyCardMonster extends AbstractAllyMonster {
     }
 
     @Override
-    public void rollMove() {
-        allyCard = null;
-        super.rollMove();
-        AbstractAllyCardMonster.hoveredCard = null; //in case the player was hovering one of them while it was getting yeeted
-    }
-
-    public void setMoveShortcut(byte next, AbstractCard allyCard) {
-        EnemyMoveInfo info = this.moves.get(next);
-        this.setMove(allyCard.name, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
-        setAllyCard(allyCard, info.baseDamage);
-    }
-
-    @Override
     public void applyPowers() {
         super.applyPowers();
         updateAllyCard();
@@ -122,7 +110,39 @@ public abstract class AbstractAllyCardMonster extends AbstractAllyMonster {
             } else {
                 allyCard.isDamageModified = false;
             }
+            if (allyCard.baseBlock > 0) {
+                if (RuinaMod.isMultiplayerConnected()) {
+                    allyCard.block = RuinaMod.getMultiplayerPlayerCountScaling(allyCard.baseBlock);
+                    allyCard.isBlockModified = true;
+                }
+            }
         }
+    }
+
+    @Override
+    public void createIntent() {
+        setCards();
+        super.createIntent();
+    }
+
+    private void setCards() {
+        allyCard = null;
+        AbstractAllyCardMonster.hoveredCard = null; //in case the player was hovering one of them while it was getting yeeted
+
+        EnemyMoveInfo info = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
+        byte next = info.nextMove;
+        AbstractCard card = getCardFromMove(next);
+        if (card != null) {
+            moveName = card.name;
+            setAllyCard(card, info.baseDamage);
+        }
+    }
+
+    private AbstractCard getCardFromMove(byte next) {
+        if (next >= 0 && next < cardList.size()) {
+            return cardList.get(next);
+        }
+        return null;
     }
 
 

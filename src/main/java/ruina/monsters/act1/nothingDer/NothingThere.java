@@ -4,24 +4,21 @@ import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.act1.Mimicry;
+import ruina.powers.multiplayer.MimicryMultiplayer;
+import ruina.powers.multiplayer.MultiplayerEnemyBuff;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 
@@ -41,11 +38,6 @@ public class NothingThere extends AbstractMultiIntentMonster
     private final int BLOCK = calcAscensionTankiness(12);
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int STATUS = calcAscensionSpecial(1);
-
-    public static final String POWER_ID = makeID("Mimicry");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public NothingThere() {
         this(100.0f, 0.0f);
@@ -80,37 +72,19 @@ public class NothingThere extends AbstractMultiIntentMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning3");
-        AbstractDungeon.player.drawX += 480.0F * Settings.scale;
-        AbstractDungeon.player.dialogX += 480.0F * Settings.scale;
+        adp().movePosition((float)Settings.WIDTH / 2.0F, AbstractDungeon.floorY);
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Gunman) {
                 target = (Gunman)mo;
             }
         }
         applyToTarget(this, this, new InvisibleBarricadePower(this));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
-            @Override
-            public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-                if (card.type == AbstractCard.CardType.ATTACK) {
-                    if (card.baseDamage != this.amount) {
-                        this.flash();
-                        this.amount = card.baseDamage;
-                        updateDescription();
-                        AbstractDungeon.onModifyPower();
-                    }
-                }
-            }
-
-            @Override
-            public float atDamageGive(float damage, DamageInfo.DamageType type) {
-                return type == DamageInfo.DamageType.NORMAL ? damage + (float)this.amount : damage;
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new MimicryMultiplayer(this, 0));
+            applyToTarget(this, this, new MultiplayerEnemyBuff(this));
+        } else {
+            applyToTarget(this, this, new Mimicry(this, 0));
+        }
     }
 
     @Override

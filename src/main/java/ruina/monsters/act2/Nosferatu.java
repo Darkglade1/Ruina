@@ -92,7 +92,7 @@ public class Nosferatu extends AbstractRuinaMonster
             if (!this.lastMove(LOOMING_PRESENCE) && !this.lastMoveBefore(LOOMING_PRESENCE)) {
                 possibilities.add(LOOMING_PRESENCE);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }

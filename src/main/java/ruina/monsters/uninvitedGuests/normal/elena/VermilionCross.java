@@ -7,12 +7,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.elena.vermilionCards.*;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.RuinaIntangible;
 import ruina.util.TexLoader;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class VermilionCross extends AbstractCardMonster
     public final int HEAT_UP_BLOCK = calcAscensionTankiness(10);
     public final int STRENGTH = calcAscensionSpecial(5);
     public final int BURNS = calcAscensionSpecial(1);
-    public final int allyIntangible = calcAscensionSpecial(1);
+    public final int allyIntangible = 1;
     public Elena elena;
     public boolean hadBlock;
 
@@ -105,7 +105,7 @@ public class VermilionCross extends AbstractCardMonster
                             if (elena.isDeadOrEscaped()) {
                                 powerTarget = VermilionCross.this;
                             }
-                            applyToTargetTop(powerTarget, VermilionCross.this, new IntangiblePlayerPower(powerTarget, allyIntangible + 1));
+                            applyToTargetTop(powerTarget, VermilionCross.this, new RuinaIntangible(powerTarget, allyIntangible, true));
                         }
                         this.isDone = true;
                     }
@@ -168,7 +168,7 @@ public class VermilionCross extends AbstractCardMonster
     @Override
     protected void getMove(final int num) {
         if (this.lastMove(OBSTRUCT)) {
-            setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
+            setMoveShortcut(SHOCKWAVE);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (moveHistory.size() >= 3) {
@@ -183,8 +183,8 @@ public class VermilionCross extends AbstractCardMonster
             if (possibilities.isEmpty()) {
                 possibilities.add(HEATED_WEAPON);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+            setMoveShortcut(move);
         }
     }
 
@@ -204,8 +204,8 @@ public class VermilionCross extends AbstractCardMonster
         if (!this.lastMove(HEAT_UP, moveHistory) && !this.lastMoveBefore(HEAT_UP, moveHistory)) {
             possibilities.add(HEAT_UP);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override

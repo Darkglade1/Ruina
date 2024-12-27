@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
@@ -21,6 +22,9 @@ import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.greta.hodCards.*;
+import ruina.multiplayer.MessengerListener;
+import ruina.multiplayer.NetworkHod;
+import ruina.multiplayer.NetworkYesod;
 import ruina.powers.act4.PurpleTearStance;
 import ruina.util.AllyMove;
 import ruina.util.TexLoader;
@@ -28,6 +32,10 @@ import ruina.vfx.FlexibleDivinityParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
+import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.networkcore.objects.entities.NetworkMonster;
+import spireTogether.other.RoomDataManager;
+import spireTogether.util.SpireHelp;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
@@ -37,12 +45,12 @@ public class Hod extends AbstractAllyCardMonster
 {
     public static final String ID = RuinaMod.makeID(Hod.class.getSimpleName());
 
-    private static final byte SNAKE_SLIT = 0;
-    private static final byte VIOLET_BLADE = 1;
-    private static final byte LACERATION = 2;
-    private static final byte VENOMOUS_FANGS = 3;
-    private static final byte SERPENTINE_BARRIER = 4;
-    private static final byte DUEL = 5;
+    public static final byte SNAKE_SLIT = 0;
+    public static final byte VIOLET_BLADE = 1;
+    public static final byte LACERATION = 2;
+    public static final byte VENOMOUS_FANGS = 3;
+    public static final byte SERPENTINE_BARRIER = 4;
+    public static final byte DUEL = 5;
 
     public final int snakeHits = 2;
     public final int violetHits = 3;
@@ -52,18 +60,15 @@ public class Hod extends AbstractAllyCardMonster
     public final int WEAK = 2;
     public final int VULNERABLE = 2;
     public static final int slashDamageBonus = 50;
-    public static final int pierceTriggerHits = 2;
-
-    private PurpleTearStance stancePower;
 
     public static final int SLASH = 1;
     public static final int PIERCE = 2;
     public static final int GUARD = 3;
     public int stance = PIERCE;
 
-    private byte slashMove = SNAKE_SLIT;
-    private byte pierceMove = LACERATION;
-    private byte guardMove = SERPENTINE_BARRIER;
+    public byte slashMove = SNAKE_SLIT;
+    public byte pierceMove = LACERATION;
+    public byte guardMove = SERPENTINE_BARRIER;
 
     public Hod() {
         this(0.0f, 0.0f);
@@ -106,21 +111,21 @@ public class Hod extends AbstractAllyCardMonster
                 target = (Greta)mo;
             }
         }
-        stancePower = new PurpleTearStance(this, stance);
+        addPower(new PurpleTearStance(this, stance));
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                stancePower.changeStance(stance);
+                changeStance(stance);
                 this.isDone = true;
             }
         });
-        applyToTarget(this, this, stancePower);
         super.usePreBattleAction();
         AllyMove changeToSlash = new AllyMove(DIALOG[2], this, new Texture(makeUIPath("SlashStance.png")), DIALOG[3], () -> {
             if (stance == SLASH) {
                 atb(new TalkAction(this, DIALOG[6]));
             } else {
-                stancePower.changeStance(SLASH);
+                changeStance(SLASH);
+                updateStanceChangeMultiplayer();
             }
         });
         changeToSlash.setX(this.intentHb.x - ((50.0F + 32.0f) * Settings.scale));
@@ -131,7 +136,8 @@ public class Hod extends AbstractAllyCardMonster
             if (stance == PIERCE) {
                 atb(new TalkAction(this, DIALOG[6]));
             } else {
-                stancePower.changeStance(PIERCE);
+                changeStance(PIERCE);
+                updateStanceChangeMultiplayer();
             }
         });
         changeToPierce.setX(this.intentHb.x - ((50.0F + 32.0f) * Settings.scale));
@@ -142,7 +148,8 @@ public class Hod extends AbstractAllyCardMonster
             if (stance == GUARD) {
                 atb(new TalkAction(this, DIALOG[6]));
             } else {
-                stancePower.changeStance(GUARD);
+                changeStance(GUARD);
+                updateStanceChangeMultiplayer();
             }
         });
         changeToGuard.setX(this.intentHb.x - ((50.0F + 32.0f) * Settings.scale));
@@ -218,6 +225,7 @@ public class Hod extends AbstractAllyCardMonster
                 break;
             }
         }
+        updateHodMultiplayer();
         atb(new RollMoveAction(this));
     }
 
@@ -225,21 +233,21 @@ public class Hod extends AbstractAllyCardMonster
     protected void getMove(final int num) {
         if (stance == SLASH) {
             if (slashMove == VIOLET_BLADE) {
-                setMoveShortcut(VIOLET_BLADE, cardList.get(VIOLET_BLADE));
+                setMoveShortcut(VIOLET_BLADE);
             } else {
-                setMoveShortcut(SNAKE_SLIT, cardList.get(SNAKE_SLIT));
+                setMoveShortcut(SNAKE_SLIT);
             }
         } else if (stance == PIERCE) {
             if (pierceMove == VENOMOUS_FANGS) {
-                setMoveShortcut(VENOMOUS_FANGS, cardList.get(VENOMOUS_FANGS));
+                setMoveShortcut(VENOMOUS_FANGS);
             } else {
-                setMoveShortcut(LACERATION, cardList.get(LACERATION));
+                setMoveShortcut(LACERATION);
             }
         } else {
             if (guardMove == DUEL) {
-                setMoveShortcut(DUEL, cardList.get(DUEL));
+                setMoveShortcut(DUEL);
             } else {
-                setMoveShortcut(SERPENTINE_BARRIER, cardList.get(SERPENTINE_BARRIER));
+                setMoveShortcut(SERPENTINE_BARRIER);
             }
         }
     }
@@ -255,6 +263,33 @@ public class Hod extends AbstractAllyCardMonster
                     this.isDone = true;
                 }
             });
+        }
+    }
+
+    public void changeStance(int newStance) {
+        AbstractPower power = getPower(PurpleTearStance.POWER_ID);
+        if (power instanceof PurpleTearStance) {
+            ((PurpleTearStance) power).changeStance(newStance);
+        }
+    }
+
+    private void updateHodMultiplayer() {
+        if (RuinaMod.isMultiplayerConnected()) {
+            P2PManager.SendData(NetworkHod.request_updateHod, stance, slashMove, pierceMove, guardMove, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+            if (m instanceof NetworkHod) {
+                ((NetworkHod)m).stance = stance;
+                ((NetworkHod)m).slashMove = slashMove;
+                ((NetworkHod)m).pierceMove = pierceMove;
+                ((NetworkHod)m).guardMove = guardMove;
+            }
+        }
+    }
+
+    private void updateStanceChangeMultiplayer() {
+        if (RuinaMod.isMultiplayerConnected()) {
+            P2PManager.SendData(NetworkHod.request_changeStanceHod, stance, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            updateHodMultiplayer();
         }
     }
 
@@ -302,7 +337,7 @@ public class Hod extends AbstractAllyCardMonster
     public void render(SpriteBatch sb) {
         super.render(sb);
         if (this.hasPower(PurpleTearStance.POWER_ID)) {
-            if (stance == PIERCE && this.getPower(PurpleTearStance.POWER_ID).amount >= pierceTriggerHits - 1) {
+            if (stance == PIERCE && nextMove == VENOMOUS_FANGS) {
                 this.particleTimer -= Gdx.graphics.getDeltaTime();
                 if (this.particleTimer < 0.0F) {
                     this.particleTimer = 0.04F;

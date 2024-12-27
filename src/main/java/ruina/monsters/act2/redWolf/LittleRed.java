@@ -8,25 +8,22 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
+import ruina.powers.act2.FuryWithNoOutlet;
+import ruina.powers.act2.StrikeWithoutHesitation;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
@@ -45,19 +42,10 @@ public class LittleRed extends AbstractAllyMonster
     private static final byte HOLLOW_POINT_SHELL = 2;
     private static final byte BULLET_SHOWER = 3;
 
-    private final int DEFENSE = calcAscensionTankiness(10);
+    private final int DEFENSE = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(10));
     private final int STRENGTH = 3;
-    public boolean enraged = false;
 
-    public static final String STRIKE_POWER_ID = RuinaMod.makeID("StrikeWithoutHesitation");
-    public static final PowerStrings strikePowerStrings = CardCrawlGame.languagePack.getPowerStrings(STRIKE_POWER_ID);
-    public static final String STRIKE_POWER_NAME = strikePowerStrings.NAME;
-    public static final String[] STRIKE_POWER_DESCRIPTIONS = strikePowerStrings.DESCRIPTIONS;
-
-    public static final String FURY_POWER_ID = RuinaMod.makeID("FuryWithNoOutlet");
-    public static final PowerStrings furyPowerStrings = CardCrawlGame.languagePack.getPowerStrings(FURY_POWER_ID);
-    public static final String FURY_POWER_NAME = furyPowerStrings.NAME;
-    public static final String[] FURY_POWER_DESCRIPTIONS = furyPowerStrings.DESCRIPTIONS;
+    public static final int ENRAGE_PHASE = 2;
 
     public LittleRed() {
         this(0.0f, 0.0f);
@@ -91,24 +79,29 @@ public class LittleRed extends AbstractAllyMonster
                 target = (NightmareWolf)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(FURY_POWER_NAME, FURY_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = FURY_POWER_DESCRIPTIONS[0];
-            }
-        });
-        super.usePreBattleAction();
+        addPower(new FuryWithNoOutlet(this));
+        if (phase == ENRAGE_PHASE) {
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    enrage(false);
+                    this.isDone = true;
+                }
+            });
+        } else {
+            super.usePreBattleAction();
+        }
     }
 
     @Override
     public void takeTurn() {
-        if (this.firstMove && !enraged) {
+        if (this.firstMove && phase == DEFAULT_PHASE) {
             atb(new TalkAction(this, DIALOG[0]));
         }
         super.takeTurn();
 
         AbstractCreature target;
-        if (enraged) {
+        if (phase == ENRAGE_PHASE) {
             target = AbstractDungeon.player;
         } else {
             target = this.target;
@@ -126,32 +119,7 @@ public class LittleRed extends AbstractAllyMonster
             }
             case CATCH_BREATH: {
                 atb(new HealAction(this, this, DEFENSE));
-                applyToTarget(this, this, new AbstractLambdaPower(STRIKE_POWER_NAME, STRIKE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
-
-                    boolean justApplied = true;
-
-                    @Override
-                    public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                        if (info.owner == owner && damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL) {
-                            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner, owner, new StrengthPower(owner, amount), amount));
-                        }
-                    }
-
-                    @Override
-                    public void atEndOfRound() {
-                        if (justApplied) {
-                            justApplied = false;
-                        } else {
-                            makePowerRemovable(this);
-                            addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-                        }
-                    }
-
-                    @Override
-                    public void updateDescription() {
-                        description = STRIKE_POWER_DESCRIPTIONS[0] + amount + STRIKE_POWER_DESCRIPTIONS[1];
-                    }
-                });
+                applyToTarget(this, this, new StrikeWithoutHesitation(this, STRENGTH));
                 break;
             }
             case HOLLOW_POINT_SHELL: {
@@ -184,24 +152,32 @@ public class LittleRed extends AbstractAllyMonster
         atb(new RollMoveAction(this));
     }
 
-    public void enrage() {
-        halfDead = false;
-        enraged = true;
-        isAlly = false;
-        animation.setFlip(false, false);
-        playSound("Rage", 2.0f);
-        Color color = new Color(1.0F, 1.0F, 1.0F, 0.5F);
-        ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
-        AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg
-        atb(new ShoutAction(this, DIALOG[1], 2.0F, 3.0F));
-        atb(new VFXAction(this, new InflameEffect(this), 1.0F));
-        applyToTarget(this, this, new StrengthPower(this, STRENGTH));
-        atb(new HealAction(this, this, maxHealth));
+    public void enrage(boolean gainStrAndHeal) {
+        if (isAlly) {
+            halfDead = false;
+            setPhase(ENRAGE_PHASE);
+            isAlly = false;
+            animation.setFlip(false, false);
+            playSound("Rage", 2.0f);
+            Color color = new Color(1.0F, 1.0F, 1.0F, 0.5F);
+            ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentColor", color);
+            AbstractDungeon.scene.nextRoom(AbstractDungeon.getCurrRoom()); //switches bg
+            atb(new ShoutAction(this, DIALOG[1], 2.0F, 3.0F));
+            atb(new VFXAction(this, new InflameEffect(this), 1.0F));
+            if (gainStrAndHeal) {
+                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                atb(new HealAction(this, this, maxHealth));
+            }
+            if (RuinaMod.isMultiplayerConnected()) {
+                makePowerRemovable(this, MultiplayerAllyBuff.POWER_ID);
+                atb(new RemoveSpecificPowerAction(this, this, MultiplayerAllyBuff.POWER_ID));
+            }
+        }
     }
 
     @Override
     protected void getMove(final int num) {
-        if (!enraged) {
+        if (phase == DEFAULT_PHASE) {
             if (this.lastMove(HOLLOW_POINT_SHELL)) {
                 setMoveShortcut(CATCH_BREATH);
             } else if (this.lastMove(CATCH_BREATH)) {

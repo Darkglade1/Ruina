@@ -8,10 +8,8 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
@@ -25,11 +23,14 @@ import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.eileen.yesodCards.FloodingBullets;
 import ruina.monsters.uninvitedGuests.normal.eileen.yesodCards.Reload;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act4.DarkBargain;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
+import spireTogether.networkcore.P2P.P2PManager;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.makeUIPath;
 import static ruina.util.Wiz.*;
 
 public class Yesod extends AbstractAllyCardMonster
@@ -46,16 +47,10 @@ public class Yesod extends AbstractAllyCardMonster
     public final int ENERGY = 1;
     public final int DRAW = 1;
     public final int bulletHits = 3;
-    public final float damageBonus = 2.0f;
+    public final float initialDamageBonus = 2.0f;
     public final float damageGrowth = 0.5f;
-    public float currentDamageBonus = damageBonus;
-
-    public static final String POWER_ID = makeID("DarkBargain");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("YesodIcon.png"));
+    public float currentDamageBonus = initialDamageBonus;
+    public float currDamageGrowth = damageGrowth;
 
     public Yesod() {
         this(0.0f, 0.0f);
@@ -90,22 +85,24 @@ public class Yesod extends AbstractAllyCardMonster
                 target = (Eileen)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (target == adp() && damageAmount <= 0 && info.type == DamageInfo.DamageType.NORMAL) {
-                    flash();
-                    currentDamageBonus += damageGrowth;
-                    updateDescription();
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + currentDamageBonus + POWER_DESCRIPTIONS[1] + damageGrowth + POWER_DESCRIPTIONS[2];
-            }
-        });
+        if (RuinaMod.isMultiplayerConnected()) {
+            currDamageGrowth = damageGrowth / P2PManager.GetPlayerCount();
+        }
+        addPower(new DarkBargain(this));
         super.usePreBattleAction();
+
+        if (RuinaMod.isMultiplayerConnected()) {
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    AbstractPower darkBargain = getPower(DarkBargain.POWER_ID);
+                    if (darkBargain != null) {
+                        darkBargain.updateDescription();
+                    }
+                    this.isDone = true;
+                }
+            });
+        }
     }
 
     @Override
@@ -127,6 +124,9 @@ public class Yesod extends AbstractAllyCardMonster
                 int[] damageArray = calcMassAttack(info);
                 for (int i = 0; i < damageArray.length - 1; i++) {
                     damageArray[i] *= currentDamageBonus;
+                    if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerAllyBuff.POWER_ID)) {
+                        damageArray[i] *= (1.0f + ((float)getPower(MultiplayerAllyBuff.POWER_ID).amount / 100));
+                    }
                 }
                 for (int i = 0; i < multiplier; i++) {
                     rangeAnimation(target);
@@ -145,9 +145,9 @@ public class Yesod extends AbstractAllyCardMonster
     @Override
     protected void getMove(final int num) {
         if (lastMove(FLOODING_BULLETS)) {
-            setMoveShortcut(RELOAD, cardList.get(RELOAD));
+            setMoveShortcut(RELOAD);
         } else {
-            setMoveShortcut(FLOODING_BULLETS, cardList.get(FLOODING_BULLETS));
+            setMoveShortcut(FLOODING_BULLETS);
         }
     }
 

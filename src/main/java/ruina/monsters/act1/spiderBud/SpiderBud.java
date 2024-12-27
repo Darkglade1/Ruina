@@ -2,15 +2,13 @@ package ruina.monsters.act1.spiderBud;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.EntanglePower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act1.Hunt;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -27,15 +25,9 @@ public class SpiderBud extends AbstractRuinaMonster
     private static final byte COCOON = 1;
     private static final byte CATCHING_FOOD = 2;
 
-    private boolean enraged = false;
-    private int currentMove = PROTECTIVE_INSTINCTS;
+    public final int ENRAGE_PHASE = 2;
 
-    private final int BLOCK = calcAscensionTankiness(4);
-
-    public static final String POWER_ID = makeID("Hunt");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    private final int BLOCK = calcAscensionTankiness(5);
 
     public SpiderBud() {
         this(0.0f, 0.0f);
@@ -53,20 +45,7 @@ public class SpiderBud extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         playSound("SpiderDown");
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void onSpecificTrigger() {
-                if (!enraged) {
-                    flash();
-                    enraged = true;
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new Hunt(this));
     }
 
     @Override
@@ -79,20 +58,19 @@ public class SpiderBud extends AbstractRuinaMonster
                     block(mo, BLOCK);
                 }
                 resetIdle();
-                currentMove = COCOON;
                 break;
             }
             case COCOON: {
                 debuffAnimation(adp());
                 applyToTarget(adp(), this, new EntanglePower(adp()));
                 resetIdle();
-                currentMove = PROTECTIVE_INSTINCTS;
                 break;
             }
             case CATCHING_FOOD: {
                 attackAnimation(adp());
                 dmg(adp(), info);
                 resetIdle(1.0f);
+                setPhase(DEFAULT_PHASE);
                 break;
             }
         }
@@ -101,11 +79,12 @@ public class SpiderBud extends AbstractRuinaMonster
 
     @Override
     protected void getMove(final int num) {
-        if (enraged || onlyEnemyAlive()) {
+        if (this.phase == ENRAGE_PHASE || onlyEnemyAlive()) {
             setMoveShortcut(CATCHING_FOOD);
-            enraged = false;
+        } else if (lastMoveIgnoringMove(PROTECTIVE_INSTINCTS, CATCHING_FOOD)){
+            setMoveShortcut(COCOON);
         } else {
-            setMoveShortcut((byte) currentMove);
+            setMoveShortcut(PROTECTIVE_INSTINCTS);
         }
     }
 

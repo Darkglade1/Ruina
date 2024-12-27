@@ -2,22 +2,16 @@ package ruina.monsters.act2;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
-import ruina.powers.InvisibleEnergyPower;
+import ruina.powers.act2.Heart;
+import ruina.powers.act2.InvisibleEnergyPower;
 import ruina.util.DetailedIntent;
 import ruina.vfx.BloodSplatter;
 
@@ -40,11 +34,6 @@ public class Woodsman extends AbstractRuinaMonster
     private final int STATUS = calcAscensionSpecial(1);
     private final int DEBUFF = calcAscensionSpecial(2);
 
-    public static final String HEART_POWER_ID = makeID("Heart");
-    public static final PowerStrings HEARTPowerStrings = CardCrawlGame.languagePack.getPowerStrings(HEART_POWER_ID);
-    public static final String HEART_POWER_NAME = HEARTPowerStrings.NAME;
-    public static final String[] HEART_POWER_DESCRIPTIONS = HEARTPowerStrings.DESCRIPTIONS;
-
     public Woodsman() {
         this(0.0f, 0.0f);
     }
@@ -53,36 +42,15 @@ public class Woodsman extends AbstractRuinaMonster
         super(ID, ID, 40, -5.0F, 0, 230.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Woodsman/Spriter/Woodsman.scml"));
         setHp(calcAscensionTankiness(140), calcAscensionTankiness(148));
-        addMove(STRIKE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10), 2, true);
-        addMove(LUMBER, Intent.ATTACK, calcAscensionDamage(4), 4, true);
+        addMove(STRIKE, Intent.ATTACK_DEBUFF, calcAscensionDamage(10), 2);
+        addMove(LUMBER, Intent.ATTACK, calcAscensionDamage(4), 4);
         addMove(PULSE, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
     }
 
     @Override
     public void usePreBattleAction() {
-        applyToTarget(adp(), adp(), new InvisibleEnergyPower(adp(), ENERGY_GAIN));
-        applyToTarget(this, this, new AbstractLambdaPower(HEART_POWER_NAME, HEART_POWER_ID, AbstractPower.PowerType.BUFF, false, this, STRENGTH) {
-            @Override
-            public void atEndOfRound() {
-                int str = EnergyPanel.totalCount * amount;
-                if (str > 0) {
-                    applyToTarget(owner, owner, new StrengthPower(owner, str));
-                }
-            }
-
-            public void onRemove() {
-                atb(new RemoveSpecificPowerAction(adp(), adp(), InvisibleEnergyPower.POWER_ID));
-            }
-
-            @Override
-            public void updateDescription() {
-                description = HEART_POWER_DESCRIPTIONS[0];
-                for (int i = 0; i < ENERGY_GAIN; i++) {
-                    description += " [E]";
-                }
-                description += HEART_POWER_DESCRIPTIONS[1] + amount + HEART_POWER_DESCRIPTIONS[2];
-            }
-        });
+        applyToTarget(adp(), this, new InvisibleEnergyPower(adp(), ENERGY_GAIN));
+        applyToTarget(this, this, new Heart(this, STRENGTH, ENERGY_GAIN));
     }
 
     @Override
@@ -149,7 +117,7 @@ public class Woodsman extends AbstractRuinaMonster
         if (!this.lastMove(PULSE) && !this.lastMoveBefore(PULSE)) {
             possibilities.add(PULSE);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
     }
 

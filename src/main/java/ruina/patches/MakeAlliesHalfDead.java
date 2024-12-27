@@ -10,11 +10,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CtBehavior;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.monsters.act2.BadWolf;
-import ruina.monsters.act3.priceOfSilence.PriceOfSilence;
+import ruina.powers.act3.TickingTime;
 
 import static ruina.util.Wiz.atb;
-import static ruina.util.Wiz.att;
 
 @SpirePatch(
         clz = GameActionManager.class,
@@ -43,27 +41,10 @@ public class MakeAlliesHalfDead {
                             });
                         }
                     }
-                    atb(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            if (mo.hasPower(BadWolf.SKULK_POWER_ID)) {
-                                att(new AbstractGameAction() {
-                                    @Override
-                                    public void update() {
-                                        mo.halfDead = true;
-                                        this.isDone = true;
-                                    }
-                                });
-                            }
-                            this.isDone = true;
-                        }
-                    });
-
-                    AbstractPower power = mo.getPower(PriceOfSilence.POWER_ID);
+                    AbstractPower power = mo.getPower(TickingTime.POWER_ID);
                     if (power != null) {
                         power.amount = 0;
                     }
-
                 }
             }
         }

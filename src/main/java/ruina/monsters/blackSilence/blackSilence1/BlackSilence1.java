@@ -1,32 +1,27 @@
 package ruina.monsters.blackSilence.blackSilence1;
 
 import actlikeit.dungeons.CustomDungeon;
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.blackSilence.blackSilence1.cards.*;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
+import ruina.powers.act5.KillingIntent;
+import ruina.powers.act5.Orlando;
 import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.util.Wiz.*;
 
@@ -83,16 +78,6 @@ public class BlackSilence1 extends AbstractCardMonster {
     private final ArrayList<Byte> movepool = new ArrayList<>();
     private byte previewIntent = -1;
 
-    public static final String POWER_ID = makeID("Orlando");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
-    public static final String KILLING_POWER_ID = makeID("KillingIntent");
-    public static final PowerStrings KillingpowerStrings = CardCrawlGame.languagePack.getPowerStrings(KILLING_POWER_ID);
-    public static final String KILLING_POWER_NAME = KillingpowerStrings.NAME;
-    public static final String[] KILLING_POWER_DESCRIPTIONS = KillingpowerStrings.DESCRIPTIONS;
-
     public BlackSilence1() {
         this(0.0f, 0.0f);
     }
@@ -113,7 +98,18 @@ public class BlackSilence1 extends AbstractCardMonster {
         addMove(RANGA, Intent.ATTACK_DEBUFF, RANGA_DAMAGE, RANGA_HITS);
         addMove(MACE, Intent.ATTACK_BUFF, MACE_DAMAGE, MACE_HITS);
         addMove(FURIOSO, Intent.ATTACK_DEBUFF, furiosoDamage, furiosoHits);
-        populateCards();
+
+        cardList.add(new Crystal(this));
+        cardList.add(new Wheels(this));
+        cardList.add(new Durandal(this));
+        cardList.add(new Allas(this));
+        cardList.add(new Gun(this));
+        cardList.add(new Mook(this));
+        cardList.add(new OldBoys(this));
+        cardList.add(new Ranga(this));
+        cardList.add(new Mace(this));
+        cardList.add(new Furioso(this));
+
         populateMovepool();
 
         if (AbstractDungeon.ascensionLevel >= 19) {
@@ -132,32 +128,8 @@ public class BlackSilence1 extends AbstractCardMonster {
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland1");
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, 0) {
-            @Override
-            public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-                this.amount++;
-                if (this.amount >= CARDS_PER_TURN) {
-                    flash();
-                    this.amount = 0;
-                    if (!owner.hasPower(StunMonsterPower.POWER_ID)) {
-                        takeTurn();
-                    }
-                } else {
-                    flashWithoutSound();
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + CARDS_PER_TURN + POWER_DESCRIPTIONS[1];
-            }
-        });
-        applyToTarget(this, this, new AbstractLambdaPower(KILLING_POWER_NAME, KILLING_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = KILLING_POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new Orlando(this, CARDS_PER_TURN));
+        applyToTarget(this, this, new KillingIntent(this));
     }
 
     private boolean isPlayerTurn() {
@@ -409,7 +381,7 @@ public class BlackSilence1 extends AbstractCardMonster {
     protected void getMove(final int num) {
         boolean rollAgain = false;
         if (previewIntent >= 0) {
-            setMoveShortcut(previewIntent, MOVES[previewIntent], cardList.get(previewIntent));
+            setMoveShortcut(previewIntent);
         } else {
             rollAgain = true;
         }
@@ -419,7 +391,7 @@ public class BlackSilence1 extends AbstractCardMonster {
         } else {
             previewIntent = movepool.remove(0);
         }
-        setAdditionalMoveShortcut(previewIntent, moveHistory, cardList.get(previewIntent));
+        setAdditionalMoveShortcut(previewIntent, moveHistory);
         for (AdditionalIntent additionalIntent : additionalIntents) {
             additionalIntent.transparent = true;
             additionalIntent.usePrimaryIntentsColor = false;
@@ -438,23 +410,10 @@ public class BlackSilence1 extends AbstractCardMonster {
         movepool.add(MOOK);
         movepool.add(OLD_BOY);
         movepool.add(RANGA);
-        Collections.shuffle(movepool, AbstractDungeon.monsterRng.random);
+        Collections.shuffle(movepool, AbstractDungeon.aiRng.random);
         //make sure these below can't be used right before furioso
-        movepool.add(AbstractDungeon.monsterRng.random(movepool.size() - 3), DURANDAL);
-        movepool.add(AbstractDungeon.monsterRng.random(movepool.size() - 3), MACE);
-    }
-
-    private void populateCards() {
-        cardList.add(new Crystal(this));
-        cardList.add(new Wheels(this));
-        cardList.add(new Durandal(this));
-        cardList.add(new Allas(this));
-        cardList.add(new Gun(this));
-        cardList.add(new Mook(this));
-        cardList.add(new OldBoys(this));
-        cardList.add(new Ranga(this));
-        cardList.add(new Mace(this));
-        cardList.add(new Furioso(this));
+        movepool.add(AbstractDungeon.aiRng.random(movepool.size() - 3), DURANDAL);
+        movepool.add(AbstractDungeon.aiRng.random(movepool.size() - 3), MACE);
     }
 
     private void attackAnimation(AbstractCreature enemy) {

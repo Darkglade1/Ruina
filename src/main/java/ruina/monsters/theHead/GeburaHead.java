@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
+import ruina.powers.act4.GeburaRedMist;
 import ruina.powers.act5.GeburaProwess;
 import ruina.vfx.WaitEffect;
 
@@ -20,17 +21,19 @@ import static ruina.util.Wiz.atb;
 public class GeburaHead extends Gebura {
 
     private boolean usedPreBattleAction = false;
+    public boolean shouldIncrementPower;
 
-    public GeburaHead(final float x, final float y) {
+    public GeburaHead(final float x, final float y, boolean shouldIncrementPower) {
         super(x, y);
         this.setHp(calcAscensionTankiness(350));
+        this.shouldIncrementPower = shouldIncrementPower;
     }
 
     @Override
     public void usePreBattleAction() {
         if (!usedPreBattleAction) {
             usedPreBattleAction = true;
-            applyToTarget(this, this, new GeburaProwess(this, 10, 10));
+            addPower(new GeburaProwess(this, 10, 10));
             super.usePreBattleAction();
             for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (mo instanceof Zena) {
@@ -42,8 +45,8 @@ public class GeburaHead extends Gebura {
             atb(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    AbstractPower power = getPower(POWER_ID);
-                    if (power != null) {
+                    AbstractPower power = getPower(GeburaRedMist.POWER_ID);
+                    if (power != null && shouldIncrementPower) {
                         if (power instanceof TwoAmountPower) {
                             ((TwoAmountPower) power).amount2++;
                             power.updateDescription(); //stop her power from ticking down too early
@@ -70,21 +73,8 @@ public class GeburaHead extends Gebura {
     public void dialogue() {
     }
 
-    protected void manifestEGO() {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                playSound("RedMistChange");
-                this.isDone = true;
-            }
-        });
-        manifestedEGO = true;
-        phase = 2;
-        resetIdle(0.0f);
-        AbstractPower strength = getPower(StrengthPower.POWER_ID);
-        if (strength != null) {
-            applyToTarget(this, this, new StrengthPower(this, strength.amount));
-        }
+    protected void changeBGM() {
+        // don't change BGM for Head fight
     }
 
     @Override

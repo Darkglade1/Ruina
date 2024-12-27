@@ -1,18 +1,12 @@
 package ruina.monsters.uninvitedGuests.normal.puppeteer;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -22,7 +16,8 @@ import ruina.monsters.uninvitedGuests.normal.puppeteer.chesedCards.BattleCommand
 import ruina.monsters.uninvitedGuests.normal.puppeteer.chesedCards.Concentration;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.chesedCards.Disposal;
 import ruina.monsters.uninvitedGuests.normal.puppeteer.chesedCards.EnergyShield;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act4.FinishingTouch;
+import ruina.powers.act4.Mark;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
 
@@ -53,16 +48,6 @@ public class Chesed extends AbstractAllyCardMonster
     private static final float DISPOSAL_HP_THRESHOLD = 0.25f;
 
     public Puppeteer puppeteer;
-
-    public static final String FINISHING_POWER_ID = RuinaMod.makeID("FinishingTouch");
-    public static final PowerStrings FINISHINGPowerStrings = CardCrawlGame.languagePack.getPowerStrings(FINISHING_POWER_ID);
-    public static final String FINISHING_POWER_NAME = FINISHINGPowerStrings.NAME;
-    public static final String[] FINISHING_POWER_DESCRIPTIONS = FINISHINGPowerStrings.DESCRIPTIONS;
-
-    public static final String MARK_POWER_ID = RuinaMod.makeID("Mark");
-    public static final PowerStrings MARKPowerStrings = CardCrawlGame.languagePack.getPowerStrings(MARK_POWER_ID);
-    public static final String MARK_POWER_NAME = MARKPowerStrings.NAME;
-    public static final String[] MARK_POWER_DESCRIPTIONS = MARKPowerStrings.DESCRIPTIONS;
 
     public Chesed() {
         this(0.0f, 0.0f);
@@ -100,79 +85,7 @@ public class Chesed extends AbstractAllyCardMonster
                 target = puppeteer = (Puppeteer)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(FINISHING_POWER_NAME, FINISHING_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            boolean appliedThisTurn = false;
-            @Override
-            public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (info.type == DamageInfo.DamageType.NORMAL && target != owner && target != adp() && !appliedThisTurn) {
-                    appliedThisTurn = true;
-                    applyToTarget(target, owner, new AbstractLambdaPower(MARK_POWER_NAME, MARK_POWER_ID, PowerType.DEBUFF, true, target, MARK_DURATION) {
-
-                        boolean justApplied = true;
-
-                        @Override
-                        public float atDamageReceive(float damage, DamageInfo.DamageType type) {
-                            //handles attack damage
-                            if (type == DamageInfo.DamageType.NORMAL) {
-                                return calculateDamageTakenAmount(damage, type);
-                            } else {
-                                return damage;
-                            }
-                        }
-
-                        private float calculateDamageTakenAmount(float damage, DamageInfo.DamageType type) {
-                            return damage * (1 + MARK_BOOST);
-                        }
-
-                        @Override
-                        public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-                            //handles non-attack damage
-                            if (info.type != DamageInfo.DamageType.NORMAL) {
-                                return (int) calculateDamageTakenAmount(damageAmount, info.type);
-                            } else {
-                                return damageAmount;
-                            }
-                        }
-
-                        @Override
-                        public void stackPower(int stackAmount) {
-                            justApplied = true;
-                        }
-
-                        @Override
-                        public void atEndOfRound() {
-                            if (justApplied) {
-                                justApplied = false;
-                            } else {
-                                atb(new ReducePowerAction(owner, owner, this, 1));
-                            }
-                        }
-
-                        @Override
-                        public void updateDescription() {
-                            this.description = MARK_POWER_DESCRIPTIONS[0] + (int) (MARK_BOOST * 100) + MARK_POWER_DESCRIPTIONS[1] + MARK_DURATION + MARK_POWER_DESCRIPTIONS[2];
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void atEndOfRound() {
-                appliedThisTurn = false;
-                addToBot(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        checkDisposalCanUse();
-                        this.isDone = true;
-                    }
-                });
-            }
-
-            @Override
-            public void updateDescription() {
-                description = FINISHING_POWER_DESCRIPTIONS[0] + MARK_DURATION + FINISHING_POWER_DESCRIPTIONS[1] + (int) (MARK_BOOST * 100) + FINISHING_POWER_DESCRIPTIONS[2];
-            }
-        });
+        addPower(new FinishingTouch(this, MARK_DURATION, MARK_BOOST));
         super.usePreBattleAction();
     }
 
@@ -229,7 +142,7 @@ public class Chesed extends AbstractAllyCardMonster
                         @Override
                         public void update() {
                             info.applyPowers(Chesed.this, puppeteer);
-                            if (puppeteer.hasPower(MARK_POWER_ID)) {
+                            if (puppeteer.hasPower(Mark.POWER_ID)) {
                                 info.output *= 2;
                             }
                             if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {
@@ -265,16 +178,16 @@ public class Chesed extends AbstractAllyCardMonster
         if (possibilities.isEmpty()) {
             possibilities.add(CONCENTRATE);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, cardList.get(move));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+        setMoveShortcut(move);
     }
 
     public void checkDisposalCanUse() {
         if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {
             if (puppeteer.puppet.isDeadOrEscaped() && puppeteer.puppet.nextMove == Puppet.REVIVE) {
-                if (puppeteer.hasPower(MARK_POWER_ID)) {
+                if (puppeteer.hasPower(Mark.POWER_ID)) {
                     att(new TalkAction(this, DIALOG[2]));
-                    setMoveShortcut(DISPOSAL, cardList.get(DISPOSAL));
+                    setMoveShortcut(DISPOSAL);
                     createIntent();
                 }
             }
@@ -294,7 +207,7 @@ public class Chesed extends AbstractAllyCardMonster
     protected float getAdditionalMultiplier() {
         if (nextMove == DISPOSAL) {
             float multiplier = 1;
-            if (puppeteer.hasPower(MARK_POWER_ID)) {
+            if (puppeteer.hasPower(Mark.POWER_ID)) {
                 multiplier *= 2;
             }
             if (puppeteer.currentHealth <= (int)(puppeteer.maxHealth * DISPOSAL_HP_THRESHOLD)) {

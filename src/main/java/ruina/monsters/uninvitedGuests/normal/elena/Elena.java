@@ -3,26 +3,21 @@ package ruina.monsters.uninvitedGuests.normal.elena;
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.elena.elenaCards.*;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Bleed;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.powers.Protection;
+import ruina.powers.act4.BloodRed;
 import ruina.util.AdditionalIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.ThirstEffect;
@@ -51,11 +46,6 @@ public class Elena extends AbstractCardMonster
     public final int INJECT_STR = calcAscensionSpecial(1);
     public VermilionCross vermilionCross;
 
-    public static final String POWER_ID = makeID("BloodRed");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     public Elena() {
         this(0.0f, 0.0f);
     }
@@ -67,7 +57,7 @@ public class Elena extends AbstractCardMonster
         this.setHp(calcAscensionTankiness(500));
 
         addMove(CIRCULATION, Intent.BUFF);
-        addMove(SANGUINE_NAILS, Intent.ATTACK, calcAscensionDamage(9), sanguineNailsHits, true);
+        addMove(SANGUINE_NAILS, Intent.ATTACK, calcAscensionDamage(9), sanguineNailsHits);
         addMove(SIPHON, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
         addMove(BLOODSPREADING, Intent.ATTACK, calcAscensionDamage(38));
         addMove(INJECT, Intent.STRONG_DEBUFF);
@@ -99,20 +89,7 @@ public class Elena extends AbstractCardMonster
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                if (info.type == DamageInfo.DamageType.NORMAL && info.owner == owner && damageAmount > 0) {
-                    flash();
-                    att(new HealAction(owner, owner, damageAmount));
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        applyToTarget(this, this, new BloodRed(this));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
     }
 
@@ -226,8 +203,8 @@ public class Elena extends AbstractCardMonster
         if (!this.lastMove(CIRCULATION) && !this.lastMoveBefore(CIRCULATION)) {
             possibilities.add(CIRCULATION);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+        setMoveShortcut(move);
     }
 
     @Override
@@ -246,8 +223,8 @@ public class Elena extends AbstractCardMonster
         if (!this.lastMove(SANGUINE_NAILS, moveHistory) && !this.lastMoveBefore(SANGUINE_NAILS, moveHistory)) {
             possibilities.add(SANGUINE_NAILS);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override

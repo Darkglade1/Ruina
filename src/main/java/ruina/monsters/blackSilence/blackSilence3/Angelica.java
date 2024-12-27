@@ -72,6 +72,7 @@ public class Angelica extends AbstractCardMonster {
         addMove(WALTZ, Intent.ATTACK, waltzDamage, waltzHits);
         addMove(ASHENBOND, Intent.DEFEND_BUFF);
         addMove(SOUL_LINK_REVIVAL, Intent.UNKNOWN);
+
         cardList.add(new ZelkovaWorkshop(this));
         cardList.add(new AllasWorkshop(this));
         cardList.add(new AtelierLogic(this));
@@ -203,7 +204,7 @@ public class Angelica extends AbstractCardMonster {
     @Override
     protected void getMove(final int num) {
         if (turn <= 0) {
-            setMoveShortcut(WALTZ, MOVES[WALTZ], cardList.get(WALTZ).makeStatEquivalentCopy());
+            setMoveShortcut(WALTZ);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(ZELKOVA) && !this.lastMoveBefore(ZELKOVA)) {
@@ -215,13 +216,13 @@ public class Angelica extends AbstractCardMonster {
             if (!this.lastMove(ATELIER) && !this.lastMoveBefore(ATELIER)) {
                 possibilities.add(ATELIER);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+            setMoveShortcut(move);
         }
     }
 
     public void setBondIntent() {
-        setMoveShortcut(ASHENBOND, MOVES[ASHENBOND], cardList.get(ASHENBOND).makeStatEquivalentCopy());
+        setMoveShortcut(ASHENBOND);
         createIntent();
     }
 

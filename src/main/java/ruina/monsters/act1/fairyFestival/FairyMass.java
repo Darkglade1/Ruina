@@ -2,9 +2,7 @@ package ruina.monsters.act1.fairyFestival;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.MinionPower;
@@ -28,11 +26,6 @@ public class FairyMass extends AbstractRuinaMonster {
 
     private final int BLEED = 1;
     private final float CONSUME_THRESHOLD = 0.33f;
-
-    public static final String POWER_ID = makeID("Meal");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private FairyQueen queen;
     private final int consumeThreshold;
@@ -95,7 +88,7 @@ public class FairyMass extends AbstractRuinaMonster {
         if (!this.lastTwoMoves(WINGBEATS)) {
             possibilities.add(WINGBEATS);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
     }
 
@@ -114,17 +107,6 @@ public class FairyMass extends AbstractRuinaMonster {
 
     private void attackAnimation(AbstractCreature enemy) {
         animationAction("Attack", "FairyMinionAtk", enemy, this);
-    }
-
-    @Override
-    public void die(boolean triggerRelics) {
-        super.die(triggerRelics);
-        for (int i = 0; i < queen.minions.length; i++) {
-            if (queen.minions[i] == this) {
-                queen.minions[i] = null;
-                break;
-            }
-        }
     }
 
 }

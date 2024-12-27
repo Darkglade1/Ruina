@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import javassist.CtBehavior;
 import ruina.cardmods.BrainwashMod;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.monsters.act2.BadWolf;
 import ruina.monsters.theHead.Zena;
 import ruina.monsters.uninvitedGuests.normal.clown.Tiph;
 
@@ -34,22 +33,15 @@ public class MakeAlliesUntargetable {
                 hoveredMonster[0] = null;
             }
         }
-
         if (hoveredMonster[0] instanceof AbstractAllyMonster) {
             AbstractAllyMonster ally = (AbstractAllyMonster)hoveredMonster[0];
             if (ally.isAlly && !ally.isTargetableByPlayer) {
                 hoveredMonster[0] = null;
             }
         }
-
-        if (hoveredMonster[0] != null && hoveredMonster[0].hasPower(BadWolf.SKULK_POWER_ID)) {
-            hoveredMonster[0] = null;
-        }
-
         if (hoveredMonster[0] != null && hoveredMonster[0] instanceof Zena && hoveredMonster[0].halfDead) {
             hoveredMonster[0] = null;
         }
-
     }
     private static class Locator extends SpireInsertLocator {
         @Override

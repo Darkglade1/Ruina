@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.ScoreBonusStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -48,16 +47,13 @@ import static ruina.util.Wiz.*;
 public class Zena extends AbstractCardMonster {
     public static final String ID = makeID(Zena.class.getSimpleName());
 
-    private static final byte LINE = 0;
-    private static final byte THIN_LINE = 1;
-    private static final byte THICK_LINE = 2;
-    private static final byte SHOCKWAVE = 3;
-    private static final byte BIRDCAGE = 4;
-    private static final byte NONE = 5;
+    protected static final byte LINE = 0;
+    protected static final byte THIN_LINE = 1;
+    protected static final byte THICK_LINE = 2;
+    protected static final byte SHOCKWAVE = 3;
+    protected static final byte BIRDCAGE = 4;
+    protected static final byte NONE = 5;
 
-
-    private static final int MASS_ATTACK_COOLDOWN = 3;
-    private int massAttackCooldown = MASS_ATTACK_COOLDOWN;
 
     public final int BLOCK = calcAscensionTankiness(45);
     public final int DEBUFF = 2;
@@ -65,6 +61,8 @@ public class Zena extends AbstractCardMonster {
     public final int THICK_LINE_DEBUFF = 2;
     public final int BIRDCAGE_HITS = 2;
     public final int BIRDCAGE_FAIRY = 3;
+    public final int BACK_ATTACK_AMT = 50;
+    public final float playerX = 1650.0f * Settings.scale;
 
     public GeburaHead gebura;
     public BinahHead binah;
@@ -79,29 +77,16 @@ public class Zena extends AbstractCardMonster {
 
     public PHASE currentPhase;
     private boolean usedPreBattleAction = false;
-
-    public static final String POWER_ID = makeID("AnArbiter");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     private static final ArrayList<Texture> shockwave = new ArrayList<>();
 
-    public Zena() {
-        this(0.0f, 0.0f, PHASE.PHASE1);
-    }
-
     public Zena(final float x, final float y) {
-        this(x, y, PHASE.PHASE1);
-    }
-
-    public Zena(final float x, final float y, PHASE phase) {
         super(ID, ID, 999999, -5.0F, 0, 160.0f, 245.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Zena/Spriter/Zena.scml"));
         setNumAdditionalMoves(1);
         numAdditionalMoves = 0;
-
-        currentPhase = phase;
+        currentPhase = PHASE.PHASE1;
         this.setHp(calcAscensionTankiness(5000));
+
         addMove(LINE, Intent.ATTACK_DEFEND, calcAscensionDamage(22));
         addMove(THIN_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(20));
         addMove(THICK_LINE, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
@@ -145,13 +130,13 @@ public class Zena extends AbstractCardMonster {
     public void usePreBattleAction() {
         if (!usedPreBattleAction) {
             usedPreBattleAction = true;
-        }
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Baral) {
-                baral = (Baral) mo;
+            for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (mo instanceof Baral) {
+                    baral = (Baral) mo;
+                }
             }
+            this.powers.add(new InvisibleBarricadePower(this));
         }
-        this.powers.add(new InvisibleBarricadePower(this));
     }
 
     @Override
@@ -227,13 +212,6 @@ public class Zena extends AbstractCardMonster {
                     }
                 });
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        massAttackCooldown = MASS_ATTACK_COOLDOWN + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case BIRDCAGE: {
@@ -290,13 +268,11 @@ public class Zena extends AbstractCardMonster {
     @Override
     public void takeTurn() {
         super.takeTurn();
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                massAttackCooldown--;
-                this.isDone = true;
-            }
-        });
+        handlePreEvent();
+        atb(new RollMoveAction(this));
+    }
+
+    protected void handlePreEvent() {
         if (currentPhase.equals(Zena.PHASE.PHASE1)) {
             switch (GameActionManager.turn) {
                 case 4:
@@ -327,7 +303,6 @@ public class Zena extends AbstractCardMonster {
                         }
                     });
                     waitAnimation(1.5f);
-                    float playerX = 1650.0f * Settings.scale;
                     int rolandCorrectHealth = adp().currentHealth;
                     atb(new AbstractGameAction() {
                         @Override
@@ -407,11 +382,10 @@ public class Zena extends AbstractCardMonster {
                             this.isDone = true;
                         }
                     });
-                    applyToTarget(adp(), adp(), new PlayerBackAttack(adp(), 50));
+                    applyToTarget(adp(), adp(), new PlayerBackAttack(adp(), BACK_ATTACK_AMT));
                     break;
             }
         }
-        atb(new RollMoveAction(this));
     }
 
     @Override
@@ -435,8 +409,8 @@ public class Zena extends AbstractCardMonster {
         if (currentPhase == PHASE.PHASE1) {
             if (halfDead) {
                 setMoveShortcut(NONE);
-            } else if (massAttackCooldown <= 0) {
-                setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
+            } else if (threeTurnCooldownHasPassedForMove(SHOCKWAVE)) {
+                setMoveShortcut(SHOCKWAVE);
             } else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
                 if (!this.lastMove(THIN_LINE)) {
@@ -445,12 +419,12 @@ public class Zena extends AbstractCardMonster {
                 if (!this.lastMove(LINE)) {
                     possibilities.add(LINE);
                 }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+                byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+                setMoveShortcut(move);
             }
         } else {
-            if (massAttackCooldown <= 0) {
-                setMoveShortcut(SHOCKWAVE, MOVES[SHOCKWAVE], cardList.get(SHOCKWAVE).makeStatEquivalentCopy());
+            if (threeTurnCooldownHasPassedForMove(SHOCKWAVE)) {
+                setMoveShortcut(SHOCKWAVE);
             } else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
                 if (!this.lastMove(THIN_LINE)) {
@@ -459,8 +433,8 @@ public class Zena extends AbstractCardMonster {
                 if (!this.lastMove(LINE)) {
                     possibilities.add(LINE);
                 }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-                setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+                byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+                setMoveShortcut(move);
             }
         }
     }
@@ -481,8 +455,8 @@ public class Zena extends AbstractCardMonster {
         if (!this.lastMove(LINE, moveHistory) && !this.lastMoveBefore(LINE, moveHistory)) {
             possibilities.add(LINE);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, cardList.get(move).makeStatEquivalentCopy());
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override

@@ -8,20 +8,19 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.cards.Melody;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.bremen.bremenCards.*;
 import ruina.powers.InvisibleBarricadePower;
-import ruina.powers.act4.MelodyPower;
 import ruina.powers.Paralysis;
+import ruina.powers.act4.MelodyPower;
 import ruina.util.AdditionalIntent;
 
 import java.util.ArrayList;
@@ -50,19 +49,9 @@ public class Bremen extends AbstractCardMonster
     public final int BLOCK = calcAscensionTankiness(22);
     public final int MELODY_LENGTH = 3;
     public final int MELODY_LENGTH_INCREASE = 1;
-    private int currentMelodyLength = MELODY_LENGTH;
     public final int MELODY_BOSS_STR = calcAscensionSpecial(2);
     public final int MELODY_PLAYER_STR = 1;
-    public final int TRIO_COOLDOWN = 2;
-    private int cooldown = TRIO_COOLDOWN;
-    private boolean lastIntentTargetAlly = true;
-    public Melody melodyCard = new Melody();
-    private final MelodyPower melodyPower = new MelodyPower(this, MELODY_LENGTH, MELODY_PLAYER_STR, MELODY_BOSS_STR, melodyCard);
-
-    public static final String POWER_ID = makeID("Melody");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+    public final Melody melodyCard = new Melody();
 
     public Bremen() {
         this(0.0f, 0.0f);
@@ -80,6 +69,13 @@ public class Bremen extends AbstractCardMonster
         addMove(RARF, Intent.DEFEND_DEBUFF);
         addMove(TENDON, Intent.ATTACK, calcAscensionDamage(8), tendonHits);
         addMove(TRIO, Intent.ATTACK_BUFF, calcAscensionDamage(6), trioHits);
+
+        cardList.add(new EverlastingMelody(this));
+        cardList.add(new Neigh(this));
+        cardList.add(new Bawk(this));
+        cardList.add(new Rarf(this));
+        cardList.add(new Tendon(this));
+        cardList.add(new Trio(this));
     }
 
     @Override
@@ -97,9 +93,14 @@ public class Bremen extends AbstractCardMonster
             }
         }
         atb(new TalkAction(this, DIALOG[0]));
-        applyToTarget(this, this, melodyPower);
+        applyToTarget(this, this, new MelodyPower(this, MELODY_LENGTH, MELODY_PLAYER_STR, MELODY_BOSS_STR));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new StrengthPower(this, 1)); //hacky solution again LOL
+
+        AbstractPower power = getPower(MelodyPower.POWER_ID);
+        if (power instanceof MelodyPower) {
+            ((MelodyPower) power).generateSequence(); //generates a melody for late joiners in multiplayer
+        }
     }
 
     @Override
@@ -154,9 +155,7 @@ public class Bremen extends AbstractCardMonster
                     dmg(target, info);
                     resetIdle(1.0f);
                 }
-                currentMelodyLength += MELODY_LENGTH_INCREASE;
-                melodyPower.amount = currentMelodyLength;
-                cooldown = TRIO_COOLDOWN + 1;
+                applyToTarget(this, this, new MelodyPower(this, MELODY_LENGTH_INCREASE, MELODY_PLAYER_STR, MELODY_BOSS_STR));
                 break;
             }
         }
@@ -193,8 +192,7 @@ public class Bremen extends AbstractCardMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                cooldown--;
-                lastIntentTargetAlly = !lastIntentTargetAlly;
+                attackingAlly = !attackingAlly;
                 this.isDone = true;
             }
         });
@@ -203,8 +201,8 @@ public class Bremen extends AbstractCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (cooldown <= 0) {
-            setMoveShortcut(TRIO, MOVES[TRIO], getMoveCardFromByte(TRIO));
+        if (moveHistory.size() >= 2 && !lastMove(TRIO) && !lastMoveBefore(TRIO)) {
+            setMoveShortcut(TRIO);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(RARF) && !this.lastMoveBefore(RARF)) {
@@ -219,8 +217,8 @@ public class Bremen extends AbstractCardMonster
             if (!this.lastMove(TENDON) && !this.lastMoveBefore(TENDON)) {
                 possibilities.add(TENDON);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], getMoveCardFromByte(move));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+            setMoveShortcut(move);
         }
     }
 
@@ -228,7 +226,7 @@ public class Bremen extends AbstractCardMonster
     public void getAdditionalMoves(int num, int whichMove) {
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         ArrayList<Byte> possibilities = new ArrayList<>();
-        if (whichMove == 1 && !lastIntentTargetAlly) {
+        if (whichMove == 1 && !attackingAlly) {
             if (!this.lastMove(BAWK, moveHistory) && !this.lastMoveBefore(BAWK, moveHistory)) {
                 possibilities.add(BAWK);
             }
@@ -247,25 +245,14 @@ public class Bremen extends AbstractCardMonster
         if (possibilities.isEmpty()) {
             possibilities.add(NEIGH);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-        setAdditionalMoveShortcut(move, moveHistory, getMoveCardFromByte(move));
-    }
-
-    protected AbstractCard getMoveCardFromByte(Byte move) {
-        ArrayList<AbstractCard> list = new ArrayList<>();
-        list.add(new EverlastingMelody(this));
-        list.add(new Neigh(this));
-        list.add(new Bawk(this));
-        list.add(new Rarf(this));
-        list.add(new Tendon(this));
-        list.add(new Trio(this));
-        return list.get(move);
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+        setAdditionalMoveShortcut(move, moveHistory);
     }
 
     @Override
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
         if (index == 1) {
-            if (lastIntentTargetAlly) {
+            if (attackingAlly) {
                 applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
             } else {
                 applyPowersToAdditionalIntent(additionalMove, additionalIntent, adp(), null, index);

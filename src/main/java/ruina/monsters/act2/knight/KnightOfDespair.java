@@ -2,28 +2,21 @@ package ruina.monsters.act2.knight;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
-import com.megacrit.cardcrawl.actions.common.SuicideAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act2.Despair;
 import ruina.util.DetailedIntent;
+import spireTogether.patches.combatsync.ActionPatches;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.RuinaMod.makeMonsterPath;
@@ -37,17 +30,12 @@ public class KnightOfDespair extends AbstractRuinaMonster
 
     private static final byte DESPAIR = 0;
 
-    private static final int DESPAIR_LOSS = 40;
-    private static final int MAX_STABS = 3;
+    public final int DESPAIR_LOSS = RuinaMod.getMultiplayerEnemyHealthScaling(40);
     private final int STRENGTH = calcAscensionSpecial(5);
+    private static final int MAX_STABS = 3;
     private int stabCount = 0;
 
     private Sword sword;
-
-    public static final String POWER_ID = makeID("Despair");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public KnightOfDespair() {
         this(0.0f, 0.0f);
@@ -68,12 +56,7 @@ public class KnightOfDespair extends AbstractRuinaMonster
                 sword = (Sword) mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, DESPAIR_LOSS) {
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Despair(this, DESPAIR_LOSS));
     }
 
     @Override
@@ -131,8 +114,17 @@ public class KnightOfDespair extends AbstractRuinaMonster
         });
     }
 
-    public void onSwordDeath() {
-        atb(new LoseHPAction(this, this, DESPAIR_LOSS));
+    public void onSwordDeath(boolean wasFullBlocked) {
+        int hpLoss = DESPAIR_LOSS;
+        if (hasPower(Despair.POWER_ID)) {
+            hpLoss = getPower(Despair.POWER_ID).amount;
+        }
+        DamageAction damage = new DamageAction(this, new DamageInfo(adp(), hpLoss, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.NONE);
+        if (wasFullBlocked && RuinaMod.isMultiplayerConnected()) {
+            ActionPatches.markActionForNoDamageSync(damage);
+            ActionPatches.markActionForNoDataSync(damage);
+        }
+        atb(damage);
         stabCount++;
         if (stabCount > MAX_STABS) {
             stabCount = MAX_STABS;

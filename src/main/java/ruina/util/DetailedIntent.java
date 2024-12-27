@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
+import ruina.RuinaMod;
+import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -145,7 +147,11 @@ public class DetailedIntent {
 
     public DetailedIntent(AbstractMonster monster, int amount, Texture icon, TargetType target) {
         this.monster = monster;
-        this.amount = amount;
+        if (RuinaMod.isMultiplayerConnected() && icon == BLOCK_TEXTURE) {
+            this.amount = RuinaMod.getMultiplayerPlayerCountScaling(amount); // auto adjust for multiplayer's automatic block scaling
+        } else {
+            this.amount = amount;
+        }
         this.icon = icon;
         this.target = target;
         bob = ReflectionHacks.getPrivate(monster, AbstractMonster.class, "bobEffect");

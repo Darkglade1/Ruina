@@ -85,7 +85,7 @@
   },
   "${ModID}:Hunter": {
     "NAME": "Hunter in the Dark",
-    "DESCRIPTIONS": ["The first time this creature is below #b", "% HP at end of round, it gains #b", " #yStrength and becomes #yUntargetable and #yImmune to damage for #b", " turns.", " turn."]
+    "DESCRIPTIONS": ["The first time this creature is below #b", "% HP at end of round, it gains #b", " #yStrength and #b", " #yIntangible."]
   },
   "${ModID}:Skulk": {
     "NAME": "Skulk",
@@ -113,7 +113,7 @@
   },
   "${ModID}:BlindFury": {
     "NAME": "Blind Fury",
-    "DESCRIPTIONS": ["After this creature loses #b", " more HP, it will use a #rpowerful attack next turn that targets ALL other characters (including you)."]
+    "DESCRIPTIONS": ["Whenever this creature loses #b", " HP, it will use a #rpowerful attack next turn that targets ALL other characters (including you)."]
   },
   "${ModID}:SwordCounter": {
     "NAME": "Tears",
@@ -654,5 +654,49 @@
   "${ModID}:WhiteNightBlessing": {
     "NAME": "Blessings",
     "DESCRIPTIONS": ["Cards you play become #yBlessed. #yBlessed cards deal more damage and gain more #yBlock. NL After #b", " more cards are played, this creature #yawakens at end of round."]
+  },
+  "${ModID}:MultiplayerAllyBuff": {
+    "NAME": "Multiplayer Adjustment",
+    "DESCRIPTIONS": ["Deals #b", "% more damage to enemies. NL Receives #b", "% more damage from enemies."]
+  },
+  "${ModID}:MultiplayerEnemyBuff": {
+    "NAME": "Multiplayer Adjustment",
+    "DESCRIPTIONS": ["Deals #b", "% more damage to other monsters."]
+  },
+  "${ModID}:FearMultiplayer": {
+    "NAME": "Fear",
+    "DESCRIPTIONS": ["Whenever #yplayers collectively play #b", " #yAttacks in a single turn, this creature loses #b", " #yStrength this turn."]
+  },
+  "${ModID}:ExpressionMultiplayer": {
+    "NAME": "Expression",
+    "DESCRIPTIONS": ["Whenever #yplayers collectively play #b", " cards, this creature changes its intent."]
+  },
+  "${ModID}:MimicryMultiplayer": {
+    "NAME": "Mimicry",
+    "DESCRIPTIONS": ["Deals additional attack damage equal to the base damage of the last #yAttack played this combat by a #yplayer."]
+  },
+  "${ModID}:EasilyDistractedMultiplayer": {
+    "NAME": "Easily Distracted",
+    "DESCRIPTIONS": ["When #yplayers collectively attack this creature #b", " times in a single turn, this creature #rcancels one of its intents for the turn."]
+  },
+  "${ModID}:CourageMultiplayer": {
+    "NAME": "Courage",
+    "DESCRIPTIONS": ["Whenever #yplayers collectively attack the ", " #b", " times in a single turn, this creature gains #b", " #yStrength this turn. NL NL If the #yRoad #yHome dies, this creature will intend to #yflee."]
+  },
+  "${ModID}:SenselessWrathMultiplayer": {
+    "NAME": "Senseless Wrath",
+    "DESCRIPTIONS": ["Every other #pdebuff applied to this creature by #yplayers or other enemies is #ynegated."]
+  },
+  "${ModID}:CounterAttackMultiplayer": {
+    "NAME": "Counter Attack",
+    "DESCRIPTIONS": ["Whenever #yplayers collectively play #b", " #yAttacks this turn, this creature will #yCounter #yAttack ALL #yplayers. If this effect did not trigger at least once this turn, will use a #rpowerful attack next turn."]
+  },
+  "${ModID}:EnchantedMultiplayer": {
+    "NAME": "Enchanted",
+    "DESCRIPTIONS": ["This creature's attacks deal #b", " damage. NL #yEnchanted is #gremoved after #yplayers collectively cause this creature to lose #b", " more HP."]
+  },
+  "${ModID}:WhiteNightBlessingMultiplayer": {
+    "NAME": "Blessings",
+    "DESCRIPTIONS": ["Cards #yplayers play become #yBlessed. #yBlessed cards deal more damage and gain more #yBlock. NL After #b", " more cards are collectively played, this creature #yawakens at end of round."]
   }
 }

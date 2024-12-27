@@ -3,21 +3,14 @@ package ruina.monsters.uninvitedGuests.normal.elena;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -25,17 +18,12 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
 import ruina.monsters.AbstractAllyCardMonster;
-import ruina.monsters.AbstractCardMonster;
-import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Chain;
 import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Fairy;
 import ruina.monsters.uninvitedGuests.normal.elena.binahCards.Pillar;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act4.Arbiter;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
-
-import java.util.ArrayList;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
@@ -55,11 +43,6 @@ public class Binah extends AbstractAllyCardMonster
 
     public Elena elena;
     public VermilionCross vermilionCross;
-
-    public static final String POWER_ID = makeID("Arbiter");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public Binah() {
         this(0.0f, 0.0f);
@@ -99,44 +82,7 @@ public class Binah extends AbstractAllyCardMonster
                 vermilionCross = (VermilionCross)mo;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-                AbstractCreature enemy = target;
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        if (!enemy.hasPower(StunMonsterPower.POWER_ID)) {
-                            if (enemy instanceof AbstractMultiIntentMonster) {
-                                ((AbstractMultiIntentMonster) enemy).additionalIntents.clear();
-                                ((AbstractMultiIntentMonster) enemy).additionalMoves.clear();
-                            }
-                            if (enemy instanceof AbstractCardMonster) {
-                                ArrayList<AbstractCard> cards = ((AbstractCardMonster) enemy).cardsToRender;
-                                if (cards.size() > 1) {
-                                    cards.remove(cards.size() - 1);
-                                }
-                            }
-                        }
-                        this.isDone = true;
-                    }
-                });
-            }
-
-            @Override
-            public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-                AbstractCreature newTarget = action.target;
-                if (newTarget instanceof AbstractRuinaMonster && !newTarget.isDeadOrEscaped()) {
-                    target = (AbstractRuinaMonster) action.target;
-                    AbstractDungeon.onModifyPower();
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0];
-            }
-        });
+        addPower(new Arbiter(this));
         super.usePreBattleAction();
     }
 
@@ -197,7 +143,7 @@ public class Binah extends AbstractAllyCardMonster
         } else {
             move = DEGRADED_PILLAR;
         }
-        setMoveShortcut(move, cardList.get(move));
+        setMoveShortcut(move);
     }
 
     public void onBossDeath() {

@@ -15,27 +15,36 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
+import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.act3.bigBird.BigBird;
+import ruina.multiplayer.NetworkMultiIntentMonster;
+import ruina.powers.multiplayer.MultiplayerEnemyBuff;
 import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
+import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.networkcore.objects.entities.NetworkIntent;
+import spireTogether.networkcore.objects.entities.NetworkMonster;
+import spireTogether.other.RoomDataManager;
+import spireTogether.util.SpireHelp;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
+import static spireTogether.patches.monster.MonsterIntentPatch.pauseIntentSync;
 
 public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     public ArrayList<EnemyMoveInfo> additionalMoves = new ArrayList<>();
-    protected ArrayList<ArrayList<Byte>> additionalMovesHistory = new ArrayList<>();
+    public ArrayList<ArrayList<Byte>> additionalMovesHistory = new ArrayList<>();
     public ArrayList<AdditionalIntent> additionalIntents = new ArrayList<>();
     protected int numAdditionalMoves = 0;
     protected int maxAdditionalMoves = 0;
@@ -101,6 +110,10 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         if(info.base > -1) {
             info.applyPowers(this, target);
         }
+        if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerEnemyBuff.POWER_ID) && target instanceof AbstractMonster && !(target instanceof AbstractAllyMonster)) {
+            int amount = getPower(MultiplayerEnemyBuff.POWER_ID).amount;
+            info.output = (int)(info.output * (1.0f + ((float)amount / 100)));
+        }
     }
 
     @Override
@@ -155,6 +168,10 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     }
 
     protected int applySpecialMultiplier(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, AbstractCreature target, int whichMove, int dmg) {
+        if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerEnemyBuff.POWER_ID) && target instanceof AbstractMonster) {
+            int amount = getPower(MultiplayerEnemyBuff.POWER_ID).amount;
+            return (int)(dmg * (1.0f + ((float)amount / 100)));
+        }
         return dmg;
     }
 
@@ -162,11 +179,32 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     public void rollMove() {
         additionalIntents.clear();
         additionalMoves.clear();
-        this.getMove(AbstractDungeon.aiRng.random(99));
-        for (int i = 0; i < numAdditionalMoves; i++) {
-            getAdditionalMoves(AbstractDungeon.aiRng.random(99), i);
+        Random seedToUse;
+        if (RuinaMod.isMultiplayerConnected()) {
+            seedToUse = generateMultiplayerRandom();
+        } else {
+            seedToUse = AbstractDungeon.aiRng;
         }
-        postGetMove();
+        this.getMove(seedToUse.random(99));
+        for (int i = 0; i < numAdditionalMoves; i++) {
+            getAdditionalMoves(seedToUse.random(99), i);
+        }
+        notifyMainIntentUpdateMultiplayer();
+        notifyAdditionalIntentUpdateMultiplayer();
+    }
+    public void notifyAdditionalIntentUpdateMultiplayer() {
+        if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
+            ArrayList<NetworkIntent> additionalNetworkMoves = new ArrayList<>();
+            for (EnemyMoveInfo info : this.additionalMoves) {
+                additionalNetworkMoves.add(new NetworkIntent(info));
+            }
+            P2PManager.SendData(NetworkMultiIntentMonster.request_monsterUpdateAdditionalIntents, additionalNetworkMoves, this.additionalMovesHistory, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+            if (m instanceof NetworkMultiIntentMonster) {
+                ((NetworkMultiIntentMonster)m).additionalMoves = additionalNetworkMoves;
+                ((NetworkMultiIntentMonster)m).additionalMovesHistory = this.additionalMovesHistory;
+            }
+        }
     }
 
     public void getAdditionalMoves(int num, int whichMove) {
@@ -289,10 +327,14 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if (attackingMonsterWithPrimaryIntent && this.nextMove != -1) {
+        if (attackingMonsterWithPrimaryIntent && this.nextMove != -1 && target != null) {
             DamageInfo info = new DamageInfo(this, moves.get(this.nextMove).baseDamage, DamageInfo.DamageType.NORMAL);
             if (info.base > -1) {
                 info.applyPowers(this, target);
+                if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerEnemyBuff.POWER_ID)) {
+                    int amount = getPower(MultiplayerEnemyBuff.POWER_ID).amount;
+                    info.output = (int)(info.output * (1.0f + ((float)amount / 100)));
+                }
                 ReflectionHacks.setPrivate(this, AbstractMonster.class, "intentDmg", info.output);
                 PowerTip intentTip = ReflectionHacks.getPrivate(this, AbstractMonster.class, "intentTip");
                 int multiplier = moves.get(this.nextMove).multiplier;

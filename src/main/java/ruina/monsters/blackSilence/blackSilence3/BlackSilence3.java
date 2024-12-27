@@ -94,8 +94,7 @@ public class BlackSilence3 extends AbstractCardMonster {
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         applyToTarget(this, this, new ruina.powers.act5.BlackSilence3(this));
         applyToTarget(this, this, new SoulLink(this, REVIVE_PERCENT));
-        AbstractDungeon.player.drawX += 480.0F * Settings.scale;
-        AbstractDungeon.player.dialogX += 480.0F * Settings.scale;
+        adp().movePosition((float)Settings.WIDTH / 2.0F, AbstractDungeon.floorY);
         applyToTarget(adp(), this, new SurroundedPower(adp()));
         for (AbstractMonster mo : monsterList()) {
             if (mo instanceof Angelica) {
@@ -212,7 +211,7 @@ public class BlackSilence3 extends AbstractCardMonster {
     @Override
     protected void getMove(final int num) {
         if (turn <= 0) {
-            setMoveShortcut(WALTZ, MOVES[WALTZ], cardList.get(WALTZ).makeStatEquivalentCopy());
+            setMoveShortcut(WALTZ);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(UNITED_WORKSHOP) && !this.lastMoveBefore(UNITED_WORKSHOP)) {
@@ -224,13 +223,13 @@ public class BlackSilence3 extends AbstractCardMonster {
             if (!this.lastMove(FURY) && !this.lastMoveBefore(FURY)) {
                 possibilities.add(FURY);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, MOVES[move], cardList.get(move).makeStatEquivalentCopy());
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+            setMoveShortcut(move);
         }
     }
 
     public void setBondIntent() {
-        setMoveShortcut(DARKBOND, MOVES[DARKBOND], cardList.get(DARKBOND).makeStatEquivalentCopy());
+        setMoveShortcut(DARKBOND);
         createIntent();
     }
 

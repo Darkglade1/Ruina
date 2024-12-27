@@ -147,7 +147,7 @@
 //            if (!this.lastMove(LORD_SHEW_US)) {
 //                possibilities.add(LORD_SHEW_US);
 //            }
-//            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+//            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
 //            setMoveShortcut(move);
 //        }
 //    }

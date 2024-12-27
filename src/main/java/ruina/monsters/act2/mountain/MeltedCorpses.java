@@ -2,14 +2,13 @@ package ruina.monsters.act2.mountain;
 
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
+import ruina.powers.act2.Corpse;
 import ruina.util.TexLoader;
 
 import static ruina.RuinaMod.*;
@@ -21,12 +20,7 @@ public class MeltedCorpses extends AbstractRuinaMonster
     public static final String ID = makeID(MeltedCorpses.class.getSimpleName());
 
     private static final byte NONE = 0;
-    private final int HEAL = calcAscensionSpecial(30);
-
-    public static final String CORPSE_POWER_ID = makeID("Corpse");
-    public static final PowerStrings CORPSEPowerStrings = CardCrawlGame.languagePack.getPowerStrings(CORPSE_POWER_ID);
-    public static final String CORPSE_POWER_NAME = CORPSEPowerStrings.NAME;
-    public static final String[] CORPSE_POWER_DESCRIPTIONS = CORPSEPowerStrings.DESCRIPTIONS;
+    private final int HEAL = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(30));
 
     public MeltedCorpses() {
         this(0.0f, 0.0f);
@@ -48,12 +42,7 @@ public class MeltedCorpses extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         addPower(new MinionPower(this));
-        applyToTarget(this, this, new AbstractLambdaPower(CORPSE_POWER_NAME, CORPSE_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = CORPSE_POWER_DESCRIPTIONS[0] + HEAL + CORPSE_POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new Corpse(this, HEAL));
     }
 
     @Override

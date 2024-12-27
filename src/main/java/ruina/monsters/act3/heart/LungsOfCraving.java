@@ -68,7 +68,7 @@ public class LungsOfCraving extends AbstractRuinaMonster
         if (!this.lastTwoMoves(RETRACTING_BEATS)) {
             possibilities.add(RETRACTING_BEATS);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
     }
 

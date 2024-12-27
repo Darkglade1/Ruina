@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CtBehavior;
-import ruina.monsters.act1.Orchestra;
+import ruina.powers.act1.Performance;
 import ruina.powers.act4.Emotion;
 
 @SpirePatch(
@@ -18,7 +18,7 @@ import ruina.powers.act4.Emotion;
         }
 
 )
-// A patch to make Emotion work
+// A patch to make Emotion and Performance work
 public class EnemyPowerOnExhaustPatch {
     @SpireInsertPatch(locator = EnemyPowerOnExhaustPatch.Locator.class)
     public static void TriggerOnGainedBlock(CardGroup instance, AbstractCard c) {
@@ -27,7 +27,7 @@ public class EnemyPowerOnExhaustPatch {
                 if (p.ID.equals(Emotion.POWER_ID)) {
                     p.onExhaust(c);
                 }
-                if (p.ID.equals(Orchestra.POWER_ID)) {
+                if (p.ID.equals(Performance.POWER_ID)) {
                     p.onExhaust(c);
                 }
             }

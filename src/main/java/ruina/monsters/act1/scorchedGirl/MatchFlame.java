@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.util.DetailedIntent;
 
@@ -74,7 +75,7 @@ public class MatchFlame extends AbstractRuinaMonster
         if (!this.lastTwoMoves(KINDLE)) {
             possibilities.add(KINDLE);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
     }
 

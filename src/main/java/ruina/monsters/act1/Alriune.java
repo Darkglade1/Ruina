@@ -1,25 +1,25 @@
 package ruina.monsters.act1;
 
 import actlikeit.dungeons.CustomDungeon;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+<<<<<<< HEAD
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Slimed;
+=======
+>>>>>>> pipedream
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
-import ruina.cardmods.LaurelWreathMod;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Paralysis;
+import ruina.powers.act1.WintersInception;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -44,11 +44,6 @@ public class Alriune extends AbstractRuinaMonster
     private static final int DEBUFF_COOLDOWN = 2;
     private int cooldown = DEBUFF_COOLDOWN;
 
-    public static final String POWER_ID = makeID("WintersInception");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
     public Alriune() {
         this(0.0f, 0.0f);
     }
@@ -71,40 +66,7 @@ public class Alriune extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Warning2");
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, DAMAGE_REDUCTION) {
-            boolean triggered = false;
-
-            @Override
-            public float atDamageReceive(float damage, DamageInfo.DamageType type, AbstractCard card) {
-                if (type == DamageInfo.DamageType.NORMAL && triggered && (card == null || !CardModifierManager.hasModifier(card, LaurelWreathMod.ID))) {
-                    return damage * (1.0f - ((float)amount / 100));
-                } else {
-                    return damage;
-                }
-            }
-
-            @Override
-            public void onUseCard(AbstractCard card, UseCardAction action) {
-                if (!CardModifierManager.hasModifier(card, LaurelWreathMod.ID)) {
-                    if (!triggered && card.type == AbstractCard.CardType.ATTACK) {
-                        triggered = true;
-                        this.flash();
-                        LaurelWreathMod mod = new LaurelWreathMod();
-                        CardModifierManager.addModifier(card, mod.makeCopy());
-                    }
-                }
-            }
-
-            @Override
-            public void atEndOfRound() {
-                triggered = false;
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
+        applyToTarget(this, this, new WintersInception(this, DAMAGE_REDUCTION));
     }
 
     @Override
@@ -149,7 +111,7 @@ public class Alriune extends AbstractRuinaMonster
             if (!this.lastMove(MAGNIFICENT_END)) {
                 possibilities.add(MAGNIFICENT_END);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }

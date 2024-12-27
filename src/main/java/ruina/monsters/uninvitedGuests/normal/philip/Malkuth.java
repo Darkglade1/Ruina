@@ -1,7 +1,6 @@
 package ruina.monsters.uninvitedGuests.normal.philip;
 
 import basemod.helpers.CardModifierManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -9,11 +8,8 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -25,8 +21,9 @@ import ruina.cardmods.ManifestMod;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.uninvitedGuests.normal.philip.malkuthCards.*;
-import ruina.powers.AbstractLambdaPower;
+import ruina.powers.act4.Dragon;
 import ruina.powers.act4.Emotion;
+import ruina.powers.act4.Wildfire;
 import ruina.util.TexLoader;
 import ruina.vfx.ExplosionEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -34,7 +31,8 @@ import ruina.vfx.WaitEffect;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.*;
+import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.makeUIPath;
 import static ruina.util.Wiz.*;
 
 public class Malkuth extends AbstractAllyCardMonster
@@ -53,40 +51,21 @@ public class Malkuth extends AbstractAllyCardMonster
     public final int SELF_BLOCK = 14;
     public final int DRAW = 1;
     public final int fervidHits = 2;
-    public final int fervidEmotions = 4;
-    public final int emotionalEmotions = 4;
+    public final int fervidEmotions = RuinaMod.getMultiplayerPlayerCountScaling(4);
+    public final int emotionalEmotions = RuinaMod.getMultiplayerPlayerCountScaling(4);
     public final int stormHits = 2;
     public final int infernoStrScaling = 5;
     public final int VULNERABLE = 1;
     public final int passiveVulnerable = 1;
     public static final int firstEmotionThreshold = 2;
     public static final int secondEmotionThreshold = 4;
-    public static final int EMOTION_CAP = 4;
+    public static final int EMOTION_TRIGGER_CAP = 4;
 
-    public final int massAttackCooldown = 2;
-    public int massAttackCooldownCounter = massAttackCooldown;
-
-    public final int EMOTION_THRESHOLD = 10;
+    public final int EMOTION_THRESHOLD = RuinaMod.getMultiplayerPlayerCountScaling(10);
     public static final int EXHAUST_GAIN = 2;
 
-    private boolean distorted = false;
-    private boolean manifestedEGO = false;
-    private static final int NORMAL = 1;
-    private static final int DISTORTED = 2;
-    private static final int EGO = 3;
-    private int phase = NORMAL;
-
-    public static final String POWER_ID = makeID("Dragon");
-    public static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
-    public static final String POWER_NAME = powerStrings.NAME;
-    public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
-
-    public static final String R_POWER_ID = makeID("Wildfire");
-    public static final PowerStrings R_powerStrings = CardCrawlGame.languagePack.getPowerStrings(R_POWER_ID);
-    public static final String R_POWER_NAME = R_powerStrings.NAME;
-    public static final String[] R_POWER_DESCRIPTIONS = R_powerStrings.DESCRIPTIONS;
-
-    public static final Texture targetTexture = TexLoader.getTexture(makeUIPath("MalkuthIcon.png"));
+    public static final int DISTORTED_PHASE = 2;
+    public static final int EGO_PHASE = 3;
 
     public Malkuth() {
         this(0.0f, 0.0f);
@@ -119,37 +98,39 @@ public class Malkuth extends AbstractAllyCardMonster
         this.type = EnemyType.BOSS;
     }
 
+    @Override
+    public void usePreBattleAction() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (mo instanceof Philip) {
+                target = (Philip)mo;
+            }
+        }
+        addPower(new Dragon(this, EXHAUST_GAIN));
+        addPower(new Emotion(this, 0, EMOTION_THRESHOLD));
+        if (!hasPower(StrengthPower.POWER_ID) || getPower(StrengthPower.POWER_ID).amount < STARTING_STR) {
+            addPower(new StrengthPower(this, STARTING_STR));
+        }
+        for (AbstractCard card : adp().drawPile.group) {
+            CardModifierManager.addModifier(card, new ManifestMod());
+        }
+        super.usePreBattleAction();
+        if (RuinaMod.isMultiplayerConnected() && phase > DEFAULT_PHASE) {
+            IdlePose();
+        }
+    }
+
     public void distort() {
-        if (!distorted) {
-            phase = DISTORTED;
-            distorted = true;
-            massAttackCooldownCounter = 0;
+        if (phase != DISTORTED_PHASE) {
+            setPhase(DISTORTED_PHASE);
             IdlePose();
         }
     }
 
     public void manifest() {
-        if (!manifestedEGO) {
-            phase = EGO;
-            manifestedEGO = true;
-            distorted = true;
-            massAttackCooldownCounter = 0;
+        if (phase != EGO_PHASE) {
+            setPhase(EGO_PHASE);
             playSound("XiaoRoar");
-            applyToTargetTop(this, this, new AbstractLambdaPower(R_POWER_NAME, R_POWER_ID, AbstractPower.PowerType.BUFF, false, this, passiveVulnerable) {
-                @Override
-                public void atEndOfRound() {
-                    for (AbstractMonster mo : monsterList()) {
-                        if (!mo.isDeadOrEscaped() && !(mo instanceof AbstractAllyMonster)) {
-                            applyToTarget(mo, owner, new VulnerablePower(mo, amount, true));
-                        }
-                    }
-                }
-
-                @Override
-                public void updateDescription() {
-                    description = R_POWER_DESCRIPTIONS[0] + amount + R_POWER_DESCRIPTIONS[1];
-                }
-            });
+            applyToTargetTop(this, this, new Wildfire(this, passiveVulnerable));
             IdlePose();
             waitAnimation();
         }
@@ -160,37 +141,11 @@ public class Malkuth extends AbstractAllyCardMonster
     }
 
     @Override
-    public void usePreBattleAction() {
-        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (mo instanceof Philip) {
-                target = (Philip)mo;
-            }
-        }
-        applyToTarget(this, this, new AbstractLambdaPower(POWER_NAME, POWER_ID, AbstractPower.PowerType.BUFF, false, this, EXHAUST_GAIN) {
-            @Override
-            public void onInitialApplication() {
-                for (AbstractCard card : adp().drawPile.group) {
-                    CardModifierManager.addModifier(card, new ManifestMod());
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = POWER_DESCRIPTIONS[0] + amount + POWER_DESCRIPTIONS[1];
-            }
-        });
-        applyToTarget(this, this, new Emotion(this, 0, EMOTION_THRESHOLD));
-        applyToTarget(this, this, new StrengthPower(this, STARTING_STR));
-        super.usePreBattleAction();
-    }
-
-    @Override
     public void takeTurn() {
         if (firstMove) {
             atb(new TalkAction(this, DIALOG[0]));
         }
         super.takeTurn();
-
         switch (this.nextMove) {
             case COORDINATED_ASSAULT: {
                 blockAnimation();
@@ -236,13 +191,6 @@ public class Malkuth extends AbstractAllyCardMonster
                     }
                     resetIdle(1.0f);
                 }
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        massAttackCooldownCounter = massAttackCooldown + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
             case INFERNO: {
@@ -252,32 +200,17 @@ public class Malkuth extends AbstractAllyCardMonster
                 atb(new VFXAction(new ExplosionEffect(target.hb.cX, target.hb.cY), 0.1F));
                 atb(new AllyDamageAllEnemiesAction(this, calcMassAttackNoHitPlayer(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle(1.0f);
-                atb(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        massAttackCooldownCounter = massAttackCooldown + 1;
-                        this.isDone = true;
-                    }
-                });
                 break;
             }
         }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                massAttackCooldownCounter--;
-                this.isDone = true;
-            }
-        });
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
                 Emotion power = (Emotion) getPower(Emotion.POWER_ID);
                 if (power != null) {
-                    if (power.amount2 >= Malkuth.secondEmotionThreshold) {
+                    if (power.amount >= Malkuth.secondEmotionThreshold * EMOTION_THRESHOLD) {
                         manifest();
-                    }
-                    if (power.amount2 >= Malkuth.firstEmotionThreshold) {
+                    } else if (power.amount >= Malkuth.firstEmotionThreshold * EMOTION_THRESHOLD) {
                         distort();
                     }
                 }
@@ -329,18 +262,15 @@ public class Malkuth extends AbstractAllyCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (moveHistory.size() >= 3) {
-            moveHistory.clear();
-        }
         if (canUseMassAttack()) {
-            if (phase == EGO) {
-                setMoveShortcut(INFERNO, cardList.get(INFERNO));
+            if (phase == EGO_PHASE) {
+                setMoveShortcut(INFERNO);
             } else {
-                setMoveShortcut(RAGING_STORM, cardList.get(RAGING_STORM));
+                setMoveShortcut(RAGING_STORM);
             }
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
-            if (phase == NORMAL) {
+            if (phase == DEFAULT_PHASE) {
                 if (!this.lastMove(COORDINATED_ASSAULT) && !this.lastMoveBefore(COORDINATED_ASSAULT)) {
                     possibilities.add(COORDINATED_ASSAULT);
                 }
@@ -354,20 +284,26 @@ public class Malkuth extends AbstractAllyCardMonster
             if (possibilities.isEmpty()) {
                 possibilities.add(FERVID_EMOTIONS);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
-            setMoveShortcut(move, cardList.get(move));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
+            setMoveShortcut(move);
         }
     }
 
     public boolean canUseMassAttack() {
-        if (massAttackCooldownCounter <= 0 && phase > NORMAL) {
-            for (AbstractMonster mo : monsterList()) {
-                if (mo instanceof CryingChild) {
-                    return true;
-                }
+        boolean minionPresent = false;
+        boolean offCooldown = false;
+        if (phase == DISTORTED_PHASE && !lastMove(RAGING_STORM) && !lastMoveBefore(RAGING_STORM)) {
+            offCooldown = true;
+        }
+        if (phase == EGO_PHASE && !lastMove(INFERNO) && !lastMoveBefore(INFERNO)) {
+            offCooldown = true;
+        }
+        for (AbstractMonster mo : monsterList()) {
+            if (mo instanceof CryingChild) {
+                minionPresent = true;
             }
         }
-        return false;
+        return minionPresent && offCooldown;
     }
 
     public void onBossDeath() {

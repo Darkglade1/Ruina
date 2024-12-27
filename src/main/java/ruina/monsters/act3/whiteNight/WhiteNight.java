@@ -24,6 +24,7 @@ import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act3.WhiteNightBlessing;
+import ruina.powers.multiplayer.WhiteNightBlessingMultiplayer;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 
@@ -49,12 +50,10 @@ public class WhiteNight extends AbstractRuinaMonster {
     private static final byte BEHOLD = 4;
     private static final byte SAVIOR = 5;
 
-    private boolean awakened = false;
-    public AbstractMonster[] minions = new AbstractMonster[3];
-    private int moveCounter = 0;
+    public static final int AWAKE_PHASE = 2;
 
     private final int RITUAL = calcAscensionSpecial(1);
-    private final int HEAL = calcAscensionTankiness(8);
+    private final int HEAL = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(8));
     private final int BLOCK = calcAscensionTankiness(15);
     private final int BLESSING_AMT = 12;
     private final int MAX_TURNS = 6;
@@ -85,10 +84,30 @@ public class WhiteNight extends AbstractRuinaMonster {
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Angela3");
-        applyToTarget(this, this, new WhiteNightBlessing(this, BLESSING_AMT, MAX_TURNS, this));
+        if (phase == AWAKE_PHASE) {
+            phaseChange();
+        } else {
+            if (RuinaMod.isMultiplayerConnected()) {
+                applyToTarget(this, this, new WhiteNightBlessingMultiplayer(this, RuinaMod.getMultiplayerPlayerCountScaling(BLESSING_AMT), MAX_TURNS, this));
+            } else {
+                applyToTarget(this, this, new WhiteNightBlessing(this, BLESSING_AMT, MAX_TURNS, this));
+            }
+        }
     }
 
     public void awaken() {
+        phaseChange();
+        if (RuinaMod.isMultiplayerConnected()) {
+            makePowerRemovable(this, WhiteNightBlessingMultiplayer.POWER_ID);
+            atb(new RemoveSpecificPowerAction(this, this, WhiteNightBlessingMultiplayer.POWER_ID));
+        } else {
+            makePowerRemovable(this, WhiteNightBlessing.POWER_ID);
+            atb(new RemoveSpecificPowerAction(this, this, WhiteNightBlessing.POWER_ID));
+        }
+        atb(new RollMoveAction(this));
+    }
+
+    private void phaseChange() {
         waitAnimation(1.0f);
         atb(new AbstractGameAction() {
             @Override
@@ -103,13 +122,10 @@ public class WhiteNight extends AbstractRuinaMonster {
                 e.setTime(e.getEndTime() * MathUtils.random());
                 WhiteNight.this.state.setTimeScale(1.0F);
                 WhiteNight.this.flipHorizontal = true;
-                awakened = true;
+                setPhase(AWAKE_PHASE);
                 this.isDone = true;
             }
         });
-        makePowerRemovable(this, WhiteNightBlessing.POWER_ID);
-        atb(new RemoveSpecificPowerAction(this, this, WhiteNightBlessing.POWER_ID));
-        atb(new RollMoveAction(this));
     }
 
     @Override
@@ -170,37 +186,24 @@ public class WhiteNight extends AbstractRuinaMonster {
                 waitAnimation();
                 break;
         }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (nextMove == BEHOLD || nextMove == RISE_AND_SERVE) {
-                    moveCounter = 0;
-                } else if (nextMove != SAVIOR) {
-                    moveCounter++;
-                }
-                this.isDone = true;
-            }
-        });
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (!awakened) {
+        if (phase == DEFAULT_PHASE) {
             setMoveShortcut(PRAYER);
         } else {
             if (lastMove(PRAYER)) {
                 setMoveShortcut(RISE_AND_SERVE);
-            } else if (minions[0] == null && minions[1] == null && minions[2] == null && moveCounter < 2) {
+            } else if (lastMoveIgnoringMove(SALVATION, SAVIOR)) {
+                setMoveShortcut(BEHOLD);
+            } else if (!areMinionsAlive()) {
                 setMoveShortcut(SAVIOR);
+            } else if (lastMoveIgnoringMove(BENEDICTION, SAVIOR)) {
+                setMoveShortcut(SALVATION);
             } else {
-                if (moveCounter == 0) {
-                    setMoveShortcut(BENEDICTION);
-                } else if (moveCounter == 1) {
-                    setMoveShortcut(SALVATION);
-                } else {
-                    setMoveShortcut(BEHOLD);
-                }
+                setMoveShortcut(BENEDICTION);
             }
         }
     }
@@ -220,9 +223,15 @@ public class WhiteNight extends AbstractRuinaMonster {
                 break;
             }
             case BENEDICTION: {
-                DetailedIntent detail = new DetailedIntent(this, RITUAL, DetailedIntent.RITUAL_TEXTURE, DetailedIntent.TargetType.ALL_MINIONS);
+                int ritAmt = 0;
+                AbstractPower ritPower = this.getPower(RitualPower.POWER_ID);
+                if (ritPower != null) {
+                    ritAmt = ritPower.amount;
+                }
+                ritAmt = Math.max(ritAmt, RITUAL);
+                DetailedIntent detail = new DetailedIntent(this, ritAmt, DetailedIntent.RITUAL_TEXTURE, DetailedIntent.TargetType.ALL_MINIONS);
                 detailsList.add(detail);
-                DetailedIntent detail2 = new DetailedIntent(this, RITUAL, DetailedIntent.STRENGTH_TEXTURE);
+                DetailedIntent detail2 = new DetailedIntent(this, ritAmt, DetailedIntent.STRENGTH_TEXTURE);
                 detailsList.add(detail2);
                 break;
             }
@@ -259,21 +268,17 @@ public class WhiteNight extends AbstractRuinaMonster {
         float xPos_Middle_L = -650F;
         float xPos_Short_L = -350F;
         float xPos_Shortest_L = 250F;
-        AbstractMonster apostle1 = new ScytheApostle(xPos_Middle_L, 0.0f, this);
-        minions[0] = apostle1;
+        AbstractMonster apostle1 = new ScytheApostle(xPos_Middle_L, 0.0f);
         atb(new SpawnMonsterAction(apostle1, true));
         atb(new UsePreBattleActionAction(apostle1));
 
-        AbstractMonster apostle2 = new SpearApostle(xPos_Short_L, 0.0f, this);
-        minions[1] = apostle2;
+        AbstractMonster apostle2 = new SpearApostle(xPos_Short_L, 0.0f);
         atb(new SpawnMonsterAction(apostle2, true));
         atb(new UsePreBattleActionAction(apostle2));
 
-        AbstractMonster apostle3 = new StaffApostle(xPos_Shortest_L, 0.0f, this);
-        minions[2] = apostle3;
+        AbstractMonster apostle3 = new StaffApostle(xPos_Shortest_L, 0.0f);
         atb(new SpawnMonsterAction(apostle3, true));
         atb(new UsePreBattleActionAction(apostle3));
-
     }
 
     private void shockwaveEffect() {
@@ -292,6 +297,15 @@ public class WhiteNight extends AbstractRuinaMonster {
                 .build();
         atb(new VFXAction(shockwaveCharge, chargeDuration));
         atb(new VFXAction(shockwaveBurst, burstDuration - 0.3f));
+    }
+
+    private boolean areMinionsAlive() {
+        for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if ((mo instanceof ScytheApostle || mo instanceof SpearApostle || mo instanceof StaffApostle) && !mo.isDeadOrEscaped()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

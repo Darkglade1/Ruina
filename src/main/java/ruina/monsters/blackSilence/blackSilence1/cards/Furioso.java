@@ -1,6 +1,7 @@
 package ruina.monsters.blackSilence.blackSilence1.cards;
 
 import basemod.AutoAdd;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
@@ -15,11 +16,13 @@ import static ruina.RuinaMod.makeImagePath;
 public class Furioso extends AbstractRuinaCard {
     public final static String ID = makeID(Furioso.class.getSimpleName());
 
+    BlackSilence1 parent;
     public Furioso(BlackSilence1 parent) {
         super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO, makeImagePath("cards/" + CHRALLY_FURIOSO.class.getSimpleName() + ".png"));
         damage = baseDamage = parent.furiosoDamage;
         magicNumber = baseMagicNumber = parent.furiosoHits;
         secondMagicNumber = baseSecondMagicNumber = parent.furiosoDebuff;
+        this.parent = parent;
     }
 
     @Override
@@ -27,4 +30,9 @@ public class Furioso extends AbstractRuinaCard {
 
     @Override
     public void upp() { }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new Furioso(parent);
+    }
 }

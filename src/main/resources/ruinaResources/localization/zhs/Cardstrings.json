@@ -149,40 +149,6 @@
     "NAME": "屏息凝神",
     "DESCRIPTION": "获得 !B! 点 格挡 。 NL 获得 !M! 点 力量 。"
   },
-  "ruina:CHRBOSS_GiantFist": {
-    "NAME": "巨拳轰击",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 *麻痹 。"
-  },
-  "ruina:CHRBOSS_Compress": {
-    "NAME": "巨拳压击",
-    "DESCRIPTION": "获得 !B! 点 格挡 。"
-  },
-  "ruina:CHRBOSS_FlurryOfFists": {
-    "NAME": "乱拳痛殴",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 获得 !ruina:SecondMagic! 点 力量 。",
-    "EXTENDED_DESCRIPTION": ["造成 !D! 点伤害 !M! 次。 NL 在下个回合获得 !ruina:SecondMagic! 点 力量 。"]
-  },
-  "ruina:CHRBOSS_BalefulBrand": {
-    "NAME": "不详烙印",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 *腐蚀 。",
-    "EXTENDED_DESCRIPTION": ["造成 !D! 点伤害。 NL 在下个回合给予 !M! 层 *腐蚀 。"]
-  },
-  "ruina:CHRBOSS_Lock": {
-    "NAME": "封锁目标",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! *抽牌减少 。"
-  },
-  "ruina:CHRBOSS_yanAttack": {
-    "NAME": "意志之刃",
-    "DESCRIPTION": "一只 *手 获得 !M! 点 力量 。"
-  },
-  "ruina:CHRBOSS_yanProtect": {
-    "NAME": "执行-护卫",
-    "DESCRIPTION": "一只 *手 获得 !M! 层 *守护 。"
-  },
-  "ruina:CHRBOSS_DistortedBlade": {
-    "NAME": "扭曲之刃",
-    "DESCRIPTION": "造成 !D! 点伤害。 NL 给予 !M! 层 *腐蚀 。"
-  },
   "ruina:CHRBOSS_Largo": {
     "NAME": "崩坏序曲",
     "DESCRIPTION": "获得 !B! 点 格挡 。 NL 造成 !D! 点伤害。 NL 给予1层 *震颤 。 如果目标已经拥有 *震颤 ，改为移除并再次获得 !B! 点 格挡 。"
@@ -447,10 +413,6 @@
   "ruina:SkillPrescript": {
     "NAME": "技能指令",
     "DESCRIPTION": "获得 !B! 点 格挡 。"
-  },
-  "ruina:PowerPrescript": {
-    "NAME": "防御指令",
-    "DESCRIPTION": "获得 !M! 点 力量 。"
   },
   "ruina:EverlastingMelody": {
     "NAME": "永恒的旋律",
@@ -864,10 +826,6 @@
     "DESCRIPTION": "在你的回合结束时，轮流失去 !M! 点 力量 或 敏捷 。",
     "EXTENDED_DESCRIPTION": [" (力量)", " (敏捷)"]
   },
-  "ruina:Conductor": {
-    "NAME": "指挥者",
-    "DESCRIPTION": "无法被打出 。 NL 每当 保留 时，在本场战斗中永久提高你手牌中的其他 *演奏者 牌的耗能 !M! 。如果所有 !ruina:SecondMagic! 张其他的 *演奏者 牌都在你手牌中，触发一次它们的效果。"
-  },
   "ruina:TodaysExpression": {
     "NAME": "此刻的神情",
     "DESCRIPTION": "选择:",
@@ -980,5 +938,13 @@
   "${ModID}:Acupuncture": {
     "NAME": "Acupuncture",
     "DESCRIPTION": "Deal !D! damage !M! times. NL Apply !ruina:SecondMagic! *Paralysis."
+  },
+  "${ModID}:Distorted": {
+    "NAME": "扭曲",
+    "DESCRIPTION": "无法从牌组中移除。"
+  },
+  "${ModID}:Lie": {
+    "NAME": "说谎",
+    "DESCRIPTION": "这张卡不完美地伪装成另一张卡。"
   }
 }

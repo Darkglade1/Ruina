@@ -9,20 +9,18 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.CustomIntent.IntentEnums;
 import ruina.RuinaMod;
 import ruina.actions.DamageAllOtherCharactersAction;
 import ruina.monsters.AbstractAllyMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.Erosion;
+import ruina.powers.multiplayer.MultiplayerAllyBuff;
+import ruina.powers.act2.BlindFury;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.ErosionSplatter;
@@ -43,17 +41,12 @@ public class ServantOfWrath extends AbstractAllyMonster
 
     private static final int FURY_THRESHOLD = 20;
     private static final int HIGH_ASC_FURY_THRESHOLD = 15;
-    private int furyThreshold;
+    private final int furyThreshold;
 
     private final int EROSION = 2;
-    public boolean enraged = false;
+    public static final int ENRAGE_PHASE = 2;
 
     public Hermit hermit;
-
-    public static final String FURY_POWER_ID = RuinaMod.makeID("BlindFury");
-    public static final PowerStrings furyPowerStrings = CardCrawlGame.languagePack.getPowerStrings(FURY_POWER_ID);
-    public static final String FURY_POWER_NAME = furyPowerStrings.NAME;
-    public static final String[] FURY_POWER_DESCRIPTIONS = furyPowerStrings.DESCRIPTIONS;
 
     public ServantOfWrath() {
         this(0.0f, 0.0f);
@@ -72,8 +65,8 @@ public class ServantOfWrath extends AbstractAllyMonster
             furyThreshold = FURY_THRESHOLD;
         }
 
-        addMove(EMBODIMENTS_OF_EVIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(8), 3, true);
-        addMove(RAGE, Intent.ATTACK_DEBUFF, 8, 2, true);
+        addMove(EMBODIMENTS_OF_EVIL, IntentEnums.MASS_ATTACK, calcAscensionDamage(8), 3);
+        addMove(RAGE, Intent.ATTACK_DEBUFF, 8, 2);
 
         this.icon = TexLoader.getTexture(makeUIPath("WrathIcon.png"));
 
@@ -95,38 +88,11 @@ public class ServantOfWrath extends AbstractAllyMonster
                 target = hermit;
             }
         }
-        applyToTarget(this, this, new AbstractLambdaPower(FURY_POWER_NAME, FURY_POWER_ID, AbstractPower.PowerType.BUFF, false, this, furyThreshold) {
-            @Override
-            public int onAttacked(DamageInfo info, int damageAmount) {
-                if (damageAmount > 0) {
-                    this.amount -= damageAmount;
-                    if (this.amount < 0) {
-                        this.amount = 0;
-                    }
-                    updateDescription();
-                }
-                return damageAmount;
-            }
-
-            @Override
-            public void atEndOfRound() {
-                if (this.amount <= 0) {
-                    if (owner instanceof ServantOfWrath) {
-                        ((ServantOfWrath) owner).enraged = true;
-                        ((ServantOfWrath) owner).rollMove();
-                        ((ServantOfWrath) owner).createIntent();
-                        playSound("WrathMeet");
-                    }
-                    this.amount = furyThreshold;
-                    updateDescription();
-                }
-            }
-
-            @Override
-            public void updateDescription() {
-                description = FURY_POWER_DESCRIPTIONS[0] + amount + FURY_POWER_DESCRIPTIONS[1];
-            }
-        });
+        if (RuinaMod.isMultiplayerConnected()) {
+            addPower(new BlindFury(this, RuinaMod.getMultiplayerEnemyHealthScaling(furyThreshold), 0));
+        } else {
+            addPower(new BlindFury(this, furyThreshold, 0));
+        }
         super.usePreBattleAction();
     }
 
@@ -154,7 +120,13 @@ public class ServantOfWrath extends AbstractAllyMonster
                             isDone = true;
                         }
                     });
-                    atb(new DamageAllOtherCharactersAction(this, calcMassAttack(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                    int[] damageArray = calcMassAttack(info);
+                    for (int j = 0; j < damageArray.length - 1; j++) {
+                        if (RuinaMod.isMultiplayerConnected() && hasPower(MultiplayerAllyBuff.POWER_ID)) {
+                            damageArray[j] *= (1.0f + ((float)getPower(MultiplayerAllyBuff.POWER_ID).amount / 100));
+                        }
+                    }
+                    atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                     resetIdle(1.0f);
                 }
                 applyToTargetNextTurn(adp(), new Erosion(adp(), EROSION + 1));
@@ -163,7 +135,7 @@ public class ServantOfWrath extends AbstractAllyMonster
                         applyToTargetNextTurn(mo, new Erosion(mo, EROSION + 1));
                     }
                 }
-                enraged = false;
+                setPhase(DEFAULT_PHASE);
                 break;
             }
             case RAGE: {
@@ -185,7 +157,7 @@ public class ServantOfWrath extends AbstractAllyMonster
 
     @Override
     protected void getMove(final int num) {
-        if (enraged) {
+        if (phase == ENRAGE_PHASE) {
             setMoveShortcut(EMBODIMENTS_OF_EVIL);
         } else {
             setMoveShortcut(RAGE);
@@ -213,10 +185,10 @@ public class ServantOfWrath extends AbstractAllyMonster
     @Override
     public void applyPowers() {
         if (hermit != null) {
-            if (hermit.staff == null || this.intent == IntentEnums.MASS_ATTACK) {
+            if (hermit.getAliveMinion() == null || this.intent == IntentEnums.MASS_ATTACK) {
                 target = hermit;
             } else {
-                target = hermit.staff;
+                target = hermit.getAliveMinion();
             }
         }
         super.applyPowers();

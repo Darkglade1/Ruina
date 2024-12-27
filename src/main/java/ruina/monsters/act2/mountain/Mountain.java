@@ -8,9 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -18,11 +16,14 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractMultiIntentMonster;
-import ruina.powers.AbstractLambdaPower;
 import ruina.powers.CenterOfAttention;
+import ruina.powers.act2.Absorption;
+import ruina.powers.act2.Bodies;
+import ruina.powers.multiplayer.MultiplayerEnemyBuff;
 import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
@@ -51,34 +52,26 @@ public class Mountain extends AbstractMultiIntentMonster
     private final int DAZES = calcAscensionSpecial(3);
     private final int SLIMES = calcAscensionSpecial(1);
 
-    private final int STAGE1_HP = calcAscensionTankiness(50);
-    private final int STAGE2_HP = calcAscensionTankiness(100);
-    private final int STAGE3_HP = calcAscensionTankiness(125);
+    private final int STAGE1_HP;
+    private final int STAGE2_HP;
+    private final int STAGE3_HP;
+    private final int INITIAL_HP = calcAscensionTankiness(125);
 
     public static final int STAGE3 = 3;
     public static final int STAGE2 = 2;
     public static final int STAGE1 = 1;
-    public int currentStage = STAGE3;
     private static final float REVIVE_PERCENT = 0.50f;
     private static final float STARTING_PERCENT = 0.50f;
-    private AbstractLambdaPower stagePower;
-
-    public static final String ABSORPTION_POWER_ID = makeID("Absorption");
-    public static final PowerStrings absorptionPowerStrings = CardCrawlGame.languagePack.getPowerStrings(ABSORPTION_POWER_ID);
-    public static final String ABSORPTION_POWER_NAME = absorptionPowerStrings.NAME;
-    public static final String[] ABSORPTION_POWER_DESCRIPTIONS = absorptionPowerStrings.DESCRIPTIONS;
-
-    public static final String BODIES_POWER_ID = makeID("Bodies");
-    public static final PowerStrings BODIESPowerStrings = CardCrawlGame.languagePack.getPowerStrings(BODIES_POWER_ID);
-    public static final String BODIES_POWER_NAME = BODIESPowerStrings.NAME;
-    public static final String[] BODIES_POWER_DESCRIPTIONS = BODIESPowerStrings.DESCRIPTIONS;
 
     public Mountain(final float x, final float y) {
         super(ID, ID, 100, -5.0F, 0, 330.0f, 285.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Mountain/Spriter/Mountain.scml"));
         setNumAdditionalMoves(2);
-        this.setHp(STAGE3_HP);
-        this.currentHealth = (int)(STAGE3_HP * STARTING_PERCENT);
+        this.setHp(INITIAL_HP);
+        STAGE3_HP = this.maxHealth;
+        STAGE2_HP = Math.round(this.maxHealth * 0.8f);
+        STAGE1_HP = Math.round(this.maxHealth * 0.4f);
+        this.currentHealth = (int)(this.maxHealth * STARTING_PERCENT);
         updateHealthBar();
         runAnim("Idle3");
 
@@ -106,47 +99,17 @@ public class Mountain extends AbstractMultiIntentMonster
                 target = (MeltedCorpses)mo;
             }
         }
-        stagePower = new AbstractLambdaPower(ABSORPTION_POWER_NAME, ABSORPTION_POWER_ID, AbstractPower.PowerType.BUFF, false, this, currentStage) {
-            @Override
-            public void updateDescription() {
-                if (amount == STAGE1) {
-                    description = ABSORPTION_POWER_DESCRIPTIONS[2] + (amount + 1) + ABSORPTION_POWER_DESCRIPTIONS[3];
-                } else if (amount == STAGE2) {
-                    description = ABSORPTION_POWER_DESCRIPTIONS[0] + (amount - 1) + ABSORPTION_POWER_DESCRIPTIONS[1] + " " + ABSORPTION_POWER_DESCRIPTIONS[2] + (amount + 1) + ABSORPTION_POWER_DESCRIPTIONS[3];
-                } else {
-                    description = ABSORPTION_POWER_DESCRIPTIONS[0] + (amount - 1) + ABSORPTION_POWER_DESCRIPTIONS[1];
-                }
-            }
-            @Override
-            public void atEndOfRound() {
-                if (owner.currentHealth == owner.maxHealth) {
-                    if (owner instanceof Mountain) {
-                        ((Mountain) owner).Grow();
-                    }
-                }
-            }
-        };
-        applyToTarget(this, this, stagePower);
-        applyToTarget(this, this, new AbstractLambdaPower(BODIES_POWER_NAME, BODIES_POWER_ID, AbstractPower.PowerType.BUFF, false, this, -1) {
-            @Override
-            public void updateDescription() {
-                description = BODIES_POWER_DESCRIPTIONS[0];
-            }
-            @Override
-            public void atEndOfRound() {
-                boolean foundCorpse = false;
-                for (AbstractMonster mo : monsterList()) {
-                    if (mo instanceof MeltedCorpses) {
-                        foundCorpse = true;
-                        break;
-                    }
-                }
-                if (!foundCorpse) {
-                    Summon();
-                }
-            }
-        });
+        applyToTarget(this, this, new Absorption(this, convertPhaseToStage()));
+        applyToTarget(this, this, new Bodies(this));
         applyToTarget(this, this, new CenterOfAttention(this));
+        if (RuinaMod.isMultiplayerConnected()) {
+            applyToTarget(this, this, new MultiplayerEnemyBuff(this));
+
+            updateValues();
+            updateNumAdditionalMoves();
+            updateCannotLose();
+            runAnim("Idle" + convertPhaseToStage());
+        }
     }
 
     @Override
@@ -201,7 +164,7 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack" + currentStage, "Bite", enemy, this);
+        animationAction("Attack" + convertPhaseToStage(), "Bite", enemy, this);
     }
 
     private void screechAnimation() {
@@ -222,7 +185,7 @@ public class Mountain extends AbstractMultiIntentMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                runAnim("Idle" + currentStage);
+                runAnim("Idle" + convertPhaseToStage());
                 this.isDone = true;
             }
         });
@@ -241,9 +204,9 @@ public class Mountain extends AbstractMultiIntentMonster
     protected void getMove(final int num) {
         if (this.halfDead) {
             setMoveShortcut(REVIVE);
-        } else if (this.currentStage == STAGE1) {
+        } else if (convertPhaseToStage() == STAGE1) {
             setMoveShortcut(DEVOUR);
-        } else if (this.currentStage == STAGE2) {
+        } else if (convertPhaseToStage() == STAGE2) {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(DEVOUR)) {
                 possibilities.add(DEVOUR);
@@ -254,7 +217,7 @@ public class Mountain extends AbstractMultiIntentMonster
             if (!this.lastMove(HORRID_SCREECH) && !this.lastMoveBefore(HORRID_SCREECH)) {
                 possibilities.add(HORRID_SCREECH);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
@@ -264,7 +227,7 @@ public class Mountain extends AbstractMultiIntentMonster
             if (!this.lastTwoMoves(BITE)) {
                 possibilities.add(BITE);
             }
-            byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+            byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
             setMoveShortcut(move);
         }
     }
@@ -276,7 +239,7 @@ public class Mountain extends AbstractMultiIntentMonster
         }
         ArrayList<Byte> moveHistory = additionalMovesHistory.get(whichMove);
         if (whichMove == 0) {
-            if (this.currentStage == STAGE2) {
+            if (convertPhaseToStage() == STAGE2) {
                 setAdditionalMoveShortcut(DEVOUR, moveHistory);
             } else {
                 ArrayList<Byte> possibilities = new ArrayList<>();
@@ -286,7 +249,7 @@ public class Mountain extends AbstractMultiIntentMonster
                 if (!this.lastTwoMoves(BITE, moveHistory)) {
                     possibilities.add(BITE);
                 }
-                byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+                byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
                 setAdditionalMoveShortcut(move, moveHistory);
             }
         } else {
@@ -339,7 +302,7 @@ public class Mountain extends AbstractMultiIntentMonster
 
     @Override
     public void applyPowers() {
-        if (currentStage == STAGE1 && !target.isDeadOrEscaped()) {
+        if (convertPhaseToStage() == STAGE1 && !target.isDeadOrEscaped()) {
             attackingMonsterWithPrimaryIntent = true;
         } else {
             attackingMonsterWithPrimaryIntent = false;
@@ -349,7 +312,7 @@ public class Mountain extends AbstractMultiIntentMonster
 
     @Override
     public void handleTargetingForIntent(EnemyMoveInfo additionalMove, AdditionalIntent additionalIntent, int index) {
-        if (currentStage == STAGE3) {
+        if (convertPhaseToStage() == STAGE3) {
             if (index == 1 && additionalIntent.baseDamage >= 0) {
                 applyPowersToAdditionalIntent(additionalMove, additionalIntent, target, target.icon, index);
             } else {
@@ -372,13 +335,12 @@ public class Mountain extends AbstractMultiIntentMonster
                 r.onMonsterDeath(this);
             }
             if (this.nextMove != REVIVE) {
-                setMoveShortcut(REVIVE);
-                this.createIntent();
-                atb(new SetMoveAction(this, REVIVE, Intent.NONE));
+                rollMove();
+                createIntent();
             }
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
-                if (!(power.ID.equals(ABSORPTION_POWER_ID)) && !(power.ID.equals(BODIES_POWER_ID)) && !power.ID.equals(CenterOfAttention.POWER_ID)) {
+                if (!(power.ID.equals(Absorption.POWER_ID)) && !(power.ID.equals(Bodies.POWER_ID)) && !power.ID.equals(CenterOfAttention.POWER_ID) && !power.ID.equals(MultiplayerEnemyBuff.POWER_ID)) {
                     powersToRemove.add(power);
                 }
             }
@@ -408,56 +370,77 @@ public class Mountain extends AbstractMultiIntentMonster
         }
     }
 
-    private void Summon() {
+    public void Summon() {
         playSound("Spawn", 0.7f);
         target = new MeltedCorpses(MINION_X, 0.0f);
         atb(new SpawnMonsterAction(target, true));
         atb(new UsePreBattleActionAction(target));
     }
 
-    private void Grow() {
-        AbstractDungeon.getCurrRoom().cannotLose = true;
-        if (currentStage < STAGE3) {
-            currentStage++;
-            numAdditionalMoves++;
-            animationAction("Idle" + currentStage, "Grow", 0.7f, this);
+    public void Grow() {
+        if (convertPhaseToStage() < STAGE3) {
+            setPhase(phase - 1);
+            updateNumAdditionalMoves();
+            updateCannotLose();
+            animationAction("Idle" + convertPhaseToStage(), "Grow", 0.7f, this);
             updateValues();
             rollMove();
             createIntent();
         }
     }
 
-    private void Shrink() {
-        if (currentStage > STAGE1) {
-            currentStage--;
-            if (currentStage == STAGE1) {
-                AbstractDungeon.getCurrRoom().cannotLose = false;
-            }
-            if (numAdditionalMoves > 0) {
-                numAdditionalMoves--;
-            }
-            animationAction("Idle" + currentStage, "Shrink", 0.7f, this);
+    public void Shrink() {
+        if (convertPhaseToStage() > STAGE1) {
+            setPhase(phase + 1);
+            updateNumAdditionalMoves();
+            updateCannotLose();
+            animationAction("Idle" + convertPhaseToStage(), "Shrink", 0.7f, this);
             updateValues();
+        }
+    }
+
+    private void updateNumAdditionalMoves() {
+        this.numAdditionalMoves = convertPhaseToStage() - 1;
+    }
+
+    private void updateCannotLose() {
+        if (convertPhaseToStage() == STAGE1) {
+            AbstractDungeon.getCurrRoom().cannotLose = false;
+        } else {
+            AbstractDungeon.getCurrRoom().cannotLose = true;
         }
     }
 
     private void updateValues() {
         setMaxHP();
-        stagePower.amount = currentStage;
-        stagePower.updateDescription();
+        AbstractPower stagePower = getPower(Absorption.POWER_ID);
+        if (stagePower != null) {
+            stagePower.amount = convertPhaseToStage();
+            stagePower.updateDescription();
+        }
     }
 
     private void setMaxHP() {
-        if (currentStage == STAGE1) {
+        if (convertPhaseToStage() == STAGE1) {
             this.maxHealth = STAGE1_HP;
         }
-        if (currentStage == STAGE2) {
+        if (convertPhaseToStage() == STAGE2) {
             this.maxHealth = STAGE2_HP;
         }
-        if (currentStage == STAGE3) {
+        if (convertPhaseToStage() == STAGE3) {
             this.maxHealth = STAGE3_HP;
         }
         healthBarUpdatedEvent();
+    }
+
+    private int convertPhaseToStage() {
+        if (phase == 1) {
+            return STAGE3;
+        } else if (phase == 3) {
+            return STAGE1;
+        } else {
+            return STAGE2;
+        }
     }
 
 }

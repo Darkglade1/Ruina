@@ -34,4 +34,17 @@ public abstract class AbstractEasyPower extends TwoAmountPower {
 
         this.updateDescription();
     }
+
+    protected void setPowerImage(String existingPowerName) {
+        Texture normalTexture = TexLoader.getTexture(RuinaMod.makePowerPath(existingPowerName + "32.png"));
+        Texture hiDefImage = TexLoader.getTexture(RuinaMod.makePowerPath(existingPowerName + "84.png"));
+        if (hiDefImage != null) {
+            region128 = new TextureAtlas.AtlasRegion(hiDefImage, 0, 0, hiDefImage.getWidth(), hiDefImage.getHeight());
+            if (normalTexture != null)
+                region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
+        } else if (normalTexture != null) {
+            this.img = normalTexture;
+            region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
+        }
+    }
 }

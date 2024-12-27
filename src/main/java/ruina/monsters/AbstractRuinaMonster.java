@@ -4,7 +4,9 @@ import basemod.ReflectionHacks;
 import basemod.abstracts.CustomMonster;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -15,14 +17,22 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.RunicDome;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.elena.VermilionCross;
+import ruina.multiplayer.NetworkRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
+import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.networkcore.objects.entities.NetworkIntent;
+import spireTogether.networkcore.objects.entities.NetworkMonster;
+import spireTogether.networkcore.objects.rooms.NetworkLocation;
+import spireTogether.other.RoomDataManager;
+import spireTogether.util.SpireHelp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +40,7 @@ import java.util.Map;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;
+import static spireTogether.patches.monster.MonsterIntentPatch.pauseIntentSync;
 
 public abstract class AbstractRuinaMonster extends CustomMonster {
 
@@ -38,9 +49,11 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     public String[] DIALOG;
 
     protected Map<Byte, EnemyMoveInfo> moves;
-    protected boolean firstMove = true;
+    public boolean firstMove = true;
     protected DamageInfo info;
     protected int multiplier;
+    public int DEFAULT_PHASE = 1;
+    public int phase = DEFAULT_PHASE;
     private static final float ASCENSION_DAMAGE_BUFF_PERCENT = 1.10f;
     private static final float ASCENSION_TANK_BUFF_PERCENT = 1.10f;
     private static final float ASCENSION_SPECIAL_BUFF_PERCENT = 1.5f;
@@ -48,6 +61,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     public AbstractRuinaMonster target;
     public Texture icon;
     public boolean justDiedThisTurn = false;
+    public boolean attackingAlly;
 
     // for stance particle effects
     protected float particleTimer;
@@ -99,12 +113,8 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
     public void setMoveShortcut(byte next) {
-        String moveName = null;
-        if (next < MOVES.length) {
-            moveName = MOVES[next];
-        }
         EnemyMoveInfo info = this.moves.get(next);
-        this.setMove(moveName, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
+        this.setMove(null, next, info.intent, info.baseDamage, info.multiplier, info.isMultiDamage);
     }
 
     @Override
@@ -113,6 +123,13 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         this.multiplier = getMultiplierFromMove(this.nextMove);
         if (firstMove) {
             firstMove = false;
+            if (RuinaMod.isMultiplayerConnected()) {
+                P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateFirstMove, firstMove, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+                NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+                if (m instanceof NetworkRuinaMonster) {
+                    ((NetworkRuinaMonster)m).firstMove = this.firstMove;
+                }
+            }
         }
         if(info.base > -1) {
             if (target != null) {
@@ -398,6 +415,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
 
     @Override
     public void render(SpriteBatch sb) {
+        super.render(sb);
         Map<Integer, ArrayList<DetailedIntent>> detailsMap = DetailedIntent.intents.get(this);
         if (detailsMap != null && !this.isDead && !this.isDying && !AbstractDungeon.isScreenUp) {
             for (int intentNum : detailsMap.keySet()) {
@@ -408,11 +426,6 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
                 }
             }
         }
-        super.render(sb);
-    }
-
-    protected void postGetMove() {
-        setDetailedIntents();
     }
 
     protected void setDetailedIntents() {
@@ -436,9 +449,128 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
     @Override
+    public void createIntent() {
+        super.createIntent();
+        setMoveName();
+        setDetailedIntents();
+    }
+
+    protected void setMoveName() {
+        EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
+        if (move.nextMove >= 0 && move.nextMove < MOVES.length) {
+            moveName = MOVES[move.nextMove];
+        }
+    }
+
+    protected boolean lastMoveBeforeBefore(byte move) {
+        if (moveHistory.isEmpty()) {
+            return false;
+        } else if (moveHistory.size() < 3) {
+            return false;
+        } else {
+            return moveHistory.get(moveHistory.size() - 3) == move;
+        }
+    }
+
+    protected boolean threeTurnCooldownHasPassedForMove(byte move) {
+        return moveHistory.size() >= 3 && !this.lastMove(move) && !this.lastMoveBefore(move) && !this.lastMoveBeforeBefore(move);
+    }
+
+    protected boolean lastMoveIgnoringMove(byte move, byte moveToIgnore) {
+        if (moveHistory.isEmpty()) {
+            return false;
+        }
+        for (int i = moveHistory.size() - 1; i >= 0; i--) {
+            byte currMove = moveHistory.get(i);
+            if (currMove != moveToIgnore) {
+                return currMove == move;
+            }
+        }
+        return false;
+    }
+
+    protected boolean lastMoveBeforeIgnoringMove(byte move, byte moveToIgnore) {
+        if (moveHistory.isEmpty()) {
+            return false;
+        }
+        ArrayList<Byte> filteredMoveHistory = new ArrayList<>();
+        for (Byte move1 : moveHistory) {
+            if (move1 != moveToIgnore) {
+                filteredMoveHistory.add(move1);
+            }
+        }
+        if (filteredMoveHistory.isEmpty()) {
+            return false;
+        } else if (filteredMoveHistory.size() < 2) {
+            return false;
+        } else {
+            return filteredMoveHistory.get(filteredMoveHistory.size() - 2) == move;
+        }
+    }
+
+    protected int convertNumToRandomIndex(int num, float size) {
+        float convertedNum = (float)num / 100;
+        return Math.round(Interpolation.linear.apply(0, size, convertedNum));
+    }
+
+    @Override
     public void rollMove() {
-        super.rollMove();
-        postGetMove();
+        Random seedToUse;
+        if (RuinaMod.isMultiplayerConnected()) {
+            seedToUse = generateMultiplayerRandom();
+        } else {
+            seedToUse = AbstractDungeon.aiRng;
+        }
+        this.getMove(seedToUse.random(99));
+        notifyMainIntentUpdateMultiplayer();
+    }
+
+    protected void notifyMainIntentUpdateMultiplayer() {
+        if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
+            EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
+            NetworkIntent networkMove = new NetworkIntent(move);
+            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateMainIntent, networkMove, moveHistory, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+            if (m instanceof NetworkRuinaMonster) {
+                ((NetworkRuinaMonster) m).networkMove = networkMove;
+                ((NetworkRuinaMonster) m).moveHistory = moveHistory;
+            }
+        }
+        notifyAttackingAllyUpdateMultiplayer();
+    }
+
+    protected void notifyAttackingAllyUpdateMultiplayer() {
+        if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
+            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateAttackingAlly, attackingAlly, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+            if (m instanceof NetworkRuinaMonster) {
+                ((NetworkRuinaMonster) m).attackingAlly = attackingAlly;
+            }
+        }
+    }
+
+    protected Random generateMultiplayerRandom() {
+        Long newSeed = 0L;
+        NetworkLocation l = SpireHelp.Gameplay.GetMapLocation(false);
+        if(l != null){
+            newSeed += l.x;
+            newSeed += l.y;
+        }
+        newSeed += GameActionManager.turn;
+        String uid = SpireHelp.Gameplay.CreatureToUID(this);
+        newSeed += uid.hashCode();
+        return new Random(newSeed);
+    }
+
+    public void setPhase(int newPhase) {
+        this.phase = newPhase;
+        if (RuinaMod.isMultiplayerConnected()) {
+            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdatePhase, newPhase, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+            if (m instanceof NetworkRuinaMonster) {
+                ((NetworkRuinaMonster) m).phase = newPhase;
+            }
+        }
     }
 
 }

@@ -68,7 +68,7 @@ public class Butterflies extends AbstractRuinaMonster
         if (!this.lastTwoMoves(LIBERATION)) {
             possibilities.add(LIBERATION);
         }
-        byte move = possibilities.get(AbstractDungeon.monsterRng.random(possibilities.size() - 1));
+        byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
         setMoveShortcut(move);
     }
 
