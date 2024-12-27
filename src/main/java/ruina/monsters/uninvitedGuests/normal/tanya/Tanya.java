@@ -58,13 +58,14 @@ public class Tanya extends AbstractCardMonster
 
     public final int BLOCK = calcAscensionTankiness(16);
     public final int INITIAL_PLATED_ARMOR = calcAscensionTankiness(20);
-    public final int PLATED_ARMOR_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(15));
-    public final int METALLICIZE_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(5));
+    public final int PLATED_ARMOR_GAIN = calcAscensionTankiness(15);
+    public final int METALLICIZE_GAIN = calcAscensionSpecial(5);
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int WEAK = calcAscensionSpecial(1);
-    public final int GUTS_METALLICIZE_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(8));
+    public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(8);
     public final int GUTS_STRENGTH = calcAscensionSpecial(3);
     private boolean usingMassAttack = false;
+    public static final int POST_GUTS_PHASE = 2;
 
     public Tanya() {
         this(0.0f, 0.0f);
@@ -76,7 +77,7 @@ public class Tanya extends AbstractCardMonster
         setNumAdditionalMoves(1);
         this.setHp(calcAscensionTankiness(450));
 
-        addMove(OVERSPEED, Intent.ATTACK, calcAscensionDamage(30), overspeedHits);
+        addMove(OVERSPEED, Intent.ATTACK_BUFF, calcAscensionDamage(30), overspeedHits);
         addMove(BEATDOWN, IntentEnums.MASS_ATTACK, calcAscensionDamage(28));
         addMove(INTIMIDATE, Intent.DEFEND_BUFF);
         addMove(LUPINE_ASSAULT, Intent.ATTACK_DEFEND, calcAscensionDamage(22));
@@ -99,12 +100,20 @@ public class Tanya extends AbstractCardMonster
 
     @Override
     public void usePreBattleAction() {
-        CustomDungeon.playTempMusicInstantly("Ensemble2");
-        AbstractDungeon.getCurrRoom().cannotLose = true;
+        if (phase == POST_GUTS_PHASE) {
+            AbstractDungeon.getCurrRoom().cannotLose = true;
+        } else {
+            AbstractDungeon.getCurrRoom().cannotLose = true;
+        }
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof Gebura) {
                 target = (Gebura)mo;
             }
+        }
+        if (target != null && target.phase == Gebura.EGO_PHASE) {
+            CustomDungeon.playTempMusicInstantly("RedMistBGM");
+        } else {
+            CustomDungeon.playTempMusicInstantly("Ensemble2");
         }
         atb(new TalkAction(this, DIALOG[0]));
         applyToTarget(this, this, new Guts(this, GUTS_STRENGTH, GUTS_METALLICIZE_GAIN));
@@ -350,6 +359,7 @@ public class Tanya extends AbstractCardMonster
                 public void update() {
                     halfDead = false;
                     AbstractDungeon.getCurrRoom().cannotLose = false;
+                    setPhase(POST_GUTS_PHASE);
                     this.isDone = true;
                 }
             });

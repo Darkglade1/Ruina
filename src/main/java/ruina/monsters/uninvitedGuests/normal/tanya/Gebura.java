@@ -51,8 +51,8 @@ public class Gebura extends AbstractAllyCardMonster
 
     public final int powerStrength = 1;
     public final int EGOtimer = 4;
-    public boolean manifestedEGO = false;
-    protected int phase = 1;
+
+    public static final int EGO_PHASE = 2;
 
     public Gebura() {
         this(0.0f, 0.0f);
@@ -93,13 +93,15 @@ public class Gebura extends AbstractAllyCardMonster
             }
         }
         addPower(new GeburaRedMist(this, powerStrength, EGOtimer));
+        if (RuinaMod.isMultiplayerConnected() && phase == EGO_PHASE) {
+            resetIdle(0.0f);
+        }
         super.usePreBattleAction();
     }
 
     public void manifestEGO() {
         playSound("RedMistChange");
-        manifestedEGO = true;
-        phase = 2;
+        setPhase(EGO_PHASE);
         resetIdle(0.0f);
         changeBGM();
         AbstractPower strength = getPower(StrengthPower.POWER_ID);
@@ -309,7 +311,7 @@ public class Gebura extends AbstractAllyCardMonster
 
     @Override
     protected void getMove(final int num) {
-        if (phase == 1 && threeTurnCooldownHasPassedForMove(GSV)) {
+        if (phase == DEFAULT_PHASE && threeTurnCooldownHasPassedForMove(GSV)) {
             setMoveShortcut(GSV);
         } else if (threeTurnCooldownHasPassedForMove(GSH)) {
             setMoveShortcut(GSH);

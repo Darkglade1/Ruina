@@ -48,7 +48,7 @@ public class GeburaHead extends Gebura {
                     AbstractPower power = getPower(GeburaRedMist.POWER_ID);
                     if (power != null && shouldIncrementPower) {
                         if (power instanceof TwoAmountPower) {
-                            ((TwoAmountPower) power).amount2++;
+                            power.amount++;
                             power.updateDescription(); //stop her power from ticking down too early
                         }
                     }
