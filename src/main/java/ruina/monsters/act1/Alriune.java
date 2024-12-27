@@ -31,9 +31,6 @@ public class Alriune extends AbstractRuinaMonster
     private final int STATUS = calcAscensionSpecial(1);
     private final int DAMAGE_REDUCTION = calcAscensionSpecial(50);
 
-    private static final int DEBUFF_COOLDOWN = 2;
-    private int cooldown = DEBUFF_COOLDOWN;
-
     public Alriune() {
         this(0.0f, 0.0f);
     }
@@ -68,7 +65,6 @@ public class Alriune extends AbstractRuinaMonster
                 applyToTarget(this, this, new StrengthPower(this, STRENGTH));
                 applyToTarget(adp(), this, new DexterityPower(adp(), -DEX_DOWN));
                 resetIdle(1.0f);
-                cooldown = DEBUFF_COOLDOWN + 1;
                 break;
             }
             case FULL_BLOOM: {
@@ -85,13 +81,12 @@ public class Alriune extends AbstractRuinaMonster
                 break;
             }
         }
-        cooldown--;
         atb(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(final int num) {
-        if (cooldown <= 0) {
+        if (moveHistory.size() >= 2 && !lastMove(SPRINGS_GENESIS) && !lastMoveBefore(SPRINGS_GENESIS)) {
             setMoveShortcut(SPRINGS_GENESIS);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
