@@ -131,6 +131,7 @@ public class Tanya extends AbstractCardMonster
                     dmg(target, info);
                     resetIdle();
                 }
+                applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE_GAIN));
                 break;
             }
             case BEATDOWN: {
@@ -147,7 +148,7 @@ public class Tanya extends AbstractCardMonster
                     }
                 });
                 waitAnimation(0.5f);
-                applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE_GAIN));
+                applyToTarget(this, this, new StrengthPower(this, GUTS_STRENGTH));
                 break;
             }
             case INTIMIDATE: {
@@ -296,13 +297,10 @@ public class Tanya extends AbstractCardMonster
         } else if (this.lastMove(BEATDOWN)) {
             setAdditionalMoveShortcut(INTIMIDATE, moveHistory);
         } else {
-            if (!this.lastMove(LUPINE_ASSAULT, moveHistory)) {
-                possibilities.add(LUPINE_ASSAULT);
-            }
             if (!this.lastMove(FISTICUFFS, moveHistory)) {
                 possibilities.add(FISTICUFFS);
             }
-            if (!this.lastMove(KICKS_AND_STOMPS, moveHistory) && !this.lastMoveBefore(KICKS_AND_STOMPS, moveHistory)) {
+            if (!this.lastMove(KICKS_AND_STOMPS, moveHistory)) {
                 possibilities.add(KICKS_AND_STOMPS);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));

@@ -18,7 +18,7 @@ public class Beatdown extends AbstractRuinaCard {
     public Beatdown(Tanya parent) {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         this.parent = parent;
-        magicNumber = baseMagicNumber = parent.METALLICIZE_GAIN;
+        magicNumber = baseMagicNumber = parent.GUTS_STRENGTH;
     }
 
     @Override

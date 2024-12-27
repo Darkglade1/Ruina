@@ -19,6 +19,7 @@ public class Overspeed extends AbstractRuinaCard {
         super(ID, 0, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY, RuinaMod.Enums.EGO);
         this.parent = parent;
         magicNumber = baseMagicNumber = parent.overspeedHits;
+        secondMagicNumber = baseSecondMagicNumber = parent.METALLICIZE_GAIN;
     }
 
     @Override

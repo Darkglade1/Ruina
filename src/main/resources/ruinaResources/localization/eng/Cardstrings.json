@@ -283,11 +283,11 @@
   },
   "${ModID}:Overspeed": {
     "NAME": "Overspeed",
-    "DESCRIPTION": "Deal !D! damage !M! times."
+    "DESCRIPTION": "Deal !D! damage !M! times. NL Gain !ruina:SecondMagic! *Metallicize."
   },
   "${ModID}:Beatdown": {
     "NAME": "Beatdown",
-    "DESCRIPTION": "Deal !D! damage to ALL other characters. NL Gain !M! *Metallicize."
+    "DESCRIPTION": "Deal !D! damage to ALL other characters. NL Gain !M! Strength."
   },
   "${ModID}:Intimidate": {
     "NAME": "Intimidate",

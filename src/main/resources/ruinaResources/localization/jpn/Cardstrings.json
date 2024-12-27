@@ -283,11 +283,11 @@
   },
   "ruina:Overspeed": {
     "NAME": "過速",
-    "DESCRIPTION": " !D! ダメージを !M! 回与える。"
+    "DESCRIPTION": " !D! ダメージを !M! 回与える。 NL *金属化 !ruina:SecondMagic! を得る。"
   },
   "ruina:Beatdown": {
     "NAME": "殴打",
-    "DESCRIPTION": "自分以外の全員に !D! ダメージを与える。 NL *金属化 !M! を得る。"
+    "DESCRIPTION": "自分以外の全員に !D! ダメージを与える。 NL 筋力 !M! を得る。"
   },
   "ruina:Intimidate": {
     "NAME": "威嚇",

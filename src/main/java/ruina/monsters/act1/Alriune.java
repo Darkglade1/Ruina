@@ -2,23 +2,13 @@ package ruina.monsters.act1;
 
 import actlikeit.dungeons.CustomDungeon;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-<<<<<<< HEAD
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Slimed;
-=======
->>>>>>> pipedream
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.Paralysis;
 import ruina.powers.act1.WintersInception;
 import ruina.util.DetailedIntent;
 

@@ -283,11 +283,11 @@
   },
   "ruina:Overspeed": {
     "NAME": "超速",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。 NL 获得 !ruina:SecondMagic! 层 *金属化 。"
   },
   "ruina:Beatdown": {
     "NAME": "拳打",
-    "DESCRIPTION": "对所有其他角色造成 !D! 点伤害。 NL 获得 !M! 层 *金属化 。"
+    "DESCRIPTION": "对所有其他角色造成 !D! 点伤害。 NL 获得 !M! 点 力量 。"
   },
   "ruina:Intimidate": {
     "NAME": "恐吓",

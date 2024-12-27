@@ -283,11 +283,11 @@
   },
   "ruina:Overspeed": {
     "NAME": "Сверхскорость",
-    "DESCRIPTION": "Наносит !D! урона !M! раза."
+    "DESCRIPTION": "Наносит !D! урона !M! раза. NL Даёт !ruina:SecondMagic! *Металлизации."
   },
   "ruina:Beatdown": {
     "NAME": "Разгром земли",
-    "DESCRIPTION": "Наносит !D! урона ВСЕМ другим существам. NL Даёт !M! *Металлизации."
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ другим существам. NL Даёт !M! Силы."
   },
   "ruina:Intimidate": {
     "NAME": "Запугать",

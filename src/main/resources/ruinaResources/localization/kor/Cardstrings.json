@@ -283,11 +283,11 @@
   },
   "ruina:Overspeed": {
     "NAME": "과속",
-    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. *금속화를 !ruina:SecondMagic! 얻습니다."
   },
   "ruina:Beatdown": {
     "NAME": "구타",
-    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다. NL *금속화를 !M! 얻습니다."
+    "DESCRIPTION": "적 전체에게 피해를 !D! 줍니다. NL 힘을 !M! 얻습니다."
   },
   "ruina:Intimidate": {
     "NAME": "위협",
