@@ -8,6 +8,9 @@ import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import javassist.CtClass;
 import ruina.RuinaMod;
 import ruina.powers.AbstractEasyPower;
+import ruina.powers.RuinaIntangible;
+import ruina.powers.RuinaMetallicize;
+import ruina.powers.RuinaPlatedArmor;
 import ruina.powers.act4.FreshMeat;
 import spireTogether.subscribers.TiSPowerSyncRulesSubscriber;
 
@@ -45,6 +48,9 @@ public class MultiplayerPowerSyncRules implements TiSPowerSyncRulesSubscriber {
                 }
             }
         }
+        noMultiplyPowerClassList.add(RuinaPlatedArmor.class);
+        noMultiplyPowerClassList.add(RuinaMetallicize.class);
+        noMultiplyPowerClassList.add(RuinaIntangible.class);
         noMultiplyPowerClassList.add(GainStrengthPower.class);
         noMultiplyPowerClassList.add(LoseStrengthPower.class);
 

@@ -45,7 +45,7 @@ public class SnowQueen extends AbstractRuinaMonster
     private final int DEBUFF = calcAscensionSpecial(3);
     private final int BLOCK = calcAscensionTankiness(16);
     private final int STRENGTH = calcAscensionSpecial(3);
-    private final int METALLICIZE = calcAscensionSpecial(5);
+    private final int METALLICIZE = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(5));
 
     public SnowQueen() {
         this(0.0f, 0.0f);

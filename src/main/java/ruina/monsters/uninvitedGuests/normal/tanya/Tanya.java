@@ -57,12 +57,12 @@ public class Tanya extends AbstractCardMonster
 
 
     public final int BLOCK = calcAscensionTankiness(16);
-    public final int INITIAL_PLATED_ARMOR = calcAscensionTankiness(20);
-    public final int PLATED_ARMOR_GAIN = calcAscensionTankiness(15);
-    public final int METALLICIZE_GAIN = calcAscensionSpecial(5);
+    public final int INITIAL_PLATED_ARMOR = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(20));
+    public final int PLATED_ARMOR_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(15));
+    public final int METALLICIZE_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(5));
     public final int STRENGTH = calcAscensionSpecial(2);
     public final int WEAK = calcAscensionSpecial(1);
-    public final int GUTS_METALLICIZE_GAIN = calcAscensionSpecial(8);
+    public final int GUTS_METALLICIZE_GAIN = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(8));
     public final int GUTS_STRENGTH = calcAscensionSpecial(3);
     private boolean usingMassAttack = false;
     public static final int POST_GUTS_PHASE = 2;

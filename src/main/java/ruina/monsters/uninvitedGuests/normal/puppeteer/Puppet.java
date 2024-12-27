@@ -34,7 +34,7 @@ public class Puppet extends AbstractAllyAttackingMinion
     public static final byte REVIVE = 3;
 
     private final int BLOCK = calcAscensionTankiness(12);
-    private final int PLATED_ARMOR = calcAscensionSpecial(11);
+    private final int PLATED_ARMOR = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(11));
     public final int maxHPIncrease = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(20));
 
     public Puppet(final float x, final float y) {
