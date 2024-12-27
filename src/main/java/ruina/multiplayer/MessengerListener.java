@@ -6,6 +6,7 @@ import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.knight.Sword;
 import ruina.monsters.act3.punishingBird.PunishingBird;
+import ruina.monsters.uninvitedGuests.normal.clown.Tiph;
 import ruina.monsters.uninvitedGuests.normal.eileen.Yesod;
 import ruina.monsters.uninvitedGuests.normal.greta.Hod;
 import ruina.powers.act1.Pattern;
@@ -15,6 +16,7 @@ import ruina.powers.act3.PunishingBirdPunishmentPower;
 import ruina.powers.act4.DarkBargain;
 import ruina.powers.act4.PurpleTearStance;
 import spireTogether.networkcore.objects.entities.NetworkIntent;
+import spireTogether.networkcore.objects.entities.NetworkMonster;
 import spireTogether.networkcore.objects.rooms.NetworkLocation;
 import spireTogether.other.RoomDataManager;
 import spireTogether.subscribers.TiSNetworkMessageSubscriber;
@@ -30,6 +32,7 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
     public static String request_queenTriggerHysteria = "ruina_queenTriggerHysteria";
     public static String request_punishingBirdMad = "ruina_punishingBirdMad";
     public static String request_yesodGainedDamage = "ruina_yesodGainedDamage";
+    public static String request_playerDamageTiph = "ruina_playerDamageTiph";
     @Override
     public void onMessageReceive(NetworkMessage networkMessage, String s, Object o, Integer integer) {
         if (networkMessage.request.equals(NetworkRuinaMonster.request_monsterUpdateMainIntent)) {
@@ -207,6 +210,30 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
                 for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
                     if (m instanceof Hod && SpireHelp.Gameplay.CreatureToUID(m).equals(monsterID)) {
                         ((Hod) m).changeStance(stance);
+                    }
+                }
+            }
+        }
+        if (networkMessage.request.equals(request_playerDamageTiph)) {
+            Object[] dataIn = (Object[]) networkMessage.object;
+            int newCurrHp = (int)dataIn[0];
+            int newCurrBlock = (int)dataIn[1];
+            String monsterID = (String)dataIn[2];
+            NetworkLocation requestLocation = (NetworkLocation)dataIn[3];
+            if (requestLocation.isSameRoomAndAction()) {
+                for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+                    if (m instanceof Tiph && SpireHelp.Gameplay.CreatureToUID(m).equals(monsterID)) {
+                        if (m.halfDead && !((Tiph) m).isTargetableByPlayer) {
+                            m.currentBlock = newCurrBlock;
+                            m.currentHealth = newCurrHp;
+                            m.healthBarUpdatedEvent();
+
+                            NetworkMonster mo = RoomDataManager.GetMonsterForLocation(monsterID, requestLocation);
+                            if (mo != null) {
+                                mo.HP = newCurrHp;
+                                mo.block = newCurrBlock;
+                            }
+                        }
                     }
                 }
             }

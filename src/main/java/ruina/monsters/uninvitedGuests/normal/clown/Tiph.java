@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -35,8 +36,6 @@ public class Tiph extends AbstractAllyCardMonster
     public final int BLOCK = 10;
     public final int trigramHits = 2;
 
-    private FourTrigrams trigramPower;
-
     public static final int GEON = 1;
     public static final int GON = 2;
     public static final int RI = 3;
@@ -44,8 +43,6 @@ public class Tiph extends AbstractAllyCardMonster
     public static final int geonDamageBonus = 50;
     public static final int gonDamageReduction = 50;
     public static final int riDrawBonus = 1;
-
-    public int trigram = GEON;
 
     public Tiph() {
         this(0.0f, 0.0f);
@@ -81,9 +78,21 @@ public class Tiph extends AbstractAllyCardMonster
                 target = (Oswald)mo;
             }
         }
-        trigramPower = new FourTrigrams(this);
-        trigramPower.changeTrigram(trigram);
-        addPower(trigramPower);
+        addPower(new FourTrigrams(this, GEON));
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                AbstractPower power = getPower(FourTrigrams.POWER_ID);
+                if (power instanceof FourTrigrams) {
+                    if (RuinaMod.isMultiplayerConnected()) {
+                        ((FourTrigrams) power).changeTrigram(phase);
+                    } else {
+                        ((FourTrigrams) power).changeTrigram(GEON);
+                    }
+                }
+                this.isDone = true;
+            }
+        });
         super.usePreBattleAction();
     }
 

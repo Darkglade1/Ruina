@@ -11,8 +11,11 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.clown.Tiph;
+import ruina.multiplayer.MessengerListener;
 import ruina.powers.AbstractUnremovablePower;
 import ruina.util.TexLoader;
+import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.util.SpireHelp;
 
 import static ruina.RuinaMod.makePowerPath;
 import static ruina.util.Wiz.*;
@@ -35,9 +38,13 @@ public class FourTrigrams extends AbstractUnremovablePower {
 
     private int trigram;
 
-    public FourTrigrams(AbstractCreature owner) {
+    public FourTrigrams(AbstractCreature owner, int trigram) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, 0);
+        this.trigram = trigram;
         this.priority = 99;
+
+        this.region128 = new TextureAtlas.AtlasRegion(geon84, 0, 0, 84, 84);
+        this.region48 = new TextureAtlas.AtlasRegion(geon32, 0, 0, 32, 32);
     }
 
     @Override
@@ -64,17 +71,15 @@ public class FourTrigrams extends AbstractUnremovablePower {
             amount = Tiph.geonDamageBonus;
             this.region128 = new TextureAtlas.AtlasRegion(geon84, 0, 0, 84, 84);
             this.region48 = new TextureAtlas.AtlasRegion(geon32, 0, 0, 32, 32);
-        } else {
-            if (trigram == Tiph.GON) {
-                amount = Tiph.gonDamageReduction;
-                this.region128 = new TextureAtlas.AtlasRegion(gon84, 0, 0, 84, 84);
-                this.region48 = new TextureAtlas.AtlasRegion(gon32, 0, 0, 32, 32);
-            } else {
-                amount = Tiph.riDrawBonus;
-                this.region128 = new TextureAtlas.AtlasRegion(ri84, 0, 0, 84, 84);
-                this.region48 = new TextureAtlas.AtlasRegion(ri32, 0, 0, 32, 32);
-                applyToTarget(adp(), owner, new DrawCardNextTurnPower(adp(), amount));
-            }
+        } else if (trigram == Tiph.GON) {
+            amount = Tiph.gonDamageReduction;
+            this.region128 = new TextureAtlas.AtlasRegion(gon84, 0, 0, 84, 84);
+            this.region48 = new TextureAtlas.AtlasRegion(gon32, 0, 0, 32, 32);
+        } else if (trigram == Tiph.RI){
+            amount = Tiph.riDrawBonus;
+            this.region128 = new TextureAtlas.AtlasRegion(ri84, 0, 0, 84, 84);
+            this.region48 = new TextureAtlas.AtlasRegion(ri32, 0, 0, 32, 32);
+            applyToTarget(adp(), owner, new DrawCardNextTurnPower(adp(), amount));
         }
         updateDescription();
         atb(new AbstractGameAction() {
@@ -95,7 +100,23 @@ public class FourTrigrams extends AbstractUnremovablePower {
         } else {
             changeTrigram(Tiph.GEON);
         }
+        if (owner instanceof Tiph) {
+            ((Tiph) owner).setPhase(trigram);
+        }
         this.flash();
+    }
+
+    @Override
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        if (RuinaMod.isMultiplayerConnected() && info.owner == adp()) {
+            P2PManager.SendData(MessengerListener.request_playerDamageTiph, owner.currentHealth - damageAmount, owner.currentBlock, SpireHelp.Gameplay.CreatureToUID(owner), SpireHelp.Gameplay.GetMapLocation());
+        }
+        return damageAmount;
+    }
+
+    @Override
+    public void stackPower(int stackAmount) {
+        // doesn't stack
     }
 
     @Override

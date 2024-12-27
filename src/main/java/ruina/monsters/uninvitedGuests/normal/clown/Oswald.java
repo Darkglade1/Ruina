@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,6 +16,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.clown.oswaldCards.*;
 import ruina.powers.InvisibleBarricadePower;
@@ -43,8 +43,8 @@ public class Oswald extends AbstractCardMonster
 
     public final int funHits = 2;
     public final int climaxDamage = calcAscensionDamage(6);
-    public int climaxHits = 4;
     public final int climaxHitIncrease = calcAscensionSpecial(1);
+    public final int initialClimaxHits;
 
     public final int STATUS = calcAscensionSpecial(2);
     public final int STRENGTH = calcAscensionSpecial(2);
@@ -61,7 +61,8 @@ public class Oswald extends AbstractCardMonster
         setNumAdditionalMoves(1);
         this.setHp(calcAscensionTankiness(700));
 
-        addMove(CLIMAX, Intent.ATTACK, climaxDamage, climaxHits);
+        initialClimaxHits = getClimaxHits();
+        addMove(CLIMAX, Intent.ATTACK, climaxDamage, initialClimaxHits);
         addMove(FUN, Intent.ATTACK, calcAscensionDamage(11), funHits);
         addMove(CATCH, Intent.DEBUFF);
         addMove(POW, Intent.BUFF);
@@ -91,6 +92,14 @@ public class Oswald extends AbstractCardMonster
         atb(new TalkAction(this, DIALOG[0]));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new Brainwash(this, 1));
+
+        if (RuinaMod.isMultiplayerConnected()) {
+            addMove(CLIMAX, Intent.ATTACK, climaxDamage, getClimaxHits());
+        }
+    }
+
+    public int getClimaxHits() {
+        return phase + 3;
     }
 
     @Override
@@ -110,8 +119,8 @@ public class Oswald extends AbstractCardMonster
                     waitAnimation();
                 }
                 resetIdle();
-                climaxHits += climaxHitIncrease;
-                addMove(CLIMAX, Intent.ATTACK, climaxDamage, climaxHits, true);
+                setPhase(phase + climaxHitIncrease);
+                addMove(CLIMAX, Intent.ATTACK, climaxDamage, getClimaxHits());
                 break;
             }
             case FUN: {

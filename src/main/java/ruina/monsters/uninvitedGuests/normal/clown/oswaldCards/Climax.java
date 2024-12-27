@@ -17,8 +17,11 @@ public class Climax extends AbstractRuinaCard {
 
     public Climax(Oswald parent) {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY, RuinaMod.Enums.EGO);
-        magicNumber = baseMagicNumber = parent.climaxHits;
+        magicNumber = baseMagicNumber = parent.getClimaxHits();
         secondMagicNumber = baseSecondMagicNumber = parent.climaxHitIncrease;
+        if (magicNumber != parent.initialClimaxHits) {
+            isMagicNumberModified = true;
+        }
         this.parent = parent;
     }
 
