@@ -479,7 +479,7 @@
   },
   "${ModID}:WintersInception": {
     "NAME": "Winter's Inception",
-    "DESCRIPTIONS": ["This creature receives #b", "% less damage from attacks. However, the first #yAttack you play each turn deals full damage for the rest of combat. NL (Cards that deal full damage are marked with a #yLaurel #yWreath.)"]
+    "DESCRIPTIONS": ["This creature receives #b", "% less damage from attacks. However, the first #yAttack you play each turn deals full damage for the rest of combat. NL Cards that deal full damage are marked with a #yLaurel #yWreath."]
   },
   "${ModID}:Performance": {
     "NAME": "Endless Performance",

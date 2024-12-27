@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.status.Slimed;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -37,7 +38,7 @@ public class Alriune extends AbstractRuinaMonster
 
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int DEX_DOWN = calcAscensionSpecial(1);
-    private final int PARALYSIS = calcAscensionSpecial(1);
+    private final int STATUS = calcAscensionSpecial(1);
     private final int DAMAGE_REDUCTION = calcAscensionSpecial(50);
 
     private static final int DEBUFF_COOLDOWN = 2;
@@ -121,7 +122,7 @@ public class Alriune extends AbstractRuinaMonster
             case FULL_BLOOM: {
                 attackAnimation(adp());
                 dmg(adp(), info);
-                applyToTarget(adp(), this, new Paralysis(adp(), PARALYSIS));
+                intoDiscardMo(new Slimed(), STATUS, this);
                 resetIdle();
                 break;
             }
@@ -165,7 +166,7 @@ public class Alriune extends AbstractRuinaMonster
                 break;
             }
             case FULL_BLOOM: {
-                DetailedIntent detail = new DetailedIntent(this, PARALYSIS, DetailedIntent.PARALYSIS_TEXTURE);
+                DetailedIntent detail = new DetailedIntent(this, STATUS, DetailedIntent.SLIMED_TEXTURE, DetailedIntent.TargetType.DISCARD_PILE);
                 detailsList.add(detail);
                 break;
             }
