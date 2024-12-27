@@ -140,17 +140,11 @@ public class Gebura extends AbstractAllyCardMonster
     }
 
     protected void manifestEGO() {
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                playSound("RedMistChange");
-                CustomDungeon.playTempMusicInstantly("RedMistBGM");
-                this.isDone = true;
-            }
-        });
+        playSound("RedMistChange");
         manifestedEGO = true;
         phase = 2;
         resetIdle(0.0f);
+        CustomDungeon.playTempMusicInstantly("RedMistBGM");
         AbstractPower strength = getPower(StrengthPower.POWER_ID);
         if (strength != null) {
             applyToTarget(this, this, new StrengthPower(this, strength.amount));
