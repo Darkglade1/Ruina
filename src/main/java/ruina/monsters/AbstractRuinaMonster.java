@@ -539,7 +539,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         notifyAttackingAllyUpdateMultiplayer();
     }
 
-    protected void notifyAttackingAllyUpdateMultiplayer() {
+    public void notifyAttackingAllyUpdateMultiplayer() {
         if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
             P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateAttackingAlly, attackingAlly, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
             NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);

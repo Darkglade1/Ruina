@@ -113,19 +113,10 @@ public class Puppeteer extends AbstractCardMonster
         super.takeCustomTurn(move, target, whichMove);
         switch (move.nextMove) {
             case PULLING_STRINGS_TAUT: {
-                int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size() + 1];
-                info.applyPowers(this, adp());
-                damageArray[damageArray.length - 1] = info.output;
-                for (int i = 0; i < AbstractDungeon.getMonsters().monsters.size(); i++) {
-                    AbstractMonster mo = AbstractDungeon.getMonsters().monsters.get(i);
-                    info.applyPowers(this, mo);
-                    damageArray[i] = info.output;
-                }
-
                 massAttackStartAnimation();
                 massAttackEffect();
                 massAttackFinishAnimation();
-                atb(new DamageAllOtherCharactersAction(this, damageArray, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
+                atb(new DamageAllOtherCharactersAction(this, calcMassAttack(info), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
                 resetIdle(1.0f);
                 break;
             }
@@ -152,6 +143,7 @@ public class Puppeteer extends AbstractCardMonster
                 } else {
                     puppet.attackingAlly = false;
                 }
+                puppet.notifyAttackingAllyUpdateMultiplayer();
                 AbstractDungeon.onModifyPower();
                 break;
             }

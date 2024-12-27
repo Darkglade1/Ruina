@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SetMoveAction;
 import com.megacrit.cardcrawl.actions.unique.IncreaseMaxHpAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -15,8 +14,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyAttackingMinion;
-import ruina.powers.RuinaPlatedArmor;
 import ruina.powers.InvisibleBarricadePower;
+import ruina.powers.RuinaPlatedArmor;
 import ruina.powers.act4.PuppetStrings;
 
 import java.util.ArrayList;
@@ -46,8 +45,6 @@ public class Puppet extends AbstractAllyAttackingMinion
         addMove(REPRESSED_FLESH, Intent.ATTACK, calcAscensionDamage(9), 2);
         addMove(REVIVING, Intent.UNKNOWN);
         addMove(REVIVE, Intent.BUFF);
-
-        attackingAlly = AbstractDungeon.monsterRng.randomBoolean();
     }
 
     @Override
@@ -68,6 +65,8 @@ public class Puppet extends AbstractAllyAttackingMinion
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new RuinaPlatedArmor(this, PLATED_ARMOR));
         applyToTarget(this, this, new PuppetStrings(this));
+
+        attackingAlly = generateMultiplayerRandom().randomBoolean();
     }
 
     @Override
@@ -141,6 +140,8 @@ public class Puppet extends AbstractAllyAttackingMinion
     protected void getMove(final int num) {
         if (this.lastMove(REVIVING)) {
             setMoveShortcut(REVIVE);
+        } else if (this.halfDead) {
+            setMoveShortcut(REVIVING);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastTwoMoves(FORCEFUL_GESTURE)) {
@@ -173,11 +174,8 @@ public class Puppet extends AbstractAllyAttackingMinion
             for (AbstractRelic r : AbstractDungeon.player.relics) {
                 r.onMonsterDeath(this);
             }
-            if (this.nextMove != REVIVING) {
-                setMoveShortcut(REVIVING);
-                this.createIntent();
-                atb(new SetMoveAction(this, REVIVING, Intent.UNKNOWN));
-            }
+            rollMove();
+            createIntent();
             ArrayList<AbstractPower> powersToRemove = new ArrayList<>();
             for (AbstractPower power : this.powers) {
                 if (!(power.ID.equals(MinionPower.POWER_ID)) && !(power.ID.equals(StrengthPower.POWER_ID)) && !(power.ID.equals(GainStrengthPower.POWER_ID)) && !(power.ID.equals(PuppetStrings.POWER_ID)) && !(power.ID.equals(PlatedArmorPower.POWER_ID)) && !(power.ID.equals(BarricadePower.POWER_ID))) {

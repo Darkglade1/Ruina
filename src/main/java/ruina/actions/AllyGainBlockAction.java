@@ -47,7 +47,7 @@ public class AllyGainBlockAction extends AbstractGameAction {
     public void update() {
         if (!this.target.isDying && !this.target.isDead && this.duration == this.startDuration) {
             if (RuinaMod.isMultiplayerConnected()) {
-                addToTop(new GainBlockAction(target, amount));
+                addToTop(new GainBlockAction(target, RuinaMod.getMultiplayerEnemyHealthScaling(amount)));
             } else {
                 AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SHIELD));
 
