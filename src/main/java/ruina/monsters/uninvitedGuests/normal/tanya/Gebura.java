@@ -95,6 +95,9 @@ public class Gebura extends AbstractAllyCardMonster
         addPower(new GeburaRedMist(this, powerStrength, EGOtimer));
         if (RuinaMod.isMultiplayerConnected() && phase == EGO_PHASE) {
             resetIdle(0.0f);
+            AbstractPower power = getPower(GeburaRedMist.POWER_ID);
+            power.amount = 0;
+            power.updateDescription();
         }
         super.usePreBattleAction();
     }
