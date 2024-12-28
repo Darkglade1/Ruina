@@ -129,6 +129,7 @@ import ruina.monsters.uninvitedGuests.normal.puppeteer.Puppeteer;
 import ruina.monsters.uninvitedGuests.normal.tanya.Gebura;
 import ruina.monsters.uninvitedGuests.normal.tanya.Tanya;
 import ruina.multiplayer.MultiplayerCompatibility;
+import ruina.patches.WisdomPreviewPatches;
 import ruina.patches.PlayerSpireFields;
 import ruina.potions.EgoPotion;
 import ruina.powers.act4.PriceOfTime;
@@ -160,7 +161,8 @@ public class RuinaMod implements
         PostBattleSubscriber,
         PreMonsterTurnSubscriber,
         PostPowerApplySubscriber,
-        StartActSubscriber {
+        StartActSubscriber,
+        OnStartBattleSubscriber {
 
     private static final String modID = "ruina";
     public static final TextureAtlas UIAtlas = new TextureAtlas();
@@ -1297,6 +1299,8 @@ public class RuinaMod implements
             ReflectionHacks.setPrivateStaticFinal(NeowEvent.class, "TEXT", neowNormalStrings.TEXT);
             ReflectionHacks.setPrivateStaticFinal(NeowEvent.class, "DIALOG_X", 1100.0F * Settings.xScale);
         }
+
+        WisdomPreviewPatches.inkHeartCompatibility = false;
     }
 
     public void receiveEditKeywords() {
@@ -1379,5 +1383,10 @@ public class RuinaMod implements
             return baseValue * P2PManager.GetPlayerCount();
         }
         return baseValue;
+    }
+
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        WisdomPreviewPatches.inkHeartCompatibility = AbstractDungeon.player.hasRelic("wanderingMiniBosses:Inkheart");
     }
 }

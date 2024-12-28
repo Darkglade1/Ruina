@@ -37,7 +37,7 @@
   },
   "${ModID}:Wisdom": {
     "NAME": "Wisdom",
-    "DESCRIPTIONS": ["Your draw pile is viewed in order for this combat."]
+    "DESCRIPTIONS": ["You can see the top cards of your draw pile this combat."]
   },
   "${ModID}:Heart": {
     "NAME": "Warm Heart",

@@ -34,13 +34,16 @@ public class Scarecrow extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Scarecrow/Spriter/Scarecrow.scml"));
         setHp(calcAscensionTankiness(48), calcAscensionTankiness(54));
         addMove(RAKE, Intent.ATTACK, calcAscensionDamage(12));
-        addMove(HARVEST, Intent.ATTACK, calcAscensionDamage(3), 3, true);
+        addMove(HARVEST, Intent.ATTACK, calcAscensionDamage(3), 3);
         addMove(STRUGGLE, Intent.DEBUFF);
         this.struggleCounter = struggleCounter;
     }
 
     @Override
     public void usePreBattleAction() {
+        if (struggleCounter == 0) {
+            applyToTarget(adp(), this, new ruina.powers.act2.Wisdom(adp()));
+        }
         applyToTarget(this, this, new Search(this));
     }
 
