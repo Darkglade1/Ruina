@@ -42,7 +42,7 @@ public class LittleRed extends AbstractAllyMonster
     private static final byte HOLLOW_POINT_SHELL = 2;
     private static final byte BULLET_SHOWER = 3;
 
-    private final int DEFENSE = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(10));
+    private final int HEAL = RuinaMod.getMultiplayerEnemyHealthScaling(10);
     private final int STRENGTH = 3;
 
     public static final int ENRAGE_PHASE = 2;
@@ -118,7 +118,7 @@ public class LittleRed extends AbstractAllyMonster
                 break;
             }
             case CATCH_BREATH: {
-                atb(new HealAction(this, this, DEFENSE));
+                atb(new HealAction(this, this, HEAL));
                 applyToTarget(this, this, new StrikeWithoutHesitation(this, STRENGTH));
                 break;
             }
@@ -203,7 +203,7 @@ public class LittleRed extends AbstractAllyMonster
             case CATCH_BREATH: {
                 DetailedIntent detail = new DetailedIntent(this, STRENGTH, texture);
                 detailsList.add(detail);
-                DetailedIntent detail2 = new DetailedIntent(this, DEFENSE, DetailedIntent.HEAL_TEXTURE);
+                DetailedIntent detail2 = new DetailedIntent(this, HEAL, DetailedIntent.HEAL_TEXTURE);
                 detailsList.add(detail2);
                 break;
             }
