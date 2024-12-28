@@ -56,8 +56,10 @@ public abstract class AbstractAllyMonster extends AbstractRuinaMonster {
     @Override
     public void usePreBattleAction() {
         super.usePreBattleAction();
-        AllyMove blockMove = new AllyMove(TEXT[11], this, new Texture(makeUIPath("defend.png")), TEXT[9] + BLOCK_TRANSFER + TEXT[10], () -> {
+        AllyMove blockMove = new AllyMove(TEXT[11], this, new Texture(makeUIPath("defend.png")), TEXT[9] + BLOCK_TRANSFER + TEXT[10] + TEXT[18], () -> {
             atb(new TransferBlockToAllyAction(BLOCK_TRANSFER, this));
+        }, () -> {
+            atb(new TransferBlockToAllyAction(999, this));
         });
         blockMove.setX(this.intentHb.x - ((50.0F + 32.0f) * Settings.scale));
         blockMove.setY(this.intentHb.cY - (32.0f * Settings.scale));

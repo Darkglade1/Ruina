@@ -17,8 +17,6 @@ public class TransferBlockToAllyAction extends AbstractGameAction {
     private static final String[] TEXT = uiStrings.TEXT;
     int maxBlock;
     private final AbstractAllyMonster ally;
-    private static int count = 0;
-    private static int talkCooldown = 3;
 
     public TransferBlockToAllyAction(int maxBlock, AbstractAllyMonster ally) {
         this.actionType = ActionType.SPECIAL;
@@ -29,7 +27,6 @@ public class TransferBlockToAllyAction extends AbstractGameAction {
 
     @Override
     public void update() {
-        count--;
         if (ally != null) {
             int blockToTransfer = maxBlock;
             if (AbstractDungeon.player.currentBlock < blockToTransfer) {
@@ -46,10 +43,13 @@ public class TransferBlockToAllyAction extends AbstractGameAction {
                 });
                 addToTop(new AllyGainBlockAction(ally, adp(), blockToTransfer, true));
             } else {
-                if (count <= 0) {
-                    atb(new TalkAction(true, TEXT[12], 0.8F, 0.8F));
-                    count = talkCooldown;
+                for (AbstractGameAction action : AbstractDungeon.actionManager.actions) {
+                    if (action instanceof TransferBlockToAllyAction) {
+                        this.isDone = true;
+                        return;
+                    }
                 }
+                atb(new TalkAction(true, TEXT[12], 0.8F, 0.8F));
             }
         }
         this.isDone = true;

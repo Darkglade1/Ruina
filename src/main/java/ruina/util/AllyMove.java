@@ -20,6 +20,7 @@ public class AllyMove extends ClickableUIElement {
     private final String ID;
     private final String moveDescription;
     private final Runnable moveActions;
+    private Runnable moveActions2;
     private final AbstractAllyMonster owner;
 
     public AllyMove(String ID, AbstractAllyMonster owner, Texture moveImage, String moveDescription, Runnable moveActions) {
@@ -30,11 +31,24 @@ public class AllyMove extends ClickableUIElement {
         this.owner = owner;
     }
 
+    public AllyMove(String ID, AbstractAllyMonster owner, Texture moveImage, String moveDescription, Runnable moveActions, Runnable moveActions2) {
+        this(ID, owner, moveImage, moveDescription, moveActions);
+        this.moveActions2 = moveActions2;
+    }
+
     private void doMove() {
         if(moveActions != null) {
             moveActions.run();
         } else {
             BaseMod.logger.info("AllyMove: " + this.ID + " had no actions!");
+        }
+    }
+
+    private void doMove2() {
+        if(moveActions2 != null) {
+            moveActions2.run();
+        } else {
+            BaseMod.logger.info("AllyMove: " + this.ID + " had no secondary actions!");
         }
     }
 
@@ -69,6 +83,15 @@ public class AllyMove extends ClickableUIElement {
         }
     }
 
+    protected void onClick2() {
+        if(canUse()){
+            InputHelper.justClickedRight = false;
+            CInputActionSet.select.unpress();
+            CardCrawlGame.sound.play("UI_CLICK_1");
+            this.doMove2();
+        }
+    }
+
     @Override
     public void render(SpriteBatch sb) {
         if(!canUse()){
@@ -77,6 +100,14 @@ public class AllyMove extends ClickableUIElement {
             super.render(sb, Color.GOLD);
         } else {
             super.render(sb);
+        }
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (this.hitbox.hovered && InputHelper.justClickedRight && isClickable()) {
+            this.onClick2();
         }
 
     }

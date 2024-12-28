@@ -53,7 +53,8 @@
       " damage to ALL other characters (including you)",
       ".",
       " times.",
-      " damage to ALL enemies"
+      " damage to ALL enemies",
+      " NL #yRight-Click: #ytransfer all your #yBlock to this #yAlly."
     ]
   },
   "ruina:MassAttackIntent": {
