@@ -60,9 +60,6 @@ public class Performance extends AbstractUnremovablePower {
             } else {
                 description = POWER_DESCRIPTIONS[1];
             }
-            if (AbstractDungeon.ascensionLevel >= 19) {
-                description += POWER_DESCRIPTIONS[2];
-            }
         }
     }
 }
