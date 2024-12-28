@@ -14,7 +14,10 @@ import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.AbstractMultiIntentMonster;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.uninvitedGuests.normal.elena.Binah;
+import ruina.multiplayer.MessengerListener;
 import ruina.powers.AbstractUnremovablePower;
+import spireTogether.networkcore.P2P.P2PManager;
+import spireTogether.util.SpireHelp;
 
 import java.util.ArrayList;
 
@@ -59,6 +62,9 @@ public class Arbiter extends AbstractUnremovablePower {
         if (newTarget instanceof AbstractRuinaMonster && !newTarget.isDeadOrEscaped() && owner instanceof Binah) {
             ((Binah) owner).target = (AbstractRuinaMonster) action.target;
             AbstractDungeon.onModifyPower();
+            if (RuinaMod.isMultiplayerConnected()) {
+                P2PManager.SendData(MessengerListener.request_binahChangeTarget, SpireHelp.Gameplay.CreatureToUID(action.target), SpireHelp.Gameplay.CreatureToUID(owner), SpireHelp.Gameplay.GetMapLocation());
+            }
         }
     }
 

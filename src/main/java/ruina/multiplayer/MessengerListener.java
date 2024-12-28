@@ -2,12 +2,14 @@ package ruina.multiplayer;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import ruina.monsters.AbstractRuinaMonster;
 import ruina.monsters.act1.AllAroundHelper;
 import ruina.monsters.act2.QueenOfHate;
 import ruina.monsters.act2.knight.Sword;
 import ruina.monsters.act3.punishingBird.PunishingBird;
 import ruina.monsters.uninvitedGuests.normal.clown.Tiph;
 import ruina.monsters.uninvitedGuests.normal.eileen.Yesod;
+import ruina.monsters.uninvitedGuests.normal.elena.Binah;
 import ruina.monsters.uninvitedGuests.normal.greta.Hod;
 import ruina.powers.act1.Pattern;
 import ruina.powers.act2.Hysteria;
@@ -33,6 +35,7 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
     public static String request_punishingBirdMad = "ruina_punishingBirdMad";
     public static String request_yesodGainedDamage = "ruina_yesodGainedDamage";
     public static String request_playerDamageTiph = "ruina_playerDamageTiph";
+    public static String request_binahChangeTarget = "ruina_binahChangeTarget";
     @Override
     public void onMessageReceive(NetworkMessage networkMessage, String s, Object o, Integer integer) {
         if (networkMessage.request.equals(NetworkRuinaMonster.request_monsterUpdateMainIntent)) {
@@ -233,6 +236,30 @@ public class MessengerListener implements TiSNetworkMessageSubscriber {
                                 mo.HP = newCurrHp;
                                 mo.block = newCurrBlock;
                             }
+                        }
+                    }
+                }
+            }
+        }
+        if (networkMessage.request.equals(request_binahChangeTarget)) {
+            Object[] dataIn = (Object[]) networkMessage.object;
+            String targetID = (String)dataIn[0];
+            String monsterID = (String)dataIn[1];
+            NetworkLocation requestLocation = (NetworkLocation)dataIn[2];
+            Binah binah = null;
+            if (requestLocation.isSameRoomAndAction()) {
+                for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+                    if (m instanceof Binah && SpireHelp.Gameplay.CreatureToUID(m).equals(monsterID)) {
+                        binah = (Binah) m;
+                        break;
+                    }
+                }
+                if (binah != null) {
+                    for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+                        if (m instanceof AbstractRuinaMonster && SpireHelp.Gameplay.CreatureToUID(m).equals(targetID)) {
+                            binah.target = (AbstractRuinaMonster) m;
+                            AbstractDungeon.onModifyPower();
+                            break;
                         }
                     }
                 }
