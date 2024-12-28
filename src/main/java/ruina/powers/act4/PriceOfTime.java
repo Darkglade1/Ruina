@@ -32,8 +32,6 @@ public class PriceOfTime extends AbstractUnremovablePower {
         if (this.amount >= amount2 && owner instanceof Hokma) {
             this.amount = 0;
             ((Hokma) owner).takeTurn();
-        } else {
-            flashWithoutSound();
         }
     }
 
