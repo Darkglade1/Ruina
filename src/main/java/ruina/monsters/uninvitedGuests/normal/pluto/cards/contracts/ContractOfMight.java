@@ -15,7 +15,7 @@ import static ruina.util.Wiz.att;
 @AutoAdd.Ignore
 public class ContractOfMight extends AbstractRuinaCard {
     public final static String ID = makeID(ContractOfMight.class.getSimpleName());
-    private static final int STRENGTH = 6;
+    private static final int STRENGTH = 3;
     public static final int CARD_LIMIT = 6;
 
     public ContractOfMight() {
