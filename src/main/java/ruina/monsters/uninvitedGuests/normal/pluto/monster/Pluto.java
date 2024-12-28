@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
+import ruina.RuinaMod;
 import ruina.monsters.AbstractAllyMonster;
 import ruina.monsters.AbstractCardMonster;
 import ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts.ConfusingContract;
@@ -49,7 +50,6 @@ public class Pluto extends AbstractCardMonster {
     public final int magicOnslaughtPerUseScaling = calcAscensionDamage(5);
 
     public final int STATUS = calcAscensionSpecial(2);
-    private int onslaughtTimesUsed;
 
     public Shade shade;
 
@@ -95,6 +95,9 @@ public class Pluto extends AbstractCardMonster {
         }
         atb(new TalkAction(this, DIALOG[0]));
         applyToTarget(this, this, new InvisibleBarricadePower(this));
+        if (RuinaMod.isMultiplayerConnected()) {
+            setOnslaughtDamage();
+        }
     }
 
     @Override
@@ -127,7 +130,7 @@ public class Pluto extends AbstractCardMonster {
                 bluntAnimation(target);
                 dmg(target, info);
                 resetIdle();
-                onslaughtTimesUsed++;
+                setPhase(phase + 1);
                 break;
             case CONTRACT:
                 contractAnimation(target);
@@ -166,16 +169,19 @@ public class Pluto extends AbstractCardMonster {
             }
         });
         super.takeTurn();
+        setOnslaughtDamage();
+        atb(new RollMoveAction(this));
+    }
+
+    private void setOnslaughtDamage() {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                int newDamage = moves.get(ONSLAUGHT).baseDamage += magicOnslaughtPerUseScaling * onslaughtTimesUsed;
-                onslaughtTimesUsed = 0;
+                int newDamage = magicOnslaughtDamage + (magicOnslaughtPerUseScaling * (phase - 1));
                 addMove(ONSLAUGHT, Intent.ATTACK, newDamage);
                 isDone = true;
             }
         });
-        atb(new RollMoveAction(this));
     }
 
     @Override

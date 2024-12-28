@@ -32,8 +32,9 @@ public class Hokma extends AbstractAllyCardMonster
     private static final byte SILENCE = 0;
     private static final byte TIME = 1;
 
+    public final int BASE_DAMAGE = 10;
     public final int DAMAGE_INCREASE = 10;
-    public final int CARDS_PER_TURN = 6;
+    public final int CARDS_PER_TURN = RuinaMod.getMultiplayerPlayerCountScaling(6);
 
     public Pluto pluto;
 
@@ -47,7 +48,7 @@ public class Hokma extends AbstractAllyCardMonster
         this.animation.setFlip(true, false);
         this.setHp(calcAscensionTankiness(160));
 
-        addMove(SILENCE, Intent.ATTACK, 10);
+        addMove(SILENCE, Intent.ATTACK, BASE_DAMAGE);
         addMove(TIME, Intent.BUFF);
 
         cardList.add(new Silence(this));
@@ -69,8 +70,16 @@ public class Hokma extends AbstractAllyCardMonster
                 target = pluto = (Pluto)mo;
             }
         }
-        addPower(new PriceOfTime(this, CARDS_PER_TURN));
+        addPower(new PriceOfTime(this, 0, CARDS_PER_TURN));
+        if (RuinaMod.isMultiplayerConnected()) {
+            setDamage();
+        }
         super.usePreBattleAction();
+    }
+
+    private void setDamage() {
+        int newDamage = BASE_DAMAGE + (DAMAGE_INCREASE * (phase - 1));
+        addMove(SILENCE, Intent.ATTACK, newDamage);
     }
 
     @Override
@@ -84,8 +93,8 @@ public class Hokma extends AbstractAllyCardMonster
                 slashAnimation(target);
                 dmg(target, info);
                 resetIdle();
-                int newDamage = info.base += DAMAGE_INCREASE;
-                addMove(SILENCE, Intent.ATTACK, newDamage);
+                setPhase(phase + 1);
+                setDamage();
                 break;
             }
             case TIME: {
