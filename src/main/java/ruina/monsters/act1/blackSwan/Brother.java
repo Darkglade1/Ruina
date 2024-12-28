@@ -22,9 +22,9 @@ public class Brother extends AbstractRuinaMonster
     private static final byte GREEN_WASTE = 0;
     private static final byte NONE = 1;
 
-    private final int PLATED_ARMOR = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionSpecial(2));
-    private final int STATUS = calcAscensionSpecial(1);
-    private final int ARTIFACT = calcAscensionSpecial(1);
+    private final int PLATED_ARMOR = RuinaMod.getMultiplayerEnemyHealthScaling(2);
+    private final int STATUS = 1;
+    private final int ARTIFACT = 1;
     private final int VULNERABLE = 1;
 
     private final int brotherNum;
@@ -38,7 +38,8 @@ public class Brother extends AbstractRuinaMonster
     public Brother(final float x, final float y, int brotherNum) {
         super(ID, ID, 22, 0.0F, 0, 80.0f, 235.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Brother/Spriter/Brother.scml"));
-        setHp(calcAscensionTankiness(22));
+        int baseHP = 20 - ((brotherNum - 1) * 3);
+        setHp(calcAscensionTankiness(baseHP));
         addMove(GREEN_WASTE, Intent.ATTACK, calcAscensionSpecial(2));
         addMove(NONE, Intent.NONE);
         this.brotherNum = brotherNum;

@@ -33,7 +33,7 @@ public class BlackSwan extends AbstractRuinaMonster
     private final int DEBUFF = calcAscensionSpecial(1);
     private final int EROSION = calcAscensionSpecial(3);
     private final int STRENGTH = calcAscensionSpecial(1);
-    private static final int DEAD_BROTHERS_THRESHOLD = 3;
+    private static final int DEAD_BROTHERS_THRESHOLD = 4;
 
     public BlackSwan() {
         this(0.0f, 0.0f);
@@ -43,10 +43,10 @@ public class BlackSwan extends AbstractRuinaMonster
         super(ID, ID, 160, 0.0F, 0, 170.0f, 275.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("BlackSwan/Spriter/BlackSwan.scml"));
         setHp(calcAscensionTankiness(160));
-        addMove(WRITHE, Intent.ATTACK, calcAscensionDamage(6), 2);
+        addMove(WRITHE, Intent.ATTACK, calcAscensionDamage(5), 2);
         addMove(PARASOL, Intent.DEFEND_BUFF);
-        addMove(REALITY, Intent.ATTACK_DEBUFF, calcAscensionDamage(8));
-        addMove(SHRIEK, Intent.ATTACK_DEBUFF, calcAscensionDamage(18));
+        addMove(REALITY, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
+        addMove(SHRIEK, Intent.ATTACK_DEBUFF, calcAscensionDamage(16));
     }
 
     @Override
@@ -82,7 +82,9 @@ public class BlackSwan extends AbstractRuinaMonster
                 for (AbstractMonster mo : monsterList()) {
                     if (!mo.isDeadOrEscaped()) {
                         block(mo, BLOCK);
-                        applyToTargetNextTurn(mo, this, new StrengthPower(mo, STRENGTH));
+                        if (mo == this) {
+                            applyToTarget(this, this, new StrengthPower(mo, STRENGTH));
+                        }
                     }
                 }
                 resetIdle();
@@ -132,7 +134,7 @@ public class BlackSwan extends AbstractRuinaMonster
             case PARASOL: {
                 DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE, DetailedIntent.TargetType.ALL_ENEMIES);
                 detailsList.add(detail);
-                DetailedIntent detail2 = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE, DetailedIntent.TargetType.ALL_ENEMIES);
+                DetailedIntent detail2 = new DetailedIntent(this, STRENGTH, DetailedIntent.STRENGTH_TEXTURE);
                 detailsList.add(detail2);
                 break;
             }
