@@ -200,6 +200,16 @@
     "DIALOG": [
     ]
   },
+  "${ModID}:AWolf": {
+    "MOVES": [
+      "강타",
+      "팩 전술",
+      "마비시키는 파업"
+    ],
+    "NAME": "늑대",
+    "DIALOG": [
+    ]
+  },
   "ruina:QueenOfHate": {
     "MOVES": [
       "아르카나 비트",

@@ -981,6 +981,11 @@ public class RuinaMod implements
                         new KingOfGreed(0.0F, 0.0F),
                 }));
         BaseMod.addMonster(BadWolf.ID, (BaseMod.GetMonster) BadWolf::new);
+        BaseMod.addMonster(EncounterIDs.WOLF_PACK, "Wolf_Pack", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new BadWolf(-450.0F, 0.0F),
+                        new AWolf(0.0F, 0.0F),
+                }));
         BaseMod.addMonster(QueenOfHate.ID, (BaseMod.GetMonster) QueenOfHate::new);
 
         BaseMod.addMonster(Kim.ID, (BaseMod.GetMonster) Kim::new);

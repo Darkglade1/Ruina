@@ -200,6 +200,16 @@
     "DIALOG": [
     ]
   },
+  "${ModID}:AWolf": {
+    "MOVES": [
+      "Swipe",
+      "Pack Tactics",
+      "Crippling Strike"
+    ],
+    "NAME": "A Wolf",
+    "DIALOG": [
+    ]
+  },
   "${ModID}:QueenOfHate": {
     "MOVES": [
       "Arcana Beats",

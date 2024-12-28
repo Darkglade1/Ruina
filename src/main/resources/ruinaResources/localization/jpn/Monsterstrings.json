@@ -200,6 +200,16 @@
     "DIALOG": [
     ]
   },
+  "${ModID}:AWolf": {
+    "MOVES": [
+      "スワイプ",
+      "パック戦術",
+      "致命的な打撃"
+    ],
+    "NAME": "狼",
+    "DIALOG": [
+    ]
+  },
   "ruina:QueenOfHate": {
     "MOVES": [
       "アルカナビート",

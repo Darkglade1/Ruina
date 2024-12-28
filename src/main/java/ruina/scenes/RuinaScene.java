@@ -113,7 +113,7 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/Despair");
                 } else if (mo instanceof KingOfGreed) {
                     this.bg = this.atlas.findRegion("mod/GoldPalace");
-                } else if (mo instanceof BadWolf) {
+                } else if (mo instanceof BadWolf || mo instanceof AWolf) {
                     this.bg = this.atlas.findRegion("mod/BloodMoon");
                 } else if (mo instanceof QueenOfHate) {
                     this.bg = this.atlas.findRegion("mod/Hate");

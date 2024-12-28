@@ -200,6 +200,16 @@
     "DIALOG": [
     ]
   },
+  "${ModID}:AWolf": {
+    "MOVES": [
+      "滑动",
+      "包战术",
+      "致残打击"
+    ],
+    "NAME": "一只狼",
+    "DIALOG": [
+    ]
+  },
   "ruina:QueenOfHate": {
     "MOVES": [
       "魔法之力",

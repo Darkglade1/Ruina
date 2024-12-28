@@ -111,7 +111,7 @@ public class Briah extends AbstractRuinaDungeon {
         monsters.add(new MonsterInfo(KnightOfDespair.ID, 6.0F));
         monsters.add(new MonsterInfo(Woodsman.ID, 5.0F));
         monsters.add(new MonsterInfo(KingOfGreed.ID, 6.0F));
-        //monsters.add(new MonsterInfo("Cultist and Chosen", 3.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.WOLF_PACK, 3.0F));
         monsters.add(new MonsterInfo(EncounterIDs.SCARECROWS_3, 3.0F));
         //monsters.add(new MonsterInfo("Shelled Parasite and Fungi", 3.0F));
         MonsterInfo.normalizeWeights(monsters);
@@ -138,6 +138,9 @@ public class Briah extends AbstractRuinaDungeon {
         }
         if (previous.equals(EncounterIDs.SCARECROWS_2)) {
             retVal.add(EncounterIDs.SCARECROWS_3);
+        }
+        if (previous.equals(BadWolf.ID)) {
+            retVal.add(EncounterIDs.WOLF_PACK);
         }
         return retVal;
     }
