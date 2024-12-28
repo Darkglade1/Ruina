@@ -1,9 +1,11 @@
 package ruina.monsters.uninvitedGuests.normal.pluto.cards.contracts;
 
 import basemod.AutoAdd;
+import com.evacipated.cardcrawl.mod.stslib.patches.NeutralPowertypePatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ConfusionPower;
 import ruina.RuinaMod;
 import ruina.cards.AbstractRuinaCard;
@@ -26,6 +28,8 @@ public class ConfusingContract extends AbstractRuinaCard {
     public void upp() { }
 
     public void onChoseThisOption(){
-        att(new ApplyPowerAction(adp(), adp(), new ConfusionPower(adp())));
+        AbstractPower confusion = new ConfusionPower(adp());
+        confusion.type = NeutralPowertypePatch.NEUTRAL;
+        att(new ApplyPowerAction(adp(), adp(), confusion));
     }
 }
