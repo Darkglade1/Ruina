@@ -11,15 +11,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import ruina.RuinaMod;
 
-public class AllyGainBlockAction extends AbstractGameAction {
+import static ruina.util.Wiz.adp;
 
-    public AllyGainBlockAction(AbstractCreature target, int amount) {
-        this.target = target;
-        this.amount = amount;
-        this.actionType = ActionType.BLOCK;
-        this.duration = 0.25F;
-        this.startDuration = 0.25F;
-    }
+public class AllyGainBlockAction extends AbstractGameAction {
 
     public AllyGainBlockAction(AbstractCreature target, AbstractCreature source, int amount) {
         this.setValues(target, source, amount);
@@ -28,26 +22,22 @@ public class AllyGainBlockAction extends AbstractGameAction {
         this.startDuration = 0.25F;
     }
 
-    public AllyGainBlockAction(AbstractCreature target, int amount, boolean superFast) {
-        this(target, amount);
-        if (superFast) {
-            this.duration = this.startDuration = Settings.ACTION_DUR_XFAST;
-        }
-
-    }
-
     public AllyGainBlockAction(AbstractCreature target, AbstractCreature source, int amount, boolean superFast) {
         this(target, source, amount);
         if (superFast) {
             this.duration = this.startDuration = Settings.ACTION_DUR_XFAST;
         }
-
     }
 
+    @Override
     public void update() {
         if (!this.target.isDying && !this.target.isDead && this.duration == this.startDuration) {
             if (RuinaMod.isMultiplayerConnected()) {
-                addToTop(new GainBlockAction(target, RuinaMod.getMultiplayerEnemyHealthScaling(amount)));
+                if (source == adp()) {
+                    addToTop(new GainBlockAction(target, amount));
+                } else {
+                    addToTop(new GainBlockAction(target, RuinaMod.getMultiplayerPlayerCountScaling(amount)));
+                }
             } else {
                 AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, AttackEffect.SHIELD));
 

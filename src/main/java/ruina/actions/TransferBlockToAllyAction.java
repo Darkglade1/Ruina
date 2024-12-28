@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import ruina.monsters.AbstractAllyMonster;
 
 import static ruina.RuinaMod.makeID;
+import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
 
 public class TransferBlockToAllyAction extends AbstractGameAction {
@@ -43,7 +44,7 @@ public class TransferBlockToAllyAction extends AbstractGameAction {
                         this.isDone = true;
                     }
                 });
-                addToTop(new AllyGainBlockAction(ally, blockToTransfer, true));
+                addToTop(new AllyGainBlockAction(ally, adp(), blockToTransfer, true));
             } else {
                 if (count <= 0) {
                     atb(new TalkAction(true, TEXT[12], 0.8F, 0.8F));

@@ -210,14 +210,14 @@ public class Hod extends AbstractAllyCardMonster
             case SERPENTINE_BARRIER: {
                 blockAnimation();
                 block(adp(), BARRIER_BLOCK);
-                atb(new AllyGainBlockAction(this, BARRIER_BLOCK));
+                atb(new AllyGainBlockAction(this, this, BARRIER_BLOCK));
                 resetIdle();
                 guardMove = DUEL;
                 break;
             }
             case DUEL: {
                 block(adp(), DUEL_BLOCK);
-                atb(new AllyGainBlockAction(this, DUEL_BLOCK));
+                atb(new AllyGainBlockAction(this, this, DUEL_BLOCK));
                 bluntAnimation(target);
                 dmg(target, info);
                 resetIdle();
