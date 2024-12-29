@@ -40,6 +40,10 @@ public class Wingbeat extends AbstractEgoCard {
                     adp().getRelic(ChemicalX.ID).flash();
                 }
 
+                if (upgraded) {
+                    effect++;
+                }
+
                 if (effect > 0) {
                     Consumer<ArrayList<AbstractCard>> consumer = abstractCards -> {
                         int totalCost = 0;
@@ -65,6 +69,6 @@ public class Wingbeat extends AbstractEgoCard {
 
     @Override
     public void upp() {
-        selfRetain = true;
+        uDesc();
     }
 }

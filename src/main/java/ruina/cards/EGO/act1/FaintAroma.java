@@ -26,6 +26,7 @@ public class FaintAroma extends AbstractEgoCard {
 
     public FaintAroma() {
         super(ID, COST, CardType.POWER, CardTarget.SELF);
+        isEthereal = true;
     }
 
     @Override
@@ -51,6 +52,6 @@ public class FaintAroma extends AbstractEgoCard {
 
     @Override
     public void upp() {
-        selfRetain = true;
+        isEthereal = false;
     }
 }

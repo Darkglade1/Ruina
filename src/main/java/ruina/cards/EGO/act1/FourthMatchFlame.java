@@ -25,7 +25,7 @@ public class FourthMatchFlame extends AbstractEgoCard {
     public static final String[] POWER_DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     private static final int POWER_DAMAGE = 7;
-    private static final int UP_POWER_DAMAGE = 2;
+    private static final int UP_POWER_DAMAGE = 3;
     private static final int BURNS = 1;
 
     public FourthMatchFlame() {

@@ -33,6 +33,7 @@ public class Laetitia extends AbstractEgoCard {
         super(ID, COST, CardType.POWER, CardTarget.SELF);
         magicNumber = baseMagicNumber = VALID_COST_1;
         secondMagicNumber = baseSecondMagicNumber = VALID_COST_2;
+        isEthereal = true;
     }
 
     @Override
@@ -85,6 +86,6 @@ public class Laetitia extends AbstractEgoCard {
 
     @Override
     public void upp() {
-        selfRetain = true;
+        isEthereal = false;
     }
 }

@@ -778,7 +778,8 @@
   },
   "ruina:WristCutter": {
     "NAME": "リストカッター",
-    "DESCRIPTION": " [E] [E] を得る。 NL !M! 枚の 保留 がついた *負傷 を手札に加える。"
+    "DESCRIPTION": " [E] [E] を得る。 NL !M! 枚の 保留 がついた *負傷 を手札に加える。",
+    "UPGRADE_DESCRIPTION": " [E] [E] [E] を得る。 NL !M! 枚の 保留 がついた *負傷 を手札に加える。"
   },
   "ruina:Remorse": {
     "NAME": "罪悪感",
@@ -913,7 +914,8 @@
   },
   "ruina:Wingbeat": {
     "NAME": "羽ばたき",
-    "DESCRIPTION": "X枚のカードを 廃棄 。 NL それらのコストに等しい分だけ HP を回復し、 敏捷性 を得る。"
+    "DESCRIPTION": "X枚のカードを 廃棄 。 NL それらのコストに等しい分だけ HP を回復し、 敏捷性 を得る。",
+    "UPGRADE_DESCRIPTION": "(X+1)枚のカードを 廃棄 。 NL それらのコストに等しい分だけ HP を回復し、 敏捷性 を得る。"
   },
   "ruina:Regret": {
     "NAME": "後悔",

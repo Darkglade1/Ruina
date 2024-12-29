@@ -36,7 +36,11 @@ public class WristCutter extends AbstractEgoCard {
         } else {
             this.addToBot(new VFXAction(new OfferingEffect(), 0.5F));
         }
-        atb(new GainEnergyAction(ENERGY));
+        if (upgraded) {
+            atb(new GainEnergyAction(ENERGY + 1));
+        } else {
+            atb(new GainEnergyAction(ENERGY));
+        }
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -49,5 +53,5 @@ public class WristCutter extends AbstractEgoCard {
     }
 
     @Override
-    public void upp() { selfRetain = true; }
+    public void upp() { uDesc(); }
 }

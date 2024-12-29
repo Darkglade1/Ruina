@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.cards.EGO.AbstractEgoCard;
 
-import static com.megacrit.cardcrawl.core.CardCrawlGame.languagePack;
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 
@@ -13,12 +12,11 @@ public class Harvest extends AbstractEgoCard {
     public final static String ID = makeID(Harvest.class.getSimpleName());
 
     public static final int DAMAGE = 40;
-    public static final int BLOCK = 5;
+    public static final int UP_DAMAGE = 10;
 
     public Harvest() {
         super(ID, 2, CardType.ATTACK, CardTarget.ENEMY);
         baseDamage = DAMAGE;
-        baseBlock = BLOCK;
     }
 
     @Override
@@ -45,15 +43,11 @@ public class Harvest extends AbstractEgoCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.POISON);
-        if (upgraded) {
-            blck();
-        }
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
     }
 
     @Override
     public void upp() {
-        rawDescription = languagePack.getCardStrings(cardID).UPGRADE_DESCRIPTION;
-        initializeDescription();
+        upgradeDamage(UP_DAMAGE);
     }
 }

@@ -778,7 +778,8 @@
   },
   "ruina:WristCutter": {
     "NAME": "손목긋개",
-    "DESCRIPTION": " [E] [E] 를 얻습니다. NL 보존이 부여된 부상 !M! 장을 손으로 가져옵니다."
+    "DESCRIPTION": " [E] [E] 를 얻습니다. NL 보존이 부여된 부상 !M! 장을 손으로 가져옵니다.",
+    "UPGRADE_DESCRIPTION": " [E] [E] [E] 를 얻습니다. NL 보존이 부여된 부상 !M! 장을 손으로 가져옵니다."
   },
   "ruina:Remorse": {
     "NAME": "죄책감",
@@ -913,7 +914,8 @@
   },
   "ruina:Wingbeat": {
     "NAME": "날개짓",
-    "DESCRIPTION": "카드를 X 장 소멸시킵니다. NL 소멸시킨 카드들의 총합 비용만큼 체력을 회복하고 민첩을 얻습니다."
+    "DESCRIPTION": "카드를 X 장 소멸시킵니다. NL 소멸시킨 카드들의 총합 비용만큼 체력을 회복하고 민첩을 얻습니다.",
+    "UPGRADE_DESCRIPTION": "카드를 X+1 장 소멸시킵니다. NL 소멸시킨 카드들의 총합 비용만큼 체력을 회복하고 민첩을 얻습니다."
   },
   "ruina:Regret": {
     "NAME": "후회",

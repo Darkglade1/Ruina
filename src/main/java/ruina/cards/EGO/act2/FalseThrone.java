@@ -53,6 +53,6 @@ public class FalseThrone extends AbstractEgoCard {
 
     @Override
     public void upp() {
-        selfRetain = true;
+        upgradeBaseCost(0);
     }
 }

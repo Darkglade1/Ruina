@@ -15,8 +15,10 @@ import static ruina.util.Wiz.applyToTarget;
 public class Remorse extends AbstractEgoCard {
     public final static String ID = makeID(Remorse.class.getSimpleName());
     public static final int COST = 4;
-    public static final int DAMAGE = 25;
-    public static final int DEBUFF = 3;
+    public static final int DAMAGE = 20;
+    public static final int DEBUFF = 2;
+    public static final int UP_DAMAGE = 5;
+    public static final int UP_DEBUFF = 1;
 
     public Remorse() {
         super(ID, COST, CardType.ATTACK, CardTarget.ENEMY);
@@ -33,5 +35,8 @@ public class Remorse extends AbstractEgoCard {
     }
 
     @Override
-    public void upp() { selfRetain = true; }
+    public void upp() {
+        upgradeDamage(UP_DAMAGE);
+        upgradeMagicNumber(UP_DEBUFF);
+    }
 }

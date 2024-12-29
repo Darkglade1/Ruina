@@ -778,7 +778,8 @@
   },
   "${ModID}:WristCutter": {
     "NAME": "Wrist Cutter",
-    "DESCRIPTION": "Gain [E] [E] . NL Add !M! Wound with Retain to your hand."
+    "DESCRIPTION": "Gain [E] [E] . NL Add !M! Wound with Retain to your hand.",
+    "UPGRADE_DESCRIPTION": "Gain [E] [E] [E] . NL Add !M! Wound with Retain to your hand."
   },
   "${ModID}:Remorse": {
     "NAME": "Remorse",
@@ -913,7 +914,8 @@
   },
   "${ModID}:Wingbeat": {
     "NAME": "Wingbeat",
-    "DESCRIPTION": "Exhaust up to X cards. NL Heal HP and gain Dexterity equal to their combined costs."
+    "DESCRIPTION": "Exhaust up to X cards. NL Heal HP and gain Dexterity equal to their combined costs.",
+    "UPGRADE_DESCRIPTION": "Exhaust up to X+1 cards. NL Heal HP and gain Dexterity equal to their combined costs."
   },
   "${ModID}:Regret": {
     "NAME": "Regret",

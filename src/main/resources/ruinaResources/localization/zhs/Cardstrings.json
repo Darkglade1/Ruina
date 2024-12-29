@@ -778,7 +778,8 @@
   },
   "ruina:WristCutter": {
     "NAME": "割腕",
-    "DESCRIPTION": "获得 [E] [E] 。 NL 将 !M! 张拥有 保留 的 伤口 放入你的手牌。"
+    "DESCRIPTION": "获得 [E] [E] 。 NL 将 !M! 张拥有 保留 的 伤口 放入你的手牌。",
+    "UPGRADE_DESCRIPTION": "获得 [E] [E] [E] 。 NL 将 !M! 张拥有 保留 的 伤口 放入你的手牌。"
   },
   "ruina:Remorse": {
     "NAME": "罪恶感",
@@ -913,7 +914,8 @@
   },
   "ruina:Wingbeat": {
     "NAME": "翅振",
-    "DESCRIPTION": "消耗 最多 X 张牌。 NL 根据它们的合计耗能恢复生命值并获得 敏捷 。"
+    "DESCRIPTION": "消耗 最多 X 张牌。 NL 根据它们的合计耗能恢复生命值并获得 敏捷 。",
+    "UPGRADE_DESCRIPTION": "消耗 最多 X+1 张牌。 NL 根据它们的合计耗能恢复生命值并获得 敏捷 。"
   },
   "ruina:Regret": {
     "NAME": "悔恨",
