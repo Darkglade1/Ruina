@@ -35,7 +35,6 @@ public class CryingChild extends AbstractAllyAttackingMinion
         addMove(WING_STROKE, Intent.ATTACK_DEBUFF, calcAscensionDamage(6));
         addMove(MURMUR, Intent.ATTACK, calcAscensionDamage(10));
         this.philip = philip;
-        attackingAlly = generateMultiplayerRandom().randomBoolean();
     }
 
     @Override
@@ -53,6 +52,8 @@ public class CryingChild extends AbstractAllyAttackingMinion
         }
         applyToTarget(this, this, new InvisibleBarricadePower(this));
         applyToTarget(this, this, new TorchedHeart(this, DAMAGE_REDUCTION));
+
+        attackingAlly = getMonsterAIRng().randomBoolean();
     }
 
     @Override
@@ -87,7 +88,7 @@ public class CryingChild extends AbstractAllyAttackingMinion
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                attackingAlly = generateMultiplayerRandom().randomBoolean();
+                attackingAlly = getMonsterAIRng().randomBoolean();
                 this.isDone = true;
             }
         });

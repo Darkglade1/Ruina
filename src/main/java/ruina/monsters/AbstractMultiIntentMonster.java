@@ -179,12 +179,7 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     public void rollMove() {
         additionalIntents.clear();
         additionalMoves.clear();
-        Random seedToUse;
-        if (RuinaMod.isMultiplayerConnected()) {
-            seedToUse = generateMultiplayerRandom();
-        } else {
-            seedToUse = AbstractDungeon.aiRng;
-        }
+        Random seedToUse = getMonsterAIRng();
         this.getMove(seedToUse.random(99));
         for (int i = 0; i < numAdditionalMoves; i++) {
             getAdditionalMoves(seedToUse.random(99), i);

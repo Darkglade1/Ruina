@@ -66,7 +66,7 @@ public class Puppet extends AbstractAllyAttackingMinion
         applyToTarget(this, this, new RuinaPlatedArmor(this, PLATED_ARMOR));
         applyToTarget(this, this, new PuppetStrings(this));
 
-        attackingAlly = generateMultiplayerRandom().randomBoolean();
+        attackingAlly = getMonsterAIRng().randomBoolean();
     }
 
     @Override

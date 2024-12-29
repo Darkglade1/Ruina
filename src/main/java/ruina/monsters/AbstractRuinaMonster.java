@@ -515,14 +515,18 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
 
     @Override
     public void rollMove() {
+        this.getMove(getMonsterAIRng().random(99));
+        notifyMainIntentUpdateMultiplayer();
+    }
+
+    public Random getMonsterAIRng() {
         Random seedToUse;
         if (RuinaMod.isMultiplayerConnected()) {
             seedToUse = generateMultiplayerRandom();
         } else {
             seedToUse = AbstractDungeon.aiRng;
         }
-        this.getMove(seedToUse.random(99));
-        notifyMainIntentUpdateMultiplayer();
+        return seedToUse;
     }
 
     protected void notifyMainIntentUpdateMultiplayer() {
@@ -549,7 +553,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         }
     }
 
-    protected Random generateMultiplayerRandom() {
+    private Random generateMultiplayerRandom() {
         Long newSeed = 0L;
         NetworkLocation l = SpireHelp.Gameplay.GetMapLocation(false);
         if(l != null){

@@ -208,7 +208,7 @@ public class Philip extends AbstractCardMonster
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                attackingAlly = generateMultiplayerRandom().randomBoolean();
+                attackingAlly = getMonsterAIRng().randomBoolean();
                 this.isDone = true;
             }
         });
