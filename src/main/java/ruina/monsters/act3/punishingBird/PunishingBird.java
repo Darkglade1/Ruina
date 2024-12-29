@@ -10,9 +10,11 @@ import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
@@ -38,7 +40,8 @@ public class PunishingBird extends AbstractRuinaMonster {
     private static final byte PECK = 0;
     private static final byte PUNISHMENT = 1;
 
-    private final int STATUS = calcAscensionSpecial(1);
+    private final int STATUS = 1;
+    private final int STR = 1;
     private boolean playingDeathAnimation = false;
     public static final int ENRAGE_PHASE = 2;
 
@@ -46,7 +49,7 @@ public class PunishingBird extends AbstractRuinaMonster {
         super(ID, ID, 150, -5.0F, 0, 160.0f, 305.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("PunishingBird/Spriter/SmallBird.scml"));
         setHp(calcAscensionTankiness(150));
-        addMove(PECK, Intent.ATTACK_DEBUFF, calcAscensionSpecial(2), 3);
+        addMove(PECK, Intent.ATTACK_DEBUFF, 3, 3);
         addMove(PUNISHMENT, Intent.ATTACK, calcAscensionSpecial(calcAscensionDamage(50)));
     }
 
@@ -73,6 +76,9 @@ public class PunishingBird extends AbstractRuinaMonster {
                 }
                 resetIdle(0.0f);
                 intoDrawMo(new Wound(), STATUS, this);
+                if (AbstractDungeon.ascensionLevel >= 17) {
+                    applyToTarget(this, this, new StrengthPower(this, STR));
+                }
                 break;
             case PUNISHMENT:
                 punishAnimation(adp());
@@ -105,6 +111,10 @@ public class PunishingBird extends AbstractRuinaMonster {
             case PECK: {
                 DetailedIntent detail = new DetailedIntent(this, STATUS, DetailedIntent.WOUND_TEXTURE, DetailedIntent.TargetType.DRAW_PILE);
                 detailsList.add(detail);
+                if (AbstractDungeon.ascensionLevel >= 17) {
+                    DetailedIntent detail2 = new DetailedIntent(this, STR, DetailedIntent.STRENGTH_TEXTURE);
+                    detailsList.add(detail2);
+                }
                 break;
             }
         }
