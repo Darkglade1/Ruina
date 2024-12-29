@@ -114,6 +114,9 @@ public class Laetitia extends AbstractRuinaMonster {
         super.die(triggerRelics);
         for (AbstractMonster mo : monsterList()) {
             if (mo instanceof GiftFriend || mo instanceof WitchFriend) {
+                if (mo instanceof GiftFriend) {
+                    ((GiftFriend) mo).spawnSpider = false;
+                }
                 atb(new SuicideAction(mo));
             }
         }

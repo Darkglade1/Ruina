@@ -31,6 +31,8 @@ public class GiftFriend extends AbstractRuinaMonster {
     private final int DEBUFF = 1;
     private final boolean debuffAtkFirst;
 
+    public boolean spawnSpider = true;
+
     public GiftFriend(final float x, final float y, boolean debuffAtkFirst) {
         super(ID, ID, 20, 0.0F, 0, 200.0f, 200.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Friend/Spriter/Friend.scml"));
@@ -92,7 +94,7 @@ public class GiftFriend extends AbstractRuinaMonster {
     @Override
     public void die(boolean triggerRelics) {
         super.die(triggerRelics);
-        if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+        if (spawnSpider) {
             AbstractMonster giftFriend1 = new WitchFriend(storedX, 0.0f);
             atb(new SpawnMonsterAction(giftFriend1, true));
             atb(new UsePreBattleActionAction(giftFriend1));
