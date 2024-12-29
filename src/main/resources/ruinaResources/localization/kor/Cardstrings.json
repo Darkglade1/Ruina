@@ -910,7 +910,7 @@
   },
   "ruina:SolemnLament": {
     "NAME": "엄숙한 애도",
-    "DESCRIPTION": "불가침을 !M! 얻습니다. NL 이 카드의 비용을 전부 ruina:발현 효과로만 소모했다면, 이 카드를 1장 복사하여 버린 카드 더미에 넣습니다."
+    "DESCRIPTION": "불가침을 !M! 얻습니다. NL 이 카드의 비용을 전부 ruina:발현 효과로만 소모했다면, *영면 를 장 얻습니다."
   },
   "ruina:Wingbeat": {
     "NAME": "날개짓",
@@ -948,5 +948,9 @@
   "${ModID}:Lie": {
     "NAME": "거짓말하다",
     "DESCRIPTION": "이 카드는 다른 카드인 것처럼 불완전하게 위장합니다."
+  },
+  "${ModID}:EternalRest": {
+    "NAME": "영면",
+    "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
   }
 }

@@ -910,7 +910,7 @@
   },
   "ruina:SolemnLament": {
     "NAME": "厳粛な哀悼",
-    "DESCRIPTION": "無形 !M! を得る。 NL 全コストを ruina:発現 で払った時、このカードの複製を捨て札に加える。"
+    "DESCRIPTION": "無形 !M! を得る。 NL 全コストを ruina:発現 で払った時、*永遠の安息 を 枚手札に 加える。"
   },
   "ruina:Wingbeat": {
     "NAME": "羽ばたき",
@@ -948,5 +948,9 @@
   "${ModID}:Lie": {
     "NAME": "嘘",
     "DESCRIPTION": "このカードは不完全に別のカードに偽装します。"
+  },
+  "${ModID}:EternalRest": {
+    "NAME": "永遠の安息",
+    "DESCRIPTION": "!D! ダメージを !M! 回与える。"
   }
 }

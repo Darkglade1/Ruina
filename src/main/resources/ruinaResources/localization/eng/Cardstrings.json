@@ -910,7 +910,7 @@
   },
   "${ModID}:SolemnLament": {
     "NAME": "Solemn Lament",
-    "DESCRIPTION": "Gain !M! Intangible. NL If this card's cost was only paid by ruina:Manifest, add a copy of it into your discard pile."
+    "DESCRIPTION": "Gain !M! Intangible. NL If this card's cost was only paid by ruina:Manifest, add *Eternal *Rest to your hand."
   },
   "${ModID}:Wingbeat": {
     "NAME": "Wingbeat",
@@ -948,5 +948,9 @@
   "${ModID}:Lie": {
     "NAME": "Lie",
     "DESCRIPTION": "This card imperfectly disguises itself as another card."
+  },
+  "${ModID}:EternalRest": {
+    "NAME": "Eternal Rest",
+    "DESCRIPTION": "Deal !D! damage !M! times."
   }
 }

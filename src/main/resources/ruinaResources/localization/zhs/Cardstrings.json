@@ -910,7 +910,7 @@
   },
   "ruina:SolemnLament": {
     "NAME": "庄严哀悼",
-    "DESCRIPTION": "获得 !M! 层 无实体 。 NL 如果这张牌只通过 ruina:展现 支付耗能，在弃牌堆中放入一张此牌的复制品。"
+    "DESCRIPTION": "获得 !M! 层 无实体 。 NL 如果这张牌只通过 ruina:展现 支付耗能，增加 张 *永恒的安息 到你的手牌。"
   },
   "ruina:Wingbeat": {
     "NAME": "翅振",
@@ -948,5 +948,9 @@
   "${ModID}:Lie": {
     "NAME": "说谎",
     "DESCRIPTION": "这张卡不完美地伪装成另一张卡。"
+  },
+  "${ModID}:EternalRest": {
+    "NAME": "永恒的安息",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
   }
 }

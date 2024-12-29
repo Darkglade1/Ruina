@@ -665,12 +665,9 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("SwanRevive"), makeSFXPath("BlackSwan_Revive.wav"));
         BaseMod.addAudio(makeID("SwanShout"), makeSFXPath("BlackSwan_Shout.wav"));
 
-        BaseMod.addAudio(makeID("FuneralSpecial"), makeSFXPath("ButterFlyMan_Special1.wav"));
-        BaseMod.addAudio(makeID("FuneralAtkBlack"), makeSFXPath("ButterFlyMan_Atk_Black.wav"));
-        BaseMod.addAudio(makeID("FuneralAtkWhite"), makeSFXPath("ButterFlyMan_Atk_White.wav"));
-
-        BaseMod.addAudio(makeID("SingingEat"), makeSFXPath("SingingMachine_Eat.wav"));
-        BaseMod.addAudio(makeID("SingingRhythm"), makeSFXPath("Singing_Rhythm.wav"));
+        BaseMod.addAudio(makeID("FuneralReady"), makeSFXPath("ButterFlyMan_StrongReady_Boss.wav"));
+        BaseMod.addAudio(makeID("FuneralAtkBlack"), makeSFXPath("ButterFlyMan_StongAtk_Black.wav"));
+        BaseMod.addAudio(makeID("FuneralAtkWhite"), makeSFXPath("ButterFlyMan_StongAtk_White.wav"));
 
         BaseMod.addAudio(makeID("FingerSnap"), makeSFXPath("Finger_Snapping.wav"));
 
