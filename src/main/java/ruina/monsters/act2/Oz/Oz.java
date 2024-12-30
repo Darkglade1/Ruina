@@ -279,7 +279,7 @@ public class Oz extends AbstractRuinaMonster
         int shardSpeed = 400;
 
         VfxBuilder builder = new VfxBuilder(fallingCrystal, target.hb.cX, 0f, fallDuration)
-                .moveY(Settings.HEIGHT, targetY - 100.0f * Settings.scale, VfxBuilder.Interpolations.LINEAR)
+                .moveY(Settings.HEIGHT, targetY - 200.0f * Settings.scale, VfxBuilder.Interpolations.LINEAR)
                 .triggerVfxAt(fallDuration, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
                     @Override
                     public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
