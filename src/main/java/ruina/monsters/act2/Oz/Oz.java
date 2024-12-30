@@ -3,8 +3,11 @@ package ruina.monsters.act2.Oz;
 import actlikeit.dungeons.CustomDungeon;
 import basemod.helpers.CardPowerTip;
 import basemod.helpers.VfxBuilder;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
@@ -28,6 +31,8 @@ import ruina.powers.Fragile;
 import ruina.powers.act2.BearerOfGifts;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
+import ruina.vfx.FlexibleDivinityParticleEffect;
+import ruina.vfx.FlexibleStanceAuraEffect;
 
 import java.util.ArrayList;
 
@@ -59,7 +64,7 @@ public class Oz extends AbstractRuinaMonster
     public Oz(final float x, final float y) {
         super(ID, ID, 500, -5.0F, 0, 230.0f, 450.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Oz/Spriter/Oz.scml"));
-        setHp(calcAscensionTankiness(280));
+        setHp(calcAscensionTankiness(320));
         addMove(WELCOME, Intent.ATTACK, calcAscensionDamage(20));
         addMove(BEHAVE, Intent.ATTACK, calcAscensionDamage(7), 2);
         addMove(ARISE, Intent.UNKNOWN);
@@ -253,6 +258,23 @@ public class Oz extends AbstractRuinaMonster
 
     private void buffAnimation() {
         animationAction("Ranged", "OzMagic", this);
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+        if (this.hasPower(BearerOfGifts.POWER_ID) && this.getPower(BearerOfGifts.POWER_ID).amount == 1) {
+            this.particleTimer -= Gdx.graphics.getDeltaTime();
+            if (this.particleTimer < 0.0F) {
+                this.particleTimer = 0.04F;
+                AbstractDungeon.effectsQueue.add(new FlexibleDivinityParticleEffect(this, Color.GREEN.cpy()));
+            }
+            this.particleTimer2 -= Gdx.graphics.getDeltaTime();
+            if (this.particleTimer2 < 0.0F) {
+                this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
+                AbstractDungeon.effectsQueue.add(new FlexibleStanceAuraEffect(Color.GREEN.cpy(), this));
+            }
+        }
     }
 
 }
