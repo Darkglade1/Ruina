@@ -43,6 +43,7 @@ public class HermitStaff extends AbstractAllyAttackingMinion
         for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (mo instanceof ServantOfWrath) {
                 target = (ServantOfWrath) mo;
+                attackingAlly = true;
             }
         }
         addPower(new MinionPower(this));
