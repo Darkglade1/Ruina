@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -36,6 +37,7 @@ import ruina.vfx.FlexibleDivinityParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
 
 import java.util.ArrayList;
+import java.util.function.BiFunction;
 
 import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
@@ -100,7 +102,7 @@ public class Oz extends AbstractRuinaMonster
         switch (this.nextMove) {
             case WELCOME: {
                 specialStartAnimation();
-                OzCrystalEffect();
+                OzCrystalEffect(adp());
                 dmg(adp(), info);
                 applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE));
                 resetIdle(1.0f);
@@ -139,7 +141,7 @@ public class Oz extends AbstractRuinaMonster
             }
             case AWAY: {
                 specialStartAnimation();
-                OzCrystalEffect();
+                OzCrystalEffect(adp());
                 dmg(adp(), info);
                 applyToTarget(adp(), this, new Fragile(adp(), FRAGILE));
                 resetIdle(1.0f);
@@ -260,22 +262,60 @@ public class Oz extends AbstractRuinaMonster
         atb(new VFXAction(appear, duration));
     }
 
-    private void OzCrystalEffect() {
-        Texture texture = TexLoader.getTexture(RuinaMod.makeVfxPath("OzCrystalFall.png"));
-        float duration = 1.5f;
-        AbstractGameEffect effect = new VfxBuilder(texture, adp().hb.cX, 0f, duration)
-                .moveY(Settings.HEIGHT - (100.0f * Settings.scale), Settings.HEIGHT, VfxBuilder.Interpolations.SWING)
-                .andThen(0.5f)
-                .moveY(Settings.HEIGHT, adp().hb.y + adp().hb.height / 6, VfxBuilder.Interpolations.EXP5IN)
-                .build();
-        atb(new VFXAction(effect, duration));
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                playSound("OzStrongAtkDown");
-                this.isDone = true;
-            }
-        });
+    private void OzCrystalEffect(AbstractCreature target) {
+        Texture fallingCrystal = TexLoader.getTexture(RuinaMod.makeVfxPath("OzCrystalFall.png"));
+        Texture landedCrystal = TexLoader.getTexture(RuinaMod.makeVfxPath("OzCrystalHit.png"));
+        Texture glowEffect = TexLoader.getTexture(RuinaMod.makeVfxPath("OzGlow.png"));
+        float fallDuration = 1.0f;
+        float landDuration = 1.0f;
+        float targetY = AbstractDungeon.floorY + (200.0f * Settings.scale);
+        Texture shard1 = TexLoader.getTexture(makeVfxPath("OzShard1.png"));
+        Texture shard2 = TexLoader.getTexture(makeVfxPath("OzShard2.png"));
+        ArrayList<Texture> shardTextures = new ArrayList<>();
+        shardTextures.add(shard1);
+        shardTextures.add(shard2);
+        int numShards = AbstractDungeon.miscRng.random(16, 24);
+        float shardDuration = 1.5f;
+        int shardSpeed = 400;
+
+        VfxBuilder builder = new VfxBuilder(fallingCrystal, target.hb.cX, 0f, fallDuration)
+                .moveY(Settings.HEIGHT, targetY - 100.0f * Settings.scale, VfxBuilder.Interpolations.LINEAR)
+                .triggerVfxAt(fallDuration, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
+                    @Override
+                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                        playSound("OzStrongAtkDown");
+                        return new VfxBuilder(landedCrystal, target.hb.cX, targetY, landDuration)
+                                .triggerVfxAt(0, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
+                            @Override
+                            public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                                return new VfxBuilder(glowEffect, target.hb.cX, targetY - 100.0f * Settings.scale, landDuration)
+                                        .scale(1.0f, 2.5f, VfxBuilder.Interpolations.LINEAR).build();
+                            }
+                        }).triggerVfxAt(landDuration, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
+                                    @Override
+                                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                                        playSound("OzStrongAtkFinish");
+                                        return new VfxBuilder(shard1, target.hb.cX, target.hb.cY, shardDuration)
+                                                .velocity(45 * MathUtils.random(0, 8), shardSpeed)
+                                                .rotate(100)
+                                                .fadeOut(shardDuration).build();
+                                    }
+                                })
+                                .triggerVfxAt(landDuration, numShards, new BiFunction<Float, Float, AbstractGameEffect>() {
+                                    @Override
+                                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                                        Texture chosenShard = shardTextures.get(MathUtils.random(0, 1));
+                                        int angle = MathUtils.random(0, 12);
+                                        return new VfxBuilder(chosenShard, target.hb.cX, target.hb.cY, shardDuration)
+                                                .velocity(30 * angle, shardSpeed)
+                                                .rotate(100)
+                                                .fadeOut(shardDuration).build();
+                                    }
+                                }).build();
+                    }
+                });
+        float totalDuration = fallDuration + landDuration + shardDuration;
+        atb(new VFXAction(builder.build(), totalDuration));
     }
 
     private void attackAnimation(AbstractCreature enemy) {
