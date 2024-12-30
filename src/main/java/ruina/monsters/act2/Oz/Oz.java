@@ -36,8 +36,7 @@ import ruina.vfx.FlexibleStanceAuraEffect;
 
 import java.util.ArrayList;
 
-import static ruina.RuinaMod.makeID;
-import static ruina.RuinaMod.makeMonsterPath;
+import static ruina.RuinaMod.*;
 import static ruina.util.Wiz.*;
 
 public class Oz extends AbstractRuinaMonster
@@ -184,9 +183,28 @@ public class Oz extends AbstractRuinaMonster
     @Override
     protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
         ArrayList<DetailedIntent> detailsList = new ArrayList<>();
+        String textureString = makePowerPath("Fragile32.png");
+        Texture texture = TexLoader.getTexture(textureString);
         switch (move.nextMove) {
             case ARISE: {
                 DetailedIntent detail = new DetailedIntent(this, DetailedIntent.SUMMON);
+                detailsList.add(detail);
+                break;
+            }
+            case NOISY: {
+                DetailedIntent detail = new DetailedIntent(this, WEAK, DetailedIntent.WEAK_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
+            case LIGHT: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, HEAL, DetailedIntent.HEAL_TEXTURE);
+                detailsList.add(detail2);
+                break;
+            }
+            case AWAY: {
+                DetailedIntent detail = new DetailedIntent(this, FRAGILE, texture);
                 detailsList.add(detail);
                 break;
             }

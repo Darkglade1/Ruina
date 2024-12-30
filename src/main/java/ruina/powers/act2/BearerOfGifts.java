@@ -30,7 +30,7 @@ public class BearerOfGifts extends AbstractUnremovablePower {
 
     private static int ENERGY_LOSS_AMT;
     private static int DRAW_REDUCTION_AMT;
-    private static int VULNERABLE_AMT;
+    private static final int VULNERABLE_AMT = 1;
 
     private final ArrayList<PresentUpside> upsides = new ArrayList<>();
     private final ArrayList<PresentDownside> downsides = new ArrayList<>();
@@ -42,11 +42,9 @@ public class BearerOfGifts extends AbstractUnremovablePower {
         if (AbstractDungeon.ascensionLevel >= 19) {
             ENERGY_LOSS_AMT = 2;
             DRAW_REDUCTION_AMT = 2;
-            VULNERABLE_AMT = 2;
         } else {
             ENERGY_LOSS_AMT = 1;
             DRAW_REDUCTION_AMT = 1;
-            VULNERABLE_AMT = 1;
         }
     }
 

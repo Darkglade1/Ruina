@@ -173,7 +173,8 @@
   },
   "${ModID}:VulnerableMod": {
     "TEXT": [
-      " NL Gain ", " Vulnerable."
+      " NL Gain ", " Vulnerable.",
+      " NL Take ", " damage."
     ]
   }
 }

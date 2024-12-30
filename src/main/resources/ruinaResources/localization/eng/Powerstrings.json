@@ -657,7 +657,7 @@
   },
   "${ModID}:BearerOfGifts": {
     "NAME": "Bearer of Gifts",
-    "DESCRIPTIONS": ["At the end of every other turn, put a #yFalse #yPresent into your hand. If the #yFalse #yPresent is not played during your turn, gains #b", " #yStrength at end of round."]
+    "DESCRIPTIONS": ["At the end of every other turn, put the displayed #yFalse #yPresent into your hand. If the #yFalse #yPresent is not played during your turn, gains #b", " #yStrength at end of round."]
   },
   "${ModID}:EnergyLossNextTurn": {
     "NAME": "Energy Loss",
