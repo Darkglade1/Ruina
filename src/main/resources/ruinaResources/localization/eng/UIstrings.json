@@ -145,5 +145,35 @@
       "Removes negative Strength",
       "Summons"
     ]
+  },
+  "${ModID}:StrMod": {
+    "TEXT": [
+      "Gain ", " Strength."
+    ]
+  },
+  "${ModID}:DexMod": {
+    "TEXT": [
+      "Gain ", " Dexterity."
+    ]
+  },
+  "${ModID}:MetallicizeMod": {
+    "TEXT": [
+      "Gain ", " *Metallicize."
+    ]
+  },
+  "${ModID}:EnergyLossMod": {
+    "TEXT": [
+      " NL Lose ", "[E] ", "next turn."
+    ]
+  },
+  "${ModID}:DrawReductionMod": {
+    "TEXT": [
+      " NL Draw ", " less card(s) next turn."
+    ]
+  },
+  "${ModID}:VulnerableMod": {
+    "TEXT": [
+      " NL Gain ", " Vulnerable."
+    ]
   }
 }

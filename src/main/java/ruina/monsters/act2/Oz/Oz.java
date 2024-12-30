@@ -1,31 +1,33 @@
 package ruina.monsters.act2.Oz;
 
 import actlikeit.dungeons.CustomDungeon;
+import basemod.helpers.CardPowerTip;
 import basemod.helpers.VfxBuilder;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.monsters.act2.ozma.Jack;
+import ruina.powers.Fragile;
+import ruina.powers.act2.BearerOfGifts;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
-import ruina.vfx.OzCrystalEffect;
-import ruina.vfx.VFXActionButItCanFizzle;
 
 import java.util.ArrayList;
 
@@ -75,7 +77,7 @@ public class Oz extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland3");
-        //applyToTarget(this, this, new Agony(this));
+        applyToTarget(this, this, new BearerOfGifts(this, 0, STRENGTH));
     }
 
     @Override
@@ -124,7 +126,7 @@ public class Oz extends AbstractRuinaMonster
                 specialStartAnimation();
                 OzCrystalEffect();
                 dmg(adp(), info);
-                applyToTarget(this, this, new StrengthPower(this, STRENGTH));
+                applyToTarget(adp(), this, new Fragile(adp(), FRAGILE));
                 resetIdle(1.0f);
                 break;
             }
@@ -196,6 +198,18 @@ public class Oz extends AbstractRuinaMonster
             }
         }
         onBossVictoryLogic();
+    }
+
+    @Override
+    public void renderTip(SpriteBatch sb) {
+        super.renderTip(sb);
+        AbstractPower power = getPower(BearerOfGifts.POWER_ID);
+        if (power instanceof BearerOfGifts) {
+            AbstractCard nextGift = ((BearerOfGifts) power).nextGift;
+            if (nextGift != null) {
+                tips.add(new CardPowerTip(nextGift.makeStatEquivalentCopy()));
+            }
+        }
     }
 
     private void hitEffect(AbstractCreature target) {

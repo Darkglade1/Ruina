@@ -952,5 +952,9 @@
   "${ModID}:EternalRest": {
     "NAME": "Eternal Rest",
     "DESCRIPTION": "Deal !D! damage !M! times."
+  },
+  "${ModID}:FalsePresent": {
+    "NAME": "False Present",
+    "DESCRIPTION": ""
   }
 }
