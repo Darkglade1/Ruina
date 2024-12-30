@@ -870,6 +870,20 @@ mod/Field
   offset: 0, 0
   index: -1
 
+Emerald.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mod/Emerald
+  rotate: false
+  xy: 2, 2
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+
+
 
 scene3.jpg
 size: 2048,2048

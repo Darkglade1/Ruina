@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="Idle.png" width="205" height="522" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Ranged.png" width="210" height="527" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Special3.png" width="265" height="508" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Oz">
+        <animation id="0" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Idle">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-94" y="519"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Ranged" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Ranged">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-96" y="522"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Special" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Special3">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-134" y="503"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

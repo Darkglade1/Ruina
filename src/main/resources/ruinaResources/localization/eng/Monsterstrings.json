@@ -1352,7 +1352,28 @@
     ],
     "NAME": "White Night",
     "DIALOG": [
-
+    ]
+  },
+  "${ModID}:Oz": {
+    "MOVES": [
+      "Welcoming Salutations",
+      "Behave Yourself",
+      "Arise",
+      "How Noisy",
+      "Brimming Light",
+      "Away With You"
+    ],
+    "NAME": "Adult Who Tells Lies",
+    "DIALOG": [
+    ]
+  },
+  "${ModID}:ScowlingFace": {
+    "MOVES": [
+      "Rush Down",
+      "Burn Up"
+    ],
+    "NAME": "Scowling Face",
+    "DIALOG": [
     ]
   }
 }

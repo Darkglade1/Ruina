@@ -62,6 +62,7 @@ import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.spiderBud.SpiderBud;
 import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
+import ruina.monsters.act2.Oz.Oz;
 import ruina.monsters.act2.greed.BrilliantBliss;
 import ruina.monsters.act2.greed.KingOfGreed;
 import ruina.monsters.act2.jester.JesterOfNihil;
@@ -682,6 +683,15 @@ public class RuinaMod implements
         BaseMod.addAudio(makeID("PinoLie"), makeSFXPath("Pino_Lie.wav"));
         BaseMod.addAudio(makeID("PinoFail"), makeSFXPath("Pino_Fail.wav"));
         BaseMod.addAudio(makeID("PinoOn"), makeSFXPath("Pino_On.wav"));
+
+        BaseMod.addAudio(makeID("OzStrongAtkStart"), makeSFXPath("Oz_StongAtk_Start.wav"));
+        BaseMod.addAudio(makeID("OzStrongAtkDown"), makeSFXPath("Oz_StongAtk_Down.wav"));
+        BaseMod.addAudio(makeID("OzStrongAtkFinish"), makeSFXPath("Oz_StongAtk_Finish.wav"));
+        BaseMod.addAudio(makeID("OzAtkBoom"), makeSFXPath("Oz_Atk_Boom.wav"));
+        BaseMod.addAudio(makeID("OzAtkUp"), makeSFXPath("Oz_Atk_Up.wav"));
+        BaseMod.addAudio(makeID("OzMagic"), makeSFXPath("Oz_ChangeMagic.wav"));
+
+        BaseMod.addAudio(makeID("SmokeAtk"), makeSFXPath("Cor_S1.wav"));
     }
 
     @Override
@@ -1006,6 +1016,7 @@ public class RuinaMod implements
                         new Jack(-300.0f, 0.0F, true),
                         new Ozma(),
                 }), makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
+        BaseMod.addMonster(Oz.ID, (BaseMod.GetMonster) Oz::new);
 
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
         BaseMod.addEvent(ChurchOfGears.ID, ChurchOfGears.class, Briah.ID);

@@ -25,10 +25,13 @@ import ruina.monsters.act1.scorchedGirl.ScorchedGirl;
 import ruina.monsters.act1.spiderBud.SpiderBud;
 import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
+import ruina.monsters.act2.Oz.Oz;
+import ruina.monsters.act2.Oz.ScowlingFace;
 import ruina.monsters.act2.greed.KingOfGreed;
 import ruina.monsters.act2.jester.JesterOfNihil;
 import ruina.monsters.act2.knight.KnightOfDespair;
 import ruina.monsters.act2.mountain.Mountain;
+import ruina.monsters.act2.ozma.Jack;
 import ruina.monsters.act2.ozma.Ozma;
 import ruina.monsters.act2.redWolf.LittleRed;
 import ruina.monsters.act2.roadHome.RoadHome;
@@ -117,8 +120,10 @@ public class RuinaScene extends AbstractScene {
                     this.bg = this.atlas.findRegion("mod/BloodMoon");
                 } else if (mo instanceof QueenOfHate) {
                     this.bg = this.atlas.findRegion("mod/Hate");
-                } else if (mo instanceof Ozma) {
+                } else if (mo instanceof Ozma || mo instanceof Jack) {
                     this.bg = this.atlas.findRegion("mod/Crystal");
+                } else if (mo instanceof Oz || mo instanceof ScowlingFace) {
+                    this.bg = this.atlas.findRegion("mod/Emerald");
                 } else if (mo instanceof ServantOfWrath || mo instanceof Hermit) {
                     this.bg = this.atlas.findRegion("mod/Wrath");
                 } else if (mo instanceof WhiteNight) {
