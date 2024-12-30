@@ -96,7 +96,7 @@ public class BearerOfGifts extends AbstractUnremovablePower {
         description = POWER_DESCRIPTIONS[0] + strGain + POWER_DESCRIPTIONS[1];
     }
 
-    private void generatePresent() {
+    public void generatePresent() {
         if (upsides.isEmpty() || downsides.isEmpty()) {
             refillLists();
         }

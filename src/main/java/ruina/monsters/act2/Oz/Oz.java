@@ -28,6 +28,7 @@ import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.Fragile;
+import ruina.powers.RuinaMetallicize;
 import ruina.powers.act2.BearerOfGifts;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -53,8 +54,9 @@ public class Oz extends AbstractRuinaMonster
     private final int STRENGTH = calcAscensionSpecial(2);
     private final int WEAK = calcAscensionSpecial(2);
     private final int BLOCK = calcAscensionTankiness(10);
-    private final int HEAL = calcAscensionTankiness(10);
+    private final int HEAL = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(20));
     private final int FRAGILE = calcAscensionSpecial(2);
+    private final int METALLICIZE = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(5));
 
     public Oz() {
         this(150.0f, 0.0f);
@@ -63,8 +65,8 @@ public class Oz extends AbstractRuinaMonster
     public Oz(final float x, final float y) {
         super(ID, ID, 500, -5.0F, 0, 230.0f, 450.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Oz/Spriter/Oz.scml"));
-        setHp(calcAscensionTankiness(320));
-        addMove(WELCOME, Intent.ATTACK, calcAscensionDamage(20));
+        setHp(calcAscensionTankiness(280));
+        addMove(WELCOME, Intent.ATTACK_BUFF, calcAscensionDamage(20));
         addMove(BEHAVE, Intent.ATTACK, calcAscensionDamage(7), 2);
         addMove(ARISE, Intent.UNKNOWN);
         addMove(NOISY, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
@@ -82,6 +84,14 @@ public class Oz extends AbstractRuinaMonster
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland3");
         applyToTarget(this, this, new BearerOfGifts(this, 0, STRENGTH));
+        if (RuinaMod.isMultiplayerConnected()) {
+            AbstractPower power = getPower(BearerOfGifts.POWER_ID);
+            if (power instanceof BearerOfGifts) {
+                if (((BearerOfGifts) power).nextGift == null) {
+                    ((BearerOfGifts) power).generatePresent();
+                }
+            }
+        }
     }
 
     @Override
@@ -92,6 +102,7 @@ public class Oz extends AbstractRuinaMonster
                 specialStartAnimation();
                 OzCrystalEffect();
                 dmg(adp(), info);
+                applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE));
                 resetIdle(1.0f);
                 break;
             }
@@ -186,6 +197,11 @@ public class Oz extends AbstractRuinaMonster
         String textureString = makePowerPath("Fragile32.png");
         Texture texture = TexLoader.getTexture(textureString);
         switch (move.nextMove) {
+            case WELCOME: {
+                DetailedIntent detail = new DetailedIntent(this, METALLICIZE, DetailedIntent.METALLICIZE_TEXTURE);
+                detailsList.add(detail);
+                break;
+            }
             case ARISE: {
                 DetailedIntent detail = new DetailedIntent(this, DetailedIntent.SUMMON);
                 detailsList.add(detail);
