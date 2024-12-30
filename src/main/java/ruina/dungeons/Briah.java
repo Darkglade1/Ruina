@@ -12,6 +12,7 @@ import ruina.monsters.act2.*;
 import ruina.monsters.act2.greed.KingOfGreed;
 import ruina.monsters.act2.knight.KnightOfDespair;
 import ruina.monsters.act2.mountain.Mountain;
+import ruina.monsters.act2.ozma.Ozma;
 import ruina.monsters.act2.roadHome.RoadHome;
 import ruina.monsters.act2.wrath.ServantOfWrath;
 
@@ -94,7 +95,7 @@ public class Briah extends AbstractRuinaDungeon {
     @Override
     protected void generateWeakEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        //monsters.add(new MonsterInfo("Spheric Guardian", 2.0F));
+        monsters.add(new MonsterInfo(Ozma.ID, 2.0F));
         monsters.add(new MonsterInfo(Nosferatu.ID, 2.0F));
         monsters.add(new MonsterInfo(BadWolf.ID, 2.0F));
         monsters.add(new MonsterInfo(EncounterIDs.BATS_3, 2.0F));
@@ -113,7 +114,7 @@ public class Briah extends AbstractRuinaDungeon {
         monsters.add(new MonsterInfo(KingOfGreed.ID, 6.0F));
         monsters.add(new MonsterInfo(EncounterIDs.WOLF_PACK, 3.0F));
         monsters.add(new MonsterInfo(EncounterIDs.SCARECROWS_3, 3.0F));
-        //monsters.add(new MonsterInfo("Shelled Parasite and Fungi", 3.0F));
+        monsters.add(new MonsterInfo(EncounterIDs.OZMA_AND_JACK, 3.0F));
         MonsterInfo.normalizeWeights(monsters);
         this.populateFirstStrongEnemy(monsters, this.generateExclusions());
         this.populateMonsterList(monsters, count, false);
@@ -141,6 +142,9 @@ public class Briah extends AbstractRuinaDungeon {
         }
         if (previous.equals(BadWolf.ID)) {
             retVal.add(EncounterIDs.WOLF_PACK);
+        }
+        if (previous.equals(Ozma.ID)) {
+            retVal.add(EncounterIDs.OZMA_AND_JACK);
         }
         return retVal;
     }

@@ -996,6 +996,12 @@ public class RuinaMod implements
                         new AWolf(0.0F, 0.0F),
                 }));
         BaseMod.addMonster(QueenOfHate.ID, (BaseMod.GetMonster) QueenOfHate::new);
+        BaseMod.addMonster(Ozma.ID, (BaseMod.GetMonster) Ozma::new);
+        BaseMod.addMonster(EncounterIDs.OZMA_AND_JACK, "Ozma_and_Jack", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new Jack(-250.0F, 0.0F),
+                        new Ozma(0.0F, 0.0F),
+                }));
 
         BaseMod.addMonster(Kim.ID, (BaseMod.GetMonster) Kim::new);
 
@@ -1010,12 +1016,6 @@ public class RuinaMod implements
                         new ServantOfCourage(-400.0f, 0.0F),
                         new JesterOfNihil(),
                 }), makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
-        briah.addBoss(Ozma.ID, "Ozma", () -> new MonsterGroup(
-                new AbstractMonster[]{
-                        new Jack(-550.0f, 0.0F, false),
-                        new Jack(-300.0f, 0.0F, true),
-                        new Ozma(),
-                }), makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
         briah.addBoss(Oz.ID, (BaseMod.GetMonster) Oz::new, makeMonsterPath("Oz/OzMap.png"), makeMonsterPath("Oz/OzMapOutline.png"));
 
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
