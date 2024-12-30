@@ -1011,18 +1011,18 @@ public class RuinaMod implements
                         new LittleRed(-480.0F, 0.0F),
                         new NightmareWolf(),
                 }), makeMonsterPath("LittleRed/Red.png"), makeMonsterPath("LittleRed/RedOutline.png"));
-        briah.addBoss(JesterOfNihil.ID, "Jester of Nihil", () -> new MonsterGroup(
-                new AbstractMonster[]{
-                        new QueenOfLove(-600.0f, 0.0F),
-                        new ServantOfCourage(-400.0f, 0.0F),
-                        new JesterOfNihil(),
-                }), makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
         briah.addBoss(Oz.ID, "Adult Who Tells Lies", () -> new MonsterGroup(
                 new AbstractMonster[]{
                         new ScowlingFace(Oz.MINION_X_1, 0.0F, true),
                         new ScowlingFace(Oz.MINION_X_2, 0.0F, false),
                         new Oz(),
                 }), makeMonsterPath("Oz/OzMap.png"), makeMonsterPath("Oz/OzMapOutline.png"));
+        briah.addBoss(JesterOfNihil.ID, "Jester of Nihil", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new QueenOfLove(-600.0f, 0.0F),
+                        new ServantOfCourage(-400.0f, 0.0F),
+                        new JesterOfNihil(),
+                }), makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
 
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
         BaseMod.addEvent(ChurchOfGears.ID, ChurchOfGears.class, Briah.ID);
