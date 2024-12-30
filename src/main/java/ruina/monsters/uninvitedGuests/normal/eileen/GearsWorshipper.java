@@ -32,7 +32,6 @@ public class GearsWorshipper extends AbstractAllyAttackingMinion
         this.type = EnemyType.BOSS;
         setHp(calcAscensionTankiness(132), calcAscensionTankiness(144));
         addMove(VAPOR, Intent.ATTACK, calcAscensionDamage(12));
-        this.attackingAlly = true;
     }
 
     @Override
