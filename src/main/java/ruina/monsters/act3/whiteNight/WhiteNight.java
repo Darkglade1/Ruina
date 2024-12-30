@@ -24,6 +24,7 @@ import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act3.WhiteNightBlessing;
+import ruina.powers.act3.WingsOfGrace;
 import ruina.powers.multiplayer.WhiteNightBlessingMultiplayer;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
@@ -57,6 +58,7 @@ public class WhiteNight extends AbstractRuinaMonster {
     private final int BLOCK = calcAscensionTankiness(15);
     private final int BLESSING_AMT = 12;
     private final int MAX_TURNS = 6;
+    private final int WINGS = calcAscensionSpecial(8);
 
     public WhiteNight() {
         this(-50.0f, 0.0f);
@@ -92,6 +94,9 @@ public class WhiteNight extends AbstractRuinaMonster {
             } else {
                 applyToTarget(this, this, new WhiteNightBlessing(this, BLESSING_AMT, MAX_TURNS, this));
             }
+        }
+        if (AbstractDungeon.ascensionLevel >= 9) {
+            applyToTarget(this, this, new WingsOfGrace(this, WINGS));
         }
     }
 

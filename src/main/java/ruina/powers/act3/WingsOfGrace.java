@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
 import ruina.powers.AbstractEasyPower;
@@ -17,17 +16,12 @@ public class WingsOfGrace extends AbstractEasyPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    private final float DAMAGE_REDUCTION;
+    private final float DAMAGE_REDUCTION = 0.5f;
     private static final int REDUCTION = 1;
 
     public WingsOfGrace(AbstractCreature owner, int amount) {
         super(NAME, POWER_ID, PowerType.BUFF, false, owner, amount);
         this.priority = 50;
-        if (AbstractDungeon.ascensionLevel >= 19) {
-            DAMAGE_REDUCTION = 0.75f;
-        } else {
-            DAMAGE_REDUCTION = 0.5f;
-        }
         updateDescription();
     }
 
