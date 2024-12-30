@@ -313,7 +313,6 @@ public class Oz extends AbstractRuinaMonster
             builder.triggerVfxAt(0, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
                 @Override
                 public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
-
                     return new VfxBuilder(chosenShard, target.hb.cX, target.hb.cY, shardDuration)
                             .velocity(30 * angle, shardSpeed)
                             .rotate(100)

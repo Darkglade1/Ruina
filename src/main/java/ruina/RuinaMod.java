@@ -1016,7 +1016,7 @@ public class RuinaMod implements
                         new Jack(-300.0f, 0.0F, true),
                         new Ozma(),
                 }), makeMonsterPath("Ozma/Ozma.png"), makeMonsterPath("Ozma/OzmaOutline.png"));
-        BaseMod.addMonster(Oz.ID, (BaseMod.GetMonster) Oz::new);
+        briah.addBoss(Oz.ID, (BaseMod.GetMonster) Oz::new, makeMonsterPath("Oz/OzMap.png"), makeMonsterPath("Oz/OzMapOutline.png"));
 
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
         BaseMod.addEvent(ChurchOfGears.ID, ChurchOfGears.class, Briah.ID);

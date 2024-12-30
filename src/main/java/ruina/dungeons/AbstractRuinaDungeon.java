@@ -9,8 +9,8 @@ import ruina.RuinaMod;
 import ruina.monsters.act1.Orchestra;
 import ruina.monsters.act1.blackSwan.BlackSwan;
 import ruina.monsters.act1.fairyFestival.FairyQueen;
+import ruina.monsters.act2.Oz.Oz;
 import ruina.monsters.act2.jester.JesterOfNihil;
-import ruina.monsters.act2.ozma.Ozma;
 import ruina.monsters.act3.Twilight;
 import ruina.monsters.act3.silentGirl.SilentGirl;
 import ruina.monsters.act3.whiteNight.WhiteNight;
@@ -68,7 +68,7 @@ public class AbstractRuinaDungeon extends CustomDungeon {
                 floor = Floor.TIPHERETH;
             } else if (bossKey.equals(EncounterIDs.RED_AND_WOLF)) {
                 floor = Floor.GEBURA;
-            } else if (bossKey.equals(Ozma.ID)){
+            } else if (bossKey.equals(Oz.ID)){
                 floor = Floor.CHESED;
             } else if (bossKey.equals(Twilight.ID)){
                 floor = Floor.BINAH;
