@@ -20,7 +20,7 @@ public class Jack extends AbstractRuinaMonster
     public Jack(final float x, final float y) {
         super(ID, ID, 100, -5.0F, 0, 135.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Jack/Spriter/Jack.scml"));
-        setHp(calcAscensionTankiness(28), calcAscensionTankiness(32));
+        setHp(calcAscensionTankiness(32), calcAscensionTankiness(36));
         addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(5));
     }
 

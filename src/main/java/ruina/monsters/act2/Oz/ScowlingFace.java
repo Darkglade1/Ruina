@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
 import ruina.util.DetailedIntent;
@@ -37,6 +38,11 @@ public class ScowlingFace extends AbstractRuinaMonster
     protected void setUpMisc() {
         super.setUpMisc();
         this.type = EnemyType.BOSS;
+    }
+
+    @Override
+    public void usePreBattleAction() {
+        addPower(new MinionPower(this));
     }
 
     @Override

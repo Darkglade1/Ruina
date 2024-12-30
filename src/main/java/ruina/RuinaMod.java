@@ -63,6 +63,7 @@ import ruina.monsters.act1.spiderBud.SpiderBud;
 import ruina.monsters.act1.spiderBud.Spiderling;
 import ruina.monsters.act2.*;
 import ruina.monsters.act2.Oz.Oz;
+import ruina.monsters.act2.Oz.ScowlingFace;
 import ruina.monsters.act2.greed.BrilliantBliss;
 import ruina.monsters.act2.greed.KingOfGreed;
 import ruina.monsters.act2.jester.JesterOfNihil;
@@ -1016,7 +1017,12 @@ public class RuinaMod implements
                         new ServantOfCourage(-400.0f, 0.0F),
                         new JesterOfNihil(),
                 }), makeMonsterPath("Jester/JesterMap.png"), makeMonsterPath("Jester/JesterMapOutline.png"));
-        briah.addBoss(Oz.ID, (BaseMod.GetMonster) Oz::new, makeMonsterPath("Oz/OzMap.png"), makeMonsterPath("Oz/OzMapOutline.png"));
+        briah.addBoss(Oz.ID, "Adult Who Tells Lies", () -> new MonsterGroup(
+                new AbstractMonster[]{
+                        new ScowlingFace(Oz.MINION_X_1, 0.0F, true),
+                        new ScowlingFace(Oz.MINION_X_2, 0.0F, false),
+                        new Oz(),
+                }), makeMonsterPath("Oz/OzMap.png"), makeMonsterPath("Oz/OzMapOutline.png"));
 
         BaseMod.addEvent(WizardOfOz.ID, WizardOfOz.class, Briah.ID);
         BaseMod.addEvent(ChurchOfGears.ID, ChurchOfGears.class, Briah.ID);

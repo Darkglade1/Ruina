@@ -46,6 +46,8 @@ public class Oz extends AbstractRuinaMonster
 {
     public static final String ID = makeID(Oz.class.getSimpleName());
 
+    public static final float MINION_X_1 = -450.0F;
+    public static final float MINION_X_2 = -150.0F;
     private static final byte WELCOME = 0;
     private static final byte BEHAVE = 1;
     private static final byte ARISE = 2;
@@ -68,12 +70,12 @@ public class Oz extends AbstractRuinaMonster
         super(ID, ID, 500, -5.0F, 0, 230.0f, 450.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Oz/Spriter/Oz.scml"));
         setHp(calcAscensionTankiness(280));
-        addMove(WELCOME, Intent.ATTACK_BUFF, calcAscensionDamage(20));
+        addMove(WELCOME, Intent.DEFEND_BUFF);
         addMove(BEHAVE, Intent.ATTACK, calcAscensionDamage(7), 2);
         addMove(ARISE, Intent.UNKNOWN);
         addMove(NOISY, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
         addMove(LIGHT, Intent.DEFEND_BUFF);
-        addMove(AWAY, Intent.ATTACK_DEBUFF, calcAscensionDamage(24));
+        addMove(AWAY, Intent.ATTACK_DEBUFF, calcAscensionDamage(25));
     }
 
     @Override
@@ -101,11 +103,8 @@ public class Oz extends AbstractRuinaMonster
         super.takeTurn();
         switch (this.nextMove) {
             case WELCOME: {
-                specialStartAnimation();
-                OzCrystalEffect(adp());
-                playSoundAnimation("OzStrongAtkFinish");
-                dmg(adp(), info);
-                OzShardsEffect(adp());
+                buffAnimation();
+                block(this, BLOCK);
                 applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE));
                 resetIdle(1.0f);
                 break;
@@ -156,10 +155,10 @@ public class Oz extends AbstractRuinaMonster
     }
 
     public void Summon() {
-        AbstractMonster minion = new ScowlingFace(-450.0F, 0.0f, true);
+        AbstractMonster minion = new ScowlingFace(MINION_X_1, 0.0f, true);
         atb(new SpawnMonsterAction(minion, true));
         atb(new UsePreBattleActionAction(minion));
-        AbstractMonster minion2 = new ScowlingFace(-150F, 0.0f, false);
+        AbstractMonster minion2 = new ScowlingFace(MINION_X_2, 0.0f, false);
         atb(new SpawnMonsterAction(minion2, true));
         atb(new UsePreBattleActionAction(minion2));
     }
@@ -170,17 +169,20 @@ public class Oz extends AbstractRuinaMonster
             setMoveShortcut(WELCOME);
         } else if (!areMinionsAlive()) {
             setMoveShortcut(ARISE);
-        } else if (moveHistory.size() >= 4 && !this.lastMove(AWAY) && !this.lastMoveBefore(AWAY) && !this.lastMoveBeforeBefore(AWAY)) {
+        } else if (threeTurnCooldownHasPassedForMove(AWAY)) {
             setMoveShortcut(AWAY);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(NOISY) && !this.lastMoveBefore(NOISY)) {
                 possibilities.add(NOISY);
             }
-            if (!this.lastMove(LIGHT) && !this.lastMoveBefore(LIGHT)) {
+            if (!this.lastMove(LIGHT) && !this.lastMoveBefore(LIGHT) && this.currentHealth <= this.maxHealth - HEAL) {
                 possibilities.add(LIGHT);
             }
             if (!this.lastMove(BEHAVE) && !this.lastMoveBefore(BEHAVE)) {
+                possibilities.add(BEHAVE);
+            }
+            if (possibilities.isEmpty()) {
                 possibilities.add(BEHAVE);
             }
             byte move = possibilities.get(convertNumToRandomIndex(num, possibilities.size() - 1));
@@ -204,8 +206,10 @@ public class Oz extends AbstractRuinaMonster
         Texture texture = TexLoader.getTexture(textureString);
         switch (move.nextMove) {
             case WELCOME: {
-                DetailedIntent detail = new DetailedIntent(this, METALLICIZE, DetailedIntent.METALLICIZE_TEXTURE);
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
                 detailsList.add(detail);
+                DetailedIntent detail2 = new DetailedIntent(this, METALLICIZE, DetailedIntent.METALLICIZE_TEXTURE);
+                detailsList.add(detail2);
                 break;
             }
             case ARISE: {
