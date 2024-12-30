@@ -105,7 +105,7 @@
   },
   "ruina:Steal": {
     "NAME": "偷或被偷",
-    "DESCRIPTIONS": ["攻击时会 #y偷走 你抽牌堆顶的牌。 NL 每次失去生命时，将最早 #y偷走 的牌放入你的手牌。"]
+    "DESCRIPTIONS": ["在死亡时，下 #b", " 回合少抽 #b1 张牌。"]
   },
   "ruina:Agony": {
     "NAME": "被剥夺者的苦痛",
