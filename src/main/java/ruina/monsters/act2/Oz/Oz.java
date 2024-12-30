@@ -103,7 +103,9 @@ public class Oz extends AbstractRuinaMonster
             case WELCOME: {
                 specialStartAnimation();
                 OzCrystalEffect(adp());
+                playSoundAnimation("OzStrongAtkFinish");
                 dmg(adp(), info);
+                OzShardsEffect(adp());
                 applyToTarget(this, this, new RuinaMetallicize(this, METALLICIZE));
                 resetIdle(1.0f);
                 break;
@@ -142,7 +144,9 @@ public class Oz extends AbstractRuinaMonster
             case AWAY: {
                 specialStartAnimation();
                 OzCrystalEffect(adp());
+                playSoundAnimation("OzStrongAtkFinish");
                 dmg(adp(), info);
+                OzShardsEffect(adp());
                 applyToTarget(adp(), this, new Fragile(adp(), FRAGILE));
                 resetIdle(1.0f);
                 break;
@@ -269,17 +273,9 @@ public class Oz extends AbstractRuinaMonster
         float fallDuration = 1.0f;
         float landDuration = 1.0f;
         float targetY = AbstractDungeon.floorY + (200.0f * Settings.scale);
-        Texture shard1 = TexLoader.getTexture(makeVfxPath("OzShard1.png"));
-        Texture shard2 = TexLoader.getTexture(makeVfxPath("OzShard2.png"));
-        ArrayList<Texture> shardTextures = new ArrayList<>();
-        shardTextures.add(shard1);
-        shardTextures.add(shard2);
-        int numShards = AbstractDungeon.miscRng.random(16, 24);
-        float shardDuration = 1.5f;
-        int shardSpeed = 400;
 
         VfxBuilder builder = new VfxBuilder(fallingCrystal, target.hb.cX, 0f, fallDuration)
-                .moveY(Settings.HEIGHT, targetY - 200.0f * Settings.scale, VfxBuilder.Interpolations.LINEAR)
+                .moveY(Settings.HEIGHT, targetY + 25.0f * Settings.scale, VfxBuilder.Interpolations.LINEAR)
                 .triggerVfxAt(fallDuration, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
                     @Override
                     public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
@@ -291,31 +287,41 @@ public class Oz extends AbstractRuinaMonster
                                 return new VfxBuilder(glowEffect, target.hb.cX, targetY - 100.0f * Settings.scale, landDuration)
                                         .scale(1.0f, 2.5f, VfxBuilder.Interpolations.LINEAR).build();
                             }
-                        }).triggerVfxAt(landDuration, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
-                                    @Override
-                                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
-                                        playSound("OzStrongAtkFinish");
-                                        return new VfxBuilder(shard1, target.hb.cX, target.hb.cY, shardDuration)
-                                                .velocity(45 * MathUtils.random(0, 8), shardSpeed)
-                                                .rotate(100)
-                                                .fadeOut(shardDuration).build();
-                                    }
-                                })
-                                .triggerVfxAt(landDuration, numShards, new BiFunction<Float, Float, AbstractGameEffect>() {
-                                    @Override
-                                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
-                                        Texture chosenShard = shardTextures.get(MathUtils.random(0, 1));
-                                        int angle = MathUtils.random(0, 12);
-                                        return new VfxBuilder(chosenShard, target.hb.cX, target.hb.cY, shardDuration)
-                                                .velocity(30 * angle, shardSpeed)
-                                                .rotate(100)
-                                                .fadeOut(shardDuration).build();
-                                    }
-                                }).build();
+                        }).build();
                     }
                 });
-        float totalDuration = fallDuration + landDuration + shardDuration;
+        float totalDuration = fallDuration + landDuration;
         atb(new VFXAction(builder.build(), totalDuration));
+    }
+
+    private void OzShardsEffect(AbstractCreature target) {
+        Texture shard1 = TexLoader.getTexture(makeVfxPath("OzShard1.png"));
+        Texture shard2 = TexLoader.getTexture(makeVfxPath("OzShard2.png"));
+        ArrayList<Texture> shardTextures = new ArrayList<>();
+        shardTextures.add(shard1);
+        shardTextures.add(shard2);
+        int numShards = AbstractDungeon.miscRng.random(16, 24);
+        float shardDuration = 1.5f;
+        int shardSpeed = 400;
+        VfxBuilder builder = new VfxBuilder(shard1, target.hb.cX, target.hb.cY, shardDuration)
+                .velocity(30 * MathUtils.random(0, 12), shardSpeed)
+                .rotate(100)
+                .fadeOut(shardDuration);
+        for (int i = 0; i < numShards; i++) {
+            Texture chosenShard = shardTextures.get(MathUtils.random(0, 1));
+            int angle = MathUtils.random(0, 12);
+            builder.triggerVfxAt(0, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
+                @Override
+                public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+
+                    return new VfxBuilder(chosenShard, target.hb.cX, target.hb.cY, shardDuration)
+                            .velocity(30 * angle, shardSpeed)
+                            .rotate(100)
+                            .fadeOut(shardDuration).build();
+                }
+            }).build();
+        }
+        atb(new VFXAction(builder.build(), shardDuration));
     }
 
     private void attackAnimation(AbstractCreature enemy) {
