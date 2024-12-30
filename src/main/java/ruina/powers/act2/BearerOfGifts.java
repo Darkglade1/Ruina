@@ -55,7 +55,7 @@ public class BearerOfGifts extends AbstractUnremovablePower {
 
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        if (!playedGift && card instanceof FalsePresent) {
+        if (!playedGift && card instanceof FalsePresent && amount == 0) {
             flash();
             playedGift = true;
         }
