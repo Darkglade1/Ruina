@@ -3,9 +3,11 @@ package ruina.cardmods;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import basemod.interfaces.AlternateCardCostModifier;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
+import ruina.actions.YeetPlayerAction;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
@@ -16,7 +18,7 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
     public static final String ID = makeID(ContractsMod.class.getSimpleName());
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
-    private static final int HP_TO_ENERGY_RATIO = 5;
+    private static final int MAX_HP_TO_ENERGY_RATIO = 2;
 
     @Override
     public AbstractCardModifier makeCopy() {
@@ -56,7 +58,14 @@ public class ContractsMod extends AbstractCardModifier implements AlternateCardC
     @Override
     public int spendAlternateCost(AbstractCard card, int costToSpend) {
         if (card.costForTurn >= 0 && card.cost >= 0) {
-            atb(new LoseHPAction(adp(), adp(), costToSpend * HP_TO_ENERGY_RATIO));
+            int maxHPToLose = costToSpend * MAX_HP_TO_ENERGY_RATIO;
+            boolean shouldYeet = maxHPToLose >= adp().maxHealth;
+            adp().decreaseMaxHealth(maxHPToLose);
+            CardCrawlGame.sound.play("BLUNT_FAST");
+            AbstractDungeon.effectList.add(new StrikeEffect(adp(), adp().hb.cX, adp().hb.cY, maxHPToLose));
+            if (shouldYeet) {
+                atb(new YeetPlayerAction());
+            }
             costToSpend = 0;
         }
         return costToSpend;

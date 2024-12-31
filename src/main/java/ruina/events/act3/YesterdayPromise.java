@@ -1,6 +1,5 @@
 package ruina.events.act3;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
@@ -11,6 +10,7 @@ import ruina.RuinaMod;
 import ruina.relics.YesterdayPromiseRelic;
 
 import static ruina.RuinaMod.makeEventPath;
+import static ruina.util.Wiz.adp;
 
 public class YesterdayPromise extends AbstractImageEvent {
 
@@ -24,11 +24,17 @@ public class YesterdayPromise extends AbstractImageEvent {
 
     private int screenNum = 0;
     private final AbstractRelic reward = new YesterdayPromiseRelic();
-    private final int damage;
+    private static final float MAX_HP_COST = 0.05F;
+    private static final float HIGH_ASC_MAX_HP_COST = 0.07F;
+    private final int maxHPCost;
     public YesterdayPromise() {
         super(NAME, DESCRIPTIONS[0], IMG);
-        damage = (int) (AbstractDungeon.player.maxHealth * 0.25F);
-        imageEventText.setDialogOption(String.format(OPTIONS[0], damage), reward);
+        if (AbstractDungeon.ascensionLevel >= 15) {
+            maxHPCost = (int)(HIGH_ASC_MAX_HP_COST * adp().maxHealth);
+        } else {
+            maxHPCost = (int)(MAX_HP_COST * adp().maxHealth);
+        }
+        imageEventText.setDialogOption(String.format(OPTIONS[0], maxHPCost), reward);
         imageEventText.setDialogOption(OPTIONS[1]);
     }
 
@@ -44,7 +50,7 @@ public class YesterdayPromise extends AbstractImageEvent {
                         screenNum = 1;
                         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.MED, false);
                         CardCrawlGame.sound.play("BLUNT_FAST");
-                        AbstractDungeon.player.damage(new DamageInfo(null, this.damage));
+                        adp().decreaseMaxHealth(maxHPCost);
                         AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, reward);
                         break;
                     case 1:

@@ -383,7 +383,7 @@
       "You hold out on the offer. NL More power would be helpful, but the whole ordeal reeked of suspicion. NL You feel like you made the right decision."
     ],
     "OPTIONS": [
-      "[Sign] #rLose #r%1$s #rHP. #gObtain #ga #gSpecial #gRelic.",
+      "[Sign] #rLose #r%1$s #rMax #rHP. #gObtain #ga #gSpecial #gRelic.",
       "[Reject the contract]",
       "[Leave]"
     ]
