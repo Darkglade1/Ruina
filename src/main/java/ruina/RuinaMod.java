@@ -1374,7 +1374,8 @@ public class RuinaMod implements
     }
 
     public static boolean isMultiplayerConnected() {
-        return Loader.isModLoaded("spireTogether") && SpireTogetherMod.isConnected;
+        return false;
+        //return Loader.isModLoaded("spireTogether") && SpireTogetherMod.isConnected;
     }
 
     public static int getMultiplayerEnemyHealthScaling(int baseValue) {
