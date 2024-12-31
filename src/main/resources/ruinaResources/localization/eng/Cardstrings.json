@@ -914,8 +914,7 @@
   },
   "${ModID}:Wingbeat": {
     "NAME": "Wingbeat",
-    "DESCRIPTION": "Exhaust up to X cards. NL Heal HP and gain Dexterity equal to their combined costs.",
-    "UPGRADE_DESCRIPTION": "Exhaust up to X+1 cards. NL Heal HP and gain Dexterity equal to their combined costs."
+    "DESCRIPTION": "Exhaust up to !M! cards. NL Heal HP and gain Dexterity equal to their combined costs."
   },
   "${ModID}:Regret": {
     "NAME": "Regret",

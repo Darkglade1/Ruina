@@ -914,8 +914,7 @@
   },
   "ruina:Wingbeat": {
     "NAME": "羽ばたき",
-    "DESCRIPTION": "X枚のカードを 廃棄 。 NL それらのコストに等しい分だけ HP を回復し、 敏捷性 を得る。",
-    "UPGRADE_DESCRIPTION": "(X+1)枚のカードを 廃棄 。 NL それらのコストに等しい分だけ HP を回復し、 敏捷性 を得る。"
+    "DESCRIPTION": "!M! 枚のカードを 廃棄 。 NL それらのコストに等しい分だけ HP を回復し、 敏捷性 を得る。"
   },
   "ruina:Regret": {
     "NAME": "後悔",

@@ -914,8 +914,7 @@
   },
   "ruina:Wingbeat": {
     "NAME": "翅振",
-    "DESCRIPTION": "消耗 最多 X 张牌。 NL 根据它们的合计耗能恢复生命值并获得 敏捷 。",
-    "UPGRADE_DESCRIPTION": "消耗 最多 X+1 张牌。 NL 根据它们的合计耗能恢复生命值并获得 敏捷 。"
+    "DESCRIPTION": "消耗 最多 !M! 张牌。 NL 根据它们的合计耗能恢复生命值并获得 敏捷 。"
   },
   "ruina:Regret": {
     "NAME": "悔恨",
