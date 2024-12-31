@@ -17,19 +17,30 @@ public class SaveAlliesFromPreservedInsect {
             method = "atBattleStart"
     )
     public static class DontTouchMyAllies {
-        public static SpireReturn Prefix(PreservedInsect __instance) {
-            float modAmt = ReflectionHacks.getPrivate(__instance, PreservedInsect.class, "MODIFIER_AMT");
-            if (AbstractDungeon.getCurrRoom().eliteTrigger) {
-                __instance.flash();
-                for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                    if (!(mo instanceof AbstractAllyMonster)) {
-                        mo.currentHealth = (int)((float)mo.currentHealth * (1.0F - modAmt));
-                        mo.healthBarUpdatedEvent();
-                    }
+        public static SpireReturn<Void> Prefix(PreservedInsect __instance) {
+            boolean hasAlly = false;
+            for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (mo instanceof AbstractAllyMonster) {
+                    hasAlly = true;
+                    break;
                 }
-                att(new RelicAboveCreatureAction(AbstractDungeon.player, __instance));
             }
-            return SpireReturn.Return(null);
+            if (hasAlly) {
+                float modAmt = ReflectionHacks.getPrivate(__instance, PreservedInsect.class, "MODIFIER_AMT");
+                if (AbstractDungeon.getCurrRoom().eliteTrigger) {
+                    __instance.flash();
+                    for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                        if (!(mo instanceof AbstractAllyMonster)) {
+                            mo.currentHealth = (int)((float)mo.currentHealth * (1.0F - modAmt));
+                            mo.healthBarUpdatedEvent();
+                        }
+                    }
+                    att(new RelicAboveCreatureAction(AbstractDungeon.player, __instance));
+                }
+                return SpireReturn.Return(null);
+            } else {
+                return SpireReturn.Continue();
+            }
         }
     }
 }
