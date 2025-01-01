@@ -3,13 +3,12 @@ package ruina.monsters.act2;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
 import ruina.actions.VampireDamageActionButItCanFizzle;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.Paralysis;
+import ruina.powers.Bleed;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class SanguineBat extends AbstractRuinaMonster
         super(ID, ID, 40, -5.0F, 50.0f, 230.0f, 155.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Bat/Spriter/Bat.scml"));
         setHp(calcAscensionTankiness(31), calcAscensionTankiness(37));
-        addMove(BLOODSUCKING, Intent.ATTACK_BUFF, calcAscensionDamage(5), 2, true);
+        addMove(BLOODSUCKING, Intent.ATTACK_BUFF, calcAscensionDamage(5), 2);
         addMove(DIGGING_TEETH, Intent.ATTACK_DEBUFF, calcAscensionDamage(7));
         addMove(AVID_THIRST, Intent.BUFF);
     }
@@ -58,7 +57,7 @@ public class SanguineBat extends AbstractRuinaMonster
             case DIGGING_TEETH: {
                 attackAnimation(adp());
                 dmg(adp(), info);
-                applyToTarget(adp(), this, new Paralysis(adp(), DEBUFF));
+                applyToTarget(adp(), this, new Bleed(adp(), DEBUFF));
                 resetIdle();
                 break;
             }
@@ -96,7 +95,7 @@ public class SanguineBat extends AbstractRuinaMonster
                 break;
             }
             case DIGGING_TEETH: {
-                DetailedIntent detail = new DetailedIntent(this, DEBUFF, DetailedIntent.PARALYSIS_TEXTURE);
+                DetailedIntent detail = new DetailedIntent(this, DEBUFF, DetailedIntent.BLEED_TEXTURE);
                 detailsList.add(detail);
                 break;
             }
