@@ -24,7 +24,7 @@ public class ServantOfCourage extends AbstractMagicalGirl
     private static final byte HELP = 0;
     private static final byte PROTECT_FRIEND = 1;
 
-    private static final int DEBUFF_AMT = 3;
+    private static final int DEBUFF_AMT = 4;
 
     public ServantOfCourage(final float x, final float y) {
         super(ID, ID, 120, -5.0F, 0, 170.0f, 235.0f, null, x, y);
