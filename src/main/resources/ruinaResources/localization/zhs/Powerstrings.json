@@ -654,5 +654,21 @@
   "${ModID}:WhiteNightBlessing": {
     "NAME": "祝福",
     "DESCRIPTIONS": ["你打出的牌会受到祝福。受到祝福的牌会造成更多伤害并获得更多防御。打出 #b", " 张牌后，此生物会在回合结束时醒来。"]
+  },
+  "${ModID}:BearerOfGifts": {
+    "NAME": "送礼者",
+    "DESCRIPTIONS": ["每隔一个回合结束时，将假礼物放入你的手中。如果在你的回合中没有打出假礼物，则在回合结束时获得 #b", " 点力量。"]
+  },
+  "${ModID}:EnergyLossNextTurn": {
+    "NAME": "能量损失",
+    "DESCRIPTIONS": ["下一回合，失去 #b", " [E] 。"]
+  },
+  "${ModID}:DrawReductionNextTurn": {
+    "NAME": "抽牌变少",
+    "DESCRIPTIONS": ["下一回合少抽 #b", " 张牌。"]
+  },
+  "${ModID}:Fragile": {
+    "NAME": "脆弱的",
+    "DESCRIPTIONS": ["额外受到 #b", " 点 #y攻击 伤害。"]
   }
 }

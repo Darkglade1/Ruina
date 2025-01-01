@@ -951,5 +951,9 @@
   "${ModID}:EternalRest": {
     "NAME": "영면",
     "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
+  },
+  "${ModID}:FalsePresent": {
+    "NAME": "거짓 선물",
+    "DESCRIPTION": ""
   }
 }

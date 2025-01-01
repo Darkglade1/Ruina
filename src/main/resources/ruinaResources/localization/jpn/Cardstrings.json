@@ -951,5 +951,9 @@
   "${ModID}:EternalRest": {
     "NAME": "永遠の安息",
     "DESCRIPTION": "!D! ダメージを !M! 回与える。"
+  },
+  "${ModID}:FalsePresent": {
+    "NAME": "偽物のプレゼント",
+    "DESCRIPTION": ""
   }
 }

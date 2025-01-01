@@ -145,5 +145,36 @@
       "Removes negative Strength",
       "Повестка"
     ]
+  },
+  "${ModID}:StrMod": {
+    "TEXT": [
+      "Даёт ", " Силы."
+    ]
+  },
+  "${ModID}:DexMod": {
+    "TEXT": [
+      "Даёт ", " Ловкости."
+    ]
+  },
+  "${ModID}:MetallicizeMod": {
+    "TEXT": [
+      "Даёт ", " *Металлизация."
+    ]
+  },
+  "${ModID}:EnergyLossMod": {
+    "TEXT": [
+      " NL На следующем ходу потеряйте ", "[E] ", "."
+    ]
+  },
+  "${ModID}:DrawReductionMod": {
+    "TEXT": [
+      " NL В начале вашего след. хода вы возьмёте на ", " карту меньше."
+    ]
+  },
+  "${ModID}:VulnerableMod": {
+    "TEXT": [
+      " NL Вы получаете ", " Уязвимости.",
+      " NL Наносит ", " урона вам."
+    ]
   }
 }

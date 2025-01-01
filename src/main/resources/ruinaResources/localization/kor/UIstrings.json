@@ -145,5 +145,36 @@
       "Removes negative Strength",
       "소환장"
     ]
+  },
+  "${ModID}:StrMod": {
+    "TEXT": [
+      "힘을 ", " 얻습니다."
+    ]
+  },
+  "${ModID}:DexMod": {
+    "TEXT": [
+      "민첩을 ", " 얻습니다."
+    ]
+  },
+  "${ModID}:MetallicizeMod": {
+    "TEXT": [
+      "*금속화 ", " 얻습니다."
+    ]
+  },
+  "${ModID}:EnergyLossMod": {
+    "TEXT": [
+      " NL 다음 턴에 ", "[E] ", "개를 잃습니다."
+    ]
+  },
+  "${ModID}:DrawReductionMod": {
+    "TEXT": [
+      " NL 다음 턴에 카드를 ", " 장 덜 뽑습니다."
+    ]
+  },
+  "${ModID}:VulnerableMod": {
+    "TEXT": [
+      " NL 취약을 ", " 받습니다.",
+      " NL 피해를 ", " 받습니다."
+    ]
   }
 }

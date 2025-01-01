@@ -654,5 +654,21 @@
   "${ModID}:WhiteNightBlessing": {
     "NAME": "祝福",
     "DESCRIPTIONS": ["あなたがプレイしたカードは祝福される。祝福されたカードはより多くのダメージを与え、より多くのブロックを得る。さらに #b", " 枚のカードをプレイすると、このクリーチャーはラウンド終了時に目覚める。"]
+  },
+  "${ModID}:BearerOfGifts": {
+    "NAME": "贈り物の担い手",
+    "DESCRIPTIONS": ["2 ターンおきの終了時に、偽りのプレゼントを手札に加えます。偽りのプレゼントがあなたのターン中にプレイされなかった場合、ラウンド終了時に #b", " の強さを獲得します。"]
+  },
+  "${ModID}:EnergyLossNextTurn": {
+    "NAME": "エネルギー損失",
+    "DESCRIPTIONS": ["次のターン、 #b", " [E] を失う。"]
+  },
+  "${ModID}:DrawReductionNextTurn": {
+    "NAME": "ドロー減少",
+    "DESCRIPTIONS": ["次のターン開始時に引けるカードが #b", " 枚減る。"]
+  },
+  "${ModID}:Fragile": {
+    "NAME": "壊れやすい",
+    "DESCRIPTIONS": ["攻撃によって受けるダメージが #b", " 増える 。"]
   }
 }

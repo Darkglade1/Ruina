@@ -145,5 +145,36 @@
       "Removes negative Strength",
       "召喚"
     ]
+  },
+  "${ModID}:StrMod": {
+    "TEXT": [
+      "筋力 ", " を得る。"
+    ]
+  },
+  "${ModID}:DexMod": {
+    "TEXT": [
+      "敏捷性 ", " を得る。"
+    ]
+  },
+  "${ModID}:MetallicizeMod": {
+    "TEXT": [
+      "*金属化 ", " を得る。"
+    ]
+  },
+  "${ModID}:EnergyLossMod": {
+    "TEXT": [
+      " NL 次のターン ", "[E] ", "を失う。"
+    ]
+  },
+  "${ModID}:DrawReductionMod": {
+    "TEXT": [
+      " NL 次のターン開始時に引けるカードが ", " 枚減る。"
+    ]
+  },
+  "${ModID}:VulnerableMod": {
+    "TEXT": [
+      " NL 弱体化 ", " を得る。",
+      " NL あなたも ", " ダメージを受ける。"
+    ]
   }
 }

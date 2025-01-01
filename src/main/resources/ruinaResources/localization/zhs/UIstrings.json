@@ -146,5 +146,36 @@
       "召唤随从",
       "将所有非耗尽或状态卡牌置入弃牌堆"
     ]
+  },
+  "${ModID}:StrMod": {
+    "TEXT": [
+      "获得 ", " 点 力量 。"
+    ]
+  },
+  "${ModID}:DexMod": {
+    "TEXT": [
+      "获得 ", " 点 敏捷 。"
+    ]
+  },
+  "${ModID}:MetallicizeMod": {
+    "TEXT": [
+      "获得 ", " *金属化."
+    ]
+  },
+  "${ModID}:EnergyLossMod": {
+    "TEXT": [
+      " NL 下一回合，失去 ", "[E] ", "。"
+    ]
+  },
+  "${ModID}:DrawReductionMod": {
+    "TEXT": [
+      " NL 下一回合少抽 ", " 张牌。"
+    ]
+  },
+  "${ModID}:VulnerableMod": {
+    "TEXT": [
+      " NL 获得 ", " 层 易伤 。",
+      " NL 受到 ", " 点伤害。"
+    ]
   }
 }

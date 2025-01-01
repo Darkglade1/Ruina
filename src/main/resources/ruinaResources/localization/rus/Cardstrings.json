@@ -951,5 +951,9 @@
   "${ModID}:EternalRest": {
     "NAME": "Вечный покой",
     "DESCRIPTION": "Наносит !D! урона !M! раза."
+  },
+  "${ModID}:FalsePresent": {
+    "NAME": "Ложное настоящее",
+    "DESCRIPTION": ""
   }
 }

@@ -654,5 +654,21 @@
   "${ModID}:WhiteNightBlessing": {
     "NAME": "축복",
     "DESCRIPTIONS": ["플레이하는 카드는 축복을 받습니다. 축복받은 카드는 더 많은 피해를 입히고 더 많은 차단을 얻습니다. #b", " 장의 카드를 더 플레이하면 이 생물은 라운드가 끝날 때 깨어납니다."]
+  },
+  "${ModID}:BearerOfGifts": {
+    "NAME": "선물 전달자",
+    "DESCRIPTIONS": ["다른 모든 턴이 끝날 때마다, 거짓 선물를 당신의 손에 넣으세요. 당신의 턴 동안 거짓 선물가 플레이되지 않았다면, 라운드가 끝날 때 #b", " 의 힘을 얻습니다."]
+  },
+  "${ModID}:EnergyLossNextTurn": {
+    "NAME": "에너지 손실",
+    "DESCRIPTIONS": ["다음 턴에 [E] #b", " 개를 잃습니다."]
+  },
+  "${ModID}:DrawReductionNextTurn": {
+    "NAME": "드로우 저하",
+    "DESCRIPTIONS": ["다음 턴에 카드를 #b", " 장 덜 뽑습니다."]
+  },
+  "${ModID}:Fragile": {
+    "NAME": "부서지기 쉬운",
+    "DESCRIPTIONS": ["#y공격 으로 받는 피해가 #b", " 증가합니다."]
   }
 }

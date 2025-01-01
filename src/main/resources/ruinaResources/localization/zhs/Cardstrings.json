@@ -951,5 +951,9 @@
   "${ModID}:EternalRest": {
     "NAME": "永恒的安息",
     "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  },
+  "${ModID}:FalsePresent": {
+    "NAME": "假象",
+    "DESCRIPTION": ""
   }
 }
