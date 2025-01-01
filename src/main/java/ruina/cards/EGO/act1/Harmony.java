@@ -24,7 +24,6 @@ public class Harmony extends AbstractEgoCard {
         misc = BASE_STRENGTH;
         magicNumber = baseMagicNumber = misc;
         secondMagicNumber = baseSecondMagicNumber = STRENGTH_GAIN;
-        isInnate = true;
         exhaust = true;
     }
 
