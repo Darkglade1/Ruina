@@ -89,19 +89,21 @@ public class MintyDamageSummationCompatibilityPatch {
     public static class allyPatch {
         @SpireInsertPatch(locator = allyPatch.Locator.class, localvars = {"dmg", "c"})
         public static void patch(AbstractDungeon fakeInstance, SpriteBatch sb, @ByRef int[] dmg, @ByRef int[] c) {
-            for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
-                if (mo instanceof AbstractAllyMonster && !mo.isDead) {
-                    if (mo.intent == IntentEnums.MASS_ATTACK && ((AbstractAllyMonster) mo).massAttackHitsPlayer) {
-                        int tmp;
-                        c[0]++;
-                        int multiAmt;
-                        multiAmt = ReflectionHacks.getPrivate(mo, AbstractMonster.class, "intentMultiAmt");
-                        tmp = mo.getIntentDmg();
-                        if (multiAmt > 1) {
-                            tmp *= multiAmt;
-                        }
-                        if (tmp > 0) {
-                            dmg[0] += tmp;
+            if (AbstractDungeon.getCurrRoom() != null) {
+                for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters) {
+                    if (mo instanceof AbstractAllyMonster && !mo.isDead) {
+                        if (mo.intent == IntentEnums.MASS_ATTACK && ((AbstractAllyMonster) mo).massAttackHitsPlayer) {
+                            int tmp;
+                            c[0]++;
+                            int multiAmt;
+                            multiAmt = ReflectionHacks.getPrivate(mo, AbstractMonster.class, "intentMultiAmt");
+                            tmp = mo.getIntentDmg();
+                            if (multiAmt > 1) {
+                                tmp *= multiAmt;
+                            }
+                            if (tmp > 0) {
+                                dmg[0] += tmp;
+                            }
                         }
                     }
                 }
