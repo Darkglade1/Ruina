@@ -55,7 +55,7 @@ public class LittleRed extends AbstractAllyMonster
         super(ID, ID, 150, -5.0F, 0, 230.0f, 265.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("LittleRed/Spriter/LittleRed.scml"));
         this.animation.setFlip(true, false);
-        this.setHp(150);
+        this.setHp(200);
 
         addMove(BEAST_HUNT, Intent.ATTACK, calcAscensionDamage(9));
         addMove(CATCH_BREATH, Intent.BUFF);
