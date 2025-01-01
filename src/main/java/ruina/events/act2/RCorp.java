@@ -28,8 +28,8 @@ public class RCorp extends AbstractImageEvent {
 
     private int screenNum = 0;
 
-    private static final float HP_COST = 0.15f;
-    private static final float HIGH_ASC_HP_COST = 0.20f;
+    private static final float HP_COST = 0.10f;
+    private static final float HIGH_ASC_HP_COST = 0.15f;
     private int hpCost;
 
     private boolean upgradeCard = false;
