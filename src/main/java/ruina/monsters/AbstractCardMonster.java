@@ -153,6 +153,11 @@ public abstract class AbstractCardMonster extends AbstractMultiIntentMonster {
         }
     }
 
+    @Override
+    protected void setMoveName() {
+        // card monsters set move name in setCards instead
+    }
+
     private AbstractCard getCardFromMove(byte next) {
         if (next >= 0 && next < cardList.size()) {
             return cardList.get(next).makeStatEquivalentCopy();
