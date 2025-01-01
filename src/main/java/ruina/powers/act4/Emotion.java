@@ -50,7 +50,6 @@ public class Emotion extends AbstractEasyPower {
     @Override
     public void onExhaust(AbstractCard card) {
         if (amount < maxEmotion) {
-            flashWithoutSound();
             owner.addPower(new Emotion(owner, Malkuth.EXHAUST_GAIN, threshold));
         }
     }
