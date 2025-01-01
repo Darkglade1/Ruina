@@ -28,6 +28,7 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.CenterOfAttention;
 import ruina.powers.Fragile;
 import ruina.powers.RuinaMetallicize;
 import ruina.powers.act2.BearerOfGifts;
@@ -88,6 +89,7 @@ public class Oz extends AbstractRuinaMonster
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland3");
         applyToTarget(this, this, new BearerOfGifts(this, 0, STRENGTH));
+        applyToTarget(this, this, new CenterOfAttention(this));
         if (RuinaMod.isMultiplayerConnected()) {
             AbstractPower power = getPower(BearerOfGifts.POWER_ID);
             if (power instanceof BearerOfGifts) {

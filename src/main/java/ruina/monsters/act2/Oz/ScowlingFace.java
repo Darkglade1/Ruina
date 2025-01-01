@@ -29,7 +29,7 @@ public class ScowlingFace extends AbstractRuinaMonster
     public ScowlingFace(final float x, final float y, boolean atkFirst) {
         super(ID, ID, 100, -5.0F, 0, 135.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScowlingFace/Spriter/ScowlingFace.scml"));
-        setHp(calcAscensionTankiness(32), calcAscensionTankiness(36));
+        setHp(calcAscensionTankiness(29), calcAscensionTankiness(33));
         addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(6));
         addMove(DEBUFF, Intent.DEBUFF);
         this.atkFirst = atkFirst;
