@@ -417,7 +417,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     public void render(SpriteBatch sb) {
         super.render(sb);
         Map<Integer, ArrayList<DetailedIntent>> detailsMap = DetailedIntent.intents.get(this);
-        if (detailsMap != null && !this.isDead && !this.isDying && !AbstractDungeon.isScreenUp) {
+        if (detailsMap != null && !this.isDead && !this.isDying && !AbstractDungeon.isScreenUp && !adp().hasRelic(RunicDome.ID) && !adp().hasPower("CardAugments:RunicPower")) {
             for (int intentNum : detailsMap.keySet()) {
                 ArrayList<DetailedIntent> detailList = detailsMap.get(intentNum);
                 for (int i = 0; i < detailList.size(); i++) {
@@ -429,7 +429,7 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
     protected void setDetailedIntents() {
-        if (!RuinaMod.disableDetailedIntentsConfig && !adp().hasRelic(RunicDome.ID)) {
+        if (!RuinaMod.disableDetailedIntentsConfig) {
             DetailedIntent.intents.put(this, getDetailedIntents());
         }
     }
