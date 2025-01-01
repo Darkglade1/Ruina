@@ -105,7 +105,7 @@
   },
   "${ModID}:Steal": {
     "NAME": "Steal or Be Stolen",
-    "DESCRIPTIONS": ["On death, draw #b1 less card for #b", " turn(s)."]
+    "DESCRIPTIONS": ["On death, you draw #b1 less card for #b", " turn(s)."]
   },
   "${ModID}:Agony": {
     "NAME": "Agony of the Deprived",
@@ -657,7 +657,7 @@
   },
   "${ModID}:BearerOfGifts": {
     "NAME": "Bearer of Gifts",
-    "DESCRIPTIONS": ["At the end of every other turn, put the displayed #yFalse #yPresent into your hand. If the #yFalse #yPresent is not played during your turn, gains #b", " #yStrength at end of round."]
+    "DESCRIPTIONS": ["At the end of every other turn, put the displayed #yFalse #yPresent into your hand. If the #yFalse #yPresent is not played during your turn, this creature gains #b", " #yStrength at end of round."]
   },
   "${ModID}:EnergyLossNextTurn": {
     "NAME": "Energy Loss",
@@ -670,6 +670,10 @@
   "${ModID}:Fragile": {
     "NAME": "Fragile",
     "DESCRIPTIONS": ["Receives #b", " more damage from #yAttacks."]
+  },
+  "${ModID}:Emerald": {
+    "NAME": "Purifying Emerald",
+    "DESCRIPTIONS": ["On death, if both minions are dead, remove the #rnegative #reffects of any #yFalse #yPresent in your hand."]
   },
   "${ModID}:MultiplayerAllyBuff": {
     "NAME": "Multiplayer Adjustment",

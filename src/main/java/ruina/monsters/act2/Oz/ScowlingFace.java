@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.MinionPower;
 import ruina.BetterSpriterAnimation;
 import ruina.monsters.AbstractRuinaMonster;
+import ruina.powers.act2.Emerald;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class ScowlingFace extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         addPower(new MinionPower(this));
+        applyToTarget(this, this, new Emerald(this));
     }
 
     @Override

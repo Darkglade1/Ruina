@@ -657,7 +657,7 @@
   },
   "${ModID}:BearerOfGifts": {
     "NAME": "送礼者",
-    "DESCRIPTIONS": ["每隔一个回合结束时，将假礼物放入你的手中。如果在你的回合中没有打出假礼物，则在回合结束时获得 #b", " 点力量。"]
+    "DESCRIPTIONS": ["每隔一个回合结束时，将显示的假象放入你的手中。如果在你的回合中未打出假象。则此生物在回合结束时获得 #b", " 点力量。"]
   },
   "${ModID}:EnergyLossNextTurn": {
     "NAME": "能量损失",
@@ -670,5 +670,9 @@
   "${ModID}:Fragile": {
     "NAME": "脆弱的",
     "DESCRIPTIONS": ["额外受到 #b", " 点 #y攻击 伤害。"]
+  },
+  "${ModID}:Emerald": {
+    "NAME": "净化翡翠",
+    "DESCRIPTIONS": ["死亡时，如果两个仆从都死了，则消除你手中任何假象的负面影响。"]
   }
 }

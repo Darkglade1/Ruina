@@ -17,11 +17,16 @@ public class FalsePresent extends AbstractRuinaCard {
         exhaust = true;
     }
 
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
     }
 
+    @Override
     public void upp() {
+    }
 
+    @Override
+    public boolean canUpgrade() {
+        return false;
     }
 }
