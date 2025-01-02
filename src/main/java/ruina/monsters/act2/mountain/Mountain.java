@@ -168,7 +168,7 @@ public class Mountain extends AbstractMultiIntentMonster
     }
 
     private void screechAnimation() {
-        animationAction("Screech", "Screech", 0.5f, this);
+        animationAction("Screech", "Screech", 0.3f, this);
     }
 
     private void ramAnimation(AbstractCreature enemy) {
