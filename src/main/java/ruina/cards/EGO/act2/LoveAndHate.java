@@ -58,10 +58,10 @@ public class LoveAndHate extends AbstractEgoCard {
             if (!freeToPlayOnce) {
                 adp().energy.use(EnergyPanel.totalCount);
             }
+            atb(new SFXAction("ATTACK_HEAVY"));
+            atb(new VFXAction(p, new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.1F));
+            allDmg(AbstractGameAction.AttackEffect.NONE);
         }
-        atb(new SFXAction("ATTACK_HEAVY"));
-        atb(new VFXAction(p, new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.1F));
-        allDmg(AbstractGameAction.AttackEffect.NONE);
     }
 
     @Override
