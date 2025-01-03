@@ -673,7 +673,7 @@
   },
   "${ModID}:Emerald": {
     "NAME": "Purifying Emerald",
-    "DESCRIPTIONS": ["On death, if both minions are dead, remove the #rnegative #reffects of any #yFalse #yPresent in your hand."]
+    "DESCRIPTIONS": ["On death, if both minions are dead, add #yPurifying #yEmerald to your hand."]
   },
   "${ModID}:MultiplayerAllyBuff": {
     "NAME": "Multiplayer Adjustment",

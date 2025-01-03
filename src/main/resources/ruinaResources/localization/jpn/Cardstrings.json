@@ -955,5 +955,9 @@
   "${ModID}:FalsePresent": {
     "NAME": "偽物のプレゼント",
     "DESCRIPTION": ""
+  },
+  "${ModID}:Emerald": {
+    "NAME": "浄化のエメラルド",
+    "DESCRIPTION": "手札にある偽物のプレゼントのマイナス効果を削除します。"
   }
 }

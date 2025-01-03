@@ -955,5 +955,9 @@
   "${ModID}:FalsePresent": {
     "NAME": "거짓 선물",
     "DESCRIPTION": ""
+  },
+  "${ModID}:Emerald": {
+    "NAME": "정화의 에메랄드",
+    "DESCRIPTION": "손에 있는 거짓 선물의 부정적인 효과를 모두 제거합니다."
   }
 }

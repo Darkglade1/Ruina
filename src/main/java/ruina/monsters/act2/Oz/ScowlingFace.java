@@ -1,14 +1,16 @@
 package ruina.monsters.act2.Oz;
 
+import basemod.helpers.CardPowerTip;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.cards.status.Burn;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
+import ruina.cards.Emerald;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.act2.Emerald;
 import ruina.util.DetailedIntent;
 
 import java.util.ArrayList;
@@ -22,16 +24,19 @@ public class ScowlingFace extends AbstractRuinaMonster
     public static final String ID = makeID(ScowlingFace.class.getSimpleName());
 
     private static final byte ATTACK = 0;
-    private static final byte DEBUFF = 1;
-    public final int STATUS = 1;
+    private static final byte BUFF = 1;
+    public final int STR = calcAscensionSpecial(3);
+    public final int BLOCK = calcAscensionTankiness(12);
     private final boolean atkFirst;
+
+    AbstractCard emerald = new Emerald();
 
     public ScowlingFace(final float x, final float y, boolean atkFirst) {
         super(ID, ID, 100, -5.0F, 0, 135.0f, 160.0f, null, x, y);
         this.animation = new BetterSpriterAnimation(makeMonsterPath("ScowlingFace/Spriter/ScowlingFace.scml"));
-        setHp(calcAscensionTankiness(29), calcAscensionTankiness(33));
+        setHp(calcAscensionTankiness(34), calcAscensionTankiness(38));
         addMove(ATTACK, Intent.ATTACK, calcAscensionDamage(6));
-        addMove(DEBUFF, Intent.DEBUFF);
+        addMove(BUFF, Intent.DEFEND_BUFF);
         this.atkFirst = atkFirst;
     }
 
@@ -44,7 +49,7 @@ public class ScowlingFace extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         addPower(new MinionPower(this));
-        applyToTarget(this, this, new Emerald(this));
+        applyToTarget(this, this, new ruina.powers.act2.Emerald(this));
     }
 
     @Override
@@ -57,13 +62,10 @@ public class ScowlingFace extends AbstractRuinaMonster
                 resetIdle();
                 break;
             }
-            case DEBUFF: {
-                debuffAnimation(adp());
-                if (AbstractDungeon.ascensionLevel >= 19) {
-                    intoDrawMo(new Burn(), STATUS, this);
-                } else {
-                    intoDiscardMo(new Burn(), STATUS, this);
-                }
+            case BUFF: {
+                specialAnimation(adp());
+                block(this, BLOCK);
+                applyToTarget(this, this, new StrengthPower(this, STR));
                 resetIdle();
                 break;
             }
@@ -77,11 +79,11 @@ public class ScowlingFace extends AbstractRuinaMonster
             if (atkFirst) {
                 setMoveShortcut(ATTACK);
             } else {
-                setMoveShortcut(DEBUFF);
+                setMoveShortcut(BUFF);
             }
         } else {
             if (this.lastMove(ATTACK)) {
-                setMoveShortcut(DEBUFF);
+                setMoveShortcut(BUFF);
             } else {
                 setMoveShortcut(ATTACK);
             }
@@ -89,17 +91,20 @@ public class ScowlingFace extends AbstractRuinaMonster
     }
 
     @Override
+    public void renderTip(SpriteBatch sb) {
+        super.renderTip(sb);
+        tips.add(new CardPowerTip(emerald.makeStatEquivalentCopy()));
+    }
+
+    @Override
     protected ArrayList<DetailedIntent> getDetails(EnemyMoveInfo move, int intentNum) {
         ArrayList<DetailedIntent> detailsList = new ArrayList<>();
         switch (move.nextMove) {
-            case DEBUFF: {
-                if (AbstractDungeon.ascensionLevel >= 19) {
-                    DetailedIntent detail = new DetailedIntent(this, STATUS, DetailedIntent.BURN_TEXTURE, DetailedIntent.TargetType.DRAW_PILE);
-                    detailsList.add(detail);
-                } else {
-                    DetailedIntent detail = new DetailedIntent(this, STATUS, DetailedIntent.BURN_TEXTURE, DetailedIntent.TargetType.DISCARD_PILE);
-                    detailsList.add(detail);
-                }
+            case BUFF: {
+                DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
+                detailsList.add(detail);
+                DetailedIntent detail1 = new DetailedIntent(this, STR, DetailedIntent.STRENGTH_TEXTURE);
+                detailsList.add(detail1);
                 break;
             }
         }
@@ -110,8 +115,8 @@ public class ScowlingFace extends AbstractRuinaMonster
         animationAction("Blunt", "SmokeAtk", 0.7f, enemy, this);
     }
 
-    private void debuffAnimation(AbstractCreature enemy) {
-        animationAction("Blunt", "MatchSizzle", enemy, this);
+    private void specialAnimation(AbstractCreature enemy) {
+        animationAction("Blunt", null, enemy, this);
     }
 
 }

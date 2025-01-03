@@ -955,5 +955,9 @@
   "${ModID}:FalsePresent": {
     "NAME": "假象",
     "DESCRIPTION": ""
+  },
+  "${ModID}:Emerald": {
+    "NAME": "净化翡翠",
+    "DESCRIPTION": "则消除你手中任何假象的负面影响。"
   }
 }

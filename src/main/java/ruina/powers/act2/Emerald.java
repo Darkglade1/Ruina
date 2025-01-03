@@ -1,21 +1,15 @@
 package ruina.powers.act2;
 
-import basemod.helpers.CardModifierManager;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import ruina.RuinaMod;
-import ruina.cardmods.DrawReductionMod;
-import ruina.cardmods.EnergyLossMod;
-import ruina.cardmods.VulnerableMod;
-import ruina.cards.FalsePresent;
 import ruina.monsters.act2.Oz.ScowlingFace;
 import ruina.powers.AbstractUnremovablePower;
 
-import static ruina.util.Wiz.adp;
+import static ruina.util.Wiz.makeInHand;
 
 public class Emerald extends AbstractUnremovablePower {
     public static final String POWER_ID = RuinaMod.makeID(Emerald.class.getSimpleName());
@@ -37,22 +31,7 @@ public class Emerald extends AbstractUnremovablePower {
             }
         }
         if (shouldTrigger) {
-            for (AbstractCard card : adp().hand.group) {
-                if (card instanceof FalsePresent) {
-                    if (CardModifierManager.hasModifier(card, EnergyLossMod.ID)) {
-                        CardModifierManager.removeModifiersById(card, EnergyLossMod.ID, false);
-                        card.flash();
-                    }
-                    if (CardModifierManager.hasModifier(card, DrawReductionMod.ID)) {
-                        CardModifierManager.removeModifiersById(card, DrawReductionMod.ID, false);
-                        card.flash();
-                    }
-                    if (CardModifierManager.hasModifier(card, VulnerableMod.ID)) {
-                        CardModifierManager.removeModifiersById(card, VulnerableMod.ID, false);
-                        card.flash();
-                    }
-                }
-            }
+            makeInHand(new ruina.cards.Emerald());
         }
     }
 

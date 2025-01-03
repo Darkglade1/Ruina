@@ -955,5 +955,9 @@
   "${ModID}:FalsePresent": {
     "NAME": "False Present",
     "DESCRIPTION": ""
+  },
+  "${ModID}:Emerald": {
+    "NAME": "Purifying Emerald",
+    "DESCRIPTION": "Remove the negative effects of any *False *Present in your hand."
   }
 }
