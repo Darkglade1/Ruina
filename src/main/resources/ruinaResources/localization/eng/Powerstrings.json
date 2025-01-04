@@ -549,7 +549,7 @@
   },
   "${ModID}:Dream": {
     "NAME": "Broken Dream",
-    "DESCRIPTIONS": ["At end of round, another #yBrother becomes #yactive. NL If #b", " or more #yBrothers have #rdied, begins to use a #rpowerful attack. NL NL Random targeting effects always target this creature."]
+    "DESCRIPTIONS": ["At end of round, another #yBrother becomes #yactive. NL If all #b", " #yBrothers have #rdied, begins to use a #rpowerful attack. NL NL Random targeting effects always target this creature."]
   },
   "${ModID}:BrotherPower": {
     "NAME": "Brother",
