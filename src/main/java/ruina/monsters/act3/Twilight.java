@@ -66,7 +66,7 @@ public class Twilight extends AbstractRuinaMonster
     private final int VULNERABLE = calcAscensionSpecial(1);
     private final int FRAIL = calcAscensionSpecial(2);
     private final int STRENGTH = calcAscensionSpecial(2);
-    private final int NUM_DAZZLE = 1;
+    private final int NUM_DAZZLE = calcAscensionSpecial(1);
     private final int SMALL_EGG_NUM_CARDS = 2;
     private final int SMALL_EGG_COST_INCREASE = calcAscensionSpecial(1);
     private final int EGG_CYCLE_TURN_NUM = 2;
@@ -118,10 +118,6 @@ public class Twilight extends AbstractRuinaMonster
         addMove(TORN_MOUTH, Intent.ATTACK_BUFF, calcAscensionDamage(14));
         addMove(TILTED_SCALE, Intent.DEFEND_DEBUFF);
         addMove(TALONS, Intent.ATTACK, calcAscensionDamage(12), 2);
-
-        if (AbstractDungeon.ascensionLevel >= 19) {
-            status.upgrade();
-        }
 
         Player.PlayerListener listener = new BirdListener(this);
         ((BetterSpriterAnimation)this.bird).myPlayer.addListener(listener);

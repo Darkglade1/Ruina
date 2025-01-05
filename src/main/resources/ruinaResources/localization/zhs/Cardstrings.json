@@ -115,7 +115,7 @@
   },
   "ruina:Dazzled": {
     "NAME": "眩晕",
-    "DESCRIPTION": "每当 保留 ，在本场战斗中增加其耗能 !M! 。如果耗能不小于 !ruina:SecondMagic! ，则变为 不能被打出 。"
+    "DESCRIPTION": "当你抽到这张牌时 ，在本场战斗中增加其耗能 !M! 。如果耗能不小于 !ruina:SecondMagic! ，则变为 不能被打出 。"
   },
   "ruina:ForestKeeperLock": {
     "NAME": "森林的守望者之锁",
