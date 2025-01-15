@@ -35,7 +35,7 @@ public class NeowAngela extends NeowEvent {
 
     @SpireOverride
     protected void playSfx() {
-        AbstractRuinaMonster.playSound("FingerSnap");
+        AbstractRuinaMonster.playSound("FingerSnap", 0.7f);
     }
 
     @Override

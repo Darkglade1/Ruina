@@ -89,11 +89,11 @@ public class Fragment extends AbstractRuinaMonster
     }
 
     private void attackAnimation(AbstractCreature enemy) {
-        animationAction("Attack", "FragmentStab", enemy, this);
+        animationAction("Attack", "FragmentStab", 0.7f, enemy, this);
     }
 
     private void specialAnimation(AbstractCreature enemy) {
-        animationAction("Special", "FragmentSing", enemy, this);
+        animationAction("Special", "FragmentSing", 0.5f, enemy, this);
     }
 
 }
