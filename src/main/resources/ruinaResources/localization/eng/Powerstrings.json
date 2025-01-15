@@ -287,11 +287,11 @@
   },
   "${ModID}:BlackSilence": {
     "NAME": "The Black Silence",
-    "DESCRIPTIONS": ["Gains #b", " #yStrength at end of turn.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
+    "DESCRIPTIONS": ["Gains #b", " #yStrength at end of round.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
   },
   "${ModID}:BlueReverberation": {
     "NAME": "The Blue Reverberation",
-    "DESCRIPTIONS": ["Gains #b%1$s #yStrength at end of turn."]
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength at end of round."]
   },
   "${ModID}:ContractOfMight": {
     "NAME": "Contract Of Might",
