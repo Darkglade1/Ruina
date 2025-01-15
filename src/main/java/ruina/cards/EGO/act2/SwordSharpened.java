@@ -1,6 +1,8 @@
 package ruina.cards.EGO.act2;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -51,9 +53,46 @@ public class SwordSharpened extends AbstractEgoCard {
                 public void onUseCard(AbstractCard card, UseCardAction action) {
                     if (card instanceof SwordSharpened && action.target == owner && amount >= PLAY_THRESHOLD - 1) {
                         this.flash();
-                        action.exhaustCard = true;
                         makePowerRemovable(this);
                         atb(new RemoveSpecificPowerAction(owner, owner, POWER_ID));
+                        if (!card.purgeOnUse) {
+                            action.exhaustCard = true;
+                        } else {
+                            atb(new AbstractGameAction() {
+                                @Override
+                                public void update() {
+                                    for (AbstractCard c : adp().discardPile.group) {
+                                        if (c.uuid.equals(card.uuid)) {
+                                            att(new ExhaustSpecificCardAction(c, adp().discardPile));
+                                            this.isDone = true;
+                                            return;
+                                        }
+                                    }
+                                    for (AbstractCard c : adp().drawPile.group) {
+                                        if (c.uuid.equals(card.uuid)) {
+                                            att(new ExhaustSpecificCardAction(c, adp().drawPile));
+                                            this.isDone = true;
+                                            return;
+                                        }
+                                    }
+                                    for (AbstractCard c : adp().hand.group) {
+                                        if (c.uuid.equals(card.uuid)) {
+                                            att(new ExhaustSpecificCardAction(c, adp().hand));
+                                            this.isDone = true;
+                                            return;
+                                        }
+                                    }
+                                    for (AbstractCard c : adp().limbo.group) {
+                                        if (c.uuid.equals(card.uuid)) {
+                                            att(new ExhaustSpecificCardAction(c, adp().limbo));
+                                            this.isDone = true;
+                                            return;
+                                        }
+                                    }
+                                    this.isDone = true;
+                                }
+                            });
+                        }
                     }
                 }
 
