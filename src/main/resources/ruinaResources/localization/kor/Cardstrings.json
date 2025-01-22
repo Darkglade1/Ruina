@@ -115,7 +115,7 @@
   },
   "ruina:Dazzled": {
     "NAME": "현혹됨",
-    "DESCRIPTION": "이 카드가 보존되면, 이번 전투동안 이 카드의 비용이 !M! 증가합니다. 이 카드의 비용이 !ruina:SecondMagic! 또는 그 이상이 되면, 사용불가 상태로 변합니다."
+    "DESCRIPTION": "이 카드를 뽑으면, 이번 전투동안 이 카드의 비용이 !M! 증가합니다. 이 카드의 비용이 !ruina:SecondMagic! 또는 그 이상이 되면, 사용불가 상태로 변합니다."
   },
   "ruina:ForestKeeperLock": {
     "NAME": "검은 숲의 숲지기",
@@ -955,5 +955,9 @@
   "${ModID}:FalsePresent": {
     "NAME": "거짓 선물",
     "DESCRIPTION": ""
+  },
+  "${ModID}:Emerald": {
+    "NAME": "정화의 에메랄드",
+    "DESCRIPTION": "손에 있는 거짓 선물의 부정적인 효과를 모두 제거합니다."
   }
 }

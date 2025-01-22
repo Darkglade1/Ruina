@@ -8,27 +8,24 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.common.SuicideAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.actions.UsePreBattleActionAction;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.powers.CenterOfAttention;
 import ruina.powers.Fragile;
 import ruina.powers.RuinaMetallicize;
 import ruina.powers.act2.BearerOfGifts;
@@ -56,11 +53,11 @@ public class Oz extends AbstractRuinaMonster
     private static final byte LIGHT = 4;
     private static final byte AWAY = 5;
 
-    private final int STRENGTH = calcAscensionSpecial(2);
-    private final int WEAK = calcAscensionSpecial(2);
-    private final int BLOCK = calcAscensionTankiness(10);
-    private final int HEAL = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(20));
+    private final int POWER_STR = calcAscensionSpecial(2);
+    private final int FRAIL = calcAscensionSpecial(2);
+    private final int BLOCK = calcAscensionTankiness(20);
     private final int FRAGILE = calcAscensionSpecial(2);
+    private final int STR = calcAscensionSpecial(2);
     private final int METALLICIZE = RuinaMod.getMultiplayerEnemyHealthScaling(calcAscensionTankiness(5));
 
     public Oz() {
@@ -72,9 +69,9 @@ public class Oz extends AbstractRuinaMonster
         this.animation = new BetterSpriterAnimation(makeMonsterPath("Oz/Spriter/Oz.scml"));
         setHp(calcAscensionTankiness(280));
         addMove(WELCOME, Intent.DEFEND_BUFF);
-        addMove(BEHAVE, Intent.ATTACK, calcAscensionDamage(7), 2);
+        addMove(BEHAVE, Intent.ATTACK, calcAscensionDamage(8), 2);
         addMove(ARISE, Intent.UNKNOWN);
-        addMove(NOISY, Intent.ATTACK_DEBUFF, calcAscensionDamage(12));
+        addMove(NOISY, Intent.ATTACK_DEBUFF, calcAscensionDamage(14));
         addMove(LIGHT, Intent.DEFEND_BUFF);
         addMove(AWAY, Intent.ATTACK_DEBUFF, calcAscensionDamage(25));
     }
@@ -88,8 +85,7 @@ public class Oz extends AbstractRuinaMonster
     @Override
     public void usePreBattleAction() {
         CustomDungeon.playTempMusicInstantly("Roland3");
-        applyToTarget(this, this, new BearerOfGifts(this, 0, STRENGTH));
-        applyToTarget(this, this, new CenterOfAttention(this));
+        applyToTarget(this, this, new BearerOfGifts(this, 0, POWER_STR));
         if (RuinaMod.isMultiplayerConnected()) {
             AbstractPower power = getPower(BearerOfGifts.POWER_ID);
             if (power instanceof BearerOfGifts) {
@@ -131,14 +127,14 @@ public class Oz extends AbstractRuinaMonster
                 attackAnimation(adp());
                 dmg(adp(), info);
                 hitEffect(adp());
-                applyToTarget(adp(), this, new WeakPower(adp(), WEAK, true));
+                applyToTarget(adp(), this, new FrailPower(adp(), FRAIL, true));
                 resetIdle(1.0f);
                 break;
             }
             case LIGHT: {
                 buffAnimation();
                 block(this, BLOCK);
-                atb(new HealAction(this, this, HEAL));
+                applyToTarget(this, this, new StrengthPower(this, STR));
                 resetIdle(1.0f);
                 break;
             }
@@ -169,16 +165,16 @@ public class Oz extends AbstractRuinaMonster
     protected void getMove(final int num) {
         if (firstMove) {
             setMoveShortcut(WELCOME);
-        } else if (!areMinionsAlive()) {
-            setMoveShortcut(ARISE);
         } else if (threeTurnCooldownHasPassedForMove(AWAY)) {
             setMoveShortcut(AWAY);
+        } else if (!areMinionsAlive()) {
+            setMoveShortcut(ARISE);
         } else {
             ArrayList<Byte> possibilities = new ArrayList<>();
             if (!this.lastMove(NOISY) && !this.lastMoveBefore(NOISY)) {
                 possibilities.add(NOISY);
             }
-            if (!this.lastMove(LIGHT) && !this.lastMoveBefore(LIGHT) && this.currentHealth <= this.maxHealth - HEAL) {
+            if (!this.lastMove(LIGHT) && !this.lastMoveBefore(LIGHT)) {
                 possibilities.add(LIGHT);
             }
             if (!this.lastMove(BEHAVE) && !this.lastMoveBefore(BEHAVE)) {
@@ -220,14 +216,14 @@ public class Oz extends AbstractRuinaMonster
                 break;
             }
             case NOISY: {
-                DetailedIntent detail = new DetailedIntent(this, WEAK, DetailedIntent.WEAK_TEXTURE);
+                DetailedIntent detail = new DetailedIntent(this, FRAIL, DetailedIntent.FRAIL_TEXTURE);
                 detailsList.add(detail);
                 break;
             }
             case LIGHT: {
                 DetailedIntent detail = new DetailedIntent(this, BLOCK, DetailedIntent.BLOCK_TEXTURE);
                 detailsList.add(detail);
-                DetailedIntent detail2 = new DetailedIntent(this, HEAL, DetailedIntent.HEAL_TEXTURE);
+                DetailedIntent detail2 = new DetailedIntent(this, STR, DetailedIntent.STRENGTH_TEXTURE);
                 detailsList.add(detail2);
                 break;
             }

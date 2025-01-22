@@ -287,11 +287,11 @@
   },
   "${ModID}:BlackSilence": {
     "NAME": "The Black Silence",
-    "DESCRIPTIONS": ["Gains #b", " #yStrength at end of turn.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
+    "DESCRIPTIONS": ["Gains #b", " #yStrength at end of round.", " NL Uses a #ypowerful attack in #b", " turns.", " turn.", " NL Using a #ypowerful attack."]
   },
   "${ModID}:BlueReverberation": {
     "NAME": "The Blue Reverberation",
-    "DESCRIPTIONS": ["Gains #b%1$s #yStrength at end of turn."]
+    "DESCRIPTIONS": ["Gains #b%1$s #yStrength at end of round."]
   },
   "${ModID}:ContractOfMight": {
     "NAME": "Contract Of Might",
@@ -549,7 +549,7 @@
   },
   "${ModID}:Dream": {
     "NAME": "Broken Dream",
-    "DESCRIPTIONS": ["At end of round, another #yBrother becomes #yactive. NL If #b", " or more #yBrothers have #rdied, begins to use a #rpowerful attack. NL NL Random targeting effects always target this creature."]
+    "DESCRIPTIONS": ["At end of round, another #yBrother becomes #yactive. NL If all #b", " #yBrothers have #rdied, begins to use a #rpowerful attack. NL NL Random targeting effects always target this creature."]
   },
   "${ModID}:BrotherPower": {
     "NAME": "Brother",
@@ -673,7 +673,7 @@
   },
   "${ModID}:Emerald": {
     "NAME": "Purifying Emerald",
-    "DESCRIPTIONS": ["On death, if both minions are dead, remove the #rnegative #reffects of any #yFalse #yPresent in your hand."]
+    "DESCRIPTIONS": ["On death, if both minions are dead, add #yPurifying #yEmerald to your hand."]
   },
   "${ModID}:MultiplayerAllyBuff": {
     "NAME": "Multiplayer Adjustment",

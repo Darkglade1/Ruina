@@ -115,7 +115,7 @@
   },
   "ruina:Dazzled": {
     "NAME": "眩惑",
-    "DESCRIPTION": "ターン終了時に手札にあるとき、コストが !M! 増加。 NL コストが NL !ruina:SecondMagic! 以上の時、 使用不可  "
+    "DESCRIPTION": "このカードを引いたとき、コストが !M! 増加。 NL コストが NL !ruina:SecondMagic! 以上の時、 使用不可  "
   },
   "ruina:ForestKeeperLock": {
     "NAME": "黒い森の森番",
@@ -955,5 +955,9 @@
   "${ModID}:FalsePresent": {
     "NAME": "偽物のプレゼント",
     "DESCRIPTION": ""
+  },
+  "${ModID}:Emerald": {
+    "NAME": "浄化のエメラルド",
+    "DESCRIPTION": "手札にある偽物のプレゼントのマイナス効果を削除します。"
   }
 }

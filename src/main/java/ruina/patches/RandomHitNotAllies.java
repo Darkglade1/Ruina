@@ -28,7 +28,7 @@ public class RandomHitNotAllies {
                 public void edit(MethodCall m) throws CannotCompileException {
                     if (m.getMethodName().equals("add")) {
                         m.replace("{" +
-                                "if(!(m instanceof " + AbstractAllyMonster.class.getName() + ")) {" +
+                                "if(" + RandomHitNotAllies.class.getName() + ".validTarget(m)) {" +
                                 "$_ = $proceed($$);" +
                                 "}" +
                                 "}");
@@ -53,13 +53,22 @@ public class RandomHitNotAllies {
                 public void edit(MethodCall m) throws CannotCompileException {
                     if (m.getMethodName().equals("add")) {
                         m.replace("{" +
-                                "if(!(m instanceof " + AbstractAllyMonster.class.getName() + ")) {" +
+                                "if(" + RandomHitNotAllies.class.getName() + ".validTarget(m)) {" +
                                 "$_ = $proceed($$);" +
                                 "}" +
                                 "}");
                     }
                 }
             };
+        }
+    }
+
+    public static boolean validTarget(Object mo) {
+        if (mo instanceof AbstractAllyMonster) {
+            AbstractAllyMonster ally = (AbstractAllyMonster)mo;
+            return !(ally.isAlly && !ally.isTargetableByPlayer);
+        } else {
+            return true;
         }
     }
 

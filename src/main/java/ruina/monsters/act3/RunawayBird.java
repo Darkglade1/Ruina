@@ -87,7 +87,7 @@ public class RunawayBird extends AbstractRuinaMonster
     }
 
     private void shriekAnimation(AbstractCreature enemy) {
-        animationAction("Shriek", "BirdShout", enemy, this);
+        animationAction("Shriek", "BirdShout", 0.5f, enemy, this);
     }
 
 }

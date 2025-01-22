@@ -3,6 +3,7 @@ package ruina.events;
 import basemod.ReflectionHacks;
 import basemod.animations.AbstractAnimation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,17 +19,23 @@ public class NeowAngela extends NeowEvent {
     public static final String ID = RuinaMod.makeID(NeowAngela.class.getSimpleName());
     private final AbstractAnimation angela;
 
-    //this variable is here to stop the other guy's mod from crashing LOL
+    //this variable is here to stop the other guy's mod from crashing
     private int bossCount;
 
     public NeowAngela() {
         angela = new BetterSpriterAnimation(makeMonsterPath("Angela/Spriter/Angela.scml"));
-        this.bossCount = ReflectionHacks.getPrivate(this, NeowEvent.class, "bossCount");
+        // turns out the other guy's mod was secretly also permNeow :upside_down:
+        if (Loader.isModLoaded("Lobotomy")) {
+            int parentBossCount = ReflectionHacks.getPrivate(this, NeowEvent.class, "bossCount");
+            if (parentBossCount < 1) {
+                ReflectionHacks.setPrivate(this, NeowEvent.class, "bossCount", 1);
+            }
+        }
     }
 
     @SpireOverride
     protected void playSfx() {
-        AbstractRuinaMonster.playSound("FingerSnap");
+        AbstractRuinaMonster.playSound("FingerSnap", 0.7f);
     }
 
     @Override

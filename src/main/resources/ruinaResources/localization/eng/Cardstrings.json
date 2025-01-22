@@ -115,7 +115,7 @@
   },
   "${ModID}:Dazzled": {
     "NAME": "Dazzled",
-    "DESCRIPTION": "When Retained, increase its cost by !M! this combat. If its cost is !ruina:SecondMagic! or more, it becomes Unplayable."
+    "DESCRIPTION": "When drawn, increase its cost by !M! this combat. If its cost is !ruina:SecondMagic! or more, it becomes Unplayable."
   },
   "${ModID}:ForestKeeperLock": {
     "NAME": "Forest Keeper's Lock",
@@ -955,5 +955,9 @@
   "${ModID}:FalsePresent": {
     "NAME": "False Present",
     "DESCRIPTION": ""
+  },
+  "${ModID}:Emerald": {
+    "NAME": "Purifying Emerald",
+    "DESCRIPTION": "Remove the negative effects of any *False *Present in your hand."
   }
 }
