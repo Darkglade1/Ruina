@@ -557,12 +557,14 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         Long newSeed = 0L;
         NetworkLocation l = SpireHelp.Gameplay.GetMapLocation(false);
         if(l != null){
-            newSeed += l.x;
-            newSeed += l.y;
+            newSeed += l.x * 100;
+            newSeed += l.y * 10;
         }
         newSeed += GameActionManager.turn;
         String uid = SpireHelp.Gameplay.CreatureToUID(this);
         newSeed += uid.hashCode();
+        newSeed += AbstractDungeon.actNum;
+        newSeed += P2PManager.data.gameSeed;
         return new Random(newSeed);
     }
 
