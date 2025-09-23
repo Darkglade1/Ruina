@@ -209,12 +209,13 @@ public class Eileen extends AbstractCardMonster
     }
 
     public void onMinionDeath() {
-        if (RuinaMod.isMultiplayerConnected() && GameplayHelpers.isPlayerTurn()) {
-            DamageAction damage = new DamageAction(this, new DamageInfo(adp(), HP_LOSS, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.NONE);
-            atb(damage);
-        } else {
-            atb(new LoseHPAction(this, this, HP_LOSS));
-        }
+//        if (RuinaMod.isMultiplayerConnected() && GameplayHelpers.isPlayerTurn()) {
+//            DamageAction damage = new DamageAction(this, new DamageInfo(adp(), HP_LOSS, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.NONE);
+//            atb(damage);
+//        } else {
+//            atb(new LoseHPAction(this, this, HP_LOSS));
+//        }
+        atb(new LoseHPAction(this, this, HP_LOSS));
     }
 
 }

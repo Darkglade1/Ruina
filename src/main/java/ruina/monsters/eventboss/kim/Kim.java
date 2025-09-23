@@ -17,7 +17,6 @@ import ruina.powers.act2.CounterAttack;
 import ruina.powers.act2.Rupture;
 import ruina.powers.multiplayer.CounterAttackMultiplayer;
 import ruina.util.TexLoader;
-import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 

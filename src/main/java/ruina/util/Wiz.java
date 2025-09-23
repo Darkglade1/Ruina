@@ -234,8 +234,8 @@ public class Wiz {
     public static void dmg(AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect) {
         DamageAction action = new DamageAction(target, info, effect);
         if (RuinaMod.isMultiplayerConnected() && info.owner instanceof AbstractMonster) {
-            ActionPatches.markActionForNoDamageSync(action);
-            ActionPatches.markActionForNoDataSync(action);
+            //ActionPatches.markActionForNoDamageSync(action);
+            //ActionPatches.markActionForNoDataSync(action);
         }
         atb(action);
     }

@@ -2,7 +2,6 @@ package ruina.monsters.act1;
 
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import ruina.BetterSpriterAnimation;
@@ -11,7 +10,6 @@ import ruina.monsters.AbstractRuinaMonster;
 import ruina.powers.act1.Fear;
 import ruina.powers.multiplayer.FearMultiplayer;
 import ruina.util.DetailedIntent;
-import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 

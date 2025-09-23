@@ -15,7 +15,6 @@ import ruina.powers.act2.CourageInvisiblePower;
 import ruina.powers.multiplayer.CourageInvisiblePowerMultiplayer;
 import ruina.powers.multiplayer.CourageMultiplayer;
 import ruina.util.DetailedIntent;
-import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 

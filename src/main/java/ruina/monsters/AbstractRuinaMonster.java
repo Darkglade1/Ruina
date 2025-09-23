@@ -22,17 +22,10 @@ import com.megacrit.cardcrawl.relics.RunicDome;
 import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.elena.VermilionCross;
-import ruina.multiplayer.NetworkRuinaMonster;
 import ruina.powers.InvisibleBarricadePower;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
-import spireTogether.networkcore.P2P.P2PManager;
-import spireTogether.networkcore.objects.entities.NetworkIntent;
-import spireTogether.networkcore.objects.entities.NetworkMonster;
-import spireTogether.networkcore.objects.rooms.NetworkLocation;
-import spireTogether.other.RoomDataManager;
-import spireTogether.util.SpireHelp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +33,6 @@ import java.util.Map;
 
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.*;
-import static spireTogether.patches.monster.MonsterIntentPatch.pauseIntentSync;
 
 public abstract class AbstractRuinaMonster extends CustomMonster {
 
@@ -124,11 +116,11 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
         if (firstMove) {
             firstMove = false;
             if (RuinaMod.isMultiplayerConnected()) {
-                P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateFirstMove, firstMove, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
-                NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
-                if (m instanceof NetworkRuinaMonster) {
-                    ((NetworkRuinaMonster)m).firstMove = this.firstMove;
-                }
+//                P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateFirstMove, firstMove, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+//                NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+//                if (m instanceof NetworkRuinaMonster) {
+//                    ((NetworkRuinaMonster)m).firstMove = this.firstMove;
+//                }
             }
         }
         if(info.base > -1) {
@@ -530,50 +522,50 @@ public abstract class AbstractRuinaMonster extends CustomMonster {
     }
 
     protected void notifyMainIntentUpdateMultiplayer() {
-        if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
-            EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
-            NetworkIntent networkMove = new NetworkIntent(move);
-            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateMainIntent, networkMove, moveHistory, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
-            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
-            if (m instanceof NetworkRuinaMonster) {
-                ((NetworkRuinaMonster) m).networkMove = networkMove;
-                ((NetworkRuinaMonster) m).moveHistory = moveHistory;
-            }
-        }
+//        if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
+//            EnemyMoveInfo move = ReflectionHacks.getPrivate(this, AbstractMonster.class, "move");
+//            NetworkIntent networkMove = new NetworkIntent(move);
+//            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateMainIntent, networkMove, moveHistory, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+//            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+//            if (m instanceof NetworkRuinaMonster) {
+//                ((NetworkRuinaMonster) m).networkMove = networkMove;
+//                ((NetworkRuinaMonster) m).moveHistory = moveHistory;
+//            }
+//        }
         notifyAttackingAllyUpdateMultiplayer();
     }
 
     public void notifyAttackingAllyUpdateMultiplayer() {
-        if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
-            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateAttackingAlly, attackingAlly, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
-            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
-            if (m instanceof NetworkRuinaMonster) {
-                ((NetworkRuinaMonster) m).attackingAlly = attackingAlly;
-            }
-        }
+        //if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
+//            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdateAttackingAlly, attackingAlly, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+//            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+//            if (m instanceof NetworkRuinaMonster) {
+//                ((NetworkRuinaMonster) m).attackingAlly = attackingAlly;
+//            }
+       // }
     }
 
     private Random generateMultiplayerRandom() {
         Long newSeed = 0L;
-        NetworkLocation l = SpireHelp.Gameplay.GetMapLocation(false);
-        if(l != null){
-            newSeed += l.x;
-            newSeed += l.y;
-        }
+        //NetworkLocation l = SpireHelp.Gameplay.GetMapLocation(false);
+//        if(l != null){
+//            newSeed += l.x;
+//            newSeed += l.y;
+//        }
         newSeed += GameActionManager.turn;
-        String uid = SpireHelp.Gameplay.CreatureToUID(this);
-        newSeed += uid.hashCode();
+        //String uid = SpireHelp.Gameplay.CreatureToUID(this);
+        //newSeed += uid.hashCode();
         return new Random(newSeed);
     }
 
     public void setPhase(int newPhase) {
         this.phase = newPhase;
         if (RuinaMod.isMultiplayerConnected()) {
-            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdatePhase, newPhase, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
-            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
-            if (m instanceof NetworkRuinaMonster) {
-                ((NetworkRuinaMonster) m).phase = newPhase;
-            }
+//            P2PManager.SendData(NetworkRuinaMonster.request_monsterUpdatePhase, newPhase, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+//            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+//            if (m instanceof NetworkRuinaMonster) {
+//                ((NetworkRuinaMonster) m).phase = newPhase;
+//            }
         }
     }
 

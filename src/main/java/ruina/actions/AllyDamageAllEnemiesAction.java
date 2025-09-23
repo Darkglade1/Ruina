@@ -32,8 +32,8 @@ public class AllyDamageAllEnemiesAction extends AbstractGameAction {
             this.duration = Settings.ACTION_DUR_FAST;
         }
         if (RuinaMod.isMultiplayerConnected()) {
-            ActionPatches.markActionForNoDataSync(this);
-            ActionPatches.markActionForNoDamageSync(this);
+            //ActionPatches.markActionForNoDataSync(this);
+            //ActionPatches.markActionForNoDamageSync(this);
         }
     }
 

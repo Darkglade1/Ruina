@@ -120,10 +120,10 @@ public class KnightOfDespair extends AbstractRuinaMonster
             hpLoss = getPower(Despair.POWER_ID).amount;
         }
         DamageAction damage = new DamageAction(this, new DamageInfo(adp(), hpLoss, DamageInfo.DamageType.HP_LOSS), AbstractGameAction.AttackEffect.NONE);
-        if (wasFullBlocked && RuinaMod.isMultiplayerConnected()) {
-            ActionPatches.markActionForNoDamageSync(damage);
-            ActionPatches.markActionForNoDataSync(damage);
-        }
+//        if (wasFullBlocked && RuinaMod.isMultiplayerConnected()) {
+//            ActionPatches.markActionForNoDamageSync(damage);
+//            ActionPatches.markActionForNoDataSync(damage);
+//        }
         atb(damage);
         stabCount++;
         if (stabCount > MAX_STABS) {

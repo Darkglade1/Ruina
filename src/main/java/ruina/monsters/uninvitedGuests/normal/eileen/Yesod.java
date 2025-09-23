@@ -27,7 +27,6 @@ import ruina.powers.act4.DarkBargain;
 import ruina.powers.multiplayer.MultiplayerAllyBuff;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
-import spireTogether.networkcore.P2P.P2PManager;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
@@ -85,9 +84,9 @@ public class Yesod extends AbstractAllyCardMonster
                 target = (Eileen)mo;
             }
         }
-        if (RuinaMod.isMultiplayerConnected()) {
-            currDamageGrowth = damageGrowth / P2PManager.GetPlayerCount();
-        }
+//        if (RuinaMod.isMultiplayerConnected()) {
+//            currDamageGrowth = damageGrowth / P2PManager.GetPlayerCount();
+//        }
         addPower(new DarkBargain(this));
         super.usePreBattleAction();
 

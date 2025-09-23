@@ -31,7 +31,6 @@ import ruina.BetterSpriterAnimation;
 import ruina.RuinaMod;
 import ruina.cards.Dazzled;
 import ruina.monsters.AbstractRuinaMonster;
-import ruina.multiplayer.NetworkTwilight;
 import ruina.powers.act3.BigEgg;
 import ruina.powers.act3.FadingTwilight;
 import ruina.powers.act3.LongEgg;
@@ -39,10 +38,6 @@ import ruina.powers.act3.SmallEgg;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
 import ruina.vfx.WaitEffect;
-import spireTogether.networkcore.P2P.P2PManager;
-import spireTogether.networkcore.objects.entities.NetworkMonster;
-import spireTogether.other.RoomDataManager;
-import spireTogether.util.SpireHelp;
 
 import java.util.ArrayList;
 
@@ -393,14 +388,14 @@ public class Twilight extends AbstractRuinaMonster
 
     private void updateTwilightMultiplayer() {
         if (RuinaMod.isMultiplayerConnected()) {
-            P2PManager.SendData(NetworkTwilight.request_updateTwilight, dmgTaken, bigEggBroken, smallEggBroken, longEggBroken, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
-            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
-            if (m instanceof NetworkTwilight) {
-                ((NetworkTwilight)m).dmgTaken = this.dmgTaken;
-                ((NetworkTwilight)m).bigEggBroken = this.bigEggBroken;
-                ((NetworkTwilight)m).smallEggBroken = this.smallEggBroken;
-                ((NetworkTwilight)m).longEggBroken = this.longEggBroken;
-            }
+//            P2PManager.SendData(NetworkTwilight.request_updateTwilight, dmgTaken, bigEggBroken, smallEggBroken, longEggBroken, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+//            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+//            if (m instanceof NetworkTwilight) {
+//                ((NetworkTwilight)m).dmgTaken = this.dmgTaken;
+//                ((NetworkTwilight)m).bigEggBroken = this.bigEggBroken;
+//                ((NetworkTwilight)m).smallEggBroken = this.smallEggBroken;
+//                ((NetworkTwilight)m).longEggBroken = this.longEggBroken;
+//            }
         }
     }
 

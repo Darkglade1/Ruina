@@ -22,9 +22,6 @@ import ruina.RuinaMod;
 import ruina.actions.AllyGainBlockAction;
 import ruina.monsters.AbstractAllyCardMonster;
 import ruina.monsters.uninvitedGuests.normal.greta.hodCards.*;
-import ruina.multiplayer.MessengerListener;
-import ruina.multiplayer.NetworkHod;
-import ruina.multiplayer.NetworkYesod;
 import ruina.powers.act4.PurpleTearStance;
 import ruina.util.AllyMove;
 import ruina.util.TexLoader;
@@ -32,10 +29,6 @@ import ruina.vfx.FlexibleDivinityParticleEffect;
 import ruina.vfx.FlexibleStanceAuraEffect;
 import ruina.vfx.VFXActionButItCanFizzle;
 import ruina.vfx.WaitEffect;
-import spireTogether.networkcore.P2P.P2PManager;
-import spireTogether.networkcore.objects.entities.NetworkMonster;
-import spireTogether.other.RoomDataManager;
-import spireTogether.util.SpireHelp;
 
 import static ruina.RuinaMod.makeMonsterPath;
 import static ruina.RuinaMod.makeUIPath;
@@ -275,20 +268,20 @@ public class Hod extends AbstractAllyCardMonster
 
     private void updateHodMultiplayer() {
         if (RuinaMod.isMultiplayerConnected()) {
-            P2PManager.SendData(NetworkHod.request_updateHod, stance, slashMove, pierceMove, guardMove, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
-            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
-            if (m instanceof NetworkHod) {
-                ((NetworkHod)m).stance = stance;
-                ((NetworkHod)m).slashMove = slashMove;
-                ((NetworkHod)m).pierceMove = pierceMove;
-                ((NetworkHod)m).guardMove = guardMove;
-            }
+//            P2PManager.SendData(NetworkHod.request_updateHod, stance, slashMove, pierceMove, guardMove, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+//            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+//            if (m instanceof NetworkHod) {
+//                ((NetworkHod)m).stance = stance;
+//                ((NetworkHod)m).slashMove = slashMove;
+//                ((NetworkHod)m).pierceMove = pierceMove;
+//                ((NetworkHod)m).guardMove = guardMove;
+//            }
         }
     }
 
     private void updateStanceChangeMultiplayer() {
         if (RuinaMod.isMultiplayerConnected()) {
-            P2PManager.SendData(NetworkHod.request_changeStanceHod, stance, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+            //P2PManager.SendData(NetworkHod.request_changeStanceHod, stance, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
             updateHodMultiplayer();
         }
     }

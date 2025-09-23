@@ -21,7 +21,6 @@ import ruina.powers.act2.EasilyDistracted;
 import ruina.powers.multiplayer.EasilyDistractedMultiplayer;
 import ruina.util.DetailedIntent;
 import ruina.util.TexLoader;
-import spireTogether.networkcore.P2P.P2PManager;
 
 import java.util.ArrayList;
 

@@ -9,10 +9,7 @@ import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import ruina.RuinaMod;
 import ruina.monsters.act2.QueenOfHate;
-import ruina.multiplayer.MessengerListener;
 import ruina.powers.AbstractUnremovablePower;
-import spireTogether.networkcore.P2P.P2PManager;
-import spireTogether.util.SpireHelp;
 
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.applyToTarget;
@@ -75,9 +72,9 @@ public class Hysteria extends AbstractUnremovablePower {
 
     private void hysteria() {
         onSpecificTrigger();
-        if (RuinaMod.isMultiplayerConnected()) {
-            P2PManager.SendData(MessengerListener.request_queenTriggerHysteria, SpireHelp.Gameplay.CreatureToUID(owner), SpireHelp.Gameplay.GetMapLocation());
-        }
+//        if (RuinaMod.isMultiplayerConnected()) {
+//            P2PManager.SendData(MessengerListener.request_queenTriggerHysteria, SpireHelp.Gameplay.CreatureToUID(owner), SpireHelp.Gameplay.GetMapLocation());
+//        }
     }
 
     @Override

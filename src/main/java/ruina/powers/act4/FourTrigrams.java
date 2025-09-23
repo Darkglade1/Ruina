@@ -11,11 +11,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.clown.Tiph;
-import ruina.multiplayer.MessengerListener;
 import ruina.powers.AbstractUnremovablePower;
 import ruina.util.TexLoader;
-import spireTogether.networkcore.P2P.P2PManager;
-import spireTogether.util.SpireHelp;
 
 import static ruina.RuinaMod.makePowerPath;
 import static ruina.util.Wiz.*;
@@ -108,9 +105,9 @@ public class FourTrigrams extends AbstractUnremovablePower {
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if (RuinaMod.isMultiplayerConnected() && info.owner == adp()) {
-            P2PManager.SendData(MessengerListener.request_playerDamageTiph, owner.currentHealth - damageAmount, owner.currentBlock, SpireHelp.Gameplay.CreatureToUID(owner), SpireHelp.Gameplay.GetMapLocation());
-        }
+//        if (RuinaMod.isMultiplayerConnected() && info.owner == adp()) {
+//            P2PManager.SendData(MessengerListener.request_playerDamageTiph, owner.currentHealth - damageAmount, owner.currentBlock, SpireHelp.Gameplay.CreatureToUID(owner), SpireHelp.Gameplay.GetMapLocation());
+//        }
         return damageAmount;
     }
 

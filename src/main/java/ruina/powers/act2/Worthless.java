@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import ruina.RuinaMod;
 import ruina.monsters.act2.knight.Sword;
-import ruina.multiplayer.MessengerListener;
 import ruina.powers.AbstractUnremovablePower;
-import spireTogether.networkcore.P2P.P2PManager;
-import spireTogether.util.SpireHelp;
 
 import static ruina.util.Wiz.atb;
 
@@ -29,9 +26,9 @@ public class Worthless extends AbstractUnremovablePower {
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (info.owner == owner && damageAmount == 0 && info.type == DamageInfo.DamageType.NORMAL) {
             onSpecificTrigger();
-            if (RuinaMod.isMultiplayerConnected()) {
-                P2PManager.SendData(MessengerListener.request_swordCommittedSuicide, SpireHelp.Gameplay.CreatureToUID(owner), SpireHelp.Gameplay.GetMapLocation());
-            }
+//            if (RuinaMod.isMultiplayerConnected()) {
+//                P2PManager.SendData(MessengerListener.request_swordCommittedSuicide, SpireHelp.Gameplay.CreatureToUID(owner), SpireHelp.Gameplay.GetMapLocation());
+//            }
         }
     }
 

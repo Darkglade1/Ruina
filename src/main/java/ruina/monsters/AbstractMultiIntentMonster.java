@@ -23,16 +23,10 @@ import com.megacrit.cardcrawl.vfx.combat.MoveNameEffect;
 import ruina.RuinaMod;
 import ruina.actions.BetterIntentFlashAction;
 import ruina.monsters.act3.bigBird.BigBird;
-import ruina.multiplayer.NetworkMultiIntentMonster;
 import ruina.powers.multiplayer.MultiplayerEnemyBuff;
 import ruina.util.AdditionalIntent;
 import ruina.util.DetailedIntent;
 import ruina.vfx.VFXActionButItCanFizzle;
-import spireTogether.networkcore.P2P.P2PManager;
-import spireTogether.networkcore.objects.entities.NetworkIntent;
-import spireTogether.networkcore.objects.entities.NetworkMonster;
-import spireTogether.other.RoomDataManager;
-import spireTogether.util.SpireHelp;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -40,7 +34,6 @@ import java.util.Map;
 import static ruina.RuinaMod.makeID;
 import static ruina.util.Wiz.adp;
 import static ruina.util.Wiz.atb;
-import static spireTogether.patches.monster.MonsterIntentPatch.pauseIntentSync;
 
 public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
     public ArrayList<EnemyMoveInfo> additionalMoves = new ArrayList<>();
@@ -188,18 +181,18 @@ public abstract class AbstractMultiIntentMonster extends AbstractRuinaMonster {
         notifyAdditionalIntentUpdateMultiplayer();
     }
     public void notifyAdditionalIntentUpdateMultiplayer() {
-        if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
-            ArrayList<NetworkIntent> additionalNetworkMoves = new ArrayList<>();
-            for (EnemyMoveInfo info : this.additionalMoves) {
-                additionalNetworkMoves.add(new NetworkIntent(info));
-            }
-            P2PManager.SendData(NetworkMultiIntentMonster.request_monsterUpdateAdditionalIntents, additionalNetworkMoves, this.additionalMovesHistory, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
-            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
-            if (m instanceof NetworkMultiIntentMonster) {
-                ((NetworkMultiIntentMonster)m).additionalMoves = additionalNetworkMoves;
-                ((NetworkMultiIntentMonster)m).additionalMovesHistory = this.additionalMovesHistory;
-            }
-        }
+//        if (RuinaMod.isMultiplayerConnected() && !pauseIntentSync.get() && P2PManager.GetSelf().isGameStatusInCombat()) {
+//            ArrayList<NetworkIntent> additionalNetworkMoves = new ArrayList<>();
+//            for (EnemyMoveInfo info : this.additionalMoves) {
+//                additionalNetworkMoves.add(new NetworkIntent(info));
+//            }
+//            P2PManager.SendData(NetworkMultiIntentMonster.request_monsterUpdateAdditionalIntents, additionalNetworkMoves, this.additionalMovesHistory, SpireHelp.Gameplay.CreatureToUID(this), SpireHelp.Gameplay.GetMapLocation());
+//            NetworkMonster m = RoomDataManager.GetMonsterForCurrentRoom(this);
+//            if (m instanceof NetworkMultiIntentMonster) {
+//                ((NetworkMultiIntentMonster)m).additionalMoves = additionalNetworkMoves;
+//                ((NetworkMultiIntentMonster)m).additionalMovesHistory = this.additionalMovesHistory;
+//            }
+//        }
     }
 
     public void getAdditionalMoves(int num, int whichMove) {

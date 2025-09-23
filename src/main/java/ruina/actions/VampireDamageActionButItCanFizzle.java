@@ -17,8 +17,8 @@ public class VampireDamageActionButItCanFizzle extends VampireDamageAction {
         super(target, info, effect);
         this.info = info;
         if (RuinaMod.isMultiplayerConnected()) {
-            ActionPatches.markActionForNoDataSync(this);
-            ActionPatches.markActionForNoDamageSync(this);
+            //ActionPatches.markActionForNoDataSync(this);
+            //ActionPatches.markActionForNoDamageSync(this);
         }
     }
 
