@@ -1,8 +1,8 @@
 {
-  "${ModID}:HeadHunter": {
-    "NAME": "헤드헌터",
+  "ruina:HeadHunter": {
+    "NAME": "헤드 헌터",
     "DESCRIPTIONS": [
-      "수장의 요원들을 물리쳤습니다."
+      "머리 소속 요원들의 머리를 터뜨려주었습니다."
     ]
   }
 }

@@ -129,49 +129,49 @@
       "ruina:세뇌 NL "
     ]
   },
-  "${ModID}:IntentStrings": {
+  "ruina:IntentStrings": {
     "TEXT": [
-      "you",
-      "self",
-      "모든 적",
-      "random enemy",
-      "라이프스틸",
+      "당신",
+      "자신",
+      "적 전체",
+      "무작위 적",
+      "가한 피해만큼 체력 회복",
       "모든 미니언",
-      "Steals the rarest card",
-      "Cleanse debuffs",
-      "Add Parasite to master deck",
-      "Dies",
-      "Heals to half HP",
-      "Removes negative Strength",
-      "소환장"
+      "가장 등급이 높은 카드를 강탈",
+      "해로운 효과 전부 제거",
+      "덱에 기생충 저주 카드를 추가",
+      "자살",
+      "체력을 절반까지 회복",
+      "음수인 힘 수치를 전부 제거",
+      "소환"
     ]
   },
-  "${ModID}:StrMod": {
+  "ruina:StrMod": {
     "TEXT": [
       "힘을 ", " 얻습니다."
     ]
   },
-  "${ModID}:DexMod": {
+  "ruina:DexMod": {
     "TEXT": [
       "민첩을 ", " 얻습니다."
     ]
   },
-  "${ModID}:MetallicizeMod": {
+  "ruina:MetallicizeMod": {
     "TEXT": [
       "*금속화 ", " 얻습니다."
     ]
   },
-  "${ModID}:EnergyLossMod": {
+  "ruina:EnergyLossMod": {
     "TEXT": [
       " NL 다음 턴에 ", "[E] ", "개를 잃습니다."
     ]
   },
-  "${ModID}:DrawReductionMod": {
+  "ruina:DrawReductionMod": {
     "TEXT": [
       " NL 다음 턴에 카드를 ", " 장 덜 뽑습니다."
     ]
   },
-  "${ModID}:VulnerableMod": {
+  "ruina:VulnerableMod": {
     "TEXT": [
       " NL 취약을 ", " 받습니다.",
       " NL 피해를 ", " 받습니다."

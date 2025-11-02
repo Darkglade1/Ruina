@@ -37,7 +37,7 @@
   },
   "ruina:Wisdom": {
     "NAME": "지혜",
-    "DESCRIPTIONS": ["이 전투에서는 뽑을 카드 더미에서 카드들이 뽑힐 순서로 나타납니다."]
+    "DESCRIPTIONS": ["이 전투에서는 뽑을 카드 더미에서 카드들이 뽑힐 순서를 볼 수 있게 됩니다."]
   },
   "ruina:Heart": {
     "NAME": "따뜻한 마음",
@@ -85,7 +85,7 @@
   },
   "ruina:Hunter": {
     "NAME": "어둠 속의 사냥꾼",
-    "DESCRIPTIONS": ["턴 종료시 이 생물의 체력이 #b", "% 이하가 되면, #y힘을 #b", " #y불가침을 #b", " 얻습니다."]
+    "DESCRIPTIONS": ["턴 종료시 이 생물의 체력이 #b", "% 이하가 되면, #y힘을 #b", " 얻고 #y불가침을 #b", " 얻습니다."]
   },
   "ruina:Skulk": {
     "NAME": "어둠 속으로",
@@ -149,11 +149,11 @@
   },
   "ruina:WingsOfGrace": {
     "NAME": "은총의 날개",
-    "DESCRIPTIONS": ["받는 모든 피해량이 #b", "%. 감소합니다 NL 피해를 받으면, 은촐의 날개 중첩이 #b", " 감소합니다."]
+    "DESCRIPTIONS": ["받는 모든 피해량이 #b", "%. 감소합니다 NL 피해를 받으면, 은총의 날개 중첩이 #b", " 감소합니다."]
   },
   "ruina:Unkillable": {
     "NAME": "믿음을 통한 은총",
-    "DESCRIPTIONS": ["이 적이 죽어도, 다음 턴에 #y부활 하게 됩니다."]
+    "DESCRIPTIONS": ["이 생물이 죽어도, 다음 턴에 #r적의 효과로 #y부활 하게 됩니다."]
   },
   "ruina:ParadiseLostPower": {
     "NAME": "실낙원",
@@ -380,7 +380,7 @@
   },
   "ruina:DarkBargain": {
     "NAME": "어둠의 의뢰",
-    "DESCRIPTIONS": ["이 아군의 #y광역 #y공격은 당신을 포함한 모든 생물을 공격합니다. NL 이 생물의 공격은 적에게 주는 피해량이 #b","x 증가합니다. 당신이 이 아군의 #y광역 #y공격을 #y방어도로 피해없이 완전히 막아내면, 이 아군의 피해량 증가 수치가 #b", " 만큼 늘어납니다."]
+    "DESCRIPTIONS": ["이 아군의 #y광역 #y공격은 당신을 포함한 모든 생물을 공격합니다. NL 이 생물의 공격은 적에게 주는 피해량이 #b"," 배 증가합니다. 당신이 이 아군의 #y광역 #y공격을 #y방어도로 피해없이 완전히 막아내면, 이 아군의 피해량 증가 수치가 #b", " 만큼 늘어납니다."]
   },
   "ruina:PriceOfTime": {
     "NAME": "침묵의 대가",
@@ -447,7 +447,7 @@
   },
   "ruina:Remorse": {
     "NAME": "죄책감",
-    "DESCRIPTIONS": ["턴 종료시, ", " 카드 #b", " 장을 손에 넣으세요."]
+    "DESCRIPTIONS": ["턴 종료시, ", " 카드 #b", " 장을 얻습니다."]
   },
   "ruina:Judas": {
     "NAME": "유다",
@@ -591,7 +591,7 @@
   },
   "ruina:Mimicry": {
     "NAME": "미미크리",
-    "DESCRIPTIONS": ["이번 전투에서 마지막으로 사용한 공격의 기본 피해와 동일한 추가 공격력을 입힙니다."]
+    "DESCRIPTIONS": ["이번 전투에서 마지막으로 사용한 공격의 기본 피해와 동일한 추가 피해를 줍니다."]
   },
   "ruina:SeventhBullet": {
     "NAME": "7번째 탄환",
@@ -633,11 +633,11 @@
     "NAME": "화염 방패",
     "DESCRIPTIONS": ["공격 카드를 사용할 때마다, #y화상+ #b", " 장을 버린 카드 더미에 넣습니다. NL 이 파워 효과는 '식어버린 마음' 효과가 제거되면 같이 제거됩니다."]
   },
-  "${ModID}:Brainwash": {
+  "ruina:Brainwash": {
     "NAME": "세뇌",
     "DESCRIPTIONS": ["각 턴에 처음 플레이된 단일 대상 공격 또는 스킬 ", "개는 세뇌되어 덱으로 다시 섞입니다. 세뇌된 카드는 비용이 0이지만 아군만 대상으로 할 수 있습니다."]
   },
-  "${ModID}:FourTrigrams": {
+  "ruina:FourTrigrams": {
     "NAME": "",
     "DESCRIPTIONS": [
       "사괘의 지온",
@@ -651,28 +651,28 @@
       "장 추가로 더 뽑습니다.",
       " NL 매 턴마다 변화합니다."]
   },
-  "${ModID}:WhiteNightBlessing": {
+  "ruina:WhiteNightBlessing": {
     "NAME": "축복",
-    "DESCRIPTIONS": ["플레이하는 카드는 축복을 받습니다. 축복받은 카드는 더 많은 피해를 입히고 더 많은 차단을 얻습니다. #b", " 장의 카드를 더 플레이하면 이 생물은 라운드가 끝날 때 깨어납니다."]
+    "DESCRIPTIONS": ["사용하는 카드는 축복을 받습니다. 축복을 받은 카드는 피해량과 획득 방어도가 증가합니다. #b", " 장의 카드를 더 사용하면, 이 생물은 라운드가 끝날 때 깨어납니다."]
   },
-  "${ModID}:BearerOfGifts": {
-    "NAME": "선물 전달자",
-    "DESCRIPTIONS": ["다른 모든 턴이 끝날 때마다, 거짓 선물를 당신의 손에 넣으세요. 당신의 턴 동안 거짓 선물가 플레이되지 않았다면, 라운드가 끝날 때 #b", " 의 힘을 얻습니다."]
+  "ruina:BearerOfGifts": {
+    "NAME": "선물 전달",
+    "DESCRIPTIONS": ["짝수번째 턴이 끝날 때마다, 손패에 거짓 선물 카드를 추가합니다. 당신의 턴 동안 거짓 선물 카드가 사용되지 않았다면, 턴 종료시 이 생물이 힘을 #b", " 얻습니다."]
   },
-  "${ModID}:EnergyLossNextTurn": {
+  "ruina:EnergyLossNextTurn": {
     "NAME": "에너지 손실",
     "DESCRIPTIONS": ["다음 턴에 [E] #b", " 개를 잃습니다."]
   },
-  "${ModID}:DrawReductionNextTurn": {
+  "ruina:DrawReductionNextTurn": {
     "NAME": "드로우 저하",
     "DESCRIPTIONS": ["다음 턴에 카드를 #b", " 장 덜 뽑습니다."]
   },
-  "${ModID}:Fragile": {
-    "NAME": "부서지기 쉬운",
+  "ruina:Fragile": {
+    "NAME": "허약",
     "DESCRIPTIONS": ["#y공격 으로 받는 피해가 #b", " 증가합니다."]
   },
-  "${ModID}:Emerald": {
+  "ruina:Emerald": {
     "NAME": "정화의 에메랄드",
-    "DESCRIPTIONS": ["사망 시, 두 하수인이 모두 죽었다면, *정화의 *에메랄드 를 장 얻습니다."]
+    "DESCRIPTIONS": ["사망 시, 두 하수인이 모두 죽었다면, #y정화의 #y에메랄드 1 장을 얻습니다."]
   }
 }

@@ -247,7 +247,7 @@
   },
   "ruina:ContractOfMight": {
     "NAME": "힘의 계약",
-    "DESCRIPTION": "힘을 !M! 얻습니다. NL 매 턴 카드를 !ruina:Second Magic! 장만 사용할 수 있습니다."
+    "DESCRIPTION": "힘을 !M! 얻습니다. NL 매 턴 카드를 !ruina:SecondMagic! 장만 사용할 수 있습니다."
   },
   "ruina:ContractOfLight": {
     "NAME": "빛의 계약",
@@ -378,7 +378,7 @@
     "NAME": "펑! 퍼펑!",
     "DESCRIPTION": "약화를 !M! 부여합니다. NL 힘을 !ruina:SecondMagic! 얻습니다."
   },
-  "${ModID}:WeNeedYou": {
+  "ruina:WeNeedYou": {
     "NAME": "우리에게 당신이 필요해요, 당신도 알다시피요",
     "DESCRIPTION": "피해를 !D! 줍니다. NL 약화와 취약을 !M! 부여합니다."
   },
@@ -390,7 +390,7 @@
     "NAME": "대치",
     "DESCRIPTION": "피해를 !D! 줍니다. NL 모든 아군이 방어도를 !B! 얻습니다."
   },
-  "${ModID}:Trigram": {
+  "ruina:Trigram": {
     "NAME": "진정한 삼괘 형성",
     "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
   },
@@ -940,24 +940,24 @@
     "NAME": "자법",
     "DESCRIPTION": "!D! 피해를 !M! 번 줍니다. NL *마비 를 !ruina:SecondMagic! 부여합니다."
   },
-  "${ModID}:Distorted": {
-    "NAME": "비뚤어진",
-    "DESCRIPTION": "덱에서 제거할 수 없습니다."
+  "ruina:Distorted": {
+    "NAME": "뒤틀림",
+    "DESCRIPTION": "이 카드는 덱에서 제거할 수 없습니다."
   },
-  "${ModID}:Lie": {
-    "NAME": "거짓말하다",
+  "ruina:Lie": {
+    "NAME": "거짓말",
     "DESCRIPTION": "이 카드는 다른 카드인 것처럼 불완전하게 위장합니다."
   },
-  "${ModID}:EternalRest": {
-    "NAME": "영면",
+  "ruina:EternalRest": {
+    "NAME": "안식",
     "DESCRIPTION": "!D! 피해를 !M! 번 줍니다."
   },
-  "${ModID}:FalsePresent": {
+  "ruina:FalsePresent": {
     "NAME": "거짓 선물",
     "DESCRIPTION": ""
   },
-  "${ModID}:Emerald": {
+  "ruina:Emerald": {
     "NAME": "정화의 에메랄드",
-    "DESCRIPTION": "손에 있는 거짓 선물의 부정적인 효과를 모두 제거합니다."
+    "DESCRIPTION": "손패에 보유한 거짓 선물의 해로운 효과를 모두 제거합니다."
   }
 }
