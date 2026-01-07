@@ -162,8 +162,6 @@ public class RuinaMod implements
         OnStartBattleSubscriber {
 
     private static final String modID = "ruina";
-    public static final TextureAtlas UIAtlas = new TextureAtlas();
-    private static Texture silenceImg;
 
     public static String getModID() {
         return modID;
@@ -728,9 +726,6 @@ public class RuinaMod implements
         if (Loader.isModLoaded("CorruptTheSpire")) {
             corruptTheSpireLoaded = true;
         }
-
-        silenceImg = new Texture(makeUIPath("silenceImg.png"));
-        UIAtlas.addRegion("silenceImg", silenceImg, 0, 0, silenceImg.getWidth(), silenceImg.getHeight());
 
         // Load the Mod Badge
         Texture badgeTexture = TexLoader.getTexture(BADGE_IMAGE);

@@ -2,9 +2,9 @@ package ruina.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import ruina.RuinaMod;
 import ruina.monsters.uninvitedGuests.normal.argalia.rolandCards.CHRALLY_FURIOSO;
 import ruina.powers.act5.PlayerBlackSilence;
+import ruina.util.TexLoader;
 
 import static ruina.powers.act5.PlayerBlackSilence.THRESHOLD;
 import static ruina.util.Wiz.*;
@@ -23,7 +24,9 @@ public class BlackSilenceRenderMod extends AbstractCardModifier {
 
     public static final String ID = RuinaMod.makeID(BlackSilenceRenderMod.class.getSimpleName());
 
-    private static TextureAtlas.AtlasRegion uiIcon = RuinaMod.UIAtlas.findRegion("silenceImg");
+    public static final String STRING = RuinaMod.makeUIPath("silenceImg.png");
+    private static final Texture TEXTURE = TexLoader.getTexture(STRING);
+    private static final TextureRegion TEXTURE_REGION = new TextureRegion(TEXTURE);
     private boolean active = true;
 
     @Override
@@ -38,10 +41,8 @@ public class BlackSilenceRenderMod extends AbstractCardModifier {
 
     @Override
     public void onRender(AbstractCard card, SpriteBatch sb) {
-        if(active) {
-            Color cardColor = Color.WHITE.cpy();
-            cardColor.a = card.transparency;
-            renderHelper(sb, cardColor, uiIcon, card.current_x, card.current_y, card);
+        if (active && card != null) {
+            sb.draw(TEXTURE_REGION, card.hb.cX - (float) TEXTURE_REGION.getRegionWidth() / 2, card.hb.cY + (card.hb.height / 2) - (float) TEXTURE_REGION.getRegionHeight() / 2, (float) TEXTURE_REGION.getRegionWidth() / 2, (float) TEXTURE_REGION.getRegionHeight() / 2, TEXTURE_REGION.getRegionWidth(), TEXTURE_REGION.getRegionHeight(), Settings.scale * card.drawScale, Settings.scale * card.drawScale, 0.0f);
         }
     }
 
@@ -87,10 +88,5 @@ public class BlackSilenceRenderMod extends AbstractCardModifier {
                 isDone = true;
             }
         });
-    }
-
-    private static void renderHelper(SpriteBatch sb, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY, AbstractCard q) {
-        sb.setColor(color);
-        sb.draw(img, drawX + img.offsetX - (float) img.originalWidth / 2.0F, drawY + img.offsetY - (float) img.originalHeight / 2.0F, (float) img.originalWidth / 2.0F - img.offsetX, (float) img.originalHeight / 2.0F - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, q.drawScale * Settings.scale, q.drawScale * Settings.scale, q.angle);
     }
 }
